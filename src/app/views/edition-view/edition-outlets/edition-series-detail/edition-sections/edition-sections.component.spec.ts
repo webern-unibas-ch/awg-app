@@ -4,12 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf } from 'rxjs';
-
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -29,7 +25,7 @@ describe('EditionSectionsComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionsComponent>;
     let compDe: DebugElement;
 
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionStateService: EditionStateService;
 
     let clearSelectedSectionSpy: Spy;
     let getSeriesSpy: Spy;
@@ -44,34 +40,23 @@ describe('EditionSectionsComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock edition state service
-        mockEditionStateService = {
-            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(expectedSelectedSeries),
-            clearSelectedEditionSection: (): void => {},
-        };
-
         await TestBed.configureTestingModule({
             declarations: [EditionSectionsComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSectionsComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
 
-        // Spies
-        clearSelectedSectionSpy = vi.spyOn(component, 'clearSelectedSection');
-        getSeriesSpy = vi.spyOn(component, 'getSeries');
-        editionStateServiceClearSelectedEditionSectionSpy = vi.spyOn(
-            mockEditionStateService,
-            'clearSelectedEditionSection'
-        );
-        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSectionsComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -83,8 +68,8 @@ describe('EditionSectionsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedSeries$`', () => {
-            expect(component.selectedSeries$).toBeUndefined();
+        it('... should have signal `selectedSeries` to hold null', () => {
+            expectToEqual(component.selectedSeries(), null);
         });
 
         describe('VIEW', () => {
@@ -96,22 +81,14 @@ describe('EditionSectionsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries$ = observableOf(expectedSelectedSeries);
+            editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `selectedSeries$`', () => {
-            expect(component.selectedSeries$).toBeDefined();
-        });
-
-        it('...should trigger `clearSelectedSection` method on init', () => {
-            expectSpyCall(clearSelectedSectionSpy, 1);
-        });
-
-        it('...should trigger `getSeries` method on init', () => {
-            expectSpyCall(getSeriesSpy, 1);
+        it('... should have signal `selectedSeries` to hold the expected series', () => {
+            expectToEqual(component.selectedSeries(), expectedSelectedSeries);
         });
 
         describe('VIEW', () => {
@@ -556,45 +533,6 @@ describe('EditionSectionsComponent (DONE)', () => {
                         });
                     });
                 });
-            });
-        });
-
-        describe('#clearSelectedSection()', () => {
-            it('... should have a method `clearSelectedSection`', () => {
-                expect(component.clearSelectedSection).toBeDefined();
-            });
-
-            it('...should call `clearSelectedEditionSeries` from EditionStateService', () => {
-                expectSpyCall(editionStateServiceClearSelectedEditionSectionSpy, 1);
-
-                component.clearSelectedSection();
-
-                expectSpyCall(editionStateServiceClearSelectedEditionSectionSpy, 2);
-            });
-        });
-
-        describe('#getSeries()', () => {
-            it('... should have a method `getSeries`', () => {
-                expect(component.getSeries).toBeDefined();
-            });
-
-            it('...should call `getSelectedEditionSeries` from EditionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
-
-                component.getSeries();
-
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
-            });
-
-            it('...should set `selectedSeries$`', async () => {
-                component.selectedSeries$ = undefined;
-                await detectChangesOnPush(fixture);
-
-                expect(component.selectedSeries$).toBeUndefined();
-
-                component.getSeries();
-
-                expect(component.selectedSeries$).toBeDefined();
             });
         });
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, ViewChild } from 
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { EMPTY } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -60,13 +60,6 @@ export class EditionReportComponent {
     private readonly _router: any = inject(Router);
 
     /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
@@ -74,24 +67,28 @@ export class EditionReportComponent {
     errorObject = null;
 
     /**
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
      * Readonly signal: editionReportData.
      *
      * It holds the report data for the selected edition complex.
      */
     readonly editionReportData = toSignal(
-        toObservable(this._editionStateService.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex | null) => {
-                if (!complex) {
-                    return EMPTY;
-                }
-                this.editionComplex = complex;
+        toObservable(this.selectedEditionComplex).pipe(
+            switchMap((complex: EditionComplex) => {
                 return this._editionDataService.getEditionReportData(complex);
             }),
             catchError(err => {
                 this.errorObject = err;
-                return EMPTY;
+                return observableOf(undefined);
             })
-        )
+        ),
+        { initialValue: null }
     );
 
     /**
@@ -218,7 +215,7 @@ export class EditionReportComponent {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
+        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.selectedEditionComplex().baseRoute;
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

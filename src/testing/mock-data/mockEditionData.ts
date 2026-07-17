@@ -142,11 +142,11 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockIntroData.
+     * Test helper data constant: mockIntroSectionData.
      *
-     * It provides a mocked intro data object.
+     * It provides a mocked intro section data object.
      */
-    mockIntroData: {
+    mockIntroSectionData: {
         intro: [
             {
                 id: 'test_intro',
@@ -175,11 +175,11 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockIntroFilteredData.
+     * Test helper data constant: mockIntroSectionFilteredData.
      *
      * It provides a mocked intro data object with filtered content.
      */
-    mockIntroFilteredData: {
+    mockIntroSectionFilteredData: {
         intro: [
             {
                 id: 'test_intro',
@@ -196,11 +196,11 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockIntroEmptyData.
+     * Test helper data constant: mockIntroComplexData.
      *
      * It provides a mocked empty intro data object as used in an edition complex.
      */
-    mockIntroEmptyData: {
+    mockIntroComplexData: {
         intro: [
             {
                 id: 'test_block_id_2',

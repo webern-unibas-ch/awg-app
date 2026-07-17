@@ -5,8 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf } from 'rxjs';
-
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -21,11 +19,10 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockActivatedRoute: ActivatedRouteStub;
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionStateService: EditionStateService;
 
     let updateSectionFromRouteSpy: Spy;
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
-    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
     let editionStateServiceUpdateSelectedEditionSectionSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
@@ -39,28 +36,28 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock edition state service
-        mockEditionStateService = {
-            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> => observableOf(expectedSelectedSeries),
-            updateSelectedEditionSection: (): void => {},
-        };
-
         // Mocked activated route
         mockActivatedRoute = new ActivatedRouteStub();
 
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailComponent, RouterOutletStubComponent],
-            providers: [
-                { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: EditionStateService, useValue: mockEditionStateService },
-            ],
+            providers: [{ provide: ActivatedRoute, useValue: mockActivatedRoute }, EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSectionDetailComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
+
+        // Service spies
+        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+        editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
+            editionStateService,
+            'updateSelectedEditionSection'
+        );
+
+        // Prototype spies (to catch calls in constructor)
+        updateSectionFromRouteSpy = vi.spyOn(EditionSectionDetailComponent.prototype, 'updateSectionFromRoute');
 
         // Test data
         expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
@@ -68,14 +65,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         expectedSeriesId = expectedSelectedSeries.series.route;
         expectedSectionId = expectedSelectedSection.section.route;
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSectionDetailComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         updateSectionFromRouteSpy = vi.spyOn(component, 'updateSectionFromRoute');
-        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
-        editionStateServiceGetSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'getSelectedEditionSeries');
-        editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
-            mockEditionStateService,
-            'updateSelectedEditionSection'
-        );
     });
 
     afterEach(() => {
@@ -87,8 +83,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have called `updateSectionFromRoute` method', () => {
-            expectSpyCall(updateSectionFromRouteSpy, 0);
+        it('... should have called `updateSectionFromRoute` method', () => {
+            expectSpyCall(updateSectionFromRouteSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -122,28 +118,25 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expect(component.updateSectionFromRoute).toBeDefined();
             });
 
-            it('... should call editionStateService.getSelectedEditionSeries', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 1);
+            it('... should call EditionOutlineService.getEditionSectionById via internal effect', async () => {
+                editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
-                component.updateSectionFromRoute();
+                await fixture.whenStable();
 
-                expectSpyCall(editionStateServiceGetSelectedEditionSeriesSpy, 2);
+                expect(editionOutlineServiceGetEditionSectionByIdSpy).toHaveBeenCalledWith(
+                    expectedSeriesId,
+                    expectedSectionId
+                );
             });
 
-            it('... should call EditionOutlineService.getEditionSectionById', () => {
-                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
+            it('... should update the selected edition section in the state service via internal effect', async () => {
+                editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
-                component.updateSectionFromRoute();
+                await fixture.whenStable();
 
-                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 2, [expectedSeriesId, expectedSectionId]);
-            });
-
-            it('... should call editionStateService.updateSelectedEditionSection with selectedSection', () => {
-                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, expectedSelectedSection);
-
-                component.updateSectionFromRoute();
-
-                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSelectedSection);
+                expect(editionStateServiceUpdateSelectedEditionSectionSpy).toHaveBeenCalledWith(
+                    expectedSelectedSection
+                );
             });
         });
     });

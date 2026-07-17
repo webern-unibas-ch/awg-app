@@ -1,3 +1,4 @@
+import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionRouteConstant } from '@awg-views/edition-view/models';
 import { EditionComplexesService } from '@awg-views/edition-view/services';
@@ -43,15 +44,8 @@ export class EditionSectionLink {
         if (!section?.seriesParent || !section?.section) {
             throw new Error('[EditionSectionLink]: invalid edition outline section');
         }
-        const routes = EDITION_ROUTE_CONSTANTS;
-        this.route = [
-            routes.EDITION.route,
-            routes.SERIES.route,
-            section.seriesParent.route,
-            routes.SECTION.route,
-            section.section.route,
-        ];
-        this.shortTitle = `${routes.EDITION.short} ${section.seriesParent.short}/${section.section.short}`;
+        this.route = section.labeledRoute.route;
+        this.shortTitle = section.labeledRoute.label;
         this.fullTitle = section.section.full;
         this.separator = EditionSectionLink._getSeparator(index, totalLength);
     }
@@ -95,8 +89,8 @@ export interface EditionOutlineSectionsContentJsonData {
      * The complex types data.
      */
     complexTypes: {
-        opus: [{ complex: string; disabled: boolean }];
-        mnr: [{ complex: string; disabled: boolean }];
+        opus: { complex: string; disabled: boolean }[];
+        mnr: { complex: string; disabled: boolean }[];
     };
 }
 
@@ -164,17 +158,22 @@ export interface EditionOutlineComplexItem {
     /**
      * The edition complex.
      */
-    complex: EditionComplex;
+    readonly complex: EditionComplex;
 
     /**
      * Boolean flag if an edition complex is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
+
+    /**
+     * The labeled route of an edition complex.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The sub-complexes of an edition complex.
      */
-    subComplexes?: EditionOutlineComplexItem[];
+    readonly subComplexes?: EditionOutlineComplexItem[];
 }
 
 /**
@@ -187,12 +186,12 @@ export interface EditionOutlineComplexTypes {
     /**
      * The opus parts of an edition complex.
      */
-    opus: EditionOutlineComplexItem[];
+    readonly opus: EditionOutlineComplexItem[];
 
     /**
      * The mnr parts of an edition complex.
      */
-    mnr: EditionOutlineComplexItem[];
+    readonly mnr: EditionOutlineComplexItem[];
 }
 
 /**
@@ -205,12 +204,17 @@ export interface EditionOutlineIntroItem {
     /**
      * Boolean flag if an intro is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
+
+    /**
+     * The labeled route of an intro.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The preview of an intro.
      */
-    preview?: string;
+    readonly preview?: string;
 }
 
 /**
@@ -223,12 +227,17 @@ export interface EditionOutlineSectionContent {
     /**
      * The intro of an edition section.
      */
-    intro: EditionOutlineIntroItem;
+    readonly intro: EditionOutlineIntroItem;
 
     /**
      * The edition complex types of an edition section.
      */
-    complexTypes: EditionOutlineComplexTypes;
+    readonly complexTypes: EditionOutlineComplexTypes;
+
+    /**
+     * The edition complexes of an edition section.
+     */
+    readonly sectionComplexes: EditionOutlineComplexItem[];
 }
 
 /**
@@ -241,22 +250,27 @@ export interface EditionOutlineSection {
     /**
      * The series parent route of an edition section.
      */
-    seriesParent: EditionRouteConstant;
+    readonly seriesParent: EditionRouteConstant;
 
     /**
      * The section route of an edition section.
      */
-    section: EditionRouteConstant;
+    readonly section: EditionRouteConstant;
+
+    /**
+     * The labeled route of an edition section.
+     */
+    readonly labeledRoute: LabeledRoute;
 
     /**
      * The section content of an edition section.
      */
-    content: EditionOutlineSectionContent;
+    readonly content: EditionOutlineSectionContent;
 
     /**
      * Boolean flag if an edition section is disabled.
      */
-    disabled: boolean;
+    readonly disabled: boolean;
 }
 
 /**
@@ -269,12 +283,12 @@ export interface EditionOutlineSeries {
     /**
      * The series route of an edition series.
      */
-    series: EditionRouteConstant;
+    readonly series: EditionRouteConstant;
 
     /**
      * The section route of an edition series.
      */
-    sections: EditionOutlineSection[];
+    readonly sections: EditionOutlineSection[];
 }
 
 /**
@@ -287,7 +301,7 @@ export class EditionOutline {
     /**
      * The outline of the edition.
      */
-    outline: EditionOutlineSeries[];
+    readonly outline: EditionOutlineSeries[];
 
     /**
      * Constructor of the EditionOutline class.
@@ -298,6 +312,7 @@ export class EditionOutline {
      */
     constructor(outlineData: EditionOutlineSeriesJsonData[]) {
         if (!outlineData) {
+            this.outline = [];
             return;
         }
 
@@ -344,10 +359,26 @@ export class EditionOutline {
                 ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
                 : EDITION_ROUTE_CONSTANTS['SECTION_' + section];
 
+        const labeledSectionRoute: LabeledRoute = {
+            label: `${EDITION_ROUTE_CONSTANTS.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
+            route: [
+                EDITION_ROUTE_CONSTANTS.EDITION.route,
+                EDITION_ROUTE_CONSTANTS.SERIES.route,
+                seriesConstant.route,
+                EDITION_ROUTE_CONSTANTS.SECTION.route,
+                sectionConstant.route,
+            ],
+        };
+        const labeledIntroRoute: LabeledRoute = {
+            label: EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full,
+            route: [...labeledSectionRoute.route, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route],
+        };
+
         return {
             seriesParent: seriesConstant,
             section: sectionConstant,
-            content: this._mapSectionContent(content),
+            labeledRoute: labeledSectionRoute,
+            content: this._mapSectionContent(content, labeledIntroRoute),
             disabled,
         };
     };
@@ -358,18 +389,31 @@ export class EditionOutline {
      * It maps the content data.
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
+     * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
      *
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent = (
-        content: EditionOutlineSectionsContentJsonData
-    ): EditionOutlineSectionContent => ({
-        intro: { disabled: content.intro.disabled, preview: content.intro.preview || '' },
-        complexTypes: {
-            opus: this._mapComplexItems(content.complexTypes.opus),
-            mnr: this._mapComplexItems(content.complexTypes.mnr),
-        },
-    });
+        content: EditionOutlineSectionsContentJsonData,
+        labeledIntroRoute: LabeledRoute
+    ): EditionOutlineSectionContent => {
+        const opus = this._mapComplexItems(content.complexTypes.opus);
+        const mnr = this._mapComplexItems(content.complexTypes.mnr);
+        const sectionComplexes = [...opus, ...mnr];
+
+        return {
+            intro: {
+                disabled: content.intro.disabled ?? true,
+                labeledRoute: labeledIntroRoute,
+                preview: content.intro.preview ?? '',
+            },
+            complexTypes: {
+                opus,
+                mnr,
+            },
+            sectionComplexes,
+        };
+    };
 
     /**
      * Private readonly method: _mapComplexItems.
@@ -382,9 +426,20 @@ export class EditionOutline {
      */
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[]
-    ): EditionOutlineComplexItem[] =>
-        complexItems.map(({ complex, disabled }) => ({
-            complex: EditionComplexesService.getEditionComplexById(complex),
-            disabled,
-        }));
+    ): EditionOutlineComplexItem[] => {
+        return complexItems.map(({ complex, disabled }) => {
+            const fullComplex = EditionComplexesService.getEditionComplexById(complex);
+
+            const labeledRoute: LabeledRoute = {
+                label: fullComplex?.complexId?.full ?? '',
+                route: [fullComplex?.baseRoute ?? '', EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+            };
+
+            return {
+                complex: fullComplex,
+                labeledRoute,
+                disabled,
+            };
+        });
+    };
 }

@@ -7,7 +7,7 @@
     @if (editionIntroData(); as editionIntroData) {
         <div class="awg-edition-intro-view p-5 border rounded-3">
             <div class="row justify-content-center">
-                @if (UTILS.isEmptyArray(editionIntroData?.intro[currentLanguage]?.content)) {
+                @if (UTILS.isEmptyArray(editionIntroData?.intro?.[currentLanguage]?.content)) {
                     <awg-edition-intro-placeholder
                         class="col-12"
                         [editionComplex]="editionComplex"

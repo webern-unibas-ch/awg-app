@@ -103,13 +103,6 @@ export class EditionSheetsComponent implements OnInit {
     private readonly _router: any = inject(Router);
 
     /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
@@ -187,6 +180,13 @@ export class EditionSheetsComponent implements OnInit {
     textcriticsData: TextcriticsList;
 
     /**
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
      * Readonly signal: isFirstPageLoad.
      *
      * It holds the information if the page is loaded for the first time.
@@ -199,15 +199,6 @@ export class EditionSheetsComponent implements OnInit {
      * It holds the current loading status.
      */
     readonly isLoading = this._loadingService.isLoading;
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -321,7 +312,7 @@ export class EditionSheetsComponent implements OnInit {
      * @returns {void} Navigates to the edition report.
      */
     onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
+        const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
             fragment: reportIds?.fragmentId ?? '',
         };
@@ -339,7 +330,7 @@ export class EditionSheetsComponent implements OnInit {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
+        const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetIds?.sheetId ?? '' },
             queryParamsHandling: 'merge',
@@ -386,9 +377,7 @@ export class EditionSheetsComponent implements OnInit {
     private _fetchEditionComplexData(
         queryParams: ParamMap
     ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return toObservable(this._editionStateService.selectedEditionComplex, { injector: this._injector }).pipe(
-            // Set editionComplex
-            tap((complex: EditionComplex) => (this.editionComplex = complex)),
+        return toObservable(this.selectedEditionComplex, { injector: this._injector }).pipe(
             // Get editionSheetsData
             switchMap((complex: EditionComplex) => this._editionDataService.getEditionSheetsData(complex)),
             // Assign data
@@ -458,7 +447,7 @@ export class EditionSheetsComponent implements OnInit {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
+        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.selectedEditionComplex().baseRoute;
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

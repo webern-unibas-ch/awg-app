@@ -1,70 +1,38 @@
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { EditionOutline, EditionOutlineSeriesJsonData } from '@awg-views/edition-view/models/edition-outline.model';
 
 /**
- * Test helper data file: mockEditionOutline.
+ * Object const: rawMockData.
  *
- * It provides a mocked EditionOutline
+ * It provides a mocked EditionOutlineSeriesJsonData array
  * for the edition view.
- *
- * Exposed to be called from tests.
  */
-export const mockEditionOutline: EditionOutlineSeries[] = [
+const rawMockData: EditionOutlineSeriesJsonData[] = [
     {
-        series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+        series: '1',
         sections: [
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_1,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: '',
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: '1',
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_2,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: '',
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: '2',
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_3,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: '',
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: '3',
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: '',
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: '4',
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+                section: '5',
+                disabled: true,
                 content: {
                     intro: {
                         disabled: false,
@@ -72,21 +40,29 @@ export const mockEditionOutline: EditionOutlineSeries[] = [
                     },
                     complexTypes: {
                         opus: [
-                            { complex: EditionComplexesService.getEditionComplexById('op12'), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById('op23'), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById('op25'), disabled: false },
+                            { complex: 'op12', disabled: false },
+                            { complex: 'op23', disabled: false },
+                            { complex: 'op25', disabled: false },
                         ],
                         mnr: [
-                            { complex: EditionComplexesService.getEditionComplexById('m212'), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById('m213'), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById('m216'), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById('m217'), disabled: false },
+                            { complex: 'm212', disabled: false },
+                            { complex: 'm213', disabled: false },
+                            { complex: 'm216', disabled: false },
+                            { complex: 'm217', disabled: false },
                         ],
                     },
                 },
-
-                disabled: true,
             },
         ],
     },
 ];
+
+/**
+ * Test helper const: mockEditionOutline.
+ *
+ * It provides a mocked EditionOutline
+ * for the edition view.
+ *
+ * Exposed to be called from tests.
+ */
+export const mockEditionOutline = new EditionOutline(rawMockData).outline;

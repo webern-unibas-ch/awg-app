@@ -145,7 +145,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionStateService: Partial<EditionStateService>;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
     let editionSheetsServiceFindTextcriticsSpy: Spy;
@@ -154,7 +154,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
-    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
+    let fetchEditionComplexDataSpy: Spy;
     let getEditionSheetsDataSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
@@ -169,6 +169,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedConvolute: FolioConvolute;
     let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
+    let expectedOtherEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
@@ -210,9 +211,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             getEditionSheetsData: (): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> =>
                 observableOf([]),
         };
-        mockEditionStateService = {
-            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(),
-        };
+
         mockEditionSheetsService = {
             findTextcritics: (): Textcritics => new Textcritics(),
             getCurrentEditionType: (): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
@@ -238,10 +237,10 @@ describe('EditionSheetsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
+                EditionStateService,
                 { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
-                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
                 {
                     provide: ActivatedRoute,
@@ -255,6 +254,9 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Set loading status before each test
         mockIsLoadingSignal.set(false);
 
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
+
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
 
@@ -263,6 +265,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedComplexId = 'op12';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
         expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedOtherEditionComplex = EditionComplexesService.getEditionComplexById('op25');
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
@@ -286,9 +289,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             .mockReturnValue(
                 observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData])
             );
-        editionStateServiceGetSelectedEditionComplexSpy = vi
-            .spyOn(mockEditionStateService, 'getSelectedEditionComplex')
-            .mockReturnValue(observableOf(expectedEditionComplex));
         editionSheetsServiceFindTextcriticsSpy = vi.spyOn(mockEditionSheetsService, 'findTextcritics');
         editionSheetsServiceGetCurrentEditionTypeSpy = vi.spyOn(mockEditionSheetsService, 'getCurrentEditionType');
         editionSheetsServiceGetNextSheetIdSpy = vi.spyOn(mockEditionSheetsService, 'getNextSheetId');
@@ -317,6 +317,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
         onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
 
+        fetchEditionComplexDataSpy = vi.spyOn(component as any, '_fetchEditionComplexData');
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
         selectSvgSheetSpy = vi.spyOn(component as any, '_selectSvgSheet');
     });
@@ -330,10 +331,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
-        });
-
         it('... should have `errorObject` = null', () => {
             expectToBe(component.errorObject, null);
         });
@@ -378,6 +375,12 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.textcriticsData).toBeUndefined();
         });
 
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToBe(component.selectedEditionComplex(), null);
+        });
+
         it('... should have signal `isFirstPageLoad` to hold true', () => {
             expectToBe(isSignal(component.isFirstPageLoad), true);
 
@@ -390,12 +393,8 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToBe(component.isLoading(), false);
         });
 
-        it('... should have `editionRouteConstants` getter', () => {
-            expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
-        });
-
         describe('VIEW', () => {
-            it('... should contain a `div`', () => {
+            it('... should contain one outer `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
@@ -429,7 +428,8 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.editionComplex = structuredClone(expectedEditionComplex);
+            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+
             component.folioConvoluteData = structuredClone(expectedFolioConvoluteData);
             component.svgSheetsData = structuredClone(expectedSvgSheetsData);
             component.textcriticsData = structuredClone(expectedTextcriticsData);
@@ -449,6 +449,10 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
         });
 
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
+            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
+        });
+
         it('... should have `folioConvoluteData`', () => {
             expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
         });
@@ -461,6 +465,10 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToEqual(component.textcriticsData, expectedTextcriticsData);
         });
 
+        it('... should have called `getEditionSheetsData`', () => {
+            expectSpyCall(getEditionSheetsDataSpy, 1);
+        });
+
         describe('VIEW', () => {
             describe('on loading', () => {
                 it('... should contain one TwelveToneSpinnerComponent (stubbed) if isLoading() and isFirstPageLoad() is true', async () => {
@@ -469,7 +477,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     await detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
@@ -481,16 +489,18 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 beforeEach(async () => {
                     // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionSheetsDataSpy.mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
+                    mockIsLoadingSignal.set(false);
+                    component.isFirstPageLoad.set(false);
+                    fetchEditionComplexDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
                     component.getEditionSheetsData();
+
                     await detectChangesOnPush(fixture);
                 });
 
                 it('... should not contain sheets view, but one AlertErrorComponent (stubbed)', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 0, 0);
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
@@ -506,8 +516,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one div.awg-sheets-view', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-sheets-view', 1, 1);
+            it('... should contain one div.awg-edition-sheets-view', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 1, 1);
             });
 
             describe('... AccoladeComponent (stubbed)', () => {
@@ -631,1144 +641,952 @@ describe('EditionSheetsComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionSheetsData()', () => {
-            it('... should have a method `getEditionSheetsData`', () => {
-                expect(component.getEditionSheetsData).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#getEditionSheetsData()', () => {
+                it('... should have a method `getEditionSheetsData`', () => {
+                    expect(component.getEditionSheetsData).toBeDefined();
+                });
 
-            it('... should have been called', () => {
-                expectSpyCall(getEditionSheetsDataSpy, 1);
-            });
+                it('... should trigger `_fetchEditionComplexData()` with empty object if queryParams are not given', () => {
+                    mockActivatedRoute.testQueryParamMap = undefined;
 
-            it('... should trigger `_fetchEditionComplexData()` with empty object if queryParams are not given', async () => {
-                mockActivatedRoute.testQueryParamMap = undefined;
-                await detectChangesOnPush(fixture);
+                    const initialCalls = fetchEditionComplexDataSpy.mock.calls.length;
 
-                const handleQueryParamsSpy = vi.spyOn(component as any, '_handleQueryParams');
+                    component.getEditionSheetsData();
 
-                expectSpyCall(handleQueryParamsSpy, 0);
+                    expectSpyCall(fetchEditionComplexDataSpy, initialCalls + 1, mockActivatedRoute.testQueryParamMap);
+                });
 
-                component.getEditionSheetsData();
+                it('... should trigger `_fetchEditionComplexData()` with correct parameters if queryParams are given', () => {
+                    const sheetId = 'test-TF1';
+                    mockActivatedRoute.testQueryParamMap = { id: sheetId };
 
-                expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
-            });
+                    const initialCalls = fetchEditionComplexDataSpy.mock.calls.length;
 
-            it('... should trigger `_fetchEditionComplexData()` with correct parameters if queryParams are given', async () => {
-                const sheetId = 'test-TF1';
-                mockActivatedRoute.testQueryParamMap = { id: sheetId };
-                await detectChangesOnPush(fixture);
+                    component.getEditionSheetsData();
 
-                const handleQueryParamsSpy = vi.spyOn(component as any, '_handleQueryParams');
+                    expectSpyCall(fetchEditionComplexDataSpy, initialCalls + 1, mockActivatedRoute.testQueryParamMap);
+                    expectToBe(component.errorObject, null);
+                });
 
-                expectSpyCall(handleQueryParamsSpy, 0);
-
-                component.getEditionSheetsData();
-
-                expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
-                expectToBe(component.errorObject, null);
-            });
-
-            describe('... should handle errors and set errorObject when', () => {
-                it('... when switchMap fails', () => {
+                it('... should handle errors and set errorObject when switchMap fails', () => {
                     const expectedError = { status: 404, statusText: 'error' };
-                    vi.spyOn(component as any, '_fetchEditionComplexData').mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
-
-                    component.getEditionSheetsData();
-
-                    expectToEqual(component.errorObject, expectedError);
-                });
-
-                it('... fetching edition complex data fails', () => {
-                    const expectedError = { status: 500, statusText: 'Internal Server Error' };
-                    editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
-
-                    component.getEditionSheetsData();
-
-                    expectToEqual(component.errorObject, expectedError);
-                });
-
-                it('...  fetching edition sheets data fails', () => {
-                    const expectedError = { status: 500, statusText: 'Internal Server Error' };
-                    editionDataServiceGetEditionSheetsDataSpy.mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
+                    fetchEditionComplexDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
                     component.getEditionSheetsData();
 
                     expectToEqual(component.errorObject, expectedError);
                 });
             });
-        });
 
-        describe('#onBrowseSvgSheet()', () => {
-            it('... should have a method `onBrowseSvgSheet`', () => {
-                expect(component.onBrowseSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', () => {
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                const expectedDirection = 1;
-                accoladeCmp.browseSvgSheetRequest.emit(expectedDirection);
-
-                expectSpyCall(onBrowseSvgSheetSpy, 1, [expectedDirection]);
-            });
-
-            describe('... should do nothing if', () => {
-                it('... edition type is undefined', async () => {
-                    component.selectedSvgSheet = expectedSvgSheet;
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedDirection = 1;
-                    editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(undefined);
-
-                    component.onBrowseSvgSheet(expectedDirection);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-            });
-
-            describe('... should trigger `onSvgSheetSelect()` method with correct sheet id', () => {
-                it('... if direction is 1', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedDirection = 1;
-                    const expectedEditionType = 'sketchEditions';
-
-                    editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(expectedEditionType);
-                    editionSheetsServiceGetNextSheetIdSpy.mockReturnValue(expectedNextSvgSheet.id + 'a');
-
-                    component.selectedSvgSheet = expectedSvgSheet;
-                    await detectChangesOnPush(fixture);
-
-                    component.onBrowseSvgSheet(expectedDirection);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 2, { complexId: '', sheetId: expectedNextSvgSheet.id + 'a' });
+            describe('#onBrowseSvgSheet()', () => {
+                it('... should have a method `onBrowseSvgSheet`', () => {
+                    expect(component.onBrowseSvgSheet).toBeDefined();
                 });
 
-                it('... if direction is -1', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedDirection = -1;
-                    const expectedEditionType = 'sketchEditions';
-
-                    editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(expectedEditionType);
-                    editionSheetsServiceGetNextSheetIdSpy.mockReturnValue(expectedSvgSheet.id);
-
-                    component.selectedSvgSheet = expectedNextSvgSheet;
-                    await detectChangesOnPush(fixture);
-
-                    component.onBrowseSvgSheet(expectedDirection);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 2, { complexId: '', sheetId: expectedSvgSheet.id });
-                });
-            });
-        });
-
-        describe('#onLinkBoxSelect()', () => {
-            it('... should have a method `onLinkBoxSelect`', () => {
-                expect(component.onLinkBoxSelect).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', () => {
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                const expectedLinkBoxId = 'link-box-1';
-                accoladeCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
-
-                expectSpyCall(onLinkBoxSelectSpy, 1, [expectedLinkBoxId]);
-            });
-
-            describe('... should do nothing if', () => {
-                it('... selectedSvgSheet is not defined', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedLinkBoxId = 'linkBox1';
-
-                    component.selectedSvgSheet = null;
-                    await detectChangesOnPush(fixture);
-
-                    component.onLinkBoxSelect(expectedLinkBoxId);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-
-                it('... selectedTextcritics.linkBoxes are not defined', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedLinkBoxId = 'linkBox1';
-
-                    component.selectedSvgSheet = expectedSvgSheet;
-                    component.selectedTextcritics = expectedSelectedTextcritics;
-                    component.selectedTextcritics.linkBoxes = null;
-                    await detectChangesOnPush(fixture);
-
-                    component.onLinkBoxSelect(expectedLinkBoxId);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-
-                it('... selectedTextcritics.linkBoxes are empty', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedLinkBoxId = 'linkBox1';
-
-                    component.selectedSvgSheet = expectedSvgSheet;
-                    component.selectedTextcritics = expectedSelectedTextcritics;
-                    component.selectedTextcritics.linkBoxes = [];
-                    await detectChangesOnPush(fixture);
-
-                    component.onLinkBoxSelect(expectedLinkBoxId);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-
-                it('... link box is not found', async () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    const expectedLinkBoxId = 'linkBox1';
-
-                    component.selectedSvgSheet = expectedSvgSheet;
-                    component.selectedTextcritics = expectedSelectedTextcritics;
-                    component.selectedTextcritics.linkBoxes = [
-                        {
-                            svgGroupId: 'unknown-link-box',
-                            linkTo: { complexId: 'test-complex', sheetId: 'test-sheet' },
-                        },
-                    ];
-
-                    await detectChangesOnPush(fixture);
-
-                    component.onLinkBoxSelect(expectedLinkBoxId);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-            });
-
-            it('... should find correct link box and trigger `_selectSvgSheet()` method with correct parameters', async () => {
-                expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                const expectedLinkBoxId = 'linkBox1';
-                const expectedLinkBox = {
-                    svgGroupId: expectedLinkBoxId,
-                    linkTo: { complexId: 'test-complex', sheetId: 'test-sheet' },
-                };
-
-                component.selectedSvgSheet = expectedSvgSheet;
-                component.selectedTextcritics = expectedSelectedTextcritics;
-                component.selectedTextcritics.linkBoxes = [expectedLinkBox];
-
-                await detectChangesOnPush(fixture);
-
-                component.onLinkBoxSelect(expectedLinkBoxId);
-
-                expectSpyCall(onSvgSheetSelectSpy, 2, expectedLinkBox.linkTo);
-            });
-        });
-
-        describe('#onOverlaySelect()', () => {
-            it('... should have a method `onOverlaySelect`', () => {
-                expect(component.onOverlaySelect).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', async () => {
-                component.selectedTextcritics = expectedSelectedTextcritics;
-                await detectChangesOnPush(fixture);
-
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true)];
-
-                accoladeCmp.selectOverlaysRequest.emit(expectedOverlays);
-
-                expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
-            });
-
-            it('... should correctly filter textcritical commentary and set `showTka` to true', async () => {
-                for (const comment of expectedSelectedTextcriticalCommentary.comments) {
-                    for (const blockComment of comment.blockComments) {
-                        const expectedOverlays = [
-                            new EditionSvgOverlay(
-                                EditionSvgOverlayTypes.tkk,
-                                blockComment.svgGroupId,
-                                blockComment.svgGroupId,
-                                true
-                            ),
-                        ];
-                        const expectedCommentary = {
-                            preamble: expectedSelectedTextcriticalCommentary.preamble,
-                            comments: [
-                                {
-                                    ...comment,
-                                    blockComments: [blockComment],
-                                },
-                            ],
-                        };
-
-                        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(
-                            expectedCommentary
-                        );
-
-                        component.selectedTextcritics = expectedSelectedTextcritics;
-                        await detectChangesOnPush(fixture);
-
-                        component.onOverlaySelect(expectedOverlays);
-
-                        expectToEqual(component.selectedTextcriticalCommentary, expectedCommentary);
-                        expectToBe(component.showTkA, true);
-                    }
-                }
-            });
-        });
-
-        describe('#onReportFragmentNavigate()', () => {
-            it('... should have a method `onReportFragmentNavigate`', () => {
-                expect(component.onReportFragmentNavigate).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', () => {
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                accoladeCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
-            });
-
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                const expectedNavigationExtras = {
-                    fragment: expectedReportIds.fragmentId,
-                };
-
-                component.onReportFragmentNavigate(expectedReportIds);
-                fixture.detectChanges();
-
-                expectSpyCall(navigateWithComplexIdSpy, 2, [
-                    expectedReportIds.complexId,
-                    expectedReportRoute,
-                    expectedNavigationExtras,
-                ]);
-            });
-
-            describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                    const expectedNavigationExtras = {
-                        fragment: '',
-                    };
-
-                    component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is null', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                    const expectedNavigationExtras = {
-                        fragment: '',
-                    };
-
-                    component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is empty string', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                    const expectedNavigationExtras = {
-                        fragment: '',
-                    };
-
-                    component.onReportFragmentNavigate(expectedReportIds);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-        });
-
-        describe('#onSvgSheetSelect()', () => {
-            it('... should have a method `onSvgSheetSelect`', () => {
-                expect(component.onSvgSheetSelect).toBeDefined();
-            });
-
-            describe('... should trigger on event from', () => {
-                it('... EditionAccoladeComponent', () => {
+                it('... should trigger on event from EditionAccoladeComponent', () => {
                     const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
                     const accoladeCmp = accoladeDes[0].injector.get(
                         EditionAccoladeStubComponent
                     ) as EditionAccoladeStubComponent;
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    const expectedDirection = 1;
+                    accoladeCmp.browseSvgSheetRequest.emit(expectedDirection);
 
-                    accoladeCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 2, expectedSheetIds);
+                    expectSpyCall(onBrowseSvgSheetSpy, 1, [expectedDirection]);
                 });
 
-                it('... EditionConvoluteComponent', async () => {
-                    component.selectedConvolute = expectedConvolute;
+                describe('... should do nothing if', () => {
+                    it('... edition type is undefined', async () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedDirection = 1;
+                        component.selectedSvgSheet = expectedSvgSheet;
+                        editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(undefined);
+
+                        component.onBrowseSvgSheet(expectedDirection);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+                });
+
+                describe('... should trigger `onSvgSheetSelect()` method with correct sheet id', () => {
+                    beforeEach(() => {
+                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+
+                        component.folioConvoluteData = structuredClone(expectedFolioConvoluteData);
+                        component.svgSheetsData = structuredClone(expectedSvgSheetsData);
+                        component.textcriticsData = structuredClone(expectedTextcriticsData);
+
+                        // Trigger initial data binding
+                        fixture.detectChanges();
+                    });
+
+                    it('... if direction is 1', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedDirection = 1;
+                        const expectedEditionType = 'sketchEditions';
+                        editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(expectedEditionType);
+                        editionSheetsServiceGetNextSheetIdSpy.mockReturnValue(expectedNextSvgSheet.id + 'a');
+                        component.selectedSvgSheet = expectedSvgSheet;
+
+                        component.onBrowseSvgSheet(expectedDirection);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, {
+                            complexId: '',
+                            sheetId: expectedNextSvgSheet.id + 'a',
+                        });
+                    });
+
+                    it('... if direction is -1', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedDirection = -1;
+                        const expectedEditionType = 'sketchEditions';
+                        editionSheetsServiceGetCurrentEditionTypeSpy.mockReturnValue(expectedEditionType);
+                        editionSheetsServiceGetNextSheetIdSpy.mockReturnValue(expectedSvgSheet.id);
+                        component.selectedSvgSheet = expectedNextSvgSheet;
+
+                        component.onBrowseSvgSheet(expectedDirection);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, { complexId: '', sheetId: expectedSvgSheet.id });
+                    });
+                });
+            });
+
+            describe('#onLinkBoxSelect()', () => {
+                it('... should have a method `onLinkBoxSelect`', () => {
+                    expect(component.onLinkBoxSelect).toBeDefined();
+                });
+
+                it('... should trigger on event from EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    const expectedLinkBoxId = 'link-box-1';
+                    accoladeCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+
+                    expectSpyCall(onLinkBoxSelectSpy, 1, [expectedLinkBoxId]);
+                });
+
+                describe('... should do nothing if', () => {
+                    it('... selectedSvgSheet is not defined', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedLinkBoxId = 'linkBox1';
+                        component.selectedSvgSheet = null;
+
+                        component.onLinkBoxSelect(expectedLinkBoxId);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+
+                    it('... selectedTextcritics.linkBoxes are not defined', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedLinkBoxId = 'linkBox1';
+                        component.selectedSvgSheet = expectedSvgSheet;
+                        component.selectedTextcritics = expectedSelectedTextcritics;
+                        component.selectedTextcritics.linkBoxes = null;
+
+                        component.onLinkBoxSelect(expectedLinkBoxId);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+
+                    it('... selectedTextcritics.linkBoxes are empty', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedLinkBoxId = 'linkBox1';
+                        component.selectedSvgSheet = expectedSvgSheet;
+                        component.selectedTextcritics = expectedSelectedTextcritics;
+                        component.selectedTextcritics.linkBoxes = [];
+
+                        component.onLinkBoxSelect(expectedLinkBoxId);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+
+                    it('... link box is not found', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        const expectedLinkBoxId = 'linkBox1';
+                        component.selectedSvgSheet = expectedSvgSheet;
+                        component.selectedTextcritics = expectedSelectedTextcritics;
+                        component.selectedTextcritics.linkBoxes = [
+                            {
+                                svgGroupId: 'unknown-link-box',
+                                linkTo: { complexId: 'test-complex', sheetId: 'test-sheet' },
+                            },
+                        ];
+
+                        component.onLinkBoxSelect(expectedLinkBoxId);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+                });
+
+                it('... should find correct link box and trigger `_selectSvgSheet()` method with correct parameters', () => {
+                    expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                    const expectedLinkBoxId = 'linkBox1';
+                    const expectedLinkBox = {
+                        svgGroupId: expectedLinkBoxId,
+                        linkTo: { complexId: 'test-complex', sheetId: 'test-sheet' },
+                    };
                     component.selectedSvgSheet = expectedSvgSheet;
+                    component.selectedTextcritics = expectedSelectedTextcritics;
+                    component.selectedTextcritics.linkBoxes = [expectedLinkBox];
+
+                    component.onLinkBoxSelect(expectedLinkBoxId);
+
+                    expectSpyCall(onSvgSheetSelectSpy, 2, expectedLinkBox.linkTo);
+                });
+            });
+
+            describe('#onOverlaySelect()', () => {
+                it('... should have a method `onOverlaySelect`', () => {
+                    expect(component.onOverlaySelect).toBeDefined();
+                });
+
+                it('... should trigger on event from EditionAccoladeComponent', async () => {
+                    component.selectedTextcritics = expectedSelectedTextcritics;
                     await detectChangesOnPush(fixture);
 
-                    const convoluteDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionConvoluteStubComponent,
-                        1,
-                        1
-                    );
-                    const convoluteCmp = convoluteDes[0].injector.get(
-                        EditionConvoluteStubComponent
-                    ) as EditionConvoluteStubComponent;
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    const expectedOverlays = [
+                        new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
+                    ];
 
-                    convoluteCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                    accoladeCmp.selectOverlaysRequest.emit(expectedOverlays);
 
-                    expectSpyCall(onSvgSheetSelectSpy, 2, expectedSheetIds);
+                    expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
+                });
+
+                it('... should correctly filter textcritical commentary and set `showTka` to true', () => {
+                    for (const comment of expectedSelectedTextcriticalCommentary.comments) {
+                        for (const blockComment of comment.blockComments) {
+                            const expectedOverlays = [
+                                new EditionSvgOverlay(
+                                    EditionSvgOverlayTypes.tkk,
+                                    blockComment.svgGroupId,
+                                    blockComment.svgGroupId,
+                                    true
+                                ),
+                            ];
+                            const expectedCommentary = {
+                                preamble: expectedSelectedTextcriticalCommentary.preamble,
+                                comments: [
+                                    {
+                                        ...comment,
+                                        blockComments: [blockComment],
+                                    },
+                                ],
+                            };
+                            editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(
+                                expectedCommentary
+                            );
+                            component.selectedTextcritics = expectedSelectedTextcritics;
+
+                            component.onOverlaySelect(expectedOverlays);
+
+                            expectToEqual(component.selectedTextcriticalCommentary, expectedCommentary);
+                            expectToBe(component.showTkA, true);
+                        }
+                    }
                 });
             });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                expectSpyCall(navigateWithComplexIdSpy, 1);
+            describe('#onReportFragmentNavigate()', () => {
+                it('... should have a method `onReportFragmentNavigate`', () => {
+                    expect(component.onReportFragmentNavigate).toBeDefined();
+                });
 
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
-                const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                const expectedNavigationExtras = {
-                    queryParams: { id: expectedSheetIds.sheetId },
-                    queryParamsHandling: 'merge',
-                };
+                it('... should trigger on event from EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
 
-                component.onSvgSheetSelect(expectedSheetIds);
-                fixture.detectChanges();
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
 
-                expectSpyCall(navigateWithComplexIdSpy, 2, [
-                    expectedSheetIds.complexId,
-                    expectedSheetRoute,
-                    expectedNavigationExtras,
-                ]);
-            });
+                    accoladeCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
-            describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', () => {
+                    expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
+                });
+
+                it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
                     expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+
+                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                        queryParamsHandling: 'merge',
+                        fragment: expectedReportIds.fragmentId,
                     };
 
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
+                    component.onReportFragmentNavigate(expectedReportIds);
 
                     expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
+                        expectedReportIds.complexId,
+                        expectedReportRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
-                it('... fragment id is null', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
+                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
+                    it('... fragment id is undefined', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
+                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
 
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                        queryParamsHandling: 'merge',
-                    };
+                        component.onReportFragmentNavigate(expectedReportIds);
 
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is empty string', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                        queryParamsHandling: 'merge',
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-        });
-
-        describe('#onToggleSheetFacet()', () => {
-            it('... should have a method `onToggleSheetFacet`', () => {
-                expect(component.onToggleSheetFacet).toBeDefined();
-            });
-
-            it('... should trigger on event from EditionAccoladeComponent', () => {
-                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                const accoladeCmp = accoladeDes[0].injector.get(
-                    EditionAccoladeStubComponent
-                ) as EditionAccoladeStubComponent;
-
-                expectedIsSheetFacetMinimized = true;
-                accoladeCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
-
-                expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
-            });
-
-            it('... should toggle `isSheetFacetMinimized` variable', () => {
-                expectToBe(component.isSheetFacetMinimized, false);
-
-                component.onToggleSheetFacet(true);
-
-                expectToBe(component.isSheetFacetMinimized, true);
-
-                component.onToggleSheetFacet(false);
-
-                expectToBe(component.isSheetFacetMinimized, false);
-            });
-        });
-
-        describe('#_assignData()', () => {
-            it('... should have a method `_assignData`', () => {
-                expect((component as any)._assignData).toBeDefined();
-            });
-
-            it('... should assign data from the service to the component', async () => {
-                component.folioConvoluteData = undefined;
-                component.svgSheetsData = undefined;
-                component.textcriticsData = undefined;
-                await detectChangesOnPush(fixture);
-
-                const expectedData = [expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData];
-
-                (component as any)._assignData(expectedData);
-
-                expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
-                expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
-                expectToEqual(component.textcriticsData, expectedTextcriticsData);
-            });
-        });
-
-        describe('#_fetchEditionComplexData()', () => {
-            beforeEach(async () => {
-                const sheetId = 'test-TF1';
-                mockActivatedRoute.testQueryParamMap = { id: sheetId };
-                await detectChangesOnPush(fixture);
-
-                editionStateServiceGetSelectedEditionComplexSpy.mockReturnValue(observableOf(expectedEditionComplex));
-                editionDataServiceGetEditionSheetsDataSpy.mockReturnValue(observableOf(expectedSvgSheetsData));
-            });
-
-            it('... should have a method `_fetchEditionComplexData`', () => {
-                expect((component as any)._fetchEditionComplexData).toBeDefined();
-            });
-
-            it('... should set `editionComplex`', () => {
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap);
-
-                expectToEqual(component.editionComplex, expectedEditionComplex);
-            });
-
-            it('... should trigger `getSelectedEditionComplex` from EditionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 2);
-
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap);
-
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 3);
-            });
-
-            it('... should trigger `getEditionSheetsData` from EditionDataService with correct edition complex', () => {
-                expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 2, [expectedEditionComplex]);
-
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                    expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 3, [expectedEditionComplex]);
-                });
-            });
-
-            it('... should trigger `_assignData` with correct parameters', () => {
-                const assignDataSpy = vi.spyOn(component as any, '_assignData');
-
-                expectSpyCall(assignDataSpy, 0);
-
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                    expectSpyCall(assignDataSpy, 1, [expectedSvgSheetsData]);
-                });
-            });
-
-            it('... should trigger `_handleQueryParams` with correct parameters', () => {
-                const handleQueryParamsSpy = vi.spyOn(component as any, '_handleQueryParams');
-
-                expectSpyCall(handleQueryParamsSpy, 0);
-
-                (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                    expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
-                });
-            });
-
-            it('... should return svg sheets data', () => {
-                (component as any)
-                    ._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
-                    .subscribe((result: EditionSvgSheetList) => {
-                        expectToEqual(result, expectedSvgSheetsData);
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
                     });
-            });
-        });
 
-        describe('#_getDefaultSheetId()', () => {
-            it('... should have a method `_getDefaultSheetId`', () => {
-                expect((component as any)._getDefaultSheetId).toBeDefined();
+                    it('... fragment id is null', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
+                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
+
+                        component.onReportFragmentNavigate(expectedReportIds);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is empty string', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
+                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
+
+                        component.onReportFragmentNavigate(expectedReportIds);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
             });
 
-            describe('... should return an empty string if', () => {
-                it('... svgSheetsData is undefined', async () => {
+            describe('#onSvgSheetSelect()', () => {
+                it('... should have a method `onSvgSheetSelect`', () => {
+                    expect(component.onSvgSheetSelect).toBeDefined();
+                });
+
+                describe('... should trigger on event from', () => {
+                    it('... EditionAccoladeComponent', () => {
+                        const accoladeDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionAccoladeStubComponent,
+                            1,
+                            1
+                        );
+                        const accoladeCmp = accoladeDes[0].injector.get(
+                            EditionAccoladeStubComponent
+                        ) as EditionAccoladeStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        accoladeCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, expectedSheetIds);
+                    });
+
+                    it('... EditionConvoluteComponent', async () => {
+                        component.selectedConvolute = expectedConvolute;
+                        component.selectedSvgSheet = expectedSvgSheet;
+                        await detectChangesOnPush(fixture);
+
+                        const convoluteDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionConvoluteStubComponent,
+                            1,
+                            1
+                        );
+                        const convoluteCmp = convoluteDes[0].injector.get(
+                            EditionConvoluteStubComponent
+                        ) as EditionConvoluteStubComponent;
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                        convoluteCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, expectedSheetIds);
+                    });
+                });
+
+                it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
+                    expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
+                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                    const expectedNavigationExtras = {
+                        queryParams: { id: expectedSheetIds.sheetId },
+                        queryParamsHandling: 'merge',
+                    };
+
+                    component.onSvgSheetSelect(expectedSheetIds);
+
+                    expectSpyCall(navigateWithComplexIdSpy, 2, [
+                        expectedSheetIds.complexId,
+                        expectedSheetRoute,
+                        expectedNavigationExtras,
+                    ]);
+                });
+
+                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
+                    it('... fragment id is undefined', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
+                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                            queryParamsHandling: 'merge',
+                        };
+
+                        component.onSvgSheetSelect(expectedSheetIds);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedSheetIds.complexId,
+                            expectedSheetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is null', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
+
+                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                            queryParamsHandling: 'merge',
+                        };
+
+                        component.onSvgSheetSelect(expectedSheetIds);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedSheetIds.complexId,
+                            expectedSheetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is empty string', () => {
+                        expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
+
+                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                            queryParamsHandling: 'merge',
+                        };
+
+                        component.onSvgSheetSelect(expectedSheetIds);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            expectedSheetIds.complexId,
+                            expectedSheetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
+            });
+
+            describe('#onToggleSheetFacet()', () => {
+                it('... should have a method `onToggleSheetFacet`', () => {
+                    expect(component.onToggleSheetFacet).toBeDefined();
+                });
+
+                it('... should trigger on event from EditionAccoladeComponent', () => {
+                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                    const accoladeCmp = accoladeDes[0].injector.get(
+                        EditionAccoladeStubComponent
+                    ) as EditionAccoladeStubComponent;
+
+                    expectedIsSheetFacetMinimized = true;
+                    accoladeCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
+
+                    expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
+                });
+
+                it('... should toggle `isSheetFacetMinimized` variable', () => {
+                    expectToBe(component.isSheetFacetMinimized, false);
+
+                    component.onToggleSheetFacet(true);
+
+                    expectToBe(component.isSheetFacetMinimized, true);
+
+                    component.onToggleSheetFacet(false);
+
+                    expectToBe(component.isSheetFacetMinimized, false);
+                });
+            });
+
+            describe('#_assignData()', () => {
+                it('... should have a method `_assignData`', () => {
+                    expect((component as any)._assignData).toBeDefined();
+                });
+
+                it('... should assign data from the service to the component', () => {
+                    component.folioConvoluteData = undefined;
                     component.svgSheetsData = undefined;
-                    await detectChangesOnPush(fixture);
+                    component.textcriticsData = undefined;
 
-                    const result = (component as any)._getDefaultSheetId();
+                    const expectedData = [expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData];
 
-                    expectToBe(result, '');
-                });
+                    (component as any)._assignData(expectedData);
 
-                it('... textEditions are empty', async () => {
-                    component.svgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, '');
-                });
-
-                it('... sketchEditions are empty', async () => {
-                    component.svgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, '');
-                });
-
-                it('... textEditions and sketchEditions are empty', async () => {
-                    component.svgSheetsData = {
-                        sheets: { textEditions: [], sketchEditions: [] },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, '');
+                    expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
+                    expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
+                    expectToEqual(component.textcriticsData, expectedTextcriticsData);
                 });
             });
 
-            describe('... with text editions', () => {
-                it('... should default to text editions when text and sketch editions are present', async () => {
-                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
-                    const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
-
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [mockSheet1],
-                            sketchEditions: [mockSheet2],
-                        },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, mockSheet1.id);
+            describe('#_fetchEditionComplexData()', () => {
+                it('... should have a method `_fetchEditionComplexData`', () => {
+                    expect((component as any)._fetchEditionComplexData).toBeDefined();
                 });
 
-                it('... should return the id of the first text edition sheet by default (no partials)', async () => {
-                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+                it('... should set `selectedEditionComplex`', () => {
+                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap);
 
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [mockSheet1],
-                            sketchEditions: [],
-                        },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, mockSheet1.id);
+                    expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
                 });
 
-                it('... should return the id and first partial of the first text edition sheet by default if partials are present', async () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [mockSheet1],
-                            sketchEditions: [],
-                        },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
+                it('... should trigger `getEditionSheetsData` from EditionDataService with correct edition complex', () => {
+                    expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 1, [expectedEditionComplex]);
 
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, 'sheet1a');
+                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
+                        expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 3, [expectedEditionComplex]);
+                    });
                 });
 
-                it('... should return the first id and partial of the first text edition sheet from a list of multiple sheets', () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    const mockSheet2 = {
-                        id: 'sheet2',
-                        content: [
-                            { svg: '', image: '', partial: 'c' },
-                            { svg: '', image: '', partial: 'd' },
-                        ],
-                    } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [mockSheet1, mockSheet2],
-                            sketchEditions: [],
-                        },
-                    } as EditionSvgSheetList;
+                it('... should trigger `_assignData` with correct parameters', () => {
+                    const assignDataSpy = vi.spyOn(component as any, '_assignData');
 
-                    const result = (component as any)._getDefaultSheetId();
+                    expectSpyCall(assignDataSpy, 0);
 
-                    expectToBe(result, 'sheet1a');
+                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
+                        expectSpyCall(assignDataSpy, 1, [expectedSvgSheetsData]);
+                    });
                 });
 
-                it('... should return the first id and partial of the first sketch edition sheet from a list of multiple edition types', () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    const mockSheet2 = {
-                        id: 'sheet2',
-                        content: [
-                            { svg: '', image: '', partial: 'c' },
-                            { svg: '', image: '', partial: 'd' },
-                        ],
-                    } as EditionSvgSheet;
-                    const mockSheet3 = { id: 'sheet3', content: [] } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            workEditions: [mockSheet1],
-                            textEditions: [mockSheet2],
-                            sketchEditions: [mockSheet3],
-                        },
-                    } as EditionSvgSheetList;
+                it('... should trigger `_handleQueryParams` with correct parameters', () => {
+                    const handleQueryParamsSpy = vi.spyOn(component as any, '_handleQueryParams');
 
-                    const result = (component as any)._getDefaultSheetId();
+                    expectSpyCall(handleQueryParamsSpy, 0);
 
-                    expectToBe(result, 'sheet2c');
+                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
+                        expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
+                    });
+                });
+
+                it('... should return svg sheets data', () => {
+                    (component as any)
+                        ._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
+                        .subscribe((result: EditionSvgSheetList) => {
+                            expectToEqual(result, expectedSvgSheetsData);
+                        });
+                });
+
+                it('... should emit error when fetching data fails', async () => {
+                    const expectedError = { status: 500, statusText: 'Internal Server Error' };
+                    editionDataServiceGetEditionSheetsDataSpy.mockReturnValue(
+                        observableThrowError(() => expectedError)
+                    );
+
+                    const initialCalls = editionDataServiceGetEditionSheetsDataSpy.mock.calls.length;
+
+                    const emittedError = await new Promise(resolve => {
+                        (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe({
+                            next: () => {},
+                            error: (err: unknown) => resolve(err),
+                        });
+                    });
+
+                    expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, initialCalls + 1, [
+                        expectedEditionComplex,
+                    ]);
+                    expectToEqual(emittedError as { status: number; statusText: string }, expectedError);
                 });
             });
 
-            describe('... without text editions', () => {
-                it('... should return the id of the first sketch sheet by default (no partials)', async () => {
-                    const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
-
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [],
-                            sketchEditions: [mockSheet1],
-                        },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
-
-                    const result = (component as any)._getDefaultSheetId();
-
-                    expectToBe(result, mockSheet1.id);
+            describe('#_getDefaultSheetId()', () => {
+                it('... should have a method `_getDefaultSheetId`', () => {
+                    expect((component as any)._getDefaultSheetId).toBeDefined();
                 });
 
-                it('... should return the id and first partial of the first sketch sheet by default if partials are present', async () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [],
-                            sketchEditions: [mockSheet1],
-                        },
-                    } as EditionSvgSheetList;
-                    await detectChangesOnPush(fixture);
+                describe('... should return an empty string if', () => {
+                    it('... svgSheetsData is undefined', () => {
+                        component.svgSheetsData = undefined;
 
-                    const result = (component as any)._getDefaultSheetId();
+                        const result = (component as any)._getDefaultSheetId();
 
-                    expectToBe(result, 'sheet1a');
+                        expectToBe(result, '');
+                    });
+
+                    it('... textEditions are empty', () => {
+                        component.svgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, '');
+                    });
+
+                    it('... sketchEditions are empty', () => {
+                        component.svgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, '');
+                    });
+
+                    it('... textEditions and sketchEditions are empty', () => {
+                        component.svgSheetsData = {
+                            sheets: { textEditions: [], sketchEditions: [] },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, '');
+                    });
                 });
 
-                it('... should return the first id and partial of the first sketch sheet from a list of multiple sheets', () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    const mockSheet2 = {
-                        id: 'sheet2',
-                        content: [
-                            { svg: '', image: '', partial: 'c' },
-                            { svg: '', image: '', partial: 'd' },
-                        ],
-                    } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            textEditions: [],
-                            sketchEditions: [mockSheet1, mockSheet2],
-                        },
-                    } as EditionSvgSheetList;
+                describe('... with text editions', () => {
+                    it('... should default to text editions when text and sketch editions are present', () => {
+                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+                        const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
 
-                    const result = (component as any)._getDefaultSheetId();
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [mockSheet1],
+                                sketchEditions: [mockSheet2],
+                            },
+                        } as EditionSvgSheetList;
 
-                    expectToBe(result, 'sheet1a');
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, mockSheet1.id);
+                    });
+
+                    it('... should return the id of the first text edition sheet by default (no partials)', () => {
+                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [mockSheet1],
+                                sketchEditions: [],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, mockSheet1.id);
+                    });
+
+                    it('... should return the id and first partial of the first text edition sheet by default if partials are present', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [mockSheet1],
+                                sketchEditions: [],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet1a');
+                    });
+
+                    it('... should return the first id and partial of the first text edition sheet from a list of multiple sheets', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        const mockSheet2 = {
+                            id: 'sheet2',
+                            content: [
+                                { svg: '', image: '', partial: 'c' },
+                                { svg: '', image: '', partial: 'd' },
+                            ],
+                        } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [mockSheet1, mockSheet2],
+                                sketchEditions: [],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet1a');
+                    });
+
+                    it('... should return the first id and partial of the first sketch edition sheet from a list of multiple edition types', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        const mockSheet2 = {
+                            id: 'sheet2',
+                            content: [
+                                { svg: '', image: '', partial: 'c' },
+                                { svg: '', image: '', partial: 'd' },
+                            ],
+                        } as EditionSvgSheet;
+                        const mockSheet3 = { id: 'sheet3', content: [] } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                workEditions: [mockSheet1],
+                                textEditions: [mockSheet2],
+                                sketchEditions: [mockSheet3],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet2c');
+                    });
                 });
 
-                it('... should return the first id and partial of the first sketch sheet from a list of multiple edition types', () => {
-                    const mockSheet1 = {
-                        id: 'sheet1',
-                        content: [
-                            { svg: '', image: '', partial: 'a' },
-                            { svg: '', image: '', partial: 'b' },
-                        ],
-                    } as EditionSvgSheet;
-                    const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
-                    const mockSheet3 = {
-                        id: 'sheet3',
-                        content: [
-                            { svg: '', image: '', partial: 'c' },
-                            { svg: '', image: '', partial: 'd' },
-                        ],
-                    } as EditionSvgSheet;
-                    component.svgSheetsData = {
-                        sheets: {
-                            workEditions: [mockSheet1, mockSheet2],
-                            textEditions: [],
-                            sketchEditions: [mockSheet3],
-                        },
-                    } as EditionSvgSheetList;
+                describe('... without text editions', () => {
+                    it('... should return the id of the first sketch sheet by default (no partials)', () => {
+                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
 
-                    const result = (component as any)._getDefaultSheetId();
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [],
+                                sketchEditions: [mockSheet1],
+                            },
+                        } as EditionSvgSheetList;
 
-                    expectToBe(result, 'sheet3c');
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, mockSheet1.id);
+                    });
+
+                    it('... should return the id and first partial of the first sketch sheet by default if partials are present', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [],
+                                sketchEditions: [mockSheet1],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet1a');
+                    });
+
+                    it('... should return the first id and partial of the first sketch sheet from a list of multiple sheets', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        const mockSheet2 = {
+                            id: 'sheet2',
+                            content: [
+                                { svg: '', image: '', partial: 'c' },
+                                { svg: '', image: '', partial: 'd' },
+                            ],
+                        } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                textEditions: [],
+                                sketchEditions: [mockSheet1, mockSheet2],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet1a');
+                    });
+
+                    it('... should return the first id and partial of the first sketch sheet from a list of multiple edition types', () => {
+                        const mockSheet1 = {
+                            id: 'sheet1',
+                            content: [
+                                { svg: '', image: '', partial: 'a' },
+                                { svg: '', image: '', partial: 'b' },
+                            ],
+                        } as EditionSvgSheet;
+                        const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
+                        const mockSheet3 = {
+                            id: 'sheet3',
+                            content: [
+                                { svg: '', image: '', partial: 'c' },
+                                { svg: '', image: '', partial: 'd' },
+                            ],
+                        } as EditionSvgSheet;
+                        component.svgSheetsData = {
+                            sheets: {
+                                workEditions: [mockSheet1, mockSheet2],
+                                textEditions: [],
+                                sketchEditions: [mockSheet3],
+                            },
+                        } as EditionSvgSheetList;
+
+                        const result = (component as any)._getDefaultSheetId();
+
+                        expectToBe(result, 'sheet3c');
+                    });
                 });
             });
-        });
 
-        describe('#_handleQueryParams()', () => {
-            it('... should have a method `_handleQueryParams`', () => {
-                expect((component as any)._handleQueryParams).toBeDefined();
-            });
-
-            describe('... with svgSheetsData available and id given from query params', () => {
-                it('... should trigger `_selectSvgSheet` with the correct sheet id', async () => {
-                    const sheetId = 'test-TF1';
-                    mockActivatedRoute.testQueryParamMap = { id: sheetId };
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
-
-                    expectSpyCall(selectSvgSheetSpy, 2, sheetId);
+            describe('#_handleQueryParams()', () => {
+                it('... should have a method `_handleQueryParams`', () => {
+                    expect((component as any)._handleQueryParams).toBeDefined();
                 });
-            });
 
-            describe('... with svgSheetsData available and id not given from query params', () => {
-                it('... should trigger `onSvgSheetSelect` with snapshotQueryParamsId on first page load', async () => {
-                    mockActivatedRoute.testQueryParamMap = { id: '' };
+                describe('... with svgSheetsData available and id given from query params', () => {
+                    it('... should trigger `_selectSvgSheet` with the correct sheet id', () => {
+                        const sheetId = 'test-TF1';
+                        mockActivatedRoute.testQueryParamMap = { id: sheetId };
+
+                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, sheetId);
+                    });
+                });
+
+                describe('... with svgSheetsData available and id not given from query params', () => {
+                    it('... should trigger `onSvgSheetSelect` with snapshotQueryParamsId on first page load', () => {
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
+                        component.isFirstPageLoad.set(true);
+
+                        const snapShotSheetId = 'test-TF1a';
+                        component.snapshotQueryParamsId = snapShotSheetId;
+
+                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, {
+                            complexId: '',
+                            sheetId: snapShotSheetId,
+                        });
+                    });
+
+                    it('... should trigger `onSvgSheetSelect` with default id on subsequent page loads', () => {
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
+                        component.isFirstPageLoad.set(false);
+
+                        const defaultSheetId = 'test-TF1a';
+                        const snapShotSheetId = 'another-test-id';
+                        component.snapshotQueryParamsId = snapShotSheetId;
+
+                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, {
+                            complexId: '',
+                            sheetId: defaultSheetId,
+                        });
+                    });
+                });
+
+                describe('... with svgSheetsData not available and id not given from query params', () => {
+                    it('... should trigger `onSvgSheetSelect` with no id', () => {
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
+                        component.isFirstPageLoad.set(true);
+
+                        component.svgSheetsData = undefined;
+                        component.snapshotQueryParamsId = '';
+
+                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 2, {
+                            complexId: '',
+                            sheetId: '',
+                        });
+                    });
+                    it('... should reset selectedSvgSheet to undefined', () => {
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
+                        component.isFirstPageLoad.set(false);
+
+                        component.svgSheetsData = undefined;
+                        component.snapshotQueryParamsId = '';
+
+                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
+
+                        expect(component.selectedSvgSheet).toBeUndefined();
+                    });
+                });
+
+                it('... should set isFirstPageLoad() to false after handling query params', () => {
                     component.isFirstPageLoad.set(true);
-
-                    const snapShotSheetId = 'test-TF1a';
-                    component.snapshotQueryParamsId = snapShotSheetId;
-                    await detectChangesOnPush(fixture);
+                    mockActivatedRoute.testQueryParamMap = { id: 'sheetId' };
 
                     (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
 
-                    expectSpyCall(onSvgSheetSelectSpy, 3, {
-                        complexId: '',
-                        sheetId: snapShotSheetId,
-                    });
-                });
-
-                it('... should trigger `onSvgSheetSelect` with default id on subsequent page loads', async () => {
-                    mockActivatedRoute.testQueryParamMap = { id: '' };
-                    component.isFirstPageLoad.set(false);
-
-                    const defaultSheetId = 'test-TF1a';
-                    const snapShotSheetId = 'another-test-id';
-                    component.snapshotQueryParamsId = snapShotSheetId;
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 3, {
-                        complexId: '',
-                        sheetId: defaultSheetId,
-                    });
+                    expectToBe(component.isFirstPageLoad(), false);
                 });
             });
 
-            describe('... with svgSheetsData not available and id not given from query params', () => {
-                it('... should trigger `onSvgSheetSelect` with no id', async () => {
-                    mockActivatedRoute.testQueryParamMap = { id: '' };
-                    component.isFirstPageLoad.set(true);
-
-                    component.svgSheetsData = undefined;
-                    component.snapshotQueryParamsId = '';
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 3, {
-                        complexId: '',
-                        sheetId: '',
-                    });
-                });
-                it('... should reset selectedSvgSheet to undefined', async () => {
-                    mockActivatedRoute.testQueryParamMap = { id: '' };
-                    component.isFirstPageLoad.set(false);
-
-                    component.svgSheetsData = undefined;
-                    component.snapshotQueryParamsId = '';
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
-
-                    expect(component.selectedSvgSheet).toBeUndefined();
-                });
-            });
-
-            it('... should set isFirstPageLoad() to false after handling query params', async () => {
-                component.isFirstPageLoad.set(true);
-                mockActivatedRoute.testQueryParamMap = { id: 'sheetId' };
-                await detectChangesOnPush(fixture);
-
-                (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
-
-                expectToBe(component.isFirstPageLoad(), false);
-            });
-        });
-
-        describe('#_navigateWithComplexId()', () => {
-            it('... should have a method `_navigateWithComplexId`', () => {
-                expect((component as any)._navigateWithComplexId).toBeDefined();
-            });
-
-            describe('... should navigate within same complex if', () => {
-                it('... complex id is undefined', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        undefined,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 2, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
+            describe('#_navigateWithComplexId()', () => {
+                it('... should have a method `_navigateWithComplexId`', () => {
+                    expect((component as any)._navigateWithComplexId).toBeDefined();
                 });
 
-                it('... complex id is null', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [null, expectedTargetRoute, expectedNavigationExtras]);
-                    expectSpyCall(navigationSpy, 2, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... complex id is empty string', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, ['', expectedTargetRoute, expectedNavigationExtras]);
-                    expectSpyCall(navigationSpy, 2, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... complex id is equal to the current complex id', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(
-                        expectedComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras
-                    );
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 2, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... should navigate to another complex if', () => {
-                it('... complex id is given and not equal to the current complex id', () => {
-                    expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(
-                        expectedNextComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras
-                    );
-                    fixture.detectChanges();
-
-                    expectSpyCall(navigateWithComplexIdSpy, 2, [
-                        expectedNextComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 2, [
-                        [expectedNextComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... with no edition complex id given', () => {
-                describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
+                describe('... should navigate within same complex if', () => {
+                    it('... complex id is undefined', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... without a given report fragment', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
@@ -1788,25 +1606,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                             expectedNavigationExtras,
                         ]);
                     });
-                });
 
-                describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
+                    it('... complex id is null', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+                        const expectedTargetRoute = 'targetRoute';
+                        const expectedNavigationExtras = { fragment: '' };
 
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
+                        (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
                         fixture.detectChanges();
 
                         expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            undefined,
+                            null,
                             expectedTargetRoute,
                             expectedNavigationExtras,
                         ]);
@@ -1816,65 +1628,28 @@ describe('EditionSheetsComponent (DONE)', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', () => {
+                    it('... complex id is empty string', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
+                        const expectedTargetRoute = 'targetRoute';
+                        const expectedNavigationExtras = { fragment: '' };
 
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
+                        (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
                         fixture.detectChanges();
 
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-            });
-
-            describe('... with the current edition complex id given', () => {
-                describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
+                        expectSpyCall(navigateWithComplexIdSpy, 2, ['', expectedTargetRoute, expectedNavigationExtras]);
                         expectSpyCall(navigationSpy, 2, [
                             [expectedComplexRoute, expectedTargetRoute],
                             expectedNavigationExtras,
                         ]);
                     });
 
-                    it('... without a given report fragment', () => {
+                    it('... complex id is equal to the current complex id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
@@ -1896,91 +1671,12 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... without a given sheet id', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-            });
-
-            describe('... with another edition complex id given', () => {
-                describe('... should navigate to a given report route of another complex', () => {
-                    it('... with a given report fragment', () => {
+                describe('... should navigate to another complex if', () => {
+                    it('... complex id is given and not equal to the current complex id', () => {
                         expectSpyCall(navigateWithComplexIdSpy, 1);
 
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... without a given report fragment', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
-
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
@@ -2002,121 +1698,387 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... should navigate to a given sheet route of another complex', () => {
-                    it('... with a given sheet id', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
+                describe('... with no edition complex id given', () => {
+                    describe('... should navigate within same complex to a given report route', () => {
+                        it('... with a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
 
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
 
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
                     });
 
-                    it('... without a given sheet id', () => {
-                        expectSpyCall(navigateWithComplexIdSpy, 1);
+                    describe('... should navigate within same complex to a given sheet route', () => {
+                        it('... with a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
 
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
 
-                        expectSpyCall(navigateWithComplexIdSpy, 2, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 2, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+                });
+
+                describe('... with the current edition complex id given', () => {
+                    describe('... should navigate within same complex to a given report route', () => {
+                        it('... with a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+
+                    describe('... should navigate within same complex to a given sheet route', () => {
+                        it('... with a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+                });
+
+                describe('... with another edition complex id given', () => {
+                    describe('... should navigate to a given report route of another complex', () => {
+                        it('... with a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+
+                    describe('... should navigate to a given sheet route of another complex', () => {
+                        it('... with a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', () => {
+                            expectSpyCall(navigateWithComplexIdSpy, 1);
+
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            fixture.detectChanges();
+
+                            expectSpyCall(navigateWithComplexIdSpy, 2, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 2, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
                     });
                 });
             });
-        });
 
-        describe('#_selectSvgSheet()', () => {
-            it('... should have a method `_selectSvgSheet`', () => {
-                expect((component as any)._selectSvgSheet).toBeDefined();
-            });
-
-            describe('... should do nothing if', () => {
-                it('... sheet id is undefined', () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-
-                    (component as any)._selectSvgSheet(undefined);
-
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
+            describe('#_selectSvgSheet()', () => {
+                it('... should have a method `_selectSvgSheet`', () => {
+                    expect((component as any)._selectSvgSheet).toBeDefined();
                 });
 
-                it('... sheet id is null', () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
+                describe('... should do nothing if', () => {
+                    it('... sheet id is undefined', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
 
-                    (component as any)._selectSvgSheet(null);
+                        (component as any)._selectSvgSheet(undefined);
 
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+
+                    it('... sheet id is null', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        (component as any)._selectSvgSheet(null);
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
+
+                    it('... sheet id is empty string', () => {
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+
+                        (component as any)._selectSvgSheet('');
+
+                        expectSpyCall(onSvgSheetSelectSpy, 1);
+                    });
                 });
 
-                it('... sheet id is empty string', () => {
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
+                describe('... with a valid sheet id', () => {
+                    beforeEach(() => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
+                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(expectedSelectedTextcritics);
+                    });
 
-                    (component as any)._selectSvgSheet('');
+                    it('... should set correct `selectedSvgSheet`, `selectedConvolute` and `selectedTextcritics`', () => {
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
 
-                    expectSpyCall(onSvgSheetSelectSpy, 1);
-                });
-            });
+                        expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(component.selectedConvolute, expectedConvolute);
+                        expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
+                    });
 
-            describe('... with a valid sheet id', () => {
-                beforeEach(() => {
-                    editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
-                    editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
-                    editionSheetsServiceFindTextcriticsSpy.mockReturnValue(expectedSelectedTextcritics);
-                });
+                    it('... should trigger `onOverlaySelect()` with empty array to clear overlay selections and textcritical comments', () => {
+                        expectSpyCall(onOverlaySelectSpy, 0);
 
-                it('... should set correct `selectedSvgSheet`, `selectedConvolute` and `selectedTextcritics`', () => {
-                    (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
 
-                    expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
-                    expectToEqual(component.selectedConvolute, expectedConvolute);
-                    expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
-                });
+                        expectSpyCall(onOverlaySelectSpy, 1, []);
+                    });
 
-                it('... should trigger `onOverlaySelect()` with empty array to clear overlay selections and textcritical comments', () => {
-                    expectSpyCall(onOverlaySelectSpy, 0);
+                    it('... should set correct `selectedTextcriticalCommentary`', () => {
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
 
-                    (component as any)._selectSvgSheet(expectedSvgSheet.id);
-
-                    expectSpyCall(onOverlaySelectSpy, 1, []);
-                });
-
-                it('... should set correct `selectedTextcriticalCommentary`', () => {
-                    (component as any)._selectSvgSheet(expectedSvgSheet.id);
-
-                    expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
-                    expectToEqual(component.selectedConvolute, expectedConvolute);
-                    expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
-                    expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
+                        expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(component.selectedConvolute, expectedConvolute);
+                        expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
+                        expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
+                    });
                 });
             });
         });

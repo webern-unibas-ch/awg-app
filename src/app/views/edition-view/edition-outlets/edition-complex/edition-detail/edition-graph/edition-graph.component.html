@@ -5,7 +5,7 @@
 
     <!-- graph -->
     @if (editionGraphData(); as editionGraphData) {
-        <div class="awg-graph-view p-5 border rounded-3">
+        <div class="awg-edition-graph-view p-5 border rounded-3">
             @for (graph of editionGraphData.graph; track graph.id) {
                 <div>
                     <!-- graph description -->
@@ -22,16 +22,13 @@
                             >
                         </p>
                         @if (UTILS.isEmptyArray(graph.description) && !graph.rdfData?.triples) {
-                            <p class="awg-graph-description-empty">
+                            <p class="awg-graph-description-placeholder">
+                                @let complex = selectedEditionComplex();
                                 <small class="text-muted"
                                     >[Die Graph-Visualisierungen zum Editionskomplex
-                                    <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang
-                                    der vollständigen Edition von
-                                    <span [innerHTML]="editionComplex.complexId.short"></span> in
-                                    {{ editionRouteConstants.EDITION.short }}
-                                    {{ editionComplex.pubStatement.series.short }}/{{
-                                        editionComplex.pubStatement.section.short
-                                    }}.]
+                                    <span [innerHTML]="complex.complexId.full"></span> erscheinen im Zusammenhang der
+                                    vollständigen Edition von <span [innerHTML]="complex.complexId.short"></span> in
+                                    {{ complex.pubStatement.labeledSectionRoute.label }}.]
                                 </small>
                             </p>
                         } @else {

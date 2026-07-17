@@ -5,7 +5,7 @@
 
     <!-- report -->
     @if (editionReportData(); as editionReportData) {
-        <div ngbAccordion>
+        <div class="awg-edition-report-view" ngbAccordion>
             <!-- source list -->
             <div ngbAccordionItem="awg-source-list" [collapsed]="false">
                 <div ngbAccordionHeader>
@@ -53,7 +53,7 @@
                         <ng-template>
                             @if (sourceEvaluationListData(); as sourceEvaluationListData) {
                                 <awg-source-evaluation
-                                    [editionComplex]="editionComplex"
+                                    [editionComplex]="selectedEditionComplex()"
                                     [sourceEvaluationListData]="sourceEvaluationListData"
                                     (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                                     (openModalRequest)="onModalOpen($event)"

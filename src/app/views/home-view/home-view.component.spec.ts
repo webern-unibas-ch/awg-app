@@ -62,16 +62,10 @@ class ScrollToTopButtonStubComponent {}
 
 /** Helper function */
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
-    const { EDITION, SERIES, SECTION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
+    const { EDITION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
 
     return [
-        ...sections.map(sec => [
-            EDITION.route,
-            SERIES.route,
-            sec?.seriesParent?.route,
-            SECTION.route,
-            sec?.section?.route,
-        ]),
+        ...sections.map(sec => sec.labeledRoute.route),
         [EDITION.route, ROWTABLES.route],
         ['/contact#awg-documentation'],
     ];
@@ -132,21 +126,20 @@ describe('HomeViewComponent (DONE)', () => {
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        const routes = EDITION_ROUTE_CONSTANTS;
         const expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedSectionLinksData = [
             {
-                route: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
-                shortTitle: `${routes.EDITION.short} I/5`,
+                route: expectedSections[0].labeledRoute.route,
+                shortTitle: expectedSections[0].labeledRoute.label,
                 fullTitle: expectedSections[0].section.full,
                 separator: ' und ',
             },
             {
-                route: [routes.EDITION.route, routes.SERIES.route, '2', routes.SECTION.route, '2a'],
-                shortTitle: `${routes.EDITION.short} II/2a`,
+                route: expectedSections[1].labeledRoute.route,
+                shortTitle: expectedSections[1].labeledRoute.label,
                 fullTitle: expectedSections[1].section.full,
                 separator: '',
             },

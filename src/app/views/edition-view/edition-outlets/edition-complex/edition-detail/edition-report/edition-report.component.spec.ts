@@ -1,4 +1,13 @@
-import { Component, DebugElement, EventEmitter, inject as inject_1, Input, NgModule, Output } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    EventEmitter,
+    inject as inject_1,
+    Input,
+    isSignal,
+    NgModule,
+    Output,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
@@ -6,14 +15,7 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import {
-    EMPTY,
-    EmptyError,
-    lastValueFrom,
-    Observable,
-    of as observableOf,
-    throwError as observableThrowError,
-} from 'rxjs';
+import { NEVER, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 
 import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -132,7 +134,7 @@ class SourceEvaluationStubComponent {
 })
 export class TextcriticsListStubComponent {
     @Input()
-    textcriticsData: TextcriticsList;
+    textcriticsListData: TextcriticsList;
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -157,16 +159,16 @@ describe('EditionReportComponent', () => {
     let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionStateService: Partial<EditionStateService>;
-    let editionDataService: Partial<EditionDataService>;
-    let editionStateService: Partial<EditionStateService>;
+    let editionStateService: EditionStateService;
 
     let expectedEditionComplex: EditionComplex;
+    let expectedOtherEditionComplex: EditionComplex;
     let expectedEditionReportData: (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[];
+    let reportDataResult$: Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]>;
     let expectedSourceListData: SourceList;
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
-    let expectedTextcriticsData: TextcriticsList;
+    let expectedTextcriticsListData: TextcriticsList;
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
@@ -176,8 +178,6 @@ describe('EditionReportComponent', () => {
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
-    let getEditionReportDataSpy: Spy;
-    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
@@ -212,9 +212,6 @@ describe('EditionReportComponent', () => {
                 (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]
             > => observableOf(expectedEditionReportData),
         };
-        mockEditionStateService = {
-            getSelectedEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
-        };
 
         await TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule, NgbModalModule],
@@ -231,27 +228,30 @@ describe('EditionReportComponent', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
+                EditionStateService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionStateService, useValue: mockEditionStateService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionReportComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Inject services
-        editionDataService = TestBed.inject(EditionDataService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Service spies
+        reportDataResult$ = observableOf(null);
+        editionDataServiceGetEditionReportDataSpy = vi
+            .spyOn(mockEditionDataService, 'getEditionReportData')
+            .mockImplementation(() => reportDataResult$);
+        navigationSpy = mockRouter.navigate as Mock;
 
         // Test data
         expectedReportFragment = 'source_A';
         expectedComplexId = 'op12';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
         expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedOtherEditionComplex = EditionComplexesService.getEditionComplexById('op25');
         expectedNextComplexId = 'testComplex2';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
@@ -259,26 +259,23 @@ describe('EditionReportComponent', () => {
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
         expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsListData);
+        expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
 
         expectedEditionReportData = [
             expectedSourceListData,
             expectedSourceDescriptionListData,
             expectedSourceEvaluationListData,
-            expectedTextcriticsData,
+            expectedTextcriticsListData,
         ];
 
-        // Spies on service functions
-        editionDataServiceGetEditionReportDataSpy = vi
-            .spyOn(editionDataService, 'getEditionReportData')
-            .mockReturnValue(observableOf(expectedEditionReportData));
-        editionStateServiceGetSelectedEditionComplexSpy = vi
-            .spyOn(editionStateService, 'getSelectedEditionComplex')
-            .mockReturnValue(observableOf(expectedEditionComplex));
-        getEditionReportDataSpy = vi.spyOn(component, 'getEditionReportData');
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionReportComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'onReportFragmentNavigate');
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
-        navigationSpy = mockRouter.navigate as Mock;
         modalOpenSpy = vi.spyOn(component.modal, 'open');
         onModalOpenSpy = vi.spyOn(component, 'onModalOpen');
         selectSvgSheetSpy = vi.spyOn(component, 'onSvgSheetSelect');
@@ -293,12 +290,40 @@ describe('EditionReportComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionReportData$`', () => {
-            expect(component.editionReportData$).toBeUndefined();
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToBe(component.selectedEditionComplex(), null);
         });
 
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
+        it('... should have signal `editionReportData` to hold null', () => {
+            expectToBe(isSignal(component.editionReportData), true);
+
+            expectToBe(component.editionReportData(), null);
+        });
+
+        it('... should have signal `sourceListData` to hold null', () => {
+            expectToBe(isSignal(component.sourceListData), true);
+
+            expectToBe(component.sourceListData(), null);
+        });
+
+        it('... should have signal `sourceDescriptionListData` to hold null', () => {
+            expectToBe(isSignal(component.sourceDescriptionListData), true);
+
+            expectToBe(component.sourceDescriptionListData(), null);
+        });
+
+        it('... should have signal `sourceEvaluationListData` to hold null', () => {
+            expectToBe(isSignal(component.sourceEvaluationListData), true);
+
+            expectToBe(component.sourceEvaluationListData(), null);
+        });
+
+        it('... should have signal `textcriticsListData` to hold null', () => {
+            expectToBe(isSignal(component.textcriticsListData), true);
+
+            expectToBe(component.textcriticsListData(), null);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -348,34 +373,85 @@ describe('EditionReportComponent', () => {
 
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
+
+            describe('on error', () => {
+                const expectedError = { status: 404, statusText: 'got Error' };
+
+                beforeEach(async () => {
+                    // Return an error for the report data observable
+                    reportDataResult$ = observableThrowError(() => expectedError);
+
+                    editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
+
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should not contain report view or TwelveToneSpinnerComponent, but one AlertErrorComponent (stubbed)', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
+                });
+
+                it('... should pass down error object to AlertErrorComponent', () => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(
+                        AlertErrorStubComponent
+                    ) as AlertErrorStubComponent;
+
+                    expectToEqual(alertErrorCmp.errorObject, expectedError);
+                });
+            });
+
+            describe('on loading', () => {
+                it('... should contain TwelveToneSpinnerComponent (before any data has emitted)', async () => {
+                    reportDataResult$ = NEVER;
+
+                    editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
+
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                });
+            });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.editionReportData$ = observableOf(expectedEditionReportData);
-            component.editionComplex = expectedEditionComplex;
+            // Simulate the service setting the complex
+            reportDataResult$ = observableOf(expectedEditionReportData);
+            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionReportData()`', () => {
-            expectSpyCall(getEditionReportDataSpy, 1);
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
+            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
         });
 
-        it('... should have triggered `getSelectedEditionComplex()` method from EditionStateService', () => {
-            expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
+        it('... should have signal `editionReportData` to hold the expected data', () => {
+            expectToEqual(component.editionReportData(), expectedEditionReportData);
         });
 
-        it('... should have editionComplex', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+        it('... should have signal `sourceListData` to hold the expected data', () => {
+            expectToEqual(component.sourceListData(), expectedSourceListData);
         });
 
-        it('... should have editionReportData$', async () => {
-            await expect(lastValueFrom(component.editionReportData$)).resolves.not.toThrow();
-            await expect(lastValueFrom(component.editionReportData$)).resolves.toEqual(expectedEditionReportData);
+        it('... should have signal `sourceDescriptionListData` to hold the expected data', () => {
+            expectToEqual(component.sourceDescriptionListData(), expectedSourceDescriptionListData);
+        });
+
+        it('... should have signal `sourceEvaluationListData` to hold the expected data', () => {
+            expectToEqual(component.sourceEvaluationListData(), expectedSourceEvaluationListData);
+        });
+
+        it('... should have signal `textcriticsListData` to hold the expected data', () => {
+            expectToEqual(component.textcriticsListData(), expectedTextcriticsListData);
         });
 
         describe('VIEW', () => {
@@ -435,24 +511,24 @@ describe('EditionReportComponent', () => {
                     TextcriticsListStubComponent
                 ) as TextcriticsListStubComponent;
 
-                expectToEqual(textcriticsCmp.textcriticsData, expectedTextcriticsData);
+                expectToEqual(textcriticsCmp.textcriticsListData, expectedTextcriticsListData);
             });
 
             describe('on error', () => {
                 const expectedError = { status: 404, statusText: 'got Error' };
 
                 beforeEach(async () => {
-                    // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionReportDataSpy.mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
+                    // Return an error for the report data observable
+                    reportDataResult$ = observableThrowError(() => expectedError);
 
-                    component.getEditionReportData();
+                    editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
+
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain report view, but one AlertErrorComponent (stubbed)', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
+                it('... should not contain report view or TwelveToneSpinnerComponent, but one AlertErrorComponent (stubbed)', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
                     getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
@@ -467,72 +543,34 @@ describe('EditionReportComponent', () => {
                     expectToEqual(alertErrorCmp.errorObject, expectedError);
                 });
             });
-
-            describe('on loading', () => {
-                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
-                    it('... editionReportData$ is EMPTY', async () => {
-                        // Mock empty observable
-                        component.editionReportData$ = EMPTY;
-                        await detectChangesOnPush(fixture);
-
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... editionReportData$ is undefined', async () => {
-                        // Mock undefined response
-                        component.editionReportData$ = observableOf(undefined);
-                        await detectChangesOnPush(fixture);
-
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... editionReportData$ is null', async () => {
-                        // Mock null response
-                        component.editionReportData$ = observableOf(null);
-                        await detectChangesOnPush(fixture);
-
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-report-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-                });
-            });
         });
 
-        describe('#getEditionReportData()', () => {
-            it('... should have a method `getEditionReportData`', () => {
-                expect(component.getEditionReportData).toBeDefined();
+        describe('#editionReportData()', () => {
+            it('... should have a signal `editionReportData`', () => {
+                expectToBe(isSignal(component.editionReportData), true);
+
+                expectToEqual(component.editionReportData(), expectedEditionReportData);
             });
 
-            it('... should have been called', () => {
-                expectSpyCall(getEditionReportDataSpy, 1);
-            });
-
-            it('... should have got `editionComplex` from editionStateService', () => {
-                expectSpyCall(editionStateServiceGetSelectedEditionComplexSpy, 1);
-
-                expectToEqual(component.editionComplex, expectedEditionComplex);
+            it('... should have got `selectedEditionComplex` from editionStateService', () => {
+                expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
             });
 
             it('... should have got `editionReportData` from editionDataService', () => {
                 expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
             });
 
-            it('... should return empty observable and set errorObject if switchMap fails', async () => {
+            it('... should hold null and set errorObject if switchMap fails', async () => {
                 const expectedError = { status: 404, statusText: 'error' };
-                // Spy on editionDataService to return an error
-                editionDataServiceGetEditionReportDataSpy.mockReturnValue(observableThrowError(() => expectedError));
 
-                // Init new switchMap
-                component.getEditionReportData();
+                // Return an error for the report data observable
+                reportDataResult$ = observableThrowError(() => expectedError);
+
+                // Update selected edition complex to trigger the signal
+                editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
                 await detectChangesOnPush(fixture);
 
-                await expect(lastValueFrom(component.editionReportData$)).rejects.toThrow(EmptyError);
-
+                expect(component.editionReportData()).toBeUndefined();
                 expectToEqual(component.errorObject, expectedError);
             });
         });

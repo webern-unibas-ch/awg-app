@@ -12,10 +12,8 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -26,13 +24,9 @@ describe('EditionSeriesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesComponent>;
     let compDe: DebugElement;
 
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionStateService: EditionStateService;
 
-    let clearSelectionsSpy: Spy;
-    let getEditionOutlineSpy: Spy;
-    let serviceClearSelectedEditionSeriesSpy: Spy;
-    let serviceClearSelectedEditionSectionSpy: Spy;
-    let serviceGetEditionOutlineSpy: Spy;
+    let updateSeriesSpy: Spy;
 
     let expectedEditionOutline: EditionOutlineSeries[];
 
@@ -42,32 +36,26 @@ describe('EditionSeriesComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock edition state service
-        mockEditionStateService = {
-            clearSelectedEditionSeries: () => {},
-            clearSelectedEditionSection: () => {},
-        };
-
         await TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSeriesComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
+
+        // Service spies
+        updateSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
 
         // Test data
         expectedEditionOutline = EditionOutlineService.getEditionOutline();
 
-        // Spies
-        clearSelectionsSpy = vi.spyOn(component, 'clearSelections');
-        getEditionOutlineSpy = vi.spyOn(component, 'getEditionOutline');
-        serviceClearSelectedEditionSeriesSpy = vi.spyOn(mockEditionStateService, 'clearSelectedEditionSeries');
-        serviceClearSelectedEditionSectionSpy = vi.spyOn(mockEditionStateService, 'clearSelectedEditionSection');
-        serviceGetEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'getEditionOutline');
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSeriesComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -78,14 +66,13 @@ describe('EditionSeriesComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('... injected service should use provided mockValue', () => {
-        const editionStateService = TestBed.inject(EditionStateService);
-        expectToBe(mockEditionStateService === editionStateService, true);
-    });
-
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionOutline`', () => {
-            expect(component.editionOutline).toBeUndefined();
+        it('... should have `editionOutline`', () => {
+            expectToEqual(component.editionOutline, expectedEditionOutline);
+        });
+
+        it('... should have cleared the selected edition series in the constructor (via service)', () => {
+            expectSpyCall(updateSeriesSpy, 1, null);
         });
 
         describe('VIEW', () => {
@@ -97,22 +84,8 @@ describe('EditionSeriesComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.editionOutline = structuredClone(expectedEditionOutline);
-
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have `editionOutline`', () => {
-            expectToEqual(component.editionOutline, expectedEditionOutline);
-        });
-
-        it('...should trigger `clearSelections` method on init', () => {
-            expectSpyCall(clearSelectionsSpy, 1);
-        });
-
-        it('...should trigger `getEditionOutline` method on init', () => {
-            expectSpyCall(getEditionOutlineSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -463,54 +436,6 @@ describe('EditionSeriesComponent (DONE)', () => {
                 await clickAndAwaitChanges(seriesLinkDe, fixture);
 
                 expectToEqual(seriesLink.navigatedTo, ['1']);
-            });
-        });
-
-        describe('#clearSelections()', () => {
-            it('... should have a method `clearSelections`', () => {
-                expect(component.clearSelections).toBeDefined();
-            });
-
-            it('...should call `clearSelectedEditionSeries` from EditionStateService', () => {
-                expectSpyCall(serviceClearSelectedEditionSectionSpy, 1);
-
-                component.clearSelections();
-
-                expectSpyCall(serviceClearSelectedEditionSeriesSpy, 2);
-            });
-
-            it('...should call `clearSelectedEditionSection` from EditionStateService', () => {
-                expectSpyCall(serviceClearSelectedEditionSectionSpy, 1);
-
-                component.clearSelections();
-
-                expectSpyCall(serviceClearSelectedEditionSeriesSpy, 2);
-            });
-        });
-
-        describe('#getEditionOutline()', () => {
-            it('... should have a method `getEditionOutline`', () => {
-                expect(component.getEditionOutline).toBeDefined();
-            });
-
-            it('...should call `getEditionOutline` from EditionStateService', () => {
-                expectSpyCall(serviceGetEditionOutlineSpy, 1);
-
-                component.getEditionOutline();
-
-                expectSpyCall(serviceGetEditionOutlineSpy, 2);
-            });
-
-            it('...should set `editionOutline`', () => {
-                const anotherEditionOutline: EditionOutlineSeries[] = structuredClone(mockEditionOutline);
-                anotherEditionOutline[0].series = EDITION_ROUTE_CONSTANTS.SERIES_2;
-
-                serviceGetEditionOutlineSpy.mockReturnValue(anotherEditionOutline);
-
-                component.getEditionOutline();
-
-                expectToEqual(component.editionOutline, anotherEditionOutline);
-                expect(component.editionOutline).not.toEqual(expectedEditionOutline);
             });
         });
     });

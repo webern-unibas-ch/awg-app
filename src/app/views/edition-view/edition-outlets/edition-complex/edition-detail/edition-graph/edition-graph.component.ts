@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
-import { EMPTY } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -59,26 +58,36 @@ export class EditionGraphComponent {
     ref: EditionGraphComponent;
 
     /**
-     * Readonly signal: editionGraphData.
-     *
-     * It holds the graph data for the selected edition complex.
-     */
-    readonly editionGraphData = toSignal(
-        toObservable(this._editionStateService.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) => this._editionDataService.getEditionGraphData(complex)),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        )
-    );
-
-    /**
      * Readonly signal: isFullscreen.
      *
      * It holds the fullscreen status.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
+
+    /**
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
+     * Readonly signal: editionGraphData.
+     *
+     * It holds the graph data for the selected edition complex.
+     */
+    readonly editionGraphData = toSignal(
+        toObservable(this.selectedEditionComplex).pipe(
+            switchMap((complex: EditionComplex) => {
+                return this._editionDataService.getEditionGraphData(complex);
+            }),
+            catchError(err => {
+                this.errorObject = err;
+                return observableOf(undefined);
+            })
+        ),
+        { initialValue: null }
+    );
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -105,14 +114,5 @@ export class EditionGraphComponent {
      */
     constructor() {
         this.ref = this;
-    }
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
     }
 }

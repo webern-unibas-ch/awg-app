@@ -9,10 +9,6 @@
     @let editionSection = selectedEditionSection();
     @let editionSeries = selectedEditionSeries();
 
-    <p>isIntroView: {{ introView | json }}</p>
-    <p>isPrefaceView: {{ prefaceView | json }}</p>
-    <p>isRowTableView: {{ rowTableView | json }}</p>
-
     @if (prefaceView) {
         <div class="awg-edition-preface para">
             <h6 class="awg-edition-info-breadcrumb">
