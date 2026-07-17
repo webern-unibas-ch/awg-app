@@ -1,0 +1,78 @@
+<!-- sideinfo: edition -->
+<div class="card">
+    <div class="card-body bg-light">
+        <h5 id="awg-edition-info-header">{{ EDITION_INFO_HEADER }}</h5>
+        <p>&#9671;</p>
+        <div ngbAccordion>
+            <!-- General -->
+            <div ngbAccordionItem [collapsed]="false">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>Allgemein</button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @for (link of generalEditionLinks; track link.label) {
+                                <p>
+                                    <a class="awg-edition-info-item-link" [routerLink]="link.route">
+                                        <span class="awg-edition-info-item-title">{{ link.label }}</span>
+                                    </a>
+                                </p>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <!-- Displayed Sections -->
+            @for (section of sectionsData(); track section.section.short) {
+                <div ngbAccordionItem [collapsed]="section.section.route !== selectedEditionSection()?.section?.route">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>
+                            {{ section.labeledRoute.label }}
+                        </button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                <!-- Intro Section -->
+                                @if (!section.content.intro.disabled) {
+                                    <p>
+                                        <a
+                                            class="awg-edition-info-item-link"
+                                            [routerLink]="section.content.intro.labeledRoute?.route"
+                                            ><span
+                                                class="awg-edition-info-item-title"
+                                                [innerHTML]="section.content.intro.labeledRoute?.label"></span
+                                        ></a>
+                                    </p>
+                                }
+
+                                <!-- Complexes Section -->
+                                @for (
+                                    complex of section.content.sectionComplexes;
+                                    track complex.complex.complexId.short
+                                ) {
+                                    <p>
+                                        @if (complex.disabled) {
+                                            <span
+                                                class="text-muted awg-edition-info-item-title"
+                                                [innerHTML]="complex.labeledRoute.label"></span>
+                                        } @else {
+                                            <a
+                                                class="awg-edition-info-item-link"
+                                                [routerLink]="complex.labeledRoute.route">
+                                                <span
+                                                    class="awg-edition-info-item-title"
+                                                    [innerHTML]="complex.labeledRoute.label"></span>
+                                            </a>
+                                        }
+                                    </p>
+                                }
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

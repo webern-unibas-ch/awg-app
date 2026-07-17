@@ -1,8 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionOutlineComplexItem, EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -14,7 +16,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
     styleUrls: ['./edition-info.component.scss'],
-    standalone: false,
+    imports: [NgbAccordionModule, RouterLink],
 })
 export class EditionInfoComponent {
     /**
@@ -32,6 +34,13 @@ export class EditionInfoComponent {
     readonly EDITION_INFO_HEADER = 'Edition';
 
     /**
+     * Readonly variable: generalEditionLinks.
+     *
+     * It keeps the general edition links for the navbar.
+     */
+    readonly generalEditionLinks = EDITION_GENERAL_LINKS;
+
+    /**
      * Readonly signal: selectedEditionSection.
      *
      * It holds the state of the selected edition section.
@@ -46,28 +55,4 @@ export class EditionInfoComponent {
     readonly sectionsData = signal(
         ACTIVE_EDITION_SECTION_IDS.map(ids => EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId))
     ).asReadonly();
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Public method: combineComplexes.
-     *
-     * It combines the opus and mnr complexes of a section.
-     *
-     * @param section {EditionOutlineSection} The edition outline section.
-     *
-     * @returns {EditionOutlineComplexItem[]} The combined complexes.
-     */
-    combineComplexes(section: EditionOutlineSection): EditionOutlineComplexItem[] {
-        const opusComplexes = section?.content?.complexTypes?.opus || [];
-        const mnrComplexes = section?.content?.complexTypes?.mnr || [];
-        return [...opusComplexes, ...mnrComplexes];
-    }
 }

@@ -8,7 +8,6 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 //
 // Main app modules
 import { SharedModule } from '@awg-shared/shared.module';
-import { SideInfoModule } from '@awg-side-info/side-info.module';
 import { AppComponent } from './app.component';
 
 // Core components
@@ -33,15 +32,7 @@ registerLocaleData(localeDeDE);
  * {@link NavbarComponent} and {@link ViewContainerComponent}.
  */
 @NgModule({
-    imports: [
-        BrowserModule,
-        FooterComponent,
-        NavbarComponent,
-        ViewContainerComponent,
-        SharedModule,
-        SideInfoModule,
-        AppRoutingModule,
-    ],
+    imports: [BrowserModule, FooterComponent, NavbarComponent, ViewContainerComponent, SharedModule, AppRoutingModule],
     declarations: [AppComponent],
     providers: [
         { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
