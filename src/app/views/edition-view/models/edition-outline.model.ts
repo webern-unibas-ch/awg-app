@@ -426,8 +426,8 @@ export class EditionOutline {
      */
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[]
-    ): EditionOutlineComplexItem[] => {
-        return complexItems.map(({ complex, disabled }) => {
+    ): EditionOutlineComplexItem[] =>
+        complexItems.map(({ complex, disabled }) => {
             const fullComplex = EditionComplexesService.getEditionComplexById(complex);
 
             const labeledRoute: LabeledRoute = {
@@ -441,5 +441,4 @@ export class EditionOutline {
                 disabled,
             };
         });
-    };
 }

@@ -23,13 +23,9 @@ describe('EditionComplexComponent (DONE)', () => {
     let editionStateService: EditionStateService;
 
     let updateEditionComplexFromRouteSpy: Spy;
-    let editionStateServiceGetSelectedEditionComplexSpy: Spy;
     let editionStateServiceUpdateSelectedEditionComplexSpy: Spy;
     let editionStateServiceUpdateSelectedEditionSeriesSpy: Spy;
     let editionStateServiceUpdateSelectedEditionSectionSpy: Spy;
-    let editionStateServiceClearSelectedEditionComplexSpy: Spy;
-    let editionStateServiceClearSelectedEditionSeriesSpy: Spy;
-    let editionStateServiceClearSelectedEditionSectionSpy: Spy;
 
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionComplexId: string;

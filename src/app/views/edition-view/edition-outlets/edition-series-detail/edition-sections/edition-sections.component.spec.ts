@@ -1,8 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -26,11 +25,6 @@ describe('EditionSectionsComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
-
-    let clearSelectedSectionSpy: Spy;
-    let getSeriesSpy: Spy;
-    let editionStateServiceClearSelectedEditionSectionSpy: Spy;
-    let editionStateServiceGetSelectedEditionSeriesSpy: Spy;
 
     let expectedSelectedSeries: EditionOutlineSeries;
 
@@ -57,10 +51,6 @@ describe('EditionSectionsComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionSectionsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     it('... should create', () => {

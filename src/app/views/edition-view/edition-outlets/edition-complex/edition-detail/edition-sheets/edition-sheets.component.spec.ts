@@ -169,7 +169,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedConvolute: FolioConvolute;
     let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
-    let expectedOtherEditionComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
@@ -265,7 +264,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedComplexId = 'op12';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
         expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
-        expectedOtherEditionComplex = EditionComplexesService.getEditionComplexById('op25');
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';

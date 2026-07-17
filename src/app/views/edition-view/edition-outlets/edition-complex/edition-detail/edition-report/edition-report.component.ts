@@ -80,9 +80,7 @@ export class EditionReportComponent {
      */
     readonly editionReportData = toSignal(
         toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) => {
-                return this._editionDataService.getEditionReportData(complex);
-            }),
+            switchMap((complex: EditionComplex) => this._editionDataService.getEditionReportData(complex)),
             catchError(err => {
                 this.errorObject = err;
                 return observableOf(undefined);

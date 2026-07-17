@@ -89,8 +89,8 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockFullscreenService: Partial<FullscreenService>;
     let editionStateService: EditionStateService;
 
-    let modalOpenSpy: Spy;
     let editionDataServiceGetEditionGraphDataSpy: Spy;
+    let modalOpenSpy: Spy;
 
     let expectedEditionComplex: EditionComplex;
     let expectedOtherEditionComplex: EditionComplex;
@@ -380,7 +380,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 });
 
                 describe('... if description data is provided', () => {
-                    let descriptionData = new GraphList();
+                    const descriptionData = new GraphList();
 
                     beforeEach(async () => {
                         descriptionData.graph = [];
@@ -654,6 +654,36 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     expectToEqual(alertErrorCmp.errorObject, expectedError);
                 });
+            });
+        });
+
+        describe('#editionGraphData()', () => {
+            it('... should have a signal `editionGraphData`', () => {
+                expectToBe(isSignal(component.editionGraphData), true);
+
+                expectToEqual(component.editionGraphData(), expectedEditionGraphDataOp25);
+            });
+
+            it('... should have got `selectedEditionComplex` from editionStateService', () => {
+                expectToEqual(component.selectedEditionComplex(), expectedOtherEditionComplex);
+            });
+
+            it('... should have got `editionGraphData` from editionDataService', () => {
+                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
+            });
+
+            it('... should hold null and set errorObject if switchMap fails', async () => {
+                const expectedError = { status: 404, statusText: 'error' };
+
+                // Return an error for the report data observable
+                graphDataResult$ = observableThrowError(() => expectedError);
+
+                // Update selected edition complex to trigger the signal
+                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                await detectChangesOnPush(fixture);
+
+                expect(component.editionGraphData()).toBeUndefined();
+                expectToEqual(component.errorObject, expectedError);
             });
         });
     });

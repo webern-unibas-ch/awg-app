@@ -4,7 +4,6 @@ import { Component, DebugElement, DOCUMENT, Input, isSignal, LOCALE_ID } from '@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
     expectToBe,
@@ -62,18 +61,6 @@ describe('EditionViewComponent (DONE)', () => {
 
     let editionStateService: EditionStateService;
 
-    let setupEditionViewSpy: Spy;
-
-    let editionStateServiceIsIntroViewSpy: Spy;
-    let editionStateServiceIsPrefaceViewSpy: Spy;
-    let editionStateServiceIsRowTableViewSpy: Spy;
-    let editionStateServiceSelectedEditionComplexSpy: Spy;
-    let editionStateServiceSelectedEditionSeriesSpy: Spy;
-    let editionStateServiceSelectedEditionSectionSpy: Spy;
-
-    let expectedIsIntroView: boolean;
-    let expectedIsPrefaceView: boolean;
-    let expectedIsRowTableView: boolean;
     let expectedSelectedEditionComplexId: string;
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionSeries: EditionOutlineSeries;
@@ -108,9 +95,6 @@ describe('EditionViewComponent (DONE)', () => {
         editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
-        expectedIsIntroView = false;
-        expectedIsPrefaceView = false;
-        expectedIsRowTableView = true;
         expectedSelectedEditionComplexId = 'op12';
         expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
