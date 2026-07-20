@@ -127,6 +127,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        this._editionStateService.clearIsPrefaceView();
+        this._editionStateService.updateIsPrefaceView(false);
     }
 }

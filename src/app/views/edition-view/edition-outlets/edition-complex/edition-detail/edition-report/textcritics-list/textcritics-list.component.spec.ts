@@ -106,7 +106,7 @@ describe('TextcriticsListComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedNextSheetId: string;
     let expectedSheetId: string;
-    let expectedTextcriticsData: TextcriticsList;
+    let expectedTextcriticsListData: TextcriticsList;
 
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
@@ -154,7 +154,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsData);
+        expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
 
         // Spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
@@ -174,8 +174,8 @@ describe('TextcriticsListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `textcriticsData`', () => {
-            expect(component.textcriticsData).toBeUndefined();
+        it('... should not have `textcriticsListData`', () => {
+            expect(component.textcriticsListData).toBeUndefined();
         });
 
         it('... should have `ref`', () => {
@@ -192,14 +192,14 @@ describe('TextcriticsListComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.textcriticsData = structuredClone(expectedTextcriticsData);
+            component.textcriticsListData = structuredClone(expectedTextcriticsListData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `textcriticsData`', () => {
-            expectToEqual(component.textcriticsData, expectedTextcriticsData);
+        it('... should have `textcriticsListData`', () => {
+            expectToEqual(component.textcriticsListData, expectedTextcriticsListData);
         });
 
         describe('VIEW', () => {
@@ -208,38 +208,38 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should contain as many items in div.accordion as there are textcritics', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', totalItems, totalItems);
             });
 
             it('... should contain item header with collapsed body', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
                 getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
 
                 const itemBodyDes1 = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1
                 );
                 const itemBodyDes2 = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1
                 );
@@ -251,13 +251,13 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should contain an item header button with CompileHtmlComponent', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 itemDes.forEach((itemDe, index) => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[index].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -273,13 +273,13 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should display item header button', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 itemDes.forEach((itemDe, index) => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[index].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -293,7 +293,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     const expectedButtonLabel = mockDocument.createElement('span');
-                    expectedButtonLabel.innerHTML = expectedTextcriticsData.textcritics[index].label;
+                    expectedButtonLabel.innerHTML = expectedTextcriticsListData.textcritics[index].label;
 
                     expectToContain(btnEl.classList, 'text-start');
                     expectToBe(btnEl.textContent.trim(), expectedButtonLabel.textContent.trim());
@@ -301,13 +301,13 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should contain a button group with sheet button', () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 itemDes.forEach((itemDe, index) => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDe,
-                        `div#${expectedTextcriticsData.textcritics[index].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[index].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -330,25 +330,25 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             describe('... if textcritics are related to work edition', () => {
-                let textcriticsDataWithWorkEdition: TextcriticsList;
+                let textcriticsListDataWithWorkEdition: TextcriticsList;
 
                 beforeEach(async () => {
-                    textcriticsDataWithWorkEdition = structuredClone(expectedTextcriticsData);
-                    textcriticsDataWithWorkEdition.textcritics[0].id = 'op12_WE';
-                    textcriticsDataWithWorkEdition.textcritics[1].id = 'op25_WE';
+                    textcriticsListDataWithWorkEdition = structuredClone(expectedTextcriticsListData);
+                    textcriticsListDataWithWorkEdition.textcritics[0].id = 'op12_WE';
+                    textcriticsListDataWithWorkEdition.textcritics[1].id = 'op25_WE';
 
-                    component.textcriticsData = structuredClone(textcriticsDataWithWorkEdition);
+                    component.textcriticsListData = structuredClone(textcriticsListDataWithWorkEdition);
                     await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain another button with DisclaimerWorkeditions component in button group ', () => {
-                    const totalItems = expectedTextcriticsData.textcritics.length;
+                    const totalItems = expectedTextcriticsListData.textcritics.length;
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${textcriticsDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
+                            `div#${textcriticsListDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -371,13 +371,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
 
                 it('... should disable sheet button', () => {
-                    const totalItems = expectedTextcriticsData.textcritics.length;
+                    const totalItems = expectedTextcriticsListData.textcritics.length;
                     const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                     itemDes.forEach((itemDe, index) => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDe,
-                            `div#${textcriticsDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
+                            `div#${textcriticsListDataWithWorkEdition.textcritics[index].id} > div.accordion-header`,
                             1,
                             1
                         );
@@ -402,12 +402,12 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should toggle first item body on click on first header', async () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 const headerDes0 = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -417,7 +417,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -432,7 +432,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
@@ -447,7 +447,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -458,12 +458,12 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should toggle second item body on click on second header', async () => {
-                const totalItems = expectedTextcriticsData.textcritics.length;
+                const totalItems = expectedTextcriticsListData.textcritics.length;
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', totalItems, totalItems);
 
                 const headerDes1 = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -473,7 +473,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is closed
                 let itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -488,7 +488,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is open
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
@@ -503,7 +503,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 // Item body is closed
                 itemBodyDes = getAndExpectDebugElementByCss(
                     itemDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'collapsed'
@@ -518,13 +518,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open bodies
                     const headerDes0 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-header`,
                         1,
                         1
                     );
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -549,7 +549,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if evaluations array is empty', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -567,7 +567,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -590,7 +590,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if evaluations array is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[1];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -610,7 +610,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -628,13 +628,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[1].id);
                     });
 
                     it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -666,13 +666,16 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaEvaluationsStubComponent
                         ) as EditionTkaEvaluationsStubComponent;
 
-                        expectToEqual(evaluationsCmp.evaluations, expectedTextcriticsData.textcritics[1].evaluations);
+                        expectToEqual(
+                            evaluationsCmp.evaluations,
+                            expectedTextcriticsListData.textcritics[1].evaluations
+                        );
                     });
                 });
 
                 describe('...  if commmentary is an empty object', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -690,7 +693,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -713,7 +716,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if commentary is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsData.textcritics[1];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -733,7 +736,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -751,13 +754,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[1].id);
                     });
 
                     it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -789,7 +792,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.commentary, expectedTextcriticsData.textcritics[1].commentary);
+                        expectToEqual(tableCmp.commentary, expectedTextcriticsListData.textcritics[1].commentary);
                     });
 
                     it('... should pass down `id` to EditionTkaTableComponent (stubbed)', () => {
@@ -803,7 +806,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.id, expectedTextcriticsData.textcritics[1].id);
+                        expectToEqual(tableCmp.id, expectedTextcriticsListData.textcritics[1].id);
                     });
 
                     it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
@@ -817,7 +820,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                        expectToEqual(tableCmp.isRowTable, expectedTextcriticsListData.textcritics[1].rowtable);
                     });
                 });
             });
@@ -833,7 +836,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -869,7 +872,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -962,7 +965,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -996,7 +999,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -1058,7 +1061,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -1093,7 +1096,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open second item
                     const headerDes1 = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );

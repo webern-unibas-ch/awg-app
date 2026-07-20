@@ -195,7 +195,7 @@ describe('StatisticsViewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have a signal `statisticsData` to hold null', () => {
+        it('... should have signal `statisticsData` to hold null', () => {
             expectToBe(isSignal(component.statisticsData), true);
 
             expectToEqual(component.statisticsData(), null);

@@ -5,15 +5,19 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
+import { EditionOutlineSeriesJsonData } from '../models/edition-outline.model';
+import { EditionComplexesService } from './edition-complexes.service';
 import { EditionOutlineService } from './edition-outline.service';
 
 describe('EditionOutlineService (DONE)', () => {
     let initializeEditionOutlineSpy: Spy;
     let setEditionOutlineSpy: Spy;
     let fetchEditionOutlineDataSpy: Spy;
+
+    let expectedRawOutlineData: EditionOutlineSeriesJsonData[];
 
     beforeAll(() => {
         EditionOutlineService.initializeEditionOutline();
@@ -26,6 +30,31 @@ describe('EditionOutlineService (DONE)', () => {
         initializeEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'initializeEditionOutline');
         setEditionOutlineSpy = vi.spyOn(EditionOutlineService, 'setEditionOutline');
         fetchEditionOutlineDataSpy = vi.spyOn(EditionOutlineService as any, '_fetchEditionOutlineData');
+
+        // Test data
+        expectedRawOutlineData = [
+            {
+                series: '2',
+                sections: [
+                    {
+                        section: '4',
+                        content: {
+                            intro: { disabled: false },
+                            complexTypes: { opus: [], mnr: [] },
+                        },
+                        disabled: false,
+                    },
+                    {
+                        section: '5',
+                        disabled: true,
+                        content: {
+                            intro: { disabled: true },
+                            complexTypes: { opus: [], mnr: [] },
+                        },
+                    },
+                ],
+            },
+        ];
     });
 
     afterEach(() => {
@@ -96,62 +125,77 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         it('... should set the edition outline', () => {
-            const expectedOutline = new EditionOutline([
+            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData).outline;
+
+            EditionOutlineService.setEditionOutline(expectedOutline);
+
+            const outline = EditionOutlineService.getEditionOutline();
+
+            expectToEqual(outline, expectedOutline);
+        });
+
+        it('... should filter out unknown complexes during instantiation', () => {
+            const getComplexSpy = vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(undefined);
+
+            const rawOutlineDataWithUnknownComplex = [
                 {
-                    series: '3',
+                    series: '2',
                     sections: [
                         {
                             section: '4',
                             content: {
                                 intro: { disabled: false },
-                                complexTypes: {
-                                    opus: [
-                                        {
-                                            complex: '',
-                                            disabled: true,
-                                        },
-                                    ],
-                                    mnr: [{ complex: '', disabled: true }],
-                                },
+                                complexTypes: { opus: [{ complex: 'UNKNOWN_ID', disabled: false }], mnr: [] },
                             },
                             disabled: false,
                         },
-                        {
-                            section: '5',
-                            content: {
-                                intro: { disabled: true },
-                                complexTypes: {
-                                    opus: [
-                                        {
-                                            complex: '',
-                                            disabled: true,
-                                        },
-                                    ],
-                                    mnr: [{ complex: '', disabled: true }],
-                                },
-                            },
-
-                            disabled: true,
-                        },
                     ],
                 },
-            ]);
+            ];
+            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(rawOutlineDataWithUnknownComplex)
+                .outline;
 
-            EditionOutlineService.setEditionOutline(expectedOutline.outline);
+            EditionOutlineService.setEditionOutline(expectedOutline);
 
-            const editionOutline = EditionOutlineService.getEditionOutline();
+            const outline = EditionOutlineService.getEditionOutline();
+            const section = outline[0].sections[0];
 
-            expectToEqual(editionOutline, expectedOutline.outline);
+            expectToEqual(section.content.complexTypes.opus, []);
+            expectToEqual(section.content.sectionComplexes, []);
+
+            getComplexSpy.mockRestore();
         });
 
-        it('... should do nothing if the edition outline is null', () => {
-            const expectedOutline = new EditionOutline(null);
+        describe('... should set empty array if the given edition data is', () => {
+            it('... null', () => {
+                const expectedOutline = new EditionOutline(null);
 
-            EditionOutlineService.setEditionOutline(expectedOutline.outline);
+                EditionOutlineService.setEditionOutline(expectedOutline.outline);
 
-            const editionOutline = EditionOutlineService.getEditionOutline();
+                const editionOutline = EditionOutlineService.getEditionOutline();
 
-            expect(editionOutline).toBeUndefined();
+                expectToEqual(editionOutline, []);
+            });
+
+            it('... undefined', () => {
+                const expectedOutline = new EditionOutline(undefined);
+
+                EditionOutlineService.setEditionOutline(expectedOutline.outline);
+
+                const editionOutline = EditionOutlineService.getEditionOutline();
+
+                expectToEqual(editionOutline, []);
+            });
+
+            it('... empty array', () => {
+                const expectedOutline = new EditionOutline([]);
+
+                EditionOutlineService.setEditionOutline(expectedOutline.outline);
+
+                const editionOutline = EditionOutlineService.getEditionOutline();
+
+                expectToEqual(editionOutline, []);
+            });
         });
     });
 
@@ -161,31 +205,8 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         it('... should return editionSeries with given id', () => {
-            const expectedOutline: EditionOutlineSeries[] = [
-                {
-                    series: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                    sections: [
-                        {
-                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                            section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                            content: {
-                                intro: { disabled: true },
-                                complexTypes: { opus: [], mnr: [] },
-                            },
-                            disabled: true,
-                        },
-                        {
-                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                            section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                            content: {
-                                intro: { disabled: false },
-                                complexTypes: { opus: [], mnr: [] },
-                            },
-                            disabled: false,
-                        },
-                    ],
-                },
-            ];
+            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData).outline;
+
             EditionOutlineService.setEditionOutline(expectedOutline);
 
             const series = EditionOutlineService.getEditionSeriesById(EDITION_ROUTE_CONSTANTS.SERIES_2.route);
@@ -200,31 +221,8 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         it('... should return editionSection with given id', () => {
-            const expectedOutline: EditionOutlineSeries[] = [
-                {
-                    series: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                    sections: [
-                        {
-                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                            section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                            content: {
-                                intro: { disabled: true },
-                                complexTypes: { opus: [], mnr: [] },
-                            },
-                            disabled: true,
-                        },
-                        {
-                            seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_2,
-                            section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                            content: {
-                                intro: { disabled: false },
-                                complexTypes: { opus: [], mnr: [] },
-                            },
-                            disabled: false,
-                        },
-                    ],
-                },
-            ];
+            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData).outline;
+
             expectedOutline[0].sections.forEach(section => {
                 const expectedEditionSection = section;
 

@@ -2,7 +2,6 @@
     <p class="text-muted small">
         [Die Einleitung zum Editionskomplex <span [innerHTML]="editionComplex?.complexId?.full"></span> erscheint im
         Zusammenhang der vollständigen Edition von <span [innerHTML]="editionComplex?.complexId?.short"></span> in
-        {{ editionLabel }}
-        {{ editionComplex?.pubStatement?.series?.short }}/{{ editionComplex?.pubStatement?.section?.short }}.]
+        {{ editionComplex?.pubStatement?.labeledSectionRoute.label }}.]
     </p>
 </div>

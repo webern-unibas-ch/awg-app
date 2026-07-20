@@ -1,10 +1,12 @@
-@if (editionData$ | async; as data) {
-    @let content = data.section?.content;
+@if (editionData(); as editionData) {
+    @let content = editionData.section?.content;
     @let opusList = content?.complexTypes?.opus;
     @let mnrList = content?.complexTypes?.mnr;
 
     @if (UTILS.isEmptyArray(opusList) && UTILS.isEmptyArray(mnrList)) {
-        <awg-edition-section-detail-placeholder [selectedSeries]="data.series" [selectedSection]="data.section" />
+        <awg-edition-section-detail-placeholder
+            [selectedSeries]="editionData.series"
+            [selectedSection]="editionData.section" />
     } @else {
         <div class="awg-edition-section-detail">
             <awg-edition-section-detail-disclaimer />
@@ -14,8 +16,8 @@
                     <div class="row">
                         <div class="col-12 col-xl-8">
                             <awg-edition-section-detail-intro-card
-                                [selectedSeries]="data.series"
-                                [selectedSection]="data.section" />
+                                [selectedSeries]="editionData.series"
+                                [selectedSection]="editionData.section" />
                         </div>
                     </div>
                 </div>

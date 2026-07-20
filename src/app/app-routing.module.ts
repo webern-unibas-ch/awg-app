@@ -62,6 +62,7 @@ const APP_ROUTER_OPTIONS: ExtraOptions = {
     onSameUrlNavigation: 'reload',
     scrollPositionRestoration: 'enabled',
     preloadingStrategy: PreloadAllModules,
+    bindToComponentInputs: true,
 };
 
 /**

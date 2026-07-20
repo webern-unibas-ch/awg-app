@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionInfoComponent } from '@awg-side-info/edition-info/edition-info.component';
-
+import { EditionInfoComponent } from './edition-info/edition-info.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
@@ -52,15 +51,15 @@ const EDITION_VIEW_ROUTES: Routes = [
                     },
                     {
                         // Section by id (1, 2, 3, 4, 5).
-                        path: 'section/:id',
+                        path: 'section/:sectionId',
                         loadChildren: () =>
                             import('./edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module').then(
                                 m => m.EditionSectionDetailModule
                             ),
                     },
                     {
-                        path: 'sections/:id',
-                        redirectTo: 'section/:id',
+                        path: 'sections/:sectionId',
+                        redirectTo: 'section/:sectionId',
                         pathMatch: 'full',
                     },
                     {
@@ -136,7 +135,6 @@ export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
-    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,

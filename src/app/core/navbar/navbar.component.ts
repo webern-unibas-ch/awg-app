@@ -7,16 +7,13 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
-import {
-    NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS,
-    NAVBAR_DROPDOWN_EDITION_SECTION_LINKS,
-    NAVBAR_ITEMS,
-} from './navbar.data';
+import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.data';
 
 /**
  * The Navbar component.
@@ -40,21 +37,21 @@ export class NavbarComponent {
     private readonly _router = inject(Router);
 
     /**
-     * Readonly property: navbarItems.
+     * Readonly variable: navbarItems.
      *
      * It keeps the navigation items for the navbar.
      */
     readonly navbarItems = NAVBAR_ITEMS;
 
     /**
-     * Readonly property: generalEditionLinks.
+     * Readonly variable: generalEditionLinks.
      *
      * It keeps the general edition links for the navbar.
      */
-    readonly generalEditionLinks = NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS;
+    readonly generalEditionLinks = EDITION_GENERAL_LINKS;
 
     /**
-     * Readonly property: sectionEditionLinks.
+     * Readonly variable: sectionEditionLinks.
      *
      * It keeps the section edition links for the navbar.
      */
@@ -77,7 +74,7 @@ export class NavbarComponent {
     /**
      * Readonly signal: sectionLinksData.
      *
-     * It keeps the array of displayed edition sections as a read-only signal.
+     * It holds the array of displayed edition sections based on active IDs.
      */
     readonly sectionLinksData = signal(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {

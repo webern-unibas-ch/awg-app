@@ -1,17 +1,14 @@
-import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { Observable, of as observableOf } from 'rxjs';
-
-import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -19,70 +16,55 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionInfoComponent } from './edition-info.component';
 
 /** Helper functions */
-function getComplexesFromSections(
-    sections: EditionOutlineSection[],
-    includeDisabled: boolean = true
-): EditionComplex[] {
-    return sections.flatMap(section => {
-        if (section?.content?.complexTypes) {
-            let complexes = [...section.content.complexTypes.opus, ...section.content.complexTypes.mnr];
-            if (!includeDisabled) {
-                complexes = complexes.filter(complex => !complex.disabled);
+function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[] {
+    const baseLinks = EDITION_GENERAL_LINKS.flatMap(link => link.route.join('/'));
+
+    const itemLinks = (sections || []).flatMap(section => {
+        const links: string[] = [];
+
+        if (!section?.content?.intro?.disabled && section.content?.intro?.labeledRoute?.route) {
+            links.push(section.content.intro.labeledRoute.route.join('/'));
+        }
+
+        const activeComplexes = (section.content?.sectionComplexes || []).filter(complex => !complex.disabled);
+
+        activeComplexes.forEach(complex => {
+            if (complex.labeledRoute?.route) {
+                links.push(complex.labeledRoute.route.join('/'));
             }
-            return complexes.map(complex => complex.complex);
-        }
-        return [];
-    });
-}
+        });
 
-function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[][] {
-    const { EDITION, SERIES, ROWTABLES, PREFACE, SECTION, EDITION_INTRO, EDITION_SHEETS } = EDITION_ROUTE_CONSTANTS;
-
-    const editionOverviewLink = [[EDITION.route, SERIES.route]];
-    const rowTablesLink = [[EDITION.route, ROWTABLES.route]];
-    const prefaceLink = [[EDITION.route, PREFACE.route]];
-
-    let itemLinks = [];
-    sections.forEach(section => {
-        if (!section.content.intro.disabled) {
-            const introLink = [
-                EDITION.route,
-                SERIES.route,
-                section.seriesParent.route,
-                SECTION.route,
-                section.section.route,
-                EDITION_INTRO.route,
-            ];
-            itemLinks.push(introLink);
-        }
-        const complexes: EditionComplex[] = getComplexesFromSections([section], false);
-        const complexLinks = complexes.map(complex => [complex.baseRoute, EDITION_SHEETS.route]);
-        itemLinks = itemLinks.concat(complexLinks);
+        return links;
     });
 
-    return [...editionOverviewLink, ...rowTablesLink, ...prefaceLink, ...itemLinks];
+    return baseLinks.concat(itemLinks);
 }
 
 function getExpectedItemTitles(sections: EditionOutlineSection[], includeDisabled: boolean): string[] {
-    const { SERIES, ROWTABLES, PREFACE, EDITION_INTRO } = EDITION_ROUTE_CONSTANTS;
-    let itemTitles: string[] = [SERIES.full, ROWTABLES.full, PREFACE.full];
+    let itemTitles = EDITION_GENERAL_LINKS.map(link => link.label);
 
-    sections.forEach(section => {
-        if (!section.content.intro.disabled) {
-            itemTitles.push(EDITION_INTRO.full);
+    (sections || []).forEach(section => {
+        if (!section.content?.intro?.disabled && section.content?.intro?.labeledRoute?.label) {
+            itemTitles.push(section.content.intro.labeledRoute.label);
         }
-        const complexes: EditionComplex[] = getComplexesFromSections([section], includeDisabled);
-        const complexTitels = complexes.map(complex => complex.complexId.full);
-        itemTitles = itemTitles.concat(complexTitels);
+        const activeComplexes = (section.content?.sectionComplexes || []).filter(
+            complex => includeDisabled || !complex.disabled
+        );
+
+        const complexTitles = activeComplexes
+            .map(c => c.labeledRoute?.label)
+            .filter((label): label is string => !!label);
+
+        itemTitles = itemTitles.concat(complexTitles);
     });
 
     return itemTitles;
@@ -93,33 +75,18 @@ describe('EditionInfoComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionInfoComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
+    let router: Router;
 
     let mockDocument: Document;
-    let mockEditionStateService: Partial<EditionStateService>;
-
-    let setupEditionViewSpy: Spy;
-    let editionStateServiceGetSelectedEditionSectionSpy: Spy;
+    let editionStateService: EditionStateService;
 
     const expectedEditionInfoHeader = 'Edition';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
     let expectedSections: EditionOutlineSection[];
 
-    let expectedRouterLinks: string[][];
+    let expectedRouterLinks: string[];
     let expectedItemTitles: string[];
     let expectedItemTitlesWithLinks: string[];
-
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -127,25 +94,21 @@ describe('EditionInfoComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mock edition state service
-        mockEditionStateService = {
-            getSelectedEditionSection: (): Observable<EditionOutlineSection> => observableOf(null),
-        };
-
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
-            declarations: [EditionInfoComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            imports: [EditionInfoComponent],
+            providers: [provideRouter([]), EditionStateService],
         }).compileComponents();
+
+        // Disable animation for NgbAccordion to avoid timing issues in tests
+        const accordionConfig = TestBed.inject(NgbAccordionConfig);
+        accordionConfig.animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionInfoComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
-        mockEditionStateService = TestBed.inject(EditionStateService);
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
         mockDocument = TestBed.inject(DOCUMENT);
+        router = TestBed.inject(Router);
 
         // Test data
         expectedSections = [
@@ -156,16 +119,10 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
 
-        // Spies
-        setupEditionViewSpy = vi.spyOn(component, 'setupEditionView');
-        editionStateServiceGetSelectedEditionSectionSpy = vi.spyOn(
-            mockEditionStateService,
-            'getSelectedEditionSection'
-        );
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionInfoComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -173,16 +130,15 @@ describe('EditionInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `DISPLAYED_SECTIONS`', () => {
-            expectToEqual(component.DISPLAYED_SECTIONS, expectedSections);
+        it('... should have `EDITION_INFO_HEADER`', () => {
+            expectToBe(component.EDITION_INFO_HEADER, expectedEditionInfoHeader);
         });
 
-        it('... should have as many `DISPLAYED_SECTIONS` as there are sections in the array', () => {
-            expectToEqual(component.DISPLAYED_SECTIONS.length, expectedSections.length);
+        it('... should have signal `selectedEditionSection` to hold expected section', () => {
+            expectToBe(component.selectedEditionSection, editionStateService.selectedEditionSection);
         });
-
-        it('... should have `editionRouteConstants`', () => {
-            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
+        it('... should have signal `sectionsData` to hold expected sections', () => {
+            expectToEqual(component.sectionsData(), expectedSections);
         });
 
         describe('VIEW', () => {
@@ -217,10 +173,6 @@ describe('EditionInfoComponent (DONE)', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have triggerd `setupEditionView` method', () => {
-            expectSpyCall(setupEditionViewSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -268,7 +220,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
             it('... should open item body for selected section', async () => {
                 for (const [sectionIndex, section] of expectedSections.entries()) {
-                    component.selectedEditionSection = section;
+                    const seriesId = section.seriesParent.short;
+                    const series = EditionOutlineService.getEditionSeriesById(seriesId);
+                    editionStateService.updateSelectedEditionSeries(series);
+                    editionStateService.updateSelectedEditionSection(section);
                     await detectChangesOnPush(fixture);
 
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -403,12 +358,12 @@ describe('EditionInfoComponent (DONE)', () => {
                         }
                         const itemBodyDes = getAndExpectDebugElementByCss(itemDe, 'div.accordion-body', 1, 1);
 
-                        const complexes = getComplexesFromSections([expectedSections[index - 1]]);
-                        let expectedLength = complexes.length;
+                        const currentSection = expectedSections[index - 1];
+                        const allComplexesCount = currentSection.content?.sectionComplexes?.length ?? 0;
 
-                        if (!expectedSections[index - 1].content.intro.disabled) {
-                            expectedLength++;
-                        }
+                        const expectedLength = !currentSection.content?.intro?.disabled
+                            ? allComplexesCount + 1
+                            : allComplexesCount;
 
                         getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
                     });
@@ -457,136 +412,10 @@ describe('EditionInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#setupEditionView()', () => {
-            it('... should have a method `setupEditionView`', () => {
-                expect(component.setupEditionView).toBeDefined();
-            });
-
-            it('... should trigger `getSelectedEditionSection` method (via EditionStateService)', () => {
-                expectSpyCall(setupEditionViewSpy, 1);
-                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 1);
-
-                component.setupEditionView();
-
-                expectSpyCall(setupEditionViewSpy, 2);
-                expectSpyCall(editionStateServiceGetSelectedEditionSectionSpy, 2);
-            });
-
-            it('... should get selectedEditionSection (via EditionStateService)', () => {
-                editionStateServiceGetSelectedEditionSectionSpy.mockReturnValue(observableOf(expectedSections[0]));
-
-                expectToEqual(component.selectedEditionSection, null);
-
-                component.setupEditionView();
-
-                expectToEqual(component.selectedEditionSection, expectedSections[0]);
-            });
-        });
-
-        describe('#combineComplexes()', () => {
-            it('... should have a method `combineComplexes`', () => {
-                expect(component.combineComplexes).toBeDefined();
-            });
-
-            describe('... should return an empty array if ...', () => {
-                it('... both opus and mnr complexes are empty', () => {
-                    const section: EditionOutlineSection = {
-                        content: {
-                            complexTypes: {
-                                opus: [],
-                                mnr: [],
-                            },
-                        },
-                    } as EditionOutlineSection;
-
-                    const result = component.combineComplexes(section);
-
-                    expectToEqual(result, []);
-                });
-
-                it('... both opus and mnr complexes are undefined', () => {
-                    const section: EditionOutlineSection = {
-                        content: {
-                            complexTypes: {
-                                opus: undefined,
-                                mnr: undefined,
-                            },
-                        },
-                    } as EditionOutlineSection;
-
-                    const result = component.combineComplexes(section);
-
-                    expectToEqual(result, []);
-                });
-
-                it('... complexTypes are undefined', () => {
-                    const section: EditionOutlineSection = {
-                        content: {
-                            complexTypes: undefined,
-                        },
-                    } as EditionOutlineSection;
-
-                    const result = component.combineComplexes(section);
-
-                    expectToEqual(result, []);
-                });
-            });
-
-            it('... should return combined opus and mnr complexes', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
-                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
-
-                const section: EditionOutlineSection = {
-                    content: {
-                        complexTypes: {
-                            opus: [{ complex: opusComplex, disabled: false }],
-                            mnr: [{ complex: mnrComplex, disabled: false }],
-                        },
-                    },
-                } as EditionOutlineSection;
-
-                const result = component.combineComplexes(section);
-
-                expectToEqual(result, [
-                    { complex: opusComplex, disabled: false },
-                    { complex: mnrComplex, disabled: false },
-                ]);
-            });
-
-            it('... should return only opus complexes if mnr complexes are empty', () => {
-                const opusComplex = EditionComplexesService.getEditionComplexById('op12');
-                const section: EditionOutlineSection = {
-                    content: {
-                        complexTypes: {
-                            opus: [{ complex: opusComplex, disabled: false }],
-                            mnr: [],
-                        },
-                    },
-                } as EditionOutlineSection;
-
-                const result = component.combineComplexes(section);
-
-                expectToEqual(result, [{ complex: opusComplex, disabled: false }]);
-            });
-
-            it('... should return only mnr complexes if opus complexes are empty', () => {
-                const mnrComplex = EditionComplexesService.getEditionComplexById('m22');
-                const section: EditionOutlineSection = {
-                    content: {
-                        complexTypes: {
-                            opus: [],
-                            mnr: [{ complex: mnrComplex, disabled: false }],
-                        },
-                    },
-                } as EditionOutlineSection;
-
-                const result = component.combineComplexes(section);
-
-                expectToEqual(result, [{ complex: mnrComplex, disabled: false }]);
-            });
-        });
-
         describe('[routerLink]', () => {
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+
             beforeEach(async () => {
                 // Open second and third item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
@@ -597,20 +426,17 @@ describe('EditionInfoComponent (DONE)', () => {
                 const btnDes1 = getAndExpectDebugElementByCss(itemHeaderDes1[0], 'button.accordion-button', 1, 1);
                 const btnDes2 = getAndExpectDebugElementByCss(itemHeaderDes2[0], 'button.accordion-button', 1, 1);
 
-                // Click header buttons to open
                 await clickAndAwaitChanges(btnDes1[0], fixture);
                 await clickAndAwaitChanges(btnDes2[0], fixture);
 
-                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    RouterLinkStubDirective,
+                    RouterLink,
                     expectedRouterLinks.length,
                     expectedRouterLinks.length
                 );
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -619,22 +445,32 @@ describe('EditionInfoComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
+                    const urlTree = routerLink.urlTree;
                     const expectedRouterLink = expectedRouterLinks[index];
-                    expectToEqual(routerLink.linkParams, expectedRouterLink);
+
+                    expectToBe(urlTree.toString(), expectedRouterLink);
                 }
             });
 
             it('... can click all links in template', async () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+                for (const [index] of routerLinks.entries()) {
+                    navigateSpy.mockClear();
+
                     const linkDe = linkDes[index];
                     const expectedRouterLink = expectedRouterLinks[index];
 
-                    expectToBe(routerLink.navigatedTo, null);
-
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
+                    expect(navigateSpy).toHaveBeenCalled();
+                    const firstCallArg = navigateSpy.mock.calls[0][0];
+                    const actualUrl = firstCallArg.toString();
+
+                    expectToBe(actualUrl, expectedRouterLink);
                 }
+
+                navigateSpy.mockRestore();
             });
         });
     });

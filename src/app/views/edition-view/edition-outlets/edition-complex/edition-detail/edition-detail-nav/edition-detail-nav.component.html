@@ -1,5 +1,5 @@
-@if (editionRouterLinkButtons) {
-    <awg-router-link-button-group [routerLinkButtons]="editionRouterLinkButtons" [queryParamsHandling]="''" />
+@if (editionRouterLinkButtons(); as linkButtons) {
+    <awg-router-link-button-group [routerLinkButtons]="linkButtons" [queryParamsHandling]="''" />
 }
 
 <router-outlet />

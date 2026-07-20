@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
-import { combineLatest, map, Observable } from 'rxjs';
 
 /**
  * The EditionSectionDetailOverview component.
@@ -18,13 +16,13 @@ import { combineLatest, map, Observable } from 'rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionSectionDetailOverviewComponent implements OnInit {
+export class EditionSectionDetailOverviewComponent {
     /**
-     * Public variable: editionData$.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It keeps the observable of the selected series and section of the edition.
+     * It keeps the instance of the injected EditionStateService.
      */
-    editionData$: Observable<{ series: EditionOutlineSeries; section: EditionOutlineSection }>;
+    private readonly _editionStateService = inject(EditionStateService);
 
     /**
      * Protected readonly variable: UTILS.
@@ -34,33 +32,12 @@ export class EditionSectionDetailOverviewComponent implements OnInit {
     protected readonly UTILS = UTILS;
 
     /**
-     * Private readonly injection variable: _editionStateService.
+     * Readonly signal: editionData.
      *
-     * It keeps the instance of the injected EditionStateService.
+     * It holds the synchronized state of the selected edition series and section.
      */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.setupSectionDetailOverview();
-    }
-
-    /**
-     * Public method: setupSectionDetailOverview.
-     *
-     * It sets up the section detail ovewview.
-     *
-     * @returns {void} Sets up the section detail overview.
-     */
-    setupSectionDetailOverview(): void {
-        this.editionData$ = combineLatest([
-            this._editionStateService.getSelectedEditionSeries(),
-            this._editionStateService.getSelectedEditionSection(),
-        ]).pipe(map(([series, section]) => ({ series, section })));
-    }
+    readonly editionData = computed(() => ({
+        series: this._editionStateService.selectedEditionSeries(),
+        section: this._editionStateService.selectedEditionSection(),
+    }));
 }

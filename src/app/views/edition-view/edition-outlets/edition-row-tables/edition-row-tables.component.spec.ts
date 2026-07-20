@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, ReplaySubject, lastValueFrom, of as observableOf } from 'rxjs';
+import { Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -29,28 +29,15 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionRowTablesComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
-
     let editionDataServiceGetRowTablesDataSpy: Spy;
     let editionStateServiceUpdateIsRowTablesViewSpy: Spy;
-    let editionStateServiceClearIsRowTablesViewSpy: Spy;
 
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionStateService: EditionStateService;
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockIsRowTableViewSubject: ReplaySubject<boolean>;
 
     let expectedRowTablesData: EditionRowTablesList;
 
     beforeEach(async () => {
-        mockIsRowTableViewSubject = new ReplaySubject<boolean>(1);
-
-        // Mock edition state service
-        mockEditionStateService = {
-            updateIsRowTableView: (isView: boolean): void => mockIsRowTableViewSubject.next(isView),
-            clearIsRowTableView: (): void => mockIsRowTableViewSubject.next(null),
-        };
-
         // Mock edition data service
         mockEditionDataService = {
             getEditionRowTablesData: (): Observable<EditionRowTablesList> => observableOf(expectedRowTablesData),
@@ -58,28 +45,26 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             declarations: [EditionRowTablesComponent, RouterLinkStubDirective],
-            providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionStateService, useValue: mockEditionStateService },
-            ],
+            providers: [EditionStateService, { provide: EditionDataService, useValue: mockEditionDataService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionRowTablesComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
-        mockEditionStateService = TestBed.inject(EditionStateService);
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
         mockEditionDataService = TestBed.inject(EditionDataService);
+
+        // Spies
+        editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');
+        editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowTableView');
 
         // Test data
         expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
 
-        // Spies
-        editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');
-        editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'updateIsRowTableView');
-        editionStateServiceClearIsRowTablesViewSpy = vi.spyOn(mockEditionStateService, 'clearIsRowTableView');
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionRowTablesComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
@@ -116,8 +101,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated IsRowTableViewFlag (via EditionStateService)', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 1, true);
+        it('... should have called EditionStateService and updated IsRowTableView', () => {
+            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 1);
+
+            expectToBe(editionStateService.isRowTableView(), true);
         });
 
         it('... should have called EditionDataService', () => {
@@ -264,6 +251,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
+            let linkDes: DebugElement[];
+            let routerLinks;
+
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
@@ -312,10 +302,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('#ngOnDestroy()', () => {
-            it('... should have cleared isRowTableView$ on destroy (via EditionStateService)', () => {
+            it('... should have cleared isRowTableView on destroy (via EditionStateService)', () => {
                 component.ngOnDestroy();
 
-                expectSpyCall(editionStateServiceClearIsRowTablesViewSpy, 1);
+                expectToBe(editionStateService.isRowTableView(), false);
             });
         });
     });

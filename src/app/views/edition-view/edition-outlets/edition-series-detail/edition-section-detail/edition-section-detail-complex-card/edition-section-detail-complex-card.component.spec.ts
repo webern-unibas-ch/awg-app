@@ -17,7 +17,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -33,6 +33,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
+        EditionOutlineService.initializeEditionOutline();
         registerLocaleData(localeDeDE);
     });
 
@@ -45,18 +46,14 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Test data
+        const section = EditionOutlineService.getEditionSectionById('1', '5');
+        expectedComplexes = section?.content.sectionComplexes ?? [];
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailComplexCardComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedComplexes = [
-            { complex: EditionComplexesService.getEditionComplexById('op12'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('op23'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('op25'), disabled: true },
-            { complex: EditionComplexesService.getEditionComplexById('m212'), disabled: false },
-            { complex: EditionComplexesService.getEditionComplexById('m213'), disabled: true },
-        ];
     });
 
     it('... should create', () => {

@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
-import { EMPTY, Observable } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -23,7 +23,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionGraphComponent implements OnInit {
+export class EditionGraphComponent {
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -46,20 +46,6 @@ export class EditionGraphComponent implements OnInit {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
-
-    /**
-     * Public variable: editionGraphData$.
-     *
-     * It keeps the observable of the edition graph data.
-     */
-    editionGraphData$: Observable<GraphList | never>;
-
-    /**
      * Public variable: errorObject.
      *
      * It keeps an errorObject for the service calls.
@@ -77,6 +63,31 @@ export class EditionGraphComponent implements OnInit {
      * It holds the fullscreen status.
      */
     readonly isFullscreen = this._fullscreenService.isFullscreen;
+
+    /**
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
+     * Readonly signal: editionGraphData.
+     *
+     * It holds the graph data for the selected edition complex.
+     */
+    readonly editionGraphData = toSignal(
+        toObservable(this.selectedEditionComplex).pipe(
+            switchMap((complex: EditionComplex) =>
+                complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
+            ),
+            catchError(err => {
+                this.errorObject = err;
+                return observableOf(undefined);
+            })
+        ),
+        { initialValue: null }
+    );
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -103,46 +114,5 @@ export class EditionGraphComponent implements OnInit {
      */
     constructor() {
         this.ref = this;
-    }
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.getEditionGraphData();
-    }
-
-    /**
-     * Public method: getEditionGraphData.
-     *
-     * It gets the current edition complex from the EditionStateService
-     * and the observable of the corresponding graph data
-     * from the EditionDataService.
-     *
-     * @returns {void} Gets the current edition complex and the corresponding graph data.
-     */
-    getEditionGraphData(): void {
-        this.editionGraphData$ = this._editionStateService.getSelectedEditionComplex().pipe(
-            switchMap((complex: EditionComplex) => {
-                this.editionComplex = complex;
-                return this._editionDataService.getEditionGraphData(this.editionComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return EMPTY;
-            })
-        );
     }
 }

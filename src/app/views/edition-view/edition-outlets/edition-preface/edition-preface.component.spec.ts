@@ -52,22 +52,18 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let setLanguageSpy: Spy;
     let editionDataServiceGetPrefaceDataSpy: Spy;
     let editionGlyphServiceGetGlyphSpy: Spy;
-    let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
-    let editionStateServiceClearIsPrefaceViewSpy: Spy;
 
     let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockLoadingService: Partial<LoadingService>;
-    let mockEditionStateService: Partial<EditionStateService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockIsPrefaceViewSubject: ReplaySubject<boolean>;
     let mockPrefaceDataSubject: ReplaySubject<PrefaceList>;
+    let editionStateService: EditionStateService;
 
     let expectedPrefaceData: PrefaceList;
     let expectedCurrentLanguage: number;
 
     beforeEach(async () => {
-        mockIsPrefaceViewSubject = new ReplaySubject<boolean>(1);
         mockPrefaceDataSubject = new ReplaySubject<PrefaceList>(1);
 
         mockEditionDataService = {
@@ -76,11 +72,6 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
         mockEditionGlyphService = {
             getGlyph: (): string => 'glyphString',
-        };
-
-        mockEditionStateService = {
-            updateIsPrefaceView: (isView: boolean): void => mockIsPrefaceViewSubject.next(isView),
-            clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
         };
 
         mockIsLoadingSignal = signal<boolean>(false);
@@ -96,10 +87,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
+                EditionStateService,
                 { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },
-                { provide: EditionStateService, useValue: mockEditionStateService },
             ],
         }).compileComponents();
     });
@@ -108,15 +99,16 @@ describe('EditionPrefaceComponent (DONE)', () => {
         // Set loading status before each test
         mockIsLoadingSignal.set(false);
 
-        // Test data
-        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
-        expectedCurrentLanguage = 0;
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Service spies
         editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
-        editionStateServiceUpdateIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'updateIsPrefaceView');
-        editionStateServiceClearIsPrefaceViewSpy = vi.spyOn(mockEditionStateService, 'clearIsPrefaceView');
         editionDataServiceGetPrefaceDataSpy = vi.spyOn(mockEditionDataService, 'getEditionPrefaceData');
+
+        // Test data
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
+        expectedCurrentLanguage = 0;
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionPrefaceComponent);
@@ -161,7 +153,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         });
 
         it('... should not have called EditionStateService', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 0);
+            expectToBe(editionStateService.isPrefaceView(), false);
         });
 
         describe('VIEW', () => {
@@ -188,8 +180,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have updated IsPrefaceViewFlag (via EditionStateService)', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 1, true);
+        it('... should have updated IsPrefaceView (via EditionStateService)', () => {
+            expectToBe(editionStateService.isPrefaceView(), true);
         });
 
         it('... should have called EditionDataService', () => {
@@ -255,74 +247,81 @@ describe('EditionPrefaceComponent (DONE)', () => {
             });
         });
 
-        describe('#getGlyph()', () => {
-            it('... should have a method `getGlyph`', () => {
-                expect(component.getGlyph).toBeDefined();
+        describe('METHODS', () => {
+            describe('#getGlyph()', () => {
+                it('... should have a method `getGlyph`', () => {
+                    expect(component.getGlyph).toBeDefined();
+                });
+
+                it('... should trigger on change detection', async () => {
+                    expectSpyCall(getGlyphSpy, 1);
+
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(getGlyphSpy, 2);
+                });
+
+                it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
+                    expectSpyCall(editionGlyphServiceGetGlyphSpy, 1);
+
+                    component.getGlyph('[bb]');
+
+                    expectSpyCall(editionGlyphServiceGetGlyphSpy, 2, '[bb]');
+                });
+
+                it('... should return the glyph string from EditionGlyphService', () => {
+                    const result = component.getGlyph('[bb]');
+
+                    expectToBe(result, 'glyphString');
+                });
             });
 
-            it('... should trigger on change detection', async () => {
-                expectSpyCall(getGlyphSpy, 1);
+            describe('#setLanguage()', () => {
+                it('... should have a method `setLanguage`', () => {
+                    expect(component.setLanguage).toBeDefined();
+                });
 
-                await detectChangesOnPush(fixture);
+                it('... should trigger on event from LanguageSwitcherComponent', () => {
+                    const switcherDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        LanguageSwitcherStubComponent,
+                        1,
+                        1
+                    );
+                    const switcherCmp = switcherDes[0].injector.get(
+                        LanguageSwitcherStubComponent
+                    ) as LanguageSwitcherStubComponent;
 
-                expectSpyCall(getGlyphSpy, 2);
-            });
+                    // Language = 0
+                    switcherCmp.languageChangeRequest.emit(0);
 
-            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
-                expectSpyCall(editionGlyphServiceGetGlyphSpy, 1);
+                    expectSpyCall(setLanguageSpy, 1, 0);
 
-                component.getGlyph('[bb]');
+                    // Language = 1
+                    switcherCmp.languageChangeRequest.emit(1);
 
-                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2, '[bb]');
-            });
+                    expectSpyCall(setLanguageSpy, 2, 1);
+                });
 
-            it('... should return the glyph string from EditionGlyphService', () => {
-                const result = component.getGlyph('[bb]');
+                it('... should set the currentLanguage to 0 when called with 0', () => {
+                    component.setLanguage(0);
 
-                expectToBe(result, 'glyphString');
-            });
-        });
+                    expectToBe(component.currentLanguage, 0);
+                });
 
-        describe('#setLanguage()', () => {
-            it('... should have a method `setLanguage`', () => {
-                expect(component.setLanguage).toBeDefined();
-            });
+                it('... should set the currentLanguage to 1 when called with 1', () => {
+                    component.setLanguage(1);
 
-            it('... should trigger on event from LanguageSwitcherComponent', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(
-                    LanguageSwitcherStubComponent
-                ) as LanguageSwitcherStubComponent;
-
-                // Language = 0
-                switcherCmp.languageChangeRequest.emit(0);
-
-                expectSpyCall(setLanguageSpy, 1, 0);
-
-                // Language = 1
-                switcherCmp.languageChangeRequest.emit(1);
-
-                expectSpyCall(setLanguageSpy, 2, 1);
-            });
-
-            it('... should set the currentLanguage to 0 when called with 0', () => {
-                component.setLanguage(0);
-
-                expectToBe(component.currentLanguage, 0);
-            });
-
-            it('... should set the currentLanguage to 1 when called with 1', () => {
-                component.setLanguage(1);
-
-                expectToBe(component.currentLanguage, 1);
+                    expectToBe(component.currentLanguage, 1);
+                });
             });
         });
 
         describe('#ngOnDestroy()', () => {
-            it('... should have cleared isPrefaceView$ on destroy (via EditionStateService)', () => {
+            it('... should have cleared isPrefaceView on destroy (via EditionStateService)', () => {
                 component.ngOnDestroy();
 
-                expectSpyCall(editionStateServiceClearIsPrefaceViewSpy, 1);
+                expectToBe(editionStateService.isPrefaceView(), false);
             });
         });
     });

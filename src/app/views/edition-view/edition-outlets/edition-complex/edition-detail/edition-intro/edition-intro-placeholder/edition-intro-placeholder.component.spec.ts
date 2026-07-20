@@ -18,7 +18,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     let mockDocument: Document;
 
     let expectedEditionComplex: EditionComplex;
-    let expectedEditionLabel: string;
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -39,7 +38,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-        expectedEditionLabel = 'AWG';
     });
 
     it('should create', () => {
@@ -49,10 +47,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).toBeUndefined();
-        });
-
-        it('... should not have `editionLabel`', () => {
-            expect(component.editionLabel).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -75,7 +69,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.editionComplex = expectedEditionComplex;
-            component.editionLabel = expectedEditionLabel;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -83,10 +76,6 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
 
         it('... should have `editionComplex`', () => {
             expectToEqual(component.editionComplex, expectedEditionComplex);
-        });
-
-        it('... should have `editionLabel`', () => {
-            expectToBe(component.editionLabel, expectedEditionLabel);
         });
 
         describe('VIEW', () => {
@@ -105,11 +94,8 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
                 const shortComplexSpan = mockDocument.createElement('span');
                 shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
 
-                const awg = expectedEditionLabel;
-                const series = expectedEditionComplex.pubStatement.series.short;
-                const section = expectedEditionComplex.pubStatement.section.short;
-
-                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
+                const sectionLabel = expectedEditionComplex.pubStatement.labeledSectionRoute.label;
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${sectionLabel}.]`;
 
                 expectToBe(pEl.textContent.trim(), introPlaceholder);
             });

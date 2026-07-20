@@ -17,7 +17,7 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
@@ -62,16 +62,10 @@ class ScrollToTopButtonStubComponent {}
 
 /** Helper function */
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {
-    const { EDITION, SERIES, SECTION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
+    const { EDITION, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
 
     return [
-        ...sections.map(sec => [
-            EDITION.route,
-            SERIES.route,
-            sec?.seriesParent?.route,
-            SECTION.route,
-            sec?.section?.route,
-        ]),
+        ...sections.map(sec => sec.labeledRoute.route),
         [EDITION.route, ROWTABLES.route],
         ['/contact#awg-documentation'],
     ];
@@ -91,7 +85,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedSectionLinksData: EditionSectionLink[];
 
-    let expectedRouterlinks: string[][];
+    let expectedRouterLinks: string[][];
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
@@ -132,26 +126,25 @@ describe('HomeViewComponent (DONE)', () => {
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        const routes = EDITION_ROUTE_CONSTANTS;
         const expectedSections = [
             EditionOutlineService.getEditionSectionById('1', '5'),
             EditionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedSectionLinksData = [
             {
-                route: [routes.EDITION.route, routes.SERIES.route, '1', routes.SECTION.route, '5'],
-                shortTitle: `${routes.EDITION.short} I/5`,
+                route: expectedSections[0].labeledRoute.route,
+                shortTitle: expectedSections[0].labeledRoute.label,
                 fullTitle: expectedSections[0].section.full,
                 separator: ' und ',
             },
             {
-                route: [routes.EDITION.route, routes.SERIES.route, '2', routes.SECTION.route, '2a'],
-                shortTitle: `${routes.EDITION.short} II/2a`,
+                route: expectedSections[1].labeledRoute.route,
+                shortTitle: expectedSections[1].labeledRoute.label,
                 fullTitle: expectedSections[1].section.full,
                 separator: '',
             },
         ];
-        expectedRouterlinks = getRouterlinks(expectedSections);
+        expectedRouterLinks = getRouterlinks(expectedSections);
 
         // Create component fixture
         fixture = TestBed.createComponent(HomeViewComponent);
@@ -190,7 +183,7 @@ describe('HomeViewComponent (DONE)', () => {
         it('... should have signal `rowtablesRoute` to hold the provided route', () => {
             expectToBe(isSignal(component.rowtablesRoute), true);
 
-            expectToEqual(component.rowtablesRoute(), expectedRouterlinks.at(-2));
+            expectToEqual(component.rowtablesRoute(), expectedRouterLinks.at(-2));
         });
 
         describe('VIEW', () => {
@@ -413,22 +406,22 @@ describe('HomeViewComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLink,
-                    expectedRouterlinks.length,
-                    expectedRouterlinks.length
+                    expectedRouterLinks.length,
+                    expectedRouterLinks.length
                 );
 
                 routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedRouterlinks.length);
+                expectToBe(routerLinks.length, expectedRouterLinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
                     const urlTree = routerLink.urlTree;
 
-                    expectToBe(urlTree.toString(), expectedRouterlinks[index].join('/'));
+                    expectToBe(urlTree.toString(), expectedRouterLinks[index].join('/'));
                 }
             });
 
@@ -439,7 +432,7 @@ describe('HomeViewComponent (DONE)', () => {
                     navigateSpy.mockClear();
 
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedRouterlinks[index];
+                    const expectedRouterLink = expectedRouterLinks[index];
 
                     await clickAndAwaitChanges(linkDe, fixture);
 

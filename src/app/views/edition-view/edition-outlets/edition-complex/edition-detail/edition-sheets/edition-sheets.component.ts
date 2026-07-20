@@ -1,15 +1,15 @@
-import { Component, DestroyRef, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, DestroyRef, inject, Injector, OnInit, signal, ViewChild } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { combineLatest, EMPTY, Observable } from 'rxjs';
+import { combineLatest, EMPTY, Observable, of as observableOf } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionSvgOverlay,
@@ -75,6 +75,13 @@ export class EditionSheetsComponent implements OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
+     * Private readonly injection variable: _injector.
+     *
+     * It keeps the instance of the injected Injector.
+     */
+    private readonly _injector = inject(Injector);
+
+    /**
      * Private readonly injection variable: _loadingService.
      *
      * It keeps the instance of the injected LoadingService.
@@ -94,13 +101,6 @@ export class EditionSheetsComponent implements OnInit {
      * It keeps the instance of the injected Angular Router.
      */
     private readonly _router: any = inject(Router);
-
-    /**
-     * Public variable: editionComplex.
-     *
-     * It keeps the information about the current edition complex.
-     */
-    editionComplex: EditionComplex;
 
     /**
      * Public variable: errorObject.
@@ -180,6 +180,13 @@ export class EditionSheetsComponent implements OnInit {
     textcriticsData: TextcriticsList;
 
     /**
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
+     */
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+
+    /**
      * Readonly signal: isFirstPageLoad.
      *
      * It holds the information if the page is loaded for the first time.
@@ -192,15 +199,6 @@ export class EditionSheetsComponent implements OnInit {
      * It holds the current loading status.
      */
     readonly isLoading = this._loadingService.isLoading;
-
-    /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -314,7 +312,7 @@ export class EditionSheetsComponent implements OnInit {
      * @returns {void} Navigates to the edition report.
      */
     onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
+        const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
             fragment: reportIds?.fragmentId ?? '',
         };
@@ -332,7 +330,7 @@ export class EditionSheetsComponent implements OnInit {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
+        const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetIds?.sheetId ?? '' },
             queryParamsHandling: 'merge',
@@ -374,20 +372,21 @@ export class EditionSheetsComponent implements OnInit {
      * from the EditionDataService, assigns the data and handles the query params.
      *
      * @param {ParamMap} queryParams The given query paramMap of the activated route.
-     * @returns {Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>} The edition complex data and all necessary edition data.
+     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>} The edition complex data and all necessary edition data.
      */
     private _fetchEditionComplexData(
         queryParams: ParamMap
-    ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        return this._editionStateService.getSelectedEditionComplex().pipe(
-            // Set editionComplex
-            tap((complex: EditionComplex) => (this.editionComplex = complex)),
-            // Get editionSheetsData
-            switchMap((complex: EditionComplex) => this._editionDataService.getEditionSheetsData(complex)),
-            // Assign data
-            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => this._assignData(data)),
-            // Handle queryParams
-            tap(() => this._handleQueryParams(queryParams))
+    ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList] | null> {
+        return toObservable(this.selectedEditionComplex, { injector: this._injector }).pipe(
+            switchMap((complex: EditionComplex | null) =>
+                complex ? this._editionDataService.getEditionSheetsData(complex) : observableOf(null)
+            ),
+            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                if (data) {
+                    this._assignData(data);
+                    this._handleQueryParams(queryParams);
+                }
+            })
         );
     }
 
@@ -445,13 +444,19 @@ export class EditionSheetsComponent implements OnInit {
      *
      * It navigates to a target route using the provided complexId.
      *
-     * @param {string} complexId The given complex id.
+     * @param {string | undefined} complexId The given complex id.
      * @param {string} targetRoute The given target route.
      * @param {NavigationExtras} navigationExtras The given navigation extras.
      * @returns {void} Navigates to the target route.
      */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
+    private _navigateWithComplexId(
+        complexId: string | undefined,
+        targetRoute: string,
+        navigationExtras: NavigationExtras
+    ): void {
+        const complexRoute = complexId
+            ? `/edition/complex/${complexId}`
+            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

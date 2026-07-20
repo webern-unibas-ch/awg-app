@@ -1,7 +1,8 @@
 import { MetaPerson } from '@awg-shared/meta/meta.model';
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
+import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
-import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-route-constants';
+import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
@@ -96,6 +97,11 @@ export class EditionComplexRespStatement {
  */
 export class EditionComplexPubStatement {
     /**
+     * The labeled route for the series/section of the current edition complex.
+     */
+    labeledSectionRoute: LabeledRoute;
+
+    /**
      * The route for the current series.
      */
     series: EditionRouteConstant;
@@ -161,6 +167,7 @@ export class EditionComplex {
         // Helper constants
         const delimiter = '/';
         const spacer = '&nbsp;';
+        const routes = EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
         this.titleStatement = {
@@ -170,10 +177,25 @@ export class EditionComplex {
 
         this.respStatement = this._mapRespStatement(respStatement);
 
-        this.pubStatement = {
-            series: this._mapPubStatement('SERIES_', pubStatement?.series),
-            section: this._mapPubStatement('SECTION_', pubStatement?.section),
-        };
+        const seriesConstant = this._mapPubStatement('SERIES_', pubStatement?.series);
+        const sectionConstant = this._mapPubStatement('SECTION_', pubStatement?.section);
+        this.pubStatement =
+            seriesConstant.route && sectionConstant.route
+                ? {
+                      labeledSectionRoute: {
+                          label: `${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
+                          route: [
+                              routes.EDITION.route,
+                              routes.SERIES.route,
+                              seriesConstant.route,
+                              routes.SECTION.route,
+                              sectionConstant.route,
+                          ],
+                      },
+                      series: seriesConstant,
+                      section: sectionConstant,
+                  }
+                : new EditionComplexPubStatement();
 
         this.complexId = new EditionRouteConstant();
         this.complexId.route = this.titleStatement.catalogueType.route;
@@ -183,7 +205,7 @@ export class EditionComplex {
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
         // Set base route
-        const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
+        const rootPath = `${routes.EDITION.route}${routes.COMPLEX.route}`;
         this.baseRoute = `${rootPath}${this.complexId.route}`;
     }
 
@@ -197,7 +219,7 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
     }
 
     /**
@@ -211,7 +233,8 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        return EDITION_ROUTE_CONSTANTS[`${prefix}${value?.toUpperCase()}`];
+        const key = value ? `${prefix}${value.toUpperCase()}` : '';
+        return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**

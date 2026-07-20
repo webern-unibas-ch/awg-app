@@ -72,7 +72,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
         mockEditionGlyphService = TestBed.inject(EditionGlyphService);
 
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroData.intro[0].content);
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content);
         expectedNotesLabel = 'Test notes label';
 
         expectedComplexId = 'testComplex1';

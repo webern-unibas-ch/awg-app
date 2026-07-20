@@ -1,21 +1,28 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { of as observableOf } from 'rxjs';
-
-import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
+
+// Helper function
+function getExpectedRouterLinkButtons(complex: EditionComplex): RouterLinkButton[] {
+    return [
+        EDITION_ROUTE_CONSTANTS.EDITION_INTRO,
+        EDITION_ROUTE_CONSTANTS.EDITION_SHEETS,
+        EDITION_ROUTE_CONSTANTS.EDITION_REPORT,
+        EDITION_ROUTE_CONSTANTS.EDITION_GRAPH,
+    ].map(routerLink => new RouterLinkButton(complex.baseRoute, routerLink.route, routerLink.short, false));
+}
 
 // Mock components
 @Component({
@@ -37,72 +44,34 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionDetailNavComponent>;
     let compDe: DebugElement;
 
+    let editionStateService: EditionStateService;
+
     let expectedEditionRouterLinkButtons: RouterLinkButton[];
     let expectedEditionComplex: EditionComplex;
-
-    let setButtonsSpy: Spy;
-    let getSelectedEditionComplexSpy: Spy;
 
     beforeAll(() => {
         EditionComplexesService.initializeEditionComplexesList();
     });
 
     beforeEach(async () => {
-        // Create a fake service object with a `getData()` spy
-        const mockEditionStateService = {
-            getSelectedEditionComplex: vi.fn().mockName('EditionStateService.getSelectedEditionComplex'),
-        };
-        // Make the spy return a synchronous Observable with the test data
-        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.mockReturnValue(
-            observableOf(EditionComplexesService.getEditionComplexById('op12'))
-        );
-
         await TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
+            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionDetailNavComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Test data
         expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-        expectedEditionRouterLinkButtons = [
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
-                false
-            ),
-        ];
+        expectedEditionRouterLinkButtons = getExpectedRouterLinkButtons(expectedEditionComplex);
 
-        // Spies
-        setButtonsSpy = vi.spyOn(component, 'setButtons');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionDetailNavComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -110,32 +79,16 @@ describe('EditionDetailNavComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionRouterLinkButtons`', () => {
-            expect(component.editionRouterLinkButtons).toBeUndefined();
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToBe(component.selectedEditionComplex(), null);
         });
 
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
-        });
+        it('... should have computed signal `editionRouterLinkButtons` to hold null', () => {
+            expectToBe(isSignal(component.editionRouterLinkButtons), true);
 
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(component.getEditionComplex).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(getSelectedEditionComplexSpy, 0);
-            });
-        });
-
-        describe('#setButtons()', () => {
-            it('... should have a method `setButtons`', () => {
-                expect(component.setButtons).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(setButtonsSpy, 0);
-            });
+            expectToBe(component.editionRouterLinkButtons(), null);
         });
 
         describe('VIEW', () => {
@@ -151,28 +104,27 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('#getEditionComplex()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(getSelectedEditionComplexSpy, 1);
-            });
+        it('... should have signal `selectedEditionComplex` to hold expected complex', () => {
+            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
         });
 
-        it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+        it('... should have computed signal `editionRouterLinkButtons` to hold the expected buttons', () => {
+            expectToEqual(component.editionRouterLinkButtons(), expectedEditionRouterLinkButtons);
         });
 
-        describe('#setButtons()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(setButtonsSpy, 1);
-            });
+        it('... should have re-computed signal `editionRouterLinkButtons` when complex changes', () => {
+            const newComplex = EditionComplexesService.getEditionComplexById('op25');
+            const newExpectedButtons = getExpectedRouterLinkButtons(newComplex);
 
-            it('... should have `editionRouterLinkButtons`', () => {
-                expectToEqual(component.editionRouterLinkButtons, expectedEditionRouterLinkButtons);
-            });
+            editionStateService.updateSelectedEditionComplex(newComplex);
+
+            expectToEqual(component.editionRouterLinkButtons(), newExpectedButtons);
         });
 
         describe('VIEW', () => {

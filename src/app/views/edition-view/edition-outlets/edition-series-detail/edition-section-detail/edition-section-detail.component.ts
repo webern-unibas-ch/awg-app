@@ -1,8 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-import { Subject } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { Component, effect, inject, input } from '@angular/core';
 
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -18,14 +14,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     styleUrls: ['./edition-section-detail.component.scss'],
     standalone: false,
 })
-export class EditionSectionDetailComponent implements OnInit, OnDestroy {
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
-
+export class EditionSectionDetailComponent {
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -34,67 +23,43 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _route.
+     * Input signal: sectionId.
      *
-     * It keeps the instance of the injected Angular ActivatedRoute.
+     * It holds the route param id of the edition section (automatically bound by the router).
      */
-    private readonly _route = inject(ActivatedRoute);
+    sectionId = input<string | null>(null);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Constructor of the EditionSectionDetailComponent.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It calls a method to update the edition section from the route.
+     *
      */
-    ngOnInit() {
+    constructor() {
         this.updateSectionFromRoute();
     }
 
     /**
      * Public method: updateSectionFromRoute.
      *
-     * It fetches the route params to get the id of the current section
-     * and updates the EditionStateService.
+     * It reactively tracks the route params and the selected series
+     * to update the corresponding edition section in the EditionStateService.
      *
-     * @returns {void} Updates the edition section.
+     * @returns {void} Updates the edition section from the route.
      */
     updateSectionFromRoute(): void {
-        this._route.paramMap
-            .pipe(
-                takeUntil(this._destroyed$),
-                switchMap(paramMap => {
-                    const sectionId = paramMap.get('id');
+        effect(() => {
+            const series = this._editionStateService.selectedEditionSeries();
+            const currentSectionId = this.sectionId();
 
-                    return this._editionStateService.getSelectedEditionSeries().pipe(
-                        filter(series => !!series),
-                        map(series => ({
-                            seriesId: series?.series?.route,
-                            sectionId: sectionId,
-                        }))
-                    );
-                })
-            )
-            .subscribe({
-                next: ({ seriesId, sectionId }) => {
-                    const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                    this._editionStateService.updateSelectedEditionSection(selectedSection);
-                },
-            });
-    }
+            if (!series) {
+                return;
+            }
 
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
+            const seriesId = series.series?.route;
+            const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, currentSectionId);
 
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
+            this._editionStateService.updateSelectedEditionSection(selectedSection);
+        });
     }
 }
