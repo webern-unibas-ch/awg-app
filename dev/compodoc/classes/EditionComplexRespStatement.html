@@ -211,7 +211,7 @@ to store information about the responsibility statement of an edition complex.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -243,7 +243,7 @@ to store information about the responsibility statement of an edition complex.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -270,8 +270,9 @@ to store information about the responsibility statement of an edition complex.</
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MetaPerson } from &#x27;@awg-shared/meta/meta.model&#x27;;
 import { PERSONS_DATA } from &#x27;@awg-shared/meta/persons.data&#x27;;
+import { LabeledRoute } from &#x27;@awg-shared/models/labeled-route.model&#x27;;
 
-import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from &#x27;../edition-route-constants&#x27;;
+import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from &#x27;../edition-routes.constants&#x27;;
 import { EditionRouteConstant } from &#x27;./edition-route-constant.model&#x27;;
 
 /**
@@ -366,6 +367,11 @@ export class EditionComplexRespStatement {
  */
 export class EditionComplexPubStatement {
     /**
+     * The labeled route for the series/section of the current edition complex.
+     */
+    labeledSectionRoute: LabeledRoute;
+
+    /**
      * The route for the current series.
      */
     series: EditionRouteConstant;
@@ -431,6 +437,7 @@ export class EditionComplex {
         // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
         const spacer &#x3D; &#x27;&amp;nbsp;&#x27;;
+        const routes &#x3D; EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
         this.titleStatement &#x3D; {
@@ -440,10 +447,25 @@ export class EditionComplex {
 
         this.respStatement &#x3D; this._mapRespStatement(respStatement);
 
-        this.pubStatement &#x3D; {
-            series: this._mapPubStatement(&#x27;SERIES_&#x27;, pubStatement?.series),
-            section: this._mapPubStatement(&#x27;SECTION_&#x27;, pubStatement?.section),
-        };
+        const seriesConstant &#x3D; this._mapPubStatement(&#x27;SERIES_&#x27;, pubStatement?.series);
+        const sectionConstant &#x3D; this._mapPubStatement(&#x27;SECTION_&#x27;, pubStatement?.section);
+        this.pubStatement &#x3D;
+            seriesConstant.route &amp;&amp; sectionConstant.route
+                ? {
+                      labeledSectionRoute: {
+                          label: &#x60;${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}&#x60;,
+                          route: [
+                              routes.EDITION.route,
+                              routes.SERIES.route,
+                              seriesConstant.route,
+                              routes.SECTION.route,
+                              sectionConstant.route,
+                          ],
+                      },
+                      series: seriesConstant,
+                      section: sectionConstant,
+                  }
+                : new EditionComplexPubStatement();
 
         this.complexId &#x3D; new EditionRouteConstant();
         this.complexId.route &#x3D; this.titleStatement.catalogueType.route;
@@ -453,7 +475,7 @@ export class EditionComplex {
         this.complexId.full &#x3D; &#x60;${this.titleStatement.title} ${this.complexId.short}&#x60;;
 
         // Set base route
-        const rootPath &#x3D; &#x60;${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}&#x60;;
+        const rootPath &#x3D; &#x60;${routes.EDITION.route}${routes.COMPLEX.route}&#x60;;
         this.baseRoute &#x3D; &#x60;${rootPath}${this.complexId.route}&#x60;;
     }
 
@@ -467,7 +489,7 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
     }
 
     /**
@@ -481,7 +503,8 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        return EDITION_ROUTE_CONSTANTS[&#x60;${prefix}${value?.toUpperCase()}&#x60;];
+        const key &#x3D; value ? &#x60;${prefix}${value.toUpperCase()}&#x60; : &#x27;&#x27;;
+        return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**

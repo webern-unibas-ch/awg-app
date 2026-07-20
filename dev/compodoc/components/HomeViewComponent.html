@@ -557,7 +557,7 @@ of the home view section.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Readonly signal: sectionLinksData.</p>
-<p>It holds the array of displayed edition sections as a read-only signal.</p>
+<p>It holds the array of displayed edition sections based on active IDs.</p>
 </div>
                 </td>
             </tr>
@@ -581,7 +581,7 @@ import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
 import { ScrollToTopButtonComponent } from &#x27;@awg-shared/scroll-to-top-button/scroll-to-top-button.component&#x27;;
 
 import { ACTIVE_EDITION_SECTION_IDS } from &#x27;@awg-views/edition-view/data/active-edition-sections.data&#x27;;
-import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
 import { EditionSectionLink } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionOutlineService } from &#x27;@awg-views/edition-view/services&#x27;;
 
@@ -650,7 +650,7 @@ export class HomeViewComponent {
     /**
      * Readonly signal: sectionLinksData.
      *
-     * It holds the array of displayed edition sections as a read-only signal.
+     * It holds the array of displayed edition sections based on active IDs.
      */
     readonly sectionLinksData &#x3D; signal&lt;EditionSectionLink[]&gt;(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) &#x3D;&gt; {

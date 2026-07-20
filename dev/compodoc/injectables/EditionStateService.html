@@ -145,7 +145,6 @@
                 <p>The EditionState service.</p>
 <p>It handles the provision of the current state
 of an edition complex and other parts of the edition outline.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
@@ -166,67 +165,56 @@ of an edition complex and other parts of the edition outline.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_bufferSize" >_bufferSize</a>
+                                <a href="#_isIntroViewSignal" >_isIntroViewSignal</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isIntroViewStream$" >_isIntroViewStream$</a>
+                                <a href="#_isPrefaceViewSignal" >_isPrefaceViewSignal</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isIntroViewSubject" >_isIntroViewSubject</a>
+                                <a href="#_isRowTableViewSignal" >_isRowTableViewSignal</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isPrefaceViewStream$" >_isPrefaceViewStream$</a>
+                                <a href="#_selectedEditionComplexSignal" >_selectedEditionComplexSignal</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isPrefaceViewSubject" >_isPrefaceViewSubject</a>
+                                <a href="#_selectedEditionSectionSignal" >_selectedEditionSectionSignal</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isRowTableViewStream$" >_isRowTableViewStream$</a>
+                                <a href="#_selectedEditionSeriesSignal" >_selectedEditionSeriesSignal</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_isRowTableViewSubject" >_isRowTableViewSubject</a>
+                                <a href="#isIntroView" >isIntroView</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionComplexStream$" >_selectedEditionComplexStream$</a>
+                                <a href="#isPrefaceView" >isPrefaceView</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionComplexSubject" >_selectedEditionComplexSubject</a>
+                                <a href="#isRowTableView" >isRowTableView</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionSectionStream$" >_selectedEditionSectionStream$</a>
+                                <a href="#selectedEditionComplex" >selectedEditionComplex</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionSectionSubject" >_selectedEditionSectionSubject</a>
+                                <a href="#selectedEditionSection" >selectedEditionSection</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionSeriesStream$" >_selectedEditionSeriesStream$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#_selectedEditionSeriesSubject" >_selectedEditionSeriesSubject</a>
+                                <a href="#selectedEditionSeries" >selectedEditionSeries</a>
                             </li>
                         </ul>
                     </td>
@@ -240,42 +228,6 @@ of an edition complex and other parts of the edition outline.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#clearIsIntroView" >clearIsIntroView</a>
-                            </li>
-                            <li>
-                                <a href="#clearIsPrefaceView" >clearIsPrefaceView</a>
-                            </li>
-                            <li>
-                                <a href="#clearIsRowTableView" >clearIsRowTableView</a>
-                            </li>
-                            <li>
-                                <a href="#clearSelectedEditionComplex" >clearSelectedEditionComplex</a>
-                            </li>
-                            <li>
-                                <a href="#clearSelectedEditionSection" >clearSelectedEditionSection</a>
-                            </li>
-                            <li>
-                                <a href="#clearSelectedEditionSeries" >clearSelectedEditionSeries</a>
-                            </li>
-                            <li>
-                                <a href="#getIsIntroView" >getIsIntroView</a>
-                            </li>
-                            <li>
-                                <a href="#getIsPrefaceView" >getIsPrefaceView</a>
-                            </li>
-                            <li>
-                                <a href="#getIsRowTableView" >getIsRowTableView</a>
-                            </li>
-                            <li>
-                                <a href="#getSelectedEditionComplex" >getSelectedEditionComplex</a>
-                            </li>
-                            <li>
-                                <a href="#getSelectedEditionSection" >getSelectedEditionSection</a>
-                            </li>
-                            <li>
-                                <a href="#getSelectedEditionSeries" >getSelectedEditionSeries</a>
-                            </li>
                             <li>
                                 <a href="#updateIsIntroView" >updateIsIntroView</a>
                             </li>
@@ -316,534 +268,6 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="clearIsIntroView"></a>
-                    <span class="name">
-                        <span ><b>clearIsIntroView</b></span>
-                        <a href="#clearIsIntroView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearIsIntroView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="219"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:219</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearIsIntroView.</p>
-<p>It clears the isIntroView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the isIntroView stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearIsPrefaceView"></a>
-                    <span class="name">
-                        <span ><b>clearIsPrefaceView</b></span>
-                        <a href="#clearIsPrefaceView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearIsPrefaceView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="254"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:254</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearIsPrefaceView.</p>
-<p>It clears the isPrefaceView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the isPrefaceView stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearIsRowTableView"></a>
-                    <span class="name">
-                        <span ><b>clearIsRowTableView</b></span>
-                        <a href="#clearIsRowTableView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearIsRowTableView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="289"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:289</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearIsRowTableView.</p>
-<p>It clears the isRowTableView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the isRowTableView stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearSelectedEditionComplex"></a>
-                    <span class="name">
-                        <span ><b>clearSelectedEditionComplex</b></span>
-                        <a href="#clearSelectedEditionComplex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearSelectedEditionComplex()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:116</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearSelectedEditionComplex.</p>
-<p>It clears the selected edition complex stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the edition complex stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearSelectedEditionSection"></a>
-                    <span class="name">
-                        <span ><b>clearSelectedEditionSection</b></span>
-                        <a href="#clearSelectedEditionSection"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearSelectedEditionSection()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="184"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:184</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearSelectedEditionSection.</p>
-<p>It clears the selected edition section stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the edition section stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearSelectedEditionSeries"></a>
-                    <span class="name">
-                        <span ><b>clearSelectedEditionSeries</b></span>
-                        <a href="#clearSelectedEditionSeries"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearSelectedEditionSeries()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:149</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearSelectedEditionSeries.</p>
-<p>It clears the selected edition series stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the edition series stream.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getIsIntroView"></a>
-                    <span class="name">
-                        <span ><b>getIsIntroView</b></span>
-                        <a href="#getIsIntroView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getIsIntroView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:195</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getIsIntroView.</p>
-<p>It provides the latest isIntroView flag from the isIntroView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The isIntroView stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getIsPrefaceView"></a>
-                    <span class="name">
-                        <span ><b>getIsPrefaceView</b></span>
-                        <a href="#getIsPrefaceView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getIsPrefaceView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="230"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:230</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getIsPrefaceView.</p>
-<p>It provides the latest isPrefaceView flag from the isPrefaceView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The isPrefaceView stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getIsRowTableView"></a>
-                    <span class="name">
-                        <span ><b>getIsRowTableView</b></span>
-                        <a href="#getIsRowTableView"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getIsRowTableView()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="265"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:265</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getIsRowTableView.</p>
-<p>It provides the latest isRowTableView flag from the isRowTableView stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The isRowTableView stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getSelectedEditionComplex"></a>
-                    <span class="name">
-                        <span ><b>getSelectedEditionComplex</b></span>
-                        <a href="#getSelectedEditionComplex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSelectedEditionComplex()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:92</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getSelectedEditionComplex.</p>
-<p>It provides the latest selected edition complex from the edition complex stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The edition complex stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getSelectedEditionSection"></a>
-                    <span class="name">
-                        <span ><b>getSelectedEditionSection</b></span>
-                        <a href="#getSelectedEditionSection"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSelectedEditionSection()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:160</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getSelectedEditionSection.</p>
-<p>It provides the latest selected section from the edition section stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >Observable&lt;EditionOutlineSection&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The edition section stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getSelectedEditionSeries"></a>
-                    <span class="name">
-                        <span ><b>getSelectedEditionSeries</b></span>
-                        <a href="#getSelectedEditionSeries"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getSelectedEditionSeries()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="127"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:127</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: getSelectedEditionSeries.</p>
-<p>It provides the latest selected series from the edition series stream.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >Observable&lt;EditionOutlineSeries&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The edition series stream as observable.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="updateIsIntroView"></a>
                     <span class="name">
                         <span ><b>updateIsIntroView</b></span>
@@ -860,8 +284,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="208"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:208</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -869,7 +293,7 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateIsIntroView.</p>
-<p>It updates the isIntroView stream with the given boolean value.</p>
+<p>It updates the isIntroView signal with the given boolean value.</p>
 </div>
 
                             <div class="io-description">
@@ -909,7 +333,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next isIntroView flag to the stream.</p>
+                                <p>Sets the next state to the isIntroView signal.</p>
 
                             </div>
                 </td>
@@ -936,8 +360,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="243"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:243</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -945,7 +369,7 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateIsPrefaceView.</p>
-<p>It updates the isPrefaceView stream with the given boolean value.</p>
+<p>It updates the isPrefaceView signal with the given boolean value.</p>
 </div>
 
                             <div class="io-description">
@@ -985,7 +409,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next isPrefaceView flag to the stream.</p>
+                                <p>Sets the next state to the isPrefaceView signal.</p>
 
                             </div>
                 </td>
@@ -1012,8 +436,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="278"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:278</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -1021,7 +445,7 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateIsRowTableView.</p>
-<p>It updates the isRowTableView stream with the given boolean value.</p>
+<p>It updates the isRowTableView signal with the given boolean value.</p>
 </div>
 
                             <div class="io-description">
@@ -1061,7 +485,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next isRowTableView flag to the stream.</p>
+                                <p>Sets the next state to the isRowTableView signal.</p>
 
                             </div>
                 </td>
@@ -1081,15 +505,15 @@ of an edition complex and other parts of the edition outline.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionComplex(editionComplex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
+<code>updateSelectedEditionComplex(complex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex | null</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="105"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:105</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="131"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:131</a></div>
                         </td>
                     </tr>
 
@@ -1097,7 +521,7 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionComplex.</p>
-<p>It updates the selected edition complex stream with the given edition complex.</p>
+<p>It updates the selectedEditionComplex signal with the given edition complex.</p>
 </div>
 
                             <div class="io-description">
@@ -1114,9 +538,9 @@ of an edition complex and other parts of the edition outline.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>editionComplex</td>
+                                                <td>complex</td>
                                             <td>
-                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex | null</a></code>
                                             </td>
 
                                             <td>
@@ -1137,7 +561,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next edition complex to the stream.</p>
+                                <p>Sets the next complex to the signal.</p>
 
                             </div>
                 </td>
@@ -1157,15 +581,15 @@ of an edition complex and other parts of the edition outline.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSection(editionSection: <a href="../interfaces/EditionOutlineSection.html" target="_self">EditionOutlineSection</a>)</code>
+<code>updateSelectedEditionSection(editionSection: <a href="../interfaces/EditionOutlineSection.html" target="_self">EditionOutlineSection | null</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="173"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:173</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:143</a></div>
                         </td>
                     </tr>
 
@@ -1173,7 +597,7 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionSection.</p>
-<p>It updates the selected edition section stream with the given section.</p>
+<p>It updates the selectedEditionSection signal with the given section.</p>
 </div>
 
                             <div class="io-description">
@@ -1192,7 +616,7 @@ of an edition complex and other parts of the edition outline.</p>
                                         <tr>
                                                 <td>editionSection</td>
                                             <td>
-                                                            <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
+                                                            <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection | null</a></code>
                                             </td>
 
                                             <td>
@@ -1213,7 +637,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next edition section to the stream.</p>
+                                <p>Sets the next section to the signal.</p>
 
                             </div>
                 </td>
@@ -1233,15 +657,15 @@ of an edition complex and other parts of the edition outline.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSeries(editionSeries: <a href="../interfaces/EditionOutlineSeries.html" target="_self">EditionOutlineSeries</a>)</code>
+<code>updateSelectedEditionSeries(editionSeries: <a href="../interfaces/EditionOutlineSeries.html" target="_self">EditionOutlineSeries | null</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="138"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:138</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:157</a></div>
                         </td>
                     </tr>
 
@@ -1249,7 +673,8 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionSeries.</p>
-<p>It updates the selected edition series stream with the given series.</p>
+<p>It updates the selectedEditionSeries signal with the given series
+and resets the selectedEditionSection signal to null.</p>
 </div>
 
                             <div class="io-description">
@@ -1261,13 +686,14 @@ of an edition complex and other parts of the edition outline.</p>
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                                 <td>editionSeries</td>
                                             <td>
-                                                            <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
+                                                            <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries | null</a></code>
                                             </td>
 
                                             <td>
@@ -1275,6 +701,10 @@ of an edition complex and other parts of the edition outline.</p>
                                             </td>
 
 
+                                            <td>
+                                                    <p>The given edition series.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1284,7 +714,7 @@ of an edition complex and other parts of the edition outline.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the next edition series to the stream.</p>
+                                <p>Sets the next series to the signal.</p>
 
                             </div>
                 </td>
@@ -1301,24 +731,63 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_bufferSize"></a>
+                    <a name="_isIntroViewSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_bufferSize</b></span>
-                        <a href="#_bufferSize"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_isIntroViewSignal</b></span>
+                        <a href="#_isIntroViewSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>1</code>
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly signal holding the intro view state.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isPrefaceViewSignal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_isPrefaceViewSignal</b></span>
+                        <a href="#_isPrefaceViewSignal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1329,7 +798,7 @@ of an edition complex and other parts of the edition outline.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable for the replay subject´s buffer size.</p>
+                    <div class="io-description"><p>Private readonly signal holding the preface view state.</p>
 </div>
                 </td>
             </tr>
@@ -1340,12 +809,12 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_isIntroViewStream$"></a>
+                    <a name="_isRowTableViewSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_isIntroViewStream$</b></span>
-                        <a href="#_isIntroViewStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_isRowTableViewSignal</b></span>
+                        <a href="#_isRowTableViewSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1357,46 +826,7 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._isIntroViewSubject.asObservable()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:33</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly isIntroView stream as observable (<code>ReplaySubject</code>).</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_isIntroViewSubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_isIntroViewSubject</b></span>
-                        <a href="#_isIntroViewSubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;boolean&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1407,7 +837,7 @@ of an edition complex and other parts of the edition outline.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to flag intro view.</p>
+                    <div class="io-description"><p>Private readonly signal holding the row table view state.</p>
 </div>
                 </td>
             </tr>
@@ -1418,12 +848,12 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_isPrefaceViewStream$"></a>
+                    <a name="_selectedEditionComplexSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_isPrefaceViewStream$</b></span>
-                        <a href="#_isPrefaceViewStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_selectedEditionComplexSignal</b></span>
+                        <a href="#_selectedEditionComplexSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1435,18 +865,18 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._isPrefaceViewSubject.asObservable()</code>
+                        <i>Default value : </i><code>signal&lt;EditionComplex | null&gt;(null)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:33</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly isPrefaceView stream as observable (<code>ReplaySubject</code>).</p>
+                    <div class="io-description"><p>Private readonly signal holding the selected edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -1457,12 +887,12 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_isPrefaceViewSubject"></a>
+                    <a name="_selectedEditionSectionSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_isPrefaceViewSubject</b></span>
-                        <a href="#_isPrefaceViewSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_selectedEditionSectionSignal</b></span>
+                        <a href="#_selectedEditionSectionSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1474,7 +904,7 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;boolean&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>signal&lt;EditionOutlineSection | null&gt;(null)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1485,7 +915,7 @@ of an edition complex and other parts of the edition outline.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to flag preface view.</p>
+                    <div class="io-description"><p>Private readonly signal holding the selected edition section.</p>
 </div>
                 </td>
             </tr>
@@ -1496,12 +926,12 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_isRowTableViewStream$"></a>
+                    <a name="_selectedEditionSeriesSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_isRowTableViewStream$</b></span>
-                        <a href="#_isRowTableViewStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_selectedEditionSeriesSignal</b></span>
+                        <a href="#_selectedEditionSeriesSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1513,18 +943,18 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._isRowTableViewSubject.asObservable()</code>
+                        <i>Default value : </i><code>signal&lt;EditionOutlineSeries | null&gt;(null)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:43</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly isRowTableView stream as observable (<code>ReplaySubject</code>).</p>
+                    <div class="io-description"><p>Private readonly signal holding the selected edition series.</p>
 </div>
                 </td>
             </tr>
@@ -1535,12 +965,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_isRowTableViewSubject"></a>
+                    <a name="isIntroView"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_isRowTableViewSubject</b></span>
-                        <a href="#_isRowTableViewSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isIntroView</b></span>
+                        <a href="#isIntroView"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1552,18 +981,19 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;boolean&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>this._isIntroViewSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:50</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to flag row table view.</p>
+                    <div class="io-description"><p>Readonly signal: isIntroView.</p>
+<p>It holds the state of the intro view.</p>
 </div>
                 </td>
             </tr>
@@ -1574,12 +1004,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedEditionComplexStream$"></a>
+                    <a name="isPrefaceView"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionComplexStream$</b></span>
-                        <a href="#_selectedEditionComplexStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isPrefaceView</b></span>
+                        <a href="#isPrefaceView"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1591,18 +1020,19 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedEditionComplexSubject.asObservable()</code>
+                        <i>Default value : </i><code>this._isPrefaceViewSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly edition complex stream as observable (<code>ReplaySubject</code>).</p>
+                    <div class="io-description"><p>Readonly signal: isPrefaceView.</p>
+<p>It holds the state of the preface view.</p>
 </div>
                 </td>
             </tr>
@@ -1613,12 +1043,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedEditionComplexSubject"></a>
+                    <a name="isRowTableView"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionComplexSubject</b></span>
-                        <a href="#_selectedEditionComplexSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isRowTableView</b></span>
+                        <a href="#isRowTableView"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1630,18 +1059,19 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionComplex&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>this._isRowTableViewSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:64</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to handle the selected edition complex.</p>
+                    <div class="io-description"><p>Readonly signal: isRowTableView.</p>
+<p>It holds the state of the row table view.</p>
 </div>
                 </td>
             </tr>
@@ -1652,12 +1082,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedEditionSectionStream$"></a>
+                    <a name="selectedEditionComplex"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionSectionStream$</b></span>
-                        <a href="#_selectedEditionSectionStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>selectedEditionComplex</b></span>
+                        <a href="#selectedEditionComplex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1669,18 +1098,19 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedEditionSectionSubject.asObservable()</code>
+                        <i>Default value : </i><code>this._selectedEditionComplexSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:71</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly selected edition series stream as observable (<code>ReplaySubject</code>).</p>
+                    <div class="io-description"><p>Readonly signal: selectedEditionComplex.</p>
+<p>It holds the state of the selected edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -1691,12 +1121,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedEditionSectionSubject"></a>
+                    <a name="selectedEditionSection"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionSectionSubject</b></span>
-                        <a href="#_selectedEditionSectionSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>selectedEditionSection</b></span>
+                        <a href="#selectedEditionSection"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1708,7 +1137,7 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionOutlineSection&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>this._selectedEditionSectionSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
@@ -1719,7 +1148,8 @@ of an edition complex and other parts of the edition outline.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to handle the selected edition section.</p>
+                    <div class="io-description"><p>Readonly signal: selectedEditionSection.</p>
+<p>It holds the state of the selected edition section.</p>
 </div>
                 </td>
             </tr>
@@ -1730,12 +1160,11 @@ of an edition complex and other parts of the edition outline.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedEditionSeriesStream$"></a>
+                    <a name="selectedEditionSeries"></a>
                     <span class="name">
-                            <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionSeriesStream$</b></span>
-                        <a href="#_selectedEditionSeriesStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>selectedEditionSeries</b></span>
+                        <a href="#selectedEditionSeries"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1747,57 +1176,19 @@ of an edition complex and other parts of the edition outline.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedEditionSeriesSubject.asObservable()</code>
+                        <i>Default value : </i><code>this._selectedEditionSeriesSignal.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:85</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly selected edition series stream as observable (<code>ReplaySubject</code>).</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_selectedEditionSeriesSubject"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_selectedEditionSeriesSubject</b></span>
-                        <a href="#_selectedEditionSeriesSubject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionOutlineSeries&gt;(this._bufferSize)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:68</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly replay subject to handle the selected edition series.</p>
+                    <div class="io-description"><p>Readonly signal: selectedEditionSeries.</p>
+<p>It holds the state of the selected edition series.</p>
 </div>
                 </td>
             </tr>
@@ -1810,9 +1201,7 @@ of an edition complex and other parts of the edition outline.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-
-import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal } from &#x27;@angular/core&#x27;;
 
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
 
@@ -1821,285 +1210,156 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from &#x2
  *
  * It handles the provision of the current state
  * of an edition complex and other parts of the edition outline.
- *
- * Provided in: &#x60;root&#x60;.
- * @used in the {@link EditionSheetsComponent}.
  */
 @Injectable({
     providedIn: &#x27;root&#x27;,
 })
 export class EditionStateService {
     /**
-     * Private readonly variable for the replay subject´s buffer size.
+     * Private readonly signal holding the intro view state.
      */
-    private readonly _bufferSize &#x3D; 1;
+    private readonly _isIntroViewSignal &#x3D; signal&lt;boolean&gt;(false);
 
     /**
-     * Private readonly replay subject to flag intro view.
+     * Private readonly signal holding the preface view state.
      */
-    private readonly _isIntroViewSubject &#x3D; new ReplaySubject&lt;boolean&gt;(this._bufferSize);
+    private readonly _isPrefaceViewSignal &#x3D; signal&lt;boolean&gt;(false);
 
     /**
-     * Private readonly isIntroView stream as observable (&#x60;ReplaySubject&#x60;).
+     * Private readonly signal holding the row table view state.
      */
-    private readonly _isIntroViewStream$ &#x3D; this._isIntroViewSubject.asObservable();
+    private readonly _isRowTableViewSignal &#x3D; signal&lt;boolean&gt;(false);
 
     /**
-     * Private readonly replay subject to flag preface view.
+     * Private readonly signal holding the selected edition complex.
      */
-    private readonly _isPrefaceViewSubject &#x3D; new ReplaySubject&lt;boolean&gt;(this._bufferSize);
+    private readonly _selectedEditionComplexSignal &#x3D; signal&lt;EditionComplex | null&gt;(null);
 
     /**
-     * Private readonly isPrefaceView stream as observable (&#x60;ReplaySubject&#x60;).
+     * Private readonly signal holding the selected edition section.
      */
-    private readonly _isPrefaceViewStream$ &#x3D; this._isPrefaceViewSubject.asObservable();
+    private readonly _selectedEditionSectionSignal &#x3D; signal&lt;EditionOutlineSection | null&gt;(null);
 
     /**
-     * Private readonly replay subject to flag row table view.
+     * Private readonly signal holding the selected edition series.
      */
-    private readonly _isRowTableViewSubject &#x3D; new ReplaySubject&lt;boolean&gt;(this._bufferSize);
+    private readonly _selectedEditionSeriesSignal &#x3D; signal&lt;EditionOutlineSeries | null&gt;(null);
 
     /**
-     * Private readonly isRowTableView stream as observable (&#x60;ReplaySubject&#x60;).
+     * Readonly signal: isIntroView.
+     *
+     * It holds the state of the intro view.
      */
-    private readonly _isRowTableViewStream$ &#x3D; this._isRowTableViewSubject.asObservable();
+    readonly isIntroView &#x3D; this._isIntroViewSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition complex.
+     * Readonly signal: isPrefaceView.
+     *
+     * It holds the state of the preface view.
      */
-    private readonly _selectedEditionComplexSubject &#x3D; new ReplaySubject&lt;EditionComplex&gt;(this._bufferSize);
+    readonly isPrefaceView &#x3D; this._isPrefaceViewSignal.asReadonly();
 
     /**
-     * Private readonly edition complex stream as observable (&#x60;ReplaySubject&#x60;).
+     * Readonly signal: isRowTableView.
+     *
+     * It holds the state of the row table view.
      */
-    private readonly _selectedEditionComplexStream$ &#x3D; this._selectedEditionComplexSubject.asObservable();
+    readonly isRowTableView &#x3D; this._isRowTableViewSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition series.
+     * Readonly signal: selectedEditionComplex.
+     *
+     * It holds the state of the selected edition complex.
      */
-    private readonly _selectedEditionSeriesSubject &#x3D; new ReplaySubject&lt;EditionOutlineSeries&gt;(this._bufferSize);
+    readonly selectedEditionComplex &#x3D; this._selectedEditionComplexSignal.asReadonly();
 
     /**
-     * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
+     * Readonly signal: selectedEditionSection.
+     *
+     * It holds the state of the selected edition section.
      */
-    private readonly _selectedEditionSeriesStream$ &#x3D; this._selectedEditionSeriesSubject.asObservable();
+    readonly selectedEditionSection &#x3D; this._selectedEditionSectionSignal.asReadonly();
 
     /**
-     * Private readonly replay subject to handle the selected edition section.
+     * Readonly signal: selectedEditionSeries.
+     *
+     * It holds the state of the selected edition series.
      */
-    private readonly _selectedEditionSectionSubject &#x3D; new ReplaySubject&lt;EditionOutlineSection&gt;(this._bufferSize);
-
-    /**
-     * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
-     */
-    private readonly _selectedEditionSectionStream$ &#x3D; this._selectedEditionSectionSubject.asObservable();
-
-    /**
-     * Public method: getSelectedEditionComplex.
-     *
-     * It provides the latest selected edition complex from the edition complex stream.
-     *
-     * @returns {Observable&lt;EditionComplex&gt;} The edition complex stream as observable.
-     */
-    getSelectedEditionComplex(): Observable&lt;EditionComplex&gt; {
-        return this._selectedEditionComplexStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionComplex.
-     *
-     * It updates the selected edition complex stream with the given edition complex.
-     *
-     * @param {EditionComplex} editionComplex The given edition complex.
-     *
-     * @returns {void} Sets the next edition complex to the stream.
-     */
-    updateSelectedEditionComplex(editionComplex: EditionComplex): void {
-        this._selectedEditionComplexSubject.next(editionComplex);
-    }
-
-    /**
-     * Public method: clearSelectedEditionComplex.
-     *
-     * It clears the selected edition complex stream.
-     *
-     * @returns {void} Clears the edition complex stream.
-     */
-    clearSelectedEditionComplex(): void {
-        this._selectedEditionComplexSubject.next(null);
-    }
-
-    /**
-     * Public method: getSelectedEditionSeries.
-     *
-     * It provides the latest selected series from the edition series stream.
-     *
-     * @returns {Observable&lt;EditionOutlineSeries&gt;} The edition series stream as observable.
-     */
-    getSelectedEditionSeries(): Observable&lt;EditionOutlineSeries&gt; {
-        return this._selectedEditionSeriesStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionSeries.
-     *
-     * It updates the selected edition series stream with the given series.
-     *
-     * @returns {void} Sets the next edition series to the stream.
-     */
-    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries): void {
-        this._selectedEditionSeriesSubject.next(editionSeries);
-    }
-
-    /**
-     * Public method: clearSelectedEditionSeries.
-     *
-     * It clears the selected edition series stream.
-     *
-     * @returns {void} Clears the edition series stream.
-     */
-    clearSelectedEditionSeries(): void {
-        this._selectedEditionSeriesSubject.next(null);
-    }
-
-    /**
-     * Public method: getSelectedEditionSection.
-     *
-     * It provides the latest selected section from the edition section stream.
-     *
-     * @returns {Observable&lt;EditionOutlineSection&gt;} The edition section stream as observable.
-     */
-    getSelectedEditionSection(): Observable&lt;EditionOutlineSection&gt; {
-        return this._selectedEditionSectionStream$;
-    }
-
-    /**
-     * Public method: updateSelectedEditionSection.
-     *
-     * It updates the selected edition section stream with the given section.
-     *
-     * @param {EditionOutlineSection} editionSection The given edition section.
-     *
-     * @returns {void} Sets the next edition section to the stream.
-     */
-    updateSelectedEditionSection(editionSection: EditionOutlineSection): void {
-        this._selectedEditionSectionSubject.next(editionSection);
-    }
-
-    /**
-     * Public method: clearSelectedEditionSection.
-     *
-     * It clears the selected edition section stream.
-     *
-     * @returns {void} Clears the edition section stream.
-     */
-    clearSelectedEditionSection(): void {
-        this._selectedEditionSectionSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsIntroView.
-     *
-     * It provides the latest isIntroView flag from the isIntroView stream.
-     *
-     * @returns {Observable&lt;boolean&gt;} The isIntroView stream as observable.
-     */
-    getIsIntroView(): Observable&lt;boolean&gt; {
-        return this._isIntroViewStream$;
-    }
+    readonly selectedEditionSeries &#x3D; this._selectedEditionSeriesSignal.asReadonly();
 
     /**
      * Public method: updateIsIntroView.
      *
-     * It updates the isIntroView stream with the given boolean value.
+     * It updates the isIntroView signal with the given boolean value.
      *
      * @param {boolean} isView The given isIntroView flag.
-     *
-     * @returns {void} Sets the next isIntroView flag to the stream.
+     * @returns {void} Sets the next state to the isIntroView signal.
      */
     updateIsIntroView(isView: boolean): void {
-        this._isIntroViewSubject.next(isView);
-    }
-
-    /**
-     * Public method: clearIsIntroView.
-     *
-     * It clears the isIntroView stream.
-     *
-     * @returns {void} Clears the isIntroView stream.
-     */
-    clearIsIntroView(): void {
-        this._isIntroViewSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsPrefaceView.
-     *
-     * It provides the latest isPrefaceView flag from the isPrefaceView stream.
-     *
-     * @returns {Observable&lt;boolean&gt;} The isPrefaceView stream as observable.
-     */
-    getIsPrefaceView(): Observable&lt;boolean&gt; {
-        return this._isPrefaceViewStream$;
+        this._isIntroViewSignal.set(isView);
     }
 
     /**
      * Public method: updateIsPrefaceView.
      *
-     * It updates the isPrefaceView stream with the given boolean value.
+     * It updates the isPrefaceView signal with the given boolean value.
      *
      * @param {boolean} isView The given isPrefaceView flag.
-     *
-     * @returns {void} Sets the next isPrefaceView flag to the stream.
+     * @returns {void} Sets the next state to the isPrefaceView signal.
      */
     updateIsPrefaceView(isView: boolean): void {
-        this._isPrefaceViewSubject.next(isView);
-    }
-
-    /**
-     * Public method: clearIsPrefaceView.
-     *
-     * It clears the isPrefaceView stream.
-     *
-     * @returns {void} Clears the isPrefaceView stream.
-     */
-    clearIsPrefaceView(): void {
-        this._isPrefaceViewSubject.next(null);
-    }
-
-    /**
-     * Public method: getIsRowTableView.
-     *
-     * It provides the latest isRowTableView flag from the isRowTableView stream.
-     *
-     * @returns {Observable&lt;boolean&gt;} The isRowTableView stream as observable.
-     */
-    getIsRowTableView(): Observable&lt;boolean&gt; {
-        return this._isRowTableViewStream$;
+        this._isPrefaceViewSignal.set(isView);
     }
 
     /**
      * Public method: updateIsRowTableView.
      *
-     * It updates the isRowTableView stream with the given boolean value.
+     * It updates the isRowTableView signal with the given boolean value.
      *
      * @param {boolean} isView The given isRowTableView flag.
-     *
-     * @returns {void} Sets the next isRowTableView flag to the stream.
+     * @returns {void} Sets the next state to the isRowTableView signal.
      */
     updateIsRowTableView(isView: boolean): void {
-        this._isRowTableViewSubject.next(isView);
+        this._isRowTableViewSignal.set(isView);
     }
 
     /**
-     * Public method: clearIsRowTableView.
+     * Public method: updateSelectedEditionComplex.
      *
-     * It clears the isRowTableView stream.
+     * It updates the selectedEditionComplex signal with the given edition complex.
      *
-     * @returns {void} Clears the isRowTableView stream.
+     * @param {EditionComplex} complex The given edition complex.
+     * @returns {void} Sets the next complex to the signal.
      */
-    clearIsRowTableView(): void {
-        this._isRowTableViewSubject.next(null);
+    updateSelectedEditionComplex(complex: EditionComplex | null): void {
+        this._selectedEditionComplexSignal.set(complex);
+    }
+
+    /**
+     * Public method: updateSelectedEditionSection.
+     *
+     * It updates the selectedEditionSection signal with the given section.
+     *
+     * @param {EditionOutlineSection} editionSection The given edition section.
+     * @returns {void} Sets the next section to the signal.
+     */
+    updateSelectedEditionSection(editionSection: EditionOutlineSection | null): void {
+        this.updateSelectedEditionComplex(null);
+        this._selectedEditionSectionSignal.set(editionSection);
+    }
+
+    /**
+     * Public method: updateSelectedEditionSeries.
+     *
+     * It updates the selectedEditionSeries signal with the given series
+     * and resets the selectedEditionSection signal to null.
+     *
+     * @param {EditionOutlineSeries} editionSeries The given edition series.
+     * @returns {void} Sets the next series to the signal.
+     */
+    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries | null): void {
+        this.updateSelectedEditionSection(null);
+        this._selectedEditionSeriesSignal.set(editionSeries);
     }
 }
 </code></pre>

@@ -170,6 +170,9 @@
                             <a href="#EDITION_ASSETS_DATA" title="src/app/views/edition-view/data/edition-assets.data.ts" ><b>EDITION_ASSETS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../edition-assets.data.ts)</a>
                         </li>
                         <li>
+                            <a href="#EDITION_GENERAL_LINKS" title="src/app/views/edition-view/edition-links.constants.ts" ><b>EDITION_GENERAL_LINKS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-links.constants.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EDITION_GLYPHS_DATA" title="src/app/views/edition-view/data/edition-glyphs.data.ts" ><b>EDITION_GLYPHS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../edition-glyphs.data.ts)</a>
                         </li>
                         <li>
@@ -242,9 +245,6 @@
                             <a href="#MODAL_CONTENT_SNIPPETS" title="src/app/shared/modal/data/modal-content-snippets.data.ts" ><b>MODAL_CONTENT_SNIPPETS</b>&nbsp;&nbsp;&nbsp;(src/.../modal-content-snippets.data.ts)</a>
                         </li>
                         <li>
-                            <a href="#NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS" title="src/app/core/navbar/navbar.data.ts" ><b>NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS</b>&nbsp;&nbsp;&nbsp;(src/.../navbar.data.ts)</a>
-                        </li>
-                        <li>
                             <a href="#NAVBAR_DROPDOWN_EDITION_SECTION_LINKS" title="src/app/core/navbar/navbar.data.ts" ><b>NAVBAR_DROPDOWN_EDITION_SECTION_LINKS</b>&nbsp;&nbsp;&nbsp;(src/.../navbar.data.ts)</a>
                         </li>
                         <li>
@@ -261,6 +261,9 @@
                         </li>
                         <li>
                             <a href="#random" title="src/app/shared/compile-html/compile-html.component.ts" ><b>random</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#rawMockData" title="src/testing/mock-data/mockEditionOutline.ts" ><b>rawMockData</b>&nbsp;&nbsp;&nbsp;(src/.../mockEditionOutline.ts)</a>
                         </li>
                         <li>
                             <a href="#rdfstore" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts" ><b>rdfstore</b>&nbsp;&nbsp;&nbsp;(src/.../graph-visualizer.service.ts)</a>
@@ -462,6 +465,7 @@
     onSameUrlNavigation: &#x27;reload&#x27;,
     scrollPositionRestoration: &#x27;enabled&#x27;,
     preloadingStrategy: PreloadAllModules,
+    bindToComponentInputs: true,
 }</code>
                     </td>
                 </tr>
@@ -529,7 +533,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-93-ga27823873&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-101-ge204f4601&#x27;</code>
                     </td>
                 </tr>
 
@@ -561,7 +565,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-07-16&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-07-20&#x27;</code>
                     </td>
                 </tr>
 
@@ -1058,6 +1062,54 @@
                     <div class="io-description"><p>Object constant: EDITION_ASSETS_DATA.</p>
 <p>It is used in the context of the edition view
 to store data of the edition assets.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-links.constants.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EDITION_GENERAL_LINKS"></a>
+                    <span class="name">
+                        <span ><b>EDITION_GENERAL_LINKS</b></span>
+                        <a href="#EDITION_GENERAL_LINKS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/LabeledRoute.html" target="_self" >LabeledRoute[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        label: EDITION_ROUTE_CONSTANTS.SERIES.full,
+        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
+    },
+    {
+        label: EDITION_ROUTE_CONSTANTS.ROWTABLES.full,
+        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
+    },
+    {
+        label: EDITION_ROUTE_CONSTANTS.PREFACE.full,
+        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object constant with a set of general edition links.</p>
 </div>
                 </td>
             </tr>
@@ -2717,11 +2769,11 @@ It automatically handles request completion, errors, and cancellations.</p>
     },
 
     /**
-     * Test helper data constant: mockIntroData.
+     * Test helper data constant: mockIntroSectionData.
      *
-     * It provides a mocked intro data object.
+     * It provides a mocked intro section data object.
      */
-    mockIntroData: {
+    mockIntroSectionData: {
         intro: [
             {
                 id: &#x27;test_intro&#x27;,
@@ -2750,11 +2802,11 @@ It automatically handles request completion, errors, and cancellations.</p>
     },
 
     /**
-     * Test helper data constant: mockIntroFilteredData.
+     * Test helper data constant: mockIntroSectionFilteredData.
      *
      * It provides a mocked intro data object with filtered content.
      */
-    mockIntroFilteredData: {
+    mockIntroSectionFilteredData: {
         intro: [
             {
                 id: &#x27;test_intro&#x27;,
@@ -2771,11 +2823,11 @@ It automatically handles request completion, errors, and cancellations.</p>
     },
 
     /**
-     * Test helper data constant: mockIntroEmptyData.
+     * Test helper data constant: mockIntroComplexData.
      *
      * It provides a mocked empty intro data object as used in an edition complex.
      */
-    mockIntroEmptyData: {
+    mockIntroComplexData: {
         intro: [
             {
                 id: &#x27;test_block_id_2&#x27;,
@@ -3759,11 +3811,11 @@ It automatically handles request completion, errors, and cancellations.</p>
     },
 
     /**
-     * Test helper data constant: mockTextcriticsData.
+     * Test helper data constant: mocktextcriticsListData.
      *
-     * It provides a mocked textcriticsData object.
+     * It provides a mocked textcriticsListData object.
      */
-    mockTextcriticsData: {
+    mockTextcriticsListData: {
         textcritics: [
             {
                 id: &#x27;test-1&#x27;,
@@ -3874,7 +3926,42 @@ It automatically handles request completion, errors, and cancellations.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries[]</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new EditionOutline(rawMockData).outline</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Test helper const: mockEditionOutline.</p>
+<p>It provides a mocked EditionOutline
+for the edition view.</p>
+<p>Exposed to be called from tests.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rawMockData"></a>
+                    <span class="name">
+                        <span ><b>rawMockData</b></span>
+                        <a href="#rawMockData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionOutline.html" target="_self" >EditionOutlineSeriesJsonData[]</a></code>
 
                     </td>
                 </tr>
@@ -3882,59 +3969,31 @@ It automatically handles request completion, errors, and cancellations.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[
     {
-        series: EDITION_ROUTE_CONSTANTS.SERIES_1,
+        series: &#x27;1&#x27;,
         sections: [
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_1,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: &#x27;&#x27;,
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: &#x27;1&#x27;,
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_2,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: &#x27;&#x27;,
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: &#x27;2&#x27;,
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_3,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: &#x27;&#x27;,
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: &#x27;3&#x27;,
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                content: {
-                    intro: {
-                        disabled: true,
-                        preview: &#x27;&#x27;,
-                    },
-                    complexTypes: { opus: [], mnr: [] },
-                },
+                section: &#x27;4&#x27;,
                 disabled: true,
+                content: { intro: { disabled: true }, complexTypes: { opus: [], mnr: [] } },
             },
             {
-                seriesParent: EDITION_ROUTE_CONSTANTS.SERIES_1,
-                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+                section: &#x27;5&#x27;,
+                disabled: true,
                 content: {
                     intro: {
                         disabled: false,
@@ -3942,20 +4001,18 @@ It automatically handles request completion, errors, and cancellations.</p>
                     },
                     complexTypes: {
                         opus: [
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;op12&#x27;), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;op23&#x27;), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;op25&#x27;), disabled: false },
+                            { complex: &#x27;op12&#x27;, disabled: false },
+                            { complex: &#x27;op23&#x27;, disabled: false },
+                            { complex: &#x27;op25&#x27;, disabled: false },
                         ],
                         mnr: [
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;m212&#x27;), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;m213&#x27;), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;m216&#x27;), disabled: false },
-                            { complex: EditionComplexesService.getEditionComplexById(&#x27;m217&#x27;), disabled: false },
+                            { complex: &#x27;m212&#x27;, disabled: false },
+                            { complex: &#x27;m213&#x27;, disabled: false },
+                            { complex: &#x27;m216&#x27;, disabled: false },
+                            { complex: &#x27;m217&#x27;, disabled: false },
                         ],
                     },
                 },
-
-                disabled: true,
             },
         ],
     },
@@ -3965,10 +4022,9 @@ It automatically handles request completion, errors, and cancellations.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Test helper data file: mockEditionOutline.</p>
-<p>It provides a mocked EditionOutline
+                    <div class="io-description"><p>Object const: rawMockData.</p>
+<p>It provides a mocked EditionOutlineSeriesJsonData array
 for the edition view.</p>
-<p>Exposed to be called from tests.</p>
 </div>
                 </td>
             </tr>
@@ -4125,52 +4181,6 @@ for the edition view.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS"></a>
-                    <span class="name">
-                        <span ><b>NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS</b></span>
-                        <a href="#NAVBAR_DROPDOWN_EDITION_GENERAL_LINKS"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/NavbarDropdownLink.html" target="_self" >NavbarDropdownLink[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[
-    {
-        label: EDITION_ROUTE_CONSTANTS.SERIES.full,
-        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
-    },
-    {
-        label: EDITION_ROUTE_CONSTANTS.ROWTABLES.full,
-        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
-    },
-    {
-        label: EDITION_ROUTE_CONSTANTS.PREFACE.full,
-        route: [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.PREFACE.route],
-    },
-]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Object constant with a set of navigation items for the navbar.</p>
-<p>It keeps the navigation items for the navbar.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="NAVBAR_DROPDOWN_EDITION_SECTION_LINKS"></a>
                     <span class="name">
                         <span ><b>NAVBAR_DROPDOWN_EDITION_SECTION_LINKS</b></span>
@@ -4180,7 +4190,7 @@ for the edition view.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/NavbarDropdownLink.html" target="_self" >NavbarDropdownLink[]</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/LabeledRoute.html" target="_self" >LabeledRoute[]</a></code>
 
                     </td>
                 </tr>
@@ -4202,7 +4212,6 @@ for the edition view.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Object constant with a set of section edition links for the navbar.</p>
-<p>It keeps the section edition links for the navbar.</p>
 </div>
                 </td>
             </tr>
@@ -4268,7 +4277,6 @@ for the edition view.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Object constant with a set of navigation items for the navbar.</p>
-<p>It keeps the navigation items for the navbar.</p>
 </div>
                 </td>
             </tr>
@@ -4690,7 +4698,6 @@ for the edition view.</p>
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
-    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,

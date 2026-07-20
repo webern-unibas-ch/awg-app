@@ -151,8 +151,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionInfoComponent } from &#x27;@awg-side-info/edition-info/edition-info.component&#x27;;
-
+import { EditionInfoComponent } from &#x27;./edition-info/edition-info.component&#x27;;
 import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
 import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
@@ -202,15 +201,15 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                     },
                     {
                         // Section by id (1, 2, 3, 4, 5).
-                        path: &#x27;section/:id&#x27;,
+                        path: &#x27;section/:sectionId&#x27;,
                         loadChildren: () &#x3D;&gt;
                             &quot;import(&#x27;./edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module&#x27;).then(\n\
                                 m &#x3D;&gt; m.EditionSectionDetailModule\n\
                             )&quot;,
                     },
                     {
-                        path: &#x27;sections/:id&#x27;,
-                        redirectTo: &#x27;section/:id&#x27;,
+                        path: &#x27;sections/:sectionId&#x27;,
+                        redirectTo: &#x27;section/:sectionId&#x27;,
                         pathMatch: &#x27;full&#x27;,
                     },
                     {
@@ -286,7 +285,6 @@ export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
-    EditionInfoComponent,
     EditionSectionsComponent,
     EditionSeriesComponent,
     EditionSeriesDetailComponent,

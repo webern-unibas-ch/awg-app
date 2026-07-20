@@ -154,13 +154,6 @@ of the edition view of the app.</p>
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -224,17 +217,7 @@ of the edition view of the app.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_destroyed$" >_destroyed$</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionStateService" >_editionStateService</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#_route" >_route</a>
                             </li>
                         </ul>
                     </td>
@@ -249,13 +232,22 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnDestroy" >ngOnDestroy</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
                                 <a href="#updateSectionFromRoute" >updateSectionFromRoute</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#sectionId" >sectionId</a>
                             </li>
                         </ul>
                     </td>
@@ -264,13 +256,72 @@ of the edition view of the app.</p>
 
 
 
-
         </tbody>
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:30</a></div>
+                            </td>
+                        </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSectionDetailComponent.</p>
+<p>It calls a method to update the edition section from the route.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sectionId"></a>
+                        <b>sectionId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:30</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input signal: sectionId.</p>
+<p>It holds the route param id of the edition section (automatically bound by the router).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -279,89 +330,6 @@ of the edition view of the app.</p>
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnDestroy"></a>
-                    <span class="name">
-                        <span ><b>ngOnDestroy</b></span>
-                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnDestroy()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:93</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
-<p>It calls the containing methods
-when destroying the component.</p>
-<p>Destroys subscriptions.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:49</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -382,8 +350,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -391,8 +359,8 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSectionFromRoute.</p>
-<p>It fetches the route params to get the id of the current section
-and updates the EditionStateService.</p>
+<p>It reactively tracks the route params and the selected series
+to update the corresponding edition section in the EditionStateService.</p>
 </div>
 
                         <div class="io-description">
@@ -400,7 +368,7 @@ and updates the EditionStateService.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Updates the edition section.</p>
+                                <p>Updates the edition section from the route.</p>
 
                             </div>
                 </td>
@@ -413,46 +381,6 @@ and updates the EditionStateService.</p>
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_destroyed$"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_destroyed$</b></span>
-                        <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:27</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
-<p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -479,7 +407,7 @@ and updates the EditionStateService.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -493,57 +421,13 @@ and updates the EditionStateService.</p>
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_route"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_route</b></span>
-                        <a href="#_route"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>inject(ActivatedRoute)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:41</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _route.</p>
-<p>It keeps the instance of the injected Angular ActivatedRoute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
-import { ActivatedRoute } from &#x27;@angular/router&#x27;;
-
-import { Subject } from &#x27;rxjs&#x27;;
-import { filter, map, switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, inject, input } from &#x27;@angular/core&#x27;;
 
 import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
 
@@ -559,14 +443,7 @@ import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edit
     styleUrls: [&#x27;./edition-section-detail.component.scss&#x27;],
     standalone: false,
 })
-export class EditionSectionDetailComponent implements OnInit, OnDestroy {
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
-
+export class EditionSectionDetailComponent {
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -575,68 +452,44 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     private readonly _editionStateService &#x3D; inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _route.
+     * Input signal: sectionId.
      *
-     * It keeps the instance of the injected Angular ActivatedRoute.
+     * It holds the route param id of the edition section (automatically bound by the router).
      */
-    private readonly _route &#x3D; inject(ActivatedRoute);
+    sectionId &#x3D; input&lt;string | null&gt;(null);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Constructor of the EditionSectionDetailComponent.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It calls a method to update the edition section from the route.
+     *
      */
-    ngOnInit() {
+    constructor() {
         this.updateSectionFromRoute();
     }
 
     /**
      * Public method: updateSectionFromRoute.
      *
-     * It fetches the route params to get the id of the current section
-     * and updates the EditionStateService.
+     * It reactively tracks the route params and the selected series
+     * to update the corresponding edition section in the EditionStateService.
      *
-     * @returns {void} Updates the edition section.
+     * @returns {void} Updates the edition section from the route.
      */
     updateSectionFromRoute(): void {
-        this._route.paramMap
-            .pipe(
-                takeUntil(this._destroyed$),
-                switchMap(paramMap &#x3D;&gt; {
-                    const sectionId &#x3D; paramMap.get(&#x27;id&#x27;);
+        effect(() &#x3D;&gt; {
+            const series &#x3D; this._editionStateService.selectedEditionSeries();
+            const currentSectionId &#x3D; this.sectionId();
 
-                    return this._editionStateService.getSelectedEditionSeries().pipe(
-                        filter(series &#x3D;&gt; !!series),
-                        map(series &#x3D;&gt; ({
-                            seriesId: series?.series?.route,
-                            sectionId: sectionId,
-                        }))
-                    );
-                })
-            )
-            .subscribe({
-                next: ({ seriesId, sectionId }) &#x3D;&gt; {
-                    const selectedSection &#x3D; EditionOutlineService.getEditionSectionById(seriesId, sectionId);
-                    this._editionStateService.updateSelectedEditionSection(selectedSection);
-                },
-            });
-    }
+            if (!series) {
+                return;
+            }
 
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
+            const seriesId &#x3D; series.series?.route;
+            const selectedSection &#x3D; EditionOutlineService.getEditionSectionById(seriesId, currentSectionId);
 
-        // Now let&#x27;s also complete the subject itself
-        this._destroyed$.complete();
+            this._editionStateService.updateSelectedEditionSection(selectedSection);
+        });
     }
 }
 </code></pre>
