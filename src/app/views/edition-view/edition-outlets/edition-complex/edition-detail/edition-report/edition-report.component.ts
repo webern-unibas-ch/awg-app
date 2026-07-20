@@ -80,7 +80,9 @@ export class EditionReportComponent {
      */
     readonly editionReportData = toSignal(
         toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) => this._editionDataService.getEditionReportData(complex)),
+            switchMap((complex: EditionComplex | null) =>
+                complex ? this._editionDataService.getEditionReportData(complex) : observableOf(null)
+            ),
             catchError(err => {
                 this.errorObject = err;
                 return observableOf(undefined);
@@ -142,15 +144,6 @@ export class EditionReportComponent {
     };
 
     /**
-     * Getter variable: editionRouteConstants.
-     *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
-
-    /**
      * Public method: onModalOpen.
      *
      * It opens the {@link ModalComponent} with a given id of a modal snippet text.
@@ -175,7 +168,7 @@ export class EditionReportComponent {
      * @returns {void} Navigates to the edition report.
      */
     onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
+        const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
             fragment: reportIds?.fragmentId ?? '',
         };
@@ -193,7 +186,7 @@ export class EditionReportComponent {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
+        const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetIds?.sheetId ?? '' },
             // .queryParamsHandling: '',
@@ -207,13 +200,19 @@ export class EditionReportComponent {
      *
      * It navigates to a target route using the provided complexId.
      *
-     * @param {string} complexId The given complex id.
+     * @param {string | undefined} complexId The given complex id.
      * @param {string} targetRoute The given target route.
      * @param {NavigationExtras} navigationExtras The given navigation extras.
      * @returns {void} Navigates to the target route.
      */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.selectedEditionComplex().baseRoute;
+    private _navigateWithComplexId(
+        complexId: string | undefined,
+        targetRoute: string,
+        navigationExtras: NavigationExtras
+    ): void {
+        const complexRoute = complexId
+            ? `/edition/complex/${complexId}`
+            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

@@ -378,6 +378,38 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectToEqual(component.selectedEditionComplex(), mnrXComplex);
                 });
 
+                it('... should get an edition complex with unknown catalogue type from EditionStateService', () => {
+                    const unknownCatTypeComplex = new EditionComplex(
+                        {
+                            title: 'Test BWV Complex',
+                            catalogueType: 'BWV',
+                            catalogueNumber: '100',
+                        },
+                        {
+                            editors: [],
+                            lastModified: '---',
+                        },
+                        { series: '1', section: '5' }
+                    );
+                    expectedSelectedEditionComplexId = 'bwv100';
+
+                    // Spy on the static method and provide a custom implementation
+                    vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
+                        if (id.toLowerCase() === expectedSelectedEditionComplexId.toLowerCase()) {
+                            return unknownCatTypeComplex;
+                        }
+                        return null;
+                    });
+
+                    mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
+                    // Apply changes
+                    fixture.detectChanges();
+
+                    expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                    expectToEqual(editionStateService.selectedEditionComplex(), unknownCatTypeComplex);
+                    expectToEqual(component.selectedEditionComplex(), unknownCatTypeComplex);
+                });
+
                 it('... should get an edition complex with missing resp statement from EditionStateService', () => {
                     const missingRespComplex = new EditionComplex(
                         {

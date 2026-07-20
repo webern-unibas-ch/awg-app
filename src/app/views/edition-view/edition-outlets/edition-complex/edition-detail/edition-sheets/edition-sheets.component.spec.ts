@@ -6,7 +6,7 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { firstValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -1179,9 +1179,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect((component as any)._fetchEditionComplexData).toBeDefined();
                 });
 
-                it('... should set `selectedEditionComplex`', () => {
-                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap);
-
+                it('... should have got `selectedEditionComplex` from editionStateService', () => {
                     expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
                 });
 
@@ -1191,6 +1189,18 @@ describe('EditionSheetsComponent (DONE)', () => {
                     (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
                         expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 3, [expectedEditionComplex]);
                     });
+                });
+
+                it('... should return null if selectedEditionComplex is null', async () => {
+                    // Update selected edition complex to trigger the signal
+                    editionStateService.updateSelectedEditionComplex(null);
+                    await detectChangesOnPush(fixture);
+
+                    const result = await firstValueFrom(
+                        (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
+                    );
+
+                    expectToEqual(result, null);
                 });
 
                 it('... should trigger `_assignData` with correct parameters', () => {
@@ -1691,6 +1701,58 @@ describe('EditionSheetsComponent (DONE)', () => {
                         ]);
                         expectSpyCall(navigationSpy, 2, [
                             [expectedNextComplexRoute, expectedTargetRoute],
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
+
+                describe('... should navigate to series overview if selectedComplex is null', () => {
+                    let expectedRSeriesRoute: string;
+                    beforeEach(() => {
+                        expectedRSeriesRoute = '/edition/series';
+                        editionStateService.updateSelectedEditionComplex(null);
+                    });
+
+                    it('... with a given sheet id', async () => {
+                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                        (component as any)._navigateWithComplexId(
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                        expectSpyCall(navigationSpy, 2, [
+                            [expectedRSeriesRoute, expectedTargetRoute],
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... with a given report fragment', async () => {
+                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                        const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                        (component as any)._navigateWithComplexId(
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 2, [
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                        expectSpyCall(navigationSpy, 2, [
+                            [expectedRSeriesRoute, expectedTargetRoute],
                             expectedNavigationExtras,
                         ]);
                     });

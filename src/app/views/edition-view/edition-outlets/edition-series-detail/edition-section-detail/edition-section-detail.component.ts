@@ -1,7 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-import { map } from 'rxjs/operators';
+import { Component, effect, inject, input } from '@angular/core';
 
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -26,11 +23,11 @@ export class EditionSectionDetailComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _route.
+     * Input signal: sectionId.
      *
-     * It keeps the instance of the injected Angular ActivatedRoute.
+     * It holds the route param id of the edition section (automatically bound by the router).
      */
-    private readonly _route = inject(ActivatedRoute);
+    sectionId = input<string | null>(null);
 
     /**
      * Constructor of the EditionSectionDetailComponent.
@@ -53,16 +50,16 @@ export class EditionSectionDetailComponent {
     updateSectionFromRoute(): void {
         effect(() => {
             const series = this._editionStateService.selectedEditionSeries();
+            const currentSectionId = this.sectionId();
+
             if (!series) {
                 return;
             }
 
-            this._route.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(sectionId => {
-                const seriesId = series.series?.route;
-                const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
+            const seriesId = series.series?.route;
+            const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, currentSectionId);
 
-                this._editionStateService.updateSelectedEditionSection(selectedSection);
-            });
+            this._editionStateService.updateSelectedEditionSection(selectedSection);
         });
     }
 }

@@ -9,6 +9,7 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.
 import { EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 import { EditionOutlineSeriesJsonData } from '../models/edition-outline.model';
+import { EditionComplexesService } from './edition-complexes.service';
 import { EditionOutlineService } from './edition-outline.service';
 
 describe('EditionOutlineService (DONE)', () => {
@@ -131,6 +132,38 @@ describe('EditionOutlineService (DONE)', () => {
             const outline = EditionOutlineService.getEditionOutline();
 
             expectToEqual(outline, expectedOutline);
+        });
+
+        it('... should filter out unknown complexes during instantiation', () => {
+            const getComplexSpy = vi.spyOn(EditionComplexesService, 'getEditionComplexById').mockReturnValue(undefined);
+
+            const rawOutlineDataWithUnknownComplex = [
+                {
+                    series: '2',
+                    sections: [
+                        {
+                            section: '4',
+                            content: {
+                                intro: { disabled: false },
+                                complexTypes: { opus: [{ complex: 'UNKNOWN_ID', disabled: false }], mnr: [] },
+                            },
+                            disabled: false,
+                        },
+                    ],
+                },
+            ];
+            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(rawOutlineDataWithUnknownComplex)
+                .outline;
+
+            EditionOutlineService.setEditionOutline(expectedOutline);
+
+            const outline = EditionOutlineService.getEditionOutline();
+            const section = outline[0].sections[0];
+
+            expectToEqual(section.content.complexTypes.opus, []);
+            expectToEqual(section.content.sectionComplexes, []);
+
+            getComplexSpy.mockRestore();
         });
 
         describe('... should set empty array if the given edition data is', () => {

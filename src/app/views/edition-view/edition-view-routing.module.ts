@@ -51,15 +51,15 @@ const EDITION_VIEW_ROUTES: Routes = [
                     },
                     {
                         // Section by id (1, 2, 3, 4, 5).
-                        path: 'section/:id',
+                        path: 'section/:sectionId',
                         loadChildren: () =>
                             import('./edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.module').then(
                                 m => m.EditionSectionDetailModule
                             ),
                     },
                     {
-                        path: 'sections/:id',
-                        redirectTo: 'section/:id',
+                        path: 'sections/:sectionId',
+                        redirectTo: 'section/:sectionId',
                         pathMatch: 'full',
                     },
                     {

@@ -658,7 +658,7 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('#editionGraphData()', () => {
-            it('... should have a signal `editionGraphData`', () => {
+            it('... should have signal `editionGraphData` to hold the expected data', () => {
                 expectToBe(isSignal(component.editionGraphData), true);
 
                 expectToEqual(component.editionGraphData(), expectedEditionGraphDataOp25);
@@ -670,6 +670,15 @@ describe('EditionGraphComponent (DONE)', () => {
 
             it('... should have got `editionGraphData` from editionDataService', () => {
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
+            });
+
+            it('... should hold null, but set no errorObject if selectedEditionComplex is null', async () => {
+                // Update selected edition complex to trigger the signal
+                editionStateService.updateSelectedEditionComplex(null);
+                await detectChangesOnPush(fixture);
+
+                expect(component.editionGraphData()).toBeNull();
+                expectToEqual(component.errorObject, null);
             });
 
             it('... should hold null and set errorObject if switchMap fails', async () => {

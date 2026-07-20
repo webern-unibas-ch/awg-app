@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, Injector, OnInit, signal, ViewChild } fr
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { combineLatest, EMPTY, Observable } from 'rxjs';
+import { combineLatest, EMPTY, Observable, of as observableOf } from 'rxjs';
 import { catchError, switchMap, tap } from 'rxjs/operators';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
@@ -372,18 +372,21 @@ export class EditionSheetsComponent implements OnInit {
      * from the EditionDataService, assigns the data and handles the query params.
      *
      * @param {ParamMap} queryParams The given query paramMap of the activated route.
-     * @returns {Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>} The edition complex data and all necessary edition data.
+     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>} The edition complex data and all necessary edition data.
      */
     private _fetchEditionComplexData(
         queryParams: ParamMap
-    ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
+    ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList] | null> {
         return toObservable(this.selectedEditionComplex, { injector: this._injector }).pipe(
-            // Get editionSheetsData
-            switchMap((complex: EditionComplex) => this._editionDataService.getEditionSheetsData(complex)),
-            // Assign data
-            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => this._assignData(data)),
-            // Handle queryParams
-            tap(() => this._handleQueryParams(queryParams))
+            switchMap((complex: EditionComplex | null) =>
+                complex ? this._editionDataService.getEditionSheetsData(complex) : observableOf(null)
+            ),
+            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                if (data) {
+                    this._assignData(data);
+                    this._handleQueryParams(queryParams);
+                }
+            })
         );
     }
 
@@ -441,13 +444,19 @@ export class EditionSheetsComponent implements OnInit {
      *
      * It navigates to a target route using the provided complexId.
      *
-     * @param {string} complexId The given complex id.
+     * @param {string | undefined} complexId The given complex id.
      * @param {string} targetRoute The given target route.
      * @param {NavigationExtras} navigationExtras The given navigation extras.
      * @returns {void} Navigates to the target route.
      */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.selectedEditionComplex().baseRoute;
+    private _navigateWithComplexId(
+        complexId: string | undefined,
+        targetRoute: string,
+        navigationExtras: NavigationExtras
+    ): void {
+        const complexRoute = complexId
+            ? `/edition/complex/${complexId}`
+            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }

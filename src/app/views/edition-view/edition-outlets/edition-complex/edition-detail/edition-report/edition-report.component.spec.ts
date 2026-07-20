@@ -175,7 +175,6 @@ describe('EditionReportComponent', () => {
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedEditionComplexBaseRoute: string;
-    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -326,10 +325,6 @@ describe('EditionReportComponent', () => {
             expectToBe(component.textcriticsListData(), null);
         });
 
-        it('... should have `editionRouteConstants`', () => {
-            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
-        });
-
         describe('VIEW', () => {
             it('... should contain a `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
@@ -380,7 +375,6 @@ describe('EditionReportComponent', () => {
                 beforeEach(async () => {
                     // Return an error for the report data observable
                     reportDataResult$ = observableThrowError(() => expectedError);
-
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -407,7 +401,6 @@ describe('EditionReportComponent', () => {
             describe('on loading', () => {
                 it('... should contain TwelveToneSpinnerComponent (before any data has emitted)', async () => {
                     reportDataResult$ = NEVER;
-
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -520,7 +513,6 @@ describe('EditionReportComponent', () => {
                 beforeEach(async () => {
                     // Return an error for the report data observable
                     reportDataResult$ = observableThrowError(() => expectedError);
-
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -546,7 +538,7 @@ describe('EditionReportComponent', () => {
         });
 
         describe('#editionReportData()', () => {
-            it('... should have a signal `editionReportData`', () => {
+            it('... should have signal `editionReportData` to hold the expected data', () => {
                 expectToBe(isSignal(component.editionReportData), true);
 
                 expectToEqual(component.editionReportData(), expectedEditionReportData);
@@ -558,6 +550,15 @@ describe('EditionReportComponent', () => {
 
             it('... should have got `editionReportData` from editionDataService', () => {
                 expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
+            });
+
+            it('... should hold null, but set no errorObject if selectedEditionComplex is null', async () => {
+                // Update selected edition complex to trigger the signal
+                editionStateService.updateSelectedEditionComplex(null);
+                await detectChangesOnPush(fixture);
+
+                expect(component.editionReportData()).toBeNull();
+                expectToEqual(component.errorObject, null);
             });
 
             it('... should hold null and set errorObject if switchMap fails', async () => {
@@ -575,312 +576,304 @@ describe('EditionReportComponent', () => {
             });
         });
 
-        describe('#onModalOpen()', () => {
-            it('... should have a method `onModalOpen`', () => {
-                expect(component.onModalOpen).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#onModalOpen()', () => {
+                it('... should have a method `onModalOpen`', () => {
+                    expect(component.onModalOpen).toBeDefined();
+                });
 
-            describe('... should trigger on event from', () => {
-                describe('... SourceListComponent if', () => {
-                    it('... modal snippet is undefined', () => {
-                        const sourceListDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceListStubComponent,
-                            1,
-                            1
-                        );
-                        const sourceListCmp = sourceListDes[0].injector.get(
-                            SourceListStubComponent
-                        ) as SourceListStubComponent;
+                describe('... should trigger on event from', () => {
+                    describe('... SourceListComponent if', () => {
+                        it('... modal snippet is undefined', () => {
+                            const sourceListDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceListStubComponent,
+                                1,
+                                1
+                            );
+                            const sourceListCmp = sourceListDes[0].injector.get(
+                                SourceListStubComponent
+                            ) as SourceListStubComponent;
 
-                        sourceListCmp.openModalRequest.emit(undefined);
+                            sourceListCmp.openModalRequest.emit(undefined);
+
+                            expectSpyCall(onModalOpenSpy, 1, undefined);
+                        });
+
+                        it('... modal snippet is given', () => {
+                            const sourceListDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceListStubComponent,
+                                1,
+                                1
+                            );
+                            const sourceListCmp = sourceListDes[0].injector.get(
+                                SourceListStubComponent
+                            ) as SourceListStubComponent;
+
+                            sourceListCmp.openModalRequest.emit(expectedModalSnippet);
+
+                            expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                        });
+                    });
+
+                    describe('... SourceDescriptionComponent if', () => {
+                        it('... modal snippet is undefined', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            descriptionCmp.openModalRequest.emit(undefined);
+
+                            expectSpyCall(onModalOpenSpy, 1, undefined);
+                        });
+
+                        it('... modal snippet is given', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            descriptionCmp.openModalRequest.emit(expectedModalSnippet);
+
+                            expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                        });
+                    });
+
+                    describe('... SourceEvaluationComponent if', () => {
+                        it('... modal snippet is undefined', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            evaluationCmp.openModalRequest.emit(undefined);
+
+                            expectSpyCall(onModalOpenSpy, 1, undefined);
+                        });
+
+                        it('... modal snippet is given', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            evaluationCmp.openModalRequest.emit(expectedModalSnippet);
+
+                            expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                        });
+                    });
+
+                    describe('... TextcriticsListComponent if', () => {
+                        it('... modal snippet is undefined', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            textcriticsCmp.openModalRequest.emit(undefined);
+
+                            expectSpyCall(onModalOpenSpy, 1, undefined);
+                        });
+
+                        it('... smodal snippet is given', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            textcriticsCmp.openModalRequest.emit(expectedModalSnippet);
+
+                            expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                        });
+                    });
+                });
+
+                it('... should open modal with given id', async () => {
+                    component.onModalOpen(expectedModalSnippet);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                    expectSpyCall(modalOpenSpy, 1, expectedModalSnippet);
+
+                    const otherSnippet = 'otherSnippet';
+                    component.onModalOpen(otherSnippet);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(onModalOpenSpy, 2, otherSnippet);
+                    expectSpyCall(modalOpenSpy, 2, otherSnippet);
+                });
+
+                describe('... should not do anything if ', () => {
+                    it('... id is undefined', () => {
+                        component.onModalOpen(undefined);
 
                         expectSpyCall(onModalOpenSpy, 1, undefined);
+                        expectSpyCall(modalOpenSpy, 0);
                     });
 
-                    it('... modal snippet is given', () => {
-                        const sourceListDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceListStubComponent,
-                            1,
-                            1
-                        );
-                        const sourceListCmp = sourceListDes[0].injector.get(
-                            SourceListStubComponent
-                        ) as SourceListStubComponent;
+                    it('... id is null', () => {
+                        component.onModalOpen(null);
 
-                        sourceListCmp.openModalRequest.emit(expectedModalSnippet);
-
-                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
-                    });
-                });
-
-                describe('... SourceDescriptionComponent if', () => {
-                    it('... modal snippet is undefined', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
-
-                        descriptionCmp.openModalRequest.emit(undefined);
-
-                        expectSpyCall(onModalOpenSpy, 1, undefined);
+                        expectSpyCall(onModalOpenSpy, 1, null);
+                        expectSpyCall(modalOpenSpy, 0);
                     });
 
-                    it('... modal snippet is given', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
+                    it('... id is empty string', () => {
+                        component.onModalOpen('');
 
-                        descriptionCmp.openModalRequest.emit(expectedModalSnippet);
-
-                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
-                    });
-                });
-
-                describe('... SourceEvaluationComponent if', () => {
-                    it('... modal snippet is undefined', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        evaluationCmp.openModalRequest.emit(undefined);
-
-                        expectSpyCall(onModalOpenSpy, 1, undefined);
-                    });
-
-                    it('... modal snippet is given', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        evaluationCmp.openModalRequest.emit(expectedModalSnippet);
-
-                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
-                    });
-                });
-
-                describe('... TextcriticsListComponent if', () => {
-                    it('... modal snippet is undefined', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
-
-                        textcriticsCmp.openModalRequest.emit(undefined);
-
-                        expectSpyCall(onModalOpenSpy, 1, undefined);
-                    });
-
-                    it('... smodal snippet is given', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
-
-                        textcriticsCmp.openModalRequest.emit(expectedModalSnippet);
-
-                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                        expectSpyCall(onModalOpenSpy, 1, '');
+                        expectSpyCall(modalOpenSpy, 0);
                     });
                 });
             });
 
-            it('... should open modal with given id', async () => {
-                component.onModalOpen(expectedModalSnippet);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
-                expectSpyCall(modalOpenSpy, 1, expectedModalSnippet);
-
-                const otherSnippet = 'otherSnippet';
-                component.onModalOpen(otherSnippet);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onModalOpenSpy, 2, otherSnippet);
-                expectSpyCall(modalOpenSpy, 2, otherSnippet);
-            });
-
-            describe('... should not do anything if ', () => {
-                it('... id is undefined', () => {
-                    component.onModalOpen(undefined);
-
-                    expectSpyCall(onModalOpenSpy, 1, undefined);
-                    expectSpyCall(modalOpenSpy, 0);
+            describe('#onReportFragmentNavigate()', () => {
+                it('... should have a method `onReportFragmentNavigate`', () => {
+                    expect(component.onReportFragmentNavigate).toBeDefined();
                 });
 
-                it('... id is null', () => {
-                    component.onModalOpen(null);
+                describe('... should trigger on event from', () => {
+                    describe('... SourceListComponent if', () => {
+                        it('... fragment id is undefined', () => {
+                            const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                            const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
 
-                    expectSpyCall(onModalOpenSpy, 1, null);
-                    expectSpyCall(modalOpenSpy, 0);
-                });
+                            listCmp.navigateToReportFragmentRequest.emit(undefined);
 
-                it('... id is empty string', () => {
-                    component.onModalOpen('');
+                            expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                        });
 
-                    expectSpyCall(onModalOpenSpy, 1, '');
-                    expectSpyCall(modalOpenSpy, 0);
-                });
-            });
-        });
+                        it('... fragment id is given', () => {
+                            const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                            const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
 
-        describe('#onReportFragmentNavigate()', () => {
-            it('... should have a method `onReportFragmentNavigate`', () => {
-                expect(component.onReportFragmentNavigate).toBeDefined();
-            });
+                            const expectedReportIds = {
+                                complexId: expectedComplexId,
+                                fragmentId: expectedReportFragment,
+                            };
 
-            describe('... should trigger on event from', () => {
-                describe('... SourceListComponent if', () => {
-                    it('... fragment id is undefined', () => {
-                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
-                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+                            listCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
-                        listCmp.navigateToReportFragmentRequest.emit(undefined);
-
-                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                            expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                        });
                     });
 
-                    it('... fragment id is given', () => {
-                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
-                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+                    describe('... SourceDescriptionComponent if', () => {
+                        it('... fragment id is undefined', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
 
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                            descriptionCmp.navigateToReportFragmentRequest.emit(undefined);
 
-                        listCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                            expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                        });
 
-                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-                    });
-                });
+                        it('... fragment id is given', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
 
-                describe('... SourceDescriptionComponent if', () => {
-                    it('... fragment id is undefined', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
+                            const expectedReportIds = {
+                                complexId: expectedComplexId,
+                                fragmentId: expectedReportFragment,
+                            };
 
-                        descriptionCmp.navigateToReportFragmentRequest.emit(undefined);
+                            descriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
 
-                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
-                    });
-
-                    it('... fragment id is given', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
-
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                        descriptionCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-                    });
-                });
-
-                describe('... SourceEvaluationComponent if', () => {
-                    it('... fragment id is undefined', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        evaluationCmp.navigateToReportFragmentRequest.emit(undefined);
-
-                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                            expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                        });
                     });
 
-                    it('... fragment id is given', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
+                    describe('... SourceEvaluationComponent if', () => {
+                        it('... fragment id is undefined', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
 
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                            evaluationCmp.navigateToReportFragmentRequest.emit(undefined);
 
-                        evaluationCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+                            expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                        });
 
-                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                        it('... fragment id is given', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            const expectedReportIds = {
+                                complexId: expectedComplexId,
+                                fragmentId: expectedReportFragment,
+                            };
+
+                            evaluationCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
+
+                            expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
+                        });
                     });
                 });
-            });
 
-            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                const expectedNavigationExtras = {
-                    fragment: expectedReportIds.fragmentId,
-                };
-
-                component.onReportFragmentNavigate(expectedReportIds);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(navigateWithComplexIdSpy, 1, [
-                    expectedReportIds.complexId,
-                    expectedReportRoute,
-                    expectedNavigationExtras,
-                ]);
-            });
-
-            describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', async () => {
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
+                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
+                    const expectedReportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
                     const expectedNavigationExtras = {
-                        fragment: '',
+                        fragment: expectedReportIds.fragmentId,
                     };
 
                     component.onReportFragmentNavigate(expectedReportIds);
@@ -893,515 +886,410 @@ describe('EditionReportComponent', () => {
                     ]);
                 });
 
-                it('... fragment id is null', async () => {
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
+                    it('... fragment id is undefined', async () => {
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
+                        const expectedReportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
+
+                        component.onReportFragmentNavigate(expectedReportIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is null', async () => {
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
+                        const expectedReportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
+
+                        component.onReportFragmentNavigate(expectedReportIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is empty string', async () => {
+                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
+                        const expectedReportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                        const expectedNavigationExtras = {
+                            fragment: '',
+                        };
+
+                        component.onReportFragmentNavigate(expectedReportIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedReportIds.complexId,
+                            expectedReportRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
+            });
+
+            describe('#onSvgSheetSelect()', () => {
+                it('... should have a method `onSvgSheetSelect`', () => {
+                    expect(component.onSvgSheetSelect).toBeDefined();
+                });
+
+                describe('... should trigger on event from', () => {
+                    describe('... SourceDescriptionComponent if', () => {
+                        it('... sheet ids are undefined', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: undefined };
+                            descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... complex id is undefined', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
+                            descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... svg sheet id is undefined', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
+                            descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... both sheet ids are given', () => {
+                            const descriptionDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceDescriptionStubComponent,
+                                1,
+                                1
+                            );
+                            const descriptionCmp = descriptionDes[0].injector.get(
+                                SourceDescriptionStubComponent
+                            ) as SourceDescriptionStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                            descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+                    });
+
+                    describe('... SourceEvaluationComponent if', () => {
+                        it('... sheet ids are undefined', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: undefined };
+                            evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+                        it('... complex id is undefined', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
+                            evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+                        it('... svg sheet id is undefined', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
+                            evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... both sheet ids are given', () => {
+                            const evaluationDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                SourceEvaluationStubComponent,
+                                1,
+                                1
+                            );
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                SourceEvaluationStubComponent
+                            ) as SourceEvaluationStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                            evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+                    });
+
+                    describe('... TextcriticsListComponent if', () => {
+                        it('... sheet ids are undefined', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: undefined };
+                            textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... complex id is undefined', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
+                            textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... svg sheet id is undefined', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
+                            textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+
+                        it('... both sheet ids are given', () => {
+                            const textcriticsDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                TextcriticsListStubComponent,
+                                1,
+                                1
+                            );
+                            const textcriticsCmp = textcriticsDes[0].injector.get(
+                                TextcriticsListStubComponent
+                            ) as TextcriticsListStubComponent;
+
+                            const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                            textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                            expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        });
+                    });
+                });
+
+                it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
+                    const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
                     const expectedNavigationExtras = {
-                        fragment: '',
+                        queryParams: { id: expectedSheetIds.sheetId },
                     };
 
-                    component.onReportFragmentNavigate(expectedReportIds);
+                    component.onSvgSheetSelect(expectedSheetIds);
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
+                        expectedSheetIds.complexId,
+                        expectedSheetsRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
-                it('... fragment id is empty string', async () => {
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                    const expectedNavigationExtras = {
-                        fragment: '',
-                    };
-
-                    component.onReportFragmentNavigate(expectedReportIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-        });
-
-        describe('#onSvgSheetSelect()', () => {
-            it('... should have a method `onSvgSheetSelect`', () => {
-                expect(component.onSvgSheetSelect).toBeDefined();
-            });
-
-            describe('... should trigger on event from', () => {
-                describe('... SourceDescriptionComponent if', () => {
-                    it('... sheet ids are undefined', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
-
-                        const expectedSheetIds = { complexId: undefined, sheetId: undefined };
-                        descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... complex id is undefined', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
-
-                        const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
-                        descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... svg sheet id is undefined', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
-
+                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
+                    it('... fragment id is undefined', async () => {
                         const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                        descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
 
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        component.onSvgSheetSelect(expectedSheetIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedSheetIds.complexId,
+                            expectedSheetsRoute,
+                            expectedNavigationExtras,
+                        ]);
                     });
 
-                    it('... both sheet ids are given', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
-                        const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
+                    it('... fragment id is null', async () => {
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
 
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                        descriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                        component.onSvgSheetSelect(expectedSheetIds);
+                        await detectChangesOnPush(fixture);
 
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                });
-
-                describe('... SourceEvaluationComponent if', () => {
-                    it('... sheet ids are undefined', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        const expectedSheetIds = { complexId: undefined, sheetId: undefined };
-                        evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                    it('... complex id is undefined', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
-                        evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                    it('... svg sheet id is undefined', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                        evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedSheetIds.complexId,
+                            expectedSheetsRoute,
+                            expectedNavigationExtras,
+                        ]);
                     });
 
-                    it('... both sheet ids are given', () => {
-                        const evaluationDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceEvaluationStubComponent,
-                            1,
-                            1
-                        );
-                        const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
+                    it('... fragment id is empty string', async () => {
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
 
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                        evaluationCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                        component.onSvgSheetSelect(expectedSheetIds);
+                        await detectChangesOnPush(fixture);
 
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedSheetIds.complexId,
+                            expectedSheetsRoute,
+                            expectedNavigationExtras,
+                        ]);
                     });
                 });
 
-                describe('... TextcriticsListComponent if', () => {
-                    it('... sheet ids are undefined', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
+                describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
+                    it('... introIds are undefined', async () => {
+                        const expectedSheetIds = undefined;
 
-                        const expectedSheetIds = { complexId: undefined, sheetId: undefined };
-                        textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
 
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... complex id is undefined', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
-
-                        const expectedSheetIds = { complexId: undefined, sheetId: expectedSvgSheet.id };
-                        textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... svg sheet id is undefined', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                        textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... both sheet ids are given', () => {
-                        const textcriticsDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TextcriticsListStubComponent,
-                            1,
-                            1
-                        );
-                        const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                        textcriticsCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                });
-            });
-
-            it('... should call `_navigateWithComplexId()` method with correct parameters', async () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
-                const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                const expectedNavigationExtras = {
-                    queryParams: { id: expectedSheetIds.sheetId },
-                };
-
-                component.onSvgSheetSelect(expectedSheetIds);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(navigateWithComplexIdSpy, 1, [
-                    expectedSheetIds.complexId,
-                    expectedSheetRoute,
-                    expectedNavigationExtras,
-                ]);
-            });
-
-            describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                it('... fragment id is undefined', async () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is null', async () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is empty string', async () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... should call `_navigateWithComplexId()` method with undefined complex id if', () => {
-                it('... introIds are undefined', async () => {
-                    const expectedSheetIds = undefined;
-
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... introIds are null', async () => {
-                    const expectedSheetIds = null;
-
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... fragment id is empty string', async () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: '' },
-                    };
-
-                    component.onSvgSheetSelect(expectedSheetIds);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-        });
-
-        describe('#_navigateWithComplexId()', () => {
-            it('... should have a method `_navigateWithComplexId`', () => {
-                expect((component as any)._navigateWithComplexId).toBeDefined();
-            });
-
-            describe('... should navigate within same complex if', () => {
-                it('... complex id is undefined', async () => {
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 1, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... complex id is null', async () => {
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [null, expectedTargetRoute, expectedNavigationExtras]);
-                    expectSpyCall(navigationSpy, 1, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... complex id is empty string', async () => {
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
-                    expectSpyCall(navigationSpy, 1, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                it('... complex id is equal to the current complex id', async () => {
-                    const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(
-                        expectedEditionComplex.complexId.route.replace('/', ''),
-                        expectedTargetRoute,
-                        expectedNavigationExtras
-                    );
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedEditionComplex.complexId.route.replace('/', ''),
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 1, [
-                        [expectedComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... should navigate to another complex if', () => {
-                it('... complex id is given and not equal to the current complex id', async () => {
-                    const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                    const expectedTargetRoute = 'targetRoute';
-                    const expectedNavigationExtras = { fragment: '' };
-
-                    (component as any)._navigateWithComplexId(
-                        expectedNextComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras
-                    );
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedNextComplexId,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-                    expectSpyCall(navigationSpy, 1, [
-                        [expectedNextComplexRoute, expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... with no edition complex id given', () => {
-                describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
+                        component.onSvgSheetSelect(expectedSheetIds);
                         await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
                             undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
+                            expectedSheetsRoute,
                             expectedNavigationExtras,
                         ]);
                     });
 
-                    it('... without a given report fragment', async () => {
+                    it('... introIds are null', async () => {
+                        const expectedSheetIds = null;
+
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
+
+                        component.onSvgSheetSelect(expectedSheetIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            undefined,
+                            expectedSheetsRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... fragment id is empty string', async () => {
+                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
+                        const expectedSheetsRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = {
+                            queryParams: { id: '' },
+                        };
+
+                        component.onSvgSheetSelect(expectedSheetIds);
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            expectedSheetIds.complexId,
+                            expectedSheetsRoute,
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
+            });
+
+            describe('#_navigateWithComplexId()', () => {
+                it('... should have a method `_navigateWithComplexId`', () => {
+                    expect((component as any)._navigateWithComplexId).toBeDefined();
+                });
+
+                describe('... should navigate within same complex if', () => {
+                    it('... complex id is undefined', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
@@ -1421,23 +1309,17 @@ describe('EditionReportComponent', () => {
                             expectedNavigationExtras,
                         ]);
                     });
-                });
 
-                describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', async () => {
+                    it('... complex id is null', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+                        const expectedTargetRoute = 'targetRoute';
+                        const expectedNavigationExtras = { fragment: '' };
 
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
+                        (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
                         await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
+                            null,
                             expectedTargetRoute,
                             expectedNavigationExtras,
                         ]);
@@ -1447,70 +1329,35 @@ describe('EditionReportComponent', () => {
                         ]);
                     });
 
-                    it('... without a given sheet id', async () => {
+                    it('... complex id is empty string', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
+                        const expectedTargetRoute = 'targetRoute';
+                        const expectedNavigationExtras = { fragment: '' };
 
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
+                        (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
                         await detectChangesOnPush(fixture);
 
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-            });
-
-            describe('... with the current edition complex id given', () => {
-                describe('... should navigate within same complex to a given report route', () => {
-                    it('... with a given report fragment', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
+                        expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
                         expectSpyCall(navigationSpy, 1, [
                             [expectedComplexRoute, expectedTargetRoute],
                             expectedNavigationExtras,
                         ]);
                     });
 
-                    it('... without a given report fragment', async () => {
+                    it('... complex id is equal to the current complex id', async () => {
                         const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
-                            expectedComplexId,
+                            expectedEditionComplex.complexId.route.replace('/', ''),
                             expectedTargetRoute,
                             expectedNavigationExtras
                         );
                         await detectChangesOnPush(fixture);
 
                         expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedComplexId,
+                            expectedEditionComplex.complexId.route.replace('/', ''),
                             expectedTargetRoute,
                             expectedNavigationExtras,
                         ]);
@@ -1521,83 +1368,10 @@ describe('EditionReportComponent', () => {
                     });
                 });
 
-                describe('... should navigate within same complex to a given sheet route', () => {
-                    it('... with a given sheet id', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... without a given sheet id', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-            });
-
-            describe('... with another edition complex id given', () => {
-                describe('... should navigate to a given report route of another complex', () => {
-                    it('... with a given report fragment', async () => {
+                describe('... should navigate to another complex if', () => {
+                    it('... complex id is given and not equal to the current complex id', async () => {
                         const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... without a given report fragment', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
+                        const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
                         (component as any)._navigateWithComplexId(
@@ -1619,51 +1393,349 @@ describe('EditionReportComponent', () => {
                     });
                 });
 
-                describe('... should navigate to a given sheet route of another complex', () => {
-                    it('... with a given sheet id', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+                describe('... with no edition complex id given', () => {
+                    describe('... should navigate within same complex to a given report route', () => {
+                        it('... with a given report fragment', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
 
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
 
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
                     });
 
-                    it('... without a given sheet id', async () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
+                    describe('... should navigate within same complex to a given sheet route', () => {
+                        it('... with a given sheet id', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
 
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+
+                    describe('... should navigate to series overview if selectedComplex is null', () => {
+                        let expectedRSeriesRoute: string;
+                        beforeEach(() => {
+                            expectedRSeriesRoute = '/edition/series';
+                            editionStateService.updateSelectedEditionComplex(null);
+                        });
+
+                        it('... with a given sheet id', async () => {
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedRSeriesRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... with a given report fragment', async () => {
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                            (component as any)._navigateWithComplexId(
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                undefined,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedRSeriesRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+                });
+
+                describe('... with the current edition complex id given', () => {
+                    describe('... should navigate within same complex to a given report route', () => {
+                        it('... with a given report fragment', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+
+                    describe('... should navigate within same complex to a given sheet route', () => {
+                        it('... with a given sheet id', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', async () => {
+                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+                });
+
+                describe('... with another edition complex id given', () => {
+                    describe('... should navigate to a given report route of another complex', () => {
+                        it('... with a given report fragment', async () => {
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given report fragment', async () => {
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                            const expectedNavigationExtras = { fragment: '' };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+                    });
+
+                    describe('... should navigate to a given sheet route of another complex', () => {
+                        it('... with a given sheet id', async () => {
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
+
+                        it('... without a given sheet id', async () => {
+                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
+                            const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                            const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                            (component as any)._navigateWithComplexId(
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras
+                            );
+                            await detectChangesOnPush(fixture);
+
+                            expectSpyCall(navigateWithComplexIdSpy, 1, [
+                                expectedNextComplexId,
+                                expectedTargetRoute,
+                                expectedNavigationExtras,
+                            ]);
+                            expectSpyCall(navigationSpy, 1, [
+                                [expectedNextComplexRoute, expectedTargetRoute],
+                                expectedNavigationExtras,
+                            ]);
+                        });
                     });
                 });
             });

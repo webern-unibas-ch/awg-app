@@ -1,12 +1,11 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -18,7 +17,6 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionDetailComponent>;
     let compDe: DebugElement;
 
-    let mockActivatedRoute: ActivatedRouteStub;
     let editionStateService: EditionStateService;
 
     let updateSectionFromRouteSpy: Spy;
@@ -36,12 +34,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
-        // Mocked activated route
-        mockActivatedRoute = new ActivatedRouteStub();
-
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailComponent, RouterOutletStubComponent],
-            providers: [{ provide: ActivatedRoute, useValue: mockActivatedRoute }, EditionStateService],
+            providers: [EditionStateService],
         }).compileComponents();
     });
 
@@ -83,6 +78,12 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.sectionId), true);
+
+            expectToBe(component.sectionId(), null);
+        });
+
         it('... should have called `updateSectionFromRoute` method', () => {
             expectSpyCall(updateSectionFromRouteSpy, 1);
         });
@@ -96,11 +97,17 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set route params via ActivatedRoute mock
-            mockActivatedRoute.testParamMap = { id: expectedSectionId };
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('sectionId', expectedSectionId);
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have signal `selectedEditionComplex` to hold the expected id', () => {
+            expectToBe(isSignal(component.sectionId), true);
+
+            expectToBe(component.sectionId(), expectedSectionId);
         });
 
         it('... should have called `updateSectionFromRoute` method', () => {
@@ -118,15 +125,24 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expect(component.updateSectionFromRoute).toBeDefined();
             });
 
+            it('... should do nothing if no series is selected', async () => {
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 0);
+
+                editionStateService.updateSelectedEditionSeries(null); // Triggers one call to section update with null
+
+                await fixture.whenStable();
+
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
+            });
+
             it('... should call EditionOutlineService.getEditionSectionById via internal effect', async () => {
                 editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
                 await fixture.whenStable();
 
-                expect(editionOutlineServiceGetEditionSectionByIdSpy).toHaveBeenCalledWith(
-                    expectedSeriesId,
-                    expectedSectionId
-                );
+                expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
             });
 
             it('... should update the selected edition section in the state service via internal effect', async () => {
@@ -134,9 +150,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                 await fixture.whenStable();
 
-                expect(editionStateServiceUpdateSelectedEditionSectionSpy).toHaveBeenCalledWith(
-                    expectedSelectedSection
-                );
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSelectedSection);
             });
         });
     });

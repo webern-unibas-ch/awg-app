@@ -1,7 +1,7 @@
 import { MetaPerson } from '@awg-shared/meta/meta.model';
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
+import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
-import { LabeledRoute } from '@awg-app/shared/models/labeled-route.model';
 import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
@@ -167,6 +167,7 @@ export class EditionComplex {
         // Helper constants
         const delimiter = '/';
         const spacer = '&nbsp;';
+        const routes = EDITION_ROUTE_CONSTANTS;
 
         // Set dynamic routes
         this.titleStatement = {
@@ -182,12 +183,12 @@ export class EditionComplex {
             seriesConstant.route && sectionConstant.route
                 ? {
                       labeledSectionRoute: {
-                          label: `${EDITION_ROUTE_CONSTANTS.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
+                          label: `${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
                           route: [
-                              EDITION_ROUTE_CONSTANTS.EDITION.route,
-                              EDITION_ROUTE_CONSTANTS.SERIES.route,
+                              routes.EDITION.route,
+                              routes.SERIES.route,
                               seriesConstant.route,
-                              EDITION_ROUTE_CONSTANTS.SECTION.route,
+                              routes.SECTION.route,
                               sectionConstant.route,
                           ],
                       },
@@ -204,7 +205,7 @@ export class EditionComplex {
         this.complexId.full = `${this.titleStatement.title} ${this.complexId.short}`;
 
         // Set base route
-        const rootPath = `${EDITION_ROUTE_CONSTANTS.EDITION.route}${EDITION_ROUTE_CONSTANTS.COMPLEX.route}`;
+        const rootPath = `${routes.EDITION.route}${routes.COMPLEX.route}`;
         this.baseRoute = `${rootPath}${this.complexId.route}`;
     }
 
@@ -218,7 +219,7 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()];
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
     }
 
     /**

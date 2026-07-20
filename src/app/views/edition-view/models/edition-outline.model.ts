@@ -308,9 +308,9 @@ export class EditionOutline {
      *
      * It initializes the class with an edition outline Object.
      *
-     * @param {EditionOutlineSeriesJsonData[]} outlineData The given edition outline.
+     * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
      */
-    constructor(outlineData: EditionOutlineSeriesJsonData[]) {
+    constructor(outlineData: EditionOutlineSeriesJsonData[] | null | undefined) {
         if (!outlineData) {
             this.outline = [];
             return;
@@ -354,24 +354,23 @@ export class EditionOutline {
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant
     ): EditionOutlineSection => {
+        const routes = EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant =
-            seriesConstant.route === '3' && section === '5'
-                ? EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5
-                : EDITION_ROUTE_CONSTANTS['SECTION_' + section];
+            seriesConstant.route === '3' && section === '5' ? routes.SERIES_3_SECTION_5 : routes['SECTION_' + section];
 
         const labeledSectionRoute: LabeledRoute = {
-            label: `${EDITION_ROUTE_CONSTANTS.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
+            label: `${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,
             route: [
-                EDITION_ROUTE_CONSTANTS.EDITION.route,
-                EDITION_ROUTE_CONSTANTS.SERIES.route,
+                routes.EDITION.route,
+                routes.SERIES.route,
                 seriesConstant.route,
-                EDITION_ROUTE_CONSTANTS.SECTION.route,
+                routes.SECTION.route,
                 sectionConstant.route,
             ],
         };
         const labeledIntroRoute: LabeledRoute = {
-            label: EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full,
-            route: [...labeledSectionRoute.route, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route],
+            label: routes.EDITION_INTRO.full,
+            route: [...labeledSectionRoute.route, routes.EDITION_INTRO.route],
         };
 
         return {
@@ -403,7 +402,7 @@ export class EditionOutline {
 
         return {
             intro: {
-                disabled: content.intro.disabled ?? true,
+                disabled: content.intro.disabled,
                 labeledRoute: labeledIntroRoute,
                 preview: content.intro.preview ?? '',
             },
@@ -427,18 +426,24 @@ export class EditionOutline {
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[]
     ): EditionOutlineComplexItem[] =>
-        complexItems.map(({ complex, disabled }) => {
-            const fullComplex = EditionComplexesService.getEditionComplexById(complex);
+        complexItems
+            .map(({ complex, disabled }) => {
+                const fullComplex = EditionComplexesService.getEditionComplexById(complex);
 
-            const labeledRoute: LabeledRoute = {
-                label: fullComplex?.complexId?.full ?? '',
-                route: [fullComplex?.baseRoute ?? '', EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
-            };
+                if (!fullComplex) {
+                    return null;
+                }
 
-            return {
-                complex: fullComplex,
-                labeledRoute,
-                disabled,
-            };
-        });
+                const labeledRoute: LabeledRoute = {
+                    label: fullComplex.complexId?.full,
+                    route: [fullComplex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+                };
+
+                return {
+                    complex: fullComplex,
+                    labeledRoute,
+                    disabled,
+                };
+            })
+            .filter((item): item is EditionOutlineComplexItem => item !== null);
 }

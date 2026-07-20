@@ -77,7 +77,7 @@ describe('FullscreenService (DONE)', () => {
         });
     });
 
-    it('... should have a signal `isFullscreen` to hold false', () => {
+    it('... should have signal `isFullscreen` to hold false', () => {
         expectToBe(isSignal(fullscreenService.isFullscreen), true);
 
         expectToBe(fullscreenService.isFullscreen(), false);
