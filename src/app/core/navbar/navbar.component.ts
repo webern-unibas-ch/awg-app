@@ -30,6 +30,13 @@ import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.da
 })
 export class NavbarComponent {
     /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -78,7 +85,7 @@ export class NavbarComponent {
      */
     readonly sectionLinksData = signal(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            const section = this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
             return new EditionSectionLink(section, index, array.length);
         })
     ).asReadonly();

@@ -1,7 +1,6 @@
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionRouteConstant } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionComplex } from './edition-complex.model';
 
@@ -309,14 +308,18 @@ export class EditionOutline {
      * It initializes the class with an edition outline Object.
      *
      * @param {EditionOutlineSeriesJsonData[] | null | undefined} outlineData The given edition outline.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      */
-    constructor(outlineData: EditionOutlineSeriesJsonData[] | null | undefined) {
+    constructor(
+        outlineData: EditionOutlineSeriesJsonData[] | null | undefined,
+        getComplexById?: (id: string) => EditionComplex | undefined
+    ) {
         if (!outlineData) {
             this.outline = [];
             return;
         }
 
-        this.outline = outlineData.map(this._mapSeries);
+        this.outline = outlineData.map(data => this._mapSeries(data, getComplexById));
     }
 
     /**
@@ -327,14 +330,18 @@ export class EditionOutline {
      * @param {EditionOutlineSeriesJsonData} data The series data to map.
      * @param {string} data.series The given series string.
      * @param {EditionOutlineSectionsJsonData[]} data.sections The given sections data.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      *
      * @returns {EditionOutlineSeries} The mapped series.
      */
-    private readonly _mapSeries = ({ series, sections }: EditionOutlineSeriesJsonData): EditionOutlineSeries => {
+    private readonly _mapSeries = (
+        { series, sections }: EditionOutlineSeriesJsonData,
+        getComplexById?: (id: string) => EditionComplex | undefined
+    ): EditionOutlineSeries => {
         const seriesConstant: EditionRouteConstant = EDITION_ROUTE_CONSTANTS['SERIES_' + series];
         return {
             series: seriesConstant,
-            sections: sections.map(section => this._mapSection(section, seriesConstant)),
+            sections: sections.map(section => this._mapSection(section, seriesConstant, getComplexById)),
         };
     };
 
@@ -347,12 +354,14 @@ export class EditionOutline {
      * @param {string} data.section The given section string.
      * @param {Object} data.complexTypes The given complex types data.
      * @param {boolean} data.disabled The given disabled flag.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      *
      * @returns {EditionOutlineSection} The mapped section.
      */
     private readonly _mapSection = (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
-        seriesConstant: EditionRouteConstant
+        seriesConstant: EditionRouteConstant,
+        getComplexById?: (id: string) => EditionComplex | undefined
     ): EditionOutlineSection => {
         const routes = EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant =
@@ -377,7 +386,7 @@ export class EditionOutline {
             seriesParent: seriesConstant,
             section: sectionConstant,
             labeledRoute: labeledSectionRoute,
-            content: this._mapSectionContent(content, labeledIntroRoute),
+            content: this._mapSectionContent(content, labeledIntroRoute, getComplexById),
             disabled,
         };
     };
@@ -389,15 +398,17 @@ export class EditionOutline {
      *
      * @param {EditionOutlineSectionsContentJsonData} content The content data to map.
      * @param {LabeledRoute} labeledIntroRoute The labeled intro route for the edition section.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      *
      * @returns {EditionOutlineSectionContent} The mapped content.
      */
     private readonly _mapSectionContent = (
         content: EditionOutlineSectionsContentJsonData,
-        labeledIntroRoute: LabeledRoute
+        labeledIntroRoute: LabeledRoute,
+        getComplexById?: (id: string) => EditionComplex | undefined
     ): EditionOutlineSectionContent => {
-        const opus = this._mapComplexItems(content.complexTypes.opus);
-        const mnr = this._mapComplexItems(content.complexTypes.mnr);
+        const opus = this._mapComplexItems(content.complexTypes.opus, getComplexById);
+        const mnr = this._mapComplexItems(content.complexTypes.mnr, getComplexById);
         const sectionComplexes = [...opus, ...mnr];
 
         return {
@@ -420,15 +431,17 @@ export class EditionOutline {
      * It maps the complex items.
      *
      * @param {EditionOutlineComplexItem[]} complexItems The complex items to map.
+     * @param {Function} getComplexById Optional function to get an edition complex by id.
      *
      * @returns {EditionOutlineComplexItem[]} The mapped complex items.
      */
     private readonly _mapComplexItems = (
-        complexItems: { complex: string; disabled: boolean }[]
+        complexItems: { complex: string; disabled: boolean }[],
+        getComplexById?: (id: string) => EditionComplex | undefined
     ): EditionOutlineComplexItem[] =>
         complexItems
             .map(({ complex, disabled }) => {
-                const fullComplex = EditionComplexesService.getEditionComplexById(complex);
+                const fullComplex = getComplexById(complex);
 
                 if (!fullComplex) {
                     return null;

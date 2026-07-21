@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localeDeDE from '@angular/common/locales/de';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { ViewContainerComponent } from './core/view-container/view-container.component';
+
+// Services
+import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
 // Loading interceptor
 import { loadingInterceptor } from './shared/loading/loading.interceptor';
@@ -39,6 +42,18 @@ registerLocaleData(localeDeDE);
         provideHttpClient(withInterceptors([loadingInterceptor])),
         provideAnimations(),
         Title,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (
+                editionOutlineService: EditionOutlineService,
+                editionComplexesService: EditionComplexesService
+            ) => () => {
+                    editionComplexesService.initializeEditionComplexesList();
+                    editionOutlineService.initializeEditionOutline();
+                },
+            deps: [EditionOutlineService, EditionComplexesService],
+            multi: true,
+        },
     ],
     bootstrap: [AppComponent],
 })

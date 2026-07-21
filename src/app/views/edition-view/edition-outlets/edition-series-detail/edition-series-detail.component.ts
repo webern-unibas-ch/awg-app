@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -17,6 +17,13 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     standalone: false,
 })
 export class EditionSeriesDetailComponent implements OnInit, OnDestroy {
+    /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -60,7 +67,7 @@ export class EditionSeriesDetailComponent implements OnInit, OnDestroy {
         this._route.paramMap.pipe(takeUntil(this._destroyed$)).subscribe({
             next: paramMap => {
                 const id = paramMap.get('id');
-                const selectedSeries = EditionOutlineService.getEditionSeriesById(id);
+                const selectedSeries = this._editionOutlineService.getEditionSeriesById(id);
                 this._editionStateService.updateSelectedEditionSeries(selectedSeries);
             },
         });

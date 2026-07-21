@@ -20,6 +20,13 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
 })
 export class EditionInfoComponent {
     /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -53,6 +60,8 @@ export class EditionInfoComponent {
      * It holds the array of displayed edition sections based on active IDs.
      */
     readonly sectionsData = signal(
-        ACTIVE_EDITION_SECTION_IDS.map(ids => EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId))
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        )
     ).asReadonly();
 }

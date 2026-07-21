@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
@@ -37,6 +37,13 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
     ],
 })
 export class HomeViewComponent {
+    /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
     /**
      * Readonly variable: HOME_VIEW_ID.
      *
@@ -82,7 +89,7 @@ export class HomeViewComponent {
      */
     readonly sectionLinksData = signal<EditionSectionLink[]>(
         ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            const section = this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
             return new EditionSectionLink(section, index, array.length);
         })
     ).asReadonly();

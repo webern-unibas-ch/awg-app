@@ -16,6 +16,13 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
 })
 export class EditionSectionDetailComponent {
     /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -57,7 +64,7 @@ export class EditionSectionDetailComponent {
             }
 
             const seriesId = series.series?.route;
-            const selectedSection = EditionOutlineService.getEditionSectionById(seriesId, currentSectionId);
+            const selectedSection = this._editionOutlineService.getEditionSectionById(seriesId, currentSectionId);
 
             this._editionStateService.updateSelectedEditionSection(selectedSection);
         });

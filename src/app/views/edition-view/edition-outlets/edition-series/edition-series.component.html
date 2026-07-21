@@ -1,4 +1,4 @@
-@if (editionOutline) {
+@if (editionOutline(); as outline) {
     <div class="awg-edition-series">
         <div class="awg-edition-series-text p-4 border rounded-3 para">
             <p>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4">
-            @for (series of editionOutline; track $index) {
+            @for (series of outline; track $index) {
                 <div class="col">
                     <div class="card awg-edition-series-card h-100 shadow">
                         <h5 class="card-header">

@@ -40,6 +40,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _editionDataService = inject(EditionDataService);
 
     /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -448,8 +455,8 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Updates the selected edition series, section, and introView.
      */
     private _updateEditionState(seriesId: string, sectionId: string): void {
-        const series: EditionOutlineSeries = EditionOutlineService.getEditionSeriesById(seriesId);
-        const section: EditionOutlineSection = EditionOutlineService.getEditionSectionById(seriesId, sectionId);
+        const series: EditionOutlineSeries = this._editionOutlineService.getEditionSeriesById(seriesId);
+        const section: EditionOutlineSection = this._editionOutlineService.getEditionSectionById(seriesId, sectionId);
 
         this._editionStateService.updateSelectedEditionSeries(series);
         this._editionStateService.updateSelectedEditionSection(section);
