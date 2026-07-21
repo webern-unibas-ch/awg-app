@@ -381,7 +381,7 @@ export class EditionSheetsComponent implements OnInit {
             switchMap((complex: EditionComplex | null) =>
                 complex ? this._editionDataService.getEditionSheetsData(complex) : observableOf(null)
             ),
-            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList] | null) => {
                 if (data) {
                     this._assignData(data);
                     this._handleQueryParams(queryParams);
