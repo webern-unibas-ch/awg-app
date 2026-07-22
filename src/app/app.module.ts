@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localeDeDE from '@angular/common/locales/de';
-import { APP_INITIALIZER, LOCALE_ID, NgModule } from '@angular/core';
+import { inject, LOCALE_ID, NgModule, provideAppInitializer } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -38,21 +38,17 @@ registerLocaleData(localeDeDE);
     imports: [BrowserModule, FooterComponent, NavbarComponent, ViewContainerComponent, SharedModule, AppRoutingModule],
     declarations: [AppComponent],
     providers: [
+        Title,
         { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
         provideHttpClient(withInterceptors([loadingInterceptor])),
         provideAnimations(),
-        Title,
-        {
-            provide: APP_INITIALIZER,
-            useFactory:
-                (editionOutlineService: EditionOutlineService, editionComplexesService: EditionComplexesService) =>
-                () => {
-                    editionComplexesService.initializeEditionComplexesList();
-                    editionOutlineService.initializeEditionOutline();
-                },
-            deps: [EditionOutlineService, EditionComplexesService],
-            multi: true,
-        },
+        provideAppInitializer(() => {
+            const editionOutlineService = inject(EditionOutlineService);
+            const editionComplexesService = inject(EditionComplexesService);
+
+            editionComplexesService.initializeEditionComplexesList();
+            editionOutlineService.initializeEditionOutline();
+        }),
     ],
     bootstrap: [AppComponent],
 })

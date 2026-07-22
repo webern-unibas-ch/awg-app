@@ -18,7 +18,7 @@ export class EditionComplexesService {
     /**
      * Private readonly signal holding the edition complexes list.
      */
-    private _editionComplexesListSignal = signal<EditionComplexesList>({});
+    private readonly _editionComplexesListSignal = signal<EditionComplexesList>({});
 
     /**
      * Readonly signal: editionComplexesList.
