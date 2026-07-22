@@ -24,139 +24,139 @@
 <title>cluster_EditionViewModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-195 1834,-195 1834,-70 8,-70"/>
 </g>
-<g id="clust10" class="cluster">
-<title>cluster_EditionViewModule_imports</title>
-<polygon fill="none" stroke="black" points="1354,-78 1354,-130 1826,-130 1826,-78 1354,-78"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionViewModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 1346,-130 1346,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="496,-78 496,-130 1826,-130 1826,-78 496,-78"/>
+</g>
+<g id="clust10" class="cluster">
+<title>cluster_EditionViewModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 488,-130 488,-78 16,-78"/>
 </g>
 <!-- EditionComplexComponent -->
 <g id="node1" class="node">
 <title>EditionComplexComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1337.89,-122 1164.11,-122 1164.11,-86 1337.89,-86 1337.89,-122"/>
-<text text-anchor="middle" x="1251" y="-99.8" font-family="Times,serif" font-size="14.00">EditionComplexComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1817.89,-122 1644.11,-122 1644.11,-86 1817.89,-86 1817.89,-122"/>
+<text text-anchor="middle" x="1731" y="-99.8" font-family="Times,serif" font-size="14.00">EditionComplexComponent</text>
 </g>
 <!-- EditionViewModule -->
 <g id="node8" class="node">
 <title>EditionViewModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1021.59,-187 1018.59,-191 997.59,-191 994.59,-187 890.41,-187 890.41,-151 1021.59,-151 1021.59,-187"/>
-<text text-anchor="middle" x="956" y="-164.8" font-family="Times,serif" font-size="14.00">EditionViewModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="931.59,-187 928.59,-191 907.59,-191 904.59,-187 800.41,-187 800.41,-151 931.59,-151 931.59,-187"/>
+<text text-anchor="middle" x="866" y="-164.8" font-family="Times,serif" font-size="14.00">EditionViewModule</text>
 </g>
 <!-- EditionComplexComponent&#45;&gt;EditionViewModule -->
 <g id="edge1" class="edge">
 <title>EditionComplexComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M1251,-122.01C1251,-138.05 1251,-159 1251,-159 1251,-159 1031.84,-159 1031.84,-159"/>
-<polygon fill="black" stroke="black" points="1031.84,-155.5 1021.84,-159 1031.84,-162.5 1031.84,-155.5"/>
+<path fill="none" stroke="black" d="M1731,-122.01C1731,-144.49 1731,-180 1731,-180 1731,-180 941.73,-180 941.73,-180"/>
+<polygon fill="black" stroke="black" points="941.73,-176.5 931.73,-180 941.73,-183.5 941.73,-176.5"/>
 </g>
 <!-- EditionDetailNavComponent -->
 <g id="node2" class="node">
 <title>EditionDetailNavComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1146.09,-122 965.91,-122 965.91,-86 1146.09,-86 1146.09,-122"/>
-<text text-anchor="middle" x="1056" y="-99.8" font-family="Times,serif" font-size="14.00">EditionDetailNavComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1626.09,-122 1445.91,-122 1445.91,-86 1626.09,-86 1626.09,-122"/>
+<text text-anchor="middle" x="1536" y="-99.8" font-family="Times,serif" font-size="14.00">EditionDetailNavComponent</text>
 </g>
 <!-- EditionDetailNavComponent&#45;&gt;EditionViewModule -->
 <g id="edge2" class="edge">
 <title>EditionDetailNavComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M993.75,-122.11C993.75,-122.11 993.75,-140.99 993.75,-140.99"/>
-<polygon fill="black" stroke="black" points="990.25,-140.99 993.75,-150.99 997.25,-140.99 990.25,-140.99"/>
+<path fill="none" stroke="black" d="M1536,-122.13C1536,-142.57 1536,-173 1536,-173 1536,-173 941.77,-173 941.77,-173"/>
+<polygon fill="black" stroke="black" points="941.77,-169.5 931.77,-173 941.77,-176.5 941.77,-169.5"/>
 </g>
 <!-- EditionJumbotronComponent -->
 <g id="node3" class="node">
 <title>EditionJumbotronComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="948.44,-122 765.56,-122 765.56,-86 948.44,-86 948.44,-122"/>
-<text text-anchor="middle" x="857" y="-99.8" font-family="Times,serif" font-size="14.00">EditionJumbotronComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1428.44,-122 1245.56,-122 1245.56,-86 1428.44,-86 1428.44,-122"/>
+<text text-anchor="middle" x="1337" y="-99.8" font-family="Times,serif" font-size="14.00">EditionJumbotronComponent</text>
 </g>
 <!-- EditionJumbotronComponent&#45;&gt;EditionViewModule -->
 <g id="edge3" class="edge">
 <title>EditionJumbotronComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M919.34,-122.11C919.34,-122.11 919.34,-140.99 919.34,-140.99"/>
-<polygon fill="black" stroke="black" points="915.84,-140.99 919.34,-150.99 922.84,-140.99 915.84,-140.99"/>
+<path fill="none" stroke="black" d="M1337,-122.27C1337,-140.56 1337,-166 1337,-166 1337,-166 941.99,-166 941.99,-166"/>
+<polygon fill="black" stroke="black" points="941.99,-162.5 931.99,-166 941.99,-169.5 941.99,-162.5"/>
 </g>
 <!-- EditionSectionsComponent -->
 <g id="node4" class="node">
 <title>EditionSectionsComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="747.99,-122 578.01,-122 578.01,-86 747.99,-86 747.99,-122"/>
-<text text-anchor="middle" x="663" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSectionsComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1227.99,-122 1058.01,-122 1058.01,-86 1227.99,-86 1227.99,-122"/>
+<text text-anchor="middle" x="1143" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSectionsComponent</text>
 </g>
 <!-- EditionSectionsComponent&#45;&gt;EditionViewModule -->
 <g id="edge4" class="edge">
 <title>EditionSectionsComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M663,-122.01C663,-138.05 663,-159 663,-159 663,-159 880.25,-159 880.25,-159"/>
-<polygon fill="black" stroke="black" points="880.25,-162.5 890.25,-159 880.25,-155.5 880.25,-162.5"/>
+<path fill="none" stroke="black" d="M1143,-122.01C1143,-138.05 1143,-159 1143,-159 1143,-159 941.65,-159 941.65,-159"/>
+<polygon fill="black" stroke="black" points="941.65,-155.5 931.65,-159 941.65,-162.5 941.65,-155.5"/>
 </g>
 <!-- EditionSeriesComponent -->
 <g id="node5" class="node">
 <title>EditionSeriesComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="560.26,-122 403.74,-122 403.74,-86 560.26,-86 560.26,-122"/>
-<text text-anchor="middle" x="482" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSeriesComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1040.26,-122 883.74,-122 883.74,-86 1040.26,-86 1040.26,-122"/>
+<text text-anchor="middle" x="962" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSeriesComponent</text>
 </g>
 <!-- EditionSeriesComponent&#45;&gt;EditionViewModule -->
 <g id="edge5" class="edge">
 <title>EditionSeriesComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M482,-122.27C482,-140.56 482,-166 482,-166 482,-166 880.09,-166 880.09,-166"/>
-<polygon fill="black" stroke="black" points="880.09,-169.5 890.09,-166 880.09,-162.5 880.09,-169.5"/>
+<path fill="none" stroke="black" d="M907.58,-122.11C907.58,-122.11 907.58,-140.99 907.58,-140.99"/>
+<polygon fill="black" stroke="black" points="904.08,-140.99 907.58,-150.99 911.08,-140.99 904.08,-140.99"/>
 </g>
 <!-- EditionSeriesDetailComponent -->
 <g id="node6" class="node">
 <title>EditionSeriesDetailComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="385.47,-122 194.53,-122 194.53,-86 385.47,-86 385.47,-122"/>
-<text text-anchor="middle" x="290" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSeriesDetailComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="865.47,-122 674.53,-122 674.53,-86 865.47,-86 865.47,-122"/>
+<text text-anchor="middle" x="770" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSeriesDetailComponent</text>
 </g>
 <!-- EditionSeriesDetailComponent&#45;&gt;EditionViewModule -->
 <g id="edge6" class="edge">
 <title>EditionSeriesDetailComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M290,-122.13C290,-142.57 290,-173 290,-173 290,-173 880.32,-173 880.32,-173"/>
-<polygon fill="black" stroke="black" points="880.32,-176.5 890.32,-173 880.32,-169.5 880.32,-176.5"/>
+<path fill="none" stroke="black" d="M832.97,-122.11C832.97,-122.11 832.97,-140.99 832.97,-140.99"/>
+<polygon fill="black" stroke="black" points="829.47,-140.99 832.97,-150.99 836.47,-140.99 829.47,-140.99"/>
 </g>
 <!-- EditionViewComponent -->
 <g id="node7" class="node">
 <title>EditionViewComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="176.38,-122 23.62,-122 23.62,-86 176.38,-86 176.38,-122"/>
-<text text-anchor="middle" x="100" y="-99.8" font-family="Times,serif" font-size="14.00">EditionViewComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="656.38,-122 503.62,-122 503.62,-86 656.38,-86 656.38,-122"/>
+<text text-anchor="middle" x="580" y="-99.8" font-family="Times,serif" font-size="14.00">EditionViewComponent</text>
 </g>
 <!-- EditionViewComponent&#45;&gt;EditionViewModule -->
 <g id="edge7" class="edge">
 <title>EditionViewComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M100,-122.01C100,-144.49 100,-180 100,-180 100,-180 880.25,-180 880.25,-180"/>
-<polygon fill="black" stroke="black" points="880.25,-183.5 890.25,-180 880.25,-176.5 880.25,-183.5"/>
+<path fill="none" stroke="black" d="M580,-122.01C580,-138.05 580,-159 580,-159 580,-159 790.39,-159 790.39,-159"/>
+<polygon fill="black" stroke="black" points="790.39,-162.5 800.39,-159 790.39,-155.5 790.39,-162.5"/>
 </g>
 <!-- EditionInfoComponent -->
 <g id="node9" class="node">
 <title>EditionInfoComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="1817.88,-122 1814.88,-126 1793.88,-126 1790.88,-122 1672.12,-122 1672.12,-86 1817.88,-86 1817.88,-122"/>
-<text text-anchor="middle" x="1745" y="-99.8" font-family="Times,serif" font-size="14.00">EditionInfoComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="479.88,-122 476.88,-126 455.88,-126 452.88,-122 334.12,-122 334.12,-86 479.88,-86 479.88,-122"/>
+<text text-anchor="middle" x="407" y="-99.8" font-family="Times,serif" font-size="14.00">EditionInfoComponent</text>
 </g>
 <!-- EditionInfoComponent&#45;&gt;EditionViewModule -->
 <g id="edge8" class="edge">
 <title>EditionInfoComponent&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M1745,-122.01C1745,-144.49 1745,-180 1745,-180 1745,-180 1031.58,-180 1031.58,-180"/>
-<polygon fill="black" stroke="black" points="1031.58,-176.5 1021.58,-180 1031.58,-183.5 1031.58,-176.5"/>
+<path fill="none" stroke="black" d="M407,-122.27C407,-140.56 407,-166 407,-166 407,-166 790.24,-166 790.24,-166"/>
+<polygon fill="black" stroke="black" points="790.24,-169.5 800.24,-166 790.24,-162.5 790.24,-169.5"/>
 </g>
 <!-- EditionViewRoutingModule -->
 <g id="node10" class="node">
 <title>EditionViewRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1654.21,-122 1651.21,-126 1630.21,-126 1627.21,-122 1477.79,-122 1477.79,-86 1654.21,-86 1654.21,-122"/>
-<text text-anchor="middle" x="1566" y="-99.8" font-family="Times,serif" font-size="14.00">EditionViewRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="316.21,-122 313.21,-126 292.21,-126 289.21,-122 139.79,-122 139.79,-86 316.21,-86 316.21,-122"/>
+<text text-anchor="middle" x="228" y="-99.8" font-family="Times,serif" font-size="14.00">EditionViewRoutingModule</text>
 </g>
 <!-- EditionViewRoutingModule&#45;&gt;EditionViewModule -->
 <g id="edge9" class="edge">
 <title>EditionViewRoutingModule&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M1566,-122.13C1566,-142.57 1566,-173 1566,-173 1566,-173 1031.57,-173 1031.57,-173"/>
-<polygon fill="black" stroke="black" points="1031.57,-169.5 1021.57,-173 1031.57,-176.5 1031.57,-169.5"/>
+<path fill="none" stroke="black" d="M228,-122.13C228,-142.57 228,-173 228,-173 228,-173 790.42,-173 790.42,-173"/>
+<polygon fill="black" stroke="black" points="790.42,-176.5 800.42,-173 790.42,-169.5 790.42,-176.5"/>
 </g>
 <!-- SharedModule -->
 <g id="node11" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1460.42,-122 1457.42,-126 1436.42,-126 1433.42,-122 1361.58,-122 1361.58,-86 1460.42,-86 1460.42,-122"/>
-<text text-anchor="middle" x="1411" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
+<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;EditionViewModule -->
 <g id="edge10" class="edge">
 <title>SharedModule&#45;&gt;EditionViewModule</title>
-<path fill="none" stroke="black" d="M1411,-122.27C1411,-140.56 1411,-166 1411,-166 1411,-166 1031.67,-166 1031.67,-166"/>
-<polygon fill="black" stroke="black" points="1031.68,-162.5 1021.67,-166 1031.67,-169.5 1031.68,-162.5"/>
+<path fill="none" stroke="black" d="M73,-122.01C73,-144.49 73,-180 73,-180 73,-180 790.43,-180 790.43,-180"/>
+<polygon fill="black" stroke="black" points="790.43,-183.5 800.43,-180 790.43,-176.5 790.43,-183.5"/>
 </g>
 </g>
 </svg>
