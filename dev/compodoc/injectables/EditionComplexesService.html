@@ -164,6 +164,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionComplexesListSignal" >_editionComplexesListSignal</a>
                             </li>
                             <li>
@@ -471,6 +472,7 @@ in the edition complexes list.</p>
                     <a name="_editionComplexesListSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>_editionComplexesListSignal</b></span>
                         <a href="#_editionComplexesListSignal"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -567,7 +569,7 @@ export class EditionComplexesService {
     /**
      * Private readonly signal holding the edition complexes list.
      */
-    private _editionComplexesListSignal &#x3D; signal&lt;EditionComplexesList&gt;({});
+    private readonly _editionComplexesListSignal &#x3D; signal&lt;EditionComplexesList&gt;({});
 
     /**
      * Readonly signal: editionComplexesList.

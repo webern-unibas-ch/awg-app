@@ -344,7 +344,7 @@ the <a href="../modules/SharedModule.html">SharedModule</a> and <a href="SideInf
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { registerLocaleData } from &#x27;@angular/common&#x27;;
 import { provideHttpClient, withInterceptors } from &#x27;@angular/common/http&#x27;;
 import localeDeDE from &#x27;@angular/common/locales/de&#x27;;
-import { APP_INITIALIZER, LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
+import { inject, LOCALE_ID, NgModule, provideAppInitializer } from &#x27;@angular/core&#x27;;
 import { BrowserModule, Title } from &#x27;@angular/platform-browser&#x27;;
 import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 
@@ -381,21 +381,17 @@ registerLocaleData(localeDeDE);
     imports: [BrowserModule, FooterComponent, NavbarComponent, ViewContainerComponent, SharedModule, AppRoutingModule],
     declarations: [AppComponent],
     providers: [
+        Title,
         { provide: LOCALE_ID, useValue: &#x27;de-DE&#x27; }, // Change global LOCALE-ID
         provideHttpClient(withInterceptors([loadingInterceptor])),
         provideAnimations(),
-        Title,
-        {
-            provide: APP_INITIALIZER,
-            useFactory:
-                (editionOutlineService: EditionOutlineService, editionComplexesService: EditionComplexesService) &#x3D;&gt;
-                () &#x3D;&gt; {
-                    editionComplexesService.initializeEditionComplexesList();
-                    editionOutlineService.initializeEditionOutline();
-                },
-            deps: [EditionOutlineService, EditionComplexesService],
-            multi: true,
-        },
+        provideAppInitializer(() &#x3D;&gt; {
+            const editionOutlineService &#x3D; inject(EditionOutlineService);
+            const editionComplexesService &#x3D; inject(EditionComplexesService);
+
+            editionComplexesService.initializeEditionComplexesList();
+            editionOutlineService.initializeEditionOutline();
+        }),
     ],
     bootstrap: [AppComponent],
 })
