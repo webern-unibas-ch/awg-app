@@ -19,6 +19,20 @@ import { EditionComplexesService, EditionOutlineService, EditionStateService } f
 })
 export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
+     * Private readonly injection variable: _editionComplexesService.
+     *
+     * It keeps the instance of the injected EditionComplexesService.
+     */
+    private readonly _editionComplexesService = inject(EditionComplexesService);
+
+    /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -69,16 +83,18 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     updateEditionComplexFromRoute(): void {
         this._route.paramMap.subscribe(params => {
             const id: string = params.get('complexId') || '';
-            const complex = EditionComplexesService.getEditionComplexById(id);
+            const complex = this._editionComplexesService.getEditionComplexById(id);
 
             if (UTILS.isEmptyObject(complex)) {
                 this._editionStateService.updateSelectedEditionSeries(null);
             } else {
-                const series = EditionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
-                const section = EditionOutlineService.getEditionSectionById(
-                    complex.pubStatement.series.route,
-                    complex.pubStatement.section.route
-                );
+                const series =
+                    this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route) ?? null;
+                const section =
+                    this._editionOutlineService.getEditionSectionById(
+                        complex.pubStatement.series.route,
+                        complex.pubStatement.section.route
+                    ) ?? null;
 
                 this._editionStateService.updateSelectedEditionSeries(series);
                 this._editionStateService.updateSelectedEditionSection(section);

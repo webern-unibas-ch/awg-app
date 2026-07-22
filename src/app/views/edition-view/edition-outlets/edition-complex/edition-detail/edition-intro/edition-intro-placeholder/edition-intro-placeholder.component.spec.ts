@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -15,13 +15,10 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroPlaceholderComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
     let mockDocument: Document;
 
     let expectedEditionComplex: EditionComplex;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -30,14 +27,20 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        mockDocument = TestBed.inject(DOCUMENT);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+
+        // Test data
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionIntroPlaceholderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        mockDocument = TestBed.inject(DOCUMENT);
-
-        // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
     });
 
     it('should create', () => {

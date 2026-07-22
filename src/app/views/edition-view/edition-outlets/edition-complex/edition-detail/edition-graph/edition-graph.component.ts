@@ -78,7 +78,7 @@ export class EditionGraphComponent {
      */
     readonly editionGraphData = toSignal(
         toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) =>
+            switchMap((complex: EditionComplex | null) =>
                 complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
             ),
             catchError(err => {

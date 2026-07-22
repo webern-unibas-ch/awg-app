@@ -98,7 +98,7 @@ export class EditionReportComponent {
      */
     readonly sourceListData = computed(() => {
         const report = this.editionReportData();
-        return report && report[0] ? (report[0] as SourceList) : null;
+        return report?.[0] ? (report[0] as SourceList) : null;
     });
 
     /**
@@ -108,7 +108,7 @@ export class EditionReportComponent {
      */
     readonly sourceDescriptionListData = computed(() => {
         const report = this.editionReportData();
-        return report && report[1] ? (report[1] as SourceDescriptionList) : null;
+        return report?.[1] ? (report[1] as SourceDescriptionList) : null;
     });
 
     /**
@@ -118,7 +118,7 @@ export class EditionReportComponent {
      */
     readonly sourceEvaluationListData = computed(() => {
         const report = this.editionReportData();
-        return report && report[2] ? (report[2] as SourceEvaluationList) : null;
+        return report?.[2] ? (report[2] as SourceEvaluationList) : null;
     });
 
     /**
@@ -128,7 +128,7 @@ export class EditionReportComponent {
      */
     readonly textcriticsListData = computed(() => {
         const report = this.editionReportData();
-        return report && report[3] ? (report[3] as TextcriticsList) : null;
+        return report?.[3] ? (report[3] as TextcriticsList) : null;
     });
 
     /**

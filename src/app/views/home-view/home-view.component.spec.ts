@@ -2,12 +2,13 @@ import { Component, DebugElement, input, isSignal, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -76,6 +77,8 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let router: Router;
 
     let expectedHomeViewId: string;
@@ -83,14 +86,10 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedDisclaimerMessage: string;
     let expectedHomeViewCardData: HomeViewCard[];
     let expectedPageMetaData: MetaPage;
+    let expectedSections: EditionOutlineSection[];
     let expectedSectionLinksData: EditionSectionLink[];
 
     let expectedRouterLinks: string[][];
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -115,7 +114,13 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         router = TestBed.inject(Router);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
 
         // Test data
         expectedHomeViewId = 'awg-home-view-heading';
@@ -126,9 +131,9 @@ describe('HomeViewComponent (DONE)', () => {
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        const expectedSections = [
-            EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('2', '2a'),
+        expectedSections = [
+            editionOutlineService.getEditionSectionById('1', '5'),
+            editionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedSectionLinksData = [
             {
@@ -178,6 +183,21 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(isSignal(component.sectionLinksData), true);
 
             expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
+        });
+
+        it('... should filter out undefined sections in signal `sectionLinksData`', () => {
+            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+
+            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+
+            const freshFixture = TestBed.createComponent(HomeViewComponent);
+            const freshComponent = freshFixture.componentInstance;
+
+            const result = freshComponent.sectionLinksData();
+
+            expectToNotContain(result, undefined);
+            expectToBe(result.length, expectedSectionLinksData.length - 1);
+            expectToEqual(result[0], expectedSectionLinksData[1]);
         });
 
         it('... should have signal `rowtablesRoute` to hold the provided route', () => {

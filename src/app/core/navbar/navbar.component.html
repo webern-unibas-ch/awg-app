@@ -37,17 +37,17 @@
 
                     <div class="dropdown-divider"></div>
 
-                    @for (sectionLink of sectionLinksData(); track sectionLink.shortTitle) {
+                    @for (section of sectionsData(); track section.labeledRoute.label) {
                         <div class="awg-dropdown-sections">
                             <h6 class="dropdown-header">
-                                [{{ sectionLink.shortTitle }}]
-                                <span [innerHTML]="sectionLink.fullTitle"></span>
+                                [{{ section.labeledRoute.label }}] -
+                                <span [innerHTML]="section.section.full"></span>
                             </h6>
 
                             @for (link of sectionEditionLinks; track link.label) {
                                 <awg-navbar-dropdown-link
                                     [label]="link.label"
-                                    [route]="[...sectionLink.route, ...link.route]" />
+                                    [route]="[...section.labeledRoute.route, ...link.route]" />
                             }
                             <div class="dropdown-divider"></div>
                         </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
@@ -36,14 +36,33 @@ import { StatisticsSummaryComponent } from './statistics-summary/statistics-summ
 })
 export class StatisticsViewComponent {
     /**
-     * Readonly signal: statisticsData.
+     * Private readonly injection variable: _editionOutlineService.
      *
-     * It holds the statistics data for the edition complexes,
-     * which is retrieved from the StatisticsService based on data from the EditionOutlineService.
+     * It keeps the instance of the injected EditionOutlineService.
      */
-    readonly statisticsData = signal<Statistics | null>(
-        inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
-    );
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
+     * Private readonly injection variable: _statisticsService.
+     *
+     * It keeps the instance of the injected StatisticsService.
+     */
+    private readonly _statisticsService = inject(StatisticsService);
+
+    /**
+     * Readonly computed signal: statisticsData.
+     *
+     * It automatically computes the statistics data whenever the edition outline signal updates.
+     */
+    readonly statisticsData = computed<Statistics | null>(() => {
+        const outline = this._editionOutlineService.editionOutline();
+
+        if (!outline || outline.length === 0) {
+            return null;
+        }
+
+        return this._statisticsService.getStatisticsFromOutline(outline);
+    });
 
     /**
      * Readonly computed signal: complexBreakdownData.

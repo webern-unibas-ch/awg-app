@@ -1,16 +1,18 @@
+import { isSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
+import { EditionComplexesService, EditionOutlineService } from '../services';
 
-import { isSignal } from '@angular/core';
 import { EditionStateService } from './edition-state.service';
 
 describe('EditionStateService (DONE)', () => {
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let expectedEditionComplex: EditionComplex;
@@ -18,21 +20,22 @@ describe('EditionStateService (DONE)', () => {
     let expectedEditionSeries: EditionOutlineSeries;
     let expectedEditionSection: EditionOutlineSection;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EditionStateService],
         });
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
         // Test data (default)
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-        expectedEditionOutline = EditionOutlineService.getEditionOutline();
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
+        expectedEditionOutline = editionOutlineService.editionOutline();
         expectedEditionSeries = expectedEditionOutline[0];
         expectedEditionSection = expectedEditionOutline[0].sections[0];
     });
@@ -201,7 +204,7 @@ describe('EditionStateService (DONE)', () => {
 
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);
 
-                expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
+                expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);

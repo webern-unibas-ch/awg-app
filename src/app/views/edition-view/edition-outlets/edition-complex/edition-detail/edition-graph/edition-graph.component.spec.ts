@@ -1,7 +1,7 @@
 import { Component, DebugElement, DOCUMENT, input, Input, isSignal, output, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -87,6 +87,7 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockDocument: Document;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockFullscreenService: Partial<FullscreenService>;
+    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
     let editionDataServiceGetEditionGraphDataSpy: Spy;
@@ -98,10 +99,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp25: GraphList;
 
     let graphDataResult$: Observable<GraphList>;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
 
     beforeEach(async () => {
         // Mocked editionDataService
@@ -127,7 +124,6 @@ describe('EditionGraphComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                EditionStateService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: FullscreenService, useValue: mockFullscreenService },
             ],
@@ -137,7 +133,11 @@ describe('EditionGraphComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
 
         // Service spies
         graphDataResult$ = observableOf(null);
@@ -146,8 +146,8 @@ describe('EditionGraphComponent (DONE)', () => {
             .mockImplementation(() => graphDataResult$);
 
         // Test data (default)
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
-        expectedOtherEditionComplex = EditionComplexesService.getEditionComplexById('op12');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
+        expectedOtherEditionComplex = editionComplexesService.getEditionComplexById('op12');
 
         expectedEditionGraphEmptyData = structuredClone(mockEditionData.mockGraphEmptyData);
 

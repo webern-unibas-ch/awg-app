@@ -3,7 +3,7 @@ import localeDeDE from '@angular/common/locales/de';
 import { Component, DebugElement, DOCUMENT, Input, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
     expectToBe,
@@ -59,6 +59,8 @@ describe('EditionViewComponent (DONE)', () => {
 
     let mockDocument: Document;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let expectedSelectedEditionComplexId: string;
@@ -70,11 +72,6 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedId = 'awg-edition-view';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [
@@ -85,21 +82,27 @@ describe('EditionViewComponent (DONE)', () => {
                 RouterLinkStubDirective,
             ],
             imports: [DatePipe, ScrollToTopButtonStubComponent],
-            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }, EditionStateService],
+            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
+        mockDocument = TestBed.inject(DOCUMENT);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
 
         // Test data
         expectedSelectedEditionComplexId = 'op12';
-        expectedSelectedEditionComplex = EditionComplexesService.getEditionComplexById(
+        expectedSelectedEditionComplex = editionComplexesService.getEditionComplexById(
             expectedSelectedEditionComplexId
         );
-        expectedSelectedEditionSeries = EditionOutlineService.getEditionOutline()[0]; // Series 1
+        expectedSelectedEditionSeries = editionOutlineService.editionOutline()[0]; // Series 1
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
 
         // Create component fixture
@@ -434,7 +437,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', () => {
-                    const expectedComplexWithDash = EditionComplexesService.getEditionComplexById('m212');
+                    const expectedComplexWithDash = editionComplexesService.getEditionComplexById('m212');
                     renderSelectedEditionComplex(expectedComplexWithDash);
 
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);

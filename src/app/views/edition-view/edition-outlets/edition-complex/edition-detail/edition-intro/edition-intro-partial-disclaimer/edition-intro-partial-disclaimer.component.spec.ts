@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -27,16 +27,14 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
+    let editionComplexesService: EditionComplexesService;
+
     let expectedEditionComplex: EditionComplex;
     let expectedEditionLabel: string;
     let expectedEditionRoute: string;
     let expectedSeriesRoute: string;
     let expectedSectionRoute: string;
     let expectedIntroRoute: string;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -45,17 +43,24 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionIntroPartialDisclaimerComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
         expectedEditionLabel = EDITION_ROUTE_CONSTANTS.EDITION.short;
         expectedEditionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
         expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
         expectedSectionRoute = EDITION_ROUTE_CONSTANTS.SECTION.route;
         expectedIntroRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionIntroPartialDisclaimerComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {

@@ -87,7 +87,6 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                EditionStateService,
                 { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },

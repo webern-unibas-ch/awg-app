@@ -7,7 +7,6 @@ import { filter, map } from 'rxjs/operators';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { AnalyticsService } from '@awg-core/services/analytics.service';
-import { EditionInitService } from '@awg-core/services/edition-init.service';
 
 /**
  * The main component of the AWG App.
@@ -43,13 +42,6 @@ export class AppComponent {
     private readonly _analyticsService = inject(AnalyticsService);
 
     /**
-     * Private readonly injection variable: _editionInitService.
-     *
-     * It keeps the instance of the injected EditionInitService.
-     */
-    private readonly _editionInitService = inject(EditionInitService);
-
-    /**
      * Private readonly injection variable: _ngbConfig.
      *
      * It keeps the instance of the injected NgbConfig.
@@ -83,9 +75,6 @@ export class AppComponent {
 
         // Init analytics
         this._analyticsService.initializeAnalytics();
-
-        // Init edition complexes and outline
-        this._editionInitService.initializeEdition();
 
         // Track router events
         this._router.events

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import type { Mock } from 'vitest';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -175,7 +175,10 @@ describe('IntroComponent (DONE)', () => {
     let updateEditionStateSpy: Spy;
 
     let mockEditionDataService: Partial<EditionDataService>;
+
+    let editionComplexesService: EditionComplexesService;
     let editionDataService: Partial<EditionDataService>;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let expectedCurrentLaguage: number;
@@ -196,11 +199,6 @@ describe('IntroComponent (DONE)', () => {
     let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedSvgSheet: EditionSvgSheet;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         // Mock router with spy object
@@ -231,7 +229,6 @@ describe('IntroComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                EditionStateService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: Router, useValue: mockRouter },
             ],
@@ -241,14 +238,20 @@ describe('IntroComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionDataService = TestBed.inject(EditionDataService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
 
         // Service spies
         editionDataServiceGetEditionComplexIntroDataSpy = vi.spyOn(editionDataService, 'getEditionComplexIntroData');
         editionDataServiceGetEditionSectionIntroDataSpy = vi.spyOn(editionDataService, 'getEditionSectionIntroData');
-        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
-        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
+        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
 
         // Test data
         expectedCurrentLaguage = 0;
@@ -262,7 +265,7 @@ describe('IntroComponent (DONE)', () => {
         expectedErrorObject = null;
 
         expectedComplexId = 'op12';
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
         expectedNextComplexId = 'testComplex2';
         expectedIntroFragment = 'note-80';
@@ -270,10 +273,10 @@ describe('IntroComponent (DONE)', () => {
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
 
-        expectedSelectedEditionSeries = EditionOutlineService.getEditionSeriesById(
+        expectedSelectedEditionSeries = editionOutlineService.getEditionSeriesById(
             expectedEditionComplex.pubStatement.series.route
         );
-        expectedSelectedEditionSection = EditionOutlineService.getEditionSectionById(
+        expectedSelectedEditionSection = editionOutlineService.getEditionSectionById(
             expectedEditionComplex.pubStatement.series.route,
             expectedEditionComplex.pubStatement.section.route
         );
@@ -2368,6 +2371,16 @@ describe('IntroComponent (DONE)', () => {
                     (component as any)._updateEditionState(seriesNumber, sectionNumber);
 
                     expectToEqual(editionStateService.selectedEditionSection(), expectedSelectedEditionSection);
+                });
+
+                it('... should trigger and update `selectedEditionSeries` and `selectedEditionSection` in EditionStateService to null if series or section is not found', () => {
+                    const seriesNumber = '999';
+                    const sectionNumber = '999';
+
+                    (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                    expectToEqual(editionStateService.selectedEditionSeries(), null);
+                    expectToEqual(editionStateService.selectedEditionSection(), null);
                 });
 
                 it('... should trigger and update `isIntroView = true` in EditionStateService', () => {

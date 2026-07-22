@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
-import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '../models';
 
 import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 
@@ -16,26 +16,31 @@ import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.jso
 })
 export class EditionComplexesService {
     /**
-     * Static variable: _editionComplexesList.
-     *
-     * It keeps the edition complexes list.
+     * Private readonly signal holding the edition complexes list.
      */
-    private static _editionComplexesList: EditionComplexesList = {};
+    private _editionComplexesListSignal = signal<EditionComplexesList>({});
 
     /**
-     * Static method: initEditionComplexesList.
+     * Readonly signal: editionComplexesList.
+     *
+     * It holds the state of the edition complexes list.
+     */
+    readonly editionComplexesList = this._editionComplexesListSignal.asReadonly();
+
+    /**
+     * Public method: initEditionComplexesList.
      *
      * It initializes the edition complexes list.
      *
      * @returns {void} Initializes the edition complexes list.
      */
-    static initializeEditionComplexesList(): void {
-        const complexes = EditionComplexesService._fetchEditionComplexesData();
-        EditionComplexesService.setEditionComplexesList(complexes);
+    initializeEditionComplexesList(): void {
+        const complexes = this._fetchEditionComplexesData();
+        this.setEditionComplexesList(complexes);
     }
 
     /**
-     * Static method: getEditionComplexById.
+     * Public method: getEditionComplexById.
      *
      * It finds an edition complex by a given id.
      * The input id is normalized to lowercase to match against lowercase keys
@@ -43,25 +48,14 @@ export class EditionComplexesService {
      *
      * @param {string} id The given id (will be normalized to lowercase).
      *
-     * @returns {EditionComplex} The found edition complex.
+     * @returns {EditionComplex | undefined} The found edition complex, otherwise undefined.
      */
-    static getEditionComplexById(id: string): EditionComplex {
-        return EditionComplexesService._editionComplexesList[id.toLowerCase()];
+    getEditionComplexById(id: string): EditionComplex | undefined {
+        return this._editionComplexesListSignal()[id.toLowerCase()];
     }
 
     /**
-     * Static method: getEditionComplexesList.
-     *
-     * It gets the edition complexes list.
-     *
-     * @returns {EditionComplexesList} The edition complexes list.
-     */
-    static getEditionComplexesList(): EditionComplexesList {
-        return EditionComplexesService._editionComplexesList;
-    }
-
-    /**
-     * Static method: setEditionComplexesList.
+     * Public method: setEditionComplexesList.
      *
      * It sets the edition complexes list.
      *
@@ -69,19 +63,19 @@ export class EditionComplexesService {
      *
      * @returns {void} Sets the edition complexes list.
      */
-    static setEditionComplexesList(complexesList: EditionComplexesList): void {
-        EditionComplexesService._editionComplexesList = complexesList;
+    setEditionComplexesList(complexesList: EditionComplexesList): void {
+        this._editionComplexesListSignal.set(complexesList);
     }
 
     /**
-     * Public method: _fetchEditionComplexesData.
+     * Private method: _fetchEditionComplexesData.
      *
      * It fetches the data from a JSON file
      * for the complexes of the edition view.
      *
      * @returns {EditionComplexesList} The EditionComplexesList data.
      */
-    private static _fetchEditionComplexesData(): EditionComplexesList {
+    private _fetchEditionComplexesData(): EditionComplexesList {
         // Load the JSON data directly from the file
         const complexesData = (jsonEditionComplexes as any).default;
         const editionComplexesList: EditionComplexesList = {};

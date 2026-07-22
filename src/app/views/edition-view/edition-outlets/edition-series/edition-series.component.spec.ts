@@ -1,7 +1,7 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -24,33 +24,35 @@ describe('EditionSeriesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let updateSeriesSpy: Spy;
 
     let expectedEditionOutline: EditionOutlineSeries[];
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
-            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
 
         // Service spies
         updateSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
 
         // Test data
-        expectedEditionOutline = EditionOutlineService.getEditionOutline();
+        expectedEditionOutline = editionOutlineService.editionOutline();
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSeriesComponent);
@@ -67,8 +69,10 @@ describe('EditionSeriesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `editionOutline`', () => {
-            expectToEqual(component.editionOutline, expectedEditionOutline);
+        it('... should have signal `editionOutline` to hold the expected outline', () => {
+            expectToBe(isSignal(component.editionOutline), true);
+
+            expectToEqual(component.editionOutline(), expectedEditionOutline);
         });
 
         it('... should have cleared the selected edition series in the constructor (via service)', () => {

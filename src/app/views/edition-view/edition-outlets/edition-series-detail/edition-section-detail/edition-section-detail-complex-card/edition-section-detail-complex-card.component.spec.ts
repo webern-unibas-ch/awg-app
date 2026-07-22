@@ -29,11 +29,12 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
+
     let expectedComplexes: EditionOutlineComplexItem[];
 
     beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
         registerLocaleData(localeDeDE);
     });
 
@@ -46,8 +47,16 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
         // Test data
-        const section = EditionOutlineService.getEditionSectionById('1', '5');
+        const section = editionOutlineService.getEditionSectionById('1', '5');
         expectedComplexes = section?.content.sectionComplexes ?? [];
 
         // Create component fixture
