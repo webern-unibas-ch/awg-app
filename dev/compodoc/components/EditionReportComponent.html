@@ -974,7 +974,7 @@ within the context of an edition complex identified by the provided complexId.</
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[1] ? (report[1] as SourceDescriptionList) : null;
+        return report?.[1] ? (report[1] as SourceDescriptionList) : null;
     })</code>
                     </td>
                 </tr>
@@ -1016,7 +1016,7 @@ within the context of an edition complex identified by the provided complexId.</
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[2] ? (report[2] as SourceEvaluationList) : null;
+        return report?.[2] ? (report[2] as SourceEvaluationList) : null;
     })</code>
                     </td>
                 </tr>
@@ -1058,7 +1058,7 @@ within the context of an edition complex identified by the provided complexId.</
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[0] ? (report[0] as SourceList) : null;
+        return report?.[0] ? (report[0] as SourceList) : null;
     })</code>
                     </td>
                 </tr>
@@ -1100,7 +1100,7 @@ within the context of an edition complex identified by the provided complexId.</
                     <td class="col-md-4">
                         <i>Default value : </i><code>computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[3] ? (report[3] as TextcriticsList) : null;
+        return report?.[3] ? (report[3] as TextcriticsList) : null;
     })</code>
                     </td>
                 </tr>
@@ -1270,7 +1270,7 @@ export class EditionReportComponent {
      */
     readonly sourceListData &#x3D; computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[0] ? (report[0] as SourceList) : null;
+        return report?.[0] ? (report[0] as SourceList) : null;
     });
 
     /**
@@ -1280,7 +1280,7 @@ export class EditionReportComponent {
      */
     readonly sourceDescriptionListData &#x3D; computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[1] ? (report[1] as SourceDescriptionList) : null;
+        return report?.[1] ? (report[1] as SourceDescriptionList) : null;
     });
 
     /**
@@ -1290,7 +1290,7 @@ export class EditionReportComponent {
      */
     readonly sourceEvaluationListData &#x3D; computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[2] ? (report[2] as SourceEvaluationList) : null;
+        return report?.[2] ? (report[2] as SourceEvaluationList) : null;
     });
 
     /**
@@ -1300,7 +1300,7 @@ export class EditionReportComponent {
      */
     readonly textcriticsListData &#x3D; computed(() &#x3D;&gt; {
         const report &#x3D; this.editionReportData();
-        return report &amp;&amp; report[3] ? (report[3] as TextcriticsList) : null;
+        return report?.[3] ? (report[3] as TextcriticsList) : null;
     });
 
     /**

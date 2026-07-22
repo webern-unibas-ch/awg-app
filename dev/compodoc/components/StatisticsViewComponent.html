@@ -229,6 +229,16 @@ with a statistics page about the edition complexes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionOutlineService" >_editionOutlineService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_statisticsService" >_statisticsService</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#complexBreakdownData" >complexBreakdownData</a>
                             </li>
@@ -272,6 +282,86 @@ with a statistics page about the edition complexes.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_editionOutlineService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionOutlineService</b></span>
+                        <a href="#_editionOutlineService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionOutlineService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionOutlineService.</p>
+<p>It keeps the instance of the injected EditionOutlineService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_statisticsService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_statisticsService</b></span>
+                        <a href="#_statisticsService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(StatisticsService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _statisticsService.</p>
+<p>It keeps the instance of the injected StatisticsService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="complexBreakdownData"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -304,7 +394,7 @@ with a statistics page about the edition complexes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -354,7 +444,7 @@ with a statistics page about the edition complexes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:90</a></div>
                         </td>
                     </tr>
 
@@ -388,22 +478,27 @@ with a statistics page about the edition complexes.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;Statistics | null&gt;(
-        inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
-    )</code>
+                        <i>Default value : </i><code>computed&lt;Statistics | null&gt;(() &#x3D;&gt; {
+        const outline &#x3D; this._editionOutlineService.editionOutline();
+
+        if (!outline || outline.length &#x3D;&#x3D;&#x3D; 0) {
+            return null;
+        }
+
+        return this._statisticsService.getStatisticsFromOutline(outline);
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:57</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly signal: statisticsData.</p>
-<p>It holds the statistics data for the edition complexes,
-which is retrieved from the StatisticsService based on data from the EditionOutlineService.</p>
+                    <div class="io-description"><p>Readonly computed signal: statisticsData.</p>
+<p>It automatically computes the statistics data whenever the edition outline signal updates.</p>
 </div>
                 </td>
             </tr>
@@ -447,7 +542,7 @@ which is retrieved from the StatisticsService based on data from the EditionOutl
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/views/statistics-view/statistics-view.component.ts:108</a></div>
                         </td>
                     </tr>
 
@@ -467,7 +562,7 @@ which is retrieved from the StatisticsService based on data from the EditionOutl
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject } from &#x27;@angular/core&#x27;;
 
 import { ScrollToTopButtonComponent } from &#x27;@awg-shared/scroll-to-top-button/scroll-to-top-button.component&#x27;;
 import { EditionOutlineService } from &#x27;@awg-views/edition-view/services&#x27;;
@@ -505,14 +600,33 @@ import { StatisticsSummaryComponent } from &#x27;./statistics-summary/statistics
 })
 export class StatisticsViewComponent {
     /**
-     * Readonly signal: statisticsData.
+     * Private readonly injection variable: _editionOutlineService.
      *
-     * It holds the statistics data for the edition complexes,
-     * which is retrieved from the StatisticsService based on data from the EditionOutlineService.
+     * It keeps the instance of the injected EditionOutlineService.
      */
-    readonly statisticsData &#x3D; signal&lt;Statistics | null&gt;(
-        inject(StatisticsService).getStatisticsFromOutline(EditionOutlineService.getEditionOutline())
-    );
+    private readonly _editionOutlineService &#x3D; inject(EditionOutlineService);
+
+    /**
+     * Private readonly injection variable: _statisticsService.
+     *
+     * It keeps the instance of the injected StatisticsService.
+     */
+    private readonly _statisticsService &#x3D; inject(StatisticsService);
+
+    /**
+     * Readonly computed signal: statisticsData.
+     *
+     * It automatically computes the statistics data whenever the edition outline signal updates.
+     */
+    readonly statisticsData &#x3D; computed&lt;Statistics | null&gt;(() &#x3D;&gt; {
+        const outline &#x3D; this._editionOutlineService.editionOutline();
+
+        if (!outline || outline.length &#x3D;&#x3D;&#x3D; 0) {
+            return null;
+        }
+
+        return this._statisticsService.getStatisticsFromOutline(outline);
+    });
 
     /**
      * Readonly computed signal: complexBreakdownData.

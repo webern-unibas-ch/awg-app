@@ -451,7 +451,7 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>toSignal(
         toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) &#x3D;&gt;
+            switchMap((complex: EditionComplex | null) &#x3D;&gt;
                 complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
             ),
             catchError(err &#x3D;&gt; {
@@ -795,7 +795,7 @@ export class EditionGraphComponent {
      */
     readonly editionGraphData &#x3D; toSignal(
         toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex) &#x3D;&gt;
+            switchMap((complex: EditionComplex | null) &#x3D;&gt;
                 complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
             ),
             catchError(err &#x3D;&gt; {

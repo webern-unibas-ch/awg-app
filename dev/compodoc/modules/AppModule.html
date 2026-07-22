@@ -344,7 +344,7 @@ the <a href="../modules/SharedModule.html">SharedModule</a> and <a href="SideInf
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { registerLocaleData } from &#x27;@angular/common&#x27;;
 import { provideHttpClient, withInterceptors } from &#x27;@angular/common/http&#x27;;
 import localeDeDE from &#x27;@angular/common/locales/de&#x27;;
-import { LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
+import { APP_INITIALIZER, LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule, Title } from &#x27;@angular/platform-browser&#x27;;
 import { provideAnimations } from &#x27;@angular/platform-browser/animations&#x27;;
 
@@ -357,6 +357,9 @@ import { AppComponent } from &#x27;./app.component&#x27;;
 import { FooterComponent } from &#x27;./core/footer/footer.component&#x27;;
 import { NavbarComponent } from &#x27;./core/navbar/navbar.component&#x27;;
 import { ViewContainerComponent } from &#x27;./core/view-container/view-container.component&#x27;;
+
+// Services
+import { EditionComplexesService, EditionOutlineService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 // Loading interceptor
 import { loadingInterceptor } from &#x27;./shared/loading/loading.interceptor&#x27;;
@@ -382,6 +385,17 @@ registerLocaleData(localeDeDE);
         provideHttpClient(withInterceptors([loadingInterceptor])),
         provideAnimations(),
         Title,
+        {
+            provide: APP_INITIALIZER,
+            useFactory:
+                (editionOutlineService: EditionOutlineService, editionComplexesService: EditionComplexesService) &#x3D;&gt;
+                () &#x3D;&gt; {
+                    editionComplexesService.initializeEditionComplexesList();
+                    editionOutlineService.initializeEditionOutline();
+                },
+            deps: [EditionOutlineService, EditionComplexesService],
+            multi: true,
+        },
     ],
     bootstrap: [AppComponent],
 })
