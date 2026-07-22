@@ -2,7 +2,7 @@ import { Component, DebugElement, input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbCollapseConfig } from '@ng-bootstrap/ng-bootstrap/collapse';
@@ -68,6 +68,8 @@ describe('NavbarComponent (DONE)', () => {
 
     let router: Router;
 
+    let editionOutlineService: EditionOutlineService;
+
     let toggleNavSpy: Spy;
 
     let expectedLogosData: Logos;
@@ -75,10 +77,6 @@ describe('NavbarComponent (DONE)', () => {
     let expectedNavbarItems: NavbarItems;
     let expectedGeneralEditionLinks: LabeledRoute[];
     let expectedSectionEditionLinks: LabeledRoute[];
-
-    beforeAll(() => {
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -103,14 +101,18 @@ describe('NavbarComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         router = TestBed.inject(Router);
+
+        // Init edition data
+        editionOutlineService.initializeEditionOutline();
 
         // Test data
         expectedNavbarItems = NAVBAR_ITEMS;
         expectedGeneralEditionLinks = EDITION_GENERAL_LINKS;
         expectedSectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
         expectedSectionLinksData = ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = EditionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
+            const section = editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
             return new EditionSectionLink(section, index, array.length);
         });
         expectedLogosData = LOGOS_DATA;

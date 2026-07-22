@@ -2,7 +2,7 @@ import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -78,6 +78,8 @@ describe('EditionInfoComponent (DONE)', () => {
     let router: Router;
 
     let mockDocument: Document;
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     const expectedEditionInfoHeader = 'Edition';
@@ -88,15 +90,10 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedItemTitles: string[];
     let expectedItemTitlesWithLinks: string[];
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionInfoComponent],
-            providers: [provideRouter([]), EditionStateService],
+            providers: [provideRouter([])],
         }).compileComponents();
 
         // Disable animation for NgbAccordion to avoid timing issues in tests
@@ -106,14 +103,20 @@ describe('EditionInfoComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
         mockDocument = TestBed.inject(DOCUMENT);
         router = TestBed.inject(Router);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
         // Test data
         expectedSections = [
-            EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('2', '2a'),
+            editionOutlineService.getEditionSectionById('1', '5'),
+            editionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
@@ -221,7 +224,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should open item body for selected section', async () => {
                 for (const [sectionIndex, section] of expectedSections.entries()) {
                     const seriesId = section.seriesParent.short;
-                    const series = EditionOutlineService.getEditionSeriesById(seriesId);
+                    const series = editionOutlineService.getEditionSeriesById(seriesId);
                     editionStateService.updateSelectedEditionSeries(series);
                     editionStateService.updateSelectedEditionSection(section);
                     await detectChangesOnPush(fixture);

@@ -1,7 +1,7 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -17,6 +17,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionDetailComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let updateSectionFromRouteSpy: Spy;
@@ -28,24 +30,24 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let expectedSeriesId: string;
     let expectedSectionId: string;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionDetailComponent, RouterOutletStubComponent],
-            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
         // Service spies
-        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSectionById');
+        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
         editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
             editionStateService,
             'updateSelectedEditionSection'
@@ -55,7 +57,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         updateSectionFromRouteSpy = vi.spyOn(EditionSectionDetailComponent.prototype, 'updateSectionFromRoute');
 
         // Test data
-        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
+        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
         expectedSelectedSection = expectedSelectedSeries.sections[4];
         expectedSeriesId = expectedSelectedSeries.series.route;
         expectedSectionId = expectedSelectedSection.section.route;

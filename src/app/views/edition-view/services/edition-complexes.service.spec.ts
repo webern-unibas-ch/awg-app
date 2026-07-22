@@ -8,20 +8,28 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { EditionComplex, EditionComplexJsonPersonRef } from '@awg-views/edition-view/models';
 
+import { isSignal } from '@angular/core';
 import { EditionComplexesService } from './edition-complexes.service';
 
 describe('EditionComplexesService (DONE)', () => {
+    let service: EditionComplexesService;
+
     let initializeEditionComplexesListSpy: Spy;
     let setEditionComplexesListSpy: Spy;
     let fetchEditionComplexesDataSpy: Spy;
 
     beforeEach(() => {
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+            providers: [EditionComplexesService],
+        });
+
+        // Inject services
+        service = TestBed.inject(EditionComplexesService);
 
         // Spies for service methods
-        initializeEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'initializeEditionComplexesList');
-        setEditionComplexesListSpy = vi.spyOn(EditionComplexesService, 'setEditionComplexesList');
-        fetchEditionComplexesDataSpy = vi.spyOn(EditionComplexesService as any, '_fetchEditionComplexesData');
+        initializeEditionComplexesListSpy = vi.spyOn(service, 'initializeEditionComplexesList');
+        setEditionComplexesListSpy = vi.spyOn(service, 'setEditionComplexesList');
+        fetchEditionComplexesDataSpy = vi.spyOn(service as any, '_fetchEditionComplexesData');
     });
 
     afterEach(() => {
@@ -29,22 +37,51 @@ describe('EditionComplexesService (DONE)', () => {
     });
 
     it('... should create', () => {
-        expect(EditionComplexesService).toBeTruthy();
+        expect(service).toBeTruthy();
     });
 
-    it('... should have `_editionComplexesList`', () => {
-        expect((EditionComplexesService as any)._editionComplexesList).toBeTruthy();
+    it('... should have signal `_editionComplexesListSignal` to hold an empty object', () => {
+        expectToBe(isSignal((service as any)._editionComplexesListSignal), true);
+
+        expectToEqual((service as any)._editionComplexesListSignal(), {});
+    });
+
+    describe('#editionComplexesList()', () => {
+        it('... should have signal `getEditionComplexesList` to hold an empty object', () => {
+            expectToBe(isSignal(service.editionComplexesList), true);
+
+            expectToEqual(service.editionComplexesList(), {});
+        });
+
+        it('... should hold the edition complexes list after initialization', () => {
+            service.initializeEditionComplexesList();
+
+            const editionComplexesList = service.editionComplexesList();
+
+            expect(editionComplexesList).toBeDefined();
+            expect(editionComplexesList).not.toEqual({});
+
+            // Test for samples
+            expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
+            expect(editionComplexesList['op3']).toBeDefined();
+            expect(editionComplexesList['m22']).toBeDefined();
+
+            // Test for sample properties
+            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
+            expect(editionComplexesList['op3'].respStatement).toBeDefined();
+            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
+        });
     });
 
     describe('#initializeEditionComplexesList()', () => {
         it('... should have a method `initializeEditionComplexesList`', () => {
-            expect(EditionComplexesService.initializeEditionComplexesList).toBeDefined();
+            expect(service.initializeEditionComplexesList).toBeDefined();
         });
 
         it('... should trigger `_fetchEditionComplexesData` and set the edition complexes list', () => {
-            EditionComplexesService.initializeEditionComplexesList();
+            service.initializeEditionComplexesList();
 
-            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+            const editionComplexesList = service.editionComplexesList();
 
             expectSpyCall(initializeEditionComplexesListSpy, 1);
             expectSpyCall(fetchEditionComplexesDataSpy, 1);
@@ -52,9 +89,9 @@ describe('EditionComplexesService (DONE)', () => {
         });
 
         it('... should initialize the edition complexes list', () => {
-            EditionComplexesService.initializeEditionComplexesList();
+            service.initializeEditionComplexesList();
 
-            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+            const editionComplexesList = service.editionComplexesList();
 
             expect(editionComplexesList).toBeDefined();
             expect(editionComplexesList).not.toEqual({});
@@ -71,9 +108,9 @@ describe('EditionComplexesService (DONE)', () => {
         });
 
         it('... should resolve $ref entries in respStatement.editors', () => {
-            EditionComplexesService.initializeEditionComplexesList();
+            service.initializeEditionComplexesList();
 
-            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+            const editionComplexesList = service.editionComplexesList();
 
             expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
             expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
@@ -82,7 +119,7 @@ describe('EditionComplexesService (DONE)', () => {
 
     describe('#getEditionComplexById()', () => {
         it('... should have a method `getEditionComplexById`', () => {
-            expect(EditionComplexesService.getEditionComplexById).toBeDefined();
+            expect(service.getEditionComplexById).toBeDefined();
         });
 
         it('... should return the correct edition complex by ID', () => {
@@ -100,9 +137,9 @@ describe('EditionComplexesService (DONE)', () => {
             );
             const testComplexId = 'op100';
             const expectedList = { [testComplexId]: testComplex };
-            EditionComplexesService.setEditionComplexesList(expectedList);
+            service.setEditionComplexesList(expectedList);
 
-            const complex = EditionComplexesService.getEditionComplexById(testComplexId);
+            const complex = service.getEditionComplexById(testComplexId);
 
             expect(complex).toBeTruthy();
             expectToEqual(complex, testComplex);
@@ -123,37 +160,12 @@ describe('EditionComplexesService (DONE)', () => {
             );
             const testComplexId = 'op100';
             const expectedList = { [testComplexId]: testComplex };
-            EditionComplexesService.setEditionComplexesList(expectedList);
+            service.setEditionComplexesList(expectedList);
 
-            const complex = EditionComplexesService.getEditionComplexById(testComplexId.toUpperCase());
+            const complex = service.getEditionComplexById(testComplexId.toUpperCase());
 
             expect(complex).toBeTruthy();
             expectToEqual(complex, testComplex);
-        });
-    });
-
-    describe('#getEditionComplexesList()', () => {
-        it('... should have a method `getEditionComplexesList`', () => {
-            expect(EditionComplexesService.getEditionComplexesList).toBeDefined();
-        });
-
-        it('... should return the edition complexes list', () => {
-            EditionComplexesService.initializeEditionComplexesList();
-
-            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
-
-            expect(editionComplexesList).toBeDefined();
-            expect(editionComplexesList).not.toEqual({});
-
-            // Test for samples
-            expect(Object.keys(editionComplexesList).length).toBeGreaterThan(0);
-            expect(editionComplexesList['op3']).toBeDefined();
-            expect(editionComplexesList['m22']).toBeDefined();
-
-            // Test for sample properties
-            expect(editionComplexesList['op3'].titleStatement).toBeDefined();
-            expect(editionComplexesList['op3'].respStatement).toBeDefined();
-            expect(editionComplexesList['op3'].pubStatement).toBeDefined();
         });
     });
 
@@ -175,16 +187,16 @@ describe('EditionComplexesService (DONE)', () => {
             );
             const expectedList = { [complexId]: testComplex };
 
-            EditionComplexesService.setEditionComplexesList(expectedList);
+            service.setEditionComplexesList(expectedList);
             return {
                 expectedList,
-                actualList: EditionComplexesService.getEditionComplexesList(),
-                complex: EditionComplexesService.getEditionComplexesList()[complexId],
+                actualList: service.editionComplexesList(),
+                complex: service.editionComplexesList()[complexId],
             };
         };
 
         it('... should have a method `setEditionComplexesList`', () => {
-            expect(EditionComplexesService.setEditionComplexesList).toBeDefined();
+            expect(service.setEditionComplexesList).toBeDefined();
         });
 
         describe('... should set and get edition complexes', () => {
@@ -206,9 +218,9 @@ describe('EditionComplexesService (DONE)', () => {
         });
 
         it('... should resolve $ref entries in respStatement.editors', () => {
-            EditionComplexesService.initializeEditionComplexesList();
+            service.initializeEditionComplexesList();
 
-            const editionComplexesList = EditionComplexesService.getEditionComplexesList();
+            const editionComplexesList = service.editionComplexesList();
 
             expectToEqual(editionComplexesList['op3'].respStatement.editors[0], PERSONS_DATA['thomas_ahrend']);
             expectToEqual(editionComplexesList['m22'].respStatement.editors[0], PERSONS_DATA['michael_matter']);
@@ -252,11 +264,11 @@ describe('EditionComplexesService (DONE)', () => {
 
     describe('#_fetchEditionComplexesData()', () => {
         it('... should have a method `_fetchEditionComplexesData`', () => {
-            expect((EditionComplexesService as any)._fetchEditionComplexesData).toBeDefined();
+            expect((service as any)._fetchEditionComplexesData).toBeDefined();
         });
 
         it('... should fetch the edition complexes data', () => {
-            const editionComplexesList = (EditionComplexesService as any)._fetchEditionComplexesData();
+            const editionComplexesList = (service as any)._fetchEditionComplexesData();
 
             expect(editionComplexesList).toBeDefined();
             expect(editionComplexesList).not.toEqual({});

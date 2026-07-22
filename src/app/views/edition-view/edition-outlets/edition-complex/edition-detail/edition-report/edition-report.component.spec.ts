@@ -12,7 +12,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import type { Mock } from 'vitest';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NEVER, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -159,6 +159,7 @@ describe('EditionReportComponent', () => {
     let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
+    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
     let expectedEditionComplex: EditionComplex;
@@ -195,10 +196,6 @@ describe('EditionReportComponent', () => {
         }
     }
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
-
     beforeEach(async () => {
         // Mock router with spy object
         mockRouter = {
@@ -227,7 +224,6 @@ describe('EditionReportComponent', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                EditionStateService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: Router, useValue: mockRouter },
             ],
@@ -236,7 +232,11 @@ describe('EditionReportComponent', () => {
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
 
         // Service spies
         reportDataResult$ = observableOf(null);
@@ -249,8 +249,8 @@ describe('EditionReportComponent', () => {
         expectedReportFragment = 'source_A';
         expectedComplexId = 'op12';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
-        expectedOtherEditionComplex = EditionComplexesService.getEditionComplexById('op25');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedOtherEditionComplex = editionComplexesService.getEditionComplexById('op25');
         expectedNextComplexId = 'testComplex2';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);

@@ -11,7 +11,6 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { AnalyticsService } from '@awg-core/services/analytics.service';
-import { EditionInitService } from '@awg-core/services/edition-init.service';
 
 import { AppComponent } from './app.component';
 
@@ -86,14 +85,12 @@ describe('AppComponent (DONE)', () => {
     let router: Router;
 
     let mockAnalyticsService: Partial<AnalyticsService>;
-    let mockEditionInitService: Partial<EditionInitService>;
     let mockTitleService: Partial<Title>;
 
     let getTitleSpy: Spy;
     let setTitleSpy: Spy;
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
-    let initializeEditionSpy: Spy;
 
     let expectedActivateSideOutlet: boolean;
 
@@ -104,13 +101,6 @@ describe('AppComponent (DONE)', () => {
                 // Intentional empty test override
             },
             trackPageView: (): void => {
-                // Intentional empty test override
-            },
-        };
-
-        // Create a mocked EditionInitService with an `initializeEdition` spy
-        mockEditionInitService = {
-            initializeEdition: (): void => {
                 // Intentional empty test override
             },
         };
@@ -136,7 +126,6 @@ describe('AppComponent (DONE)', () => {
             ],
             providers: [
                 { provide: AnalyticsService, useValue: mockAnalyticsService },
-                { provide: EditionInitService, useValue: mockEditionInitService },
                 { provide: Title, useValue: mockTitleService },
             ],
         }).compileComponents();
@@ -154,7 +143,6 @@ describe('AppComponent (DONE)', () => {
         getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
         setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
         initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
-        initializeEditionSpy = vi.spyOn(mockEditionInitService, 'initializeEdition');
         trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
 
         // Test data
@@ -180,9 +168,6 @@ describe('AppComponent (DONE)', () => {
     it('... injected services should use provided mockValues', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
         expectToBe(analyticsService === mockAnalyticsService, true);
-
-        const editionInitService = TestBed.inject(EditionInitService);
-        expectToBe(editionInitService === mockEditionInitService, true);
 
         const titleService = TestBed.inject(Title);
         expectToBe(titleService === mockTitleService, true);
@@ -274,12 +259,6 @@ describe('AppComponent (DONE)', () => {
 
                 await fixture.ngZone.run(() => router.navigate(['/test1']));
                 expectSpyCall(trackpageViewSpy, 3, '/test1');
-            });
-        });
-
-        describe('EditionInit', () => {
-            it('... should call EditionInitService to initialize edition', () => {
-                expectSpyCall(initializeEditionSpy, 1);
             });
         });
 

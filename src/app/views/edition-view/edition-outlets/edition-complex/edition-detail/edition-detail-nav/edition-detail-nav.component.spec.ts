@@ -2,7 +2,7 @@ import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
@@ -44,28 +44,28 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionDetailNavComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
     let expectedEditionRouterLinkButtons: RouterLinkButton[];
     let expectedEditionComplex: EditionComplex;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
         expectedEditionRouterLinkButtons = getExpectedRouterLinkButtons(expectedEditionComplex);
 
         // Create component fixture
@@ -119,7 +119,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         });
 
         it('... should have re-computed signal `editionRouterLinkButtons` when complex changes', () => {
-            const newComplex = EditionComplexesService.getEditionComplexById('op25');
+            const newComplex = editionComplexesService.getEditionComplexById('op25');
             const newExpectedButtons = getExpectedRouterLinkButtons(newComplex);
 
             editionStateService.updateSelectedEditionComplex(newComplex);

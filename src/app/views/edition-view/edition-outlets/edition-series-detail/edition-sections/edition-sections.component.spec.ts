@@ -1,7 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -15,7 +15,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionsComponent } from './edition-sections.component';
 
@@ -24,28 +24,27 @@ describe('EditionSectionsComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionsComponent>;
     let compDe: DebugElement;
 
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let expectedSelectedSeries: EditionOutlineSeries;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [EditionSectionsComponent, RouterLinkStubDirective],
-            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
+        // Init edition data
+        editionOutlineService.initializeEditionOutline();
+
         // Test data
-        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
+        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionsComponent);

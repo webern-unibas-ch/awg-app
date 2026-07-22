@@ -1,7 +1,7 @@
 import { Component, DebugElement, Input, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -64,16 +64,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
     let fixture: ComponentFixture<EditionSectionDetailOverviewComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let expectedEditionData: { series: EditionOutlineSeries; section: EditionOutlineSection };
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -85,16 +82,21 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 EditionSectionDetailPlaceholderStubComponent,
                 RouterLinkStubDirective,
             ],
-            providers: [EditionStateService],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
         // Test data
-        expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
+        expectedSelectedSeries = structuredClone(editionOutlineService.editionOutline()[0]);
         expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
         expectedEditionData = { series: expectedSelectedSeries, section: expectedSelectedSection };
 

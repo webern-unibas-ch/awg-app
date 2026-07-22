@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import type { Mock } from 'vitest';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { firstValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -145,7 +145,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
-    let editionStateService: Partial<EditionStateService>;
+    let editionComplexesService: EditionComplexesService;
+    let editionStateService: EditionStateService;
 
     let editionDataServiceGetEditionSheetsDataSpy: Spy;
     let editionSheetsServiceFindTextcriticsSpy: Spy;
@@ -182,10 +183,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedSheetId: string;
     let expectedReportFragment: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
 
     beforeEach(async () => {
         // Mock router with spy object
@@ -236,7 +233,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                EditionStateService,
                 { provide: LoadingService, useValue: mockLoadingService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -254,7 +250,11 @@ describe('EditionSheetsComponent (DONE)', () => {
         mockIsLoadingSignal.set(false);
 
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
 
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
@@ -263,7 +263,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         expectedComplexId = 'op12';
         expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';

@@ -45,7 +45,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             declarations: [EditionRowTablesComponent, RouterLinkStubDirective],
-            providers: [EditionStateService, { provide: EditionDataService, useValue: mockEditionDataService }],
+            providers: [{ provide: EditionDataService, useValue: mockEditionDataService }],
         }).compileComponents();
     });
 

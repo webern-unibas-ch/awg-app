@@ -9,7 +9,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, of as observableOf } from 'rxjs';
@@ -47,6 +47,10 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
 import { EditionDataService } from './edition-data.service';
 
 describe('EditionDataService (DONE)', () => {
+    let httpClient: HttpClient;
+    let httpTestingController: HttpTestingController;
+
+    let editionComplexesService: EditionComplexesService;
     let editionDataService: EditionDataService;
 
     let consoleSpy: Spy;
@@ -62,9 +66,6 @@ describe('EditionDataService (DONE)', () => {
     let getSourceEvaluationListDataSpy: Spy;
     let getSvgSheetsDataSpy: Spy;
     let getTextcriticsListDataSpy: Spy;
-
-    let httpClient: HttpClient;
-    let httpTestingController: HttpTestingController;
 
     let expectedPrefaceData: PrefaceList;
     let expectedRowTablesData: EditionRowTablesList;
@@ -92,10 +93,6 @@ describe('EditionDataService (DONE)', () => {
     const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const files = EDITION_ASSETS_DATA.FILES;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [],
@@ -103,12 +100,16 @@ describe('EditionDataService (DONE)', () => {
         });
 
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionDataService = TestBed.inject(EditionDataService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
         expectedSeriesRoute = expectedEditionComplex.pubStatement.series.route;
         expectedSectionRoute = expectedEditionComplex.pubStatement.section.route;
         expectedIntroRoute =

@@ -1,7 +1,7 @@
 import { Component, DebugElement, input, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -25,14 +25,12 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     let fixture: ComponentFixture<EditionSectionDetailPlaceholderComponent>;
     let compDe: DebugElement;
 
+    let editionOutlineService: EditionOutlineService;
+
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSelectedSection: EditionOutlineSection;
 
     let expectedInfoMessage: string;
-
-    beforeAll(() => {
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -42,17 +40,24 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionOutlineService = TestBed.inject(EditionOutlineService);
+
+        // Init edition data
+        editionOutlineService.initializeEditionOutline();
 
         // Test data
-        expectedSelectedSeries = structuredClone(EditionOutlineService.getEditionOutline()[0]);
+        expectedSelectedSeries = structuredClone(editionOutlineService.editionOutline()[0]);
         expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
 
         const series = expectedSelectedSeries.series.short;
         const section = expectedSelectedSection.section.short;
         expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {

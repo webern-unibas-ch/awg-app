@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -28,6 +28,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceEvaluationComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
     let mockDocument: Document;
 
     let expectedEditionComplex: EditionComplex;
@@ -48,10 +49,6 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
 
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-    });
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
@@ -59,12 +56,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SourceEvaluationComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        mockDocument = TestBed.inject(DOCUMENT);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
 
         // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
+        expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -74,9 +74,12 @@ describe('SourceEvaluationComponent (DONE)', () => {
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
         expectedSourceEvaluationListEmptyData = structuredClone(mockEditionData.mockSourceEvaluationListEmptyData);
 
-        mockDocument = TestBed.inject(DOCUMENT);
+        // Create component fixture
+        fixture = TestBed.createComponent(SourceEvaluationComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
 
-        // Spies
+        // Component spies
         navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
         navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
         openModalSpy = vi.spyOn(component, 'openModal');

@@ -2,7 +2,7 @@ import { Component, DebugElement, input, isSignal, model } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -76,6 +76,8 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
 
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let router: Router;
 
     let expectedHomeViewId: string;
@@ -86,11 +88,6 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedSectionLinksData: EditionSectionLink[];
 
     let expectedRouterLinks: string[][];
-
-    beforeAll(() => {
-        EditionComplexesService.initializeEditionComplexesList();
-        EditionOutlineService.initializeEditionOutline();
-    });
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -115,7 +112,13 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
+        editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         router = TestBed.inject(Router);
+
+        // Init edition data
+        editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
 
         // Test data
         expectedHomeViewId = 'awg-home-view-heading';
@@ -127,8 +130,8 @@ describe('HomeViewComponent (DONE)', () => {
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
         const expectedSections = [
-            EditionOutlineService.getEditionSectionById('1', '5'),
-            EditionOutlineService.getEditionSectionById('2', '2a'),
+            editionOutlineService.getEditionSectionById('1', '5'),
+            editionOutlineService.getEditionSectionById('2', '2a'),
         ];
         expectedSectionLinksData = [
             {

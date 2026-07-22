@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -19,7 +19,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockActivatedRoute: ActivatedRouteStub;
-    let mockEditionStateService: Partial<EditionStateService>;
+    let editionOutlineService: EditionOutlineService;
+    let editionStateService: EditionStateService;
 
     let updateSeriesFromRouteSpy: Spy;
     let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
@@ -28,44 +29,42 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     let expectedSelectedSeries: EditionOutlineSeries;
     let expectedSeriesId: string;
 
-    beforeAll(() => {
-        EditionOutlineService.initializeEditionOutline();
-    });
-
     beforeEach(async () => {
-        // Mock edition state service
-        mockEditionStateService = {
-            updateSelectedEditionSeries: (): void => {},
-        };
-
         // Mocked activated route
         mockActivatedRoute = new ActivatedRouteStub();
 
         await TestBed.configureTestingModule({
             declarations: [EditionSeriesDetailComponent, RouterOutletStubComponent],
-            providers: [
-                { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: EditionStateService, useValue: mockEditionStateService },
-            ],
+            providers: [{ provide: ActivatedRoute, useValue: mockActivatedRoute }],
         }).compileComponents();
     });
 
     beforeEach(() => {
+        // Inject services
+        editionOutlineService = TestBed.inject(EditionOutlineService);
+        editionStateService = TestBed.inject(EditionStateService);
+
+        // Init edition data
+        editionOutlineService.initializeEditionOutline();
+
+        // Srvice spies
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
+        editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
+            editionStateService,
+            'updateSelectedEditionSeries'
+        );
+
+        // Test data
+        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
+        expectedSeriesId = expectedSelectedSeries.series.route;
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionSeriesDetailComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // Test data
-        expectedSelectedSeries = EditionOutlineService.getEditionOutline()[0];
-        expectedSeriesId = expectedSelectedSeries.series.route;
-
-        // Spies
+        // Component spies
         updateSeriesFromRouteSpy = vi.spyOn(component, 'updateSeriesFromRoute');
-        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(EditionOutlineService, 'getEditionSeriesById');
-        editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
-            mockEditionStateService,
-            'updateSelectedEditionSeries'
-        );
     });
 
     afterEach(() => {
