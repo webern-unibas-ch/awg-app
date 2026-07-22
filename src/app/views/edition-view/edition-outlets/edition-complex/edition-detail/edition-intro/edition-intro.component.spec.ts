@@ -2373,6 +2373,16 @@ describe('IntroComponent (DONE)', () => {
                     expectToEqual(editionStateService.selectedEditionSection(), expectedSelectedEditionSection);
                 });
 
+                it('... should trigger and update `selectedEditionSeries` and `selectedEditionSection` in EditionStateService to null if series or section is not found', () => {
+                    const seriesNumber = '999';
+                    const sectionNumber = '999';
+
+                    (component as any)._updateEditionState(seriesNumber, sectionNumber);
+
+                    expectToEqual(editionStateService.selectedEditionSeries(), null);
+                    expectToEqual(editionStateService.selectedEditionSection(), null);
+                });
+
                 it('... should trigger and update `isIntroView = true` in EditionStateService', () => {
                     const seriesNumber = '1';
                     const sectionNumber = '5';

@@ -144,6 +144,21 @@ describe('EditionInfoComponent (DONE)', () => {
             expectToEqual(component.sectionsData(), expectedSections);
         });
 
+        it('... should filter out undefined sections from signal `sectionsData`', () => {
+            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+
+            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+
+            const freshFixture = TestBed.createComponent(EditionInfoComponent);
+            const freshComponent = freshFixture.componentInstance;
+
+            const result = freshComponent.sectionsData();
+
+            expectToNotContain(result, undefined);
+            expectToBe(result.length, expectedSections.length - 1);
+            expectToEqual(result[0], expectedSections[1]);
+        });
+
         describe('VIEW', () => {
             it('... should contain 1 div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);

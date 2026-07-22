@@ -10,7 +10,7 @@ import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scr
 
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionSectionLink } from '@awg-views/edition-view/models';
+import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
@@ -86,14 +86,15 @@ export class HomeViewComponent {
      * Readonly signal: sectionLinksData.
      *
      * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out, all other sections are mapped to EditionSectionLinks.
      */
     readonly sectionLinksData = signal<EditionSectionLink[]>(
-        ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
-            return new EditionSectionLink(section, index, array.length);
-        })
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        )
+            .filter((section): section is EditionOutlineSection => section !== undefined)
+            .map((section, index, array) => new EditionSectionLink(section, index, array.length))
     ).asReadonly();
-
     /**
      * Readonly signal: rowtablesRoute.
      *

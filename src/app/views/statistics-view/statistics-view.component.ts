@@ -47,7 +47,7 @@ export class StatisticsViewComponent {
      *
      * It keeps the instance of the injected StatisticsService.
      */
-    private _statisticsService = inject(StatisticsService);
+    private readonly _statisticsService = inject(StatisticsService);
 
     /**
      * Readonly computed signal: statisticsData.

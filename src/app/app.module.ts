@@ -44,10 +44,9 @@ registerLocaleData(localeDeDE);
         Title,
         {
             provide: APP_INITIALIZER,
-            useFactory: (
-                editionOutlineService: EditionOutlineService,
-                editionComplexesService: EditionComplexesService
-            ) => () => {
+            useFactory:
+                (editionOutlineService: EditionOutlineService, editionComplexesService: EditionComplexesService) =>
+                () => {
                     editionComplexesService.initializeEditionComplexesList();
                     editionOutlineService.initializeEditionOutline();
                 },

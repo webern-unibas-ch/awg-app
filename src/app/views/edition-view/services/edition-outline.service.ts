@@ -69,8 +69,7 @@ export class EditionOutlineService {
      * It finds a series of the edition by a given id.
      *
      * @param {string} seriesId The given series id.
-     *
-     * @returns {EditionOutlineSeries} The found edition series.
+     * @returns {EditionOutlineSeries | undefined} The found edition series, otherwise undefined.
      */
     getEditionSeriesById(seriesId: string): EditionOutlineSeries | undefined {
         return this.editionOutline().find(series => series.series.route === seriesId);
@@ -83,8 +82,7 @@ export class EditionOutlineService {
      *
      * @param {string} seriesId The given series id.
      * @param {string} sectionId The given series id.
-     *
-     * @returns {EditionOutlineSection} The found edition section.
+     * @returns {EditionOutlineSection | undefined} The found edition section, otherwise undefined.
      */
     getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection | undefined {
         const series = this.getEditionSeriesById(seriesId);

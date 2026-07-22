@@ -312,7 +312,7 @@ export class EditionOutline {
      */
     constructor(
         outlineData: EditionOutlineSeriesJsonData[] | null | undefined,
-        getComplexById?: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined
     ) {
         if (!outlineData) {
             this.outline = [];
@@ -336,7 +336,7 @@ export class EditionOutline {
      */
     private readonly _mapSeries = (
         { series, sections }: EditionOutlineSeriesJsonData,
-        getComplexById?: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined
     ): EditionOutlineSeries => {
         const seriesConstant: EditionRouteConstant = EDITION_ROUTE_CONSTANTS['SERIES_' + series];
         return {
@@ -361,7 +361,7 @@ export class EditionOutline {
     private readonly _mapSection = (
         { section, disabled, content }: EditionOutlineSectionsJsonData,
         seriesConstant: EditionRouteConstant,
-        getComplexById?: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined
     ): EditionOutlineSection => {
         const routes = EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant =
@@ -405,7 +405,7 @@ export class EditionOutline {
     private readonly _mapSectionContent = (
         content: EditionOutlineSectionsContentJsonData,
         labeledIntroRoute: LabeledRoute,
-        getComplexById?: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined
     ): EditionOutlineSectionContent => {
         const opus = this._mapComplexItems(content.complexTypes.opus, getComplexById);
         const mnr = this._mapComplexItems(content.complexTypes.mnr, getComplexById);
@@ -437,7 +437,7 @@ export class EditionOutline {
      */
     private readonly _mapComplexItems = (
         complexItems: { complex: string; disabled: boolean }[],
-        getComplexById?: (id: string) => EditionComplex | undefined
+        getComplexById: (id: string) => EditionComplex | undefined
     ): EditionOutlineComplexItem[] =>
         complexItems
             .map(({ complex, disabled }) => {

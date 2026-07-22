@@ -54,6 +54,9 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
             'updateSelectedEditionSeries'
         );
 
+        // Prototype spies (to catch calls in constructor)
+        updateSeriesFromRouteSpy = vi.spyOn(EditionSeriesDetailComponent.prototype, 'updateSeriesFromRoute');
+
         // Test data
         expectedSelectedSeries = editionOutlineService.editionOutline()[0];
         expectedSeriesId = expectedSelectedSeries.series.route;
@@ -62,9 +65,6 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionSeriesDetailComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Component spies
-        updateSeriesFromRouteSpy = vi.spyOn(component, 'updateSeriesFromRoute');
     });
 
     afterEach(() => {
@@ -76,8 +76,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have called `updateSeriesFromRoute` method', () => {
-            expectSpyCall(updateSeriesFromRouteSpy, 0);
+        it('... should have triggered method `updateSeriesFromRoute`', () => {
+            expectSpyCall(updateSeriesFromRouteSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -89,15 +89,11 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set route params via ActivatedRoute mock
-            mockActivatedRoute.testParamMap = { id: expectedSeriesId };
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('seriesId', expectedSeriesId);
 
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have called `updateSeriesFromRoute` method', () => {
-            expectSpyCall(updateSeriesFromRouteSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -114,17 +110,50 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
             it('... should call EditionOutlineService.getEditionSeriesById', () => {
                 expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, expectedSeriesId);
 
-                component.updateSeriesFromRoute();
+                const newSeriesId = 'another-series-id';
+                fixture.componentRef.setInput('seriesId', newSeriesId);
 
-                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, expectedSeriesId);
+                fixture.detectChanges();
+
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, newSeriesId);
             });
 
-            it('... should call editionStateService.updateSelectedEditionSeries with selectedSeries', () => {
+            it('... should update the selected edition series in the state service', () => {
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, expectedSelectedSeries);
 
-                component.updateSeriesFromRoute();
+                const newSeries = editionOutlineService.editionOutline()[1];
+                const newSeriesId = newSeries.series.route;
+                fixture.componentRef.setInput('seriesId', newSeriesId);
 
-                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, expectedSelectedSeries);
+                fixture.detectChanges();
+
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, newSeries);
+            });
+
+            describe('... should update selected series to null if ', () => {
+                beforeEach(() => {
+                    // Reset spies
+                    editionOutlineServiceGetEditionSeriesByIdSpy.mockClear();
+                    editionStateServiceUpdateSelectedEditionSeriesSpy.mockClear();
+                });
+
+                it('... param `id` is missing', () => {
+                    fixture.componentRef.setInput('seriesId', null);
+
+                    fixture.detectChanges();
+
+                    expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 0);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, null);
+                });
+
+                it('... series is missing (undefined)', () => {
+                    fixture.componentRef.setInput('seriesId', 'invalid-id');
+
+                    fixture.detectChanges();
+
+                    expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, 'invalid-id');
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, null);
+                });
             });
         });
     });

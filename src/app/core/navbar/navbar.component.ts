@@ -8,7 +8,7 @@ import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
-import { EditionSectionLink } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
@@ -79,15 +79,15 @@ export class NavbarComponent {
     readonly isCollapsed = signal(true);
 
     /**
-     * Readonly signal: sectionLinksData.
+     * Readonly signal: sectionsData.
      *
      * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out.
      */
-    readonly sectionLinksData = signal(
-        ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
-            return new EditionSectionLink(section, index, array.length);
-        })
+    readonly sectionsData = signal(
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        ).filter((section): section is EditionOutlineSection => section !== undefined)
     ).asReadonly();
 
     /**

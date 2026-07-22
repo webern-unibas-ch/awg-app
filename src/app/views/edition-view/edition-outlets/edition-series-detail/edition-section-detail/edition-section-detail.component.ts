@@ -64,7 +64,13 @@ export class EditionSectionDetailComponent {
             }
 
             const seriesId = series.series?.route;
-            const selectedSection = this._editionOutlineService.getEditionSectionById(seriesId, currentSectionId);
+            if (!seriesId) {
+                this._editionStateService.updateSelectedEditionSection(null);
+                return;
+            }
+
+            const selectedSection =
+                this._editionOutlineService.getEditionSectionById(seriesId, currentSectionId) ?? null;
 
             this._editionStateService.updateSelectedEditionSection(selectedSection);
         });

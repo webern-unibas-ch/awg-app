@@ -13,6 +13,7 @@ import {
     expectToBe,
     expectToContain,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -22,9 +23,8 @@ import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { Logo, Logos } from '@awg-shared/logos/logos.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
-import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
-import { EditionSectionLink } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
@@ -73,7 +73,7 @@ describe('NavbarComponent (DONE)', () => {
     let toggleNavSpy: Spy;
 
     let expectedLogosData: Logos;
-    let expectedSectionLinksData: EditionSectionLink[];
+    let expectedSections: EditionOutlineSection[];
     let expectedNavbarItems: NavbarItems;
     let expectedGeneralEditionLinks: LabeledRoute[];
     let expectedSectionEditionLinks: LabeledRoute[];
@@ -111,10 +111,11 @@ describe('NavbarComponent (DONE)', () => {
         expectedNavbarItems = NAVBAR_ITEMS;
         expectedGeneralEditionLinks = EDITION_GENERAL_LINKS;
         expectedSectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
-        expectedSectionLinksData = ACTIVE_EDITION_SECTION_IDS.map((ids, index, array) => {
-            const section = editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId);
-            return new EditionSectionLink(section, index, array.length);
-        });
+        expectedSections = [
+            editionOutlineService.getEditionSectionById('1', '5'),
+            editionOutlineService.getEditionSectionById('2', '2a'),
+        ];
+
         expectedLogosData = LOGOS_DATA;
 
         // Create component fixture
@@ -157,8 +158,23 @@ describe('NavbarComponent (DONE)', () => {
             expectToBe(component.isCollapsed(), true);
         });
 
-        it('... should have signal `sectionLinksData` to hold the provided data', () => {
-            expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
+        it('... should have signal `sectionsData` to hold the expected sections', () => {
+            expectToEqual(component.sectionsData(), expectedSections);
+        });
+
+        it('... should filter out undefined sections from signal `sectionsData`', () => {
+            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+
+            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+
+            const freshFixture = TestBed.createComponent(NavbarComponent);
+            const freshComponent = freshFixture.componentInstance;
+
+            const result = freshComponent.sectionsData();
+
+            expectToNotContain(result, undefined);
+            expectToBe(result.length, expectedSections.length - 1);
+            expectToEqual(result[0], expectedSections[1]);
         });
 
         it('... should have signal `isEditionRouteActive` to hold false', () => {
@@ -401,8 +417,8 @@ describe('NavbarComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(
                         dropdownDes[0],
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedSectionLinksData.length,
-                        expectedSectionLinksData.length
+                        expectedSections.length,
+                        expectedSections.length
                     );
                 });
 
@@ -410,8 +426,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedSectionLinksData.length,
-                        expectedSectionLinksData.length
+                        expectedSections.length,
+                        expectedSections.length
                     );
 
                     sectionsDes.forEach(sectionDe => {
@@ -423,8 +439,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedSectionLinksData.length,
-                        expectedSectionLinksData.length
+                        expectedSections.length,
+                        expectedSections.length
                     );
 
                     sectionsDes.forEach((sectionDe, index) => {
@@ -434,10 +450,10 @@ describe('NavbarComponent (DONE)', () => {
                         const headingSpanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
                         const headingSpanEl: HTMLSpanElement = headingSpanDes[0].nativeElement;
 
-                        const expectedSection = component.sectionLinksData()[index];
+                        const expectedSection = component.sectionsData()[index];
 
-                        const headingSiglum = expectedSection.shortTitle;
-                        const headingId = expectedSection.fullTitle;
+                        const headingSiglum = expectedSection.labeledRoute.label;
+                        const headingId = expectedSection.section.full;
 
                         expectToContain(hEl.textContent, headingSiglum);
                         expectToBe(headingSpanEl.innerHTML.trim(), headingId.trim());
@@ -448,8 +464,8 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedSectionLinksData.length,
-                        expectedSectionLinksData.length
+                        expectedSections.length,
+                        expectedSections.length
                     );
 
                     sectionsDes.forEach(sectionDe => {
@@ -466,12 +482,12 @@ describe('NavbarComponent (DONE)', () => {
                     const sectionsDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > div.awg-dropdown-sections',
-                        expectedSectionLinksData.length,
-                        expectedSectionLinksData.length
+                        expectedSections.length,
+                        expectedSections.length
                     );
 
                     sectionsDes.forEach((sectionDe, sectionIndex) => {
-                        const section = expectedSectionLinksData[sectionIndex];
+                        const section = expectedSections[sectionIndex];
                         const dropdownLinkDes = getAndExpectDebugElementByDirective(
                             sectionDe,
                             NavbarDropdownLinkStubComponent,
@@ -485,7 +501,7 @@ describe('NavbarComponent (DONE)', () => {
                                 NavbarDropdownLinkStubComponent
                             ) as NavbarDropdownLinkStubComponent;
 
-                            const expectedRoute = [...section.route, ...link.route];
+                            const expectedRoute = [...section.labeledRoute.route, ...link.route];
 
                             expectToBe(dropdownLinkCmp.label(), link.label);
                             expectToEqual(dropdownLinkCmp.route(), expectedRoute);

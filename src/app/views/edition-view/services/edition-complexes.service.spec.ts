@@ -118,12 +118,11 @@ describe('EditionComplexesService (DONE)', () => {
     });
 
     describe('#getEditionComplexById()', () => {
-        it('... should have a method `getEditionComplexById`', () => {
-            expect(service.getEditionComplexById).toBeDefined();
-        });
+        let testComplexId: string;
+        let testComplex: EditionComplex;
 
-        it('... should return the correct edition complex by ID', () => {
-            const testComplex = new EditionComplex(
+        beforeEach(() => {
+            testComplex = new EditionComplex(
                 {
                     title: 'Test Opus Complex',
                     catalogueType: 'OPUS',
@@ -135,10 +134,21 @@ describe('EditionComplexesService (DONE)', () => {
                 },
                 { series: '1', section: '5' }
             );
-            const testComplexId = 'op100';
+            testComplexId = 'op100';
             const expectedList = { [testComplexId]: testComplex };
             service.setEditionComplexesList(expectedList);
+        });
+        it('... should have a method `getEditionComplexById`', () => {
+            expect(service.getEditionComplexById).toBeDefined();
+        });
 
+        it('... should return undefined for an unknown edition complex ID', () => {
+            const complex = service.getEditionComplexById('op101');
+
+            expect(complex).toBeUndefined();
+        });
+
+        it('... should return the correct edition complex by ID', () => {
             const complex = service.getEditionComplexById(testComplexId);
 
             expect(complex).toBeTruthy();
@@ -146,22 +156,6 @@ describe('EditionComplexesService (DONE)', () => {
         });
 
         it('... should return the correct edition complex by ID in a case-insensitive way', () => {
-            const testComplex = new EditionComplex(
-                {
-                    title: 'Test Opus Complex',
-                    catalogueType: 'OPUS',
-                    catalogueNumber: '100',
-                },
-                {
-                    editors: [],
-                    lastModified: '---',
-                },
-                { series: '1', section: '5' }
-            );
-            const testComplexId = 'op100';
-            const expectedList = { [testComplexId]: testComplex };
-            service.setEditionComplexesList(expectedList);
-
             const complex = service.getEditionComplexById(testComplexId.toUpperCase());
 
             expect(complex).toBeTruthy();

@@ -41,7 +41,7 @@ const EDITION_VIEW_ROUTES: Routes = [
             },
             {
                 // Series by id (I, II, III).
-                path: 'series/:id',
+                path: 'series/:seriesId',
                 component: EditionSeriesDetailComponent,
                 children: [
                     {

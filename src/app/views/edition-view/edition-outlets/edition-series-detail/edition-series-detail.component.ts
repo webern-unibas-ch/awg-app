@@ -1,6 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, effect, inject, input } from '@angular/core';
 
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -16,7 +14,7 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     styleUrls: ['./edition-series-detail.component.scss'],
     standalone: false,
 })
-export class EditionSeriesDetailComponent implements OnInit, OnDestroy {
+export class EditionSeriesDetailComponent {
     /**
      * Private readonly injection variable: _editionOutlineService.
      *
@@ -32,26 +30,19 @@ export class EditionSeriesDetailComponent implements OnInit, OnDestroy {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _route.
+     * Input signal: seriesId.
      *
-     * It keeps the instance of the injected Angular ActivatedRoute.
+     * It holds the route param id of the edition series (automatically bound by the router).
      */
-    private readonly _route = inject(ActivatedRoute);
+    seriesId = input<string | null>(null);
 
     /**
-     * Private readonly variable: _destroyed$.
+     * Constructor of the EditionSeriesDetailComponent.
      *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
+     * It calls a method to update the edition series from the route.
      *
-     * It calls the containing methods
-     * when initializing the component.
      */
-    ngOnInit() {
+    constructor() {
         this.updateSeriesFromRoute();
     }
 
@@ -64,28 +55,16 @@ export class EditionSeriesDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Updates the edition series.
      */
     updateSeriesFromRoute(): void {
-        this._route.paramMap.pipe(takeUntil(this._destroyed$)).subscribe({
-            next: paramMap => {
-                const id = paramMap.get('id');
-                const selectedSeries = this._editionOutlineService.getEditionSeriesById(id);
-                this._editionStateService.updateSelectedEditionSeries(selectedSeries);
-            },
+        effect(() => {
+            const currentSeriesId = this.seriesId();
+
+            if (!currentSeriesId) {
+                this._editionStateService.updateSelectedEditionSeries(null);
+                return;
+            }
+
+            const selectedSeries = this._editionOutlineService.getEditionSeriesById(currentSeriesId) ?? null;
+            this._editionStateService.updateSelectedEditionSeries(selectedSeries);
         });
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
-
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
     }
 }

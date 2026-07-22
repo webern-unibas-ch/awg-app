@@ -5,6 +5,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -58,10 +59,11 @@ export class EditionInfoComponent {
      * Readonly signal: sectionsData.
      *
      * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out.
      */
     readonly sectionsData = signal(
         ACTIVE_EDITION_SECTION_IDS.map(ids =>
             this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
-        )
+        ).filter((section): section is EditionOutlineSection => section !== undefined)
     ).asReadonly();
 }

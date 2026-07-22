@@ -66,9 +66,6 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionSectionDetailComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Component spies
-        updateSectionFromRouteSpy = vi.spyOn(component, 'updateSectionFromRoute');
     });
 
     afterEach(() => {
@@ -127,32 +124,62 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expect(component.updateSectionFromRoute).toBeDefined();
             });
 
-            it('... should do nothing if no series is selected', async () => {
+            it('... should do nothing if no series is selected', () => {
                 expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 0);
 
                 editionStateService.updateSelectedEditionSeries(null); // Triggers one call to section update with null
 
-                await fixture.whenStable();
+                fixture.detectChanges();
 
                 expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
             });
 
-            it('... should call EditionOutlineService.getEditionSectionById via internal effect', async () => {
+            it('... should call EditionOutlineService.getEditionSectionById', () => {
                 editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
-                await fixture.whenStable();
+                fixture.detectChanges();
 
                 expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, [expectedSeriesId, expectedSectionId]);
             });
 
-            it('... should update the selected edition section in the state service via internal effect', async () => {
+            it('... should update the selected edition section in the state service', () => {
                 editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
 
-                await fixture.whenStable();
+                fixture.detectChanges();
 
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSelectedSection);
+            });
+
+            describe('... should update selected section to null if ', () => {
+                it('... `series.series.route` is missing', () => {
+                    const mockSeriesWithRoute = {
+                        series: {
+                            short: 'series-1',
+                            route: undefined,
+                        },
+                        sections: [],
+                    } as EditionOutlineSeries;
+
+                    editionStateService.updateSelectedEditionSeries(mockSeriesWithRoute);
+
+                    fixture.detectChanges();
+
+                    expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                });
+
+                it('... section is missing (undefined)', () => {
+                    const mockSeries = { series: { route: 'series-1' }, sections: [] } as EditionOutlineSeries;
+                    editionStateService.updateSelectedEditionSeries(mockSeries);
+                    fixture.componentRef.setInput('sectionId', 'sec-999');
+
+                    fixture.detectChanges();
+
+                    expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, ['series-1', 'sec-999']);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                });
             });
         });
     });

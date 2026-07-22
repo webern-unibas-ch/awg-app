@@ -88,11 +88,13 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
             if (UTILS.isEmptyObject(complex)) {
                 this._editionStateService.updateSelectedEditionSeries(null);
             } else {
-                const series = this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route);
-                const section = this._editionOutlineService.getEditionSectionById(
-                    complex.pubStatement.series.route,
-                    complex.pubStatement.section.route
-                );
+                const series =
+                    this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route) ?? null;
+                const section =
+                    this._editionOutlineService.getEditionSectionById(
+                        complex.pubStatement.series.route,
+                        complex.pubStatement.section.route
+                    ) ?? null;
 
                 this._editionStateService.updateSelectedEditionSeries(series);
                 this._editionStateService.updateSelectedEditionSection(section);

@@ -455,8 +455,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Updates the selected edition series, section, and introView.
      */
     private _updateEditionState(seriesId: string, sectionId: string): void {
-        const series: EditionOutlineSeries = this._editionOutlineService.getEditionSeriesById(seriesId);
-        const section: EditionOutlineSection = this._editionOutlineService.getEditionSectionById(seriesId, sectionId);
+        const series: EditionOutlineSeries = this._editionOutlineService.getEditionSeriesById(seriesId) ?? null;
+        const section: EditionOutlineSection =
+            this._editionOutlineService.getEditionSectionById(seriesId, sectionId) ?? null;
 
         this._editionStateService.updateSelectedEditionSeries(series);
         this._editionStateService.updateSelectedEditionSection(section);

@@ -8,6 +8,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
+    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -85,6 +86,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedDisclaimerMessage: string;
     let expectedHomeViewCardData: HomeViewCard[];
     let expectedPageMetaData: MetaPage;
+    let expectedSections: EditionOutlineSection[];
     let expectedSectionLinksData: EditionSectionLink[];
 
     let expectedRouterLinks: string[][];
@@ -129,7 +131,7 @@ describe('HomeViewComponent (DONE)', () => {
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        const expectedSections = [
+        expectedSections = [
             editionOutlineService.getEditionSectionById('1', '5'),
             editionOutlineService.getEditionSectionById('2', '2a'),
         ];
@@ -181,6 +183,21 @@ describe('HomeViewComponent (DONE)', () => {
             expectToBe(isSignal(component.sectionLinksData), true);
 
             expectToEqual(component.sectionLinksData(), expectedSectionLinksData);
+        });
+
+        it('... should filter out undefined sections in signal `sectionLinksData`', () => {
+            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+
+            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+
+            const freshFixture = TestBed.createComponent(HomeViewComponent);
+            const freshComponent = freshFixture.componentInstance;
+
+            const result = freshComponent.sectionLinksData();
+
+            expectToNotContain(result, undefined);
+            expectToBe(result.length, expectedSectionLinksData.length - 1);
+            expectToEqual(result[0], expectedSectionLinksData[1]);
         });
 
         it('... should have signal `rowtablesRoute` to hold the provided route', () => {
