@@ -18,7 +18,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionRowTablesList } from '@awg-views/edition-view/models';
+import { RowTablesList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { mockEditionData } from '@testing/mock-data';
@@ -35,12 +35,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let editionStateService: EditionStateService;
     let mockEditionDataService: Partial<EditionDataService>;
 
-    let expectedRowTablesData: EditionRowTablesList;
+    let expectedRowTablesData: RowTablesList;
 
     beforeEach(async () => {
         // Mock edition data service
         mockEditionDataService = {
-            getEditionRowTablesData: (): Observable<EditionRowTablesList> => observableOf(expectedRowTablesData),
+            getEditionRowTablesData: (): Observable<RowTablesList> => observableOf(expectedRowTablesData),
         };
 
         await TestBed.configureTestingModule({

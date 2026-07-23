@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
 
@@ -18,7 +17,7 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionPrefaceComponent implements OnInit, OnDestroy {
+export class EditionPrefaceComponent {
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -71,26 +70,22 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      *
      * It holds the loaded preface data or null initially.
      */
-    readonly prefaceData = toSignal(this._editionDataService.getEditionPrefaceData(), { initialValue: null });
+    readonly prefaceData = this._editionDataService.prefaceData;
 
     /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It declares the self-referring ref variable needed for CompileHtml library.
+     * It updates the edition state to indicate if the preface view is active
+     * and declares the self-referring ref variable needed for CompileHtml library.
      *
      */
     constructor() {
-        this.ref = this;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {
         this._editionStateService.updateIsPrefaceView(true);
+        this.ref = this;
+
+        inject(DestroyRef).onDestroy(() => {
+            this._editionStateService.updateIsPrefaceView(false);
+        });
     }
 
     /**
@@ -116,17 +111,5 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      */
     setLanguage(language: number): void {
         this.currentLanguage = language;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        this._editionStateService.updateIsPrefaceView(false);
     }
 }

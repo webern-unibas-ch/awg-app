@@ -4,9 +4,9 @@
     <awg-modal #modal />
 
     <!-- graph -->
-    @if (editionGraphData(); as editionGraphData) {
+    @if (graphData(); as data) {
         <div class="awg-edition-graph-view p-5 border rounded-3">
-            @for (graph of editionGraphData.graph; track graph.id) {
+            @for (graph of data.graph; track graph.id) {
                 <div>
                     <!-- graph description -->
                     <div class="awg-graph-description">
@@ -80,13 +80,9 @@
                 </div>
             }
         </div>
+    } @else if (errorObject(); as errorObject) {
+        <awg-alert-error [errorObject]="errorObject" />
     } @else {
-        <!-- error message -->
-        @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <!-- loading spinner -->
-            <awg-twelve-tone-spinner />
-        }
+        <awg-twelve-tone-spinner />
     }
 </div>

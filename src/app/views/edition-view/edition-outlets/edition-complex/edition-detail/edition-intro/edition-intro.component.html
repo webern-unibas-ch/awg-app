@@ -4,19 +4,22 @@
     <awg-modal #modal />
 
     <!-- intro -->
-    @if (editionIntroData(); as editionIntroData) {
+    @if (isIntroDataLoaded()) {
+        @let complex = selectedEditionComplex();
+        @let data = introData();
+
         <div class="awg-edition-intro-view p-5 border rounded-3">
             <div class="row justify-content-center">
-                @if (UTILS.isEmptyArray(editionIntroData?.intro?.[currentLanguage]?.content)) {
+                @if (UTILS.isEmptyArray(data?.intro?.[currentLanguage]?.content)) {
                     <awg-edition-intro-placeholder
                         class="col-12"
-                        [editionComplex]="editionComplex"
+                        [editionComplex]="complex"
                         [editionLabel]="editionRouteConstants.EDITION.short" />
                 } @else {
-                    @if (editionComplex) {
+                    @if (complex) {
                         <awg-edition-intro-partial-disclaimer
                             class="col-12 col-xl-6"
-                            [editionComplex]="editionComplex"
+                            [editionComplex]="complex"
                             [editionLabel]="editionRouteConstants.EDITION.short"
                             [editionRoute]="editionRouteConstants.EDITION.route"
                             [seriesRoute]="editionRouteConstants.SERIES.route"
@@ -25,7 +28,7 @@
                     }
                     <awg-edition-intro-content
                         class="col-12 col-xl-10"
-                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
+                        [introBlockContent]="data.intro[currentLanguage].content"
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
                         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
@@ -34,20 +37,16 @@
 
                     <awg-edition-intro-nav
                         class="col-12 col-xl-2 d-none d-xl-block"
-                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
+                        [introBlockContent]="data.intro[currentLanguage].content"
                         [notesLabel]="notesLabels.get(currentLanguage)"
                         [currentLanguage]="currentLanguage"
                         (languageChangeRequest)="onLanguageSet($event)" />
                 }
             </div>
         </div>
+    } @else if (errorObject(); as errorObject) {
+        <awg-alert-error [errorObject]="errorObject" />
     } @else {
-        <!-- error message -->
-        @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <!-- loading spinner fallback -->
-            <awg-twelve-tone-spinner />
-        }
+        <awg-twelve-tone-spinner />
     }
 </div>

@@ -1,13 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-
-import { of as observableOf } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { LoadingService } from '@awg-app/shared/loading/loading.service';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -46,11 +42,18 @@ export class EditionGraphComponent {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Public variable: errorObject.
+     * Private readonly injection variable: _loadingService.
      *
-     * It keeps an errorObject for the service calls.
+     * It keeps the instance of the injected LoadingService.
      */
-    errorObject = null;
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Private readonly signal: _viewReady.
+     *
+     * It holds a flag indicating if the view is ready.
+     */
+    private readonly _viewReady = signal<boolean>(false);
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -65,6 +68,20 @@ export class EditionGraphComponent {
     readonly isFullscreen = this._fullscreenService.isFullscreen;
 
     /**
+     * Readonly signal: graphData.
+     *
+     * It holds the graph data for the selected edition complex.
+     */
+    readonly graphData = this._editionDataService.graphData;
+
+    /**
+     * Readonly signal: errorObject.
+     *
+     * It holds an errorObject for the service calls.
+     */
+    readonly errorObject = this._editionDataService.getErrorForDataOperations(['graph']);
+
+    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
@@ -72,22 +89,11 @@ export class EditionGraphComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: editionGraphData.
+     * Readonly signal: isGraphDataLoaded.
      *
-     * It holds the graph data for the selected edition complex.
+     * It holds a flag indicating if the graph data is loaded.
      */
-    readonly editionGraphData = toSignal(
-        toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex | null) =>
-                complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
-            ),
-            catchError(err => {
-                this.errorObject = err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    );
+    readonly isGraphDataLoaded = computed(() => this._viewReady() && this._editionDataService.isGraphDataLoaded());
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -109,10 +115,15 @@ export class EditionGraphComponent {
     /**
      * Constructor of the EditionGraphComponent.
      *
-     * It initializes the self-referring variable needed for CompileHtml library.
-     *
+     * It initializes the self-referring variable needed for CompileHtml library,
+     * and sets the viewReady signal to true after a short delay
+     * to show the loadingSpinner when switching between complex views.
      */
     constructor() {
         this.ref = this;
+
+        setTimeout(() => {
+            this._viewReady.set(true);
+        }, 0);
     }
 }

@@ -1,7 +1,5 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, DestroyRef, inject } from '@angular/core';
 
-import { EditionRowTablesList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -16,14 +14,7 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
     styleUrls: ['./edition-row-tables.component.scss'],
     standalone: false,
 })
-export class EditionRowTablesComponent implements OnDestroy, OnInit {
-    /**
-     * Public variable: rowTablesData$.
-     *
-     * It keeps an observable of the data of the edition row tables.
-     */
-    rowTablesData$: Observable<EditionRowTablesList>;
-
+export class EditionRowTablesComponent {
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -39,25 +30,22 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readoly signal: rowTablesData.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the state of the edition row tables data.
      */
-    ngOnInit(): void {
-        this._editionStateService.updateIsRowTableView(true);
-        this.rowTablesData$ = this._editionDataService.getEditionRowTablesData();
-    }
+    readonly rowTablesData = this._editionDataService.rowTablesData;
 
     /**
-     * Angular life cycle hook: ngOnDestroy.
+     * Constructor of the EditionRowTablesComponent.
      *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
+     * It updates the edition state to indicate if the row table view is active.
      */
-    ngOnDestroy() {
-        this._editionStateService.updateIsRowTableView(false);
+    constructor() {
+        this._editionStateService.updateIsRowTableView(true);
+
+        inject(DestroyRef).onDestroy(() => {
+            this._editionStateService.updateIsRowTableView(false);
+        });
     }
 }

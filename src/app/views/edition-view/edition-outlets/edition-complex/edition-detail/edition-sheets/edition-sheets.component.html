@@ -3,40 +3,36 @@
     <!-- modal -->
     <awg-modal #modal />
 
-    <!-- loading spinner -->
-    @if (isLoading() && isFirstPageLoad()) {
-        <awg-twelve-tone-spinner />
-    } @else {
-        <!-- error message -->
-        @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <div class="awg-edition-sheets-view">
-                <!-- accolade view -->
-                <awg-edition-accolade
-                    [isSheetFacetMinimized]="isSheetFacetMinimized"
-                    [svgSheetsData]="svgSheetsData"
-                    [selectedSvgSheet]="selectedSvgSheet"
-                    [selectedTextcritics]="selectedTextcritics"
-                    [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
-                    [showTkA]="showTkA"
-                    (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
-                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="modal.open($event)"
-                    (selectLinkBoxRequest)="onLinkBoxSelect($event)"
-                    (selectOverlaysRequest)="onOverlaySelect($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)" />
+    @if (isSheetsDataLoaded() && !isFirstPageLoad()) {
+        <div class="awg-edition-sheets-view">
+            <!-- accolade view -->
+            <awg-edition-accolade
+                [isSheetFacetMinimized]="isSheetFacetMinimized"
+                [svgSheetsData]="svgSheetsData()"
+                [selectedSvgSheet]="selectedSvgSheet"
+                [selectedTextcritics]="selectedTextcritics"
+                [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
+                [showTkA]="showTkA"
+                (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
+                (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                (openModalRequest)="modal.open($event)"
+                (selectLinkBoxRequest)="onLinkBoxSelect($event)"
+                (selectOverlaysRequest)="onOverlaySelect($event)"
+                (selectSvgSheetRequest)="onSvgSheetSelect($event)"
+                (toggleSheetFacetRequest)="onToggleSheetFacet($event)" />
 
-                <!-- convolute view -->
-                @if (selectedConvolute && selectedSvgSheet) {
-                    <awg-edition-convolute
-                        [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet"
-                        (openModalRequest)="modal.open($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
-                }
-            </div>
-        }
+            <!-- convolute view -->
+            @if (selectedConvolute && selectedSvgSheet) {
+                <awg-edition-convolute
+                    [selectedConvolute]="selectedConvolute"
+                    [selectedSvgSheet]="selectedSvgSheet"
+                    (openModalRequest)="modal.open($event)"
+                    (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+            }
+        </div>
+    } @else if (errorObject(); as errorObject) {
+        <awg-alert-error [errorObject]="errorObject" />
+    } @else {
+        <awg-twelve-tone-spinner />
     }
 </div>

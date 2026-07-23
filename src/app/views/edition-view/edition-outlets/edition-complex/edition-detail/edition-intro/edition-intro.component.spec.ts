@@ -331,9 +331,9 @@ describe('IntroComponent (DONE)', () => {
         });
 
         it('... should have signal `editionIntroData` to hold null', () => {
-            expectToBe(isSignal(component.editionIntroData), true);
+            expectToBe(isSignal(component.introData), true);
 
-            expectToBe(component.editionIntroData(), null);
+            expectToBe(component.introData(), null);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -414,7 +414,7 @@ describe('IntroComponent (DONE)', () => {
         });
 
         it('... should have signal `editionIntroData` to hold the expected intro data', () => {
-            expectToEqual(component.editionIntroData(), expectedEditionIntroSectionFilteredData);
+            expectToEqual(component.introData(), expectedEditionIntroSectionFilteredData);
         });
 
         it('... should have signal `editionIntroData` to hold null if section is not available', async () => {
@@ -422,7 +422,7 @@ describe('IntroComponent (DONE)', () => {
 
             await detectChangesOnPush(fixture);
 
-            expectToEqual(component.editionIntroData(), null);
+            expectToEqual(component.introData(), null);
         });
 
         it('... should have signal `editionIntroData` to hold null if series is not available', async () => {
@@ -430,7 +430,7 @@ describe('IntroComponent (DONE)', () => {
 
             await detectChangesOnPush(fixture);
 
-            expectToEqual(component.editionIntroData(), null);
+            expectToEqual(component.introData(), null);
         });
 
         describe('VIEW', () => {

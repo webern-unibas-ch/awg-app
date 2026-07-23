@@ -1,24 +1,87 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, Signal, signal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
-import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
+import { catchError, defaultIfEmpty, map, startWith, switchMap } from 'rxjs/operators';
 
+import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
-    EditionRowTablesList,
+    EditionOutlineSection,
+    EditionOutlineSeries,
     EditionSvgSheetList,
     FolioConvoluteList,
     GraphList,
     IntroList,
     PrefaceList,
+    RowTablesList,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
+
+import { EditionStateService } from './edition-state.service';
+
+/**
+ * The EditionComplexDataOperationKeys type.
+ *
+ * * It defines the valid keys for the complex data operations used in the EditionDataService.
+ */
+export type EditionComplexDataOperationKeys =
+    | 'folioConvolute'
+    | 'graph'
+    | 'intro'
+    | 'sourceList'
+    | 'sourceDescription'
+    | 'sourceEvaluation'
+    | 'svgSheets'
+    | 'textcritics';
+
+/**
+ * The EditionStaticDataOperationKeys type.
+ *
+ * * It defines the valid keys for the static data operations used in the EditionDataService.
+ */
+export type EditionStaticDataOperationKeys = 'preface' | 'rowTables';
+
+/**
+ * The EditionDataOperationKeys type.
+ *
+ * * It defines the valid keys for any data operations used in the EditionDataService.
+ */
+export type EditionDataOperationKeys = EditionStaticDataOperationKeys | EditionComplexDataOperationKeys;
+
+/**
+ * Configuration object for the edition complex data operations.
+ */
+const COMPLEX_DATA_CONFIG: Record<EditionComplexDataOperationKeys, { file: string; fallback: any }> = {
+    folioConvolute: { file: EDITION_ASSETS_DATA.FILES.folioConvoluteFile, fallback: new FolioConvoluteList() },
+    graph: { file: EDITION_ASSETS_DATA.FILES.graphFile, fallback: new GraphList() },
+    intro: { file: EDITION_ASSETS_DATA.FILES.introFile, fallback: new IntroList() },
+    sourceList: { file: EDITION_ASSETS_DATA.FILES.sourceListFile, fallback: new SourceList() },
+    sourceDescription: {
+        file: EDITION_ASSETS_DATA.FILES.sourceDescriptionListFile,
+        fallback: new SourceDescriptionList(),
+    },
+    sourceEvaluation: {
+        file: EDITION_ASSETS_DATA.FILES.sourceEvaluationListFile,
+        fallback: new SourceEvaluationList(),
+    },
+    svgSheets: { file: EDITION_ASSETS_DATA.FILES.svgSheetsFile, fallback: new EditionSvgSheetList() },
+    textcritics: { file: EDITION_ASSETS_DATA.FILES.textcriticsFile, fallback: new TextcriticsList() },
+};
+
+/**
+ * Configuration object for the edition static data operations.
+ */
+const STATIC_DATA_CONFIG: Record<EditionStaticDataOperationKeys, { file: string; fallback: any }> = {
+    preface: { file: EDITION_ASSETS_DATA.FILES.prefaceFile, fallback: new PrefaceList() },
+    rowTables: { file: EDITION_ASSETS_DATA.FILES.rowTablesFile, fallback: new RowTablesList() },
+};
 
 /**
  * The EditionData service.
@@ -34,13 +97,6 @@ import {
 })
 export class EditionDataService {
     /**
-     * Private variable: _assetPath.
-     *
-     * It keeps the asset path to the JSON files of an edition complex.
-     */
-    private _assetPath = '';
-
-    /**
      * Private readonly injection variable: _http.
      *
      * It keeps the instance of the Angular HttpClient.
@@ -48,406 +104,406 @@ export class EditionDataService {
     private readonly _http = inject(HttpClient);
 
     /**
-     * Public method: getEditionGraphData.
+     * Private readonly injection variable: _editionStateService.
      *
-     * It provides the data from a JSON file
-     * for the graph of the edition view.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable<GraphList>} The observable with the GraphList data.
+     * It keeps the instance of the injected EditionStateService.
      */
-    getEditionGraphData(editionComplex: EditionComplex): Observable<GraphList> {
-        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
-        const graphData$: Observable<GraphList> = this._getGraphData();
+    private readonly _editionStateService = inject(EditionStateService);
 
-        return graphData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new GraphList()),
-            // Take only first request (JSON fetch)
-            take(1)
+    /**
+     * Private readonly injection variable: _loadingService.
+     *
+     * It keeps the instance of the injected LoadingService.
+     */
+    private readonly _loadingService = inject(LoadingService);
+
+    /**
+     * Private readonly signal holding the data error state.
+     */
+    private readonly _dataError = signal<{ operation: EditionDataOperationKeys; error: any } | null>(null);
+
+    /**
+     * Readonly signal: dataError.
+     *
+     * It holds the state of the data error as readonly signal.
+     */
+    readonly dataError = this._dataError.asReadonly();
+
+    /**
+     * Readonly signal: folioConvoluteData.
+     *
+     * It holds the state of the folio convolute data.
+     */
+    readonly folioConvoluteData = this._getEditionDataByKey<FolioConvoluteList>('folioConvolute');
+
+    /**
+     * Readonly signal: graphData.
+     *
+     * It holds the state of the graph data.
+     */
+    readonly graphData = this._getEditionDataByKey<GraphList>('graph');
+
+    /**
+     * Readonly signal: introData.
+     *
+     * It holds the state of the intro data.
+     */
+    readonly introData = toSignal(
+        toObservable(
+            computed(() => ({
+                series: this._editionStateService.selectedEditionSeries(),
+                section: this._editionStateService.selectedEditionSection(),
+                complex: this._editionStateService.selectedEditionComplex(),
+            }))
+        ).pipe(switchMap(state => this._getIntroDataStream(state))),
+        { initialValue: new IntroList() }
+    );
+
+    /**
+     * Readonly signal: prefaceData.
+     *
+     * It holds the state of the preface data.
+     */
+    readonly prefaceData = this._getStaticEditionData<PrefaceList>('preface');
+
+    /**
+     * Readonly signal: rowTablesData.
+     *
+     * It holds the state of the row tables data.
+     */
+    readonly rowTablesData = this._getStaticEditionData<RowTablesList>('rowTables');
+
+    /**
+     * Readonly signal: sourceListData.
+     *
+     * It holds the state of the source list data.
+     */
+    readonly sourceListData = this._getEditionDataByKey<SourceList>('sourceList');
+
+    /**
+     * Readonly signal: sourceDescriptionListData.
+     *
+     * It holds the state of the source description list data.
+     */
+    readonly sourceDescriptionListData = this._getEditionDataByKey<SourceDescriptionList>('sourceDescription');
+
+    /**
+     * Readonly signal: sourceEvaluationListData.
+     *
+     * It holds the state of the source evaluation list data.
+     */
+    readonly sourceEvaluationListData = this._getEditionDataByKey<SourceEvaluationList>('sourceEvaluation');
+
+    /**
+     * Readonly signal: svgSheetsData.
+     *
+     * It holds the state of the svg sheet list data.
+     * */
+    readonly svgSheetsData = this._getEditionDataByKey<EditionSvgSheetList>('svgSheets');
+
+    /**
+     * Readonly signal: textcriticsListData.
+     *
+     * It holds the state of the textcritics list data.
+     */
+    readonly textcriticsListData = this._getEditionDataByKey<TextcriticsList>('textcritics');
+
+    /**
+     * Readonly signal: isIntroDataLoaded.
+     *
+     * It computes a flag indicating if the intro data is loaded.
+     */
+    readonly isIntroDataLoaded = computed(() => {
+        if (this._loadingService.isLoading()) {return false;}
+        return this.introData().intro?.length > 0;
+    });
+
+    /**
+     * Readonly signal: isGraphDataLoaded.
+     *
+     * It computes a flag indicating if the graph data is loaded.
+     */
+    readonly isGraphDataLoaded = computed(() => {
+        if (this._loadingService.isLoading()) {return false;}
+        return this.graphData().graph?.length > 0;
+    });
+
+    /**
+     * Readonly signal: isReportDataLoaded.
+     *
+     * It computes a flag indicating if the report data is loaded.
+     */
+    readonly isReportDataLoaded = computed(() => {
+        if (this._loadingService.isLoading()) {return false;}
+        return (
+            this.sourceListData().sources?.length > 0 &&
+            this.sourceDescriptionListData().sources?.length > 0 &&
+            this.sourceEvaluationListData().sources?.length > 0 &&
+            this.textcriticsListData().textcritics?.length > 0
+        );
+    });
+
+    /**
+     * Readonly signal: isSheetsDataLoaded.
+     *
+     * It computes a flag indicating if the sheets data is loaded.
+     */
+    readonly isSheetsDataLoaded = computed(() => {
+        if (this._loadingService.isLoading()) {return false;}
+
+        const svg = this.svgSheetsData();
+        const hasSvgSheets =
+            svg.sheets &&
+            (svg.sheets.workEditions?.length > 0 ||
+                svg.sheets.textEditions?.length > 0 ||
+                svg.sheets.sketchEditions?.length > 0);
+
+        return (
+            this.folioConvoluteData().convolutes?.length > 0 &&
+            hasSvgSheets &&
+            this.textcriticsListData().textcritics?.length > 0
+        );
+    });
+
+    /**
+     * TODO
+     */
+    readonly reportViewState = computed(() => {
+        const sourceList = this.sourceListData();
+        const sourceDescription = this.sourceDescriptionListData();
+        const sourceEvaluation = this.sourceEvaluationListData();
+        const textcritics = this.textcriticsListData();
+
+        const isLoaded =
+            !this._loadingService.isLoading() &&
+            sourceList.sources?.length > 0 &&
+            sourceDescription.sources?.length > 0 &&
+            sourceEvaluation.sources?.length > 0 &&
+            textcritics.textcritics?.length > 0;
+
+        return {
+            data: { sourceList, sourceDescription, sourceEvaluation, textcritics },
+            isLoaded,
+        };
+    });
+
+    /**
+     * TODO
+     */
+    readonly sheetsViewState = computed(() => {
+        const folio = this.folioConvoluteData();
+        const svg = this.svgSheetsData();
+        const textcritics = this.textcriticsListData();
+
+        const hasSvgSheets =
+            svg.sheets &&
+            (svg.sheets.workEditions?.length > 0 ||
+                svg.sheets.textEditions?.length > 0 ||
+                svg.sheets.sketchEditions?.length > 0);
+
+        const isLoaded =
+            !this._loadingService.isLoading() &&
+            folio.convolutes?.length > 0 &&
+            hasSvgSheets &&
+            textcritics.textcritics?.length > 0;
+
+        return {
+            data: { folio, svg, textcritics },
+            isLoaded,
+        };
+    });
+
+    /**
+     * Public method: getErrorForDataOperations.
+     *
+     * It computes an errorObject for the service calls
+     * for the given data operations.
+     *
+     * @param {EditionDataOperationKeys[]} operations The given data operations to check for errors.
+     * @returns {Signal<any | null>} The computed errorObject for the given data operations.
+     */
+    getErrorForDataOperations(operations: EditionDataOperationKeys[]): Signal<any | null> {
+        return computed(() => {
+            const errState = this._dataError();
+
+            if (!errState) {
+                return null;
+            }
+
+            return operations.includes(errState.operation) ? errState.error : null;
+        });
+    }
+
+    /**
+     * Private readonly signal: _getEditionDataByKey.
+     *
+     * It gets the data for the given data operation key.
+     *
+     * @param {EditionComplexDataOperationKeys} key The given data operation key.
+     * @returns {Signal<T>} The signal with the requested data.
+     */
+    private _getEditionDataByKey<T>(key: EditionComplexDataOperationKeys): Signal<T> {
+        const config = COMPLEX_DATA_CONFIG[key];
+        const fallback = config.fallback as T;
+
+        return this._getEditionDataByComplex<T>(config.file, fallback, key);
+    }
+
+    /**
+     * Private method: _getEditionDataByComplex.
+     *
+     * It sets the path to the JSON file with
+     * the given data for the selected edition complex
+     * and triggers the method to get the JSON data.
+     *
+     * @param {string} file The name of the JSON file.
+     * @param {T} fallback An optional empty result to let the app keep running.
+     * @param {EditionComplexDataOperationKeys} opName Name of the requested data operation.
+     * @returns {Signal<T>} The signal with the requested data.
+     */
+    private _getEditionDataByComplex<T>(file: string, fallback: T, opName: EditionComplexDataOperationKeys): Signal<T> {
+        return toSignal(
+            toObservable(this._editionStateService.selectedEditionComplex).pipe(
+                switchMap(complex => {
+                    this._clearErrorFor(opName);
+
+                    if (!complex) {return observableOf(fallback);}
+
+                    const assetPath = this._getAssetPathForEditionComplex(complex);
+                    return this._fetchJsonData<T>(assetPath, file, fallback, opName).pipe(
+                        // ObserveOn(asyncScheduler),
+                        startWith(fallback)
+                    );
+                })
+            ),
+            { initialValue: fallback }
         );
     }
 
     /**
-     * Public method: getEditionComplexIntroData.
+     * Private method: _getStaticEditionData.
      *
-     * It provides the data from a JSON file
-     * for the intro of an edition complex of the edition view.
+     * It sets the path to the JSON file with
+     * the given data and triggers
+     * the method to get the JSON data.
      *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable<IntroList>} The observable with the IntroList data.
+     * @param {EditionStaticDataOperationKeys} key The given static data operation key.
+     * @returns {Signal<T>} The signal with the requested data.
      */
-    getEditionComplexIntroData(editionComplex: EditionComplex): Observable<IntroList> {
-        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
-        const introData$: Observable<IntroList> = this._getIntroData();
+    private _getStaticEditionData<T>(key: EditionStaticDataOperationKeys): Signal<T> {
+        const assetPath = EDITION_ASSETS_DATA.BASE_ROUTE + EDITION_ROUTE_CONSTANTS.EDITION.route;
+        const config = STATIC_DATA_CONFIG[key];
+        const fallback = config.fallback as T;
 
-        return introData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new IntroList()),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
+        return toSignal(this._fetchJsonData<T>(assetPath, config.file, fallback, key), { initialValue: fallback });
     }
 
     /**
-     * Public method: getEditionSectionIntroData.
+     * Private method: _getAssetPathForEditionComplex.
      *
-     * It provides the data from a JSON file
-     * for the intro of an edition section of the edition view.
+     * It gets the path to correct assets folder of a given edition complex.
      *
-     * @param {string} seriesRoute The current series route.
-     * @param {string} sectionRoute The current section route.
-     *
-     * @returns {Observable<IntroList>} The observable with the IntroList data.
-     */
-    getEditionSectionIntroData(seriesRoute: string, sectionRoute: string): Observable<IntroList> {
-        this._assetPath = this._setAssetPathForSectionIntro(seriesRoute, sectionRoute);
-        const introData$: Observable<IntroList> = this._getIntroData();
-
-        return introData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new IntroList()),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
-     * Public method: getEditionPrefaceData.
-     *
-     * It provides the data from a JSON file
-     * for the preface of the edition view.
-     *
-     * @returns {Observable<PrefaceList>} The observable with the PrefaceList data.
-     */
-    getEditionPrefaceData(): Observable<PrefaceList> {
-        this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE;
-        const prefaceData$: Observable<PrefaceList> = this._getPrefaceData();
-
-        return prefaceData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new PrefaceList()),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
-     * Public method: getEditionReportData.
-     *
-     * It provides the data from a JSON file for the edition report view
-     * (source list, source description list, source evaluation list and textcritics list)
-     * as a fork-joined observable array.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>}
-     * The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
-     * and TextcriticsList data. Only the first emit is needed.
-     */
-    getEditionReportData(
-        editionComplex: EditionComplex
-    ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> {
-        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
-        const sourceListData$: Observable<SourceList> = this._getSourceListData();
-        const sourceDescriptionListData$: Observable<SourceDescriptionList> = this._getSourceDescriptionListData();
-        const sourceEvaluationListData$: Observable<SourceEvaluationList> = this._getSourceEvaluationListData();
-        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
-
-        return observableForkJoin([
-            sourceListData$,
-            sourceDescriptionListData$,
-            sourceEvaluationListData$,
-            textciticsListData$,
-        ]).pipe(
-            // Default empty value
-            defaultIfEmpty([
-                new SourceList(),
-                new SourceDescriptionList(),
-                new SourceEvaluationList(),
-                new TextcriticsList(),
-            ]),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
-     * Public method: getRowTablesData.
-     *
-     * It provides the data from a JSON file
-     * for the row tables of the edition view.
-     *
-     * @returns {Observable<EditionRowTablesList>} The observable with the EditionRowTablesList data.
-     */
-    getEditionRowTablesData(): Observable<EditionRowTablesList> {
-        this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE;
-        const rowTablesData$: Observable<EditionRowTablesList> = this._getRowTablesData();
-
-        return rowTablesData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new EditionRowTablesList()),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
-     * Public method: getEditionSheetsData.
-     *
-     * It provides the data from a JSON file
-     * for the current edition complex of the edition sheets view
-     * (folio convolute, edition svg sheets and textcritics list)
-     * as a fork-joined observable array.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
-     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
-     * The fork-joined observable array with the FolioConvoluteList,
-     * EditionSvgSheetList and TextcriticsList data.
-     * Only the first emit is needed.
-     */
-    getEditionSheetsData(
-        editionComplex: EditionComplex
-    ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
-        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
-        const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
-        const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
-        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
-
-        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
-            // Default empty value
-            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
-            // Take only first request (JSON fetch)
-            take(1)
-        );
-    }
-
-    /**
-     * Private method: _generateAssetPath.
-     *
-     * It generates the path to the correct assets folder
-     * of a given edition complex or section.
-     *
-     * @param {string} seriesRoute The current series route.
-     * @param {string} sectionRoute The current section route.
-     * @param {string} [complexIdRoute] The current complex id route.
-     *
-     * @returns {string} The path to the correct assets folder of a given edition complex or section.
-     */
-    private _generateAssetPath(seriesRoute: string, sectionRoute: string, complexIdRoute?: string): string {
-        const delimiter = '/';
-        let route =
-            delimiter +
-            EDITION_ROUTE_CONSTANTS.SERIES.route +
-            delimiter +
-            seriesRoute +
-            delimiter +
-            EDITION_ROUTE_CONSTANTS.SECTION.route +
-            delimiter +
-            sectionRoute;
-        if (complexIdRoute) {
-            route += complexIdRoute;
-        }
-        return EDITION_ASSETS_DATA.BASE_ROUTE + route;
-    }
-
-    /**
-     * Private method: _setAssetPathForEditionComplex.
-     *
-     * It sets the path to correct assets folder of a given edition complex.
-     *
-     * @param {EditionComplex} editionComplex The current edition complex.
-     *
+     * @param {EditionComplex} complex The current edition complex.
      * @returns {string} The path to the correct assets folder of a given edition complex.
      */
-    private _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
-        return this._generateAssetPath(
-            editionComplex.pubStatement.series.route,
-            editionComplex.pubStatement.section.route,
-            editionComplex.complexId.route
+    private _getAssetPathForEditionComplex(complex: EditionComplex): string {
+        return (
+            EDITION_ASSETS_DATA.BASE_ROUTE +
+            complex.pubStatement.labeledSectionRoute.route.join('/') +
+            complex.complexId.route
         );
     }
 
     /**
-     * Private method: _setAssetPathForSectionIntro.
+     * Private method: _getIntroDataStream.
      *
-     * It sets the path to correct assets folder of an intro of a given edition section.
+     * It provides the data from a JSON file for the edition intro view as stream.
      *
-     * @param {string} seriesRoute The current series route.
-     * @param {string} sectionRoute The current section route.
-     *
-     * @returns {string} The path to the correct assets folder of an intro of a given edition section.
+     * @param {{series: EditionOutlineSeries | null, section: EditionOutlineSection | null, complex: EditionComplex | null}} state The current state of the edition view.
+     * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
-    private _setAssetPathForSectionIntro(seriesRoute: string, sectionRoute: string): string {
-        return this._generateAssetPath(seriesRoute, sectionRoute);
-    }
+    private _getIntroDataStream(state: {
+        series: EditionOutlineSeries | null;
+        section: EditionOutlineSection | null;
+        complex: EditionComplex | null;
+    }): Observable<IntroList> {
+        this._clearErrorFor('intro');
+        const fallbackValue = new IntroList();
 
-    /**
-     * Private method: _getFolioConvoluteData.
-     *
-     * It sets the path to the JSON file with
-     * the folio convolute data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<FolioConvoluteList>} The observable with the FolioConvolute data.
-     */
-    private _getFolioConvoluteData(): Observable<FolioConvoluteList> {
-        const file = EDITION_ASSETS_DATA.FILES.folioConvoluteFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
+        if (!state.series || !state.section) {
+            return observableOf(fallbackValue);
+        }
 
-    /**
-     * Private method: _getGraphData.
-     *
-     * It sets the path to the JSON file with
-     * the graph data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<GraphList>} The observable with the Graph data.
-     */
-    private _getGraphData(): Observable<GraphList> {
-        const file = EDITION_ASSETS_DATA.FILES.graphFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getIntroData.
-     *
-     * It sets the path to the JSON file with
-     * the intro data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<IntroList>} The observable with the Intro data.
-     */
-    private _getIntroData(): Observable<IntroList> {
+        const sectionPath = EDITION_ASSETS_DATA.BASE_ROUTE + state.section.labeledRoute.route.join('/');
         const file = EDITION_ASSETS_DATA.FILES.introFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
+        const sectionStream$ = this._fetchJsonData<IntroList>(sectionPath, file, fallbackValue, 'intro');
+
+        const isComplexValid =
+            state.complex &&
+            state.complex.pubStatement?.series?.route === state.series.series.route &&
+            state.complex.pubStatement?.section?.route === state.section.section.route;
+
+        if (isComplexValid && state.complex) {
+            const complexPath = this._getAssetPathForEditionComplex(state.complex);
+            const complexStream$ = this._fetchJsonData<IntroList>(complexPath, file, fallbackValue, 'intro');
+
+            return observableForkJoin([sectionStream$, complexStream$]).pipe(
+                map(([sectionIntroData, complexIntroData]) => {
+                    if (complexIntroData?.intro?.length > 0) {
+                        const blockId = complexIntroData.intro[0].id;
+                        return this._filterSectionIntroDataByBlockId(sectionIntroData, blockId);
+                    }
+                    return sectionIntroData;
+                })
+            );
+        }
+
+        return sectionStream$;
     }
 
     /**
-     * Private method: _getPrefaceData.
+     * Private method: _filterSectionIntroDataByBlockId.
+     *
+     * It filters the section intro data by a given block id.
+     *
+     * @param {IntroList} sectionIntroData The given section intro data.
+     * @param {string} blockId The given block id.
+     * @returns {IntroList} The filtered section intro data.
+     */
+    private _filterSectionIntroDataByBlockId(sectionIntroData: IntroList, blockId: string): IntroList {
+        return {
+            ...sectionIntroData,
+            intro: sectionIntroData.intro.map(section => ({
+                ...section,
+                content: section.content.filter(contentBlock => contentBlock.blockId === blockId),
+            })),
+        };
+    }
+
+    /**
+     * Private method: _fetchJsonData.
      *
      * It sets the path to the JSON file with
-     * the preface data and triggers
-     * the method to get the JSON data.
+     * the given data and triggers
+     * the method to fetch the JSON data.
      *
-     * @returns {Observable<PrefaceList>} The observable with the Preface data.
+     * @param {string} assetPath The path to the assets folder.
+     * @param {string} file The name of the JSON file.
+     * @param {T} fallbackValue An optional empty result to let the app keep running.
+     * @param {EditionDataOperationKeys} opName Name of the requested data operation.
+     * @returns {Observable<T>} The observable with the requested data.
      */
-    private _getPrefaceData(): Observable<PrefaceList> {
-        const file = EDITION_ASSETS_DATA.FILES.prefaceFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
+    private _fetchJsonData<T>(
+        assetPath: string,
+        file: string,
+        fallbackValue: T,
+        opName: EditionDataOperationKeys
+    ): Observable<T> {
+        const url = `${assetPath}/${file}`;
 
-    /**
-     * Private method: _getRowTablesData.
-     *
-     * It sets the path to the JSON file with
-     * the row tables data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<EditionRowTablesList>} The observable with the EditionRowTablesList data.
-     */
-    private _getRowTablesData(): Observable<EditionRowTablesList> {
-        const file = EDITION_ASSETS_DATA.FILES.rowTablesFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getSourceListData.
-     *
-     * It sets the path to the JSON file with
-     * the source list data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<SourceList>} The observable with the SourceList data.
-     */
-    private _getSourceListData(): Observable<SourceList> {
-        const file = EDITION_ASSETS_DATA.FILES.sourceListFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getSourceDescriptionListData.
-     *
-     * It sets the path to the JSON file with
-     * the source description list data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<SourceDescriptionList>} The observable with the SourceDescriptionList data.
-     */
-    private _getSourceDescriptionListData(): Observable<SourceDescriptionList> {
-        const file = EDITION_ASSETS_DATA.FILES.sourceDescriptionListFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getSourceEvaluationListData.
-     *
-     * It sets the path to the JSON file with
-     * the source evaluation list data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<SourceEvaluationList>} The observable with the SourceEvaluationList data.
-     */
-    private _getSourceEvaluationListData(): Observable<SourceEvaluationList> {
-        const file = EDITION_ASSETS_DATA.FILES.sourceEvaluationListFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getSvgSheetsData.
-     *
-     * It sets the path to the JSON file with
-     * the svg sheets data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
-     */
-    private _getSvgSheetsData(): Observable<EditionSvgSheetList> {
-        const file = EDITION_ASSETS_DATA.FILES.svgSheetsFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getTextcriticsListData.
-     *
-     * It sets the path to the JSON file with
-     * the textcritics list data and triggers
-     * the method to get the JSON data.
-     *
-     * @returns {Observable<TextcriticsList>} The observable with the TextcriticsList data.
-     */
-    private _getTextcriticsListData(): Observable<TextcriticsList> {
-        const file = EDITION_ASSETS_DATA.FILES.textcriticsFile;
-        const url = `${this._assetPath}/${file}`;
-        return this._getJsonData(url);
-    }
-
-    /**
-     * Private method: _getJsonData.
-     *
-     * It fetches the given JSON file (path) via HTTP request.
-     *
-     * @param {string} path The path to the JSON file.
-     * @returns {Observable<any>} The observable with the requested data.
-     */
-    private _getJsonData(path: string): Observable<any> {
-        return this._http.get(path).pipe(
-            // Tap(_res => console.log(`fetched jsonData with path=${path}`)),
-            catchError(this._handleError('_getJsonData', []))
-        );
+        return this._http
+            .get<T>(url)
+            .pipe(catchError(this._handleError<T>(opName, fallbackValue)), defaultIfEmpty(fallbackValue));
     }
 
     /**
@@ -455,17 +511,34 @@ export class EditionDataService {
      *
      * It handles errors, if any, of the HTTP request.
      *
-     * @param {string} operation Name of the requested operation.
+     * @param {EditionDataOperationKeys} opName Name of the requested data operation.
      * @param {T} [result] An optional empty result to let the app keep running.
      * @returns An observable of the error.
      */
-    private _handleError<T>(operation: string, result?: T) {
+    private _handleError<T>(opName: EditionDataOperationKeys, result?: T) {
         return (error: HttpErrorResponse): Observable<T> => {
-            this._logError(`${operation} failed: ${error.message}`);
+            this._logError(`${opName} failed: ${error.message}`);
+
+            this._dataError.set({ operation: opName, error });
 
             // Let the app keep running by returning an empty result.
             return observableOf(result as T);
         };
+    }
+
+    /**
+     * Private method: _clearErrorFor.
+     *
+     * It clears the error state for a given operation.
+     *
+     * @param {EditionDataOperationKeys} opName Name of the requested data operation.
+     * @returns {void} Clears the error state for the given operation.
+     */
+    private _clearErrorFor(opName: EditionDataOperationKeys): void {
+        const current = this._dataError();
+        if (current?.operation === opName) {
+            this._dataError.set(null);
+        }
     }
 
     /**

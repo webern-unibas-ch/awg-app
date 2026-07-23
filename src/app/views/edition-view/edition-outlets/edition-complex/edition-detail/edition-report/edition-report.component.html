@@ -4,7 +4,7 @@
     <awg-modal #modal />
 
     <!-- report -->
-    @if (editionReportData(); as editionReportData) {
+    @if (isReportDataLoaded()) {
         <div class="awg-edition-report-view" ngbAccordion>
             <!-- source list -->
             <div ngbAccordionItem="awg-source-list" [collapsed]="false">
@@ -83,13 +83,9 @@
                 </div>
             </div>
         </div>
+    } @else if (errorObject(); as errorObject) {
+        <awg-alert-error [errorObject]="errorObject" />
     } @else {
-        <!-- error message -->
-        @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <!-- loading spinner -->
-            <awg-twelve-tone-spinner />
-        }
+        <awg-twelve-tone-spinner />
     }
 </div>

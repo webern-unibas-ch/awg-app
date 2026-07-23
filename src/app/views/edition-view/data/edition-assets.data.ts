@@ -8,7 +8,7 @@ export const EDITION_ASSETS_DATA = {
     /**
      * The base route to the edition assets JSON files.
      */
-    BASE_ROUTE: 'assets/data/edition',
+    BASE_ROUTE: 'assets/data',
 
     /**
      * The names of the edition assets JSON files.

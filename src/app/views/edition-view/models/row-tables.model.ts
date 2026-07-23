@@ -4,7 +4,7 @@
  * It is used in the context of the edition view
  * to store information about row tables.
  */
-export class EditionRowTables {
+export class RowTables {
     /**
      * The route of a row table.
      */
@@ -37,9 +37,9 @@ export class EditionRowTables {
  * It is used in the context of the edition view
  * to store a list of row tables.
  */
-export class EditionRowTablesList {
+export class RowTablesList {
     /**
      * The array of row tables from a row tables list.
      */
-    rowTables: EditionRowTables[];
+    rowTables: RowTables[];
 }
