@@ -30,11 +30,11 @@ export class EditionRowTablesComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Readoly signal: rowTablesData.
+     * Readoly signal: viewData.
      *
-     * It holds the state of the edition row tables data.
+     * It holds the state of the row tables view data.
      */
-    readonly rowTablesData = this._editionDataService.rowTablesData;
+    readonly viewData = this._editionDataService.rowTablesViewData;
 
     /**
      * Constructor of the EditionRowTablesComponent.

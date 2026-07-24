@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -44,37 +43,11 @@ export class EditionReportComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
      */
     private readonly _router: any = inject(Router);
-
-    /**
-     * Private readonly signal: _viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    private readonly _viewReady = signal<boolean>(false);
-
-    /**
-     * Readonly signal: errorObject.
-     *
-     * It holds an errorObject for the service calls.
-     */
-    readonly errorObject = this._editionDataService.getErrorForDataOperations([
-        'sourceList',
-        'sourceDescription',
-        'sourceEvaluation',
-        'textcritics',
-    ]);
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -84,39 +57,18 @@ export class EditionReportComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: sourceListData.
+     * Readonly signal: viewData.
      *
-     * It holds the source list data for the selected complex.
+     * It holds the state of the report view data.
      */
-    readonly sourceListData = this._editionDataService.sourceListData;
+    readonly viewData = this._editionDataService.reportViewData;
 
     /**
-     * Readonly signal: sourceDescriptionListData.
+     * Readonly signal: viewReady.
      *
-     * It holds the source description list data for the selected complex.
+     * It holds a flag indicating if the view is ready.
      */
-    readonly sourceDescriptionListData = this._editionDataService.sourceDescriptionListData;
-
-    /**
-     * Readonly signal: sourceEvaluationListData.
-     *
-     * It holds the source evaluation list data for the selected complex.
-     */
-    readonly sourceEvaluationListData = this._editionDataService.sourceEvaluationListData;
-
-    /**
-     * Readonly signal: textcriticsListData.
-     *
-     * It holds the textcritics list data for the selected complex.
-     */
-    readonly textcriticsListData = this._editionDataService.textcriticsListData;
-
-    /**
-     * Readonly signal: isReportDataLoaded.
-     *
-     * It holds a flag indicating if the report data is loaded.
-     */
-    readonly isReportDataLoaded = computed(() => this._viewReady() && this._editionDataService.isReportDataLoaded());
+    readonly viewReady = signal<boolean>(false);
 
     /**
      * Readonly variable: titles.
@@ -139,7 +91,7 @@ export class EditionReportComponent {
      */
     constructor() {
         setTimeout(() => {
-            this._viewReady.set(true);
+            this.viewReady.set(true);
         }, 0);
     }
 

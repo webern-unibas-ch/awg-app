@@ -1,10 +1,14 @@
-@if (isLoading()) {
-    <awg-twelve-tone-spinner />
-} @else {
-    @if (prefaceData(); as prefaceData) {
+@if (viewData(); as view) {
+    @if (view.error; as err) {
+        <awg-alert-error [errorObject]="err.error" />
+    } @else if (view.isLoading) {
+        <awg-twelve-tone-spinner />
+    } @else {
+        @let preface = view.data.prefaceData.preface;
+
         <div class="awg-preface-view p-5 border rounded-3">
             <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)" />
-            @for (prefaceParagraph of prefaceData.preface[currentLanguage].content; track $index) {
+            @for (prefaceParagraph of preface[currentLanguage].content; track $index) {
                 <div
                     class="awg-edition-preface-block"
                     [compile-html]="prefaceParagraph"

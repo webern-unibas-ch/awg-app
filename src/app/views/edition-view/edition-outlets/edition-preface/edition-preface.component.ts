@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 
-import { LoadingService } from '@awg-shared/loading/loading.service';
-
 import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
@@ -40,13 +38,6 @@ export class EditionPrefaceComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition preface: 0 for German, 1 for English.
@@ -59,18 +50,11 @@ export class EditionPrefaceComponent {
     ref: EditionPrefaceComponent;
 
     /**
-     * Readonly signal: isLoading.
+     * Readonly signal: viewData.
      *
-     * It holds the current loading status.
+     * It holds the state of the preface view data.
      */
-    readonly isLoading = this._loadingService.isLoading;
-
-    /**
-     * Readonly signal: prefaceData.
-     *
-     * It holds the loaded preface data or null initially.
-     */
-    readonly prefaceData = this._editionDataService.prefaceData;
+    readonly viewData = this._editionDataService.prefaceViewData;
 
     /**
      * Constructor of the EditionPrefaceComponent.

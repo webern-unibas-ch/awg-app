@@ -1,8 +1,7 @@
-import { Component, computed, effect, inject, signal, ViewChild } from '@angular/core';
+import { Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { LoadingService } from '@awg-shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
@@ -62,13 +61,6 @@ export class EditionSheetsComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
@@ -88,13 +80,6 @@ export class EditionSheetsComponent {
      * It holds the query parameters of the current route as a signal.
      */
     private readonly _queryParams = toSignal(this._route.queryParamMap);
-
-    /**
-     * Private readonly signal: _viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    private readonly _viewReady = signal<boolean>(false);
 
     /**
      * Public variable: isSheetFacetMinimized.
@@ -146,17 +131,6 @@ export class EditionSheetsComponent {
     snapshotQueryParamsId: string;
 
     /**
-     * Readonly signal: errorObject.
-     *
-     * It holds an errorObject for the service calls.
-     */
-    readonly errorObject = this._editionDataService.getErrorForDataOperations([
-        'folioConvolute',
-        'svgSheets',
-        'textcritics',
-    ]);
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
@@ -164,25 +138,18 @@ export class EditionSheetsComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: folioConvoluteData.
+     * Readonly signal: viewData.
      *
-     * It holds the folio convolute data for the selected complex.
+     * It holds the state of the sheets view data.
      */
-    readonly folioConvoluteData = this._editionDataService.folioConvoluteData;
+    readonly viewData = this._editionDataService.sheetsViewData;
 
     /**
-     * Readonly signal: svgSheetsData.
+     * Readonly signal: viewReady.
      *
-     * It holds the svg sheets data for the selected complex.
+     * It holds a flag indicating if the view is ready.
      */
-    readonly svgSheetsData = this._editionDataService.svgSheetsData;
-
-    /**
-     * Readonly signal: textcriticsListData.
-     *
-     * It holds the textcritics list data for the selected complex.
-     */
-    readonly textcriticsListData = this._editionDataService.textcriticsListData;
+    readonly viewReady = signal<boolean>(false);
 
     /**
      * Readonly signal: isFirstPageLoad.
@@ -190,13 +157,6 @@ export class EditionSheetsComponent {
      * It holds the information if the page is loaded for the first time.
      */
     readonly isFirstPageLoad = signal<boolean>(true);
-
-    /**
-     * Readonly signal: isSheetsDataLoaded.
-     *
-     * It holds a flag indicating if the sheets data is loaded.
-     */
-    readonly isSheetsDataLoaded = computed(() => this._viewReady() && this._editionDataService.isSheetsDataLoaded());
 
     /**
      * Constructor of the EditionSheetsComponent.
@@ -208,7 +168,7 @@ export class EditionSheetsComponent {
     constructor() {
         effect(() => {
             const queryParams = this._queryParams();
-            const svgSheetsData = this.svgSheetsData();
+            const svgSheetsData = this.viewData().data.svgSheetsData;
             const complex = this.selectedEditionComplex();
 
             if (!complex || !svgSheetsData?.sheets) {
@@ -219,7 +179,7 @@ export class EditionSheetsComponent {
         });
 
         setTimeout(() => {
-            this._viewReady.set(true);
+            this.viewReady.set(true);
         }, 0);
     }
 
@@ -234,15 +194,13 @@ export class EditionSheetsComponent {
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
-        const editionType = this._editionSheetsService.getCurrentEditionType(
-            this.selectedSvgSheet,
-            this.svgSheetsData().sheets
-        );
+        const sheets = this.viewData().data.svgSheetsData.sheets;
+        const editionType = this._editionSheetsService.getCurrentEditionType(this.selectedSvgSheet, sheets);
         if (!editionType) {
             return;
         }
 
-        const editionTypeSheets = this.svgSheetsData().sheets[editionType];
+        const editionTypeSheets = sheets[editionType];
         const nextSheetId = this._editionSheetsService.getNextSheetId(
             direction,
             this.selectedSvgSheet,
@@ -417,7 +375,7 @@ export class EditionSheetsComponent {
      *
      * It selects an SVG sheet by the given query params.
      *
-     * @param {ParamMap} queryParams The given query params.
+     * @param {string} sheetId The given sheet id.
      *
      * @returns {void} Selects the SVG sheet.
      */
@@ -425,16 +383,14 @@ export class EditionSheetsComponent {
         if (!sheetId) {
             return;
         }
-        this.selectedSvgSheet = this._editionSheetsService.selectSvgSheetById(this.svgSheetsData().sheets, sheetId);
-        this.selectedConvolute = this._editionSheetsService.selectConvolute(
-            this.folioConvoluteData().convolutes,
-            this.svgSheetsData().sheets,
-            this.selectedSvgSheet
-        );
-        this.selectedTextcritics = this._editionSheetsService.findTextcritics(
-            this.textcriticsListData().textcritics,
-            this.selectedSvgSheet
-        );
+        const view = this.viewData();
+        const sheets = view.data.svgSheetsData.sheets;
+        const convolutes = view.data.folioConvoluteData.convolutes;
+        const textcritics = view.data.textcriticsListData.textcritics;
+
+        this.selectedSvgSheet = this._editionSheetsService.selectSvgSheetById(sheets, sheetId);
+        this.selectedConvolute = this._editionSheetsService.selectConvolute(convolutes, sheets, this.selectedSvgSheet);
+        this.selectedTextcritics = this._editionSheetsService.findTextcritics(textcritics, this.selectedSvgSheet);
 
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);

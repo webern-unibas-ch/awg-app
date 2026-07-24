@@ -1,7 +1,6 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    computed,
     DestroyRef,
     inject,
     OnDestroy,
@@ -14,7 +13,6 @@ import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
 
-import { LoadingService } from '@awg-app/shared/loading/loading.service';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -64,25 +62,11 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
      */
     private readonly _router = inject(Router);
-
-    /**
-     * Private readonly signal: _viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    private readonly _viewReady = signal<boolean>(false);
 
     /**
      * Private readonly variable: _destroyed$.
@@ -116,20 +100,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ]);
 
     /**
-     * Readonly signal: errorObject.
-     *
-     * It holds an errorObject for the service calls.
-     */
-    readonly errorObject = this._editionDataService.getErrorForDataOperations(['intro']);
-
-    /**
-     * Readonly signal: introData.
-     *
-     * It holds the state of the intro data.
-     */
-    readonly introData = this._editionDataService.introData;
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
@@ -137,11 +107,18 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: isIntroDataLoaded.
+     * Readonly signal: introData.
      *
-     * It holds a flag indicating if the intro data is loaded.
+     * It holds the state of the intro view data.
      */
-    readonly isIntroDataLoaded = computed(() => this._viewReady() && this._editionDataService.isIntroDataLoaded());
+    readonly viewData = this._editionDataService.introViewData;
+
+    /**
+     * Readonly signal: _viewReady.
+     *
+     * It holds a flag indicating if the view is ready.
+     */
+    readonly viewReady = signal<boolean>(false);
 
     /**
      * Constructor of the EditionIntroComponent.
@@ -160,7 +137,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         });
 
         setTimeout(() => {
-            this._viewReady.set(true);
+            this.viewReady.set(true);
         }, 0);
     }
 

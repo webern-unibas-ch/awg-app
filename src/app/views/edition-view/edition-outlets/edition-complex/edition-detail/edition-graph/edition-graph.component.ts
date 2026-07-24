@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { LoadingService } from '@awg-app/shared/loading/loading.service';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
@@ -42,20 +41,6 @@ export class EditionGraphComponent {
     private readonly _fullscreenService = inject(FullscreenService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
-     * Private readonly signal: _viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    private readonly _viewReady = signal<boolean>(false);
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
@@ -68,20 +53,6 @@ export class EditionGraphComponent {
     readonly isFullscreen = this._fullscreenService.isFullscreen;
 
     /**
-     * Readonly signal: graphData.
-     *
-     * It holds the graph data for the selected edition complex.
-     */
-    readonly graphData = this._editionDataService.graphData;
-
-    /**
-     * Readonly signal: errorObject.
-     *
-     * It holds an errorObject for the service calls.
-     */
-    readonly errorObject = this._editionDataService.getErrorForDataOperations(['graph']);
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
@@ -89,11 +60,18 @@ export class EditionGraphComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: isGraphDataLoaded.
+     * Readonly signal: viewData.
      *
-     * It holds a flag indicating if the graph data is loaded.
+     * It holds the state of the graph view data.
      */
-    readonly isGraphDataLoaded = computed(() => this._viewReady() && this._editionDataService.isGraphDataLoaded());
+    readonly viewData = this._editionDataService.graphViewData;
+
+    /**
+     * Readonly signal: viewReady.
+     *
+     * It holds a flag indicating if the view is ready.
+     */
+    readonly viewReady = signal<boolean>(false);
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -123,7 +101,7 @@ export class EditionGraphComponent {
         this.ref = this;
 
         setTimeout(() => {
-            this._viewReady.set(true);
+            this.viewReady.set(true);
         }, 0);
     }
 }
