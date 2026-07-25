@@ -1,10 +1,8 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
-
-import { Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -16,12 +14,13 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RowTablesList } from '@awg-views/edition-view/models';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { mockEditionData } from '@testing/mock-data';
 import { EditionRowTablesComponent } from './edition-row-tables.component';
 
 describe('EditionRowTablesComponent (DONE)', () => {
@@ -29,18 +28,23 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionRowTablesComponent>;
     let compDe: DebugElement;
 
-    let editionDataServiceGetRowTablesDataSpy: Spy;
-    let editionStateServiceUpdateIsRowTablesViewSpy: Spy;
-
     let editionStateService: EditionStateService;
     let mockEditionDataService: Partial<EditionDataService>;
 
+    let editionStateServiceUpdateIsRowTablesViewSpy: Spy;
+
     let expectedRowTablesData: RowTablesList;
+    let expectedViewData: EditionViewData<{ rowTablesData: RowTablesList }>;
 
     beforeEach(async () => {
-        // Mock edition data service
+        // Mock services
+        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
         mockEditionDataService = {
-            getEditionRowTablesData: (): Observable<RowTablesList> => observableOf(expectedRowTablesData),
+            rowTablesViewData: signal({
+                data: { rowTablesData: expectedRowTablesData },
+                isLoading: false,
+                error: null,
+            }),
         };
 
         await TestBed.configureTestingModule({
@@ -55,11 +59,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Spies
-        editionDataServiceGetRowTablesDataSpy = vi.spyOn(mockEditionDataService, 'getEditionRowTablesData');
         editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowTableView');
 
         // Test data
-        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
+        expectedViewData = {
+            data: { rowTablesData: expectedRowTablesData },
+            isLoading: false,
+            error: null,
+        };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionRowTablesComponent);
@@ -76,16 +83,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `rowTablesData$`', () => {
-            expect(component.rowTablesData$).toBeUndefined();
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToBe(isSignal(component.viewData), true);
+
+            expectToEqual(component.viewData(), expectedViewData);
         });
 
         it('... should not have called EditionStateService', () => {
             expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 0);
-        });
-
-        it('... should not have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -105,15 +110,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 1);
 
             expectToBe(editionStateService.isRowTableView(), true);
-        });
-
-        it('... should have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetRowTablesDataSpy, 1);
-        });
-
-        it('... should have rowTablesData$', async () => {
-            await expect(lastValueFrom(component.rowTablesData$)).resolves.not.toThrow();
-            await expect(lastValueFrom(component.rowTablesData$)).resolves.toEqual(expectedRowTablesData);
         });
 
         describe('VIEW', () => {
@@ -298,14 +294,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                     expectToEqual(routerLink.navigatedTo, expectedRouterLink);
                 }
-            });
-        });
-
-        describe('#ngOnDestroy()', () => {
-            it('... should have cleared isRowTableView on destroy (via EditionStateService)', () => {
-                component.ngOnDestroy();
-
-                expectToBe(editionStateService.isRowTableView(), false);
             });
         });
     });

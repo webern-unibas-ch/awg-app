@@ -1,10 +1,8 @@
-import { Component, DebugElement, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
-
-import { Observable, ReplaySubject } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -18,7 +16,8 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { LoadingService } from '@awg-shared/loading/loading.service';
-import { PrefaceList } from '@awg-views/edition-view/models';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
 import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
@@ -48,26 +47,30 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionPrefaceComponent>;
     let compDe: DebugElement;
 
-    let getGlyphSpy: Spy;
-    let setLanguageSpy: Spy;
-    let editionDataServiceGetPrefaceDataSpy: Spy;
-    let editionGlyphServiceGetGlyphSpy: Spy;
-
-    let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;
     let mockEditionDataService: Partial<EditionDataService>;
-    let mockPrefaceDataSubject: ReplaySubject<PrefaceList>;
     let editionStateService: EditionStateService;
 
+    let getGlyphSpy: Spy;
+    let setLanguageSpy: Spy;
+    let editionGlyphServiceGetGlyphSpy: Spy;
+
+    let mockIsLoadingSignal: WritableSignal<boolean>;
+
     let expectedPrefaceData: PrefaceList;
+    let expectedViewData: EditionViewData<{ prefaceData: PrefaceList }>;
     let expectedCurrentLanguage: number;
 
     beforeEach(async () => {
-        mockPrefaceDataSubject = new ReplaySubject<PrefaceList>(1);
-
+        // Mock services
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         mockEditionDataService = {
-            getEditionPrefaceData: (): Observable<PrefaceList> => mockPrefaceDataSubject.asObservable(),
+            prefaceViewData: signal({
+                data: { prefaceData: expectedPrefaceData },
+                isLoading: false,
+                error: null,
+            }),
         };
 
         mockEditionGlyphService = {
@@ -99,15 +102,19 @@ describe('EditionPrefaceComponent (DONE)', () => {
         mockIsLoadingSignal.set(false);
 
         // Inject services
+        mockEditionDataService = TestBed.inject(EditionDataService);
         editionStateService = TestBed.inject(EditionStateService);
 
         // Service spies
         editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
-        editionDataServiceGetPrefaceDataSpy = vi.spyOn(mockEditionDataService, 'getEditionPrefaceData');
 
         // Test data
-        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedCurrentLanguage = 0;
+        expectedViewData = {
+            data: { prefaceData: expectedPrefaceData },
+            isLoading: false,
+            error: null,
+        };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionPrefaceComponent);
@@ -128,8 +135,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `prefaceData` (with initialValue = null)', () => {
-            expectToBe(component.prefaceData(), null);
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToBe(isSignal(component.viewData), true);
+
+            expectToEqual(component.viewData(), expectedViewData);
         });
 
         it('... should have `currentLanguage` = 0', () => {
@@ -140,13 +149,6 @@ describe('EditionPrefaceComponent (DONE)', () => {
             expectToEqual(component.ref, component);
         });
 
-        it('... should have `isLoading` (with value false)', () => {
-            expectToBe(component.isLoading(), false);
-        });
-
-        it('... should have called EditionDataService (during signal initialization)', () => {
-            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
-        });
         it('... should not have called EditionGlyphService', () => {
             expectSpyCall(editionGlyphServiceGetGlyphSpy, 0);
         });
@@ -172,23 +174,12 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the emission of preface data from the mock service
-            mockPrefaceDataSubject.next(expectedPrefaceData);
-
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have updated IsPrefaceView (via EditionStateService)', () => {
             expectToBe(editionStateService.isPrefaceView(), true);
-        });
-
-        it('... should have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
-        });
-
-        it('... should have updated `prefaceData`', () => {
-            expectToEqual(component.prefaceData(), expectedPrefaceData);
         });
 
         describe('VIEW', () => {
@@ -313,14 +304,6 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                     expectToBe(component.currentLanguage, 1);
                 });
-            });
-        });
-
-        describe('#ngOnDestroy()', () => {
-            it('... should have cleared isPrefaceView on destroy (via EditionStateService)', () => {
-                component.ngOnDestroy();
-
-                expectToBe(editionStateService.isPrefaceView(), false);
             });
         });
     });

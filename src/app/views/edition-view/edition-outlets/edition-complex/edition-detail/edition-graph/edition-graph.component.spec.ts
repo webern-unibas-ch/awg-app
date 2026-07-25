@@ -1,15 +1,24 @@
-import { Component, DebugElement, DOCUMENT, input, Input, isSignal, output, signal } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    DOCUMENT,
+    input,
+    Input,
+    isSignal,
+    output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
-
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { updateMockEditionViewData } from '@testing/edition-data-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -27,6 +36,9 @@ import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from
 import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
+
+// Helper type
+type GraphViewData = ReturnType<typeof EditionDataService.prototype.graphViewData>;
 
 // Mock components
 @Component({
@@ -90,22 +102,32 @@ describe('EditionGraphComponent (DONE)', () => {
     let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
-    let editionDataServiceGetEditionGraphDataSpy: Spy;
+    let mockViewDataSignal: WritableSignal<any>;
+
     let modalOpenSpy: Spy;
 
-    let expectedEditionComplex: EditionComplex;
-    let expectedOtherEditionComplex: EditionComplex;
+    let expectedViewData: GraphViewData;
+    let expectedGraphData: GraphViewData['data'];
     let expectedEditionGraphEmptyData: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
-
-    let graphDataResult$: Observable<GraphList>;
+    let expectedEditionComplex: EditionComplex;
+    let expectedOtherEditionComplex: EditionComplex;
 
     beforeEach(async () => {
-        // Mocked editionDataService
-        mockEditionDataService = {
-            getEditionGraphData: (): Observable<GraphList> => observableOf(new GraphList()),
+        // Mock services
+        expectedEditionGraphEmptyData = structuredClone(mockEditionData.mockGraphEmptyData);
+        expectedGraphData = { graphData: expectedEditionGraphEmptyData };
+        expectedViewData = {
+            data: expectedGraphData,
+            isLoading: false,
+            error: null,
         };
-        // Mocked fullscreenService
+
+        mockViewDataSignal = signal(expectedViewData);
+        mockEditionDataService = {
+            graphViewData: mockViewDataSignal.asReadonly(),
+        };
+
         mockFullscreenService = {
             isFullscreen: signal<boolean>(false),
             openFullscreen: (): void => {},
@@ -139,17 +161,9 @@ describe('EditionGraphComponent (DONE)', () => {
         // Init edition data
         editionComplexesService.initializeEditionComplexesList();
 
-        // Service spies
-        graphDataResult$ = observableOf(null);
-        editionDataServiceGetEditionGraphDataSpy = vi
-            .spyOn(mockEditionDataService, 'getEditionGraphData')
-            .mockImplementation(() => graphDataResult$);
-
         // Test data (default)
         expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
         expectedOtherEditionComplex = editionComplexesService.getEditionComplexById('op12');
-
-        expectedEditionGraphEmptyData = structuredClone(mockEditionData.mockGraphEmptyData);
 
         expectedEditionGraphDataOp25 = new GraphList();
         expectedEditionGraphDataOp25.graph = [];
@@ -184,14 +198,10 @@ describe('EditionGraphComponent (DONE)', () => {
             expectToBe(component.selectedEditionComplex(), null);
         });
 
-        it('... should have signal `editionGraphData` to hold null', () => {
-            expectToBe(isSignal(component.editionGraphData), true);
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToBe(isSignal(component.viewData), true);
 
-            expectToBe(component.editionGraphData(), null);
-        });
-
-        it('... should have `errorObject` = null', () => {
-            expectToBe(component.errorObject, null);
+            expectToBe(component.viewData(), expectedViewData);
         });
 
         it('... should have static `GRAPH_IMAGES`', () => {
@@ -238,8 +248,8 @@ describe('EditionGraphComponent (DONE)', () => {
                 const expectedError = { status: 404, statusText: 'got Error' };
 
                 beforeEach(async () => {
-                    // Return an error for the graph data observable
-                    graphDataResult$ = observableThrowError(() => expectedError);
+                    // Return an error for the view data
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, { error: expectedError });
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -264,9 +274,12 @@ describe('EditionGraphComponent (DONE)', () => {
 
             describe('on loading', () => {
                 describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
-                    it('... editionGraphData$ is undefined', async () => {
+                    it('... graphData is undefined', async () => {
                         // Mock undefined response
-                        graphDataResult$ = observableOf(undefined);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: undefined },
+                            isLoading: true,
+                        });
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                         await detectChangesOnPush(fixture);
@@ -276,9 +289,12 @@ describe('EditionGraphComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionGraphData$ is null', async () => {
+                    it('... graphData is null', async () => {
                         // Mock null response
-                        graphDataResult$ = observableOf(null);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: null },
+                            isLoading: true,
+                        });
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                         await detectChangesOnPush(fixture);
@@ -294,7 +310,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            graphDataResult$ = observableOf(expectedEditionGraphDataOp25);
+            updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                data: { graphData: expectedEditionGraphDataOp25 },
+            });
             editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
             // Trigger initial data binding
@@ -310,12 +328,15 @@ describe('EditionGraphComponent (DONE)', () => {
                 const noGraphData = new GraphList();
                 noGraphData.graph = undefined;
 
-                graphDataResult$ = observableOf(noGraphData);
+                updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                    data: { graphData: noGraphData },
+                });
                 editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                 await detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-graph-view > div', 0, 0);
+                const viewDivDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-graph-view', 1, 1);
+                getAndExpectDebugElementByCss(viewDivDes[0], 'div', 0, 0);
             });
 
             it('... should contain a div in div.awg-edition-graph-view if graph data is provided', () => {
@@ -336,7 +357,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     beforeEach(async () => {
                         complex = expectedEditionComplex;
-                        graphDataResult$ = observableOf(expectedEditionGraphEmptyData);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: expectedEditionGraphEmptyData },
+                        });
                         editionStateService.updateSelectedEditionComplex(complex);
 
                         await detectChangesOnPush(fixture);
@@ -388,7 +411,9 @@ describe('EditionGraphComponent (DONE)', () => {
                         descriptionData.graph[0].id = 'test-graph-id-description';
                         descriptionData.graph[0].description = ['Description 1', 'Description 2', 'Description 3'];
 
-                        graphDataResult$ = observableOf(descriptionData);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: descriptionData },
+                        });
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                         await detectChangesOnPush(fixture);
@@ -416,7 +441,9 @@ describe('EditionGraphComponent (DONE)', () => {
             describe('dynamic graph', () => {
                 it('... should not contain a dynamic graph if rdf data is not provided', async () => {
                     const noRdfData = expectedEditionGraphEmptyData;
-                    graphDataResult$ = observableOf(noRdfData);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                        data: { graphData: noRdfData },
+                    });
                     editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -428,7 +455,9 @@ describe('EditionGraphComponent (DONE)', () => {
                     noRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
                     noRdfData.graph[0].rdfData.queryList = undefined;
 
-                    graphDataResult$ = observableOf(noRdfData);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                        data: { graphData: noRdfData },
+                    });
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -440,7 +469,9 @@ describe('EditionGraphComponent (DONE)', () => {
                     noRdfData.graph[0].rdfData.triples = undefined;
                     noRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
-                    graphDataResult$ = observableOf(noRdfData);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                        data: { graphData: noRdfData },
+                    });
                     editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -457,7 +488,9 @@ describe('EditionGraphComponent (DONE)', () => {
                         graphData.graph[0].rdfData.triples = 'example:test example:has example:Success';
                         graphData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
-                        graphDataResult$ = observableOf(graphData);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: graphData },
+                        });
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                         await detectChangesOnPush(fixture);
@@ -567,7 +600,9 @@ describe('EditionGraphComponent (DONE)', () => {
                     noStaticImageData.graph[0].id = 'test-graph-id-no-static-image';
                     noStaticImageData.graph[0].staticImage = undefined;
 
-                    graphDataResult$ = observableOf(noStaticImageData);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                        data: { graphData: noStaticImageData },
+                    });
                     editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -577,7 +612,9 @@ describe('EditionGraphComponent (DONE)', () => {
                     // With empty string
                     noStaticImageData.graph[0].staticImage = '';
 
-                    graphDataResult$ = observableOf(noStaticImageData);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                        data: { graphData: noStaticImageData },
+                    });
                     editionStateService.updateSelectedEditionComplex(expectedOtherEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -593,7 +630,9 @@ describe('EditionGraphComponent (DONE)', () => {
                         staticImageData.graph[0].id = 'test-graph-id-static-image';
                         staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.OP25;
 
-                        graphDataResult$ = observableOf(staticImageData);
+                        updateMockEditionViewData(mockViewDataSignal, expectedGraphData, {
+                            data: { graphData: staticImageData },
+                        });
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                         await detectChangesOnPush(fixture);
@@ -633,7 +672,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 beforeEach(async () => {
                     // Return an error for the graph data observable
-                    graphDataResult$ = observableThrowError(() => expectedError);
+                    updateMockEditionViewData(mockViewDataSignal, expectedGraphData, { error: expectedError });
                     editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
                     await detectChangesOnPush(fixture);
@@ -654,45 +693,6 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     expectToEqual(alertErrorCmp.errorObject, expectedError);
                 });
-            });
-        });
-
-        describe('#editionGraphData()', () => {
-            it('... should have signal `editionGraphData` to hold the expected data', () => {
-                expectToBe(isSignal(component.editionGraphData), true);
-
-                expectToEqual(component.editionGraphData(), expectedEditionGraphDataOp25);
-            });
-
-            it('... should have got `selectedEditionComplex` from editionStateService', () => {
-                expectToEqual(component.selectedEditionComplex(), expectedOtherEditionComplex);
-            });
-
-            it('... should have got `editionGraphData` from editionDataService', () => {
-                expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1);
-            });
-
-            it('... should hold null, but set no errorObject if selectedEditionComplex is null', async () => {
-                // Update selected edition complex to trigger the signal
-                editionStateService.updateSelectedEditionComplex(null);
-                await detectChangesOnPush(fixture);
-
-                expect(component.editionGraphData()).toBeNull();
-                expectToEqual(component.errorObject, null);
-            });
-
-            it('... should hold null and set errorObject if switchMap fails', async () => {
-                const expectedError = { status: 404, statusText: 'error' };
-
-                // Return an error for the report data observable
-                graphDataResult$ = observableThrowError(() => expectedError);
-
-                // Update selected edition complex to trigger the signal
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-                await detectChangesOnPush(fixture);
-
-                expect(component.editionGraphData()).toBeUndefined();
-                expectToEqual(component.errorObject, expectedError);
             });
         });
     });

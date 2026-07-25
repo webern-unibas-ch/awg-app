@@ -5,9 +5,9 @@
 
     <!-- graph -->
     @if (viewData(); as view) {
-        @if (view.error; as err) {
-            <awg-alert-error [errorObject]="err.error" />
-        } @else if (view.isLoading || !viewReady()) {
+        @if (view.error; as errorObject) {
+            <awg-alert-error [errorObject]="errorObject" />
+        } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-graph-view p-5 border rounded-3">

@@ -76,9 +76,9 @@
                     <div ngbAccordionCollapse>
                         <div ngbAccordionBody>
                             <ng-template>
-                                @if (view.data.textcriticsListData; as textcriticsListData) {
+                                @if (view.data.textcriticsData; as textcriticsData) {
                                     <awg-textcritics-list
-                                        [textcriticsListData]="textcriticsListData"
+                                        [textcriticsListData]="textcriticsData"
                                         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                                         (openModalRequest)="onModalOpen($event)"
                                         (selectSvgSheetRequest)="onSvgSheetSelect($event)" />

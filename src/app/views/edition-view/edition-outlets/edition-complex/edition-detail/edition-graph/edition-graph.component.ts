@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
@@ -67,13 +67,6 @@ export class EditionGraphComponent {
     readonly viewData = this._editionDataService.graphViewData;
 
     /**
-     * Readonly signal: viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    readonly viewReady = signal<boolean>(false);
-
-    /**
      * Readonly variable: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
@@ -99,9 +92,5 @@ export class EditionGraphComponent {
      */
     constructor() {
         this.ref = this;
-
-        setTimeout(() => {
-            this.viewReady.set(true);
-        }, 0);
     }
 }

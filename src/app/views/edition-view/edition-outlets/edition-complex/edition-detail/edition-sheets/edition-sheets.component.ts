@@ -386,7 +386,7 @@ export class EditionSheetsComponent {
         const view = this.viewData();
         const sheets = view.data.svgSheetsData.sheets;
         const convolutes = view.data.folioConvoluteData.convolutes;
-        const textcritics = view.data.textcriticsListData.textcritics;
+        const textcritics = view.data.textcriticsData.textcritics;
 
         this.selectedSvgSheet = this._editionSheetsService.selectSvgSheetById(sheets, sheetId);
         this.selectedConvolute = this._editionSheetsService.selectConvolute(convolutes, sheets, this.selectedSvgSheet);

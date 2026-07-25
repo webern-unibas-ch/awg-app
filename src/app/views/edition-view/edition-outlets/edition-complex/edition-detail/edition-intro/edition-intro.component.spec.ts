@@ -1,4 +1,14 @@
-import { Component, DebugElement, DOCUMENT, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    DOCUMENT,
+    EventEmitter,
+    Input,
+    isSignal,
+    Output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
@@ -6,7 +16,7 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -39,7 +49,11 @@ import {
     EditionStateService,
 } from '@awg-views/edition-view/services';
 
+import { updateMockEditionViewData } from '@testing/edition-data-helper';
 import { EditionIntroComponent } from './edition-intro.component';
+
+// Helper type
+type IntroViewData = ReturnType<typeof EditionDataService.prototype.introViewData>;
 
 // Mock components
 @Component({
@@ -153,8 +167,13 @@ describe('IntroComponent (DONE)', () => {
     let mockDocument: Document;
     let mockRouter;
 
-    let editionDataServiceGetEditionSectionIntroDataSpy: Spy;
-    let editionDataServiceGetEditionComplexIntroDataSpy: Spy;
+    let mockEditionDataService: Partial<EditionDataService>;
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
+    let editionStateService: EditionStateService;
+
+    let mockViewDataSignal: WritableSignal<any>;
+
     let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
 
@@ -170,28 +189,22 @@ describe('IntroComponent (DONE)', () => {
     let consoleSpy: Spy;
 
     let extractUrlSegmentsSpy: Spy;
-    let fetchAndFilterIntroDataSpy: Spy;
     let isNavigationEndToIntroSpy: Spy;
     let updateEditionStateSpy: Spy;
 
-    let mockEditionDataService: Partial<EditionDataService>;
-
-    let editionComplexesService: EditionComplexesService;
-    let editionDataService: Partial<EditionDataService>;
-    let editionOutlineService: EditionOutlineService;
-    let editionStateService: EditionStateService;
-
+    let expectedViewData: IntroViewData;
+    let expectedIntroData: IntroViewData['data'];
+    let expectedEditionIntroComplexData: IntroList;
+    let expectedEditionIntroSectionData: IntroList;
+    let expectedEditionIntroSectionFilteredData: IntroList;
     let expectedCurrentLaguage: number;
     let expectedNotesLabels: Map<number, string>;
     let expectedEditionComplex: EditionComplex;
-    let expectedEditionIntroSectionData: IntroList;
     let expectedErrorObject: any;
 
     let expectedEditionComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedEditionIntroComplexData: IntroList;
-    let expectedEditionIntroSectionFilteredData: IntroList;
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
@@ -211,9 +224,21 @@ describe('IntroComponent (DONE)', () => {
         };
 
         // Mock services
+        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
+        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
+        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
+        expectedIntroData = {
+            introData: expectedEditionIntroSectionData,
+        };
+        expectedViewData = {
+            data: expectedIntroData,
+            isLoading: false,
+            error: null,
+        };
+
+        mockViewDataSignal = signal(expectedViewData);
         mockEditionDataService = {
-            getEditionComplexIntroData: (): Observable<IntroList> => observableOf(null),
-            getEditionSectionIntroData: (): Observable<IntroList> => observableOf(null),
+            introViewData: mockViewDataSignal.asReadonly(),
         };
 
         await TestBed.configureTestingModule({
@@ -239,7 +264,6 @@ describe('IntroComponent (DONE)', () => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
         editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionDataService = TestBed.inject(EditionDataService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
@@ -248,8 +272,6 @@ describe('IntroComponent (DONE)', () => {
         editionOutlineService.initializeEditionOutline();
 
         // Service spies
-        editionDataServiceGetEditionComplexIntroDataSpy = vi.spyOn(editionDataService, 'getEditionComplexIntroData');
-        editionDataServiceGetEditionSectionIntroDataSpy = vi.spyOn(editionDataService, 'getEditionSectionIntroData');
         editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
         editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
 
@@ -259,10 +281,6 @@ describe('IntroComponent (DONE)', () => {
             [0, 'Anmerkungen'],
             [1, 'Notes'],
         ]);
-        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
-        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
-        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
-        expectedErrorObject = null;
 
         expectedComplexId = 'op12';
         expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
@@ -289,7 +307,6 @@ describe('IntroComponent (DONE)', () => {
         // Component spies
         listenToRouteChangesSpy = vi.spyOn(component, 'listenToRouteChanges');
         extractUrlSegmentsSpy = vi.spyOn(component as any, '_extractUrlSegments');
-        fetchAndFilterIntroDataSpy = vi.spyOn(component as any, '_fetchAndFilterIntroData');
         isNavigationEndToIntroSpy = vi.spyOn(component as any, '_isNavigationEndToIntro');
         updateEditionStateSpy = vi.spyOn(component as any, '_updateEditionState');
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
@@ -322,18 +339,10 @@ describe('IntroComponent (DONE)', () => {
             expectToEqual(component.notesLabels, expectedNotesLabels);
         });
 
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
-        });
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
 
-        it('... should have `errorObject = null`', () => {
-            expectToBe(component.errorObject, expectedErrorObject);
-        });
-
-        it('... should have signal `editionIntroData` to hold null', () => {
-            expectToBe(isSignal(component.introData), true);
-
-            expectToBe(component.introData(), null);
+            expectToEqual(component.selectedEditionComplex(), null);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -398,13 +407,6 @@ describe('IntroComponent (DONE)', () => {
             editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
             editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
-            editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                observableOf(expectedEditionIntroSectionData)
-            );
-            editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
-                observableOf(expectedEditionIntroComplexData)
-            );
-
             // Trigger initial data binding
             fixture.detectChanges();
         });
@@ -413,24 +415,10 @@ describe('IntroComponent (DONE)', () => {
             expectSpyCall(listenToRouteChangesSpy, 1);
         });
 
-        it('... should have signal `editionIntroData` to hold the expected intro data', () => {
-            expectToEqual(component.introData(), expectedEditionIntroSectionFilteredData);
-        });
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
 
-        it('... should have signal `editionIntroData` to hold null if section is not available', async () => {
-            editionStateService.updateSelectedEditionSection(null);
-
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.introData(), null);
-        });
-
-        it('... should have signal `editionIntroData` to hold null if series is not available', async () => {
-            editionStateService.updateSelectedEditionSeries(null);
-
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.introData(), null);
+            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
         });
 
         describe('VIEW', () => {
@@ -545,7 +533,7 @@ describe('IntroComponent (DONE)', () => {
 
                 describe('... without complex', () => {
                     beforeEach(async () => {
-                        component.editionComplex = undefined;
+                        editionStateService.updateSelectedEditionComplex(null);
                         await detectChangesOnPush(fixture);
                     });
 
@@ -622,9 +610,9 @@ describe('IntroComponent (DONE)', () => {
                             },
                         ],
                     };
-                    editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                        observableOf(mockEmptySectionIntro)
-                    );
+                    updateMockEditionViewData(mockViewDataSignal, expectedIntroData, {
+                        data: { introData: mockEmptySectionIntro },
+                    });
 
                     editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
                     editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
@@ -657,8 +645,7 @@ describe('IntroComponent (DONE)', () => {
             describe('on error', () => {
                 beforeEach(async () => {
                     expectedErrorObject = { status: 404, statusText: 'error' };
-                    // Spy on editionDataService to return an error
-                    fetchAndFilterIntroDataSpy.mockReturnValue(observableThrowError(() => expectedErrorObject));
+                    updateMockEditionViewData(mockViewDataSignal, expectedIntroData, { error: expectedErrorObject });
 
                     editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
                     editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
@@ -687,7 +674,10 @@ describe('IntroComponent (DONE)', () => {
                 describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
                     it('... editionIntroData is null', async () => {
                         // Mock null response
-                        fetchAndFilterIntroDataSpy.mockReturnValue(observableOf(null));
+                        updateMockEditionViewData(mockViewDataSignal, expectedIntroData, {
+                            data: { introData: null },
+                            isLoading: true,
+                        });
 
                         editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
                         editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
@@ -701,7 +691,10 @@ describe('IntroComponent (DONE)', () => {
 
                     it('... editionIntroData is undefined', async () => {
                         // Mock undefined response
-                        fetchAndFilterIntroDataSpy.mockReturnValue(observableOf(undefined));
+                        updateMockEditionViewData(mockViewDataSignal, expectedIntroData, {
+                            data: { introData: undefined },
+                            isLoading: true,
+                        });
 
                         editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
                         editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
@@ -1420,198 +1413,6 @@ describe('IntroComponent (DONE)', () => {
                         const expected = { seriesId: undefined, sectionId: undefined };
 
                         expectToEqual(result, expected);
-                    });
-                });
-            });
-
-            describe('#_fetchAndFilterIntroData()', () => {
-                it('... should have a method `_fetchAndFilterIntroData`', () => {
-                    expect((component as any)._fetchAndFilterIntroData).toBeDefined();
-                });
-
-                describe('... without given complex', () => {
-                    it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const initialCalls = editionDataServiceGetEditionSectionIntroDataSpy.mock.calls.length;
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls);
-
-                        (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls + 1, [
-                            seriesRoute,
-                            sectionRoute,
-                        ]);
-                    });
-
-                    it('... should return the correct edition intro data for a given series and section', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
-
-                        result$.subscribe({
-                            next: (data: IntroList) => {
-                                expectToEqual(data, expectedEditionIntroSectionData);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-                });
-
-                describe('... with given complex', () => {
-                    beforeEach(() => {
-                        editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                            observableOf(expectedEditionIntroSectionData)
-                        );
-                        editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
-                            observableOf(expectedEditionIntroComplexData)
-                        );
-                    });
-
-                    it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-                        const initialCalls = editionDataServiceGetEditionSectionIntroDataSpy.mock.calls.length;
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls);
-
-                        (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls + 1, [
-                            seriesRoute,
-                            sectionRoute,
-                        ]);
-                    });
-
-                    it('... should set `editionComplex`', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectToEqual(component.editionComplex, complex);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should trigger `getEditionComplexIntroData()` method from EditionDataService with complex', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 1, complex);
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should trigger `_filterSectionIntroDataById()` method with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-                        const expectedBlockId = expectedEditionIntroComplexData.intro[0].id;
-
-                        const filterSectionIntroDataByIdSpy = vi.spyOn(component as any, '_filterSectionIntroDataById');
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectSpyCall(filterSectionIntroDataByIdSpy, 1, [
-                                    expectedEditionIntroSectionData,
-                                    expectedBlockId,
-                                ]);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should return the correct fltered edition intro data for a given series, section and complex', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: (data: IntroList) => {
-                                expectToEqual(data, expectedEditionIntroSectionFilteredData);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-                });
-            });
-
-            describe('#_filterSectionIntroDataById()', () => {
-                it('... should have a method `_filterSectionIntroDataById`', () => {
-                    expect((component as any)._filterSectionIntroDataById).toBeDefined();
-                });
-
-                it('... should return the correct section intro data for a given block id', () => {
-                    const blockId = 'test_block_id_2';
-                    const expectedBlock = expectedEditionIntroSectionData.intro[0].content.find(
-                        block => block.blockId === blockId
-                    );
-
-                    const result = (component as any)._filterSectionIntroDataById(
-                        expectedEditionIntroSectionData,
-                        blockId
-                    );
-
-                    expect(result).toBeDefined();
-                    expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                    expectToEqual(result.intro[0].content, [expectedBlock]);
-                });
-
-                describe('... should return an empty content array if', () => {
-                    it('... no block id is given', () => {
-                        const result = (component as any)._filterSectionIntroDataById(
-                            expectedEditionIntroSectionData,
-                            undefined
-                        );
-
-                        expect(result).toBeDefined();
-                        expect(result.intro[0]).toBeDefined();
-                        expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                        expectToEqual(result.intro[0].content, []);
-                    });
-
-                    it('... no intro data section is found for given block id', () => {
-                        const blockId = 'notExistingId';
-                        const result = (component as any)._filterSectionIntroDataById(
-                            expectedEditionIntroSectionData,
-                            blockId
-                        );
-
-                        expect(result).toBeDefined();
-                        expect(result.intro[0]).toBeDefined();
-                        expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                        expectToEqual(result.intro[0].content, []);
                     });
                 });
             });

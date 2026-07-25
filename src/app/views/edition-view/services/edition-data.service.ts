@@ -74,18 +74,19 @@ export class EditionDataService {
     private readonly _dataError = signal<EditionDataAssetsError | null>(null);
 
     /**
+     * Readonly signal holding the preface data state.
+     */
+    private readonly _prefaceData = this._getStaticEditionDataByKey<PrefaceList>('preface');
+
+    /**
+     * Private readonly signal holding the row tables data state.
+     */
+    private readonly _rowTablesData = this._getStaticEditionDataByKey<RowTablesList>('rowTables');
+
+    /**
      * Private readonly signal holding the intro data state.
      */
-    private readonly _introData = toSignal(
-        toObservable(
-            computed(() => ({
-                series: this._editionStateService.selectedEditionSeries(),
-                section: this._editionStateService.selectedEditionSection(),
-                complex: this._editionStateService.selectedEditionComplex(),
-            }))
-        ).pipe(switchMap(state => this._getIntroDataStream(state))),
-        { initialValue: new IntroList() }
-    );
+    private readonly _introData = this._getIntroData();
 
     /**
      * Private readonly signal holding the folio convolute data state.
@@ -103,16 +104,15 @@ export class EditionDataService {
     private readonly _sourceListData = this._getComplexEditionDataByKey<SourceList>('sourceList');
 
     /**
-     * Private readonly signal holding the source description list data state.
+     * Private readonly signal holding the source description data state.
      */
-    private readonly _sourceDescriptionListData =
+    private readonly _sourceDescriptionData =
         this._getComplexEditionDataByKey<SourceDescriptionList>('sourceDescription');
 
     /**
-     * Private readonly signal holding the source evaluation list data state.
+     * Private readonly signal holding the source evaluation data state.
      */
-    private readonly _sourceEvaluationListData =
-        this._getComplexEditionDataByKey<SourceEvaluationList>('sourceEvaluation');
+    private readonly _sourceEvaluationData = this._getComplexEditionDataByKey<SourceEvaluationList>('sourceEvaluation');
 
     /**
      * Private readonly signal holding the svg sheets data state.
@@ -122,17 +122,7 @@ export class EditionDataService {
     /**
      * Private readonly signal holding the textcritics list data state.
      */
-    private readonly _textcriticsListData = this._getComplexEditionDataByKey<TextcriticsList>('textcritics');
-
-    /**
-     * Readonly signal holding the preface data state.
-     */
-    private readonly _prefaceData = this._getStaticEditionDataByKey<PrefaceList>('preface');
-
-    /**
-     * Private readonly signal holding the row tables data state.
-     */
-    private readonly rowTablesData = this._getStaticEditionDataByKey<RowTablesList>('rowTables');
+    private readonly _textcriticsData = this._getComplexEditionDataByKey<TextcriticsList>('textcritics');
 
     /**
      * Readonly signal: prefaceViewData.
@@ -155,7 +145,7 @@ export class EditionDataService {
      * It holds the state of the row tables view data.
      */
     readonly rowTablesViewData = computed(() => {
-        const rowTablesData = this.rowTablesData();
+        const rowTablesData = this._rowTablesData();
         const isLoading = this._loadingService.isLoading() || !rowTablesData?.rowTables?.length;
 
         const keys: EditionDataAssetsKeys[] = ['rowTables'];
@@ -182,75 +172,6 @@ export class EditionDataService {
     });
 
     /**
-     * Readonly signal: sheetsViewData.
-     *
-     * It holds the state of the sheets view data.
-     */
-    readonly sheetsViewData = computed(() => {
-        const folioConvoluteData = this._folioConvoluteData();
-        const svgSheetsData = this._svgSheetsData();
-        const textcriticsListData = this._textcriticsListData();
-
-        const missingSvgSheets =
-            !svgSheetsData.sheets ||
-            (!svgSheetsData.sheets.workEditions?.length &&
-                !svgSheetsData.sheets.textEditions?.length &&
-                !svgSheetsData.sheets.sketchEditions?.length);
-
-        const isLoading =
-            this._loadingService.isLoading() ||
-            !folioConvoluteData.convolutes?.length ||
-            missingSvgSheets ||
-            !textcriticsListData.textcritics?.length;
-
-        const keys: EditionDataAssetsKeys[] = ['folioConvolute', 'svgSheets', 'textcritics'];
-        const error = this._getErrorForDataAssets(keys)();
-
-        return {
-            data: { folioConvoluteData, svgSheetsData, textcriticsListData },
-            isLoading,
-            error,
-        } satisfies EditionViewData<{
-            folioConvoluteData: FolioConvoluteList;
-            svgSheetsData: EditionSvgSheetList;
-            textcriticsListData: TextcriticsList;
-        }>;
-    });
-
-    /**
-     * Readonly signal: reportViewData.
-     *
-     * It holds the state of the report view data.
-     */
-    readonly reportViewData = computed(() => {
-        const sourceListData = this._sourceListData();
-        const sourceDescriptionData = this._sourceDescriptionListData();
-        const sourceEvaluationData = this._sourceEvaluationListData();
-        const textcriticsListData = this._textcriticsListData();
-
-        const isLoading =
-            this._loadingService.isLoading() ||
-            !sourceListData.sources?.length ||
-            !sourceDescriptionData.sources?.length ||
-            !sourceEvaluationData.sources?.length ||
-            !textcriticsListData.textcritics?.length;
-
-        const keys: EditionDataAssetsKeys[] = ['sourceList', 'sourceDescription', 'sourceEvaluation', 'textcritics'];
-        const error = this._getErrorForDataAssets(keys)();
-
-        return {
-            data: { sourceListData, sourceDescriptionData, sourceEvaluationData, textcriticsListData },
-            isLoading,
-            error,
-        } satisfies EditionViewData<{
-            sourceListData: SourceList;
-            sourceDescriptionData: SourceDescriptionList;
-            sourceEvaluationData: SourceEvaluationList;
-            textcriticsListData: TextcriticsList;
-        }>;
-    });
-
-    /**
      * Readonly signal: graphViewData.
      *
      * It holds the state of the graph view data.
@@ -263,6 +184,75 @@ export class EditionDataService {
         const error = this._getErrorForDataAssets(keys)();
 
         return { data: { graphData }, isLoading, error } satisfies EditionViewData<{ graphData: GraphList }>;
+    });
+
+    /**
+     * Readonly signal: sheetsViewData.
+     *
+     * It holds the state of the sheets view data.
+     */
+    readonly sheetsViewData = computed(() => {
+        const folioConvoluteData = this._folioConvoluteData();
+        const svgSheetsData = this._svgSheetsData();
+        const textcriticsData = this._textcriticsData();
+
+        const missingSvgSheets =
+            !svgSheetsData.sheets ||
+            (!svgSheetsData.sheets.workEditions?.length &&
+                !svgSheetsData.sheets.textEditions?.length &&
+                !svgSheetsData.sheets.sketchEditions?.length);
+
+        const isLoading =
+            this._loadingService.isLoading() ||
+            !folioConvoluteData.convolutes?.length ||
+            missingSvgSheets ||
+            !textcriticsData.textcritics?.length;
+
+        const keys: EditionDataAssetsKeys[] = ['folioConvolute', 'svgSheets', 'textcritics'];
+        const error = this._getErrorForDataAssets(keys)();
+
+        return {
+            data: { folioConvoluteData, svgSheetsData, textcriticsData },
+            isLoading,
+            error,
+        } satisfies EditionViewData<{
+            folioConvoluteData: FolioConvoluteList;
+            svgSheetsData: EditionSvgSheetList;
+            textcriticsData: TextcriticsList;
+        }>;
+    });
+
+    /**
+     * Readonly signal: reportViewData.
+     *
+     * It holds the state of the report view data.
+     */
+    readonly reportViewData = computed(() => {
+        const sourceListData = this._sourceListData();
+        const sourceDescriptionData = this._sourceDescriptionData();
+        const sourceEvaluationData = this._sourceEvaluationData();
+        const textcriticsData = this._textcriticsData();
+
+        const isLoading =
+            this._loadingService.isLoading() ||
+            !sourceListData.sources?.length ||
+            !sourceDescriptionData.sources?.length ||
+            !sourceEvaluationData.sources?.length ||
+            !textcriticsData.textcritics?.length;
+
+        const keys: EditionDataAssetsKeys[] = ['sourceList', 'sourceDescription', 'sourceEvaluation', 'textcritics'];
+        const error = this._getErrorForDataAssets(keys)();
+
+        return {
+            data: { sourceListData, sourceDescriptionData, sourceEvaluationData, textcriticsData },
+            isLoading,
+            error,
+        } satisfies EditionViewData<{
+            sourceListData: SourceList;
+            sourceDescriptionData: SourceDescriptionList;
+            sourceEvaluationData: SourceEvaluationList;
+            textcriticsData: TextcriticsList;
+        }>;
     });
 
     /**
@@ -347,24 +337,23 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: _getErrorForDataAssets.
+     * Private method: _getIntroEditionData.
      *
-     * It computes an errorObject for the service calls
-     * for the given data assets.
+     * It gets the intro data for the selected edition series and section.
      *
-     * @param {EditionDataAssetsKeys[]} assetsKeys The given data assets keys to check for errors.
-     * @returns {Signal<any | null>} The computed errorObject for the given data asset keys.
+     * @returns {Signal<IntroList>} The signal with the requested intro data.
      */
-    private _getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal<any | null> {
-        return computed(() => {
-            const errState = this._dataError();
-
-            if (!errState) {
-                return null;
-            }
-
-            return assetsKeys.includes(errState.key) ? errState.error : null;
-        });
+    private _getIntroData(): Signal<IntroList> {
+        return toSignal(
+            toObservable(
+                computed(() => ({
+                    series: this._editionStateService.selectedEditionSeries(),
+                    section: this._editionStateService.selectedEditionSection(),
+                    complex: this._editionStateService.selectedEditionComplex(),
+                }))
+            ).pipe(switchMap(state => this._getIntroDataStream(state))),
+            { initialValue: new IntroList() }
+        );
     }
 
     /**
@@ -390,7 +379,7 @@ export class EditionDataService {
 
         const sectionPath = EDITION_ASSETS_DATA.BASE_ROUTE + state.section.labeledRoute?.route.join('/');
         const file = EDITION_ASSETS_DATA.CONFIG[assetsKey].file;
-        const sectionStream$ = this._fetchJsonData<IntroList>(sectionPath, file, fallbackValue, assetsKey);
+        const sectionIntroStream$ = this._fetchJsonData<IntroList>(sectionPath, file, fallbackValue, assetsKey);
 
         const isComplexValid =
             state.complex?.pubStatement?.series?.route === state.series.series?.route &&
@@ -398,9 +387,9 @@ export class EditionDataService {
 
         if (isComplexValid) {
             const complexPath = this._getAssetPathForEditionComplex(state.complex);
-            const complexStream$ = this._fetchJsonData<IntroList>(complexPath, file, fallbackValue, assetsKey);
+            const complexIntroStream$ = this._fetchJsonData<IntroList>(complexPath, file, fallbackValue, assetsKey);
 
-            return observableForkJoin([sectionStream$, complexStream$]).pipe(
+            return observableForkJoin([sectionIntroStream$, complexIntroStream$]).pipe(
                 map(([sectionIntroData, complexIntroData]) => {
                     if (complexIntroData?.intro?.length > 0) {
                         const blockId = complexIntroData.intro[0].id;
@@ -411,7 +400,7 @@ export class EditionDataService {
             );
         }
 
-        return sectionStream$;
+        return sectionIntroStream$;
     }
 
     /**
@@ -424,11 +413,17 @@ export class EditionDataService {
      * @returns {IntroList} The filtered section intro data.
      */
     private _filterSectionIntroDataByBlockId(sectionIntroData: IntroList, blockId: string): IntroList {
+        if (!sectionIntroData?.intro) {
+            return sectionIntroData;
+        }
+
         return {
             ...sectionIntroData,
             intro: sectionIntroData.intro.map(section => ({
                 ...section,
-                content: section.content.filter(contentBlock => contentBlock.blockId === blockId),
+                content: section.content
+                    ? section.content.filter(contentBlock => contentBlock.blockId === blockId)
+                    : [],
             })),
         };
     }
@@ -442,7 +437,7 @@ export class EditionDataService {
      *
      * @param {string} assetPath The path to the assets folder.
      * @param {string} file The name of the JSON file.
-     * @param {T} fallbackValue An optional empty result to let the app keep running.
+     * @param {T} fallbackValue An empty result to let the app keep running.
      * @param {EditionDataAssetsKeys} assetsKey The given data assets key.
      * @returns {Observable<T>} The observable with the requested data.
      */
@@ -465,18 +460,55 @@ export class EditionDataService {
      * It handles errors, if any, of the HTTP request.
      *
      * @param {EditionDataAssetsKeys} assetsKey The given data assets key.
-     * @param {T} [result] An optional empty result to let the app keep running.
+     * @param {T} fallbackValue An empty result to let the app keep running.
      * @returns An observable of the error.
      */
-    private _handleError<T>(assetsKey: EditionDataAssetsKeys, result?: T) {
+    private _handleError<T>(
+        assetsKey: EditionDataAssetsKeys,
+        fallbackValue: T
+    ): (error: HttpErrorResponse) => Observable<T> {
         return (error: HttpErrorResponse): Observable<T> => {
             this._logError(`${assetsKey} failed: ${error.message}`);
 
             this._dataError.set({ key: assetsKey, error });
 
-            // Let the app keep running by returning an empty result.
-            return observableOf(result as T);
+            // Let the app keep running by returning the empty fallback.
+            return observableOf(fallbackValue as T);
         };
+    }
+
+    /**
+     * Private method: _logError.
+     *
+     * It logs an error message to the console.
+     *
+     * @param {string} message The given error message to be logged.
+     *
+     * @returns {void} Logs the error message to the console.
+     */
+    private _logError(message: string): void {
+        console.error(message);
+    }
+
+    /**
+     * Private method: _getErrorForDataAssets.
+     *
+     * It computes an errorObject for the service calls
+     * for the given data assets.
+     *
+     * @param {EditionDataAssetsKeys[]} assetsKeys The given data assets keys to check for errors.
+     * @returns {Signal<any | null>} The computed errorObject for the given data asset keys.
+     */
+    private _getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal<any | null> {
+        return computed(() => {
+            const errState = this._dataError();
+
+            if (!errState) {
+                return null;
+            }
+
+            return assetsKeys.includes(errState.key) ? errState.error : null;
+        });
     }
 
     /**
@@ -492,18 +524,5 @@ export class EditionDataService {
         if (current?.key === assetsKey) {
             this._dataError.set(null);
         }
-    }
-
-    /**
-     * Private method: _logError.
-     *
-     * It logs an error message to the console.
-     *
-     * @param {string} message The given error message to be logged.
-     *
-     * @returns {void} Logs the error message to the console.
-     */
-    private _logError(message: string): void {
-        console.error(message);
     }
 }

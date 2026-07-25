@@ -6,9 +6,10 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { firstValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { updateMockEditionViewData } from '@testing/edition-data-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -42,6 +43,9 @@ import {
 } from '@awg-views/edition-view/services';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
+
+// Helper type
+type SheetsViewData = ReturnType<typeof EditionDataService.prototype.sheetsViewData>;
 
 // Mock components
 @Component({
@@ -141,22 +145,21 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
-    let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
     let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
-    let editionDataServiceGetEditionSheetsDataSpy: Spy;
+    let mockIsLoadingSignal: WritableSignal<boolean>;
+    let mockViewDataSignal: WritableSignal<any>;
+
     let editionSheetsServiceFindTextcriticsSpy: Spy;
     let editionSheetsServiceGetCurrentEditionTypeSpy: Spy;
     let editionSheetsServiceGetNextSheetIdSpy: Spy;
     let editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
-    let fetchEditionComplexDataSpy: Spy;
-    let getEditionSheetsDataSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
     let navigationSpy: Spy;
     let onBrowseSvgSheetSpy: Spy;
@@ -167,6 +170,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let onToggleSheetFacetSpy: Spy;
 
+    let expectedViewData: SheetsViewData;
+    let expectedSheetsData: SheetsViewData['data'];
     let expectedConvolute: FolioConvolute;
     let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
@@ -174,7 +179,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedTextcriticsData: TextcriticsList;
+    let expectedTextcriticsListData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
     let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedEditionComplexBaseRoute: string;
@@ -203,9 +208,23 @@ describe('EditionSheetsComponent (DONE)', () => {
         mockActivatedRoute.testUrl = expectedRouteUrl;
 
         // Mock services
+        expectedFolioConvoluteData = structuredClone(mockEditionData.mockFolioConvoluteData);
+        expectedSvgSheetsData = structuredClone(mockEditionData.mockSvgSheetList);
+        expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
+        expectedSheetsData = {
+            folioConvoluteData: expectedFolioConvoluteData,
+            svgSheetsData: expectedSvgSheetsData,
+            textcriticsData: expectedTextcriticsListData,
+        };
+        expectedViewData = {
+            data: expectedSheetsData,
+            isLoading: false,
+            error: null,
+        };
+
+        mockViewDataSignal = signal(expectedViewData);
         mockEditionDataService = {
-            getEditionSheetsData: (): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> =>
-                observableOf([]),
+            sheetsViewData: mockViewDataSignal.asReadonly(),
         };
 
         mockEditionSheetsService = {
@@ -252,6 +271,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Inject services
         editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
+        mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Init edition data
         editionComplexesService.initializeEditionComplexesList();
@@ -268,25 +288,17 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
 
-        expectedFolioConvoluteData = structuredClone(mockEditionData.mockFolioConvoluteData);
         expectedConvolute = expectedFolioConvoluteData.convolutes[0];
 
-        expectedSvgSheetsData = structuredClone(mockEditionData.mockSvgSheetList);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedTextcriticsData = structuredClone(mockEditionData.mockTextcriticsListData);
-        expectedSelectedTextcritics = expectedTextcriticsData.textcritics[1];
+        expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[1];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         // Service spies
         navigationSpy = mockRouter.navigate as Mock;
 
-        editionDataServiceGetEditionSheetsDataSpy = vi
-            .spyOn(mockEditionDataService, 'getEditionSheetsData')
-            .mockReturnValue(
-                observableOf([expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData])
-            );
         editionSheetsServiceFindTextcriticsSpy = vi.spyOn(mockEditionSheetsService, 'findTextcritics');
         editionSheetsServiceGetCurrentEditionTypeSpy = vi.spyOn(mockEditionSheetsService, 'getCurrentEditionType');
         editionSheetsServiceGetNextSheetIdSpy = vi.spyOn(mockEditionSheetsService, 'getNextSheetId');
@@ -307,7 +319,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Component spies
-        getEditionSheetsDataSpy = vi.spyOn(component, 'getEditionSheetsData');
         onBrowseSvgSheetSpy = vi.spyOn(component, 'onBrowseSvgSheet');
         onLinkBoxSelectSpy = vi.spyOn(component, 'onLinkBoxSelect');
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
@@ -315,7 +326,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
         onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
 
-        fetchEditionComplexDataSpy = vi.spyOn(component as any, '_fetchEditionComplexData');
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
         selectSvgSheetSpy = vi.spyOn(component as any, '_selectSvgSheet');
     });
@@ -329,16 +339,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `errorObject` = null', () => {
-            expectToBe(component.errorObject, null);
-        });
-
         it('... should have `isSheetFacetMinimized` = false', () => {
             expectToBe(component.isSheetFacetMinimized, false);
-        });
-
-        it('... should not have `folioConvoluteData`', () => {
-            expect(component.folioConvoluteData).toBeUndefined();
         });
 
         it('... should not have `selectedConvolute`', () => {
@@ -365,30 +367,22 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.snapshotQueryParamsId).toBeUndefined();
         });
 
-        it('... should not have `svgSheetsData`', () => {
-            expect(component.svgSheetsData).toBeUndefined();
-        });
-
-        it('... should not have `textcriticsData`', () => {
-            expect(component.textcriticsData).toBeUndefined();
-        });
-
         it('... should have signal `selectedEditionComplex` to hold null', () => {
             expectToBe(isSignal(component.selectedEditionComplex), true);
 
             expectToBe(component.selectedEditionComplex(), null);
         });
 
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToBe(isSignal(component.viewData), true);
+
+            expectToBe(component.viewData(), expectedViewData);
+        });
+
         it('... should have signal `isFirstPageLoad` to hold true', () => {
             expectToBe(isSignal(component.isFirstPageLoad), true);
 
             expectToBe(component.isFirstPageLoad(), true);
-        });
-
-        it('... should have signal `isLoading` to hold false', () => {
-            expectToBe(isSignal(component.isLoading), true);
-
-            expectToBe(component.isLoading(), false);
         });
 
         describe('VIEW', () => {
@@ -428,10 +422,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         beforeEach(() => {
             editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
-            component.folioConvoluteData = structuredClone(expectedFolioConvoluteData);
-            component.svgSheetsData = structuredClone(expectedSvgSheetsData);
-            component.textcriticsData = structuredClone(expectedTextcriticsData);
-
             // Trigger initial data binding
             fixture.detectChanges();
         });
@@ -449,22 +439,6 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
             expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
-        });
-
-        it('... should have `folioConvoluteData`', () => {
-            expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
-        });
-
-        it('... should have `svgSheetsData`', () => {
-            expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
-        });
-
-        it('... should have `textcriticsData`', () => {
-            expectToEqual(component.textcriticsData, expectedTextcriticsData);
-        });
-
-        it('... should have called `getEditionSheetsData`', () => {
-            expectSpyCall(getEditionSheetsDataSpy, 1);
         });
 
         describe('VIEW', () => {
@@ -489,9 +463,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                     // Spy on editionDataService to return an error
                     mockIsLoadingSignal.set(false);
                     component.isFirstPageLoad.set(false);
-                    fetchEditionComplexDataSpy.mockReturnValue(observableThrowError(() => expectedError));
-
-                    component.getEditionSheetsData();
+                    updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                        error: expectedError,
+                    });
 
                     await detectChangesOnPush(fixture);
                 });
@@ -640,43 +614,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
-            describe('#getEditionSheetsData()', () => {
-                it('... should have a method `getEditionSheetsData`', () => {
-                    expect(component.getEditionSheetsData).toBeDefined();
-                });
-
-                it('... should trigger `_fetchEditionComplexData()` with empty object if queryParams are not given', () => {
-                    mockActivatedRoute.testQueryParamMap = undefined;
-
-                    const initialCalls = fetchEditionComplexDataSpy.mock.calls.length;
-
-                    component.getEditionSheetsData();
-
-                    expectSpyCall(fetchEditionComplexDataSpy, initialCalls + 1, mockActivatedRoute.testQueryParamMap);
-                });
-
-                it('... should trigger `_fetchEditionComplexData()` with correct parameters if queryParams are given', () => {
-                    const sheetId = 'test-TF1';
-                    mockActivatedRoute.testQueryParamMap = { id: sheetId };
-
-                    const initialCalls = fetchEditionComplexDataSpy.mock.calls.length;
-
-                    component.getEditionSheetsData();
-
-                    expectSpyCall(fetchEditionComplexDataSpy, initialCalls + 1, mockActivatedRoute.testQueryParamMap);
-                    expectToBe(component.errorObject, null);
-                });
-
-                it('... should handle errors and set errorObject when switchMap fails', () => {
-                    const expectedError = { status: 404, statusText: 'error' };
-                    fetchEditionComplexDataSpy.mockReturnValue(observableThrowError(() => expectedError));
-
-                    component.getEditionSheetsData();
-
-                    expectToEqual(component.errorObject, expectedError);
-                });
-            });
-
             describe('#onBrowseSvgSheet()', () => {
                 it('... should have a method `onBrowseSvgSheet`', () => {
                     expect(component.onBrowseSvgSheet).toBeDefined();
@@ -712,9 +649,15 @@ describe('EditionSheetsComponent (DONE)', () => {
                     beforeEach(() => {
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
-                        component.folioConvoluteData = structuredClone(expectedFolioConvoluteData);
-                        component.svgSheetsData = structuredClone(expectedSvgSheetsData);
-                        component.textcriticsData = structuredClone(expectedTextcriticsData);
+                        (mockEditionDataService as any).sheetsViewData.set({
+                            data: {
+                                folioConvoluteData: expectedFolioConvoluteData,
+                                svgSheetsData: expectedSvgSheetsData,
+                                textcriticsListData: expectedTextcriticsListData,
+                            },
+                            isLoading: false,
+                            error: null,
+                        });
 
                         // Trigger initial data binding
                         fixture.detectChanges();
@@ -1154,105 +1097,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
             });
 
-            describe('#_assignData()', () => {
-                it('... should have a method `_assignData`', () => {
-                    expect((component as any)._assignData).toBeDefined();
-                });
-
-                it('... should assign data from the service to the component', () => {
-                    component.folioConvoluteData = undefined;
-                    component.svgSheetsData = undefined;
-                    component.textcriticsData = undefined;
-
-                    const expectedData = [expectedFolioConvoluteData, expectedSvgSheetsData, expectedTextcriticsData];
-
-                    (component as any)._assignData(expectedData);
-
-                    expectToEqual(component.folioConvoluteData, expectedFolioConvoluteData);
-                    expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
-                    expectToEqual(component.textcriticsData, expectedTextcriticsData);
-                });
-            });
-
-            describe('#_fetchEditionComplexData()', () => {
-                it('... should have a method `_fetchEditionComplexData`', () => {
-                    expect((component as any)._fetchEditionComplexData).toBeDefined();
-                });
-
-                it('... should have got `selectedEditionComplex` from editionStateService', () => {
-                    expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
-                });
-
-                it('... should trigger `getEditionSheetsData` from EditionDataService with correct edition complex', () => {
-                    expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 1, [expectedEditionComplex]);
-
-                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                        expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, 3, [expectedEditionComplex]);
-                    });
-                });
-
-                it('... should return null if selectedEditionComplex is null', async () => {
-                    // Update selected edition complex to trigger the signal
-                    editionStateService.updateSelectedEditionComplex(null);
-                    await detectChangesOnPush(fixture);
-
-                    const result = await firstValueFrom(
-                        (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
-                    );
-
-                    expectToEqual(result, null);
-                });
-
-                it('... should trigger `_assignData` with correct parameters', () => {
-                    const assignDataSpy = vi.spyOn(component as any, '_assignData');
-
-                    expectSpyCall(assignDataSpy, 0);
-
-                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                        expectSpyCall(assignDataSpy, 1, [expectedSvgSheetsData]);
-                    });
-                });
-
-                it('... should trigger `_handleQueryParams` with correct parameters', () => {
-                    const handleQueryParamsSpy = vi.spyOn(component as any, '_handleQueryParams');
-
-                    expectSpyCall(handleQueryParamsSpy, 0);
-
-                    (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe(() => {
-                        expectSpyCall(handleQueryParamsSpy, 1, mockActivatedRoute.testQueryParamMap);
-                    });
-                });
-
-                it('... should return svg sheets data', () => {
-                    (component as any)
-                        ._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap)
-                        .subscribe((result: EditionSvgSheetList) => {
-                            expectToEqual(result, expectedSvgSheetsData);
-                        });
-                });
-
-                it('... should emit error when fetching data fails', async () => {
-                    const expectedError = { status: 500, statusText: 'Internal Server Error' };
-                    editionDataServiceGetEditionSheetsDataSpy.mockReturnValue(
-                        observableThrowError(() => expectedError)
-                    );
-
-                    const initialCalls = editionDataServiceGetEditionSheetsDataSpy.mock.calls.length;
-
-                    const emittedError = await new Promise(resolve => {
-                        (component as any)._fetchEditionComplexData(mockActivatedRoute.testQueryParamMap).subscribe({
-                            next: () => {},
-                            error: (err: unknown) => resolve(err),
-                        });
-                    });
-
-                    expectSpyCall(editionDataServiceGetEditionSheetsDataSpy, initialCalls + 1, [
-                        expectedEditionComplex,
-                    ]);
-                    expectToEqual(emittedError as { status: number; statusText: string }, expectedError);
-                });
-            });
-
             describe('#_getDefaultSheetId()', () => {
                 it('... should have a method `_getDefaultSheetId`', () => {
                     expect((component as any)._getDefaultSheetId).toBeDefined();
@@ -1260,7 +1104,11 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... should return an empty string if', () => {
                     it('... svgSheetsData is undefined', () => {
-                        component.svgSheetsData = undefined;
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: { svgSheetsData: undefined },
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1268,7 +1116,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... textEditions are empty', () => {
-                        component.svgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetList;
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: { svgSheetsData: { sheets: { textEditions: [] } } as EditionSvgSheetList },
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1276,7 +1128,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... sketchEditions are empty', () => {
-                        component.svgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: { svgSheetsData: { sheets: { sketchEditions: [] } } as EditionSvgSheetList },
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1284,9 +1140,15 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... textEditions and sketchEditions are empty', () => {
-                        component.svgSheetsData = {
-                            sheets: { textEditions: [], sketchEditions: [] },
-                        } as EditionSvgSheetList;
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: { textEditions: [], sketchEditions: [] },
+                                } as EditionSvgSheetList,
+                            },
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1299,12 +1161,18 @@ describe('EditionSheetsComponent (DONE)', () => {
                         const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
                         const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
 
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [mockSheet1],
-                                sketchEditions: [mockSheet2],
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [mockSheet1],
+                                        sketchEditions: [mockSheet2],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1314,12 +1182,18 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... should return the id of the first text edition sheet by default (no partials)', () => {
                         const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
 
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [mockSheet1],
-                                sketchEditions: [],
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [mockSheet1],
+                                        sketchEditions: [],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1334,12 +1208,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'b' },
                             ],
                         } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [mockSheet1],
-                                sketchEditions: [],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [mockSheet1],
+                                        sketchEditions: [],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1361,12 +1242,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'd' },
                             ],
                         } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [mockSheet1, mockSheet2],
-                                sketchEditions: [],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [mockSheet1, mockSheet2],
+                                        sketchEditions: [],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1389,13 +1277,20 @@ describe('EditionSheetsComponent (DONE)', () => {
                             ],
                         } as EditionSvgSheet;
                         const mockSheet3 = { id: 'sheet3', content: [] } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                workEditions: [mockSheet1],
-                                textEditions: [mockSheet2],
-                                sketchEditions: [mockSheet3],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        workEditions: [mockSheet1],
+                                        textEditions: [mockSheet2],
+                                        sketchEditions: [mockSheet3],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1407,12 +1302,18 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... should return the id of the first sketch sheet by default (no partials)', () => {
                         const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
 
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [],
-                                sketchEditions: [mockSheet1],
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [],
+                                        sketchEditions: [mockSheet1],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1427,12 +1328,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'b' },
                             ],
                         } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [],
-                                sketchEditions: [mockSheet1],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [],
+                                        sketchEditions: [mockSheet1],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1454,12 +1362,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'd' },
                             ],
                         } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                textEditions: [],
-                                sketchEditions: [mockSheet1, mockSheet2],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        textEditions: [],
+                                        sketchEditions: [mockSheet1, mockSheet2],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1482,13 +1397,20 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'd' },
                             ],
                         } as EditionSvgSheet;
-                        component.svgSheetsData = {
-                            sheets: {
-                                workEditions: [mockSheet1, mockSheet2],
-                                textEditions: [],
-                                sketchEditions: [mockSheet3],
+
+                        updateMockEditionViewData(mockViewDataSignal, expectedSheetsData, {
+                            data: {
+                                svgSheetsData: {
+                                    sheets: {
+                                        workEditions: [mockSheet1, mockSheet2],
+                                        textEditions: [],
+                                        sketchEditions: [mockSheet3],
+                                    },
+                                } as EditionSvgSheetList,
                             },
-                        } as EditionSvgSheetList;
+                            isLoading: false,
+                            error: null,
+                        });
 
                         const result = (component as any)._getDefaultSheetId();
 
@@ -1551,7 +1473,15 @@ describe('EditionSheetsComponent (DONE)', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
                         component.isFirstPageLoad.set(true);
 
-                        component.svgSheetsData = undefined;
+                        (mockEditionDataService as any).sheetsViewData.set({
+                            data: {
+                                folioConvoluteData: undefined,
+                                svgSheetsData: undefined, // <-- Das entspricht deinem alten "undefined"
+                                textcriticsListData: undefined,
+                            },
+                            isLoading: true,
+                            error: null,
+                        });
                         component.snapshotQueryParamsId = '';
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
@@ -1561,11 +1491,20 @@ describe('EditionSheetsComponent (DONE)', () => {
                             sheetId: '',
                         });
                     });
+
                     it('... should reset selectedSvgSheet to undefined', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
                         component.isFirstPageLoad.set(false);
 
-                        component.svgSheetsData = undefined;
+                        (mockEditionDataService as any).sheetsViewData.set({
+                            data: {
+                                folioConvoluteData: undefined,
+                                svgSheetsData: undefined, // <-- Das entspricht deinem alten "undefined"
+                                textcriticsListData: undefined,
+                            },
+                            isLoading: true,
+                            error: null,
+                        });
                         component.snapshotQueryParamsId = '';
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap);
