@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionReport component.
@@ -29,18 +30,18 @@ export class EditionReportComponent {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Private readonly injection variable: _router.
@@ -61,14 +62,7 @@ export class EditionReportComponent {
      *
      * It holds the state of the report view data.
      */
-    readonly viewData = this._editionDataService.reportViewData;
-
-    /**
-     * Readonly signal: viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    readonly viewReady = signal<boolean>(false);
+    readonly viewData = this._editionViewService.reportViewData;
 
     /**
      * Readonly variable: titles.
@@ -81,19 +75,6 @@ export class EditionReportComponent {
         sourceEvaluation: '3. Quellenbewertung',
         tka: '4. Textkritische Anmerkungen',
     };
-
-    /**
-     * Constructor of the EditionReportComponent.
-     *
-     * It initializes the component and sets the viewReady signal to true after a short delay
-     * to show the loadingSpinner when switching between complex views.
-     *
-     */
-    constructor() {
-        setTimeout(() => {
-            this.viewReady.set(true);
-        }, 0);
-    }
 
     /**
      * Public method: onModalOpen.

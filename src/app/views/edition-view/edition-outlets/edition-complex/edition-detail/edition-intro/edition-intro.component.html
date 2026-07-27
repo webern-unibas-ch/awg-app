@@ -7,7 +7,7 @@
     @if (viewData(); as view) {
         @if (view.error; as errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
-        } @else if (view.isLoading || !viewReady()) {
+        } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
         } @else {
             @let complex = selectedEditionComplex();

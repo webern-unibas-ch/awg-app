@@ -1,6 +1,7 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionRowtables component.
@@ -16,13 +17,6 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
 })
 export class EditionRowtablesComponent {
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -30,11 +24,18 @@ export class EditionRowtablesComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Readoly signal: viewData.
      *
      * It holds the state of the rowtables view data.
      */
-    readonly viewData = this._editionDataService.rowtablesViewData;
+    readonly viewData = this._editionViewService.rowtablesViewData;
 
     /**
      * Constructor of the EditionRowtablesComponent.

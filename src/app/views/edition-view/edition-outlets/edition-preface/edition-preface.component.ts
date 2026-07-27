@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 
-import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionPreface component.
@@ -17,13 +18,6 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
 })
 export class EditionPrefaceComponent {
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionGlyphService.
      *
      * It keeps the instance of the injected EditionGlyphService.
@@ -36,6 +30,13 @@ export class EditionPrefaceComponent {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Public variable: currentLanguage.
@@ -54,7 +55,7 @@ export class EditionPrefaceComponent {
      *
      * It holds the state of the preface view data.
      */
-    readonly viewData = this._editionDataService.prefaceViewData;
+    readonly viewData = this._editionViewService.prefaceViewData;
 
     /**
      * Constructor of the EditionPrefaceComponent.

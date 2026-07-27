@@ -41,12 +41,11 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionReportComponent } from './edition-report.component';
-
-// Helper type
-type ReportViewData = ReturnType<typeof EditionDataService.prototype.reportViewData>;
 
 // Mock components
 @Component({
@@ -162,14 +161,14 @@ describe('EditionReportComponent', () => {
 
     let mockRouter;
 
-    let mockEditionDataService: Partial<EditionDataService>;
     let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
+    let mockEditionViewService: Partial<EditionViewService>;
 
     let mockViewDataSignal: WritableSignal<any>;
 
-    let expectedViewData: ReportViewData;
-    let expectedReportData: ReportViewData['data'];
+    let expectedViewData: EditionViewData<'report'>;
+    let expectedReportData: EditionViewData<'report'>['data'];
     let expectedEditionComplex: EditionComplex;
     let expectedOtherEditionComplex: EditionComplex;
     let expectedSourceListData: SourceList;
@@ -225,7 +224,7 @@ describe('EditionReportComponent', () => {
         };
 
         mockViewDataSignal = signal(expectedViewData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             reportViewData: mockViewDataSignal.asReadonly(),
         };
 
@@ -244,7 +243,7 @@ describe('EditionReportComponent', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: mockEditionViewService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();

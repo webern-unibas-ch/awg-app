@@ -49,6 +49,10 @@ export const EDITION_ASSETS_DATA = {
      * Configuration object for the edition assets data.
      */
     CONFIG: {
+        // Static data assets
+        preface: { file: EDITION_ASSETS_FILES.prefaceFile, fallback: new PrefaceList() },
+        rowtables: { file: EDITION_ASSETS_FILES.rowtablesFile, fallback: new RowtablesList() },
+        // Complex data assets
         folioConvolute: { file: EDITION_ASSETS_FILES.folioConvoluteFile, fallback: new FolioConvoluteList() },
         graph: { file: EDITION_ASSETS_FILES.graphFile, fallback: new GraphList() },
         intro: { file: EDITION_ASSETS_FILES.introFile, fallback: new IntroList() },
@@ -63,7 +67,5 @@ export const EDITION_ASSETS_DATA = {
         },
         svgSheets: { file: EDITION_ASSETS_FILES.svgSheetsFile, fallback: new EditionSvgSheetList() },
         textcritics: { file: EDITION_ASSETS_FILES.textcriticsFile, fallback: new TextcriticsList() },
-        preface: { file: EDITION_ASSETS_FILES.prefaceFile, fallback: new PrefaceList() },
-        rowtables: { file: EDITION_ASSETS_FILES.rowtablesFile, fallback: new RowtablesList() },
-    } as Record<EditionDataAssetsKeys, { file: string; fallback: any }>,
+    } satisfies Record<EditionDataAssetsKeys, { file: string; fallback: unknown }>,
 };

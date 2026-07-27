@@ -7,7 +7,7 @@
     @if (viewData(); as view) {
         @if (view.error; as err) {
             <awg-alert-error [errorObject]="err" />
-        } @else if (view.isLoading || !viewReady()) {
+        } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-report-view" ngbAccordion>

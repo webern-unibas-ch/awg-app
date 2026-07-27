@@ -35,17 +35,11 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import {
-    EditionComplexesService,
-    EditionDataService,
-    EditionSheetsService,
-    EditionStateService,
-} from '@awg-views/edition-view/services';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
-
-// Helper type
-type SheetsViewData = ReturnType<typeof EditionDataService.prototype.sheetsViewData>;
 
 // Mock components
 @Component({
@@ -145,11 +139,11 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
-    let mockLoadingService: Partial<LoadingService>;
-    let mockEditionDataService: Partial<EditionDataService>;
-    let mockEditionSheetsService: Partial<EditionSheetsService>;
     let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
+    let mockLoadingService: Partial<LoadingService>;
+    let mockEditionSheetsService: Partial<EditionSheetsService>;
+    let mockEditionViewService: Partial<EditionViewService>;
 
     let mockIsLoadingSignal: WritableSignal<boolean>;
     let mockViewDataSignal: WritableSignal<any>;
@@ -170,8 +164,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let onToggleSheetFacetSpy: Spy;
 
-    let expectedViewData: SheetsViewData;
-    let expectedSheetsData: SheetsViewData['data'];
+    let expectedViewData: EditionViewData<'sheets'>;
+    let expectedSheetsData: EditionViewData<'sheets'>['data'];
     let expectedConvolute: FolioConvolute;
     let expectedIsSheetFacetMinimized: boolean;
     let expectedEditionComplex: EditionComplex;
@@ -223,7 +217,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         };
 
         mockViewDataSignal = signal(expectedViewData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             sheetsViewData: mockViewDataSignal.asReadonly(),
         };
 
@@ -253,7 +247,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             ],
             providers: [
                 { provide: LoadingService, useValue: mockLoadingService },
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: mockEditionViewService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
                 { provide: Router, useValue: mockRouter },
                 {
@@ -271,7 +265,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Inject services
         editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
-        mockEditionDataService = TestBed.inject(EditionDataService);
+        mockEditionViewService = TestBed.inject(EditionViewService);
 
         // Init edition data
         editionComplexesService.initializeEditionComplexesList();
@@ -649,15 +643,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     beforeEach(() => {
                         editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
-                        (mockEditionDataService as any).sheetsViewData.set({
-                            data: {
-                                folioConvoluteData: expectedFolioConvoluteData,
-                                svgSheetsData: expectedSvgSheetsData,
-                                textcriticsListData: expectedTextcriticsListData,
-                            },
-                            isLoading: false,
-                            error: null,
-                        });
+                        updateMockEditionViewData(mockViewDataSignal, expectedViewData);
 
                         // Trigger initial data binding
                         fixture.detectChanges();
@@ -1473,10 +1459,10 @@ describe('EditionSheetsComponent (DONE)', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
                         component.isFirstPageLoad.set(true);
 
-                        (mockEditionDataService as any).sheetsViewData.set({
+                        mockViewDataSignal.set({
                             data: {
                                 folioConvoluteData: undefined,
-                                svgSheetsData: undefined, // <-- Das entspricht deinem alten "undefined"
+                                svgSheetsData: undefined,
                                 textcriticsListData: undefined,
                             },
                             isLoading: true,
@@ -1496,10 +1482,10 @@ describe('EditionSheetsComponent (DONE)', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
                         component.isFirstPageLoad.set(false);
 
-                        (mockEditionDataService as any).sheetsViewData.set({
+                        mockViewDataSignal.set({
                             data: {
                                 folioConvoluteData: undefined,
-                                svgSheetsData: undefined, // <-- Das entspricht deinem alten "undefined"
+                                svgSheetsData: undefined,
                                 textcriticsListData: undefined,
                             },
                             isLoading: true,

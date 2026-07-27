@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { isSignal, signal, Signal, WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
@@ -8,12 +9,13 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, lastValueFrom, Observable, of as observableOf } from 'rxjs';
 
+import { createMockResponseData } from '@testing/edition-data-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionOutlineSection,
@@ -23,16 +25,17 @@ import {
     PrefaceList,
     RowtablesList,
 } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
-
-import { isSignal, signal, Signal, WritableSignal } from '@angular/core';
-import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import {
     EditionComplexDataAssetsKeys,
     EditionDataAssetsKeys,
     EditionStaticDataAssetsKeys,
-} from '../models/edition-data.model';
+} from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+
 import { EditionDataService } from './edition-data.service';
+
+// Helpter type
+type UnpackSignal<T> = T extends Signal<infer U> ? U : never;
 
 describe('EditionDataService (DONE)', () => {
     let httpClient: HttpClient;
@@ -40,13 +43,14 @@ describe('EditionDataService (DONE)', () => {
 
     let service: EditionDataService;
     let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
-    let mockLoadingService: Partial<LoadingService>;
-    let mockIsLoadingSignal: WritableSignal<boolean>;
-
     let consoleSpy: Spy;
+    let clearErrorForSpy: Spy;
     let fetchJsonDataSpy: Spy;
+    let getAssetPathSpy: Spy;
+    let getEditionDataByComplexSpy: Spy;
 
     let expectedPrefaceData: PrefaceList;
     let expectedRowtablesData: RowtablesList;
@@ -54,6 +58,8 @@ describe('EditionDataService (DONE)', () => {
     let expectedEditionIntroSectionData: IntroList;
     let expectedEditionIntroSectionFilteredData: IntroList;
 
+    let expectedEditionSeries: EditionOutlineSeries;
+    let expectedEditionSection: EditionOutlineSection;
     let expectedEditionComplex: EditionComplex;
 
     const baseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
@@ -62,33 +68,38 @@ describe('EditionDataService (DONE)', () => {
     const expectedPrefaceFilePath = `${baseRoute}${editionRoute}/${config['preface'].file}`;
     const expectedRowtablesFilePath = `${baseRoute}${editionRoute}/${config['rowtables'].file}`;
 
-    beforeEach(() => {
-        mockIsLoadingSignal = signal<boolean>(false);
-        mockLoadingService = {
-            isLoading: mockIsLoadingSignal.asReadonly(),
-        };
+    // Helper function to expect and flush an HTTP request
+    function expectAndFlush(url: string, mockData: unknown, options = { status: 200, statusText: 'OK' }): void {
+        const req = httpTestingController.expectOne(url);
+        expectToBe(req.request.method, 'GET');
+        req.flush(mockData, options);
+    }
 
+    beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                EditionDataService,
-                { provide: LoadingService, useValue: mockLoadingService },
-                provideHttpClient(withInterceptorsFromDi()),
-                provideHttpClientTesting(),
-            ],
+            providers: [EditionDataService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()],
         });
 
         // Inject services
         service = TestBed.inject(EditionDataService);
         editionComplexesService = TestBed.inject(EditionComplexesService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Init edition data
         editionComplexesService.initializeEditionComplexesList();
+        editionOutlineService.initializeEditionOutline();
+
+        // Spies
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+        clearErrorForSpy = vi.spyOn(service as any, '_clearErrorFor');
+        fetchJsonDataSpy = vi.spyOn(service as any, '_fetchJsonData');
+        getAssetPathSpy = vi.spyOn(service as any, '_getAssetPathForEditionComplex');
+        getEditionDataByComplexSpy = vi.spyOn(service as any, '_getEditionDataByComplex');
 
         // Test data
-
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
         expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
@@ -96,23 +107,27 @@ describe('EditionDataService (DONE)', () => {
         expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
 
         expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
-
-        // Spies
-        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-        fetchJsonDataSpy = vi.spyOn(service as any, '_fetchJsonData');
-
-        // Flush initial http requests for static data (preface and rowtables)
-        const initialPrefaceCall = httpTestingController.expectOne(expectedPrefaceFilePath);
-        initialPrefaceCall.flush(expectedPrefaceData);
-
-        const initialRowtablesCall = httpTestingController.expectOne(expectedRowtablesFilePath);
-        initialRowtablesCall.flush(expectedRowtablesData);
+        const seriesId = expectedEditionComplex.pubStatement.series.route;
+        const sectionId = expectedEditionComplex.pubStatement.section.route;
+        expectedEditionSeries = editionOutlineService.getEditionSeriesById(seriesId);
+        expectedEditionSection = editionOutlineService.getEditionSectionById(seriesId, sectionId);
     });
 
     afterEach(() => {
         // Clear mock stores after each test
         mockConsole.clear();
         vi.restoreAllMocks();
+
+        // After every test, assert that there are no more pending requests
+        const openRequests = httpTestingController.match(() => true);
+        openRequests.forEach(req => {
+            const matchingConfig = Object.values(config).find(configValues =>
+                req.request.url.endsWith(configValues.file)
+            );
+            const fallback = matchingConfig ? matchingConfig.fallback : {};
+            req.flush(fallback);
+        });
+        httpTestingController.verify();
     });
 
     it('... should create', () => {
@@ -129,258 +144,186 @@ describe('EditionDataService (DONE)', () => {
                 },
             });
 
-            // Match the request url
-            const call = httpTestingController.expectOne({
-                url: '/foo/bar',
-            });
-
-            // Check for GET request
-            expectToBe(call.request.method, 'GET');
-
-            // Respond with mocked data
-            call.flush(testData);
+            expectAndFlush('/foo/bar', testData);
         });
     });
 
-    describe('... private signals', () => {
-        it('... should have signal `_dataError` to hold null ', () => {
-            expectToBe(isSignal((service as any)._dataError), true);
+    describe('... static data signals', () => {
+        const testCases: Array<{
+            signalName: keyof EditionDataService;
+            assetKey: EditionDataAssetsKeys;
+            getExpectedData: () => unknown;
+        }> = [
+            { signalName: 'prefaceData', assetKey: 'preface', getExpectedData: () => expectedPrefaceData },
+            { signalName: 'rowtablesData', assetKey: 'rowtables', getExpectedData: () => expectedRowtablesData },
+        ];
 
-            expectToBe((service as any)._dataError(), null);
-        });
+        testCases.forEach(({ signalName, assetKey, getExpectedData }) => {
+            it(`... should have signal \`${signalName}\` to hold the default fallback`, async () => {
+                type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
+                const signalFn = service[signalName] as unknown as Signal<DataType>;
+                const expectedFallback = config[assetKey].fallback as DataType;
 
-        it('... should have a signal for each data asset key', () => {
-            const dataAssetKeys = Object.keys(EDITION_ASSETS_DATA.CONFIG) as EditionDataAssetsKeys[];
+                expectToBe(isSignal(signalFn), true);
 
-            dataAssetKeys.forEach(assetKey => {
-                const dataKey = `${assetKey}Data`;
-                const privateDataSignalName = `_${dataKey}`;
+                if (isSignal(signalFn)) {
+                    await Promise.resolve();
 
-                expect((service as any)[privateDataSignalName]).toBeDefined();
-                expectToBe(isSignal((service as any)[privateDataSignalName]), true);
-            });
-        });
-    });
-
-    describe('... single view data signals', () => {
-        describe.each([
-            { viewDataSignalName: 'prefaceViewData', assetKey: 'preface' as EditionDataAssetsKeys },
-            { viewDataSignalName: 'rowtablesViewData', assetKey: 'rowtables' as EditionDataAssetsKeys },
-            { viewDataSignalName: 'introViewData', assetKey: 'intro' as EditionDataAssetsKeys },
-            { viewDataSignalName: 'graphViewData', assetKey: 'graph' as EditionDataAssetsKeys },
-        ])('#$viewDataSignalName()', ({ viewDataSignalName, assetKey }) => {
-            let mockData: any;
-            let mockDataSignal: WritableSignal<any>;
-
-            const dataKey = `${assetKey}Data`;
-            const privateDataSignalName = `_${dataKey}`;
-
-            beforeEach(() => {
-                mockDataSignal = signal(null);
-
-                mockData = { ...EDITION_ASSETS_DATA.CONFIG[assetKey as EditionDataAssetsKeys].fallback };
-                mockData[assetKey] = [{ id: 'test-entry-1' }];
-
-                mockDataSignal.set(mockData);
-
-                (service as any)[privateDataSignalName] = mockDataSignal;
-            });
-
-            it(`... should have a signal \`${viewDataSignalName}\``, () => {
-                expect(service[viewDataSignalName]).toBeDefined();
-
-                expectToBe(isSignal(service[viewDataSignalName]), true);
-            });
-
-            it('... should hold the expected data with inactive loading/error states', () => {
-                mockIsLoadingSignal.set(false);
-
-                const viewData = service[viewDataSignalName]();
-
-                expectToEqual(viewData.data[dataKey], mockData);
-                expectToBe(viewData.isLoading, false);
-                expectToBe(viewData.error, null);
-            });
-
-            describe('... should activate loading state if', () => {
-                it.each([
-                    { desc: '`_loadingService.isLoading` is true', type: 'loadingActive' },
-                    { desc: 'data is empty', type: 'empty' },
-                    { desc: 'data is undefined', type: 'undefined' },
-                    { desc: 'data is null', type: 'null' },
-                ])('... $desc', ({ type }) => {
-                    mockIsLoadingSignal.set(false);
-
-                    switch (type) {
-                        case 'loadingActive':
-                            mockIsLoadingSignal.set(true);
-                            break;
-                        case 'empty':
-                            mockData = EDITION_ASSETS_DATA.CONFIG[assetKey].fallback;
-                            break;
-                        case 'undefined':
-                            mockData = undefined;
-                            break;
-                        case 'null':
-                            mockData = null;
-                            break;
-                    }
-                    mockDataSignal.set(mockData);
-
-                    const viewData = service[viewDataSignalName]();
-
-                    expectToBe(viewData.isLoading, true);
-                });
-            });
-
-            it(`.... should activate error state if there is an active error for key \`${assetKey}\``, () => {
-                const mockError = new Error(`Fake API Error for ${assetKey}`);
-
-                const getErrorSpy = vi
-                    .spyOn(service as any, '_getErrorForDataAssets')
-                    .mockImplementation((keys: string[]) => {
-                        if (keys.includes(assetKey)) {
-                            return signal(mockError);
-                        }
-                        return signal(null);
-                    });
-
-                const viewData = service[viewDataSignalName]();
-
-                expectSpyCall(getErrorSpy, 1, [[assetKey]]);
-                expectToEqual(viewData.error, mockError);
-            });
-        });
-    });
-
-    describe('... combined view data signals', () => {
-        describe.each([
-            {
-                viewDataSignalName: 'sheetsViewData',
-                assetKeys: ['folioConvolute', 'svgSheets', 'textcritics'],
-            },
-            {
-                viewDataSignalName: 'reportViewData',
-                assetKeys: ['sourceList', 'sourceDescription', 'sourceEvaluation', 'textcritics'],
-            },
-        ])('#$viewDataSignalName()', ({ viewDataSignalName, assetKeys }) => {
-            let mockSignals: Map<string, WritableSignal<any>>;
-            let validCombinedData: Record<string, any>;
-
-            beforeEach(() => {
-                mockSignals = new Map();
-                validCombinedData = {};
-
-                assetKeys.forEach(assetKey => {
-                    const dataKey = `${assetKey}Data`;
-                    const privateDataSignalName = `_${dataKey}`;
-
-                    const baseMock = { ...EDITION_ASSETS_DATA.CONFIG[assetKey as EditionDataAssetsKeys].fallback };
-
-                    if (assetKey === 'svgSheets') {
-                        baseMock.sheets = { workEditions: [{ id: 'sheet-1' }], textEditions: [], sketchEditions: [] };
-                    } else {
-                        let arrayKey = assetKey;
-
-                        if (assetKey === 'folioConvolute') {
-                            arrayKey = 'convolutes';
-                        } else if (assetKey.startsWith('source')) {
-                            arrayKey = 'sources';
-                        }
-
-                        baseMock[arrayKey] = [{ id: 'test-entry-1' }];
-                    }
-
-                    const mockSignal = signal(baseMock);
-                    mockSignals.set(privateDataSignalName, mockSignal);
-                    validCombinedData[dataKey] = baseMock;
-
-                    (service as any)[privateDataSignalName] = mockSignal;
-                });
-            });
-
-            it(`... should have a signal \`${viewDataSignalName}\``, () => {
-                expect(service[viewDataSignalName]).toBeDefined();
-
-                expectToBe(isSignal(service[viewDataSignalName]), true);
-            });
-
-            it('... should hold the expected data with inactive loading/error states', () => {
-                mockIsLoadingSignal.set(false);
-
-                const viewData = service[viewDataSignalName]();
-
-                assetKeys.forEach(assetKey => {
-                    const dataKey = `${assetKey}Data`;
-                    expectToEqual(viewData.data[dataKey], validCombinedData[dataKey]);
-                });
-
-                expectToBe(viewData.isLoading, false);
-                expectToBe(viewData.error, null);
-            });
-
-            describe('... should activate loading state if', () => {
-                it('... `_loadingService.isLoading` is true', () => {
-                    mockIsLoadingSignal.set(true);
-
-                    expectToBe(service[viewDataSignalName]().isLoading, true);
-                });
-
-                const loadingScenarios = [
-                    ...assetKeys.map(assetKey => ({
-                        desc: `${assetKey} data is empty`,
-                        type: 'fallback',
-                        emptyAsset: assetKey,
-                        privateDataSignalName: `_${assetKey}Data`,
-                    })),
-                ];
-
-                if (assetKeys.includes('svgSheets')) {
-                    loadingScenarios.push({
-                        desc: 'svgSheets has no work/text/sketch editions',
-                        type: 'missingSheets',
-                        emptyAsset: 'svgSheets',
-                        privateDataSignalName: '_svgSheetsData',
-                    });
+                    expectToEqual(signalFn(), expectedFallback);
                 }
+            });
 
-                it.each(loadingScenarios)('... $desc', ({ type, emptyAsset, privateDataSignalName }) => {
-                    mockIsLoadingSignal.set(false);
+            it(`... should update \`${signalName}\` on service initialization`, async () => {
+                type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
+                const signalFn = service[signalName] as unknown as Signal<DataType>;
+                const expectedData = getExpectedData() as DataType;
 
-                    if (type === 'fallback') {
-                        const fallback = EDITION_ASSETS_DATA.CONFIG[emptyAsset as EditionDataAssetsKeys].fallback;
-                        mockSignals.get(privateDataSignalName)?.set(fallback);
-                    } else if (type === 'missingSheets') {
-                        const emptySheetsMock = {
-                            sheets: {
-                                workEditions: [],
-                                textEditions: [],
-                                sketchEditions: [],
-                            },
-                        };
-                        mockSignals.get(privateDataSignalName)?.set(emptySheetsMock);
+                const basePath = `${baseRoute}${editionRoute}`;
+                const file = config[assetKey].file;
+                const expectedUrl = `${basePath}/${file}`;
+
+                await new Promise(resolve => setTimeout(resolve, 0));
+
+                expectAndFlush(expectedUrl, expectedData);
+
+                await new Promise(resolve => setTimeout(resolve, 0));
+
+                expectToEqual(signalFn(), expectedData);
+            });
+        });
+    });
+
+    describe('... complex data signals', () => {
+        const testCases: Array<{
+            signalName: keyof EditionDataService;
+            assetKey: EditionDataAssetsKeys;
+        }> = [
+            { signalName: 'introData', assetKey: 'intro' },
+            { signalName: 'folioConvoluteData', assetKey: 'folioConvolute' },
+            { signalName: 'graphData', assetKey: 'graph' },
+            { signalName: 'sourceListData', assetKey: 'sourceList' },
+            { signalName: 'sourceDescriptionData', assetKey: 'sourceDescription' },
+            { signalName: 'sourceEvaluationData', assetKey: 'sourceEvaluation' },
+            { signalName: 'svgSheetsData', assetKey: 'svgSheets' },
+            { signalName: 'textcriticsData', assetKey: 'textcritics' },
+        ];
+
+        testCases.forEach(({ signalName, assetKey }) => {
+            it(`... should have signal \`${signalName}\` to hold the default fallback`, async () => {
+                type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
+                const signalFn = service[signalName] as unknown as Signal<DataType>;
+                const expectedFallback = config[assetKey].fallback as DataType;
+
+                expectToBe(isSignal(signalFn), true);
+
+                if (isSignal(signalFn)) {
+                    await Promise.resolve();
+
+                    expectToEqual(signalFn(), expectedFallback);
+                }
+            });
+        });
+
+        describe('... with selected complex', () => {
+            beforeEach(() => {
+                // Set selected series and section for intro data signal
+                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
+                editionStateService.updateSelectedEditionSection(expectedEditionSection);
+
+                // Set selected complex for all complex data signals
+                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+            });
+
+            testCases.forEach(({ signalName, assetKey }) => {
+                it(`... should update signal \`${signalName}\` when complex changes`, async () => {
+                    type DataType = UnpackSignal<EditionDataService[typeof signalName]>;
+                    const signalFn = service[signalName] as unknown as Signal<DataType>;
+
+                    const fallback = config[assetKey].fallback;
+                    let mockResponseData = createMockResponseData(assetKey, fallback) as DataType;
+
+                    await new Promise(resolve => setTimeout(resolve, 0));
+
+                    const complexPath = (service as any)._getAssetPathForEditionComplex(expectedEditionComplex);
+                    const file = config[assetKey].file;
+                    const expectedComplexUrl = `${complexPath}/${file}`;
+
+                    if (assetKey === 'intro') {
+                        const sectionRoute = expectedEditionComplex.pubStatement.labeledSectionRoute?.route.join('/');
+                        const expectedSectionUrl = `${baseRoute}${sectionRoute}/${file}`;
+
+                        expectAndFlush(expectedSectionUrl, expectedEditionIntroSectionData);
+                        expectAndFlush(expectedComplexUrl, expectedEditionIntroComplexData);
+
+                        mockResponseData = expectedEditionIntroSectionFilteredData as DataType;
+                    } else {
+                        expectAndFlush(expectedComplexUrl, mockResponseData);
                     }
 
-                    expectToBe(service[viewDataSignalName]().isLoading, true);
+                    await new Promise(resolve => setTimeout(resolve, 0));
+
+                    expectToEqual(signalFn(), mockResponseData);
                 });
             });
+        });
+    });
 
-            it(`.... should activate error state if there is an active error for key`, () => {
-                const mockError = new Error(`Fake API Error for combined assets`);
+    it('... should have signal `_dataError` to hold null', () => {
+        expectToBe(isSignal((service as any)._dataError), true);
 
-                const getErrorSpy = vi
-                    .spyOn(service as any, '_getErrorForDataAssets')
-                    .mockImplementation((keys: string[]) => {
-                        const hasMatchingKey = keys.some(key => assetKeys.includes(key));
+        expectToBe((service as any)._dataError(), null);
+    });
 
-                        return hasMatchingKey ? signal(mockError) : signal(null);
-                    });
+    describe('#getErrorForDataAssets()', () => {
+        const testKeys: EditionDataAssetsKeys[] = ['graph', 'textcritics'];
+        let mockError: HttpErrorResponse;
 
-                const viewData = service[viewDataSignalName]();
+        beforeEach(() => {
+            mockError = new HttpErrorResponse({ error: 'Test HTTP Error' });
+        });
 
-                expectSpyCall(getErrorSpy, 1, [assetKeys]);
-                expectToBe(viewData.error, mockError);
+        it('... should have a method `getErrorForDataAssets`', () => {
+            expect(service.getErrorForDataAssets).toBeDefined();
+        });
+
+        it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
+            (service as any)._dataError.set({ key: 'graph', error: mockError });
+
+            const errorSignal = service.getErrorForDataAssets(testKeys);
+
+            expectToEqual(errorSignal(), mockError);
+        });
+
+        describe('... should return a signal that holds null if', () => {
+            it('... there is currently no active error', () => {
+                (service as any)._dataError.set(null);
+
+                const errorSignal = service.getErrorForDataAssets(testKeys);
+
+                expectToBe(errorSignal(), null);
             });
+
+            it('... the active error key is not included in the given keys', () => {
+                (service as any)._dataError.set({ key: 'intro', error: mockError });
+
+                const errorSignal = service.getErrorForDataAssets(testKeys);
+
+                expectToBe(errorSignal(), null);
+            });
+        });
+
+        it('... should reactively update its value when the _dataError signal changes', () => {
+            (service as any)._dataError.set(null);
+            const errorSignal = service.getErrorForDataAssets(testKeys);
+            expectToBe(errorSignal(), null);
+
+            (service as any)._dataError.set({ key: 'textcritics', error: mockError });
+
+            expectToEqual(errorSignal(), mockError);
+
+            (service as any)._dataError.set(null);
+
+            expectToBe(errorSignal(), null);
         });
     });
 
@@ -406,9 +349,8 @@ describe('EditionDataService (DONE)', () => {
             expect((service as any)._getStaticEditionDataByKey).toBeDefined();
         });
 
-        it('... should return a signal holding the fetched data from correct static path', () => {
+        it('... should return a signal holding the fetched data from correct static path', async () => {
             const assetsKey: EditionStaticDataAssetsKeys = 'preface';
-            const mockPrefaceData = { preface: [{ id: 'pref_1', title: 'Vorwort' }] };
 
             let staticDataSignal: Signal<any>;
             TestBed.runInInjectionContext(() => {
@@ -419,15 +361,16 @@ describe('EditionDataService (DONE)', () => {
             expectToEqual(staticDataSignal(), config[assetsKey].fallback);
 
             const expectedUrl = expectedPrefaceFilePath;
-            const call = httpTestingController.expectOne(expectedUrl);
-            expect(call.request.method).toBe('GET');
+            const matchingRequests = httpTestingController.match(expectedUrl);
 
-            call.flush(mockPrefaceData);
+            // Use latest matching request to ignore requests from initialization
+            const latestReq = matchingRequests[matchingRequests.length - 1];
+            expectToBe(latestReq.request.method, 'GET');
+            latestReq.flush(expectedPrefaceData);
 
-            // After the HTTP request is flushed, the Signal should emit the fetched data
-            expectToEqual(staticDataSignal(), mockPrefaceData);
+            await new Promise(resolve => setTimeout(resolve, 0));
 
-            httpTestingController.verify();
+            expectToEqual(staticDataSignal(), expectedPrefaceData);
         });
 
         it('... should return a signal holding the fallback value on HTTP failure', () => {
@@ -443,23 +386,21 @@ describe('EditionDataService (DONE)', () => {
             expectToEqual(staticDataSignal(), expectedFallback);
 
             const expectedUrl = expectedRowtablesFilePath;
-            const call = httpTestingController.expectOne(expectedUrl);
-            call.flush('404 error', { status: 404, statusText: 'Not Found' });
+            const matchingRequests = httpTestingController.match(expectedUrl);
+
+            // Use latest matching request to ignore requests from initialization
+            const latestReq = matchingRequests[matchingRequests.length - 1];
+            expectToBe(latestReq.request.method, 'GET');
+            latestReq.flush('404 error', { status: 404, statusText: 'Not Found' });
 
             // After the HTTP request fails, the Signal should emit the fallback value
             expectToEqual(staticDataSignal(), expectedFallback);
-
-            httpTestingController.verify();
         });
     });
 
     describe('#_getComplexEditionDataByKey()', () => {
-        let getEditionDataByComplexSpy: any;
-
         beforeEach(() => {
-            getEditionDataByComplexSpy = vi
-                .spyOn(service as any, '_getEditionDataByComplex')
-                .mockReturnValue(signal({}));
+            getEditionDataByComplexSpy.mockReturnValue(signal({}));
         });
 
         it('... should have a method `_getComplexEditionDataByKey`', () => {
@@ -492,14 +433,9 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('#_getEditionDataByComplex()', () => {
-        let clearErrorForSpy: any;
-        let getAssetPathSpy: any;
-
         beforeEach(() => {
-            clearErrorForSpy = vi.spyOn(service as any, '_clearErrorFor').mockImplementation(() => {});
-            getAssetPathSpy = vi
-                .spyOn(service as any, '_getAssetPathForEditionComplex')
-                .mockReturnValue('mocked-asset-path');
+            clearErrorForSpy.mockImplementation(() => {});
+            getAssetPathSpy.mockReturnValue('mocked-asset-path');
 
             clearErrorForSpy.mockClear();
             getAssetPathSpy.mockClear();
@@ -525,9 +461,7 @@ describe('EditionDataService (DONE)', () => {
                 'textcritics',
             ];
 
-            const getClearErrorCountByKey = (key: EditionDataAssetsKeys) => {
-                return clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
-            };
+            const getClearErrorCountByKey = (key: EditionDataAssetsKeys) => clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
 
             it.each(complexKeys)(
                 '... should start with fallback and return fallback if no complex is selected for key: `%s`',
@@ -673,7 +607,7 @@ describe('EditionDataService (DONE)', () => {
         });
 
         it('... should clear errors for the intro asset key every time it is called', async () => {
-            const clearErrorForSpy = vi.spyOn(service as any, '_clearErrorFor').mockImplementation(() => {});
+            clearErrorForSpy.mockImplementation(() => {});
             clearErrorForSpy.mockClear();
 
             const assetsKey: EditionComplexDataAssetsKeys = 'intro';
@@ -914,10 +848,7 @@ describe('EditionDataService (DONE)', () => {
             });
 
             // Respond with mock data
-            const call = httpTestingController.expectOne(expectedUrl);
-            call.flush(expectedData);
-
-            httpTestingController.verify();
+            expectAndFlush(expectedUrl, expectedData);
         });
 
         it('... should return fallback value and trigger `handleError` with correct arguments on HTTP failure', () => {
@@ -938,12 +869,8 @@ describe('EditionDataService (DONE)', () => {
             });
 
             // Respond with an error
-            const call = httpTestingController.expectOne(expectedUrl);
-            call.flush('404 error', { status: 404, statusText: 'Not Found' });
-
+            expectAndFlush(expectedUrl, '404 error', { status: 404, statusText: 'Not Found' });
             expectSpyCall(handleErrorSpy, 1, [expectedKey, expectedFallback]);
-
-            httpTestingController.verify();
         });
 
         it('... should return fallback value when the HTTP response is empty', async () => {
@@ -954,7 +881,7 @@ describe('EditionDataService (DONE)', () => {
 
             // Respond with no data
             // (empty response cannot be flushed with httpTestingController,
-            // so we mock the http get method to return EMPTY)
+            // So we mock the http get method to return EMPTY)
             vi.spyOn((service as any)._http, 'get').mockReturnValue(EMPTY);
 
             const result$ = (service as any)._fetchJsonData(expectedPath, expectedFile, expectedFallback, expectedKey);
@@ -1045,59 +972,6 @@ describe('EditionDataService (DONE)', () => {
             (service as any)._logError(expectedMessage);
 
             expectSpyCall(consoleSpy, 1, expectedMessage);
-        });
-    });
-
-    describe('#_getErrorForDataAssets()', () => {
-        const testKeys: EditionDataAssetsKeys[] = ['graph', 'textcritics'];
-        let mockError: HttpErrorResponse;
-
-        beforeEach(() => {
-            mockError = new HttpErrorResponse({ error: 'Test HTTP Error' });
-        });
-
-        it('... should have a method `_getErrorForDataAssets`', () => {
-            expect((service as any)._getErrorForDataAssets).toBeDefined();
-        });
-
-        it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
-            (service as any)._dataError.set({ key: 'graph', error: mockError });
-
-            const errorSignal = (service as any)._getErrorForDataAssets(testKeys);
-
-            expectToEqual(errorSignal(), mockError);
-        });
-
-        describe('... should return a signal that holds null if', () => {
-            it('... there is currently no active error', () => {
-                (service as any)._dataError.set(null);
-
-                const errorSignal = (service as any)._getErrorForDataAssets(testKeys);
-
-                expectToBe(errorSignal(), null);
-            });
-
-            it('... the active error key is not included in the given keys', () => {
-                (service as any)._dataError.set({ key: 'intro', error: mockError });
-
-                const errorSignal = (service as any)._getErrorForDataAssets(testKeys);
-
-                expectToBe(errorSignal(), null);
-            });
-        });
-
-        it('... should reactively update its value when the _dataError signal changes', () => {
-            (service as any)._dataError.set(null);
-            const errorSignal = (service as any)._getErrorForDataAssets(testKeys);
-            expectToBe(errorSignal(), null);
-
-            (service as any)._dataError.set({ key: 'textcritics', error: mockError });
-
-            expectToEqual(errorSignal(), mockError);
-
-            (service as any)._dataError.set(null);
-
-            expectToBe(errorSignal(), null);
         });
     });
 

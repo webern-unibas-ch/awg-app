@@ -19,7 +19,8 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RowtablesList } from '@awg-views/edition-view/models';
 import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionRowtablesComponent } from './edition-rowtables.component';
 
@@ -29,7 +30,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
-    let mockEditionDataService: Partial<EditionDataService>;
+    let mockEditionViewService: Partial<EditionViewService>;
 
     let editionStateServiceUpdateIsRowtablesViewSpy: Spy;
 
@@ -39,7 +40,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
     beforeEach(async () => {
         // Mock services
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             rowtablesViewData: signal({
                 data: { rowtablesData: expectedRowtablesData },
                 isLoading: false,
@@ -49,14 +50,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             declarations: [EditionRowtablesComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionDataService, useValue: mockEditionDataService }],
+            providers: [{ provide: EditionViewService, useValue: mockEditionViewService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
-        mockEditionDataService = TestBed.inject(EditionDataService);
+        mockEditionViewService = TestBed.inject(EditionViewService);
 
         // Spies
         editionStateServiceUpdateIsRowtablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowtablesView');

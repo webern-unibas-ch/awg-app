@@ -14,7 +14,8 @@ import {
     TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionSheets component.
@@ -40,13 +41,6 @@ export class EditionSheetsComponent {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionSheetsService.
      *
      * It keeps the instance of the injected EditionSheetsService.
@@ -59,6 +53,13 @@ export class EditionSheetsComponent {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Private readonly injection variable: _route.
@@ -142,14 +143,7 @@ export class EditionSheetsComponent {
      *
      * It holds the state of the sheets view data.
      */
-    readonly viewData = this._editionDataService.sheetsViewData;
-
-    /**
-     * Readonly signal: viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    readonly viewReady = signal<boolean>(false);
+    readonly viewData = this._editionViewService.sheetsViewData;
 
     /**
      * Readonly signal: isFirstPageLoad.
@@ -161,9 +155,7 @@ export class EditionSheetsComponent {
     /**
      * Constructor of the EditionSheetsComponent.
      *
-     * It sets up an effect to handle query parameters and select the corresponding SVG sheet
-     * and sets the viewReady signal to true after a short delay
-     * to show the loadingSpinner when switching between complex views.
+     * It sets up an effect to handle query parameters and select the corresponding SVG sheet.
      */
     constructor() {
         effect(() => {
@@ -177,10 +169,6 @@ export class EditionSheetsComponent {
 
             this._handleQueryParams(queryParams, svgSheetsData);
         });
-
-        setTimeout(() => {
-            this.viewReady.set(true);
-        }, 0);
     }
 
     /**

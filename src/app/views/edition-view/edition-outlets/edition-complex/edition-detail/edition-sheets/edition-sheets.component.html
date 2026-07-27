@@ -5,7 +5,7 @@
     @if (viewData(); as view) {
         @if (view.error; as err) {
             <awg-alert-error [errorObject]="err.error" />
-        } @else if (isFirstPageLoad() || view.isLoading || !viewReady()) {
+        } @else if (isFirstPageLoad() || view.isLoading) {
             <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-sheets-view">

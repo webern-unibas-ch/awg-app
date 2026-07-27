@@ -1,3 +1,14 @@
+import { EditionSvgSheetList } from './edition-svg-sheet.model';
+import { FolioConvoluteList } from './folio.model';
+import { GraphList } from './graph.model';
+import { IntroList } from './intro.model';
+import { PrefaceList } from './preface.model';
+import { RowtablesList } from './rowtables.model';
+import { SourceDescriptionList } from './source-description.model';
+import { SourceEvaluationList } from './source-evaluation.model';
+import { SourceList } from './source-list.model';
+import { TextcriticsList } from './textcritics.model';
+
 /**
  * The EditionComplexDataAssetsKeys type.
  *
@@ -45,15 +56,55 @@ export interface EditionDataAssetsError {
 }
 
 /**
+ * The EditionViewDataTypeMapping type.
+ *
+ * * It defines the mapping of edition view keys to their corresponding data types.
+ */
+export interface EditionViewDataTypeMapping {
+    graph: {
+        graphData: GraphList;
+    };
+    intro: {
+        introData: IntroList;
+    };
+    preface: {
+        prefaceData: PrefaceList;
+    };
+    report: {
+        sourceListData: SourceList;
+        sourceDescriptionData: SourceDescriptionList;
+        sourceEvaluationData: SourceEvaluationList;
+        textcriticsData: TextcriticsList;
+    };
+    rowtables: {
+        rowtablesData: RowtablesList;
+    };
+    sheets: {
+        folioConvoluteData: FolioConvoluteList;
+        svgSheetsData: EditionSvgSheetList;
+        textcriticsData: TextcriticsList;
+    };
+}
+
+/**
+ * The EditionViewKey type.
+ *
+ * * It defines the valid keys for the edition view data used in the EditionDataService.
+ */
+export type EditionViewKey = keyof EditionViewDataTypeMapping;
+
+/**
  * The EditionViewData interface.
  *
  * It defines the structure of the data used for the different edition views.
  */
-export interface EditionViewData<T> {
+export interface EditionViewData<K extends EditionViewKey> {
     /**
      * The data of the edition view.
      */
-    data: T;
+    data: {
+        [P in keyof EditionViewDataTypeMapping[K]]: EditionViewDataTypeMapping[K][P] | null;
+    };
 
     /**
      * Indicates whether the data is loading.

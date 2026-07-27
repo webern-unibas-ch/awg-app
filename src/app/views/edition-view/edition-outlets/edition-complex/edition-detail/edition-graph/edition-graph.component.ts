@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionGraph component.
@@ -20,18 +21,18 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
 })
 export class EditionGraphComponent {
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Private readonly injection variable: _fullscreenService.
@@ -64,7 +65,7 @@ export class EditionGraphComponent {
      *
      * It holds the state of the graph view data.
      */
-    readonly viewData = this._editionDataService.graphViewData;
+    readonly viewData = this._editionViewService.graphViewData;
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -86,9 +87,7 @@ export class EditionGraphComponent {
     /**
      * Constructor of the EditionGraphComponent.
      *
-     * It initializes the self-referring variable needed for CompileHtml library,
-     * and sets the viewReady signal to true after a short delay
-     * to show the loadingSpinner when switching between complex views.
+     * It initializes the self-referring variable needed for CompileHtml library.
      */
     constructor() {
         this.ref = this;

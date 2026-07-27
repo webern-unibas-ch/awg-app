@@ -33,12 +33,11 @@ import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionGraphComponent } from './edition-graph.component';
-
-// Helper type
-type GraphViewData = ReturnType<typeof EditionDataService.prototype.graphViewData>;
 
 // Mock components
 @Component({
@@ -96,18 +95,18 @@ describe('EditionGraphComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionGraphComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
-    let mockEditionDataService: Partial<EditionDataService>;
-    let mockFullscreenService: Partial<FullscreenService>;
     let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
+    let mockDocument: Document;
+    let mockEditionViewService: Partial<EditionViewService>;
+    let mockFullscreenService: Partial<FullscreenService>;
 
     let mockViewDataSignal: WritableSignal<any>;
 
     let modalOpenSpy: Spy;
 
-    let expectedViewData: GraphViewData;
-    let expectedGraphData: GraphViewData['data'];
+    let expectedViewData: EditionViewData<'graph'>;
+    let expectedGraphData: EditionViewData<'graph'>['data'];
     let expectedEditionGraphEmptyData: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
     let expectedEditionComplex: EditionComplex;
@@ -124,7 +123,7 @@ describe('EditionGraphComponent (DONE)', () => {
         };
 
         mockViewDataSignal = signal(expectedViewData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             graphViewData: mockViewDataSignal.asReadonly(),
         };
 
@@ -146,7 +145,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: mockEditionViewService },
                 { provide: FullscreenService, useValue: mockFullscreenService },
             ],
         }).compileComponents();

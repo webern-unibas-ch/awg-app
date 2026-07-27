@@ -1,13 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    DestroyRef,
-    inject,
-    OnDestroy,
-    OnInit,
-    signal,
-    ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { fromEvent, Subject } from 'rxjs';
@@ -17,7 +8,8 @@ import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionIntro component.
@@ -41,13 +33,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionOutlineService.
      *
      * It keeps the instance of the injected EditionOutlineService.
@@ -60,6 +45,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Private readonly injection variable: _router.
@@ -111,21 +103,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It holds the state of the intro view data.
      */
-    readonly viewData = this._editionDataService.introViewData;
-
-    /**
-     * Readonly signal: _viewReady.
-     *
-     * It holds a flag indicating if the view is ready.
-     */
-    readonly viewReady = signal<boolean>(false);
+    readonly viewData = this._editionViewService.introViewData;
 
     /**
      * Constructor of the EditionIntroComponent.
      *
      * It updates the edition state to indicate if the intro view is active,
-     * initializes the scroll listener for the window, and sets the viewReady signal to true after a short delay
-     * to show the loadingSpinner when switching between complex views.
+     * and initializes the scroll listener for the window.
      */
     constructor() {
         this._editionStateService.updateIsIntroView(true);
@@ -135,10 +119,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
         inject(DestroyRef).onDestroy(() => {
             this._editionStateService.updateIsIntroView(false);
         });
-
-        setTimeout(() => {
-            this.viewReady.set(true);
-        }, 0);
     }
 
     /**

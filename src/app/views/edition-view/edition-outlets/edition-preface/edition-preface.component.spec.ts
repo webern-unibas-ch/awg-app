@@ -18,7 +18,8 @@ import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
 import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
-import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
 
@@ -49,7 +50,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
     let mockLoadingService: Partial<LoadingService>;
     let mockEditionGlyphService: Partial<EditionGlyphService>;
-    let mockEditionDataService: Partial<EditionDataService>;
+    let mockEditionViewService: Partial<EditionViewService>;
     let editionStateService: EditionStateService;
 
     let getGlyphSpy: Spy;
@@ -59,13 +60,13 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let mockIsLoadingSignal: WritableSignal<boolean>;
 
     let expectedPrefaceData: PrefaceList;
-    let expectedViewData: EditionViewData<{ prefaceData: PrefaceList }>;
+    let expectedViewData: EditionViewData<'preface'>;
     let expectedCurrentLanguage: number;
 
     beforeEach(async () => {
         // Mock services
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             prefaceViewData: signal({
                 data: { prefaceData: expectedPrefaceData },
                 isLoading: false,
@@ -91,7 +92,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
             ],
             providers: [
                 { provide: LoadingService, useValue: mockLoadingService },
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: mockEditionViewService },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },
             ],
         }).compileComponents();
@@ -102,7 +103,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
         mockIsLoadingSignal.set(false);
 
         // Inject services
-        mockEditionDataService = TestBed.inject(EditionDataService);
+        mockEditionViewService = TestBed.inject(EditionViewService);
         editionStateService = TestBed.inject(EditionStateService);
 
         // Service spies

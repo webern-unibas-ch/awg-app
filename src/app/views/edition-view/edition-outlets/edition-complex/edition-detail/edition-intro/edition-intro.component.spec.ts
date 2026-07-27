@@ -21,6 +21,7 @@ import { of as observableOf } from 'rxjs';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { updateMockEditionViewData } from '@testing/edition-data-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -42,18 +43,11 @@ import {
     IntroBlock,
     IntroList,
 } from '@awg-views/edition-view/models';
-import {
-    EditionComplexesService,
-    EditionDataService,
-    EditionOutlineService,
-    EditionStateService,
-} from '@awg-views/edition-view/services';
+import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
-import { updateMockEditionViewData } from '@testing/edition-data-helper';
 import { EditionIntroComponent } from './edition-intro.component';
-
-// Helper type
-type IntroViewData = ReturnType<typeof EditionDataService.prototype.introViewData>;
 
 // Mock components
 @Component({
@@ -167,10 +161,10 @@ describe('IntroComponent (DONE)', () => {
     let mockDocument: Document;
     let mockRouter;
 
-    let mockEditionDataService: Partial<EditionDataService>;
     let editionComplexesService: EditionComplexesService;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
+    let mockEditionViewService: Partial<EditionViewService>;
 
     let mockViewDataSignal: WritableSignal<any>;
 
@@ -192,9 +186,9 @@ describe('IntroComponent (DONE)', () => {
     let isNavigationEndToIntroSpy: Spy;
     let updateEditionStateSpy: Spy;
 
-    let expectedViewData: IntroViewData;
-    let expectedIntroData: IntroViewData['data'];
-    let expectedEditionIntroComplexData: IntroList;
+    let expectedViewData: EditionViewData<'intro'>;
+    let expectedIntroData: EditionViewData<'intro'>['data'];
+    // TODO: let expectedEditionIntroComplexData: IntroList;
     let expectedEditionIntroSectionData: IntroList;
     let expectedEditionIntroSectionFilteredData: IntroList;
     let expectedCurrentLaguage: number;
@@ -226,7 +220,7 @@ describe('IntroComponent (DONE)', () => {
         // Mock services
         expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
         expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
-        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
+        // TODO: expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
         expectedIntroData = {
             introData: expectedEditionIntroSectionData,
         };
@@ -237,7 +231,7 @@ describe('IntroComponent (DONE)', () => {
         };
 
         mockViewDataSignal = signal(expectedViewData);
-        mockEditionDataService = {
+        mockEditionViewService = {
             introViewData: mockViewDataSignal.asReadonly(),
         };
 
@@ -254,7 +248,7 @@ describe('IntroComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: mockEditionViewService },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
