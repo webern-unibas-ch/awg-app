@@ -4,7 +4,7 @@ import { FolioConvoluteList } from '../models/folio.model';
 import { GraphList } from '../models/graph.model';
 import { IntroList } from '../models/intro.model';
 import { PrefaceList } from '../models/preface.model';
-import { RowTablesList } from '../models/row-tables.model';
+import { RowtablesList } from '../models/rowtables.model';
 import { SourceDescriptionList } from '../models/source-description.model';
 import { SourceEvaluationList } from '../models/source-evaluation.model';
 import { SourceList } from '../models/source-list.model';
@@ -21,7 +21,7 @@ const EDITION_ASSETS_FILES = {
     graphFile: 'graph.json',
     introFile: 'intro.json',
     prefaceFile: 'preface.json',
-    rowTablesFile: 'row-tables.json',
+    rowtablesFile: 'rowtables.json',
     sourceListFile: 'source-list.json',
     sourceDescriptionListFile: 'source-description.json',
     sourceEvaluationListFile: 'source-evaluation.json',
@@ -64,6 +64,6 @@ export const EDITION_ASSETS_DATA = {
         svgSheets: { file: EDITION_ASSETS_FILES.svgSheetsFile, fallback: new EditionSvgSheetList() },
         textcritics: { file: EDITION_ASSETS_FILES.textcriticsFile, fallback: new TextcriticsList() },
         preface: { file: EDITION_ASSETS_FILES.prefaceFile, fallback: new PrefaceList() },
-        rowTables: { file: EDITION_ASSETS_FILES.rowTablesFile, fallback: new RowTablesList() },
+        rowtables: { file: EDITION_ASSETS_FILES.rowtablesFile, fallback: new RowtablesList() },
     } as Record<EditionDataAssetsKeys, { file: string; fallback: any }>,
 };

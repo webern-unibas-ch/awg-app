@@ -70,7 +70,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isCorrections = false;
     @Input()
-    isRowTable = false;
+    isRowtable = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{
         complexId: string;
@@ -519,11 +519,11 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expectToBe(tableCmp.id, expectedSelectedTextcritics.id);
             });
 
-            it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
+            it('... should pass down `isRowtable` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToBe(tableCmp.isRowTable, expectedSelectedTextcritics.rowtable);
+                expectToBe(tableCmp.isRowtable, expectedSelectedTextcritics.rowtable);
             });
         });
 

@@ -3,18 +3,18 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
- * The EditionRowTables component.
+ * The EditionRowtables component.
  *
- * It contains the row tables overview
+ * It contains the rowtables overview
  * of the edition view of the app.
  */
 @Component({
-    selector: 'awg-edition-row-tables',
-    templateUrl: './edition-row-tables.component.html',
-    styleUrls: ['./edition-row-tables.component.scss'],
+    selector: 'awg-edition-rowtables',
+    templateUrl: './edition-rowtables.component.html',
+    styleUrls: ['./edition-rowtables.component.scss'],
     standalone: false,
 })
-export class EditionRowTablesComponent {
+export class EditionRowtablesComponent {
     /**
      * Private readonly injection variable: _editionDataService.
      *
@@ -32,20 +32,20 @@ export class EditionRowTablesComponent {
     /**
      * Readoly signal: viewData.
      *
-     * It holds the state of the row tables view data.
+     * It holds the state of the rowtables view data.
      */
-    readonly viewData = this._editionDataService.rowTablesViewData;
+    readonly viewData = this._editionDataService.rowtablesViewData;
 
     /**
-     * Constructor of the EditionRowTablesComponent.
+     * Constructor of the EditionRowtablesComponent.
      *
-     * It updates the edition state to indicate if the row table view is active.
+     * It updates the edition state to indicate if the rowtables view is active.
      */
     constructor() {
-        this._editionStateService.updateIsRowTableView(true);
+        this._editionStateService.updateIsRowtablesView(true);
 
         inject(DestroyRef).onDestroy(() => {
-            this._editionStateService.updateIsRowTableView(false);
+            this._editionStateService.updateIsRowtablesView(false);
         });
     }
 }

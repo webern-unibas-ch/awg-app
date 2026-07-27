@@ -23,9 +23,9 @@ export class EditionStateService {
     private readonly _isPrefaceViewSignal = signal<boolean>(false);
 
     /**
-     * Private readonly signal holding the row table view state.
+     * Private readonly signal holding the rowtables view state.
      */
-    private readonly _isRowTableViewSignal = signal<boolean>(false);
+    private readonly _isRowtablesViewSignal = signal<boolean>(false);
 
     /**
      * Private readonly signal holding the selected edition complex.
@@ -57,11 +57,11 @@ export class EditionStateService {
     readonly isPrefaceView = this._isPrefaceViewSignal.asReadonly();
 
     /**
-     * Readonly signal: isRowTableView.
+     * Readonly signal: isRowtablesView.
      *
-     * It holds the state of the row table view.
+     * It holds the state of the rowtables view.
      */
-    readonly isRowTableView = this._isRowTableViewSignal.asReadonly();
+    readonly isRowtablesView = this._isRowtablesViewSignal.asReadonly();
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -109,15 +109,15 @@ export class EditionStateService {
     }
 
     /**
-     * Public method: updateIsRowTableView.
+     * Public method: updateIsRowtablesView.
      *
-     * It updates the isRowTableView signal with the given boolean value.
+     * It updates the isRowtablesView signal with the given boolean value.
      *
-     * @param {boolean} isView The given isRowTableView flag.
-     * @returns {void} Sets the next state to the isRowTableView signal.
+     * @param {boolean} isView The given isRowtablesView flag.
+     * @returns {void} Sets the next state to the isRowtablesView signal.
      */
-    updateIsRowTableView(isView: boolean): void {
-        this._isRowTableViewSignal.set(isView);
+    updateIsRowtablesView(isView: boolean): void {
+        this._isRowtablesViewSignal.set(isView);
     }
 
     /**

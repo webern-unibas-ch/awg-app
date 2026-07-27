@@ -141,10 +141,10 @@ describe('EditionViewComponent (DONE)', () => {
             expectToBe(component.isPrefaceView(), false);
         });
 
-        it('... should have signal `isRowTableView` to hold false', () => {
-            expectToBe(isSignal(component.isRowTableView), true);
+        it('... should have signal `isRowtablesView` to hold false', () => {
+            expectToBe(isSignal(component.isRowtablesView), true);
 
-            expectToBe(component.isRowTableView(), false);
+            expectToBe(component.isRowtablesView(), false);
         });
 
         it('... should have signal `selectedEditionComplex` to hold null', () => {
@@ -178,7 +178,7 @@ describe('EditionViewComponent (DONE)', () => {
 
             describe('... should contain no sub-components yet', () => {
                 it.each([
-                    { desc: '`div.awg-edition-row-tables`', selector: 'div.awg-edition-row-tables' },
+                    { desc: '`div.awg-edition-rowtables`', selector: 'div.awg-edition-rowtables' },
                     { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
                     { desc: '`div.awg-edition-series`', selector: 'div.awg-edition-series' },
                 ])('... should contain no $desc in `div.awg-edition-view` yet', ({ selector }) => {
@@ -210,7 +210,7 @@ describe('EditionViewComponent (DONE)', () => {
             const getPrefaceDes = () =>
                 getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-preface', 1, 1);
             const getRowtableDes = () =>
-                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-row-tables', 1, 1);
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-rowtables', 1, 1);
             const getComplexDes = () =>
                 getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-complex', 1, 1);
             const getSeriesDes = () =>
@@ -268,23 +268,23 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            describe('... if isRowTableView is true', () => {
+            describe('... if isRowtablesView is true', () => {
                 beforeEach(() => {
-                    editionStateService.updateIsRowTableView(true);
+                    editionStateService.updateIsRowtablesView(true);
 
                     // Trigger data binding
                     fixture.detectChanges();
                 });
 
-                it('... should have signal `isRowTableView` to hold true', () => {
-                    expectToBe(component.isRowTableView(), true);
+                it('... should have signal `isRowtablesView` to hold true', () => {
+                    expectToBe(component.isRowtablesView(), true);
                 });
 
-                it('... should have one `div.awg-edition-row-tables` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-rowtables` in `div.awg-edition-view`', () => {
                     getRowtableDes();
                 });
 
-                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-row-tables`', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed) in `div.awg-edition-rowtables`', () => {
                     const rowtableDes = getRowtableDes();
 
                     getAndExpectDebugElementByCss(rowtableDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
@@ -295,7 +295,7 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
                     const hDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-edition-row-tables > h6.awg-edition-info-breadcrumb',
+                        'div.awg-edition-rowtables > h6.awg-edition-info-breadcrumb',
                         1,
                         1
                     );
@@ -482,11 +482,11 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            describe('... if selectedEditionComplex, isPrefaceView and isRowTableView are not given', () => {
+            describe('... if selectedEditionComplex, isPrefaceView and isRowtablesView are not given', () => {
                 beforeEach(() => {
                     editionStateService.updateSelectedEditionComplex(null);
                     editionStateService.updateIsPrefaceView(false);
-                    editionStateService.updateIsRowTableView(false);
+                    editionStateService.updateIsRowtablesView(false);
 
                     editionStateService.updateIsIntroView(false);
                     editionStateService.updateSelectedEditionSeries(null);
@@ -498,7 +498,7 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should have signals to hold expected values', () => {
                     expectToBe(component.isIntroView(), false);
                     expectToBe(component.isPrefaceView(), false);
-                    expectToBe(component.isRowTableView(), false);
+                    expectToBe(component.isRowtablesView(), false);
 
                     expectToBe(component.selectedEditionComplex(), null);
                     expectToBe(component.selectedEditionSeries(), null);
@@ -508,7 +508,7 @@ describe('EditionViewComponent (DONE)', () => {
                 describe('... should contain no view-specific-components', () => {
                     it.each([
                         { desc: '`div.awg-edition-preface`', selector: 'div.awg-edition-preface' },
-                        { desc: '`div.awg-edition-row-tables`', selector: 'div.awg-edition-row-tables' },
+                        { desc: '`div.awg-edition-rowtables`', selector: 'div.awg-edition-rowtables' },
                         { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
                     ])('... should contain no $desc in `div.awg-edition-view`', ({ selector }) => {
                         getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);

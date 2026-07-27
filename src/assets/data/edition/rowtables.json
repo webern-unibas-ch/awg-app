@@ -1,5 +1,5 @@
 {
-    "rowTables": [
+    "rowtables": [
         { "route": "/op19", "short": "Op. 19", "full": "Opus 19", "id": "SkRT", "disabled": false },
         { "route": "/op20", "short": "Op. 20", "full": "Opus 20", "id": "SkRT", "disabled": false },
         { "route": "/op21", "short": "Op. 21", "full": "Opus 21", "id": "SkRT", "disabled": true },

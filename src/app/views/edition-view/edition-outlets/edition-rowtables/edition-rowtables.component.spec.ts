@@ -17,38 +17,38 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { RowTablesList } from '@awg-views/edition-view/models';
+import { RowtablesList } from '@awg-views/edition-view/models';
 import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { EditionRowTablesComponent } from './edition-row-tables.component';
+import { EditionRowtablesComponent } from './edition-rowtables.component';
 
 describe('EditionRowTablesComponent (DONE)', () => {
-    let component: EditionRowTablesComponent;
-    let fixture: ComponentFixture<EditionRowTablesComponent>;
+    let component: EditionRowtablesComponent;
+    let fixture: ComponentFixture<EditionRowtablesComponent>;
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
     let mockEditionDataService: Partial<EditionDataService>;
 
-    let editionStateServiceUpdateIsRowTablesViewSpy: Spy;
+    let editionStateServiceUpdateIsRowtablesViewSpy: Spy;
 
-    let expectedRowTablesData: RowTablesList;
-    let expectedViewData: EditionViewData<{ rowTablesData: RowTablesList }>;
+    let expectedRowtablesData: RowtablesList;
+    let expectedViewData: EditionViewData<'rowtables'>;
 
     beforeEach(async () => {
         // Mock services
-        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
+        expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
         mockEditionDataService = {
-            rowTablesViewData: signal({
-                data: { rowTablesData: expectedRowTablesData },
+            rowtablesViewData: signal({
+                data: { rowtablesData: expectedRowtablesData },
                 isLoading: false,
                 error: null,
             }),
         };
 
         await TestBed.configureTestingModule({
-            declarations: [EditionRowTablesComponent, RouterLinkStubDirective],
+            declarations: [EditionRowtablesComponent, RouterLinkStubDirective],
             providers: [{ provide: EditionDataService, useValue: mockEditionDataService }],
         }).compileComponents();
     });
@@ -59,17 +59,17 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Spies
-        editionStateServiceUpdateIsRowTablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowTableView');
+        editionStateServiceUpdateIsRowtablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowtablesView');
 
         // Test data
         expectedViewData = {
-            data: { rowTablesData: expectedRowTablesData },
+            data: { rowtablesData: expectedRowtablesData },
             isLoading: false,
             error: null,
         };
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionRowTablesComponent);
+        fixture = TestBed.createComponent(EditionRowtablesComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -90,7 +90,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         it('... should not have called EditionStateService', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 0);
+            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -107,9 +107,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         it('... should have called EditionStateService and updated IsRowTableView', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowTablesViewSpy, 1);
+            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1);
 
-            expectToBe(editionStateService.isRowTableView(), true);
+            expectToBe(editionStateService.isRowtablesView(), true);
         });
 
         describe('VIEW', () => {
@@ -117,14 +117,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
             });
 
-            it('... should contain as many inner div.col as entries in rowTablesData', () => {
-                expectToBe(expectedRowTablesData.rowTables.length, 4);
+            it('... should contain as many inner div.col as entries in rowtablesData', () => {
+                expectToBe(expectedRowtablesData.rowtables.length, 4);
 
                 getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
             });
 
@@ -132,8 +132,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -147,8 +147,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -160,15 +160,15 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    const expectedHeading = 'Reihentabelle ' + expectedRowTablesData.rowTables[index].short;
+                    const expectedHeading = 'Reihentabelle ' + expectedRowtablesData.rowtables[index].short;
 
                     expectToBe(hEl.textContent.trim(), expectedHeading);
                 });
@@ -178,15 +178,15 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                    if (expectedRowTablesData.rowTables[index].disabled) {
+                    if (expectedRowtablesData.rowtables[index].disabled) {
                         expectToContain(hEl.classList, 'text-muted');
                     } else {
                         expectToNotContain(hEl.classList, 'text-muted');
@@ -198,8 +198,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -211,8 +211,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -229,15 +229,15 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
                     const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                    if (expectedRowTablesData.rowTables[index].disabled) {
+                    if (expectedRowtablesData.rowtables[index].disabled) {
                         expectToContain(aEl.classList, 'disabled');
                     } else {
                         expectToNotContain(aEl.classList, 'disabled');
@@ -255,8 +255,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    expectedRowTablesData.rowTables.length,
-                    expectedRowTablesData.rowTables.length
+                    expectedRowtablesData.rowtables.length,
+                    expectedRowtablesData.rowtables.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -264,12 +264,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedRowTablesData.rowTables.length);
+                expectToBe(routerLinks.length, expectedRowtablesData.rowtables.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
+                    const expectedRouterLink = ['../complex' + expectedRowtablesData.rowtables[index].route, 'sheets'];
 
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
                 }
@@ -277,7 +277,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
             it('... can get correct queryParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    const expectedQueryParams = { id: expectedRowTablesData.rowTables[index].id };
+                    const expectedQueryParams = { id: expectedRowtablesData.rowtables[index].id };
 
                     expectToEqual(routerLink.queryParams, expectedQueryParams);
                 }
@@ -286,7 +286,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
             it('... can click all links in template', async () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
+                    const expectedRouterLink = ['../complex' + expectedRowtablesData.rowtables[index].route, 'sheets'];
 
                     expectToBe(routerLink.navigatedTo, null);
 

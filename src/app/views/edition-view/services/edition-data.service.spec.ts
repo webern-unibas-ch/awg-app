@@ -21,7 +21,7 @@ import {
     GraphList,
     IntroList,
     PrefaceList,
-    RowTablesList,
+    RowtablesList,
 } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -49,7 +49,7 @@ describe('EditionDataService (DONE)', () => {
     let fetchJsonDataSpy: Spy;
 
     let expectedPrefaceData: PrefaceList;
-    let expectedRowTablesData: RowTablesList;
+    let expectedRowtablesData: RowtablesList;
     let expectedEditionIntroComplexData: IntroList;
     let expectedEditionIntroSectionData: IntroList;
     let expectedEditionIntroSectionFilteredData: IntroList;
@@ -60,7 +60,7 @@ describe('EditionDataService (DONE)', () => {
     const editionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
     const config = EDITION_ASSETS_DATA.CONFIG;
     const expectedPrefaceFilePath = `${baseRoute}${editionRoute}/${config['preface'].file}`;
-    const expectedRowTablesFilePath = `${baseRoute}${editionRoute}/${config['rowTables'].file}`;
+    const expectedRowtablesFilePath = `${baseRoute}${editionRoute}/${config['rowtables'].file}`;
 
     beforeEach(() => {
         mockIsLoadingSignal = signal<boolean>(false);
@@ -90,7 +90,7 @@ describe('EditionDataService (DONE)', () => {
         // Test data
 
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
-        expectedRowTablesData = structuredClone(mockEditionData.mockRowTablesData);
+        expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
         expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
         expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
         expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
@@ -101,12 +101,12 @@ describe('EditionDataService (DONE)', () => {
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
         fetchJsonDataSpy = vi.spyOn(service as any, '_fetchJsonData');
 
-        // Flush initial http requests for static data (preface and rowTables)
+        // Flush initial http requests for static data (preface and rowtables)
         const initialPrefaceCall = httpTestingController.expectOne(expectedPrefaceFilePath);
         initialPrefaceCall.flush(expectedPrefaceData);
 
-        const initialRowTablesCall = httpTestingController.expectOne(expectedRowTablesFilePath);
-        initialRowTablesCall.flush(expectedRowTablesData);
+        const initialRowtablesCall = httpTestingController.expectOne(expectedRowtablesFilePath);
+        initialRowtablesCall.flush(expectedRowtablesData);
     });
 
     afterEach(() => {
@@ -165,7 +165,7 @@ describe('EditionDataService (DONE)', () => {
     describe('... single view data signals', () => {
         describe.each([
             { viewDataSignalName: 'prefaceViewData', assetKey: 'preface' as EditionDataAssetsKeys },
-            { viewDataSignalName: 'rowTablesViewData', assetKey: 'rowTables' as EditionDataAssetsKeys },
+            { viewDataSignalName: 'rowtablesViewData', assetKey: 'rowtables' as EditionDataAssetsKeys },
             { viewDataSignalName: 'introViewData', assetKey: 'intro' as EditionDataAssetsKeys },
             { viewDataSignalName: 'graphViewData', assetKey: 'graph' as EditionDataAssetsKeys },
         ])('#$viewDataSignalName()', ({ viewDataSignalName, assetKey }) => {
@@ -431,7 +431,7 @@ describe('EditionDataService (DONE)', () => {
         });
 
         it('... should return a signal holding the fallback value on HTTP failure', () => {
-            const assetsKey: EditionStaticDataAssetsKeys = 'rowTables';
+            const assetsKey: EditionStaticDataAssetsKeys = 'rowtables';
             const expectedFallback = config[assetsKey].fallback;
 
             let staticDataSignal: Signal<any>;
@@ -442,7 +442,7 @@ describe('EditionDataService (DONE)', () => {
             // Initial value should be the fallback value
             expectToEqual(staticDataSignal(), expectedFallback);
 
-            const expectedUrl = expectedRowTablesFilePath;
+            const expectedUrl = expectedRowtablesFilePath;
             const call = httpTestingController.expectOne(expectedUrl);
             call.flush('404 error', { status: 404, statusText: 'Not Found' });
 

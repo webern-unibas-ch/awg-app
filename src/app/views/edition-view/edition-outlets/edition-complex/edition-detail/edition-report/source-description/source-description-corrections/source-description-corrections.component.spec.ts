@@ -29,7 +29,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isCorrections = false;
     @Input()
-    isRowTable = false;
+    isRowtable = false;
     @Input()
     isSketchId = false;
     @Output()
@@ -409,7 +409,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down `isRowTable` flag to EditionTkaTableComponent (stubbed)', () => {
+            it('... should pass down `isRowtable` flag to EditionTkaTableComponent (stubbed)', () => {
                 const detailsDes = getAndExpectDebugElementByCss(
                     compDe,
                     'details.awg-source-description-correction-details',
@@ -429,9 +429,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     ) as EditionTkaTableStubComponent;
 
                     if (expectedCorrections[index].rowtable) {
-                        expectToBe(editionTkaTableCmp.isRowTable, expectedCorrections[index].rowtable);
+                        expectToBe(editionTkaTableCmp.isRowtable, expectedCorrections[index].rowtable);
                     } else {
-                        expect(editionTkaTableCmp.isRowTable).toBeUndefined();
+                        expect(editionTkaTableCmp.isRowtable).toBeUndefined();
                     }
                 });
             });

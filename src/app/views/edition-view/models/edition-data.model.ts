@@ -18,7 +18,7 @@ export type EditionComplexDataAssetsKeys =
  *
  * * It defines the valid keys for the static data assets used in the EditionDataService.
  */
-export type EditionStaticDataAssetsKeys = 'preface' | 'rowTables';
+export type EditionStaticDataAssetsKeys = 'preface' | 'rowtables';
 
 /**
  * The EditionDataAssetsKeys type.

@@ -5,22 +5,22 @@
         <awg-twelve-tone-spinner />
     } @else {
         <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-            @let rowTables = view.data.rowTablesData.rowTables;
+            @let rowtables = view.data.rowtablesData.rowtables;
 
-            @for (rowTable of rowTables; track rowTable) {
+            @for (rowtable of rowtables; track rowtable.route) {
                 <div class="col">
                     <div class="card h-100 shadow">
                         <div class="card-body">
-                            <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
-                                Reihentabelle {{ rowTable.short }}
+                            <h5 class="card-title" [ngClass]="{ 'text-muted': rowtable.disabled }">
+                                Reihentabelle {{ rowtable.short }}
                             </h5>
                         </div>
                         <div class="card-footer text-end">
                             <a
-                                [routerLink]="['../complex' + rowTable.route, 'sheets']"
-                                [queryParams]="{ id: rowTable.id }"
+                                [routerLink]="['../complex' + rowtable.route, 'sheets']"
+                                [queryParams]="{ id: rowtable.id }"
                                 class="btn btn-outline-info"
-                                [ngClass]="{ disabled: rowTable.disabled }"
+                                [ngClass]="{ disabled: rowtable.disabled }"
                                 >Mehr ...
                             </a>
                         </div>

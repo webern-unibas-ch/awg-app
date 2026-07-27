@@ -46,7 +46,7 @@ export { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimension
 export { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 export { Intro, IntroBlock, IntroList } from './intro.model';
 export { Preface, PrefaceList } from './preface.model';
-export { RowTables, RowTablesList } from './row-tables.model';
+export { Rowtables, RowtablesList } from './rowtables.model';
 export {
     SourceDescription,
     SourceDescriptionContent,

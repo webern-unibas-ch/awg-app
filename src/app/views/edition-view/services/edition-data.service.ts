@@ -18,7 +18,7 @@ import {
     GraphList,
     IntroList,
     PrefaceList,
-    RowTablesList,
+    RowtablesList,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
@@ -81,7 +81,7 @@ export class EditionDataService {
     /**
      * Private readonly signal holding the row tables data state.
      */
-    private readonly _rowTablesData = this._getStaticEditionDataByKey<RowTablesList>('rowTables');
+    private readonly _rowtablesData = this._getStaticEditionDataByKey<RowtablesList>('rowtables');
 
     /**
      * Private readonly signal holding the intro data state.
@@ -140,18 +140,18 @@ export class EditionDataService {
     });
 
     /**
-     * Readonly signal: rowTablesViewData.
+     * Readonly signal: rowtablesViewData.
      *
      * It holds the state of the row tables view data.
      */
-    readonly rowTablesViewData = computed(() => {
-        const rowTablesData = this._rowTablesData();
-        const isLoading = this._loadingService.isLoading() || !rowTablesData?.rowTables?.length;
+    readonly rowtablesViewData = computed(() => {
+        const rowtablesData = this._rowtablesData();
+        const isLoading = this._loadingService.isLoading() || !rowtablesData?.rowtables?.length;
 
-        const keys: EditionDataAssetsKeys[] = ['rowTables'];
+        const keys: EditionDataAssetsKeys[] = ['rowtables'];
         const error = this._getErrorForDataAssets(keys)();
 
-        return { data: { rowTablesData }, isLoading, error } satisfies EditionViewData<{
+        return { data: { rowtablesData }, isLoading, error } satisfies EditionViewData<{
             rowTablesData: RowTablesList;
         }>;
     });

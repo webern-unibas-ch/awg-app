@@ -143,7 +143,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 { reference: 'location', label: 'Ort im Takt' },
                 { reference: 'comment', label: 'Korrektur' },
             ],
-            rowTable: [
+            rowtable: [
                 { reference: 'measure', label: 'Folio' },
                 { reference: 'system', label: 'System' },
                 { reference: 'location', label: 'Reihe/Reihenton' },
@@ -184,8 +184,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
             expect(component.id).toBeUndefined();
         });
 
-        it('... should have isRowTable = false', () => {
-            expectToBe(component.isRowTable, false);
+        it('... should have isRowtable = false', () => {
+            expectToBe(component.isRowtable, false);
         });
 
         it('... should have `ref`', () => {
@@ -220,7 +220,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.commentary = structuredClone(expectedCommentary);
             component.id = expectedComplexId;
-            component.isRowTable = expectedIsRowTable;
+            component.isRowtable = expectedIsRowTable;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -292,8 +292,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
                 });
 
-                it('... should display rowTable table header if `isRowTable` flag is given', async () => {
-                    component.isRowTable = true;
+                it('... should display rowtable table header if `isRowtable` flag is given', async () => {
+                    component.isRowtable = true;
                     await detectChangesOnPush(fixture);
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -301,7 +301,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowTable'][index].label);
+                        expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowtable'][index].label);
                     });
                 });
 
@@ -318,7 +318,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display default table header if `isRowTable` or `isCorrections` flags are not given', () => {
+                it('... should display default table header if `isRowtable` or `isCorrections` flags are not given', () => {
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                     const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
@@ -523,7 +523,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // 6 blockComments in detected content
                 expectSpyCall(getCommentSpy, 6);
 
-                component.isRowTable = true;
+                component.isRowtable = true;
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(getCommentSpy, 12);
@@ -569,7 +569,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // 2 glyphs in detected content
                 expectSpyCall(getGlyphSpy, 2);
 
-                component.isRowTable = true;
+                component.isRowtable = true;
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(getGlyphSpy, 4);
@@ -599,7 +599,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             it('... should trigger on change detection', async () => {
                 expectSpyCall(getTableHeaderStringsSpy, 1);
 
-                component.isRowTable = true;
+                component.isRowtable = true;
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 2);
@@ -610,22 +610,22 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectSpyCall(getTableHeaderStringsSpy, 3);
             });
 
-            it('... should return rowTable header if `isRowTable` flag is given', async () => {
-                component.isRowTable = true;
+            it('... should return rowtable header if `isRowtable` flag is given', async () => {
+                component.isRowtable = true;
                 component.id = expectedComplexId;
                 await detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
-                expectToEqual(tableHeaders, expectedTableHeaderStrings['rowTable']);
+                expectToEqual(tableHeaders, expectedTableHeaderStrings['rowtable']);
             });
 
-            it('... should return rowTable header with adjusted comment colum if `id` is a sketch id', async () => {
-                component.isRowTable = true;
+            it('... should return rowtable header with adjusted comment colum if `id` is a sketch id', async () => {
+                component.isRowtable = true;
                 component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
 
-                const expected = expectedTableHeaderStrings['rowTable'];
+                const expected = expectedTableHeaderStrings['rowtable'];
                 expected[3].label = 'Kommentar';
 
                 const tableHeaders = component.getTableHeaderStrings();
@@ -653,8 +653,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
             });
 
-            it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', async () => {
-                component.isRowTable = false;
+            it('... should return default table header if `isRowtable` flag or `isCorrections` are not given', async () => {
+                component.isRowtable = false;
                 component.isCorrections = false;
                 component.id = expectedComplexId;
                 await detectChangesOnPush(fixture);
@@ -665,7 +665,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should return default table header with adjusted comment colum if `id` is a sketch id', async () => {
-                component.isRowTable = false;
+                component.isRowtable = false;
                 component.isCorrections = false;
                 component.id = expectedSketchId;
                 await detectChangesOnPush(fixture);
