@@ -32,13 +32,6 @@ export class EditionPrefaceComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition preface: 0 for German, 1 for English.
@@ -55,7 +48,7 @@ export class EditionPrefaceComponent {
      *
      * It holds the state of the preface view data.
      */
-    readonly viewData = this._editionViewService.prefaceViewData;
+    readonly viewData = inject(EditionViewService).prefaceViewData;
 
     /**
      * Constructor of the EditionPrefaceComponent.

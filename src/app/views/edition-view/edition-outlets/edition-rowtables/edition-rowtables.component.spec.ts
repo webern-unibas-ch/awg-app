@@ -1,10 +1,12 @@
-import { DebugElement, isSignal, signal } from '@angular/core';
+import { Component, DebugElement, Input, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { createMockViewData } from '@testing/edition-data-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -18,11 +20,29 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RowtablesList } from '@awg-views/edition-view/models';
-import { EditionViewData } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionRowtablesComponent } from './edition-rowtables.component';
+
+// Mock components
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
+class AlertErrorStubComponent {
+    @Input()
+    errorObject: any;
+}
+
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
+class TwelveToneSpinnerStubComponent {}
 
 describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowtablesComponent;
@@ -30,44 +50,44 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
-    let mockEditionViewService: Partial<EditionViewService>;
 
     let editionStateServiceUpdateIsRowtablesViewSpy: Spy;
 
+    let mockViewDataSignal: WritableSignal<EditionViewData<'rowtables'>>;
+    let expectedViewDataContent: EditionViewDataContent<'rowtables'>;
+    let expectedDefaultViewDataContent: EditionViewDataContent<'rowtables'>;
     let expectedRowtablesData: RowtablesList;
-    let expectedViewData: EditionViewData<'rowtables'>;
 
     beforeEach(async () => {
         // Mock services
-        expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
-        mockEditionViewService = {
-            rowtablesViewData: signal({
-                data: { rowtablesData: expectedRowtablesData },
-                isLoading: false,
-                error: null,
-            }),
-        };
+        expectedDefaultViewDataContent = { rowtablesData: new RowtablesList() };
+        mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            declarations: [EditionRowtablesComponent, RouterLinkStubDirective],
-            providers: [{ provide: EditionViewService, useValue: mockEditionViewService }],
+            declarations: [
+                EditionRowtablesComponent,
+                AlertErrorStubComponent,
+                TwelveToneSpinnerStubComponent,
+                RouterLinkStubDirective,
+            ],
+            providers: [
+                {
+                    provide: EditionViewService,
+                    useValue: { rowtablesViewData: mockViewDataSignal.asReadonly() },
+                },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
-        mockEditionViewService = TestBed.inject(EditionViewService);
 
         // Spies
         editionStateServiceUpdateIsRowtablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowtablesView');
 
         // Test data
-        expectedViewData = {
-            data: { rowtablesData: expectedRowtablesData },
-            isLoading: false,
-            error: null,
-        };
+        expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionRowtablesComponent);
@@ -84,165 +104,254 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have signal `viewData` to hold the expected data', () => {
+        it('... should have signal `viewData` to hold the default fallback data', () => {
             expectToBe(isSignal(component.viewData), true);
 
-            expectToEqual(component.viewData(), expectedViewData);
+            expectToEqual(component.viewData(), createMockViewData(expectedDefaultViewDataContent));
         });
 
-        it('... should not have called EditionStateService', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 0);
+        it('... should have called `EditionStateService` and updated `isRowTableView` to true', () => {
+            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1, true);
+
+            expectToBe(editionStateService.isRowtablesView(), true);
+        });
+
+        it('... should reset `isRowtablesView` to false on destroy', () => {
+            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1, true);
+
+            fixture.destroy();
+
+            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 2, false);
+            expectToBe(editionStateService.isRowtablesView(), false);
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer div.row (yet)', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
+            it('... should contain no AlertErrorComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+            });
+
+            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            });
+
+            it('... should contain no div.awg-rowtables-view yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Set mock view data signal to expected data state
+            expectedViewDataContent = { rowtablesData: expectedRowtablesData };
+            mockViewDataSignal.set(
+                createMockViewData(expectedViewDataContent, {
+                    isLoading: false,
+                    error: null,
+                })
+            );
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have called EditionStateService and updated IsRowTableView', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1);
-
-            expectToBe(editionStateService.isRowtablesView(), true);
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 outer div.row', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
-            });
+            describe('on error', () => {
+                const expectedErrorObject = { status: 404, statusText: 'error' };
 
-            it('... should contain as many inner div.col as entries in rowtablesData', () => {
-                expectToBe(expectedRowtablesData.rowtables.length, 4);
+                beforeEach(async () => {
+                    // Mock error state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, {
+                            isLoading: false,
+                            error: expectedErrorObject,
+                        })
+                    );
 
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
-            });
+                    await detectChangesOnPush(fixture);
+                });
 
-            it('... should contain 1 div.card with body and footer in each div.col ', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+                it('... should not contain rowtables view or spinner, but one AlertErrorComponent (stubbed)', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
 
-                divDes.forEach(divDe => {
-                    getAndExpectDebugElementByCss(divDe, 'div.card', 1, 1);
-                    getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
-                    getAndExpectDebugElementByCss(divDe, 'div.card-footer', 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                });
+
+                it('... should pass down error object to AlertErrorComponent', () => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(
+                        AlertErrorStubComponent
+                    ) as AlertErrorStubComponent;
+
+                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
                 });
             });
 
-            it('... should contain 1 h5.card-title in each div.card-body', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+            describe('on loading', () => {
+                it('... should not contain rowtables view or alert, but one TwelveToneSpinnerComponent (stubbed)', async () => {
+                    // Mock loading state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, { isLoading: true, error: null })
+                    );
 
-                divDes.forEach(divDe => {
-                    getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                 });
             });
 
-            it('... should display the correct titles in h5.card-title', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+            describe('on view data available', () => {
+                beforeEach(async () => {
+                    // Mock data state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, {
+                            isLoading: false,
+                            error: null,
+                        })
+                    );
 
-                divDes.forEach((divDe, index) => {
-                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
-
-                    const expectedHeading = 'Reihentabelle ' + expectedRowtablesData.rowtables[index].short;
-
-                    expectToBe(hEl.textContent.trim(), expectedHeading);
+                    await detectChangesOnPush(fixture);
                 });
-            });
 
-            it('... should text-mute the title of disabled rowtables', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
-
-                divDes.forEach((divDe, index) => {
-                    const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
-                    const hEl: HTMLHeadingElement = hDes[0].nativeElement;
-
-                    if (expectedRowtablesData.rowtables[index].disabled) {
-                        expectToContain(hEl.classList, 'text-muted');
-                    } else {
-                        expectToNotContain(hEl.classList, 'text-muted');
-                    }
+                it('... should contain one outer div.awg-rowtables-view.row', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view.row', 1, 1);
                 });
-            });
 
-            it('... should contain 1 anchor button in each div.card-footer', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+                it('... should contain as many inner div.col as entries in rowtablesData', () => {
+                    const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view.row', 1, 1);
 
-                divDes.forEach(divDe => {
-                    getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    expectToBe(expectedRowtablesData.rowtables.length, 4);
+                    getAndExpectDebugElementByCss(
+                        rowDes[0],
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
                 });
-            });
 
-            it('... should display the correct text in anchor buttons', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+                it('... should contain one div.card with body and footer in each div.col ', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
 
-                divDes.forEach(divDe => {
-                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                    const expectedText = 'Mehr ...';
-
-                    expectToBe(aEl.textContent.trim(), expectedText);
+                    divDes.forEach(divDe => {
+                        getAndExpectDebugElementByCss(divDe, 'div.card', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
+                        getAndExpectDebugElementByCss(divDe, 'div.card-footer', 1, 1);
+                    });
                 });
-            });
 
-            it('... should disable the buttons of disabled rowtables', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.col',
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
+                it('... should contain one h5.card-title in each div.card-body', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
 
-                divDes.forEach((divDe, index) => {
-                    const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                    divDes.forEach(divDe => {
+                        getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    });
+                });
 
-                    if (expectedRowtablesData.rowtables[index].disabled) {
-                        expectToContain(aEl.classList, 'disabled');
-                    } else {
-                        expectToNotContain(aEl.classList, 'disabled');
-                    }
+                it('... should display the correct titles in h5.card-title', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
+
+                    divDes.forEach((divDe, index) => {
+                        const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                        const expectedHeading = 'Reihentabelle ' + expectedRowtablesData.rowtables[index].short;
+
+                        expectToBe(hEl.textContent.trim(), expectedHeading);
+                    });
+                });
+
+                it('... should text-mute the title of disabled rowtables', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
+
+                    divDes.forEach((divDe, index) => {
+                        const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                        const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                        if (expectedRowtablesData.rowtables[index].disabled) {
+                            expectToContain(hEl.classList, 'text-muted');
+                        } else {
+                            expectToNotContain(hEl.classList, 'text-muted');
+                        }
+                    });
+                });
+
+                it('... should contain one anchor button in each div.card-footer', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
+
+                    divDes.forEach(divDe => {
+                        getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    });
+                });
+
+                it('... should display the correct text in anchor buttons', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
+
+                    divDes.forEach(divDe => {
+                        const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                        const expectedText = 'Mehr ...';
+
+                        expectToBe(aEl.textContent.trim(), expectedText);
+                    });
+                });
+
+                it('... should disable the buttons of disabled rowtables', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.col',
+                        expectedRowtablesData.rowtables.length,
+                        expectedRowtablesData.rowtables.length
+                    );
+
+                    divDes.forEach((divDe, index) => {
+                        const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                        if (expectedRowtablesData.rowtables[index].disabled) {
+                            expectToContain(aEl.classList, 'disabled');
+                        } else {
+                            expectToNotContain(aEl.classList, 'disabled');
+                        }
+                    });
                 });
             });
         });
@@ -251,7 +360,17 @@ describe('EditionRowTablesComponent (DONE)', () => {
             let linkDes: DebugElement[];
             let routerLinks;
 
-            beforeEach(() => {
+            beforeEach(async () => {
+                // Mock data state
+                mockViewDataSignal.set(
+                    createMockViewData(expectedViewDataContent, {
+                        isLoading: false,
+                        error: null,
+                    })
+                );
+
+                await detectChangesOnPush(fixture);
+
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,

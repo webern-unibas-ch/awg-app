@@ -1,95 +1,181 @@
-import { signal } from '@angular/core';
+import { describe, expect, it } from 'vitest';
 
-import { describe, it } from 'vitest';
+import { EditionDataAssetsError, EditionDataAssetsKeys } from '@awg-views/edition-view/models/edition-data.model';
 
-import { updateMockEditionViewData } from './edition-data-helper';
-import { expectToEqual } from './expect-helper';
+import { GraphList } from '@awg-app/views/edition-view/models';
+import { createMockResponseData, createMockViewData } from './edition-data-helper';
+import { expectToBe, expectToEqual } from './expect-helper';
 
-describe('updateMockEditionData (DONE)', () => {
-    interface TestData {
-        foo: string;
-        bar: string;
-    }
+describe('EditionDataHelper (DONE)', () => {
+    describe('#createMockViewData()', () => {
+        interface TestData {
+            foo: string;
+            bar: string;
+        }
 
-    const defaultData: TestData = { foo: 'original-foo', bar: 'original-bar' };
+        const defaultData: TestData = { foo: 'original-foo', bar: 'original-bar' };
 
-    it('... should initialize with default data and loading/error states', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
+        it('... should have a method `createMockViewData`', () => {
+            expect(createMockViewData).toBeDefined();
+            expectToBe(typeof createMockViewData, 'function');
+        });
 
-        updateMockEditionViewData(mockEditionDataSignal, defaultData);
+        it('... should create mock data with default content and default loading/error states', () => {
+            const result = createMockViewData(defaultData);
 
-        expectToEqual(mockEditionDataSignal(), { data: defaultData, isLoading: false, error: null });
+            expectToEqual(result, {
+                data: defaultData,
+                isLoading: false,
+                error: null,
+            });
+        });
+
+        it('... should allow to override specific fields within the data object', () => {
+            const result = createMockViewData(defaultData, {
+                data: { foo: 'changed-foo' },
+            });
+
+            expectToEqual(result, {
+                data: { foo: 'changed-foo', bar: 'original-bar' },
+                isLoading: false,
+                error: null,
+            });
+        });
+
+        it('... should allow to override fields to undefined within the data object', () => {
+            const result = createMockViewData(defaultData, {
+                data: { foo: undefined },
+            });
+
+            expectToEqual(result, {
+                data: { foo: undefined, bar: 'original-bar' },
+                isLoading: false,
+                error: null,
+            });
+        });
+
+        it('... should create mock data with a custom isLoading state independently', () => {
+            const result = createMockViewData(defaultData, {
+                isLoading: true,
+            });
+
+            expectToEqual(result, {
+                data: defaultData,
+                isLoading: true,
+                error: null,
+            });
+        });
+
+        it('... should create mock data with a custom error state independently', () => {
+            const mockError: EditionDataAssetsError = {
+                key: 'preface',
+                error: new Error('HTTP 404 Not Found'),
+            };
+
+            const result = createMockViewData(defaultData, {
+                error: mockError,
+            });
+
+            expectToEqual(result, {
+                data: defaultData,
+                isLoading: false,
+                error: mockError,
+            });
+        });
+
+        it('... should create mock data with custom isLoading and error states simultaneously', () => {
+            const mockError: EditionDataAssetsError = {
+                key: 'preface',
+                error: new Error('HTTP 404 Not Found'),
+            };
+
+            const result = createMockViewData(defaultData, {
+                isLoading: true,
+                error: mockError,
+            });
+
+            expectToEqual(result, {
+                data: defaultData,
+                isLoading: true,
+                error: mockError,
+            });
+        });
     });
 
-    it('... should allow to override fields within the data object', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
-
-        updateMockEditionViewData(mockEditionDataSignal, defaultData, {
-            data: { foo: 'changed-foo' },
+    describe('#createMockResponseData()', () => {
+        it('... should have a method `createMockResponseData`', () => {
+            expect(createMockResponseData).toBeDefined();
+            expectToBe(typeof createMockResponseData, 'function');
         });
 
-        expectToEqual(mockEditionDataSignal(), {
-            data: { foo: 'changed-foo', bar: 'original-bar' },
-            isLoading: false,
-            error: null,
-        });
-    });
+        it('... should return a new object and not mutate the original fallback object', () => {
+            const fallback = new GraphList();
 
-    it('... should allow to override fields to undefined within the data object', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
+            const result = createMockResponseData('graph', fallback);
 
-        updateMockEditionViewData(mockEditionDataSignal, defaultData, {
-            data: { foo: undefined },
+            expect(result).not.toBe(fallback);
         });
 
-        expectToEqual(mockEditionDataSignal(), {
-            data: { foo: undefined, bar: 'original-bar' },
-            isLoading: false,
-            error: null,
-        });
-    });
+        describe('... when `assetKey = svgSheets`', () => {
+            it('... should populate the sheets property with workEditions, textEditions, and sketchEditions', () => {
+                const fallback = {};
 
-    it('... should update isLoading state independently', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
-        updateMockEditionViewData(mockEditionDataSignal, defaultData, {
-            isLoading: true,
-        });
+                const result = createMockResponseData('svgSheets', fallback);
 
-        expectToEqual(mockEditionDataSignal(), {
-            data: defaultData,
-            isLoading: true,
-            error: null,
-        });
-    });
-
-    it('... should update error state independently', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
-        const mockError = { message: 'HTTP 404 Not Found' };
-
-        updateMockEditionViewData(mockEditionDataSignal, defaultData, {
-            error: mockError,
+                expectToEqual(result, {
+                    sheets: {
+                        workEditions: [{ id: 'sheet-1' }],
+                        textEditions: [],
+                        sketchEditions: [],
+                    },
+                });
+            });
         });
 
-        expectToEqual(mockEditionDataSignal(), {
-            data: defaultData,
-            isLoading: false,
-            error: mockError,
-        });
-    });
+        describe('... when `assetKey = folioConvolute`', () => {
+            it('... should populate the convolutes property with a test entry', () => {
+                const fallback = {};
 
-    it('... should update isLoading and error states independently', () => {
-        const mockEditionDataSignal = signal({ data: defaultData, isLoading: false, error: null });
-        const mockError = { message: 'HTTP 404 Not Found' };
+                const result = createMockResponseData('folioConvolute', fallback);
 
-        updateMockEditionViewData(mockEditionDataSignal, defaultData, {
-            isLoading: true,
-            error: mockError,
+                expectToEqual(result, {
+                    convolutes: [{ id: 'test-entry-1' }],
+                });
+            });
         });
 
-        expectToEqual(mockEditionDataSignal(), {
-            data: defaultData,
-            isLoading: true,
-            error: mockError,
+        describe('... when assetKey starts with `source`', () => {
+            it.each([
+                { assetKey: 'sourceList' as EditionDataAssetsKeys },
+                { assetKey: 'sourceDescription' as EditionDataAssetsKeys },
+                { assetKey: 'sourceEvaluation' as EditionDataAssetsKeys },
+            ])('... should populate the sources property for $assetKey with a test entry', ({ assetKey }) => {
+                const fallback = {};
+
+                const result = createMockResponseData(assetKey, fallback);
+
+                expectToEqual(result, {
+                    sources: [{ id: 'test-entry-1' }],
+                });
+            });
+        });
+
+        describe('... when assetKey is any other standard key', () => {
+            it.each([
+                { assetKey: 'graph' as EditionDataAssetsKeys, expectedKey: 'graph' },
+                { assetKey: 'intro' as EditionDataAssetsKeys, expectedKey: 'intro' },
+                { assetKey: 'preface' as EditionDataAssetsKeys, expectedKey: 'preface' },
+                { assetKey: 'rowtables' as EditionDataAssetsKeys, expectedKey: 'rowtables' },
+                { assetKey: 'textcritics' as EditionDataAssetsKeys, expectedKey: 'textcritics' },
+            ])('... should use the assetKey $assetKey as the property name directly', ({ assetKey, expectedKey }) => {
+                const fallback = {};
+
+                const result = createMockResponseData(assetKey, fallback);
+
+                expectToEqual(result, {
+                    [expectedKey]: [{ id: 'test-entry-1' }],
+                });
+            });
         });
     });
 });

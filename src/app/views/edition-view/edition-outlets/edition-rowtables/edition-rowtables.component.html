@@ -1,17 +1,17 @@
 @if (viewData(); as view) {
-    @if (view.error; as err) {
-        <awg-alert-error [errorObject]="err.error" />
+    @if (view.error; as errorObject) {
+        <awg-alert-error [errorObject]="errorObject" />
     } @else if (view.isLoading) {
         <awg-twelve-tone-spinner />
     } @else {
-        <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+        <div class="awg-rowtables-view row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
             @let rowtables = view.data.rowtablesData.rowtables;
 
             @for (rowtable of rowtables; track rowtable.route) {
                 <div class="col">
                     <div class="card h-100 shadow">
                         <div class="card-body">
-                            <h5 class="card-title" [ngClass]="{ 'text-muted': rowtable.disabled }">
+                            <h5 class="card-title" [class.text-muted]="rowtable.disabled">
                                 Reihentabelle {{ rowtable.short }}
                             </h5>
                         </div>
@@ -20,7 +20,7 @@
                                 [routerLink]="['../complex' + rowtable.route, 'sheets']"
                                 [queryParams]="{ id: rowtable.id }"
                                 class="btn btn-outline-info"
-                                [ngClass]="{ disabled: rowtable.disabled }"
+                                [class.disabled]="rowtable.disabled"
                                 >Mehr ...
                             </a>
                         </div>

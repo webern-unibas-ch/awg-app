@@ -21,27 +21,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 })
 export class EditionGraphComponent {
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
-     * Private readonly injection variable: _fullscreenService.
-     *
-     * It keeps the instance of the injected FullscreenService.
-     */
-    private readonly _fullscreenService = inject(FullscreenService);
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
@@ -51,21 +30,21 @@ export class EditionGraphComponent {
      *
      * It holds the fullscreen status.
      */
-    readonly isFullscreen = this._fullscreenService.isFullscreen;
+    readonly isFullscreen = inject(FullscreenService).isFullscreen;
 
     /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
      * Readonly signal: viewData.
      *
      * It holds the state of the graph view data.
      */
-    readonly viewData = this._editionViewService.graphViewData;
+    readonly viewData = inject(EditionViewService).graphViewData;
 
     /**
      * Readonly variable: GRAPH_IMAGES.

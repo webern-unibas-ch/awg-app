@@ -5,8 +5,8 @@
 
     <!-- report -->
     @if (viewData(); as view) {
-        @if (view.error; as err) {
-            <awg-alert-error [errorObject]="err" />
+        @if (view.error; as errorObject) {
+            <awg-alert-error [errorObject]="errorObject" />
         } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
         } @else {

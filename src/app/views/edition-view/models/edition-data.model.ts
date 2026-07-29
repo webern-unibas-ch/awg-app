@@ -94,6 +94,15 @@ export interface EditionViewDataTypeMapping {
 export type EditionViewKey = keyof EditionViewDataTypeMapping;
 
 /**
+ * The EditionViewDataContent type.
+ *
+ * It defines the structure of the data content for a specific edition view key.
+ */
+export type EditionViewDataContent<K extends EditionViewKey> = {
+    [P in keyof EditionViewDataTypeMapping[K]]: EditionViewDataTypeMapping[K][P] | null;
+};
+
+/**
  * The EditionViewData interface.
  *
  * It defines the structure of the data used for the different edition views.
@@ -102,9 +111,7 @@ export interface EditionViewData<K extends EditionViewKey> {
     /**
      * The data of the edition view.
      */
-    data: {
-        [P in keyof EditionViewDataTypeMapping[K]]: EditionViewDataTypeMapping[K][P] | null;
-    };
+    data: EditionViewDataContent<K>;
 
     /**
      * Indicates whether the data is loading.

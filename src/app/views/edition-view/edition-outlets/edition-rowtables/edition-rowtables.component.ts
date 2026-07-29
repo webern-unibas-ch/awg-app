@@ -24,18 +24,11 @@ export class EditionRowtablesComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
      * Readoly signal: viewData.
      *
-     * It holds the state of the rowtables view data.
+     * It holds the state of the rowtables view data from the EditionViewService.
      */
-    readonly viewData = this._editionViewService.rowtablesViewData;
+    readonly viewData = inject(EditionViewService).rowtablesViewData;
 
     /**
      * Constructor of the EditionRowtablesComponent.

@@ -47,13 +47,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -103,7 +96,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It holds the state of the intro view data.
      */
-    readonly viewData = this._editionViewService.introViewData;
+    readonly viewData = inject(EditionViewService).introViewData;
 
     /**
      * Constructor of the EditionIntroComponent.

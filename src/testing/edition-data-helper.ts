@@ -1,33 +1,37 @@
-import { WritableSignal } from '@angular/core';
-
-import { EditionDataAssetsKeys } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsKeys,
+    EditionViewData,
+    EditionViewDataContent,
+    EditionViewKey,
+} from '@awg-views/edition-view/models/edition-data.model';
 
 /**
- * Test helper method: updateMockEditionViewData.
+ * Test helper method: createMockViewData.
  *
- * It updates the provided WritableSignal with mock edition view data, allowing for optional overrides of the default data.
+ * It creates mock edition view data for the specified EditionViewKey, allowing for optional overrides of the default data.
  *
- * @param signal The WritableSignal to update with mock edition view data.
- * @param defaultData The default data to use for the mock edition view data.
- * @param overrides Optional overrides for the mock edition view data.
+ * @param {EditionViewDataContent<K>} defaultDataContent The default data content to be used for the mock edition view data.
+ * @param {Object} [overrides] Optional overrides for the default data, isLoading state, and error state.
+ * @param {Partial<EditionViewDataContent<K>>} [overrides.data] Optional partial data to override the default data.
+ * @param {boolean} [overrides.isLoading] Optional boolean to override the default isLoading state.
+ * @param {any} [overrides.error] Optional error object to override the default error state.
  *
- * @example  updateMockViewData(signal, defaultData, { isLoading: true });
+ * @example  createMockViewData(defaultData, { isLoading: true });
  *
- * @returns {void} Updates the provided WritableSignal with mock edition view data.
+ * @returns {EditionViewData<K>} The mock edition view data for the specified EditionViewKey.
  */
-export function updateMockEditionViewData<T>(
-    signal: WritableSignal<any>,
-    defaultData: T,
-    overrides: { data?: Partial<T>; isLoading?: boolean; error?: any } = {}
-): void {
-    signal.set({
+export function createMockViewData<K extends EditionViewKey>(
+    defaultDataContent: EditionViewDataContent<K>,
+    overrides: { data?: Partial<EditionViewDataContent<K>>; isLoading?: boolean; error?: any } = {}
+): EditionViewData<K> {
+    return {
         data: {
-            ...defaultData,
+            ...defaultDataContent,
             ...overrides.data,
         },
         isLoading: overrides.isLoading ?? false,
         error: overrides.error ?? null,
-    });
+    };
 }
 
 /**
@@ -35,8 +39,8 @@ export function updateMockEditionViewData<T>(
  *
  * It creates mock response data for the specified EditionDataAssetsKeys, using the provided fallback data.
  *
- * @param assetKey The EditionDataAssetsKeys for which to create mock response data.
- * @param fallback The fallback data to use for the mock response data.
+ * @param {EditionDataAssetsKeys} assetKey The EditionDataAssetsKeys for which to create mock response data.
+ * @param {T} fallback The fallback data to use for the mock response data.
  *
  * @example  createMockResponseData('svgSheets', fallbackData);
  *

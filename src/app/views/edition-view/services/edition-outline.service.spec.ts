@@ -152,64 +152,84 @@ describe('EditionOutlineService (DONE)', () => {
         });
     });
 
-    describe('#initializeEditionOutline()', () => {
-        it('... should have a method `initializeEditionOutline`', () => {
-            expect(service.initializeEditionOutline).toBeDefined();
-        });
+    describe('EditionOutline (Model)', () => {
+        const mockGetComplex = () => undefined;
 
-        it('... should set the `_rawOutlineDataSignal`', () => {
-            expectToEqual((service as any)._rawOutlineDataSignal(), []);
+        describe('... should return an empty outline array if ', () => {
+            it('... input data is null', () => {
+                const model = new EditionOutline(null, mockGetComplex);
 
-            service.initializeEditionOutline();
+                expectToEqual(model.outline, []);
+            });
 
-            expectSpyCall(initializeEditionOutlineSpy, 1);
+            it('... input data is undefined', () => {
+                const model = new EditionOutline(undefined, mockGetComplex);
 
-            expectToEqual(
-                (service as any)._rawOutlineDataSignal(),
-                jsonEditionOutline['editionOutline'] as EditionOutlineSeriesJsonData[]
-            );
-        });
-    });
-
-    describe('#getEditionSeriesById()', () => {
-        it('... should have a method `getEditionSeriesById`', () => {
-            expect(service.getEditionSeriesById).toBeDefined();
-        });
-
-        it('... should return editionSeries with given id', () => {
-            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
-                editionComplexesService.getEditionComplexById(id)
-            ).outline;
-
-            (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
-
-            const series = service.getEditionSeriesById(EDITION_ROUTE_CONSTANTS.SERIES_2.route);
-
-            expectToEqual(series, expectedOutline[0]);
+                expectToEqual(model.outline, []);
+            });
         });
     });
 
-    describe('#getEditionSectionById()', () => {
-        it('... should have a method `getEditionSectionById`', () => {
-            expect(service.getEditionSectionById).toBeDefined();
-        });
+    describe('METHODS', () => {
+        describe('#initializeEditionOutline()', () => {
+            it('... should have a method `initializeEditionOutline`', () => {
+                expect(service.initializeEditionOutline).toBeDefined();
+            });
 
-        it('... should return editionSection with given id', () => {
-            (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+            it('... should set the `_rawOutlineDataSignal`', () => {
+                expectToEqual((service as any)._rawOutlineDataSignal(), []);
 
-            const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
-                editionComplexesService.getEditionComplexById(id)
-            ).outline;
+                service.initializeEditionOutline();
 
-            expectedOutline[0].sections.forEach(section => {
-                const expectedEditionSection = section;
+                expectSpyCall(initializeEditionOutlineSpy, 1);
 
-                const getSection = service.getEditionSectionById(
-                    EDITION_ROUTE_CONSTANTS.SERIES_2.route,
-                    section.section.route
+                expectToEqual(
+                    (service as any)._rawOutlineDataSignal(),
+                    jsonEditionOutline['editionOutline'] as EditionOutlineSeriesJsonData[]
                 );
+            });
+        });
 
-                expectToEqual(getSection, expectedEditionSection);
+        describe('#getEditionSeriesById()', () => {
+            it('... should have a method `getEditionSeriesById`', () => {
+                expect(service.getEditionSeriesById).toBeDefined();
+            });
+
+            it('... should return editionSeries with given id', () => {
+                const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
+                    editionComplexesService.getEditionComplexById(id)
+                ).outline;
+
+                (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+
+                const series = service.getEditionSeriesById(EDITION_ROUTE_CONSTANTS.SERIES_2.route);
+
+                expectToEqual(series, expectedOutline[0]);
+            });
+        });
+
+        describe('#getEditionSectionById()', () => {
+            it('... should have a method `getEditionSectionById`', () => {
+                expect(service.getEditionSectionById).toBeDefined();
+            });
+
+            it('... should return editionSection with given id', () => {
+                (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+
+                const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
+                    editionComplexesService.getEditionComplexById(id)
+                ).outline;
+
+                expectedOutline[0].sections.forEach(section => {
+                    const expectedEditionSection = section;
+
+                    const getSection = service.getEditionSectionById(
+                        EDITION_ROUTE_CONSTANTS.SERIES_2.route,
+                        section.section.route
+                    );
+
+                    expectToEqual(getSection, expectedEditionSection);
+                });
             });
         });
     });

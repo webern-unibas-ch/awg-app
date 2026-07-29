@@ -461,7 +461,8 @@ describe('EditionDataService (DONE)', () => {
                 'textcritics',
             ];
 
-            const getClearErrorCountByKey = (key: EditionDataAssetsKeys) => clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
+            const getClearErrorCountByKey = (key: EditionDataAssetsKeys) =>
+                clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
 
             it.each(complexKeys)(
                 '... should start with fallback and return fallback if no complex is selected for key: `%s`',
