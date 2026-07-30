@@ -128,11 +128,11 @@ describe('EditionViewService', () => {
         });
 
         it('... should return an empty string if the navigation destination has no primary segments', async () => {
-            await createFreshServiceWithUrl('/edition/preface');
+            const freshService = await createFreshServiceWithUrl('/edition/preface');
 
             await harness.navigateByUrl('/(sidebar:help)');
 
-            expectToBe((service as any)._currentViewName(), '');
+            expectToBe((freshService as any)._currentViewName(), '');
         });
     });
 

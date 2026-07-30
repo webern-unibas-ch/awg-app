@@ -67,7 +67,7 @@ export class EditionViewService {
         merge(
             this._router.events.pipe(
                 filter(event => event instanceof NavigationEnd),
-                map((event: NavigationEnd) => event.url)
+                map((event: NavigationEnd) => event.urlAfterRedirects)
             ),
             this._route.url.pipe(map(() => this._router.url))
         ).pipe(
