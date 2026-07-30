@@ -307,7 +307,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>Indicates whether the data is loading.</p>
+                                    <div class="io-description"><p>A flag indicating whether the data is loading.</p>
 </div>
                                 </td>
                             </tr>
@@ -434,7 +434,7 @@ export interface EditionViewData&lt;K extends EditionViewKey&gt; {
     data: EditionViewDataContent&lt;K&gt;;
 
     /**
-     * Indicates whether the data is loading.
+     * A flag indicating whether the data is loading.
      */
     isLoading: boolean;
 
@@ -442,6 +442,33 @@ export interface EditionViewData&lt;K extends EditionViewKey&gt; {
      * An optional error object if there was an error loading the data.
      */
     error: EditionDataAssetsError | null;
+}
+
+/**
+ * The EditionViewContext type.
+ *
+ * It defines the structure of the context for the edition view.
+ */
+export interface EditionViewContext {
+    /**
+     * The name of the current edition view.
+     */
+    name: EditionViewKey | string;
+
+    /**
+     * A flag indicating whether the current view is the intro view.
+     */
+    isIntro: boolean;
+
+    /**
+     * A flag indicating whether the current view is the preface view.
+     */
+    isPreface: boolean;
+
+    /**
+     * A flag indicating whether the current view is the rowtables view.
+     */
+    isRowtables: boolean;
 }
 </code></pre>
     </div>

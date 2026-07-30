@@ -1350,6 +1350,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionSvgOverlayState.html" data-type="entity-link" >EditionSvgOverlayState</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionViewContext.html" data-type="entity-link" >EditionViewContext</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData</a>
                             </li>
                             <li class="link">
