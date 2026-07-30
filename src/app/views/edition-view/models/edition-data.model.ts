@@ -52,7 +52,7 @@ export interface EditionDataAssetsError {
     /**
      * The error object associated with the data asset.
      */
-    error: any;
+    error: unknown;
 }
 
 /**

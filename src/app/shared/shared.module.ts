@@ -53,6 +53,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         CompileHtmlModule,
+        AlertErrorComponent,
         CodeMirrorModule,
         FontAwesomeModule,
         NgxJsonViewerModule,
@@ -67,7 +68,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ScrollToTopButtonComponent,
     ],
     declarations: [
-        AlertErrorComponent,
         DisclaimerWorkeditionsComponent,
         JsonViewerComponent,
         LanguageSwitcherComponent,

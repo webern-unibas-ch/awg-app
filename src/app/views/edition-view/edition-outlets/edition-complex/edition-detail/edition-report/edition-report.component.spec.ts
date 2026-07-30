@@ -3,6 +3,7 @@ import {
     DebugElement,
     EventEmitter,
     inject as inject_1,
+    input,
     Input,
     isSignal,
     NgModule,
@@ -41,7 +42,11 @@ import {
     SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsError,
+    EditionViewData,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -60,11 +65,9 @@ class ModalStubComponent {
 @Component({
     selector: 'awg-alert-error',
     template: '',
-    standalone: false,
 })
 class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
 
 @Component({
@@ -213,11 +216,11 @@ describe('EditionReportComponent', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbModalModule],
+            imports: [AlertErrorStubComponent, NgbAccordionWithConfigModule, NgbModalModule],
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
-                AlertErrorStubComponent,
+
                 ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
@@ -368,7 +371,10 @@ describe('EditionReportComponent', () => {
 
         describe('VIEW', () => {
             describe('on error', () => {
-                const expectedErrorObject = { status: 404, statusText: 'error' };
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'textcritics',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
                 beforeEach(async () => {
                     // Mock error state
@@ -396,7 +402,7 @@ describe('EditionReportComponent', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 
