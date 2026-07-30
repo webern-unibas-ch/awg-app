@@ -224,7 +224,6 @@ describe('IntroComponent (DONE)', () => {
                 EditionIntroPartialDisclaimerStubComponent,
                 EditionIntroPlaceholderStubComponent,
                 EditionIntroNavStubComponent,
-
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],

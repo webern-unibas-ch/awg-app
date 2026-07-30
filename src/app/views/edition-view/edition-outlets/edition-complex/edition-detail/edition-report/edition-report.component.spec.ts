@@ -220,7 +220,6 @@ describe('EditionReportComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
-
                 ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
