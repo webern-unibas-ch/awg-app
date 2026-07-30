@@ -27,6 +27,7 @@ import {
 } from '@awg-views/edition-view/models';
 import {
     EditionComplexDataAssetsKeys,
+    EditionDataAssetsError,
     EditionDataAssetsKeys,
     EditionStaticDataAssetsKeys,
 } from '@awg-views/edition-view/models/edition-data.model';
@@ -288,11 +289,12 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
-                (service as any)._dataError.set({ key: 'graph', error: mockError });
+                const mockAssetsError: EditionDataAssetsError = { key: 'graph', error: mockError };
+                (service as any)._dataError.set(mockAssetsError);
 
                 const errorSignal = service.getErrorForDataAssets(testKeys);
 
-                expectToEqual(errorSignal(), mockError);
+                expectToEqual(errorSignal(), mockAssetsError);
             });
 
             describe('... should return a signal that holds null if', () => {
@@ -305,7 +307,8 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 it('... the active error key is not included in the given keys', () => {
-                    (service as any)._dataError.set({ key: 'intro', error: mockError });
+                    const mockAssetsError: EditionDataAssetsError = { key: 'intro', error: mockError };
+                    (service as any)._dataError.set(mockAssetsError);
 
                     const errorSignal = service.getErrorForDataAssets(testKeys);
 
@@ -318,9 +321,10 @@ describe('EditionDataService (DONE)', () => {
                 const errorSignal = service.getErrorForDataAssets(testKeys);
                 expectToBe(errorSignal(), null);
 
-                (service as any)._dataError.set({ key: 'textcritics', error: mockError });
+                const mockAssetsError: EditionDataAssetsError = { key: 'textcritics', error: mockError };
+                (service as any)._dataError.set(mockAssetsError);
 
-                expectToEqual(errorSignal(), mockError);
+                expectToEqual(errorSignal(), mockAssetsError);
 
                 (service as any)._dataError.set(null);
 

@@ -140,9 +140,9 @@ export class EditionDataService {
      * for the given data assets.
      *
      * @param {EditionDataAssetsKeys[]} assetsKeys The given data assets keys to check for errors.
-     * @returns {Signal<any | null>} The computed errorObject for the given data asset keys.
+     * @returns {Signal<EditionDataAssetsError | null>} The computed errorObject for the given data asset keys.
      */
-    getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal<any | null> {
+    getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal<EditionDataAssetsError | null> {
         return computed(() => {
             const errState = this._dataError();
 
@@ -150,7 +150,7 @@ export class EditionDataService {
                 return null;
             }
 
-            return assetsKeys.includes(errState.key) ? errState.error : null;
+            return assetsKeys.includes(errState.key) ? errState : null;
         });
     }
 

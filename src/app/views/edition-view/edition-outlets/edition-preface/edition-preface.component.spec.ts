@@ -1,4 +1,14 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    EventEmitter,
+    input,
+    Input,
+    isSignal,
+    Output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -16,7 +26,11 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsError,
+    EditionViewData,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
 import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
@@ -27,11 +41,9 @@ import { EditionPrefaceComponent } from './edition-preface.component';
 @Component({
     selector: 'awg-alert-error',
     template: '',
-    standalone: false,
 })
 class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
 
 @Component({
@@ -80,9 +92,9 @@ describe('EditionPrefaceComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
+            imports: [AlertErrorStubComponent],
             declarations: [
                 EditionPrefaceComponent,
-                AlertErrorStubComponent,
                 CompileHtmlComponent,
                 LanguageSwitcherStubComponent,
                 TwelveToneSpinnerStubComponent,
@@ -179,7 +191,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('on error', () => {
-                const expectedErrorObject = { status: 404, statusText: 'error' };
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'preface',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
                 beforeEach(async () => {
                     // Mock error state
@@ -206,7 +221,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 

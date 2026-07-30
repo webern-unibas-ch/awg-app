@@ -33,7 +33,11 @@ import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsError,
+    EditionViewData,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -55,11 +59,9 @@ class ModalStubComponent {
 @Component({
     selector: 'awg-alert-error',
     template: '',
-    standalone: false,
 })
 class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
 
 @Component({
@@ -121,10 +123,10 @@ describe('EditionGraphComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule],
+            imports: [AlertErrorStubComponent, FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
-                AlertErrorStubComponent,
+
                 CompileHtmlComponent,
                 FullscreenToggleStubComponent,
                 GraphVisualizerStubComponent,
@@ -253,7 +255,10 @@ describe('EditionGraphComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('on error', () => {
-                const expectedErrorObject = { status: 404, statusText: 'error' };
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'graph',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
                 beforeEach(async () => {
                     // Mock error state
@@ -282,7 +287,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 

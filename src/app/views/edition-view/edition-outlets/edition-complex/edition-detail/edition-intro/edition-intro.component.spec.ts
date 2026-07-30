@@ -3,6 +3,7 @@ import {
     DebugElement,
     DOCUMENT,
     EventEmitter,
+    input,
     Input,
     isSignal,
     Output,
@@ -43,7 +44,7 @@ import {
     IntroBlock,
     IntroList,
 } from '@awg-views/edition-view/models';
-import { EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionDataAssetsError, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -62,11 +63,9 @@ class ModalStubComponent {
 @Component({
     selector: 'awg-alert-error',
     template: '',
-    standalone: false,
 })
 class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
 
 @Component({
@@ -218,14 +217,13 @@ describe('IntroComponent (DONE)', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [NgbModalModule, RouterModule],
+            imports: [AlertErrorStubComponent, NgbModalModule, RouterModule],
             declarations: [
                 EditionIntroComponent,
                 EditionIntroContentStubComponent,
                 EditionIntroPartialDisclaimerStubComponent,
                 EditionIntroPlaceholderStubComponent,
                 EditionIntroNavStubComponent,
-                AlertErrorStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],
@@ -421,7 +419,10 @@ describe('IntroComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('on error', () => {
-                const expectedErrorObject = { status: 404, statusText: 'error' };
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'intro',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
                 beforeEach(async () => {
                     // Mock error state
@@ -448,7 +449,7 @@ describe('IntroComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 

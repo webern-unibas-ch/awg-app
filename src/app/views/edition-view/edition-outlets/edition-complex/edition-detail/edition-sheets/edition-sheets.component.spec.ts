@@ -1,4 +1,14 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    EventEmitter,
+    input,
+    Input,
+    isSignal,
+    Output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -34,7 +44,11 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsError,
+    EditionViewData,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
 import { EditionComplexesService, EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -56,11 +70,9 @@ class ModalStubComponent {
 @Component({
     selector: 'awg-alert-error',
     template: '',
-    standalone: false,
 })
 class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
 
 @Component({
@@ -215,12 +227,12 @@ describe('EditionSheetsComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
+            imports: [AlertErrorStubComponent],
             declarations: [
                 CompileHtmlComponent,
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
-                AlertErrorStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,
             ],
@@ -426,7 +438,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('on error', () => {
-                const expectedErrorObject = { status: 404, statusText: 'error' };
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'svgSheets',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
                 beforeEach(async () => {
                     // Mock error state
@@ -455,7 +470,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         AlertErrorStubComponent
                     ) as AlertErrorStubComponent;
 
-                    expectToEqual(alertErrorCmp.errorObject, expectedErrorObject);
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 

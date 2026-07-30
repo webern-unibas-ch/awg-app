@@ -1,24 +1,23 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
  * The AlertErrorComponent.
  *
- * It contains an error alert message that is
- * provided via the {@link SharedModule}.
+ * It contains an error alert message.
  */
 @Component({
     selector: 'awg-alert-error',
     templateUrl: './alert-error.component.html',
     styleUrls: ['./alert-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [TitleCasePipe],
 })
 export class AlertErrorComponent {
     /**
-     * Input variable: errorObject.
+     * Input signal: errorObject.
      *
-     * It keeps the error object for the component.
+     * It holds the error object for the component.
      */
-    @Input()
-    errorObject: any;
+    errorObject = input.required<any>();
 }
