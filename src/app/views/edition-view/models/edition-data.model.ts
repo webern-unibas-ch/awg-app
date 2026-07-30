@@ -89,7 +89,7 @@ export interface EditionViewDataTypeMapping {
 /**
  * The EditionViewKey type.
  *
- * * It defines the valid keys for the edition view data used in the EditionDataService.
+ * * It defines the valid keys for the edition view data.
  */
 export type EditionViewKey = keyof EditionViewDataTypeMapping;
 

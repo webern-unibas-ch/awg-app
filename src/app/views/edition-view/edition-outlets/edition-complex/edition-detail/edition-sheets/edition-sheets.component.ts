@@ -48,20 +48,6 @@ export class EditionSheetsComponent {
     private readonly _editionSheetsService = inject(EditionSheetsService);
 
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
@@ -80,7 +66,9 @@ export class EditionSheetsComponent {
      *
      * It holds the query parameters of the current route as a signal.
      */
-    private readonly _queryParams = toSignal(this._route.queryParamMap);
+    private readonly _queryParams = toSignal(this._route.queryParamMap, {
+        initialValue: this._route.snapshot.queryParamMap,
+    });
 
     /**
      * Public variable: isSheetFacetMinimized.
@@ -125,25 +113,18 @@ export class EditionSheetsComponent {
     showTkA = false;
 
     /**
-     * Public variable: snapshotQueryParamsId.
-     *
-     * It keeps the snapshot of the queryParams id.
-     */
-    snapshotQueryParamsId: string;
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
      * Readonly signal: viewData.
      *
      * It holds the state of the sheets view data.
      */
-    readonly viewData = this._editionViewService.sheetsViewData;
+    readonly viewData = inject(EditionViewService).sheetsViewData;
 
     /**
      * Readonly signal: isFirstPageLoad.
@@ -311,29 +292,28 @@ export class EditionSheetsComponent {
      * @returns {void} Handles the query params and selects the corresponding SVG sheet.
      */
     private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetList): void {
-        let sheetIdFromQueryParams = queryParams?.get('id');
+        const sheetIdFromQueryParams = queryParams?.get('id');
 
         if (sheetIdFromQueryParams && svgSheetsData) {
             this._selectSvgSheet(sheetIdFromQueryParams);
         } else {
-            sheetIdFromQueryParams =
-                this.isFirstPageLoad() && this.snapshotQueryParamsId
-                    ? this.snapshotQueryParamsId
-                    : this._getDefaultSheetId(svgSheetsData);
+            const fallbackSheetId = this._getDefaultSheetId(svgSheetsData);
 
-            // Reset selectedSvgSheet if no sheetId is provided
-            if (sheetIdFromQueryParams === '') {
+            // Reset selectedSvgSheet if no fallback sheet is provided
+            if (fallbackSheetId === '') {
                 this.selectedSvgSheet = undefined;
             }
 
-            // Navigate once more to the selected sheet
+            // Navigate once more to the fallback sheet
             this.onSvgSheetSelect({
                 complexId: '',
-                sheetId: sheetIdFromQueryParams,
+                sheetId: fallbackSheetId,
             });
         }
 
-        this.isFirstPageLoad.set(false);
+        if (this.isFirstPageLoad()) {
+            this.isFirstPageLoad.set(false);
+        }
     }
 
     /**

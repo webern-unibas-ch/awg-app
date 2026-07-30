@@ -27,6 +27,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
@@ -36,7 +37,6 @@ import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view
 import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
-import { mockEditionData } from '@testing/mock-data';
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components

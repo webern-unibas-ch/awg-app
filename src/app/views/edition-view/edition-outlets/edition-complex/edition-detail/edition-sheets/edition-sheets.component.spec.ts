@@ -335,10 +335,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToBe(component.showTkA, false);
         });
 
-        it('... should not have `snapshotQueryParamsId`', () => {
-            expect(component.snapshotQueryParamsId).toBeUndefined();
-        });
-
         it('... should have signal `selectedEditionComplex` to hold null', () => {
             expectToBe(isSignal(component.selectedEditionComplex), true);
 
@@ -1447,31 +1443,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... with svgSheetsData available and id not given from query params', () => {
-                    it('... should trigger `onSvgSheetSelect` with snapshotQueryParamsId on first page load', () => {
+                    it('... should always trigger `onSvgSheetSelect` with the default sheet id', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
-                        component.isFirstPageLoad.set(true);
-
-                        const snapShotSheetId = 'test-TF1a';
-                        component.snapshotQueryParamsId = snapShotSheetId;
-
-                        (component as any)._handleQueryParams(
-                            mockActivatedRoute.testQueryParamMap,
-                            expectedSvgSheetsData
-                        );
-
-                        expectSpyCall(onSvgSheetSelectSpy, 1, {
-                            complexId: '',
-                            sheetId: snapShotSheetId,
-                        });
-                    });
-
-                    it('... should trigger `onSvgSheetSelect` with default id on subsequent page loads', () => {
-                        mockActivatedRoute.testQueryParamMap = { id: '' };
-                        component.isFirstPageLoad.set(false);
-
                         const defaultSheetId = 'test-TF1a';
-                        const snapShotSheetId = 'another-test-id';
-                        component.snapshotQueryParamsId = snapShotSheetId;
 
                         (component as any)._handleQueryParams(
                             mockActivatedRoute.testQueryParamMap,
@@ -1488,8 +1462,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... with svgSheetsData not available and id not given from query params', () => {
                     it('... should trigger `onSvgSheetSelect` with no id', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
-                        component.isFirstPageLoad.set(true);
-                        component.snapshotQueryParamsId = '';
                         const mockSvgSheetsData = undefined;
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
@@ -1502,8 +1474,6 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     it('... should reset `selectedSvgSheet` to undefined', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
-                        component.isFirstPageLoad.set(false);
-                        component.snapshotQueryParamsId = '';
                         const mockSvgSheetsData = undefined;
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);

@@ -142,7 +142,7 @@ describe('EditionViewService', () => {
         });
     });
 
-    describe('... single-view data signals', () => {
+    describe('... single-data view signals', () => {
         describe.each([
             {
                 signalName: 'prefaceViewData',
@@ -243,7 +243,7 @@ describe('EditionViewService', () => {
         });
     });
 
-    describe('... multi-view data signals', () => {
+    describe('... multi-data view signals', () => {
         describe.each([
             {
                 signalName: 'sheetsViewData',
@@ -353,7 +353,7 @@ describe('EditionViewService', () => {
                     (mockEditionDataService as any)[dataKey].set(mockValue);
                 });
 
-                const mockError = { message: `Failed to fetch multi-view ${viewName} assets` };
+                const mockError = { message: `Failed to fetch multi-data ${viewName} assets` };
                 getErrorSpy.mockReturnValue(signal(mockError));
 
                 const result = (service as any)[signalName]();
@@ -420,7 +420,7 @@ describe('EditionViewService', () => {
             });
 
             describe('... should return unpacked data signal if view is active', () => {
-                it('... for a single-signal view (e.g., preface)', () => {
+                it('... for a single-data view (e.g., preface)', () => {
                     const viewKey = 'preface';
                     const mockData = { content: ['item1'] };
                     const signalMap: any[] = [['prefaceData', signal(mockData)]];
@@ -434,7 +434,7 @@ describe('EditionViewService', () => {
                     expectToEqual(result.data, { prefaceData: mockData });
                 });
 
-                it('... for a multi-signal view (e.g., sheets)', () => {
+                it('... for a multi-data view (e.g., sheets)', () => {
                     const viewKey = 'sheets';
                     const mockFolio = { id: 'convolute-1' };
                     const mockSvgSheets = { sheets: [] };
@@ -656,7 +656,7 @@ describe('EditionViewService', () => {
                 expectToEqual(result, []);
             });
 
-            describe('... should return the `viewKey` itself for single-signal views like ', () => {
+            describe('... should return the `viewKey` itself for single-data views like ', () => {
                 it.each([
                     { viewKey: 'preface', signalMap: [['prefaceData', signal(null)]] },
                     { viewKey: 'rowtables', signalMap: [['rowtablesData', signal(null)]] },
@@ -669,7 +669,7 @@ describe('EditionViewService', () => {
                 });
             });
 
-            describe('... should strip `Data` suffix from `dataKeys` for multi-signal views like', () => {
+            describe('... should strip `Data` suffix from `dataKeys` for multi-data views like', () => {
                 it.each([
                     {
                         viewKey: 'sheets',
@@ -809,7 +809,7 @@ describe('EditionViewService', () => {
             });
 
             describe('... should initialize all provided data keys with a null value', () => {
-                it('... for single-view data signals', () => {
+                it('... for single-data view signals', () => {
                     const dataKeys = ['prefaceData'];
 
                     const result = (service as any)._createFallback(dataKeys);
@@ -819,7 +819,7 @@ describe('EditionViewService', () => {
                     });
                 });
 
-                it('... for multi-view data signals', () => {
+                it('... for multi-data view signals', () => {
                     const dataKeys = ['folioCOnvoluteData', 'svgSheetsData', 'textcriticsData'];
 
                     const result = (service as any)._createFallback(dataKeys);

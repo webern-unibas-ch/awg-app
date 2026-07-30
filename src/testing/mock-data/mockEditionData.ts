@@ -251,7 +251,7 @@ export const mockEditionData = {
         rowtables: [
             { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
             { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
-            { route: '/disrt1', short: 'Dis RT1', full: 'Diabled Test Rowtable 1', id: 'SkRT', disabled: true },
+            { route: '/disrt1', short: 'Dis RT1', full: 'Disabled Test Rowtable 1', id: 'SkRT', disabled: true },
             { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
         ],
     },

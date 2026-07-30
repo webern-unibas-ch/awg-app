@@ -26,7 +26,7 @@ export class Rowtables {
     id: string;
 
     /**
-     * A boolean flag if the rowtable is diabled
+     * A boolean flag if the rowtable is disabled.
      */
     disabled: boolean;
 }

@@ -274,182 +274,139 @@ describe('EditionDataService (DONE)', () => {
         expectToBe((service as any)._dataError(), null);
     });
 
-    describe('#getErrorForDataAssets()', () => {
-        const testKeys: EditionDataAssetsKeys[] = ['graph', 'textcritics'];
-        let mockError: HttpErrorResponse;
+    describe('METHODS', () => {
+        describe('#getErrorForDataAssets()', () => {
+            const testKeys: EditionDataAssetsKeys[] = ['graph', 'textcritics'];
+            let mockError: HttpErrorResponse;
 
-        beforeEach(() => {
-            mockError = new HttpErrorResponse({ error: 'Test HTTP Error' });
-        });
+            beforeEach(() => {
+                mockError = new HttpErrorResponse({ error: 'Test HTTP Error' });
+            });
 
-        it('... should have a method `getErrorForDataAssets`', () => {
-            expect(service.getErrorForDataAssets).toBeDefined();
-        });
+            it('... should have a method `getErrorForDataAssets`', () => {
+                expect(service.getErrorForDataAssets).toBeDefined();
+            });
 
-        it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
-            (service as any)._dataError.set({ key: 'graph', error: mockError });
+            it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
+                (service as any)._dataError.set({ key: 'graph', error: mockError });
 
-            const errorSignal = service.getErrorForDataAssets(testKeys);
+                const errorSignal = service.getErrorForDataAssets(testKeys);
 
-            expectToEqual(errorSignal(), mockError);
-        });
+                expectToEqual(errorSignal(), mockError);
+            });
 
-        describe('... should return a signal that holds null if', () => {
-            it('... there is currently no active error', () => {
+            describe('... should return a signal that holds null if', () => {
+                it('... there is currently no active error', () => {
+                    (service as any)._dataError.set(null);
+
+                    const errorSignal = service.getErrorForDataAssets(testKeys);
+
+                    expectToBe(errorSignal(), null);
+                });
+
+                it('... the active error key is not included in the given keys', () => {
+                    (service as any)._dataError.set({ key: 'intro', error: mockError });
+
+                    const errorSignal = service.getErrorForDataAssets(testKeys);
+
+                    expectToBe(errorSignal(), null);
+                });
+            });
+
+            it('... should reactively update its value when the _dataError signal changes', () => {
+                (service as any)._dataError.set(null);
+                const errorSignal = service.getErrorForDataAssets(testKeys);
+                expectToBe(errorSignal(), null);
+
+                (service as any)._dataError.set({ key: 'textcritics', error: mockError });
+
+                expectToEqual(errorSignal(), mockError);
+
                 (service as any)._dataError.set(null);
 
-                const errorSignal = service.getErrorForDataAssets(testKeys);
-
-                expectToBe(errorSignal(), null);
-            });
-
-            it('... the active error key is not included in the given keys', () => {
-                (service as any)._dataError.set({ key: 'intro', error: mockError });
-
-                const errorSignal = service.getErrorForDataAssets(testKeys);
-
                 expectToBe(errorSignal(), null);
             });
         });
 
-        it('... should reactively update its value when the _dataError signal changes', () => {
-            (service as any)._dataError.set(null);
-            const errorSignal = service.getErrorForDataAssets(testKeys);
-            expectToBe(errorSignal(), null);
-
-            (service as any)._dataError.set({ key: 'textcritics', error: mockError });
-
-            expectToEqual(errorSignal(), mockError);
-
-            (service as any)._dataError.set(null);
-
-            expectToBe(errorSignal(), null);
-        });
-    });
-
-    describe('#_getAssetPathForEditionComplex()', () => {
-        it('... should have a method `_getAssetPathForEditionComplex`', () => {
-            expect((service as any)._getAssetPathForEditionComplex).toBeDefined();
-        });
-
-        it('... should return the generated assetPath', () => {
-            const sectionPath = expectedEditionComplex.pubStatement.labeledSectionRoute.route.join('/');
-            const complexIdRoute = expectedEditionComplex.complexId.route;
-
-            const expectedPath = `${baseRoute}${sectionPath}${complexIdRoute}`;
-
-            const result = (service as any)._getAssetPathForEditionComplex(expectedEditionComplex);
-
-            expectToBe(result, expectedPath);
-        });
-    });
-
-    describe('#_getStaticEditionDataByKey()', () => {
-        it('... should have a method `_getStaticEditionDataByKey`', () => {
-            expect((service as any)._getStaticEditionDataByKey).toBeDefined();
-        });
-
-        it('... should return a signal holding the fetched data from correct static path', async () => {
-            const assetsKey: EditionStaticDataAssetsKeys = 'preface';
-
-            let staticDataSignal: Signal<any>;
-            TestBed.runInInjectionContext(() => {
-                staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
+        describe('#_getAssetPathForEditionComplex()', () => {
+            it('... should have a method `_getAssetPathForEditionComplex`', () => {
+                expect((service as any)._getAssetPathForEditionComplex).toBeDefined();
             });
 
-            // Initial value should be the fallback value
-            expectToEqual(staticDataSignal(), config[assetsKey].fallback);
+            it('... should return the generated assetPath', () => {
+                const sectionPath = expectedEditionComplex.pubStatement.labeledSectionRoute.route.join('/');
+                const complexIdRoute = expectedEditionComplex.complexId.route;
 
-            const expectedUrl = expectedPrefaceFilePath;
-            const matchingRequests = httpTestingController.match(expectedUrl);
+                const expectedPath = `${baseRoute}${sectionPath}${complexIdRoute}`;
 
-            // Use latest matching request to ignore requests from initialization
-            const latestReq = matchingRequests[matchingRequests.length - 1];
-            expectToBe(latestReq.request.method, 'GET');
-            latestReq.flush(expectedPrefaceData);
+                const result = (service as any)._getAssetPathForEditionComplex(expectedEditionComplex);
 
-            await new Promise(resolve => setTimeout(resolve, 0));
-
-            expectToEqual(staticDataSignal(), expectedPrefaceData);
+                expectToBe(result, expectedPath);
+            });
         });
 
-        it('... should return a signal holding the fallback value on HTTP failure', () => {
-            const assetsKey: EditionStaticDataAssetsKeys = 'rowtables';
-            const expectedFallback = config[assetsKey].fallback;
-
-            let staticDataSignal: Signal<any>;
-            TestBed.runInInjectionContext(() => {
-                staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
+        describe('#_getStaticEditionDataByKey()', () => {
+            it('... should have a method `_getStaticEditionDataByKey`', () => {
+                expect((service as any)._getStaticEditionDataByKey).toBeDefined();
             });
 
-            // Initial value should be the fallback value
-            expectToEqual(staticDataSignal(), expectedFallback);
+            it('... should return a signal holding the fetched data from correct static path', async () => {
+                const assetsKey: EditionStaticDataAssetsKeys = 'preface';
 
-            const expectedUrl = expectedRowtablesFilePath;
-            const matchingRequests = httpTestingController.match(expectedUrl);
+                let staticDataSignal: Signal<any>;
+                TestBed.runInInjectionContext(() => {
+                    staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
+                });
 
-            // Use latest matching request to ignore requests from initialization
-            const latestReq = matchingRequests[matchingRequests.length - 1];
-            expectToBe(latestReq.request.method, 'GET');
-            latestReq.flush('404 error', { status: 404, statusText: 'Not Found' });
+                // Initial value should be the fallback value
+                expectToEqual(staticDataSignal(), config[assetsKey].fallback);
 
-            // After the HTTP request fails, the Signal should emit the fallback value
-            expectToEqual(staticDataSignal(), expectedFallback);
-        });
-    });
+                const expectedUrl = expectedPrefaceFilePath;
+                const matchingRequests = httpTestingController.match(expectedUrl);
 
-    describe('#_getComplexEditionDataByKey()', () => {
-        beforeEach(() => {
-            getEditionDataByComplexSpy.mockReturnValue(signal({}));
-        });
+                // Use latest matching request to ignore requests from initialization
+                const latestReq = matchingRequests[matchingRequests.length - 1];
+                expectToBe(latestReq.request.method, 'GET');
+                latestReq.flush(expectedPrefaceData);
 
-        it('... should have a method `_getComplexEditionDataByKey`', () => {
-            expect((service as any)._getComplexEditionDataByKey).toBeDefined();
-        });
+                await new Promise(resolve => setTimeout(resolve, 0));
 
-        const complexKeys: EditionComplexDataAssetsKeys[] = [
-            'folioConvolute',
-            'graph',
-            'sourceList',
-            'sourceDescription',
-            'sourceEvaluation',
-            'svgSheets',
-            'textcritics',
-        ];
+                expectToEqual(staticDataSignal(), expectedPrefaceData);
+            });
 
-        it.each(complexKeys)(
-            '... should trigger `_getEditionDataByComplex` with correct arguments for key: %s',
-            assetsKey => {
-                const expectedFile = config[assetsKey].file;
+            it('... should return a signal holding the fallback value on HTTP failure', () => {
+                const assetsKey: EditionStaticDataAssetsKeys = 'rowtables';
                 const expectedFallback = config[assetsKey].fallback;
 
-                const resultSignal = (service as any)._getComplexEditionDataByKey(assetsKey);
+                let staticDataSignal: Signal<any>;
+                TestBed.runInInjectionContext(() => {
+                    staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
+                });
 
-                expectSpyCall(getEditionDataByComplexSpy, 1, [expectedFile, expectedFallback, assetsKey]);
+                // Initial value should be the fallback value
+                expectToEqual(staticDataSignal(), expectedFallback);
 
-                expectToEqual(resultSignal(), {});
-            }
-        );
-    });
+                const expectedUrl = expectedRowtablesFilePath;
+                const matchingRequests = httpTestingController.match(expectedUrl);
 
-    describe('#_getEditionDataByComplex()', () => {
-        beforeEach(() => {
-            clearErrorForSpy.mockImplementation(() => {});
-            getAssetPathSpy.mockReturnValue('mocked-asset-path');
+                // Use latest matching request to ignore requests from initialization
+                const latestReq = matchingRequests[matchingRequests.length - 1];
+                expectToBe(latestReq.request.method, 'GET');
+                latestReq.flush('404 error', { status: 404, statusText: 'Not Found' });
 
-            clearErrorForSpy.mockClear();
-            getAssetPathSpy.mockClear();
-            fetchJsonDataSpy.mockClear();
+                // After the HTTP request fails, the Signal should emit the fallback value
+                expectToEqual(staticDataSignal(), expectedFallback);
+            });
         });
 
-        it('... should have a method `_getEditionDataByComplex`', () => {
-            expect((service as any)._getEditionDataByComplex).toBeDefined();
-        });
+        describe('#_getComplexEditionDataByKey()', () => {
+            beforeEach(() => {
+                getEditionDataByComplexSpy.mockReturnValue(signal({}));
+            });
 
-        describe('... when selectedEditionComplex changes', () => {
-            const expectedFile = 'test.json';
-            const expectedFallback = { data: [] };
-            const expectedResponse = { data: [{ id: 'test_1' }] };
+            it('... should have a method `_getComplexEditionDataByKey`', () => {
+                expect((service as any)._getComplexEditionDataByKey).toBeDefined();
+            });
 
             const complexKeys: EditionComplexDataAssetsKeys[] = [
                 'folioConvolute',
@@ -461,334 +418,357 @@ describe('EditionDataService (DONE)', () => {
                 'textcritics',
             ];
 
-            const getClearErrorCountByKey = (key: EditionDataAssetsKeys) =>
-                clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
-
             it.each(complexKeys)(
-                '... should start with fallback and return fallback if no complex is selected for key: `%s`',
-                async assetsKey => {
-                    editionStateService.updateSelectedEditionComplex(null);
-                    clearErrorForSpy.mockClear();
+                '... should trigger `_getEditionDataByComplex` with correct arguments for key: %s',
+                assetsKey => {
+                    const expectedFile = config[assetsKey].file;
+                    const expectedFallback = config[assetsKey].fallback;
 
-                    let resultSignal: Signal<any>;
-                    TestBed.runInInjectionContext(() => {
-                        resultSignal = (service as any)._getEditionDataByComplex(
-                            expectedFile,
-                            expectedFallback,
-                            assetsKey
-                        );
-                    });
-                    expectToEqual(resultSignal(), expectedFallback);
-                    await new Promise(resolve => setTimeout(resolve, 0));
+                    const resultSignal = (service as any)._getComplexEditionDataByKey(assetsKey);
 
-                    expect(getClearErrorCountByKey(assetsKey)).toBe(2);
+                    expectSpyCall(getEditionDataByComplexSpy, 1, [expectedFile, expectedFallback, assetsKey]);
 
-                    // No fetch request should be triggered since no complex is selected
-                    expectSpyCall(fetchJsonDataSpy, 0);
-
-                    expectToEqual(resultSignal(), expectedFallback);
-                }
-            );
-
-            it.each(complexKeys)(
-                '... should return expected data when a complex is selected for key: `%s`',
-                async assetsKey => {
-                    fetchJsonDataSpy.mockReturnValue(observableOf(expectedResponse));
-                    clearErrorForSpy.mockClear();
-
-                    editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-
-                    let resultSignal: Signal<any>;
-                    TestBed.runInInjectionContext(() => {
-                        resultSignal = (service as any)._getEditionDataByComplex(
-                            expectedFile,
-                            expectedFallback,
-                            assetsKey
-                        );
-                    });
-                    expectToEqual(resultSignal(), expectedFallback);
-
-                    await new Promise(resolve => setTimeout(resolve, 0));
-
-                    expect(getClearErrorCountByKey(assetsKey)).toBe(2);
-
-                    // The fetch request should be triggered
-                    expect(getAssetPathSpy).toHaveBeenCalledWith(expectedEditionComplex);
-                    expect(fetchJsonDataSpy).toHaveBeenCalled();
-
-                    expectToEqual(resultSignal(), expectedResponse);
-                }
-            );
-
-            it.each(complexKeys)(
-                '... should clear errors for key `%s` every time the complex changes',
-                async assetsKey => {
-                    fetchJsonDataSpy.mockReturnValue(observableOf(expectedResponse));
-
-                    editionStateService.updateSelectedEditionComplex(null);
-
-                    TestBed.runInInjectionContext(() => {
-                        (service as any)._getEditionDataByComplex(expectedFile, expectedFallback, assetsKey);
-                    });
-                    await new Promise(resolve => setTimeout(resolve, 0));
-
-                    expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
-
-                    editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-                    await new Promise(resolve => setTimeout(resolve, 0));
-
-                    expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
+                    expectToEqual(resultSignal(), {});
                 }
             );
         });
-    });
 
-    describe('#_getIntroData()', () => {
-        let mockSeriesSignal: WritableSignal<any>;
-        let mockSectionSignal: WritableSignal<any>;
-        let mockComplexSignal: WritableSignal<any>;
-        let streamSpy: Spy;
+        describe('#_getEditionDataByComplex()', () => {
+            beforeEach(() => {
+                clearErrorForSpy.mockImplementation(() => {});
+                getAssetPathSpy.mockReturnValue('mocked-asset-path');
 
-        beforeEach(() => {
-            mockSeriesSignal = signal(null);
-            mockSectionSignal = signal(null);
-            mockComplexSignal = signal(null);
-
-            vi.spyOn(editionStateService, 'selectedEditionSeries').mockImplementation(() => mockSeriesSignal());
-            vi.spyOn(editionStateService, 'selectedEditionSection').mockImplementation(() => mockSectionSignal());
-            vi.spyOn(editionStateService, 'selectedEditionComplex').mockImplementation(() => mockComplexSignal());
-
-            streamSpy = vi.spyOn(service as any, '_getIntroDataStream').mockReturnValue(observableOf(new IntroList()));
-        });
-
-        it('... should return a signal initialized with an empty IntroList fallback', () => {
-            let resultSignal: Signal<IntroList>;
-            TestBed.runInInjectionContext(() => {
-                resultSignal = (service as any)._getIntroData();
+                clearErrorForSpy.mockClear();
+                getAssetPathSpy.mockClear();
+                fetchJsonDataSpy.mockClear();
             });
-            expectToBe(isSignal(resultSignal), true);
 
-            expectToEqual(resultSignal(), new IntroList());
-        });
-
-        it('... should react to state changes', async () => {
-            let resultSignal: Signal<IntroList>;
-            TestBed.runInInjectionContext(() => {
-                resultSignal = (service as any)._getIntroData();
+            it('... should have a method `_getEditionDataByComplex`', () => {
+                expect((service as any)._getEditionDataByComplex).toBeDefined();
             });
-            expectToBe(isSignal(resultSignal), true);
 
-            const mockState = {
-                series: { route: '2' },
-                section: { route: '2a' },
-                complex: { id: 'm34' },
-            };
-            mockSeriesSignal.set(mockState.series);
-            mockSectionSignal.set(mockState.section);
-            mockComplexSignal.set(mockState.complex);
+            describe('... when selectedEditionComplex changes', () => {
+                const expectedFile = 'test.json';
+                const expectedFallback = { data: [] };
+                const expectedResponse = { data: [{ id: 'test_1' }] };
 
-            await new Promise(resolve => setTimeout(resolve, 0));
-
-            expect(streamSpy).toHaveBeenCalledWith(mockState);
-        });
-    });
-
-    describe('#_getIntroDataStream()', () => {
-        const mockSeries: EditionOutlineSeries = {
-            series: { route: '1' },
-        } as any;
-
-        const mockSection: EditionOutlineSection = {
-            section: { route: '5' },
-            labeledRoute: { route: ['/edition', 'series', '1', 'section', '5'] },
-        } as any;
-
-        it('... should have a method `_getIntroDataStream`', () => {
-            expect((service as any)._getIntroDataStream).toBeDefined();
-        });
-
-        it('... should clear errors for the intro asset key every time it is called', async () => {
-            clearErrorForSpy.mockImplementation(() => {});
-            clearErrorForSpy.mockClear();
-
-            const assetsKey: EditionComplexDataAssetsKeys = 'intro';
-            const mockState = { series: null, section: null, complex: null };
-
-            const result$ = (service as any)._getIntroDataStream(mockState);
-            await lastValueFrom(result$);
-
-            expectSpyCall(clearErrorForSpy, 1, assetsKey);
-
-            clearErrorForSpy.mockRestore();
-        });
-
-        describe('... when state is incomplete', () => {
-            describe('... should return fallback value if', () => {
-                const incompleteStates = [
-                    ['state is null or undefined', null as any],
-                    ['series is missing', { series: null, section: mockSection, complex: expectedEditionComplex }],
-                    ['section is missing', { series: mockSeries, section: null, complex: expectedEditionComplex }],
-                    ['series and section are missing', { series: null, section: null, complex: null }],
+                const complexKeys: EditionComplexDataAssetsKeys[] = [
+                    'folioConvolute',
+                    'graph',
+                    'sourceList',
+                    'sourceDescription',
+                    'sourceEvaluation',
+                    'svgSheets',
+                    'textcritics',
                 ];
 
-                it.each(incompleteStates)('... %s', async (_, mockState) => {
-                    const result$ = (service as any)._getIntroDataStream(mockState);
-                    const res = await lastValueFrom(result$);
+                const getClearErrorCountByKey = (key: EditionDataAssetsKeys) =>
+                    clearErrorForSpy.mock.calls.filter((callArgs: any[]) => callArgs[0] === key).length;
 
-                    expectToEqual(res, new IntroList());
-                });
+                it.each(complexKeys)(
+                    '... should start with fallback and return fallback if no complex is selected for key: `%s`',
+                    async assetsKey => {
+                        editionStateService.updateSelectedEditionComplex(null);
+                        clearErrorForSpy.mockClear();
+
+                        let resultSignal: Signal<any>;
+                        TestBed.runInInjectionContext(() => {
+                            resultSignal = (service as any)._getEditionDataByComplex(
+                                expectedFile,
+                                expectedFallback,
+                                assetsKey
+                            );
+                        });
+                        expectToEqual(resultSignal(), expectedFallback);
+                        await new Promise(resolve => setTimeout(resolve, 0));
+
+                        expect(getClearErrorCountByKey(assetsKey)).toBe(2);
+
+                        // No fetch request should be triggered since no complex is selected
+                        expectSpyCall(fetchJsonDataSpy, 0);
+
+                        expectToEqual(resultSignal(), expectedFallback);
+                    }
+                );
+
+                it.each(complexKeys)(
+                    '... should return expected data when a complex is selected for key: `%s`',
+                    async assetsKey => {
+                        fetchJsonDataSpy.mockReturnValue(observableOf(expectedResponse));
+                        clearErrorForSpy.mockClear();
+
+                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+
+                        let resultSignal: Signal<any>;
+                        TestBed.runInInjectionContext(() => {
+                            resultSignal = (service as any)._getEditionDataByComplex(
+                                expectedFile,
+                                expectedFallback,
+                                assetsKey
+                            );
+                        });
+                        expectToEqual(resultSignal(), expectedFallback);
+
+                        await new Promise(resolve => setTimeout(resolve, 0));
+
+                        expect(getClearErrorCountByKey(assetsKey)).toBe(2);
+
+                        // The fetch request should be triggered
+                        expect(getAssetPathSpy).toHaveBeenCalledWith(expectedEditionComplex);
+                        expect(fetchJsonDataSpy).toHaveBeenCalled();
+
+                        expectToEqual(resultSignal(), expectedResponse);
+                    }
+                );
+
+                it.each(complexKeys)(
+                    '... should clear errors for key `%s` every time the complex changes',
+                    async assetsKey => {
+                        fetchJsonDataSpy.mockReturnValue(observableOf(expectedResponse));
+
+                        editionStateService.updateSelectedEditionComplex(null);
+
+                        TestBed.runInInjectionContext(() => {
+                            (service as any)._getEditionDataByComplex(expectedFile, expectedFallback, assetsKey);
+                        });
+                        await new Promise(resolve => setTimeout(resolve, 0));
+
+                        expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
+
+                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                        await new Promise(resolve => setTimeout(resolve, 0));
+
+                        expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
+                    }
+                );
+            });
+        });
+
+        describe('#_getIntroData()', () => {
+            let mockSeriesSignal: WritableSignal<any>;
+            let mockSectionSignal: WritableSignal<any>;
+            let mockComplexSignal: WritableSignal<any>;
+            let streamSpy: Spy;
+
+            beforeEach(() => {
+                mockSeriesSignal = signal(null);
+                mockSectionSignal = signal(null);
+                mockComplexSignal = signal(null);
+
+                vi.spyOn(editionStateService, 'selectedEditionSeries').mockImplementation(() => mockSeriesSignal());
+                vi.spyOn(editionStateService, 'selectedEditionSection').mockImplementation(() => mockSectionSignal());
+                vi.spyOn(editionStateService, 'selectedEditionComplex').mockImplementation(() => mockComplexSignal());
+
+                streamSpy = vi
+                    .spyOn(service as any, '_getIntroDataStream')
+                    .mockReturnValue(observableOf(new IntroList()));
             });
 
-            it('... should not trigger any HTTP request if series or section is missing', async () => {
+            it('... should return a signal initialized with an empty IntroList fallback', () => {
+                let resultSignal: Signal<IntroList>;
+                TestBed.runInInjectionContext(() => {
+                    resultSignal = (service as any)._getIntroData();
+                });
+                expectToBe(isSignal(resultSignal), true);
+
+                expectToEqual(resultSignal(), new IntroList());
+            });
+
+            it('... should react to state changes', async () => {
+                let resultSignal: Signal<IntroList>;
+                TestBed.runInInjectionContext(() => {
+                    resultSignal = (service as any)._getIntroData();
+                });
+                expectToBe(isSignal(resultSignal), true);
+
+                const mockState = {
+                    series: { route: '2' },
+                    section: { route: '2a' },
+                    complex: { id: 'm34' },
+                };
+                mockSeriesSignal.set(mockState.series);
+                mockSectionSignal.set(mockState.section);
+                mockComplexSignal.set(mockState.complex);
+
+                await new Promise(resolve => setTimeout(resolve, 0));
+
+                expect(streamSpy).toHaveBeenCalledWith(mockState);
+            });
+        });
+
+        describe('#_getIntroDataStream()', () => {
+            const mockSeries: EditionOutlineSeries = {
+                series: { route: '1' },
+            } as any;
+
+            const mockSection: EditionOutlineSection = {
+                section: { route: '5' },
+                labeledRoute: { route: ['/edition', 'series', '1', 'section', '5'] },
+            } as any;
+
+            it('... should have a method `_getIntroDataStream`', () => {
+                expect((service as any)._getIntroDataStream).toBeDefined();
+            });
+
+            it('... should clear errors for the intro asset key every time it is called', async () => {
+                clearErrorForSpy.mockImplementation(() => {});
+                clearErrorForSpy.mockClear();
+
+                const assetsKey: EditionComplexDataAssetsKeys = 'intro';
                 const mockState = { series: null, section: null, complex: null };
 
                 const result$ = (service as any)._getIntroDataStream(mockState);
                 await lastValueFrom(result$);
 
-                expectSpyCall(fetchJsonDataSpy, 0);
+                expectSpyCall(clearErrorForSpy, 1, assetsKey);
+
+                clearErrorForSpy.mockRestore();
+            });
+
+            describe('... when state is incomplete', () => {
+                describe('... should return fallback value if', () => {
+                    const incompleteStates = [
+                        ['state is null or undefined', null as any],
+                        ['series is missing', { series: null, section: mockSection, complex: expectedEditionComplex }],
+                        ['section is missing', { series: mockSeries, section: null, complex: expectedEditionComplex }],
+                        ['series and section are missing', { series: null, section: null, complex: null }],
+                    ];
+
+                    it.each(incompleteStates)('... %s', async (_, mockState) => {
+                        const result$ = (service as any)._getIntroDataStream(mockState);
+                        const res = await lastValueFrom(result$);
+
+                        expectToEqual(res, new IntroList());
+                    });
+                });
+
+                it('... should not trigger any HTTP request if series or section is missing', async () => {
+                    const mockState = { series: null, section: null, complex: null };
+
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    await lastValueFrom(result$);
+
+                    expectSpyCall(fetchJsonDataSpy, 0);
+                });
+            });
+
+            describe('... when state is valid but complex is invalid or missing', () => {
+                const expectedSectionPath = 'assets/data/edition/series/1/section/5';
+                const expectedFile = config['intro'].file;
+                const expectedFallback = new IntroList();
+
+                let nonMatchingComplex: EditionComplex;
+                let expectedSectionIntroData: IntroList;
+
+                beforeEach(() => {
+                    nonMatchingComplex = editionComplexesService.getEditionComplexById('m34');
+                    expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] } as IntroList;
+                });
+
+                it('... should trigger `_fetchJsonData` with the correct arguments', async () => {
+                    const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
+                    fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
+
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    await lastValueFrom(result$);
+
+                    expectSpyCall(fetchJsonDataSpy, 1, [expectedSectionPath, expectedFile, expectedFallback, 'intro']);
+                });
+
+                it('... should return the section intro data', async () => {
+                    const mockState = { series: mockSeries, section: mockSection, complex: null };
+                    fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
+
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const res = await lastValueFrom(result$);
+
+                    expectToEqual(res, expectedSectionIntroData);
+                });
+            });
+
+            describe('... when state is valid and complex matches the series and section', () => {
+                const expectedSectionPath = 'assets/data/edition/series/1/section/5';
+                const expectedFile = config['intro'].file;
+                const expectedFallback = new IntroList();
+
+                let matchingComplex: EditionComplex;
+                let filterIntroDataSpy: Spy;
+
+                beforeEach(() => {
+                    matchingComplex = expectedEditionComplex;
+
+                    filterIntroDataSpy = vi.spyOn(service as any, '_filterSectionIntroDataByBlockId');
+                });
+
+                it('... should fetch both the section and the complex intro data from their respective paths', async () => {
+                    fetchJsonDataSpy
+                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
+                        .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
+
+                    const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    await lastValueFrom(result$);
+
+                    expect(fetchJsonDataSpy).toHaveBeenCalledTimes(2);
+                    expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
+                        1,
+                        expectedSectionPath,
+                        expectedFile,
+                        expectedFallback,
+                        'intro'
+                    );
+
+                    const expectedComplexPath = (service as any)._getAssetPathForEditionComplex(matchingComplex);
+                    expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
+                        2,
+                        expectedComplexPath,
+                        expectedFile,
+                        expectedFallback,
+                        'intro'
+                    );
+                });
+
+                it('... should filter section data by complex blockId if complex data contains intro blocks', async () => {
+                    fetchJsonDataSpy
+                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
+                        .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
+
+                    const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const res = await lastValueFrom(result$);
+
+                    expectSpyCall(filterIntroDataSpy, 1, [expectedEditionIntroSectionData, 'test_block_id_2']);
+                    expectToEqual(res, expectedEditionIntroSectionFilteredData);
+                });
+
+                it('... should return the plain section data without filtering if complex data contains no intro blocks', async () => {
+                    const emptyComplexIntroData = { intro: [] } as IntroList;
+
+                    fetchJsonDataSpy
+                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
+                        .mockReturnValueOnce(observableOf(emptyComplexIntroData));
+
+                    const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
+                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const res = await lastValueFrom(result$);
+
+                    expect(filterIntroDataSpy).not.toHaveBeenCalled();
+                    expectToEqual(res, expectedEditionIntroSectionData);
+                });
             });
         });
 
-        describe('... when state is valid but complex is invalid or missing', () => {
-            const expectedSectionPath = 'assets/data/edition/series/1/section/5';
-            const expectedFile = config['intro'].file;
-            const expectedFallback = new IntroList();
-
-            let nonMatchingComplex: EditionComplex;
-            let expectedSectionIntroData: IntroList;
-
-            beforeEach(() => {
-                nonMatchingComplex = editionComplexesService.getEditionComplexById('m34');
-                expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] } as IntroList;
+        describe('#_filterSectionIntroDataByBlockId()', () => {
+            it('... should have a method `_filterSectionIntroDataByBlockId`', () => {
+                expect((service as any)._filterSectionIntroDataByBlockId).toBeDefined();
             });
 
-            it('... should trigger `_fetchJsonData` with the correct arguments', async () => {
-                const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
-                fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
-
-                const result$ = (service as any)._getIntroDataStream(mockState);
-                await lastValueFrom(result$);
-
-                expectSpyCall(fetchJsonDataSpy, 1, [expectedSectionPath, expectedFile, expectedFallback, 'intro']);
-            });
-
-            it('... should return the section intro data', async () => {
-                const mockState = { series: mockSeries, section: mockSection, complex: null };
-                fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
-
-                const result$ = (service as any)._getIntroDataStream(mockState);
-                const res = await lastValueFrom(result$);
-
-                expectToEqual(res, expectedSectionIntroData);
-            });
-        });
-
-        describe('... when state is valid and complex matches the series and section', () => {
-            const expectedSectionPath = 'assets/data/edition/series/1/section/5';
-            const expectedFile = config['intro'].file;
-            const expectedFallback = new IntroList();
-
-            let matchingComplex: EditionComplex;
-            let filterIntroDataSpy: Spy;
-
-            beforeEach(() => {
-                matchingComplex = expectedEditionComplex;
-
-                filterIntroDataSpy = vi.spyOn(service as any, '_filterSectionIntroDataByBlockId');
-            });
-
-            it('... should fetch both the section and the complex intro data from their respective paths', async () => {
-                fetchJsonDataSpy
-                    .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
-                    .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
-
-                const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                const result$ = (service as any)._getIntroDataStream(mockState);
-                await lastValueFrom(result$);
-
-                expect(fetchJsonDataSpy).toHaveBeenCalledTimes(2);
-                expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
-                    1,
-                    expectedSectionPath,
-                    expectedFile,
-                    expectedFallback,
-                    'intro'
+            it('... should return the correct section intro data for a given block id', () => {
+                const blockId = 'test_block_id_2';
+                const expectedBlock = expectedEditionIntroSectionData.intro[0].content.find(
+                    block => block.blockId === blockId
                 );
 
-                const expectedComplexPath = (service as any)._getAssetPathForEditionComplex(matchingComplex);
-                expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
-                    2,
-                    expectedComplexPath,
-                    expectedFile,
-                    expectedFallback,
-                    'intro'
-                );
-            });
-
-            it('... should filter section data by complex blockId if complex data contains intro blocks', async () => {
-                fetchJsonDataSpy
-                    .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
-                    .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
-
-                const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                const result$ = (service as any)._getIntroDataStream(mockState);
-                const res = await lastValueFrom(result$);
-
-                expectSpyCall(filterIntroDataSpy, 1, [expectedEditionIntroSectionData, 'test_block_id_2']);
-                expectToEqual(res, expectedEditionIntroSectionFilteredData);
-            });
-
-            it('... should return the plain section data without filtering if complex data contains no intro blocks', async () => {
-                const emptyComplexIntroData = { intro: [] } as IntroList;
-
-                fetchJsonDataSpy
-                    .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
-                    .mockReturnValueOnce(observableOf(emptyComplexIntroData));
-
-                const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                const result$ = (service as any)._getIntroDataStream(mockState);
-                const res = await lastValueFrom(result$);
-
-                expect(filterIntroDataSpy).not.toHaveBeenCalled();
-                expectToEqual(res, expectedEditionIntroSectionData);
-            });
-        });
-    });
-
-    describe('#_filterSectionIntroDataByBlockId()', () => {
-        it('... should have a method `_filterSectionIntroDataByBlockId`', () => {
-            expect((service as any)._filterSectionIntroDataByBlockId).toBeDefined();
-        });
-
-        it('... should return the correct section intro data for a given block id', () => {
-            const blockId = 'test_block_id_2';
-            const expectedBlock = expectedEditionIntroSectionData.intro[0].content.find(
-                block => block.blockId === blockId
-            );
-
-            const result = (service as any)._filterSectionIntroDataByBlockId(expectedEditionIntroSectionData, blockId);
-
-            expect(result).toBeDefined();
-            expect(result.intro[0]).toBeDefined();
-            expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-            expectToEqual(result.intro[0].content, [expectedBlock]);
-        });
-
-        describe('... should return an empty content array or original data if', () => {
-            it('... no block id is given', () => {
-                const result = (service as any)._filterSectionIntroDataByBlockId(
-                    expectedEditionIntroSectionData,
-                    undefined
-                );
-
-                expect(result).toBeDefined();
-                expect(result.intro[0]).toBeDefined();
-                expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                expectToEqual(result.intro[0].content, []);
-            });
-
-            it('... no intro data section is found for given block id', () => {
-                const blockId = 'notExistingId';
                 const result = (service as any)._filterSectionIntroDataByBlockId(
                     expectedEditionIntroSectionData,
                     blockId
@@ -797,149 +777,205 @@ describe('EditionDataService (DONE)', () => {
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
                 expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                expectToEqual(result.intro[0].content, [expectedBlock]);
+            });
+
+            describe('... should return an empty content array or original data if', () => {
+                it('... no block id is given', () => {
+                    const result = (service as any)._filterSectionIntroDataByBlockId(
+                        expectedEditionIntroSectionData,
+                        undefined
+                    );
+
+                    expect(result).toBeDefined();
+                    expect(result.intro[0]).toBeDefined();
+                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                    expectToEqual(result.intro[0].content, []);
+                });
+
+                it('... no intro data section is found for given block id', () => {
+                    const blockId = 'notExistingId';
+                    const result = (service as any)._filterSectionIntroDataByBlockId(
+                        expectedEditionIntroSectionData,
+                        blockId
+                    );
+
+                    expect(result).toBeDefined();
+                    expect(result.intro[0]).toBeDefined();
+                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                    expectToEqual(result.intro[0].content, []);
+                });
+            });
+
+            it('... intro data is missing or undefined', () => {
+                const blockId = 'test_block_id';
+                const incompleteData = { intro: undefined } as any;
+
+                const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
+
+                expectToEqual(result, incompleteData);
+            });
+
+            it('... content inside an intro section is missing', () => {
+                const blockId = 'test_block_id';
+                const incompleteData: IntroList = {
+                    intro: [{ id: 'intro_1', content: undefined as any }],
+                };
+                const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
+
+                expect(result).toBeDefined();
+                expect(result.intro[0]).toBeDefined();
                 expectToEqual(result.intro[0].content, []);
             });
         });
 
-        it('... intro data is missing or undefined', () => {
-            const blockId = 'test_block_id';
-            const incompleteData = { intro: undefined } as any;
-
-            const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
-
-            expectToEqual(result, incompleteData);
-        });
-
-        it('... content inside an intro section is missing', () => {
-            const blockId = 'test_block_id';
-            const incompleteData: IntroList = {
-                intro: [{ id: 'intro_1', content: undefined as any }],
-            };
-            const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
-
-            expect(result).toBeDefined();
-            expect(result.intro[0]).toBeDefined();
-            expectToEqual(result.intro[0].content, []);
-        });
-    });
-
-    describe('#_fetchJsonData()', () => {
-        it('... should have a method `_fetchJsonData`', () => {
-            expect((service as any)._fetchJsonData).toBeDefined();
-        });
-
-        it('... should return an Observable<any>', () => {
-            const expectedPath = 'assets/data';
-            const expectedFile = 'graph.json';
-            const expectedFallback = { graph: new GraphList() };
-            const expectedKey: EditionDataAssetsKeys = 'graph';
-            const expectedData = { graph: [{ id: 'op3' }] };
-
-            const expectedUrl = `${expectedPath}/${expectedFile}`;
-
-            const result = (service as any)._fetchJsonData(expectedPath, expectedFile, expectedFallback, expectedKey);
-
-            result.subscribe({
-                next: (res: any) => {
-                    expectToEqual(res, expectedData);
-                },
-                error: () => {
-                    throw new Error('should not call error');
-                },
+        describe('#_fetchJsonData()', () => {
+            it('... should have a method `_fetchJsonData`', () => {
+                expect((service as any)._fetchJsonData).toBeDefined();
             });
 
-            // Respond with mock data
-            expectAndFlush(expectedUrl, expectedData);
-        });
+            it('... should return an Observable<any>', () => {
+                const expectedPath = 'assets/data';
+                const expectedFile = 'graph.json';
+                const expectedFallback = { graph: new GraphList() };
+                const expectedKey: EditionDataAssetsKeys = 'graph';
+                const expectedData = { graph: [{ id: 'op3' }] };
 
-        it('... should return fallback value and trigger `handleError` with correct arguments on HTTP failure', () => {
-            const expectedPath = 'assets/data';
-            const expectedFile = 'graph.json';
-            const expectedFallback = { graph: new GraphList() };
-            const expectedKey: EditionDataAssetsKeys = 'graph';
-            const expectedUrl = `${expectedPath}/${expectedFile}`;
+                const expectedUrl = `${expectedPath}/${expectedFile}`;
 
-            const handleErrorSpy = vi.spyOn(service as any, '_handleError');
+                const result = (service as any)._fetchJsonData(
+                    expectedPath,
+                    expectedFile,
+                    expectedFallback,
+                    expectedKey
+                );
 
-            const result = (service as any)._fetchJsonData(expectedPath, expectedFile, expectedFallback, expectedKey);
+                result.subscribe({
+                    next: (res: any) => {
+                        expectToEqual(res, expectedData);
+                    },
+                    error: () => {
+                        throw new Error('should not call error');
+                    },
+                });
 
-            result.subscribe({
-                next: (res: any) => {
-                    expectToEqual(res, expectedFallback);
-                },
+                // Respond with mock data
+                expectAndFlush(expectedUrl, expectedData);
             });
 
-            // Respond with an error
-            expectAndFlush(expectedUrl, '404 error', { status: 404, statusText: 'Not Found' });
-            expectSpyCall(handleErrorSpy, 1, [expectedKey, expectedFallback]);
-        });
+            it('... should return fallback value and trigger `handleError` with correct arguments on HTTP failure', () => {
+                const expectedPath = 'assets/data';
+                const expectedFile = 'graph.json';
+                const expectedFallback = { graph: new GraphList() };
+                const expectedKey: EditionDataAssetsKeys = 'graph';
+                const expectedUrl = `${expectedPath}/${expectedFile}`;
 
-        it('... should return fallback value when the HTTP response is empty', async () => {
-            const expectedPath = 'assets/data';
-            const expectedFile = 'graph.json';
-            const expectedFallback = { graph: new GraphList() };
-            const expectedKey: EditionDataAssetsKeys = 'graph';
+                const handleErrorSpy = vi.spyOn(service as any, '_handleError');
 
-            // Respond with no data
-            // (empty response cannot be flushed with httpTestingController,
-            // So we mock the http get method to return EMPTY)
-            vi.spyOn((service as any)._http, 'get').mockReturnValue(EMPTY);
+                const result = (service as any)._fetchJsonData(
+                    expectedPath,
+                    expectedFile,
+                    expectedFallback,
+                    expectedKey
+                );
 
-            const result$ = (service as any)._fetchJsonData(expectedPath, expectedFile, expectedFallback, expectedKey);
-            const res = await lastValueFrom(result$, { defaultValue: expectedFallback });
+                result.subscribe({
+                    next: (res: any) => {
+                        expectToEqual(res, expectedFallback);
+                    },
+                });
 
-            expectToEqual(res, expectedFallback);
-        });
-    });
-
-    describe('#_handleError()', () => {
-        let mockError: HttpErrorResponse;
-
-        beforeEach(() => {
-            mockError = new HttpErrorResponse({
-                error: 'Format Error',
-                status: 404,
-                statusText: 'Not Found',
-                url: 'assets/data/test.json',
-            });
-        });
-
-        it('... should have a method `_handleError`', () => {
-            expect((service as any)._handleError).toBeDefined();
-        });
-
-        describe('... when called', () => {
-            const expectedKey: EditionDataAssetsKeys = 'graph';
-            const expectedFallback = { graph: new GraphList() };
-            let errorHandlerFn: (error: HttpErrorResponse) => Observable<any>;
-
-            beforeEach(() => {
-                errorHandlerFn = (service as any)._handleError(expectedKey, expectedFallback);
+                // Respond with an error
+                expectAndFlush(expectedUrl, '404 error', { status: 404, statusText: 'Not Found' });
+                expectSpyCall(handleErrorSpy, 1, [expectedKey, expectedFallback]);
             });
 
-            it('... should return an Observable that emits the fallback value', async () => {
-                const result$ = errorHandlerFn(mockError);
-                const res = await lastValueFrom(result$);
+            it('... should return fallback value when the HTTP response is empty', async () => {
+                const expectedPath = 'assets/data';
+                const expectedFile = 'graph.json';
+                const expectedFallback = { graph: new GraphList() };
+                const expectedKey: EditionDataAssetsKeys = 'graph';
+
+                // Respond with no data
+                // (empty response cannot be flushed with httpTestingController,
+                // So we mock the http get method to return EMPTY)
+                vi.spyOn((service as any)._http, 'get').mockReturnValue(EMPTY);
+
+                const result$ = (service as any)._fetchJsonData(
+                    expectedPath,
+                    expectedFile,
+                    expectedFallback,
+                    expectedKey
+                );
+                const res = await lastValueFrom(result$, { defaultValue: expectedFallback });
 
                 expectToEqual(res, expectedFallback);
             });
+        });
 
-            it('... should log the error message with the correct format', async () => {
-                const logErrorSpy = vi.spyOn(service as any, '_logError').mockImplementation(() => {});
+        describe('#_handleError()', () => {
+            let mockError: HttpErrorResponse;
 
-                const result$ = errorHandlerFn(mockError);
-                await lastValueFrom(result$); // Resolve the observable to trigger the error handling
-
-                const expectedLogMessage = `${expectedKey} failed: Http failure response for assets/data/test.json: 404 Not Found`;
-                expectSpyCall(logErrorSpy, 1, expectedLogMessage);
-
-                logErrorSpy.mockRestore();
+            beforeEach(() => {
+                mockError = new HttpErrorResponse({
+                    error: 'Format Error',
+                    status: 404,
+                    statusText: 'Not Found',
+                    url: 'assets/data/test.json',
+                });
             });
 
-            it('... should have signal `_dataError` to hold an error object for the expected key', async () => {
-                const result$ = errorHandlerFn(mockError);
-                await lastValueFrom(result$); // Resolve the observable to trigger the error handling
+            it('... should have a method `_handleError`', () => {
+                expect((service as any)._handleError).toBeDefined();
+            });
 
+            describe('... when called', () => {
+                const expectedKey: EditionDataAssetsKeys = 'graph';
+                const expectedFallback = { graph: new GraphList() };
+                let errorHandlerFn: (error: HttpErrorResponse) => Observable<any>;
+
+                beforeEach(() => {
+                    errorHandlerFn = (service as any)._handleError(expectedKey, expectedFallback);
+                });
+
+                it('... should return an Observable that emits the fallback value', async () => {
+                    const result$ = errorHandlerFn(mockError);
+                    const res = await lastValueFrom(result$);
+
+                    expectToEqual(res, expectedFallback);
+                });
+
+                it('... should log the error message with the correct format', async () => {
+                    const logErrorSpy = vi.spyOn(service as any, '_logError').mockImplementation(() => {});
+
+                    const result$ = errorHandlerFn(mockError);
+                    await lastValueFrom(result$); // Resolve the observable to trigger the error handling
+
+                    const expectedLogMessage = `${expectedKey} failed: Http failure response for assets/data/test.json: 404 Not Found`;
+                    expectSpyCall(logErrorSpy, 1, expectedLogMessage);
+
+                    logErrorSpy.mockRestore();
+                });
+
+                it('... should have signal `_dataError` to hold an error object for the expected key', async () => {
+                    const result$ = errorHandlerFn(mockError);
+                    await lastValueFrom(result$); // Resolve the observable to trigger the error handling
+
+                    expectToEqual((service as any)._dataError(), {
+                        key: expectedKey,
+                        error: mockError,
+                    });
+                });
+            });
+
+            it('... should allow result to be undefined and return it as fallback', async () => {
+                const expectedKey: EditionDataAssetsKeys = 'intro';
+
+                const errorHandlerFn = (service as any)._handleError(expectedKey, undefined);
+                const result$ = errorHandlerFn(mockError);
+                const res = await lastValueFrom(result$);
+
+                expect(res).toBeUndefined();
                 expectToEqual((service as any)._dataError(), {
                     key: expectedKey,
                     error: mockError,
@@ -947,96 +983,82 @@ describe('EditionDataService (DONE)', () => {
             });
         });
 
-        it('... should allow result to be undefined and return it as fallback', async () => {
-            const expectedKey: EditionDataAssetsKeys = 'intro';
-
-            const errorHandlerFn = (service as any)._handleError(expectedKey, undefined);
-            const result$ = errorHandlerFn(mockError);
-            const res = await lastValueFrom(result$);
-
-            expect(res).toBeUndefined();
-            expectToEqual((service as any)._dataError(), {
-                key: expectedKey,
-                error: mockError,
-            });
-        });
-    });
-
-    describe('#_logError()', () => {
-        it('... should have a method `_logError`', () => {
-            expect((service as any)._logError).toBeDefined();
-        });
-
-        it('... should log the given error message', () => {
-            const expectedMessage = 'Test error message';
-
-            (service as any)._logError(expectedMessage);
-
-            expectSpyCall(consoleSpy, 1, expectedMessage);
-        });
-    });
-
-    describe('#_clearErrorFor()', () => {
-        const testKey: EditionDataAssetsKeys = 'graph';
-        const otherKey: EditionDataAssetsKeys = 'intro';
-        let mockError: HttpErrorResponse;
-
-        beforeEach(() => {
-            mockError = new HttpErrorResponse({ error: 'Test Error' });
-        });
-
-        it('... should have a method `_clearErrorFor`', () => {
-            expect((service as any)._clearErrorFor).toBeDefined();
-        });
-
-        it('... should clear an error if the given key matches the current error key', () => {
-            (service as any)._dataError.set({ key: testKey, error: mockError });
-
-            // Call with the same key
-            (service as any)._clearErrorFor(testKey);
-
-            expectToBe((service as any)._dataError(), null);
-        });
-
-        it('... should not clear an error if the given key does not match the current error key', () => {
-            const expectedErrorState = { key: testKey, error: mockError };
-            (service as any)._dataError.set(expectedErrorState);
-
-            // Call with a different key
-            (service as any)._clearErrorFor(otherKey);
-
-            expectToEqual((service as any)._dataError(), expectedErrorState);
-        });
-
-        it('... should handle sequentially occurring errors and only clear the active one', () => {
-            const firstError = new HttpErrorResponse({ error: 'First Error' });
-            const secondError = new HttpErrorResponse({ error: 'Second Error' });
-
-            // Set multiple errors for different keys
-            (service as any)._dataError.set({ key: 'graph', error: firstError });
-            (service as any)._dataError.set({ key: 'intro', error: secondError });
-
-            // Try to clear the first error (which is not the current one)
-            (service as any)._clearErrorFor('graph');
-
-            // The actual error should still be present
-            expectToEqual((service as any)._dataError(), {
-                key: 'intro',
-                error: secondError,
+        describe('#_logError()', () => {
+            it('... should have a method `_logError`', () => {
+                expect((service as any)._logError).toBeDefined();
             });
 
-            // Clear the current error
-            (service as any)._clearErrorFor('intro');
+            it('... should log the given error message', () => {
+                const expectedMessage = 'Test error message';
 
-            expectToBe((service as any)._dataError(), null);
+                (service as any)._logError(expectedMessage);
+
+                expectSpyCall(consoleSpy, 1, expectedMessage);
+            });
         });
 
-        it('... should do nothing if there is currently no data error', () => {
-            (service as any)._dataError.set(null);
+        describe('#_clearErrorFor()', () => {
+            const testKey: EditionDataAssetsKeys = 'graph';
+            const otherKey: EditionDataAssetsKeys = 'intro';
+            let mockError: HttpErrorResponse;
 
-            (service as any)._clearErrorFor(testKey);
+            beforeEach(() => {
+                mockError = new HttpErrorResponse({ error: 'Test Error' });
+            });
 
-            expectToBe((service as any)._dataError(), null);
+            it('... should have a method `_clearErrorFor`', () => {
+                expect((service as any)._clearErrorFor).toBeDefined();
+            });
+
+            it('... should clear an error if the given key matches the current error key', () => {
+                (service as any)._dataError.set({ key: testKey, error: mockError });
+
+                // Call with the same key
+                (service as any)._clearErrorFor(testKey);
+
+                expectToBe((service as any)._dataError(), null);
+            });
+
+            it('... should not clear an error if the given key does not match the current error key', () => {
+                const expectedErrorState = { key: testKey, error: mockError };
+                (service as any)._dataError.set(expectedErrorState);
+
+                // Call with a different key
+                (service as any)._clearErrorFor(otherKey);
+
+                expectToEqual((service as any)._dataError(), expectedErrorState);
+            });
+
+            it('... should handle sequentially occurring errors and only clear the active one', () => {
+                const firstError = new HttpErrorResponse({ error: 'First Error' });
+                const secondError = new HttpErrorResponse({ error: 'Second Error' });
+
+                // Set multiple errors for different keys
+                (service as any)._dataError.set({ key: 'graph', error: firstError });
+                (service as any)._dataError.set({ key: 'intro', error: secondError });
+
+                // Try to clear the first error (which is not the current one)
+                (service as any)._clearErrorFor('graph');
+
+                // The actual error should still be present
+                expectToEqual((service as any)._dataError(), {
+                    key: 'intro',
+                    error: secondError,
+                });
+
+                // Clear the current error
+                (service as any)._clearErrorFor('intro');
+
+                expectToBe((service as any)._dataError(), null);
+            });
+
+            it('... should do nothing if there is currently no data error', () => {
+                (service as any)._dataError.set(null);
+
+                (service as any)._clearErrorFor(testKey);
+
+                expectToBe((service as any)._dataError(), null);
+            });
         });
     });
 });

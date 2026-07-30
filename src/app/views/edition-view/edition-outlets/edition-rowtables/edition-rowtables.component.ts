@@ -24,7 +24,7 @@ export class EditionRowtablesComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Readoly signal: viewData.
+     * Readonly signal: viewData.
      *
      * It holds the state of the rowtables view data from the EditionViewService.
      */

@@ -30,20 +30,6 @@ export class EditionReportComponent {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
-
-    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -55,14 +41,14 @@ export class EditionReportComponent {
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
      * Readonly signal: viewData.
      *
      * It holds the state of the report view data.
      */
-    readonly viewData = this._editionViewService.reportViewData;
+    readonly viewData = inject(EditionViewService).reportViewData;
 
     /**
      * Readonly variable: titles.

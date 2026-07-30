@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { EditionDataAssetsError, EditionDataAssetsKeys } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsError,
+    EditionDataAssetsKeys,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
 
 import { GraphList } from '@awg-app/views/edition-view/models';
 import { createMockResponseData, createMockViewData } from './edition-data-helper';
@@ -8,12 +12,16 @@ import { expectToBe, expectToEqual } from './expect-helper';
 
 describe('EditionDataHelper (DONE)', () => {
     describe('#createMockViewData()', () => {
-        interface TestData {
-            foo: string;
-            bar: string;
-        }
-
-        const defaultData: TestData = { foo: 'original-foo', bar: 'original-bar' };
+        const defaultData: EditionViewDataContent<'preface'> = {
+            prefaceData: {
+                preface: [
+                    {
+                        id: 'de-preface',
+                        content: ['Test content.'],
+                    },
+                ],
+            },
+        };
 
         it('... should have a method `createMockViewData`', () => {
             expect(createMockViewData).toBeDefined();
@@ -21,7 +29,7 @@ describe('EditionDataHelper (DONE)', () => {
         });
 
         it('... should create mock data with default content and default loading/error states', () => {
-            const result = createMockViewData(defaultData);
+            const result = createMockViewData<'preface'>(defaultData);
 
             expectToEqual(result, {
                 data: defaultData,
@@ -31,31 +39,44 @@ describe('EditionDataHelper (DONE)', () => {
         });
 
         it('... should allow to override specific fields within the data object', () => {
-            const result = createMockViewData(defaultData, {
-                data: { foo: 'changed-foo' },
+            const changedPrefaceData: EditionViewDataContent<'preface'> = {
+                prefaceData: {
+                    preface: [
+                        {
+                            ...defaultData.prefaceData.preface[0],
+                            content: ['Changed content.'],
+                        },
+                    ],
+                },
+            };
+            const result = createMockViewData<'preface'>(defaultData, {
+                data: changedPrefaceData,
             });
 
             expectToEqual(result, {
-                data: { foo: 'changed-foo', bar: 'original-bar' },
+                data: changedPrefaceData,
                 isLoading: false,
                 error: null,
             });
         });
 
         it('... should allow to override fields to undefined within the data object', () => {
-            const result = createMockViewData(defaultData, {
-                data: { foo: undefined },
+            const emptyData: EditionViewDataContent<'preface'> = {
+                prefaceData: undefined,
+            };
+            const result = createMockViewData<'preface'>(defaultData, {
+                data: emptyData,
             });
 
             expectToEqual(result, {
-                data: { foo: undefined, bar: 'original-bar' },
+                data: emptyData,
                 isLoading: false,
                 error: null,
             });
         });
 
         it('... should create mock data with a custom isLoading state independently', () => {
-            const result = createMockViewData(defaultData, {
+            const result = createMockViewData<'preface'>(defaultData, {
                 isLoading: true,
             });
 
@@ -72,7 +93,7 @@ describe('EditionDataHelper (DONE)', () => {
                 error: new Error('HTTP 404 Not Found'),
             };
 
-            const result = createMockViewData(defaultData, {
+            const result = createMockViewData<'preface'>(defaultData, {
                 error: mockError,
             });
 
@@ -89,7 +110,7 @@ describe('EditionDataHelper (DONE)', () => {
                 error: new Error('HTTP 404 Not Found'),
             };
 
-            const result = createMockViewData(defaultData, {
+            const result = createMockViewData<'preface'>(defaultData, {
                 isLoading: true,
                 error: mockError,
             });
