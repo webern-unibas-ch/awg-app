@@ -1346,7 +1346,7 @@ for the given data assets.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Signal&lt;any | null&gt;</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionDataAssetsError.html" target="_self" >Signal&lt;EditionDataAssetsError | null&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -2020,9 +2020,9 @@ export class EditionDataService {
      * for the given data assets.
      *
      * @param {EditionDataAssetsKeys[]} assetsKeys The given data assets keys to check for errors.
-     * @returns {Signal&lt;any | null&gt;} The computed errorObject for the given data asset keys.
+     * @returns {Signal&lt;EditionDataAssetsError | null&gt;} The computed errorObject for the given data asset keys.
      */
-    getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal&lt;any | null&gt; {
+    getErrorForDataAssets(assetsKeys: EditionDataAssetsKeys[]): Signal&lt;EditionDataAssetsError | null&gt; {
         return computed(() &#x3D;&gt; {
             const errState &#x3D; this._dataError();
 
@@ -2030,7 +2030,7 @@ export class EditionDataService {
                 return null;
             }
 
-            return assetsKeys.includes(errState.key) ? errState.error : null;
+            return assetsKeys.includes(errState.key) ? errState : null;
         });
     }
 
