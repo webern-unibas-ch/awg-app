@@ -78,7 +78,7 @@ class EditionTkaTableStubComponent {
     @Input()
     isCorrections = false;
     @Input()
-    isRowTable = false;
+    isRowtable = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<{
         complexId: string;
@@ -809,7 +809,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToEqual(tableCmp.id, expectedTextcriticsListData.textcritics[1].id);
                     });
 
-                    it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
+                    it('... should pass down `isRowtable` to EditionTkaTableComponent (stubbed)', () => {
                         const tableDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaTableStubComponent,
@@ -820,7 +820,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.isRowTable, expectedTextcriticsListData.textcritics[1].rowtable);
+                        expectToEqual(tableCmp.isRowtable, expectedTextcriticsListData.textcritics[1].rowtable);
                     });
                 });
             });

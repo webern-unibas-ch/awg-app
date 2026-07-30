@@ -28,11 +28,16 @@ const EDITION_VIEW_ROUTES: Routes = [
                     ),
             },
             {
-                path: 'row-tables',
+                path: 'rowtables',
                 loadChildren: () =>
-                    import('./edition-outlets/edition-row-tables/edition-row-tables.module').then(
-                        m => m.EditionRowTablesModule
+                    import('./edition-outlets/edition-rowtables/edition-rowtables.module').then(
+                        m => m.EditionRowtablesModule
                     ),
+            },
+            {
+                path: 'row-tables',
+                redirectTo: 'rowtables',
+                pathMatch: 'full',
             },
             {
                 // Overview of series.

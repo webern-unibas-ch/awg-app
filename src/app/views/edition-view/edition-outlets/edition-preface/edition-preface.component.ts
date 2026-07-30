@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 
-import { LoadingService } from '@awg-shared/loading/loading.service';
-
-import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionPreface component.
@@ -18,14 +16,7 @@ import { EditionDataService, EditionGlyphService, EditionStateService } from '@a
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionPrefaceComponent implements OnInit, OnDestroy {
-    /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
+export class EditionPrefaceComponent {
     /**
      * Private readonly injection variable: _editionGlyphService.
      *
@@ -41,13 +32,6 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Private readonly injection variable: _loadingService.
-     *
-     * It keeps the instance of the injected LoadingService.
-     */
-    private readonly _loadingService = inject(LoadingService);
-
-    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition preface: 0 for German, 1 for English.
@@ -60,37 +44,26 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
     ref: EditionPrefaceComponent;
 
     /**
-     * Readonly signal: isLoading.
+     * Readonly signal: viewData.
      *
-     * It holds the current loading status.
+     * It holds the state of the preface view data.
      */
-    readonly isLoading = this._loadingService.isLoading;
-
-    /**
-     * Readonly signal: prefaceData.
-     *
-     * It holds the loaded preface data or null initially.
-     */
-    readonly prefaceData = toSignal(this._editionDataService.getEditionPrefaceData(), { initialValue: null });
+    readonly viewData = inject(EditionViewService).prefaceViewData;
 
     /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It declares the self-referring ref variable needed for CompileHtml library.
+     * It updates the edition state to indicate if the preface view is active
+     * and declares the self-referring ref variable needed for CompileHtml library.
      *
      */
     constructor() {
-        this.ref = this;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {
         this._editionStateService.updateIsPrefaceView(true);
+        this.ref = this;
+
+        inject(DestroyRef).onDestroy(() => {
+            this._editionStateService.updateIsPrefaceView(false);
+        });
     }
 
     /**
@@ -116,17 +89,5 @@ export class EditionPrefaceComponent implements OnInit, OnDestroy {
      */
     setLanguage(language: number): void {
         this.currentLanguage = language;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        this._editionStateService.updateIsPrefaceView(false);
     }
 }

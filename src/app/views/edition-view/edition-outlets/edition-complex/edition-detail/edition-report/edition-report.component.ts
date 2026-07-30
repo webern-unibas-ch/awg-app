@@ -1,20 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, ViewChild } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { of as observableOf } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import {
-    EditionComplex,
-    SourceDescriptionList,
-    SourceEvaluationList,
-    SourceList,
-    TextcriticsList,
-} from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionReport component.
@@ -39,20 +30,6 @@ export class EditionReportComponent {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -60,76 +37,18 @@ export class EditionReportComponent {
     private readonly _router: any = inject(Router);
 
     /**
-     * Public variable: errorObject.
-     *
-     * It keeps an errorObject for the service calls.
-     */
-    errorObject = null;
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
-     * Readonly signal: editionReportData.
+     * Readonly signal: viewData.
      *
-     * It holds the report data for the selected edition complex.
+     * It holds the state of the report view data.
      */
-    readonly editionReportData = toSignal(
-        toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex | null) =>
-                complex ? this._editionDataService.getEditionReportData(complex) : observableOf(null)
-            ),
-            catchError(err => {
-                this.errorObject = err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    );
-
-    /**
-     * Readonly signal: sourceListData.
-     *
-     * It computes the source list data from the complete report data.
-     */
-    readonly sourceListData = computed(() => {
-        const report = this.editionReportData();
-        return report?.[0] ? (report[0] as SourceList) : null;
-    });
-
-    /**
-     * Readonly signal: sourceDescriptionListData.
-     *
-     * It computes the source description list data from the complete report data.
-     */
-    readonly sourceDescriptionListData = computed(() => {
-        const report = this.editionReportData();
-        return report?.[1] ? (report[1] as SourceDescriptionList) : null;
-    });
-
-    /**
-     * Readonly signal: sourceEvaluationListData.
-     *
-     * It computes the source evaluation list data from the complete report data.
-     */
-    readonly sourceEvaluationListData = computed(() => {
-        const report = this.editionReportData();
-        return report?.[2] ? (report[2] as SourceEvaluationList) : null;
-    });
-
-    /**
-     * Readonly signal: textcriticsListData.
-     *
-     * It computes the textcritics list data from the complete report data.
-     */
-    readonly textcriticsListData = computed(() => {
-        const report = this.editionReportData();
-        return report?.[3] ? (report[3] as TextcriticsList) : null;
-    });
+    readonly viewData = inject(EditionViewService).reportViewData;
 
     /**
      * Readonly variable: titles.

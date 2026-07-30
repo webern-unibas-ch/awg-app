@@ -54,11 +54,11 @@ export class EditionViewComponent {
     readonly isPrefaceView = this._editionStateService.isPrefaceView;
 
     /**
-     * Readonly signal: isRowTableView.
+     * Readonly signal: isRowtablesView.
      *
-     * It holds the state of the row table view.
+     * It holds the state of the rowtables view.
      */
-    readonly isRowTableView = this._editionStateService.isRowTableView;
+    readonly isRowtablesView = this._editionStateService.isRowtablesView;
 
     /**
      * Readonly signal: selectedEditionComplex.

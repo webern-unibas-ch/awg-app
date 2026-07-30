@@ -1,4 +1,14 @@
-import { Component, DebugElement, DOCUMENT, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import {
+    Component,
+    DebugElement,
+    DOCUMENT,
+    EventEmitter,
+    Input,
+    isSignal,
+    Output,
+    signal,
+    WritableSignal,
+} from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
@@ -6,11 +16,12 @@ import type { Mock } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { createMockViewData } from '@testing/edition-data-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -32,16 +43,39 @@ import {
     IntroBlock,
     IntroList,
 } from '@awg-views/edition-view/models';
-import {
-    EditionComplexesService,
-    EditionDataService,
-    EditionOutlineService,
-    EditionStateService,
-} from '@awg-views/edition-view/services';
+import { EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionIntroComponent } from './edition-intro.component';
 
 // Mock components
+@Component({
+    selector: 'awg-modal',
+    template: '',
+    standalone: false,
+})
+class ModalStubComponent {
+    open(): void {}
+}
+
+@Component({
+    selector: 'awg-alert-error',
+    template: '',
+    standalone: false,
+})
+class AlertErrorStubComponent {
+    @Input()
+    errorObject: any;
+}
+
+@Component({
+    selector: 'awg-twelve-tone-spinner',
+    template: '',
+    standalone: false,
+})
+class TwelveToneSpinnerStubComponent {}
+
 @Component({
     selector: 'awg-edition-intro-content',
     template: '',
@@ -119,32 +153,6 @@ class EditionIntroPlaceholderStubComponent {
     editionLabel: string;
 }
 
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-    standalone: false,
-})
-class AlertErrorStubComponent {
-    @Input()
-    errorObject: any;
-}
-
-@Component({
-    selector: 'awg-modal',
-    template: '',
-    standalone: false,
-})
-class ModalStubComponent {
-    open(): void {}
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
-
 describe('IntroComponent (DONE)', () => {
     let component: EditionIntroComponent;
     let fixture: ComponentFixture<EditionIntroComponent>;
@@ -153,10 +161,13 @@ describe('IntroComponent (DONE)', () => {
     let mockDocument: Document;
     let mockRouter;
 
-    let editionDataServiceGetEditionSectionIntroDataSpy: Spy;
-    let editionDataServiceGetEditionComplexIntroDataSpy: Spy;
+    let editionComplexesService: EditionComplexesService;
+    let editionOutlineService: EditionOutlineService;
+    let editionStateService: EditionStateService;
+
     let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
+    let editionStateServiceUpdateIsIntroViewSpy: Spy;
 
     let listenToRouteChangesSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
@@ -170,28 +181,21 @@ describe('IntroComponent (DONE)', () => {
     let consoleSpy: Spy;
 
     let extractUrlSegmentsSpy: Spy;
-    let fetchAndFilterIntroDataSpy: Spy;
     let isNavigationEndToIntroSpy: Spy;
     let updateEditionStateSpy: Spy;
 
-    let mockEditionDataService: Partial<EditionDataService>;
-
-    let editionComplexesService: EditionComplexesService;
-    let editionDataService: Partial<EditionDataService>;
-    let editionOutlineService: EditionOutlineService;
-    let editionStateService: EditionStateService;
-
+    let mockViewDataSignal: WritableSignal<any>;
+    let expectedViewDataContent: EditionViewDataContent<'intro'>;
+    let expectedDefaultViewDataContent: EditionViewDataContent<'intro'>;
+    let expectedEditionIntroSectionData: IntroList;
+    let expectedEditionIntroSectionFilteredData: IntroList;
     let expectedCurrentLaguage: number;
     let expectedNotesLabels: Map<number, string>;
     let expectedEditionComplex: EditionComplex;
-    let expectedEditionIntroSectionData: IntroList;
-    let expectedErrorObject: any;
 
     let expectedEditionComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedEditionIntroComplexData: IntroList;
-    let expectedEditionIntroSectionFilteredData: IntroList;
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
@@ -211,10 +215,8 @@ describe('IntroComponent (DONE)', () => {
         };
 
         // Mock services
-        mockEditionDataService = {
-            getEditionComplexIntroData: (): Observable<IntroList> => observableOf(null),
-            getEditionSectionIntroData: (): Observable<IntroList> => observableOf(null),
-        };
+        expectedDefaultViewDataContent = { introData: new IntroList() };
+        mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterModule],
@@ -229,7 +231,7 @@ describe('IntroComponent (DONE)', () => {
                 TwelveToneSpinnerStubComponent,
             ],
             providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionViewService, useValue: { introViewData: mockViewDataSignal.asReadonly() } },
                 { provide: Router, useValue: mockRouter },
             ],
         }).compileComponents();
@@ -239,7 +241,6 @@ describe('IntroComponent (DONE)', () => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
         editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionDataService = TestBed.inject(EditionDataService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
@@ -248,21 +249,19 @@ describe('IntroComponent (DONE)', () => {
         editionOutlineService.initializeEditionOutline();
 
         // Service spies
-        editionDataServiceGetEditionComplexIntroDataSpy = vi.spyOn(editionDataService, 'getEditionComplexIntroData');
-        editionDataServiceGetEditionSectionIntroDataSpy = vi.spyOn(editionDataService, 'getEditionSectionIntroData');
         editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
         editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+        editionStateServiceUpdateIsIntroViewSpy = vi.spyOn(editionStateService, 'updateIsIntroView');
 
         // Test data
+        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
+        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
+
         expectedCurrentLaguage = 0;
         expectedNotesLabels = new Map([
             [0, 'Anmerkungen'],
             [1, 'Notes'],
         ]);
-        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
-        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
-        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
-        expectedErrorObject = null;
 
         expectedComplexId = 'op12';
         expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
@@ -289,7 +288,6 @@ describe('IntroComponent (DONE)', () => {
         // Component spies
         listenToRouteChangesSpy = vi.spyOn(component, 'listenToRouteChanges');
         extractUrlSegmentsSpy = vi.spyOn(component as any, '_extractUrlSegments');
-        fetchAndFilterIntroDataSpy = vi.spyOn(component as any, '_fetchAndFilterIntroData');
         isNavigationEndToIntroSpy = vi.spyOn(component as any, '_isNavigationEndToIntro');
         updateEditionStateSpy = vi.spyOn(component as any, '_updateEditionState');
         navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
@@ -322,18 +320,16 @@ describe('IntroComponent (DONE)', () => {
             expectToEqual(component.notesLabels, expectedNotesLabels);
         });
 
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToEqual(component.selectedEditionComplex(), null);
         });
 
-        it('... should have `errorObject = null`', () => {
-            expectToBe(component.errorObject, expectedErrorObject);
-        });
+        it('... should have signal `viewData` to hold the default fallback data', () => {
+            expectToBe(isSignal(component.viewData), true);
 
-        it('... should have signal `editionIntroData` to hold null', () => {
-            expectToBe(isSignal(component.editionIntroData), true);
-
-            expectToBe(component.editionIntroData(), null);
+            expectToEqual(component.viewData(), createMockViewData(expectedDefaultViewDataContent));
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -383,7 +379,7 @@ describe('IntroComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
             });
 
-            it('... should not contain a loading spinner component (stubbed)', () => {
+            it('... should not contain a TwelveToneSpinnerComponent (stubbed)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
@@ -398,279 +394,69 @@ describe('IntroComponent (DONE)', () => {
             editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
             editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
 
-            editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                observableOf(expectedEditionIntroSectionData)
-            );
-            editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
-                observableOf(expectedEditionIntroComplexData)
+            // Set mock view data signal to expected data state
+            expectedViewDataContent = { introData: expectedEditionIntroSectionData };
+            mockViewDataSignal.set(
+                createMockViewData(expectedViewDataContent, {
+                    isLoading: false,
+                    error: null,
+                })
             );
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
+        });
+
+        it('... should have signal `viewData` to hold the expected view data', () => {
+            expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
+        });
+
+        it('... should have called `EditionStateService` and updated `isIntroView` to true', () => {
+            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
+
+            expectToBe(editionStateService.isIntroView(), true);
+        });
+
+        it('... should reset `isIntroView` to false on destroy', () => {
+            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
+
+            fixture.destroy();
+
+            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 2, false);
+            expectToBe(editionStateService.isIntroView(), false);
+        });
+
         it('... should have called `listenToRouteChanges()`', () => {
             expectSpyCall(listenToRouteChangesSpy, 1);
         });
 
-        it('... should have signal `editionIntroData` to hold the expected intro data', () => {
-            expectToEqual(component.editionIntroData(), expectedEditionIntroSectionFilteredData);
-        });
-
-        it('... should have signal `editionIntroData` to hold null if section is not available', async () => {
-            editionStateService.updateSelectedEditionSection(null);
-
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.editionIntroData(), null);
-        });
-
-        it('... should have signal `editionIntroData` to hold null if series is not available', async () => {
-            editionStateService.updateSelectedEditionSeries(null);
-
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.editionIntroData(), null);
-        });
-
         describe('VIEW', () => {
-            it('... should contain one div.awg-edition-intro-view', () => {
-                // Div debug element
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-            });
-
-            it('... should contain one div.row in div.awg-edition-intro-view', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-
-                getAndExpectDebugElementByCss(divDes[0], 'div.row', 1, 1);
-            });
-
-            describe('... if intro data is given', () => {
-                describe('... with complex', () => {
-                    it('... should contain one EditionIntroPartialDisclaimerComponent (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(
-                            divDes[0],
-                            EditionIntroPartialDisclaimerStubComponent,
-                            1,
-                            1
-                        );
-                    });
-
-                    it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', () => {
-                        const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionIntroPartialDisclaimerStubComponent,
-                            1,
-                            1
-                        );
-                        const editionIntroPartialDisclaimerCmp = editionIntroPartialDisclaimerDes[0].injector.get(
-                            EditionIntroPartialDisclaimerStubComponent
-                        ) as EditionIntroPartialDisclaimerStubComponent;
-
-                        expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedEditionComplex);
-                        expectToEqual(
-                            editionIntroPartialDisclaimerCmp.editionLabel,
-                            expectedEditionRouteConstants.EDITION.short
-                        );
-                        expectToEqual(
-                            editionIntroPartialDisclaimerCmp.editionRoute,
-                            expectedEditionRouteConstants.EDITION.route
-                        );
-                        expectToEqual(
-                            editionIntroPartialDisclaimerCmp.seriesRoute,
-                            expectedEditionRouteConstants.SERIES.route
-                        );
-                        expectToEqual(
-                            editionIntroPartialDisclaimerCmp.sectionRoute,
-                            expectedEditionRouteConstants.SECTION.route
-                        );
-                        expectToEqual(
-                            editionIntroPartialDisclaimerCmp.introRoute,
-                            expectedEditionRouteConstants.EDITION_INTRO.route
-                        );
-                    });
-
-                    it('... should contain one EditionIntroContentComponent (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
-                    });
-
-                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
-                        const editionIntroContentDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionIntroContentStubComponent,
-                            1,
-                            1
-                        );
-                        const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
-                            EditionIntroContentStubComponent
-                        ) as EditionIntroContentStubComponent;
-
-                        expectToEqual(
-                            editionIntroContentCmp.introBlockContent,
-                            expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
-                        );
-                        expectToEqual(
-                            editionIntroContentCmp.notesLabel,
-                            expectedNotesLabels.get(expectedCurrentLaguage)
-                        );
-                    });
-
-                    it('... should contain one EditionIntroNavComponent (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
-                    });
-
-                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
-                        const editionIntroNavDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionIntroNavStubComponent,
-                            1,
-                            1
-                        );
-                        const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                            EditionIntroNavStubComponent
-                        ) as EditionIntroNavStubComponent;
-
-                        expectToEqual(
-                            editionIntroNavCmp.introBlockContent,
-                            expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
-                        );
-                        expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
-                        expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
-                    });
-                });
-
-                describe('... without complex', () => {
-                    beforeEach(async () => {
-                        component.editionComplex = undefined;
-                        await detectChangesOnPush(fixture);
-                    });
-
-                    it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(
-                            divDes[0],
-                            EditionIntroPartialDisclaimerStubComponent,
-                            0,
-                            0
-                        );
-                    });
-
-                    it('... should contain one EditionIntroContentComponent (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
-                    });
-
-                    it('... should pass down `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
-                        const editionIntroContentDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionIntroContentStubComponent,
-                            1,
-                            1
-                        );
-                        const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
-                            EditionIntroContentStubComponent
-                        ) as EditionIntroContentStubComponent;
-
-                        expectToEqual(
-                            editionIntroContentCmp.introBlockContent,
-                            expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
-                        );
-                        expectToEqual(
-                            editionIntroContentCmp.notesLabel,
-                            expectedNotesLabels.get(expectedCurrentLaguage)
-                        );
-                    });
-
-                    it('... should contain one EditionIntroNavComponent (stubbed)', () => {
-                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
-                    });
-
-                    it('... should pass down `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
-                        const editionIntroNavDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionIntroNavStubComponent,
-                            1,
-                            1
-                        );
-                        const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                            EditionIntroNavStubComponent
-                        ) as EditionIntroNavStubComponent;
-
-                        expectToEqual(
-                            editionIntroNavCmp.introBlockContent,
-                            expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
-                        );
-                        expectToEqual(editionIntroNavCmp.notesLabel, expectedNotesLabels.get(expectedCurrentLaguage));
-                        expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
-                    });
-                });
-            });
-
-            describe('... if intro data is empty', () => {
-                beforeEach(async () => {
-                    // Simulate the service setting an empty content array
-                    const mockEmptySectionIntro: IntroList = {
-                        intro: [
-                            {
-                                id: 'empty-intro-id',
-                                content: [],
-                            },
-                        ],
-                    };
-                    editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                        observableOf(mockEmptySectionIntro)
-                    );
-
-                    editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
-                    editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
-                    editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-
-                    await detectChangesOnPush(fixture);
-                });
-
-                it('... should contain one EditionIntroPlaceholderComponent (stubbed)', async () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
-                });
-
-                it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', async () => {
-                    const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionIntroPlaceholderStubComponent,
-                        1,
-                        1
-                    );
-                    const editionIntroPlaceholderCmp = editionIntroPlaceholderDes[0].injector.get(
-                        EditionIntroPlaceholderStubComponent
-                    ) as EditionIntroPlaceholderStubComponent;
-
-                    expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedEditionComplex);
-                    expectToEqual(editionIntroPlaceholderCmp.editionLabel, expectedEditionRouteConstants.EDITION.short);
-                });
-            });
-
             describe('on error', () => {
-                beforeEach(async () => {
-                    expectedErrorObject = { status: 404, statusText: 'error' };
-                    // Spy on editionDataService to return an error
-                    fetchAndFilterIntroDataSpy.mockReturnValue(observableThrowError(() => expectedErrorObject));
+                const expectedErrorObject = { status: 404, statusText: 'error' };
 
-                    editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
-                    editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
+                beforeEach(async () => {
+                    // Mock error state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, {
+                            isLoading: false,
+                            error: expectedErrorObject,
+                        })
+                    );
 
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain intro view, but one AlertErrorComponent (stubbed)', () => {
+                it('... should not contain intro view or spinner, but one AlertErrorComponent (stubbed)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
@@ -684,33 +470,269 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('on loading', () => {
-                describe('... should contain only TwelveToneSpinnerComponent (stubbed) if ... ', () => {
-                    it('... editionIntroData is null', async () => {
-                        // Mock null response
-                        fetchAndFilterIntroDataSpy.mockReturnValue(observableOf(null));
+                it('... should not contain intro view or alert, but one TwelveToneSpinnerComponent (stubbed)', async () => {
+                    // Mock loading state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, { isLoading: true, error: null })
+                    );
 
-                        editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
-                        editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                });
+            });
+
+            describe('on view data available', () => {
+                beforeEach(async () => {
+                    // Mock view data state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, { isLoading: false, error: null })
+                    );
+
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should contain one div.awg-edition-intro-view', () => {
+                    // Div debug element
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                });
+
+                it('... should contain one div.row in div.awg-edition-intro-view', () => {
+                    // Div debug element
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+
+                    getAndExpectDebugElementByCss(divDes[0], 'div.row', 1, 1);
+                });
+
+                describe('... if intro content is empty', () => {
+                    beforeEach(async () => {
+                        // Simulate the service setting an empty content array
+                        const mockEmptySectionIntro: IntroList = {
+                            intro: [
+                                {
+                                    id: 'empty-intro-id',
+                                    content: [],
+                                },
+                            ],
+                        };
+                        mockViewDataSignal.set(
+                            createMockViewData({ introData: mockEmptySectionIntro }, { isLoading: false, error: null })
+                        );
 
                         await detectChangesOnPush(fixture);
-
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
                     });
 
-                    it('... editionIntroData is undefined', async () => {
-                        // Mock undefined response
-                        fetchAndFilterIntroDataSpy.mockReturnValue(observableOf(undefined));
+                    it('... should contain one EditionIntroPlaceholderComponent (stubbed)', async () => {
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderStubComponent, 1, 1);
+                    });
 
-                        editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
-                        editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
+                    it('... should pass down `editionComplex` and `editionLabel` to EditionIntroPlaceholderComponent', async () => {
+                        const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionIntroPlaceholderStubComponent,
+                            1,
+                            1
+                        );
+                        const editionIntroPlaceholderCmp = editionIntroPlaceholderDes[0].injector.get(
+                            EditionIntroPlaceholderStubComponent
+                        ) as EditionIntroPlaceholderStubComponent;
 
-                        await detectChangesOnPush(fixture);
+                        expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedEditionComplex);
+                        expectToEqual(
+                            editionIntroPlaceholderCmp.editionLabel,
+                            expectedEditionRouteConstants.EDITION.short
+                        );
+                    });
+                });
 
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                describe('... if intro content is given', () => {
+                    describe('... with complex', () => {
+                        beforeEach(async () => {
+                            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                            const expectedFilteredViewDataContent = {
+                                introData: expectedEditionIntroSectionFilteredData,
+                            };
+                            mockViewDataSignal.set(
+                                createMockViewData(expectedFilteredViewDataContent, { isLoading: false, error: null })
+                            );
+
+                            await detectChangesOnPush(fixture);
+                        });
+
+                        it('... should contain one EditionIntroPartialDisclaimerComponent (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(
+                                divDes[0],
+                                EditionIntroPartialDisclaimerStubComponent,
+                                1,
+                                1
+                            );
+                        });
+
+                        it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', () => {
+                            const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroPartialDisclaimerStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroPartialDisclaimerCmp = editionIntroPartialDisclaimerDes[0].injector.get(
+                                EditionIntroPartialDisclaimerStubComponent
+                            ) as EditionIntroPartialDisclaimerStubComponent;
+
+                            expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedEditionComplex);
+                            expectToEqual(
+                                editionIntroPartialDisclaimerCmp.editionLabel,
+                                expectedEditionRouteConstants.EDITION.short
+                            );
+                            expectToEqual(
+                                editionIntroPartialDisclaimerCmp.editionRoute,
+                                expectedEditionRouteConstants.EDITION.route
+                            );
+                            expectToEqual(
+                                editionIntroPartialDisclaimerCmp.seriesRoute,
+                                expectedEditionRouteConstants.SERIES.route
+                            );
+                            expectToEqual(
+                                editionIntroPartialDisclaimerCmp.sectionRoute,
+                                expectedEditionRouteConstants.SECTION.route
+                            );
+                            expectToEqual(
+                                editionIntroPartialDisclaimerCmp.introRoute,
+                                expectedEditionRouteConstants.EDITION_INTRO.route
+                            );
+                        });
+
+                        it('... should contain one EditionIntroContentComponent (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
+                        });
+
+                        it('... should pass down filtered `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
+                            const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroContentStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                                EditionIntroContentStubComponent
+                            ) as EditionIntroContentStubComponent;
+
+                            expectToEqual(
+                                editionIntroContentCmp.introBlockContent,
+                                expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                            );
+                            expectToEqual(
+                                editionIntroContentCmp.notesLabel,
+                                expectedNotesLabels.get(expectedCurrentLaguage)
+                            );
+                        });
+
+                        it('... should contain one EditionIntroNavComponent (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
+                        });
+
+                        it('... should pass down filtered `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
+                            const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroNavStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                                EditionIntroNavStubComponent
+                            ) as EditionIntroNavStubComponent;
+
+                            expectToEqual(
+                                editionIntroNavCmp.introBlockContent,
+                                expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                            );
+                            expectToEqual(
+                                editionIntroNavCmp.notesLabel,
+                                expectedNotesLabels.get(expectedCurrentLaguage)
+                            );
+                            expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                        });
+                    });
+
+                    describe('... without complex', () => {
+                        beforeEach(async () => {
+                            editionStateService.updateSelectedEditionComplex(null);
+                            mockViewDataSignal.set(
+                                createMockViewData(expectedViewDataContent, { isLoading: false, error: null })
+                            );
+
+                            await detectChangesOnPush(fixture);
+                        });
+
+                        it('... should not contain an edition intro partial disclaimer component (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(
+                                divDes[0],
+                                EditionIntroPartialDisclaimerStubComponent,
+                                0,
+                                0
+                            );
+                        });
+
+                        it('... should contain one EditionIntroContentComponent (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentStubComponent, 1, 1);
+                        });
+
+                        it('... should pass down unfiltered `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
+                            const editionIntroContentDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroContentStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroContentCmp = editionIntroContentDes[0].injector.get(
+                                EditionIntroContentStubComponent
+                            ) as EditionIntroContentStubComponent;
+
+                            expectToEqual(
+                                editionIntroContentCmp.introBlockContent,
+                                expectedEditionIntroSectionData.intro[expectedCurrentLaguage].content
+                            );
+                            expectToEqual(
+                                editionIntroContentCmp.notesLabel,
+                                expectedNotesLabels.get(expectedCurrentLaguage)
+                            );
+                        });
+
+                        it('... should contain one EditionIntroNavComponent (stubbed)', () => {
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
+                            getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
+                        });
+
+                        it('... should pass down unfiltered `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
+                            const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroNavStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                                EditionIntroNavStubComponent
+                            ) as EditionIntroNavStubComponent;
+
+                            expectToEqual(
+                                editionIntroNavCmp.introBlockContent,
+                                expectedEditionIntroSectionData.intro[expectedCurrentLaguage].content
+                            );
+                            expectToEqual(
+                                editionIntroNavCmp.notesLabel,
+                                expectedNotesLabels.get(expectedCurrentLaguage)
+                            );
+                            expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                        });
                     });
                 });
             });
@@ -1424,198 +1446,6 @@ describe('IntroComponent (DONE)', () => {
                 });
             });
 
-            describe('#_fetchAndFilterIntroData()', () => {
-                it('... should have a method `_fetchAndFilterIntroData`', () => {
-                    expect((component as any)._fetchAndFilterIntroData).toBeDefined();
-                });
-
-                describe('... without given complex', () => {
-                    it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const initialCalls = editionDataServiceGetEditionSectionIntroDataSpy.mock.calls.length;
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls);
-
-                        (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls + 1, [
-                            seriesRoute,
-                            sectionRoute,
-                        ]);
-                    });
-
-                    it('... should return the correct edition intro data for a given series and section', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, null);
-
-                        result$.subscribe({
-                            next: (data: IntroList) => {
-                                expectToEqual(data, expectedEditionIntroSectionData);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-                });
-
-                describe('... with given complex', () => {
-                    beforeEach(() => {
-                        editionDataServiceGetEditionSectionIntroDataSpy.mockReturnValue(
-                            observableOf(expectedEditionIntroSectionData)
-                        );
-                        editionDataServiceGetEditionComplexIntroDataSpy.mockReturnValue(
-                            observableOf(expectedEditionIntroComplexData)
-                        );
-                    });
-
-                    it('... should trigger `getEditionSectionIntroData()` method from EditionDataService with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-                        const initialCalls = editionDataServiceGetEditionSectionIntroDataSpy.mock.calls.length;
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls);
-
-                        (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        expectSpyCall(editionDataServiceGetEditionSectionIntroDataSpy, initialCalls + 1, [
-                            seriesRoute,
-                            sectionRoute,
-                        ]);
-                    });
-
-                    it('... should set `editionComplex`', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectToEqual(component.editionComplex, complex);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should trigger `getEditionComplexIntroData()` method from EditionDataService with complex', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 1, complex);
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectSpyCall(editionDataServiceGetEditionComplexIntroDataSpy, 2, complex);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should trigger `_filterSectionIntroDataById()` method with correct parameters', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-                        const expectedBlockId = expectedEditionIntroComplexData.intro[0].id;
-
-                        const filterSectionIntroDataByIdSpy = vi.spyOn(component as any, '_filterSectionIntroDataById');
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: () => {
-                                expectSpyCall(filterSectionIntroDataByIdSpy, 1, [
-                                    expectedEditionIntroSectionData,
-                                    expectedBlockId,
-                                ]);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-
-                    it('... should return the correct fltered edition intro data for a given series, section and complex', () => {
-                        const seriesRoute = expectedSelectedEditionSeries.series.route;
-                        const sectionRoute = expectedSelectedEditionSection.section.route;
-                        const complex = expectedEditionComplex;
-
-                        const result$ = (component as any)._fetchAndFilterIntroData(seriesRoute, sectionRoute, complex);
-
-                        result$.subscribe({
-                            next: (data: IntroList) => {
-                                expectToEqual(data, expectedEditionIntroSectionFilteredData);
-                            },
-                            error: (err: any) => {
-                                throw new Error(`Observable emitted an error: ${err}`);
-                            },
-                        });
-                    });
-                });
-            });
-
-            describe('#_filterSectionIntroDataById()', () => {
-                it('... should have a method `_filterSectionIntroDataById`', () => {
-                    expect((component as any)._filterSectionIntroDataById).toBeDefined();
-                });
-
-                it('... should return the correct section intro data for a given block id', () => {
-                    const blockId = 'test_block_id_2';
-                    const expectedBlock = expectedEditionIntroSectionData.intro[0].content.find(
-                        block => block.blockId === blockId
-                    );
-
-                    const result = (component as any)._filterSectionIntroDataById(
-                        expectedEditionIntroSectionData,
-                        blockId
-                    );
-
-                    expect(result).toBeDefined();
-                    expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                    expectToEqual(result.intro[0].content, [expectedBlock]);
-                });
-
-                describe('... should return an empty content array if', () => {
-                    it('... no block id is given', () => {
-                        const result = (component as any)._filterSectionIntroDataById(
-                            expectedEditionIntroSectionData,
-                            undefined
-                        );
-
-                        expect(result).toBeDefined();
-                        expect(result.intro[0]).toBeDefined();
-                        expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                        expectToEqual(result.intro[0].content, []);
-                    });
-
-                    it('... no intro data section is found for given block id', () => {
-                        const blockId = 'notExistingId';
-                        const result = (component as any)._filterSectionIntroDataById(
-                            expectedEditionIntroSectionData,
-                            blockId
-                        );
-
-                        expect(result).toBeDefined();
-                        expect(result.intro[0]).toBeDefined();
-                        expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
-                        expectToEqual(result.intro[0].content, []);
-                    });
-                });
-            });
-
             describe('#_initScrollListener()', () => {
                 it('... should have a method `_initScrollListener`', () => {
                     expect((component as any)._initScrollListener).toBeDefined();
@@ -1879,6 +1709,58 @@ describe('IntroComponent (DONE)', () => {
                         ]);
                         expectSpyCall(navigationSpy, 1, [
                             [expectedNextComplexRoute, expectedTargetRoute],
+                            expectedNavigationExtras,
+                        ]);
+                    });
+                });
+
+                describe('... should navigate to series overview if selectedComplex is null', () => {
+                    let expectedRSeriesRoute: string;
+                    beforeEach(() => {
+                        expectedRSeriesRoute = '/edition/series';
+                        editionStateService.updateSelectedEditionComplex(null);
+                    });
+
+                    it('... with a given sheet id', async () => {
+                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
+                        const expectedNavigationExtras = { queryParams: { id: '' } };
+
+                        (component as any)._navigateWithComplexId(
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                        expectSpyCall(navigationSpy, 1, [
+                            [expectedRSeriesRoute, expectedTargetRoute],
+                            expectedNavigationExtras,
+                        ]);
+                    });
+
+                    it('... with a given report fragment', async () => {
+                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
+                        const expectedNavigationExtras = { fragment: expectedReportFragment };
+
+                        (component as any)._navigateWithComplexId(
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, [
+                            undefined,
+                            expectedTargetRoute,
+                            expectedNavigationExtras,
+                        ]);
+                        expectSpyCall(navigationSpy, 1, [
+                            [expectedRSeriesRoute, expectedTargetRoute],
                             expectedNavigationExtras,
                         ]);
                     });
@@ -2390,14 +2272,6 @@ describe('IntroComponent (DONE)', () => {
                     (component as any)._updateEditionState(seriesNumber, sectionNumber);
 
                     expectToBe(editionStateService.isIntroView(), true);
-                });
-            });
-
-            describe('#ngOnDestroy()', () => {
-                it('... should have cleared isIntroView on destroy (via EditionStateService)', () => {
-                    component.ngOnDestroy();
-
-                    expectToBe(editionStateService.isIntroView(), false);
                 });
             });
         });

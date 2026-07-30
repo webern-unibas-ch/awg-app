@@ -4,92 +4,90 @@
     <awg-modal #modal />
 
     <!-- report -->
-    @if (editionReportData(); as editionReportData) {
-        <div class="awg-edition-report-view" ngbAccordion>
-            <!-- source list -->
-            <div ngbAccordionItem="awg-source-list" [collapsed]="false">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>{{ titles.sourceList }}</button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            @if (sourceListData(); as sourceListData) {
-                                <awg-source-list
-                                    [sourceListData]="sourceListData"
-                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                    (openModalRequest)="onModalOpen($event)" />
-                            }
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-            <!-- source description -->
-            <div ngbAccordionItem="awg-source-desc" [collapsed]="false">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>{{ titles.sourceDescription }}</button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            @if (sourceDescriptionListData(); as sourceDescriptionListData) {
-                                <awg-source-description
-                                    [sourceDescriptionListData]="sourceDescriptionListData"
-                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                    (openModalRequest)="onModalOpen($event)"
-                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
-                            }
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-            <!-- source evaluation -->
-            <div ngbAccordionItem="awg-source-evaluation" [collapsed]="false">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>{{ titles.sourceEvaluation }}</button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            @if (sourceEvaluationListData(); as sourceEvaluationListData) {
-                                <awg-source-evaluation
-                                    [editionComplex]="selectedEditionComplex()"
-                                    [sourceEvaluationListData]="sourceEvaluationListData"
-                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                    (openModalRequest)="onModalOpen($event)"
-                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
-                            }
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-            <!-- text critics -->
-            <div ngbAccordionItem="awg-tka-panel" [collapsed]="false">
-                <div ngbAccordionHeader>
-                    <button ngbAccordionButton>{{ titles.tka }}</button>
-                </div>
-                <div ngbAccordionCollapse>
-                    <div ngbAccordionBody>
-                        <ng-template>
-                            @if (textcriticsListData(); as textcriticsListData) {
-                                <awg-textcritics-list
-                                    [textcriticsListData]="textcriticsListData"
-                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                    (openModalRequest)="onModalOpen($event)"
-                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
-                            }
-                        </ng-template>
-                    </div>
-                </div>
-            </div>
-        </div>
-    } @else {
-        <!-- error message -->
-        @if (errorObject) {
+    @if (viewData(); as view) {
+        @if (view.error; as errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <!-- loading spinner -->
+        } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
+        } @else {
+            <div class="awg-edition-report-view" ngbAccordion>
+                <!-- source list -->
+                <div ngbAccordionItem="awg-source-list" [collapsed]="false">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>{{ titles.sourceList }}</button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                @if (view.data.sourceListData; as sourceListData) {
+                                    <awg-source-list
+                                        [sourceListData]="sourceListData"
+                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                        (openModalRequest)="onModalOpen($event)" />
+                                }
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <!-- source description -->
+                <div ngbAccordionItem="awg-source-desc" [collapsed]="false">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>{{ titles.sourceDescription }}</button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                @if (view.data.sourceDescriptionData; as sourceDescriptionListData) {
+                                    <awg-source-description
+                                        [sourceDescriptionListData]="sourceDescriptionListData"
+                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                        (openModalRequest)="onModalOpen($event)"
+                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                }
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <!-- source evaluation -->
+                <div ngbAccordionItem="awg-source-evaluation" [collapsed]="false">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>{{ titles.sourceEvaluation }}</button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                @if (view.data.sourceEvaluationData; as sourceEvaluationListData) {
+                                    <awg-source-evaluation
+                                        [editionComplex]="selectedEditionComplex()"
+                                        [sourceEvaluationListData]="sourceEvaluationListData"
+                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                        (openModalRequest)="onModalOpen($event)"
+                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                }
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <!-- text critics -->
+                <div ngbAccordionItem="awg-tka-panel" [collapsed]="false">
+                    <div ngbAccordionHeader>
+                        <button ngbAccordionButton>{{ titles.tka }}</button>
+                    </div>
+                    <div ngbAccordionCollapse>
+                        <div ngbAccordionBody>
+                            <ng-template>
+                                @if (view.data.textcriticsData; as textcriticsData) {
+                                    <awg-textcritics-list
+                                        [textcriticsListData]="textcriticsData"
+                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                        (openModalRequest)="onModalOpen($event)"
+                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                }
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
     }
 </div>

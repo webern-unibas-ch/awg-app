@@ -4,50 +4,51 @@
     <awg-modal #modal />
 
     <!-- intro -->
-    @if (editionIntroData(); as editionIntroData) {
-        <div class="awg-edition-intro-view p-5 border rounded-3">
-            <div class="row justify-content-center">
-                @if (UTILS.isEmptyArray(editionIntroData?.intro?.[currentLanguage]?.content)) {
-                    <awg-edition-intro-placeholder
-                        class="col-12"
-                        [editionComplex]="editionComplex"
-                        [editionLabel]="editionRouteConstants.EDITION.short" />
-                } @else {
-                    @if (editionComplex) {
-                        <awg-edition-intro-partial-disclaimer
-                            class="col-12 col-xl-6"
-                            [editionComplex]="editionComplex"
-                            [editionLabel]="editionRouteConstants.EDITION.short"
-                            [editionRoute]="editionRouteConstants.EDITION.route"
-                            [seriesRoute]="editionRouteConstants.SERIES.route"
-                            [sectionRoute]="editionRouteConstants.SECTION.route"
-                            [introRoute]="editionRouteConstants.EDITION_INTRO.route" />
-                    }
-                    <awg-edition-intro-content
-                        class="col-12 col-xl-10"
-                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
-                        [notesLabel]="notesLabels.get(currentLanguage)"
-                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
-                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                        (openModalRequest)="onModalOpen($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
-
-                    <awg-edition-intro-nav
-                        class="col-12 col-xl-2 d-none d-xl-block"
-                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"
-                        [notesLabel]="notesLabels.get(currentLanguage)"
-                        [currentLanguage]="currentLanguage"
-                        (languageChangeRequest)="onLanguageSet($event)" />
-                }
-            </div>
-        </div>
-    } @else {
-        <!-- error message -->
-        @if (errorObject) {
+    @if (viewData(); as view) {
+        @if (view.error; as errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
-        } @else {
-            <!-- loading spinner fallback -->
+        } @else if (view.isLoading) {
             <awg-twelve-tone-spinner />
+        } @else {
+            @let complex = selectedEditionComplex();
+            @let intro = view.data.introData.intro;
+
+            <div class="awg-edition-intro-view p-5 border rounded-3">
+                <div class="row justify-content-center">
+                    @if (UTILS.isEmptyArray(intro?.[currentLanguage]?.content)) {
+                        <awg-edition-intro-placeholder
+                            class="col-12"
+                            [editionComplex]="complex"
+                            [editionLabel]="editionRouteConstants.EDITION.short" />
+                    } @else {
+                        @if (complex) {
+                            <awg-edition-intro-partial-disclaimer
+                                class="col-12 col-xl-6"
+                                [editionComplex]="complex"
+                                [editionLabel]="editionRouteConstants.EDITION.short"
+                                [editionRoute]="editionRouteConstants.EDITION.route"
+                                [seriesRoute]="editionRouteConstants.SERIES.route"
+                                [sectionRoute]="editionRouteConstants.SECTION.route"
+                                [introRoute]="editionRouteConstants.EDITION_INTRO.route" />
+                        }
+                        <awg-edition-intro-content
+                            class="col-12 col-xl-10"
+                            [introBlockContent]="intro[currentLanguage].content"
+                            [notesLabel]="notesLabels.get(currentLanguage)"
+                            (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
+                            (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                            (openModalRequest)="onModalOpen($event)"
+                            (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+
+                        <awg-edition-intro-nav
+                            class="col-12 col-xl-2 d-none d-xl-block"
+                            [introBlockContent]="intro[currentLanguage].content"
+                            [notesLabel]="notesLabels.get(currentLanguage)"
+                            [currentLanguage]="currentLanguage"
+                            (languageChangeRequest)="onLanguageSet($event)" />
+                    }
+                </div>
+            </div>
         }
     }
 </div>

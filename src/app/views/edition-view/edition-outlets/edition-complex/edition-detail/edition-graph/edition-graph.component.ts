@@ -1,14 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-
-import { of as observableOf } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionGraph component.
@@ -25,34 +21,6 @@ import { EditionDataService, EditionStateService } from '@awg-views/edition-view
 })
 export class EditionGraphComponent {
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _fullscreenService.
-     *
-     * It keeps the instance of the injected FullscreenService.
-     */
-    private readonly _fullscreenService = inject(FullscreenService);
-
-    /**
-     * Public variable: errorObject.
-     *
-     * It keeps an errorObject for the service calls.
-     */
-    errorObject = null;
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
@@ -62,32 +30,21 @@ export class EditionGraphComponent {
      *
      * It holds the fullscreen status.
      */
-    readonly isFullscreen = this._fullscreenService.isFullscreen;
+    readonly isFullscreen = inject(FullscreenService).isFullscreen;
 
     /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
-     * Readonly signal: editionGraphData.
+     * Readonly signal: viewData.
      *
-     * It holds the graph data for the selected edition complex.
+     * It holds the state of the graph view data.
      */
-    readonly editionGraphData = toSignal(
-        toObservable(this.selectedEditionComplex).pipe(
-            switchMap((complex: EditionComplex | null) =>
-                complex ? this._editionDataService.getEditionGraphData(complex) : observableOf(null)
-            ),
-            catchError(err => {
-                this.errorObject = err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    );
+    readonly viewData = inject(EditionViewService).graphViewData;
 
     /**
      * Readonly variable: GRAPH_IMAGES.
@@ -110,7 +67,6 @@ export class EditionGraphComponent {
      * Constructor of the EditionGraphComponent.
      *
      * It initializes the self-referring variable needed for CompileHtml library.
-     *
      */
     constructor() {
         this.ref = this;

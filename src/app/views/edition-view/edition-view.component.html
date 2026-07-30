@@ -4,7 +4,7 @@
 
     @let introView = isIntroView();
     @let prefaceView = isPrefaceView();
-    @let rowTableView = isRowTableView();
+    @let rowtablesView = isRowtablesView();
     @let editionComplex = selectedEditionComplex();
     @let editionSection = selectedEditionSection();
     @let editionSeries = selectedEditionSeries();
@@ -25,8 +25,8 @@
         </div>
     }
 
-    @if (rowTableView) {
-        <div class="awg-edition-row-tables para">
+    @if (rowtablesView) {
+        <div class="awg-edition-rowtables para">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
                     {{ editionRouteConstants.EDITION?.short }}
@@ -89,7 +89,7 @@
         </div>
     }
 
-    @if (editionComplex === null && rowTableView !== true && prefaceView !== true) {
+    @if (editionComplex === null && rowtablesView !== true && prefaceView !== true) {
         <div class="awg-edition-series para">
             <h6 class="awg-edition-info-breadcrumb">
                 <ng-template #breadCrumbEdition>

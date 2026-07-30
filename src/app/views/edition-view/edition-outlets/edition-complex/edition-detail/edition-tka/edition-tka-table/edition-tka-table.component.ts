@@ -75,12 +75,12 @@ export class EditionTkaTableComponent {
     isCorrections = false;
 
     /**
-     * Input variable: isRowTable.
+     * Input variable: isRowtable.
      *
-     * It keeps a boolean flag to indicate if the table content is a row table.
+     * It keeps a boolean flag to indicate if the table content is a rowtable.
      */
     @Input()
-    isRowTable = false;
+    isRowtable = false;
 
     /**
      * Output variable: navigateToReportFragment.
@@ -152,7 +152,7 @@ export class EditionTkaTableComponent {
             { reference: 'location', label: 'Ort im Takt' },
             { reference: 'comment', label: 'Korrektur' },
         ],
-        rowTable: [
+        rowtable: [
             { reference: 'measure', label: 'Folio' },
             { reference: 'system', label: 'System' },
             { reference: 'location', label: 'Reihe/Reihenton' },
@@ -232,17 +232,17 @@ export class EditionTkaTableComponent {
     /**
      * Public method: getTableHeaderStrings.
      *
-     * It returns different table header strings depending on the isRowTable flag.
+     * It returns different table header strings depending on the isRowtable flag.
      *
      * @returns {{reference: string, label: string}[]} The table header string collection.
      */
     getTableHeaderStrings(): TkaTableHeaderColumn[] {
-        const { rowTable, default: defaultTable, corrections: correctionsTable } = this.tableHeaderStrings;
+        const { rowtable, default: defaultTable, corrections: correctionsTable } = this.tableHeaderStrings;
 
         let selectedTableHeader: TkaTableHeaderColumn[];
 
-        if (this.isRowTable) {
-            selectedTableHeader = rowTable;
+        if (this.isRowtable) {
+            selectedTableHeader = rowtable;
         } else if (this.isCorrections) {
             selectedTableHeader = correctionsTable;
         } else {

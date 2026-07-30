@@ -2,20 +2,17 @@
 <div>
     <!-- modal -->
     <awg-modal #modal />
-
-    <!-- loading spinner -->
-    @if (isLoading() && isFirstPageLoad()) {
-        <awg-twelve-tone-spinner />
-    } @else {
-        <!-- error message -->
-        @if (errorObject) {
+    @if (viewData(); as view) {
+        @if (view.error; as errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
+        } @else if (isFirstPageLoad() || view.isLoading) {
+            <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-sheets-view">
                 <!-- accolade view -->
                 <awg-edition-accolade
                     [isSheetFacetMinimized]="isSheetFacetMinimized"
-                    [svgSheetsData]="svgSheetsData"
+                    [svgSheetsData]="view.data.svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet"
                     [selectedTextcritics]="selectedTextcritics"
                     [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"

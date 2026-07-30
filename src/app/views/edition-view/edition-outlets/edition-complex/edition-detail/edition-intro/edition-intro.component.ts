@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
-import { fromEvent, Observable, of as observableOf, Subject } from 'rxjs';
-import { catchError, map, switchMap, takeUntil, throttleTime } from 'rxjs/operators';
+import { fromEvent, Subject } from 'rxjs';
+import { takeUntil, throttleTime } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionIntro component.
@@ -33,13 +33,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService = inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionOutlineService.
      *
      * It keeps the instance of the injected EditionOutlineService.
@@ -61,6 +54,20 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _router = inject(Router);
 
     /**
+     * Private readonly variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
+
+    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition intro: 0 for German, 1 for English.
@@ -78,75 +85,33 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ]);
 
     /**
-     * Public variable: editionComplex.
+     * Readonly signal: selectedEditionComplex.
      *
-     * It keeps the information about the current edition complex.
+     * It holds the state of the selected edition complex.
      */
-    editionComplex: EditionComplex;
+    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Public variable: errorObject.
+     * Readonly signal: introData.
      *
-     * It keeps an errorObject for the service calls.
+     * It holds the state of the intro view data.
      */
-    errorObject = null;
-
-    /**
-     * Readonly signal: editionIntroData.
-     *
-     * It holds the introductory data, reactively computed and fetched
-     * based on the selected series, section, and complex.
-     */
-    readonly editionIntroData = toSignal(
-        toObservable(
-            computed(() => ({
-                series: this._editionStateService.selectedEditionSeries(),
-                section: this._editionStateService.selectedEditionSection(),
-                complex: this._editionStateService.selectedEditionComplex(),
-            }))
-        ).pipe(
-            switchMap(({ series, section, complex }) => {
-                if (!series || !section) {
-                    return observableOf(null);
-                }
-
-                // Check if the complex belongs to the current series and section
-                const isComplexValidForSection =
-                    complex &&
-                    complex.pubStatement?.series?.route === series.series.route &&
-                    complex.pubStatement?.section?.route === section.section.route;
-
-                const activeComplex = isComplexValidForSection ? complex : null;
-
-                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex);
-            }),
-            catchError(err => {
-                this.errorObject = err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    );
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
+    readonly viewData = inject(EditionViewService).introViewData;
 
     /**
      * Constructor of the EditionIntroComponent.
+     *
+     * It updates the edition state to indicate if the intro view is active,
+     * and initializes the scroll listener for the window.
      */
     constructor() {
+        this._editionStateService.updateIsIntroView(true);
+
         this._initScrollListener();
+
+        inject(DestroyRef).onDestroy(() => {
+            this._editionStateService.updateIsIntroView(false);
+        });
     }
 
     /**
@@ -165,8 +130,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this._editionStateService.updateIsIntroView(true);
-
         this.listenToRouteChanges();
     }
 
@@ -181,8 +144,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ngOnDestroy() {
         this._destroyed$.next(true);
         this._destroyed$.complete();
-
-        this._editionStateService.updateIsIntroView(false);
     }
 
     /**
@@ -314,59 +275,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Private method: _fetchAndFilterIntroData.
-     *
-     * It fetches the intro data and, if needed,
-     * filters it by a given block id for the edition complex.
-     *
-     * @param {string} seriesRoute The given series route.
-     * @param {string} sectionRoute The given section route.
-     * @param {EditionComplex} complex The given edition complex.
-     * @returns {Observable<IntroList>} The filtered intro data.
-     */
-    private _fetchAndFilterIntroData(
-        seriesRoute: string,
-        sectionRoute: string,
-        complex: EditionComplex | null
-    ): Observable<IntroList> {
-        return this._editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
-            switchMap(sectionIntroData => {
-                if (complex) {
-                    this.editionComplex = complex;
-                    return this._editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
-                        map(complexIntroData => {
-                            const blockId = complexIntroData.intro[0].id;
-                            return this._filterSectionIntroDataById(sectionIntroData, blockId);
-                        })
-                    );
-                } else {
-                    this.editionComplex = undefined;
-                    return observableOf(sectionIntroData);
-                }
-            })
-        );
-    }
-
-    /**
-     * Private method: _filterSectionIntroDataById.
-     *
-     * It filters the section intro data by a given block id.
-     *
-     * @param {IntroList} sectionIntroData The given section intro data.
-     * @param {string} blockId The given block id.
-     * @returns {IntroList} The filtered section intro data.
-     */
-    private _filterSectionIntroDataById(sectionIntroData: IntroList, blockId: string): IntroList {
-        return {
-            ...sectionIntroData,
-            intro: sectionIntroData.intro.map(section => ({
-                ...section,
-                content: section.content.filter(contentBlock => contentBlock.blockId === blockId),
-            })),
-        };
-    }
-
-    /**
      * Private method: _initScrollListener.
      *
      * It initializes the scroll listener for the window.
@@ -405,7 +313,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId ? `/edition/complex/${complexId}` : this.editionComplex.baseRoute;
+        const complexRoute = complexId
+            ? `/edition/complex/${complexId}`
+            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
