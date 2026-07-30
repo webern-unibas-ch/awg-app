@@ -2,14 +2,12 @@
 <div class="awg-edition-view p-3 border rounded-3">
     <awg-scroll-to-top-button />
 
-    @let introView = isIntroView();
-    @let prefaceView = isPrefaceView();
-    @let rowtablesView = isRowtablesView();
+    @let activeView = viewContext();
     @let editionComplex = selectedEditionComplex();
     @let editionSection = selectedEditionSection();
     @let editionSeries = selectedEditionSeries();
 
-    @if (prefaceView) {
+    @if (activeView.isPreface) {
         <div class="awg-edition-preface para">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
@@ -25,7 +23,7 @@
         </div>
     }
 
-    @if (rowtablesView) {
+    @if (activeView.isRowtables) {
         <div class="awg-edition-rowtables para">
             <h6 class="awg-edition-info-breadcrumb">
                 <a [routerLink]="[editionRouteConstants.SERIES.route]">
@@ -89,7 +87,7 @@
         </div>
     }
 
-    @if (editionComplex === null && rowtablesView !== true && prefaceView !== true) {
+    @if (editionComplex === null && activeView.isRowtables !== true && activeView.isPreface !== true) {
         <div class="awg-edition-series para">
             <h6 class="awg-edition-info-breadcrumb">
                 <ng-template #breadCrumbEdition>
@@ -114,7 +112,7 @@
                             <ng-container *ngTemplateOutlet="breadCrumbSeries" />
                         </a>
                         /
-                        @if (introView) {
+                        @if (activeView.isIntro) {
                             <a
                                 [routerLink]="[
                                     './series',
@@ -143,7 +141,7 @@
             <!-- Jumbotron -->
             <awg-edition-jumbotron
                 [jumbotronId]="EDITION_VIEW_ID"
-                [jumbotronTitle]="introView ? editionRouteConstants.EDITION_INTRO.full : EDITION_VIEW_TITLE" />
+                [jumbotronTitle]="activeView.isIntro ? editionRouteConstants.EDITION_INTRO.full : EDITION_VIEW_TITLE" />
         </div>
     }
 

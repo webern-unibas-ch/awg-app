@@ -13,21 +13,6 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@aw
 })
 export class EditionStateService {
     /**
-     * Private readonly signal holding the intro view state.
-     */
-    private readonly _isIntroViewSignal = signal<boolean>(false);
-
-    /**
-     * Private readonly signal holding the preface view state.
-     */
-    private readonly _isPrefaceViewSignal = signal<boolean>(false);
-
-    /**
-     * Private readonly signal holding the rowtables view state.
-     */
-    private readonly _isRowtablesViewSignal = signal<boolean>(false);
-
-    /**
      * Private readonly signal holding the selected edition complex.
      */
     private readonly _selectedEditionComplexSignal = signal<EditionComplex | null>(null);
@@ -41,27 +26,6 @@ export class EditionStateService {
      * Private readonly signal holding the selected edition series.
      */
     private readonly _selectedEditionSeriesSignal = signal<EditionOutlineSeries | null>(null);
-
-    /**
-     * Readonly signal: isIntroView.
-     *
-     * It holds the state of the intro view.
-     */
-    readonly isIntroView = this._isIntroViewSignal.asReadonly();
-
-    /**
-     * Readonly signal: isPrefaceView.
-     *
-     * It holds the state of the preface view.
-     */
-    readonly isPrefaceView = this._isPrefaceViewSignal.asReadonly();
-
-    /**
-     * Readonly signal: isRowtablesView.
-     *
-     * It holds the state of the rowtables view.
-     */
-    readonly isRowtablesView = this._isRowtablesViewSignal.asReadonly();
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -83,42 +47,6 @@ export class EditionStateService {
      * It holds the state of the selected edition series.
      */
     readonly selectedEditionSeries = this._selectedEditionSeriesSignal.asReadonly();
-
-    /**
-     * Public method: updateIsIntroView.
-     *
-     * It updates the isIntroView signal with the given boolean value.
-     *
-     * @param {boolean} isView The given isIntroView flag.
-     * @returns {void} Sets the next state to the isIntroView signal.
-     */
-    updateIsIntroView(isView: boolean): void {
-        this._isIntroViewSignal.set(isView);
-    }
-
-    /**
-     * Public method: updateIsPrefaceView.
-     *
-     * It updates the isPrefaceView signal with the given boolean value.
-     *
-     * @param {boolean} isView The given isPrefaceView flag.
-     * @returns {void} Sets the next state to the isPrefaceView signal.
-     */
-    updateIsPrefaceView(isView: boolean): void {
-        this._isPrefaceViewSignal.set(isView);
-    }
-
-    /**
-     * Public method: updateIsRowtablesView.
-     *
-     * It updates the isRowtablesView signal with the given boolean value.
-     *
-     * @param {boolean} isView The given isRowtablesView flag.
-     * @returns {void} Sets the next state to the isRowtablesView signal.
-     */
-    updateIsRowtablesView(isView: boolean): void {
-        this._isRowtablesViewSignal.set(isView);
-    }
 
     /**
      * Public method: updateSelectedEditionComplex.

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { fromEvent, Subject } from 'rxjs';
@@ -101,17 +101,10 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionIntroComponent.
      *
-     * It updates the edition state to indicate if the intro view is active,
-     * and initializes the scroll listener for the window.
+     * It initializes the scroll listener for the window.
      */
     constructor() {
-        this._editionStateService.updateIsIntroView(true);
-
         this._initScrollListener();
-
-        inject(DestroyRef).onDestroy(() => {
-            this._editionStateService.updateIsIntroView(false);
-        });
     }
 
     /**

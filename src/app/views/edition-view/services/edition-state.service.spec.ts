@@ -44,24 +44,6 @@ describe('EditionStateService (DONE)', () => {
         expect(editionStateService).toBeTruthy();
     });
 
-    it('... should have signal `_isIntroViewSignal`', () => {
-        expectToBe(isSignal(editionStateService['_isIntroViewSignal']), true);
-
-        expectToBe(editionStateService['_isIntroViewSignal'](), false);
-    });
-
-    it('... should have signal `_isPrefaceViewSignal`', () => {
-        expectToBe(isSignal(editionStateService['_isPrefaceViewSignal']), true);
-
-        expectToBe(editionStateService['_isPrefaceViewSignal'](), false);
-    });
-
-    it('... should have signal `_isRowtablesViewSignal`', () => {
-        expectToBe(isSignal(editionStateService['_isRowtablesViewSignal']), true);
-
-        expectToBe(editionStateService['_isRowtablesViewSignal'](), false);
-    });
-
     it('... should have signal `_selectedEditionComplexSignal`', () => {
         expectToBe(isSignal(editionStateService['_selectedEditionComplexSignal']), true);
 
@@ -77,24 +59,6 @@ describe('EditionStateService (DONE)', () => {
     it('... should have signal `_selectedEditionSectionSignal`', () => {
         expectToBe(isSignal(editionStateService['_selectedEditionSectionSignal']), true);
         expectToBe(editionStateService['_selectedEditionSectionSignal'](), null);
-    });
-
-    it('... should have signal `isIntroView`', () => {
-        expectToBe(isSignal(editionStateService.isIntroView), true);
-
-        expectToBe(editionStateService.isIntroView(), false);
-    });
-
-    it('... should have signal `isPrefaceView`', () => {
-        expectToBe(isSignal(editionStateService.isPrefaceView), true);
-
-        expectToBe(editionStateService.isPrefaceView(), false);
-    });
-
-    it('... should have signal `isRowtablesView`', () => {
-        expectToBe(isSignal(editionStateService.isRowtablesView), true);
-
-        expectToBe(editionStateService.isRowtablesView(), false);
     });
 
     it('... should have signal `selectedEditionComplex`', () => {
@@ -116,84 +80,6 @@ describe('EditionStateService (DONE)', () => {
     });
 
     describe('METHODS', () => {
-        describe('#updateIsIntroView()', () => {
-            it('... should have a method `updateIsIntroView`', () => {
-                expect(editionStateService.updateIsIntroView).toBeDefined();
-            });
-
-            it('... should update isIntroView to hold true', () => {
-                editionStateService.updateIsIntroView(true);
-
-                expectToBe(editionStateService.isIntroView(), true);
-            });
-
-            it('... should update isIntroView to hold false', () => {
-                editionStateService.updateIsIntroView(false);
-
-                expectToBe(editionStateService.isIntroView(), false);
-            });
-
-            it('... should not change value when updating with the same boolean', () => {
-                editionStateService.updateIsIntroView(true);
-                expectToBe(editionStateService.isIntroView(), true);
-
-                editionStateService.updateIsIntroView(true);
-                expectToBe(editionStateService.isIntroView(), true);
-            });
-        });
-
-        describe('#updateIsPrefaceView()', () => {
-            it('... should have a method `updateIsPrefaceView`', () => {
-                expect(editionStateService.updateIsPrefaceView).toBeDefined();
-            });
-
-            it('... should update isPrefaceView to hold true', () => {
-                editionStateService.updateIsPrefaceView(true);
-
-                expectToBe(editionStateService.isPrefaceView(), true);
-            });
-
-            it('... should update isPrefaceView to hold false', () => {
-                editionStateService.updateIsPrefaceView(false);
-
-                expectToBe(editionStateService.isPrefaceView(), false);
-            });
-
-            it('... should not change value when updating with the same boolean', () => {
-                editionStateService.updateIsPrefaceView(true);
-                expectToBe(editionStateService.isPrefaceView(), true);
-
-                editionStateService.updateIsPrefaceView(true);
-                expectToBe(editionStateService.isPrefaceView(), true);
-            });
-        });
-
-        describe('#updateIsRowtablesView()', () => {
-            it('... should have a method `updateIsRowtablesView`', () => {
-                expect(editionStateService.updateIsRowtablesView).toBeDefined();
-            });
-
-            it('... should update isRowtablesView to hold true', () => {
-                editionStateService.updateIsRowtablesView(true);
-
-                expectToBe(editionStateService.isRowtablesView(), true);
-            });
-
-            it('... should update isRowtablesView to hold false', () => {
-                editionStateService.updateIsRowtablesView(false);
-
-                expectToBe(editionStateService.isRowtablesView(), false);
-            });
-
-            it('... should not change value when updating with the same boolean', () => {
-                editionStateService.updateIsRowtablesView(true);
-                expectToBe(editionStateService.isRowtablesView(), true);
-
-                editionStateService.updateIsRowtablesView(true);
-                expectToBe(editionStateService.isRowtablesView(), true);
-            });
-        });
-
         describe('#updateSelectedEditionComplex()', () => {
             it('... should have a method `updateSelectedEditionComplex`', () => {
                 expect(editionStateService.updateSelectedEditionComplex).toBeDefined();
