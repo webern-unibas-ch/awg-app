@@ -170,6 +170,9 @@
                             <a href="#EDITION_ASSETS_DATA" title="src/app/views/edition-view/data/edition-assets.data.ts" ><b>EDITION_ASSETS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../edition-assets.data.ts)</a>
                         </li>
                         <li>
+                            <a href="#EDITION_ASSETS_FILES" title="src/app/views/edition-view/data/edition-assets.data.ts" ><b>EDITION_ASSETS_FILES</b>&nbsp;&nbsp;&nbsp;(src/.../edition-assets.data.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EDITION_GENERAL_LINKS" title="src/app/views/edition-view/edition-links.constants.ts" ><b>EDITION_GENERAL_LINKS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-links.constants.ts)</a>
                         </li>
                         <li>
@@ -278,7 +281,7 @@
                             <a href="#routedEditionReportComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report-routing.module.ts" ><b>routedEditionReportComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-report-routing.module.ts)</a>
                         </li>
                         <li>
-                            <a href="#routedEditionRowTablesComponents" title="src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables-routing.module.ts" ><b>routedEditionRowTablesComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-row-tables-routing.module.ts)</a>
+                            <a href="#routedEditionRowtablesComponents" title="src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables-routing.module.ts" ><b>routedEditionRowtablesComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-rowtables-routing.module.ts)</a>
                         </li>
                         <li>
                             <a href="#routedEditionSectionDetailComponents" title="src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail-routing.module.ts" ><b>routedEditionSectionDetailComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-section-detail-routing.module.ts)</a>
@@ -527,7 +530,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-125-g109b3ba59&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-133-ga2ba9d117&#x27;</code>
                     </td>
                 </tr>
 
@@ -559,7 +562,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-07-29&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-07-30&#x27;</code>
                     </td>
                 </tr>
 
@@ -1019,7 +1022,7 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
 
                     </td>
                 </tr>
@@ -1029,25 +1032,36 @@
     /**
      * The base route to the edition assets JSON files.
      */
-    BASE_ROUTE: &#x27;assets/data/edition&#x27;,
+    BASE_ROUTE: &#x27;assets/data&#x27;,
 
     /**
      * The names of the edition assets JSON files.
      */
-    FILES: {
-        complexesFile: &#x27;edition-complexes.json&#x27;,
-        folioConvoluteFile: &#x27;folio-convolute.json&#x27;,
-        graphFile: &#x27;graph.json&#x27;,
-        introFile: &#x27;intro.json&#x27;,
-        prefaceFile: &#x27;preface.json&#x27;,
-        rowTablesFile: &#x27;row-tables.json&#x27;,
-        sourceListFile: &#x27;source-list.json&#x27;,
-        sourceDescriptionListFile: &#x27;source-description.json&#x27;,
-        sourceEvaluationListFile: &#x27;source-evaluation.json&#x27;,
-        svgSheetsFile: &#x27;svg-sheets.json&#x27;,
-        textcriticsFile: &#x27;textcritics.json&#x27;,
-    },
-} as const</code>
+
+    /**
+     * Configuration object for the edition assets data.
+     */
+    CONFIG: {
+        // Static data assets
+        preface: { file: EDITION_ASSETS_FILES.prefaceFile, fallback: new PrefaceList() },
+        rowtables: { file: EDITION_ASSETS_FILES.rowtablesFile, fallback: new RowtablesList() },
+        // Complex data assets
+        folioConvolute: { file: EDITION_ASSETS_FILES.folioConvoluteFile, fallback: new FolioConvoluteList() },
+        graph: { file: EDITION_ASSETS_FILES.graphFile, fallback: new GraphList() },
+        intro: { file: EDITION_ASSETS_FILES.introFile, fallback: new IntroList() },
+        sourceList: { file: EDITION_ASSETS_FILES.sourceListFile, fallback: new SourceList() },
+        sourceDescription: {
+            file: EDITION_ASSETS_FILES.sourceDescriptionListFile,
+            fallback: new SourceDescriptionList(),
+        },
+        sourceEvaluation: {
+            file: EDITION_ASSETS_FILES.sourceEvaluationListFile,
+            fallback: new SourceEvaluationList(),
+        },
+        svgSheets: { file: EDITION_ASSETS_FILES.svgSheetsFile, fallback: new EditionSvgSheetList() },
+        textcritics: { file: EDITION_ASSETS_FILES.textcriticsFile, fallback: new TextcriticsList() },
+    } satisfies Record&lt;EditionDataAssetsKeys, { file: string; fallback: unknown }&gt;,
+}</code>
                     </td>
                 </tr>
 
@@ -1056,6 +1070,51 @@
                     <div class="io-description"><p>Object constant: EDITION_ASSETS_DATA.</p>
 <p>It is used in the context of the edition view
 to store data of the edition assets.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EDITION_ASSETS_FILES"></a>
+                    <span class="name">
+                        <span ><b>EDITION_ASSETS_FILES</b></span>
+                        <a href="#EDITION_ASSETS_FILES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    folioConvoluteFile: &#x27;folio-convolute.json&#x27;,
+    graphFile: &#x27;graph.json&#x27;,
+    introFile: &#x27;intro.json&#x27;,
+    prefaceFile: &#x27;preface.json&#x27;,
+    rowtablesFile: &#x27;rowtables.json&#x27;,
+    sourceListFile: &#x27;source-list.json&#x27;,
+    sourceDescriptionListFile: &#x27;source-description.json&#x27;,
+    sourceEvaluationListFile: &#x27;source-evaluation.json&#x27;,
+    svgSheetsFile: &#x27;svg-sheets.json&#x27;,
+    textcriticsFile: &#x27;textcritics.json&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object constant: EDITION_ASSETS_FILES.</p>
+<p>It is used in the context of the edition view
+to store the names of the edition assets JSON files.</p>
 </div>
                 </td>
             </tr>
@@ -2864,15 +2923,15 @@ It automatically handles request completion, errors, and cancellations.</p>
     },
 
     /**
-     * Test helper data constant: mockRowTablesData.
+     * Test helper data constant: mockRowtablesData.
      *
-     * It provides a mocked rowTablesData object.
+     * It provides a mocked rowtablesData object.
      */
-    mockRowTablesData: {
-        rowTables: [
+    mockRowtablesData: {
+        rowtables: [
             { route: &#x27;/enrt1&#x27;, short: &#x27;En RT1&#x27;, full: &#x27;Enabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
             { route: &#x27;/enrt2&#x27;, short: &#x27;En RT2&#x27;, full: &#x27;Enabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
-            { route: &#x27;/disrt1&#x27;, short: &#x27;Dis RT1&#x27;, full: &#x27;Diabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
+            { route: &#x27;/disrt1&#x27;, short: &#x27;Dis RT1&#x27;, full: &#x27;Disabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
             { route: &#x27;/disrt2&#x27;, short: &#x27;Dis RT2&#x27;, full: &#x27;Disabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
         ],
     },
@@ -4435,16 +4494,16 @@ It automatically handles request completion, errors, and cancellations.</p>
         </tbody>
     </table>
 </section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-row-tables/edition-row-tables-routing.module.ts</h3>
+    <h3>src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables-routing.module.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="routedEditionRowTablesComponents"></a>
+                    <a name="routedEditionRowtablesComponents"></a>
                     <span class="name">
-                        <span ><b>routedEditionRowTablesComponents</b></span>
-                        <a href="#routedEditionRowTablesComponents"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>routedEditionRowtablesComponents</b></span>
+                        <a href="#routedEditionRowtablesComponents"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -4456,14 +4515,14 @@ It automatically handles request completion, errors, and cancellations.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[EditionRowTablesComponent]</code>
+                        <i>Default value : </i><code>[EditionRowtablesComponent]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Routed components of the <a href="../modules/EditionRowTablesModule.html">EditionRowTablesModule</a>:
-<a href="../components/EditionRowTablesComponent.html">EditionRowTablesComponent</a>.</p>
+                    <div class="io-description"><p>Routed components of the <a href="../modules/EditionRowtablesModule.html">EditionRowtablesModule</a>:
+<a href="../components/EditionRowtablesComponent.html">EditionRowtablesComponent</a>.</p>
 </div>
                 </td>
             </tr>

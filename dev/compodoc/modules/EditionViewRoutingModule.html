@@ -178,11 +178,16 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                     )&quot;,
             },
             {
-                path: &#x27;row-tables&#x27;,
+                path: &#x27;rowtables&#x27;,
                 loadChildren: () &#x3D;&gt;
-                    &quot;import(&#x27;./edition-outlets/edition-row-tables/edition-row-tables.module&#x27;).then(\n\
-                        m &#x3D;&gt; m.EditionRowTablesModule\n\
+                    &quot;import(&#x27;./edition-outlets/edition-rowtables/edition-rowtables.module&#x27;).then(\n\
+                        m &#x3D;&gt; m.EditionRowtablesModule\n\
                     )&quot;,
+            },
+            {
+                path: &#x27;row-tables&#x27;,
+                redirectTo: &#x27;rowtables&#x27;,
+                pathMatch: &#x27;full&#x27;,
             },
             {
                 // Overview of series.

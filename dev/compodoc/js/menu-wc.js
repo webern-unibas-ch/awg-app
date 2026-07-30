@@ -289,24 +289,24 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionReportRoutingModule.html" data-type="entity-link" >EditionReportRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionRowTablesModule.html" data-type="entity-link" >EditionRowTablesModule</a>
+                                <a href="modules/EditionRowtablesModule.html" data-type="entity-link" >EditionRowtablesModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' : 'data-bs-target="#xs-components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' }>
+                                            'data-bs-target="#components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' : 'data-bs-target="#xs-components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' :
-                                            'id="xs-components-links-module-EditionRowTablesModule-b560cf4d406a0a9b5791854105ffc5088b98d520daf78ce88c1cd937d66ceb9d689903d6cc4f4e2ca20f4afa959e0b1d58cfbc8b4714c1ebfc8a461f375df38a"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' :
+                                            'id="xs-components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' }>
                                             <li class="link">
-                                                <a href="components/EditionRowTablesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionRowTablesComponent</a>
+                                                <a href="components/EditionRowtablesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionRowtablesComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionRowTablesRoutingModule.html" data-type="entity-link" >EditionRowTablesRoutingModule</a>
+                                <a href="modules/EditionRowtablesRoutingModule.html" data-type="entity-link" >EditionRowtablesRoutingModule</a>
                             </li>
                             <li class="link">
                                 <a href="modules/EditionSectionDetailModule.html" data-type="entity-link" >EditionSectionDetailModule</a>
@@ -964,12 +964,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionRouteConstant.html" data-type="entity-link" >EditionRouteConstant</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionRowTables.html" data-type="entity-link" >EditionRowTables</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionRowTablesList.html" data-type="entity-link" >EditionRowTablesList</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EditionSectionLink.html" data-type="entity-link" >EditionSectionLink</a>
                             </li>
                             <li class="link">
@@ -1094,6 +1088,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/RouterLinkButton.html" data-type="entity-link" >RouterLinkButton</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/Rowtables.html" data-type="entity-link" >Rowtables</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/RowtablesList.html" data-type="entity-link" >RowtablesList</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SliderConfig.html" data-type="entity-link" >SliderConfig</a>
@@ -1256,6 +1256,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionSvgOverlayService.html" data-type="entity-link" >EditionSvgOverlayService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionViewService.html" data-type="entity-link" >EditionViewService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/FolioService.html" data-type="entity-link" >FolioService</a>
                                 </li>
                                 <li class="link">
@@ -1311,6 +1314,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionComplexJsonPersonRef.html" data-type="entity-link" >EditionComplexJsonPersonRef</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionDataAssetsError.html" data-type="entity-link" >EditionDataAssetsError</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
                             </li>
                             <li class="link">
@@ -1342,6 +1348,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionSvgOverlayState.html" data-type="entity-link" >EditionSvgOverlayState</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionViewDataTypeMapping.html" data-type="entity-link" >EditionViewDataTypeMapping</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FullscreenToggleConfig.html" data-type="entity-link" >FullscreenToggleConfig</a>

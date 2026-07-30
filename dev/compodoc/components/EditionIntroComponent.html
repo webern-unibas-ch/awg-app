@@ -233,11 +233,6 @@ of the edition view of the app.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_editionDataService" >_editionDataService</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionOutlineService" >_editionOutlineService</a>
                             </li>
                             <li>
@@ -254,16 +249,6 @@ of the edition view of the app.</p>
                                 <a href="#currentLanguage" >currentLanguage</a>
                             </li>
                             <li>
-                                <a href="#editionComplex" >editionComplex</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#editionIntroData" >editionIntroData</a>
-                            </li>
-                            <li>
-                                <a href="#errorObject" >errorObject</a>
-                            </li>
-                            <li>
                                     <span class="modifier"></span>
                                 <a href="#modal" >modal</a>
                             </li>
@@ -271,9 +256,17 @@ of the edition view of the app.</p>
                                 <a href="#notesLabels" >notesLabels</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedEditionComplex" >selectedEditionComplex</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Protected</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#UTILS" >UTILS</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#viewData" >viewData</a>
                             </li>
                         </ul>
                     </td>
@@ -290,14 +283,6 @@ of the edition view of the app.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_extractUrlSegments" >_extractUrlSegments</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_fetchAndFilterIntroData" >_fetchAndFilterIntroData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_filterSectionIntroDataById" >_filterSectionIntroDataById</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -380,13 +365,15 @@ of the edition view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:143</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:99</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionIntroComponent.</p>
+<p>It updates the edition state to indicate if the intro view is active,
+and initializes the scroll listener for the window.</p>
 </div>
                     </td>
                 </tr>
@@ -425,8 +412,8 @@ of the edition view of the app.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="294"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:294</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -485,211 +472,6 @@ of the edition view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_fetchAndFilterIntroData"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_fetchAndFilterIntroData</b></span>
-                        <a href="#_fetchAndFilterIntroData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_fetchAndFilterIntroData(seriesRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, sectionRoute: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, complex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex | null</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="327"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:327</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _fetchAndFilterIntroData.</p>
-<p>It fetches the intro data and, if needed,
-filters it by a given block id for the edition complex.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>seriesRoute</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given series route.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>sectionRoute</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given section route.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>complex</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex | null</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given edition complex.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The filtered intro data.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_filterSectionIntroDataById"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_filterSectionIntroDataById</b></span>
-                        <a href="#_filterSectionIntroDataById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_filterSectionIntroDataById(sectionIntroData: <a href="../classes/IntroList.html" target="_self">IntroList</a>, blockId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="359"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:359</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _filterSectionIntroDataById.</p>
-<p>It filters the section intro data by a given block id.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>sectionIntroData</td>
-                                            <td>
-                                                            <code><a href="../classes/IntroList.html" target="_self" >IntroList</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given section intro data.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>blockId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given block id.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/IntroList.html" target="_self" >IntroList</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The filtered section intro data.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_initScrollListener"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -708,8 +490,8 @@ filters it by a given block id for the edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="376"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:376</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:284</a></div>
                         </td>
                     </tr>
 
@@ -754,8 +536,8 @@ filters it by a given block id for the edition complex.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="393"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:393</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="301"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:301</a></div>
                         </td>
                     </tr>
 
@@ -833,8 +615,8 @@ and if the URL contains &#39;intro&#39;.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="407"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:407</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:315</a></div>
                         </td>
                     </tr>
 
@@ -943,8 +725,8 @@ and if the URL contains &#39;intro&#39;.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="423"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:423</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:333</a></div>
                         </td>
                     </tr>
 
@@ -1024,8 +806,8 @@ on window scroll.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="457"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:457</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="367"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:367</a></div>
                         </td>
                     </tr>
 
@@ -1117,8 +899,8 @@ and the introView in the EditionStateService.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="195"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:195</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -1161,8 +943,8 @@ and the introView in the EditionStateService.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="181"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:181</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:144</a></div>
                         </td>
                     </tr>
 
@@ -1203,8 +985,8 @@ when destroying the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="167"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:167</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -1244,8 +1026,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="217"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:217</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="178"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:178</a></div>
                         </td>
                     </tr>
 
@@ -1320,8 +1102,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="232"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:232</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:193</a></div>
                         </td>
                     </tr>
 
@@ -1396,8 +1178,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="244"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:244</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:205</a></div>
                         </td>
                     </tr>
 
@@ -1472,8 +1254,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="259"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:259</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:220</a></div>
                         </td>
                     </tr>
 
@@ -1548,8 +1330,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="276"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:276</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:237</a></div>
                         </td>
                     </tr>
 
@@ -1637,7 +1419,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:143</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -1645,46 +1427,6 @@ within the context of an edition complex identified by the provided complexId.</
                 <td class="col-md-4">
                     <div class="io-description"><p>Private readonly variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_editionDataService"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_editionDataService</b></span>
-                        <a href="#_editionDataService"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>inject(EditionDataService)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:40</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _editionDataService.</p>
-<p>It keeps the instance of the injected EditionDataService.</p>
 </div>
                 </td>
             </tr>
@@ -1717,7 +1459,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -1757,7 +1499,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -1797,7 +1539,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -1835,7 +1577,7 @@ within the context of an edition complex identified by the provided complexId.</
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -1843,146 +1585,6 @@ within the context of an edition complex identified by the provided complexId.</
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: currentLanguage.</p>
 <p>It keeps the current language of the edition intro: 0 for German, 1 for English.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editionComplex"></a>
-                    <span class="name">
-                        <span ><b>editionComplex</b></span>
-                        <a href="#editionComplex"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:85</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: editionComplex.</p>
-<p>It keeps the information about the current edition complex.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editionIntroData"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>editionIntroData</b></span>
-                        <a href="#editionIntroData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>toSignal(
-        toObservable(
-            computed(() &#x3D;&gt; ({
-                series: this._editionStateService.selectedEditionSeries(),
-                section: this._editionStateService.selectedEditionSection(),
-                complex: this._editionStateService.selectedEditionComplex(),
-            }))
-        ).pipe(
-            switchMap(({ series, section, complex }) &#x3D;&gt; {
-                if (!series || !section) {
-                    return observableOf(null);
-                }
-
-                // Check if the complex belongs to the current series and section
-                const isComplexValidForSection &#x3D;
-                    complex &amp;&amp;
-                    complex.pubStatement?.series?.route &#x3D;&#x3D;&#x3D; series.series.route &amp;&amp;
-                    complex.pubStatement?.section?.route &#x3D;&#x3D;&#x3D; section.section.route;
-
-                const activeComplex &#x3D; isComplexValidForSection ? complex : null;
-
-                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex);
-            }),
-            catchError(err &#x3D;&gt; {
-                this.errorObject &#x3D; err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    )</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:100</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Readonly signal: editionIntroData.</p>
-<p>It holds the introductory data, reactively computed and fetched
-based on the selected series, section, and complex.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="errorObject"></a>
-                    <span class="name">
-                        <span ><b>errorObject</b></span>
-                        <a href="#errorObject"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>null</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>null</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:92</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: errorObject.</p>
-<p>It keeps an errorObject for the service calls.</p>
 </div>
                 </td>
             </tr>
@@ -2059,7 +1661,7 @@ based on the selected series, section, and complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -2067,6 +1669,45 @@ based on the selected series, section, and complex.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: notesLabels.</p>
 <p>It keeps the labels for the notes in the edition intro.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedEditionComplex"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedEditionComplex</b></span>
+                        <a href="#selectedEditionComplex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._editionStateService.selectedEditionComplex</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: selectedEditionComplex.</p>
+<p>It holds the state of the selected edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -2099,7 +1740,7 @@ based on the selected series, section, and complex.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:136</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -2107,6 +1748,45 @@ based on the selected series, section, and complex.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Protected readonly variable: UTILS.</p>
 <p>It keeps the reference to the <a href="../miscellaneous/variables.html#UTILS">UTILS</a> methods.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewData"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>viewData</b></span>
+                        <a href="#viewData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionViewService).introViewData</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: introData.</p>
+<p>It holds the state of the intro view data.</p>
 </div>
                 </td>
             </tr>
@@ -2135,7 +1815,7 @@ based on the selected series, section, and complex.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:157</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:122</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -2158,18 +1838,18 @@ based on the selected series, section, and complex.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
-import { toObservable, toSignal } from &#x27;@angular/core/rxjs-interop&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { NavigationEnd, NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 
-import { fromEvent, Observable, of as observableOf, Subject } from &#x27;rxjs&#x27;;
-import { catchError, map, switchMap, takeUntil, throttleTime } from &#x27;rxjs/operators&#x27;;
+import { fromEvent, Subject } from &#x27;rxjs&#x27;;
+import { takeUntil, throttleTime } from &#x27;rxjs/operators&#x27;;
 
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
 import { UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, IntroList } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionDataService, EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
+import { EditionOutlineSection, EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionOutlineService, EditionStateService } from &#x27;@awg-views/edition-view/services&#x27;;
+import { EditionViewService } from &#x27;@awg-views/edition-view/services/edition-view.service&#x27;;
 
 /**
  * The EditionIntro component.
@@ -2193,13 +1873,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     @ViewChild(&#x27;modal&#x27;, { static: true }) modal: ModalComponent;
 
     /**
-     * Private readonly injection variable: _editionDataService.
-     *
-     * It keeps the instance of the injected EditionDataService.
-     */
-    private readonly _editionDataService &#x3D; inject(EditionDataService);
-
-    /**
      * Private readonly injection variable: _editionOutlineService.
      *
      * It keeps the instance of the injected EditionOutlineService.
@@ -2221,6 +1894,20 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _router &#x3D; inject(Router);
 
     /**
+     * Private readonly variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS &#x3D; UTILS;
+
+    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition intro: 0 for German, 1 for English.
@@ -2238,75 +1925,33 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ]);
 
     /**
-     * Public variable: editionComplex.
+     * Readonly signal: selectedEditionComplex.
      *
-     * It keeps the information about the current edition complex.
+     * It holds the state of the selected edition complex.
      */
-    editionComplex: EditionComplex;
+    readonly selectedEditionComplex &#x3D; this._editionStateService.selectedEditionComplex;
 
     /**
-     * Public variable: errorObject.
+     * Readonly signal: introData.
      *
-     * It keeps an errorObject for the service calls.
+     * It holds the state of the intro view data.
      */
-    errorObject &#x3D; null;
-
-    /**
-     * Readonly signal: editionIntroData.
-     *
-     * It holds the introductory data, reactively computed and fetched
-     * based on the selected series, section, and complex.
-     */
-    readonly editionIntroData &#x3D; toSignal(
-        toObservable(
-            computed(() &#x3D;&gt; ({
-                series: this._editionStateService.selectedEditionSeries(),
-                section: this._editionStateService.selectedEditionSection(),
-                complex: this._editionStateService.selectedEditionComplex(),
-            }))
-        ).pipe(
-            switchMap(({ series, section, complex }) &#x3D;&gt; {
-                if (!series || !section) {
-                    return observableOf(null);
-                }
-
-                // Check if the complex belongs to the current series and section
-                const isComplexValidForSection &#x3D;
-                    complex &amp;&amp;
-                    complex.pubStatement?.series?.route &#x3D;&#x3D;&#x3D; series.series.route &amp;&amp;
-                    complex.pubStatement?.section?.route &#x3D;&#x3D;&#x3D; section.section.route;
-
-                const activeComplex &#x3D; isComplexValidForSection ? complex : null;
-
-                return this._fetchAndFilterIntroData(series.series.route, section.section.route, activeComplex);
-            }),
-            catchError(err &#x3D;&gt; {
-                this.errorObject &#x3D; err;
-                return observableOf(undefined);
-            })
-        ),
-        { initialValue: null }
-    );
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS &#x3D; UTILS;
-
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    readonly viewData &#x3D; inject(EditionViewService).introViewData;
 
     /**
      * Constructor of the EditionIntroComponent.
+     *
+     * It updates the edition state to indicate if the intro view is active,
+     * and initializes the scroll listener for the window.
      */
     constructor() {
+        this._editionStateService.updateIsIntroView(true);
+
         this._initScrollListener();
+
+        inject(DestroyRef).onDestroy(() &#x3D;&gt; {
+            this._editionStateService.updateIsIntroView(false);
+        });
     }
 
     /**
@@ -2325,8 +1970,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this._editionStateService.updateIsIntroView(true);
-
         this.listenToRouteChanges();
     }
 
@@ -2341,8 +1984,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ngOnDestroy() {
         this._destroyed$.next(true);
         this._destroyed$.complete();
-
-        this._editionStateService.updateIsIntroView(false);
     }
 
     /**
@@ -2474,59 +2115,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Private method: _fetchAndFilterIntroData.
-     *
-     * It fetches the intro data and, if needed,
-     * filters it by a given block id for the edition complex.
-     *
-     * @param {string} seriesRoute The given series route.
-     * @param {string} sectionRoute The given section route.
-     * @param {EditionComplex} complex The given edition complex.
-     * @returns {Observable&lt;IntroList&gt;} The filtered intro data.
-     */
-    private _fetchAndFilterIntroData(
-        seriesRoute: string,
-        sectionRoute: string,
-        complex: EditionComplex | null
-    ): Observable&lt;IntroList&gt; {
-        return this._editionDataService.getEditionSectionIntroData(seriesRoute, sectionRoute).pipe(
-            switchMap(sectionIntroData &#x3D;&gt; {
-                if (complex) {
-                    this.editionComplex &#x3D; complex;
-                    return this._editionDataService.getEditionComplexIntroData(this.editionComplex).pipe(
-                        map(complexIntroData &#x3D;&gt; {
-                            const blockId &#x3D; complexIntroData.intro[0].id;
-                            return this._filterSectionIntroDataById(sectionIntroData, blockId);
-                        })
-                    );
-                } else {
-                    this.editionComplex &#x3D; undefined;
-                    return observableOf(sectionIntroData);
-                }
-            })
-        );
-    }
-
-    /**
-     * Private method: _filterSectionIntroDataById.
-     *
-     * It filters the section intro data by a given block id.
-     *
-     * @param {IntroList} sectionIntroData The given section intro data.
-     * @param {string} blockId The given block id.
-     * @returns {IntroList} The filtered section intro data.
-     */
-    private _filterSectionIntroDataById(sectionIntroData: IntroList, blockId: string): IntroList {
-        return {
-            ...sectionIntroData,
-            intro: sectionIntroData.intro.map(section &#x3D;&gt; ({
-                ...section,
-                content: section.content.filter(contentBlock &#x3D;&gt; contentBlock.blockId &#x3D;&#x3D;&#x3D; blockId),
-            })),
-        };
-    }
-
-    /**
      * Private method: _initScrollListener.
      *
      * It initializes the scroll listener for the window.
@@ -2565,7 +2153,9 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      * @returns {void} Navigates to the target route.
      */
     private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute &#x3D; complexId ? &#x60;/edition/complex/${complexId}&#x60; : this.editionComplex.baseRoute;
+        const complexRoute &#x3D; complexId
+            ? &#x60;/edition/complex/${complexId}&#x60;
+            : (this.selectedEditionComplex()?.baseRoute ?? &#x27;/edition/series&#x27;);
 
         this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
@@ -2633,50 +2223,51 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     &lt;awg-modal #modal /&gt;
 
     &lt;!-- intro --&gt;
-    @if (editionIntroData(); as editionIntroData) {
-        &lt;div class&#x3D;&quot;awg-edition-intro-view p-5 border rounded-3&quot;&gt;
-            &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
-                @if (UTILS.isEmptyArray(editionIntroData?.intro?.[currentLanguage]?.content)) {
-                    &lt;awg-edition-intro-placeholder
-                        class&#x3D;&quot;col-12&quot;
-                        [editionComplex]&#x3D;&quot;editionComplex&quot;
-                        [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot; /&gt;
-                } @else {
-                    @if (editionComplex) {
-                        &lt;awg-edition-intro-partial-disclaimer
-                            class&#x3D;&quot;col-12 col-xl-6&quot;
-                            [editionComplex]&#x3D;&quot;editionComplex&quot;
-                            [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot;
-                            [editionRoute]&#x3D;&quot;editionRouteConstants.EDITION.route&quot;
-                            [seriesRoute]&#x3D;&quot;editionRouteConstants.SERIES.route&quot;
-                            [sectionRoute]&#x3D;&quot;editionRouteConstants.SECTION.route&quot;
-                            [introRoute]&#x3D;&quot;editionRouteConstants.EDITION_INTRO.route&quot; /&gt;
-                    }
-                    &lt;awg-edition-intro-content
-                        class&#x3D;&quot;col-12 col-xl-10&quot;
-                        [introBlockContent]&#x3D;&quot;editionIntroData.intro[currentLanguage].content&quot;
-                        [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
-                        (navigateToIntroFragmentRequest)&#x3D;&quot;onIntroFragmentNavigate($event)&quot;
-                        (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
-                        (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
-                        (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot; /&gt;
-
-                    &lt;awg-edition-intro-nav
-                        class&#x3D;&quot;col-12 col-xl-2 d-none d-xl-block&quot;
-                        [introBlockContent]&#x3D;&quot;editionIntroData.intro[currentLanguage].content&quot;
-                        [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
-                        [currentLanguage]&#x3D;&quot;currentLanguage&quot;
-                        (languageChangeRequest)&#x3D;&quot;onLanguageSet($event)&quot; /&gt;
-                }
-            &lt;/div&gt;
-        &lt;/div&gt;
-    } @else {
-        &lt;!-- error message --&gt;
-        @if (errorObject) {
+    @if (viewData(); as view) {
+        @if (view.error; as errorObject) {
             &lt;awg-alert-error [errorObject]&#x3D;&quot;errorObject&quot; /&gt;
-        } @else {
-            &lt;!-- loading spinner fallback --&gt;
+        } @else if (view.isLoading) {
             &lt;awg-twelve-tone-spinner /&gt;
+        } @else {
+            @let complex &#x3D; selectedEditionComplex();
+            @let intro &#x3D; view.data.introData.intro;
+
+            &lt;div class&#x3D;&quot;awg-edition-intro-view p-5 border rounded-3&quot;&gt;
+                &lt;div class&#x3D;&quot;row justify-content-center&quot;&gt;
+                    @if (UTILS.isEmptyArray(intro?.[currentLanguage]?.content)) {
+                        &lt;awg-edition-intro-placeholder
+                            class&#x3D;&quot;col-12&quot;
+                            [editionComplex]&#x3D;&quot;complex&quot;
+                            [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot; /&gt;
+                    } @else {
+                        @if (complex) {
+                            &lt;awg-edition-intro-partial-disclaimer
+                                class&#x3D;&quot;col-12 col-xl-6&quot;
+                                [editionComplex]&#x3D;&quot;complex&quot;
+                                [editionLabel]&#x3D;&quot;editionRouteConstants.EDITION.short&quot;
+                                [editionRoute]&#x3D;&quot;editionRouteConstants.EDITION.route&quot;
+                                [seriesRoute]&#x3D;&quot;editionRouteConstants.SERIES.route&quot;
+                                [sectionRoute]&#x3D;&quot;editionRouteConstants.SECTION.route&quot;
+                                [introRoute]&#x3D;&quot;editionRouteConstants.EDITION_INTRO.route&quot; /&gt;
+                        }
+                        &lt;awg-edition-intro-content
+                            class&#x3D;&quot;col-12 col-xl-10&quot;
+                            [introBlockContent]&#x3D;&quot;intro[currentLanguage].content&quot;
+                            [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
+                            (navigateToIntroFragmentRequest)&#x3D;&quot;onIntroFragmentNavigate($event)&quot;
+                            (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
+                            (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
+                            (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot; /&gt;
+
+                        &lt;awg-edition-intro-nav
+                            class&#x3D;&quot;col-12 col-xl-2 d-none d-xl-block&quot;
+                            [introBlockContent]&#x3D;&quot;intro[currentLanguage].content&quot;
+                            [notesLabel]&#x3D;&quot;notesLabels.get(currentLanguage)&quot;
+                            [currentLanguage]&#x3D;&quot;currentLanguage&quot;
+                            (languageChangeRequest)&#x3D;&quot;onLanguageSet($event)&quot; /&gt;
+                    }
+                &lt;/div&gt;
+            &lt;/div&gt;
         }
     }
 &lt;/div&gt;
@@ -2715,8 +2306,8 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal />    <!-- intro -->    @if (editionIntroData(); as editionIntroData) {        <div class="awg-edition-intro-view p-5 border rounded-3">            <div class="row justify-content-center">                @if (UTILS.isEmptyArray(editionIntroData?.intro?.[currentLanguage]?.content)) {                    <awg-edition-intro-placeholder                        class="col-12"                        [editionComplex]="editionComplex"                        [editionLabel]="editionRouteConstants.EDITION.short" />                } @else {                    @if (editionComplex) {                        <awg-edition-intro-partial-disclaimer                            class="col-12 col-xl-6"                            [editionComplex]="editionComplex"                            [editionLabel]="editionRouteConstants.EDITION.short"                            [editionRoute]="editionRouteConstants.EDITION.route"                            [seriesRoute]="editionRouteConstants.SERIES.route"                            [sectionRoute]="editionRouteConstants.SECTION.route"                            [introRoute]="editionRouteConstants.EDITION_INTRO.route" />                    }                    <awg-edition-intro-content                        class="col-12 col-xl-10"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                        (openModalRequest)="onModalOpen($event)"                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />                    <awg-edition-intro-nav                        class="col-12 col-xl-2 d-none d-xl-block"                        [introBlockContent]="editionIntroData.intro[currentLanguage].content"                        [notesLabel]="notesLabels.get(currentLanguage)"                        [currentLanguage]="currentLanguage"                        (languageChangeRequest)="onLanguageSet($event)" />                }            </div>        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <awg-alert-error [errorObject]="errorObject" />        } @else {            <!-- loading spinner fallback -->            <awg-twelve-tone-spinner />        }    }</div></div>'
-    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopButtonComponent', 'selector': 'awg-scroll-to-top-button'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal />    <!-- intro -->    @if (viewData(); as view) {        @if (view.error; as errorObject) {            <awg-alert-error [errorObject]="errorObject" />        } @else if (view.isLoading) {            <awg-twelve-tone-spinner />        } @else {            @let complex = selectedEditionComplex();            @let intro = view.data.introData.intro;            <div class="awg-edition-intro-view p-5 border rounded-3">                <div class="row justify-content-center">                    @if (UTILS.isEmptyArray(intro?.[currentLanguage]?.content)) {                        <awg-edition-intro-placeholder                            class="col-12"                            [editionComplex]="complex"                            [editionLabel]="editionRouteConstants.EDITION.short" />                    } @else {                        @if (complex) {                            <awg-edition-intro-partial-disclaimer                                class="col-12 col-xl-6"                                [editionComplex]="complex"                                [editionLabel]="editionRouteConstants.EDITION.short"                                [editionRoute]="editionRouteConstants.EDITION.route"                                [seriesRoute]="editionRouteConstants.SERIES.route"                                [sectionRoute]="editionRouteConstants.SECTION.route"                                [introRoute]="editionRouteConstants.EDITION_INTRO.route" />                        }                        <awg-edition-intro-content                            class="col-12 col-xl-10"                            [introBlockContent]="intro[currentLanguage].content"                            [notesLabel]="notesLabels.get(currentLanguage)"                            (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"                            (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                            (openModalRequest)="onModalOpen($event)"                            (selectSvgSheetRequest)="onSvgSheetSelect($event)" />                        <awg-edition-intro-nav                            class="col-12 col-xl-2 d-none d-xl-block"                            [introBlockContent]="intro[currentLanguage].content"                            [notesLabel]="notesLabels.get(currentLanguage)"                            [currentLanguage]="currentLanguage"                            (languageChangeRequest)="onLanguageSet($event)" />                    }                </div>            </div>        }    }</div></div>'
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopButtonComponent', 'selector': 'awg-scroll-to-top-button'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};
 </script>
