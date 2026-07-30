@@ -18,7 +18,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
 import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
-import { EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
@@ -59,12 +59,10 @@ describe('EditionPrefaceComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockEditionGlyphService: Partial<EditionGlyphService>;
-    let editionStateService: EditionStateService;
 
     let getGlyphSpy: Spy;
     let setLanguageSpy: Spy;
     let editionGlyphServiceGetGlyphSpy: Spy;
-    let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'preface'>>;
     let expectedViewDataContent: EditionViewDataContent<'preface'>;
@@ -97,12 +95,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionStateService = TestBed.inject(EditionStateService);
-
         // Service spies
         editionGlyphServiceGetGlyphSpy = vi.spyOn(mockEditionGlyphService, 'getGlyph');
-        editionStateServiceUpdateIsPrefaceViewSpy = vi.spyOn(editionStateService, 'updateIsPrefaceView');
 
         // Test data
         expectedCurrentLanguage = 0;
@@ -143,21 +137,6 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
         it('... should not have called EditionGlyphService', () => {
             expectSpyCall(editionGlyphServiceGetGlyphSpy, 0);
-        });
-
-        it('... should have called `EditionStateService` and updated `isPrefaceView` to true', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 1, true);
-
-            expectToBe(editionStateService.isPrefaceView(), true);
-        });
-
-        it('... should reset `isPrefaceView` to false on destroy', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 1, true);
-
-            fixture.destroy();
-
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 2, false);
-            expectToBe(editionStateService.isPrefaceView(), false);
         });
 
         describe('VIEW', () => {

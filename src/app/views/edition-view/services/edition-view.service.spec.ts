@@ -1,11 +1,10 @@
 import { isSignal, signal, WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { NavigationEnd, Router, Event as RouterEvent } from '@angular/router';
+import { provideRouter } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
-
-import { Subject } from 'rxjs';
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
@@ -22,7 +21,7 @@ describe('EditionViewService', () => {
 
     let mockEditionDataService: Partial<EditionDataService>;
 
-    let activeViewSpy: Spy;
+    let currentViewNameSpy: Spy;
     let buildViewDataSpy: Spy;
     let getErrorSpy: Spy;
     let getFallbackForInactiveViewSpy: Spy;
@@ -53,7 +52,7 @@ describe('EditionViewService', () => {
                 EditionViewService,
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: LoadingService, useValue: { isLoading: mockIsLoadingSignal.asReadonly() } },
-                Router,
+                provideRouter([]),
             ],
         });
 
@@ -61,7 +60,7 @@ describe('EditionViewService', () => {
         service = TestBed.inject(EditionViewService);
 
         // Spies
-        activeViewSpy = vi.spyOn(service, 'activeView');
+        currentViewNameSpy = vi.spyOn(service as any, '_currentViewName');
         buildViewDataSpy = vi.spyOn(service as any, '_buildViewData');
         getFallbackForInactiveViewSpy = vi.spyOn(service as any, '_getFallbackForInactiveView');
         getUniqueAssetKeysSpy = vi.spyOn(service as any, '_getUniqueAssetKeys');
@@ -77,68 +76,115 @@ describe('EditionViewService', () => {
         expect(service).toBeTruthy();
     });
 
-    describe('#activeView()', () => {
-        let router: Router;
-        let routerEventsSubject: Subject<RouterEvent>;
+    describe('#_currentViewName()', () => {
+        let harness: RouterTestingHarness;
 
-        beforeEach(() => {
-            router = TestBed.inject(Router);
-            routerEventsSubject = new Subject<RouterEvent>();
-
-            vi.spyOn(router, 'events', 'get').mockReturnValue(routerEventsSubject as any);
-        });
-
-        const createFreshServiceWithUrl = (url: string): EditionViewService => {
+        const createFreshServiceWithUrl = async (url: string): Promise<EditionViewService> => {
             // Reset the testing module to ensure a fresh instance of the service for the router
             TestBed.resetTestingModule();
 
             TestBed.configureTestingModule({
                 providers: [
+                    provideRouter([
+                        { path: '**', children: [] },
+                        { path: '**', outlet: 'sidebar', children: [] },
+                    ]),
                     EditionViewService,
-                    { provide: Router, useValue: router },
-                    { provide: LoadingService, useValue: { isLoading: mockIsLoadingSignal.asReadonly() } },
                     { provide: EditionDataService, useValue: mockEditionDataService },
+                    { provide: LoadingService, useValue: { isLoading: mockIsLoadingSignal.asReadonly() } },
                 ],
             });
 
-            vi.spyOn(router, 'url', 'get').mockReturnValue(url);
+            // Set up the RouterTestingHarness to navigate to the desired URL
+            harness = await RouterTestingHarness.create();
+            await harness.navigateByUrl(url);
 
-            // Freshly inject the service after configuring the spies
+            // Freshly inject the service after configuring the route
             return TestBed.inject(EditionViewService);
         };
 
-        it('... should have a signal `activeView`', () => {
-            expect(service.activeView).toBeDefined();
+        it('... should have a signal `_currentViewName`', () => {
+            expect((service as any)._currentViewName).toBeDefined();
 
-            expectToBe(isSignal(service.activeView), true);
+            expectToBe(isSignal((service as any)._currentViewName), true);
         });
 
-        it('... should start with holding the parsed view name based on the current router URL', () => {
-            const freshService = createFreshServiceWithUrl('/edition/preface');
+        it('... should start with holding the parsed view name based on the current router URL', async () => {
+            const freshService = await createFreshServiceWithUrl('/edition/preface');
 
-            const result = freshService.activeView();
+            const result = (freshService as any)._currentViewName();
 
             expectToBe(result, 'preface');
         });
 
-        it('... should hold the parsed active view when a NavigationEnd event occurs', () => {
-            const freshService = createFreshServiceWithUrl('/edition/preface');
+        it('... should hold the parsed active view when a NavigationEnd event occurs', async () => {
+            const freshService = await createFreshServiceWithUrl('/edition/preface');
 
-            expectToBe(freshService.activeView(), 'preface');
+            expectToBe((freshService as any)._currentViewName(), 'preface');
 
-            routerEventsSubject.next(
-                new NavigationEnd(1, '/edition/complex/op12/sheets', '/edition/complex/op12/sheets')
-            );
+            await harness.navigateByUrl('/edition/complex/op12/sheets');
 
-            expectToBe(freshService.activeView(), 'sheets');
+            expectToBe((freshService as any)._currentViewName(), 'sheets');
         });
 
-        it('... should return an empty string if the navigation destination has no primary segments', () => {
-            createFreshServiceWithUrl('/edition/preface');
+        it('... should return an empty string if the navigation destination has no primary segments', async () => {
+            await createFreshServiceWithUrl('/edition/preface');
 
-            routerEventsSubject.next(new NavigationEnd(2, '/(sidebar:help)', '/(sidebar:help)'));
+            await harness.navigateByUrl('/(sidebar:help)');
 
-            expectToBe(service.activeView(), '');
+            expectToBe((service as any)._currentViewName(), '');
+        });
+    });
+
+    describe('#viewContext()', () => {
+        it('... should have a signal `viewContext`', () => {
+            expect(service.viewContext).toBeDefined();
+
+            expectToBe(isSignal(service.viewContext), true);
+        });
+
+        it('... should return correct context for `intro`', () => {
+            currentViewNameSpy.mockReturnValue('intro');
+
+            const context = service.viewContext();
+
+            expectToBe(context.name, 'intro');
+            expectToBe(context.isIntro, true);
+            expectToBe(context.isPreface, false);
+            expectToBe(context.isRowtables, false);
+        });
+
+        it('... should return correct context for `preface`', () => {
+            currentViewNameSpy.mockReturnValue('preface');
+
+            const context = service.viewContext();
+
+            expectToBe(context.name, 'preface');
+            expectToBe(context.isIntro, false);
+            expectToBe(context.isPreface, true);
+            expectToBe(context.isRowtables, false);
+        });
+
+        it('... should return correct context for `rowtables`', () => {
+            currentViewNameSpy.mockReturnValue('rowtables');
+
+            const context = service.viewContext();
+
+            expectToBe(context.name, 'rowtables');
+            expectToBe(context.isIntro, false);
+            expectToBe(context.isPreface, false);
+            expectToBe(context.isRowtables, true);
+        });
+
+        it('... should handle other view names gracefully', () => {
+            currentViewNameSpy.mockReturnValue('other-view');
+
+            const context = service.viewContext();
+
+            expectToBe(context.name, 'other-view');
+            expectToBe(context.isIntro, false);
+            expectToBe(context.isPreface, false);
+            expectToBe(context.isRowtables, false);
         });
     });
 
@@ -191,7 +237,7 @@ describe('EditionViewService', () => {
             });
 
             it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
-                activeViewSpy.mockReturnValue('any-other-view');
+                currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = service[signalName]();
 
@@ -201,8 +247,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should reactively update ${signalName} if ${dataKey} emits`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
@@ -215,8 +261,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
                 mockIsLoadingSignal.set(true);
@@ -227,8 +273,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
@@ -301,7 +347,7 @@ describe('EditionViewService', () => {
             });
 
             it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
-                activeViewSpy.mockReturnValue('any-other-view');
+                currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = service[signalName]();
 
@@ -313,8 +359,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should reactively update ${signalName} if all source signals emit`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
@@ -331,8 +377,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
                     (mockEditionDataService as any)[dataKey].set(mockValue);
@@ -345,8 +391,8 @@ describe('EditionViewService', () => {
             });
 
             it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
-                activeViewSpy.mockReturnValue(viewName);
-                (service as any)._lastActiveView.set(viewName);
+                currentViewNameSpy.mockReturnValue(viewName);
+                (service as any)._previousViewName.set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
@@ -364,8 +410,8 @@ describe('EditionViewService', () => {
             if (signalName === 'sheetsViewData') {
                 describe('... `extraContentCheck` specific to sheetsViewData', () => {
                     it('... should keep `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
-                        activeViewSpy.mockReturnValue(viewName);
-                        (service as any)._lastActiveView.set(viewName);
+                        currentViewNameSpy.mockReturnValue(viewName);
+                        (service as any)._previousViewName.set(viewName);
                         mockIsLoadingSignal.set(false);
 
                         (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
@@ -380,8 +426,8 @@ describe('EditionViewService', () => {
                     });
 
                     it('... should set `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
-                        activeViewSpy.mockReturnValue(viewName);
-                        (service as any)._lastActiveView.set(viewName);
+                        currentViewNameSpy.mockReturnValue(viewName);
+                        (service as any)._previousViewName.set(viewName);
                         mockIsLoadingSignal.set(false);
 
                         (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
@@ -747,7 +793,7 @@ describe('EditionViewService', () => {
                 const dataKeys = ['folioConvoluteData'];
                 const mockFallback = { data: {}, isLoading: true, error: null };
 
-                activeViewSpy.mockReturnValue('preface');
+                currentViewNameSpy.mockReturnValue('preface');
                 const createFallbackSpy = vi.spyOn(service as any, '_createFallback').mockReturnValue(mockFallback);
 
                 const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
@@ -756,36 +802,36 @@ describe('EditionViewService', () => {
                 expectSpyCall(createFallbackSpy, 1, [dataKeys]);
             });
 
-            it('... should return a fallback and update `_lastActiveView` asynchronously if the view is active but changed', () => {
+            it('... should return a fallback and update `_previousViewName` asynchronously if the view is active but changed', () => {
                 vi.useFakeTimers();
 
                 const viewKey = 'sheets';
                 const dataKeys = ['folioConvoluteData'];
                 const mockFallback = { data: {}, isLoading: true, error: null };
 
-                activeViewSpy.mockReturnValue('sheets');
-                (service as any)._lastActiveView.set('preface');
+                currentViewNameSpy.mockReturnValue('sheets');
+                (service as any)._previousViewName.set('preface');
 
                 vi.spyOn(service as any, '_createFallback').mockReturnValue(mockFallback);
 
                 const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
 
                 expectToEqual(result, mockFallback);
-                expectToBe((service as any)._lastActiveView(), 'preface');
+                expectToBe((service as any)._previousViewName(), 'preface');
 
                 vi.advanceTimersByTime(0);
 
-                expectToBe((service as any)._lastActiveView(), 'sheets');
+                expectToBe((service as any)._previousViewName(), 'sheets');
 
                 vi.useRealTimers();
             });
 
-            it('... should return null if the view is active and matches the `_lastActiveView` (steady state)', () => {
+            it('... should return null if the view is active and matches the `_previousViewName` (steady state)', () => {
                 const viewKey = 'sheets';
                 const dataKeys = ['folioConvoluteData'];
 
-                activeViewSpy.mockReturnValue('sheets');
-                (service as any)._lastActiveView.set('sheets');
+                currentViewNameSpy.mockReturnValue('sheets');
+                (service as any)._previousViewName.set('sheets');
 
                 const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
 

@@ -167,7 +167,6 @@ describe('IntroComponent (DONE)', () => {
 
     let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
-    let editionStateServiceUpdateIsIntroViewSpy: Spy;
 
     let listenToRouteChangesSpy: Spy;
     let navigateWithComplexIdSpy: Spy;
@@ -251,7 +250,6 @@ describe('IntroComponent (DONE)', () => {
         // Service spies
         editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
         editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
-        editionStateServiceUpdateIsIntroViewSpy = vi.spyOn(editionStateService, 'updateIsIntroView');
 
         // Test data
         expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
@@ -415,21 +413,6 @@ describe('IntroComponent (DONE)', () => {
 
         it('... should have signal `viewData` to hold the expected view data', () => {
             expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
-        });
-
-        it('... should have called `EditionStateService` and updated `isIntroView` to true', () => {
-            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
-
-            expectToBe(editionStateService.isIntroView(), true);
-        });
-
-        it('... should reset `isIntroView` to false on destroy', () => {
-            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 1, true);
-
-            fixture.destroy();
-
-            expectSpyCall(editionStateServiceUpdateIsIntroViewSpy, 2, false);
-            expectToBe(editionStateService.isIntroView(), false);
         });
 
         it('... should have called `listenToRouteChanges()`', () => {
@@ -2263,15 +2246,6 @@ describe('IntroComponent (DONE)', () => {
 
                     expectToEqual(editionStateService.selectedEditionSeries(), null);
                     expectToEqual(editionStateService.selectedEditionSection(), null);
-                });
-
-                it('... should trigger and update `isIntroView = true` in EditionStateService', () => {
-                    const seriesNumber = '1';
-                    const sectionNumber = '5';
-
-                    (component as any)._updateEditionState(seriesNumber, sectionNumber);
-
-                    expectToBe(editionStateService.isIntroView(), true);
                 });
             });
         });

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionGlyphService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
@@ -25,13 +25,6 @@ export class EditionPrefaceComponent {
     private readonly _editionGlyphService = inject(EditionGlyphService);
 
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
      * Public variable: currentLanguage.
      *
      * It keeps the current language of the edition preface: 0 for German, 1 for English.
@@ -53,17 +46,11 @@ export class EditionPrefaceComponent {
     /**
      * Constructor of the EditionPrefaceComponent.
      *
-     * It updates the edition state to indicate if the preface view is active
-     * and declares the self-referring ref variable needed for CompileHtml library.
+     * It declares the self-referring ref variable needed for CompileHtml library.
      *
      */
     constructor() {
-        this._editionStateService.updateIsPrefaceView(true);
         this.ref = this;
-
-        inject(DestroyRef).onDestroy(() => {
-            this._editionStateService.updateIsPrefaceView(false);
-        });
     }
 
     /**

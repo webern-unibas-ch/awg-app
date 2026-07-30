@@ -1,14 +1,12 @@
 import { Component, DebugElement, Input, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -21,7 +19,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RowtablesList } from '@awg-views/edition-view/models';
 import { EditionViewData, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionRowtablesComponent } from './edition-rowtables.component';
@@ -48,10 +45,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowtablesComponent;
     let fixture: ComponentFixture<EditionRowtablesComponent>;
     let compDe: DebugElement;
-
-    let editionStateService: EditionStateService;
-
-    let editionStateServiceUpdateIsRowtablesViewSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'rowtables'>>;
     let expectedViewDataContent: EditionViewDataContent<'rowtables'>;
@@ -80,12 +73,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionStateService = TestBed.inject(EditionStateService);
-
-        // Spies
-        editionStateServiceUpdateIsRowtablesViewSpy = vi.spyOn(editionStateService, 'updateIsRowtablesView');
-
         // Test data
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
 
@@ -93,10 +80,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionRowtablesComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -108,21 +91,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expectToBe(isSignal(component.viewData), true);
 
             expectToEqual(component.viewData(), createMockViewData(expectedDefaultViewDataContent));
-        });
-
-        it('... should have called `EditionStateService` and updated `isRowTableView` to true', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1, true);
-
-            expectToBe(editionStateService.isRowtablesView(), true);
-        });
-
-        it('... should reset `isRowtablesView` to false on destroy', () => {
-            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 1, true);
-
-            fixture.destroy();
-
-            expectSpyCall(editionStateServiceUpdateIsRowtablesViewSpy, 2, false);
-            expectToBe(editionStateService.isRowtablesView(), false);
         });
 
         describe('VIEW', () => {

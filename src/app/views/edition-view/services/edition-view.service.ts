@@ -1,8 +1,8 @@
 import { computed, inject, Injectable, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { filter, map, startWith } from 'rxjs';
+import { distinctUntilChanged, filter, map, merge, startWith } from 'rxjs';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import {
@@ -45,23 +45,53 @@ export class EditionViewService {
     private readonly _router = inject(Router);
 
     /**
-     * Private readonly signal holding the last active view state.
+     * Private readonly injection variable: _route.
+     *
+     * It keeps the instance of the injected ActivatedRoute.
      */
-    private readonly _lastActiveView = signal<string>('');
+    private readonly _route = inject(ActivatedRoute);
 
     /**
-     * Readonly signal: activeView.
-     *
-     * It holds the state of the currently active view.
+     * Private readonly signal holding the last active view state.
      */
-    readonly activeView = toSignal(
-        this._router.events.pipe(
-            filter(event => event instanceof NavigationEnd),
-            map((event: NavigationEnd) => this._parseViewFromUrl(event.urlAfterRedirects)),
+    private readonly _previousViewName = signal<string>('');
+
+    /**
+     * Readonly signal: _currentViewName.
+     *
+     * It holds the name of the currently active view parsed from the current URL.
+     * It is updated on every NavigationEnd event of the Angular Router.
+     * It is also updated on every URL change of the ActivatedRoute.
+     */
+    private readonly _currentViewName = toSignal(
+        merge(
+            this._router.events.pipe(
+                filter(event => event instanceof NavigationEnd),
+                map((event: NavigationEnd) => event.url)
+            ),
+            this._route.url.pipe(map(() => this._router.url))
+        ).pipe(
+            map(url => this._parseViewFromUrl(url)),
+            distinctUntilChanged(),
             startWith(this._parseViewFromUrl(this._router.url))
         ),
         { requireSync: true }
     );
+
+    /**
+     * Readonly signal: viewContext.
+     *
+     * It holds the state of the currently active view.
+     */
+    readonly viewContext = computed(() => {
+        const viewName = this._currentViewName();
+        return {
+            name: viewName,
+            isIntro: viewName === 'intro',
+            isPreface: viewName === 'preface',
+            isRowtables: viewName === 'rowtables',
+        };
+    });
 
     /**
      * Readonly signal: prefaceViewData.
@@ -232,14 +262,15 @@ export class EditionViewService {
         viewKey: K,
         dataKeys: Array<keyof EditionViewDataTypeMapping[K]>
     ): EditionViewData<K> | null {
-        const activeView = this.activeView();
+        const current = this._currentViewName();
+        const previous = this._previousViewName();
 
-        if (!activeView.includes(viewKey)) {
+        if (!current.includes(viewKey)) {
             return this._createFallback(dataKeys);
         }
 
-        if (this._lastActiveView() !== activeView) {
-            setTimeout(() => this._lastActiveView.set(activeView), 0);
+        if (previous !== current) {
+            setTimeout(() => this._previousViewName.set(current), 0);
             return this._createFallback(dataKeys);
         }
 
@@ -261,10 +292,10 @@ export class EditionViewService {
         const nullData = Object.fromEntries(nullEntries);
 
         return {
-            data: nullData as any,
+            data: nullData,
             isLoading: true,
             error: null,
-        };
+        } as EditionViewData<K>;
     }
 
     /**
@@ -283,6 +314,6 @@ export class EditionViewService {
             return '';
         }
 
-        return segments[segments.length - 1].path;
+        return segments.at(-1).path;
     }
 }

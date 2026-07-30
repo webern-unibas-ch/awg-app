@@ -114,7 +114,7 @@ export interface EditionViewData<K extends EditionViewKey> {
     data: EditionViewDataContent<K>;
 
     /**
-     * Indicates whether the data is loading.
+     * A flag indicating whether the data is loading.
      */
     isLoading: boolean;
 
@@ -122,4 +122,31 @@ export interface EditionViewData<K extends EditionViewKey> {
      * An optional error object if there was an error loading the data.
      */
     error: EditionDataAssetsError | null;
+}
+
+/**
+ * The EditionViewContext type.
+ *
+ * It defines the structure of the context for the edition view.
+ */
+export interface EditionViewContext {
+    /**
+     * The name of the current edition view.
+     */
+    name: EditionViewKey | string;
+
+    /**
+     * A flag indicating whether the current view is the intro view.
+     */
+    isIntro: boolean;
+
+    /**
+     * A flag indicating whether the current view is the preface view.
+     */
+    isPreface: boolean;
+
+    /**
+     * A flag indicating whether the current view is the rowtables view.
+     */
+    isRowtables: boolean;
 }

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionView component.
@@ -40,25 +41,11 @@ export class EditionViewComponent {
     readonly EDITION_VIEW_TITLE = 'Editionsübersicht';
 
     /**
-     * Readonly signal: isIntroView.
+     * Readonly signal: viewContext.
      *
-     * It holds the state of the intro view.
+     * It holds the state of the view context.
      */
-    readonly isIntroView = this._editionStateService.isIntroView;
-
-    /**
-     * Readonly signal: isPrefaceView.
-     *
-     * It holds the state of the preface view.
-     */
-    readonly isPrefaceView = this._editionStateService.isPrefaceView;
-
-    /**
-     * Readonly signal: isRowtablesView.
-     *
-     * It holds the state of the rowtables view.
-     */
-    readonly isRowtablesView = this._editionStateService.isRowtablesView;
+    readonly viewContext = inject(EditionViewService).viewContext;
 
     /**
      * Readonly signal: selectedEditionComplex.

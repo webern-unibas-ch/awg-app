@@ -1,6 +1,6 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, DOCUMENT, Input, isSignal, LOCALE_ID } from '@angular/core';
+import { Component, DebugElement, DOCUMENT, Input, isSignal, LOCALE_ID, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -17,7 +17,9 @@ import { MetaIdentifiers } from '@awg-shared/meta/meta.model';
 
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from './models';
+import { EditionViewContext } from './models/edition-data.model';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from './services';
+import { EditionViewService } from './services/edition-view.service';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -63,6 +65,9 @@ describe('EditionViewComponent (DONE)', () => {
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
+    let mockViewContextSignal: WritableSignal<EditionViewContext>;
+
+    let expectedDefaultViewContext: EditionViewContext;
     let expectedSelectedEditionComplexId: string;
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionSeries: EditionOutlineSeries;
@@ -73,6 +78,10 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     beforeEach(async () => {
+        // Mock services
+        expectedDefaultViewContext = { name: 'other-name', isIntro: false, isPreface: false, isRowtables: false };
+        mockViewContextSignal = signal(expectedDefaultViewContext);
+
         await TestBed.configureTestingModule({
             declarations: [
                 EditionViewComponent,
@@ -82,7 +91,10 @@ describe('EditionViewComponent (DONE)', () => {
                 RouterLinkStubDirective,
             ],
             imports: [DatePipe, ScrollToTopButtonStubComponent],
-            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
+            providers: [
+                { provide: LOCALE_ID, useValue: 'de-DE' },
+                { provide: EditionViewService, useValue: { viewContext: mockViewContextSignal.asReadonly() } },
+            ],
         }).compileComponents();
     });
 
@@ -129,28 +141,16 @@ describe('EditionViewComponent (DONE)', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should have signal `isIntroView` to hold false', () => {
-            expectToBe(isSignal(component.isIntroView), true);
+        it('... should have signal `viewContext` to hold the default view context', () => {
+            expectToBe(isSignal(component.viewContext), true);
 
-            expectToBe(component.isIntroView(), false);
+            expectToEqual(component.viewContext(), expectedDefaultViewContext);
         });
 
-        it('... should have signal `isPrefaceView` to hold false', () => {
-            expectToBe(isSignal(component.isPrefaceView), true);
+        it('... should have signal `selectedEditionSeries` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionSeries), true);
 
-            expectToBe(component.isPrefaceView(), false);
-        });
-
-        it('... should have signal `isRowtablesView` to hold false', () => {
-            expectToBe(isSignal(component.isRowtablesView), true);
-
-            expectToBe(component.isRowtablesView(), false);
-        });
-
-        it('... should have signal `selectedEditionComplex` to hold null', () => {
-            expectToBe(isSignal(component.selectedEditionComplex), true);
-
-            expectToBe(component.selectedEditionComplex(), null);
+            expectToBe(component.selectedEditionSeries(), null);
         });
 
         it('... should have signal `selectedEditionSection` to hold null', () => {
@@ -159,10 +159,10 @@ describe('EditionViewComponent (DONE)', () => {
             expectToBe(component.selectedEditionSection(), null);
         });
 
-        it('... should have signal `selectedEditionSeries` to hold null', () => {
-            expectToBe(isSignal(component.selectedEditionSeries), true);
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
 
-            expectToBe(component.selectedEditionSeries(), null);
+            expectToBe(component.selectedEditionComplex(), null);
         });
 
         describe('VIEW', () => {
@@ -218,14 +218,19 @@ describe('EditionViewComponent (DONE)', () => {
 
             describe('... if isPrefaceView is true', () => {
                 beforeEach(() => {
-                    editionStateService.updateIsPrefaceView(true);
+                    mockViewContextSignal.set({ name: 'preface', isIntro: false, isPreface: true, isRowtables: false });
 
                     // Trigger data binding
                     fixture.detectChanges();
                 });
 
-                it('... should have signal `isPrefaceView` to hold true', () => {
-                    expectToBe(component.isPrefaceView(), true);
+                it('... should have signal `viewContext` to hold true for preface view', () => {
+                    expectToEqual(component.viewContext(), {
+                        name: 'preface',
+                        isIntro: false,
+                        isPreface: true,
+                        isRowtables: false,
+                    });
                 });
 
                 it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
@@ -270,14 +275,24 @@ describe('EditionViewComponent (DONE)', () => {
 
             describe('... if isRowtablesView is true', () => {
                 beforeEach(() => {
-                    editionStateService.updateIsRowtablesView(true);
+                    mockViewContextSignal.set({
+                        name: 'rowtables',
+                        isIntro: false,
+                        isPreface: false,
+                        isRowtables: true,
+                    });
 
                     // Trigger data binding
                     fixture.detectChanges();
                 });
 
-                it('... should have signal `isRowtablesView` to hold true', () => {
-                    expectToBe(component.isRowtablesView(), true);
+                it('... should have signal `viewContext` to hold true for rowtables view', () => {
+                    expectToEqual(component.viewContext(), {
+                        name: 'rowtables',
+                        isIntro: false,
+                        isPreface: false,
+                        isRowtables: true,
+                    });
                 });
 
                 it('... should have one `div.awg-edition-rowtables` in `div.awg-edition-view`', () => {
@@ -484,11 +499,8 @@ describe('EditionViewComponent (DONE)', () => {
 
             describe('... if selectedEditionComplex, isPrefaceView and isRowtablesView are not given', () => {
                 beforeEach(() => {
+                    mockViewContextSignal.set(expectedDefaultViewContext);
                     editionStateService.updateSelectedEditionComplex(null);
-                    editionStateService.updateIsPrefaceView(false);
-                    editionStateService.updateIsRowtablesView(false);
-
-                    editionStateService.updateIsIntroView(false);
                     editionStateService.updateSelectedEditionSeries(null);
                     editionStateService.updateSelectedEditionSection(null);
 
@@ -496,10 +508,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should have signals to hold expected values', () => {
-                    expectToBe(component.isIntroView(), false);
-                    expectToBe(component.isPrefaceView(), false);
-                    expectToBe(component.isRowtablesView(), false);
-
+                    expectToEqual(component.viewContext(), expectedDefaultViewContext);
                     expectToBe(component.selectedEditionComplex(), null);
                     expectToBe(component.selectedEditionSeries(), null);
                     expectToBe(component.selectedEditionSection(), null);
@@ -543,7 +552,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should pass down full edition intro const as title to JumbotronComponent (stubbed) if `isIntroView=true`', () => {
-                    editionStateService.updateIsIntroView(true);
+                    mockViewContextSignal.set({ name: 'intro', isIntro: true, isPreface: false, isRowtables: false });
 
                     // Trigger data binding
                     fixture.detectChanges();
@@ -706,7 +715,12 @@ describe('EditionViewComponent (DONE)', () => {
                         beforeEach(() => {
                             editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
                             editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
-                            editionStateService.updateIsIntroView(true);
+                            mockViewContextSignal.set({
+                                name: 'intro',
+                                isIntro: true,
+                                isPreface: false,
+                                isRowtables: false,
+                            });
 
                             fixture.detectChanges();
                         });
