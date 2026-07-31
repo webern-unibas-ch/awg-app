@@ -55,7 +55,7 @@ export class EditionSeriesDetailComponent {
      * @returns {void} Updates the edition series.
      */
     updateSeriesFromRoute(): void {
-        effect(() => {
+        effect(onCleanup => {
             const currentSeriesId = this.seriesId();
 
             if (!currentSeriesId) {
@@ -65,6 +65,10 @@ export class EditionSeriesDetailComponent {
 
             const selectedSeries = this._editionOutlineService.getEditionSeriesById(currentSeriesId) ?? null;
             this._editionStateService.updateSelectedEditionSeries(selectedSeries);
+
+            onCleanup(() => {
+                this._editionStateService.updateSelectedEditionSeries(null);
+            });
         });
     }
 }

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
-import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
+import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
+import { EditionStateService } from './services/edition-state.service';
+import { EditionViewService } from './services/edition-view.service';
 
 /**
  * The EditionView component.
@@ -69,11 +70,43 @@ export class EditionViewComponent {
     readonly selectedEditionSeries = this._editionStateService.selectedEditionSeries;
 
     /**
-     * Getter variable: editionRouteConstants.
+     * Readonly signal: breadcrumbItems.
      *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
+     * It holds the labeled route items for the breadcrumb.
+     */
+    readonly breadcrumbItems = inject(EditionBreadcrumbService).getBreadcrumbItems(
+        this.viewContext,
+        this.selectedEditionComplex,
+        this.selectedEditionSeries,
+        this.selectedEditionSection
+    );
+
+    /**
+     * Readonly signal: jumbotronTitle.
+     *
+     * It computes the title of the jumbotron.
+     */
+    readonly jumbotronTitle = computed<string>(() => {
+        const context = this.viewContext();
+        const complex = this.selectedEditionComplex();
+        const { PREFACE, EDITION_INTRO } = EDITION_ROUTE_CONSTANTS;
+
+        if (context.isPreface) {
+            return PREFACE.full;
+        }
+
+        if (context.isRowtables) {
+            return 'Übersicht';
+        }
+
+        if (complex) {
+            return complex.complexId.full;
+        }
+
+        if (context.isIntro) {
+            return EDITION_INTRO.full;
+        }
+
+        return this.EDITION_VIEW_TITLE;
+    });
 }

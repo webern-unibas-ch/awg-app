@@ -120,6 +120,12 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         });
 
         describe('#updateSectionFromRoute()', () => {
+            beforeEach(() => {
+                // Reset spy calls
+                editionOutlineServiceGetEditionSectionByIdSpy.mockClear();
+                editionStateServiceUpdateSelectedEditionSectionSpy.mockClear();
+            });
+
             it('... should have a method `updateSectionFromRoute`', () => {
                 expect(component.updateSectionFromRoute).toBeDefined();
             });
@@ -152,8 +158,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSelectedSection);
             });
 
-            describe('... should update selected section to null if ', () => {
-                it('... `series.series.route` is missing', () => {
+            describe('... should update selected section to null', () => {
+                it('... if `series.series.route` is missing', () => {
                     const mockSeriesWithRoute = {
                         series: {
                             short: 'series-1',
@@ -170,7 +176,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
                 });
 
-                it('... section is missing (undefined)', () => {
+                it('... if section is missing (undefined)', () => {
                     const mockSeries = { series: { route: 'series-1' }, sections: [] } as EditionOutlineSeries;
                     editionStateService.updateSelectedEditionSeries(mockSeries);
                     fixture.componentRef.setInput('sectionId', 'sec-999');
@@ -179,6 +185,14 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                     expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, ['series-1', 'sec-999']);
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                });
+
+                it('... on cleanup', () => {
+                    editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
+
+                    fixture.destroy();
+
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
                 });
             });
         });

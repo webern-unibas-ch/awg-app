@@ -1,0 +1,15 @@
+<h6 class="awg-edition-info-breadcrumb">
+    @for (item of items(); track $index; let last = $last) {
+        @if (item.label) {
+            @if (item.route && item.route.length > 0) {
+                <a [routerLink]="item.route">{{ item.label }}</a>
+            } @else {
+                <span [innerHTML]="item.label"></span>
+            }
+        }
+
+        @if (!last) {
+            <span class="mx-1">/</span>
+        }
+    }
+</h6>

@@ -2,65 +2,27 @@
 <div class="awg-edition-view p-3 border rounded-3">
     <awg-scroll-to-top-button />
 
-    @let activeView = viewContext();
+    @let context = viewContext();
     @let editionComplex = selectedEditionComplex();
-    @let editionSection = selectedEditionSection();
-    @let editionSeries = selectedEditionSeries();
 
-    @if (activeView.isPreface) {
+    @if (context.isPreface) {
         <div class="awg-edition-preface para">
-            <h6 class="awg-edition-info-breadcrumb">
-                <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                    {{ editionRouteConstants.EDITION?.short }}
-                </a>
-                /
-                <span>{{ editionRouteConstants.PREFACE.short }}</span>
-            </h6>
-            <!-- Jumbotron -->
-            <awg-edition-jumbotron
-                [jumbotronId]="EDITION_VIEW_ID"
-                [jumbotronTitle]="editionRouteConstants.PREFACE.full" />
+            <awg-edition-breadcrumb [items]="breadcrumbItems()" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />
         </div>
     }
 
-    @if (activeView.isRowtables) {
+    @if (context.isRowtables) {
         <div class="awg-edition-rowtables para">
-            <h6 class="awg-edition-info-breadcrumb">
-                <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                    {{ editionRouteConstants.EDITION?.short }}
-                </a>
-                /
-                <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
-            </h6>
-            <!-- Jumbotron -->
-            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="'Übersicht'" />
+            <awg-edition-breadcrumb [items]="breadcrumbItems()" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />
         </div>
     }
 
     @if (editionComplex) {
         <div class="awg-edition-complex">
-            <h6 class="awg-edition-info-breadcrumb">
-                <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                    {{ editionRouteConstants.EDITION?.short }}
-                </a>
-                /
-                <a [routerLink]="[editionRouteConstants.SERIES.route, editionComplex.pubStatement.series.route]">
-                    {{ editionComplex.pubStatement.series.full }}
-                </a>
-                /
-                <a
-                    [routerLink]="[
-                        editionRouteConstants.SERIES.route,
-                        editionComplex.pubStatement.series.route,
-                        'section',
-                        editionComplex.pubStatement.section.route,
-                    ]">
-                    {{ editionComplex.pubStatement.section.full }}
-                </a>
-                /
-                <span [innerHTML]="editionComplex.complexId.short"></span>
-            </h6>
-            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="editionComplex.complexId.full" />
+            <awg-edition-breadcrumb [items]="breadcrumbItems()" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />
 
             <!-- declamation -->
             <div class="awg-edition-responsibility mt-3 mb-5">
@@ -87,61 +49,10 @@
         </div>
     }
 
-    @if (editionComplex === null && activeView.isRowtables !== true && activeView.isPreface !== true) {
+    @if (editionComplex === null && !context.isRowtables && !context.isPreface) {
         <div class="awg-edition-series para">
-            <h6 class="awg-edition-info-breadcrumb">
-                <ng-template #breadCrumbEdition>
-                    {{ editionRouteConstants.EDITION?.short }}
-                </ng-template>
-
-                @if (editionSeries) {
-                    <ng-template #breadCrumbSeries>
-                        {{ editionSeries?.series.full }}
-                    </ng-template>
-
-                    <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                        <ng-container *ngTemplateOutlet="breadCrumbEdition" />
-                    </a>
-                    /
-                    @if (editionSection) {
-                        <ng-template #breadCrumbSection>
-                            {{ editionSection?.section.full }}
-                        </ng-template>
-
-                        <a [routerLink]="['./series', editionSeries.series.route]">
-                            <ng-container *ngTemplateOutlet="breadCrumbSeries" />
-                        </a>
-                        /
-                        @if (activeView.isIntro) {
-                            <a
-                                [routerLink]="[
-                                    './series',
-                                    editionSeries.series.route,
-                                    'section',
-                                    editionSection.section.route,
-                                ]">
-                                <ng-container *ngTemplateOutlet="breadCrumbSection" />
-                            </a>
-                            /
-                            <span>{{ editionRouteConstants.EDITION_INTRO.full }}</span>
-                        } @else {
-                            <span>
-                                <ng-container *ngTemplateOutlet="breadCrumbSection" />
-                            </span>
-                        }
-                    } @else {
-                        <ng-container *ngTemplateOutlet="breadCrumbSeries" />
-                        /
-                    }
-                } @else {
-                    <ng-container *ngTemplateOutlet="breadCrumbEdition" />
-                    /
-                }
-            </h6>
-            <!-- Jumbotron -->
-            <awg-edition-jumbotron
-                [jumbotronId]="EDITION_VIEW_ID"
-                [jumbotronTitle]="activeView.isIntro ? editionRouteConstants.EDITION_INTRO.full : EDITION_VIEW_TITLE" />
+            <awg-edition-breadcrumb [items]="breadcrumbItems()" />
+            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />
         </div>
     }
 

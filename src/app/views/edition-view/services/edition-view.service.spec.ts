@@ -144,7 +144,7 @@ describe('EditionViewService', () => {
         });
 
         it('... should return correct context for `intro`', () => {
-            currentViewNameSpy.mockReturnValue('intro');
+            currentViewNameSpy.mockImplementation(() => 'intro');
 
             const context = service.viewContext();
 
@@ -155,7 +155,7 @@ describe('EditionViewService', () => {
         });
 
         it('... should return correct context for `preface`', () => {
-            currentViewNameSpy.mockReturnValue('preface');
+            currentViewNameSpy.mockImplementation(() => 'preface');
 
             const context = service.viewContext();
 
@@ -166,7 +166,7 @@ describe('EditionViewService', () => {
         });
 
         it('... should return correct context for `rowtables`', () => {
-            currentViewNameSpy.mockReturnValue('rowtables');
+            currentViewNameSpy.mockImplementation(() => 'rowtables');
 
             const context = service.viewContext();
 
@@ -177,7 +177,7 @@ describe('EditionViewService', () => {
         });
 
         it('... should handle other view names gracefully', () => {
-            currentViewNameSpy.mockReturnValue('other-view');
+            currentViewNameSpy.mockImplementation(() => 'other-view');
 
             const context = service.viewContext();
 
