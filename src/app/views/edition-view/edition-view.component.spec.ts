@@ -21,12 +21,12 @@ import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 import { EditionComplex } from './models/edition-complex.model';
 import { EditionViewContext } from './models/edition-data.model';
+import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionComplexesService } from './services/edition-complexes.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
 
 import { EditionViewComponent } from './edition-view.component';
-import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 
 registerLocaleData(localeDeDE);
 
@@ -330,25 +330,25 @@ describe('EditionViewComponent (DONE)', () => {
                     getPrefaceDes();
                 });
 
-                it('... should have a BreadCrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
+                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
                     const prefaceDes = getPrefaceDes();
 
                     getAndExpectDebugElementByDirective(prefaceDes[0], EditionBreadcrumbStubComponent, 1, 1);
                     getAndExpectDebugElementByDirective(prefaceDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
-                it('... should pass down `breadCrumbItems` to BreadCrumbComponent (stubbed)', () => {
-                    const breadCrumbDes = getAndExpectDebugElementByDirective(
+                it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
+                    const breadcrumbDes = getAndExpectDebugElementByDirective(
                         getPrefaceDes()[0],
                         EditionBreadcrumbStubComponent,
                         1,
                         1
                     );
-                    const breadCrumbCmp = breadCrumbDes[0].injector.get(
+                    const breadcrumbCmp = breadcrumbDes[0].injector.get(
                         EditionBreadcrumbStubComponent
                     ) as EditionBreadcrumbStubComponent;
 
-                    expectToEqual(breadCrumbCmp.items(), component.breadcrumbItems());
+                    expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
@@ -387,25 +387,25 @@ describe('EditionViewComponent (DONE)', () => {
                     getRowtableDes();
                 });
 
-                it('... should have BreadCrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-rowtables`', () => {
+                it('... should have BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-rowtables`', () => {
                     const rowtableDes = getRowtableDes();
 
                     getAndExpectDebugElementByDirective(rowtableDes[0], EditionBreadcrumbStubComponent, 1, 1);
                     getAndExpectDebugElementByDirective(rowtableDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
-                it('... should pass down `breadCrumbItems` to BreadCrumbComponent (stubbed)', () => {
-                    const breadCrumbDes = getAndExpectDebugElementByDirective(
+                it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
+                    const breadcrumbDes = getAndExpectDebugElementByDirective(
                         getRowtableDes()[0],
                         EditionBreadcrumbStubComponent,
                         1,
                         1
                     );
-                    const breadCrumbCmp = breadCrumbDes[0].injector.get(
+                    const breadcrumbCmp = breadcrumbDes[0].injector.get(
                         EditionBreadcrumbStubComponent
                     ) as EditionBreadcrumbStubComponent;
 
-                    expectToEqual(breadCrumbCmp.items(), component.breadcrumbItems());
+                    expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
@@ -460,7 +460,7 @@ describe('EditionViewComponent (DONE)', () => {
                     getComplexDes();
                 });
 
-                it('... should have a BreadCrumbComponent (stubbed), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
+                it('... should have a BreadcrumbComponent (stubbed), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
                     const complexDes = getComplexDes();
 
                     getAndExpectDebugElementByDirective(complexDes[0], EditionBreadcrumbStubComponent, 1, 1);
@@ -468,18 +468,18 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(complexDes[0], 'div.awg-edition-responsibility', 1, 1);
                 });
 
-                it('... should pass down `breadCrumbItems` to BreadCrumbComponent (stubbed)', () => {
-                    const breadCrumbDes = getAndExpectDebugElementByDirective(
+                it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
+                    const breadcrumbDes = getAndExpectDebugElementByDirective(
                         getComplexDes()[0],
                         EditionBreadcrumbStubComponent,
                         1,
                         1
                     );
-                    const breadCrumbCmp = breadCrumbDes[0].injector.get(
+                    const breadcrumbCmp = breadcrumbDes[0].injector.get(
                         EditionBreadcrumbStubComponent
                     ) as EditionBreadcrumbStubComponent;
 
-                    expectToEqual(breadCrumbCmp.items(), component.breadcrumbItems());
+                    expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
                 });
 
                 it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
@@ -612,25 +612,25 @@ describe('EditionViewComponent (DONE)', () => {
                     getSeriesDes();
                 });
 
-                it('... should have a BreadCrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
+                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
                     const seriesDes = getSeriesDes();
 
                     getAndExpectDebugElementByDirective(seriesDes[0], EditionBreadcrumbStubComponent, 1, 1);
                     getAndExpectDebugElementByDirective(seriesDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
-                it('... should pass down `breadCrumbItems` to BreadCrumbComponent (stubbed)', () => {
-                    const breadCrumbDes = getAndExpectDebugElementByDirective(
+                it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
+                    const breadcrumbDes = getAndExpectDebugElementByDirective(
                         getSeriesDes()[0],
                         EditionBreadcrumbStubComponent,
                         1,
                         1
                     );
-                    const breadCrumbCmp = breadCrumbDes[0].injector.get(
+                    const breadcrumbCmp = breadcrumbDes[0].injector.get(
                         EditionBreadcrumbStubComponent
                     ) as EditionBreadcrumbStubComponent;
 
-                    expectToEqual(breadCrumbCmp.items(), component.breadcrumbItems());
+                    expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
                 });
 
                 it('... should pass down `editionViewId` and `editionViewTitle` to JumbotronComponent (stubbed)', () => {

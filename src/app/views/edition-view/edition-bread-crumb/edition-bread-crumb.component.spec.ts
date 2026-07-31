@@ -4,6 +4,7 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -16,10 +17,9 @@ import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, EditionRouteConstant } from '../models';
 import { EditionComplexesService, EditionOutlineService } from '../services';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionBreadcrumbComponent } from './edition-bread-crumb.component';
 
-describe('EditionBreadCrumbComponent', () => {
+describe('EditionBreadcrumbComponent', () => {
     let component: EditionBreadcrumbComponent;
     let fixture: ComponentFixture<EditionBreadcrumbComponent>;
     let compDe: DebugElement;
@@ -157,9 +157,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/${PREFACE.short}`;
+                        const expectedBreadcrumb = `${EDITION.short}/${PREFACE.short}`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have one router link (to series overview)', () => {
@@ -194,9 +194,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/${ROWTABLES.full}`;
+                        const expectedBreadcrumb = `${EDITION.short}/${ROWTABLES.full}`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have one router link (back to series overview)', () => {
@@ -231,9 +231,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/`;
+                        const expectedBreadcrumb = `${EDITION.short}/`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have no router link, but only span', () => {
@@ -257,9 +257,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/${expectedSeries.series.full}/`;
+                        const expectedBreadcrumb = `${EDITION.short}/${expectedSeries.series.full}/`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have one router link (to edition series overview)', () => {
@@ -298,9 +298,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/${expectedSeries.series.full}/${expectedSection.section.full}/`;
+                        const expectedBreadcrumb = `${EDITION.short}/${expectedSeries.series.full}/${expectedSection.section.full}/`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have two router links (to series overview and current edition series)', () => {
@@ -341,9 +341,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'h6.awg-edition-info-breadcrumb', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${EDITION.short}/${expectedSeries.series.full}/${expectedSection.section.full}/${EDITION_INTRO.full}`;
+                        const expectedBreadcrumb = `${EDITION.short}/${expectedSeries.series.full}/${expectedSection.section.full}/${EDITION_INTRO.full}`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have three router links (to series overview, current edition series and section overview)', async () => {
@@ -401,9 +401,9 @@ describe('EditionBreadCrumbComponent', () => {
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                         const complexShortWithSpace = expectedComplex.complexId.short.replace(/&nbsp;/g, '\u00A0');
-                        const expectedBreadCrumb = `${EDITION.short}/${series.full}/${section.full}/${complexShortWithSpace}`;
+                        const expectedBreadcrumb = `${EDITION.short}/${series.full}/${section.full}/${complexShortWithSpace}`;
 
-                        expectToBe(hEl.textContent?.trim(), expectedBreadCrumb);
+                        expectToBe(hEl.textContent?.trim(), expectedBreadcrumb);
                     });
 
                     it('... should have three router links (to series overview, current series, and current section)', () => {
