@@ -141,7 +141,7 @@ type KnownViewContexts =
  */
 interface DynamicViewContexts {
     /**
-     * The name of the current edition view, excluding KnownConexts, or any string.
+     * The name of the current edition view, excluding KnownViewContexts, or any string.
      */
     name: Exclude<EditionViewKey, 'intro' | 'preface' | 'rowtables'> | (string & {});
     /**

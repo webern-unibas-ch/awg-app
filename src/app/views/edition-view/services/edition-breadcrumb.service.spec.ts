@@ -30,9 +30,9 @@ describe('EditionBreadcrumbService', () => {
         isPreface: false,
         isRowtables: false,
     });
-    const mockComplex = signal<EditionComplex>(null);
-    const mockSeries = signal<EditionOutlineSeries>(null);
-    const mockSection = signal<EditionOutlineSection>(null);
+    const mockComplex = signal<EditionComplex | null>(null);
+    const mockSeries = signal<EditionOutlineSeries | null>(null);
+    const mockSection = signal<EditionOutlineSection | null>(null);
 
     const { EDITION, SERIES, EDITION_INTRO, PREFACE, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
     const mockRootItem: LabeledRoute = {
