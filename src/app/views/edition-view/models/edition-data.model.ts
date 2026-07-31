@@ -125,28 +125,44 @@ export interface EditionViewData<K extends EditionViewKey> {
 }
 
 /**
- * The EditionViewContext type.
+ * The KnownViewContexts type.
  *
- * It defines the structure of the context for the edition view.
+ * It defines the structure of the known contexts for edition views.
  */
-export interface EditionViewContext {
-    /**
-     * The name of the current edition view.
-     */
-    name: EditionViewKey | string;
+type KnownViewContexts =
+    | { name: 'intro'; isIntro: true; isPreface: false; isRowtables: false }
+    | { name: 'preface'; isIntro: false; isPreface: true; isRowtables: false }
+    | { name: 'rowtables'; isIntro: false; isPreface: false; isRowtables: true };
 
+/**
+ * The DynamicViewContexts type.
+ *
+ * It defines the structure of the dynamic contexts for edition views.
+ */
+interface DynamicViewContexts {
+    /**
+     * The name of the current edition view, excluding KnownViewContexts, or any string.
+     */
+    name: Exclude<EditionViewKey, 'intro' | 'preface' | 'rowtables'> | (string & {});
     /**
      * A flag indicating whether the current view is the intro view.
      */
-    isIntro: boolean;
+    isIntro: false;
 
     /**
      * A flag indicating whether the current view is the preface view.
      */
-    isPreface: boolean;
+    isPreface: false;
 
     /**
      * A flag indicating whether the current view is the rowtables view.
      */
-    isRowtables: boolean;
+    isRowtables: false;
 }
+
+/**
+ * The EditionViewContext type.
+ *
+ * It defines the structure of the context for the edition view.
+ */
+export type EditionViewContext = KnownViewContexts | DynamicViewContexts;

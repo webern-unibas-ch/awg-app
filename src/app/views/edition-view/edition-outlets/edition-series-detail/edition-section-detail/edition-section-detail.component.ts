@@ -55,24 +55,23 @@ export class EditionSectionDetailComponent {
      * @returns {void} Updates the edition section from the route.
      */
     updateSectionFromRoute(): void {
-        effect(() => {
+        effect(onCleanup => {
             const series = this._editionStateService.selectedEditionSeries();
             const currentSectionId = this.sectionId();
 
-            if (!series) {
-                return;
-            }
-
-            const seriesId = series.series?.route;
-            if (!seriesId) {
+            if (!series?.series?.route) {
                 this._editionStateService.updateSelectedEditionSection(null);
                 return;
             }
 
             const selectedSection =
-                this._editionOutlineService.getEditionSectionById(seriesId, currentSectionId) ?? null;
+                this._editionOutlineService.getEditionSectionById(series.series.route, currentSectionId) ?? null;
 
             this._editionStateService.updateSelectedEditionSection(selectedSection);
+
+            onCleanup(() => {
+                this._editionStateService.updateSelectedEditionSection(null);
+            });
         });
     }
 }

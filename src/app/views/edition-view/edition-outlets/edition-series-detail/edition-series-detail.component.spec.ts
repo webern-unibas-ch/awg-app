@@ -103,55 +103,58 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         });
 
         describe('#updateSeriesFromRoute()', () => {
+            beforeEach(() => {
+                // Reset spy calls
+                editionOutlineServiceGetEditionSeriesByIdSpy.mockClear();
+                editionStateServiceUpdateSelectedEditionSeriesSpy.mockClear();
+            });
+
             it('... should have a method `updateSeriesFromRoute`', () => {
                 expect(component.updateSeriesFromRoute).toBeDefined();
             });
 
             it('... should call EditionOutlineService.getEditionSeriesById', () => {
-                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, expectedSeriesId);
-
                 const newSeriesId = 'another-series-id';
                 fixture.componentRef.setInput('seriesId', newSeriesId);
 
                 fixture.detectChanges();
 
-                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, newSeriesId);
+                expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, newSeriesId);
             });
 
             it('... should update the selected edition series in the state service', () => {
-                expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, expectedSelectedSeries);
-
                 const newSeries = editionOutlineService.editionOutline()[1];
                 const newSeriesId = newSeries.series.route;
                 fixture.componentRef.setInput('seriesId', newSeriesId);
 
                 fixture.detectChanges();
 
+                // 2 calls because of onCleanup
                 expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, newSeries);
             });
 
-            describe('... should update selected series to null if ', () => {
-                beforeEach(() => {
-                    // Reset spies
-                    editionOutlineServiceGetEditionSeriesByIdSpy.mockClear();
-                    editionStateServiceUpdateSelectedEditionSeriesSpy.mockClear();
-                });
-
-                it('... param `id` is missing', () => {
+            describe('... should update selected series to null', () => {
+                it('... if param `id` is missing', () => {
                     fixture.componentRef.setInput('seriesId', null);
 
                     fixture.detectChanges();
 
                     expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 0);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, null);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, null);
                 });
 
-                it('... series is missing (undefined)', () => {
+                it('... if series is missing (undefined)', () => {
                     fixture.componentRef.setInput('seriesId', 'invalid-id');
 
                     fixture.detectChanges();
 
                     expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, 'invalid-id');
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 2, null);
+                });
+
+                it('... on cleanup', () => {
+                    fixture.destroy();
+
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSeriesSpy, 1, null);
                 });
             });

@@ -7,6 +7,7 @@ import { distinctUntilChanged, filter, map, merge, startWith } from 'rxjs';
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import {
     EditionDataAssetsKeys,
+    EditionViewContext,
     EditionViewData,
     EditionViewDataTypeMapping,
     EditionViewKey,
@@ -83,14 +84,27 @@ export class EditionViewService {
      *
      * It holds the state of the currently active view.
      */
-    readonly viewContext = computed(() => {
+    readonly viewContext = computed<EditionViewContext>(() => {
         const viewName = this._currentViewName();
-        return {
-            name: viewName,
-            isIntro: viewName === 'intro',
-            isPreface: viewName === 'preface',
-            isRowtables: viewName === 'rowtables',
-        };
+
+        switch (viewName) {
+            case 'intro':
+                return { name: 'intro', isIntro: true, isPreface: false, isRowtables: false };
+
+            case 'preface':
+                return { name: 'preface', isIntro: false, isPreface: true, isRowtables: false };
+
+            case 'rowtables':
+                return { name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true };
+
+            default:
+                return {
+                    name: viewName,
+                    isIntro: false,
+                    isPreface: false,
+                    isRowtables: false,
+                };
+        }
     });
 
     /**
