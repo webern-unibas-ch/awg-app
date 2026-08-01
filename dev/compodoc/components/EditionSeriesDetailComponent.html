@@ -319,7 +319,7 @@ of the edition view of the app.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: seriesId.</p>
+                        <div class="io-description"><p>Readonly input signal: seriesId.</p>
 <p>It holds the route param id of the edition series (automatically bound by the router).</p>
 </div>
                     </td>
@@ -504,11 +504,11 @@ export class EditionSeriesDetailComponent {
     private readonly _editionStateService &#x3D; inject(EditionStateService);
 
     /**
-     * Input signal: seriesId.
+     * Readonly input signal: seriesId.
      *
      * It holds the route param id of the edition series (automatically bound by the router).
      */
-    seriesId &#x3D; input&lt;string | null&gt;(null);
+    readonly seriesId &#x3D; input&lt;string | null&gt;(null);
 
     /**
      * Constructor of the EditionSeriesDetailComponent.
