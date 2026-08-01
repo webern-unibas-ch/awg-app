@@ -60,7 +60,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getComplex(complexId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         outlineServiceGetEditionSeriesByIdSpy = vi
@@ -69,7 +69,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSeries(seriesId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         outlineServiceGetEditionSectionByIdSpy = vi
@@ -78,7 +78,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSection(seriesId, sectionId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         stateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'updateSelectedEditionComplex');

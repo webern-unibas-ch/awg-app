@@ -247,7 +247,7 @@ describe('IntroComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSeries(seriesId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         editionOutlineServiceGetEditionSectionByIdSpy = vi
@@ -256,7 +256,7 @@ describe('IntroComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSection(seriesId, sectionId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
 

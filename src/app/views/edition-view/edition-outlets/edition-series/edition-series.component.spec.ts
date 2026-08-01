@@ -35,7 +35,7 @@ describe('EditionSeriesComponent (DONE)', () => {
     beforeEach(async () => {
         // Mock services
         expectedOutline = EditionStateHelper.getOutline();
-        mockOutlineSignal = signal<EditionOutlineSeries[]>(expectedOutline);
+        mockOutlineSignal = signal(expectedOutline);
 
         await TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],

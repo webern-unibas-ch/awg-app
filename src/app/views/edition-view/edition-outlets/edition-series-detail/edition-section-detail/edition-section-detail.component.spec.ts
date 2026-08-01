@@ -48,7 +48,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSection(seriesId, sectionId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(

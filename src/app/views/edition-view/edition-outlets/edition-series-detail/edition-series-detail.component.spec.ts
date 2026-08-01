@@ -52,7 +52,7 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSeries(seriesId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
         editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(

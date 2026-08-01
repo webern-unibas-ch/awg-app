@@ -77,7 +77,7 @@ describe('StatisticsViewComponent', () => {
 
     let mockStatisticsService: Mocked<Partial<StatisticsService>>;
 
-    let mockOutlineSignal: WritableSignal<any[] | null>;
+    let mockOutlineSignal: WritableSignal<EditionOutlineSeries[] | null>;
     let expectedStatisticsData: Statistics;
 
     let expectedComplexBreakdownData: StatisticsComplexBreakdownData;
@@ -85,7 +85,7 @@ describe('StatisticsViewComponent', () => {
     let expectedSummaryData: StatisticsSummaryData;
 
     beforeEach(async () => {
-        mockOutlineSignal = signal<EditionOutlineSeries[] | null>(null);
+        mockOutlineSignal = signal(null);
 
         mockStatisticsService = {
             getStatisticsFromOutline: vi.fn(),
@@ -238,7 +238,7 @@ describe('StatisticsViewComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set input signals with test data
-            mockOutlineSignal.set([{ series: 'I' }]);
+            mockOutlineSignal.set([{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }]);
             mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
 
             fixture.detectChanges();
@@ -247,7 +247,9 @@ describe('StatisticsViewComponent', () => {
         it('... should have computed signal `statisticsData` to hold the provided data', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
 
-            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 1, [[{ series: 'I' }]]);
+            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 1, [
+                [{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }],
+            ]);
         });
 
         it('... should have computed signal `complexBreakdownData` to hold the expected data', () => {

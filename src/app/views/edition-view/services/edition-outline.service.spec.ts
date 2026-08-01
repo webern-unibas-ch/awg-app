@@ -43,7 +43,7 @@ describe('EditionOutlineService (DONE)', () => {
             try {
                 return EditionStateHelper.getComplex(id);
             } catch {
-                return null;
+                return undefined;
             }
         });
 

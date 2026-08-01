@@ -128,7 +128,7 @@ describe('HomeViewComponent (DONE)', () => {
                 try {
                     return EditionStateHelper.getSection(seriesId, sectionId);
                 } catch {
-                    return null;
+                    return undefined;
                 }
             });
 
