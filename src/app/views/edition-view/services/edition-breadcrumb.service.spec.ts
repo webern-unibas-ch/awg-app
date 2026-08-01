@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
@@ -11,31 +12,26 @@ import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../
 import { EditionViewContext } from '../models/edition-data.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
-import { EditionComplexesService } from './edition-complexes.service';
-import { EditionOutlineService } from './edition-outline.service';
 
 describe('EditionBreadcrumbService', () => {
     let service: EditionBreadcrumbService;
 
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
+    let expectedComplex: EditionComplex;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
 
-    let expectedSelectedEditionComplex: EditionComplex;
-    let expectedSelectedEditionSeries: EditionOutlineSeries;
-    let expectedSelectedEditionSection: EditionOutlineSection;
-
-    const mockViewContext = signal<EditionViewContext>({
+    const mockViewContextSignal = signal<EditionViewContext>({
         name: 'graph',
         isIntro: false,
         isPreface: false,
         isRowtables: false,
     });
-    const mockComplex = signal<EditionComplex | null>(null);
-    const mockSeries = signal<EditionOutlineSeries | null>(null);
-    const mockSection = signal<EditionOutlineSection | null>(null);
+    const mockComplexSignal = signal<EditionComplex | null>(null);
+    const mockSeriesSignal = signal<EditionOutlineSeries | null>(null);
+    const mockSectionSignal = signal<EditionOutlineSection | null>(null);
 
     const { EDITION, SERIES, EDITION_INTRO, PREFACE, ROWTABLES } = EDITION_ROUTE_CONSTANTS;
-    const mockRootItem: LabeledRoute = {
+    const expectedRootItem: LabeledRoute = {
         label: EDITION.short,
         route: [EDITION.route, SERIES.route],
     };
@@ -48,19 +44,13 @@ describe('EditionBreadcrumbService', () => {
         // Inject services
         service = TestBed.inject(EditionBreadcrumbService);
 
-        // Init edition data
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
         const complexId = 'op12';
-        expectedSelectedEditionComplex = editionComplexesService.getEditionComplexById(complexId);
-        expectedSelectedEditionSeries = editionOutlineService.editionOutline()[0]; // Series 1
-        expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[4]; // Section 5
+        expectedComplex = EditionStateHelper.getComplex(complexId);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
 
-        mockComplex.set(expectedSelectedEditionComplex);
+        mockComplexSignal.set(expectedComplex);
     });
 
     it('should be created', () => {
@@ -74,17 +64,17 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return preface breadcrumb if viewContext is preface', () => {
-                mockViewContext.set({ name: 'preface', isIntro: false, isPreface: true, isRowtables: false });
-                mockComplex.set(null);
-                mockSeries.set(null);
-                mockSection.set(null);
+                mockViewContextSignal.set({ name: 'preface', isIntro: false, isPreface: true, isRowtables: false });
+                mockComplexSignal.set(null);
+                mockSeriesSignal.set(null);
+                mockSectionSignal.set(null);
 
-                const expectedBreadcrumbs: LabeledRoute[] = [mockRootItem, { label: PREFACE.short, route: [] }];
+                const expectedBreadcrumbs: LabeledRoute[] = [expectedRootItem, { label: PREFACE.short, route: [] }];
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
 
                 const actualBreadcrumbs = breadcrumbSignal();
@@ -94,17 +84,17 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return rowtables breadcrumb if viewContext is rowtables', () => {
-                mockViewContext.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
-                mockComplex.set(null);
-                mockSeries.set(null);
-                mockSection.set(null);
+                mockViewContextSignal.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
+                mockComplexSignal.set(null);
+                mockSeriesSignal.set(null);
+                mockSectionSignal.set(null);
 
-                const expectedBreadcrumbs: LabeledRoute[] = [mockRootItem, { label: ROWTABLES.full, route: [] }];
+                const expectedBreadcrumbs: LabeledRoute[] = [expectedRootItem, { label: ROWTABLES.full, route: [] }];
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
 
                 const actualBreadcrumbs = breadcrumbSignal();
@@ -114,25 +104,25 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return complex breadcrumbs if an editionComplex is active', () => {
-                const complex = expectedSelectedEditionComplex;
-                mockViewContext.set({ name: 'graph', isIntro: false, isPreface: false, isRowtables: false });
-                mockComplex.set(complex);
-                mockSeries.set(null);
-                mockSection.set(null);
+                const complex = expectedComplex;
+                mockViewContextSignal.set({ name: 'graph', isIntro: false, isPreface: false, isRowtables: false });
+                mockComplexSignal.set(complex);
+                mockSeriesSignal.set(null);
+                mockSectionSignal.set(null);
 
                 const { series, section, labeledSectionRoute } = complex.pubStatement;
                 const expectedBreadcrumbs: LabeledRoute[] = [
-                    mockRootItem,
-                    { label: series.full, route: [...mockRootItem.route, series.route] },
+                    expectedRootItem,
+                    { label: series.full, route: [...expectedRootItem.route, series.route] },
                     { label: section.full, route: labeledSectionRoute.route },
                     { label: complex.complexId.short, route: [] },
                 ];
 
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
                 const actualBreadcrumbs = breadcrumbSignal();
 
@@ -141,26 +131,26 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return overview breadcrumbs if no special view and no complex is active', () => {
-                const series = expectedSelectedEditionSeries;
-                const section = expectedSelectedEditionSection;
+                const series = expectedSeries;
+                const section = expectedSection;
 
-                mockViewContext.set({ name: 'graph', isIntro: false, isPreface: false, isRowtables: false });
-                mockComplex.set(null);
-                mockSeries.set(series);
-                mockSection.set(section);
+                mockViewContextSignal.set({ name: 'graph', isIntro: false, isPreface: false, isRowtables: false });
+                mockComplexSignal.set(null);
+                mockSeriesSignal.set(series);
+                mockSectionSignal.set(section);
 
                 const expectedBreadcrumbs: LabeledRoute[] = [
-                    mockRootItem,
-                    { label: series.series.full, route: [...mockRootItem.route, series.series.route] },
+                    expectedRootItem,
+                    { label: series.series.full, route: [...expectedRootItem.route, series.series.route] },
                     { label: section.section.full, route: [] },
                     { label: '', route: [] },
                 ];
 
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
                 const actualBreadcrumbs = breadcrumbSignal();
 
@@ -169,26 +159,26 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return intro breadcrumbs if intro view, but no complex is active', () => {
-                const expectedSeries = expectedSelectedEditionSeries;
-                const expectedSection = expectedSelectedEditionSection;
-
-                mockViewContext.set({ name: 'intro', isIntro: true, isPreface: false, isRowtables: false });
-                mockComplex.set(null);
-                mockSeries.set(expectedSeries);
-                mockSection.set(expectedSection);
+                mockViewContextSignal.set({ name: 'intro', isIntro: true, isPreface: false, isRowtables: false });
+                mockComplexSignal.set(null);
+                mockSeriesSignal.set(expectedSeries);
+                mockSectionSignal.set(expectedSection);
 
                 const expectedBreadcrumbs: LabeledRoute[] = [
-                    mockRootItem,
-                    { label: expectedSeries.series.full, route: [...mockRootItem.route, expectedSeries.series.route] },
+                    expectedRootItem,
+                    {
+                        label: expectedSeries.series.full,
+                        route: [...expectedRootItem.route, expectedSeries.series.route],
+                    },
                     { label: expectedSection.section.full, route: expectedSection.labeledRoute.route },
                     { label: EDITION_INTRO.full, route: [] },
                 ];
 
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
                 const actualBreadcrumbs = breadcrumbSignal();
 
@@ -197,23 +187,23 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should update dynamically when the underlying signals change', () => {
-                mockViewContext.set({ name: 'preface', isIntro: false, isPreface: true, isRowtables: false });
-                mockComplex.set(null);
-                mockSeries.set(null);
-                mockSection.set(null);
+                mockViewContextSignal.set({ name: 'preface', isIntro: false, isPreface: true, isRowtables: false });
+                mockComplexSignal.set(null);
+                mockSeriesSignal.set(null);
+                mockSectionSignal.set(null);
 
                 const breadcrumbSignal = service.getBreadcrumbItems(
-                    mockViewContext,
-                    mockComplex,
-                    mockSeries,
-                    mockSection
+                    mockViewContextSignal,
+                    mockComplexSignal,
+                    mockSeriesSignal,
+                    mockSectionSignal
                 );
 
                 const prefaceBreadcrumbs = breadcrumbSignal();
                 expectToBe(prefaceBreadcrumbs.length, 2);
                 expectToBe(prefaceBreadcrumbs[1].label, PREFACE.short);
 
-                mockViewContext.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
+                mockViewContextSignal.set({ name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true });
 
                 const rowtablesBreadcrumbs = breadcrumbSignal();
                 expectToBe(rowtablesBreadcrumbs.length, 2);
@@ -227,17 +217,17 @@ describe('EditionBreadcrumbService', () => {
             });
 
             it('... should return expected breadcrumbs for complex', () => {
-                const complex = expectedSelectedEditionComplex;
+                const complex = expectedComplex;
                 const { series, section, labeledSectionRoute } = complex.pubStatement;
 
                 const expectedBreadcrumbs: LabeledRoute[] = [
-                    mockRootItem,
-                    { label: series.full, route: [...mockRootItem.route, series.route] },
+                    expectedRootItem,
+                    { label: series.full, route: [...expectedRootItem.route, series.route] },
                     { label: section.full, route: labeledSectionRoute.route },
                     { label: complex.complexId.short, route: [] },
                 ];
 
-                const actualBreadcrumbs = (service as any)._getComplexBreadcrumbs(mockRootItem, complex);
+                const actualBreadcrumbs = (service as any)._getComplexBreadcrumbs(expectedRootItem, complex);
 
                 expectToBe(actualBreadcrumbs.length, 4);
                 expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
@@ -256,50 +246,50 @@ describe('EditionBreadcrumbService', () => {
                     series: () => null,
                     section: () => null,
                     expected: () => [
-                        { ...mockRootItem, route: [] },
+                        { ...expectedRootItem, route: [] },
                         { label: '', route: [] },
                     ],
                 },
                 {
                     desc: 'breadcrumbs for a series only (without section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: () => expectedSelectedEditionSeries,
+                    series: () => expectedSeries,
                     section: () => null,
                     expected: () => [
-                        mockRootItem,
-                        { label: expectedSelectedEditionSeries.series.full, route: [] },
+                        expectedRootItem,
+                        { label: expectedSeries.series.full, route: [] },
                         { label: '', route: [] },
                     ],
                 },
                 {
                     desc: 'breadcrumbs for a series and section (without intro)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: () => expectedSelectedEditionSeries,
-                    section: () => expectedSelectedEditionSection,
+                    series: () => expectedSeries,
+                    section: () => expectedSection,
                     expected: () => [
-                        mockRootItem,
+                        expectedRootItem,
                         {
-                            label: expectedSelectedEditionSeries.series.full,
-                            route: [...mockRootItem.route, expectedSelectedEditionSeries.series.route],
+                            label: expectedSeries.series.full,
+                            route: [...expectedRootItem.route, expectedSeries.series.route],
                         },
-                        { label: expectedSelectedEditionSection.section.full, route: [] },
+                        { label: expectedSection.section.full, route: [] },
                         { label: '', route: [] },
                     ],
                 },
                 {
                     desc: 'breadcrumbs for a series, section and active intro view',
                     context: { name: 'intro', isIntro: true, isPreface: false, isRowtables: false },
-                    series: () => expectedSelectedEditionSeries,
-                    section: () => expectedSelectedEditionSection,
+                    series: () => expectedSeries,
+                    section: () => expectedSection,
                     expected: () => [
-                        mockRootItem,
+                        expectedRootItem,
                         {
-                            label: expectedSelectedEditionSeries.series.full,
-                            route: [...mockRootItem.route, expectedSelectedEditionSeries.series.route],
+                            label: expectedSeries.series.full,
+                            route: [...expectedRootItem.route, expectedSeries.series.route],
                         },
                         {
-                            label: expectedSelectedEditionSection.section.full,
-                            route: expectedSelectedEditionSection.labeledRoute.route,
+                            label: expectedSection.section.full,
+                            route: expectedSection.labeledRoute.route,
                         },
                         { label: EDITION_INTRO.full, route: [] },
                     ],
@@ -310,7 +300,7 @@ describe('EditionBreadcrumbService', () => {
                 const expectedBreadcrumbs = expected();
 
                 const actualBreadcrumbs: LabeledRoute[] = (service as any)._getOverviewBreadcrumbs(
-                    mockRootItem,
+                    expectedRootItem,
                     context,
                     series(),
                     section()

@@ -16,13 +16,6 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
 })
 export class EditionSeriesComponent {
     /**
-     * Private readonly injection variable: _editionOutlineService.
-     *
-     * It keeps the instance of the injected EditionOutlineService.
-     */
-    private readonly _editionOutlineService = inject(EditionOutlineService);
-
-    /**
      * Private readonly injection variable: _editionStateService.
      *
      * It keeps the instance of the injected EditionStateService.
@@ -34,7 +27,7 @@ export class EditionSeriesComponent {
      *
      * It holds the outline of the edition as an array of routes.
      */
-    readonly editionOutline = this._editionOutlineService.editionOutline;
+    readonly editionOutline = inject(EditionOutlineService).editionOutline;
 
     /**
      * Constructor of the EditionSeriesComponent.

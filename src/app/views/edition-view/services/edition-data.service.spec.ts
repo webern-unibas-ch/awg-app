@@ -10,6 +10,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { EMPTY, lastValueFrom, Observable, of as observableOf } from 'rxjs';
 
 import { createMockResponseData } from '@testing/edition-data-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
@@ -31,7 +32,7 @@ import {
     EditionDataAssetsKeys,
     EditionStaticDataAssetsKeys,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionDataService } from './edition-data.service';
 
@@ -43,8 +44,6 @@ describe('EditionDataService (DONE)', () => {
     let httpTestingController: HttpTestingController;
 
     let service: EditionDataService;
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let consoleSpy: Spy;
@@ -55,13 +54,13 @@ describe('EditionDataService (DONE)', () => {
 
     let expectedPrefaceData: PrefaceList;
     let expectedRowtablesData: RowtablesList;
-    let expectedEditionIntroComplexData: IntroList;
-    let expectedEditionIntroSectionData: IntroList;
-    let expectedEditionIntroSectionFilteredData: IntroList;
+    let expectedIntroComplexData: IntroList;
+    let expectedIntroSectionData: IntroList;
+    let expectedIntroSectionFilteredData: IntroList;
 
-    let expectedEditionSeries: EditionOutlineSeries;
-    let expectedEditionSection: EditionOutlineSection;
-    let expectedEditionComplex: EditionComplex;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
+    let expectedComplex: EditionComplex;
 
     const baseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const editionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
@@ -83,15 +82,9 @@ describe('EditionDataService (DONE)', () => {
 
         // Inject services
         service = TestBed.inject(EditionDataService);
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
-
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
 
         // Spies
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
@@ -103,15 +96,13 @@ describe('EditionDataService (DONE)', () => {
         // Test data
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
-        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
-        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
-        expectedEditionIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
+        expectedIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
+        expectedIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
+        expectedIntroComplexData = structuredClone(mockEditionData.mockIntroComplexData);
 
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
-        const seriesId = expectedEditionComplex.pubStatement.series.route;
-        const sectionId = expectedEditionComplex.pubStatement.section.route;
-        expectedEditionSeries = editionOutlineService.getEditionSeriesById(seriesId);
-        expectedEditionSection = editionOutlineService.getEditionSectionById(seriesId, sectionId);
+        expectedComplex = EditionStateHelper.getComplex('op12');
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
     });
 
     afterEach(() => {
@@ -228,11 +219,11 @@ describe('EditionDataService (DONE)', () => {
         describe('... with selected complex', () => {
             beforeEach(() => {
                 // Set selected series and section for intro data signal
-                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
-                editionStateService.updateSelectedEditionSection(expectedEditionSection);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
+                editionStateService.updateSelectedEditionSection(expectedSection);
 
                 // Set selected complex for all complex data signals
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
             });
 
             testCases.forEach(({ signalName, assetKey }) => {
@@ -245,18 +236,18 @@ describe('EditionDataService (DONE)', () => {
 
                     await new Promise(resolve => setTimeout(resolve, 0));
 
-                    const complexPath = (service as any)._getAssetPathForEditionComplex(expectedEditionComplex);
+                    const complexPath = (service as any)._getAssetPathForEditionComplex(expectedComplex);
                     const file = config[assetKey].file;
                     const expectedComplexUrl = `${complexPath}/${file}`;
 
                     if (assetKey === 'intro') {
-                        const sectionRoute = expectedEditionComplex.pubStatement.labeledSectionRoute?.route.join('/');
+                        const sectionRoute = expectedComplex.pubStatement.labeledSectionRoute?.route.join('/');
                         const expectedSectionUrl = `${baseRoute}${sectionRoute}/${file}`;
 
-                        expectAndFlush(expectedSectionUrl, expectedEditionIntroSectionData);
-                        expectAndFlush(expectedComplexUrl, expectedEditionIntroComplexData);
+                        expectAndFlush(expectedSectionUrl, expectedIntroSectionData);
+                        expectAndFlush(expectedComplexUrl, expectedIntroComplexData);
 
-                        mockResponseData = expectedEditionIntroSectionFilteredData as DataType;
+                        mockResponseData = expectedIntroSectionFilteredData as DataType;
                     } else {
                         expectAndFlush(expectedComplexUrl, mockResponseData);
                     }
@@ -338,12 +329,12 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should return the generated assetPath', () => {
-                const sectionPath = expectedEditionComplex.pubStatement.labeledSectionRoute.route.join('/');
-                const complexIdRoute = expectedEditionComplex.complexId.route;
+                const sectionPath = expectedComplex.pubStatement.labeledSectionRoute.route.join('/');
+                const complexIdRoute = expectedComplex.complexId.route;
 
                 const expectedPath = `${baseRoute}${sectionPath}${complexIdRoute}`;
 
-                const result = (service as any)._getAssetPathForEditionComplex(expectedEditionComplex);
+                const result = (service as any)._getAssetPathForEditionComplex(expectedComplex);
 
                 expectToBe(result, expectedPath);
             });
@@ -501,7 +492,7 @@ describe('EditionDataService (DONE)', () => {
                         fetchJsonDataSpy.mockReturnValue(observableOf(expectedResponse));
                         clearErrorForSpy.mockClear();
 
-                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                        editionStateService.updateSelectedEditionComplex(expectedComplex);
 
                         let resultSignal: Signal<any>;
                         TestBed.runInInjectionContext(() => {
@@ -518,7 +509,7 @@ describe('EditionDataService (DONE)', () => {
                         expect(getClearErrorCountByKey(assetsKey)).toBe(2);
 
                         // The fetch request should be triggered
-                        expect(getAssetPathSpy).toHaveBeenCalledWith(expectedEditionComplex);
+                        expect(getAssetPathSpy).toHaveBeenCalledWith(expectedComplex);
                         expect(fetchJsonDataSpy).toHaveBeenCalled();
 
                         expectToEqual(resultSignal(), expectedResponse);
@@ -539,7 +530,7 @@ describe('EditionDataService (DONE)', () => {
 
                         expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
 
-                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                        editionStateService.updateSelectedEditionComplex(expectedComplex);
                         await new Promise(resolve => setTimeout(resolve, 0));
 
                         expect(clearErrorForSpy).toHaveBeenCalledWith(assetsKey);
@@ -633,8 +624,8 @@ describe('EditionDataService (DONE)', () => {
                 describe('... should return fallback value if', () => {
                     const incompleteStates = [
                         ['state is null or undefined', null as any],
-                        ['series is missing', { series: null, section: mockSection, complex: expectedEditionComplex }],
-                        ['section is missing', { series: mockSeries, section: null, complex: expectedEditionComplex }],
+                        ['series is missing', { series: null, section: mockSection, complex: expectedComplex }],
+                        ['section is missing', { series: mockSeries, section: null, complex: expectedComplex }],
                         ['series and section are missing', { series: null, section: null, complex: null }],
                     ];
 
@@ -665,7 +656,7 @@ describe('EditionDataService (DONE)', () => {
                 let expectedSectionIntroData: IntroList;
 
                 beforeEach(() => {
-                    nonMatchingComplex = editionComplexesService.getEditionComplexById('m34');
+                    nonMatchingComplex = EditionStateHelper.getComplex('m34');
                     expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] } as IntroList;
                 });
 
@@ -699,15 +690,15 @@ describe('EditionDataService (DONE)', () => {
                 let filterIntroDataSpy: Spy;
 
                 beforeEach(() => {
-                    matchingComplex = expectedEditionComplex;
+                    matchingComplex = expectedComplex;
 
                     filterIntroDataSpy = vi.spyOn(service as any, '_filterSectionIntroDataByBlockId');
                 });
 
                 it('... should fetch both the section and the complex intro data from their respective paths', async () => {
                     fetchJsonDataSpy
-                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
-                        .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
+                        .mockReturnValueOnce(observableOf(expectedIntroSectionData))
+                        .mockReturnValueOnce(observableOf(expectedIntroComplexData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
                     const result$ = (service as any)._getIntroDataStream(mockState);
@@ -734,22 +725,22 @@ describe('EditionDataService (DONE)', () => {
 
                 it('... should filter section data by complex blockId if complex data contains intro blocks', async () => {
                     fetchJsonDataSpy
-                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
-                        .mockReturnValueOnce(observableOf(expectedEditionIntroComplexData));
+                        .mockReturnValueOnce(observableOf(expectedIntroSectionData))
+                        .mockReturnValueOnce(observableOf(expectedIntroComplexData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
                     const result$ = (service as any)._getIntroDataStream(mockState);
                     const res = await lastValueFrom(result$);
 
-                    expectSpyCall(filterIntroDataSpy, 1, [expectedEditionIntroSectionData, 'test_block_id_2']);
-                    expectToEqual(res, expectedEditionIntroSectionFilteredData);
+                    expectSpyCall(filterIntroDataSpy, 1, [expectedIntroSectionData, 'test_block_id_2']);
+                    expectToEqual(res, expectedIntroSectionFilteredData);
                 });
 
                 it('... should return the plain section data without filtering if complex data contains no intro blocks', async () => {
                     const emptyComplexIntroData = { intro: [] } as IntroList;
 
                     fetchJsonDataSpy
-                        .mockReturnValueOnce(observableOf(expectedEditionIntroSectionData))
+                        .mockReturnValueOnce(observableOf(expectedIntroSectionData))
                         .mockReturnValueOnce(observableOf(emptyComplexIntroData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
@@ -757,7 +748,7 @@ describe('EditionDataService (DONE)', () => {
                     const res = await lastValueFrom(result$);
 
                     expect(filterIntroDataSpy).not.toHaveBeenCalled();
-                    expectToEqual(res, expectedEditionIntroSectionData);
+                    expectToEqual(res, expectedIntroSectionData);
                 });
             });
         });
@@ -769,44 +760,38 @@ describe('EditionDataService (DONE)', () => {
 
             it('... should return the correct section intro data for a given block id', () => {
                 const blockId = 'test_block_id_2';
-                const expectedBlock = expectedEditionIntroSectionData.intro[0].content.find(
+                const expectedBlock = expectedIntroSectionData.intro[0].content.find(
                     block => block.blockId === blockId
                 );
 
-                const result = (service as any)._filterSectionIntroDataByBlockId(
-                    expectedEditionIntroSectionData,
-                    blockId
-                );
+                const result = (service as any)._filterSectionIntroDataByBlockId(expectedIntroSectionData, blockId);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
-                expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
                 expectToEqual(result.intro[0].content, [expectedBlock]);
             });
 
             describe('... should return an empty content array or original data if', () => {
                 it('... no block id is given', () => {
                     const result = (service as any)._filterSectionIntroDataByBlockId(
-                        expectedEditionIntroSectionData,
+                        expectedIntroSectionData,
                         undefined
                     );
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                    expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
                     expectToEqual(result.intro[0].content, []);
                 });
 
                 it('... no intro data section is found for given block id', () => {
                     const blockId = 'notExistingId';
-                    const result = (service as any)._filterSectionIntroDataByBlockId(
-                        expectedEditionIntroSectionData,
-                        blockId
-                    );
+                    const result = (service as any)._filterSectionIntroDataByBlockId(expectedIntroSectionData, blockId);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
-                    expectToBe(result.intro[0].id, expectedEditionIntroSectionData.intro[0].id);
+                    expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
                     expectToEqual(result.intro[0].content, []);
                 });
             });

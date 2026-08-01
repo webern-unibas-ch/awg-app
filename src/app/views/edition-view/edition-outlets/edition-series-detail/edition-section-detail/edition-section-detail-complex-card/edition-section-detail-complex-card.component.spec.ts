@@ -6,6 +6,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
@@ -17,7 +18,6 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
@@ -28,9 +28,6 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
     let linkDes: DebugElement[];
     let routerLinks;
-
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
 
     let expectedComplexes: EditionOutlineComplexItem[];
 
@@ -47,16 +44,8 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
-
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
-        const section = editionOutlineService.getEditionSectionById('1', '5');
+        const section = EditionStateHelper.getSection('1', '5');
         expectedComplexes = section?.content.sectionComplexes ?? [];
 
         // Create component fixture

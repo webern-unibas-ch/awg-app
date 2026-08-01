@@ -15,9 +15,9 @@ import {
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, EditionRouteConstant } from '../models';
-import { EditionComplexesService, EditionOutlineService } from '../services';
 
-import { EditionBreadcrumbComponent } from './edition-bread-crumb.component';
+import { EditionStateHelper } from '@testing/edition-state-helper';
+import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';
 
 describe('EditionBreadcrumbComponent', () => {
     let component: EditionBreadcrumbComponent;
@@ -26,10 +26,6 @@ describe('EditionBreadcrumbComponent', () => {
 
     let router: Router;
 
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
-
-    let expectedSelectedEditionComplexId: string;
     let expectedComplex: EditionComplex;
     let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
@@ -51,17 +47,11 @@ describe('EditionBreadcrumbComponent', () => {
         // Inject services
         router = TestBed.inject(Router);
 
-        // Init edition data
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
-        expectedSelectedEditionComplexId = 'op12';
-        expectedComplex = editionComplexesService.getEditionComplexById(expectedSelectedEditionComplexId);
-        expectedSeries = editionOutlineService.editionOutline()[0]; // Series 1
-        expectedSection = expectedSeries.sections[4]; // Section 5
+        const complexId = 'op12';
+        expectedComplex = EditionStateHelper.getComplex(complexId);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionBreadcrumbComponent);

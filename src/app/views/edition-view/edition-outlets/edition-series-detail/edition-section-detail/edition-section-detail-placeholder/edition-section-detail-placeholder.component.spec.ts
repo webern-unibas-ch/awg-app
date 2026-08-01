@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
 
@@ -25,10 +25,8 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     let fixture: ComponentFixture<EditionSectionDetailPlaceholderComponent>;
     let compDe: DebugElement;
 
-    let editionOutlineService: EditionOutlineService;
-
-    let expectedSelectedSeries: EditionOutlineSeries;
-    let expectedSelectedSection: EditionOutlineSection;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
 
     let expectedInfoMessage: string;
 
@@ -40,19 +38,12 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionOutlineService = TestBed.inject(EditionOutlineService);
-
-        // Init edition data
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
-        expectedSelectedSeries = structuredClone(editionOutlineService.editionOutline()[0]);
-        expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
 
-        const series = expectedSelectedSeries.series.short;
-        const section = expectedSelectedSection.section.short;
-        expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG ${series}/${section}.]`;
+        const sectionLabel = expectedSection.labeledRoute.label;
+        expectedInfoMessage = `[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von ${sectionLabel}.]`;
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailPlaceholderComponent);
@@ -89,8 +80,8 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = structuredClone(expectedSelectedSeries);
-            component.selectedSection = structuredClone(expectedSelectedSection);
+            component.selectedSeries = structuredClone(expectedSeries);
+            component.selectedSection = structuredClone(expectedSection);
 
             // Trigger initial data binding
             fixture.detectChanges();

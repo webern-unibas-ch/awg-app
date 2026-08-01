@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder.component';
 
@@ -15,10 +15,9 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroPlaceholderComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let mockDocument: Document;
 
-    let expectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -28,14 +27,10 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-
         // Test data
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
+        expectedComplex = EditionStateHelper.getComplex('op12');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionIntroPlaceholderComponent);
@@ -71,14 +66,14 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.editionComplex = expectedEditionComplex;
+            component.editionComplex = expectedComplex;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedComplex);
         });
 
         describe('VIEW', () => {
@@ -92,12 +87,12 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
 
                 // Create intro placeholder
                 const fullComplexSpan = mockDocument.createElement('span');
-                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
+                fullComplexSpan.innerHTML = expectedComplex.complexId.full;
 
                 const shortComplexSpan = mockDocument.createElement('span');
-                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+                shortComplexSpan.innerHTML = expectedComplex.complexId.short;
 
-                const sectionLabel = expectedEditionComplex.pubStatement.labeledSectionRoute.label;
+                const sectionLabel = expectedComplex.pubStatement.labeledSectionRoute.label;
                 const introPlaceholder = `[Die Einleitung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${sectionLabel}.]`;
 
                 expectToBe(pEl.textContent.trim(), introPlaceholder);

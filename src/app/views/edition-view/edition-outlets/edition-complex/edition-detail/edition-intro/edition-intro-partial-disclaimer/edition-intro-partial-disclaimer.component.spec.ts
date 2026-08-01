@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
@@ -15,7 +16,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer.component';
 
@@ -27,9 +27,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let editionComplexesService: EditionComplexesService;
-
-    let expectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
     let expectedEditionLabel: string;
     let expectedEditionRoute: string;
     let expectedSeriesRoute: string;
@@ -43,14 +41,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-
         // Test data
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
+        const complexId = 'op12';
+        expectedComplex = EditionStateHelper.getComplex(complexId);
         expectedEditionLabel = EDITION_ROUTE_CONSTANTS.EDITION.short;
         expectedEditionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
         expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
@@ -111,7 +104,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.editionComplex = expectedEditionComplex;
+            component.editionComplex = expectedComplex;
             component.editionLabel = expectedEditionLabel;
             component.editionRoute = expectedEditionRoute;
             component.seriesRoute = expectedSeriesRoute;
@@ -123,7 +116,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         });
 
         it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedComplex);
         });
 
         it('... should have `editionLabel`', () => {
@@ -182,9 +175,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                     const expectedRouterLink = [
                         expectedEditionRoute,
                         expectedSeriesRoute,
-                        expectedEditionComplex.pubStatement.series.route,
+                        expectedComplex.pubStatement.series.route,
                         expectedSectionRoute,
-                        expectedEditionComplex.pubStatement.section.route,
+                        expectedComplex.pubStatement.section.route,
                         expectedIntroRoute,
                     ];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
@@ -197,9 +190,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                     const expectedRouterLink = [
                         expectedEditionRoute,
                         expectedSeriesRoute,
-                        expectedEditionComplex.pubStatement.series.route,
+                        expectedComplex.pubStatement.series.route,
                         expectedSectionRoute,
-                        expectedEditionComplex.pubStatement.section.route,
+                        expectedComplex.pubStatement.section.route,
                         expectedIntroRoute,
                     ];
 

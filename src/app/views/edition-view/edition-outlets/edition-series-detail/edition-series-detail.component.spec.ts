@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -26,7 +27,7 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     let editionOutlineServiceGetEditionSeriesByIdSpy: Spy;
     let editionStateServiceUpdateSelectedEditionSeriesSpy: Spy;
 
-    let expectedSelectedSeries: EditionOutlineSeries;
+    let expectedSeries: EditionOutlineSeries;
     let expectedSeriesId: string;
 
     beforeEach(async () => {
@@ -44,11 +45,16 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionOutlineService.initializeEditionOutline();
-
-        // Srvice spies
-        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
+        // Service spies
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSeriesById')
+            .mockImplementation((seriesId: string) => {
+                try {
+                    return EditionStateHelper.getSeries(seriesId);
+                } catch {
+                    return undefined;
+                }
+            });
         editionStateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(
             editionStateService,
             'updateSelectedEditionSeries'
@@ -58,8 +64,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         updateSeriesFromRouteSpy = vi.spyOn(EditionSeriesDetailComponent.prototype, 'updateSeriesFromRoute');
 
         // Test data
-        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
-        expectedSeriesId = expectedSelectedSeries.series.route;
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSeriesId = expectedSeries.series.route;
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSeriesDetailComponent);
@@ -123,7 +129,7 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
             });
 
             it('... should update the selected edition series in the state service', () => {
-                const newSeries = editionOutlineService.editionOutline()[1];
+                const newSeries = EditionStateHelper.getSeries('2');
                 const newSeriesId = newSeries.series.route;
                 fixture.componentRef.setInput('seriesId', newSeriesId);
 

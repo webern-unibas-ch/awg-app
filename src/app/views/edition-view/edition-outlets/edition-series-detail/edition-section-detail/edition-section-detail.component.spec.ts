@@ -4,11 +4,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
 
@@ -17,7 +18,6 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionDetailComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
@@ -25,8 +25,8 @@ describe('EditionSectionDetailComponent (DONE)', () => {
     let editionOutlineServiceGetEditionSectionByIdSpy: Spy;
     let editionStateServiceUpdateSelectedEditionSectionSpy: Spy;
 
-    let expectedSelectedSeries: EditionOutlineSeries;
-    let expectedSelectedSection: EditionOutlineSection;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
     let expectedSeriesId: string;
     let expectedSectionId: string;
 
@@ -38,16 +38,19 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Service spies
-        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+        editionOutlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return undefined;
+                }
+            });
         editionStateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(
             editionStateService,
             'updateSelectedEditionSection'
@@ -57,10 +60,10 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         updateSectionFromRouteSpy = vi.spyOn(EditionSectionDetailComponent.prototype, 'updateSectionFromRoute');
 
         // Test data
-        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
-        expectedSelectedSection = expectedSelectedSeries.sections[4];
-        expectedSeriesId = expectedSelectedSeries.series.route;
-        expectedSectionId = expectedSelectedSection.section.route;
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
+        expectedSeriesId = expectedSeries.series.route;
+        expectedSectionId = expectedSection.section.route;
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailComponent);
@@ -143,7 +146,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             });
 
             it('... should call EditionOutlineService.getEditionSectionById', () => {
-                editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
 
                 fixture.detectChanges();
 
@@ -151,11 +154,11 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             });
 
             it('... should update the selected edition section in the state service', () => {
-                editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
 
                 fixture.detectChanges();
 
-                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSelectedSection);
+                expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSection);
             });
 
             describe('... should update selected section to null', () => {
@@ -188,7 +191,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                 });
 
                 it('... on cleanup', () => {
-                    editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
+                    editionStateService.updateSelectedEditionSeries(expectedSeries);
 
                     fixture.destroy();
 

@@ -1,10 +1,11 @@
-import { DebugElement, isSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -15,7 +16,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesComponent } from './edition-series.component';
 
@@ -24,35 +25,37 @@ describe('EditionSeriesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
-    let updateSeriesSpy: Spy;
+    let stateServiceUpdateSeriesSpy: Spy;
 
-    let expectedEditionOutline: EditionOutlineSeries[];
+    let mockOutlineSignal: WritableSignal<EditionOutlineSeries[]>;
+    let expectedOutline: EditionOutlineSeries[];
 
     beforeEach(async () => {
+        // Mock services
+        expectedOutline = EditionStateHelper.getOutline();
+        mockOutlineSignal = signal(expectedOutline);
+
         await TestBed.configureTestingModule({
             declarations: [EditionSeriesComponent, RouterLinkStubDirective],
+            providers: [
+                {
+                    provide: EditionOutlineService,
+                    useValue: {
+                        editionOutline: mockOutlineSignal.asReadonly(),
+                    },
+                },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Service spies
-        updateSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
-
-        // Test data
-        expectedEditionOutline = editionOutlineService.editionOutline();
+        stateServiceUpdateSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSeriesComponent);
@@ -72,11 +75,11 @@ describe('EditionSeriesComponent (DONE)', () => {
         it('... should have signal `editionOutline` to hold the expected outline', () => {
             expectToBe(isSignal(component.editionOutline), true);
 
-            expectToEqual(component.editionOutline(), expectedEditionOutline);
+            expectToEqual(component.editionOutline(), expectedOutline);
         });
 
         it('... should have cleared the selected edition series in the constructor (via service)', () => {
-            expectSpyCall(updateSeriesSpy, 1, null);
+            expectSpyCall(stateServiceUpdateSeriesSpy, 1, null);
         });
 
         describe('VIEW', () => {
@@ -125,11 +128,11 @@ describe('EditionSeriesComponent (DONE)', () => {
             });
 
             it('... should contain as many div.col in `div.awg-edition-series-grid` as there are series', () => {
-                getGridColDes(expectedEditionOutline.length);
+                getGridColDes(expectedOutline.length);
             });
 
             it('... should contain a div.awg-edition-series-card in each div.col', () => {
-                const colDes = getGridColDes(expectedEditionOutline.length);
+                const colDes = getGridColDes(expectedOutline.length);
 
                 colDes.forEach(colDe => {
                     getAndExpectDebugElementByCss(colDe, 'div.awg-edition-series-card', 1, 1);
@@ -142,7 +145,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     { desc: 'a div.card-body', selector: 'div.card-body' },
                     { desc: 'a div.card-footer', selector: 'div.card-footer' },
                 ])('... should contain $desc in each div.awg-edition-series-card', ({ selector }) => {
-                    const cardDes = getSeriesCardDes(expectedEditionOutline.length);
+                    const cardDes = getSeriesCardDes(expectedOutline.length);
 
                     cardDes.forEach(cardDe => {
                         getAndExpectDebugElementByCss(cardDe, selector, 1, 1);
@@ -151,10 +154,10 @@ describe('EditionSeriesComponent (DONE)', () => {
             });
 
             it('... should display series name in each h5.card-header', () => {
-                const cardDes = getSeriesCardDes(expectedEditionOutline.length);
+                const cardDes = getSeriesCardDes(expectedOutline.length);
 
                 cardDes.forEach((cardDe, index) => {
-                    const expectedSeries = expectedEditionOutline[index].series;
+                    const expectedSeries = expectedOutline[index].series;
                     const hDes = getAndExpectDebugElementByCss(cardDe, 'h5.card-header', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
@@ -164,7 +167,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             describe('... div.card-body', () => {
                 it('... should contain a ul.list-group in each div.card-body', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -179,7 +182,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should contain as many li.list-group-item in ul.list-group as there are sections in a series', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const ulDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -189,7 +192,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     );
 
                     ulDes.forEach((ulDe, index) => {
-                        const expectedSectionsLength = expectedEditionOutline[index].sections.length;
+                        const expectedSectionsLength = expectedOutline[index].sections.length;
 
                         getAndExpectDebugElementByCss(
                             ulDe,
@@ -201,7 +204,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should display section name in each li.list-group-item', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const ulDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -211,7 +214,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     );
 
                     ulDes.forEach((ulDe, index) => {
-                        const expectedSections = expectedEditionOutline[index].sections;
+                        const expectedSections = expectedOutline[index].sections;
 
                         const liDes = getAndExpectDebugElementByCss(
                             ulDe,
@@ -230,7 +233,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should contain a routerLink and no span.text-muted in li.list-group-item if section is not disabled', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const ulDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -240,7 +243,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     );
 
                     ulDes.forEach((ulDe, index) => {
-                        const expectedSections = expectedEditionOutline[index].sections;
+                        const expectedSections = expectedOutline[index].sections;
 
                         const liDes = getAndExpectDebugElementByCss(
                             ulDe,
@@ -261,7 +264,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should contain no router link, but a span.text-muted in li.list-group-item if section is disabled', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const ulDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -271,7 +274,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     );
 
                     ulDes.forEach((ulDe, index) => {
-                        const expectedSections = expectedEditionOutline[index].sections;
+                        const expectedSections = expectedOutline[index].sections;
 
                         const liDes = getAndExpectDebugElementByCss(
                             ulDe,
@@ -294,7 +297,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             describe('... div.card-footer', () => {
                 it('... should contain a routerLink in each div.card-footer', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -310,7 +313,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should have correct routerLink in each div.card-footer', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -320,7 +323,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSeries = expectedEditionOutline[index].series;
+                        const expectedSeries = expectedOutline[index].series;
 
                         const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
 
@@ -339,7 +342,7 @@ describe('EditionSeriesComponent (DONE)', () => {
                 });
 
                 it('... should display correct text in each routerLink in div.card-footer', () => {
-                    const expectedSeriesLength = expectedEditionOutline.length;
+                    const expectedSeriesLength = expectedOutline.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -383,7 +386,7 @@ describe('EditionSeriesComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                expectedEditionOutline.forEach(series => {
+                expectedOutline.forEach(series => {
                     series.sections.forEach(section => {
                         if (!section.disabled) {
                             // Check the router link for the section

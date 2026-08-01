@@ -3,41 +3,31 @@ import { TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
-import { EditionComplexesService, EditionOutlineService } from '../services';
 
 import { EditionStateService } from './edition-state.service';
 
 describe('EditionStateService (DONE)', () => {
-    let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
-    let expectedEditionComplex: EditionComplex;
-    let expectedEditionOutline: EditionOutlineSeries[];
-    let expectedEditionSeries: EditionOutlineSeries;
-    let expectedEditionSection: EditionOutlineSection;
+    let expectedComplex: EditionComplex;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [EditionStateService],
         });
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Test data (default)
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
-        expectedEditionOutline = editionOutlineService.editionOutline();
-        expectedEditionSeries = expectedEditionOutline[0];
-        expectedEditionSection = expectedEditionOutline[0].sections[0];
+        expectedComplex = EditionStateHelper.getComplex('op12');
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
     });
 
     it('... should create', () => {
@@ -86,14 +76,14 @@ describe('EditionStateService (DONE)', () => {
             });
 
             it('... should update `selectedEditionComplex` signal to hold expected complex', () => {
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
 
-                expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);
+                expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
 
-                expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                expectedComplex = EditionStateHelper.getComplex('op25');
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
 
-                expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);
+                expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
             });
         });
 
@@ -102,22 +92,22 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateSelectedEditionSection).toBeDefined();
             });
 
-            it('... should update `selectedEditionSection` signal to hold expected section', () => {
-                editionStateService.updateSelectedEditionSection(expectedEditionSection);
+            it('... should update `selectedEditionSection` signal to hold the expected section', () => {
+                editionStateService.updateSelectedEditionSection(expectedSection);
 
-                expectToEqual(editionStateService.selectedEditionSection(), expectedEditionSection);
+                expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
 
-                expectedEditionSection = expectedEditionOutline[0].sections[4];
-                editionStateService.updateSelectedEditionSection(expectedEditionSection);
+                expectedSection = EditionStateHelper.getSection('2', '2a');
+                editionStateService.updateSelectedEditionSection(expectedSection);
 
-                expectToEqual(editionStateService.selectedEditionSection(), expectedEditionSection);
+                expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
             });
 
             it('... should update `selectedEditionComplex` signal to hold null when updating `selectedEditionSection`', () => {
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-                expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
+                expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
 
-                editionStateService.updateSelectedEditionSection(expectedEditionSection);
+                editionStateService.updateSelectedEditionSection(expectedSection);
                 expectToEqual(editionStateService.selectedEditionComplex(), null);
             });
         });
@@ -128,29 +118,29 @@ describe('EditionStateService (DONE)', () => {
             });
 
             it('... should update `selectedEditionSeries` signal to hold expected series', () => {
-                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
 
-                expectToEqual(editionStateService.selectedEditionSeries(), expectedEditionSeries);
+                expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
 
-                expectedEditionSeries = expectedEditionOutline[1];
-                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
+                expectedSeries = EditionStateHelper.getSeries('2');
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
 
-                expectToEqual(editionStateService.selectedEditionSeries(), expectedEditionSeries);
+                expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
             });
 
             it('... should update `selectedEditionSection` signal to hold null when updating `selectedEditionSeries`', () => {
-                editionStateService.updateSelectedEditionSection(expectedEditionSection);
-                expectToEqual(editionStateService.selectedEditionSection(), expectedEditionSection);
+                editionStateService.updateSelectedEditionSection(expectedSection);
+                expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
 
-                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
                 expectToEqual(editionStateService.selectedEditionSection(), null);
             });
 
             it('... should update `selectedEditionComplex` signal to hold null when updating `selectedEditionSeries`', () => {
-                editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
-                expectToEqual(editionStateService.selectedEditionComplex(), expectedEditionComplex);
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
+                expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
 
-                editionStateService.updateSelectedEditionSeries(expectedEditionSeries);
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
                 expectToEqual(editionStateService.selectedEditionComplex(), null);
             });
         });

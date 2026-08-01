@@ -13,7 +13,8 @@ import {
 } from '@testing/expect-helper';
 
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import {
     Statistics,
@@ -74,10 +75,9 @@ describe('StatisticsViewComponent', () => {
     let fixture: ComponentFixture<StatisticsViewComponent>;
     let compDe: DebugElement;
 
-    let mockOutlineSignal: WritableSignal<any[] | null>;
-    let mockEditionOutlineService: Partial<EditionOutlineService>;
     let mockStatisticsService: Mocked<Partial<StatisticsService>>;
 
+    let mockOutlineSignal: WritableSignal<EditionOutlineSeries[] | null>;
     let expectedStatisticsData: Statistics;
 
     let expectedComplexBreakdownData: StatisticsComplexBreakdownData;
@@ -85,11 +85,7 @@ describe('StatisticsViewComponent', () => {
     let expectedSummaryData: StatisticsSummaryData;
 
     beforeEach(async () => {
-        mockOutlineSignal = signal<any[] | null>(null);
-
-        mockEditionOutlineService = {
-            editionOutline: mockOutlineSignal,
-        };
+        mockOutlineSignal = signal(null);
 
         mockStatisticsService = {
             getStatisticsFromOutline: vi.fn(),
@@ -99,7 +95,7 @@ describe('StatisticsViewComponent', () => {
             imports: [StatisticsViewComponent],
             providers: [
                 { provide: StatisticsService, useValue: mockStatisticsService },
-                { provide: EditionOutlineService, useValue: mockEditionOutlineService },
+                { provide: EditionOutlineService, useValue: { editionOutline: mockOutlineSignal.asReadonly() } },
             ],
         })
             .overrideComponent(StatisticsViewComponent, {
@@ -242,7 +238,7 @@ describe('StatisticsViewComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set input signals with test data
-            mockOutlineSignal.set([{ series: 'I' }]);
+            mockOutlineSignal.set([{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }]);
             mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
 
             fixture.detectChanges();
@@ -251,7 +247,9 @@ describe('StatisticsViewComponent', () => {
         it('... should have computed signal `statisticsData` to hold the provided data', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
 
-            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 1, [[{ series: 'I' }]]);
+            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 1, [
+                [{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }],
+            ]);
         });
 
         it('... should have computed signal `complexBreakdownData` to hold the expected data', () => {

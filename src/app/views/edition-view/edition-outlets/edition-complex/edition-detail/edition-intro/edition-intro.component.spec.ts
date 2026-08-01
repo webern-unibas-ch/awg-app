@@ -23,6 +23,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -45,7 +46,7 @@ import {
     IntroList,
 } from '@awg-views/edition-view/models';
 import { EditionDataAssetsError, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionIntroComponent } from './edition-intro.component';
@@ -160,7 +161,6 @@ describe('IntroComponent (DONE)', () => {
     let mockDocument: Document;
     let mockRouter;
 
-    let editionComplexesService: EditionComplexesService;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
@@ -185,20 +185,20 @@ describe('IntroComponent (DONE)', () => {
     let mockViewDataSignal: WritableSignal<any>;
     let expectedViewDataContent: EditionViewDataContent<'intro'>;
     let expectedDefaultViewDataContent: EditionViewDataContent<'intro'>;
-    let expectedEditionIntroSectionData: IntroList;
-    let expectedEditionIntroSectionFilteredData: IntroList;
+    let expectedIntroSectionData: IntroList;
+    let expectedIntroSectionFilteredData: IntroList;
     let expectedCurrentLaguage: number;
     let expectedNotesLabels: Map<number, string>;
-    let expectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
 
-    let expectedEditionComplexBaseRoute: string;
+    let expectedComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedModalSnippet: string;
-    let expectedSelectedEditionSeries: EditionOutlineSeries;
-    let expectedSelectedEditionSection: EditionOutlineSection;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
     let expectedSvgSheet: EditionSvgSheet;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
@@ -237,21 +237,32 @@ describe('IntroComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
-
         // Service spies
-        editionOutlineServiceGetEditionSeriesByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSeriesById');
-        editionOutlineServiceGetEditionSectionByIdSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
+        editionOutlineServiceGetEditionSeriesByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSeriesById')
+            .mockImplementation((seriesId: string) => {
+                try {
+                    return EditionStateHelper.getSeries(seriesId);
+                } catch {
+                    return undefined;
+                }
+            });
+        editionOutlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return undefined;
+                }
+            });
 
         // Test data
-        expectedEditionIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
-        expectedEditionIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
+        expectedIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
+        expectedIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
 
         expectedCurrentLaguage = 0;
         expectedNotesLabels = new Map([
@@ -260,21 +271,15 @@ describe('IntroComponent (DONE)', () => {
         ]);
 
         expectedComplexId = 'op12';
-        expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
-        expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
+        expectedComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
+        expectedComplex = EditionStateHelper.getComplex(expectedComplexId);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
         expectedNextComplexId = 'testComplex2';
         expectedIntroFragment = 'note-80';
         expectedReportFragment = 'source_A';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-
-        expectedSelectedEditionSeries = editionOutlineService.getEditionSeriesById(
-            expectedEditionComplex.pubStatement.series.route
-        );
-        expectedSelectedEditionSection = editionOutlineService.getEditionSectionById(
-            expectedEditionComplex.pubStatement.series.route,
-            expectedEditionComplex.pubStatement.section.route
-        );
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionIntroComponent);
@@ -386,12 +391,12 @@ describe('IntroComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the services returning the properties
-            editionStateService.updateSelectedEditionSeries(expectedSelectedEditionSeries);
-            editionStateService.updateSelectedEditionSection(expectedSelectedEditionSection);
-            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+            editionStateService.updateSelectedEditionSeries(expectedSeries);
+            editionStateService.updateSelectedEditionSection(expectedSection);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
 
             // Set mock view data signal to expected data state
-            expectedViewDataContent = { introData: expectedEditionIntroSectionData };
+            expectedViewDataContent = { introData: expectedIntroSectionData };
             mockViewDataSignal.set(
                 createMockViewData(expectedViewDataContent, {
                     isLoading: false,
@@ -406,7 +411,7 @@ describe('IntroComponent (DONE)', () => {
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
             expectToBe(isSignal(component.selectedEditionComplex), true);
 
-            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
+            expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
         it('... should have signal `viewData` to hold the expected view data', () => {
@@ -525,7 +530,7 @@ describe('IntroComponent (DONE)', () => {
                             EditionIntroPlaceholderStubComponent
                         ) as EditionIntroPlaceholderStubComponent;
 
-                        expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedEditionComplex);
+                        expectToEqual(editionIntroPlaceholderCmp.editionComplex, expectedComplex);
                         expectToEqual(
                             editionIntroPlaceholderCmp.editionLabel,
                             expectedEditionRouteConstants.EDITION.short
@@ -536,9 +541,9 @@ describe('IntroComponent (DONE)', () => {
                 describe('... if intro content is given', () => {
                     describe('... with complex', () => {
                         beforeEach(async () => {
-                            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                            editionStateService.updateSelectedEditionComplex(expectedComplex);
                             const expectedFilteredViewDataContent = {
-                                introData: expectedEditionIntroSectionFilteredData,
+                                introData: expectedIntroSectionFilteredData,
                             };
                             mockViewDataSignal.set(
                                 createMockViewData(expectedFilteredViewDataContent, { isLoading: false, error: null })
@@ -568,7 +573,7 @@ describe('IntroComponent (DONE)', () => {
                                 EditionIntroPartialDisclaimerStubComponent
                             ) as EditionIntroPartialDisclaimerStubComponent;
 
-                            expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedEditionComplex);
+                            expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedComplex);
                             expectToEqual(
                                 editionIntroPartialDisclaimerCmp.editionLabel,
                                 expectedEditionRouteConstants.EDITION.short
@@ -609,7 +614,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent,
-                                expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionFilteredData.intro[expectedCurrentLaguage].content
                             );
                             expectToEqual(
                                 editionIntroContentCmp.notesLabel,
@@ -635,7 +640,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent,
-                                expectedEditionIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionFilteredData.intro[expectedCurrentLaguage].content
                             );
                             expectToEqual(
                                 editionIntroNavCmp.notesLabel,
@@ -683,7 +688,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent,
-                                expectedEditionIntroSectionData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionData.intro[expectedCurrentLaguage].content
                             );
                             expectToEqual(
                                 editionIntroContentCmp.notesLabel,
@@ -709,7 +714,7 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent,
-                                expectedEditionIntroSectionData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionData.intro[expectedCurrentLaguage].content
                             );
                             expectToEqual(
                                 editionIntroNavCmp.notesLabel,
@@ -1593,7 +1598,7 @@ describe('IntroComponent (DONE)', () => {
 
                 describe('... should navigate within same complex if', () => {
                     it('... complex id is undefined', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1616,7 +1621,7 @@ describe('IntroComponent (DONE)', () => {
                     });
 
                     it('... complex id is null', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1635,7 +1640,7 @@ describe('IntroComponent (DONE)', () => {
                     });
 
                     it('... complex id is empty string', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1650,7 +1655,7 @@ describe('IntroComponent (DONE)', () => {
                     });
 
                     it('... complex id is equal to the current complex id', async () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1753,7 +1758,7 @@ describe('IntroComponent (DONE)', () => {
                 describe('... with no edition complex id given', () => {
                     describe('... should navigate within same complex to a given intro route', () => {
                         it('... with a given intro fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                             const expectedNavigationExtras = { fragment: expectedIntroFragment };
 
@@ -1776,7 +1781,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given intro fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1801,7 +1806,7 @@ describe('IntroComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given report route', () => {
                         it('... with a given report fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -1824,7 +1829,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given report fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1849,7 +1854,7 @@ describe('IntroComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given sheet route', () => {
                         it('... with a given sheet id', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -1872,7 +1877,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given sheet id', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: '' } };
 
@@ -1899,7 +1904,7 @@ describe('IntroComponent (DONE)', () => {
                 describe('... with the current edition complex id given', () => {
                     describe('... should navigate within same complex to a given intro route', () => {
                         it('... with a given intro fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                             const expectedNavigationExtras = { fragment: expectedIntroFragment };
 
@@ -1922,7 +1927,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given intro fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_INTRO.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1947,7 +1952,7 @@ describe('IntroComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given report route', () => {
                         it('... with a given report fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -1970,7 +1975,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given report fragment', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1995,7 +2000,7 @@ describe('IntroComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given sheet route', () => {
                         it('... with a given sheet id', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -2018,7 +2023,7 @@ describe('IntroComponent (DONE)', () => {
                         });
 
                         it('... without a given sheet id', async () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: '' } };
 
@@ -2191,8 +2196,8 @@ describe('IntroComponent (DONE)', () => {
 
             describe('#_updateEditionState()', () => {
                 beforeEach(() => {
-                    vi.mocked(editionOutlineServiceGetEditionSeriesByIdSpy).mockClear();
-                    vi.mocked(editionOutlineServiceGetEditionSectionByIdSpy).mockClear();
+                    editionOutlineServiceGetEditionSeriesByIdSpy.mockClear();
+                    editionOutlineServiceGetEditionSectionByIdSpy.mockClear();
                 });
 
                 it('... should have a method `_updateEditionState`', () => {
@@ -2207,7 +2212,7 @@ describe('IntroComponent (DONE)', () => {
 
                     (component as any)._updateEditionState(seriesNumber, sectionNumber);
 
-                    expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 2, seriesNumber);
+                    expectSpyCall(editionOutlineServiceGetEditionSeriesByIdSpy, 1, seriesNumber);
                 });
 
                 it('... should call EditionOutlineService.getEditionSectionById', () => {
@@ -2227,7 +2232,7 @@ describe('IntroComponent (DONE)', () => {
 
                     (component as any)._updateEditionState(seriesNumber, sectionNumber);
 
-                    expectToEqual(editionStateService.selectedEditionSeries(), expectedSelectedEditionSeries);
+                    expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
                 });
 
                 it('... should trigger and update `selectedEditionSection` in EditionStateService', () => {
@@ -2236,7 +2241,7 @@ describe('IntroComponent (DONE)', () => {
 
                     (component as any)._updateEditionState(seriesNumber, sectionNumber);
 
-                    expectToEqual(editionStateService.selectedEditionSection(), expectedSelectedEditionSection);
+                    expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
                 });
 
                 it('... should trigger and update `selectedEditionSeries` and `selectedEditionSection` in EditionStateService to null if series or section is not found', () => {

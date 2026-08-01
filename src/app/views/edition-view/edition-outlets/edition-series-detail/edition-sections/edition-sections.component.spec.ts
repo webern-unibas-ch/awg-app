@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
@@ -14,8 +15,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionSectionsComponent } from './edition-sections.component';
 
@@ -24,10 +25,9 @@ describe('EditionSectionsComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionsComponent>;
     let compDe: DebugElement;
 
-    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
-    let expectedSelectedSeries: EditionOutlineSeries;
+    let expectedSeries: EditionOutlineSeries;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -37,14 +37,10 @@ describe('EditionSectionsComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
-        expectedSelectedSeries = editionOutlineService.editionOutline()[0];
+        expectedSeries = EditionStateHelper.getSeries('1');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionsComponent);
@@ -70,14 +66,14 @@ describe('EditionSectionsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionStateService.updateSelectedEditionSeries(expectedSelectedSeries);
+            editionStateService.updateSelectedEditionSeries(expectedSeries);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have signal `selectedSeries` to hold the expected series', () => {
-            expectToEqual(component.selectedSeries(), expectedSelectedSeries);
+            expectToEqual(component.selectedSeries(), expectedSeries);
         });
 
         describe('VIEW', () => {
@@ -86,7 +82,7 @@ describe('EditionSectionsComponent (DONE)', () => {
             });
 
             it('... should contain as many div.cols with div.awg-edition-section-card as sections', () => {
-                const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                const expectedSectionsLength = expectedSeries.sections.length;
                 getAndExpectDebugElementByCss(
                     compDe,
                     'div.col > div.awg-edition-section-card',
@@ -96,7 +92,7 @@ describe('EditionSectionsComponent (DONE)', () => {
             });
 
             it('... should contain one div.row in each div.awg-edition-section-card', () => {
-                const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                const expectedSectionsLength = expectedSeries.sections.length;
 
                 const cardDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -112,7 +108,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
             describe('... cover image', () => {
                 it('... should contain one div.awg-img-container in each div.awg-edition-section-card for non-disabled sections', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -122,7 +118,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         if (!expectedSection.disabled) {
                             getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
@@ -133,7 +129,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should contain one img.card-img-top in each div.awg-img-container for non-disabled sections', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -143,7 +139,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
@@ -156,7 +152,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should have correct src in img.card-img-top for non-disabled sections', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -166,7 +162,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
@@ -175,7 +171,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                             const expectedSrc =
                                 'assets/img/edition/series/' +
-                                expectedSelectedSeries.series.route +
+                                expectedSeries.series.route +
                                 '/section/' +
                                 expectedSection.section.route +
                                 '/cover.jpg';
@@ -189,7 +185,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should have correct alt in img.card-img-top for non-disabled sections', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -199,7 +195,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
@@ -217,7 +213,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should have correct title in img.card-img-top for non-disabled sections', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -227,14 +223,14 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         if (!expectedSection.disabled) {
                             const containerDes = getAndExpectDebugElementByCss(cardDe, 'div.awg-img-container', 1, 1);
                             const imgDes = getAndExpectDebugElementByCss(containerDes[0], 'img.card-img-top', 1, 1);
                             const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
-                            const expectedTitle = `AWG ${expectedSelectedSeries.series.short}/${expectedSection.section.short}`;
+                            const expectedTitle = `AWG ${expectedSeries.series.short}/${expectedSection.section.short}`;
 
                             expectToBe(imgEl.title, expectedTitle);
                         } else {
@@ -247,7 +243,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
             describe('... div.awg-edition-section-card-content', () => {
                 it('... should contain one div.awg-edition-section-card-content in each div.awg-edition-section-card', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -262,7 +258,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should have class `col-8 col-sm-10` on div.awg-edition-section-card-content if section is not disabled', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -272,7 +268,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     );
 
                     cardDes.forEach((cardDe, index) => {
-                        const expectedSection = expectedSelectedSeries.sections[index];
+                        const expectedSection = expectedSeries.sections[index];
 
                         const contentDes = getAndExpectDebugElementByCss(
                             cardDe,
@@ -293,7 +289,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.card-body in each div.card', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -314,7 +310,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.card-footer in each div.card', () => {
-                    const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                    const expectedSectionsLength = expectedSeries.sections.length;
 
                     const cardDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -336,7 +332,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                 describe('... div.card-body', () => {
                     it('... should add a top border if section is not disabled', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -346,7 +342,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         );
 
                         cardDes.forEach((cardDe, index) => {
-                            const expectedSection = expectedSelectedSeries.sections[index];
+                            const expectedSection = expectedSeries.sections[index];
 
                             const bodyDes = getAndExpectDebugElementByCss(cardDe, 'div.card-body', 1, 1);
                             const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
@@ -360,7 +356,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     });
 
                     it('... should contain one h5.card-title per section in div.card-body', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -379,7 +375,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     });
 
                     it('... should display the section title in h5.card-title', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -393,12 +389,12 @@ describe('EditionSectionsComponent (DONE)', () => {
                             const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
                             const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                            expectToBe(hEl.textContent.trim(), expectedSelectedSeries.sections[index].section.full);
+                            expectToBe(hEl.textContent.trim(), expectedSeries.sections[index].section.full);
                         });
                     });
 
                     it('... should mute the section title only if the section is disabled', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -412,7 +408,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                             const hDes = getAndExpectDebugElementByCss(bodyDes[0], 'h5.card-title', 1, 1);
                             const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                            if (expectedSelectedSeries.sections[index].disabled) {
+                            if (expectedSeries.sections[index].disabled) {
                                 expectToContain(hEl.classList, 'text-muted');
                             } else {
                                 expectToNotContain(hEl.classList, 'text-muted');
@@ -423,7 +419,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                 describe('... div.card-footer', () => {
                     it('... should contain one routerLink per section in div.card-footer', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -439,7 +435,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     });
 
                     it('... should have correct routerLink in each div.card-footer', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -449,7 +445,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         );
 
                         cardDes.forEach((cardDe, index) => {
-                            const expectedSection = expectedSelectedSeries.sections[index].section;
+                            const expectedSection = expectedSeries.sections[index].section;
 
                             const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                             const footerLinkDes = getAndExpectDebugElementByDirective(
@@ -467,7 +463,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     });
 
                     it('... should display correct text in each routerLink in div.card-footer', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -493,7 +489,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                     });
 
                     it('... should disable routerLink only if section is disabled', () => {
-                        const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                        const expectedSectionsLength = expectedSeries.sections.length;
 
                         const cardDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -503,7 +499,7 @@ describe('EditionSectionsComponent (DONE)', () => {
                         );
 
                         cardDes.forEach((cardDe, index) => {
-                            const expectedSection = expectedSelectedSeries.sections[index];
+                            const expectedSection = expectedSeries.sections[index];
 
                             const footerDes = getAndExpectDebugElementByCss(cardDe, 'div.card-footer', 1, 1);
                             const footerLinkDes = getAndExpectDebugElementByDirective(
@@ -536,14 +532,14 @@ describe('EditionSectionsComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                const expectedSectionsLength = expectedSelectedSeries.sections.length;
+                const expectedSectionsLength = expectedSeries.sections.length;
 
                 expectToBe(routerLinks.length, expectedSectionsLength);
             });
 
             it('... can get correct linkParams from template', () => {
                 let linkIndex = 0;
-                expectedSelectedSeries.sections.forEach(section => {
+                expectedSeries.sections.forEach(section => {
                     if (!section.disabled) {
                         // Check the router link for the section
                         const expectedSectionLinkParams = [section.section.route];
@@ -561,7 +557,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(sectionLinkDe, fixture);
 
-                expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[0].section.route]);
+                expectToEqual(sectionLink.navigatedTo, [expectedSeries.sections[0].section.route]);
             });
 
             it('... should navigate to section page when section link is clicked', async () => {
@@ -572,7 +568,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(sectionLinkDe, fixture);
 
-                expectToEqual(sectionLink.navigatedTo, [expectedSelectedSeries.sections[4].section.route]);
+                expectToEqual(sectionLink.navigatedTo, [expectedSeries.sections[4].section.route]);
             });
         });
     });

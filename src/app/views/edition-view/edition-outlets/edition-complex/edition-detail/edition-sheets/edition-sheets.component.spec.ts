@@ -20,6 +20,7 @@ import { of as observableOf } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -49,7 +50,7 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionComplexesService, EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
@@ -151,7 +152,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
-    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
 
@@ -176,7 +176,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedDefaultViewDataContent: EditionViewDataContent<'sheets'>;
     let expectedConvolute: FolioConvolute;
     let expectedIsSheetFacetMinimized: boolean;
-    let expectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
@@ -184,7 +184,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedTextcriticsListData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
     let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
-    let expectedEditionComplexBaseRoute: string;
+    let expectedComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
@@ -250,11 +250,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
-
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
 
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
@@ -266,8 +262,8 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedIsSheetFacetMinimized = false;
 
         expectedComplexId = 'op12';
-        expectedEditionComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
-        expectedEditionComplex = editionComplexesService.getEditionComplexById(expectedComplexId);
+        expectedComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
+        expectedComplex = EditionStateHelper.getComplex(expectedComplexId);
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'M212_Sk1';
         expectedReportFragment = 'source_A';
@@ -400,7 +396,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
             expectedViewDataContent = {
                 folioConvoluteData: expectedFolioConvoluteData,
                 svgSheetsData: expectedSvgSheetsData,
@@ -429,7 +425,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
-            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
+            expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
         it('... should have signal `viewData` to hold the expected data', () => {
@@ -727,7 +723,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... should trigger `onSvgSheetSelect()` method with correct sheet id', () => {
                     beforeEach(() => {
-                        editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+                        editionStateService.updateSelectedEditionComplex(expectedComplex);
                         mockViewDataSignal.set(createMockViewData(expectedViewDataContent));
 
                         // Trigger initial data binding
@@ -1519,7 +1515,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... should navigate within same complex if', () => {
                     it('... complex id is undefined', () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1542,7 +1538,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... complex id is null', () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1561,7 +1557,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... complex id is empty string', () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1576,7 +1572,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... complex id is equal to the current complex id', () => {
-                        const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                        const expectedComplexRoute = expectedComplexBaseRoute;
                         const expectedTargetRoute = 'targetRoute';
                         const expectedNavigationExtras = { fragment: '' };
 
@@ -1679,7 +1675,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... with no edition complex id given', () => {
                     describe('... should navigate within same complex to a given report route', () => {
                         it('... with a given report fragment', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -1702,7 +1698,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         });
 
                         it('... without a given report fragment', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1727,7 +1723,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given sheet route', () => {
                         it('... with a given sheet id', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -1750,7 +1746,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         });
 
                         it('... without a given sheet id', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: '' } };
 
@@ -1777,7 +1773,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... with the current edition complex id given', () => {
                     describe('... should navigate within same complex to a given report route', () => {
                         it('... with a given report fragment', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: expectedReportFragment };
 
@@ -1800,7 +1796,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         });
 
                         it('... without a given report fragment', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
                             const expectedNavigationExtras = { fragment: '' };
 
@@ -1825,7 +1821,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     describe('... should navigate within same complex to a given sheet route', () => {
                         it('... with a given sheet id', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
 
@@ -1848,7 +1844,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         });
 
                         it('... without a given sheet id', () => {
-                            const expectedComplexRoute = expectedEditionComplexBaseRoute;
+                            const expectedComplexRoute = expectedComplexBaseRoute;
                             const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
                             const expectedNavigationExtras = { queryParams: { id: '' } };
 
