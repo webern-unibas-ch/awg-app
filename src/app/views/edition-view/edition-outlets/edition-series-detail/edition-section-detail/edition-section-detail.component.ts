@@ -30,11 +30,11 @@ export class EditionSectionDetailComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Input signal: sectionId.
+     * Readonly input signal: sectionId.
      *
      * It holds the route param id of the edition section (automatically bound by the router).
      */
-    sectionId = input<string | null>(null);
+    readonly sectionId = input<string | null>(null);
 
     /**
      * Constructor of the EditionSectionDetailComponent.

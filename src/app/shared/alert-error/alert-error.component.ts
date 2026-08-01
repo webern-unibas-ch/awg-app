@@ -15,9 +15,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class AlertErrorComponent {
     /**
-     * Input signal: errorObject.
+     * Readonly input signal: errorObject.
      *
      * It holds the error object for the component.
      */
-    errorObject = input.required<any>();
+    readonly errorObject = input.required<any>();
 }

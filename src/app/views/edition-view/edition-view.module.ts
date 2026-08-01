@@ -6,6 +6,7 @@ import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcr
 import { EditionInfoComponent } from './edition-info/edition-info.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';
+import { EditionViewComponent } from './edition-view.component';
 
 /**
  * The editionView module.
@@ -15,7 +16,14 @@ import { EditionViewRoutingModule, routedEditionViewComponents } from './edition
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionViewRoutingModule, EditionInfoComponent, EditionBreadcrumbComponent],
-    declarations: [routedEditionViewComponents, EditionJumbotronComponent],
+    imports: [
+        SharedModule,
+        EditionViewRoutingModule,
+        EditionBreadcrumbComponent,
+        EditionInfoComponent,
+        EditionJumbotronComponent,
+        EditionViewComponent,
+    ],
+    declarations: [routedEditionViewComponents],
 })
 export class EditionViewModule {}

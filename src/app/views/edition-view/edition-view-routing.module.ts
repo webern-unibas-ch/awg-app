@@ -131,13 +131,11 @@ const EDITION_VIEW_ROUTES: Routes = [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionComplexComponent},
- * {@link EditionDetailNavComponent}, {@link EditionInfoComponent},
- * {@link EditionSectionsComponent}, {@link EditionSeriesComponent},
- * and {@link EditionSeriesDetailComponent}.
+ * {@link EditionComplexComponent}, {@link EditionDetailNavComponent},
+ * {@link EditionInfoComponent}, {@link EditionSectionsComponent},
+ * {@link EditionSeriesComponent}, and {@link EditionSeriesDetailComponent}.
  */
 export const routedEditionViewComponents = [
-    EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
     EditionSectionsComponent,
