@@ -1,7 +1,8 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, Input, isSignal, LOCALE_ID, signal, WritableSignal } from '@angular/core';
+import { Component, DebugElement, input, isSignal, LOCALE_ID, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, RouterOutlet } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
@@ -14,14 +15,19 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { MetaIdentifiers } from '@awg-shared/meta/meta.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
+import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
+import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
+
 import { EditionComplex } from './models/edition-complex.model';
 import { EditionViewContext } from './models/edition-data.model';
+
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
@@ -48,23 +54,18 @@ class EditionBreadcrumbStubComponent {
 @Component({
     selector: 'awg-edition-jumbotron',
     template: '',
-    standalone: false,
 })
 class EditionJumbotronStubComponent {
-    @Input()
-    jumbotronId: string;
-    @Input()
-    jumbotronTitle: string;
+    readonly id = input.required<string>();
+    readonly title = input.required<string>();
 }
 
 @Component({
     selector: 'awg-meta-identifier-badges',
     template: '',
-    standalone: false,
 })
 class MetaIdentifierBadgesStubComponent {
-    @Input()
-    identifiers: MetaIdentifiers | undefined;
+    readonly identifiers = input.required<MetaIdentifiers | null | undefined>();
 }
 
 describe('EditionViewComponent (DONE)', () => {
@@ -96,23 +97,36 @@ describe('EditionViewComponent (DONE)', () => {
         mockBreadcrumbItemsSignal = signal<LabeledRoute[]>([]);
 
         await TestBed.configureTestingModule({
-            imports: [DatePipe, EditionBreadcrumbStubComponent, ScrollToTopButtonStubComponent],
-            declarations: [
-                EditionViewComponent,
-                EditionJumbotronStubComponent,
-                MetaIdentifierBadgesStubComponent,
-                RouterOutletStubComponent,
-                RouterLinkStubDirective,
-            ],
+            imports: [EditionViewComponent],
             providers: [
                 { provide: LOCALE_ID, useValue: 'de-DE' },
+                provideRouter([]),
                 { provide: EditionViewService, useValue: { viewContext: mockViewContextSignal.asReadonly() } },
                 {
                     provide: EditionBreadcrumbService,
                     useValue: { getBreadcrumbItems: () => mockBreadcrumbItemsSignal.asReadonly() },
                 },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionViewComponent, {
+                remove: {
+                    imports: [
+                        EditionBreadcrumbComponent,
+                        EditionJumbotronComponent,
+                        MetaIdentifierBadgesComponent,
+                        ScrollToTopButtonComponent,
+                    ],
+                },
+                add: {
+                    imports: [
+                        EditionBreadcrumbStubComponent,
+                        EditionJumbotronStubComponent,
+                        MetaIdentifierBadgesStubComponent,
+                        ScrollToTopButtonStubComponent,
+                    ],
+                },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -203,8 +217,8 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one router outlet (stubbed) in `div.awg-edition-view`', () => {
-                getAndExpectDebugElementByDirective(getEditionViewDes()[0], RouterOutletStubComponent, 1, 1);
+            it('... should contain one router outlet in `div.awg-edition-view`', () => {
+                getAndExpectDebugElementByDirective(getEditionViewDes()[0], RouterOutlet, 1, 1);
             });
         });
     });
@@ -355,8 +369,8 @@ describe('EditionViewComponent (DONE)', () => {
                         EditionJumbotronStubComponent
                     ) as EditionJumbotronStubComponent;
 
-                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, EDITION_ROUTE_CONSTANTS.PREFACE.full);
+                    expectToBe(jumbotronCmp.id(), expectedId);
+                    expectToBe(jumbotronCmp.title(), EDITION_ROUTE_CONSTANTS.PREFACE.full);
                 });
             });
 
@@ -412,8 +426,8 @@ describe('EditionViewComponent (DONE)', () => {
                         EditionJumbotronStubComponent
                     ) as EditionJumbotronStubComponent;
 
-                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, 'Übersicht');
+                    expectToBe(jumbotronCmp.id(), expectedId);
+                    expectToBe(jumbotronCmp.title(), 'Übersicht');
                 });
             });
 
@@ -486,8 +500,8 @@ describe('EditionViewComponent (DONE)', () => {
                         EditionJumbotronStubComponent
                     ) as EditionJumbotronStubComponent;
 
-                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, expectedComplex.complexId.full);
+                    expectToBe(jumbotronCmp.id(), expectedId);
+                    expectToBe(jumbotronCmp.title(), expectedComplex.complexId.full);
                 });
 
                 it('... should have one paragraph with editor and version in responsibility div', () => {
@@ -499,7 +513,7 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
                 });
 
-                it('... should display editor link and version in responsibility div', () => {
+                it('... should display editor link in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
                     const expectedEditors = expectedComplex.respStatement.editors;
@@ -509,16 +523,20 @@ describe('EditionViewComponent (DONE)', () => {
                         expectedEditors.length,
                         expectedEditors.length
                     );
-                    const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
-
                     const editorLinkEls: HTMLAnchorElement[] = editorLinkDes.map(editor => editor.nativeElement);
-                    const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
                     editorLinkEls.forEach((editorLinkEl, i: number) => {
                         expectToBe(editorLinkEl.href, expectedEditors[i].homepage);
 
                         expectToBe(editorLinkEl.textContent?.trim(), expectedEditors[i].name);
                     });
+                });
+
+                it('... should display version with correct date format in responsibility div', () => {
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
+
+                    const versionSpanDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                    const versionSpanEl: HTMLSpanElement = versionSpanDes[0].nativeElement;
 
                     const datePipe = new DatePipe('de-DE');
                     const expectedLastModified = datePipe.transform(
@@ -565,7 +583,7 @@ describe('EditionViewComponent (DONE)', () => {
                     const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
 
                     badgeCmps.forEach((badgeCmp, i: number) => {
-                        expectToEqual(badgeCmp.identifiers, expectedEditors[i].identifiers);
+                        expectToEqual(badgeCmp.identifiers(), expectedEditors[i].identifiers);
                     });
                 });
             });
@@ -637,8 +655,8 @@ describe('EditionViewComponent (DONE)', () => {
                         EditionJumbotronStubComponent
                     ) as EditionJumbotronStubComponent;
 
-                    expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, expectedTitle);
+                    expectToBe(jumbotronCmp.id(), expectedId);
+                    expectToBe(jumbotronCmp.title(), expectedTitle);
                 });
 
                 describe('... if `viewContext` is intro', () => {
@@ -667,8 +685,8 @@ describe('EditionViewComponent (DONE)', () => {
                             EditionJumbotronStubComponent
                         ) as EditionJumbotronStubComponent;
 
-                        expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                        expectToBe(jumbotronCmp.jumbotronTitle, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        expectToBe(jumbotronCmp.id(), expectedId);
+                        expectToBe(jumbotronCmp.title(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
                     });
                 });
             });

@@ -29,8 +29,8 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class HeadingStubComponent {
-    title = input.required<string>();
-    id = input.required<string>();
+    readonly id = input.required<string>();
+    readonly title = input.required<string>();
 }
 
 @Component({
@@ -38,7 +38,7 @@ class HeadingStubComponent {
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input.required<MetaIdentifiers>();
+    readonly identifiers = input.required<MetaIdentifiers>();
 }
 
 @Component({

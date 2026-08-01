@@ -35,7 +35,7 @@ export class GraphVisualizerComponent implements OnInit {
     graphRDFInputData: GraphRDFData;
 
     /**
-     * Input signal: isFullscreenMode.
+     * Readonly input signal: isFullscreenMode.
      *
      * It holds a boolean flag if fullscreenMode is active.
      */

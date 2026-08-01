@@ -27,7 +27,7 @@ registerLocaleData(localeDeDE);
     template: '',
 })
 class MetaIdentifierBadgesStubComponent {
-    identifiers = input.required<MetaIdentifiers>();
+    readonly identifiers = input.required<MetaIdentifiers>();
 }
 
 describe('StructureSideInfoComponent (DONE)', () => {

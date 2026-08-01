@@ -1,6 +1,14 @@
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
+import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
+import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
+
+import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
+import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
+
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
@@ -9,15 +17,22 @@ import { EditionViewService } from './services/edition-view.service';
  * The EditionView component.
  *
  * It contains the edition view section of the app
- * with a {@link HeadingComponent} and
- * another router outlet for the edition routes.
+ * with the edition breadcrumb and the edition jumbotron,
+ * as well as the router outlet for the edition view child routes.
  */
 @Component({
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrls: ['./edition-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        EditionBreadcrumbComponent,
+        EditionJumbotronComponent,
+        MetaIdentifierBadgesComponent,
+        ScrollToTopButtonComponent,
+        DatePipe,
+        RouterOutlet,
+    ],
 })
 export class EditionViewComponent {
     /**
