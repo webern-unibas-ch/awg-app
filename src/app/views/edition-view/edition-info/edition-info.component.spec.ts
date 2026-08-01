@@ -3,11 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
@@ -20,7 +22,7 @@ import {
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionInfoComponent } from './edition-info.component';
 
@@ -78,9 +80,10 @@ describe('EditionInfoComponent (DONE)', () => {
     let router: Router;
 
     let mockDocument: Document;
-    let editionComplexesService: EditionComplexesService;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
+
+    let outlineServiceGetEditionSectionByIdSpy: Spy;
 
     const expectedEditionInfoHeader = 'Edition';
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -103,21 +106,24 @@ describe('EditionInfoComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
         mockDocument = TestBed.inject(DOCUMENT);
         router = TestBed.inject(Router);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
+        // Service spies
+        outlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return null;
+                }
+            });
 
         // Test data
-        expectedSections = [
-            editionOutlineService.getEditionSectionById('1', '5'),
-            editionOutlineService.getEditionSectionById('2', '2a'),
-        ];
+        expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
         expectedRouterLinks = getExpectedRouterlinks(expectedSections);
         expectedItemTitles = getExpectedItemTitles(expectedSections, true);
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
@@ -145,9 +151,9 @@ describe('EditionInfoComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections from signal `sectionsData`', () => {
-            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
-
-            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+            outlineServiceGetEditionSectionByIdSpy
+                .mockReturnValueOnce(undefined)
+                .mockReturnValueOnce(expectedSections[1]);
 
             const freshFixture = TestBed.createComponent(EditionInfoComponent);
             const freshComponent = freshFixture.componentInstance;
@@ -238,10 +244,12 @@ describe('EditionInfoComponent (DONE)', () => {
 
             it('... should open item body for selected section', async () => {
                 for (const [sectionIndex, section] of expectedSections.entries()) {
-                    const seriesId = section.seriesParent.short;
-                    const series = editionOutlineService.getEditionSeriesById(seriesId);
+                    const seriesId = section.seriesParent.route;
+                    const series = EditionStateHelper.getSeries(seriesId);
+
                     editionStateService.updateSelectedEditionSeries(series);
                     editionStateService.updateSelectedEditionSection(section);
+
                     await detectChangesOnPush(fixture);
 
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -482,8 +490,7 @@ describe('EditionInfoComponent (DONE)', () => {
                     await clickAndAwaitChanges(linkDe, fixture);
 
                     expect(navigateSpy).toHaveBeenCalled();
-                    const firstCallArg = navigateSpy.mock.calls[0][0];
-                    const actualUrl = firstCallArg.toString();
+                    const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
                     expectToBe(actualUrl, expectedRouterLink);
                 }

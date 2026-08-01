@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -33,8 +34,18 @@ describe('EditionOutlineService (DONE)', () => {
         editionComplexesService = TestBed.inject(EditionComplexesService);
         service = TestBed.inject(EditionOutlineService);
 
-        // Spies for service methods
+        // Service spies
         initializeEditionOutlineSpy = vi.spyOn(service, 'initializeEditionOutline');
+        vi.spyOn(editionComplexesService, 'editionComplexesList').mockReturnValue(
+            EditionStateHelper.getComplexesList()
+        );
+        vi.spyOn(editionComplexesService, 'getEditionComplexById').mockImplementation((id: string) => {
+            try {
+                return EditionStateHelper.getComplex(id);
+            } catch {
+                return null;
+            }
+        });
 
         // Test data
         expectedRawOutlineData = [
@@ -96,7 +107,9 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         it('... should filter out unknown complexes during instantiation via the computed signal', () => {
-            const getComplexSpy = vi.spyOn(editionComplexesService, 'getEditionComplexById').mockReturnValue(undefined);
+            const getComplexSpy = vi
+                .spyOn(editionComplexesService, 'getEditionComplexById')
+                .mockReturnValueOnce(undefined);
 
             const rawOutlineDataWithUnknownComplex = [
                 {
@@ -221,14 +234,14 @@ describe('EditionOutlineService (DONE)', () => {
                 ).outline;
 
                 expectedOutline[0].sections.forEach(section => {
-                    const expectedEditionSection = section;
+                    const expectedSection = section;
 
                     const getSection = service.getEditionSectionById(
                         EDITION_ROUTE_CONSTANTS.SERIES_2.route,
                         section.section.route
                     );
 
-                    expectToEqual(getSection, expectedEditionSection);
+                    expectToEqual(getSection, expectedSection);
                 });
             });
         });

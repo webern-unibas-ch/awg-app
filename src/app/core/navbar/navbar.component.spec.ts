@@ -8,6 +8,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbCollapseConfig } from '@ng-bootstrap/ng-bootstrap/collapse';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -71,6 +72,7 @@ describe('NavbarComponent (DONE)', () => {
     let editionOutlineService: EditionOutlineService;
 
     let toggleNavSpy: Spy;
+    let outlineServiceGetEditionSectionByIdSpy: Spy;
 
     let expectedLogosData: Logos;
     let expectedSections: EditionOutlineSection[];
@@ -104,17 +106,22 @@ describe('NavbarComponent (DONE)', () => {
         editionOutlineService = TestBed.inject(EditionOutlineService);
         router = TestBed.inject(Router);
 
-        // Init edition data
-        editionOutlineService.initializeEditionOutline();
+        // Service spies
+        outlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return null;
+                }
+            });
 
         // Test data
         expectedNavbarItems = NAVBAR_ITEMS;
         expectedGeneralEditionLinks = EDITION_GENERAL_LINKS;
         expectedSectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
-        expectedSections = [
-            editionOutlineService.getEditionSectionById('1', '5'),
-            editionOutlineService.getEditionSectionById('2', '2a'),
-        ];
+        expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
 
         expectedLogosData = LOGOS_DATA;
 
@@ -163,9 +170,9 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections from signal `sectionsData`', () => {
-            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
-
-            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+            outlineServiceGetEditionSectionByIdSpy
+                .mockReturnValueOnce(undefined)
+                .mockReturnValueOnce(expectedSections[1]);
 
             const freshFixture = TestBed.createComponent(NavbarComponent);
             const freshComponent = freshFixture.componentInstance;

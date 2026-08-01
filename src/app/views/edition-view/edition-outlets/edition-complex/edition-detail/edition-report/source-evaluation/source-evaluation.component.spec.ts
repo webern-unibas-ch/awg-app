@@ -6,6 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -19,7 +20,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -28,10 +28,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceEvaluationComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let mockDocument: Document;
 
-    let expectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSourceEvaluationListData: SourceEvaluationList;
@@ -57,14 +56,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         mockDocument = TestBed.inject(DOCUMENT);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-
         // Test data
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
+        expectedComplex = EditionStateHelper.getComplex('op25');
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedReportFragment = 'source_A';
@@ -123,7 +118,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.editionComplex = expectedEditionComplex;
+            component.editionComplex = expectedComplex;
             component.sourceEvaluationListData = structuredClone(expectedSourceEvaluationListData);
 
             // Trigger initial data binding
@@ -131,7 +126,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
         });
 
         it('... should have editionComplex', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedComplex);
         });
 
         it('... should have sourceEvaluationListData', () => {
@@ -221,14 +216,14 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
                 // Create evaluation placeholder
                 const fullComplexSpan = mockDocument.createElement('span');
-                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
+                fullComplexSpan.innerHTML = expectedComplex.complexId.full;
 
                 const shortComplexSpan = mockDocument.createElement('span');
-                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
+                shortComplexSpan.innerHTML = expectedComplex.complexId.short;
 
                 const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                const series = expectedEditionComplex.pubStatement.series.short;
-                const section = expectedEditionComplex.pubStatement.section.short;
+                const series = expectedComplex.pubStatement.series.short;
+                const section = expectedComplex.pubStatement.section.short;
 
                 const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
 

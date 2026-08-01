@@ -4,13 +4,14 @@ import { QueryParamsHandling } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
@@ -44,11 +45,10 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionDetailNavComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
-    let expectedEditionRouterLinkButtons: RouterLinkButton[];
-    let expectedEditionComplex: EditionComplex;
+    let expectedRouterLinkButtons: RouterLinkButton[];
+    let expectedComplex: EditionComplex;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -58,15 +58,11 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-
         // Test data
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op12');
-        expectedEditionRouterLinkButtons = getExpectedRouterLinkButtons(expectedEditionComplex);
+        expectedComplex = EditionStateHelper.getComplex('op12');
+        expectedRouterLinkButtons = getExpectedRouterLinkButtons(expectedComplex);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionDetailNavComponent);
@@ -104,22 +100,22 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have signal `selectedEditionComplex` to hold expected complex', () => {
-            expectToEqual(component.selectedEditionComplex(), expectedEditionComplex);
+            expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
         it('... should have computed signal `editionRouterLinkButtons` to hold the expected buttons', () => {
-            expectToEqual(component.editionRouterLinkButtons(), expectedEditionRouterLinkButtons);
+            expectToEqual(component.editionRouterLinkButtons(), expectedRouterLinkButtons);
         });
 
         it('... should have re-computed signal `editionRouterLinkButtons` when complex changes', () => {
-            const newComplex = editionComplexesService.getEditionComplexById('op25');
+            const newComplex = EditionStateHelper.getComplex('op25');
             const newExpectedButtons = getExpectedRouterLinkButtons(newComplex);
 
             editionStateService.updateSelectedEditionComplex(newComplex);
@@ -142,7 +138,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
                     RouterLinkButtonGroupStubComponent
                 ) as RouterLinkButtonGroupStubComponent;
 
-                expectToEqual(btnCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
+                expectToEqual(btnCmp.routerLinkButtons, expectedRouterLinkButtons);
             });
         });
     });

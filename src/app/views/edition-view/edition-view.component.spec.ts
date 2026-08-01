@@ -6,6 +6,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -22,7 +23,6 @@ import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 import { EditionComplex } from './models/edition-complex.model';
 import { EditionViewContext } from './models/edition-data.model';
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
-import { EditionComplexesService } from './services/edition-complexes.service';
 import { EditionStateService } from './services/edition-state.service';
 import { EditionViewService } from './services/edition-view.service';
 
@@ -72,7 +72,6 @@ describe('EditionViewComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
 
     let getBreadcrumbItemsSpy: Spy;
@@ -84,8 +83,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedIntroViewContext: EditionViewContext;
     let expectedPrefaceViewContext: EditionViewContext;
     let expectedRowtablesViewContext: EditionViewContext;
-    let expectedSelectedEditionComplexId: string;
-    let expectedSelectedEditionComplex: EditionComplex;
+    let expectedComplex: EditionComplex;
 
     const expectedTitle = 'Editionsübersicht';
     const expectedId = 'awg-edition-view';
@@ -119,12 +117,8 @@ describe('EditionViewComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
         const breadcrumbService = TestBed.inject(EditionBreadcrumbService);
-
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
 
         // Spies
         getBreadcrumbItemsSpy = vi.spyOn(breadcrumbService, 'getBreadcrumbItems');
@@ -133,10 +127,9 @@ describe('EditionViewComponent (DONE)', () => {
         expectedIntroViewContext = { name: 'intro', isIntro: true, isPreface: false, isRowtables: false };
         expectedPrefaceViewContext = { name: 'preface', isIntro: false, isPreface: true, isRowtables: false };
         expectedRowtablesViewContext = { name: 'rowtables', isIntro: false, isPreface: false, isRowtables: true };
-        expectedSelectedEditionComplexId = 'op12';
-        expectedSelectedEditionComplex = editionComplexesService.getEditionComplexById(
-            expectedSelectedEditionComplexId
-        );
+
+        const complexId = 'op12';
+        expectedComplex = EditionStateHelper.getComplex(complexId);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionViewComponent);
@@ -274,8 +267,8 @@ describe('EditionViewComponent (DONE)', () => {
                 {
                     desc: 'complex title if a complex is selected and no special view is active',
                     context: () => expectedDefaultViewContext,
-                    expected: () => expectedSelectedEditionComplex.complexId.full,
-                    setup: () => editionStateService.updateSelectedEditionComplex(expectedSelectedEditionComplex),
+                    expected: () => expectedComplex.complexId.full,
+                    setup: () => editionStateService.updateSelectedEditionComplex(expectedComplex),
                 },
                 {
                     desc: 'intro title if viewContext is intro',
@@ -433,11 +426,11 @@ describe('EditionViewComponent (DONE)', () => {
                 };
 
                 beforeEach(() => {
-                    renderSelectedEditionComplex(expectedSelectedEditionComplex);
+                    renderSelectedEditionComplex(expectedComplex);
                 });
 
                 it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
-                    expectToBe(component.selectedEditionComplex(), expectedSelectedEditionComplex);
+                    expectToBe(component.selectedEditionComplex(), expectedComplex);
                 });
 
                 it('... should have signal `viewContext` to hold the default view context', () => {
@@ -445,7 +438,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should have signal `jumbotronTitle` to hold the expected complex title', () => {
-                    expectToBe(component.jumbotronTitle(), expectedSelectedEditionComplex.complexId.full);
+                    expectToBe(component.jumbotronTitle(), expectedComplex.complexId.full);
                 });
 
                 it('... should still have signal `jumbotronTitle` to hold the expected complex title if `viewContext` is intro', () => {
@@ -453,7 +446,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                     fixture.detectChanges();
 
-                    expectToBe(component.jumbotronTitle(), expectedSelectedEditionComplex.complexId.full);
+                    expectToBe(component.jumbotronTitle(), expectedComplex.complexId.full);
                 });
 
                 it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', () => {
@@ -494,13 +487,13 @@ describe('EditionViewComponent (DONE)', () => {
                     ) as EditionJumbotronStubComponent;
 
                     expectToBe(jumbotronCmp.jumbotronId, expectedId);
-                    expectToBe(jumbotronCmp.jumbotronTitle, expectedSelectedEditionComplex.complexId.full);
+                    expectToBe(jumbotronCmp.jumbotronTitle, expectedComplex.complexId.full);
                 });
 
                 it('... should have one paragraph with editor and version in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
-                    const editors = expectedSelectedEditionComplex.respStatement.editors;
+                    const editors = expectedComplex.respStatement.editors;
 
                     getAndExpectDebugElementByCss(pDes[0], 'span.editor', editors.length, editors.length);
                     getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
@@ -509,7 +502,7 @@ describe('EditionViewComponent (DONE)', () => {
                 it('... should display editor link and version in responsibility div', () => {
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
-                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+                    const expectedEditors = expectedComplex.respStatement.editors;
                     const editorLinkDes = getAndExpectDebugElementByCss(
                         pDes[0],
                         'span.editor > a',
@@ -529,14 +522,14 @@ describe('EditionViewComponent (DONE)', () => {
 
                     const datePipe = new DatePipe('de-DE');
                     const expectedLastModified = datePipe.transform(
-                        expectedSelectedEditionComplex.respStatement.lastModified,
+                        expectedComplex.respStatement.lastModified,
                         'longDate'
                     );
                     expectToBe(versionSpanEl.textContent?.trim(), expectedLastModified);
                 });
 
                 it('... should display "---" in span.version without applying DatePipe when lastModified is "---"', () => {
-                    const expectedComplexWithDash = editionComplexesService.getEditionComplexById('m212');
+                    const expectedComplexWithDash = EditionStateHelper.getComplex('m212');
                     renderSelectedEditionComplex(expectedComplexWithDash);
 
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
@@ -547,7 +540,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should have one MetaIdentifierBadgesComponent for each editor', () => {
-                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+                    const expectedEditors = expectedComplex.respStatement.editors;
 
                     const badgeDes = getAndExpectDebugElementByDirective(
                         compDe,
@@ -561,7 +554,7 @@ describe('EditionViewComponent (DONE)', () => {
                 });
 
                 it('... should pass identifiers to MetaIdentifierBadgesComponent for each editor', () => {
-                    const expectedEditors = expectedSelectedEditionComplex.respStatement.editors;
+                    const expectedEditors = expectedComplex.respStatement.editors;
 
                     const badgeDes = getAndExpectDebugElementByDirective(
                         compDe,

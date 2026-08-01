@@ -3,8 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToEqual,
@@ -18,9 +20,10 @@ import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
+
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
 import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
@@ -77,9 +80,10 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let editionOutlineService: EditionOutlineService;
     let router: Router;
+
+    let outlineServiceGetEditionSectionByIdSpy: Spy;
 
     let expectedHomeViewId: string;
     let expectedHomeViewTitle: string;
@@ -114,13 +118,19 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionOutlineService = TestBed.inject(EditionOutlineService);
         router = TestBed.inject(Router);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-        editionOutlineService.initializeEditionOutline();
+        // Service spies
+        outlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return null;
+                }
+            });
 
         // Test data
         expectedHomeViewId = 'awg-home-view-heading';
@@ -131,10 +141,7 @@ describe('HomeViewComponent (DONE)', () => {
         expectedHomeViewCardData = HOME_VIEW_CARD_DATA;
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
 
-        expectedSections = [
-            editionOutlineService.getEditionSectionById('1', '5'),
-            editionOutlineService.getEditionSectionById('2', '2a'),
-        ];
+        expectedSections = [EditionStateHelper.getSection('1', '5'), EditionStateHelper.getSection('2', '2a')];
         expectedSectionLinksData = [
             {
                 route: expectedSections[0].labeledRoute.route,
@@ -186,9 +193,9 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         it('... should filter out undefined sections in signal `sectionLinksData`', () => {
-            const getSectionSpy = vi.spyOn(editionOutlineService, 'getEditionSectionById');
-
-            getSectionSpy.mockReturnValueOnce(undefined).mockReturnValueOnce(expectedSections[1]);
+            outlineServiceGetEditionSectionByIdSpy
+                .mockReturnValueOnce(undefined)
+                .mockReturnValueOnce(expectedSections[1]);
 
             const freshFixture = TestBed.createComponent(HomeViewComponent);
             const freshComponent = freshFixture.componentInstance;

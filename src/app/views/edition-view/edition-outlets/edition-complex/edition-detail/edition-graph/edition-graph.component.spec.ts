@@ -19,6 +19,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -38,7 +39,7 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionGraphComponent } from './edition-graph.component';
@@ -97,7 +98,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionGraphComponent>;
     let compDe: DebugElement;
 
-    let editionComplexesService: EditionComplexesService;
     let editionStateService: EditionStateService;
     let mockDocument: Document;
     let mockFullscreenService: Partial<FullscreenService>;
@@ -107,9 +107,9 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockViewDataSignal: WritableSignal<EditionViewData<'graph'>>;
     let expectedViewDataContent: EditionViewDataContent<'graph'>;
     let expectedDefaultViewDataContent: EditionViewDataContent<'graph'>;
-    let expectedEditionGraphEmptyData: GraphList;
-    let expectedEditionGraphDataOp25: GraphList;
-    let expectedEditionComplex: EditionComplex;
+    let expectedGraphEmptyData: GraphList;
+    let expectedGraphDataOp25: GraphList;
+    let expectedComplex: EditionComplex;
 
     beforeEach(async () => {
         // Mock services
@@ -143,21 +143,17 @@ describe('EditionGraphComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        editionComplexesService = TestBed.inject(EditionComplexesService);
         editionStateService = TestBed.inject(EditionStateService);
 
-        // Init edition data
-        editionComplexesService.initializeEditionComplexesList();
-
         // Test data
-        expectedEditionComplex = editionComplexesService.getEditionComplexById('op25');
+        expectedComplex = EditionStateHelper.getComplex('op25');
 
-        expectedEditionGraphEmptyData = structuredClone(mockEditionData.mockGraphEmptyData);
-        expectedEditionGraphDataOp25 = new GraphList();
-        expectedEditionGraphDataOp25.graph = [];
-        expectedEditionGraphDataOp25.graph.push(new Graph());
-        expectedEditionGraphDataOp25.graph[0].id = 'test-graph-id-op25';
-        expectedEditionGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
+        expectedGraphEmptyData = structuredClone(mockEditionData.mockGraphEmptyData);
+        expectedGraphDataOp25 = new GraphList();
+        expectedGraphDataOp25.graph = [];
+        expectedGraphDataOp25.graph.push(new Graph());
+        expectedGraphDataOp25.graph[0].id = 'test-graph-id-op25';
+        expectedGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionGraphComponent);
@@ -236,14 +232,14 @@ describe('EditionGraphComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            expectedViewDataContent = { graphData: expectedEditionGraphDataOp25 };
+            expectedViewDataContent = { graphData: expectedGraphDataOp25 };
             mockViewDataSignal.set(
                 createMockViewData(expectedViewDataContent, {
                     isLoading: false,
                     error: null,
                 })
             );
-            editionStateService.updateSelectedEditionComplex(expectedEditionComplex);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -361,7 +357,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         beforeEach(async () => {
                             mockViewDataSignal.set(
                                 createMockViewData(
-                                    { graphData: expectedEditionGraphEmptyData },
+                                    { graphData: expectedGraphEmptyData },
                                     {
                                         isLoading: false,
                                         error: null,
@@ -395,7 +391,7 @@ describe('EditionGraphComponent (DONE)', () => {
                             const smallEl: HTMLElement = smallDes[0].nativeElement;
 
                             // Create graph placeholder
-                            const complex = expectedEditionComplex;
+                            const complex = expectedComplex;
                             const fullComplexSpan = mockDocument.createElement('span');
                             fullComplexSpan.innerHTML = complex.complexId.full;
 
@@ -453,7 +449,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 describe('dynamic graph', () => {
                     it('... should not contain a dynamic graph if rdf data is not provided', async () => {
-                        const graphWithoutRdfData = expectedEditionGraphEmptyData;
+                        const graphWithoutRdfData = expectedGraphEmptyData;
 
                         mockViewDataSignal.set(
                             createMockViewData(
@@ -527,7 +523,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         let graphWithRdfData: GraphList;
 
                         beforeEach(async () => {
-                            graphWithRdfData = expectedEditionGraphEmptyData;
+                            graphWithRdfData = expectedGraphEmptyData;
                             graphWithRdfData.graph[0].rdfData = new GraphRDFData();
                             graphWithRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
                             graphWithRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];

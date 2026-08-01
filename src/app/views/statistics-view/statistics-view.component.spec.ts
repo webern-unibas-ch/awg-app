@@ -13,7 +13,8 @@ import {
 } from '@testing/expect-helper';
 
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import {
     Statistics,
@@ -74,10 +75,9 @@ describe('StatisticsViewComponent', () => {
     let fixture: ComponentFixture<StatisticsViewComponent>;
     let compDe: DebugElement;
 
-    let mockOutlineSignal: WritableSignal<any[] | null>;
-    let mockEditionOutlineService: Partial<EditionOutlineService>;
     let mockStatisticsService: Mocked<Partial<StatisticsService>>;
 
+    let mockOutlineSignal: WritableSignal<any[] | null>;
     let expectedStatisticsData: Statistics;
 
     let expectedComplexBreakdownData: StatisticsComplexBreakdownData;
@@ -85,11 +85,7 @@ describe('StatisticsViewComponent', () => {
     let expectedSummaryData: StatisticsSummaryData;
 
     beforeEach(async () => {
-        mockOutlineSignal = signal<any[] | null>(null);
-
-        mockEditionOutlineService = {
-            editionOutline: mockOutlineSignal,
-        };
+        mockOutlineSignal = signal<EditionOutlineSeries[] | null>(null);
 
         mockStatisticsService = {
             getStatisticsFromOutline: vi.fn(),
@@ -99,7 +95,7 @@ describe('StatisticsViewComponent', () => {
             imports: [StatisticsViewComponent],
             providers: [
                 { provide: StatisticsService, useValue: mockStatisticsService },
-                { provide: EditionOutlineService, useValue: mockEditionOutlineService },
+                { provide: EditionOutlineService, useValue: { editionOutline: mockOutlineSignal.asReadonly() } },
             ],
         })
             .overrideComponent(StatisticsViewComponent, {

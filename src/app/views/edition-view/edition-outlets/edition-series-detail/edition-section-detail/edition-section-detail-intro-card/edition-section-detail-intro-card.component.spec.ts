@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
@@ -15,7 +16,6 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailIntroCardComponent } from './edition-section-detail-intro-card.component';
 
@@ -27,10 +27,8 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let editionOutlineService: EditionOutlineService;
-
-    let expectedSelectedSeries: EditionOutlineSeries;
-    let expectedSelectedSection: EditionOutlineSection;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -39,15 +37,9 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionOutlineService = TestBed.inject(EditionOutlineService);
-
-        // Init edition data
-        editionOutlineService.initializeEditionOutline();
-
         // Test data
-        expectedSelectedSeries = structuredClone(editionOutlineService.editionOutline()[0]);
-        expectedSelectedSection = structuredClone(expectedSelectedSeries.sections[4]);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailIntroCardComponent);
@@ -77,19 +69,19 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = structuredClone(expectedSelectedSeries);
-            component.selectedSection = structuredClone(expectedSelectedSection);
+            component.selectedSeries = structuredClone(expectedSeries);
+            component.selectedSection = structuredClone(expectedSection);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have `selectedSeries`', () => {
-            expectToEqual(component.selectedSeries, expectedSelectedSeries);
+            expectToEqual(component.selectedSeries, expectedSeries);
         });
 
         it('... should have `selectedSection`', () => {
-            expectToEqual(component.selectedSection, expectedSelectedSection);
+            expectToEqual(component.selectedSection, expectedSection);
         });
 
         describe('VIEW', () => {
@@ -127,7 +119,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(getCardBodyDes()[0], 'p.card-text', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent.trim(), expectedSelectedSection.content.intro.preview + ' …');
+                expectToBe(pEl.textContent.trim(), expectedSection.content.intro.preview + ' …');
             });
 
             it('... should have text-end paragraph in div.card-footer', () => {
@@ -147,7 +139,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 const aDes = getAndExpectDebugElementByCss(getTextEndParaDes()[0], 'a', 1, 1);
                 const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
-                if (expectedSelectedSection.content.intro.disabled) {
+                if (expectedSection.content.intro.disabled) {
                     expectToContain(aEl.classList, 'disabled');
                 } else {
                     expectToNotContain(aEl.classList, 'disabled');
@@ -171,9 +163,9 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     const expectedRouterLink = [
                         '/edition',
                         'series',
-                        expectedSelectedSeries.series.route,
+                        expectedSeries.series.route,
                         'section',
-                        expectedSelectedSection.section.route,
+                        expectedSection.section.route,
                         'intro',
                     ];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
@@ -186,9 +178,9 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                     const expectedRouterLink = [
                         '/edition',
                         'series',
-                        expectedSelectedSeries.series.route,
+                        expectedSeries.series.route,
                         'section',
-                        expectedSelectedSection.section.route,
+                        expectedSection.section.route,
                         'intro',
                     ];
 

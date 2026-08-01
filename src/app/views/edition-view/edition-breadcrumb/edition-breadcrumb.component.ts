@@ -10,8 +10,8 @@ import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
  */
 @Component({
     selector: 'awg-edition-breadcrumb',
-    templateUrl: './edition-bread-crumb.component.html',
-    styleUrl: './edition-bread-crumb.component.scss',
+    templateUrl: './edition-breadcrumb.component.html',
+    styleUrl: './edition-breadcrumb.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink],
 })
