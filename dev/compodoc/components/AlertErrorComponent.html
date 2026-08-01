@@ -268,7 +268,7 @@
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input signal: errorObject.</p>
+                        <div class="io-description"><p>Readonly input signal: errorObject.</p>
 <p>It holds the error object for the component.</p>
 </div>
                     </td>
@@ -302,11 +302,11 @@ import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x
 })
 export class AlertErrorComponent {
     /**
-     * Input signal: errorObject.
+     * Readonly input signal: errorObject.
      *
      * It holds the error object for the component.
      */
-    errorObject &#x3D; input.required&lt;any&gt;();
+    readonly errorObject &#x3D; input.required&lt;any&gt;();
 }
 </code></pre>
     </div>

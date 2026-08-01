@@ -149,8 +149,8 @@
     <p class="comment">
         <p>The EditionView component.</p>
 <p>It contains the edition view section of the app
-with a <a href="../components/HeadingComponent.html">HeadingComponent</a> and
-another router outlet for the edition routes.</p>
+with the edition breadcrumb and the edition jumbotron,
+as well as the router outlet for the edition view child routes.</p>
 
     </p>
 
@@ -164,7 +164,7 @@ another router outlet for the edition routes.</p>
 
             <tr>
                 <td class="col-md-3">changeDetection</td>
-                <td class="col-md-9"><code>ChangeDetectionStrategy.Eager</code></td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
             </tr>
 
 
@@ -183,6 +183,17 @@ another router outlet for the edition routes.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/EditionBreadcrumbComponent.html" target="_self" >EditionBreadcrumbComponent</a></code>
+                                <code><a href="../components/EditionJumbotronComponent.html" target="_self" >EditionJumbotronComponent</a></code>
+                                <code><a href="../components/MetaIdentifierBadgesComponent.html" target="_self" >MetaIdentifierBadgesComponent</a></code>
+                                <code><a href="../components/ScrollToTopButtonComponent.html" target="_self" >ScrollToTopButtonComponent</a></code>
+                                <code><a href="https://angular.io/api/common/DatePipe" target="_blank" >DatePipe</a></code>
+                                <code><a href="https://angular.io/api/router/RouterOutlet" target="_blank" >RouterOutlet</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -306,7 +317,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -350,7 +361,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:77</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:92</a></div>
                         </td>
                     </tr>
 
@@ -389,7 +400,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -428,7 +439,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -489,7 +500,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -528,7 +539,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -567,7 +578,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -606,7 +617,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -645,7 +656,7 @@ another router outlet for the edition routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -665,9 +676,17 @@ another router outlet for the edition routes.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, computed, inject } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, computed, inject } from &#x27;@angular/core&#x27;;
+import { RouterOutlet } from &#x27;@angular/router&#x27;;
 
+import { MetaIdentifierBadgesComponent } from &#x27;@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component&#x27;;
+import { ScrollToTopButtonComponent } from &#x27;@awg-shared/scroll-to-top-button/scroll-to-top-button.component&#x27;;
+
+import { EditionBreadcrumbComponent } from &#x27;./edition-breadcrumb/edition-breadcrumb.component&#x27;;
+import { EditionJumbotronComponent } from &#x27;./edition-jumbotron/edition-jumbotron.component&#x27;;
 import { EDITION_ROUTE_CONSTANTS } from &#x27;./edition-routes.constants&#x27;;
+
 import { EditionBreadcrumbService } from &#x27;./services/edition-breadcrumb.service&#x27;;
 import { EditionStateService } from &#x27;./services/edition-state.service&#x27;;
 import { EditionViewService } from &#x27;./services/edition-view.service&#x27;;
@@ -676,15 +695,22 @@ import { EditionViewService } from &#x27;./services/edition-view.service&#x27;;
  * The EditionView component.
  *
  * It contains the edition view section of the app
- * with a {@link HeadingComponent} and
- * another router outlet for the edition routes.
+ * with the edition breadcrumb and the edition jumbotron,
+ * as well as the router outlet for the edition view child routes.
  */
 @Component({
     selector: &#x27;awg-edition-view&#x27;,
     templateUrl: &#x27;./edition-view.component.html&#x27;,
     styleUrls: [&#x27;./edition-view.component.scss&#x27;],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        EditionBreadcrumbComponent,
+        EditionJumbotronComponent,
+        MetaIdentifierBadgesComponent,
+        ScrollToTopButtonComponent,
+        DatePipe,
+        RouterOutlet,
+    ],
 })
 export class EditionViewComponent {
     /**
@@ -791,21 +817,21 @@ export class EditionViewComponent {
     @if (context.isPreface) {
         &lt;div class&#x3D;&quot;awg-edition-preface para&quot;&gt;
             &lt;awg-edition-breadcrumb [items]&#x3D;&quot;breadcrumbItems()&quot; /&gt;
-            &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;EDITION_VIEW_ID&quot; [jumbotronTitle]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
+            &lt;awg-edition-jumbotron [id]&#x3D;&quot;EDITION_VIEW_ID&quot; [title]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
         &lt;/div&gt;
     }
 
     @if (context.isRowtables) {
         &lt;div class&#x3D;&quot;awg-edition-rowtables para&quot;&gt;
             &lt;awg-edition-breadcrumb [items]&#x3D;&quot;breadcrumbItems()&quot; /&gt;
-            &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;EDITION_VIEW_ID&quot; [jumbotronTitle]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
+            &lt;awg-edition-jumbotron [id]&#x3D;&quot;EDITION_VIEW_ID&quot; [title]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
         &lt;/div&gt;
     }
 
     @if (editionComplex) {
         &lt;div class&#x3D;&quot;awg-edition-complex&quot;&gt;
             &lt;awg-edition-breadcrumb [items]&#x3D;&quot;breadcrumbItems()&quot; /&gt;
-            &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;EDITION_VIEW_ID&quot; [jumbotronTitle]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
+            &lt;awg-edition-jumbotron [id]&#x3D;&quot;EDITION_VIEW_ID&quot; [title]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
 
             &lt;!-- declamation --&gt;
             &lt;div class&#x3D;&quot;awg-edition-responsibility mt-3 mb-5&quot;&gt;
@@ -835,7 +861,7 @@ export class EditionViewComponent {
     @if (editionComplex &#x3D;&#x3D;&#x3D; null &amp;&amp; !context.isRowtables &amp;&amp; !context.isPreface) {
         &lt;div class&#x3D;&quot;awg-edition-series para&quot;&gt;
             &lt;awg-edition-breadcrumb [items]&#x3D;&quot;breadcrumbItems()&quot; /&gt;
-            &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;EDITION_VIEW_ID&quot; [jumbotronTitle]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
+            &lt;awg-edition-jumbotron [id]&#x3D;&quot;EDITION_VIEW_ID&quot; [title]&#x3D;&quot;jumbotronTitle()&quot; /&gt;
         &lt;/div&gt;
     }
 
@@ -877,7 +903,7 @@ export class EditionViewComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: edition-view --><div class="awg-edition-view p-3 border rounded-3">    <awg-scroll-to-top-button />    @let context = viewContext();    @let editionComplex = selectedEditionComplex();    @if (context.isPreface) {        <div class="awg-edition-preface para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />        </div>    }    @if (context.isRowtables) {        <div class="awg-edition-rowtables para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />        </div>    }    @if (editionComplex) {        <div class="awg-edition-complex">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />            <!-- declamation -->            <div class="awg-edition-responsibility mt-3 mb-5">                <p>                    Ediert von                    @for (editor of editionComplex.respStatement.editors; track $index; let isLast = $last) {                        <span class="editor">                            <a [href]="editor.homepage">{{ editor.name }}</a>                            <awg-meta-identifier-badges [identifiers]="editor.identifiers" />                            @if (!isLast) {                                <span>&nbsp;&&nbsp;</span>                            }                        </span>                    }                    <br />                    Versionsdatum:                    <span class="version">{{                        editionComplex.respStatement.lastModified === \'---\'                            ? \'---\'                            : (editionComplex.respStatement.lastModified | date: \'longDate\')                    }}</span>                </p>            </div>        </div>    }    @if (editionComplex === null && !context.isRowtables && !context.isPreface) {        <div class="awg-edition-series para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [jumbotronId]="EDITION_VIEW_ID" [jumbotronTitle]="jumbotronTitle()" />        </div>    }    <!-- edition routes -->    <router-outlet /></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: edition-view --><div class="awg-edition-view p-3 border rounded-3">    <awg-scroll-to-top-button />    @let context = viewContext();    @let editionComplex = selectedEditionComplex();    @if (context.isPreface) {        <div class="awg-edition-preface para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />        </div>    }    @if (context.isRowtables) {        <div class="awg-edition-rowtables para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />        </div>    }    @if (editionComplex) {        <div class="awg-edition-complex">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />            <!-- declamation -->            <div class="awg-edition-responsibility mt-3 mb-5">                <p>                    Ediert von                    @for (editor of editionComplex.respStatement.editors; track $index; let isLast = $last) {                        <span class="editor">                            <a [href]="editor.homepage">{{ editor.name }}</a>                            <awg-meta-identifier-badges [identifiers]="editor.identifiers" />                            @if (!isLast) {                                <span>&nbsp;&&nbsp;</span>                            }                        </span>                    }                    <br />                    Versionsdatum:                    <span class="version">{{                        editionComplex.respStatement.lastModified === \'---\'                            ? \'---\'                            : (editionComplex.respStatement.lastModified | date: \'longDate\')                    }}</span>                </p>            </div>        </div>    }    @if (editionComplex === null && !context.isRowtables && !context.isPreface) {        <div class="awg-edition-series para">            <awg-edition-breadcrumb [items]="breadcrumbItems()" />            <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />        </div>    }    <!-- edition routes -->    <router-outlet /></div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'ScrollToTopButtonComponent', 'selector': 'awg-scroll-to-top-button'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionViewComponent'};
