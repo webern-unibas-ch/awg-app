@@ -3,7 +3,6 @@ import {
     DebugElement,
     EventEmitter,
     inject,
-    input,
     Input,
     isSignal,
     NgModule,
@@ -19,6 +18,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { FullscreenToggleStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -112,14 +112,6 @@ class EditionSvgSheetFooterStubComponent {
         complexId: string;
         sheetId: string;
     }> = new EventEmitter();
-}
-
-@Component({
-    selector: 'awg-fullscreen-toggle',
-    template: '',
-})
-class FullscreenToggleStubComponent {
-    readonly fsElement = input.required<HTMLElement>();
 }
 
 describe('EditionAccoladeComponent (DONE)', () => {

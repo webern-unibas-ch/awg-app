@@ -7,6 +7,11 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    AlertErrorStubComponent,
+    FullscreenToggleStubComponent,
+    TwelveToneSpinnerStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -32,11 +37,6 @@ import {
 import { EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
-import {
-    AlertErrorStubComponent,
-    FullscreenToggleStubComponent,
-    TwelveToneSpinnerStubComponent,
-} from '@testing/component-stubs';
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components

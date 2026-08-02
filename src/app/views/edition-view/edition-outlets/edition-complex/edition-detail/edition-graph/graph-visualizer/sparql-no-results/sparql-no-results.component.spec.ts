@@ -109,6 +109,13 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 expectToBe(logoCmps.length, 1);
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['sparql']);
             });
+
+            it('... should have default linkClass on logo component', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+                const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
+
+                expectToBe(logoCmp.linkClass(), 'awg-logo-link');
+            });
         });
     });
 });

@@ -213,6 +213,16 @@ describe('FooterComponent (DONE)', () => {
                     expectToEqual(logoCmps[1].logoData(), expectedLogosData['sagw']);
                     expectToEqual(logoCmps[2].logoData(), expectedLogosData['snf']);
                 });
+
+                it('... should have default linkClass on logo components', () => {
+                    const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+
+                    logoDes.forEach(logoDe => {
+                        const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+
+                        expectToBe(logoCmp.linkClass(), 'awg-logo-link');
+                    });
+                });
             });
 
             describe('secondary bottom footer', () => {

@@ -175,6 +175,16 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToEqual(logoCmps[2].logoData(), expectedLogosData['bootstrap']);
             });
 
+            it('... should have default linkClass on logo components', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+
+                    expectToBe(logoCmp.linkClass(), 'awg-logo-link');
+                });
+            });
+
             it('... should contain one anchor #dev-preview-link with faIcon', () => {
                 getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
 

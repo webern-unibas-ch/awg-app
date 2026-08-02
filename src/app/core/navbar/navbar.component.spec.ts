@@ -287,6 +287,16 @@ describe('NavbarComponent (DONE)', () => {
                 });
             });
 
+            it('... should pass down expected linkClass to logo components', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
+
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+
+                    expectToBe(logoCmp.linkClass(), 'navbar-brand');
+                });
+            });
+
             describe('... first nav-item link (home)', () => {
                 it('... should pass down home item to navbar item component', () => {
                     const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);

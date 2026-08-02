@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, input, model, output, Output } from '@angular/core';
+import { Component, EventEmitter, Input, input, model, Output } from '@angular/core';
 
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
@@ -90,7 +90,7 @@ export class AlertErrorStubComponent {
 })
 export class AlertInfoStubComponent {
     readonly infoMessage = input.required<string>();
-    readonly isOpen = model<boolean>(true);
+    isOpen = model<boolean>(true);
 }
 
 @Component({
@@ -99,7 +99,6 @@ export class AlertInfoStubComponent {
 })
 export class FullscreenToggleStubComponent {
     readonly fsElement = input.required<HTMLElement>();
-    readonly toggleFullscreenRequest = output<boolean>();
 }
 
 @Component({
@@ -107,8 +106,8 @@ export class FullscreenToggleStubComponent {
     template: '',
 })
 export class HeadingStubComponent {
-    readonly title = input.required<string>();
     readonly id = input.required<string>();
+    readonly title = input.required<string>();
 }
 
 @Component({
@@ -129,6 +128,7 @@ export class LanguageSwitcherStubComponent {
 })
 export class LogoStubComponent {
     readonly logoData = input.required<Logo>();
+    readonly linkClass = input<string>('awg-logo-link');
 }
 
 @Component({
