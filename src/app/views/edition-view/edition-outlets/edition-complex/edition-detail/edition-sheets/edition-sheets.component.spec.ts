@@ -1,14 +1,4 @@
-import {
-    Component,
-    DebugElement,
-    EventEmitter,
-    input,
-    Input,
-    isSignal,
-    Output,
-    signal,
-    WritableSignal,
-} from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -18,6 +8,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { of as observableOf } from 'rxjs';
 
+import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -67,21 +58,6 @@ class ModalStubComponent {
         this.modalContent = modalContentSnippetKey;
     }
 }
-
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 @Component({
     selector: 'awg-edition-accolade',
@@ -227,14 +203,13 @@ describe('EditionSheetsComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent],
+            imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
             declarations: [
                 CompileHtmlComponent,
                 EditionSheetsComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
                 ModalStubComponent,
-                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -512,6 +487,30 @@ describe('EditionSheetsComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                         getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
+                        component.isFirstPageLoad.set(false);
+                        mockViewDataSignal.set(
+                            createMockViewData(expectedViewDataContent, {
+                                isLoading: true,
+                                error: null,
+                            })
+                        );
+
+                        await detectChangesOnPush(fixture);
+
+                        const spinnerDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TwelveToneSpinnerStubComponent,
+                            1,
+                            1
+                        );
+                        const spinnerCmp = spinnerDes[0].injector.get(
+                            TwelveToneSpinnerStubComponent
+                        ) as TwelveToneSpinnerStubComponent;
+
+                        expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });
                 });
             });

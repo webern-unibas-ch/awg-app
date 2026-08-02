@@ -74,13 +74,8 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
-            declarations: [
-                ConstructResultsComponent,
-                ForceGraphStubComponent,
-                SparqlNoResultsStubComponent,
-                TwelveToneSpinnerStubComponent,
-            ],
+            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective, TwelveToneSpinnerStubComponent],
+            declarations: [ConstructResultsComponent, ForceGraphStubComponent, SparqlNoResultsStubComponent],
         }).compileComponents();
     });
 
@@ -328,6 +323,24 @@ describe('ConstructResultsComponent (DONE)', () => {
                         );
 
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
+                        // Mock null response
+                        component.queryResult$ = observableOf(null);
+                        await detectChangesOnPush(fixture);
+
+                        const spinnerDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TwelveToneSpinnerStubComponent,
+                            1,
+                            1
+                        );
+                        const spinnerCmp = spinnerDes[0].injector.get(
+                            TwelveToneSpinnerStubComponent
+                        ) as TwelveToneSpinnerStubComponent;
+
+                        expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });
                 });
 
@@ -675,6 +688,24 @@ describe('ConstructResultsComponent (DONE)', () => {
                         );
 
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
+                        // Mock null response
+                        component.queryResult$ = observableOf(null);
+                        await detectChangesOnPush(fixture);
+
+                        const spinnerDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TwelveToneSpinnerStubComponent,
+                            1,
+                            1
+                        );
+                        const spinnerCmp = spinnerDes[0].injector.get(
+                            TwelveToneSpinnerStubComponent
+                        ) as TwelveToneSpinnerStubComponent;
+
+                        expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });
                 });
 

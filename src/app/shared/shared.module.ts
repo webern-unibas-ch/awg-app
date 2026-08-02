@@ -66,6 +66,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         MetaIdentifierBadgesComponent,
         ExternalLinkDirective,
         ScrollToTopButtonComponent,
+        TwelveToneSpinnerComponent,
     ],
     declarations: [
         DisclaimerWorkeditionsComponent,
@@ -76,7 +77,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
-        TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         AbbrDirective,
         OrderByPipe,

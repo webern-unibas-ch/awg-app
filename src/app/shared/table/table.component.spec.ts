@@ -67,8 +67,14 @@ describe('TableComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, FormsModule, NgbHighlight, NgbPaginationModule],
-            declarations: [TableComponent, TablePaginationStubComponent, TwelveToneSpinnerStubComponent, OrderByPipe],
+            imports: [
+                FontAwesomeTestingModule,
+                FormsModule,
+                NgbHighlight,
+                NgbPaginationModule,
+                TwelveToneSpinnerStubComponent,
+            ],
+            declarations: [TableComponent, TablePaginationStubComponent, OrderByPipe],
         }).compileComponents();
     });
 
@@ -261,6 +267,19 @@ describe('TableComponent', () => {
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+            });
+
+            it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
+                // Mock empty observable
+                component.tableData.paginatedRows$ = EMPTY;
+                await detectChangesOnPush(fixture);
+
+                const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                const spinnerCmp = spinnerDes[0].injector.get(
+                    TwelveToneSpinnerStubComponent
+                ) as TwelveToneSpinnerStubComponent;
+
+                expectToBe(spinnerCmp.spinnerText(), 'loading');
             });
         });
 
