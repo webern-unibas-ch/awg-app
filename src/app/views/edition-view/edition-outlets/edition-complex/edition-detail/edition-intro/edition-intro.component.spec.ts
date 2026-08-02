@@ -3,7 +3,6 @@ import {
     DebugElement,
     DOCUMENT,
     EventEmitter,
-    input,
     Input,
     isSignal,
     Output,
@@ -21,6 +20,7 @@ import { of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -60,21 +60,6 @@ import { EditionIntroComponent } from './edition-intro.component';
 class ModalStubComponent {
     open(): void {}
 }
-
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 @Component({
     selector: 'awg-edition-intro-content',

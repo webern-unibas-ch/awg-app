@@ -1,21 +1,12 @@
-import { Component, DebugElement, input, model } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { AlertInfoStubComponent } from '@testing/component-stubs';
+import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { EditionSectionDetailDisclaimerComponent } from './edition-section-detail-disclaimer.component';
-
-// Mock components
-@Component({
-    selector: 'awg-alert-info',
-    template: '',
-})
-class AlertInfoStubComponent {
-    infoMessage = input<string>('');
-    isOpen = model<boolean>(true);
-}
 
 describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
     let component: EditionSectionDetailDisclaimerComponent;
@@ -51,11 +42,11 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should pass down empty default values to AlertInfoComponent (`infoMessage`)', () => {
+            it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
 
-                expectToBe(alertInfoCmp.infoMessage(), '');
+                expect(() => alertInfoCmp.infoMessage()).toThrow();
             });
         });
     });

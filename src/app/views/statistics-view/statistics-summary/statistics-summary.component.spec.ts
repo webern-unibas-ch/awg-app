@@ -1,10 +1,11 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { faCheckCircle, faFolder, faList, faMusic, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
+import { StatisticsSummaryCardStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -17,18 +18,6 @@ import { StatisticsSummaryCardData, StatisticsSummaryData } from '../models/stat
 import { StatisticsSummaryCardComponent } from '../statistics-summary-card/statistics-summary-card.component';
 
 import { StatisticsSummaryComponent } from './statistics-summary.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-summary-card',
-    template: '',
-})
-class StatisticsSummaryCardStubComponent {
-    title = input.required<string>();
-    value = input.required<number | string>();
-    icon = input.required<IconDefinition>();
-    bgClass = input.required<string>();
-}
 
 describe('StatisticsSummaryComponent', () => {
     let component: StatisticsSummaryComponent;

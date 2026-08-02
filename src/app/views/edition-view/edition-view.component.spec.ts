@@ -1,12 +1,18 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, isSignal, LOCALE_ID, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, LOCALE_ID, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, RouterOutlet } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import {
+    EditionBreadcrumbStubComponent,
+    EditionJumbotronStubComponent,
+    MetaIdentifierBadgesStubComponent,
+    ScrollToTopButtonStubComponent,
+} from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
@@ -17,7 +23,6 @@ import {
 } from '@testing/expect-helper';
 
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
-import { MetaIdentifiers } from '@awg-shared/meta/meta.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
@@ -35,38 +40,6 @@ import { EditionViewService } from './services/edition-view.service';
 import { EditionViewComponent } from './edition-view.component';
 
 registerLocaleData(localeDeDE);
-
-// Mock components
-@Component({
-    selector: 'awg-scroll-to-top-button',
-    template: '',
-})
-class ScrollToTopButtonStubComponent {}
-
-@Component({
-    selector: 'awg-edition-breadcrumb',
-    template: '',
-})
-class EditionBreadcrumbStubComponent {
-    readonly items = input.required<LabeledRoute[]>();
-}
-
-@Component({
-    selector: 'awg-edition-jumbotron',
-    template: '',
-})
-class EditionJumbotronStubComponent {
-    readonly id = input.required<string>();
-    readonly title = input.required<string>();
-}
-
-@Component({
-    selector: 'awg-meta-identifier-badges',
-    template: '',
-})
-class MetaIdentifierBadgesStubComponent {
-    readonly identifiers = input.required<MetaIdentifiers | null | undefined>();
-}
 
 describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;

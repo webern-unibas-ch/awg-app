@@ -1,30 +1,15 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { HeadingStubComponent, ScrollToTopButtonStubComponent } from '@testing/component-stubs';
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { StructureViewComponent } from './structure-view.component';
-
-// Mock components
-@Component({
-    selector: 'awg-heading',
-    template: '',
-})
-class HeadingStubComponent {
-    title = input.required<string>();
-    id = input.required<string>();
-}
-
-@Component({
-    selector: 'awg-scroll-to-top-button',
-    template: '',
-})
-class ScrollToTopButtonStubComponent {}
 
 describe('StructureViewComponent (DONE)', () => {
     let component: StructureViewComponent;
@@ -38,7 +23,7 @@ describe('StructureViewComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [StructureViewComponent, HeadingStubComponent],
+            imports: [StructureViewComponent],
             declarations: [],
         })
             .overrideComponent(StructureViewComponent, {

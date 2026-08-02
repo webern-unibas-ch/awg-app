@@ -1,8 +1,14 @@
-import { Component, DebugElement, Input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import {
+    EditionSectionDetailComplexCardStubComponent,
+    EditionSectionDetailDisclaimerStubComponent,
+    EditionSectionDetailIntroCardStubComponent,
+    EditionSectionDetailPlaceholderStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
@@ -13,52 +19,10 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionOutlineComplexItem, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionStateService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailOverviewComponent } from './edition-section-detail-overview.component';
-
-// Mock components
-@Component({
-    selector: 'awg-edition-section-detail-complex-card',
-    template: '',
-    standalone: false,
-})
-class EditionSectionDetailComplexCardStubComponent {
-    @Input()
-    complexes: EditionOutlineComplexItem[];
-}
-
-@Component({
-    selector: 'awg-edition-section-detail-disclaimer',
-    template: '',
-    standalone: false,
-})
-class EditionSectionDetailDisclaimerStubComponent {}
-
-@Component({
-    selector: 'awg-edition-section-detail-intro-card',
-    template: '',
-    standalone: false,
-})
-class EditionSectionDetailIntroCardStubComponent {
-    @Input()
-    selectedSeries: EditionOutlineSeries;
-    @Input()
-    selectedSection: EditionOutlineSection;
-}
-
-@Component({
-    selector: 'awg-edition-section-detail-placeholder',
-    template: '',
-    standalone: false,
-})
-class EditionSectionDetailPlaceholderStubComponent {
-    @Input()
-    selectedSeries: EditionOutlineSeries;
-    @Input()
-    selectedSection: EditionOutlineSection;
-}
 
 describe('EditionSectionDetailOverviewComponent', () => {
     let component: EditionSectionDetailOverviewComponent;

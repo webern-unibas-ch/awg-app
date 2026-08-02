@@ -9,6 +9,7 @@ import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -43,13 +44,6 @@ class SparqlTableStubComponent {
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 describe('SelectResultsComponent (DONE)', () => {
     let component: SelectResultsComponent;

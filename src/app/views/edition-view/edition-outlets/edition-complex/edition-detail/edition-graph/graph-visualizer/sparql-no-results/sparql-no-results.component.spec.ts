@@ -1,8 +1,9 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { LogoStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -12,18 +13,9 @@ import {
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
-import { Logo, Logos } from '@awg-shared/logos/logos.model';
+import { Logos } from '@awg-shared/logos/logos.model';
 
 import { SparqlNoResultsComponent } from './sparql-no-results.component';
-
-// Mock components
-@Component({
-    selector: 'awg-logo',
-    template: '',
-})
-class LogoStubComponent {
-    logoData = input.required<Logo>();
-}
 
 describe('SparqlNoResultsComponent (DONE)', () => {
     let component: SparqlNoResultsComponent;
@@ -116,6 +108,13 @@ describe('SparqlNoResultsComponent (DONE)', () => {
 
                 expectToBe(logoCmps.length, 1);
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['sparql']);
+            });
+
+            it('... should have default linkClass on logo component', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 1, 1);
+                const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
+
+                expectToBe(logoCmp.linkClass(), 'awg-logo-link');
             });
         });
     });

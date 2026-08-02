@@ -1,9 +1,10 @@
-import { Component, DebugElement, input, isSignal, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
@@ -26,22 +27,6 @@ import {
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionRowtablesComponent } from './edition-rowtables.component';
-
-// Mock components
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowtablesComponent;

@@ -1,19 +1,14 @@
-import {
-    Component,
-    DebugElement,
-    EventEmitter,
-    input,
-    Input,
-    isSignal,
-    Output,
-    signal,
-    WritableSignal,
-} from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import {
+    AlertErrorStubComponent,
+    LanguageSwitcherStubComponent,
+    TwelveToneSpinnerStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
@@ -36,34 +31,6 @@ import { EditionGlyphService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
-
-// Mock components
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-language-switcher',
-    template: '',
-    standalone: false,
-})
-class LanguageSwitcherStubComponent {
-    @Input()
-    currentLanguage: number;
-    @Output()
-    languageChangeRequest = new EventEmitter<number>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 describe('EditionPrefaceComponent (DONE)', () => {
     let component: EditionPrefaceComponent;

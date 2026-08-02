@@ -1,8 +1,15 @@
-import { Component, DebugElement, input, isSignal, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vitest';
 
+import {
+    ScrollToTopButtonStubComponent,
+    StatisticsComplexBreakdownStubComponent,
+    StatisticsOverallProgressStubComponent,
+    StatisticsSeriesBreakdownStubComponent,
+    StatisticsSummaryStubComponent,
+} from '@testing/component-stubs';
 import {
     expectSpyCall,
     expectToBe,
@@ -20,7 +27,6 @@ import {
     Statistics,
     StatisticsComplexBreakdownData,
     StatisticsOverallProgressData,
-    StatisticsSeriesBreakdown,
     StatisticsSummaryData,
 } from './models/statistics.model';
 import { StatisticsService } from './services/statistics.service';
@@ -30,45 +36,6 @@ import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdow
 import { StatisticsSummaryComponent } from './statistics-summary/statistics-summary.component';
 
 import { StatisticsViewComponent } from './statistics-view.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-complex-breakdown',
-    template: '',
-})
-class StatisticsComplexBreakdownStubComponent {
-    complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
-}
-
-@Component({
-    selector: 'awg-statistics-series-breakdown',
-    template: '',
-})
-class StatisticsSeriesBreakdownStubComponent {
-    seriesBreakdownData = input.required<StatisticsSeriesBreakdown[]>();
-}
-
-@Component({
-    selector: 'awg-statistics-overall-progress',
-    template: '',
-})
-class StatisticsOverallProgressStubComponent {
-    overallProgressData = input.required<StatisticsOverallProgressData>();
-}
-
-@Component({
-    selector: 'awg-statistics-summary',
-    template: '',
-})
-class StatisticsSummaryStubComponent {
-    summaryData = input.required<StatisticsSummaryData>();
-}
-
-@Component({
-    selector: 'awg-scroll-to-top-button',
-    template: '',
-})
-class ScrollToTopButtonStubComponent {}
 
 describe('StatisticsViewComponent', () => {
     let component: StatisticsViewComponent;

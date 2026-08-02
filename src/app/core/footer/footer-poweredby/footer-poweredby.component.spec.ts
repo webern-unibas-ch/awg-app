@@ -1,10 +1,11 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { faScrewdriverWrench, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+import { LogoStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -14,20 +15,11 @@ import {
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
-import { Logo, Logos } from '@awg-shared/logos/logos.model';
+import { Logos } from '@awg-shared/logos/logos.model';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
-
-// Mock components
-@Component({
-    selector: 'awg-logo',
-    template: '',
-})
-class LogoStubComponent {
-    logoData = input.required<Logo>();
-}
 
 describe('FooterPoweredbyComponent (DONE)', () => {
     let component: FooterPoweredbyComponent;
@@ -181,6 +173,16 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['github']);
                 expectToEqual(logoCmps[1].logoData(), expectedLogosData['angular']);
                 expectToEqual(logoCmps[2].logoData(), expectedLogosData['bootstrap']);
+            });
+
+            it('... should have default linkClass on logo components', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+
+                logoDes.forEach(logoDe => {
+                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+
+                    expectToBe(logoCmp.linkClass(), 'awg-logo-link');
+                });
             });
 
             it('... should contain one anchor #dev-preview-link with faIcon', () => {

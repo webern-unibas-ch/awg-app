@@ -1,10 +1,15 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, isSignal, LOCALE_ID } from '@angular/core';
+import { DebugElement, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import {
+    HeadingStubComponent,
+    MetaIdentifierBadgesStubComponent,
+    ScrollToTopButtonStubComponent,
+} from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -16,36 +21,12 @@ import {
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
-import { MetaContact, MetaIdentifiers, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { ContactViewComponent } from './contact-view.component';
 
 registerLocaleData(localeDeDE);
-
-// Mock components
-@Component({
-    selector: 'awg-heading',
-    template: '',
-})
-class HeadingStubComponent {
-    readonly id = input.required<string>();
-    readonly title = input.required<string>();
-}
-
-@Component({
-    selector: 'awg-meta-identifier-badges',
-    template: '',
-})
-class MetaIdentifierBadgesStubComponent {
-    readonly identifiers = input.required<MetaIdentifiers>();
-}
-
-@Component({
-    selector: 'awg-scroll-to-top-button',
-    template: '',
-})
-class ScrollToTopButtonStubComponent {}
 
 describe('ContactViewComponent (DONE)', () => {
     let component: ContactViewComponent;

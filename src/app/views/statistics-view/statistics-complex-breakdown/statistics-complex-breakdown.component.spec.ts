@@ -1,8 +1,9 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { StatisticsProgressBarStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -20,21 +21,6 @@ import {
 import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 import { StatisticsComplexBreakdownComponent } from './statistics-complex-breakdown.component';
-
-// Mock components
-@Component({
-    selector: 'awg-statistics-progress-bar',
-    template: '',
-})
-class StatisticsProgressBarStubComponent {
-    config = input.required<StatisticsProgressBarConfig>();
-    headerLabel = input<string>();
-    height = input<string>('15px');
-    showPercentageLabel = input<boolean>(true);
-    boldPercentageLabel = input<boolean>(false);
-    customType = input<string>('');
-    useCustomTypeOnly = input<boolean>(false);
-}
 
 describe('StatisticsComplexBreakdownComponent', () => {
     let component: StatisticsComplexBreakdownComponent;

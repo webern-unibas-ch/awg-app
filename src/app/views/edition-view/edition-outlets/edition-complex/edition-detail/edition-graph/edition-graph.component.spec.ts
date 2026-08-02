@@ -1,14 +1,4 @@
-import {
-    Component,
-    DebugElement,
-    DOCUMENT,
-    input,
-    Input,
-    isSignal,
-    output,
-    signal,
-    WritableSignal,
-} from '@angular/core';
+import { Component, DebugElement, DOCUMENT, input, Input, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -17,6 +7,11 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    AlertErrorStubComponent,
+    FullscreenToggleStubComponent,
+    TwelveToneSpinnerStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -55,31 +50,6 @@ class ModalStubComponent {
     open(modalContentSnippetKey: string): void {
         this.modalContent = modalContentSnippetKey;
     }
-}
-
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
-
-@Component({
-    selector: 'awg-fullscreen-toggle',
-    template: '',
-    standalone: false,
-})
-class FullscreenToggleStubComponent {
-    readonly fsElement = input.required<HTMLElement>();
-    readonly toggleFullscreenRequest = output<boolean>();
 }
 
 @Component({
@@ -123,12 +93,10 @@ describe('EditionGraphComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent, FontAwesomeTestingModule],
+            imports: [AlertErrorStubComponent, FullscreenToggleStubComponent, FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
-
                 CompileHtmlComponent,
-                FullscreenToggleStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,

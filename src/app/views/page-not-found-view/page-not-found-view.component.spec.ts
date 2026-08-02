@@ -1,10 +1,11 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { HeadingStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -16,16 +17,6 @@ import { AppConfig } from '@awg-app/app.config';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
-
-// Mock components
-@Component({
-    selector: 'awg-heading',
-    template: '',
-})
-class HeadingStubComponent {
-    title = input.required<string>();
-    id = input.required<string>();
-}
 
 describe('PageNotFoundViewComponent (DONE)', () => {
     let component: PageNotFoundViewComponent;

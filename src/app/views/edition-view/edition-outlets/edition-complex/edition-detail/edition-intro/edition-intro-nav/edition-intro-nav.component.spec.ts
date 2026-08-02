@@ -1,10 +1,11 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { LanguageSwitcherStubComponent } from '@testing/component-stubs';
 import {
     expectSpyCall,
     expectToBe,
@@ -18,19 +19,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { IntroBlock } from '@awg-views/edition-view/models';
 
 import { EditionIntroNavComponent } from './edition-intro-nav.component';
-
-// Mock components
-@Component({
-    selector: 'awg-language-switcher',
-    template: '',
-    standalone: false,
-})
-class LanguageSwitcherStubComponent {
-    @Input()
-    currentLanguage: number;
-    @Output()
-    languageChangeRequest = new EventEmitter<number>();
-}
 
 describe('EditionIntroNavComponent (DONE)', () => {
     let component: EditionIntroNavComponent;
