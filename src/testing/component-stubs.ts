@@ -148,9 +148,10 @@ export class ScrollToTopButtonStubComponent {}
 @Component({
     selector: 'awg-twelve-tone-spinner',
     template: '',
-    standalone: false,
 })
-export class TwelveToneSpinnerStubComponent {}
+export class TwelveToneSpinnerStubComponent {
+    readonly spinnerText = input<string>('loading');
+}
 
 // ============================================================================
 // CONTACT VIEW STUBS

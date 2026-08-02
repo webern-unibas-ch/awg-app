@@ -12,7 +12,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     templateUrl: './twelve-tone-spinner.component.html',
     styleUrls: ['./twelve-tone-spinner.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class TwelveToneSpinnerComponent {
     /**

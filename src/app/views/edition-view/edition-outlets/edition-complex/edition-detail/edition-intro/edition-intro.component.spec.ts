@@ -202,7 +202,7 @@ describe('IntroComponent (DONE)', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent, NgbModalModule, RouterModule],
+            imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent, NgbModalModule, RouterModule],
             declarations: [
                 EditionIntroComponent,
                 EditionIntroContentStubComponent,
@@ -210,7 +210,6 @@ describe('IntroComponent (DONE)', () => {
                 EditionIntroPlaceholderStubComponent,
                 EditionIntroNavStubComponent,
                 ModalStubComponent,
-                TwelveToneSpinnerStubComponent,
             ],
             providers: [
                 { provide: EditionViewService, useValue: { introViewData: mockViewDataSignal.asReadonly() } },
@@ -444,18 +443,34 @@ describe('IntroComponent (DONE)', () => {
             });
 
             describe('on loading', () => {
-                it('... should not contain intro view or alert, but one TwelveToneSpinnerComponent (stubbed)', async () => {
+                beforeEach(async () => {
                     // Mock loading state
                     mockViewDataSignal.set(
                         createMockViewData(expectedViewDataContent, { isLoading: true, error: null })
                     );
 
                     await detectChangesOnPush(fixture);
+                });
 
+                it('... should not contain intro view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                });
+
+                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                    const spinnerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        TwelveToneSpinnerStubComponent,
+                        1,
+                        1
+                    );
+                    const spinnerCmp = spinnerDes[0].injector.get(
+                        TwelveToneSpinnerStubComponent
+                    ) as TwelveToneSpinnerStubComponent;
+
+                    expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
             });
 

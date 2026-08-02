@@ -53,7 +53,7 @@ describe('TwelveToneSpinnerComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [TwelveToneSpinnerComponent],
+            imports: [TwelveToneSpinnerComponent],
         }).compileComponents();
     });
 

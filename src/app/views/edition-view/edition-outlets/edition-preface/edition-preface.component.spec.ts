@@ -59,13 +59,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent],
-            declarations: [
-                EditionPrefaceComponent,
-                CompileHtmlComponent,
-                LanguageSwitcherStubComponent,
-                TwelveToneSpinnerStubComponent,
-            ],
+            imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
+            declarations: [EditionPrefaceComponent, CompileHtmlComponent, LanguageSwitcherStubComponent],
             providers: [
                 { provide: EditionViewService, useValue: { prefaceViewData: mockViewDataSignal.asReadonly() } },
                 { provide: EditionGlyphService, useValue: mockEditionGlyphService },
@@ -193,18 +188,34 @@ describe('EditionPrefaceComponent (DONE)', () => {
             });
 
             describe('on loading', () => {
-                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent (stubbed)', async () => {
+                beforeEach(async () => {
                     // Mock loading state
                     mockViewDataSignal.set(
                         createMockViewData(expectedViewDataContent, { isLoading: true, error: null })
                     );
 
                     await detectChangesOnPush(fixture);
+                });
 
+                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                });
+
+                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                    const spinnerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        TwelveToneSpinnerStubComponent,
+                        1,
+                        1
+                    );
+                    const spinnerCmp = spinnerDes[0].injector.get(
+                        TwelveToneSpinnerStubComponent
+                    ) as TwelveToneSpinnerStubComponent;
+
+                    expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
             });
 
