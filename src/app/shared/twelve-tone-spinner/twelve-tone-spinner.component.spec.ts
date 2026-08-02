@@ -25,23 +25,27 @@ function _assertPseudoContentFromStyles(index: number, expectedContent: string):
         .map(style => style.textContent ?? '')
         .join('\n');
 
+    let hexCode = '2669'; // Standard: Quarter Note
+    if (expectedContent === '♭') {
+        hexCode = '266d'; // Flat Sign
+    } else if (expectedContent === '♯') {
+        hexCode = '266f'; // Sharp Sign
+    }
+
+    const noteContentRegex = new RegExp(
+        `data-note=["']${index}["'].*:before\\s*\\{\\s*content:\\s*["']\\\\${hexCode}["']`,
+        'i'
+    );
+
+    expect(styles).toMatch(noteContentRegex);
+
     if (index === 0 || index === 6) {
-        expect(styles).toMatch(/data-note="0"/);
-        expect(styles).toMatch(/data-note="6"/);
-        expect(styles).toMatch(/content:\s*"\\266f"/i);
-        return;
+        expectToBe(expectedContent, '♯');
+    } else if (index === 3 || index === 9) {
+        expectToBe(expectedContent, '♭');
+    } else {
+        expectToBe(expectedContent, '♩');
     }
-
-    if (index === 3 || index === 9) {
-        expect(styles).toMatch(/data-note="3"/);
-        expect(styles).toMatch(/data-note="9"/);
-        expect(styles).toMatch(/content:\s*"\\266d"/i);
-        return;
-    }
-
-    expect(styles).toMatch(/data-note="\d+"[^]*:before/i);
-    expect(styles).toMatch(/content:\s*"\\2669"/i);
-    expectToBe(expectedContent, '\u2669');
 }
 
 describe('TwelveToneSpinnerComponent', () => {
