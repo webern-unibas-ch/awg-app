@@ -1,14 +1,4 @@
-import {
-    Component,
-    DebugElement,
-    DOCUMENT,
-    input,
-    Input,
-    isSignal,
-    output,
-    signal,
-    WritableSignal,
-} from '@angular/core';
+import { Component, DebugElement, DOCUMENT, input, Input, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -42,6 +32,11 @@ import {
 import { EditionStateService } from '@awg-views/edition-view/services';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
+import {
+    AlertErrorStubComponent,
+    FullscreenToggleStubComponent,
+    TwelveToneSpinnerStubComponent,
+} from '@testing/component-stubs';
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components
@@ -55,31 +50,6 @@ class ModalStubComponent {
     open(modalContentSnippetKey: string): void {
         this.modalContent = modalContentSnippetKey;
     }
-}
-
-@Component({
-    selector: 'awg-alert-error',
-    template: '',
-})
-class AlertErrorStubComponent {
-    errorObject = input.required<any>();
-}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
-
-@Component({
-    selector: 'awg-fullscreen-toggle',
-    template: '',
-    standalone: false,
-})
-class FullscreenToggleStubComponent {
-    readonly fsElement = input.required<HTMLElement>();
-    readonly toggleFullscreenRequest = output<boolean>();
 }
 
 @Component({
@@ -123,12 +93,10 @@ describe('EditionGraphComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent, FontAwesomeTestingModule],
+            imports: [AlertErrorStubComponent, FullscreenToggleStubComponent, FontAwesomeTestingModule],
             declarations: [
                 EditionGraphComponent,
-
                 CompileHtmlComponent,
-                FullscreenToggleStubComponent,
                 GraphVisualizerStubComponent,
                 ModalStubComponent,
                 TwelveToneSpinnerStubComponent,

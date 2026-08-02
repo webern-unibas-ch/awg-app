@@ -12,6 +12,7 @@ import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -42,13 +43,6 @@ class TablePaginationStubComponent {
     @Output()
     pageChangeRequest: EventEmitter<number> = new EventEmitter();
 }
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 describe('TableComponent', () => {
     let component: TableComponent;

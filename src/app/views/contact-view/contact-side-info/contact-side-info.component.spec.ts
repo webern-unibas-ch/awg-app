@@ -1,9 +1,10 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { ContactAddressStubComponent, ContactMapStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -19,25 +20,6 @@ import { ContactAddressComponent } from '../contact-address/contact-address.comp
 import { ContactMapComponent } from '../contact-map/contact-map.component';
 
 import { ContactSideInfoComponent } from './contact-side-info.component';
-
-// Mock components
-@Component({
-    selector: 'awg-contact-address',
-    template: '',
-})
-class ContactAddressStubComponent {
-    pageMetaData = input.required<MetaPage>();
-    contactMetaData = input.required<MetaContact>();
-}
-
-@Component({
-    selector: 'awg-contact-map',
-    template: '',
-})
-class ContactMapStubComponent {
-    embedUrl = input.required<SafeResourceUrl>();
-    linkUrl = input.required<string>();
-}
 
 describe('ContactSideInfoComponent (DONE)', () => {
     let component: ContactSideInfoComponent;

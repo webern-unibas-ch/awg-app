@@ -1,4 +1,4 @@
-import { Component, DebugElement, input, isSignal, model } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
@@ -6,6 +6,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    AlertInfoStubComponent,
+    HeadingStubComponent,
+    HomeViewCardStubComponent,
+    ScrollToTopButtonStubComponent,
+} from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
@@ -30,39 +36,6 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
 import { HomeViewCard } from './home-view-card/home-view-card.model';
 
 import { HomeViewComponent } from './home-view.component';
-
-// Mock components
-@Component({
-    selector: 'awg-alert-info',
-    template: '',
-})
-class AlertInfoStubComponent {
-    infoMessage = input.required<string>();
-    isOpen = model<boolean>(true);
-}
-
-@Component({
-    selector: 'awg-heading',
-    template: '',
-})
-class HeadingStubComponent {
-    title = input.required<string>();
-    id = input.required<string>();
-}
-
-@Component({
-    selector: 'awg-home-view-card',
-    template: '',
-})
-class HomeViewCardStubComponent {
-    cardData = input.required<HomeViewCard>();
-}
-
-@Component({
-    selector: 'awg-scroll-to-top-button',
-    template: '',
-})
-class ScrollToTopButtonStubComponent {}
 
 /** Helper function */
 function getRouterlinks(sections: EditionOutlineSection[]): string[][] {

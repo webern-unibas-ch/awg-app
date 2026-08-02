@@ -1,8 +1,14 @@
-import { Component, DebugElement, input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import {
+    FooterCopyrightStubComponent,
+    FooterDeclarationStubComponent,
+    FooterPoweredbyStubComponent,
+    LogoStubComponent,
+} from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -13,7 +19,7 @@ import {
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
-import { Logo, Logos } from '@awg-shared/logos/logos.model';
+import { Logos } from '@awg-shared/logos/logos.model';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
@@ -22,40 +28,6 @@ import { FooterDeclarationComponent } from './footer-declaration/footer-declarat
 import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.component';
 
 import { FooterComponent } from './footer.component';
-
-// Mock components
-@Component({
-    selector: 'awg-footer-copyright',
-    template: '',
-})
-class FooterCopyrightStubComponent {
-    pageMetaData = input.required<MetaPage>();
-}
-
-@Component({
-    selector: 'awg-footer-declaration',
-    template: '',
-})
-class FooterDeclarationStubComponent {
-    pageMetaData = input.required<MetaPage>();
-}
-
-@Component({
-    selector: 'awg-logo',
-    template: '',
-})
-class LogoStubComponent {
-    logoData = input.required<Logo>();
-}
-
-@Component({
-    selector: 'awg-footer-poweredby',
-    template: '',
-})
-class FooterPoweredbyStubComponent {
-    logosData = input.required<Logos>();
-    pageMetaData = input.required<MetaPage>();
-}
 
 describe('FooterComponent (DONE)', () => {
     let component: FooterComponent;

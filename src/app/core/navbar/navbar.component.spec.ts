@@ -1,4 +1,4 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbCollapseConfig } from '@ng-bootstrap/ng-bootstrap/collapse';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { LogoStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
@@ -21,7 +22,7 @@ import {
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
-import { Logo, Logos } from '@awg-shared/logos/logos.model';
+import { Logos } from '@awg-shared/logos/logos.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
@@ -32,35 +33,7 @@ import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropd
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import { NavbarComponent } from './navbar.component';
 import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.data';
-import { NavbarItem, NavbarItems } from './navbar.model';
-
-// Mock components
-@Component({
-    selector: 'awg-logo',
-    template: '',
-})
-class LogoStubComponent {
-    logoData = input.required<Logo>();
-}
-
-@Component({
-    selector: 'awg-navbar-dropdown-link',
-    template: '',
-})
-class NavbarDropdownLinkStubComponent {
-    label = input.required<string>();
-    route = input.required<string[]>();
-}
-
-@Component({
-    selector: 'awg-navbar-item',
-    template: '',
-})
-class NavbarItemStubComponent {
-    item = input.required<NavbarItem>();
-    id = input<string>('');
-    isDropdown = input<boolean>(false);
-}
+import { NavbarItems } from './navbar.model';
 
 describe('NavbarComponent (DONE)', () => {
     let component: NavbarComponent;

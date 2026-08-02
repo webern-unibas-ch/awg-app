@@ -1,10 +1,11 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { Component, DebugElement, input, LOCALE_ID } from '@angular/core';
+import { DebugElement, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { MetaIdentifierBadgesStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -15,20 +16,11 @@ import {
 
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
-import { MetaIdentifiers, MetaSectionTypes, MetaStructure } from '@awg-shared/meta/meta.model';
+import { MetaSectionTypes, MetaStructure } from '@awg-shared/meta/meta.model';
 
 import { StructureSideInfoComponent } from './structure-side-info.component';
 
 registerLocaleData(localeDeDE);
-
-// Mock components
-@Component({
-    selector: 'awg-meta-identifier-badges',
-    template: '',
-})
-class MetaIdentifierBadgesStubComponent {
-    readonly identifiers = input.required<MetaIdentifiers>();
-}
 
 describe('StructureSideInfoComponent (DONE)', () => {
     let component: StructureSideInfoComponent;

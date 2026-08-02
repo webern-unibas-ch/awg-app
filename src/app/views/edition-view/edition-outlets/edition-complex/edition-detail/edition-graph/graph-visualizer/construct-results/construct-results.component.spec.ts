@@ -9,8 +9,8 @@ import { EMPTY, Observable, of as observableOf } from 'rxjs';
 import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-
 import {
     expectSpyCall,
     expectToBe,
@@ -21,6 +21,7 @@ import {
 } from '@testing/expect-helper';
 
 import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
+
 import { ConstructResultsComponent } from './construct-results.component';
 
 // Mock components
@@ -44,13 +45,6 @@ class ForceGraphStubComponent {
     standalone: false,
 })
 class SparqlNoResultsStubComponent {}
-
-@Component({
-    selector: 'awg-twelve-tone-spinner',
-    template: '',
-    standalone: false,
-})
-class TwelveToneSpinnerStubComponent {}
 
 describe('ConstructResultsComponent (DONE)', () => {
     let component: ConstructResultsComponent;

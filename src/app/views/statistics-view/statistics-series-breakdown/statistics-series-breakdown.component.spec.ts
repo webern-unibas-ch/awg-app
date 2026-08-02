@@ -1,10 +1,11 @@
-import { Component, DebugElement, input, isSignal } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { StatisticsBreakdownBadgeStubComponent, StatisticsProgressBarStubComponent } from '@testing/component-stubs';
 import {
     expectSpyCall,
     expectToBe,
@@ -19,7 +20,6 @@ import { mockStatisticsData } from '@testing/mock-data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 
 import {
-    StatisticsComplexBreakdown,
     StatisticsProgressBarConfig,
     StatisticsSectionBreakdown,
     StatisticsSeriesBreakdown,
@@ -28,32 +28,6 @@ import { StatisticsBreakdownBadgeComponent } from '../statistics-breakdown-badge
 import { StatisticsProgressBarComponent } from '../statistics-progress-bar/statistics-progress-bar.component';
 
 import { StatisticsSeriesBreakdownComponent } from './statistics-series-breakdown.component';
-
-// Mock components
-
-@Component({
-    selector: 'awg-statistics-breakdown-badge',
-    template: '',
-})
-class StatisticsBreakdownBadgeStubComponent {
-    breakdown = input.required<StatisticsComplexBreakdown>();
-    containerClasses = input<string>('small text-muted');
-    showEmptyBadges = input<boolean>(false);
-}
-
-@Component({
-    selector: 'awg-statistics-progress-bar',
-    template: '',
-})
-class StatisticsProgressBarStubComponent {
-    config = input.required<StatisticsProgressBarConfig>();
-    headerLabel = input<string>();
-    height = input<string>('15px');
-    showPercentageLabel = input<boolean>(true);
-    boldPercentageLabel = input<boolean>(false);
-    customType = input<string>('');
-    useCustomTypeOnly = input<boolean>(false);
-}
 
 describe('StatisticsSeriesBreakdownComponent', () => {
     let component: StatisticsSeriesBreakdownComponent;
