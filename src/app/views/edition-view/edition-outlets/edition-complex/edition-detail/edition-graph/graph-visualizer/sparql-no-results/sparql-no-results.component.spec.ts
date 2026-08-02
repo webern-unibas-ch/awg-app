@@ -111,7 +111,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             });
 
             it('... should have default linkClass on logo component', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 1, 1);
                 const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
 
                 expectToBe(logoCmp.linkClass(), 'awg-logo-link');
