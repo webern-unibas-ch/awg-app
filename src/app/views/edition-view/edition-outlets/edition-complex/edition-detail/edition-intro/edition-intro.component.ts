@@ -102,7 +102,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     /**
      * Public signal: selectedLanguage.
      *
-     * It holds the selected language of the edition preface.
+     * It holds the selected language of the edition intro.
      */
     selectedLanguage = signal<LanguageId>(LanguageId.DE);
 
@@ -111,7 +111,7 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It computes the label for the notes section in the edition intro based on the selected language.
      */
-    readonly notesSectionLabel = computed(() => this.selectedLanguage() === LanguageId.DE ? 'Anmerkungen' : 'Notes');
+    readonly notesSectionLabel = computed(() => (this.selectedLanguage() === LanguageId.DE ? 'Anmerkungen' : 'Notes'));
 
     /**
      * Constructor of the EditionIntroComponent.

@@ -63,7 +63,7 @@ describe('LanguageSwitcherComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
             });
 
-            it('... should not contain buttons yet', () => {
+            it('... should contain no buttons yet', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
