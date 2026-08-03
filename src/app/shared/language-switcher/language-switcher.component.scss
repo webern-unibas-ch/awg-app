@@ -5,21 +5,34 @@
     font-size: small;
     text-align: end;
 
-    a {
-        cursor: pointer;
-        text-decoration: none;
+    button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
         color: inherit;
-        // disable the active link style
+        cursor: pointer;
+
+        text-decoration: none;
+
         &.active,
         &.active:hover {
             cursor: default;
             color: inherit;
         }
+
         &:not(.active) {
             color: $link-color;
         }
+
         &:hover {
             border-bottom: none !important;
+        }
+
+        &:focus-visible {
+            outline: 1px solid $link-color;
+            outline-offset: 2px;
         }
     }
 }

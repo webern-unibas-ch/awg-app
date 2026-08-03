@@ -1,11 +1,22 @@
-import { ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    inject,
+    OnDestroy,
+    OnInit,
+    signal,
+    ViewChild,
+} from '@angular/core';
 import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
 
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
 
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
+
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
@@ -47,6 +58,13 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
+     * Private readonly injection variable: _editionViewService.
+     *
+     * It keeps the instance of the injected EditionViewService.
+     */
+    private readonly _editionViewService = inject(EditionViewService);
+
+    /**
      * Private readonly injection variable: _router.
      *
      * It keeps the instance of the injected Angular Router.
@@ -68,23 +86,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     protected readonly UTILS = UTILS;
 
     /**
-     * Public variable: currentLanguage.
-     *
-     * It keeps the current language of the edition intro: 0 for German, 1 for English.
-     */
-    currentLanguage = 0;
-
-    /**
-     * Public variable: notesLabels.
-     *
-     * It keeps the labels for the notes in the edition intro.
-     */
-    notesLabels: Map<number, string> = new Map([
-        [0, 'Anmerkungen'],
-        [1, 'Notes'],
-    ]);
-
-    /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
@@ -96,7 +97,21 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It holds the state of the intro view data.
      */
-    readonly viewData = inject(EditionViewService).introViewData;
+    readonly viewData = this._editionViewService.introViewData;
+
+    /**
+     * Public signal: selectedLanguage.
+     *
+     * It holds the selected language of the edition preface.
+     */
+    selectedLanguage = signal<LanguageId>(LanguageId.DE);
+
+    /**
+     * Readonly signal: notesSectionLabel.
+     *
+     * It computes the label for the notes section in the edition intro based on the selected language.
+     */
+    readonly notesSectionLabel = computed(() => this.selectedLanguage() === LanguageId.DE ? 'Anmerkungen' : 'Notes');
 
     /**
      * Constructor of the EditionIntroComponent.
@@ -173,18 +188,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
             fragment: introIds?.fragmentId ?? '',
         };
         this._router.navigate([], navigationExtras);
-    }
-
-    /**
-     * Public method: onLanguageSet.
-     *
-     * It sets the current language of the edition intro.
-     *
-     * @param {number} language The given language number.
-     * @returns {void} Sets the current language.
-     */
-    onLanguageSet(language: number): void {
-        this.currentLanguage = language;
     }
 
     /**

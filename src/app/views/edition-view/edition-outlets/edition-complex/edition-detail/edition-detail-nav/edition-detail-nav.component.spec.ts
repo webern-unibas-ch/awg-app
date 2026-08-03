@@ -106,7 +106,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have signal `selectedEditionComplex` to hold expected complex', () => {
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
             expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 

@@ -5,6 +5,7 @@ import {
     EventEmitter,
     Input,
     isSignal,
+    model,
     Output,
     signal,
     WritableSignal,
@@ -36,6 +37,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
@@ -100,10 +102,7 @@ class EditionIntroNavStubComponent {
     introBlockContent: IntroBlock[];
     @Input()
     notesLabel: string;
-    @Input()
-    currentLanguage: number;
-    @Output()
-    languageChangeRequest = new EventEmitter<number>();
+    selectedLanguage = model.required<LanguageId>();
 }
 
 @Component({
@@ -157,7 +156,6 @@ describe('IntroComponent (DONE)', () => {
     let navigationSpy: Spy;
     let openModalSpy: Spy;
     let onIntroFragmentNavigateSpy: Spy;
-    let onLanguageSetSpy: Spy;
     let onModalOpenSpy: Spy;
     let onReportFragmentNavigateSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
@@ -172,8 +170,8 @@ describe('IntroComponent (DONE)', () => {
     let expectedDefaultViewDataContent: EditionViewDataContent<'intro'>;
     let expectedIntroSectionData: IntroList;
     let expectedIntroSectionFilteredData: IntroList;
-    let expectedCurrentLaguage: number;
-    let expectedNotesLabels: Map<number, string>;
+    let expectedSelectedLanguage: LanguageId;
+    let expectedDefaultNotesSectionLabel: string;
     let expectedComplex: EditionComplex;
 
     let expectedComplexBaseRoute: string;
@@ -248,11 +246,8 @@ describe('IntroComponent (DONE)', () => {
         expectedIntroSectionData = structuredClone(mockEditionData.mockIntroSectionData);
         expectedIntroSectionFilteredData = structuredClone(mockEditionData.mockIntroSectionFilteredData);
 
-        expectedCurrentLaguage = 0;
-        expectedNotesLabels = new Map([
-            [0, 'Anmerkungen'],
-            [1, 'Notes'],
-        ]);
+        expectedSelectedLanguage = LanguageId.DE;
+        expectedDefaultNotesSectionLabel = 'Anmerkungen';
 
         expectedComplexId = 'op12';
         expectedComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
@@ -279,7 +274,6 @@ describe('IntroComponent (DONE)', () => {
         navigationSpy = mockRouter.navigate as Mock;
         openModalSpy = vi.spyOn(component.modal, 'open');
         onIntroFragmentNavigateSpy = vi.spyOn(component, 'onIntroFragmentNavigate');
-        onLanguageSetSpy = vi.spyOn(component, 'onLanguageSet');
         onModalOpenSpy = vi.spyOn(component, 'onModalOpen');
         onReportFragmentNavigateSpy = vi.spyOn(component, 'onReportFragmentNavigate');
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
@@ -297,12 +291,10 @@ describe('IntroComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `currentLanguage`', () => {
-            expectToBe(component.currentLanguage, expectedCurrentLaguage);
-        });
+        it('... should have signal `selectedLanguage` to hold the default language (DE)', () => {
+            expectToBe(isSignal(component.selectedLanguage), true);
 
-        it('... should have `notesLabels`', () => {
-            expectToEqual(component.notesLabels, expectedNotesLabels);
+            expectToBe(component.selectedLanguage(), expectedSelectedLanguage);
         });
 
         it('... should have signal `selectedEditionComplex` to hold null', () => {
@@ -315,6 +307,12 @@ describe('IntroComponent (DONE)', () => {
             expectToBe(isSignal(component.viewData), true);
 
             expectToEqual(component.viewData(), createMockViewData(expectedDefaultViewDataContent));
+        });
+
+        it('... should have computed signal `notesSectionLabel` to hold the default label', () => {
+            expectToBe(isSignal(component.notesSectionLabel), true);
+
+            expectToEqual(component.notesSectionLabel(), expectedDefaultNotesSectionLabel);
         });
 
         it('... should have `editionRouteConstants`', () => {
@@ -393,13 +391,21 @@ describe('IntroComponent (DONE)', () => {
         });
 
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
-            expectToBe(isSignal(component.selectedEditionComplex), true);
-
             expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
         it('... should have signal `viewData` to hold the expected view data', () => {
             expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
+        });
+
+        it('... should have re-computed signal `notesSectionLabel` to hold the expected label when `selectedLanguage` changes', () => {
+            component.selectedLanguage.set(LanguageId.EN);
+
+            expectToEqual(component.notesSectionLabel(), 'Notes');
+
+            component.selectedLanguage.set(LanguageId.DE);
+
+            expectToEqual(component.notesSectionLabel(), expectedDefaultNotesSectionLabel);
         });
 
         it('... should have called `listenToRouteChanges()`', () => {
@@ -614,12 +620,9 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent,
-                                expectedIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionFilteredData.intro[expectedSelectedLanguage].content
                             );
-                            expectToEqual(
-                                editionIntroContentCmp.notesLabel,
-                                expectedNotesLabels.get(expectedCurrentLaguage)
-                            );
+                            expectToEqual(editionIntroContentCmp.notesLabel, expectedDefaultNotesSectionLabel);
                         });
 
                         it('... should contain one EditionIntroNavComponent (stubbed)', () => {
@@ -627,7 +630,7 @@ describe('IntroComponent (DONE)', () => {
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
                         });
 
-                        it('... should pass down filtered `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
+                        it('... should pass down filtered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent', () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavStubComponent,
@@ -640,13 +643,10 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent,
-                                expectedIntroSectionFilteredData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionFilteredData.intro[expectedSelectedLanguage].content
                             );
-                            expectToEqual(
-                                editionIntroNavCmp.notesLabel,
-                                expectedNotesLabels.get(expectedCurrentLaguage)
-                            );
-                            expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                            expectToEqual(editionIntroNavCmp.notesLabel, expectedDefaultNotesSectionLabel);
+                            expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
                     });
 
@@ -688,12 +688,9 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroContentCmp.introBlockContent,
-                                expectedIntroSectionData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionData.intro[expectedSelectedLanguage].content
                             );
-                            expectToEqual(
-                                editionIntroContentCmp.notesLabel,
-                                expectedNotesLabels.get(expectedCurrentLaguage)
-                            );
+                            expectToEqual(editionIntroContentCmp.notesLabel, expectedDefaultNotesSectionLabel);
                         });
 
                         it('... should contain one EditionIntroNavComponent (stubbed)', () => {
@@ -701,7 +698,7 @@ describe('IntroComponent (DONE)', () => {
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavStubComponent, 1, 1);
                         });
 
-                        it('... should pass down unfiltered `introBlockContent`, `notesLabel` and `currentLanguage` to EditionIntroNavComponent', () => {
+                        it('... should pass down unfiltered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent', () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavStubComponent,
@@ -714,13 +711,10 @@ describe('IntroComponent (DONE)', () => {
 
                             expectToEqual(
                                 editionIntroNavCmp.introBlockContent,
-                                expectedIntroSectionData.intro[expectedCurrentLaguage].content
+                                expectedIntroSectionData.intro[expectedSelectedLanguage].content
                             );
-                            expectToEqual(
-                                editionIntroNavCmp.notesLabel,
-                                expectedNotesLabels.get(expectedCurrentLaguage)
-                            );
-                            expectToEqual(editionIntroNavCmp.currentLanguage, expectedCurrentLaguage);
+                            expectToEqual(editionIntroNavCmp.notesLabel, expectedDefaultNotesSectionLabel);
+                            expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
                     });
                 });
@@ -915,60 +909,6 @@ describe('IntroComponent (DONE)', () => {
 
                         expectSpyCall(navigationSpy, 1, [[], expectedNavigationExtras]);
                     });
-                });
-            });
-
-            describe('#onLanguageSet()', () => {
-                it('... should have a method `onLanguageSet`', () => {
-                    expect(component.onLanguageSet).toBeDefined();
-                });
-
-                it('... should trigger on event from EditionIntroNavComponent', () => {
-                    const editionIntroNavDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionIntroNavStubComponent,
-                        1,
-                        1
-                    );
-                    const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
-                        EditionIntroNavStubComponent
-                    ) as EditionIntroNavStubComponent;
-
-                    editionIntroNavCmp.languageChangeRequest.emit(expectedCurrentLaguage);
-
-                    expectSpyCall(onLanguageSetSpy, 1, expectedCurrentLaguage);
-                });
-
-                it('... should set `currentLanguage` to the given language', async () => {
-                    component.onLanguageSet(expectedCurrentLaguage);
-                    await detectChangesOnPush(fixture);
-
-                    expectToBe(component.currentLanguage, expectedCurrentLaguage);
-
-                    const newLanguage = 1;
-
-                    component.onLanguageSet(newLanguage);
-
-                    expectToBe(component.currentLanguage, newLanguage);
-                });
-
-                it('... should not change `currentLanguage` if the same language is passed', () => {
-                    const initialLanguage = component.currentLanguage;
-
-                    component.onLanguageSet(initialLanguage);
-
-                    expectToBe(component.currentLanguage, initialLanguage);
-                });
-
-                it('... should change `currentLanguage` if a different language is passed', () => {
-                    const initialLanguage = component.currentLanguage;
-                    const newLanguage = initialLanguage === 0 ? 1 : 0;
-
-                    component.onLanguageSet(newLanguage);
-
-                    expect(component.currentLanguage).not.toBe(initialLanguage);
-
-                    expectToBe(component.currentLanguage, newLanguage);
                 });
             });
 

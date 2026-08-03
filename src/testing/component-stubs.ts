@@ -1,21 +1,23 @@
-import { Component, EventEmitter, Input, input, model, Output } from '@angular/core';
+import { Component, Input, input, model } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { NavbarItem } from '@awg-core/navbar/navbar.model';
 
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { Logo, Logos } from '@awg-shared/logos/logos.model';
 import { MetaContact, MetaIdentifiers, MetaPage } from '@awg-shared/meta/meta.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
 import { HomeViewCard } from '@awg-views/home-view/home-view-card/home-view-card.model';
 
-import { SafeResourceUrl } from '@angular/platform-browser';
 import {
     EditionOutlineComplexItem,
     EditionOutlineSection,
     EditionOutlineSeries,
 } from '@awg-app/views/edition-view/models';
+
 import {
     StatisticsComplexBreakdown,
     StatisticsComplexBreakdownData,
@@ -113,13 +115,9 @@ export class HeadingStubComponent {
 @Component({
     selector: 'awg-language-switcher',
     template: '',
-    standalone: false,
 })
 export class LanguageSwitcherStubComponent {
-    @Input()
-    currentLanguage: number;
-    @Output()
-    languageChangeRequest = new EventEmitter<number>();
+    selectedLanguage = model.required<LanguageId>();
 }
 
 @Component({

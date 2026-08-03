@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, model } from '@angular/core';
+
+import { LanguageId } from './language.model';
 
 /**
  * The LanguageSwitcher component.
@@ -10,35 +12,24 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     templateUrl: './language-switcher.component.html',
     styleUrls: ['./language-switcher.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class LanguageSwitcherComponent {
     /**
-     * Input variable: currentLanguage.
+     * Model signal: selectedLanguage.
      *
-     * It keeps the current language: 0 for German, 1 for English.
+     * It holds the selected language id.
      */
-    @Input()
-    currentLanguage: number;
+    selectedLanguage = model.required<LanguageId>();
 
     /**
-     * Output variable: languageChangeRequest.
+     * Protected readonly variable: languages.
      *
-     * It emits the current language.
+     * It holds the available languages of the app.
      */
-    @Output() languageChangeRequest = new EventEmitter<number>();
-
-    /**
-     * Public method: setLanguage.
-     *
-     * It emits the current language.
-     *
-     * @param {number} language The given language number.
-     * @returns {void} Emits the current language.
-     */
-    setLanguage(language: number): void {
-        if (language === 0 || language === 1) {
-            this.languageChangeRequest.emit(language);
-        }
-    }
+    protected readonly languages = Object.values(LanguageId)
+        .filter((value): value is LanguageId => typeof value === 'number')
+        .map(id => ({
+            id,
+            label: LanguageId[id],
+        }));
 }

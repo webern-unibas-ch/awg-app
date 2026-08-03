@@ -7,8 +7,11 @@
         @let preface = view.data.prefaceData.preface;
 
         <div class="awg-preface-view p-5 border rounded-3">
-            <awg-language-switcher [currentLanguage]="currentLanguage" (languageChangeRequest)="setLanguage($event)" />
-            @for (prefaceParagraph of preface[currentLanguage].content; track $index) {
+            <awg-language-switcher [(selectedLanguage)]="selectedLanguage" />
+
+            @let lang = selectedLanguage();
+
+            @for (prefaceParagraph of preface[lang]?.content; track $index) {
                 <div
                     class="awg-edition-preface-block"
                     [compile-html]="prefaceParagraph"

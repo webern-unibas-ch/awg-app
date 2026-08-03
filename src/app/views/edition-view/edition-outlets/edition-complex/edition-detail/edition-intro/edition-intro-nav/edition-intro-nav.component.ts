@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
+
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
 
 import { IntroBlock } from '@awg-views/edition-view/models';
 
@@ -31,32 +33,11 @@ export class EditionIntroNavComponent {
      */
     @Input()
     notesLabel: string;
-    /**
-     * Input variable: currentLanguage.
-     *
-     * It keeps the current language: 0 for German, 1 for English.
-     */
-    @Input()
-    currentLanguage: number;
 
     /**
-     * Output variable: languageChangeRequest.
+     * Model signal: selectedLanguage.
      *
-     * It emits the current language.
+     * It holds the selected language id.
      */
-    @Output() languageChangeRequest = new EventEmitter<number>();
-
-    /**
-     * Public method: setLanguage.
-     *
-     * It emits the current language.
-     *
-     * @param {number} language The given language number.
-     * @returns {void} Emits the current language.
-     */
-    setLanguage(language: number): void {
-        if (language === 0 || language === 1) {
-            this.languageChangeRequest.emit(language);
-        }
-    }
+    selectedLanguage = model.required<LanguageId>();
 }
