@@ -50,6 +50,7 @@ html {
     height: 15%;
     border-radius: 100%;
     animation: spinner-circleBounceDelay 1.2s infinite cubic-bezier(0.16, 1, 0.3, 1) both;
+    content: '\2669'; /* Quarter Note ♩ */
 }
 
 .spinner .spinner-note:not([data-note='0']) {
@@ -57,11 +58,6 @@ html {
 }
 .spinner .spinner-note:not([data-note='0']):before {
     animation-delay: calc(-1.2s + (var(--index) * 0.1s));
-}
-
-/* Quarter Note ♩ */
-.spinner .spinner-note:before {
-    content: '\2669';
 }
 
 /* Sharp Signs ♯*/

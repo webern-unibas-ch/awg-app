@@ -1,14 +1,5 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    computed,
-    inject,
-    OnDestroy,
-    OnInit,
-    signal,
-    ViewChild,
-} from '@angular/core';
-import { NavigationEnd, NavigationExtras, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, signal, ViewChild } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
@@ -18,8 +9,7 @@ import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
@@ -35,34 +25,13 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionIntroComponent implements OnDestroy, OnInit {
+export class EditionIntroComponent implements OnDestroy {
     /**
      * ViewChild variable: modal.
      *
      * It keeps the reference to the awg-modal.
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Private readonly injection variable: _editionOutlineService.
-     *
-     * It keeps the instance of the injected EditionOutlineService.
-     */
-    private readonly _editionOutlineService = inject(EditionOutlineService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Private readonly injection variable: _editionViewService.
-     *
-     * It keeps the instance of the injected EditionViewService.
-     */
-    private readonly _editionViewService = inject(EditionViewService);
 
     /**
      * Private readonly injection variable: _router.
@@ -90,14 +59,14 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
      * Readonly signal: introData.
      *
      * It holds the state of the intro view data.
      */
-    readonly viewData = this._editionViewService.introViewData;
+    readonly viewData = inject(EditionViewService).introViewData;
 
     /**
      * Public signal: selectedLanguage.
@@ -132,16 +101,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.listenToRouteChanges();
-    }
-
-    /**
      * Angular life cycle hook: ngOnDestroy.
      *
      * It calls the containing methods
@@ -152,27 +111,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     ngOnDestroy() {
         this._destroyed$.next(true);
         this._destroyed$.complete();
-    }
-
-    /**
-     * Public method: listenToRouteChanges.
-     *
-     * It listens to route changes and updates the edition state accordingly.
-     *
-     * @returns {void} Updates the edition state on route changes.
-     */
-    listenToRouteChanges(): void {
-        this._router.events.pipe(takeUntil(this._destroyed$)).subscribe(events => {
-            if (this._isNavigationEndToIntro(events)) {
-                const { seriesId, sectionId } = this._extractUrlSegments(events.urlAfterRedirects);
-
-                if (seriesId && sectionId) {
-                    this._updateEditionState(seriesId, sectionId);
-                } else {
-                    console.error('Invalid URL segments:', events.urlAfterRedirects);
-                }
-            }
-        });
     }
 
     /**
@@ -241,36 +179,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
     }
 
     /**
-     * Private method: _extractUrlSegments.
-     *
-     * It extracts the series and section IDs from a given URL.
-     *
-     * @param {string} url The given URL.
-     * @returns {{ seriesId: string | undefined; sectionId: string | undefined }} The extracted series and section ID.
-     */
-    private _extractUrlSegments(url: string): { seriesId: string | undefined; sectionId: string | undefined } {
-        if (!url) {
-            return { seriesId: undefined, sectionId: undefined };
-        }
-        const urlSegments = url.split('/');
-        const seriesIndex = urlSegments.indexOf('series') + 1;
-        const sectionIndex = urlSegments.indexOf('section') + 1;
-
-        const seriesId = urlSegments[seriesIndex];
-        const sectionId = urlSegments[sectionIndex];
-
-        const isValidSeriesId = (value: string | undefined): boolean => value !== undefined && /^[1-3]$/.test(value);
-
-        const isValidSectionId = (value: string | undefined): boolean =>
-            value !== undefined && /^[1-5]+[ab]?$/.test(value);
-
-        return {
-            seriesId: isValidSeriesId(seriesId) ? seriesId : undefined,
-            sectionId: isValidSectionId(sectionId) ? sectionId : undefined,
-        };
-    }
-
-    /**
      * Private method: _initScrollListener.
      *
      * It initializes the scroll listener for the window.
@@ -283,19 +191,6 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
             .subscribe({
                 next: event => this._onIntroScroll(event),
             });
-    }
-
-    /**
-     * Private method: _isNavigationEndToIntro.
-     *
-     * It checks if the given event is a NavigationEnd event
-     * and if the URL contains 'intro'.
-     *
-     * @param {any} events The given events.
-     * @returns {boolean} The result of the check.
-     */
-    private _isNavigationEndToIntro(events: any): events is NavigationEnd {
-        return events instanceof NavigationEnd && events.urlAfterRedirects?.includes('intro');
     }
 
     /**
@@ -348,24 +243,5 @@ export class EditionIntroComponent implements OnDestroy, OnInit {
                 navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
             });
         }
-    }
-
-    /**
-     * Private method: _updateEditionState.
-     *
-     * It updates the selected edition series and section
-     * and the introView in the EditionStateService.
-     *
-     * @param {string} seriesId The given series ID.
-     * @param {string} sectionId The given section ID.
-     * @returns {void} Updates the selected edition series, section, and introView.
-     */
-    private _updateEditionState(seriesId: string, sectionId: string): void {
-        const series: EditionOutlineSeries = this._editionOutlineService.getEditionSeriesById(seriesId) ?? null;
-        const section: EditionOutlineSection =
-            this._editionOutlineService.getEditionSectionById(seriesId, sectionId) ?? null;
-
-        this._editionStateService.updateSelectedEditionSeries(series);
-        this._editionStateService.updateSelectedEditionSection(section);
     }
 }
