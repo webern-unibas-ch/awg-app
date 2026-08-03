@@ -1,13 +1,11 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { LanguageSwitcherStubComponent } from '@testing/component-stubs';
 import {
-    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -16,6 +14,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { IntroBlock } from '@awg-views/edition-view/models';
 
 import { EditionIntroNavComponent } from './edition-intro-nav.component';
@@ -28,19 +27,17 @@ describe('EditionIntroNavComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let setLanguageSpy: Spy;
-    let emitLanguageChangeRequestSpy: Spy;
-
     let expectedIntroBlockContent: IntroBlock[];
     let expectedNotesLabel: string;
-    let expectedCurrentLanguage: number;
+    let expectedSelectedLanguage: LanguageId;
 
     let expectedLinkParam: string;
     let expectedNotesFragment: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionIntroNavComponent, LanguageSwitcherStubComponent, RouterLinkStubDirective],
+            imports: [LanguageSwitcherStubComponent],
+            declarations: [EditionIntroNavComponent, RouterLinkStubDirective],
         }).compileComponents();
     });
 
@@ -52,18 +49,10 @@ describe('EditionIntroNavComponent (DONE)', () => {
         // Test data
         expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content);
         expectedNotesLabel = 'Test notes label';
-        expectedCurrentLanguage = 0;
+        expectedSelectedLanguage = LanguageId.DE;
 
         expectedLinkParam = '.';
         expectedNotesFragment = 'notes';
-
-        // Spies
-        setLanguageSpy = vi.spyOn(component, 'setLanguage');
-        emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
     });
 
     it('should create', () => {
@@ -79,8 +68,10 @@ describe('EditionIntroNavComponent (DONE)', () => {
             expect(component.notesLabel).toBeUndefined();
         });
 
-        it('... should not have `currentLanguage`', () => {
-            expect(component.currentLanguage).toBeUndefined();
+        it('... should throw due to missing required input for model signal `selectedLanguage`', () => {
+            expectToBe(isSignal(component.selectedLanguage), true);
+
+            expect(() => component.selectedLanguage()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -88,7 +79,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 0, 0);
             });
 
-            it('... should not contain language switcher component (stubbed)', () => {
+            it('... should contain no LanguageSwitcherComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 0, 0);
             });
         });
@@ -99,7 +90,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.introBlockContent = expectedIntroBlockContent;
             component.notesLabel = expectedNotesLabel;
-            component.currentLanguage = expectedCurrentLanguage;
+            fixture.componentRef.setInput('selectedLanguage', expectedSelectedLanguage);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -113,8 +104,8 @@ describe('EditionIntroNavComponent (DONE)', () => {
             expectToBe(component.notesLabel, expectedNotesLabel);
         });
 
-        it('... should have `currentLanguage`', () => {
-            expectToEqual(component.currentLanguage, expectedCurrentLanguage);
+        it('... should have signal `selectedLanguage` to hold the expected language', () => {
+            expectToEqual(component.selectedLanguage(), expectedSelectedLanguage);
         });
 
         describe('VIEW', () => {
@@ -127,22 +118,34 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'ul.nav', 1, 1);
             });
 
-            it('... should contain a language switcher component (stubbed) in ul.nav', () => {
+            it('... should contain one LanguageSwitcherComponent (stubbed) in ul.nav', () => {
                 const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
 
                 getAndExpectDebugElementByDirective(ulDes[0], LanguageSwitcherStubComponent, 1, 1);
             });
 
-            it('... should pass down `currentLanguage` to language switcher component', () => {
+            it('... should pass down `selectedLanguage` to LanguageSwitcherComponent', () => {
                 const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
                 const switcherCmp = switcherDes[0].injector.get(
                     LanguageSwitcherStubComponent
                 ) as LanguageSwitcherStubComponent;
 
-                expectToEqual(switcherCmp.currentLanguage, expectedCurrentLanguage);
+                expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
             });
 
-            it('... should contain a horizontal line after language switcher in ul.nav', () => {
+            it('... should update `selectedLanguage` when LanguageSwitcherComponent emits a change', () => {
+                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
+
+                expectToBe(component.selectedLanguage(), LanguageId.DE);
+
+                switcherDes[0].triggerEventHandler('selectedLanguageChange', LanguageId.EN);
+
+                fixture.detectChanges();
+
+                expectToBe(component.selectedLanguage(), LanguageId.EN);
+            });
+
+            it('... should contain a horizontal line below LanguageSwitcherComponent in ul.nav', () => {
                 const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
                 getAndExpectDebugElementByCss(ulDes[0], 'hr.mt-0', 1, 1);
             });
@@ -191,54 +194,6 @@ describe('EditionIntroNavComponent (DONE)', () => {
                             : expectedIntroBlockContent[index].blockHeader;
 
                     expectToBe(aEl.textContent, expectedText);
-                });
-            });
-        });
-
-        describe('#setLanguage()', () => {
-            it('... should have a method `setLanguage`', () => {
-                expect(component.setLanguage).toBeDefined();
-            });
-
-            it('... should trigger on event from LanguageSwitcherComponent', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(
-                    LanguageSwitcherStubComponent
-                ) as LanguageSwitcherStubComponent;
-
-                // Language = 0
-                switcherCmp.languageChangeRequest.emit(0);
-
-                expectSpyCall(setLanguageSpy, 1, 0);
-
-                // Language = 1
-                switcherCmp.languageChangeRequest.emit(1);
-
-                expectSpyCall(setLanguageSpy, 2, 1);
-            });
-
-            it('... should emit 0 when called with 0', () => {
-                component.setLanguage(0);
-
-                expectSpyCall(setLanguageSpy, 1);
-                expectSpyCall(emitLanguageChangeRequestSpy, 1, 0);
-            });
-
-            it('... should emit 1 when called with 1', () => {
-                component.setLanguage(1);
-
-                expectSpyCall(setLanguageSpy, 1);
-                expectSpyCall(emitLanguageChangeRequestSpy, 1, 1);
-            });
-
-            it('... should not emit when called with any other number than 0 or 1', () => {
-                const invalidLanguageNumbers = [-987654321, -2, -1, 2, 3, 987654321];
-
-                invalidLanguageNumbers.forEach((languageNumber, index) => {
-                    component.setLanguage(languageNumber);
-
-                    expectSpyCall(setLanguageSpy, index + 1);
-                    expectSpyCall(emitLanguageChangeRequestSpy, 0);
                 });
             });
         });

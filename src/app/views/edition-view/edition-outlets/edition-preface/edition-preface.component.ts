@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
-import { EditionGlyphService } from '@awg-views/edition-view/services';
+import { LanguageId } from '@awg-shared/language-switcher/language.model';
+
+import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
@@ -25,18 +27,6 @@ export class EditionPrefaceComponent {
     private readonly _editionGlyphService = inject(EditionGlyphService);
 
     /**
-     * Public variable: currentLanguage.
-     *
-     * It keeps the current language of the edition preface: 0 for German, 1 for English.
-     */
-    currentLanguage = 0;
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionPrefaceComponent;
-
-    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the preface view data.
@@ -44,14 +34,16 @@ export class EditionPrefaceComponent {
     readonly viewData = inject(EditionViewService).prefaceViewData;
 
     /**
-     * Constructor of the EditionPrefaceComponent.
+     * Public signal: selectedLanguage.
      *
-     * It declares the self-referring ref variable needed for CompileHtml library.
-     *
+     * It holds the selected language of the edition preface.
      */
-    constructor() {
-        this.ref = this;
-    }
+    selectedLanguage = signal<LanguageId>(LanguageId.DE);
+
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: EditionPrefaceComponent = this;
 
     /**
      * Public method: getGlyph.
@@ -64,17 +56,5 @@ export class EditionPrefaceComponent {
      */
     getGlyph(glyphString: string): string {
         return this._editionGlyphService.getGlyph(glyphString);
-    }
-
-    /**
-     * Public method: setLanguage.
-     *
-     * It sets the current language of the edition preface.
-     *
-     * @param {number} language The given language number.
-     * @returns {void} Sets the current language.
-     */
-    setLanguage(language: number): void {
-        this.currentLanguage = language;
     }
 }

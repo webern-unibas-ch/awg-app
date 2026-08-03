@@ -61,6 +61,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AlertInfoComponent,
         FullscreenToggleComponent,
         HeadingComponent,
+        LanguageSwitcherComponent,
         LicenseComponent,
         LogoComponent,
         MetaIdentifierBadgesComponent,
@@ -71,7 +72,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     declarations: [
         DisclaimerWorkeditionsComponent,
         JsonViewerComponent,
-        LanguageSwitcherComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
         TableComponent,

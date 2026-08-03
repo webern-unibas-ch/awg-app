@@ -12,10 +12,12 @@
         } @else {
             @let complex = selectedEditionComplex();
             @let intro = view.data.introData.intro;
+            @let lang = selectedLanguage();
+            @let notesLabel = notesSectionLabel();
 
             <div class="awg-edition-intro-view p-5 border rounded-3">
                 <div class="row justify-content-center">
-                    @if (UTILS.isEmptyArray(intro?.[currentLanguage]?.content)) {
+                    @if (UTILS.isEmptyArray(intro?.[lang]?.content)) {
                         <awg-edition-intro-placeholder
                             class="col-12"
                             [editionComplex]="complex"
@@ -33,8 +35,8 @@
                         }
                         <awg-edition-intro-content
                             class="col-12 col-xl-10"
-                            [introBlockContent]="intro[currentLanguage].content"
-                            [notesLabel]="notesLabels.get(currentLanguage)"
+                            [introBlockContent]="intro[lang].content"
+                            [notesLabel]="notesLabel"
                             (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
                             (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                             (openModalRequest)="onModalOpen($event)"
@@ -42,10 +44,9 @@
 
                         <awg-edition-intro-nav
                             class="col-12 col-xl-2 d-none d-xl-block"
-                            [introBlockContent]="intro[currentLanguage].content"
-                            [notesLabel]="notesLabels.get(currentLanguage)"
-                            [currentLanguage]="currentLanguage"
-                            (languageChangeRequest)="onLanguageSet($event)" />
+                            [introBlockContent]="intro[lang].content"
+                            [notesLabel]="notesLabel"
+                            [(selectedLanguage)]="selectedLanguage" />
                     }
                 </div>
             </div>

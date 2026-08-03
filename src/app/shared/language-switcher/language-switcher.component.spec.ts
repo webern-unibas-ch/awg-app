@@ -1,34 +1,32 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
+    expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
 } from '@testing/expect-helper';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { LanguageSwitcherComponent } from './language-switcher.component';
+import { LanguageId } from './language.model';
 
 describe('LanguageSwitcherComponent (DONE)', () => {
     let component: LanguageSwitcherComponent;
     let fixture: ComponentFixture<LanguageSwitcherComponent>;
     let compDe: DebugElement;
 
-    let setLanguageSpy: Spy;
-    let emitLanguageChangeRequestSpy: Spy;
-
-    let expectedLanguage: number;
+    let expectedSelectedLanguage: LanguageId;
+    let expectedLanguages: { id: LanguageId; label: string }[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [LanguageSwitcherComponent],
+            imports: [LanguageSwitcherComponent],
         }).compileComponents();
     });
 
@@ -38,15 +36,11 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedLanguage = 0;
-
-        // Spies
-        setLanguageSpy = vi.spyOn(component, 'setLanguage');
-        emitLanguageChangeRequestSpy = vi.spyOn(component.languageChangeRequest, 'emit');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
+        expectedSelectedLanguage = LanguageId.DE;
+        expectedLanguages = [
+            { id: LanguageId.DE, label: 'DE' },
+            { id: LanguageId.EN, label: 'EN' },
+        ];
     });
 
     it('should create', () => {
@@ -54,27 +48,27 @@ describe('LanguageSwitcherComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `currentLanguage`', () => {
-            expect(component.currentLanguage).toBeUndefined();
+        it('... should throw due to missing required input for model signal `selectedLanguage`', () => {
+            expectToBe(isSignal(component.selectedLanguage), true);
+
+            expect(() => component.selectedLanguage()).toThrow();
+        });
+
+        it('... should have `languages`', () => {
+            expectToEqual((component as any).languages, expectedLanguages);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 language-switcher paragraph', () => {
+            it('... should contain one language-switcher paragraph', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
             });
 
-            it('... should contain 2 language-switcher anchor elements (DE | EN)', () => {
+            it('... should contain no buttons yet', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent, 'DE | EN');
-
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
-                const aEl1: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl2: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToBe(aEl1.textContent, 'DE');
-                expectToBe(aEl2.textContent, 'EN');
+                expectToBe(pEl.textContent, '');
+                getAndExpectDebugElementByCss(pDes[0], 'button', 0, 0);
             });
         });
     });
@@ -82,124 +76,70 @@ describe('LanguageSwitcherComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.currentLanguage = expectedLanguage;
+            fixture.componentRef.setInput('selectedLanguage', expectedSelectedLanguage);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `currentLanguage` = 0', () => {
-            expectToBe(component.currentLanguage, 0);
+        it('... should have signal `selectedLanguage` to hold the expected language', () => {
+            expectToBe(component.selectedLanguage(), expectedSelectedLanguage);
         });
 
         describe('VIEW', () => {
-            it('... should trigger `setLanguage` method on anchor click', async () => {
+            it('... should contain two buttons (DE | EN)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(aDes[0], fixture);
+                expectToBe(pEl.textContent.trim().replace(/\s+/g, ' '), 'DE | EN');
 
-                expectSpyCall(setLanguageSpy, 1);
+                const btnDes = getAndExpectDebugElementByCss(pDes[0], 'button', 2, 2);
+                const btnEl1: HTMLButtonElement = btnDes[0].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[1].nativeElement;
 
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(aDes[1], fixture);
-
-                expectSpyCall(setLanguageSpy, 2);
+                expectToBe(btnEl1.textContent.trim(), 'DE');
+                expectToBe(btnEl2.textContent.trim(), 'EN');
             });
 
-            it('... should trigger setLanguage method with 0 when clicking on first anchor', async () => {
+            it('... should update `selectedLanguage` on button click', async () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
+                const btnDes = getAndExpectDebugElementByCss(pDes[0], 'button', 2, 2);
 
-                // Click on first anchor
-                await clickAndAwaitChanges(aDes[0], fixture);
+                await clickAndAwaitChanges(btnDes[0], fixture);
 
-                expectSpyCall(setLanguageSpy, 1, 0);
+                expectToBe(component.selectedLanguage(), LanguageId.DE);
+
+                await clickAndAwaitChanges(btnDes[1], fixture);
+
+                expectToBe(component.selectedLanguage(), LanguageId.EN);
             });
 
-            it('... should trigger setLanguage method with 1 when clicking on second anchor', async () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
-
-                // Click on second anchor
-                await clickAndAwaitChanges(aDes[1], fixture);
-
-                expectSpyCall(setLanguageSpy, 1, 1);
-            });
-
-            it('... should have .active class on first anchor element when currentLanguage is 0', async () => {
-                component.currentLanguage = 0;
+            it('... should have .active class on first button when `selectedLanguage` is DE', async () => {
+                fixture.componentRef.setInput('selectedLanguage', LanguageId.DE);
                 await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
+                const btnDes = getAndExpectDebugElementByCss(pDes[0], 'button', 2, 2);
 
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes[0].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[1].nativeElement;
 
-                expectToContain(aEl0.classList, 'active');
-                expectToNotContain(aEl1.classList, 'active');
+                expectToContain(btnEl1.classList, 'active');
+                expectToNotContain(btnEl2.classList, 'active');
             });
 
-            it('... should have .active class on second anchor element when currentLanguage is 1', async () => {
-                component.currentLanguage = 1;
+            it('... should have .active class on second button when `selectedLanguage` is EN', async () => {
+                fixture.componentRef.setInput('selectedLanguage', LanguageId.EN);
                 await detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
+                const btnDes = getAndExpectDebugElementByCss(pDes[0], 'button', 2, 2);
 
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
+                const btnEl1: HTMLButtonElement = btnDes[0].nativeElement;
+                const btnEl2: HTMLButtonElement = btnDes[1].nativeElement;
 
-                expectToNotContain(aEl0.classList, 'active');
-                expectToContain(aEl1.classList, 'active');
-            });
-        });
-
-        describe('#setLanguage()', () => {
-            it('... should have a method `setLanguage`', () => {
-                expect(component.setLanguage).toBeDefined();
-            });
-
-            it('... should trigger on click', async () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-language-switcher', 1, 1);
-                const aDes = getAndExpectDebugElementByCss(pDes[0], 'a', 2, 2);
-
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(aDes[0], fixture);
-
-                expectSpyCall(setLanguageSpy, 1);
-
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(aDes[1], fixture);
-
-                expectSpyCall(setLanguageSpy, 2);
-            });
-
-            it('... should emit 0 when called with 0', () => {
-                component.setLanguage(0);
-
-                expectSpyCall(setLanguageSpy, 1);
-                expectSpyCall(emitLanguageChangeRequestSpy, 1, 0);
-            });
-
-            it('... should emit 1 when called with 1', () => {
-                component.setLanguage(1);
-
-                expectSpyCall(setLanguageSpy, 1);
-                expectSpyCall(emitLanguageChangeRequestSpy, 1, 1);
-            });
-
-            it('... should not emit when called with any other number than 0 or 1', () => {
-                const invalidLanguageNumbers = [-987654321, -2, -1, 2, 3, 987654321];
-
-                invalidLanguageNumbers.forEach((languageNumber, index) => {
-                    component.setLanguage(languageNumber);
-
-                    expectSpyCall(setLanguageSpy, index + 1);
-                    expectSpyCall(emitLanguageChangeRequestSpy, 0);
-                });
+                expectToNotContain(btnEl1.classList, 'active');
+                expectToContain(btnEl2.classList, 'active');
             });
         });
     });
