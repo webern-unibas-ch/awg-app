@@ -1,1 +1,0 @@
-import{R as r}from"./chunk-CO5JBTUD.js";import{o as e,va as o}from"./chunk-IDR2HELC.js";var i=class{constructor(){this.GLYPHS=r}getGlyph(c){let t=Object.values(this.GLYPHS).find(l=>l.alt===c);return t?t.hex:""}};i=e([o({providedIn:"root"})],i);export{i as a};
