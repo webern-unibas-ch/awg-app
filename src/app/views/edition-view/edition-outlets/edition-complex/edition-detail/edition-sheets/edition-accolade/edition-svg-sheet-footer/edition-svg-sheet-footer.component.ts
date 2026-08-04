@@ -70,6 +70,13 @@ export class EditionSvgSheetFooterComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
+
+    /**
      * Public variable: faChevronRight.
      *
      * It instantiates fontawesome's faChevronRight icon.
@@ -86,7 +93,7 @@ export class EditionSvgSheetFooterComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionSvgSheetFooterComponent;
+    ref: EditionSvgSheetFooterComponent = this;
 
     /**
      * Public variable: showEvaluation.
@@ -94,23 +101,6 @@ export class EditionSvgSheetFooterComponent {
      * It keeps a boolean flag if the evaluation shall be displayed.
      */
     showEvaluation = false;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Constructor of the EditionSvgSheetFooterComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     *
-     */
-    constructor() {
-        this.ref = this;
-    }
 
     /**
      * Public method: navigateToReportFragment.

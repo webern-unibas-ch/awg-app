@@ -59,16 +59,7 @@ export class SourceDescriptionCorrectionsComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: SourceDescriptionCorrectionsComponent;
-
-    /**
-     * Constructor of the SourceDescriptionComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
+    ref: SourceDescriptionCorrectionsComponent = this;
 
     /**
      * Public method: navigateToReportFragment.

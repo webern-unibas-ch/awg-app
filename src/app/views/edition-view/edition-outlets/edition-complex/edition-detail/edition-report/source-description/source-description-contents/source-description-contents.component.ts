@@ -41,11 +41,6 @@ export class SourceDescriptionContentsComponent {
     openAllContentDetails = true;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceDescriptionContentsComponent;
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
@@ -53,13 +48,9 @@ export class SourceDescriptionContentsComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Constructor of the SourceDescriptionContentComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
+     * Self-referring variable needed for CompileHtml library.
      */
-    constructor() {
-        this.ref = this;
-    }
+    ref: SourceDescriptionContentsComponent = this;
 
     /**
      * Public method: selectSvgSheet.

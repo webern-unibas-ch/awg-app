@@ -44,11 +44,6 @@ export class SourceListComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceListComponent;
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
@@ -56,13 +51,9 @@ export class SourceListComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Constructor of the SourceListComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
+     * Self-referring variable needed for CompileHtml library.
      */
-    constructor() {
-        this.ref = this;
-    }
+    ref: SourceListComponent = this;
 
     /**
      * Public method: onSourceClick.

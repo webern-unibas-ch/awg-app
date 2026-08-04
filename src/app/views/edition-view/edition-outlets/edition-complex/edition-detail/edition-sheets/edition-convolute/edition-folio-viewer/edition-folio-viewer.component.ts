@@ -39,6 +39,13 @@ import * as D3_SELECTION from 'd3-selection';
 })
 export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
     /**
+     * Private readonly injection variable: _folioService.
+     *
+     * It keeps the instance of the injected FolioService.
+     */
+    private readonly _folioService = inject(FolioService);
+
+    /**
      * Input variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -97,7 +104,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionFolioViewerComponent;
+    ref: EditionFolioViewerComponent = this;
 
     /**
      * Private readonly variable: _folioSettings.
@@ -112,22 +119,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         initialOffsetY: 5,
         numberOfFolios: 0,
     };
-
-    /**
-     * Private readonly injection variable: _folioService.
-     *
-     * It keeps the instance of the injected FolioService.
-     */
-    private readonly _folioService = inject(FolioService);
-
-    /**
-     * Constructor of the FolioComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
 
     /**
      * Angular life cycle hook: ngOnChanges.

@@ -116,6 +116,20 @@ export class EditionTkaTableComponent {
     snippetModalTemplate: TemplateRef<any>;
 
     /**
+     * Protected readonly variable: EDITION_UTILS.
+     *
+     * It keeps the reference to the {@link EDITION_UTILS} methods.
+     */
+    protected readonly EDITION_UTILS = EDITION_UTILS;
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
+
+    /**
      * Public variable: snippetId.
      *
      * It keeps the id of the snippet image to be displayed in the modal.
@@ -132,7 +146,7 @@ export class EditionTkaTableComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionTkaTableComponent;
+    ref: EditionTkaTableComponent = this;
 
     /**
      * Public variable: tableHeaderStrings.
@@ -159,29 +173,6 @@ export class EditionTkaTableComponent {
             { reference: 'comment', label: 'Anmerkung' },
         ],
     };
-
-    /**
-     * Protected readonly variable: EDITION_UTILS.
-     *
-     * It keeps the reference to the {@link EDITION_UTILS} methods.
-     */
-    protected readonly EDITION_UTILS = EDITION_UTILS;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Constructor of the EditionTkaTableComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
 
     /**
      * Public method: getComment.

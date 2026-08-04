@@ -18,6 +18,13 @@ import { EditionGlyphService } from '@awg-views/edition-view/services';
 })
 export class EditionIntroContentComponent {
     /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
      * Input variable: introBlockContent.
      *
      * It keeps the content blocks of the intro.
@@ -69,23 +76,7 @@ export class EditionIntroContentComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionIntroContentComponent;
-
-    /**
-     * Private readonly injection variable: _editionGlyphService.
-     *
-     * It keeps the instance of the injected EditionGlyphService.
-     */
-    private readonly _editionGlyphService = inject(EditionGlyphService);
-
-    /**
-     * Constructor of the EditionIntroContentComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
+    ref: EditionIntroContentComponent = this;
 
     /**
      * Public method: getGlyph.

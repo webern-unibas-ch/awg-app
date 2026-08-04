@@ -53,11 +53,6 @@ export class TextcriticsListComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: TextcriticsListComponent;
-
-    /**
      * Protected readonly variable: EDITION_UTILS.
      *
      * It keeps the reference to the {@link EDITION_UTILS} methods.
@@ -72,13 +67,9 @@ export class TextcriticsListComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Constructor of the TextcriticsComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
+     * Self-referring variable needed for CompileHtml library.
      */
-    constructor() {
-        this.ref = this;
-    }
+    ref: TextcriticsListComponent = this;
 
     /**
      * Public method: navigateToReportFragment.
