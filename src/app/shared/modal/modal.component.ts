@@ -1,7 +1,7 @@
 import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { MODAL_CONTENT_SNIPPETS } from './data/modal-content-snippets.data';
+import { MODAL_CONTENT_SNIPPETS } from './modal-content-snippets.data';
 
 /**
  * The Modal component.
