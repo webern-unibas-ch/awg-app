@@ -47,6 +47,27 @@ import * as D3_ZOOM from 'd3-zoom';
 })
 export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, AfterViewInit {
     /**
+     * Private readonly injection variable: _cdr.
+     *
+     * It keeps the instance of the injected Angular ChangeDetectorRef.
+     */
+    private readonly _cdr = inject(ChangeDetectorRef);
+
+    /**
+     * Private readonly injection variable: _svgDrawingService.
+     *
+     * It keeps the instance of the injected EditionSvgDrawingService.
+     */
+    private readonly _svgDrawingService = inject(EditionSvgDrawingService);
+
+    /**
+     * Private readonly injection variable: _svgOverlayService.
+     *
+     * It keeps the instance of the injected EditionSvgOverlayService.
+     */
+    private readonly _svgOverlayService = inject(EditionSvgOverlayService);
+
+    /**
      * ViewChild variable: svgSheetContainerRef.
      *
      * It keeps the reference to the svg sheet container.
@@ -164,7 +185,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionSvgSheetViewerComponent;
+    ref: EditionSvgSheetViewerComponent = this;
 
     /**
      * Private variable: _divWidth.
@@ -207,36 +228,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * It keeps a subject for a resize event.
      */
     private readonly _resize$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Private readonly injection variable: _cdr.
-     *
-     * It keeps the instance of the injected Angular ChangeDetectorRef.
-     */
-    private readonly _cdr = inject(ChangeDetectorRef);
-
-    /**
-     * Private readonly injection variable: _svgDrawingService.
-     *
-     * It keeps the instance of the injected EditionSvgDrawingService.
-     */
-    private readonly _svgDrawingService = inject(EditionSvgDrawingService);
-
-    /**
-     * Private readonly injection variable: _svgOverlayService.
-     *
-     * It keeps the instance of the injected EditionSvgOverlayService.
-     */
-    private readonly _svgOverlayService = inject(EditionSvgOverlayService);
-
-    /**
-     * Constructor of the EditionSvgSheetViewerComponent.
-     *
-     * It declares the self-referring variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
 
     /**
      * HostListener: onResize.

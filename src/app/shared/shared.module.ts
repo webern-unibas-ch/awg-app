@@ -35,6 +35,7 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 //
 // Shared directives
 import { AbbrDirective } from './abbr/abbr.directive';
+import { CompileHtmlDirective } from './compile-html/compile-html.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
@@ -65,9 +66,10 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LicenseComponent,
         LogoComponent,
         MetaIdentifierBadgesComponent,
-        ExternalLinkDirective,
         ScrollToTopButtonComponent,
         TwelveToneSpinnerComponent,
+        ExternalLinkDirective,
+        CompileHtmlDirective,
     ],
     declarations: [
         DisclaimerWorkeditionsComponent,
@@ -110,6 +112,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ViewHandleButtonGroupComponent,
         AbbrDirective,
         ExternalLinkDirective,
+        CompileHtmlDirective,
         OrderByPipe,
     ],
 })

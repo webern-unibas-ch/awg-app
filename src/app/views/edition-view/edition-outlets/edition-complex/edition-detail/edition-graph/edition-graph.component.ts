@@ -21,11 +21,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 })
 export class EditionGraphComponent {
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionGraphComponent;
-
-    /**
      * Readonly signal: isFullscreen.
      *
      * It holds the fullscreen status.
@@ -47,6 +42,13 @@ export class EditionGraphComponent {
     readonly viewData = inject(EditionViewService).graphViewData;
 
     /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
+
+    /**
      * Readonly variable: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
@@ -57,18 +59,7 @@ export class EditionGraphComponent {
     };
 
     /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
+     * Self-referring variable needed for CompileHtml library.
      */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Constructor of the EditionGraphComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
+    ref: EditionGraphComponent = this;
 }

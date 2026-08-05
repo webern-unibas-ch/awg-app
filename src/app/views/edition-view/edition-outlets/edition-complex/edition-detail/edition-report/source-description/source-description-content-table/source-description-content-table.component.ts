@@ -34,11 +34,6 @@ export class SourceDescriptionContentTableComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceDescriptionContentTableComponent;
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
@@ -46,13 +41,9 @@ export class SourceDescriptionContentTableComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Constructor of the SourceDescriptionContentTableComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
+     * Self-referring variable needed for CompileHtml library.
      */
-    constructor() {
-        this.ref = this;
-    }
+    ref: SourceDescriptionContentTableComponent = this;
 
     /**
      * Public method: selectSvgSheet.

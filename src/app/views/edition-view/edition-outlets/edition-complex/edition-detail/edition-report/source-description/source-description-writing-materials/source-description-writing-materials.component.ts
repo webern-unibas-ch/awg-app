@@ -33,11 +33,6 @@ export class SourceDescriptionWritingMaterialsComponent {
     writingMaterials: SourceDescriptionWritingMaterial[];
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceDescriptionWritingMaterialsComponent;
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
@@ -52,13 +47,9 @@ export class SourceDescriptionWritingMaterialsComponent {
     readonly TRADEMARKS = EDITION_TRADEMARKS_DATA;
 
     /**
-     * Constructor of the SourceDescriptionContentComponent.
-     *
-     * It initializes the self-referring variable needed for CompileHtml library.
+     * Self-referring variable needed for CompileHtml library.
      */
-    constructor() {
-        this.ref = this;
-    }
+    ref: SourceDescriptionWritingMaterialsComponent = this;
 
     /**
      * Public method: getTradeMark.

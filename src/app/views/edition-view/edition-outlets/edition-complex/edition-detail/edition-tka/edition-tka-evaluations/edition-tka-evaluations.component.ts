@@ -17,6 +17,13 @@ import { EditionGlyphService } from '@awg-views/edition-view/services';
 })
 export class EditionTkaEvaluationsComponent {
     /**
+     * Private readonly injection variable: _editionGlyphService.
+     *
+     * It keeps the instance of the injected EditionGlyphService.
+     */
+    private readonly _editionGlyphService = inject(EditionGlyphService);
+
+    /**
      * Input variable: evaluations.
      *
      * It keeps the evaluations data.
@@ -52,23 +59,7 @@ export class EditionTkaEvaluationsComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionTkaEvaluationsComponent;
-
-    /**
-     * Private readonly injection variable: _editionGlyphService.
-     *
-     * It keeps the instance of the injected EditionGlyphService.
-     */
-    private readonly _editionGlyphService = inject(EditionGlyphService);
-
-    /**
-     * Constructor of the EditionTkaEvaluationsComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
+    ref: EditionTkaEvaluationsComponent = this;
 
     /**
      * Public method: getGlyph.
