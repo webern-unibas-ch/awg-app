@@ -1,6 +1,6 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
-import { EditionGlyphService } from '@awg-app/views/edition-view/services';
 
+import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -57,6 +57,15 @@ export class CompileHtmlDirective {
      * The constructor of the CompileHtmlDirective.
      *
      * It sets up the effect to update the innerHTML of the host element.
+     *
+     * @security This input bypasses Angular's innerHTML sanitization via Renderer2
+     * because the application exclusively feeds it with strictly trusted, static HTML
+     * strings loaded directly from internal, project-managed JSON assets (such as the
+     * edition intro or report data).
+     *
+     * To maintain security and prevent Cross-Site Scripting (XSS) vulnerabilities,
+     * this input MUST NEVER be bound to dynamic user-generated content or external,
+     * untrusted API data sources.
      */
     constructor() {
         effect(() => {
@@ -79,8 +88,7 @@ export class CompileHtmlDirective {
      * @returns {void} Calls the appropriate handler methods based on the target element.
      */
     protected onHostClick(event: MouseEvent): void {
-        const target = event.target as HTMLElement;
-        this._handleInteraction(target, event);
+        this._handleInteraction(event.target, event);
     }
 
     /**
@@ -92,10 +100,8 @@ export class CompileHtmlDirective {
      * @returns {void} Calls the appropriate handler methods based on the target element.
      */
     protected onHostKeydown(event: KeyboardEvent): void {
-        const target = event.target as HTMLElement;
-
         if (event.key === 'Enter' || event.key === ' ') {
-            this._handleInteraction(target, event);
+            this._handleInteraction(event.target, event);
         }
     }
 
@@ -122,11 +128,15 @@ export class CompileHtmlDirective {
      *
      * It handles click and keydown events on the host element and calls the appropriate handler methods.
      *
-     * @param {HTMLElement} target The target element of the event.
+     * @param {EventTarget | null} target The target element of the event.
      * @param {Event} event The click or keydown event.
      * @returns {void} Calls the appropriate handler methods based on the target element.
      */
-    private _handleInteraction(target: HTMLElement, event: Event): void {
+    private _handleInteraction(target: EventTarget | null, event: Event): void {
+        if (!(target instanceof Element)) {
+            return;
+        }
+
         const anchor = target.closest('a');
         if (anchor) {
             this._handleAnchorNavigation(anchor, event);

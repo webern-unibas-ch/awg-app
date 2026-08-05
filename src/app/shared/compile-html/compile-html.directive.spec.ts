@@ -173,7 +173,7 @@ describe('CompileHtmlDirective (DONE)', () => {
 
             it('... should call `_handleInteraction` with event target and event', () => {
                 const mockTarget = document.createElement('a');
-                const mockEvent = { target: mockTarget } as unknown as MouseEvent;
+                const mockEvent = { target: mockTarget as EventTarget } as unknown as MouseEvent;
 
                 (directive as any).onHostClick(mockEvent);
 
@@ -192,7 +192,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                     { desc: 'the Space key', key: ' ' },
                 ])(`... $desc`, ({ key }) => {
                     const mockTarget = document.createElement('a');
-                    const mockEvent = { target: mockTarget, key: key } as unknown as KeyboardEvent;
+                    const mockEvent = { target: mockTarget as EventTarget, key: key } as unknown as KeyboardEvent;
 
                     (directive as any).onHostKeydown(mockEvent);
 
@@ -207,7 +207,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                     { desc: 'any other key', key: 'ArrowUp' },
                 ])(`... $desc`, ({ key }) => {
                     const mockTarget = document.createElement('a');
-                    const mockEvent = { target: mockTarget, key: key } as unknown as KeyboardEvent;
+                    const mockEvent = { target: mockTarget as EventTarget, key: key } as unknown as KeyboardEvent;
 
                     (directive as any).onHostKeydown(mockEvent);
 
@@ -253,27 +253,17 @@ describe('CompileHtmlDirective (DONE)', () => {
                     expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'tabindex', '0');
                     expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', 'link');
                 });
-
-                it('... should not add accessibility attributes to standard links without data-attributes', async () => {
-                    rendererSetAttributeSpy.mockClear();
-
-                    const plainHtml = '<a href="https://example.com">External Link</a>';
-                    mockNativeElement.innerHTML = plainHtml;
-
-                    mockHtmlContentSignal.set(plainHtml);
-
-                    TestBed.tick();
-
-                    expectSpyCall(rendererSetAttributeSpy, 0);
-                });
             });
 
-            it('... should not add accessibility attributes to standard links without data-attributes', () => {
+            it('... should not add accessibility attributes to standard links without data-attributes', async () => {
                 rendererSetAttributeSpy.mockClear();
 
-                mockNativeElement.innerHTML = '<a href="https://example.com">External Link</a>';
+                const plainHtml = '<a href="https://example.com">External Link</a>';
+                mockNativeElement.innerHTML = plainHtml;
 
-                (directive as any)._applyAccessibilityAttributes();
+                mockHtmlContentSignal.set(plainHtml);
+
+                TestBed.tick();
 
                 expectSpyCall(rendererSetAttributeSpy, 0);
             });
@@ -334,11 +324,11 @@ describe('CompileHtmlDirective (DONE)', () => {
             });
 
             describe('... should do nothing', () => {
-                it('... if the target is neither an anchor nor an image', () => {
-                    const mockTarget = document.createElement('div');
+                it('... if the target is a Text node instead of an Element', () => {
+                    const mockTextNode = document.createTextNode('Just some text') as unknown as EventTarget;
                     const mockEvent = {} as unknown as Event;
 
-                    (directive as any)._handleInteraction(mockTarget, mockEvent);
+                    (directive as any)._handleInteraction(mockTextNode, mockEvent);
 
                     expectSpyCall(handleAnchorNavigationSpy, 0);
                     expectSpyCall(handleImageNavigationSpy, 0);
