@@ -128,7 +128,12 @@ export class CompileHtmlDirective {
 
         anchors.forEach((anchor: HTMLAnchorElement) => {
             this._renderer.setAttribute(anchor, 'tabindex', '0');
-            this._renderer.setAttribute(anchor, 'role', 'link');
+
+            if (anchor.hasAttribute('data-modal-id')) {
+                this._renderer.setAttribute(anchor, 'role', 'button');
+            } else {
+                this._renderer.setAttribute(anchor, 'role', 'link');
+            }
         });
     }
 

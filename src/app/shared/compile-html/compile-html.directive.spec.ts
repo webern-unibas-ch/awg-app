@@ -240,22 +240,26 @@ describe('CompileHtmlDirective (DONE)', () => {
                         desc: 'links with data-intro-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-intro-fragment-id="${expectedIntroFragment}">Link</a>`,
+                        expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-sheet-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-sheet-id="${expectedSvgSheetId}">Sheet</a>`,
+                        expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-report-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-report-fragment-id="${expectedReportFragment}">Report</a>`,
+                        expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-modal-id',
                         getExpectedOutput: () => `<a data-modal-id="${expectedModalId}">Modal Link</a>`,
+                        expectedRole: 'button',
                     },
-                ])(`... $desc`, async ({ getExpectedOutput }) => {
+                ])(`... $desc`, async ({ getExpectedOutput, expectedRole }) => {
                     const htmlString = getExpectedOutput();
 
                     mockNativeElement.innerHTML = htmlString;
@@ -268,7 +272,7 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     expectSpyCall(rendererSetAttributeSpy, 2);
                     expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'tabindex', '0');
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', 'link');
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', expectedRole);
                 });
             });
 
@@ -346,6 +350,16 @@ describe('CompileHtmlDirective (DONE)', () => {
                     const mockEvent = {} as unknown as Event;
 
                     (directive as any)._handleInteraction(mockTextNode, mockEvent);
+
+                    expectSpyCall(handleAnchorNavigationSpy, 0);
+                    expectSpyCall(handleImageNavigationSpy, 0);
+                });
+
+                it('... if the target is a valid Element but neither an anchor nor an image', () => {
+                    const mockTarget = document.createElement('div') as EventTarget;
+                    const mockEvent = {} as unknown as Event;
+
+                    (directive as any)._handleInteraction(mockTarget, mockEvent);
 
                     expectSpyCall(handleAnchorNavigationSpy, 0);
                     expectSpyCall(handleImageNavigationSpy, 0);

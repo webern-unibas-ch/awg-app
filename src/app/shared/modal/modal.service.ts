@@ -17,7 +17,7 @@ export class ModalService {
     private readonly _selectedModalId = signal<string | null>(null);
 
     /**
-     * Public readonly signal: openModalId.
+     * Public readonly signal: selectedModalId.
      *
      * It exposes the id of the currently selected modal snippet as a readonly signal.
      */
