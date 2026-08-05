@@ -1,5 +1,6 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
 
+import { ModalService } from '@awg-shared/modal/modal.service';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -38,6 +39,13 @@ export class CompileHtmlDirective {
      * It keeps the instance of the injected EditionGlyphService.
      */
     private readonly _glyphService = inject(EditionGlyphService);
+
+    /**
+     * Private readonly injection variable: _modalService
+     *
+     * It keeps the instance of the injected ModalService.
+     */
+    private readonly _modalService = inject(ModalService);
 
     /**
      * Private readonly injection variable: _navigationService
@@ -114,12 +122,18 @@ export class CompileHtmlDirective {
      * @returns {void} Applies the attributes directly to the DOM elements.
      */
     private _applyAccessibilityAttributes(): void {
-        const selectors = 'a[data-complex-id], a[data-intro-fragment-id], a[data-sheet-id], a[data-report-fragment-id]';
+        const selectors =
+            'a[data-modal-id], a[data-complex-id], a[data-intro-fragment-id], a[data-sheet-id], a[data-report-fragment-id]';
         const anchors = this._el.nativeElement.querySelectorAll(selectors);
 
         anchors.forEach((anchor: HTMLAnchorElement) => {
             this._renderer.setAttribute(anchor, 'tabindex', '0');
-            this._renderer.setAttribute(anchor, 'role', 'link');
+
+            if (anchor.hasAttribute('data-modal-id')) {
+                this._renderer.setAttribute(anchor, 'role', 'button');
+            } else {
+                this._renderer.setAttribute(anchor, 'role', 'link');
+            }
         });
     }
 
@@ -159,6 +173,13 @@ export class CompileHtmlDirective {
      * @returns {void} Calls the appropriate navigation methods based on the clicked anchor element.
      */
     private _handleAnchorNavigation(anchor: HTMLAnchorElement, event: Event): void {
+        const modalId = anchor.getAttribute('data-modal-id');
+        if (modalId) {
+            event.preventDefault();
+            this._modalService.updateModalId(modalId);
+            return;
+        }
+
         const complexId = anchor.getAttribute('data-complex-id') || '';
 
         const introFragmentId = anchor.getAttribute('data-intro-fragment-id');

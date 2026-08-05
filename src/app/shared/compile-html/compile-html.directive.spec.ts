@@ -6,6 +6,7 @@ type Spy = ReturnType<typeof vi.fn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
 
+import { ModalService } from '@awg-shared/modal/modal.service';
 import { EditionGlyphService } from '@awg-views/edition-view/services';
 import {
     EditionNavigationService,
@@ -26,6 +27,7 @@ describe('CompileHtmlDirective (DONE)', () => {
     let serviceNavigateToSheetSpy: Spy;
     let serviceNavigateToReportSpy: Spy;
     let serviceGetGlyphSpy: Spy;
+    let serviceUpdateModalIdSpy: Spy;
     let rendererSetAttributeSpy: Spy;
     let rendererSetPropertySpy: Spy;
 
@@ -36,6 +38,7 @@ describe('CompileHtmlDirective (DONE)', () => {
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedSvgSheetId: string;
+    let expectedModalId: string;
 
     beforeEach(() => {
         // Mock the input signal and native element
@@ -64,6 +67,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         navigateToReportFragment: vi.fn(),
                     },
                 },
+                {
+                    provide: ModalService,
+                    useValue: {
+                        updateModalId: vi.fn(),
+                    },
+                },
             ],
         });
 
@@ -89,11 +98,15 @@ describe('CompileHtmlDirective (DONE)', () => {
         const glyphService = TestBed.inject(EditionGlyphService);
         serviceGetGlyphSpy = vi.spyOn(glyphService, 'getGlyph').mockImplementation((glyph: string) => `${glyph}`);
 
+        const modalService = TestBed.inject(ModalService);
+        serviceUpdateModalIdSpy = vi.spyOn(modalService, 'updateModalId');
+
         // Test data
         expectedComplexId = 'op12';
         expectedIntroFragment = 'note-80';
         expectedReportFragment = 'source_A';
         expectedSvgSheetId = 'test-1';
+        expectedModalId = 'modal_snippet_5';
     });
 
     afterEach(() => {
@@ -227,18 +240,26 @@ describe('CompileHtmlDirective (DONE)', () => {
                         desc: 'links with data-intro-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-intro-fragment-id="${expectedIntroFragment}">Link</a>`,
+                        expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-sheet-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-sheet-id="${expectedSvgSheetId}">Sheet</a>`,
+                        expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-report-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-report-fragment-id="${expectedReportFragment}">Report</a>`,
+                        expectedRole: 'link',
                     },
-                ])(`... $desc`, async ({ getExpectedOutput }) => {
+                    {
+                        desc: 'links with data-modal-id',
+                        getExpectedOutput: () => `<a data-modal-id="${expectedModalId}">Modal Link</a>`,
+                        expectedRole: 'button',
+                    },
+                ])(`... $desc`, async ({ getExpectedOutput, expectedRole }) => {
                     const htmlString = getExpectedOutput();
 
                     mockNativeElement.innerHTML = htmlString;
@@ -251,7 +272,7 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     expectSpyCall(rendererSetAttributeSpy, 2);
                     expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'tabindex', '0');
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', 'link');
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', expectedRole);
                 });
             });
 
@@ -333,6 +354,16 @@ describe('CompileHtmlDirective (DONE)', () => {
                     expectSpyCall(handleAnchorNavigationSpy, 0);
                     expectSpyCall(handleImageNavigationSpy, 0);
                 });
+
+                it('... if the target is a valid Element but neither an anchor nor an image', () => {
+                    const mockTarget = document.createElement('div') as EventTarget;
+                    const mockEvent = {} as unknown as Event;
+
+                    (directive as any)._handleInteraction(mockTarget, mockEvent);
+
+                    expectSpyCall(handleAnchorNavigationSpy, 0);
+                    expectSpyCall(handleImageNavigationSpy, 0);
+                });
             });
         });
 
@@ -343,6 +374,12 @@ describe('CompileHtmlDirective (DONE)', () => {
 
             describe('... should navigate to', () => {
                 const testCases = [
+                    {
+                        desc: 'modal snippet if data-modal-id is given',
+                        attributes: { 'data-modal-id': 'modal_snippet_5' },
+                        expectedArgs: 'modal_snippet_5',
+                        getExpectedSpy: () => serviceUpdateModalIdSpy,
+                    },
                     {
                         desc: 'intro fragment with complexId if data-intro-fragment-id is given',
                         attributes: { 'data-complex-id': 'op12', 'data-intro-fragment-id': 'intro-1' },
@@ -386,20 +423,29 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     expectSpyCall(targetSpy, 1, [expectedArgs]);
 
-                    [serviceNavigateToIntroSpy, serviceNavigateToSheetSpy, serviceNavigateToReportSpy]
+                    [
+                        serviceUpdateModalIdSpy,
+                        serviceNavigateToIntroSpy,
+                        serviceNavigateToSheetSpy,
+                        serviceNavigateToReportSpy,
+                    ]
                         .filter(spy => spy !== targetSpy)
                         .forEach(spy => expectSpyCall(spy, 0));
                 });
             });
 
-            describe('... should not navigate (if data-complex-id is missing)', () => {
+            describe('... should not navigate', () => {
                 const testCases = [
                     {
-                        desc: 'to svg sheet',
+                        desc: 'if data-modal-id is an empty string',
+                        attributes: { 'data-modal-id': '' },
+                    },
+                    {
+                        desc: 'if data-complex-id is missing, but sheet-id is given',
                         attributes: { 'data-sheet-id': 'sheet-5' },
                     },
                     {
-                        desc: 'to report fragment',
+                        desc: 'if data-complex-id is missing, but report-fragment-id is given',
                         attributes: { 'data-report-fragment-id': 'report-6' },
                     },
                     {
