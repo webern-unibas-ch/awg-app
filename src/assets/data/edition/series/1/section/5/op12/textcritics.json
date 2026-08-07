@@ -4,12 +4,12 @@
             "id": "op12_WE",
             "label": "<em>Vier Lieder</em> op. 12 (Werkedition)",
             "evaluations": [
-                "Für die Edition der in den <em>Vier Liedern</em> op. 12 versammelten Textfassungen (I: „Der Tag ist vergangen“ M 212 Textfassung 3, II: <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217, III: „Schien mir’s, als ich sah die Sonne“ M 213, IV: <em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216 Textfassung 2) sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_EH'})\"><strong>E<sup>H</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> sowie <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> relevante Quellen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen (siehe <span class='link-todo'>Skizzeneditionen<span>); <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a> beziehen sich auf frühere Textfassungen (siehe <span class='link-todo'>Texteditionen</span>).",
-                "Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cb_corr'})\">Korrekturen in <strong>C<sup>b</sup></strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cc_corr'})\"><strong>C<sup>c</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Cd_corr'})\"><strong>C<sup>d</sup></strong></a> betreffen die Überarbeitung zu den in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> etablierten Textfassungen von <em>Die geheimnisvolle Flöte</em> M 217, „Schien mir’s, als ich sah die Sonne“ M 213 und <em>Gleich und Gleich</em> M 216, wobei der Zustand ante correcturam nicht immer eindeutig zu erkennen ist. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_EH_corr'})\">Korrekturen in <strong>E<sup>H</sup></strong></a> betreffen die Überarbeitung von „Der Tag ist vergangen“ M 212 zur in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> etablierten Textfassung 3. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> ist Stichvorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>. Die wenigen Eintragungen in Weberns Handexemplar <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_GH'})\"><strong>G<sup>H</sup></strong></a> beschränken sich auf Aufführungsdauern der Lieder.",
-                "Hauptquelle für die Werkedition der <em>Vier Lieder</em> op. 12 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> ist Referenzquelle."
+                "Für die Edition der in den <em>Vier Liedern</em> op. 12 versammelten Textfassungen (I: „Der Tag ist vergangen“ M 212 Textfassung 3, II: <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217, III: „Schien mir’s, als ich sah die Sonne“ M 213, IV: <em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216 Textfassung 2) sind <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>b</sup></strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>c</sup></strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_EH'><strong>E<sup>H</sup></strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> sowie <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_GH'><strong>G<sup>H</sup></strong></a> relevante Quellen. <a data-complex-id='op12' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen (siehe <span class='link-todo'>Skizzeneditionen<span>); <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_D'><strong>D</strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a> beziehen sich auf frühere Textfassungen (siehe <span class='link-todo'>Texteditionen</span>).",
+                "Die <a data-complex-id='op12' data-report-fragment-id='source_Cb_corr'>Korrekturen in <strong>C<sup>b</sup></strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_Cc_corr'><strong>C<sup>c</sup></strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_Cd_corr'><strong>C<sup>d</sup></strong></a> betreffen die Überarbeitung zu den in <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> etablierten Textfassungen von <em>Die geheimnisvolle Flöte</em> M 217, „Schien mir’s, als ich sah die Sonne“ M 213 und <em>Gleich und Gleich</em> M 216, wobei der Zustand ante correcturam nicht immer eindeutig zu erkennen ist. Die <a data-complex-id='op12' data-report-fragment-id='source_EH_corr'>Korrekturen in <strong>E<sup>H</sup></strong></a> betreffen die Überarbeitung von „Der Tag ist vergangen“ M 212 zur in <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> etablierten Textfassung 3. <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> ist Stichvorlage für den Druck <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>. Die wenigen Eintragungen in Weberns Handexemplar <a data-complex-id='op12' data-report-fragment-id='source_GH'><strong>G<sup>H</sup></strong></a> beschränken sich auf Aufführungsdauern der Lieder.",
+                "Hauptquelle für die Werkedition der <em>Vier Lieder</em> op. 12 ist <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>. <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> ist Referenzquelle."
             ],
             "commentary": {
-                "preamble": "Die Titelnummerierungen wurden bei allen Liedern ergänzt. Die Schreibweise der Titel in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a> mit Kapitälchen wurde vereinheitlichend geändert.",
+                "preamble": "Die Titelnummerierungen wurden bei allen Liedern ergänzt. Die Schreibweise der Titel in <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a> mit Kapitälchen wurde vereinheitlichend geändert.",
                 "comments": [
                     {
                         "blockHeader": "<strong>I</strong> („Der Tag ist vergangen“ M 212: Textfassung 3)",
@@ -40,21 +40,21 @@
                                 "measure": "10",
                                 "system": "Klav. o.",
                                 "position": "2. Note",
-                                "comment": "Anfang der Decrescendogabel versetzt von 1. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Decrescendogabel versetzt von 1. Note gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf3-005",
                                 "measure": "10",
                                 "system": "Ges.",
                                 "position": "Taktende",
-                                "comment": "Ende der Decrescendogabel versetzt von 4/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Decrescendogabel versetzt von 4/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf3-006",
                                 "measure": "13",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>&ngsp;<em>äußerst ruhig</em> in eine Zeile gesetzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: <em>äußerst ruhig</em> | <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[pp]')}}</span>&ngsp;<em>äußerst ruhig</em> in eine Zeile gesetzt gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: <em>äußerst ruhig</em> | <span class='glyph'>{{ref.getGlyph('[pp]')}}</span>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf3-007",
@@ -68,14 +68,14 @@
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
+                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf3-009",
                                 "measure": "20",
                                 "system": "Ges.",
                                 "position": "3. Note",
-                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             }
                         ]
                     },
@@ -94,35 +94,35 @@
                                 "measure": "7",
                                 "system": "Klav.",
                                 "position": "1/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis und cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu fis und cis<sup>2</sup> als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akkoladenwechsel nach T. 6."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-003",
                                 "measure": "8",
                                 "system": "Ges.",
                                 "position": "2. Note",
-                                "comment": "Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 1.–2. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Crescendogabel und Anfang der Decrescendogabel versetzt von zwischen 1.–2. Note gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-004",
                                 "measure": "10",
                                 "system": "Klav. u.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu B als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akkoladenwechsel nach T. 9."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-005",
                                 "measure": "12",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Es/as ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu Es/as ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: kein Akkoladenwechsel nach T. 11."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-006",
                                 "measure": "16",
                                 "system": "Ges.",
                                 "position": "1–2/8",
-                                "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Silben zusammengeschrieben."
+                                "comment": "Text: Silbentrennstrich ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Silben zusammengeschrieben."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-007",
@@ -136,7 +136,7 @@
                                 "measure": "18",
                                 "system": "Klav. u.",
                                 "position": "3/16",
-                                "comment": "Anfang der Decrescendogabel versetzt von 2/16 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Decrescendogabel versetzt von 2/16 gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-009",
@@ -150,7 +150,7 @@
                                 "measure": "22",
                                 "system": "Ges.",
                                 "position": "5/8",
-                                "comment": "Text sic: <em>wenn</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Bethge_DchF'})\"><strong>Bethge_DchF</strong></a>: <em>wann</em>."
+                                "comment": "Text sic: <em>wenn</em>. <a data-complex-id='op12' data-report-fragment-id='text_Bethge_DchF'><strong>Bethge_DchF</strong></a>: <em>wann</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_tf1-011",
@@ -164,7 +164,7 @@
                                 "measure": "25",
                                 "system": "Klav. o.",
                                 "position": "1/4",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu b, <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu a<sup>1</sup> als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akkoladenwechsel nach T. 24."
                             }
                         ]
                     },
@@ -176,49 +176,49 @@
                                 "measure": "3",
                                 "system": "Klav. o.",
                                 "position": "3/8",
-                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-002",
                                 "measure": "5",
                                 "system": "Ges.",
                                 "position": "3/8",
-                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <br />Text sic: <em>mir’s</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>mirs</em> (ohne Apostroph)."
+                                "comment": "Ende der Decrescendogabel versetzt von Taktende gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>. <br />Text sic: <em>mir’s</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: <em>mirs</em> (ohne Apostroph)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-003",
                                 "measure": "5",
                                 "system": "Klav. u.",
                                 "position": "3/8",
-                                "comment": "Halsrichtung von G/c mit Blick auf latente Stimmenstruktur geändert. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>/<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Hals nach oben."
+                                "comment": "Halsrichtung von G/c mit Blick auf latente Stimmenstruktur geändert. <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>/<a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Hals nach oben."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-004",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "3–6/16",
-                                "comment": "Anfang der Decrescendogabel versetzt von 4/16 und Ende versetzt von Taktende gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Decrescendogabel versetzt von 4/16 und Ende versetzt von Taktende gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-005",
                                 "measure": "8",
                                 "system": "Ges.",
                                 "position": "6/16",
-                                "comment": "Text sic: Komma nach (Son-)<em>ne</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: Ausrufezeichen."
+                                "comment": "Text sic: Komma nach (Son-)<em>ne</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: Ausrufezeichen."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-006",
                                 "measure": "9",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "Text sic: <em>daß</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>dass</em>."
+                                "comment": "Text sic: <em>daß</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: <em>dass</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-007",
                                 "measure": "13",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu c<sup>2</sup> nach Akkoladenwechsel ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: kein Akkoladenwechsel nach T. 12."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-008",
@@ -232,35 +232,35 @@
                                 "measure": "16",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: (ge-)<em>nießt</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>geniesst</em>."
+                                "comment": "Text sic: (ge-)<em>nießt</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: <em>geniesst</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-010",
                                 "measure": "17",
                                 "system": "Klav. o.",
                                 "position": "",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> fehlen nach Akkoladenwechsel. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akzidenzien zu es/g/cis<sup>1</sup> nach Akkoladenwechsel."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-011",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "Taktende",
-                                "comment": "Ende der Decrescendogabel versetzt von T. 18 3/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Decrescendogabel versetzt von T. 18 3/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-012",
                                 "measure": "23",
                                 "system": "Ges.",
                                 "position": "4. Note",
-                                "comment": "Anfang der Decrescendogabel versetzt von 3. Note gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Decrescendogabel versetzt von 3. Note gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-013",
                                 "measure": "24",
                                 "system": "Ges.",
                                 "position": "2. Note",
-                                "comment": "Text sic: (bü-)<em>ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>büsse</em>."
+                                "comment": "Text sic: (bü-)<em>ße</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: <em>büsse</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-014",
@@ -274,63 +274,63 @@
                                 "measure": "27",
                                 "system": "Klav. o.",
                                 "position": "1/16",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu cis<sup>2</sup> als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akkoladenwechsel nach T. 26."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-016",
                                 "measure": "32",
                                 "system": "Ges.",
                                 "position": "1.–2. Note",
-                                "comment": "Text sic: <em>Der nur</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: <em>Nur der</em>."
+                                "comment": "Text sic: <em>Der nur</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: <em>Nur der</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-017",
                                 "measure": "32",
                                 "system": "Ges.",
                                 "position": "5–6/16",
-                                "comment": "Text: Silbentrennstrich ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Silben zusammengeschrieben."
+                                "comment": "Text: Silbentrennstrich ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Silben zusammengeschrieben."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-018",
                                 "measure": "35",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "Zeilenfall bei <em>sehr ruhig | (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span><em> = ca 100)</em>. aufgelöst gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
+                                "comment": "Zeilenfall bei <em>sehr ruhig | (</em><span class='glyph note'>{{ref.getGlyph('[Achtelnote]')}}</span><em> = ca 100)</em>. aufgelöst gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Auf Grund des Akkoladenwechsels nach T. 35 nicht ausreichend Raum bis zum Seitenrand für die Tempobezeichnung in einer Zeile."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-019",
                                 "measure": "35",
                                 "system": "Ges.",
                                 "position": "",
-                                "comment": "Text sic: Kleinschreibung <em>gut</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Strindberg_Gs'})\"><strong>Strindberg_Gs</strong></a>: Großschreibung <em>Gut</em>."
+                                "comment": "Text sic: Kleinschreibung <em>gut</em>. <a data-complex-id='op12' data-report-fragment-id='text_Strindberg_Gs'><strong>Strindberg_Gs</strong></a>: Großschreibung <em>Gut</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-020",
                                 "measure": "36",
                                 "system": "Klav. u.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: Akkoladenwechsel nach T. 35."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-021",
                                 "measure": "36",
                                 "system": "Ges.",
                                 "position": "(3/8)",
-                                "comment": "Anfang der Crescendogabel versetzt von Höhe ca. 2/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Crescendogabel versetzt von Höhe ca. 2/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-022",
                                 "measure": "38",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu dis<sup>1</sup> und <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu g<sup>1</sup> nach Akkoladenwechsel ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: kein Akkoladenwechsel."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m213_tf1-023",
                                 "measure": "38",
                                 "system": "Klav. u.",
                                 "position": "",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis nach Akkoladenwechsel ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu Gis nach Akkoladenwechsel ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: kein Akkoladenwechsel."
                             }
                         ]
                     },
@@ -342,28 +342,28 @@
                                 "measure": "11",
                                 "system": "Ges.",
                                 "position": "vor 1. Pause",
-                                "comment": "Ende der Decrescendogabel versetzt von ca. (2/8) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Ende der Decrescendogabel versetzt von ca. (2/8) gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf2-002",
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "3/4",
-                                "comment": "Text: Längenstrich nach <em>fein:</em> korrigiert zu Gedankenstrich gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Goethe_JA'})\"><strong>Goethe_JA</strong></a>."
+                                "comment": "Text: Längenstrich nach <em>fein:</em> korrigiert zu Gedankenstrich gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> und mit Blick auf <a data-complex-id='op12' data-report-fragment-id='text_Goethe_JA'><strong>Goethe_JA</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf2-003",
                                 "measure": "16",
                                 "system": "Klav. o.",
                                 "position": "1. Note",
-                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
+                                "comment": "Unterstimmenschicht: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu es ergänzt. <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>: kein Akkoladenwechsel nach T. 15."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf2-004",
                                 "measure": "18",
                                 "system": "Klav. u.",
                                 "position": "2/8",
-                                "comment": "Anfang der Crescendogabel versetzt von 3/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Anfang der Crescendogabel versetzt von 3/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf2-005",
@@ -377,7 +377,7 @@
                                 "measure": "19",
                                 "system": "Klav. o.",
                                 "position": "6/8",
-                                "comment": "Oberstimmenschicht: Ende der Decrescendogabel versetzt von (5/8) gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a>."
+                                "comment": "Oberstimmenschicht: Ende der Decrescendogabel versetzt von (5/8) gemäß <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a>."
                             }
                         ]
                     }
@@ -388,9 +388,9 @@
             "id": "M212_TF1",
             "label": "M 212 Textfassung 1",
             "evaluations": [
-                "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> einzige relevante Quelle.",
-                "Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> betreffen <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a>.",
-                "Hauptquelle für die Textedition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> ante correcturam."
+                "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> einzige relevante Quelle.",
+                "Die <a data-complex-id='op12' data-report-fragment-id='source_B_corr_2'>Korrekturen in <strong>B</strong></a> betreffen <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a>.",
+                "Hauptquelle für die Textedition von „Der Tag ist vergangen“ M 212 Textfassung 1 ist <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> ante correcturam."
             ],
             "commentary": {
                 "preamble": "",
@@ -417,7 +417,7 @@
                                 "measure": "2",
                                 "system": "Klav. o.",
                                 "position": "3. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-004",
@@ -438,7 +438,7 @@
                                 "measure": "5",
                                 "system": "Ges.",
                                 "position": "3/8",
-                                "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
+                                "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-007",
@@ -452,7 +452,7 @@
                                 "measure": "9",
                                 "system": "Ges.",
                                 "position": "2. Note",
-                                "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
+                                "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-009",
@@ -466,35 +466,35 @@
                                 "measure": "14",
                                 "system": "Klav. u.",
                                 "position": "1/8",
-                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
+                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu e/a als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>: Akkoladenwechsel nach T. 12."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-011",
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "2. Note",
-                                "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>."
+                                "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-012",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
+                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-013",
                                 "measure": "22",
                                 "system": "Klav. o.",
                                 "position": "",
-                                "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
+                                "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf1-014",
                                 "measure": "23",
                                 "system": "Klav.",
                                 "position": "1/8",
-                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>) zu Gis<sub>1</sub>/Cis und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g als redundant weggelassen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
+                                "comment": "(<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>) zu Gis<sub>1</sub>/Cis und (<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>) zu H/g als redundant weggelassen. <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>: Akkoladenwechsel nach T. 22."
                             }
                         ]
                     }
@@ -505,9 +505,9 @@
             "id": "M212_TF2",
             "label": "M 212 Textfassung 2",
             "evaluations": [
-                "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 2 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a> relevante Quellen.",
-                "Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr_2'})\">Korrekturen in <strong>B</strong></a> skizzieren Textfassung 2. Die <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_Ca_corr'})\">Korrekturen in <strong>C<sup>a</sup></strong></a> etablieren Textfassung 2. Der Zustand ante correcturam in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam war Vorlage für den Druck <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>.",
-                "Hauptquelle für die Textedition von „Der Tag ist vergangen“ Textfassung 2 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a> post correcturam. Referenzquelle ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                "Für die Edition von „Der Tag ist vergangen“ M 212 Textfassung 2 sind <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a> relevante Quellen.",
+                "Die <a data-complex-id='op12' data-report-fragment-id='source_B_corr_2'>Korrekturen in <strong>B</strong></a> skizzieren Textfassung 2. Die <a data-complex-id='op12' data-report-fragment-id='source_Ca_corr'>Korrekturen in <strong>C<sup>a</sup></strong></a> etablieren Textfassung 2. Der Zustand ante correcturam in <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a> ist nicht immer eindeutig zu entziffern. <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a> post correcturam war Vorlage für den Druck <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>.",
+                "Hauptquelle für die Textedition von „Der Tag ist vergangen“ Textfassung 2 ist <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a> post correcturam. Referenzquelle ist <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -520,35 +520,35 @@
                                 "measure": "3",
                                 "system": "Ges.",
                                 "position": "6/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 5/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf2-002",
                                 "measure": "6",
                                 "system": "Klav.",
                                 "position": "1. Note",
-                                "comment": "Ende der Crescendogabel versetzt von Ende T. 5. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 5."
+                                "comment": "Ende der Crescendogabel versetzt von Ende T. 5. <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>a</sup></strong></a>: Akkoladenwechsel nach T. 5."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf2-003",
                                 "measure": "7",
                                 "system": "Ges.",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1. Pause gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1. Pause gemäß <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf2-004",
                                 "measure": "13",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>. <br /><em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> versetzt von 1/8 gemäß <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>. <br /><em>äußerst ruhig</em> versetzt von 1/8 mit Blick auf <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf2-005",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "1. Note",
-                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'text_Rosegger_PM'})\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
+                                "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a data-complex-id='op12' data-report-fragment-id='text_Rosegger_PM'><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_tf2-006",
@@ -566,9 +566,9 @@
             "id": "M216_TF1",
             "label": "M 216 Textfassung 1",
             "evaluations": [
-                "Für die Edition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 sind <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a> relevante Quellen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a> etablieren Textfassung 1. Der Zustand von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> ante correcturam ist nicht immer eindeutig entzifferbar. Die Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>.",
-                "Hauptquelle für die Textedition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>D</strong></a>."
+                "Für die Edition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 sind <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_D'><strong>D</strong></a> relevante Quellen.",
+                "<a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a> ante correcturam und <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>D</strong></a> etablieren Textfassung 1. Der Zustand von <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a> ante correcturam ist nicht immer eindeutig entzifferbar. Die Korrekturen in <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a> betreffen <span class='link-todo'>Textfassung 2</span>.",
+                "Hauptquelle für die Textedition von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) Textfassung 1 ist <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>D</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -581,14 +581,14 @@
                                 "measure": "1",
                                 "system": "",
                                 "position": "Taktanfang",
-                                "comment": "<em>Sehr fließend und leicht (</em><span class='glyph note'>{{ref.getGlyph('[Punktierte Halbe Note]')}}</span><em> = circa 44)</em> umgebrochen. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_D'})\"><strong>D</strong></a>: in einer Zeile."
+                                "comment": "<em>Sehr fließend und leicht (</em><span class='glyph note'>{{ref.getGlyph('[Punktierte Halbe Note]')}}</span><em> = circa 44)</em> umgebrochen. <a data-complex-id='op12' data-report-fragment-id='source_D'><strong>D</strong></a>: in einer Zeile."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf1-002",
                                 "measure": "2",
                                 "system": "Klav. u.",
                                 "position": "3. Note",
-                                "comment": "Staccatopunkt ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C<sup>d</sup></strong></a>."
+                                "comment": "Staccatopunkt ergänzt gemäß <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C<sup>d</sup></strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m216_tf1-003",
@@ -606,7 +606,7 @@
             "id": "M212_Sk1",
             "label": "M 212 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">Textfassung 1</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu „Der Tag ist vergangen“ M 212: <a data-complex-id='op12' data-sheet-id='M212_TF1'>Textfassung 1</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -626,7 +626,7 @@
                                 "measure": "2",
                                 "system": "3",
                                 "position": "4/8",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span> zu gis<sup>1</sup> ergänzt mit Blick auf <a data-complex-id='op12' data-sheet-id='M212_TF2'>Textfassung 2</a> und <span class='link-todo'>Textfassung 3</span>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_sk1-003",
@@ -770,8 +770,8 @@
             "id": "M212_Sk2",
             "label": "M 212 Sk2",
             "evaluations": [
-                "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF1'})\">„Der Tag ist vergangen“ M 212: Textfassung 1</a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk3'})\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk4'})\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> (<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_TF2'})\">„Der Tag ist vergangen“ M 212: Textfassung 2</a>) entspricht. Da T. 10–11 in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> übernommen wurden und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B_corr'})\">Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> entstanden.",
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a> (Gis/cis) getilgt."
+                "In <strong>Sk2</strong> werden T. 11–12 aus <a data-complex-id='op12' data-sheet-id='M212_Sk1b'><strong>Sk1</strong></a> bzw. T. 10–11 aus <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> (<a data-complex-id='op12' data-sheet-id='M212_TF1'>„Der Tag ist vergangen“ M 212: Textfassung 1</a>) neu skizziert, in <a data-complex-id='op12' data-sheet-id='M212_Sk3'><strong>Sk3</strong></a>, <a data-complex-id='op12' data-sheet-id='M212_Sk4'><strong>Sk4</strong></a> und <a data-complex-id='op12' data-sheet-id='M212_Sk5'><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C</strong></a> (<a data-complex-id='op12' data-sheet-id='M212_TF2'>„Der Tag ist vergangen“ M 212: Textfassung 2</a>) entspricht. Da T. 10–11 in <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> offensichtlich zunächst aus <a data-complex-id='op12' data-sheet-id='M212_Sk1b'><strong>Sk1</strong></a> übernommen wurden und <a data-complex-id='op12' data-report-fragment-id='source_B_corr'>Korrekturen in <strong>B</strong></a> mit Bleistift auf die Formulierung von <a data-complex-id='op12' data-sheet-id='M212_Sk2'><strong>Sk2</strong></a> hindeuten, sind <a data-complex-id='op12' data-sheet-id='M212_Sk2'><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C</strong></a> entstanden.",
+                "<a data-complex-id='op12' data-sheet-id='M212_Sk2'><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a data-complex-id='op12' data-sheet-id='M212_Sk1b'><strong>Sk1</strong></a> bzw. <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a> (Gis/cis) getilgt."
             ],
             "commentary": {
                 "preamble": "",
@@ -791,7 +791,7 @@
                                 "measure": "10",
                                 "system": "12",
                                 "position": "2. Note",
-                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk1b'})\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk3'})\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_B'})\"><strong>B</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_E'})\"><strong>E</strong></a>, <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_F'})\"><strong>F</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_G'})\"><strong>G</strong></a>."
+                                "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e oder <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a data-complex-id='op12' data-sheet-id='M212_Sk1b'><strong>Sk1</strong></a> T. 11, <a data-complex-id='op12' data-sheet-id='M212_Sk3'><strong>Sk3</strong></a> und <a data-complex-id='op12' data-sheet-id='M212_Sk5'><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a data-complex-id='op12' data-report-fragment-id='source_B'><strong>B</strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C</strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_E'><strong>E</strong></a>, <a data-complex-id='op12' data-report-fragment-id='source_F'><strong>F</strong></a> und <a data-complex-id='op12' data-report-fragment-id='source_G'><strong>G</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m212_sk2-003",
@@ -825,7 +825,7 @@
             "id": "M212_Sk3",
             "label": "M 212 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk2'})\"><strong>Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M212_Sk5'})\"><strong>Sk5</strong></a> formulierte und in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> verwendete Variante."
+                "<strong>Sk3</strong> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a data-complex-id='op12' data-sheet-id='M212_Sk2'><strong>Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a data-complex-id='op12' data-sheet-id='M212_Sk5'><strong>Sk5</strong></a> formulierte und in <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C</strong></a> verwendete Variante."
             ],
             "commentary": {
                 "preamble": "",
@@ -919,7 +919,7 @@
             "id": "M212_Sk5",
             "label": "M 212 Sk5",
             "evaluations": [
-                "<strong>Sk5</strong> bringt in der letzten Korrekturschicht die in <a (click)=\"ref.navigateToReportFragment({complexId: 'op12', fragmentId: 'source_C'})\"><strong>C</strong></a> verwendete Variante."
+                "<strong>Sk5</strong> bringt in der letzten Korrekturschicht die in <a data-complex-id='op12' data-report-fragment-id='source_C'><strong>C</strong></a> verwendete Variante."
             ],
             "commentary": {
                 "preamble": "",
@@ -1286,7 +1286,7 @@
             "id": "M213_Sk1_1",
             "label": "M 213 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> überarbeitet T. 18B–20C von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1d'})\"><strong>Sk1</strong></a>, ohne bereits die Formulierung der <span class='link-todo'>einzigen Textfassung</span> T. 18–20 identisch vorwegzunehmen."
+                "<strong>Sk1.1</strong> überarbeitet T. 18B–20C von <a data-complex-id='op12' data-sheet-id='M213_Sk1d'><strong>Sk1</strong></a>, ohne bereits die Formulierung der <span class='link-todo'>einzigen Textfassung</span> T. 18–20 identisch vorwegzunehmen."
             ],
             "commentary": {
                 "preamble": "",
@@ -1325,7 +1325,7 @@
             "id": "M213_Sk1_2",
             "label": "M 213 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> überarbeitet die Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1e'})\"><strong>Sk1</strong></a> in T. 24 ab dem 5/16 und ergänzt sie für die in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1e'})\"><strong>Sk1</strong></a> unausgefüllt gelassenen T. 25–26 (siehe <span class='link-todo'>einzige Textfassung</span> T. 27–29)."
+                "<strong>Sk1.2</strong> überarbeitet die Singstimme von <a data-complex-id='op12' data-sheet-id='M213_Sk1e'><strong>Sk1</strong></a> in T. 24 ab dem 5/16 und ergänzt sie für die in <a data-complex-id='op12' data-sheet-id='M213_Sk1e'><strong>Sk1</strong></a> unausgefüllt gelassenen T. 25–26 (siehe <span class='link-todo'>einzige Textfassung</span> T. 27–29)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1386,7 +1386,7 @@
             "id": "M213_Sk1_3",
             "label": "M 213 Sk3",
             "evaluations": [
-                "<strong>Sk1.3</strong> ist eine Rhythmusskizze zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 33–36 (siehe <span class='link-todo'>einzige Textfassung</span> T. 35–38)."
+                "<strong>Sk1.3</strong> ist eine Rhythmusskizze zur Singstimme von <a data-complex-id='op12' data-sheet-id='M213_Sk1h'><strong>Sk1</strong></a> T. 33–36 (siehe <span class='link-todo'>einzige Textfassung</span> T. 35–38)."
             ],
             "commentary": {
                 "preamble": "",
@@ -1433,7 +1433,7 @@
             "id": "M213_Sk1_4_1",
             "label": "M 213 Sk1.4.1",
             "evaluations": [
-                "<strong>Sk1.4.1</strong>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<strong>Sk1.4.1</strong>, <a data-complex-id='op12' data-sheet-id='M213_Sk1_4_2'><strong>Sk1.4.2</strong></a> und <a data-complex-id='op12' data-sheet-id='M213_Sk1_4_3'><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a data-complex-id='op12' data-sheet-id='M213_Sk1h'><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1467,7 +1467,7 @@
             "id": "M213_Sk1_4_2",
             "label": "M 213 Sk1.4.2",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_3'})\"><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a data-complex-id='op12' data-sheet-id='M213_Sk1_4_1'><strong>Sk1.4.1</strong></a>, <strong>Sk1.4.2</strong> und <a data-complex-id='op12' data-sheet-id='M213_Sk1_4_3'><strong>Sk1.4.3</strong></a> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a data-complex-id='op12' data-sheet-id='M213_Sk1h'><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1521,7 +1521,7 @@
             "id": "M213_Sk1_4_3",
             "label": "M 213 Sk1.4.3",
             "evaluations": [
-                "<a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_1'})\"><strong>Sk1.4.1</strong></a>, <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1_4_2'})\"><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1h'})\"><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
+                "<a data-complex-id='op12' data-sheet-id='M213_Sk1_4_1'><strong>Sk1.4.1</strong></a>, <a data-complex-id='op12' data-sheet-id='M213_Sk1_4_2'><strong>Sk1.4.2</strong></a> und <strong>Sk1.4.3</strong> sind nicht eindeutig zuzuordnen. Möglicherweise handelt es sich bei den Akkorden um Skizzen zu <a data-complex-id='op12' data-sheet-id='M213_Sk1h'><strong>Sk1</strong></a> T. 38 (siehe <span class='link-todo'>einzige Textfassung</span> T. 40)"
             ],
             "commentary": {
                 "preamble": "",
@@ -1575,7 +1575,7 @@
             "id": "M213_Sk1_5",
             "label": "M 213 Sk1.5",
             "evaluations": [
-                "<strong>Sk1.5</strong> ist eine nicht zuordenbare Rhythmusskizze vermutlich zur Singstimme von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.5</strong> ist eine nicht zuordenbare Rhythmusskizze vermutlich zur Singstimme von <a data-complex-id='op12' data-sheet-id='M213_Sk1'><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1602,7 +1602,7 @@
             "id": "M213_Sk1_6",
             "label": "M 213 Sk1.6",
             "evaluations": [
-                "<strong>Sk1.6</strong> ist eine nicht zuordenbare Rhythmusskizze, möglicherweise zu den Schlusstakten (siehe Triller) von <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M213_Sk1'})\"><strong>Sk1</strong></a>."
+                "<strong>Sk1.6</strong> ist eine nicht zuordenbare Rhythmusskizze, möglicherweise zu den Schlusstakten (siehe Triller) von <a data-complex-id='op12' data-sheet-id='M213_Sk1'><strong>Sk1</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1629,7 +1629,7 @@
             "id": "M216_Sk1",
             "label": "M 216 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M216_TF1'})\">Textfassung 1</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: <a data-complex-id='op12' data-sheet-id='M216_TF1'>Textfassung 1</a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -1884,7 +1884,7 @@
                                 "measure": "11",
                                 "system": "3",
                                 "position": "3–6/8",
-                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1_1'})\"><strong>Sk1.1</strong></a>."
+                                "comment": "Durch Einkreisung getilgt. Siehe Änderung in System 2 sowie in <a data-complex-id='op12' data-sheet-id='M217_Sk1_1'><strong>Sk1.1</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m217_sk1-011",
@@ -2009,7 +2009,7 @@
             "id": "M217_Sk1_1",
             "label": "M 217 Sk1.1",
             "evaluations": [
-                "<strong>Sk1.1</strong> überarbeitet T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1c'})\"><strong>Sk1</strong></a> im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</span> T. 11–12."
+                "<strong>Sk1.1</strong> überarbeitet T. 11–12 aus <a data-complex-id='op12' data-sheet-id='M217_Sk1c'><strong>Sk1</strong></a> im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</span> T. 11–12."
             ],
             "commentary": {
                 "preamble": "",
@@ -2049,7 +2049,7 @@
             "id": "M217_Sk1_2",
             "label": "M 217 Sk1.2",
             "evaluations": [
-                "<strong>Sk1.2</strong> ergänzt T. 27B aus <a (click)=\"ref.selectSvgSheet({complexId: 'op12', sheetId: 'M217_Sk1g'})\"><strong>Sk1</strong></a> um einen weiteren Viertelwert und fügt zwei weitere Takte an im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</em> T. 26–28."
+                "<strong>Sk1.2</strong> ergänzt T. 27B aus <a data-complex-id='op12' data-sheet-id='M217_Sk1g'><strong>Sk1</strong></a> um einen weiteren Viertelwert und fügt zwei weitere Takte an im Sinne von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 <span class='link-todo'>einzige Textfassung</em> T. 26–28."
             ],
             "commentary": {
                 "preamble": "",

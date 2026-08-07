@@ -4,9 +4,9 @@
             "id": "Mx467_TF1",
             "label": "M* 467 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition M* 467 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C'})\"><strong>C</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_A'})\"><strong>A</strong></a> und <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_B'})\"><strong>B</strong></a> enthalten Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C'})\"><strong>C</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a> mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition M* 467 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C'})\"><strong>C</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition M* 467 ist <a data-complex-id='mx467' data-report-fragment-id='source_C'><strong>C</strong></a> relevante Quelle. <a data-complex-id='mx467' data-report-fragment-id='source_A'><strong>A</strong></a> und <a data-complex-id='mx467' data-report-fragment-id='source_B'><strong>B</strong></a> enthalten Skizzen.",
+                "<a data-complex-id='mx467' data-report-fragment-id='source_C'><strong>C</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='mx467' data-report-fragment-id='source_C_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='mx467' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a> mit blauem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition M* 467 ist <a data-complex-id='mx467' data-report-fragment-id='source_C'><strong>C</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -19,7 +19,7 @@
                                 "measure": "4",
                                 "system": "Klav. o.",
                                 "position": "1/2",
-                                "comment": "Kleinstich: Halbe Note c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a (click)=\"ref.navigateToReportFragment({complexId: 'mx467', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>."
+                                "comment": "Kleinstich: Halbe Note c<sup>1</sup>/e<sup>1</sup> ergänzt gemäß <a data-complex-id='mx467' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>."
                             }
                         ]
                     }
@@ -30,7 +30,7 @@
             "id": "Mx467_Sk1",
             "label": "M* 467 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> hält den melodischen Verlauf der <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx467_TF1'})\">Studienkomposition für Klavier M* 467</a> fest."
+                "<strong>Sk1</strong> hält den melodischen Verlauf der <a data-complex-id='mx467' data-sheet-id='Mx467_TF1'>Studienkomposition für Klavier M* 467</a> fest."
             ],
             "commentary": {
                 "preamble": "",
@@ -54,7 +54,7 @@
             "id": "Mx467_Sk2",
             "label": "M* 467 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx467', sheetId: 'Mx467_TF1'})\">Studienkomposition für Klavier M* 467</a>."
+                "<strong>Sk2</strong> ist die Verlaufsskizze zu der <a data-complex-id='mx467' data-sheet-id='Mx467_TF1'>Studienkomposition für Klavier M* 467</a>."
             ],
             "commentary": {
                 "preamble": "",

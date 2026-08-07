@@ -572,7 +572,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a data-complex-id='m45' data-sheet-id='M45_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -673,7 +673,7 @@
                                             "measure": "16",
                                             "system": "Klav.",
                                             "position": "(5–6/8)",
-                                            "comment": "Rasur zwischen den Systemen. Ante correcturam: möglicherweise Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_Sk3'})\"><strong>Sk3</strong></a>)."
+                                            "comment": "Rasur zwischen den Systemen. Ante correcturam: möglicherweise Achtelnoten <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>e<sup>1</sup> (vgl. <a data-complex-id='m45' data-sheet-id='M45_Sk3'><strong>Sk3</strong></a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf1_B_corr_1-015",
@@ -839,7 +839,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Tinte und Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a data-complex-id='m45' data-sheet-id='M45_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -961,7 +961,7 @@
                                             "measure": "30",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System (Bleistift, mit Tinte nachgezogen): Verweis auf vormalige Einschubstelle für Textfassung 2 (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_1'})\">Korrekturen 1 in <strong>C</strong></a>)."
+                                            "comment": "Verweiszeichen über dem System (Bleistift, mit Tinte nachgezogen): Verweis auf vormalige Einschubstelle für Textfassung 2 (vgl. auch <a data-complex-id='m45' data-report-fragment-id='source_C_corr_1'>Korrekturen 1 in <strong>C</strong></a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf1_B_corr_2-018",
@@ -1167,7 +1167,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a data-complex-id='m45' data-sheet-id='M45_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1254,7 +1254,7 @@
                                             "measure": "33",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Gestrichenes Verweiszeichen über dem System: Verweis auf vormalige Einschubstelle in Textfassung 1 (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_B_corr_2'})\">Korrekturen 2 in <strong>B</strong></a>)."
+                                            "comment": "Gestrichenes Verweiszeichen über dem System: Verweis auf vormalige Einschubstelle in Textfassung 1 (vgl. auch <a data-complex-id='m45' data-report-fragment-id='source_B_corr_2'>Korrekturen 2 in <strong>B</strong></a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf2_C_corr_1-013",
@@ -1303,7 +1303,7 @@
                                             "measure": "43–44",
                                             "system": "Klav. o.",
                                             "position": "letzte Note <br />erste Note",
-                                            "comment": "Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen (vgl. auch <a (click)=\"ref.navigateToReportFragment({complexId: 'm45', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Ligatur zu gis<sup>1</sup>–gis<sup>1</sup> gestrichen (vgl. auch <a data-complex-id='m45' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m45_tf2_C_corr_1-020",
@@ -1329,7 +1329,7 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a (click)=\"ref.selectSvgSheet({complexId: 'm45', sheetId: 'M45_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 45: <a data-complex-id='m45' data-sheet-id='M45_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

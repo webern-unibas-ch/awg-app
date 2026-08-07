@@ -44,7 +44,7 @@
             "siglum": "E",
             "siglumAddendum": "F1–F2",
             "missing": true,
-            "type": "Fotokopien von <a (click)=\"ref.navigateToReportFragment({complexId: 'op25', fragmentId: 'source_E'})\"><strong>E</strong></a>.",
+            "type": "Fotokopien von <a data-complex-id='op25' data-report-fragment-id='source_E'><strong>E</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
             "linkTo": ""

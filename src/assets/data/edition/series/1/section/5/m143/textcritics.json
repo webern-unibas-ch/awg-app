@@ -4,9 +4,9 @@
             "id": "M143_TF1",
             "label": "M 143 einzige Textfassung",
             "evaluations": [
-                "Für die Edition der einzigen Textfassung von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> einzige relevante Quelle.",
-                "Die in <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_1'})\">Korrekturen 1</a>) und mit Bleistift (<a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>) vorgenommen. Korrekturen 2 sind nicht immer eindeutig.",
-                "Hauptquelle für die Textedition von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
+                "Für die Edition der einzigen Textfassung von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a> einzige relevante Quelle.",
+                "Die in <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a> unterscheidbaren Korrekturschichten wurden mit Tinte (<a data-complex-id='m143' data-report-fragment-id='source_A_corr_1'>Korrekturen 1</a>) und mit Bleistift (<a data-complex-id='m143' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a>) vorgenommen. Korrekturen 2 sind nicht immer eindeutig.",
+                "Hauptquelle für die Textedition von „Erwachen aus dem tiefsten Traumesschoße“ M 143 ist <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a> nach Korrekturen 1 und vor Korrekturen 2."
             ],
             "commentary": {
                 "preamble": "",
@@ -26,21 +26,21 @@
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "Text: (tief-)<em>stem</em> korrigiert zu (tief-)<em>sten</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                                "comment": "Text: (tief-)<em>stem</em> korrigiert zu (tief-)<em>sten</em> mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-003",
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "3.–6. Note",
-                                "comment": "Text sic: <em>Trau-mes-scho-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>traumes-schoosse</em>."
+                                "comment": "Text sic: <em>Trau-mes-scho-ße</em>. <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>: <em>traumes-schoosse</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-004",
                                 "measure": "6",
                                 "system": "Ges.",
                                 "position": "8/8",
-                                "comment": "Text: Doppelpunkt nach <em>Trau-mes-scho-ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                                "comment": "Text: Doppelpunkt nach <em>Trau-mes-scho-ße</em> ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-005",
@@ -61,7 +61,7 @@
                                 "measure": "10",
                                 "system": "Ges.",
                                 "position": "3–8/8",
-                                "comment": "Bezug der Crescendogabel nicht eindeutig, möglicherweise auf Klav. o. bezogen. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Gabel zwischen Ges. und Klav. o. (Text über Ges.)."
+                                "comment": "Bezug der Crescendogabel nicht eindeutig, möglicherweise auf Klav. o. bezogen. <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a>: Gabel zwischen Ges. und Klav. o. (Text über Ges.)."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-008",
@@ -75,14 +75,14 @@
                                 "measure": "11",
                                 "system": "Ges.",
                                 "position": "4/8",
-                                "comment": "Text sic: Interpunktionszeichen nach (er[-]bli-)<em>chen</em> fehlt. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Interpunktionszeichen fehlt (am Zeilenende). Siehe auch TkA zu T. 12 4/4 und zu T. 16 8/8."
+                                "comment": "Text sic: Interpunktionszeichen nach (er[-]bli-)<em>chen</em> fehlt. <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>: Interpunktionszeichen fehlt (am Zeilenende). Siehe auch TkA zu T. 12 4/4 und zu T. 16 8/8."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-010",
                                 "measure": "12",
                                 "system": "Ges.",
                                 "position": "4/4",
-                                "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenanfang). Siehe auch TkA zu T. 16 8/8."
+                                "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a> (am Zeilenanfang). Siehe auch TkA zu T. 16 8/8."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-011",
@@ -96,28 +96,28 @@
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "1.–4. Note",
-                                "comment": "Text sic: <em>mit-leid-gro-ße</em>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: <em>mitleidgrosse</em>."
+                                "comment": "Text sic: <em>mit-leid-gro-ße</em>. <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>: <em>mitleidgrosse</em>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-013",
                                 "measure": "14 <br />bis 15",
                                 "system": "Klav. o.",
                                 "position": "4/4 <br />1/4",
-                                "comment": "Ligaturbögen ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A_corr_2'})\">Korrekturen 2</a>."
+                                "comment": "Ligaturbögen ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='source_A_corr_2'>Korrekturen 2</a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-014",
                                 "measure": "14",
                                 "system": "Ges.",
                                 "position": "8/8",
-                                "comment": "Text: Ausrufezeichen nach (mit-leid-gro-)<em>ße</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                                "comment": "Text: Ausrufezeichen nach (mit-leid-gro-)<em>ße</em> ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-015",
                                 "measure": "15",
                                 "system": "Ges.",
                                 "position": "3/4",
-                                "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
+                                "comment": "Text: Kleinschreibung <em>dank</em> mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>. <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-016",
@@ -131,14 +131,14 @@
                                 "measure": "16",
                                 "system": "Ges.",
                                 "position": "8/8",
-                                "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a> (am Zeilenende). Siehe auch TkA zu T. 12 4/4."
+                                "comment": "Text: Paranthesestrich ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a> (am Zeilenende). Siehe auch TkA zu T. 12 4/4."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-018",
                                 "measure": "18",
                                 "system": "Ges.",
                                 "position": "letzte Note",
-                                "comment": "Text: Kleinschreibung <em>die</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 20 6/8."
+                                "comment": "Text: Kleinschreibung <em>die</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 20 6/8."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-019",
@@ -152,14 +152,14 @@
                                 "measure": "20",
                                 "system": "Ges.",
                                 "position": "6/8",
-                                "comment": "Text: Kleinschreibung <em>dass</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'source_A'})\"><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 18 letzte Note."
+                                "comment": "Text: Kleinschreibung <em>dass</em> mit Blick auf Kleinschreibung von <em>mich</em> in T. 9 8/8. <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>: Großschreibung <em>Mich</em> und <em>Die</em> (am Zeilenanfang). <a data-complex-id='m143' data-report-fragment-id='source_A'><strong>A</strong></a>: Kurrentschrift unspezifisch hinsichtlich Groß-/Kleinschreibung. Siehe auch TkA zu T. 18 letzte Note."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-021",
                                 "measure": "21",
                                 "system": "Ges.",
                                 "position": "8/8",
-                                "comment": "Text: Zwei Punkte nach (wi-)<em>chen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                                "comment": "Text: Zwei Punkte nach (wi-)<em>chen</em> ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>."
                             },
                             {
                                 "svgGroupId": "awg-tkk-m143_tf1-022",
@@ -173,7 +173,7 @@
                                 "measure": "24",
                                 "system": "Ges.",
                                 "position": "2/8",
-                                "comment": "Text: Ausrufezeichen nach (Mi-nu-)<em>ten</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment({complexId: 'm143', fragmentId: 'text_George_DJdS'})\"><strong>George_DJdS</strong></a>."
+                                "comment": "Text: Ausrufezeichen nach (Mi-nu-)<em>ten</em> ergänzt mit Blick auf <a data-complex-id='m143' data-report-fragment-id='text_George_DJdS'><strong>George_DJdS</strong></a>."
                             }
                         ]
                     }
