@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
 import { ModalData } from './modal.model';
 
@@ -29,5 +29,5 @@ export class ModalComponent {
      *
      * @todo Use input signal as soon as NgbActiveModal supports signals
      */
-    @Input() modalData: ModalData;
+    @Input() modalData: ModalData | undefined;
 }

@@ -1,22 +1,22 @@
-@let data = modalData;
-
-<div class="modal-header">
-    <h5 class="modal-title">{{ data.title }}</h5>
-    <button type="button" class="btn-close" aria-label="Close modal" (click)="activeModal.dismiss()"></button>
-</div>
-<div class="modal-body text-center">
-    @if (data.type === 'image') {
-        <img [src]="data.content" [alt]="data.title" class="img-fluid" />
-    } @else {
-        <div [innerHTML]="data.content" class="text-start"></div>
-    }
-</div>
-<div class="modal-footer">
-    <button
-        type="button"
-        class="btn btn-outline-dark awg-modal-button"
-        ngbAutofocus
-        (click)="activeModal.close('Close click')">
-        Schließen
-    </button>
-</div>
+@if (modalData; as data) {
+    <div class="modal-header">
+        <h5 class="modal-title">{{ data.title }}</h5>
+        <button type="button" class="btn-close" aria-label="Close modal" (click)="activeModal.dismiss()"></button>
+    </div>
+    <div class="modal-body text-center">
+        @if (data.type === 'image') {
+            <img [src]="data.content" [alt]="data.title" class="img-fluid" />
+        } @else {
+            <div [innerHTML]="data.content" class="text-start"></div>
+        }
+    </div>
+    <div class="modal-footer">
+        <button
+            type="button"
+            class="btn btn-outline-dark awg-modal-button"
+            ngbAutofocus
+            (click)="activeModal.close('Close click')">
+            Schließen
+        </button>
+    </div>
+}

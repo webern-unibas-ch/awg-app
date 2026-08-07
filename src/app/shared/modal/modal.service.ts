@@ -32,7 +32,7 @@ export class ModalService {
     /**
      * Public method: openTextModal.
      *
-     * It opens the modal component with a text snippet from MODAL_CONTENT_SNIPPETS.
+     * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
      *
      * @param {string} snippetKey The key of the text snippet.
      * @returns {void} Opens the modal.
@@ -74,7 +74,7 @@ export class ModalService {
      * Private method: _open.
      *
      * An internal helper method to open the ModalComponent via NgbModal
-     * and supply it with the required ModalData input signal.
+     * and supply it with the required ModalData input.
      *
      * @param {ModalData} modalData The data for the modal.
      * @returns {void} Opens the modal via NgBootstrap.

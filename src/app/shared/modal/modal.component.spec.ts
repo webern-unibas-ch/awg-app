@@ -12,7 +12,7 @@ import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testi
 import { ModalComponent } from './modal.component';
 import { ModalData } from './modal.model';
 
-describe('ModalComponent', () => {
+describe('ModalComponent (DONE)', () => {
     let component: ModalComponent;
     let fixture: ComponentFixture<ModalComponent>;
     let compDe: DebugElement;
@@ -20,7 +20,8 @@ describe('ModalComponent', () => {
     let mockDocument: Document;
     let mockActiveModal: Partial<NgbActiveModal>;
 
-    let activeModalSpy: Spy;
+    let modalCloseSpy: Spy;
+    let modalDismissSpy: Spy;
 
     let expectedTextData: ModalData;
     let expectedImageData: ModalData;
@@ -30,6 +31,7 @@ describe('ModalComponent', () => {
             close: vi.fn(),
             dismiss: vi.fn(),
         };
+
         await TestBed.configureTestingModule({
             imports: [ModalComponent],
             providers: [
@@ -44,9 +46,11 @@ describe('ModalComponent', () => {
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+        mockActiveModal = TestBed.inject(NgbActiveModal);
 
         // Spies
-        activeModalSpy = TestBed.inject(NgbActiveModal) as unknown as typeof mockActiveModal;
+        modalCloseSpy = vi.spyOn(mockActiveModal, 'close');
+        modalDismissSpy = vi.spyOn(mockActiveModal, 'dismiss');
 
         // Test data
         expectedTextData = {
@@ -83,35 +87,16 @@ describe('ModalComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one div.modal-header', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
+            it('... should have no div.modal-header', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-header', 0, 0);
             });
 
-            it('... should have h5.modal-title in div.modal-header', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1);
+            it('... should have no div.modal-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 0, 0);
             });
 
-            it('... should have close button without label in div.modal-header', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
-                const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn-close', 1, 1);
-                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                expectToBe(btnEl.textContent, '');
-                expectToBe(btnEl.getAttribute('aria-label'), 'Close modal');
-            });
-
-            it('... should have one div.modal-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 1, 1);
-            });
-
-            it('... should have one div.modal-footer', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
-            });
-
-            it('... should have one close button.awg-modal-button in div.modal-footer', () => {
-                const footerDes = getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
-                getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
+            it('... should have no div.modal-footer', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 0, 0);
             });
         });
     });
@@ -130,7 +115,25 @@ describe('ModalComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should call activeModal.dismiss when clicking the header close button', async () => {
+            it('... should have one div.modal-header', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
+            });
+
+            it('... should have h5.modal-title in div.modal-header', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1);
+            });
+
+            it('... should have dismiss button without label in div.modal-header', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
+                const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn-close', 1, 1);
+                const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+
+                expectToBe(btnEl.textContent, '');
+                expectToBe(btnEl.getAttribute('aria-label'), 'Close modal');
+            });
+
+            it('... should call activeModal.dismiss when clicking the header dismiss button', async () => {
                 const dismissBtnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.modal-header > button.btn-close',
@@ -139,7 +142,20 @@ describe('ModalComponent', () => {
                 );
                 await clickAndAwaitChanges(dismissBtnDes[0], fixture);
 
-                expectSpyCall(activeModalSpy.dismiss, 1);
+                expectSpyCall(modalDismissSpy, 1);
+            });
+
+            it('... should have one div.modal-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 1, 1);
+            });
+
+            it('... should have one div.modal-footer', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
+            });
+
+            it('... should have one close button.awg-modal-button in div.modal-footer', () => {
+                const footerDes = getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
+                getAndExpectDebugElementByCss(footerDes[0], 'button.awg-modal-button', 1, 1);
             });
 
             it('... should render the modal close label in footer', () => {
@@ -163,7 +179,7 @@ describe('ModalComponent', () => {
                 );
                 await clickAndAwaitChanges(closeBtnDes[0], fixture);
 
-                expectSpyCall(activeModalSpy.close, 1);
+                expectSpyCall(modalCloseSpy, 1);
             });
 
             describe('with text content', () => {
