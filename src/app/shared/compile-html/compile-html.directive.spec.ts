@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.fn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { EditionGlyphService } from '@awg-views/edition-view/services';
@@ -27,7 +28,8 @@ describe('CompileHtmlDirective (DONE)', () => {
     let serviceNavigateToSheetSpy: Spy;
     let serviceNavigateToReportSpy: Spy;
     let serviceGetGlyphSpy: Spy;
-    let serviceUpdateModalIdSpy: Spy;
+    let serviceOpenImageModalSpy: Spy;
+    let serviceOpenTextModalSpy: Spy;
     let rendererSetAttributeSpy: Spy;
     let rendererSetPropertySpy: Spy;
 
@@ -38,7 +40,7 @@ describe('CompileHtmlDirective (DONE)', () => {
     let expectedIntroFragment: string;
     let expectedReportFragment: string;
     let expectedSvgSheetId: string;
-    let expectedModalId: string;
+    let expectedTextModalId: string;
 
     beforeEach(() => {
         // Mock the input signal and native element
@@ -70,7 +72,8 @@ describe('CompileHtmlDirective (DONE)', () => {
                 {
                     provide: ModalService,
                     useValue: {
-                        updateModalId: vi.fn(),
+                        openTextModal: vi.fn(),
+                        openImageModal: vi.fn(),
                     },
                 },
             ],
@@ -99,14 +102,15 @@ describe('CompileHtmlDirective (DONE)', () => {
         serviceGetGlyphSpy = vi.spyOn(glyphService, 'getGlyph').mockImplementation((glyph: string) => `${glyph}`);
 
         const modalService = TestBed.inject(ModalService);
-        serviceUpdateModalIdSpy = vi.spyOn(modalService, 'updateModalId');
+        serviceOpenImageModalSpy = vi.spyOn(modalService, 'openImageModal');
+        serviceOpenTextModalSpy = vi.spyOn(modalService, 'openTextModal');
 
         // Test data
         expectedComplexId = 'op12';
         expectedIntroFragment = 'note-80';
         expectedReportFragment = 'source_A';
         expectedSvgSheetId = 'test-1';
-        expectedModalId = 'modal_snippet_5';
+        expectedTextModalId = structuredClone(mockEditionData.mockModalSnippet);
     });
 
     afterEach(() => {
@@ -172,6 +176,7 @@ describe('CompileHtmlDirective (DONE)', () => {
 
         it('... should call `_applyAccessibilityAttributes()` when htmlContent changes', async () => {
             mockHtmlContentSignal.set('<p>Test</p>');
+
             TestBed.tick();
 
             expectSpyCall(applyAccessibilityAttributesSpy, 1);
@@ -240,48 +245,66 @@ describe('CompileHtmlDirective (DONE)', () => {
                         desc: 'links with data-intro-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-intro-fragment-id="${expectedIntroFragment}">Link</a>`,
+                        expectedSelector: 'a',
                         expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-sheet-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-sheet-id="${expectedSvgSheetId}">Sheet</a>`,
+                        expectedSelector: 'a',
                         expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-report-fragment-id',
                         getExpectedOutput: () =>
                             `<a data-complex-id="${expectedComplexId}" data-report-fragment-id="${expectedReportFragment}">Report</a>`,
+                        expectedSelector: 'a',
                         expectedRole: 'link',
                     },
                     {
                         desc: 'links with data-modal-id',
-                        getExpectedOutput: () => `<a data-modal-id="${expectedModalId}">Modal Link</a>`,
+                        getExpectedOutput: () => `<a data-modal-id="${expectedTextModalId}">Modal Link</a>`,
+                        expectedSelector: 'a',
                         expectedRole: 'button',
                     },
-                ])(`... $desc`, async ({ getExpectedOutput, expectedRole }) => {
+                    {
+                        desc: 'images with data-snippet-id and data-snippet-src',
+                        getExpectedOutput: () =>
+                            `<img data-snippet-id="snippet-1" data-snippet-src="assets/img/test.png" alt="Test" />`,
+                        expectedSelector: 'img',
+                        expectedRole: 'button',
+                    },
+                ])(`... $desc`, async ({ getExpectedOutput, expectedSelector, expectedRole }) => {
                     const htmlString = getExpectedOutput();
 
                     mockNativeElement.innerHTML = htmlString;
-
                     mockHtmlContentSignal.set(htmlString);
 
                     TestBed.tick();
 
-                    const foundAnchor = mockNativeElement.querySelector('a');
+                    const foundElement = mockNativeElement.querySelector(expectedSelector);
 
                     expectSpyCall(rendererSetAttributeSpy, 2);
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'tabindex', '0');
-                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundAnchor, 'role', expectedRole);
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'tabindex', '0');
+                    expect(rendererSetAttributeSpy).toHaveBeenCalledWith(foundElement, 'role', expectedRole);
                 });
             });
 
             it('... should not add accessibility attributes to standard links without data-attributes', async () => {
-                rendererSetAttributeSpy.mockClear();
-
                 const plainHtml = '<a href="https://example.com">External Link</a>';
                 mockNativeElement.innerHTML = plainHtml;
 
+                mockHtmlContentSignal.set(plainHtml);
+
+                TestBed.tick();
+
+                expectSpyCall(rendererSetAttributeSpy, 0);
+            });
+
+            it('... should not add accessibility attributes to standard images without snippet data-attributes', async () => {
+                const plainHtml = '<img src="https://example.com" alt="Logo" />';
+                mockNativeElement.innerHTML = plainHtml;
                 mockHtmlContentSignal.set(plainHtml);
 
                 TestBed.tick();
@@ -375,40 +398,60 @@ describe('CompileHtmlDirective (DONE)', () => {
             describe('... should navigate to', () => {
                 const testCases = [
                     {
-                        desc: 'modal snippet if data-modal-id is given',
-                        attributes: { 'data-modal-id': 'modal_snippet_5' },
-                        expectedArgs: 'modal_snippet_5',
-                        getExpectedSpy: () => serviceUpdateModalIdSpy,
+                        desc: 'text modal snippet if data-modal-id is given',
+                        getAttributes: () => ({ 'data-modal-id': expectedTextModalId }),
+                        getExpectedArgs: () => expectedTextModalId,
+                        getExpectedSpy: () => serviceOpenTextModalSpy,
                     },
                     {
                         desc: 'intro fragment with complexId if data-intro-fragment-id is given',
-                        attributes: { 'data-complex-id': 'op12', 'data-intro-fragment-id': 'intro-1' },
-                        expectedArgs: { complexId: 'op12', fragmentId: 'intro-1' } as FragmentClickEvent,
+                        getAttributes: () => ({
+                            'data-complex-id': expectedComplexId,
+                            'data-intro-fragment-id': expectedIntroFragment,
+                        }),
+                        getExpectedArgs: () =>
+                            ({ complexId: expectedComplexId, fragmentId: expectedIntroFragment }) as FragmentClickEvent,
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
                         desc: 'intro fragment with empty complexId if data-complex-id is missing',
-                        attributes: { 'data-intro-fragment-id': 'intro-2' },
-                        expectedArgs: { complexId: '', fragmentId: 'intro-2' } as FragmentClickEvent,
+                        getAttributes: () => ({ 'data-intro-fragment-id': expectedIntroFragment }),
+                        getExpectedArgs: () =>
+                            ({ complexId: '', fragmentId: expectedIntroFragment }) as FragmentClickEvent,
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
                         desc: 'svg sheet if data-sheet-id and data-complex-id are given',
-                        attributes: { 'data-complex-id': 'op12', 'data-sheet-id': 'sheet-3' },
-                        expectedArgs: { complexId: 'op12', sheetId: 'sheet-3' } as SheetClickEvent,
+                        getAttributes: () => ({
+                            'data-complex-id': expectedComplexId,
+                            'data-sheet-id': expectedSvgSheetId,
+                        }),
+                        getExpectedArgs: () =>
+                            ({ complexId: expectedComplexId, sheetId: expectedSvgSheetId }) as SheetClickEvent,
                         getExpectedSpy: () => serviceNavigateToSheetSpy,
                     },
                     {
                         desc: 'report fragment if data-report-fragment-id and data-complex-id are given',
-                        attributes: { 'data-complex-id': 'op12', 'data-report-fragment-id': 'report-4' },
-                        expectedArgs: { complexId: 'op12', fragmentId: 'report-4' } as FragmentClickEvent,
+                        getAttributes: () => ({
+                            'data-complex-id': expectedComplexId,
+                            'data-report-fragment-id': expectedReportFragment,
+                        }),
+                        getExpectedArgs: () =>
+                            ({
+                                complexId: expectedComplexId,
+                                fragmentId: expectedReportFragment,
+                            }) as FragmentClickEvent,
                         getExpectedSpy: () => serviceNavigateToReportSpy,
                     },
                 ];
 
-                it.each(testCases)(`... $desc`, ({ attributes, expectedArgs, getExpectedSpy }) => {
+                it.each(testCases)(`... $desc`, ({ getAttributes, getExpectedArgs, getExpectedSpy }) => {
+                    const attributes = getAttributes();
+                    const expectedArgs = getExpectedArgs();
+                    const targetSpy = getExpectedSpy();
+
                     const mockAnchor = {
-                        getAttribute: (key: string) => attributes[key as keyof typeof attributes] || null,
+                        getAttribute: (attr: string) => attributes[attr as keyof typeof attributes] || null,
                     } as unknown as HTMLAnchorElement;
 
                     const mockEvent = {
@@ -419,12 +462,10 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     expect(mockEvent.preventDefault).toHaveBeenCalledTimes(1);
 
-                    const targetSpy = getExpectedSpy();
-
                     expectSpyCall(targetSpy, 1, [expectedArgs]);
 
                     [
-                        serviceUpdateModalIdSpy,
+                        serviceOpenTextModalSpy,
                         serviceNavigateToIntroSpy,
                         serviceNavigateToSheetSpy,
                         serviceNavigateToReportSpy,
@@ -481,14 +522,16 @@ describe('CompileHtmlDirective (DONE)', () => {
 
             describe('... should handle snippet images', () => {
                 it('... and open the snippet if data-snippet-id and data-snippet-src are present', () => {
+                    const mockId = 'snip-123';
+                    const mockSrc = 'path/to/image.png';
                     const mockImg = {
                         hasAttribute: (attr: string) => attr === 'data-snippet-id' || attr === 'data-snippet-src',
                         getAttribute: (attr: string) => {
-                            if (attr === 'data-snippet-src') {
-                                return 'path/to/image.png';
-                            }
                             if (attr === 'data-snippet-id') {
-                                return 'snip-123';
+                                return mockId;
+                            }
+                            if (attr === 'data-snippet-src') {
+                                return mockSrc;
                             }
                             return null;
                         },
@@ -496,17 +539,10 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                     const mockEvent = { preventDefault: vi.fn() } as unknown as Event;
 
-                    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-
                     (directive as any)._handleImageNavigation(mockImg, mockEvent);
 
                     expect(mockEvent.preventDefault).toHaveBeenCalledTimes(1);
-                    expect(consoleSpy).toHaveBeenCalledWith('Snippet öffnen:', {
-                        src: 'path/to/image.png',
-                        id: 'snip-123',
-                    });
-
-                    consoleSpy.mockRestore();
+                    expectSpyCall(serviceOpenImageModalSpy, 1, [mockId, mockSrc]);
                 });
             });
 
@@ -549,6 +585,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                     (directive as any)._handleImageNavigation(mockImg, mockEvent);
 
                     expect(mockEvent.preventDefault).not.toHaveBeenCalled();
+                    expectSpyCall(serviceOpenImageModalSpy, 0);
                 });
             });
         });
