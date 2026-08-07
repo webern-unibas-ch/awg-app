@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
+import { ModalService } from '@awg-shared/modal/modal.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { Source, SourceList } from '@awg-views/edition-view/models';
+
+import { Source, SourceList } from '@awg-views/edition-view/models/source-list.model';
+import {
+    EditionNavigationService,
+    FragmentClickEvent,
+} from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The SourceList component.
@@ -19,6 +25,20 @@ import { Source, SourceList } from '@awg-views/edition-view/models';
 })
 export class SourceListComponent {
     /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
+     * Private readonly injection variable: _modalService
+     *
+     * It keeps the instance of the injected ModalService.
+     */
+    private readonly _modalService = inject(ModalService);
+
+    /**
      * Input variable: sourceListData.
      *
      * It keeps the source list data.
@@ -27,33 +47,11 @@ export class SourceListComponent {
     sourceListData: SourceList;
 
     /**
-     * Output variable: navigateToReportFragment.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
-     */
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
-
-    /**
-     * Output variable: openModalRequest.
-     *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
-     */
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
      */
     protected readonly UTILS = UTILS;
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceListComponent = this;
 
     /**
      * Public method: onSourceClick.
@@ -67,7 +65,7 @@ export class SourceListComponent {
      */
     onSourceClick(source: Source): void {
         if (source.hasDescription) {
-            this.navigateToReportFragment({
+            this._navigateToReportFragment({
                 complexId: '',
                 fragmentId: source.linkTo,
             });
@@ -77,35 +75,33 @@ export class SourceListComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
+     * Private method: navigateToReportFragment.
      *
-     * It emits the given ids of a selected edition complex and report fragment
-     * to the {@link navigateToReportFragmentRequest}.
+     * It delegates the navigation for the given complex and report fragment IDs
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Emits the ids.
+     * @param {object} reportIds The given report ids as FragmentClickEvent.
+     * @returns {void} Navigates to the selected report fragment.
      */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
+    _navigateToReportFragment(reportIds: FragmentClickEvent): void {
         if (!reportIds?.fragmentId) {
             return;
         }
-        this.navigateToReportFragmentRequest.emit(reportIds);
+        this._navigationService.navigateToReportFragment(reportIds);
     }
 
     /**
      * Private method: openModal.
      *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
+     * It opens a text modal snippet via the {@link ModalService} for a given id.
      *
      * @param {string} id The given modal snippet id.
-     *
-     * @returns {void} Emits the id.
+     * @returns {void} Opens the text modal.
      */
     private _openModal(id: string): void {
         if (!id) {
             return;
         }
-        this.openModalRequest.emit(id);
+        this._modalService.openTextModal(id);
     }
 }
