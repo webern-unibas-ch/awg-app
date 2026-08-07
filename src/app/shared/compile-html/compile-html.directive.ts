@@ -122,18 +122,25 @@ export class CompileHtmlDirective {
      * @returns {void} Applies the attributes directly to the DOM elements.
      */
     private _applyAccessibilityAttributes(): void {
-        const selectors =
-            'a[data-modal-id], a[data-complex-id], a[data-intro-fragment-id], a[data-sheet-id], a[data-report-fragment-id]';
-        const anchors = this._el.nativeElement.querySelectorAll(selectors);
+        const selectors = [
+            'a[data-modal-id]',
+            'a[data-complex-id]',
+            'a[data-intro-fragment-id]',
+            'a[data-sheet-id]',
+            'a[data-report-fragment-id]',
+            'img[data-snippet-id][data-snippet-src]',
+        ].join(', ');
 
-        anchors.forEach((anchor: HTMLAnchorElement) => {
-            this._renderer.setAttribute(anchor, 'tabindex', '0');
+        const elements = this._el.nativeElement.querySelectorAll(selectors);
 
-            if (anchor.hasAttribute('data-modal-id')) {
-                this._renderer.setAttribute(anchor, 'role', 'button');
-            } else {
-                this._renderer.setAttribute(anchor, 'role', 'link');
-            }
+        elements.forEach((el: HTMLElement) => {
+            this._renderer.setAttribute(el, 'tabindex', '0');
+
+            const isImage = el.tagName.toLowerCase() === 'img';
+            const isModalAnchor = el.hasAttribute('data-modal-id');
+
+            const role = isImage || isModalAnchor ? 'button' : 'link';
+            this._renderer.setAttribute(el, 'role', role);
         });
     }
 
@@ -176,7 +183,7 @@ export class CompileHtmlDirective {
         const modalId = anchor.getAttribute('data-modal-id');
         if (modalId) {
             event.preventDefault();
-            this._modalService.updateModalId(modalId);
+            this._modalService.openTextModal(modalId);
             return;
         }
 
@@ -221,12 +228,10 @@ export class CompileHtmlDirective {
         }
 
         event.preventDefault();
-        const src = img.getAttribute('data-snippet-src');
-        const id = img.getAttribute('data-snippet-id');
+        const src = img.getAttribute('data-snippet-src') as string;
+        const id = img.getAttribute('data-snippet-id') as string;
 
-        // TODO: Handling of snippets
-        // This._navigationService.openSnippet(src, id);
-        console.log('Snippet öffnen:', { src, id });
+        this._modalService.openImageModal(id, src);
     }
 
     /**

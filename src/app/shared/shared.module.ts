@@ -66,6 +66,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LicenseComponent,
         LogoComponent,
         MetaIdentifierBadgesComponent,
+        ModalComponent,
         ScrollToTopButtonComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
@@ -74,7 +75,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     declarations: [
         DisclaimerWorkeditionsComponent,
         JsonViewerComponent,
-        ModalComponent,
         RouterLinkButtonGroupComponent,
         TableComponent,
         TablePaginationComponent,
