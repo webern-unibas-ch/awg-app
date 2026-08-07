@@ -30,7 +30,7 @@
                                 [title]="getTrademark(writingMaterial.trademark.variant)?.full"
                                 [alt]="getTrademark(writingMaterial.trademark.variant)?.short" /><br />
                         } @else {
-                            <span [compile-html]="writingMaterial.trademark.alt" [compile-html-ref]="ref"></span>&nbsp;
+                            <span [awgCompileHtml]="writingMaterial.trademark.alt"></span>&nbsp;
                         }
                     </span>
                     @for (locus of writingMaterial.trademark.locus; track $index) {

@@ -47,11 +47,6 @@ export class SourceDescriptionWritingMaterialsComponent {
     readonly TRADEMARKS = EDITION_TRADEMARKS_DATA;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceDescriptionWritingMaterialsComponent = this;
-
-    /**
      * Public method: getTradeMark.
      *
      * It retrieves a trademark for a given variant

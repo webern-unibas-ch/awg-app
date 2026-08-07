@@ -23,10 +23,7 @@
                         }
                         <!-- type -->
                         @if (sourceDescription.type) {
-                            <p
-                                class="awg-source-description-type"
-                                [compile-html]="sourceDescription.type"
-                                [compile-html-ref]="ref"></p>
+                            <p class="awg-source-description-type" [awgCompileHtml]="sourceDescription.type"></p>
                         }
                         <!-- location -->
                         @if (sourceDescription.location) {
@@ -41,10 +38,7 @@
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.conditions"
                                     detailsLabel=""
-                                    detailsClass="conditions"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="conditions" />
                             }
                             <!-- writingMaterials -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.writingMaterials)) {
@@ -54,10 +48,7 @@
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
-                                    detailsClass="writing-materials"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="writing-materials" />
                             }
                             <!-- writingInstruments -->
                             @if (!UTILS.isEmptyObject(sourceDescription.physDesc.writingInstruments)) {
@@ -65,10 +56,9 @@
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="smallcaps">Schreibstoff:&nbsp;</span>
                                         <span
-                                            [compile-html]="
+                                            [awgCompileHtml]="
                                                 getWritingInstruments(sourceDescription.physDesc.writingInstruments)
-                                            "
-                                            [compile-html-ref]="ref"></span>
+                                            "></span>
                                     </p>
                                 }
                             }
@@ -77,75 +67,52 @@
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.titles"
                                     detailsLabel="Titel"
-                                    detailsClass="titles"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="titles" />
                             }
                             <!-- date -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.dates)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.dates"
                                     detailsLabel="Datierung"
-                                    detailsClass="dates"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="dates" />
                             }
                             <!-- pagination -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.paginations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.paginations"
                                     detailsLabel="Paginierung"
-                                    detailsClass="paginations"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="paginations" />
                             }
                             <!-- measureNumbers -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.measureNumbers)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.measureNumbers"
                                     detailsLabel="Taktzahlen"
-                                    detailsClass="measure-numbers"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="measure-numbers" />
                             }
                             <!-- instrumentation -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.instrumentations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
-                                    detailsClass="instrumentations"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="instrumentations" />
                             }
                             <!-- annotations -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.annotations)) {
                                 <awg-source-description-details
                                     [details]="sourceDescription.physDesc.annotations"
                                     detailsLabel="Eintragungen"
-                                    detailsClass="annotations"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    detailsClass="annotations" />
                             }
                             <!-- contents -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.contents)) {
-                                <awg-source-description-contents
-                                    [contents]="sourceDescription.physDesc.contents"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                <awg-source-description-contents [contents]="sourceDescription.physDesc.contents" />
                             }
 
                             <!-- corrections -->
                             @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.corrections)) {
                                 <awg-source-description-corrections
-                                    [corrections]="sourceDescription.physDesc.corrections"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    [corrections]="sourceDescription.physDesc.corrections" />
                             }
                         </div>
                     }

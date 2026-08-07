@@ -18,7 +18,7 @@
                 }
                 @if (folio.folioDescription) {
                     <span class="awg-source-description-content-item-folio-description"
-                        >&nbsp;&nbsp;<span [compile-html]="folio.folioDescription" [compile-html-ref]="ref"></span
+                        >&nbsp;&nbsp;<span [awgCompileHtml]="folio.folioDescription"></span
                     ></span>
                 }
                 <ng-template #folioTemplate let-folio>
@@ -100,7 +100,7 @@
 
                             @if (system.systemDescription) {
                                 <span class="awg-source-description-content-item-system-description">
-                                    <span [compile-html]="system.systemDescription" [compile-html-ref]="ref"></span>
+                                    <span [awgCompileHtml]="system.systemDescription"></span>
                                     @if (system.measure) {
                                         <span>&nbsp;</span>
                                     }

@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -17,8 +17,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { SourceDescriptionContent } from '@awg-views/edition-view/models';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
+import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescriptionContentsComponent } from './source-description-contents.component';
 
@@ -27,17 +29,18 @@ import { SourceDescriptionContentsComponent } from './source-description-content
 class SourceDescriptionContentTableStubComponent {
     @Input()
     content: SourceDescriptionContent;
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
 }
 
 describe('SourceDescriptionContentsComponent', () => {
     let component: SourceDescriptionContentsComponent;
     let fixture: ComponentFixture<SourceDescriptionContentsComponent>;
     let compDe: DebugElement;
+
+    let navigationService: EditionNavigationService;
+
+    let selectSvgSheetSpy: Spy;
+    let serviceNavigateToSvgSheetSpy: Spy;
+    let toggleAllContentDetailsSpy: Spy;
 
     let expectedContents: SourceDescriptionContent[];
     let expectedOpenAllContentDetails: boolean;
@@ -46,25 +49,23 @@ describe('SourceDescriptionContentsComponent', () => {
     let expectedSheetId: string;
     let expectedNextSheetId: string;
 
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
-    let toggleAllContentDetailsSpy: Spy;
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [CompileHtmlDirective],
             declarations: [
                 SourceDescriptionContentsComponent,
                 SourceDescriptionContentTableStubComponent,
-                CompileHtmlComponent,
                 AbbrDirective,
             ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SourceDescriptionContentsComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        navigationService = TestBed.inject(EditionNavigationService);
+
+        // Service spies
+        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedContents = JSON.parse(
@@ -76,9 +77,13 @@ describe('SourceDescriptionContentsComponent', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(SourceDescriptionContentsComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleAllContentDetailsSpy = vi.spyOn(component, 'toggleAllContentDetails');
     });
 
@@ -93,10 +98,6 @@ describe('SourceDescriptionContentsComponent', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `contents`', () => {
             expect(component.contents).toBeUndefined();
-        });
-
-        it('... should have `ref`', () => {
-            expectToEqual(component.ref, component);
         });
 
         it('... should have `openAllContentDetails`', () => {
@@ -353,6 +354,50 @@ describe('SourceDescriptionContentsComponent', () => {
                     expectToBe(contentItemDescriptionEl.textContent.trim(), '(test description)');
                 });
 
+                it('... should contain one CompileHtmlDirective for the description', () => {
+                    const summaryDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+                    const firstContentItemSummary = summaryDes[0];
+                    const contentItemDescriptionDes = getAndExpectDebugElementByCss(
+                        firstContentItemSummary,
+                        'span.awg-source-description-content-item-description',
+                        1,
+                        1
+                    );
+
+                    getAndExpectDebugElementByDirective(contentItemDescriptionDes[0], CompileHtmlDirective, 1, 1);
+                });
+
+                it('... should pass down the description to the CompileHtmlDirective', () => {
+                    const summaryDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
+                        expectedContentsWithItemsLength,
+                        expectedContentsWithItemsLength
+                    );
+                    const firstContentItemSummary = summaryDes[0];
+                    const contentItemDescriptionDes = getAndExpectDebugElementByCss(
+                        firstContentItemSummary,
+                        'span.awg-source-description-content-item-description',
+                        1,
+                        1
+                    );
+
+                    const compileHtmlDes = getAndExpectDebugElementByDirective(
+                        contentItemDescriptionDes[0],
+                        CompileHtmlDirective,
+                        1,
+                        1
+                    );
+                    const compileHtmlIns = compileHtmlDes[0].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+
+                    expectToBe(compileHtmlIns.htmlContent(), expectedContents[0].itemDescription);
+                });
+
                 it('... should display the content-item label (strong) without anchor link if not given', () => {
                     const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -369,6 +414,7 @@ describe('SourceDescriptionContentsComponent', () => {
                         1
                     );
                     getAndExpectDebugElementByCss(contentItemDes[0], 'a', 0, 0);
+
                     const strongDes = getAndExpectDebugElementByCss(contentItemDes[0], 'strong', 1, 1);
                     const strongEl: HTMLElement = strongDes[0].nativeElement;
 
@@ -391,14 +437,15 @@ describe('SourceDescriptionContentsComponent', () => {
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
-                    const thirdContentItemSummary = summaryDes[2];
 
+                    const thirdContentItemSummary = summaryDes[2];
                     const contentItemDes = getAndExpectDebugElementByCss(
                         thirdContentItemSummary,
                         'span.awg-source-description-content-item',
                         1,
                         1
                     );
+
                     const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
                     const strongDes = getAndExpectDebugElementByCss(anchorDes[0], 'strong', 1, 1);
                     const strongEl: HTMLElement = strongDes[0].nativeElement;
@@ -454,104 +501,50 @@ describe('SourceDescriptionContentsComponent', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            describe('... should trigger', () => {
-                it('... on click on content item', async () => {
-                    // Get content item spans
-                    const spanDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'span.awg-source-description-content-item',
-                        3,
-                        3
-                    );
+            it('... should trigger on click on content item', async () => {
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-content-item', 3, 3);
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 1, 1);
 
-                    // Get anchors
-                    const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 1, 1);
+                // Click on anchor (with selectSvgSheet call)
+                await clickAndAwaitChanges(anchorDes[0], fixture);
 
-                    // Click on anchor (with selectSvgSheet call)
-                    await clickAndAwaitChanges(anchorDes[0], fixture);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-                });
-
-                describe('... on event from SourceDescriptionCorrectionsComponent (stubbed) if', () => {
-                    let expectedContentsWithFolios: SourceDescriptionContent[];
-                    let expectedContentsWithFoliosLength: number;
-
-                    beforeEach(() => {
-                        expectedContentsWithFolios = component.contents.filter(content => content.folios.length > 0);
-                        expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
-                    });
-
-                    it('... sheet id is undefined', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionContentTableStubComponent,
-                            expectedContentsWithFoliosLength,
-                            expectedContentsWithFoliosLength
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            SourceDescriptionContentTableStubComponent
-                        ) as SourceDescriptionContentTableStubComponent;
-
-                        tableCmp.selectSvgSheetRequest.emit(undefined);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
-                    });
-
-                    it('... sheet id is given', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionContentTableStubComponent,
-                            expectedContentsWithFoliosLength,
-                            expectedContentsWithFoliosLength
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            SourceDescriptionContentTableStubComponent
-                        ) as SourceDescriptionContentTableStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-
-                        tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                });
+                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
             });
 
-            it('... should not emit anything if no id is provided', () => {
+            it('... should do nothing if no id is provided', () => {
                 const expectedSheetIds = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
                 const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet within same complex', () => {
+            it('... should trigger NavigationService with selected svg sheet within same complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
 
-            it('... should emit id of selected svg sheet for another complex', () => {
+            it('... should trigger NavigationService with selected svg sheet for another complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
                 const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
         });
 
@@ -568,12 +561,10 @@ describe('SourceDescriptionContentsComponent', () => {
                     1
                 );
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllContentDetailsSpy, 1);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectSpyCall(toggleAllContentDetailsSpy, 2);

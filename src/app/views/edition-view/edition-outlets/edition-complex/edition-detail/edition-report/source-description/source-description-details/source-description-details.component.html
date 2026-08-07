@@ -5,7 +5,7 @@
         }
         <span class="awg-source-description-details-content">
             @for (detail of details; track $index; let lastDetail = $last) {
-                <span [compile-html]="detail" [compile-html-ref]="ref"></span>
+                <span [awgCompileHtml]="detail"></span>
                 @if (detailsClass !== 'conditions') {
                     @if (!lastDetail) {
                         <span>;</span><br />
