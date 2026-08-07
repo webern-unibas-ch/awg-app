@@ -4,15 +4,12 @@
             <section class="awg-edition-intro-section" [id]="introBlock.blockId">
                 @if (introBlock.blockHeader) {
                     <div class="awg-edition-intro-block">
-                        <p class="heading" [innerHTML]="introBlock.blockHeader"></p>
+                        <p class="heading" [awgCompileHtml]="introBlock.blockHeader"></p>
                     </div>
                 }
                 @if (introBlock.blockContent.length > 0) {
                     @for (blockContent of introBlock.blockContent; track $index) {
-                        <div
-                            class="awg-edition-intro-block"
-                            [compile-html]="blockContent"
-                            [compile-html-ref]="this"></div>
+                        <div class="awg-edition-intro-block" [awgCompileHtml]="blockContent"></div>
                     }
                 }
             </section>
@@ -24,12 +21,7 @@
                 @for (introBlock of introBlockContent; track $index) {
                     @if (introBlock.blockNotes.length > 0) {
                         @for (note of introBlock.blockNotes; track $index) {
-                            <small
-                                ><div
-                                    class="awg-edition-intro-note"
-                                    [compile-html]="note"
-                                    [compile-html-ref]="this"></div
-                            ></small>
+                            <small><div class="awg-edition-intro-note" [awgCompileHtml]="note"></div></small>
                         }
                     }
                 }

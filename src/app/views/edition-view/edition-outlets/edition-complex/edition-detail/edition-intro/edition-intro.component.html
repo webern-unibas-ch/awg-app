@@ -1,8 +1,5 @@
 <!-- content: intro -->
 <div>
-    <!-- modal -->
-    <awg-modal #modal />
-
     <!-- intro -->
     @if (viewData(); as view) {
         @if (view.error; as errorObject) {
@@ -36,11 +33,7 @@
                         <awg-edition-intro-content
                             class="col-12 col-xl-10"
                             [introBlockContent]="intro[lang].content"
-                            [notesLabel]="notesLabel"
-                            (navigateToIntroFragmentRequest)="onIntroFragmentNavigate($event)"
-                            (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                            (openModalRequest)="onModalOpen($event)"
-                            (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                            [notesLabel]="notesLabel" />
 
                         <awg-edition-intro-nav
                             class="col-12 col-xl-2 d-none d-xl-block"
