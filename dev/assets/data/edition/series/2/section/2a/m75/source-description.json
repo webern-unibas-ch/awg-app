@@ -234,7 +234,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M75_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a data-complex-id='m75' data-sheet-id='M75_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -305,7 +305,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a (click)=\"ref.selectSvgSheet({complexId: 'm75', sheetId: 'M75_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 75: <a data-complex-id='m75' data-sheet-id='M75_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

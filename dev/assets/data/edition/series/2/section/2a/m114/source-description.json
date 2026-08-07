@@ -1077,7 +1077,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1183,7 +1183,7 @@
                         "label": "Korrekturen 2 in <strong>C<sup>a</sup></strong> (mit Tinte, Bleistift und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF1'})\">Textfassung 1</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF1'>Textfassung 1</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1270,7 +1270,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF2'})\">Textfassungen 2</a> und <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3'})\">3</a>."
+                                            "comment": "Verweiszeichen über dem System: Einschubstelle für <a data-complex-id='m114' data-sheet-id='M114_TF2'>Textfassungen 2</a> und <a data-complex-id='m114' data-sheet-id='M114_TF3'>3</a>."
                                         }
                                     ]
                                 }
@@ -1282,7 +1282,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>b</sup></strong> (mit Tinte und Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1458,7 +1458,7 @@
                         "label": "Korrekturen 2 in <strong>C<sup>b</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF2'})\">Textfassung 2</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF2'>Textfassung 2</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1468,7 +1468,7 @@
                                             "measure": "19",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle T. 19 in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF1'})\">Textfassung 1</a>."
+                                            "comment": "Verweiszeichen über dem System: Verweis auf Einschubstelle T. 19 in <a data-complex-id='m114' data-sheet-id='M114_TF1'>Textfassung 1</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf2_Cb_corr_2-002",
@@ -1482,7 +1482,7 @@
                                             "measure": "29–30",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Korrekturskizze zu Oberstimmenschicht über dem System (vgl. <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3b'})\">Textfassung 3 T. 29–30</a>). <br />##Abbildung##"
+                                            "comment": "Korrekturskizze zu Oberstimmenschicht über dem System (vgl. <a data-complex-id='m114' data-sheet-id='M114_TF3b'>Textfassung 3 T. 29–30</a>). <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf2_Cb_corr_2-004",
@@ -1501,7 +1501,7 @@
                         "label": "Korrekturen 1 in <strong>C<sup>c</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF3'>Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1518,7 +1518,7 @@
                                             "measure": "nach 25",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Tonartwechsel: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_C'})\"><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
+                                            "comment": "Tonartwechsel: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für b, es, as überschreibt <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> für fis, cis, gis. <a data-complex-id='m114' data-report-fragment-id='source_C'><strong>C</strong></a>: Akkoladenwechsel nach T. 25."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf3_Cc_corr_1-003",
@@ -1607,7 +1607,7 @@
                         "label": "Korrekturen 2 in <strong>C<sup>c</sup></strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF3'})\">Textfassung 3</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF3'>Textfassung 3</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2527,7 +2527,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>a</sup></strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4'})\">Textfassung 4</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF4'>Textfassung 4</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2738,7 +2738,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>a</sup></strong> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4'})\">Textfassung 4</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF4'>Textfassung 4</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2958,7 +2958,7 @@
                                             "measure": "91–92",
                                             "system": "Klav. o.",
                                             "position": "Taktstrich",
-                                            "comment": "Einschubzeichen und <em>vi=</em> über dem System mit blauem Buntstift: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5'})\">Textfassung 5</a>."
+                                            "comment": "Einschubzeichen und <em>vi=</em> über dem System mit blauem Buntstift: Einschubstelle für <a data-complex-id='m114' data-sheet-id='M114_TF5'>Textfassung 5</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf4_Ea_corr_2-032",
@@ -3012,7 +3012,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>b</sup></strong> (mit Tinte und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5'})\">Textfassung 5</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF5'>Textfassung 5</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3022,7 +3022,7 @@
                                             "measure": "93",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>de </em>mit blauem Buntstift über dem System: Verweis auf Einschubstelle in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4f'})\">Textfassung 4 T. 92</a>."
+                                            "comment": "<em>de </em>mit blauem Buntstift über dem System: Verweis auf Einschubstelle in <a data-complex-id='m114' data-sheet-id='M114_TF4f'>Textfassung 4 T. 92</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_1-002",
@@ -3176,7 +3176,7 @@
                                             "measure": "141",
                                             "system": "Klav.",
                                             "position": "3–4/8",
-                                            "comment": "des–f ersetzt des<sup>1</sup>–f<sup>1</sup> in Klav. o. (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "des–f ersetzt des<sup>1</sup>–f<sup>1</sup> in Klav. o. (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_1-024",
@@ -3190,7 +3190,7 @@
                                             "measure": "143",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Unterstimmenschicht zuerst in Klav. o. notiert mit 5–6/8 als <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ges<sup>1</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>1</sup>. Diese geändert zu [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]ges<sup>2</sup>–<span class='glyph accid'>{{ref.getGlyph('[bb]')}}</span>eses<sup>2</sup>. Dann 1–6/8 versetzt ins untere System; hier auf 5/8 ges<sup>1</sup> ersetzt durch ges<sup>2</sup> (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_1-026",
@@ -3246,14 +3246,14 @@
                                             "measure": "154",
                                             "system": "Klav. u.",
                                             "position": "3/8",
-                                            "comment": "Oberstimmenschicht: d ersetzt g (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Oberstimmenschicht: d ersetzt g (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_1-034",
                                             "measure": "154",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "Oberstimmenschicht: g ersetzt d (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Oberstimmenschicht: g ersetzt d (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_1-035",
@@ -3267,7 +3267,7 @@
                                             "measure": "155",
                                             "system": "Klav. u.",
                                             "position": "5/8",
-                                            "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Oberstimmenschicht: [<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>]h ersetzt as (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_2'>Korrekturen 2</a>)."
                                         }
                                     ]
                                 }
@@ -3279,7 +3279,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>b</sup></strong> (mit Bleistift, blauem und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5'})\">Textfassung 5</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF5'>Textfassung 5</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3289,7 +3289,7 @@
                                             "measure": "93",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>de </em>über dem System: Verweis auf Einschubstelle in Textfassung <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF4f'})\">Textfassung 4 T. 92</a>."
+                                            "comment": "<em>de </em>über dem System: Verweis auf Einschubstelle in Textfassung <a data-complex-id='m114' data-sheet-id='M114_TF4f'>Textfassung 4 T. 92</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_2-002",
@@ -3352,7 +3352,7 @@
                                             "measure": "108",
                                             "system": "Klav. o.",
                                             "position": "Taktanfang",
-                                            "comment": "<em>vi- </em>mit blauem Buntstift über dem System: Einschubstelle für <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF6h'})\">Textfassung 6 T. 106</a> (vgl. auch nachfolgende Korrektur)."
+                                            "comment": "<em>vi- </em>mit blauem Buntstift über dem System: Einschubstelle für <a data-complex-id='m114' data-sheet-id='M114_TF6h'>Textfassung 6 T. 106</a> (vgl. auch nachfolgende Korrektur)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_2-011",
@@ -3471,7 +3471,7 @@
                                             "measure": "141",
                                             "system": "Klav.",
                                             "position": "1–6/8",
-                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>)."
+                                            "comment": "Noten zusammengebalkt; Achtelnoten [<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>]des<sup>1</sup>–f<sup>1 </sup>auf 2–3/8 in Klav. o. gestrichen (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_1'>Korrekturen 1</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_2-028",
@@ -3499,7 +3499,7 @@
                                             "measure": "143",
                                             "system": "Klav. o.",
                                             "position": "1–6/8",
-                                            "comment": "Unterstimmenschicht gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_Eb_corr_1'})\">Korrekturen 1</a>)."
+                                            "comment": "Unterstimmenschicht gestrichen (vgl. <a data-complex-id='m114' data-report-fragment-id='source_Eb_corr_1'>Korrekturen 1</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf5_Eb_corr_2-032",
@@ -3679,7 +3679,7 @@
                         "label": "Korrekturen 1 in <strong>E<sup>c</sup></strong> (mit Tinte, blauem und braunem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF6'})\">Textfassung 6</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF6'>Textfassung 6</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -3689,7 +3689,7 @@
                                             "measure": "vor 106",
                                             "system": "Klav. o.",
                                             "position": "",
-                                            "comment": "Kreuz mit braunem Buntstift sowie Einschubzeichen und <em>vi=</em> mit blauem Buntstift vor dem System: Verweis auf Einschubstelle in <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF5h'})\">Textfassung 5 T. 108</a>."
+                                            "comment": "Kreuz mit braunem Buntstift sowie Einschubzeichen und <em>vi=</em> mit blauem Buntstift vor dem System: Verweis auf Einschubstelle in <a data-complex-id='m114' data-sheet-id='M114_TF5h'>Textfassung 5 T. 108</a>."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m114_tf6_Ec_corr_1-002",
@@ -3722,7 +3722,7 @@
                         "label": "Korrekturen 2 in <strong>E<sup>c</sup></strong> (mit Bleistift und blauem Buntstift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a (click)=\"ref.selectSvgSheet({complexId: 'm114', sheetId: 'M114_TF6'})\">Textfassung 6</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 114: <a data-complex-id='m114' data-sheet-id='M114_TF6'>Textfassung 6</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
