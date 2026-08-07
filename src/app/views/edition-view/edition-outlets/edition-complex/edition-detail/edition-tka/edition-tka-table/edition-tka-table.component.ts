@@ -1,20 +1,9 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    inject,
-    Input,
-    Output,
-    TemplateRef,
-    ViewChild,
-} from '@angular/core';
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
-import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-view/services';
+import { EditionSnippetService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionTkaTable component.
@@ -31,25 +20,11 @@ import { EditionGlyphService, EditionSnippetService } from '@awg-views/edition-v
 })
 export class EditionTkaTableComponent {
     /**
-     * Private readonly injection variable: _editionGlyphService.
-     *
-     * It keeps the instance of the injected EditionGlyphService.
-     */
-    private readonly _editionGlyphService = inject(EditionGlyphService);
-
-    /**
      * Private readonly injection variable: _editionSnippetService.
      *
      * It keeps the instance of the injected EditionSnippetService.
      */
     private readonly _editionSnippetService = inject(EditionSnippetService);
-
-    /**
-     * Private readonly injection variable: _ngbModal.
-     *
-     * It keeps the instance of the injected NgbModal.
-     */
-    private readonly _ngbModal = inject(NgbModal);
 
     /**
      * Input variable: commentary.
@@ -64,7 +39,8 @@ export class EditionTkaTableComponent {
      *
      * It keeps the id of the sheet or textcritics.
      */
-    @Input() id?: string;
+    @Input()
+    id?: string;
 
     /**
      * Input variable: isCorrections.
@@ -83,39 +59,6 @@ export class EditionTkaTableComponent {
     isRowtable = false;
 
     /**
-     * Output variable: navigateToReportFragment.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
-     */
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
-
-    /**
-     * Output variable: openModalRequest.
-     *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
-     */
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
-
-    /**
-     * ViewChild variable: snippetModalTemplate.
-     *
-     * It keeps the reference to the snippet image modal template.
-     */
-    @ViewChild('snippetModalTemplate')
-    snippetModalTemplate: TemplateRef<any>;
-
-    /**
      * Protected readonly variable: EDITION_UTILS.
      *
      * It keeps the reference to the {@link EDITION_UTILS} methods.
@@ -128,25 +71,6 @@ export class EditionTkaTableComponent {
      * It keeps the reference to the {@link UTILS} methods.
      */
     protected readonly UTILS = UTILS;
-
-    /**
-     * Public variable: snippetId.
-     *
-     * It keeps the id of the snippet image to be displayed in the modal.
-     */
-    snippetId = '';
-
-    /**
-     * Public variable: snippetSrc.
-     *
-     * It keeps the src of the snippet image to be displayed in the modal.
-     */
-    snippetSrc = '';
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionTkaTableComponent = this;
 
     /**
      * Public variable: tableHeaderStrings.
@@ -191,36 +115,6 @@ export class EditionTkaTableComponent {
     }
 
     /**
-     * Public method: openSnippet.
-     *
-     * It opens the snippet image modal for the given image src.
-     *
-     * @param {string | null | undefined} src The given image src.
-     * @returns {void} Opens the modal.
-     */
-    openSnippet(src?: string | null, id = ''): void {
-        if (!src) {
-            return;
-        }
-        this.snippetSrc = src;
-        this.snippetId = id;
-        this._ngbModal.open(this.snippetModalTemplate, { size: 'xl', centered: true });
-    }
-
-    /**
-     * Public method: getGlyph.
-     *
-     * It returns the hex value string for a glyph referenced by the given glyph string
-     * via the EditionGlyphService.
-     *
-     * @param {string} glyphString The given glyph string.
-     * @returns {string} The hex value string of the given glyph string or empty string.
-     */
-    getGlyph(glyphString: string): string {
-        return this._editionGlyphService.getGlyph(glyphString);
-    }
-
-    /**
      * Public method: getTableHeaderStrings.
      *
      * It returns different table header strings depending on the isRowtable flag.
@@ -248,53 +142,5 @@ export class EditionTkaTableComponent {
         }
 
         return selectedTableHeader;
-    }
-
-    /**
-     * Public method: navigateToReportFragment.
-     *
-     * It emits the given ids of a selected edition complex and report fragment
-     * to the {@link navigateToReportFragmentRequest}.
-     *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Emits the ids.
-     */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
-        if (!reportIds?.fragmentId) {
-            return;
-        }
-        this.navigateToReportFragmentRequest.emit(reportIds);
-    }
-
-    /**
-     * Public method: openModal.
-     *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Emits the id.
-     */
-    openModal(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.openModalRequest.emit(id);
-    }
-
-    /**
-     * Public method: selectSvgSheet.
-     *
-     * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
-     *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Emits the ids.
-     */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
-        if (!sheetIds?.sheetId) {
-            return;
-        }
-        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }

@@ -1,7 +1,7 @@
 <table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
     @if (commentary.preamble) {
         <caption class="awg-edition-tka-table-preamble mb-0">
-            <span [compile-html]="commentary.preamble" [compile-html-ref]="ref"> </span>
+            <span [awgCompileHtml]="commentary.preamble"> </span>
         </caption>
     }
     @if (!UTILS.isEmptyArray(commentary.comments)) {
@@ -19,7 +19,7 @@
                 @if (textcriticalCommentBlock.blockHeader) {
                     <tr class="table-light table-group-divider">
                         <td colspan="4" class="awg-edition-tka-table-block-header">
-                            <span [compile-html]="textcriticalCommentBlock.blockHeader" [compile-html-ref]="ref"></span>
+                            <span [awgCompileHtml]="textcriticalCommentBlock.blockHeader"></span>
                         </td>
                     </tr>
                 }
@@ -39,10 +39,9 @@
                         <td [innerHTML]="textcriticalComment.position"></td>
                         <td>
                             <span
-                                [compile-html]="
-                                    ref.getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
-                                "
-                                [compile-html-ref]="ref"></span>
+                                [awgCompileHtml]="
+                                    getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
+                                "></span>
                         </td>
                     </tr>
                 }
@@ -50,13 +49,3 @@
         </tbody>
     }
 </table>
-
-<ng-template #snippetModalTemplate let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title">Abbildung: {{ snippetId }}</h5>
-        <button type="button" class="btn-close" aria-label="Close modal" (click)="modal.dismiss()"></button>
-    </div>
-    <div class="modal-body text-center">
-        <img [src]="snippetSrc" alt="Abbildung: {{ snippetId }}" class="img-fluid" />
-    </div>
-</ng-template>
