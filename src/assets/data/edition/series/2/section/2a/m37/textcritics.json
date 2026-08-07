@@ -4,9 +4,9 @@
             "id": "M37_TF1",
             "label": "M 37 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 37 ist <a data-complex-id='m37' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='m37' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='m37' data-report-fragment-id='source_B'><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 37 ist <a data-complex-id='m37' data-report-fragment-id='source_B'><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -26,7 +26,7 @@
                                 "measure": "10",
                                 "system": "Klav.",
                                 "position": "(2/4)",
-                                "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a (click)=\"ref.navigateToReportFragment({complexId: 'm37', fragmentId: 'source_B'})\"><strong>B</strong></a> verschobenen Untersatzes weggelassen. <br />##Abbildung##"
+                                "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a data-complex-id='m37' data-report-fragment-id='source_B'><strong>B</strong></a> verschobenen Untersatzes weggelassen. <br />##Abbildung##"
                             },
                             {
                                 "svgGroupId": "awg-tkk-m37_tf1-003",
@@ -78,7 +78,7 @@
             "id": "M37_Sk2",
             "label": "M 37 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet({complexId: 'm37', sheetId: 'M37_Sk1'})\"><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a data-complex-id='m37' data-sheet-id='M37_Sk1'><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "commentary": {
                 "preamble": "",

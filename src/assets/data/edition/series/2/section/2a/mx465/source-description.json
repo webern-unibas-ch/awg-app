@@ -1005,7 +1005,7 @@
                         "label": "Korrekturen 1 in <strong>B</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a (click)=\"ref.selectSvgSheet({complexId: 'mx465', sheetId: 'Mx465_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -1034,7 +1034,7 @@
                         "label": "Korrekturen 2 in <strong>B</strong> (mit blauem Buntstift von der Hand Schönbergs)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a (click)=\"ref.selectSvgSheet({complexId: 'mx465', sheetId: 'Mx465_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M* 465: <a data-complex-id='mx465' data-sheet-id='Mx465_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",

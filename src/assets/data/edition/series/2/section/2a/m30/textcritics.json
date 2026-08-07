@@ -4,9 +4,9 @@
             "id": "M30_TF1",
             "label": "M 30 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 30 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 30 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 30 ist <a data-complex-id='m30' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='m30' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='m30' data-report-fragment-id='source_B'><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 30 ist <a data-complex-id='m30' data-report-fragment-id='source_B'><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -54,7 +54,7 @@
                                 "measure": "24",
                                 "system": "Klav.",
                                 "position": "Taktende",
-                                "comment": "sic. <a (click)=\"ref.navigateToReportFragment({complexId: 'm30', fragmentId: 'source_B'})\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet({complexId: 'm30', sheetId: 'M30_Sk1k'})\"><strong>Sk1</strong></a>)."
+                                "comment": "sic. <a data-complex-id='m30' data-report-fragment-id='source_B'><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a data-complex-id='m30' data-sheet-id='M30_Sk1k'><strong>Sk1</strong></a>)."
                             }
                         ]
                     }

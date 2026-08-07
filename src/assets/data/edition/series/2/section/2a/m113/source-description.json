@@ -1886,7 +1886,7 @@
                         "label": "Korrekturen 1 in <strong>C</strong> (mit Tinte)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M113_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a data-complex-id='m113' data-sheet-id='M113_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2099,7 +2099,7 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Takte durch Verweispfeil ersetzt durch T. 51–52 (vgl. T. 53 und <a data-complex-id='m113' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m113_tf1_C_corr_1-031",
@@ -2120,7 +2120,7 @@
                                             "measure": "53",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
-                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_2'})\">Korrekturen 2</a>)."
+                                            "comment": "Unter dem System: Pfeil zu T. 51–52 (vgl. T. {{'{'}}51–52{{'}'}} und <a data-complex-id='m113' data-report-fragment-id='source_C_corr_2'>Korrekturen 2</a>)."
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m113_tf1_C_corr_1-034",
@@ -2244,7 +2244,7 @@
                         "label": "Korrekturen 2 in <strong>C</strong> (mit Bleistift)",
                         "evaluations": [],
                         "commentary": {
-                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a (click)=\"ref.selectSvgSheet({complexId: 'm113', sheetId: 'M113_TF1'})\">einzige Textfassung</a>.",
+                            "preamble": "Die Beschreibung der Korrekturen bezieht sich auf Studienkomposition für Klavier M 113: <a data-complex-id='m113' data-sheet-id='M113_TF1'>einzige Textfassung</a>.",
                             "comments": [
                                 {
                                     "blockHeader": "",
@@ -2429,7 +2429,7 @@
                                             "measure": "{51–52}",
                                             "system": "Klav.",
                                             "position": "",
-                                            "comment": "Takte pauschal gestrichen (vgl. <a (click)=\"ref.navigateToReportFragment({complexId: 'm113', fragmentId: 'source_C_corr_1'})\">Korrekturen 1</a>) <br />##Abbildung##"
+                                            "comment": "Takte pauschal gestrichen (vgl. <a data-complex-id='m113' data-report-fragment-id='source_C_corr_1'>Korrekturen 1</a>) <br />##Abbildung##"
                                         },
                                         {
                                             "svgGroupId": "awg-kv-m113_tf1_C_corr_2-027",

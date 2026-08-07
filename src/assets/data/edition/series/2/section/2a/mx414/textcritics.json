@@ -4,9 +4,9 @@
             "id": "Mx414_TF1",
             "label": "M* 414 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M* 414 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B'})\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B_corr_1'})\">Korrekturen 1</a> mit Tinte sowie die später erfolgten <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B_corr_2'})\">Korrekturen 2</a> mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 414 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx414', fragmentId: 'source_B'})\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M* 414 ist <a data-complex-id='mx414' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='mx414' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='mx414' data-report-fragment-id='source_B'><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: <a data-complex-id='mx414' data-report-fragment-id='source_B_corr_1'>Korrekturen 1</a> mit Tinte sowie die später erfolgten <a data-complex-id='mx414' data-report-fragment-id='source_B_corr_2'>Korrekturen 2</a> mit Bleistift und rotem Buntstift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. Der Zustand nach Korrekturen 1 konstituiert eine kohärente Textfassung.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 414 ist <a data-complex-id='mx414' data-report-fragment-id='source_B'><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -17,7 +17,7 @@
             "id": "Mx414_Sk1",
             "label": "M* 414 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">Studienkomposition für Klavier M* 414</a>, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
+                "<strong>Sk1</strong> ist die erste Verlaufsskizze zu der <a data-complex-id='mx414' data-sheet-id='Mx414_TF1'>Studienkomposition für Klavier M* 414</a>, die von der Tintenniederschrift in verschiedener Hinsicht abweicht."
             ],
             "commentary": {
                 "preamble": "",
@@ -127,7 +127,7 @@
             "id": "Mx414_Sk2",
             "label": "M* 414 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> ist die zweite Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx414', sheetId: 'Mx414_TF1'})\">Studienkomposition für Klavier M* 414</a>."
+                "<strong>Sk2</strong> ist die zweite Verlaufsskizze zu der <a data-complex-id='mx414' data-sheet-id='Mx414_TF1'>Studienkomposition für Klavier M* 414</a>."
             ],
             "commentary": {
                 "preamble": "",
