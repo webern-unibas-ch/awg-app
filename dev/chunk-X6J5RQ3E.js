@@ -1,0 +1,1 @@
+import{K as I}from"./chunk-WSCNFCCF.js";var E=[{seriesId:"1",sectionId:"5"},{seriesId:"2",sectionId:"2a"}];var t=[{label:I.SERIES.full,route:[I.EDITION.route,I.SERIES.route]},{label:I.ROWTABLES.full,route:[I.EDITION.route,I.ROWTABLES.route]},{label:I.PREFACE.full,route:[I.EDITION.route,I.PREFACE.route]}];export{E as a,t as b};
