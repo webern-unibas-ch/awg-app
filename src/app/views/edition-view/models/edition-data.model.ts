@@ -61,24 +61,47 @@ export interface EditionDataAssetsError {
  * * It defines the mapping of edition view keys to their corresponding data types.
  */
 export interface EditionViewDataTypeMapping {
+    /**
+     * The data structure for the 'graph' view.
+     */
     graph: {
         graphData: GraphList;
     };
+
+    /**
+     * The data structure for the 'intro' view.
+     */
     intro: {
         introData: IntroList;
     };
+
+    /**
+     * The data structure for the 'preface' view.
+     */
     preface: {
         prefaceData: PrefaceList;
     };
+
+    /**
+     * The data structure for the 'rowtables' view.
+     */
+    rowtables: {
+        rowtablesData: RowtablesList;
+    };
+
+    /**
+     * The data structure for the 'report' view.
+     */
     report: {
         sourceListData: SourceList;
         sourceDescriptionData: SourceDescriptionList;
         sourceEvaluationData: SourceEvaluationList;
         textcriticsData: TextcriticsList;
     };
-    rowtables: {
-        rowtablesData: RowtablesList;
-    };
+
+    /**
+     * The data structure for the 'sheets' view.
+     */
     sheets: {
         folioConvoluteData: FolioConvoluteList;
         svgSheetsData: EditionSvgSheetList;

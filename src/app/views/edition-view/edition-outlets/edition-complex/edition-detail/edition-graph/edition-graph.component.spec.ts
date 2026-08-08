@@ -427,7 +427,9 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         it('... should have one CompileHtmlDirective in each paragraph', async () => {
                             paragraphDes.slice(1).forEach(pDe => {
-                                pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                                const directiveIns = pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+
+                                expect(directiveIns).toBeTruthy();
                             });
                         });
 
@@ -739,7 +741,7 @@ describe('EditionGraphComponent (DONE)', () => {
                             expectToContain(hEl.textContent, 'Statischer Graph');
 
                             expectToContain(imgEl.src, component.GRAPH_IMAGES[imageId]);
-                            expectToContain(imgEl.alt, 'static-graph-' + imageId);
+                            expectToContain(imgEl.alt, 'Static network representation of data for ' + imageId);
                         });
                     });
                 });

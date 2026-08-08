@@ -18,7 +18,7 @@ import { EditionDataService } from './edition-data.service';
 /**
  * The EditionView service.
  *
- *
+ * It provides methods to manage the state of the edition view and its data.
  */
 @Injectable({
     providedIn: 'root',
@@ -182,6 +182,16 @@ export class EditionViewService {
         ])
     );
 
+    /**
+     * Private method: _buildViewData.
+     *
+     * It builds the EditionViewData object for the given view key and signal map.
+     *
+     * @param {K} viewKey The given view key.
+     * @param {Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>} signalMap The given signal map.
+     * @param {(data: EditionViewDataTypeMapping[K]) => boolean} [extraContentCheck] An optional extra content check function.
+     * @returns {EditionViewData<K>} The built EditionViewData object.
+     */
     private _buildViewData<K extends EditionViewKey>(
         viewKey: K,
         signalMap: Array<[keyof EditionViewDataTypeMapping[K], Signal<any>]>,

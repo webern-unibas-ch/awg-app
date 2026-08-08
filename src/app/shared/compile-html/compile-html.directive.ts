@@ -137,7 +137,7 @@ export class CompileHtmlDirective {
             this._renderer.setAttribute(el, 'tabindex', '0');
 
             const isImage = el.tagName.toLowerCase() === 'img';
-            const isModalAnchor = el.hasAttribute('data-modal-id');
+            const isModalAnchor = el.dataset['modalId'] !== undefined;
 
             const role = isImage || isModalAnchor ? 'button' : 'link';
             this._renderer.setAttribute(el, 'role', role);
@@ -180,16 +180,16 @@ export class CompileHtmlDirective {
      * @returns {void} Calls the appropriate navigation methods based on the clicked anchor element.
      */
     private _handleAnchorNavigation(anchor: HTMLAnchorElement, event: Event): void {
-        const modalId = anchor.getAttribute('data-modal-id');
+        const modalId = anchor.dataset['modalId'];
         if (modalId) {
             event.preventDefault();
             this._modalService.openTextModal(modalId);
             return;
         }
 
-        const complexId = anchor.getAttribute('data-complex-id') || '';
+        const complexId = anchor.dataset['complexId'] || '';
 
-        const introFragmentId = anchor.getAttribute('data-intro-fragment-id');
+        const introFragmentId = anchor.dataset['introFragmentId'];
         if (introFragmentId) {
             event.preventDefault();
             this._navigationService.navigateToIntroFragment({ complexId, fragmentId: introFragmentId });
@@ -197,14 +197,14 @@ export class CompileHtmlDirective {
         }
 
         if (complexId) {
-            const sheetId = anchor.getAttribute('data-sheet-id');
+            const sheetId = anchor.dataset['sheetId'];
             if (sheetId) {
                 event.preventDefault();
                 this._navigationService.navigateToSvgSheet({ complexId, sheetId });
                 return;
             }
 
-            const reportFragmentId = anchor.getAttribute('data-report-fragment-id');
+            const reportFragmentId = anchor.dataset['reportFragmentId'];
             if (reportFragmentId) {
                 event.preventDefault();
                 this._navigationService.navigateToReportFragment({ complexId, fragmentId: reportFragmentId });
@@ -223,14 +223,14 @@ export class CompileHtmlDirective {
      * @returns {void} Calls the appropriate navigation methods based on the clicked image element.
      */
     private _handleImageNavigation(img: HTMLImageElement, event: Event): void {
-        if (!img.hasAttribute('data-snippet-id') || !img.hasAttribute('data-snippet-src')) {
+        const id = img.dataset['snippetId'];
+        const src = img.dataset['snippetSrc'];
+
+        if (!id || !src) {
             return;
         }
 
         event.preventDefault();
-        const src = img.getAttribute('data-snippet-src') as string;
-        const id = img.getAttribute('data-snippet-id') as string;
-
         this._modalService.openImageModal(id, src);
     }
 
