@@ -38,15 +38,15 @@ export class ModalService {
      * @returns {void} Opens the modal.
      */
     openTextModal(snippetKey: string): void {
-        const textSnippet = MODAL_TEXT_SNIPPETS[snippetKey] || '';
+        const id = snippetKey ? snippetKey : 'CONTENTS_NOT_AVAILABLE';
+        const textSnippet = MODAL_TEXT_SNIPPETS[id] || '';
 
         const modalData: ModalData = {
             type: 'text',
-            id: snippetKey,
+            id: id,
             title: 'Hinweis',
             content: textSnippet,
         };
-
         this._open(modalData);
     }
 
