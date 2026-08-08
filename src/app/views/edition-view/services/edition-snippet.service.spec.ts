@@ -12,11 +12,9 @@ describe('EditionSnippetService (DONE)', () => {
     const getExpectedSnippetImg = (src: string, id: string, alt: string): string =>
         [
             `<img src="${src}" alt="${alt}" class="awg-edition-tkk-snippet"`,
-            ` role="button" tabindex="0" aria-label="${alt}"`,
-            ` (click)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)"`,
-            ` (keydown.enter)="ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)"`,
-            ` (keydown.space)="$event.preventDefault();ref.openSnippet(&quot;${src}&quot;, &quot;${id}&quot;)" />`,
-        ].join('');
+            `role="button" tabindex="0" aria-label="${alt}"`,
+            `data-snippet-src="${src}" data-snippet-id="${id}" />`,
+        ].join(' ');
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
