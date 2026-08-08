@@ -59,9 +59,9 @@ describe('EditionGraphComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
-    let modalService: ModalService;
     let mockDocument: Document;
     let mockFullscreenService: Partial<FullscreenService>;
+    let mockModalService: Partial<ModalService>;
 
     let openModalSpy: Spy;
     let serviceOpenModalSpy: Spy;
@@ -84,6 +84,10 @@ describe('EditionGraphComponent (DONE)', () => {
             closeFullscreen: (): void => {},
         };
 
+        mockModalService = {
+            openTextModal: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             imports: [
                 AlertErrorStubComponent,
@@ -96,18 +100,18 @@ describe('EditionGraphComponent (DONE)', () => {
             providers: [
                 { provide: EditionViewService, useValue: { graphViewData: mockViewDataSignal.asReadonly() } },
                 { provide: FullscreenService, useValue: mockFullscreenService },
+                { provide: ModalService, useValue: mockModalService },
             ],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
-        editionStateService = TestBed.inject(EditionStateService);
-        modalService = TestBed.inject(ModalService);
         mockDocument = TestBed.inject(DOCUMENT);
+        editionStateService = TestBed.inject(EditionStateService);
 
         // Service spies
-        serviceOpenModalSpy = vi.spyOn(modalService, 'openTextModal');
+        serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op25');

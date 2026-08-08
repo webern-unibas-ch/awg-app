@@ -35,7 +35,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetFacetItemComponent>;
     let compDe: DebugElement;
 
-    let navigationService: EditionNavigationService;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
     let selectSvgSheetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
@@ -53,17 +53,20 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
 
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             declarations: [EditionSvgSheetFacetItemComponent, DisclaimerWorkeditionsStubComponent],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        navigationService = TestBed.inject(EditionNavigationService);
-
         // Service spies
-        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedFacetItemLabel = 'Testeditionslabel';

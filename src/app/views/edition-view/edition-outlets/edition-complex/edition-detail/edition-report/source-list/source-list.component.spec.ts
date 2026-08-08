@@ -31,8 +31,8 @@ describe('SourceListComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceListComponent>;
     let compDe: DebugElement;
 
-    let modalService: ModalService;
-    let navigationService: EditionNavigationService;
+    let mockModalService: Partial<ModalService>;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
     let onSourceClickSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
@@ -44,20 +44,29 @@ describe('SourceListComponent (DONE)', () => {
     let expectedFragment: string;
 
     beforeEach(async () => {
+        // Mock services
+        mockModalService = {
+            openTextModal: vi.fn(),
+        };
+
+        mockNavigationService = {
+            navigateToReportFragment: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, RouterModule],
             declarations: [SourceListComponent, AbbrDirective, RouterLinkStubDirective],
+            providers: [
+                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionNavigationService, useValue: mockNavigationService },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        modalService = TestBed.inject(ModalService);
-        navigationService = TestBed.inject(EditionNavigationService);
-
         // Service spies
-        serviceOpenModalSpy = vi.spyOn(modalService, 'openTextModal');
-        serviceNavigateToReportFragmentSpy = vi.spyOn(navigationService, 'navigateToReportFragment');
+        serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
+        serviceNavigateToReportFragmentSpy = vi.spyOn(mockNavigationService, 'navigateToReportFragment');
 
         // Test data
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);

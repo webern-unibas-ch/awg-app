@@ -99,7 +99,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let isFullscreenMockSignal: WritableSignal<boolean>;
     let mockFullscreenService: Partial<FullscreenService>;
-    let modalService: ModalService;
+    let mockModalService: Partial<ModalService>;
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
@@ -138,9 +138,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // Unset fullscreen by default
         isFullscreenMockSignal = signal(false);
 
-        // Mock FullscreenService
+        // Mock services
         mockFullscreenService = {
             isFullscreen: isFullscreenMockSignal.asReadonly(),
+        };
+
+        mockModalService = {
+            openTextModal: vi.fn(),
         };
 
         await TestBed.configureTestingModule({
@@ -151,16 +155,16 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 EditionSvgSheetFacetStubComponent,
                 EditionSvgSheetFooterStubComponent,
             ],
-            providers: [{ provide: FullscreenService, useValue: mockFullscreenService }],
+            providers: [
+                { provide: FullscreenService, useValue: mockFullscreenService },
+                { provide: ModalService, useValue: mockModalService },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        modalService = TestBed.inject(ModalService);
-
         // Service spies
-        serviceOpenModalSpy = vi.spyOn(modalService, 'openTextModal');
+        serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         // Test data
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);

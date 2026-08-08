@@ -36,7 +36,7 @@ describe('SourceDescriptionContentsComponent', () => {
     let fixture: ComponentFixture<SourceDescriptionContentsComponent>;
     let compDe: DebugElement;
 
-    let navigationService: EditionNavigationService;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
     let selectSvgSheetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
@@ -50,6 +50,11 @@ describe('SourceDescriptionContentsComponent', () => {
     let expectedNextSheetId: string;
 
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective],
             declarations: [
@@ -57,15 +62,13 @@ describe('SourceDescriptionContentsComponent', () => {
                 SourceDescriptionContentTableStubComponent,
                 AbbrDirective,
             ],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        navigationService = TestBed.inject(EditionNavigationService);
-
         // Service spies
-        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedContents = JSON.parse(

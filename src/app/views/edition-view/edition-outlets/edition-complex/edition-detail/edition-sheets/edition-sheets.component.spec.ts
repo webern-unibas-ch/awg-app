@@ -95,7 +95,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
     let editionStateService: EditionStateService;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
-    let navigationService: EditionNavigationService;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
     let editionSheetsServiceFindTextcriticsSpy: Spy;
     let editionSheetsServiceGetCurrentEditionTypeSpy: Spy;
@@ -145,6 +145,10 @@ describe('EditionSheetsComponent (DONE)', () => {
         };
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         mockEditionSheetsService = {
             findTextcritics: (): Textcritics => new Textcritics(),
             getCurrentEditionType: (): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
@@ -158,6 +162,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
             declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionAccoladeStubComponent],
             providers: [
+                { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
                 { provide: EditionViewService, useValue: { sheetsViewData: mockViewDataSignal.asReadonly() } },
                 {
@@ -171,7 +176,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
-        navigationService = TestBed.inject(EditionNavigationService);
 
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
@@ -211,7 +215,7 @@ describe('EditionSheetsComponent (DONE)', () => {
             .spyOn(mockEditionSheetsService, 'selectSvgSheetById')
             .mockReturnValue(expectedSvgSheet);
 
-        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetsComponent);

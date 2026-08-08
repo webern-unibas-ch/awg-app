@@ -76,7 +76,7 @@ describe('TextcriticsListComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
-    let navigationService: EditionNavigationService;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
     let selectSvgSheetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
@@ -99,6 +99,11 @@ describe('TextcriticsListComponent (DONE)', () => {
     }
 
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, NgbAccordionWithConfigModule],
             declarations: [
@@ -108,16 +113,16 @@ describe('TextcriticsListComponent (DONE)', () => {
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
             ],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        navigationService = TestBed.inject(EditionNavigationService);
 
         // Service spies
-        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedComplexId = 'testComplex1';

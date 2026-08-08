@@ -29,6 +29,9 @@ import { FolioService } from './folio.service';
 describe('FolioService (DONE)', () => {
     let folioService: FolioService;
 
+    let mockModalService: Partial<ModalService>;
+    let mockNavigationService: Partial<EditionNavigationService>;
+
     let serviceNavigateToSvgSheetSpy: Spy;
     let serviceOpenTextModalSpy: Spy;
 
@@ -81,19 +84,29 @@ describe('FolioService (DONE)', () => {
     let expectedSystemsLineStrokeWidth: number;
 
     beforeEach(() => {
+        // Mock services
+        mockModalService = {
+            openTextModal: vi.fn(),
+        };
+
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         TestBed.configureTestingModule({
-            providers: [FolioService],
+            providers: [
+                FolioService,
+                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionNavigationService, useValue: mockNavigationService },
+            ],
         });
 
         // Inject services
         folioService = TestBed.inject(FolioService);
 
         // Service spies
-        const navigationService = TestBed.inject(EditionNavigationService);
-        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
-
-        const modalService = TestBed.inject(ModalService);
-        serviceOpenTextModalSpy = vi.spyOn(modalService, 'openTextModal');
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
+        serviceOpenTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSheetToSvgCanvas');
         addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSystemsToSvgCanvas');
