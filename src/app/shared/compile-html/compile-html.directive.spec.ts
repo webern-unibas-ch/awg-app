@@ -269,6 +269,12 @@ describe('CompileHtmlDirective (DONE)', () => {
                         expectedRole: 'button',
                     },
                     {
+                        desc: 'links with empty data-modal-id',
+                        getExpectedOutput: () => `<a data-modal-id="">Modal Link</a>`,
+                        expectedSelector: 'a',
+                        expectedRole: 'button',
+                    },
+                    {
                         desc: 'images with data-snippet-id and data-snippet-src',
                         getExpectedOutput: () =>
                             `<img data-snippet-id="snippet-1" data-snippet-src="assets/img/test.png" alt="Test" />`,

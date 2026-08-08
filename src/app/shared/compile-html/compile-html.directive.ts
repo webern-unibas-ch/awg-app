@@ -137,7 +137,7 @@ export class CompileHtmlDirective {
             this._renderer.setAttribute(el, 'tabindex', '0');
 
             const isImage = el.tagName.toLowerCase() === 'img';
-            const isModalAnchor = !!el.dataset['modalId'];
+            const isModalAnchor = el.dataset['modalId'] !== undefined;
 
             const role = isImage || isModalAnchor ? 'button' : 'link';
             this._renderer.setAttribute(el, 'role', role);
