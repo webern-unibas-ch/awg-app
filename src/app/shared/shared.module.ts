@@ -9,7 +9,6 @@ import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { CodeMirrorModule } from './codemirror/codemirror.module';
-import { CompileHtmlModule } from './compile-html';
 
 //
 // Shared components
@@ -53,7 +52,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        CompileHtmlModule,
         AlertErrorComponent,
         CodeMirrorModule,
         FontAwesomeModule,
@@ -89,7 +87,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        CompileHtmlModule,
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
