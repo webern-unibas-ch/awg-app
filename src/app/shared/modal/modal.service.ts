@@ -34,10 +34,10 @@ export class ModalService {
      *
      * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
      *
-     * @param {string} snippetKey The key of the text snippet.
+     * @param {string | null | undefined}  snippetKey The key of the text snippet.
      * @returns {void} Opens the modal.
      */
-    openTextModal(snippetKey: string): void {
+    openTextModal(snippetKey?: string | null): void {
         const id = snippetKey ? snippetKey : 'CONTENTS_NOT_AVAILABLE';
         const textSnippet = MODAL_TEXT_SNIPPETS[id] || '';
 

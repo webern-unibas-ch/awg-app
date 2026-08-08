@@ -99,7 +99,7 @@ describe('ModalService (DONE)', () => {
                 expectSpyCall(openSpy, 1, [expectedTextModalData]);
             });
 
-            it('... should prepare ModalData with default content if snippetKey is undefined and trigger `_open`', () => {
+            it('... should prepare ModalData with default content if snippetKey is missing (undefined, null, or empty) and trigger `_open`', () => {
                 const defaultId = 'CONTENTS_NOT_AVAILABLE';
                 const defaultContent = MODAL_TEXT_SNIPPETS[defaultId];
 
