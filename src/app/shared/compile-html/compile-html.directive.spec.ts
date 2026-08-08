@@ -450,8 +450,16 @@ describe('CompileHtmlDirective (DONE)', () => {
                     const expectedArgs = getExpectedArgs();
                     const targetSpy = getExpectedSpy();
 
+                    const mockDataset: Record<string, string | undefined> = {
+                        complexId: attributes['data-complex-id'],
+                        sheetId: attributes['data-sheet-id'],
+                        introFragmentId: attributes['data-intro-fragment-id'],
+                        reportFragmentId: attributes['data-report-fragment-id'],
+                        modalId: attributes['data-modal-id'],
+                    };
+
                     const mockAnchor = {
-                        getAttribute: (attr: string) => attributes[attr as keyof typeof attributes] || null,
+                        dataset: mockDataset,
                     } as unknown as HTMLAnchorElement;
 
                     const mockEvent = {
@@ -496,8 +504,15 @@ describe('CompileHtmlDirective (DONE)', () => {
                 ];
 
                 it.each(testCases)(`... $desc`, ({ attributes }) => {
+                    const mockDataset: Record<string, string | undefined> = {
+                        modalId: attributes['data-modal-id'],
+                        sheetId: attributes['data-sheet-id'],
+                        reportFragmentId: attributes['data-report-fragment-id'],
+                        complexId: attributes['data-complex-id'],
+                    };
+
                     const mockAnchor = {
-                        getAttribute: (key: string) => attributes[key as keyof typeof attributes] || null,
+                        dataset: mockDataset,
                     } as unknown as HTMLAnchorElement;
 
                     const mockEvent = {
@@ -524,16 +539,11 @@ describe('CompileHtmlDirective (DONE)', () => {
                 it('... and open the snippet if data-snippet-id and data-snippet-src are present', () => {
                     const mockId = 'snip-123';
                     const mockSrc = 'path/to/image.png';
+
                     const mockImg = {
-                        hasAttribute: (attr: string) => attr === 'data-snippet-id' || attr === 'data-snippet-src',
-                        getAttribute: (attr: string) => {
-                            if (attr === 'data-snippet-id') {
-                                return mockId;
-                            }
-                            if (attr === 'data-snippet-src') {
-                                return mockSrc;
-                            }
-                            return null;
+                        dataset: {
+                            snippetId: mockId,
+                            snippetSrc: mockSrc,
                         },
                     } as unknown as HTMLImageElement;
 
@@ -550,34 +560,22 @@ describe('CompileHtmlDirective (DONE)', () => {
                 it.each([
                     {
                         desc: 'data-snippet-id is missing (but src is present)',
-                        hasId: false,
-                        hasSrc: true,
                         attributes: { 'data-snippet-src': 'path/to/image.png' },
                     },
                     {
                         desc: 'data-snippet-src is missing (but id is present)',
-                        hasId: true,
-                        hasSrc: false,
                         attributes: { 'data-snippet-id': 'snip-123' },
                     },
                     {
                         desc: 'both data-snippet-id and data-snippet-src are missing',
-                        hasId: false,
-                        hasSrc: false,
                         attributes: {},
                     },
-                ])(`... $desc`, ({ hasId, hasSrc, attributes }) => {
+                ])(`... $desc`, ({ attributes }: { attributes: { [key: string]: string | undefined } }) => {
                     const mockImg = {
-                        hasAttribute: (attr: string) => {
-                            if (attr === 'data-snippet-id') {
-                                return hasId;
-                            }
-                            if (attr === 'data-snippet-src') {
-                                return hasSrc;
-                            }
-                            return false;
+                        dataset: {
+                            snippetId: attributes['data-snippet-id'],
+                            snippetSrc: attributes['data-snippet-src'],
                         },
-                        getAttribute: (attr: string) => attributes[attr as keyof typeof attributes] || null,
                     } as unknown as HTMLImageElement;
 
                     const mockEvent = { preventDefault: vi.fn() } as unknown as Event;

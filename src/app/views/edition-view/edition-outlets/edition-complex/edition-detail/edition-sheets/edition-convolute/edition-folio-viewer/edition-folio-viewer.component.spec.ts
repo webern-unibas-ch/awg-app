@@ -367,7 +367,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                         component.createSVGCanvas();
 
-                        expect(component.viewBoxArray.length).not.toEqual(component.folioSvgDataArray.length);
+                        expect(component.viewBoxArray).not.toHaveLength(component.folioSvgDataArray.length);
                         expectToBe(component.canvasArray.length, 0);
                         expectToBe(component.viewBoxArray.length, 2);
 
