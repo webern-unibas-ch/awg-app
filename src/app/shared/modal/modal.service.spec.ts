@@ -93,13 +93,37 @@ describe('ModalService (DONE)', () => {
                 expect(service.openTextModal).toBeDefined();
             });
 
-            it('... should prepare correct ModalData and call `_open`', () => {
+            it('... should prepare correct ModalData and trigger `_open`', () => {
                 service.openTextModal(expectedSnippetKey);
 
                 expectSpyCall(openSpy, 1, [expectedTextModalData]);
             });
 
-            it('... should prepare ModalData with empty content if snippetKey is unknown and forward it to `_open`', () => {
+            it('... should prepare ModalData with default content if snippetKey is missing (undefined, null, or empty) and trigger `_open`', () => {
+                const defaultId = 'CONTENTS_NOT_AVAILABLE';
+                const defaultContent = MODAL_TEXT_SNIPPETS[defaultId];
+
+                const expectedDefaultModalData = {
+                    type: 'text',
+                    id: defaultId,
+                    title: 'Hinweis',
+                    content: defaultContent,
+                };
+
+                service.openTextModal(undefined);
+
+                expectSpyCall(openSpy, 1, [expectedDefaultModalData]);
+
+                service.openTextModal(null);
+
+                expectSpyCall(openSpy, 2, [expectedDefaultModalData]);
+
+                service.openTextModal('');
+
+                expectSpyCall(openSpy, 3, [expectedDefaultModalData]);
+            });
+
+            it('... should prepare ModalData with empty content if snippetKey is unknown and trigger `_open`', () => {
                 const unknownKey = 'NON_EXISTING_KEY';
                 const expectedUnknownModalData = {
                     type: 'text',
