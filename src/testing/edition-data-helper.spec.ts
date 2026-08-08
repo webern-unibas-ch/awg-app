@@ -5,8 +5,8 @@ import {
     EditionDataAssetsKeys,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
+import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
-import { GraphList } from '@awg-app/views/edition-view/models';
 import { createMockResponseData, createMockViewData } from './edition-data-helper';
 import { expectToBe, expectToEqual } from './expect-helper';
 

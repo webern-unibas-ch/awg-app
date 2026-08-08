@@ -83,7 +83,7 @@ export class SourceListComponent {
      * @param {object} reportIds The given report ids as FragmentClickEvent.
      * @returns {void} Navigates to the selected report fragment.
      */
-    _navigateToReportFragment(reportIds: FragmentClickEvent): void {
+    private _navigateToReportFragment(reportIds: FragmentClickEvent): void {
         if (!reportIds?.fragmentId) {
             return;
         }

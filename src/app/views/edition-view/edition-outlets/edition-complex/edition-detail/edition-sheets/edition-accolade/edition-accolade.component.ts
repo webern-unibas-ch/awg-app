@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ModalService } from '@awg-app/shared/modal/modal.service';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,

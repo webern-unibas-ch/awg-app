@@ -16,7 +16,7 @@ import {
     EditionOutlineComplexItem,
     EditionOutlineSection,
     EditionOutlineSeries,
-} from '@awg-app/views/edition-view/models';
+} from '@awg-views/edition-view/models/edition-outline.model';
 
 import {
     StatisticsComplexBreakdown,

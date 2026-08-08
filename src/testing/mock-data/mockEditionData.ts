@@ -155,9 +155,9 @@ export const mockEditionData = {
                         blockId: 'test_block_id_1',
                         blockHeader: 'Test block header 1',
                         blockContent: [
-                            "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragmentId='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                            "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
                             "In <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a data-complex-id='testComplex1' data-intro-fragment-id='note-80'>80</a></sup>",
-                            '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                            "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
                         ],
                         blockNotes: [
                             "<span id='note-80' class='note'><a class='note-backlink' data-complex-id='testComplex1' data-intro-fragment-id='note-80-backlink'>80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
@@ -1232,7 +1232,7 @@ export const mockEditionData = {
                                     system: '12',
                                     position: '3. Note',
                                     comment:
-                                        '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                                        "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
                                 },
                                 {
                                     svgGroupId: 'svg-group-4',

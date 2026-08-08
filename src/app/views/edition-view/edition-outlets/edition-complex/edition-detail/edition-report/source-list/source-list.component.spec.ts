@@ -19,11 +19,11 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { Source, SourceList } from '@awg-views/edition-view/models';
+import { ModalService } from '@awg-shared/modal/modal.service';
 
-import { ModalService } from '@awg-app/shared/modal/modal.service';
-import { TextSource } from '@awg-app/views/edition-view/models/source-list.model';
-import { EditionNavigationService } from '@awg-app/views/edition-view/services/edition-navigation.service';
+import { Source, SourceList, TextSource } from '@awg-views/edition-view/models/source-list.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+
 import { SourceListComponent } from './source-list.component';
 
 describe('SourceListComponent (DONE)', () => {
