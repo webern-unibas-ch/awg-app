@@ -232,8 +232,8 @@ comment strings with image snippet placeholders.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="86"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:86</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="81"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -310,8 +310,8 @@ comment strings with image snippet placeholders.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-snippet.service.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -561,21 +561,16 @@ export class EditionSnippetService {
             const id &#x3D; &#x60;${svgGroupId}${suffix}&#x60;;
             const src &#x3D; &#x60;assets/img/edition/snippets/${id}.png&#x60;;
             const alt &#x3D; &#x60;Abbildung: ${id}&#x60;;
-            const clickExpression &#x3D; &#x60;ref.openSnippet(${JSON.stringify(src)}, ${JSON.stringify(id)})&#x60;;
-            const keydownSpaceExpression &#x3D; &#x60;$event.preventDefault();${clickExpression}&#x60;;
 
             const escapedSrc &#x3D; this._escapeHtmlAttribute(src);
             const escapedAlt &#x3D; this._escapeHtmlAttribute(alt);
-            const escapedClick &#x3D; this._escapeHtmlAttribute(clickExpression);
-            const escapedKeydownSpace &#x3D; this._escapeHtmlAttribute(keydownSpaceExpression);
+            const escapedId &#x3D; this._escapeHtmlAttribute(id);
 
             return [
                 &#x60;&lt;img src&#x3D;&quot;${escapedSrc}&quot; alt&#x3D;&quot;${escapedAlt}&quot; class&#x3D;&quot;awg-edition-tkk-snippet&quot;&#x60;,
-                &#x60; role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;0&quot; aria-label&#x3D;&quot;${escapedAlt}&quot;&#x60;,
-                &#x60; (click)&#x3D;&quot;${escapedClick}&quot;&#x60;,
-                &#x60; (keydown.enter)&#x3D;&quot;${escapedClick}&quot;&#x60;,
-                &#x60; (keydown.space)&#x3D;&quot;${escapedKeydownSpace}&quot; /&gt;&#x60;,
-            ].join(&#x27;&#x27;);
+                &#x60;role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;0&quot; aria-label&#x3D;&quot;${escapedAlt}&quot;&#x60;,
+                &#x60;data-snippet-src&#x3D;&quot;${escapedSrc}&quot; data-snippet-id&#x3D;&quot;${escapedId}&quot; /&gt;&#x60;,
+            ].join(&#x27; &#x27;);
         });
     }
 

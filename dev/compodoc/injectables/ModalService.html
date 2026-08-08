@@ -164,11 +164,11 @@
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_selectedModalId" >_selectedModalId</a>
+                                <a href="#_ngbModal" >_ngbModal</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#selectedModalId" >selectedModalId</a>
+                                <a href="#closeResult" >closeResult</a>
                             </li>
                         </ul>
                     </td>
@@ -183,7 +183,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#updateModalId" >updateModalId</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getDismissReason" >_getDismissReason</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_open" >_open</a>
+                            </li>
+                            <li>
+                                <a href="#openImageModal" >openImageModal</a>
+                            </li>
+                            <li>
+                                <a href="#openTextModal" >openTextModal</a>
                             </li>
                         </ul>
                     </td>
@@ -207,32 +218,34 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateModalId"></a>
+                    <a name="_getDismissReason"></a>
                     <span class="name">
-                        <span ><b>updateModalId</b></span>
-                        <a href="#updateModalId"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>_getDismissReason</b></span>
+                        <a href="#_getDismissReason"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateModalId(id: string | null)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getDismissReason(reason: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="34"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:34</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:109</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Public method: updateModalId.</p>
-<p>It updates the selected modal snippet id or resets it to null.</p>
+                        <div class="io-description"><p>Private method: _getDismissReason.</p>
+<p>It returns a string describing the reason for modal dismissal.</p>
 </div>
 
                             <div class="io-description">
@@ -249,9 +262,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>reason</td>
                                             <td>
-                                                        <code>string | null</code>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                             </td>
 
                                             <td>
@@ -260,7 +273,86 @@
 
 
                                             <td>
-                                                    <p>The given modal snippet id or null to reset.</p>
+                                                    <p>The reason for dismissal.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The dismissal reason as a string.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_open"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_open</b></span>
+                        <a href="#_open"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_open(modalData: <a href="../interfaces/ModalData.html" target="_self">ModalData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _open.</p>
+<p>An internal helper method to open the ModalComponent via NgbModal
+and supply it with the required ModalData input.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>modalData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ModalData.html" target="_self" >ModalData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The data for the modal.</p>
 
                                             </td>
                                         </tr>
@@ -272,7 +364,175 @@
 
                         </div>
                             <div class="io-description">
-                                <p>Updates the signal.</p>
+                                <p>Opens the modal via NgBootstrap.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openImageModal"></a>
+                    <span class="name">
+                        <span ><b>openImageModal</b></span>
+                        <a href="#openImageModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openImageModal(imgId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, imgSrc: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: openImageModal.</p>
+<p>It opens the modal component with an image snippet.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>imgId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The identifier for the image.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>imgSrc</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The image source URL.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Opens the modal.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openTextModal"></a>
+                    <span class="name">
+                        <span ><b>openTextModal</b></span>
+                        <a href="#openTextModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openTextModal(snippetKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: openTextModal.</p>
+<p>It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snippetKey</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The key of the text snippet.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Opens the modal.</p>
 
                             </div>
                 </td>
@@ -289,12 +549,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectedModalId"></a>
+                    <a name="_ngbModal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_selectedModalId</b></span>
-                        <a href="#_selectedModalId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_ngbModal</b></span>
+                        <a href="#_ngbModal"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -306,19 +566,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
+                        <i>Default value : </i><code>inject(NgbModal)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/modal/modal.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/modal/modal.service.ts:23</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly signal: _selectedModalId.</p>
-<p>It holds the id of the currently selected modal snippet.</p>
+                    <div class="io-description"><p>Private readonly injection variable: _ngbModal.</p>
+<p>It keeps the instance of the injected NgbModal.</p>
 </div>
                 </td>
             </tr>
@@ -329,11 +589,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="selectedModalId"></a>
+                    <a name="closeResult"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>selectedModalId</b></span>
-                        <a href="#selectedModalId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>closeResult</b></span>
+                        <a href="#closeResult"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -345,19 +605,19 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedModalId.asReadonly()</code>
+                        <i>Default value : </i><code>signal(&#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/modal/modal.service.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/modal/modal.service.ts:30</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public readonly signal: selectedModalId.</p>
-<p>It exposes the id of the currently selected modal snippet as a readonly signal.</p>
+                    <div class="io-description"><p>Readonly signal: closeResult.</p>
+<p>It holds the result of the modal close or dismiss action.</p>
 </div>
                 </td>
             </tr>
@@ -370,7 +630,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { inject, Injectable, signal } from &#x27;@angular/core&#x27;;
+
+import { ModalDismissReasons, NgbModal } from &#x27;@ng-bootstrap/ng-bootstrap/modal&#x27;;
+
+import { MODAL_TEXT_SNIPPETS } from &#x27;./modal-text-snippets.data&#x27;;
+import { ModalComponent } from &#x27;./modal.component&#x27;;
+import { ModalData } from &#x27;./modal.model&#x27;;
 
 /**
  * The ModalService.
@@ -382,29 +648,105 @@
 })
 export class ModalService {
     /**
-     * Private readonly signal: _selectedModalId.
+     * Private readonly injection variable: _ngbModal.
      *
-     * It holds the id of the currently selected modal snippet.
+     * It keeps the instance of the injected NgbModal.
      */
-    private readonly _selectedModalId &#x3D; signal&lt;string | null&gt;(null);
+    private readonly _ngbModal &#x3D; inject(NgbModal);
 
     /**
-     * Public readonly signal: selectedModalId.
+     * Readonly signal: closeResult.
      *
-     * It exposes the id of the currently selected modal snippet as a readonly signal.
+     * It holds the result of the modal close or dismiss action.
      */
-    readonly selectedModalId &#x3D; this._selectedModalId.asReadonly();
+    readonly closeResult &#x3D; signal(&#x27;&#x27;);
 
     /**
-     * Public method: updateModalId.
+     * Public method: openTextModal.
      *
-     * It updates the selected modal snippet id or resets it to null.
+     * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
      *
-     * @param {string | null} id The given modal snippet id or null to reset.
-     * @returns {void} Updates the signal.
+     * @param {string} snippetKey The key of the text snippet.
+     * @returns {void} Opens the modal.
      */
-    updateModalId(id: string | null): void {
-        this._selectedModalId.set(id);
+    openTextModal(snippetKey: string): void {
+        const textSnippet &#x3D; MODAL_TEXT_SNIPPETS[snippetKey] || &#x27;&#x27;;
+
+        const modalData: ModalData &#x3D; {
+            type: &#x27;text&#x27;,
+            id: snippetKey,
+            title: &#x27;Hinweis&#x27;,
+            content: textSnippet,
+        };
+
+        this._open(modalData);
+    }
+
+    /**
+     * Public method: openImageModal.
+     *
+     * It opens the modal component with an image snippet.
+     *
+     * @param {string} imgId The identifier for the image.
+     * @param {string} imgSrc The image source URL.
+     * @returns {void} Opens the modal.
+     */
+    openImageModal(imgId: string, imgSrc: string): void {
+        const modalData: ModalData &#x3D; {
+            type: &#x27;image&#x27;,
+            id: imgId,
+            title: &#x60;Abbildung: ${imgId}&#x60;,
+            content: imgSrc,
+        };
+
+        this._open(modalData);
+    }
+
+    /**
+     * Private method: _open.
+     *
+     * An internal helper method to open the ModalComponent via NgbModal
+     * and supply it with the required ModalData input.
+     *
+     * @param {ModalData} modalData The data for the modal.
+     * @returns {void} Opens the modal via NgBootstrap.
+     */
+    private _open(modalData: ModalData): void {
+        const modalRef &#x3D; this._ngbModal.open(ModalComponent, {
+            size: &#x27;xl&#x27;,
+            centered: true,
+            ariaLabelledBy: &#x27;awg-modal&#x27;,
+        });
+
+        modalRef.componentInstance.modalData &#x3D; modalData;
+
+        modalRef.result.then(
+            result &#x3D;&gt; {
+                this.closeResult.set(&#x60;Closed with: ${result}&#x60;);
+            },
+            reason &#x3D;&gt; {
+                this.closeResult.set(&#x60;Dismissed ${this._getDismissReason(reason)}&#x60;);
+            }
+        );
+    }
+
+    /**
+     * Private method: _getDismissReason.
+     *
+     * It returns a string describing the reason for modal dismissal.
+     *
+     * @param {any} reason The reason for dismissal.
+     * @returns {string} The dismissal reason as a string.
+     */
+    private _getDismissReason(reason: any): string {
+        switch (reason) {
+            case ModalDismissReasons.ESC:
+                return &#x27;by pressing ESC&#x27;;
+            case ModalDismissReasons.BACKDROP_CLICK:
+                return &#x27;by clicking on a backdrop&#x27;;
+            default:
+                return &#x60;with: ${reason}&#x60;;
+        }
     }
 }
 </code></pre>

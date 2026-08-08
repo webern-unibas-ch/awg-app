@@ -419,8 +419,8 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="175"
-                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:175</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -513,8 +513,8 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="218"
-                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:218</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -607,8 +607,8 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="149"
-                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:149</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -701,8 +701,8 @@ tabindex and role attributes for better accessibility and keyboard navigation.</
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="240"
-                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:240</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">src/app/shared/compile-html/compile-html.directive.ts:245</a></div>
                         </td>
                     </tr>
 
@@ -1250,18 +1250,25 @@ export class CompileHtmlDirective {
      * @returns {void} Applies the attributes directly to the DOM elements.
      */
     private _applyAccessibilityAttributes(): void {
-        const selectors &#x3D;
-            &#x27;a[data-modal-id], a[data-complex-id], a[data-intro-fragment-id], a[data-sheet-id], a[data-report-fragment-id]&#x27;;
-        const anchors &#x3D; this._el.nativeElement.querySelectorAll(selectors);
+        const selectors &#x3D; [
+            &#x27;a[data-modal-id]&#x27;,
+            &#x27;a[data-complex-id]&#x27;,
+            &#x27;a[data-intro-fragment-id]&#x27;,
+            &#x27;a[data-sheet-id]&#x27;,
+            &#x27;a[data-report-fragment-id]&#x27;,
+            &#x27;img[data-snippet-id][data-snippet-src]&#x27;,
+        ].join(&#x27;, &#x27;);
 
-        anchors.forEach((anchor: HTMLAnchorElement) &#x3D;&gt; {
-            this._renderer.setAttribute(anchor, &#x27;tabindex&#x27;, &#x27;0&#x27;);
+        const elements &#x3D; this._el.nativeElement.querySelectorAll(selectors);
 
-            if (anchor.hasAttribute(&#x27;data-modal-id&#x27;)) {
-                this._renderer.setAttribute(anchor, &#x27;role&#x27;, &#x27;button&#x27;);
-            } else {
-                this._renderer.setAttribute(anchor, &#x27;role&#x27;, &#x27;link&#x27;);
-            }
+        elements.forEach((el: HTMLElement) &#x3D;&gt; {
+            this._renderer.setAttribute(el, &#x27;tabindex&#x27;, &#x27;0&#x27;);
+
+            const isImage &#x3D; el.tagName.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;img&#x27;;
+            const isModalAnchor &#x3D; el.hasAttribute(&#x27;data-modal-id&#x27;);
+
+            const role &#x3D; isImage || isModalAnchor ? &#x27;button&#x27; : &#x27;link&#x27;;
+            this._renderer.setAttribute(el, &#x27;role&#x27;, role);
         });
     }
 
@@ -1304,7 +1311,7 @@ export class CompileHtmlDirective {
         const modalId &#x3D; anchor.getAttribute(&#x27;data-modal-id&#x27;);
         if (modalId) {
             event.preventDefault();
-            this._modalService.updateModalId(modalId);
+            this._modalService.openTextModal(modalId);
             return;
         }
 
@@ -1349,12 +1356,10 @@ export class CompileHtmlDirective {
         }
 
         event.preventDefault();
-        const src &#x3D; img.getAttribute(&#x27;data-snippet-src&#x27;);
-        const id &#x3D; img.getAttribute(&#x27;data-snippet-id&#x27;);
+        const src &#x3D; img.getAttribute(&#x27;data-snippet-src&#x27;) as string;
+        const id &#x3D; img.getAttribute(&#x27;data-snippet-id&#x27;) as string;
 
-        // TODO: Handling of snippets
-        // This._navigationService.openSnippet(src, id);
-        console.log(&#x27;Snippet öffnen:&#x27;, { src, id });
+        this._modalService.openImageModal(id, src);
     }
 
     /**
@@ -1370,6 +1375,7 @@ export class CompileHtmlDirective {
             return content;
         }
         const regex &#x3D; /\{\{ref\.getGlyph\(&#x27;([^&#x27;]+)&#x27;\)\}\}/g;
+
         return content.replace(regex, (_, glyphString) &#x3D;&gt; this._glyphService.getGlyph(glyphString));
     }
 }
