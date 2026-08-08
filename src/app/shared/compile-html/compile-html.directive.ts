@@ -247,6 +247,7 @@ export class CompileHtmlDirective {
             return content;
         }
         const regex = /\{\{ref\.getGlyph\('([^']+)'\)\}\}/g;
+
         return content.replace(regex, (_, glyphString) => this._glyphService.getGlyph(glyphString));
     }
 }

@@ -21,6 +21,7 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
@@ -31,12 +32,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
+    let mockEditionSnippetService: Partial<EditionSnippetService>;
+    let glyphService: EditionGlyphService;
 
     let getCommentSpy: Spy;
     let getTableHeaderStringsSpy: Spy;
     let serviceGetCommentSpy: Spy;
-
-    let mockEditionSnippetService: Partial<EditionSnippetService>;
 
     let expectedIsRowTable: boolean;
     let expectedComplexId: string;
@@ -61,12 +62,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionTkaTableComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
         mockEditionSnippetService = TestBed.inject(EditionSnippetService);
+        glyphService = TestBed.inject(EditionGlyphService);
+
+        // Service spies
+        serviceGetCommentSpy = vi.spyOn(mockEditionSnippetService, 'getComment');
 
         // Test data
         expectedComplexId = 'testComplex1';
@@ -102,10 +104,14 @@ describe('EditionTkaTableComponent (DONE)', () => {
             ],
         };
 
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionTkaTableComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
         // Spies
         getTableHeaderStringsSpy = vi.spyOn(component, 'getTableHeaderStrings');
         getCommentSpy = vi.spyOn(component, 'getComment');
-        serviceGetCommentSpy = vi.spyOn(mockEditionSnippetService, 'getComment');
     });
 
     afterEach(() => {
@@ -344,11 +350,16 @@ describe('EditionTkaTableComponent (DONE)', () => {
                             const measureCellHtmlSnippet = mockDocument.createElement('span');
                             measureCellHtmlSnippet.innerHTML = index === 2 ? '{13}' : comment.measure;
 
+                            let expectedCommentHtml = comment.comment;
+                            if (expectedCommentHtml.includes('ref.getGlyph')) {
+                                expectedCommentHtml = expectedCommentHtml.replace(
+                                    /\{\{ref\.getGlyph\('([^']+)'\)\}\}/g,
+                                    (_, glyphStr) => glyphService.getGlyph(glyphStr)
+                                );
+                            }
+
                             const commentCellHtmlSnippet = mockDocument.createElement('span');
-                            commentCellHtmlSnippet.innerHTML =
-                                index === 2
-                                    ? '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.'
-                                    : comment.comment;
+                            commentCellHtmlSnippet.innerHTML = expectedCommentHtml;
 
                             expectToBe(measureCell.textContent, measureCellHtmlSnippet.textContent);
                             expectToBe(systemCell.textContent, comment.system);
