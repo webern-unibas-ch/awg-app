@@ -1,12 +1,9 @@
 import { Component, DebugElement, EventEmitter, Input, isSignal, Output, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import type { Mock } from 'vitest';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
-
-import { of as observableOf } from 'rxjs';
 
 import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -22,8 +19,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionComplex,
     EditionSvgOverlay,
@@ -41,24 +36,14 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionSheetsService } from '@awg-views/edition-view/services/edition-sheets.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 
 // Mock components
-@Component({
-    selector: 'awg-modal',
-    template: '',
-    standalone: false,
-})
-class ModalStubComponent {
-    modalContent: string;
-    open(modalContentSnippetKey: string): void {
-        this.modalContent = modalContentSnippetKey;
-    }
-}
-
 @Component({
     selector: 'awg-edition-accolade',
     template: '',
@@ -80,21 +65,9 @@ class EditionAccoladeStubComponent {
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
     @Output()
-    navigateToReportFragmentRequest: EventEmitter<{
-        complexId: string;
-        fragmentId: string;
-    }> = new EventEmitter();
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
     @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
@@ -109,13 +82,6 @@ class EditionConvoluteStubComponent {
     selectedConvolute: FolioConvolute;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
 }
 
 describe('EditionSheetsComponent (DONE)', () => {
@@ -123,13 +89,13 @@ describe('EditionSheetsComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSheetsComponent>;
     let compDe: DebugElement;
 
-    let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'sheets';
 
     let editionStateService: EditionStateService;
     let mockEditionSheetsService: Partial<EditionSheetsService>;
+    let navigationService: EditionNavigationService;
 
     let editionSheetsServiceFindTextcriticsSpy: Spy;
     let editionSheetsServiceGetCurrentEditionTypeSpy: Spy;
@@ -137,15 +103,13 @@ describe('EditionSheetsComponent (DONE)', () => {
     let editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy: Spy;
     let editionSheetsServiceSelectSvgSheetByIdSpy: Spy;
     let editionSheetsServiceSelectConvoluteSpy: Spy;
-    let navigateWithComplexIdSpy: Spy;
-    let navigationSpy: Spy;
     let onBrowseSvgSheetSpy: Spy;
     let onLinkBoxSelectSpy: Spy;
-    let onReportFragmentNavigateSpy: Spy;
     let onOverlaySelectSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let onToggleSheetFacetSpy: Spy;
+    let serviceNavigateToSvgSheetSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'sheets'>>;
     let expectedViewDataContent: EditionViewDataContent<'sheets'>;
@@ -160,24 +124,12 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedTextcriticsListData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
     let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
-    let expectedComplexBaseRoute: string;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
-    let expectedReportFragment: string;
-    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+    let expectedNextSheetId: string;
 
     beforeEach(async () => {
-        // Mock router with spy object
-        // Router spy object
-        mockRouter = {
-            url: '/test-url',
-            events: observableOf(
-                new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
-            ),
-            navigate: vi.fn().mockName('Router.navigate'),
-        };
-
         // Mocked activated route
         // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
         expectedRouteUrl = [{ path: expectedPath }];
@@ -204,17 +156,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [
-                CompileHtmlComponent,
-                EditionSheetsComponent,
-                EditionConvoluteStubComponent,
-                EditionAccoladeStubComponent,
-                ModalStubComponent,
-            ],
+            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionAccoladeStubComponent],
             providers: [
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
                 { provide: EditionViewService, useValue: { sheetsViewData: mockViewDataSignal.asReadonly() } },
-                { provide: Router, useValue: mockRouter },
                 {
                     provide: ActivatedRoute,
                     useValue: mockActivatedRoute,
@@ -226,6 +171,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
+        navigationService = TestBed.inject(EditionNavigationService);
 
         // Test data
         mockActivatedRoute.testQueryParamMap = { id: '' };
@@ -237,11 +183,10 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedIsSheetFacetMinimized = false;
 
         expectedComplexId = 'op12';
-        expectedComplexBaseRoute = `/edition/complex/${expectedComplexId}`;
         expectedComplex = EditionStateHelper.getComplex(expectedComplexId);
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'M212_Sk1';
-        expectedReportFragment = 'source_A';
+        expectedNextSheetId = 'test_item_id_2';
 
         expectedConvolute = expectedFolioConvoluteData.convolutes[0];
 
@@ -251,9 +196,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[1];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
-        // Service spies
-        navigationSpy = mockRouter.navigate as Mock;
-
+        // Serive spies
         editionSheetsServiceFindTextcriticsSpy = vi.spyOn(mockEditionSheetsService, 'findTextcritics');
         editionSheetsServiceGetCurrentEditionTypeSpy = vi.spyOn(mockEditionSheetsService, 'getCurrentEditionType');
         editionSheetsServiceGetNextSheetIdSpy = vi.spyOn(mockEditionSheetsService, 'getNextSheetId');
@@ -268,6 +211,8 @@ describe('EditionSheetsComponent (DONE)', () => {
             .spyOn(mockEditionSheetsService, 'selectSvgSheetById')
             .mockReturnValue(expectedSvgSheet);
 
+        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
+
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetsComponent);
         component = fixture.componentInstance;
@@ -277,11 +222,8 @@ describe('EditionSheetsComponent (DONE)', () => {
         onBrowseSvgSheetSpy = vi.spyOn(component, 'onBrowseSvgSheet');
         onLinkBoxSelectSpy = vi.spyOn(component, 'onLinkBoxSelect');
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
-        onReportFragmentNavigateSpy = vi.spyOn(component, 'onReportFragmentNavigate');
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
         onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
-
-        navigateWithComplexIdSpy = vi.spyOn(component as any, '_navigateWithComplexId');
         selectSvgSheetSpy = vi.spyOn(component as any, '_selectSvgSheet');
     });
 
@@ -339,12 +281,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one outer `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-            });
-
-            it('... should contain one modal component (stubbed)', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-
-                getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
             it('... should contain no AlertErrorComponent (stubbed)', () => {
@@ -845,7 +781,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
                 });
 
-                it('... should find correct link box and trigger `_selectSvgSheet()` method with correct parameters', () => {
+                it('... should find correct link box and trigger `onSvgSheetSelect()` method with correct parameters', () => {
                     const initialCalls = onSvgSheetSelectSpy.mock.calls.length;
                     expectSpyCall(onSvgSheetSelectSpy, initialCalls);
 
@@ -921,239 +857,50 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
             });
 
-            describe('#onReportFragmentNavigate()', () => {
-                it('... should have a method `onReportFragmentNavigate`', () => {
-                    expect(component.onReportFragmentNavigate).toBeDefined();
-                });
-
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                    accoladeCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                    expectSpyCall(onReportFragmentNavigateSpy, 1, expectedReportIds);
-                });
-
-                it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                    const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                    expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                    const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                    const expectedNavigationExtras = {
-                        fragment: expectedReportIds.fragmentId,
-                    };
-
-                    component.onReportFragmentNavigate(expectedReportIds);
-
-                    expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                        expectedReportIds.complexId,
-                        expectedReportRoute,
-                        expectedNavigationExtras,
-                    ]);
-                });
-
-                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                    it('... fragment id is undefined', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: undefined };
-                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = {
-                            fragment: '',
-                        };
-
-                        component.onReportFragmentNavigate(expectedReportIds);
-
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedReportIds.complexId,
-                            expectedReportRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... fragment id is null', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: null };
-                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = {
-                            fragment: '',
-                        };
-
-                        component.onReportFragmentNavigate(expectedReportIds);
-
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedReportIds.complexId,
-                            expectedReportRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... fragment id is empty string', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                        const expectedReportIds = { complexId: expectedComplexId, fragmentId: '' };
-                        const expectedReportRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                        const expectedNavigationExtras = {
-                            fragment: '',
-                        };
-
-                        component.onReportFragmentNavigate(expectedReportIds);
-
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedReportIds.complexId,
-                            expectedReportRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-            });
-
             describe('#onSvgSheetSelect()', () => {
+                beforeEach(() => {
+                    onSvgSheetSelectSpy.mockClear();
+                    serviceNavigateToSvgSheetSpy.mockClear();
+                });
+
                 it('... should have a method `onSvgSheetSelect`', () => {
                     expect(component.onSvgSheetSelect).toBeDefined();
                 });
 
-                describe('... should trigger on event from', () => {
-                    it('... EditionAccoladeComponent', () => {
-                        const initialCalls = onSvgSheetSelectSpy.mock.calls.length;
-                        expectSpyCall(onSvgSheetSelectSpy, initialCalls);
-
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-
-                        accoladeCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(onSvgSheetSelectSpy, initialCalls + 1, expectedSheetIds);
-                    });
-
-                    it('... EditionConvoluteComponent', async () => {
-                        component.selectedConvolute = expectedConvolute;
-                        component.selectedSvgSheet = expectedSvgSheet;
-                        await detectChangesOnPush(fixture);
-
-                        const initialCalls = onSvgSheetSelectSpy.mock.calls.length;
-                        expectSpyCall(onSvgSheetSelectSpy, initialCalls);
-
-                        const convoluteDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionConvoluteStubComponent,
-                            1,
-                            1
-                        );
-                        const convoluteCmp = convoluteDes[0].injector.get(
-                            EditionConvoluteStubComponent
-                        ) as EditionConvoluteStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-
-                        convoluteCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(onSvgSheetSelectSpy, initialCalls + 1, expectedSheetIds);
-                    });
-                });
-
-                it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                    const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                    expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedReportFragment };
-                    const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                    const expectedNavigationExtras = {
-                        queryParams: { id: expectedSheetIds.sheetId },
-                        queryParamsHandling: 'merge',
-                    };
-
+                it('... should do nothing if no id is provided', () => {
+                    const expectedSheetIds = undefined;
                     component.onSvgSheetSelect(expectedSheetIds);
 
-                    expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                        expectedSheetIds.complexId,
-                        expectedSheetRoute,
-                        expectedNavigationExtras,
-                    ]);
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
+
+                    const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                    component.onSvgSheetSelect(expectedNextSheetIds);
+
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
-                describe('... should call `_navigateWithComplexId()` method with empty fragment id if', () => {
-                    it('... fragment id is undefined', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
+                it('... should trigger NavigationService with selected svg sheet within same complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    component.onSvgSheetSelect(expectedSheetIds);
 
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: undefined };
-                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = {
-                            queryParams: { id: '' },
-                            queryParamsHandling: 'merge',
-                        };
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                        component.onSvgSheetSelect(expectedSheetIds);
+                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                    component.onSvgSheetSelect(expectedNextSheetIds);
 
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedSheetIds.complexId,
-                            expectedSheetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
+                });
 
-                    it('... fragment id is null', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
+                it('... should trigger NavigationService with selected svg sheet for another complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    component.onSvgSheetSelect(expectedSheetIds);
 
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: null };
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = {
-                            queryParams: { id: '' },
-                            queryParamsHandling: 'merge',
-                        };
+                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                    component.onSvgSheetSelect(expectedNextSheetIds);
 
-                        component.onSvgSheetSelect(expectedSheetIds);
-
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedSheetIds.complexId,
-                            expectedSheetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... fragment id is empty string', () => {
-                        const initialCalls = navigateWithComplexIdSpy.mock.calls.length;
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls);
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: '' };
-
-                        const expectedSheetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = {
-                            queryParams: { id: '' },
-                            queryParamsHandling: 'merge',
-                        };
-
-                        component.onSvgSheetSelect(expectedSheetIds);
-
-                        expectSpyCall(navigateWithComplexIdSpy, initialCalls + 1, [
-                            expectedSheetIds.complexId,
-                            expectedSheetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                    });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
                 });
             });
 
@@ -1499,470 +1246,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, expectedSvgSheetsData);
 
                     expectToBe(component.isFirstPageLoad(), false);
-                });
-            });
-
-            describe('#_navigateWithComplexId()', () => {
-                beforeEach(() => {
-                    navigateWithComplexIdSpy.mockClear();
-                    navigationSpy.mockClear();
-                });
-
-                it('... should have a method `_navigateWithComplexId`', () => {
-                    expect((component as any)._navigateWithComplexId).toBeDefined();
-                });
-
-                describe('... should navigate within same complex if', () => {
-                    it('... complex id is undefined', () => {
-                        const expectedComplexRoute = expectedComplexBaseRoute;
-                        const expectedTargetRoute = 'targetRoute';
-                        const expectedNavigationExtras = { fragment: '' };
-
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... complex id is null', () => {
-                        const expectedComplexRoute = expectedComplexBaseRoute;
-                        const expectedTargetRoute = 'targetRoute';
-                        const expectedNavigationExtras = { fragment: '' };
-
-                        (component as any)._navigateWithComplexId(null, expectedTargetRoute, expectedNavigationExtras);
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            null,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... complex id is empty string', () => {
-                        const expectedComplexRoute = expectedComplexBaseRoute;
-                        const expectedTargetRoute = 'targetRoute';
-                        const expectedNavigationExtras = { fragment: '' };
-
-                        (component as any)._navigateWithComplexId('', expectedTargetRoute, expectedNavigationExtras);
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... complex id is equal to the current complex id', () => {
-                        const expectedComplexRoute = expectedComplexBaseRoute;
-                        const expectedTargetRoute = 'targetRoute';
-                        const expectedNavigationExtras = { fragment: '' };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-
-                describe('... should navigate to another complex if', () => {
-                    it('... complex id is given and not equal to the current complex id', () => {
-                        const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                        const expectedTargetRoute = 'targetRoute';
-                        const expectedNavigationExtras = { fragment: '' };
-
-                        (component as any)._navigateWithComplexId(
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        fixture.detectChanges();
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            expectedNextComplexId,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedNextComplexRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-
-                describe('... should navigate to series overview if selectedComplex is null', () => {
-                    let expectedRSeriesRoute: string;
-                    beforeEach(() => {
-                        expectedRSeriesRoute = '/edition/series';
-                        editionStateService.updateSelectedEditionComplex(null);
-                    });
-
-                    it('... with a given sheet id', async () => {
-                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
-                        const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedRSeriesRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-
-                    it('... with a given report fragment', async () => {
-                        const expectedTargetRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
-                        const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                        (component as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-                        expectSpyCall(navigationSpy, 1, [
-                            [expectedRSeriesRoute, expectedTargetRoute],
-                            expectedNavigationExtras,
-                        ]);
-                    });
-                });
-
-                describe('... with no edition complex id given', () => {
-                    describe('... should navigate within same complex to a given report route', () => {
-                        it('... with a given report fragment', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                            (component as any)._navigateWithComplexId(
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given report fragment', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: '' };
-
-                            (component as any)._navigateWithComplexId(
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
-
-                    describe('... should navigate within same complex to a given sheet route', () => {
-                        it('... with a given sheet id', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
-
-                            (component as any)._navigateWithComplexId(
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given sheet id', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                            (component as any)._navigateWithComplexId(
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                undefined,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
-                });
-
-                describe('... with the current edition complex id given', () => {
-                    describe('... should navigate within same complex to a given report route', () => {
-                        it('... with a given report fragment', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given report fragment', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: '' };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
-
-                    describe('... should navigate within same complex to a given sheet route', () => {
-                        it('... with a given sheet id', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given sheet id', () => {
-                            const expectedComplexRoute = expectedComplexBaseRoute;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
-                });
-
-                describe('... with another edition complex id given', () => {
-                    describe('... should navigate to a given report route of another complex', () => {
-                        it('... with a given report fragment', () => {
-                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: expectedReportFragment };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedNextComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given report fragment', () => {
-                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_REPORT.route;
-                            const expectedNavigationExtras = { fragment: '' };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedNextComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
-
-                    describe('... should navigate to a given sheet route of another complex', () => {
-                        it('... with a given sheet id', () => {
-                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: expectedSvgSheet.id } };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedNextComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-
-                        it('... without a given sheet id', () => {
-                            const expectedNextComplexRoute = `/edition/complex/${expectedNextComplexId}`;
-                            const expectedTargetRoute = expectedEditionRouteConstants.EDITION_SHEETS.route;
-                            const expectedNavigationExtras = { queryParams: { id: '' } };
-
-                            (component as any)._navigateWithComplexId(
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras
-                            );
-                            fixture.detectChanges();
-
-                            expectSpyCall(navigateWithComplexIdSpy, 1, [
-                                expectedNextComplexId,
-                                expectedTargetRoute,
-                                expectedNavigationExtras,
-                            ]);
-                            expectSpyCall(navigationSpy, 1, [
-                                [expectedNextComplexRoute, expectedTargetRoute],
-                                expectedNavigationExtras,
-                            ]);
-                        });
-                    });
                 });
             });
 

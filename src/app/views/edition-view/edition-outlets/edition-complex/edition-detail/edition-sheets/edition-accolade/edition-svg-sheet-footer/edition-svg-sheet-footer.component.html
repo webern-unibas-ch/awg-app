@@ -19,11 +19,7 @@
                     }
                 </p>
                 @if (showEvaluation && !UTILS.isEmptyArray(selectedTextcritics.evaluations)) {
-                    <awg-edition-tka-evaluations
-                        [evaluations]="selectedTextcritics.evaluations"
-                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                        (openModalRequest)="openModal($event)"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                    <awg-edition-tka-evaluations [evaluations]="selectedTextcritics.evaluations" />
                 }
             </div>
         </div>
@@ -36,10 +32,7 @@
                     <awg-edition-tka-table
                         [commentary]="selectedTextcriticalCommentary"
                         [id]="selectedTextcritics?.id"
-                        [isRowtable]="selectedTextcritics?.rowtable"
-                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                        (openModalRequest)="openModal($event)"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                        [isRowtable]="selectedTextcritics?.rowtable" />
                 </div>
             </div>
         }

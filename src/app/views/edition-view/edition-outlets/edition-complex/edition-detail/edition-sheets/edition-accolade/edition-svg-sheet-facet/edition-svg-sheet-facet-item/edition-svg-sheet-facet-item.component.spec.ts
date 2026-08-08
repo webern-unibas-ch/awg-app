@@ -17,7 +17,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet } from '@awg-views/edition-view/models';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheet.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSvgSheetFacetItemComponent } from './edition-svg-sheet-facet-item.component';
 
@@ -34,8 +35,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetFacetItemComponent>;
     let compDe: DebugElement;
 
+    let navigationService: EditionNavigationService;
+
     let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
+    let serviceNavigateToSvgSheetSpy: Spy;
 
     let expectedComplexId: string;
 
@@ -56,9 +59,11 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgSheetFacetItemComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        navigationService = TestBed.inject(EditionNavigationService);
+
+        // Service spies
+        serviceNavigateToSvgSheetSpy = vi.spyOn(navigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedFacetItemLabel = 'Testeditionslabel';
@@ -74,9 +79,13 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
 
         expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSvgSheetFacetItemComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     afterEach(() => {
@@ -421,155 +430,156 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
             });
         });
 
-        describe('#isSelectedSvgSheet()', () => {
-            it('... should have a method `isSelectedSvgSheet`', () => {
-                expect(component.isSelectedSvgSheet).toBeDefined();
+        describe('METHODS', () => {
+            describe('#isSelectedSvgSheet()', () => {
+                it('... should have a method `isSelectedSvgSheet`', () => {
+                    expect(component.isSelectedSvgSheet).toBeDefined();
+                });
+
+                describe('... without partial', () => {
+                    it('... should return false if given id does not equal id of selected svg sheet', () => {
+                        const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
+
+                        expectToBe(comparison, false);
+                    });
+
+                    it('... should return true if given id does equal id of selected svg sheet', () => {
+                        const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
+
+                        expectToBe(comparison, true);
+                    });
+                });
+
+                describe('... with partial', () => {
+                    it('... should return false if given id does not equal id with partial of selected svg sheet', async () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+
+                        await detectChangesOnPush(fixture);
+
+                        const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
+
+                        expectToBe(comparison, false);
+                    });
+
+                    it('... should return true if given id does equal id with partial of selected svg sheet', async () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+
+                        await detectChangesOnPush(fixture);
+
+                        const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');
+
+                        expectToBe(comparison, true);
+                    });
+                });
             });
 
-            describe('... without partial', () => {
-                it('... should return false if given id does not equal id of selected svg sheet', () => {
-                    const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
-
-                    expectToBe(comparison, false);
+            describe('#selectSvgSheet()', () => {
+                it('... should have a method `selectSvgSheet`', () => {
+                    expect(component.selectSvgSheet).toBeDefined();
                 });
 
-                it('... should return true if given id does equal id of selected svg sheet', () => {
-                    const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
-
-                    expectToBe(comparison, true);
-                });
-            });
-
-            describe('... with partial', () => {
-                it('... should return false if given id does not equal id with partial of selected svg sheet', async () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
-                    await detectChangesOnPush(fixture);
-
-                    const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
-
-                    expectToBe(comparison, false);
-                });
-
-                it('... should return true if given id does equal id with partial of selected svg sheet', async () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
-                    await detectChangesOnPush(fixture);
-
-                    const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');
-
-                    expectToBe(comparison, true);
-                });
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            describe('... should trigger on click', () => {
-                it('... on direct anchors', async () => {
-                    const aDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'a.awg-svg-sheet-facet-link',
-                        expectedSheetsWithoutPartials.length,
-                        expectedSheetsWithoutPartials.length
-                    );
-
-                    // Trigger click with click helper & wait for changes
-                    await clickAndAwaitChanges(aDes[0], fixture);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, { complexId: '', sheetId: expectedSvgSheet.id });
-
-                    // Trigger click with click helper & wait for changes
-                    await clickAndAwaitChanges(aDes[1], fixture);
-
-                    expectSpyCall(selectSvgSheetSpy, 2, { complexId: '', sheetId: expectedNextSvgSheet.id });
-                });
-
-                it('... on dropdown anchors', async () => {
-                    const dropdownDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-svg-sheet-facet-link-dropdown',
-                        expectedSheetsWithPartials.length,
-                        expectedSheetsWithPartials.length
-                    );
-                    for (const [index, dropdownDe] of dropdownDes.entries()) {
-                        const sheet = expectedSheetsWithPartials[index];
+                describe('... should trigger on click', () => {
+                    it('... on direct anchors', async () => {
                         const aDes = getAndExpectDebugElementByCss(
-                            dropdownDe,
-                            'a.dropdown-item',
-                            sheet.content.length,
-                            sheet.content.length
+                            compDe,
+                            'a.awg-svg-sheet-facet-link',
+                            expectedSheetsWithoutPartials.length,
+                            expectedSheetsWithoutPartials.length
                         );
-                        for (const [anchorIndex, aDe] of aDes.entries()) {
-                            // Trigger click with click helper & wait for changes
-                            await clickAndAwaitChanges(aDe, fixture);
 
-                            const expectedIdWithPartial = sheet.id + sheet.content[anchorIndex].partial;
+                        await clickAndAwaitChanges(aDes[0], fixture);
 
-                            expectSpyCall(selectSvgSheetSpy, index * 2 + anchorIndex + 1, {
-                                complexId: '',
-                                sheetId: expectedIdWithPartial,
-                            });
+                        expectSpyCall(selectSvgSheetSpy, 1, { complexId: '', sheetId: expectedSvgSheet.id });
+
+                        await clickAndAwaitChanges(aDes[1], fixture);
+
+                        expectSpyCall(selectSvgSheetSpy, 2, { complexId: '', sheetId: expectedNextSvgSheet.id });
+                    });
+
+                    it('... on dropdown anchors', async () => {
+                        const dropdownDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-svg-sheet-facet-link-dropdown',
+                            expectedSheetsWithPartials.length,
+                            expectedSheetsWithPartials.length
+                        );
+                        for (const [index, dropdownDe] of dropdownDes.entries()) {
+                            const sheet = expectedSheetsWithPartials[index];
+                            const aDes = getAndExpectDebugElementByCss(
+                                dropdownDe,
+                                'a.dropdown-item',
+                                sheet.content.length,
+                                sheet.content.length
+                            );
+                            for (const [anchorIndex, aDe] of aDes.entries()) {
+                                await clickAndAwaitChanges(aDe, fixture);
+
+                                const expectedIdWithPartial = sheet.id + sheet.content[anchorIndex].partial;
+
+                                expectSpyCall(selectSvgSheetSpy, index * 2 + anchorIndex + 1, {
+                                    complexId: '',
+                                    sheetId: expectedIdWithPartial,
+                                });
+                            }
                         }
-                    }
+                    });
                 });
-            });
 
-            it('... should not emit anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
-                component.selectSvgSheet(expectedSheetIds);
+                it('... should do nothing if no id is provided', () => {
+                    const expectedSheetIds = undefined;
+                    component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
+                    const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                    component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-            });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
+                });
 
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
+                it('... should emit id of selected svg sheet within same complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
+                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                    component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
+                });
 
-            it('... should emit id of selected svg sheet with partial within same complex', () => {
-                const expectedSheetIdWithPartial =
-                    expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetIdWithPartial };
+                it('... should emit id of selected svg sheet with partial within same complex', () => {
+                    const expectedSheetIdWithPartial =
+                        expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetIdWithPartial };
 
-                component.selectSvgSheet(expectedSheetIds);
+                    component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-            });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
+                });
 
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
+                it('... should emit id of selected svg sheet for another complex', () => {
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
+                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                    component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
+                });
 
-            it('... should emit id of selected svg sheet with partial for another complex', () => {
-                const expectedSheetIdWithPartial =
-                    expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                const expectedSheetIds = { complexId: expectedNextComplexId, sheetId: expectedSheetIdWithPartial };
+                it('... should emit id of selected svg sheet with partial for another complex', () => {
+                    const expectedSheetIdWithPartial =
+                        expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                    const expectedSheetIds = { complexId: expectedNextComplexId, sheetId: expectedSheetIdWithPartial };
 
-                component.selectSvgSheet(expectedSheetIds);
+                    component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
+                });
             });
         });
     });

@@ -1,8 +1,7 @@
-import { Component, DebugElement, EventEmitter, inject, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, inject, Input, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare, IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,6 @@ import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -39,13 +37,6 @@ class EditionFolioViewerStubComponent {
     selectedConvolute: FolioConvolute;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
 }
 
 describe('EditionConvoluteComponent (DONE)', () => {
@@ -56,16 +47,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
-
     let expectedSelectedConvolute: FolioConvolute;
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedFolioLegends: IFolioLegend[];
     let expectedFragment: string;
     let expectedSquareIcon: IconDefinition;
@@ -89,17 +72,10 @@ describe('EditionConvoluteComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionConvoluteComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedSelectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-        expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
-        expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
+        expectedFragment = `source_${expectedSelectedConvolute.convoluteId}`;
         expectedSquareIcon = faSquare;
 
         expectedFolioLegends = [
@@ -117,15 +93,10 @@ describe('EditionConvoluteComponent (DONE)', () => {
             },
         ];
 
-        // Spies
-        openModalSpy = vi.spyOn(component, 'openModal');
-        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
-        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionConvoluteComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -296,95 +267,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                     expectToBe(faIconIns(), expectedSquareIcon);
                 });
-            });
-        });
-
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
-            });
-
-            it('... should trigger on openModalRequest event from EditionFolioViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(
-                    EditionFolioViewerStubComponent
-                ) as EditionFolioViewerStubComponent;
-
-                const expectedModalSnippet = expectedSelectedConvolute.folios[0].content[0].linkTo;
-
-                folioCmp.openModalRequest.emit(expectedModalSnippet);
-
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            });
-
-            it('... should not emit anything if no id is provided', () => {
-                const expectedModalSnippet = undefined;
-
-                component.openModal(expectedModalSnippet);
-
-                expectSpyCall(openModalRequestEmitSpy, 0, expectedModalSnippet);
-            });
-
-            it('... should emit id of given modal snippet', () => {
-                const expectedModalSnippet = expectedSelectedConvolute.folios[0].content[0].linkTo;
-
-                component.openModal(expectedModalSnippet);
-
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on selectSvgSheetRequest event from EditionFolioViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(
-                    EditionFolioViewerStubComponent
-                ) as EditionFolioViewerStubComponent;
-
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                folioCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-            });
-
-            it('... should not emit anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
 

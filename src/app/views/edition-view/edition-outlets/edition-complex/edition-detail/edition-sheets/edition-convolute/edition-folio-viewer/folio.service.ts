@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+
+import { ModalService } from '@awg-shared/modal/modal.service';
 
 import {
     D3Selection,
@@ -12,6 +14,7 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The Folio service.
@@ -26,11 +29,18 @@ import {
 })
 export class FolioService {
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private readonly injection variable: _modalService
      *
-     * It refers to the Component from which it is called.
+     * It keeps the instance of the injected ModalService.
      */
-    ref: any;
+    private readonly _modalService = inject(ModalService);
+
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
 
     /**
      * Private readonly variable: _bgColor.
@@ -170,13 +180,9 @@ export class FolioService {
      *
      * @param {D3Selection} svgCanvas The given SVG canvas selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
-     * @param {*} ref The given reference to the calling component.
      * @returns {void} Adds the folio to the SVG canvas selection.
      */
-    addFolioToSvgCanvas(svgCanvas: D3Selection, folioSvgData: FolioSvgData, ref: any): void {
-        // Self-referring variable needed for CompileHtml library.
-        this.ref = ref;
-
+    addFolioToSvgCanvas(svgCanvas: D3Selection, folioSvgData: FolioSvgData): void {
         // Create the SVG canvas sheet group selection.
         const svgSheetGroup = this._appendCanvasSheetGroup(svgCanvas, folioSvgData.sheet.folioId);
 
@@ -320,8 +326,11 @@ export class FolioService {
         // Add click event handler
         contentSegmentGroup.on('click', () =>
             contentSegment.selectable
-                ? this.ref.selectSvgSheet({ complexId: contentSegment.complexId, sheetId: contentSegment.sheetId })
-                : this.ref.openModal(contentSegment.linkTo)
+                ? this._navigationService.navigateToSvgSheet({
+                      complexId: contentSegment.complexId,
+                      sheetId: contentSegment.sheetId,
+                  })
+                : this._modalService.openTextModal(contentSegment.linkTo)
         );
 
         return contentSegmentGroup;

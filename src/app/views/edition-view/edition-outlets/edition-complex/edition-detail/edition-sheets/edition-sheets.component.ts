@@ -1,11 +1,9 @@
-import { Component, effect, inject, signal, ViewChild } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
@@ -14,17 +12,16 @@ import {
     TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
-import { EditionSheetsService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionSheetsService } from '@awg-views/edition-view/services/edition-sheets.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionSheets component.
  *
  * It contains the edition sheets section
- * of the edition view of the app
- * with a {@link ModalComponent},
- * the {@link EditionConvoluteComponent}
- * and the {@link EditionAccoladeComponent}.
+ * of the edition view of the app.
  */
 @Component({
     selector: 'awg-edition-sheets',
@@ -34,13 +31,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 })
 export class EditionSheetsComponent {
     /**
-     * ViewChild variable: modal.
-     *
-     * It keeps the reference to the awg-modal.
-     */
-    @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
      * Private readonly injection variable: _editionSheetsService.
      *
      * It keeps the instance of the injected EditionSheetsService.
@@ -48,18 +38,18 @@ export class EditionSheetsComponent {
     private readonly _editionSheetsService = inject(EditionSheetsService);
 
     /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
      * Private readonly injection variable: _route.
      *
      * It keeps the instance of the injected Angular ActivatedRoute.
      */
     private readonly _route = inject(ActivatedRoute);
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router: any = inject(Router);
 
     /**
      * Private readonly signal: _queryParams.
@@ -218,40 +208,19 @@ export class EditionSheetsComponent {
     }
 
     /**
-     * Public method: onReportFragmentNavigate.
-     *
-     * It navigates to the '/report/' route using the provided fragmentId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition report.
-     */
-    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
-        };
-
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
-    }
-
-    /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the '/sheet/' route using the provided sheetId
-     * within the context of an edition complex identified by the provided complexId.
+     * It delegates the navigation for the given complex and SVG sheet IDs
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Navigates to the edition sheets.
+     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @returns {void} Navigates to the selected SVG sheet.
      */
-    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
-        const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds?.sheetId ?? '' },
-            queryParamsHandling: 'merge',
-        };
-
-        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+    onSvgSheetSelect(sheetIds: SheetClickEvent): void {
+        if (!sheetIds?.sheetId) {
+            return;
+        }
+        this._navigationService.navigateToSvgSheet(sheetIds);
     }
 
     /**
@@ -314,28 +283,6 @@ export class EditionSheetsComponent {
         if (this.isFirstPageLoad()) {
             this.isFirstPageLoad.set(false);
         }
-    }
-
-    /**
-     * Private method: _navigateWithComplexId.
-     *
-     * It navigates to a target route using the provided complexId.
-     *
-     * @param {string | undefined} complexId The given complex id.
-     * @param {string} targetRoute The given target route.
-     * @param {NavigationExtras} navigationExtras The given navigation extras.
-     * @returns {void} Navigates to the target route.
-     */
-    private _navigateWithComplexId(
-        complexId: string | undefined,
-        targetRoute: string,
-        navigationExtras: NavigationExtras
-    ): void {
-        const complexRoute = complexId
-            ? `/edition/complex/${complexId}`
-            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
-
-        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**

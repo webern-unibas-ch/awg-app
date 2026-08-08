@@ -6,7 +6,6 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { clickDispatchAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -26,9 +25,9 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
-import { FolioService } from './folio.service';
 
 import { EditionFolioViewerComponent } from './edition-folio-viewer.component';
+import { FolioService } from './folio.service';
 
 describe('EditionFolioViewerComponent (DONE)', () => {
     let component: EditionFolioViewerComponent;
@@ -41,24 +40,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
     let createSVGCanvasSpy: Spy;
     let d3SelectSpy: Spy;
     let isSelectedSvgSheetSpy: Spy;
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
     let prepareFolioSvgOutputSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
     let toggleActiveClassSpy: Spy;
 
     let serviceAddFolioToSvgCanvasSpy: Spy;
     let serviceAddViewBoxToSvgCanvasSpy: Spy;
     let serviceGetFolioSvgDataSpy: Spy;
 
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
     let expectedConvolute: FolioConvolute;
     let expectedFolioSettingsArray: FolioSettings[];
     let expectedFolioSettings: FolioSettings;
     let expectedFolioSvgDataArray: FolioSvgData[];
-    let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartialA: EditionSvgSheet;
 
@@ -78,20 +70,18 @@ describe('EditionFolioViewerComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionFolioViewerComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
 
+        // Service spies
+        serviceAddFolioToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addFolioToSvgCanvas');
+        serviceAddViewBoxToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addViewBoxToSvgCanvas');
+        serviceGetFolioSvgDataSpy = vi.spyOn(mockFolioService, 'getFolioSvgData');
+
         // Test data
-        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
         expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-
-        expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
 
         expectedFolioSettings = {
             factor: 1.5,
@@ -118,21 +108,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             expectedFolioSvgDataArray.push(expectedFolioSvgData);
         });
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionFolioViewerComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         createSVGCanvasSpy = vi.spyOn(component, 'createSVGCanvas');
         d3SelectSpy = vi.spyOn(component as any, '_d3Select');
         isSelectedSvgSheetSpy = vi.spyOn(component, 'isSelectedSvgSheet');
-        openModalSpy = vi.spyOn(component, 'openModal');
-        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
         prepareFolioSvgOutputSpy = vi.spyOn(component, 'prepareFolioSvgOutput');
-        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleActiveClassSpy = vi.spyOn(component, 'toggleActiveClass');
-
-        // Service spies
-        serviceAddFolioToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addFolioToSvgCanvas');
-        serviceAddViewBoxToSvgCanvasSpy = vi.spyOn(mockFolioService, 'addViewBoxToSvgCanvas');
-        serviceGetFolioSvgDataSpy = vi.spyOn(mockFolioService, 'getFolioSvgData');
     });
 
     afterEach(() => {
@@ -312,502 +298,385 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             });
         });
 
-        describe('#ngOnChanges', () => {
-            it('... should have a method ngOnChanges', () => {
-                expect(component.ngOnChanges).toBeDefined();
-            });
-
-            it('... should call `prepareFolioSvgOutput` if `selectedConvolute` changes on the first change', () => {
-                expectSpyCall(prepareFolioSvgOutputSpy, 1);
-
-                component.ngOnChanges({
-                    selectedConvolute: new SimpleChange(
-                        expectedConvolute as FolioConvolute,
-                        mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
-                        true
-                    ),
+        describe('METHODS', () => {
+            describe('#ngOnChanges', () => {
+                it('... should have a method ngOnChanges', () => {
+                    expect(component.ngOnChanges).toBeDefined();
                 });
 
-                expectSpyCall(prepareFolioSvgOutputSpy, 2);
-            });
+                it('... should call `prepareFolioSvgOutput` if `selectedConvolute` changes on the first change', () => {
+                    expectSpyCall(prepareFolioSvgOutputSpy, 1);
 
-            it('... should call `prepareFolioSvgOutput` if `selectedConvolute` changes on subsequent changes', () => {
-                expectSpyCall(prepareFolioSvgOutputSpy, 1);
+                    component.ngOnChanges({
+                        selectedConvolute: new SimpleChange(
+                            expectedConvolute as FolioConvolute,
+                            mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
+                            true
+                        ),
+                    });
 
-                component.ngOnChanges({
-                    selectedConvolute: new SimpleChange(
-                        mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
-                        expectedConvolute as FolioConvolute,
-                        false
-                    ),
+                    expectSpyCall(prepareFolioSvgOutputSpy, 2);
                 });
 
-                expectSpyCall(prepareFolioSvgOutputSpy, 2);
-            });
+                it('... should call `prepareFolioSvgOutput` if `selectedConvolute` changes on subsequent changes', () => {
+                    expectSpyCall(prepareFolioSvgOutputSpy, 1);
 
-            it('... should not call `prepareFolioSvgOutput` if `selectedConvolute` does not change', () => {
-                expectSpyCall(prepareFolioSvgOutputSpy, 1);
+                    component.ngOnChanges({
+                        selectedConvolute: new SimpleChange(
+                            mockEditionData.mockFolioConvoluteData.convolutes[1] as FolioConvolute,
+                            expectedConvolute as FolioConvolute,
+                            false
+                        ),
+                    });
 
-                component.ngOnChanges({});
-
-                expectSpyCall(prepareFolioSvgOutputSpy, 1);
-            });
-        });
-
-        describe('#ngAfterViewChecked()', () => {
-            it('... should have a method ngAfterViewChecked', () => {
-                expect(component.ngAfterViewChecked).toBeDefined();
-            });
-
-            it('... should call `createSVGCanvas`', () => {
-                expectSpyCall(createSVGCanvasSpy, 1);
-
-                component.ngAfterViewChecked();
-
-                expectSpyCall(createSVGCanvasSpy, 2);
-            });
-        });
-
-        describe('#createSVGCanvas()', () => {
-            it('... should have a method `createSVGCanvas`', () => {
-                expect(component.createSVGCanvas).toBeDefined();
-            });
-
-            describe('... should have empty canvasArray if', () => {
-                it('... `viewBoxArray` and  `folioSvgDataArray` have different length', () => {
-                    component.viewBoxArray = [new ViewBox(10, 10), new ViewBox(20, 20)];
-                    component.folioSvgDataArray = expectedFolioSvgDataArray;
-
-                    component.createSVGCanvas();
-
-                    expect(component.viewBoxArray.length).not.toEqual(component.folioSvgDataArray.length);
-                    expectToBe(component.canvasArray.length, 0);
-                    expectToBe(component.viewBoxArray.length, 2);
-
-                    expectToEqual(component.canvasArray, []);
+                    expectSpyCall(prepareFolioSvgOutputSpy, 2);
                 });
 
-                it('... svgCanvas is empty', () => {
-                    d3SelectSpy.mockReturnValue({ empty: () => true });
+                it('... should not call `prepareFolioSvgOutput` if `selectedConvolute` does not change', () => {
+                    expectSpyCall(prepareFolioSvgOutputSpy, 1);
+
+                    component.ngOnChanges({});
+
+                    expectSpyCall(prepareFolioSvgOutputSpy, 1);
+                });
+            });
+
+            describe('#ngAfterViewChecked()', () => {
+                it('... should have a method ngAfterViewChecked', () => {
+                    expect(component.ngAfterViewChecked).toBeDefined();
+                });
+
+                it('... should call `createSVGCanvas`', () => {
+                    expectSpyCall(createSVGCanvasSpy, 1);
+
+                    component.ngAfterViewChecked();
+
+                    expectSpyCall(createSVGCanvasSpy, 2);
+                });
+            });
+
+            describe('#createSVGCanvas()', () => {
+                it('... should have a method `createSVGCanvas`', () => {
+                    expect(component.createSVGCanvas).toBeDefined();
+                });
+
+                describe('... should have empty canvasArray if', () => {
+                    it('... `viewBoxArray` and  `folioSvgDataArray` have different length', () => {
+                        component.viewBoxArray = [new ViewBox(10, 10), new ViewBox(20, 20)];
+                        component.folioSvgDataArray = expectedFolioSvgDataArray;
+
+                        component.createSVGCanvas();
+
+                        expect(component.viewBoxArray.length).not.toEqual(component.folioSvgDataArray.length);
+                        expectToBe(component.canvasArray.length, 0);
+                        expectToBe(component.viewBoxArray.length, 2);
+
+                        expectToEqual(component.canvasArray, []);
+                    });
+
+                    it('... svgCanvas is empty', () => {
+                        d3SelectSpy.mockReturnValue({ empty: () => true });
+
+                        component.prepareFolioSvgOutput();
+                        component.createSVGCanvas();
+
+                        expectToEqual(component.canvasArray, []);
+                    });
+                });
+
+                describe('... should populate canvasArray', () => {
+                    let svgSelection: D3Selection;
+
+                    beforeEach(() => {
+                        // Create mocked SVG element with D3 and return selection
+                        const svgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[0].sheet.folioId}`;
+                        const container: HTMLElement = mockDocument.createElement('div');
+                        svgSelection = D3_SELECTION.select(container).append('svg').attr('id', svgId);
+
+                        d3SelectSpy.mockReturnValue(svgSelection);
+
+                        // Prepare folio data
+                        component.prepareFolioSvgOutput();
+                    });
+
+                    afterEach(() => {
+                        svgSelection.selectAll('*').remove();
+                    });
+
+                    it('... by creating a canvas for each folio', () => {
+                        component.createSVGCanvas();
+
+                        expectToEqual(component.canvasArray.length, expectedConvolute.folios.length);
+                    });
+
+                    it('... should trigger `addViewBoxToSvgCanvas()` for each folio', () => {
+                        expectSpyCall(serviceAddViewBoxToSvgCanvasSpy, expectedConvolute.folios.length);
+
+                        component.createSVGCanvas();
+
+                        expectSpyCall(serviceAddViewBoxToSvgCanvasSpy, 2 * expectedConvolute.folios.length);
+                    });
+
+                    it('... should trigger `addFolioToSvgCanvas()` for each folio', () => {
+                        expectSpyCall(serviceAddFolioToSvgCanvasSpy, expectedConvolute.folios.length);
+
+                        component.createSVGCanvas();
+
+                        expectSpyCall(serviceAddFolioToSvgCanvasSpy, 2 * expectedConvolute.folios.length);
+                    });
+
+                    it('should trigger `toggleActiveClass()` at the end', () => {
+                        expectSpyCall(toggleActiveClassSpy, 1);
+
+                        component.createSVGCanvas();
+
+                        expectSpyCall(toggleActiveClassSpy, 2);
+                    });
+                });
+            });
+
+            describe('#isSelectedSvgSheet()', () => {
+                it('... should have a method `isSelectedSvgSheet`', () => {
+                    expect(component.isSelectedSvgSheet).toBeDefined();
+                });
+
+                describe('... should return true if', () => {
+                    it('... the given id matches the selectedSvgSheet id', () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+
+                        expectToBe(component.isSelectedSvgSheet('test-1'), true);
+                    });
+
+                    it('... the given id matches the selectedSvgSheet id with partial', () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+
+                        expectToBe(component.isSelectedSvgSheet('test-2a'), true);
+                    });
+                });
+
+                describe('... should return false if', () => {
+                    it('... the given id does not match the selectedSvgSheet id', () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+
+                        expectToBe(component.isSelectedSvgSheet('other-test'), false);
+                    });
+
+                    it('... given the id does not match the selectedSvgSheet id with partial', () => {
+                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+
+                        expectToBe(component.isSelectedSvgSheet('test-2b'), false);
+                    });
+
+                    it('... selectedSvgSheet is undefined', () => {
+                        component.selectedSvgSheet = undefined;
+
+                        expectToBe(component.isSelectedSvgSheet('test-1'), false);
+                    });
+                });
+            });
+
+            describe('#prepareFolioSvgOutput()', () => {
+                beforeEach(() => {
+                    // Add custom equality tester to ignore functions
+                    expect.addEqualityTesters([
+                        (first, second) => {
+                            if (typeof first === 'function' && typeof second === 'function') {
+                                return true;
+                            }
+                            return undefined;
+                        },
+                    ]);
+                });
+
+                it('... should have a method `prepareFolioSvgOutput`', () => {
+                    expect(component.prepareFolioSvgOutput).toBeDefined();
+                });
+
+                describe('... should reset folioSvgDataArray and viewBoxArray and return early if', () => {
+                    it('...  given selectedConvolute is undefined', () => {
+                        expectSpyCall(serviceGetFolioSvgDataSpy, 1);
+
+                        component.selectedConvolute = undefined;
+
+                        component.prepareFolioSvgOutput();
+
+                        expectToEqual(component.folioSvgDataArray, []);
+                        expectToEqual(component.viewBoxArray, []);
+                        expectSpyCall(serviceGetFolioSvgDataSpy, 1);
+                    });
+
+                    it('... given selectedConvolute.folios are undefined', () => {
+                        expectSpyCall(serviceGetFolioSvgDataSpy, 1);
+
+                        const expectedConvoluteWithoutFolios = structuredClone(expectedConvolute);
+                        expectedConvoluteWithoutFolios.folios = undefined;
+
+                        component.selectedConvolute = expectedConvoluteWithoutFolios;
+
+                        component.prepareFolioSvgOutput();
+
+                        expectToEqual(component.folioSvgDataArray, []);
+                        expectToEqual(component.viewBoxArray, []);
+                        expectSpyCall(serviceGetFolioSvgDataSpy, 1);
+                    });
+                });
+
+                it('... should populate folioSvgDataArray and viewBoxArray based on selectedConvolute', () => {
+                    expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
+
+                    component.selectedConvolute = structuredClone(expectedConvolute);
 
                     component.prepareFolioSvgOutput();
-                    component.createSVGCanvas();
 
-                    expectToEqual(component.canvasArray, []);
+                    expectToEqual(component.folioSvgDataArray.length, expectedConvolute.folios.length);
+                    expectToEqual(component.viewBoxArray.length, expectedConvolute.folios.length);
+                    expectSpyCall(serviceGetFolioSvgDataSpy, 2 * expectedConvolute.folios.length);
+                });
+
+                it('... should calculate viewBox dimensions for each folio', () => {
+                    component.selectedConvolute = structuredClone(expectedConvolute);
+
+                    component.prepareFolioSvgOutput();
+
+                    component.viewBoxArray.forEach((viewBox, index) => {
+                        const folioSettings = expectedFolioSettingsArray[index];
+                        const expectedViewBoxWidth =
+                            (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
+                        const expectedViewBoxHeight =
+                            (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
+                        const expectedViewBoxValue = `0 0 ${expectedViewBoxWidth} ${expectedViewBoxHeight}`;
+
+                        expectToBe(viewBox.viewBox, expectedViewBoxValue);
+                    });
+                });
+
+                it('... should get folio svg data from service for each folio', () => {
+                    expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
+
+                    component.selectedConvolute = structuredClone(expectedConvolute);
+
+                    component.prepareFolioSvgOutput();
+
+                    component.folioSvgDataArray.forEach((folioSvgData, index) => {
+                        expectToEqual(folioSvgData, expectedFolioSvgDataArray[index]);
+                    });
+
+                    expectSpyCall(serviceGetFolioSvgDataSpy, 2 * expectedConvolute.folios.length);
                 });
             });
 
-            describe('... should populate canvasArray', () => {
+            describe('#toggleActiveClass()', () => {
                 let svgSelection: D3Selection;
+                let svgGroupSelection1: D3Selection;
+                let svgGroupSelection2: D3Selection;
 
                 beforeEach(() => {
                     // Create mocked SVG element with D3 and return selection
                     const svgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[0].sheet.folioId}`;
+                    const contentSegmentId = expectedSvgSheet.id;
+                    const anotherContentSegmentId = 'another-id';
+
                     const container: HTMLElement = mockDocument.createElement('div');
                     svgSelection = D3_SELECTION.select(container).append('svg').attr('id', svgId);
 
-                    d3SelectSpy.mockReturnValue(svgSelection);
+                    svgGroupSelection1 = svgSelection
+                        .append('g')
+                        .attr('class', 'content-segment-group')
+                        .attr('contentSegmentId', contentSegmentId);
+                    svgGroupSelection2 = svgSelection
+                        .append('g')
+                        .attr('class', 'content-segment-group')
+                        .attr('contentSegmentId', anotherContentSegmentId);
 
-                    // Prepare folio data
-                    component.prepareFolioSvgOutput();
+                    d3SelectSpy.mockReturnValue(svgSelection);
                 });
 
                 afterEach(() => {
                     svgSelection.selectAll('*').remove();
                 });
 
-                it('... by creating a canvas for each folio', () => {
-                    component.createSVGCanvas();
-
-                    expectToEqual(component.canvasArray.length, expectedConvolute.folios.length);
+                it('should have a method `toggleActiveClass`', () => {
+                    expect(component.toggleActiveClass).toBeDefined();
                 });
 
-                it('... should trigger `addViewBoxToSvgCanvas()` for each folio', () => {
-                    expectSpyCall(serviceAddViewBoxToSvgCanvasSpy, expectedConvolute.folios.length);
+                it('should not do anything if canvasArray is not defined', () => {
+                    component.canvasArray = undefined;
 
-                    component.createSVGCanvas();
+                    component.toggleActiveClass();
 
-                    expectSpyCall(serviceAddViewBoxToSvgCanvasSpy, 2 * expectedConvolute.folios.length);
+                    expectSpyCall(isSelectedSvgSheetSpy, 0);
                 });
 
-                it('... should trigger `addFolioToSvgCanvas()` for each folio', () => {
-                    expectSpyCall(serviceAddFolioToSvgCanvasSpy, expectedConvolute.folios.length);
+                it('should check if each content segment group is active', () => {
+                    component.canvasArray = [svgSelection];
 
-                    component.createSVGCanvas();
+                    component.toggleActiveClass();
 
-                    expectSpyCall(serviceAddFolioToSvgCanvasSpy, 2 * expectedConvolute.folios.length);
+                    expectSpyCall(isSelectedSvgSheetSpy, 2);
                 });
 
-                it('should trigger `toggleActiveClass()` at the end', () => {
-                    expectSpyCall(toggleActiveClassSpy, 1);
+                it('should toggle the active class for each content segment group based on whether it is active', () => {
+                    component.canvasArray = [svgSelection];
 
-                    component.createSVGCanvas();
+                    isSelectedSvgSheetSpy.mockImplementation(
+                        contentSegmentId => contentSegmentId === expectedSvgSheet.id
+                    );
 
-                    expectSpyCall(toggleActiveClassSpy, 2);
-                });
-            });
-        });
+                    component.toggleActiveClass();
 
-        describe('#isSelectedSvgSheet()', () => {
-            it('... should have a method `isSelectedSvgSheet`', () => {
-                expect(component.isSelectedSvgSheet).toBeDefined();
-            });
+                    expectToBe(svgGroupSelection1.classed('active'), true);
+                    expectToBe(svgGroupSelection2.classed('active'), false);
 
-            describe('... should return true if', () => {
-                it('... the given id matches the selectedSvgSheet id', () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+                    isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === 'another-id');
 
-                    expectToBe(component.isSelectedSvgSheet('test-1'), true);
-                });
+                    component.toggleActiveClass();
 
-                it('... the given id matches the selectedSvgSheet id with partial', () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
-
-                    expectToBe(component.isSelectedSvgSheet('test-2a'), true);
+                    expectToBe(svgGroupSelection1.classed('active'), false);
+                    expectToBe(svgGroupSelection2.classed('active'), true);
                 });
             });
 
-            describe('... should return false if', () => {
-                it('... the given id does not match the selectedSvgSheet id', () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheet);
-
-                    expectToBe(component.isSelectedSvgSheet('other-test'), false);
+            describe('#_calculateViewBoxDimension()', () => {
+                it('... should have a method `_calculateViewBoxDimension`', () => {
+                    expect((component as any)._calculateViewBoxDimension).toBeDefined();
                 });
 
-                it('... given the id does not match the selectedSvgSheet id with partial', () => {
-                    component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+                it('... should calculate viewBox dimension for X input', () => {
+                    const dimension = 'X';
+                    const expectedDimension =
+                        (expectedFolioSettings.formatX + 2 * expectedFolioSettings.initialOffsetX) *
+                        expectedFolioSettings.factor;
 
-                    expectToBe(component.isSelectedSvgSheet('test-2b'), false);
+                    const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
+
+                    expectToEqual(result, expectedDimension);
                 });
 
-                it('... selectedSvgSheet is undefined', () => {
-                    component.selectedSvgSheet = undefined;
+                it('... should calculate viewBox dimension for Y input', () => {
+                    const dimension = 'Y';
+                    const expectedDimension =
+                        (expectedFolioSettings.formatY + 2 * expectedFolioSettings.initialOffsetY) *
+                        expectedFolioSettings.factor;
 
-                    expectToBe(component.isSelectedSvgSheet('test-1'), false);
-                });
-            });
-        });
+                    const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
 
-        describe('#prepareFolioSvgOutput()', () => {
-            beforeEach(() => {
-                // Add custom equality tester to ignore functions
-                expect.addEqualityTesters([
-                    (first, second) => {
-                        if (typeof first === 'function' && typeof second === 'function') {
-                            return true;
-                        }
-                        return undefined;
-                    },
-                ]);
-            });
-
-            it('... should have a method `prepareFolioSvgOutput`', () => {
-                expect(component.prepareFolioSvgOutput).toBeDefined();
-            });
-
-            describe('... should reset folioSvgDataArray and viewBoxArray and return early if', () => {
-                it('...  given selectedConvolute is undefined', () => {
-                    expectSpyCall(serviceGetFolioSvgDataSpy, 1);
-
-                    component.selectedConvolute = undefined;
-
-                    component.prepareFolioSvgOutput();
-
-                    expectToEqual(component.folioSvgDataArray, []);
-                    expectToEqual(component.viewBoxArray, []);
-                    expectSpyCall(serviceGetFolioSvgDataSpy, 1);
-                });
-
-                it('... given selectedConvolute.folios are undefined', () => {
-                    expectSpyCall(serviceGetFolioSvgDataSpy, 1);
-
-                    const expectedConvoluteWithoutFolios = structuredClone(expectedConvolute);
-                    expectedConvoluteWithoutFolios.folios = undefined;
-
-                    component.selectedConvolute = expectedConvoluteWithoutFolios;
-
-                    component.prepareFolioSvgOutput();
-
-                    expectToEqual(component.folioSvgDataArray, []);
-                    expectToEqual(component.viewBoxArray, []);
-                    expectSpyCall(serviceGetFolioSvgDataSpy, 1);
+                    expectToEqual(result, expectedDimension);
                 });
             });
 
-            it('... should populate folioSvgDataArray and viewBoxArray based on selectedConvolute', () => {
-                expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
-
-                component.selectedConvolute = structuredClone(expectedConvolute);
-
-                component.prepareFolioSvgOutput();
-
-                expectToEqual(component.folioSvgDataArray.length, expectedConvolute.folios.length);
-                expectToEqual(component.viewBoxArray.length, expectedConvolute.folios.length);
-                expectSpyCall(serviceGetFolioSvgDataSpy, 2 * expectedConvolute.folios.length);
-            });
-
-            it('... should calculate viewBox dimensions for each folio', () => {
-                component.selectedConvolute = structuredClone(expectedConvolute);
-
-                component.prepareFolioSvgOutput();
-
-                component.viewBoxArray.forEach((viewBox, index) => {
-                    const folioSettings = expectedFolioSettingsArray[index];
-                    const expectedViewBoxWidth =
-                        (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
-                    const expectedViewBoxHeight =
-                        (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
-                    const expectedViewBoxValue = `0 0 ${expectedViewBoxWidth} ${expectedViewBoxHeight}`;
-
-                    expectToBe(viewBox.viewBox, expectedViewBoxValue);
-                });
-            });
-
-            it('... should get folio svg data from service for each folio', () => {
-                expectSpyCall(serviceGetFolioSvgDataSpy, expectedConvolute.folios.length);
-
-                component.selectedConvolute = structuredClone(expectedConvolute);
-
-                component.prepareFolioSvgOutput();
-
-                component.folioSvgDataArray.forEach((folioSvgData, index) => {
-                    expectToEqual(folioSvgData, expectedFolioSvgDataArray[index]);
+            describe('#_d3Select()', () => {
+                it('... should have a method `_d3Select`', () => {
+                    expect((component as any)._d3Select).toBeDefined();
                 });
 
-                expectSpyCall(serviceGetFolioSvgDataSpy, 2 * expectedConvolute.folios.length);
-            });
-        });
+                it('... should return the D3 selection of a given selector', () => {
+                    const selector = 'test-selector';
+                    const expectedSelection = D3_SELECTION.select(selector);
 
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
-            });
+                    const result = (component as any)._d3Select(selector);
 
-            it('... should trigger on click', async () => {
-                serviceAddFolioToSvgCanvasSpy.mockImplementation((svgCanvas, _folioSvgData, ref) => {
-                    const contentSegmentGroup = svgCanvas
-                        .append('g')
-                        .attr('class', 'content-segment-group')
-                        .attr('contentSegmentId', 'mock-modal-segment');
-
-                    contentSegmentGroup.on('click', () => ref.openModal(expectedModalSnippet));
+                    expectToEqual(result, expectedSelection);
                 });
-
-                component.createSVGCanvas();
-                fixture.detectChanges();
-
-                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg g.content-segment-group', 1, 1);
-
-                await clickDispatchAndAwaitChanges(contentSegmentDes[0], fixture);
-
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            });
-
-            describe('... should not emit anything if ', () => {
-                it('... id is undefined', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0);
-                });
-
-                it('... id is null', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0, null);
-                });
-                it('... id is empty string', () => {
-                    component.openModal('');
-
-                    expectSpyCall(openModalRequestEmitSpy, 0);
-                });
-            });
-
-            it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedModalSnippet);
-
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on click', async () => {
-                const expectedSheetIds = {
-                    complexId: expectedComplexId,
-                    sheetId: expectedSvgSheet.id,
-                };
-
-                serviceAddFolioToSvgCanvasSpy.mockImplementation((svgCanvas, _folioSvgData, ref) => {
-                    const contentSegmentGroup = svgCanvas
-                        .append('g')
-                        .attr('class', 'content-segment-group')
-                        .attr('contentSegmentId', expectedSheetIds.sheetId);
-
-                    contentSegmentGroup.on('click', () => ref.selectSvgSheet(expectedSheetIds));
-                });
-
-                component.createSVGCanvas();
-                fixture.detectChanges();
-
-                const contentSegmentDes = getAndExpectDebugElementByCss(compDe, 'svg g.content-segment-group', 1, 1);
-
-                await clickDispatchAndAwaitChanges(contentSegmentDes[0], fixture);
-
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-            });
-
-            it('... should not emit anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheetWithPartialA.id };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = {
-                    complexId: expectedNextComplexId,
-                    sheetId: expectedSvgSheetWithPartialA.id,
-                };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-        });
-
-        describe('#toggleActiveClass()', () => {
-            let svgSelection: D3Selection;
-            let svgGroupSelection1: D3Selection;
-            let svgGroupSelection2: D3Selection;
-
-            beforeEach(() => {
-                // Create mocked SVG element with D3 and return selection
-                const svgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[0].sheet.folioId}`;
-                const contentSegmentId = expectedSvgSheet.id;
-                const anotherContentSegmentId = 'another-id';
-
-                const container: HTMLElement = mockDocument.createElement('div');
-                svgSelection = D3_SELECTION.select(container).append('svg').attr('id', svgId);
-
-                svgGroupSelection1 = svgSelection
-                    .append('g')
-                    .attr('class', 'content-segment-group')
-                    .attr('contentSegmentId', contentSegmentId);
-                svgGroupSelection2 = svgSelection
-                    .append('g')
-                    .attr('class', 'content-segment-group')
-                    .attr('contentSegmentId', anotherContentSegmentId);
-
-                d3SelectSpy.mockReturnValue(svgSelection);
-            });
-
-            afterEach(() => {
-                svgSelection.selectAll('*').remove();
-            });
-
-            it('should have a method `toggleActiveClass`', () => {
-                expect(component.toggleActiveClass).toBeDefined();
-            });
-
-            it('should not do anything if canvasArray is not defined', () => {
-                component.canvasArray = undefined;
-
-                component.toggleActiveClass();
-
-                expectSpyCall(isSelectedSvgSheetSpy, 0);
-            });
-
-            it('should check if each content segment group is active', () => {
-                component.canvasArray = [svgSelection];
-
-                component.toggleActiveClass();
-
-                expectSpyCall(isSelectedSvgSheetSpy, 2);
-            });
-
-            it('should toggle the active class for each content segment group based on whether it is active', () => {
-                component.canvasArray = [svgSelection];
-
-                isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === expectedSvgSheet.id);
-
-                component.toggleActiveClass();
-
-                expectToBe(svgGroupSelection1.classed('active'), true);
-                expectToBe(svgGroupSelection2.classed('active'), false);
-
-                isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === 'another-id');
-
-                component.toggleActiveClass();
-
-                expectToBe(svgGroupSelection1.classed('active'), false);
-                expectToBe(svgGroupSelection2.classed('active'), true);
-            });
-        });
-
-        describe('#_calculateViewBoxDimension()', () => {
-            it('... should have a method `_calculateViewBoxDimension`', () => {
-                expect((component as any)._calculateViewBoxDimension).toBeDefined();
-            });
-
-            it('... should calculate viewBox dimension for X input', () => {
-                const dimension = 'X';
-                const expectedDimension =
-                    (expectedFolioSettings.formatX + 2 * expectedFolioSettings.initialOffsetX) *
-                    expectedFolioSettings.factor;
-
-                const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
-
-                expectToEqual(result, expectedDimension);
-            });
-
-            it('... should calculate viewBox dimension for Y input', () => {
-                const dimension = 'Y';
-                const expectedDimension =
-                    (expectedFolioSettings.formatY + 2 * expectedFolioSettings.initialOffsetY) *
-                    expectedFolioSettings.factor;
-
-                const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
-
-                expectToEqual(result, expectedDimension);
-            });
-        });
-
-        describe('#_d3Select()', () => {
-            it('... should have a method `_d3Select`', () => {
-                expect((component as any)._d3Select).toBeDefined();
-            });
-
-            it('... should return the D3 selection of a given selector', () => {
-                const selector = 'test-selector';
-                const expectedSelection = D3_SELECTION.select(selector);
-
-                const result = (component as any)._d3Select(selector);
-
-                expectToEqual(result, expectedSelection);
             });
         });
     });

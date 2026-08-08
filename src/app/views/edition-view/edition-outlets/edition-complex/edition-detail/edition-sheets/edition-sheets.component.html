@@ -1,7 +1,5 @@
 <!-- content: edition detail -->
 <div>
-    <!-- modal -->
-    <awg-modal #modal />
     @if (viewData(); as view) {
         @if (view.error; as errorObject) {
             <awg-alert-error [errorObject]="errorObject" />
@@ -18,20 +16,15 @@
                     [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
                     [showTkA]="showTkA"
                     (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
-                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="modal.open($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectOverlaysRequest)="onOverlaySelect($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)"
                     (toggleSheetFacetRequest)="onToggleSheetFacet($event)" />
 
                 <!-- convolute view -->
                 @if (selectedConvolute && selectedSvgSheet) {
                     <awg-edition-convolute
                         [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet"
-                        (openModalRequest)="modal.open($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                        [selectedSvgSheet]="selectedSvgSheet" />
                 }
             </div>
         }

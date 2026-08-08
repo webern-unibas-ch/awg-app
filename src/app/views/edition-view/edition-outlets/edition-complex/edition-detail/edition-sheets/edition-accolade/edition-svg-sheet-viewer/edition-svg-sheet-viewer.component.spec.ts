@@ -311,10 +311,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             expectToBe((component as any)._isRendered, false);
         });
 
-        it('... should have `ref`', () => {
-            expectToBe(component.ref, component);
-        });
-
         describe('VIEW', () => {
             it('... should contain no outer div container yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-viewer', 0, 0);
