@@ -25,7 +25,7 @@
                         "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "aot": false,
+                        "aot": true,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": ["readable-stream", "queue-microtask", "rdfstore"],
                         "styles": [
@@ -59,14 +59,16 @@
                                     "with": "src/environments/environment.prod.ts"
                                 }
                             ],
+                            "aot": true,
                             "optimization": true,
                             "outputHashing": "all",
+                            "extractLicenses": true,
                             "sourceMap": false,
-                            "namedChunks": false,
-                            "extractLicenses": true
+                            "namedChunks": false
                         },
                         "development": {
                             "fileReplacements": [],
+                            "aot": true,
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,
