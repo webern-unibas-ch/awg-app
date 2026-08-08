@@ -25,8 +25,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ModalService } from '@awg-shared/modal/modal.service';
+
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import {
@@ -34,24 +36,12 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionGraphComponent } from './edition-graph.component';
 
 // Mock components
-@Component({
-    selector: 'awg-modal',
-    template: '',
-    standalone: false,
-})
-class ModalStubComponent {
-    modalContent: string;
-    open(modalContentSnippetKey: string): void {
-        this.modalContent = modalContentSnippetKey;
-    }
-}
-
 @Component({
     selector: 'awg-graph-visualizer',
     template: '',
@@ -69,10 +59,12 @@ describe('EditionGraphComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionStateService: EditionStateService;
+    let modalService: ModalService;
     let mockDocument: Document;
     let mockFullscreenService: Partial<FullscreenService>;
 
-    let modalOpenSpy: Spy;
+    let openModalSpy: Spy;
+    let serviceOpenModalSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'graph'>>;
     let expectedViewDataContent: EditionViewDataContent<'graph'>;
@@ -95,16 +87,12 @@ describe('EditionGraphComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [
                 AlertErrorStubComponent,
+                CompileHtmlDirective,
                 FullscreenToggleStubComponent,
                 TwelveToneSpinnerStubComponent,
                 FontAwesomeTestingModule,
             ],
-            declarations: [
-                EditionGraphComponent,
-                CompileHtmlComponent,
-                GraphVisualizerStubComponent,
-                ModalStubComponent,
-            ],
+            declarations: [EditionGraphComponent, GraphVisualizerStubComponent],
             providers: [
                 { provide: EditionViewService, useValue: { graphViewData: mockViewDataSignal.asReadonly() } },
                 { provide: FullscreenService, useValue: mockFullscreenService },
@@ -114,8 +102,12 @@ describe('EditionGraphComponent (DONE)', () => {
 
     beforeEach(() => {
         // Inject services
-        mockDocument = TestBed.inject(DOCUMENT);
         editionStateService = TestBed.inject(EditionStateService);
+        modalService = TestBed.inject(ModalService);
+        mockDocument = TestBed.inject(DOCUMENT);
+
+        // Service spies
+        serviceOpenModalSpy = vi.spyOn(modalService, 'openTextModal');
 
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op25');
@@ -131,6 +123,9 @@ describe('EditionGraphComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        // Component spies
+        openModalSpy = vi.spyOn(component, 'openModal');
     });
 
     afterEach(() => {
@@ -170,12 +165,6 @@ describe('EditionGraphComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain one outer `div`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-            });
-
-            it('... should contain one modal component (stubbed)', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-
-                getAndExpectDebugElementByDirective(divDes[0], ModalStubComponent, 1, 1);
             });
 
             it('... should contain no AlertErrorComponent (stubbed)', () => {
@@ -395,12 +384,18 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     describe('... if description data is provided', () => {
                         const descriptionData = new GraphList();
+                        let descriptions: string[];
+                        let expectedLength: number;
+                        let paragraphDes: DebugElement[];
 
                         beforeEach(async () => {
+                            descriptions = ['Description 1', 'Description 2', 'Description 3'];
+                            expectedLength = 1 + descriptions.length;
+
                             descriptionData.graph = [];
                             descriptionData.graph.push(new Graph());
                             descriptionData.graph[0].id = 'test-graph-id-description';
-                            descriptionData.graph[0].description = ['Description 1', 'Description 2', 'Description 3'];
+                            descriptionData.graph[0].description = descriptions;
 
                             mockViewDataSignal.set(
                                 createMockViewData(
@@ -413,22 +408,37 @@ describe('EditionGraphComponent (DONE)', () => {
                             );
 
                             await detectChangesOnPush(fixture);
-                        });
 
-                        it('... should have one + x paragraphs for graph description if description data is provided', async () => {
-                            const pDes = getAndExpectDebugElementByCss(
+                            paragraphDes = getAndExpectDebugElementByCss(
                                 getDescriptionDes()[0],
                                 'p',
-                                1 + descriptionData.graph[0].description.length,
-                                1 + descriptionData.graph[0].description.length
+                                expectedLength,
+                                expectedLength
                             );
+                        });
 
-                            pDes.forEach((pDe, index) => {
-                                if (index === 0) {
-                                    return;
-                                }
+                        it('... should have one + x paragraphs for graph descriptions', async () => {
+                            expectToBe(paragraphDes.length, expectedLength);
+                        });
+
+                        it('... should have one CompileHtmlDirective in each paragraph', async () => {
+                            paragraphDes.slice(1).forEach(pDe => {
+                                pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+                            });
+                        });
+
+                        it('... should pass down descriptions to CompileHtmlDirective in each paragraph', async () => {
+                            paragraphDes.slice(1).forEach((pDe, index) => {
+                                const directiveIns = pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+
+                                expectToBe(directiveIns.htmlContent(), descriptions[index]);
+                            });
+                        });
+
+                        it('... should display descriptions in paragraphs', async () => {
+                            paragraphDes.slice(1).forEach((pDe, index) => {
                                 const pEl: HTMLParagraphElement = pDe.nativeElement;
-                                expectToBe(pEl.textContent, `Description ${index}`);
+                                expectToBe(pEl.textContent, descriptions[index]);
                             });
                         });
                     });
@@ -553,13 +563,7 @@ describe('EditionGraphComponent (DONE)', () => {
                             getAndExpectDebugElementByDirective(hDes[0], FullscreenToggleStubComponent, 1, 1);
                         });
 
-                        it('... should trigger modal from click on help button', async () => {
-                            const modalDes = getAndExpectDebugElementByDirective(compDe, ModalStubComponent, 1, 1);
-                            const modalCmp = modalDes[0].injector.get(ModalStubComponent) as ModalStubComponent;
-                            // Spy on modal
-                            modalOpenSpy = vi.spyOn(modalCmp, 'open');
-
-                            // Get button
+                        it('... should trigger `#openModal()` from click on help button', async () => {
                             const btnDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-graph-dynamic > h4 button.btn',
@@ -567,11 +571,9 @@ describe('EditionGraphComponent (DONE)', () => {
                                 1
                             );
 
-                            // Click button
                             await clickAndAwaitChanges(btnDes[0], fixture);
 
-                            expectSpyCall(modalOpenSpy, 1, 'HINT_EDITION_GRAPH');
-                            expectToBe(modalCmp.modalContent, 'HINT_EDITION_GRAPH');
+                            expectSpyCall(openModalSpy, 1, 'HINT_EDITION_GRAPH');
                         });
 
                         it('... should contain a paragraph', () => {
@@ -685,12 +687,13 @@ describe('EditionGraphComponent (DONE)', () => {
                     });
 
                     describe('... if staticImage data is provided', () => {
+                        const staticImageData = new GraphList();
+
                         beforeEach(async () => {
-                            const staticImageData = new GraphList();
                             staticImageData.graph = [];
                             staticImageData.graph.push(new Graph());
                             staticImageData.graph[0].id = 'test-graph-id-static-image';
-                            staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.OP25;
+                            staticImageData.graph[0].staticImage = 'OP25';
 
                             mockViewDataSignal.set(
                                 createMockViewData(
@@ -715,23 +718,86 @@ describe('EditionGraphComponent (DONE)', () => {
                         });
 
                         it('... should display header and image of static graph', () => {
-                            const imgDes = getAndExpectDebugElementByCss(
+                            const imageId = staticImageData.graph[0].staticImage;
+
+                            const divDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-edition-graph-view > div > div.awg-graph-static',
                                 1,
                                 1
                             );
-                            const hDes = getAndExpectDebugElementByCss(imgDes[0], 'h4', 1, 1);
+                            const hDes = getAndExpectDebugElementByCss(divDes[0], 'h4', 1, 1);
                             const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                            const divDes = getAndExpectDebugElementByCss(imgDes[0], 'div', 1, 1);
-                            const divEl: HTMLDivElement = divDes[0].nativeElement;
+                            const imgDes = getAndExpectDebugElementByCss(divDes[0], 'img', 1, 1);
+                            const imgEl: HTMLImageElement = imgDes[0].nativeElement;
 
                             expectToContain(hEl.textContent, 'Statischer Graph');
 
-                            expectToContain(divEl.textContent, component.GRAPH_IMAGES.OP25);
+                            expectToContain(imgEl.src, component.GRAPH_IMAGES[imageId]);
+                            expectToContain(imgEl.alt, 'static-graph-' + imageId);
                         });
                     });
+                });
+            });
+        });
+
+        describe('METHODS', () => {
+            describe('#openModal()', () => {
+                it('... should have a method `openModal()`', () => {
+                    expect(component.openModal).toBeDefined();
+                });
+
+                it('... should trigger from click on help button', async () => {
+                    const graphWithRdfData = expectedGraphEmptyData;
+                    graphWithRdfData.graph[0].rdfData = new GraphRDFData();
+                    graphWithRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
+                    graphWithRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
+
+                    mockViewDataSignal.set(
+                        createMockViewData(
+                            { graphData: graphWithRdfData },
+                            {
+                                isLoading: false,
+                                error: null,
+                            }
+                        )
+                    );
+
+                    await detectChangesOnPush(fixture);
+
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4 button.btn', 1, 1);
+
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+
+                    expectSpyCall(openModalSpy, 1, 'HINT_EDITION_GRAPH');
+                });
+
+                describe('... should do nothing if ', () => {
+                    it('... id is undefined', () => {
+                        component.openModal(undefined);
+
+                        expectSpyCall(serviceOpenModalSpy, 0);
+                    });
+
+                    it('... id is null', () => {
+                        component.openModal(undefined);
+
+                        expectSpyCall(serviceOpenModalSpy, 0, null);
+                    });
+                    it('... id is empty string', () => {
+                        component.openModal('');
+
+                        expectSpyCall(serviceOpenModalSpy, 0);
+                    });
+                });
+
+                it('... should trigger ModalService with id of given modal snippet', () => {
+                    const expectedModalId = 'HINT_EDITION_GRAPH';
+
+                    component.openModal(expectedModalId);
+
+                    expectSpyCall(serviceOpenModalSpy, 1, expectedModalId);
                 });
             });
         });

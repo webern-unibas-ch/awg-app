@@ -1,8 +1,5 @@
 <!-- content: edition graph -->
 <div>
-    <!-- modal -->
-    <awg-modal #modal />
-
     <!-- graph -->
     @if (viewData(); as view) {
         @if (view.error; as errorObject) {
@@ -39,7 +36,7 @@
                                 </p>
                             } @else {
                                 @for (description of graph.description; track $index) {
-                                    <p [compile-html]="description" [compile-html-ref]="ref"></p>
+                                    <p [awgCompileHtml]="description"></p>
                                 }
                             }
                         </div>
@@ -51,7 +48,7 @@
                                     <button
                                         type="button"
                                         class="btn btn-sm btn-outline-info ms-2"
-                                        (click)="modal.open('HINT_EDITION_GRAPH')">
+                                        (click)="openModal('HINT_EDITION_GRAPH')">
                                         Hinweise zur Nutzung
                                     </button>
 
@@ -77,10 +74,13 @@
                             </div>
                         }
                         <!-- static image -->
-                        @if (graph.staticImage && graph.staticImage !== '') {
+                        @if (graph.staticImage && GRAPH_IMAGES[graph.staticImage]) {
                             <div class="awg-graph-static mt-3">
                                 <h4>Statischer Graph</h4>
-                                <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>
+                                <img
+                                    [src]="GRAPH_IMAGES[graph.staticImage]"
+                                    width="100%"
+                                    [alt]="'static-graph-' + graph.staticImage" />
                             </div>
                         }
                     </div>
