@@ -247,6 +247,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;graph&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -280,6 +286,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;intro&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -313,6 +325,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;preface&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -346,6 +364,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;report&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -379,6 +403,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;rowtables&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
@@ -412,6 +442,12 @@
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The data structure for the &#39;sheets&#39; view.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
             </section>
@@ -482,24 +518,47 @@ export interface EditionDataAssetsError {
  * * It defines the mapping of edition view keys to their corresponding data types.
  */
 export interface EditionViewDataTypeMapping {
+    /**
+     * The data structure for the &#x27;graph&#x27; view.
+     */
     graph: {
         graphData: GraphList;
     };
+
+    /**
+     * The data structure for the &#x27;intro&#x27; view.
+     */
     intro: {
         introData: IntroList;
     };
+
+    /**
+     * The data structure for the &#x27;preface&#x27; view.
+     */
     preface: {
         prefaceData: PrefaceList;
     };
+
+    /**
+     * The data structure for the &#x27;rowtables&#x27; view.
+     */
+    rowtables: {
+        rowtablesData: RowtablesList;
+    };
+
+    /**
+     * The data structure for the &#x27;report&#x27; view.
+     */
     report: {
         sourceListData: SourceList;
         sourceDescriptionData: SourceDescriptionList;
         sourceEvaluationData: SourceEvaluationList;
         textcriticsData: TextcriticsList;
     };
-    rowtables: {
-        rowtablesData: RowtablesList;
-    };
+
+    /**
+     * The data structure for the &#x27;sheets&#x27; view.
+     */
     sheets: {
         folioConvoluteData: FolioConvoluteList;
         svgSheetsData: EditionSvgSheetList;

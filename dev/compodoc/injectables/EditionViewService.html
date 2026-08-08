@@ -143,6 +143,7 @@
             </p>
             <p class="comment">
                 <p>The EditionView service.</p>
+<p>It provides methods to manage the state of the edition view and its data.</p>
 
             </p>
 
@@ -294,8 +295,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="185"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:185</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:195</a></div>
                         </td>
                     </tr>
 
@@ -310,6 +311,9 @@
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _buildViewData.</p>
+<p>It builds the EditionViewData object for the given view key and signal map.</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -320,6 +324,7 @@
                                             <td>Name</td>
                                                 <td>Type</td>
                                             <td>Optional</td>
+                                                <td>Description</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -334,6 +339,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The given view key.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>signalMap</td>
@@ -346,6 +355,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>The given signal map.</p>
+
+                                            </td>
                                         </tr>
                                         <tr>
                                                 <td>extraContentCheck</td>
@@ -358,6 +371,10 @@
                                             </td>
 
 
+                                            <td>
+                                                    <p>An optional extra content check function.</p>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -367,7 +384,8 @@
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>The built EditionViewData object.</p>
+
                             </div>
                 </td>
             </tr>
@@ -395,8 +413,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="302"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:302</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="312"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:312</a></div>
                         </td>
                     </tr>
 
@@ -481,8 +499,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="275"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:275</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="285"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:285</a></div>
                         </td>
                     </tr>
 
@@ -585,8 +603,8 @@ or null otherwise.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="251"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:251</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="261"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:261</a></div>
                         </td>
                     </tr>
 
@@ -687,8 +705,8 @@ or null otherwise.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="224"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:224</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="234"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:234</a></div>
                         </td>
                     </tr>
 
@@ -806,8 +824,8 @@ and an optional extra content check function.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="323"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:323</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-view.service.ts:333</a></div>
                         </td>
                     </tr>
 
@@ -1475,7 +1493,7 @@ import { EditionDataService } from &#x27;./edition-data.service&#x27;;
 /**
  * The EditionView service.
  *
- *
+ * It provides methods to manage the state of the edition view and its data.
  */
 @Injectable({
     providedIn: &#x27;root&#x27;,
@@ -1639,6 +1657,16 @@ export class EditionViewService {
         ])
     );
 
+    /**
+     * Private method: _buildViewData.
+     *
+     * It builds the EditionViewData object for the given view key and signal map.
+     *
+     * @param {K} viewKey The given view key.
+     * @param {Array&lt;[keyof EditionViewDataTypeMapping[K], Signal&lt;any&gt;]&gt;} signalMap The given signal map.
+     * @param {(data: EditionViewDataTypeMapping[K]) &#x3D;&gt; boolean} [extraContentCheck] An optional extra content check function.
+     * @returns {EditionViewData&lt;K&gt;} The built EditionViewData object.
+     */
     private _buildViewData&lt;K extends EditionViewKey&gt;(
         viewKey: K,
         signalMap: Array&lt;[keyof EditionViewDataTypeMapping[K], Signal&lt;any&gt;]&gt;,

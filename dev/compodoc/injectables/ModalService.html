@@ -670,7 +670,7 @@ export class ModalService {
      * @returns {void} Opens the modal.
      */
     openTextModal(snippetKey?: string | null): void {
-        const id &#x3D; snippetKey ? snippetKey : &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
+        const id &#x3D; snippetKey || &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
         const textSnippet &#x3D; MODAL_TEXT_SNIPPETS[id] || &#x27;&#x27;;
 
         const modalData: ModalData &#x3D; {
