@@ -5,7 +5,7 @@
         [autohide]="true"
         [delay]="toast?.options?.delay || 5000"
         (hide)="toastService.remove(toast)">
-        @if (isTemplate(toast)) {
+        @if (isTemplate(toast.textOrTpl)) {
             <ng-template [ngTemplateOutlet]="toast.textOrTpl" />
         } @else {
             {{ toast.textOrTpl }}
