@@ -183,11 +183,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     svgSheetRootGroupSelection: D3Selection | undefined;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: EditionSvgSheetViewerComponent = this;
-
-    /**
      * Private variable: _divWidth.
      *
      * It keeps the width of the container div.

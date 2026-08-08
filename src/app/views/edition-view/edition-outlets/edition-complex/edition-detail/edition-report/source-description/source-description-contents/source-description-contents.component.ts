@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { SourceDescriptionContent } from '@awg-views/edition-view/models';
+
+import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The SourceDescriptionContents component.
@@ -18,20 +20,19 @@ import { SourceDescriptionContent } from '@awg-views/edition-view/models';
 })
 export class SourceDescriptionContentsComponent {
     /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
      * Input variable: contents.
      *
      * It keeps the folio contents array.
      */
     @Input()
     contents: SourceDescriptionContent[];
-
-    /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Public variable: openAllContentDetails.
@@ -48,24 +49,19 @@ export class SourceDescriptionContentsComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: SourceDescriptionContentsComponent = this;
-
-    /**
      * Public method: selectSvgSheet.
      *
-     * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
+     * It delegates the navigation for the given complex and SVG sheet IDs
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Emits the ids.
+     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+    selectSvgSheet(sheetIds: SheetClickEvent): void {
         if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetIds);
     }
 
     /**

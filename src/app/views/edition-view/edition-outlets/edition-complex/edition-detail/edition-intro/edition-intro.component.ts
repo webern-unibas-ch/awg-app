@@ -1,11 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, signal, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, signal } from '@angular/core';
 
 import { fromEvent, Subject } from 'rxjs';
 import { takeUntil, throttleTime } from 'rxjs/operators';
 
 import { LanguageId } from '@awg-shared/language-switcher/language.model';
-import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -26,20 +24,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     standalone: false,
 })
 export class EditionIntroComponent implements OnDestroy {
-    /**
-     * ViewChild variable: modal.
-     *
-     * It keeps the reference to the awg-modal.
-     */
-    @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router = inject(Router);
-
     /**
      * Private readonly variable: _destroyed$.
      *
@@ -114,71 +98,6 @@ export class EditionIntroComponent implements OnDestroy {
     }
 
     /**
-     * Public method: onIntroFragmentNavigate.
-     *
-     * It navigates to the '/intro/' route with the given complexId and fragmentId.
-     *
-     * @param {object} introIds The given intro ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition intro fragment.
-     */
-    onIntroFragmentNavigate(introIds: { complexId: string; fragmentId: string }): void {
-        const navigationExtras: NavigationExtras = {
-            fragment: introIds?.fragmentId ?? '',
-        };
-        this._router.navigate([], navigationExtras);
-    }
-
-    /**
-     * Public method: onModalOpen.
-     *
-     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the modal with the snippet id.
-     */
-    onModalOpen(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.modal.open(id);
-    }
-
-    /**
-     * Public method: onReportFragmentNavigate.
-     *
-     * It navigates to the '/report/' route with the given complexId and fragmentId.
-     *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition report fragment.
-     */
-    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = this.editionRouteConstants.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
-        };
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
-    }
-
-    /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It navigates to the '/sheet/' route using the provided sheetId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Navigates to the edition sheets.
-     */
-    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = this.editionRouteConstants.EDITION_SHEETS.route;
-        const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds?.sheetId ?? '' },
-            // .queryParamsHandling: '',
-        };
-
-        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
-    }
-
-    /**
      * Private method: _initScrollListener.
      *
      * It initializes the scroll listener for the window.
@@ -191,24 +110,6 @@ export class EditionIntroComponent implements OnDestroy {
             .subscribe({
                 next: event => this._onIntroScroll(event),
             });
-    }
-
-    /**
-     * Private method: _navigateWithComplexId.
-     *
-     * It navigates to a target route using the provided complexId.
-     *
-     * @param {string} complexId The given complex id.
-     * @param {string} targetRoute The given target route.
-     * @param {NavigationExtras} navigationExtras The given navigation extras.
-     * @returns {void} Navigates to the target route.
-     */
-    private _navigateWithComplexId(complexId: string, targetRoute: string, navigationExtras: NavigationExtras): void {
-        const complexRoute = complexId
-            ? `/edition/complex/${complexId}`
-            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
-
-        this._router.navigate([complexRoute, targetRoute], navigationExtras);
     }
 
     /**

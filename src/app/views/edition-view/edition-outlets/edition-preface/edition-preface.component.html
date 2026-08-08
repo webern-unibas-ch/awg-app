@@ -12,10 +12,7 @@
             @let lang = selectedLanguage();
 
             @for (prefaceParagraph of preface[lang]?.content; track $index) {
-                <div
-                    class="awg-edition-preface-block"
-                    [compile-html]="prefaceParagraph"
-                    [compile-html-ref]="this"></div>
+                <div class="awg-edition-preface-block" [awgCompileHtml]="prefaceParagraph"></div>
             }
         </div>
     }

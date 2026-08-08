@@ -1,8 +1,5 @@
 <!-- content: edition report -->
 <div>
-    <!-- modal -->
-    <awg-modal #modal />
-
     <!-- report -->
     @if (viewData(); as view) {
         @if (view.error; as errorObject) {
@@ -20,10 +17,7 @@
                         <div ngbAccordionBody>
                             <ng-template>
                                 @if (view.data.sourceListData; as sourceListData) {
-                                    <awg-source-list
-                                        [sourceListData]="sourceListData"
-                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                        (openModalRequest)="onModalOpen($event)" />
+                                    <awg-source-list [sourceListData]="sourceListData" />
                                 }
                             </ng-template>
                         </div>
@@ -38,11 +32,7 @@
                         <div ngbAccordionBody>
                             <ng-template>
                                 @if (view.data.sourceDescriptionData; as sourceDescriptionListData) {
-                                    <awg-source-description
-                                        [sourceDescriptionListData]="sourceDescriptionListData"
-                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                        (openModalRequest)="onModalOpen($event)"
-                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                    <awg-source-description [sourceDescriptionListData]="sourceDescriptionListData" />
                                 }
                             </ng-template>
                         </div>
@@ -59,10 +49,7 @@
                                 @if (view.data.sourceEvaluationData; as sourceEvaluationListData) {
                                     <awg-source-evaluation
                                         [editionComplex]="selectedEditionComplex()"
-                                        [sourceEvaluationListData]="sourceEvaluationListData"
-                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                        (openModalRequest)="onModalOpen($event)"
-                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                        [sourceEvaluationListData]="sourceEvaluationListData" />
                                 }
                             </ng-template>
                         </div>
@@ -77,11 +64,7 @@
                         <div ngbAccordionBody>
                             <ng-template>
                                 @if (view.data.textcriticsData; as textcriticsData) {
-                                    <awg-textcritics-list
-                                        [textcriticsListData]="textcriticsData"
-                                        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                                        (openModalRequest)="onModalOpen($event)"
-                                        (selectSvgSheetRequest)="onSvgSheetSelect($event)" />
+                                    <awg-textcritics-list [textcriticsListData]="textcriticsData" />
                                 }
                             </ng-template>
                         </div>

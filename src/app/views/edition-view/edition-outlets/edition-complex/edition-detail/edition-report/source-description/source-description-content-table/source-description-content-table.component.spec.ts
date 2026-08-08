@@ -16,8 +16,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { SourceDescriptionContent } from '@awg-views/edition-view/models';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
+import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescriptionContentTableComponent } from './source-description-content-table.component';
 
@@ -27,6 +29,10 @@ describe('SourceDescriptionContentTableComponent', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
+    let mockNavigationService: Partial<EditionNavigationService>;
+
+    let selectSvgSheetSpy: Spy;
+    let serviceNavigateToSvgSheetSpy: Spy;
 
     let expectedContents: SourceDescriptionContent[];
     let expectedContent: SourceDescriptionContent;
@@ -36,21 +42,25 @@ describe('SourceDescriptionContentTableComponent', () => {
     let expectedSheetId: string;
     let expectedNextSheetId: string;
 
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
-
     beforeEach(async () => {
+        // Mock services
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
-            declarations: [SourceDescriptionContentTableComponent, CompileHtmlComponent, AbbrDirective],
+            imports: [CompileHtmlDirective],
+            declarations: [SourceDescriptionContentTableComponent, AbbrDirective],
+            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SourceDescriptionContentTableComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
+
+        // Service spies
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
         expectedContents = JSON.parse(
@@ -63,9 +73,13 @@ describe('SourceDescriptionContentTableComponent', () => {
         expectedSheetId = 'test_item_id_1';
         expectedFolioId = 'test_folio_id_1';
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(SourceDescriptionContentTableComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
     });
 
     afterEach(() => {
@@ -79,10 +93,6 @@ describe('SourceDescriptionContentTableComponent', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `content`', () => {
             expect(component.content).toBeUndefined();
-        });
-
-        it('... should have `ref`', () => {
-            expectToEqual(component.ref, component);
         });
 
         describe('VIEW', () => {
@@ -385,40 +395,40 @@ describe('SourceDescriptionContentTableComponent', () => {
                 });
             });
 
-            it('... should not emit anything if no id is provided', () => {
+            it('... should do nothing if no id is provided', () => {
                 const expectedSheetIds = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
 
                 const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
             });
 
-            it('... should emit id of selected svg sheet within same complex', () => {
+            it('... should trigger NavigationService with selected svg sheet within same complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, [expectedSheetIds]);
 
                 const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, [expectedNextSheetIds]);
             });
 
-            it('... should emit id of selected svg sheet for another complex', () => {
+            it('... should trigger NavigationService with selected svg sheet for another complex', () => {
                 const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, [expectedSheetIds]);
 
                 const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
                 component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 2, [expectedNextSheetIds]);
             });
         });
     });

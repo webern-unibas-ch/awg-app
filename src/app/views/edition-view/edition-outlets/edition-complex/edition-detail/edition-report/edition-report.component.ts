@@ -1,18 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject, ViewChild } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { ModalComponent } from '@awg-shared/modal/modal.component';
-
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 /**
  * The EditionReport component.
  *
- * It contains the report section of the edition view of the app
- * with a {@link HeadingComponent}, a {@link ModalComponent},
- * the {@link SourcesComponent} and the {@link TextcriticsComponent}.
+ * It contains the report section of the edition view of the app.
  */
 @Component({
     selector: 'awg-edition-report',
@@ -22,20 +16,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     standalone: false,
 })
 export class EditionReportComponent {
-    /**
-     * ViewChild variable: modal.
-     *
-     * It keeps the reference to the awg-modal.
-     */
-    @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Private readonly injection variable: _router.
-     *
-     * It keeps the instance of the injected Angular Router.
-     */
-    private readonly _router: any = inject(Router);
-
     /**
      * Readonly signal: selectedEditionComplex.
      *
@@ -61,78 +41,4 @@ export class EditionReportComponent {
         sourceEvaluation: '3. Quellenbewertung',
         tka: '4. Textkritische Anmerkungen',
     };
-
-    /**
-     * Public method: onModalOpen.
-     *
-     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the modal with the snippet id.
-     */
-    onModalOpen(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.modal.open(id);
-    }
-
-    /**
-     * Public method: onReportFragmentNavigate.
-     *
-     * It navigates to the '/report/' route using the provided fragmentId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object}  reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Navigates to the edition report.
-     */
-    onReportFragmentNavigate(reportIds: { complexId: string; fragmentId: string }): void {
-        const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
-        const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
-        };
-
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
-    }
-
-    /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It navigates to the '/sheet/' route using the provided sheetId
-     * within the context of an edition complex identified by the provided complexId.
-     *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Navigates to the edition sheets.
-     */
-    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
-        const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds?.sheetId ?? '' },
-            // .queryParamsHandling: '',
-        };
-
-        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
-    }
-
-    /**
-     * Private method: _navigateWithComplexId.
-     *
-     * It navigates to a target route using the provided complexId.
-     *
-     * @param {string | undefined} complexId The given complex id.
-     * @param {string} targetRoute The given target route.
-     * @param {NavigationExtras} navigationExtras The given navigation extras.
-     * @returns {void} Navigates to the target route.
-     */
-    private _navigateWithComplexId(
-        complexId: string | undefined,
-        targetRoute: string,
-        navigationExtras: NavigationExtras
-    ): void {
-        const complexRoute = complexId
-            ? `/edition/complex/${complexId}`
-            : (this.selectedEditionComplex()?.baseRoute ?? '/edition/series');
-
-        this._router.navigate([complexRoute, targetRoute], navigationExtras);
-    }
 }

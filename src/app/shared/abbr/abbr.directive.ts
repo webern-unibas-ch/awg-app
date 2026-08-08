@@ -11,6 +11,13 @@ import { Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
 })
 export class AbbrDirective implements OnInit {
     /**
+     * Private readonly injection variable: _el.
+     *
+     * It keeps the instance of the injected Angular ElementRef.
+     */
+    private readonly _el = inject(ElementRef<HTMLElement>);
+
+    /**
      * Input variable: text.
      *
      * It keeps the text value with a possible abbreviation.
@@ -44,13 +51,6 @@ export class AbbrDirective implements OnInit {
         ['US-NYpm', 'The Morgan Library & Museum, New York City, NY'],
         ['US-Wc', 'The Library of Congress, Music Division, Washington, D.C.'],
     ]);
-
-    /**
-     * Private readonly injection variable: _el.
-     *
-     * It keeps the instance of the injected Angular ElementRef.
-     */
-    private readonly _el = inject(ElementRef<HTMLElement>);
 
     /**
      * Angular life cycle hook: ngOnInit.

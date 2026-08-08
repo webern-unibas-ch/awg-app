@@ -26,7 +26,6 @@
                                 [svgSheetsData]="svgSheetsData"
                                 [isMinimized]="isSheetFacetMinimized"
                                 [selectedSvgSheet]="selectedSvgSheet"
-                                (selectSvgSheetRequest)="selectSvgSheet($event)"
                                 (toggleSheetFacetRequest)="toggleSheetFacet($event)" />
                         </div>
 
@@ -47,10 +46,7 @@
                                 <awg-edition-svg-sheet-footer
                                     [selectedTextcritics]="selectedTextcritics"
                                     [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
-                                    [showTkA]="showTkA"
-                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                    (openModalRequest)="openModal($event)"
-                                    (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                                    [showTkA]="showTkA" />
                             }
                         </div>
                     </div>

@@ -9,7 +9,7 @@
                     <!-- convolute label -->
                     <div class="awg-convolute-label">
                         <p>
-                            <a [routerLink]="['../report']" fragment="source{{ selectedConvolute.convoluteId }}">{{
+                            <a [routerLink]="['../report']" [fragment]="'source_' + selectedConvolute.convoluteId">{{
                                 selectedConvolute.convoluteLabel
                             }}</a>
                         </p>
@@ -18,9 +18,7 @@
                     <!-- viewer for convolute folios -->
                     <awg-edition-folio-viewer
                         [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet"
-                        (openModalRequest)="openModal($event)"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                        [selectedSvgSheet]="selectedSvgSheet" />
 
                     <!-- convolute legend -->
                     <div class="awg-convolute-legend col-12">

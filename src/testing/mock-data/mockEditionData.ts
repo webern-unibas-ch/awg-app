@@ -155,12 +155,12 @@ export const mockEditionData = {
                         blockId: 'test_block_id_1',
                         blockHeader: 'Test block header 1',
                         blockContent: [
-                            "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: 'testComplex1', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
-                            "In <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80'})\">80</a></sup>",
-                            '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                            "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                            "In <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a data-complex-id='testComplex1' data-intro-fragment-id='note-80'>80</a></sup>",
+                            "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
                         ],
                         blockNotes: [
-                            "<span id='note-80' class='note'><a class='note-backlink' (click)=\"ref.navigateToIntroFragment({complexId: 'testComplex1', fragmentId: 'note-80-backlink'})\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                            "<span id='note-80' class='note'><a class='note-backlink' data-complex-id='testComplex1' data-intro-fragment-id='note-80-backlink'>80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
                         ],
                     },
                     {
@@ -356,7 +356,7 @@ export const mockEditionData = {
                 location: 'Wien, Testcentre.',
                 physDesc: {
                     conditions: [
-                        '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Textfassung 2</strong></a>',
+                        "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Textfassung 2</strong></a>",
                     ],
                     writingMaterialStrings: [
                         'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
@@ -689,7 +689,7 @@ export const mockEditionData = {
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
                 physDesc: {
                     conditions: [
-                        "Siehe <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_G'})\"><strong>G</strong></a>.",
+                        "Siehe <a data-complex-id='testComplex1' data-report-fragment-id='source_G'><strong>G</strong></a>.",
                     ],
                     writingMaterialStrings: [
                         'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
@@ -769,7 +769,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten u. a. <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test_item_id_1'})\"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
+                    "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten u. a. <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a data-complex-id='testComplex1' data-sheet-id='test_item_id_1'><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
                 ],
             },
         ],
@@ -1202,7 +1202,7 @@ export const mockEditionData = {
                 label: 'test2',
                 evaluations: [
                     'test evaluation 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_B'})\"><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
+                    "In <strong>Sk2</strong> werden T. 11–12 aus <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Sk1</strong></a> bzw. T. 10–11 aus <a data-complex-id='testComplex1' data-report-fragment-id='source_B'><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
                 ],
                 rowtable: true,
                 commentary: {
@@ -1224,7 +1224,7 @@ export const mockEditionData = {
                                     system: '12',
                                     position: '2. Note',
                                     comment:
-                                        "Die Skizzen in <a (click)=\"ref.navigateToReportFragment({complexId: '', fragmentId: 'source_A'})\"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)=\"ref.selectSvgSheet({complexId: 'testComplex1', sheetId: 'test-1'})\"><strong>Test Sk1</strong></a>.",
+                                        "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test SkXYZ</strong></a> T. [11] und <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a>.",
                                 },
                                 {
                                     svgGroupId: 'svg-group-3',
@@ -1232,7 +1232,7 @@ export const mockEditionData = {
                                     system: '12',
                                     position: '3. Note',
                                     comment:
-                                        '<span class="glyph">{{ref.getGlyph("[a]")}}</span> überschreibt <span class="glyph">{{ref.getGlyph("[b]")}}</span>.',
+                                        "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
                                 },
                                 {
                                     svgGroupId: 'svg-group-4',

@@ -9,6 +9,7 @@ import { expectSpyCall, expectToBe, expectToContain, expectToEqual, expectToNotC
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
+import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     Folio,
     FolioCalculation,
@@ -21,12 +22,18 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { FolioService } from './folio.service';
 
 describe('FolioService (DONE)', () => {
     let folioService: FolioService;
-    let refMock: any;
+
+    let mockModalService: Partial<ModalService>;
+    let mockNavigationService: Partial<EditionNavigationService>;
+
+    let serviceNavigateToSvgSheetSpy: Spy;
+    let serviceOpenTextModalSpy: Spy;
 
     let addFolioSheetToSvgCanvasSpy: Spy;
     let addFolioSystemsToSvgCanvasSpy: Spy;
@@ -77,16 +84,60 @@ describe('FolioService (DONE)', () => {
     let expectedSystemsLineStrokeWidth: number;
 
     beforeEach(() => {
+        // Mock services
+        mockModalService = {
+            openTextModal: vi.fn(),
+        };
+
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         TestBed.configureTestingModule({
-            providers: [FolioService],
+            providers: [
+                FolioService,
+                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionNavigationService, useValue: mockNavigationService },
+            ],
         });
 
         // Inject services
         folioService = TestBed.inject(FolioService);
-        refMock = {
-            selectSvgSheet: vi.fn(),
-            openModal: vi.fn(),
-        };
+
+        // Service spies
+        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
+        serviceOpenTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
+
+        addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSheetToSvgCanvas');
+        addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSystemsToSvgCanvas');
+        addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioContentSegmentsToSvgCanvas');
+        appendCanvasSheetGroupSpy = vi.spyOn(folioService as any, '_appendCanvasSheetGroup');
+        appendContentSegmentGroupSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroup');
+        appendContentSegmentGroupElementSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupElement');
+        appendContentSegmentGroupTitleSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupTitle');
+        appendContentSegmentLinkSpy = vi.spyOn(folioService as any, '_appendContentSegmentLink');
+        appendContentSegmentLinkLabelSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkLabel');
+        appendContentSegmentLinkLabelTextElementSpy = vi.spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkLabelTextElement'
+        );
+        appendContentSegmentLinkLabelTspanElementsSpy = vi.spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkLabelTspanElements'
+        );
+        appendContentSegmentLinkPolygonSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkPolygon');
+        appendSheetGroupSheetTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetTitle');
+        appendSheetGroupSheetRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetRectangle');
+        appendSheetGroupTrademarkSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademark');
+        appendSheetGroupTrademarkGroupSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkGroup');
+        appendSheetGroupTrademarkRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkRectangle');
+        appendSheetGroupTrademarkSymbolSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkSymbol');
+        appendSheetGroupTrademarkTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkTitle');
+
+        appendSystemsGroupLabelSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLabel');
+        appendSystemsGroupLinesSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLines');
+        appendSvgElementWithAttrsSpy = vi.spyOn(folioService as any, '_appendSvgElementWithAttrs');
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
         // Test data
         expectedConvolutes = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes);
@@ -130,38 +181,6 @@ describe('FolioService (DONE)', () => {
         expectedFolioSvgData = new FolioSvgData(
             new FolioCalculation(expectedFolioSettings, expectedDefaultFolio, expectedContentSegmentOffsetCorrection)
         );
-
-        // Spies on service functions
-        addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSheetToSvgCanvas');
-        addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSystemsToSvgCanvas');
-        addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioContentSegmentsToSvgCanvas');
-        appendCanvasSheetGroupSpy = vi.spyOn(folioService as any, '_appendCanvasSheetGroup');
-        appendContentSegmentGroupSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroup');
-        appendContentSegmentGroupElementSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupElement');
-        appendContentSegmentGroupTitleSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupTitle');
-        appendContentSegmentLinkSpy = vi.spyOn(folioService as any, '_appendContentSegmentLink');
-        appendContentSegmentLinkLabelSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkLabel');
-        appendContentSegmentLinkLabelTextElementSpy = vi.spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkLabelTextElement'
-        );
-        appendContentSegmentLinkLabelTspanElementsSpy = vi.spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkLabelTspanElements'
-        );
-        appendContentSegmentLinkPolygonSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkPolygon');
-        appendSheetGroupSheetTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetTitle');
-        appendSheetGroupSheetRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetRectangle');
-        appendSheetGroupTrademarkSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademark');
-        appendSheetGroupTrademarkGroupSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkGroup');
-        appendSheetGroupTrademarkRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkRectangle');
-        appendSheetGroupTrademarkSymbolSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkSymbol');
-        appendSheetGroupTrademarkTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkTitle');
-
-        appendSystemsGroupLabelSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLabel');
-        appendSystemsGroupLinesSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLines');
-        appendSvgElementWithAttrsSpy = vi.spyOn(folioService as any, '_appendSvgElementWithAttrs');
-        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
     });
 
     afterEach(() => {
@@ -353,19 +372,13 @@ describe('FolioService (DONE)', () => {
         describe('... when called', () => {
             let svgCanvas: D3_SELECTION.Selection<SVGSVGElement, unknown, null, undefined>;
             let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
-            let ref: any;
 
             beforeEach(() => {
                 svgCanvas = D3_SELECTION.create('svg');
-                ref = refMock;
 
-                folioService.addFolioToSvgCanvas(svgCanvas, expectedFolioSvgData, ref);
+                folioService.addFolioToSvgCanvas(svgCanvas, expectedFolioSvgData);
 
                 svgSheetGroup = svgCanvas.select('g.sheet-group');
-            });
-
-            it('... should set the ref variable', () => {
-                expectToEqual(folioService.ref, ref);
             });
 
             it('... should trigger `_appendCanvasSheetGroup` method', () => {
@@ -1481,31 +1494,27 @@ describe('FolioService (DONE)', () => {
                 expectSpyCall(appendContentSegmentGroupTitleSpy, 1, [contentSegmentGroup, expectedContentSegment]);
             });
 
-            it('... should trigger the referenced `selectSvgSheet` method when the content segment is selectable and clicked', () => {
+            it('... should trigger trigger NavigationService with the correct ids when the content segment is selectable and clicked', () => {
                 const contentSegmentGroup = svgSheetGroup.select('g.content-segment-group');
                 expectedContentSegment.selectable = true;
-
-                folioService.ref = refMock;
 
                 // Dispatch a click event manually
                 (contentSegmentGroup.node() as Element).dispatchEvent(new Event('click'));
 
-                expectSpyCall(refMock.selectSvgSheet, 1, {
+                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, {
                     complexId: expectedContentSegment.complexId,
                     sheetId: expectedContentSegment.sheetId,
                 });
             });
 
-            it('... should trigger the referenced `openModal` method when the content segment is not selectable and clicked', () => {
+            it('... should trigger ModalService with the correct id when the content segment is not selectable and clicked', () => {
                 const contentSegmentGroup = svgSheetGroup.select('g.content-segment-group');
                 expectedContentSegment.selectable = false;
-
-                folioService.ref = refMock;
 
                 // Dispatch a click event manually
                 (contentSegmentGroup.node() as Element).dispatchEvent(new Event('click'));
 
-                expectSpyCall(refMock.openModal, 1, expectedContentSegment.linkTo);
+                expectSpyCall(serviceOpenTextModalSpy, 1, expectedContentSegment.linkTo);
             });
         });
     });

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
@@ -27,11 +28,11 @@ import {
 })
 export class EditionAccoladeComponent {
     /**
-     * Private readonly injection variable: _fullscreenService.
+     * Private readonly injection variable: _modalService
      *
-     * It keeps the instance of the injected FullscreenService.
+     * It keeps the instance of the injected ModalService.
      */
-    private readonly _fullscreenService = inject(FullscreenService);
+    private readonly _modalService = inject(ModalService);
 
     /**
      * Input variable: isSheetFacetMinimized.
@@ -90,23 +91,6 @@ export class EditionAccoladeComponent {
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
 
     /**
-     * Output variable: navigateToReportFragment.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
-     */
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
-
-    /**
-     * Output variable: openModalRequest.
-     *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
-     */
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
      * Output variable: selectLinkBoxRequest.
      *
      * It keeps an event emitter for the selected link box.
@@ -123,14 +107,6 @@ export class EditionAccoladeComponent {
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
 
     /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
-
-    /**
      * Output variable: toggleSheetFacetRequest.
      *
      * It keeps an event emitter for the toggle state of the sheet facet.
@@ -143,7 +119,7 @@ export class EditionAccoladeComponent {
      *
      * It holds the fullscreen status.
      */
-    readonly isFullscreen = this._fullscreenService.isFullscreen;
+    readonly isFullscreen = inject(FullscreenService).isFullscreen;
 
     /**
      * Public method: browseSvgSheet.
@@ -163,35 +139,18 @@ export class EditionAccoladeComponent {
     }
 
     /**
-     * Public method: navigateToReportFragment.
-     *
-     * It emits the given ids of a selected edition complex and report fragment
-     * to the {@link navigateToReportFragmentRequest}.
-     *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Emits the ids.
-     */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
-        if (!reportIds?.fragmentId) {
-            return;
-        }
-        this.navigateToReportFragmentRequest.emit(reportIds);
-    }
-
-    /**
      * Public method: openModal.
      *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
+     * It opens a text modal snippet via the {@link ModalService} for a given id.
      *
      * @param {string} id The given modal snippet id.
-     * @returns {void} Emits the id.
+     * @returns {void} Opens the text modal.
      */
     openModal(id: string): void {
         if (!id) {
             return;
         }
-        this.openModalRequest.emit(id);
+        this._modalService.openTextModal(id);
     }
 
     /**
@@ -219,22 +178,6 @@ export class EditionAccoladeComponent {
      */
     selectOverlays(overlays: EditionSvgOverlay[]): void {
         this.selectOverlaysRequest.emit(overlays);
-    }
-
-    /**
-     * Public method: selectSvgSheet.
-     *
-     * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
-     *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Emits the ids.
-     */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
-        if (!sheetIds?.sheetId) {
-            return;
-        }
-        this.selectSvgSheetRequest.emit(sheetIds);
     }
 
     /**

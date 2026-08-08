@@ -48,7 +48,7 @@
 
                         @if (content.itemDescription) {
                             <span class="awg-source-description-content-item-description"
-                                ><span [compile-html]="content.itemDescription" [compile-html-ref]="ref"></span
+                                ><span [awgCompileHtml]="content.itemDescription"></span
                             ></span>
                         }
                         <span>:</span><br />
@@ -57,15 +57,11 @@
 
                 <!-- content.folios -->
                 @if (!UTILS.isEmptyArray(content?.folios)) {
-                    <awg-source-description-content-table
-                        [content]="content"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)" />
+                    <awg-source-description-content-table [content]="content" />
                 }
             </details>
         } @else if (!UTILS.isEmptyArray(content?.folios)) {
-            <awg-source-description-content-table
-                [content]="content"
-                (selectSvgSheetRequest)="selectSvgSheet($event)" />
+            <awg-source-description-content-table [content]="content" />
         }
     }
 </div>

@@ -12,7 +12,8 @@
 
         <a
             class="btn btn-default w-100 awg-svg-sheet-facet-link card-text text-start"
-            [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
+            [class.active]="isSelectedSvgSheet(svgSheet.id)"
+            [class.text-muted]="!isSelectedSvgSheet(svgSheet.id)"
             (click)="selectSvgSheet(sheetIds)"
             (keyup.enter)="selectSvgSheet(sheetIds)"
             role="link"
@@ -24,9 +25,10 @@
         <div class="awg-svg-sheet-facet-link-dropdown" ngbDropdown>
             <a
                 class="btn card-text"
+                [class.active]="isSelectedSvgSheet(svgSheet.id)"
+                [class.text-muted]="!isSelectedSvgSheet(svgSheet.id)"
                 id="dropDownSheetFacet"
-                ngbDropdownToggle
-                [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }">
+                ngbDropdownToggle>
                 <span
                     >{{ svgSheet.label }} <span class="badge bg-secondary">{{ svgSheet.content.length }}</span></span
                 >
@@ -38,10 +40,8 @@
                     <div>
                         <a
                             class="dropdown-item"
-                            [ngClass]="{
-                                active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
-                                'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
-                            }"
+                            [class.active]="isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)"
+                            [class.text-muted]="!isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)"
                             (click)="selectSvgSheet(sheetWithPartialIds)"
                             (keyup.enter)="selectSvgSheet(sheetWithPartialIds)"
                             role="link"

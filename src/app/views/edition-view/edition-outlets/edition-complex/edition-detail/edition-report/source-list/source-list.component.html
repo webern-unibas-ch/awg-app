@@ -39,7 +39,7 @@
                                 </span>
                             </th>
                             <td>
-                                <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
+                                <span [awgCompileHtml]="source.type"></span> <br />
                                 <span class="text-muted" [awgAbbr]="source.location"></span>
                             </td>
                         </tr>
@@ -68,7 +68,7 @@
                                 </span>
                             </th>
                             <td>
-                                <span [compile-html]="textSource.type" [compile-html-ref]="ref"></span> <br />
+                                <span [awgCompileHtml]="textSource.type"></span> <br />
                                 <span class="text-muted" [innerHTML]="textSource.location"></span>
                             </td>
                         </tr>

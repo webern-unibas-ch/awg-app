@@ -32,6 +32,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ModalService } from '@awg-shared/modal/modal.service';
+
 import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
@@ -57,11 +59,6 @@ class EditionSvgSheetFacetStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
-    @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
@@ -76,16 +73,9 @@ class EditionSvgSheetViewerStubComponent {
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
     @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
 }
 
 @Component({
@@ -100,18 +90,6 @@ class EditionSvgSheetFooterStubComponent {
     selectedTextcritics: Textcritics;
     @Input()
     showTkA: boolean;
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{
-        complexId: string;
-        fragmentId: string;
-    }> = new EventEmitter();
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{
-        complexId: string;
-        sheetId: string;
-    }> = new EventEmitter();
 }
 
 describe('EditionAccoladeComponent (DONE)', () => {
@@ -121,25 +99,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let isFullscreenMockSignal: WritableSignal<boolean>;
     let mockFullscreenService: Partial<FullscreenService>;
+    let mockModalService: Partial<ModalService>;
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
-    let navigateToReportFragmentSpy: Spy;
-    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
+    let serviceOpenModalSpy: Spy;
     let selectLinkBoxSpy: Spy;
     let selectLinkBoxRequestEmitSpy: Spy;
     let selectOverlaysSpy: Spy;
     let selectOverlaysRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
-    let expectedReportFragment: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
@@ -166,9 +138,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // Unset fullscreen by default
         isFullscreenMockSignal = signal(false);
 
-        // Mock FullscreenService
+        // Mock services
         mockFullscreenService = {
             isFullscreen: isFullscreenMockSignal.asReadonly(),
+        };
+
+        mockModalService = {
+            openTextModal: vi.fn(),
         };
 
         await TestBed.configureTestingModule({
@@ -179,19 +155,18 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 EditionSvgSheetFacetStubComponent,
                 EditionSvgSheetFooterStubComponent,
             ],
-            providers: [{ provide: FullscreenService, useValue: mockFullscreenService }],
+            providers: [
+                { provide: FullscreenService, useValue: mockFullscreenService },
+                { provide: ModalService, useValue: mockModalService },
+            ],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionAccoladeComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Service spies
+        serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         // Test data
-        expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
-        expectedReportFragment = 'source_A';
         expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
@@ -209,19 +184,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedShowTkA = true;
         expectedIsSheetFacetMinimized = false;
 
-        // Spies
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionAccoladeComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
-        navigateToReportFragmentSpy = vi.spyOn(component, 'navigateToReportFragment');
-        navigateToReportFragmentRequestEmitSpy = vi.spyOn(component.navigateToReportFragmentRequest, 'emit');
         openModalSpy = vi.spyOn(component, 'openModal');
-        openModalRequestEmitSpy = vi.spyOn(component.openModalRequest, 'emit');
         selectLinkBoxSpy = vi.spyOn(component, 'selectLinkBox');
         selectLinkBoxRequestEmitSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
         selectOverlaysSpy = vi.spyOn(component, 'selectOverlays');
         selectOverlaysRequestEmitSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
-        selectSvgSheetSpy = vi.spyOn(component, 'selectSvgSheet');
-        selectSvgSheetRequestEmitSpy = vi.spyOn(component.selectSvgSheetRequest, 'emit');
         toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
         toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
     });
@@ -733,84 +708,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
             });
 
-            describe('#navigateToReportFragment()', () => {
-                it('... should have a method `navigateToReportFragment`', () => {
-                    expect(component.navigateToReportFragment).toBeDefined();
-                });
-
-                it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
-                    const sheetFooterDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetFooterStubComponent,
-                        1,
-                        1
-                    );
-                    const sheetFooterCmp = sheetFooterDes[0].injector.get(
-                        EditionSvgSheetFooterStubComponent
-                    ) as EditionSvgSheetFooterStubComponent;
-
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-
-                    sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedReportIds);
-
-                    expectSpyCall(navigateToReportFragmentSpy, 1, expectedReportIds);
-                });
-
-                describe('... should not emit anything if', () => {
-                    it('... parameter is undefined', () => {
-                        component.navigateToReportFragment(undefined);
-
-                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                    });
-                    it('... parameter is null', () => {
-                        component.navigateToReportFragment(null);
-
-                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                    });
-                    it('... fragment id is undefined', () => {
-                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
-
-                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                    });
-                    it('... fragment id is null', () => {
-                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
-
-                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                    });
-                    it('... fragment id is empty string', () => {
-                        component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
-
-                        expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                    });
-                });
-
-                it('... should emit id of selected report fragment within same complex', () => {
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                    component.navigateToReportFragment(expectedReportIds);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                    const otherFragment = 'source_B';
-                    const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
-                    component.navigateToReportFragment(expectedNextReportIds);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-                });
-
-                it('... should emit id of selected report fragment for another complex', () => {
-                    const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                    component.navigateToReportFragment(expectedReportIds);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                    const otherFragment = 'source_B';
-                    const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
-                    component.navigateToReportFragment(expectedNextReportIds);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-                });
-            });
-
             describe('#openModal()', () => {
                 it('... should have a method `openModal`', () => {
                     expect(component.openModal).toBeDefined();
@@ -824,42 +721,37 @@ describe('EditionAccoladeComponent (DONE)', () => {
                         1
                     );
 
-                    // Header Help Button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
                     const expectedSnippet = 'HINT_EDITION_SHEETS';
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
                     expectSpyCall(openModalSpy, 1, expectedSnippet);
                 });
 
-                it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
-                    const sheetFooterDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetFooterStubComponent,
-                        1,
-                        1
-                    );
-                    const sheetFooterCmp = sheetFooterDes[0].injector.get(
-                        EditionSvgSheetFooterStubComponent
-                    ) as EditionSvgSheetFooterStubComponent;
+                describe('... should do nothing if ', () => {
+                    it('... id is undefined', () => {
+                        component.openModal(undefined);
 
-                    sheetFooterCmp.openModalRequest.emit(expectedModalSnippet);
+                        expectSpyCall(serviceOpenModalSpy, 0);
+                    });
 
-                    expectSpyCall(openModalSpy, 1, expectedModalSnippet);
+                    it('... id is null', () => {
+                        component.openModal(undefined);
+
+                        expectSpyCall(serviceOpenModalSpy, 0, null);
+                    });
+                    it('... id is empty string', () => {
+                        component.openModal('');
+
+                        expectSpyCall(serviceOpenModalSpy, 0);
+                    });
                 });
 
-                it('... should not emit anything if no id is provided', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0, undefined);
-                });
-
-                it('... should emit id of given modal snippet', () => {
+                it('... should trigger ModalService with id of given modal snippet', () => {
                     component.openModal(expectedModalSnippet);
 
-                    expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
+                    expectSpyCall(serviceOpenModalSpy, 1, expectedModalSnippet);
                 });
             });
 
@@ -940,82 +832,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     component.selectOverlays(otherOverlays);
 
                     expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
-                });
-            });
-
-            describe('#selectSvgSheet()', () => {
-                it('... should have a method `selectSvgSheet`', () => {
-                    expect(component.selectSvgSheet).toBeDefined();
-                });
-
-                describe('... should trigger on selectSvgSheetRequest event from ...', () => {
-                    it('... EditionSvgSheetFacetComponent', () => {
-                        const sheetFacetDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionSvgSheetFacetStubComponent,
-                            1,
-                            1
-                        );
-                        const sheetFacetCmp = sheetFacetDes[0].injector.get(
-                            EditionSvgSheetFacetStubComponent
-                        ) as EditionSvgSheetFacetStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                        sheetFacetCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-
-                    it('... EditionSvgSheetFooterStubComponent', () => {
-                        const tableDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionSvgSheetFooterStubComponent,
-                            1,
-                            1
-                        );
-                        const tableCmp = tableDes[0].injector.get(
-                            EditionSvgSheetFooterStubComponent
-                        ) as EditionSvgSheetFooterStubComponent;
-
-                        const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                        tableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                        expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                    });
-                });
-
-                it('... should not emit anything if no id is provided', () => {
-                    component.selectSvgSheet(undefined);
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                    component.selectSvgSheet({ complexId: undefined, sheetId: undefined });
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0, {});
-                });
-
-                it('... should emit id of selected svg sheet within same complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                    component.selectSvgSheet(expectedNextSheetIds);
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-                });
-
-                it('... should emit id of selected svg sheet for another complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                    component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                    component.selectSvgSheet(expectedNextSheetIds);
-
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
                 });
             });
 
