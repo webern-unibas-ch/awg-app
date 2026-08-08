@@ -476,7 +476,7 @@ and supply it with the required ModalData input.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>openTextModal(snippetKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>openTextModal(snippetKey?: string | null)</code>
                 </td>
             </tr>
 
@@ -511,11 +511,11 @@ and supply it with the required ModalData input.</p>
                                         <tr>
                                                 <td>snippetKey</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>string | null</code>
                                             </td>
 
                                             <td>
-                                                    No
+                                                    Yes
                                             </td>
 
 
@@ -666,19 +666,19 @@ export class ModalService {
      *
      * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
      *
-     * @param {string} snippetKey The key of the text snippet.
+     * @param {string | null | undefined}  snippetKey The key of the text snippet.
      * @returns {void} Opens the modal.
      */
-    openTextModal(snippetKey: string): void {
-        const textSnippet &#x3D; MODAL_TEXT_SNIPPETS[snippetKey] || &#x27;&#x27;;
+    openTextModal(snippetKey?: string | null): void {
+        const id &#x3D; snippetKey ? snippetKey : &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
+        const textSnippet &#x3D; MODAL_TEXT_SNIPPETS[id] || &#x27;&#x27;;
 
         const modalData: ModalData &#x3D; {
             type: &#x27;text&#x27;,
-            id: snippetKey,
+            id: id,
             title: &#x27;Hinweis&#x27;,
             content: textSnippet,
         };
-
         this._open(modalData);
     }
 
