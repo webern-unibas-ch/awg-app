@@ -335,9 +335,13 @@ export class EditionSvgOverlayService {
      * @param {string} id The given id.
      * @param {DOMRect} dim The given dimensions of the SVG element.
      *
-     * @returns {D3Selection} The selection of the overlay group.
+     * @returns {D3Selection | undefined} The selection of the overlay group, or undefined.
      */
-    private _createTkkOverlayGroup(svgRootGroup: D3Selection | undefined, id: string, dim: DOMRect): D3Selection {
+    private _createTkkOverlayGroup(
+        svgRootGroup: D3Selection | undefined,
+        id: string,
+        dim: DOMRect
+    ): D3Selection | undefined {
         if (!svgRootGroup || !id) {
             return undefined;
         }
@@ -432,7 +436,7 @@ export class EditionSvgOverlayService {
      */
     private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, overlayType: string): D3Selection {
         if (!svgRootGroup || !dataId || !overlayType) {
-            return undefined;
+            return svgRootGroup?.selectAll(null);
         }
         // Get D3 selection of target group
         const targetGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
@@ -472,9 +476,9 @@ export class EditionSvgOverlayService {
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
      * @param {string} dataId The given data id.
      *
-     * @returns {EditionSvgOverlay[] | undefined } The found overlays or undefined.
+     * @returns {EditionSvgOverlay[] } The found overlays.
      */
-    private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] | undefined {
+    private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] {
         if (!Array.isArray(overlays)) {
             return [];
         }

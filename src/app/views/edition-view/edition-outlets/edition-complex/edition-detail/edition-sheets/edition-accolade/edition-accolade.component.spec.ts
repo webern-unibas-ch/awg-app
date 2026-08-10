@@ -125,7 +125,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -148,7 +148,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, FullscreenToggleStubComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, FullscreenToggleStubComponent],
             declarations: [
                 EditionAccoladeComponent,
                 EditionSvgSheetViewerStubComponent,

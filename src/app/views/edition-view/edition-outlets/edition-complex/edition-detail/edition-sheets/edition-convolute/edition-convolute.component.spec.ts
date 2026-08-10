@@ -66,7 +66,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            imports: [FontAwesomeTestingModule, NgbAccordionModule, NgbDropdownModule, NgbConfigModule],
             declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     });

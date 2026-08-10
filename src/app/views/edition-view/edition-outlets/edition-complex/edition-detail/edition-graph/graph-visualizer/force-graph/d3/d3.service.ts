@@ -66,7 +66,7 @@ export class D3Service {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag()
+        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag<any, any, D3SimulationNode>()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);

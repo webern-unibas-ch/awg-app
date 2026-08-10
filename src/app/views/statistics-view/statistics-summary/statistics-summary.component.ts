@@ -23,7 +23,7 @@ export class StatisticsSummaryComponent {
      *
      * It holds the summary data.
      */
-    readonly summaryData = input.required<StatisticsSummaryData>();
+    readonly summaryData = input.required<StatisticsSummaryData | null>();
 
     /**
      * Readonly computed signal: summaryCards.
@@ -32,6 +32,10 @@ export class StatisticsSummaryComponent {
      */
     readonly summaryCards = computed<StatisticsSummaryCardData[]>(() => {
         const data = this.summaryData();
+
+        if (!data) {
+            return [];
+        }
 
         return [
             {

@@ -28,7 +28,7 @@ export class StatisticsComplexBreakdownComponent {
      *
      * It holds the complex breakdown data.
      */
-    readonly complexBreakdownData = input.required<StatisticsComplexBreakdownData>();
+    readonly complexBreakdownData = input.required<StatisticsComplexBreakdownData | null>();
 
     /**
      * Public readonly variable: COMPLEX_BREAKDOWN_ITEMS.

@@ -151,26 +151,28 @@ describe('ToastComponent (DONE)', () => {
             });
         });
 
-        describe('#isTemplate()', () => {
-            it('... should have a method `isTemplate`', () => {
-                expect(component.isTemplate).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#isTemplate()', () => {
+                it('... should have a method `isTemplate`', () => {
+                    expect(component.isTemplate).toBeDefined();
+                });
 
-            it('... should return false if given toast is not a template, but string', () => {
-                const check = component.isTemplate(expectedToast);
+                it('... should return false if given toast is not a template, but string', () => {
+                    const check = component.isTemplate(expectedToast.textOrTpl);
 
-                expectToBe(check, false);
-            });
+                    expectToBe(check, false);
+                });
 
-            it('... should return true if given toast is a template', () => {
-                const mockFixture = TestBed.createComponent(MockTemplateComponent);
-                const mockComponent = mockFixture.componentInstance;
-                const expectedTplMessage = mockComponent.template;
-                const expectedTplToast = new Toast(expectedTplMessage);
+                it('... should return true if given toast is a template', () => {
+                    const mockFixture = TestBed.createComponent(MockTemplateComponent);
+                    const mockComponent = mockFixture.componentInstance;
+                    const expectedTplMessage = mockComponent.template;
+                    const expectedTplToast = new Toast(expectedTplMessage);
 
-                const check = component.isTemplate(expectedTplToast);
+                    const check = component.isTemplate(expectedTplToast.textOrTpl);
 
-                expectToBe(check, true);
+                    expectToBe(check, true);
+                });
             });
         });
     });

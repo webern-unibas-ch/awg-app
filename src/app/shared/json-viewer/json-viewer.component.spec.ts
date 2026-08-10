@@ -92,7 +92,7 @@ describe('JsonViewerComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
-    class NgbNavWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -103,7 +103,7 @@ describe('JsonViewerComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbNavWithConfigModule],
+            imports: [NgbNavModule, NgbConfigModule],
             declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
         }).compileComponents();
     });

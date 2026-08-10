@@ -455,7 +455,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this._forceSimulation = D3_FORCE.forceSimulation();
 
         // Create forces
-        const chargeForce = D3_FORCE.forceManyBody().strength(
+        const chargeForce = D3_FORCE.forceManyBody<D3SimulationNode>().strength(
             (d: D3SimulationNode) => this._nodeRadius(d) * FORCES.CHARGE_STRENGTH
         );
 
@@ -467,9 +467,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        const linkForce = D3_FORCE.forceLink()
+        const linkForce = D3_FORCE.forceLink<D3SimulationNode, D3SimulationLink>()
             .links(this._simulationData.links)
-            .id((d: D3SimulationLink) => d.predicate)
+            .id((d: D3SimulationNode) => d.id)
             .distance(FORCES.LINK_DISTANCE);
 
         // Add forces

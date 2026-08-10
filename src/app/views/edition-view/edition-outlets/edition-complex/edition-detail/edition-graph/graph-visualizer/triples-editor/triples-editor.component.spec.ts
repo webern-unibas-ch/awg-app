@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
-import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -62,7 +62,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -73,7 +73,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective],
+            imports: [NgbAccordionModule, NgbConfigModule],
             declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
         }).compileComponents();
     });

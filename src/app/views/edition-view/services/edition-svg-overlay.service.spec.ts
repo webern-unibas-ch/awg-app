@@ -1228,8 +1228,8 @@ describe('EditionSvgOverlayService', () => {
             expect((service as any)._getOverlayGroupRectSelection).toBeDefined();
         });
 
-        describe('... should return undefined if', () => {
-            it('... no svgRootGroup is provided', () => {
+        describe('... should handle missing parameters if', () => {
+            it('... no svgRootGroup is provided (return undefined)', () => {
                 let d3selections = (service as any)._getOverlayGroupRectSelection(
                     null,
                     'tkk-1',
@@ -1247,14 +1247,16 @@ describe('EditionSvgOverlayService', () => {
                 expect(d3selections).toBeUndefined();
             });
 
-            it('... no id is provided', () => {
+            it('... no id is provided (return empty selection)', () => {
+                const expectedEmptySelection = expectedSvgRootGroup.selectAll(null);
+
                 let d3selections = (service as any)._getOverlayGroupRectSelection(
                     expectedSvgRootGroup,
                     null,
                     EditionSvgOverlayTypes.tkk
                 );
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
 
                 d3selections = (service as any)._getOverlayGroupRectSelection(
                     expectedSvgRootGroup,
@@ -1262,7 +1264,7 @@ describe('EditionSvgOverlayService', () => {
                     EditionSvgOverlayTypes.tkk
                 );
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
 
                 d3selections = (service as any)._getOverlayGroupRectSelection(
                     expectedSvgRootGroup,
@@ -1270,21 +1272,22 @@ describe('EditionSvgOverlayService', () => {
                     EditionSvgOverlayTypes.tkk
                 );
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
             });
 
-            it('... no type is provided', () => {
+            it('... no type is provided (return empty selection)', () => {
+                const expectedEmptySelection = expectedSvgRootGroup.selectAll(null);
                 let d3selections = (service as any)._getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', null);
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
 
                 d3selections = (service as any)._getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', undefined);
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
 
                 d3selections = (service as any)._getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', '');
 
-                expect(d3selections).toBeUndefined();
+                expectToEqual(d3selections, expectedEmptySelection);
             });
         });
 

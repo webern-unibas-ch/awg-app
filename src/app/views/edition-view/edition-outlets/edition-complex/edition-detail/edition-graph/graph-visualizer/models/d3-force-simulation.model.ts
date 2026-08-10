@@ -175,19 +175,21 @@ export class D3ForceSimulation {
      */
     private _createForces(options: D3ForceSimulationOptions): void {
         // Create forces
-        this._chargeForce = D3_FORCE.forceManyBody().strength((d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH);
+        this._chargeForce = D3_FORCE.forceManyBody<D3SimulationNode>().strength(
+            (d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH
+        );
 
         this._centerForce = D3_FORCE.forceCenter(options.width / 2, options.height / 2);
 
-        this._collideForce = D3_FORCE.forceCollide()
+        this._collideForce = D3_FORCE.forceCollide<D3SimulationNode>()
             .strength(FORCES.COLLISION_STRENGTH)
-            .radius(d => d['r'] + 5)
+            .radius((d: D3SimulationNode) => d['r'] + 5)
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        this._linkForce = D3_FORCE.forceLink()
+        this._linkForce = D3_FORCE.forceLink<D3SimulationNode, D3SimulationLink>()
             .links(this.links)
-            .id((d: D3SimulationLink) => d.predicate)
+            .id((d: D3SimulationNode) => d.id)
             .distance(FORCES.LINK_DISTANCE); // FORCES.LINKS
     }
 

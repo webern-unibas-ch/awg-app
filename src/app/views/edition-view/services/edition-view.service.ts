@@ -338,6 +338,6 @@ export class EditionViewService {
             return '';
         }
 
-        return segments.at(-1).path;
+        return segments.at(-1)?.path || '';
     }
 }

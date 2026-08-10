@@ -22,5 +22,5 @@ export class StatisticsOverallProgressComponent {
      *
      * It holds the overall progress data.
      */
-    readonly overallProgressData = input.required<StatisticsOverallProgressData>();
+    readonly overallProgressData = input.required<StatisticsOverallProgressData | null>();
 }

@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
-import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
@@ -62,7 +62,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -73,7 +73,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective, TwelveToneSpinnerStubComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, TwelveToneSpinnerStubComponent],
             declarations: [SelectResultsComponent, SparqlNoResultsStubComponent, SparqlTableStubComponent],
         }).compileComponents();
     });

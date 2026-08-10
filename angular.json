@@ -59,7 +59,6 @@
                                     "with": "src/environments/environment.prod.ts"
                                 }
                             ],
-                            "aot": true,
                             "optimization": true,
                             "outputHashing": "all",
                             "extractLicenses": true,
@@ -68,7 +67,6 @@
                         },
                         "development": {
                             "fileReplacements": [],
-                            "aot": true,
                             "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,

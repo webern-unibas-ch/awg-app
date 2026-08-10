@@ -1,10 +1,8 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 
-import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
+import { Component, Directive, HostListener, Input } from '@angular/core';
 import { ParamMap, Params, QueryParamsHandling, convertToParamMap } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-
-import { AppModule } from '@awg-app/app.module';
 
 /**
  * Interface for a UrlSegmentStub.
@@ -93,7 +91,6 @@ export class RouterOutletStubComponent {}
  *
  * Inspired by https://remypenchenat.blogspot.com/2018/02/angular-testing-activatedroute.html
  */
-@Injectable()
 export class ActivatedRouteStub {
     /**
      * Private readonly BehaviorSubject to handle test route parameters.
@@ -182,12 +179,8 @@ export class ActivatedRouteStub {
      * @param {Params} [initialParams] The optional initial route parameters.
      */
     // eslint-disable-next-line @angular-eslint/prefer-inject
-    constructor(initialParams?: Params) {
-        if (initialParams) {
-            this.testParamMap = initialParams;
-        } else {
-            this.testParamMap = {};
-        }
+    constructor(initialParams: Params = {}) {
+        this.testParamMap = initialParams;
     }
 
     /**
@@ -300,15 +293,3 @@ export class ActivatedRouteStub {
     }
 }
 // #enddocregion activated-route-stub
-
-/**
- * A fake router module.
- *
- * Needed so that `aot` build is working. But it isn't used throughout our tests and/or app.
- */
-@NgModule({
-    imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent],
-    exports: [RouterOutletStubComponent],
-})
-export class FakeRouterModule {}

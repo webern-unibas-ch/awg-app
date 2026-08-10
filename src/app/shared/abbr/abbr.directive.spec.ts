@@ -1,11 +1,11 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { AbbrDirective } from './abbr.directive';
+import { SharedModule } from '@awg-shared/shared.module';
 
 // Test abbr component
 @Component({
@@ -16,6 +16,13 @@ class TestAbbrComponent {
     text = 'This is a test with Klav. and Klav. o. and Ges. It is located in CH-Bps.';
 }
 
+@NgModule({
+    imports: [SharedModule],
+    declarations: [TestAbbrComponent],
+    exports: [TestAbbrComponent],
+})
+class TestAbbrModule {}
+
 describe('AbbrDirective (DONE)', () => {
     let fixture: ComponentFixture<TestAbbrComponent>;
     let component: TestAbbrComponent;
@@ -23,15 +30,13 @@ describe('AbbrDirective (DONE)', () => {
 
     let expectedAbbreviations: Map<string, string>;
 
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [TestAbbrModule],
+        }).compileComponents();
+    });
+
     beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [TestAbbrComponent, AbbrDirective],
-        });
-
-        fixture = TestBed.createComponent(TestAbbrComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedAbbreviations = new Map<string, string>([
             // General
@@ -55,6 +60,11 @@ describe('AbbrDirective (DONE)', () => {
             ['US-NYpm', 'The Morgan Library & Museum, New York City, NY'],
             ['US-Wc', 'The Library of Congress, Music Division, Washington, D.C.'],
         ]);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(TestAbbrComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should replace abbreviations with <abbr> elements', () => {

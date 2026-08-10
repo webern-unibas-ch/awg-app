@@ -89,7 +89,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -105,7 +105,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective, NgbAccordionWithConfigModule],
+            imports: [CompileHtmlDirective, NgbAccordionModule, NgbConfigModule],
             declarations: [
                 TextcriticsListComponent,
                 DisclaimerWorkeditionsStubComponent,
