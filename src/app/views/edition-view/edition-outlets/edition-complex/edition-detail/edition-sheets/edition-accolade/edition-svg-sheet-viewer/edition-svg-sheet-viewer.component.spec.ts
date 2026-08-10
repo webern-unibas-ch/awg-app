@@ -1310,11 +1310,13 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should trigger on click on link box (D3 event)', async () => {
                 const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
 
-                serviceCreateSvgOverlaysSpy.mockImplementation((rootGroupSelection, onLinkBoxSelectFn) => {
-                    rootGroupSelection.selectAll('g.link-box').on('click', function () {
-                        onLinkBoxSelectFn((this as SVGGElement).id);
-                    });
-                });
+                serviceCreateSvgOverlaysSpy.mockImplementation(
+                    (rootGroupSelection: D3Selection, onLinkBoxSelectFn: (id: string) => void) => {
+                        rootGroupSelection.selectAll('g.link-box').on('click', function (this: any) {
+                            onLinkBoxSelectFn((this as SVGGElement).id);
+                        });
+                    }
+                );
 
                 (component as any)._createSvgOverlays();
                 fixture.detectChanges();

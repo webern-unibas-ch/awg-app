@@ -55,7 +55,9 @@ describe('AnalyticsService (DONE)', () => {
         // Spy on service methods
         initializeAnalyticsSpy = vi.spyOn(analyticsService, 'initializeAnalytics');
 
-        gtagSpy = vi.spyOn(window as any, 'gtag').mockImplementation(mockAnalytics.gtag);
+        gtagSpy = vi.spyOn(window as any, 'gtag').mockImplementation((...args: any[]) => {
+            mockAnalytics.gtag(args[0], args[1], args[2]);
+        });
         consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
     });
 

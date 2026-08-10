@@ -620,7 +620,7 @@ describe('EditionSvgOverlayService', () => {
             };
             mockLinkBoxGroupSelection = {
                 select: vi.fn().mockReturnValue(mockLinkBoxGroupPathSelection),
-                on: vi.fn().mockImplementation(function (event, handler) {
+                on: vi.fn().mockImplementation(function (this: any, event: string, handler: any) {
                     this._handlers = this._handlers || {};
                     this._handlers[event] = handler;
                     return this;
@@ -672,7 +672,7 @@ describe('EditionSvgOverlayService', () => {
             };
             mockLinkBoxGroupSelection = {
                 select: vi.fn().mockReturnValue(mockLinkBoxGroupPathSelection),
-                on: vi.fn().mockImplementation(function (event, handler) {
+                on: vi.fn().mockImplementation(function (this: any, event: string, handler: any) {
                     this._handlers = this._handlers || {};
                     this._handlers[event] = handler;
                     return this;
@@ -965,7 +965,7 @@ describe('EditionSvgOverlayService', () => {
             (service as any)._tkkOverlaysState.available = expectedTkkOverlays;
             expectedOverlaysState = (service as any)._tkkOverlaysState;
             mockOverlayGroupRectSelection = {
-                on: vi.fn().mockImplementation(function (event, handler) {
+                on: vi.fn().mockImplementation(function (this: any, event: string, handler: any) {
                     this._handlers = this._handlers || {};
                     this._handlers[event] = handler;
                     return this;
@@ -1797,7 +1797,7 @@ describe('EditionSvgOverlayService', () => {
                 const expectedUniqueColors = [expectedTkkOverlaySelectionFillColor, 'blue'];
 
                 // Return different colors for each overlay
-                vi.spyOn(service as any, '_getTkkOverlayColor').mockImplementation((overlay: EditionSvgOverlay) => {
+                vi.spyOn(service as any, '_getTkkOverlayColor').mockImplementation((overlay: any) => {
                     if (overlay && overlay.id === 'tkk-20') {
                         return expectedUniqueColors[1];
                     }
