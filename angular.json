@@ -25,7 +25,6 @@
                         "polyfills": ["src/polyfills.ts", "@angular/localize/init"],
                         "tsConfig": "tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "aot": true,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": ["readable-stream", "queue-microtask", "rdfstore"],
                         "styles": [
