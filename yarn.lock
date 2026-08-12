@@ -3909,6 +3909,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rdfjs/types@npm:*":
+  version: 2.0.1
+  resolution: "@rdfjs/types@npm:2.0.1"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/81012b02e28737e15dfc27068664bbab7b989cc2ff82e0a6a341df492d9d97210b5e462d85bfb7882aa0ef5bf84e2c5e95647fb779b67b7b1910b1837d79c500
+  languageName: node
+  linkType: hard
+
 "@rolldown/binding-android-arm64@npm:1.0.0-rc.4":
   version: 1.0.0-rc.4
   resolution: "@rolldown/binding-android-arm64@npm:1.0.0-rc.4"
@@ -4845,6 +4854,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/n3@npm:^1.26.1":
+  version: 1.26.1
+  resolution: "@types/n3@npm:1.26.1"
+  dependencies:
+    "@rdfjs/types": "npm:*"
+    "@types/node": "npm:*"
+  checksum: 10c0/4797463efdf0e8425074bb0301ae1b83d7e04b39e3fc584e4e0f69e772883c6ef517983a764c7f9357bcefae42d978d1e857264ec5ecab643157d2f4f555fd17
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^26.2.0":
   version: 26.2.0
   resolution: "@types/node@npm:26.2.0"
@@ -5741,6 +5760,7 @@ __metadata:
     "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
+    "@types/n3": "npm:^1.26.1"
     "@types/node": "npm:^26.2.0"
     "@vitest/browser-playwright": "npm:^4.1.10"
     "@vitest/coverage-v8": "npm:^4.1.10"
