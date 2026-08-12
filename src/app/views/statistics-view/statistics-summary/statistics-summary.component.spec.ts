@@ -124,6 +124,14 @@ describe('StatisticsSummaryComponent', () => {
             });
         });
 
+        it('... should have re-computed signal `summaryCards` to hold empty array if no summaryData is provided', () => {
+            fixture.componentRef.setInput('summaryData', null);
+
+            fixture.detectChanges();
+
+            expectToEqual(component.summaryCards(), []);
+        });
+
         describe('VIEW', () => {
             it('... should contain one cards div', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);

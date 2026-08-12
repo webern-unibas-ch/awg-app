@@ -752,6 +752,43 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
+            describe('#getStaticImage()', () => {
+                it('... should have a method `getStaticImage()`', () => {
+                    expect(component.getStaticImage).toBeDefined();
+                });
+
+                describe('... should return null if', () => {
+                    it('... no key is provided', () => {
+                        const result = component.getStaticImage(undefined);
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... an empty key is provided', () => {
+                        const result = component.getStaticImage('');
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... if the key is not found', () => {
+                        const invalidKey = 'INVALID_KEY';
+
+                        const result = component.getStaticImage(invalidKey);
+
+                        expectToBe(result, null);
+                    });
+                });
+
+                it('... should return the static image path for a given key', () => {
+                    const imageKey = 'OP25';
+                    const expectedImagePath = component.GRAPH_IMAGES[imageKey as keyof typeof component.GRAPH_IMAGES];
+
+                    const result = component.getStaticImage(imageKey);
+
+                    expectToBe(result, expectedImagePath);
+                });
+            });
+
             describe('#openModal()', () => {
                 it('... should have a method `openModal()`', () => {
                     expect(component.openModal).toBeDefined();

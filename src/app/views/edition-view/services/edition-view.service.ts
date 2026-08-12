@@ -332,12 +332,13 @@ export class EditionViewService {
      */
     private _parseViewFromUrl(url: string): string {
         const tree = this._router.parseUrl(url);
-        const segments = tree.root.children['primary']?.segments || [];
+        const segments = [...(tree.root.children['primary']?.segments || [])];
 
-        if (segments.length === 0) {
+        const lastSegment = segments.pop();
+        if (!lastSegment) {
             return '';
         }
 
-        return segments.at(-1)?.path || '';
+        return lastSegment.path;
     }
 }

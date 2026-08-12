@@ -182,8 +182,12 @@ export class EditionComplex {
 
         this.respStatement = this._mapRespStatement(respStatement);
 
-        const seriesConstant = this._mapPubStatement('SERIES_', pubStatement?.series);
-        const sectionConstant = this._mapPubStatement('SECTION_', pubStatement?.section);
+        const seriesKey = `SERIES_${pubStatement?.series?.toUpperCase()}` as EditionRouteConstantsKey;
+        const seriesConstant = EDITION_ROUTE_CONSTANTS[seriesKey] ?? new EditionRouteConstant();
+
+        const sectionKey = `SECTION_${pubStatement?.section?.toUpperCase()}` as EditionRouteConstantsKey;
+        const sectionConstant = EDITION_ROUTE_CONSTANTS[sectionKey] ?? new EditionRouteConstant();
+
         this.pubStatement =
             seriesConstant.route && sectionConstant.route
                 ? {
@@ -224,33 +228,9 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        if (!catalogueType) {
-            return new EditionRouteConstant();
-        }
-
         const key = catalogueType.toUpperCase() as EditionCatalogueTypeConstantsKey;
 
         return EDITION_CATALOGUE_TYPE_CONSTANTS[key] ?? new EditionRouteConstant();
-    }
-
-    /**
-     * Private method: _mapPubStatement.
-     *
-     * It maps the publication statement to the corresponding route constant.
-     *
-     * @param {string} prefix The given prefix.
-     * @param {string} value The given value.
-     *
-     * @returns {EditionRouteConstant} The corresponding route constant.
-     */
-    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        if (!value) {
-            return new EditionRouteConstant();
-        }
-
-        const key = `${prefix}${value.toUpperCase()}` as EditionRouteConstantsKey;
-
-        return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**
