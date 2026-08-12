@@ -1,4 +1,4 @@
-import { EditionSvgSheetList } from './edition-svg-sheet.model';
+import { EditionSvgSheetsList } from './edition-svg-sheets.model';
 import { FolioConvoluteList } from './folio.model';
 import { GraphList } from './graph.model';
 import { IntroList } from './intro.model';
@@ -104,7 +104,7 @@ export interface EditionViewDataTypeMapping {
      */
     sheets: {
         folioConvoluteData: FolioConvoluteList;
-        svgSheetsData: EditionSvgSheetList;
+        svgSheetsData: EditionSvgSheetsList;
         textcriticsData: TextcriticsList;
     };
 }

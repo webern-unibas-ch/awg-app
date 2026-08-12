@@ -11,7 +11,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvolute,
     TextcriticalCommentary,
     Textcritics,
@@ -25,7 +25,7 @@ describe('EditionSheetsService (DONE)', () => {
     let expectedFolioConvolutes: FolioConvolute[];
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSelectedSheet: EditionSvgSheet;
-    let expectedSheets: EditionSvgSheetList['sheets'];
+    let expectedSheets: EditionSvgSheetsList['sheets'];
     let expectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedTextcriticsArray: Textcritics[];
 
@@ -581,10 +581,18 @@ describe('EditionSheetsService (DONE)', () => {
 
                 editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
 
-                expectSpyCall(consoleSpy, 1);
+                expectSpyCall(consoleSpy, 3);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition types in svg-sheets.json: workEditions,textEditions,sketchEditions'
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: workEditions'
+                );
+                expectToEqual(
+                    mockConsole.get(1),
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: textEditions'
+                );
+                expectToEqual(
+                    mockConsole.get(2),
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
 
@@ -599,7 +607,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectSpyCall(consoleSpy, 1);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition types in svg-sheets.json: sketchEditions'
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
         });

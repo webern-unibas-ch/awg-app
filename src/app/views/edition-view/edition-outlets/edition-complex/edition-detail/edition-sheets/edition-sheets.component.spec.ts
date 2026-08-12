@@ -24,7 +24,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalCommentary,
@@ -53,7 +53,7 @@ class EditionAccoladeStubComponent {
     @Input()
     isSheetFacetMinimized: boolean;
     @Input()
-    svgSheetsData: EditionSvgSheetList;
+    svgSheetsData: EditionSvgSheetsList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
@@ -118,7 +118,7 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedIsSheetFacetMinimized: boolean;
     let expectedComplex: EditionComplex;
     let expectedFolioConvoluteData: FolioConvoluteList;
-    let expectedSvgSheetsData: EditionSvgSheetList;
+    let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedTextcriticsListData: TextcriticsList;
@@ -140,7 +140,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         // Mock services
         expectedDefaultViewDataContent = {
             folioConvoluteData: new FolioConvoluteList(),
-            svgSheetsData: new EditionSvgSheetList(),
+            svgSheetsData: new EditionSvgSheetsList(),
             textcriticsData: new TextcriticsList(),
         };
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
@@ -151,7 +151,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         mockEditionSheetsService = {
             findTextcritics: (): Textcritics => new Textcritics(),
-            getCurrentEditionType: (): keyof EditionSvgSheetList['sheets'] | undefined => undefined,
+            getCurrentEditionType: (): keyof EditionSvgSheetsList['sheets'] | undefined => undefined,
             getNextSheetId: (): string => '',
             filterTextcriticalCommentaryForOverlays: (): TextcriticalCommentary => new TextcriticalCommentary(),
             selectSvgSheetById: (): EditionSvgSheet => new EditionSvgSheet(),
@@ -953,7 +953,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... textEditions are empty', () => {
-                        const mockSvgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetList;
+                        const mockSvgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -961,7 +961,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... sketchEditions are empty', () => {
-                        const mockSvgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetList;
+                        const mockSvgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -971,7 +971,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... textEditions and sketchEditions are empty', () => {
                         const mockSvgSheetsData = {
                             sheets: { textEditions: [], sketchEditions: [] },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -988,7 +988,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [mockSheet1],
                                 sketchEditions: [mockSheet2],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1002,7 +1002,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [mockSheet1],
                                 sketchEditions: [],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1022,7 +1022,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [mockSheet1],
                                 sketchEditions: [],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1049,7 +1049,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [mockSheet1, mockSheet2],
                                 sketchEditions: [],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1078,7 +1078,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [mockSheet2],
                                 sketchEditions: [mockSheet3],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1094,7 +1094,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [],
                                 sketchEditions: [mockSheet1],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1114,7 +1114,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [],
                                 sketchEditions: [mockSheet1],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1141,7 +1141,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [],
                                 sketchEditions: [mockSheet1, mockSheet2],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1170,7 +1170,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 textEditions: [],
                                 sketchEditions: [mockSheet3],
                             },
-                        } as EditionSvgSheetList;
+                        } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 

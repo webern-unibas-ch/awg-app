@@ -38,7 +38,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
@@ -55,7 +55,7 @@ class EditionSvgSheetFacetStubComponent {
     @Input()
     isMinimized = false;
     @Input()
-    svgSheetsData: EditionSvgSheetList;
+    svgSheetsData: EditionSvgSheetsList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
@@ -112,7 +112,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
-    let expectedSvgSheetsData: EditionSvgSheetList;
+    let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;

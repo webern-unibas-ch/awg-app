@@ -62,11 +62,6 @@ export class EditionSvgOverlay {
     type: EditionSvgOverlayTypes;
 
     /**
-     * The key string of an svg overlay type (EditionSvgOverlayTypes).
-     */
-    typeKey: string;
-
-    /**
      * A boolean value indicating whether the overlay is selected.
      */
     isSelected?: boolean;
@@ -86,25 +81,6 @@ export class EditionSvgOverlay {
         this.id = actualId;
         this.dataId = dataId;
         this.type = typeValue;
-        this.typeKey = this._getEnumKeyFromValue(typeValue);
         this.isSelected = isSelected || false;
-    }
-
-    /**
-     * Private method: _getEnumKeyFromValue.
-     *
-     * It gets the type of a string enum by its value.
-     *
-     * Cf. https://www.tutorialsteacher.com/typescript/typescript-enum
-     *
-     * @param {EditionSvgOverlayTypes} enumValue The given overlay enum value.
-     *
-     * @returns {string} Filtered key of the EditionSvgOverlayTypes.
-     */
-    private _getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
-        const enumKey: string = Object.keys(EditionSvgOverlayTypes)
-            // Find key of enumValue
-            .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);
-        return enumKey;
     }
 }

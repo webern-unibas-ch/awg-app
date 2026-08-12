@@ -1,267 +1,305 @@
-import { EditionRouteConstant } from '@awg-views/edition-view/models';
+/**
+ * The EditionRouteConstant class.
+ *
+ * It is used in the context of the edition view
+ * to store routing information of the editions parts.
+ */
+export class EditionRouteConstant {
+    /**
+     * The route path of a route constant.
+     */
+    route: string;
+
+    /**
+     * The short label of a route constant.
+     */
+    short: string;
+
+    /**
+     * The full label of a route constant.
+     */
+    full: string;
+}
 
 /**
- * The EDITION_CATALOGUE_TYPE_CONSTANTS class.
+ * The EDITION_CATALOGUE_TYPE_CONSTANTS constant.
  *
  * It is used in the context of the edition view
  * to store the route constants of the edition catalogue types.
  */
-export class EDITION_CATALOGUE_TYPE_CONSTANTS {
+export const EDITION_CATALOGUE_TYPE_CONSTANTS = {
     /**
      * The route constant for the opus number.
      */
-    static readonly OPUS: EditionRouteConstant = {
+    OPUS: {
         route: '/op',
         short: 'op.',
         full: 'Opus',
-    };
+    },
 
     /**
      * The route constant for the Moldenhauer number.
      */
-    static readonly MNR: EditionRouteConstant = {
+    MNR: {
         route: '/m',
         short: 'M',
         full: 'Moldenhauer-Nr.',
-    };
+    },
 
     /**
      * The route constant for an extended Moldenhauer number (AWG-ID).
      */
-    static readonly MNR_X: EditionRouteConstant = {
+    MNR_X: {
         route: '/mx',
         short: 'M*',
         full: 'Moldenhauer-Nr. (AWG-ID)',
-    };
-}
+    },
+} satisfies Record<string, EditionRouteConstant>;
+
 /**
  * The EDITION_TYPE_CONSTANTS class.
  *
  * It is used in the context of the edition view
  * to store the route constants of the edition types.
  */
-export class EDITION_TYPE_CONSTANTS {
+export const EDITION_TYPE_CONSTANTS = {
     /**
      * The route constant for a work edition.
      */
-    static readonly WORK_EDITION: EditionRouteConstant = {
+    WORK_EDITION: {
         route: 'work-edition',
         short: 'WE',
         full: 'Werkedition',
-    };
+    },
 
     /**
      * The route constant for a text edition.
      */
-    static readonly TEXT_EDITION: EditionRouteConstant = {
+    TEXT_EDITION: {
         route: 'text-edition',
         short: 'TE',
         full: 'Textedition',
-    };
+    },
 
     /**
      * The route constant for a sketch edition.
      */
-    static readonly SKETCH_EDITION: EditionRouteConstant = {
+    SKETCH_EDITION: {
         route: 'sketch-edition',
         short: 'SE',
         full: 'Skizzenedition',
-    };
-}
+    },
+} satisfies Record<string, EditionRouteConstant>;
 
 /**
- * The EDITION_ROUTE_CONSTANTS class.
+ * The EDITION_ROUTE_CONSTANTS constant.
  *
  * It is used in the context of the edition view
  * to store route constants of the editions.
  */
-export class EDITION_ROUTE_CONSTANTS {
+export const EDITION_ROUTE_CONSTANTS = {
     /**
      * The route constant for the edition.
      */
-    static readonly EDITION: EditionRouteConstant = {
+    EDITION: {
         route: '/edition',
         short: 'AWG',
         full: 'Anton Webern Gesamtausgabe',
-    };
+    },
 
     /**
      * The route constant for the preface.
      */
-    static readonly PREFACE: EditionRouteConstant = {
+    PREFACE: {
         route: 'preface',
         short: 'Vorwort',
         full: 'Vorwort / Preface',
-    };
+    },
 
     /**
      * The route constant for the rowtables.
      */
-    static readonly ROWTABLES: EditionRouteConstant = {
+    ROWTABLES: {
         route: 'rowtables',
         short: 'Reihentabellen',
         full: 'Reihentabellen',
-    };
+    },
 
     /**
      * The route constant for an edition complex.
      */
-    static readonly COMPLEX: EditionRouteConstant = {
+    COMPLEX: {
         route: '/complex',
         short: 'Editionskomplex',
         full: 'Editionskomplex',
-    };
+    },
 
     /**
      * The route constant for the series.
      */
-    static readonly SERIES: EditionRouteConstant = {
+    SERIES: {
         route: 'series',
         short: 'Serien',
         full: 'Editionsübersicht',
-    };
+    },
 
     /**
      * The route constant for series I.
      */
-    static readonly SERIES_1: EditionRouteConstant = {
+    SERIES_1: {
         route: '1',
         short: 'I',
         full: 'Serie I (Werke mit Opuszahlen)',
-    };
+    },
 
     /**
      * The route constant for series II.
      */
-    static readonly SERIES_2: EditionRouteConstant = {
+    SERIES_2: {
         route: '2',
         short: 'II',
         full: 'Serie II (Nachgelassene Kompositionen und Fragmente)',
-    };
+    },
 
     /**
      * The route constant for series III.
      */
-    static readonly SERIES_3: EditionRouteConstant = {
+    SERIES_3: {
         route: '3',
         short: 'III',
         full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)',
-    };
+    },
 
     /**
      * The route constant for the series.
      */
-    static readonly SECTION: EditionRouteConstant = {
+    SECTION: {
         route: 'section',
         short: 'Abteilung',
         full: 'Abteilungsübersicht',
-    };
+    },
 
     /**
      * The route constant for section 1.
      */
-    static readonly SECTION_1: EditionRouteConstant = {
+    SECTION_1: {
         route: '1',
         short: '1',
         full: 'Abteilung 1 (Orchestermusik)',
-    };
+    },
 
     /**
      * The route constant for section 2.
      */
-    static readonly SECTION_2: EditionRouteConstant = {
+    SECTION_2: {
         route: '2',
         short: '2',
         full: 'Abteilung 2 (Kammer- und Klaviermusik)',
-    };
+    },
 
     /**
      * The route constant for section 2a.
      */
-    static readonly SECTION_2A: EditionRouteConstant = {
+    SECTION_2A: {
         route: '2a',
         short: '2a',
         full: 'Abteilung 2a (Kammer- und Klaviermusik: Klaviermusik)',
-    };
+    },
 
     /**
      * The route constant for section 2b.
      */
-    static readonly SECTION_2B: EditionRouteConstant = {
+    SECTION_2B: {
         route: '2b',
         short: '2b',
         full: 'Abteilung 2b (Kammer- und Klaviermusik: Kammermusik)',
-    };
+    },
 
     /**
      * The route constant for section 3.
      */
-    static readonly SECTION_3: EditionRouteConstant = {
+    SECTION_3: {
         route: '3',
         short: '3',
         full: 'Abteilung 3 (Chormusik)',
-    };
+    },
 
     /**
      * The route constant for section 4.
      */
-    static readonly SECTION_4: EditionRouteConstant = {
+    SECTION_4: {
         route: '4',
         short: '4',
         full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)',
-    };
+    },
 
     /**
      * The route constant for section 5.
      */
-    static readonly SECTION_5 = {
+    SECTION_5: {
         route: '5',
         short: '5',
         full: 'Abteilung 5 (Klavierlieder)',
-    };
+    },
 
     /**
      * The route constant for section 5.
      */
-    static readonly SERIES_3_SECTION_5 = {
+    SERIES_3_SECTION_5: {
         route: '5',
         short: '5',
         full: 'Abteilung 5 (Klavierauszüge)',
-    };
+    },
 
     /**
      * The route constant for the graph section of an edition.
      */
-    static readonly EDITION_GRAPH: EditionRouteConstant = {
+    EDITION_GRAPH: {
         route: 'graph',
         short: 'Graph',
         full: 'Graph',
-    };
+    },
 
     /**
      * The route constant for the intro section of an edition.
      */
-    static readonly EDITION_INTRO: EditionRouteConstant = {
+    EDITION_INTRO: {
         route: 'intro',
         short: 'Einleitung',
         full: 'Einleitung / Introduction',
-    };
+    },
 
     /**
      * The route constant for the sheets section of an edition.
      */
-    static readonly EDITION_SHEETS: EditionRouteConstant = {
+    EDITION_SHEETS: {
         route: 'sheets',
         short: 'Edierte Notentexte',
         full: 'Edierte Notentexte',
-    };
+    },
 
     /**
      * The route constant for the report section of an edition.
      */
-    static readonly EDITION_REPORT: EditionRouteConstant = {
+    EDITION_REPORT: {
         route: 'report',
         short: 'Kritischer Bericht',
         full: 'Kritischer Bericht',
-    };
-}
+    },
+} satisfies Record<string, EditionRouteConstant>;
+
+/**
+ * The EditionCatalogueTypeConstantsKey type.
+ *
+ * It is used in the context of the edition view
+ * to store the keys of the edition catalogue type constants.
+ */
+export type EditionCatalogueTypeConstantsKey = keyof typeof EDITION_CATALOGUE_TYPE_CONSTANTS;
+
+/**
+ * The EditionRouteConstantsKey type.
+ *
+ * It is used in the context of the edition view
+ * to store the keys of the edition route constants.
+ */
+export type EditionRouteConstantsKey = keyof typeof EDITION_ROUTE_CONSTANTS;

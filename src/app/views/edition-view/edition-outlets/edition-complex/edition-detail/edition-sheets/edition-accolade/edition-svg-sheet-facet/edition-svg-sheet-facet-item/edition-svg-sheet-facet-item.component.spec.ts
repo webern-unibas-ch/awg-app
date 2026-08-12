@@ -17,7 +17,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheet.model';
+import { EditionSvgSheet } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSvgSheetFacetItemComponent } from './edition-svg-sheet-facet-item.component';

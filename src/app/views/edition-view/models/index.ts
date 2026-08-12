@@ -25,7 +25,6 @@ export {
     EditionOutlineSeries,
     EditionSectionLink,
 } from './edition-outline.model';
-export { EditionRouteConstant } from './edition-route-constant.model';
 export { EditionSvgLinkBox } from './edition-svg-link-box.model';
 export {
     EditionSvgOverlay,
@@ -33,7 +32,7 @@ export {
     EditionSvgOverlayState,
     EditionSvgOverlayTypes,
 } from './edition-svg-overlay.model';
-export { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
+export { EditionSvgSheet, EditionSvgSheetsList } from './edition-svg-sheets.model';
 export {
     FolioCalculation,
     FolioCalculationLine,

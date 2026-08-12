@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data';
+import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import {
     SourceDescriptionWritingMaterial,
     SourceDescriptionWritingMaterialDimension,
@@ -40,29 +41,22 @@ export class SourceDescriptionWritingMaterialsComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Readonly variable: TRADEMARKS.
-     *
-     * It keeps the routes to the trademarks.
-     */
-    readonly TRADEMARKS = EDITION_TRADEMARKS_DATA;
-
-    /**
      * Public method: getTradeMark.
      *
      * It retrieves a trademark for a given variant
      * from the {@link EDITION_TRADEMARKS_DATA}.
      *
      * @param {string} variant The given variant.
-     * @returns {object} The retrieved trademark.
+     * @returns {EditionRouteConstant} The retrieved trademark, or a default constant if not found.
      */
-    getTrademark(variant: string): {
-        readonly route: string;
-        readonly full: string;
-        readonly short: string;
-    } {
-        return variant && this.TRADEMARKS[variant]
-            ? this.TRADEMARKS[variant]
-            : { route: '', full: 'Not a known trademark.', short: 'unknown' };
+    getTrademark(variant: string): EditionRouteConstant {
+        return (
+            EDITION_TRADEMARKS_DATA[variant as keyof typeof EDITION_TRADEMARKS_DATA] ?? {
+                route: '',
+                full: 'Not a known trademark.',
+                short: 'unknown',
+            }
+        );
     }
 
     /**

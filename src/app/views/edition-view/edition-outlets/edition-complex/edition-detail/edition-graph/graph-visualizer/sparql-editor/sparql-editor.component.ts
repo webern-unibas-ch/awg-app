@@ -156,12 +156,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {void} Sets the selected view type.
      */
     setViewType(): void {
-        const viewTypeMap = {
-            construct: ViewHandleTypes.GRAPH,
-            select: ViewHandleTypes.TABLE,
-        };
-
-        this.selectedViewType = viewTypeMap[this.query?.queryType] || ViewHandleTypes.GRAPH;
+        this.selectedViewType = this.query?.queryType === 'select' ? ViewHandleTypes.TABLE : ViewHandleTypes.GRAPH;
     }
 
     /**

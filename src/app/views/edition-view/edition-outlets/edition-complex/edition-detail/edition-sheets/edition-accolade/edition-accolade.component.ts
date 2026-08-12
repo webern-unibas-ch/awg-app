@@ -5,7 +5,7 @@ import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
@@ -14,10 +14,7 @@ import {
  * The EditionAccolade component.
  *
  * It contains the edition accolade section
- * of the edition view of the app
- * with the {@link EditionSvgSheetFacetComponent},
- * the {@link EditionSvgSheetListComponent}
- * and the {@link EditionTkaTableComponent}.
+ * of the edition view of the app.
  */
 @Component({
     selector: 'awg-edition-accolade',
@@ -48,7 +45,7 @@ export class EditionAccoladeComponent {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheetList;
+    svgSheetsData: EditionSvgSheetsList;
 
     /**
      * Input variable: selectedSvgSheet.

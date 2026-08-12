@@ -1,6 +1,9 @@
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionRouteConstant } from '@awg-views/edition-view/models';
+import {
+    EDITION_ROUTE_CONSTANTS,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from '@awg-views/edition-view/edition-routes.constants';
 
 import { EditionComplex } from './edition-complex.model';
 
@@ -338,7 +341,8 @@ export class EditionOutline {
         { series, sections }: EditionOutlineSeriesJsonData,
         getComplexById: (id: string) => EditionComplex | undefined
     ): EditionOutlineSeries => {
-        const seriesConstant: EditionRouteConstant = EDITION_ROUTE_CONSTANTS['SERIES_' + series];
+        const seriesConstant: EditionRouteConstant =
+            EDITION_ROUTE_CONSTANTS[('SERIES_' + series) as EditionRouteConstantsKey];
         return {
             series: seriesConstant,
             sections: sections.map(section => this._mapSection(section, seriesConstant, getComplexById)),
@@ -365,7 +369,9 @@ export class EditionOutline {
     ): EditionOutlineSection => {
         const routes = EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant =
-            seriesConstant.route === '3' && section === '5' ? routes.SERIES_3_SECTION_5 : routes['SECTION_' + section];
+            seriesConstant.route === '3' && section === '5'
+                ? routes.SERIES_3_SECTION_5
+                : routes[('SECTION_' + section) as EditionRouteConstantsKey];
 
         const labeledSectionRoute: LabeledRoute = {
             label: `${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}`,

@@ -1,5 +1,5 @@
 import { EditionDataAssetsKeys } from '../models/edition-data.model';
-import { EditionSvgSheetList } from '../models/edition-svg-sheet.model';
+import { EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
 import { FolioConvoluteList } from '../models/folio.model';
 import { GraphList } from '../models/graph.model';
 import { IntroList } from '../models/intro.model';
@@ -65,7 +65,7 @@ export const EDITION_ASSETS_DATA = {
             file: EDITION_ASSETS_FILES.sourceEvaluationListFile,
             fallback: new SourceEvaluationList(),
         },
-        svgSheets: { file: EDITION_ASSETS_FILES.svgSheetsFile, fallback: new EditionSvgSheetList() },
+        svgSheets: { file: EDITION_ASSETS_FILES.svgSheetsFile, fallback: new EditionSvgSheetsList() },
         textcritics: { file: EDITION_ASSETS_FILES.textcriticsFile, fallback: new TextcriticsList() },
     } satisfies Record<EditionDataAssetsKeys, { file: string; fallback: unknown }>,
 };

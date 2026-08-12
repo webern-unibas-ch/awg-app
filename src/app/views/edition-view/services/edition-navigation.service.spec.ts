@@ -9,7 +9,7 @@ import { expectSpyCall } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
 import { EditionComplex } from '../models/edition-complex.model';
-import { EditionSvgSheet } from '../models/edition-svg-sheet.model';
+import { EditionSvgSheet } from '../models/edition-svg-sheets.model';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionStateService } from './edition-state.service';

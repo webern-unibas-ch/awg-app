@@ -13,8 +13,8 @@ import {
 } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
-import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries, EditionRouteConstant } from '../models';
+import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';

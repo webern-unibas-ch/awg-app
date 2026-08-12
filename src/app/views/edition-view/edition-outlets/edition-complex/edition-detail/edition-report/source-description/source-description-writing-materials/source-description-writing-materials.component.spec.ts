@@ -31,7 +31,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let expectedTrademarks: typeof EDITION_TRADEMARKS_DATA;
     let expectedWritingMaterials: SourceDescriptionWritingMaterial[];
 
     beforeEach(async () => {
@@ -49,7 +48,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedTrademarks = EDITION_TRADEMARKS_DATA;
         expectedWritingMaterials = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescriptionListData.sources[2].physDesc.writingMaterials)
         );
@@ -62,10 +60,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `writingMaterials`', () => {
             expect(component.writingMaterials).toBeUndefined();
-        });
-
-        it('... should have `TRADEMARKS`', () => {
-            expectToEqual(component.TRADEMARKS, expectedTrademarks);
         });
 
         describe('VIEW', () => {

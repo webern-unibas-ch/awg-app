@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import {
-    EditionSvgOverlay,
+    EDITION_SVG_SHEETS_KEYS,
     EditionSvgSheet,
-    EditionSvgSheetList,
-    FolioConvolute,
-    TextcriticalCommentary,
-    Textcritics,
-} from '@awg-views/edition-view/models';
+    EditionSvgSheetsKey,
+    EditionSvgSheetsList,
+} from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgOverlay, FolioConvolute, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The Edition sheets service.
@@ -53,21 +52,21 @@ export class EditionSheetsService {
      * It returns the current edition type of the selected SVG sheet.
      *
      * @param {EditionSvgSheet} selectedSvgSheet The given selected SVG sheet.
-     * @param {EditionSvgSheetList['sheets']} sheets The given array of objects representing the available SVG sheets.
+     * @param {EditionSvgSheetsList['sheets']} sheets The given array of objects representing the available SVG sheets.
      *
-     * @returns {keyof EditionSvgSheetList['sheets'] | undefined} A string representing the current edition type, or undefined if not found.
+     * @returns {EditionSvgSheetsKey | undefined} A string representing the current edition type, or undefined if not found.
      */
     getCurrentEditionType(
         selectedSvgSheet: EditionSvgSheet,
-        sheets: EditionSvgSheetList['sheets']
-    ): keyof EditionSvgSheetList['sheets'] | undefined {
+        sheets: EditionSvgSheetsList['sheets']
+    ): EditionSvgSheetsKey | undefined {
         const selectedSheetContent = selectedSvgSheet?.content?.[0];
         const partial = selectedSheetContent?.partial;
         const sheetId = partial ? selectedSvgSheet.id + partial : selectedSvgSheet.id;
 
-        const editionType = Object.keys(sheets).find(
+        const editionType = (Object.keys(sheets) as EditionSvgSheetsKey[]).find(
             type => this._findSvgSheetIndexById(sheets[type], sheetId) >= 0
-        ) as keyof EditionSvgSheetList['sheets'] | undefined;
+        );
 
         return editionType;
     }
@@ -138,14 +137,14 @@ export class EditionSheetsService {
      * It selects a FolioConvolute based on the currently selected sheet and edition type.
      *
      * @param {FolioConvolute[]} convolutes The given folio convolutes.
-     * @param {EditionSvgSheetList['sheets']} sheets The given sheets object.
+     * @param {EditionSvgSheetsList['sheets']} sheets The given sheets object.
      * @param {EditionSvgSheet} selectedSheet The given selected sheet.
      *
      * @returns {FolioConvolute} The convolute that was found, or undefined.
      */
     selectConvolute(
         convolutes: FolioConvolute[],
-        sheets: EditionSvgSheetList['sheets'],
+        sheets: EditionSvgSheetsList['sheets'],
         selectedSheet: EditionSvgSheet
     ): FolioConvolute | undefined {
         if (!convolutes || !sheets || !selectedSheet) {
@@ -163,37 +162,28 @@ export class EditionSheetsService {
      *
      * It selects an SVG sheet from a given sheets object by a given id.
      *
-     * @param {EditionSvgSheetList['sheets']} sheets The given sheets object.
+     * @param {EditionSvgSheetsList['sheets']} sheets The given sheets object.
      * @param {string} id The given id.
      *
      * @returns {EditionSvgSheet} The sheet that was found.
      */
-    selectSvgSheetById(sheets: EditionSvgSheetList['sheets'], id: string): EditionSvgSheet {
+    selectSvgSheetById(sheets: EditionSvgSheetsList['sheets'], id: string): EditionSvgSheet {
         if (!sheets || !id) {
             return new EditionSvgSheet();
         }
 
         // Validate that expected edition types exist
-        const expectedKeys = ['workEditions', 'textEditions', 'sketchEditions'];
-        const missingKeys = expectedKeys.filter(key => !sheets[key]);
-
-        if (missingKeys.length > 0) {
-            console.error(`EditionSheetsService: Missing edition types in svg-sheets.json: ${missingKeys}`);
-        }
-
-        const indexes = {
-            workEditions: this._findSvgSheetIndexById(sheets.workEditions, id),
-            textEditions: this._findSvgSheetIndexById(sheets.textEditions, id),
-            sketchEditions: this._findSvgSheetIndexById(sheets.sketchEditions, id),
-        };
-
-        for (const [type, index] of Object.entries(indexes)) {
-            if (index < 0) {
+        for (const key of EDITION_SVG_SHEETS_KEYS) {
+            if (!sheets[key]) {
+                console.error(`EditionSheetsService: Missing edition type in svg-sheets.json: ${key}`);
                 continue;
             }
 
-            const sheet = this._getSheetWithPartialContentById(sheets[type], index, id);
-            return sheet;
+            const index = this._findSvgSheetIndexById(sheets[key], id);
+
+            if (index >= 0) {
+                return this._getSheetWithPartialContentById(sheets[key], index, id);
+            }
         }
 
         return new EditionSvgSheet();

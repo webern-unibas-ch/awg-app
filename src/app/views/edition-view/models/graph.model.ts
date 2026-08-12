@@ -53,6 +53,15 @@ export class GraphRDFData {
 }
 
 /**
+ * The GraphSparqlQueryType type.
+ *
+ * It is used in the context of the edition view
+ * to store the type of a graph query
+ * from a graph json file.
+ */
+export type GraphSparqlQueryType = 'select' | 'construct' | 'ask' | 'count' | 'describe' | 'update' | null;
+
+/**
  * The GraphSparqlQuery class.
  *
  * It is used in the context of the edition view
@@ -63,7 +72,7 @@ export class GraphSparqlQuery {
     /**
      * The type of a query.
      */
-    queryType: string;
+    queryType: GraphSparqlQueryType;
 
     /**
      * The label of a query.

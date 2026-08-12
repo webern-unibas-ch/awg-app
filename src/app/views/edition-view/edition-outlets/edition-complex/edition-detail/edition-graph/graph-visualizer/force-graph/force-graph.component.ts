@@ -652,7 +652,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Emits the node.
      */
-    private _clickedOnNode(event: any, d): void {
+    private _clickedOnNode(event: any, d: D3SimulationNode): void {
         if (event.defaultPrevented) {
             return;
         } // Dragged
@@ -672,7 +672,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
-        const dragStart = (event: any, d): void => {
+        const dragStart = (event: any, d: D3SimulationNode): void => {
             /** Preventing propagation of dragstart to parent elements */
             event.sourceEvent.stopPropagation();
 
@@ -684,12 +684,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Make sure you can't drag the circle outside the box
-        const dragged = (event: any, d): void => {
+        const dragged = (event: any, d: D3SimulationNode): void => {
             d.fx = event.x;
             d.fy = event.y;
         };
 
-        const dragEnd = (event: any, d): void => {
+        const dragEnd = (event: any, d: D3SimulationNode): void => {
             if (!event.active) {
                 simulation.alphaTarget(0);
             }
@@ -698,7 +698,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag()
+        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag<any, any, D3SimulationNode>()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);

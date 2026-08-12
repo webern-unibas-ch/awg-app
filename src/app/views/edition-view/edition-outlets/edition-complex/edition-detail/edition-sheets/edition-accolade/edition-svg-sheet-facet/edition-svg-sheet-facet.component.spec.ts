@@ -19,7 +19,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models/edition-svg-sheet.model';
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
 
 import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.component';
 
@@ -40,7 +40,7 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetFacetComponent>;
     let compDe: DebugElement;
 
-    let expectedSvgSheetsData: EditionSvgSheetList;
+    let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;

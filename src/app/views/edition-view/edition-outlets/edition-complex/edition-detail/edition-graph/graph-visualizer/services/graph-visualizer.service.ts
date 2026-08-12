@@ -7,6 +7,7 @@ import { inject, Injectable } from '@angular/core';
 
 import * as N3 from 'n3';
 
+import { GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 import {
     Namespace,
     NamespaceType,
@@ -168,13 +169,13 @@ export class GraphVisualizerService {
      *
      * @param {string} query The given query.
      *
-     * @returns {string} The query type.
+     * @returns {GraphSparqlQueryType} The query type.
      */
-    getQuerytype(query: string): string | null {
+    getQuerytype(query: string): GraphSparqlQueryType {
         const queryTypes = ['select', 'construct', 'ask', 'count', 'describe', 'insert', 'delete'];
 
         let lowestIndex = Infinity;
-        let foundType: string | null = null;
+        let foundType: (typeof queryTypes)[number] | null = null;
 
         queryTypes.forEach(type => {
             const index = query.toLowerCase().indexOf(type);
@@ -188,7 +189,7 @@ export class GraphVisualizerService {
             return null;
         }
 
-        return foundType === 'insert' || foundType === 'delete' ? 'update' : foundType;
+        return (foundType === 'insert' || foundType === 'delete' ? 'update' : foundType) as GraphSparqlQueryType;
     }
 
     /**
@@ -215,14 +216,14 @@ export class GraphVisualizerService {
      *
      * @param {string} triples The given triple string.
      *
-     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
+     * @returns {Promise<{ quads: N3.Quad[]; namespaces: N3.Prefixes }>} A promise of the parsed quads and namespaces.
      */
-    parseTripleString(triples: string): Promise<{ quads: N3.DataFactory.quad[]; namespaces: N3.DataFactory.prefixes }> {
+    parseTripleString(triples: string): Promise<{ quads: N3.Quad[]; namespaces: N3.Prefixes }> {
         const parser = new N3.Parser();
-        const jsonTriples = [];
+        const jsonTriples: N3.Quad[] = [];
 
         return new Promise((resolve, reject) => {
-            parser.parse(triples, (error, quad, prefixes) => {
+            parser.parse(triples, (error: unknown, quad: N3.Quad, prefixes: N3.Prefixes) => {
                 if (error) {
                     reject(error);
                     return;
@@ -267,16 +268,16 @@ export class GraphVisualizerService {
      *
      * @param {typeof rdfstore} store The given rdfstore.
      *
-     * @returns {Promise<any>} A promise of the rdfstore instance.
+     * @returns {Promise<typeof rdfstore>} A promise of the rdfstore instance.
      */
-    private _createStore(store: any): Promise<any> {
+    private _createStore(store: typeof rdfstore): Promise<typeof rdfstore> {
         return new Promise((resolve, reject) => {
             if (!store?.create) {
                 reject(new Error('rdfstore is not available in the current runtime.'));
                 return;
             }
 
-            store.create((err, createdStore) => {
+            store.create((err: unknown, createdStore: typeof rdfstore) => {
                 if (err) {
                     reject(err);
                 }
@@ -297,11 +298,12 @@ export class GraphVisualizerService {
      */
     private _executeQuery(store: any, query: string): Promise<RDFStoreConstructResponse | RDFStoreSelectResponse> {
         return new Promise((resolve, reject) => {
-            store.execute(query, (err, res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
+            store.execute(query, (err: unknown, res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 if (err) {
                     console.error('_executeQuery# got ERROR', err);
                     reject(err);
                 }
+
                 resolve(res);
             });
         });
@@ -384,7 +386,7 @@ export class GraphVisualizerService {
         }
 
         return new Promise((resolve, reject) => {
-            store.load(mimeType, triples, (err, size: number) => {
+            store.load(mimeType, triples, (err: unknown, size: number) => {
                 if (err) {
                     console.error('_loadTriplesInStore# got ERROR', err);
                     reject(err);

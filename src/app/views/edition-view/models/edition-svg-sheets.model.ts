@@ -52,19 +52,33 @@ export class EditionSvgSheet {
 }
 
 /**
- * The EditionSvgSheetList class.
+ * The EDITION_SVG_SHEETS_KEYS const.
  *
  * It is used in the context of the edition view
- * to store the data for a svg sheet list
+ * to define the keys of a svg sheets list.
+ */
+export const EDITION_SVG_SHEETS_KEYS = ['workEditions', 'textEditions', 'sketchEditions'] as const;
+
+/**
+ * The EditionSvgSheetsKey type.
+ *
+ * It is used in the context of the edition view
+ * to define the type of a svg sheet list.
+ */
+export type EditionSvgSheetsKey = (typeof EDITION_SVG_SHEETS_KEYS)[number];
+
+/**
+ * The EditionSvgSheetsList class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a svg sheets list
  * from a svg sheet json file.
  */
-export class EditionSvgSheetList {
+export class EditionSvgSheetsList {
     /**
      * The array of sheets from a svg sheet list.
      */
     sheets: {
-        workEditions: EditionSvgSheet[];
-        textEditions: EditionSvgSheet[];
-        sketchEditions: EditionSvgSheet[];
+        [key in EditionSvgSheetsKey]: EditionSvgSheet[];
     };
 }

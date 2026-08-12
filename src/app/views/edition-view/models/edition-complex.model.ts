@@ -2,8 +2,13 @@ import { MetaPerson } from '@awg-shared/meta/meta.model';
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
-import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionRouteConstant } from './edition-route-constant.model';
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+    EditionCatalogueTypeConstantsKey,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from '../edition-routes.constants';
 
 /**
  * The EditionComplexJsonPersonRef interface.
@@ -219,7 +224,13 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
+        if (!catalogueType) {
+            return new EditionRouteConstant();
+        }
+
+        const key = catalogueType.toUpperCase() as EditionCatalogueTypeConstantsKey;
+
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**
@@ -233,7 +244,12 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        const key = value ? `${prefix}${value.toUpperCase()}` : '';
+        if (!value) {
+            return new EditionRouteConstant();
+        }
+
+        const key = `${prefix}${value.toUpperCase()}` as EditionRouteConstantsKey;
+
         return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 

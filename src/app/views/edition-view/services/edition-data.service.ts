@@ -11,7 +11,7 @@ import {
     EditionComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvoluteList,
     GraphList,
     IntroList,
@@ -124,7 +124,7 @@ export class EditionDataService {
      *
      * It holds the state of the svg sheets data.
      */
-    readonly svgSheetsData = this._getComplexEditionDataByKey<EditionSvgSheetList>('svgSheets');
+    readonly svgSheetsData = this._getComplexEditionDataByKey<EditionSvgSheetsList>('svgSheets');
 
     /**
      * Readonly signal: textcriticsData.
