@@ -18,7 +18,7 @@ import { mockConsole } from '@testing/mock-helper';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
-import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
+import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 import { D3SimulationNode, D3SimulationNodeType, QueryResult, QuerySelectResult, Triple } from './models';
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
@@ -154,7 +154,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 lastQueryString = queryString;
                 return queryString;
             },
-            getQuerytype: (): string => (lastQueryString.toLowerCase().includes('select') ? 'select' : 'construct'),
+            getQuerytype: (): GraphSparqlQueryType =>
+                lastQueryString.toLowerCase().includes('select') ? 'select' : 'construct',
             doQuery: (queryString: string): Promise<QueryResult> => {
                 const isSelectQuery = queryString.toLowerCase().includes('select');
                 return isSelectQuery ? Promise.resolve(expectedSelectResult) : Promise.resolve(expectedConstructResult);
@@ -413,7 +414,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', async () => {
-                    component.query.queryType = 'other';
+                    component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
@@ -476,7 +477,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', async () => {
-                    component.query.queryType = 'other';
+                    component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
@@ -668,7 +669,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('UnsupportedTypeResultsComponent', () => {
                 beforeEach(async () => {
                     // Set select mode
-                    component.query.queryType = 'other';
+                    component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
                 });
 
@@ -841,7 +842,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         expectSpyCall(resetQuerySpy, 1, undefined);
 
                         // Request for unknown query
-                        const changedQuery = {
+                        const changedQuery: GraphSparqlQuery = {
                             queryType: 'select',
                             queryLabel: 'Test Query 3',
                             queryString:
@@ -888,7 +889,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     // Reset query
-                    const changedQuery = {
+                    const changedQuery: GraphSparqlQuery = {
                         queryType: 'construct',
                         queryLabel: 'Test Query 3',
                         queryString:
@@ -1255,7 +1256,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 describe('... should not do anything', () => {
                     it('... if no toastMessage is provided', () => {
-                        const toastMessage = undefined;
+                        const toastMessage: ToastMessage = undefined;
                         consoleSpy.mockClear();
 
                         component.showToastMessage(toastMessage, 'error');

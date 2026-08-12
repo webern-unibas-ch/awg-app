@@ -1667,11 +1667,11 @@ describe('FolioService (DONE)', () => {
             it('... should not have any attributes', () => {
                 const titleElement = expectedContentSegmentGroup.select('title');
 
-                const expectedAttributes = [];
+                const expectedAttributes: string[] = [];
                 const actualAttributesList = (titleElement.node() as Element).attributes;
                 const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
 
-                expectToBe(actualAttributesList.length, expectedAttributes.length);
+                expect(actualAttributesList).toHaveLength(expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1831,10 +1831,10 @@ describe('FolioService (DONE)', () => {
                     class: 'content-segment-label',
                     x: expectedContentSegment.centeredXPosition,
                     y: expectedContentSegment.centeredYPosition,
+                    'font-family': expectedContentSegmentFontFamily,
+                    'dominant-baseline': 'middle',
+                    'text-anchor': 'middle',
                 };
-                attributes['font-family'] = expectedContentSegmentFontFamily;
-                attributes['dominant-baseline'] = 'middle';
-                attributes['text-anchor'] = 'middle';
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedContentSegmentLink, 'text', attributes]);
             });
@@ -1942,8 +1942,8 @@ describe('FolioService (DONE)', () => {
                     x: expectedContentSegment.centeredXPosition,
                     y: expectedContentSegment.centeredYPosition,
                     dy: '1.2em',
+                    'text-anchor': 'middle',
                 };
-                additionalAttributes['text-anchor'] = 'middle';
 
                 expectToBe(vi.mocked(appendSvgElementWithAttrsSpy).mock.calls.length, labelArrayLength);
 
@@ -2080,8 +2080,8 @@ describe('FolioService (DONE)', () => {
                     class: 'content-segment-shape',
                     points: expectedContentSegment.segmentVertices,
                     fill: expectedContentSegmentFillColor,
+                    'stroke-width': expectedAdjustedStrokeWidth,
                 };
-                attributes['stroke-width'] = expectedAdjustedStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedContentSegmentLink, 'polygon', attributes]);
             });
@@ -2217,8 +2217,8 @@ describe('FolioService (DONE)', () => {
                     height: expectedSheetRectangle.LOWER_RIGHT_CORNER.y - expectedSheetRectangle.UPPER_LEFT_CORNER.y,
                     fill: expectedSheetFillColor,
                     stroke: expectedBgColor,
+                    'stroke-width': expectedSheetStrokeWidth,
                 };
-                attributes['stroke-width'] = expectedSheetStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedSvgSheetGroup, 'rect', attributes]);
             });
@@ -2484,8 +2484,8 @@ describe('FolioService (DONE)', () => {
                         expectedTrademarkRectangle.UPPER_LEFT_CORNER.y,
                     fill: expectedSheetFillColor,
                     stroke: expectedBgColor,
+                    'stroke-width': expectedSheetStrokeWidth,
                 };
-                attributes['stroke-width'] = expectedSheetStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedSvgTrademarkGroup, 'rect', attributes]);
             });
@@ -2589,8 +2589,8 @@ describe('FolioService (DONE)', () => {
                     fill: expectedDisabledColor,
                     stroke: expectedDisabledColor,
                     transform: trademarkSymbolTransform,
+                    'stroke-width': expectedContentSegmentStrokeWidth,
                 };
-                attributes['stroke-width'] = expectedContentSegmentStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedSvgTrademarkGroup, 'path', attributes]);
             });
@@ -2728,8 +2728,8 @@ describe('FolioService (DONE)', () => {
                     x: expectedFolioSvgData.systems.systemsLabelPositions[systemIndex].x,
                     y: expectedFolioSvgData.systems.systemsLabelPositions[systemIndex].y,
                     fill: expectedBgColor,
+                    'dominant-baseline': 'hanging',
                 };
-                attributes['dominant-baseline'] = 'hanging';
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [expectedSystemsGroup, 'text', attributes]);
             });
@@ -2824,8 +2824,8 @@ describe('FolioService (DONE)', () => {
                     x2: expectedSystemArray.at(-1).END_POINT.x,
                     y2: expectedSystemArray.at(-1).END_POINT.y,
                     stroke: expectedBgColor,
+                    'stroke-width': expectedSystemsLineStrokeWidth,
                 };
-                attributes['stroke-width'] = expectedSystemsLineStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, expectedSystemArray.length, [
                     expectedSystemsGroup,

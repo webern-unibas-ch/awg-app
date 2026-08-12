@@ -444,8 +444,8 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... when selectedEditionComplex changes', () => {
                 const expectedFile = 'test.json';
-                const expectedFallback = { data: [] };
-                const expectedResponse = { data: [{ id: 'test_1' }] };
+                const expectedFallback: { data: Array<{ id: string }> } = { data: [] };
+                const expectedResponse: { data: Array<{ id: string }> } = { data: [{ id: 'test_1' }] };
 
                 const complexKeys: EditionComplexDataAssetsKeys[] = [
                     'folioConvolute',
@@ -576,10 +576,14 @@ describe('EditionDataService (DONE)', () => {
                 });
                 expectToBe(isSignal(resultSignal), true);
 
-                const mockState = {
-                    series: { route: '2' },
-                    section: { route: '2a' },
-                    complex: { id: 'm34' },
+                const mockState: {
+                    series: EditionOutlineSeries | null;
+                    section: EditionOutlineSection | null;
+                    complex: EditionComplex | null;
+                } = {
+                    series: EditionStateHelper.getSeries('2'),
+                    section: EditionStateHelper.getSection('2', '2a'),
+                    complex: EditionStateHelper.getComplex('m34'),
                 };
                 mockSeriesSignal.set(mockState.series);
                 mockSectionSignal.set(mockState.section);
@@ -592,14 +596,8 @@ describe('EditionDataService (DONE)', () => {
         });
 
         describe('#_getIntroDataStream()', () => {
-            const mockSeries: EditionOutlineSeries = {
-                series: { route: '1' },
-            } as any;
-
-            const mockSection: EditionOutlineSection = {
-                section: { route: '5' },
-                labeledRoute: { route: ['/edition', 'series', '1', 'section', '5'] },
-            } as any;
+            const mockSeries = EditionStateHelper.getSeries('1');
+            const mockSection = EditionStateHelper.getSection('1', '5');
 
             it('... should have a method `_getIntroDataStream`', () => {
                 expect((service as any)._getIntroDataStream).toBeDefined();
@@ -610,7 +608,11 @@ describe('EditionDataService (DONE)', () => {
                 clearErrorForSpy.mockClear();
 
                 const assetsKey: EditionComplexDataAssetsKeys = 'intro';
-                const mockState = { series: null, section: null, complex: null };
+                const mockState: {
+                    series: EditionOutlineSeries | null;
+                    section: EditionOutlineSection | null;
+                    complex: EditionComplex | null;
+                } = { series: null, section: null, complex: null };
 
                 const result$ = (service as any)._getIntroDataStream(mockState);
                 await lastValueFrom(result$);
@@ -638,7 +640,11 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 it('... should not trigger any HTTP request if series or section is missing', async () => {
-                    const mockState = { series: null, section: null, complex: null };
+                    const mockState: {
+                        series: EditionOutlineSeries | null;
+                        section: EditionOutlineSection | null;
+                        complex: EditionComplex | null;
+                    } = { series: null, section: null, complex: null };
 
                     const result$ = (service as any)._getIntroDataStream(mockState);
                     await lastValueFrom(result$);
@@ -656,11 +662,11 @@ describe('EditionDataService (DONE)', () => {
                 let expectedSectionIntroData: IntroList;
 
                 beforeEach(() => {
-                    nonMatchingComplex = EditionStateHelper.getComplex('m34');
                     expectedSectionIntroData = { intro: [{ id: 'section_block', content: [] }] } as IntroList;
                 });
 
                 it('... should trigger `_fetchJsonData` with the correct arguments', async () => {
+                    nonMatchingComplex = EditionStateHelper.getComplex('m34');
                     const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
                     fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
 
@@ -671,7 +677,8 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 it('... should return the section intro data', async () => {
-                    const mockState = { series: mockSeries, section: mockSection, complex: null };
+                    nonMatchingComplex = null;
+                    const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
                     fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
 
                     const result$ = (service as any)._getIntroDataStream(mockState);

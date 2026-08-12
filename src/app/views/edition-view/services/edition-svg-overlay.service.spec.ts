@@ -298,14 +298,16 @@ describe('EditionSvgOverlayService', () => {
 
             serviceGetGroupsBySelectorSpy.mockReturnValue(expectedOverlayGroups);
 
-            getOverlaysAndSelectionSpy.mockImplementation((_rootGroup, overlays, dataId, overlayType) => {
-                const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
-                const overlayGroupRectSelection =
-                    found.length > 0
-                        ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
-                        : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
-                return [found, overlayGroupRectSelection];
-            });
+            getOverlaysAndSelectionSpy.mockImplementation(
+                (_rootGroup: D3Selection, overlays: EditionSvgOverlay[], dataId: string, overlayType: string) => {
+                    const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
+                    const overlayGroupRectSelection =
+                        found.length > 0
+                            ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
+                            : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
+                    return [found, overlayGroupRectSelection];
+                }
+            );
         });
 
         it('... should have a method `toggleTkkOverlayHighlights`', () => {
@@ -349,11 +351,12 @@ describe('EditionSvgOverlayService', () => {
                     expect(getSvgGroupDataIdSpy).toHaveBeenCalledWith(groupWithDataTkkId);
                     expectToBe(dataId, 'custom-data-id-1');
                 });
+
                 it('... without data-tkk-id attribute', () => {
                     const groupWithoutDataTkkId = {
                         id: 'tkk-2',
                         getAttribute: () => null,
-                    } as any;
+                    } as Partial<SVGElement> as SVGElement;
 
                     const dataId = (service as any)._getSvgGroupDataId(groupWithoutDataTkkId);
 
@@ -370,7 +373,7 @@ describe('EditionSvgOverlayService', () => {
                 expectSpyCall(getOverlaysAndSelectionSpy, expectedOverlayGroups.nodes().length);
 
                 expectedOverlayGroups.nodes().forEach((_node, index) => {
-                    const callArgs = vi.mocked(getOverlaysAndSelectionSpy).mock.calls[index];
+                    const callArgs = getOverlaysAndSelectionSpy.mock.calls[index];
                     expectToBe(callArgs[0], expectedSvgRootGroup);
                     expectToEqual(callArgs[1], expectedTkkOverlays);
                     expectToBe(callArgs[2], expectedTkkOverlays[index].dataId);
@@ -404,15 +407,15 @@ describe('EditionSvgOverlayService', () => {
 
                         getOverlaysAndSelectionSpy.mockImplementation(
                             (
-                                svgRootGroup: D3Selection,
+                                rootGroup: D3Selection,
                                 overlays: EditionSvgOverlay[],
                                 dataId: string,
-                                type: EditionSvgOverlayTypes
-                            ) => {
+                                overlayType: string
+                            ): [EditionSvgOverlay[], D3Selection | null] => {
                                 if (
-                                    svgRootGroup === expectedSvgRootGroup &&
+                                    rootGroup === expectedSvgRootGroup &&
                                     overlays === expectedTkkOverlays &&
-                                    type === expectedOverlayType
+                                    overlayType === expectedOverlayType
                                 ) {
                                     return overlaysAndSelectionByDataId.get(dataId) ?? [[], null];
                                 }
@@ -429,7 +432,7 @@ describe('EditionSvgOverlayService', () => {
 
                         expectSpyCall(updateTkkOverlayColorSpy, expectedOverlayGroups.nodes().length);
                         expectedOverlayGroups.nodes().forEach((_node, index) => {
-                            const updateColorSpyCalls = vi.mocked(updateTkkOverlayColorSpy).mock.calls[index];
+                            const updateColorSpyCalls = updateTkkOverlayColorSpy.mock.calls[index];
                             expectToEqual(updateColorSpyCalls[0], overlaysArr[index]);
                             expectToEqual(updateColorSpyCalls[1], selectionsArr[index]);
                             expectToBe(updateColorSpyCalls[2], expectedActionType);
@@ -783,7 +786,7 @@ describe('EditionSvgOverlayService', () => {
                     id: null,
                     getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-only-id' : null),
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-                };
+                } as Partial<SVGElement> as SVGElement;
 
                 (service as any)._createTkkOverlay(rootGroup, overlays, mockGroup);
 
@@ -798,7 +801,8 @@ describe('EditionSvgOverlayService', () => {
                     id: 'tkk-only-id',
                     getAttribute: () => null,
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-                };
+                } as Partial<SVGElement> as SVGElement;
+
                 // Force missing dataId
                 getSvgGroupDataIdSpy.mockReturnValue(null);
 
@@ -815,7 +819,7 @@ describe('EditionSvgOverlayService', () => {
                     id: null,
                     getAttribute: () => null,
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-                };
+                } as Partial<SVGElement> as SVGElement;
 
                 (service as any)._createTkkOverlay(rootGroup, overlays, mockGroup);
 
@@ -830,7 +834,7 @@ describe('EditionSvgOverlayService', () => {
                 id: 'tkk-simple-id',
                 getAttribute: () => null,
                 getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-            };
+            } as Partial<SVGElement> as SVGElement;
             expectToBe(overlays.length, 0);
 
             (service as any)._createTkkOverlay(expectedSvgRootGroup, overlays, mockGroup);
@@ -849,7 +853,7 @@ describe('EditionSvgOverlayService', () => {
                 id: 'tkk-unique-id',
                 getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-unique-id' : null),
                 getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-            };
+            } as Partial<SVGElement> as SVGElement;
             expectToBe(overlays.length, 1);
 
             (service as any)._createTkkOverlay(expectedSvgRootGroup, overlays, mockGroup);
@@ -865,7 +869,7 @@ describe('EditionSvgOverlayService', () => {
                 id: 'tkk-unique-id',
                 getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-unique-id' : null),
                 getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-            };
+            } as Partial<SVGElement> as SVGElement;
 
             (service as any)._createTkkOverlay(expectedSvgRootGroup, overlays, mockGroup);
 
@@ -881,7 +885,7 @@ describe('EditionSvgOverlayService', () => {
                 id: 'tkk-no-data-id',
                 getAttribute: () => null,
                 getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-            };
+            } as Partial<SVGElement> as SVGElement;
 
             (service as any)._createTkkOverlay(expectedSvgRootGroup, overlays, mockGroup);
 
@@ -897,7 +901,7 @@ describe('EditionSvgOverlayService', () => {
                 id: 'tkk-call-id',
                 getAttribute: () => 'data-call-id',
                 getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
-            };
+            } as Partial<SVGElement> as SVGElement;
 
             (service as any)._createTkkOverlay(expectedSvgRootGroup, overlays, mockGroup);
 
@@ -927,7 +931,7 @@ describe('EditionSvgOverlayService', () => {
 
             it('... no id is provided', () => {
                 const rootGroup: D3Selection = expectedSvgRootGroup;
-                const id = null;
+                const id: string = null;
                 const dim = expectedSvgRootGroup.nodes()[0].getBBox();
 
                 const d3selections = (service as any)._createTkkOverlayGroup(rootGroup, id, dim);
@@ -975,10 +979,12 @@ describe('EditionSvgOverlayService', () => {
             };
 
             onOverlaySelectSpy = vi.fn();
-            getOverlaysAndSelectionSpy.mockImplementation((_rootGroup, overlays, dataId) => {
-                const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
-                return [found, mockOverlayGroupRectSelection];
-            });
+            getOverlaysAndSelectionSpy.mockImplementation(
+                (_rootGroup: D3Selection, overlays: EditionSvgOverlay[], dataId: string) => {
+                    const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
+                    return [found, mockOverlayGroupRectSelection];
+                }
+            );
         });
 
         it('... should use default overlayType argument ("tkk") if not provided', () => {
@@ -1427,7 +1433,10 @@ describe('EditionSvgOverlayService', () => {
                 expect(d3Selections).toBeDefined();
                 expect(d3Selections.nodes()).toBeInstanceOf(Array);
                 expectToBe(d3Selections.nodes().length, 2);
-                const nodeIds = d3Selections.nodes().map(node => node.parentNode.id);
+                const nodeIds = d3Selections.nodes().map((node: SVGElement) => {
+                    const parent = node.parentNode as SVGElement;
+                    return parent ? parent.id : '';
+                });
                 expectToContain(nodeIds, 'group1');
                 expectToContain(nodeIds, 'group2');
             });
@@ -1504,7 +1513,7 @@ describe('EditionSvgOverlayService', () => {
 
         describe('... should return empty array', () => {
             it('... if no overlays are given', () => {
-                const noOverlays = [];
+                const noOverlays: EditionSvgOverlay[] = [];
                 const overlay = (service as any)._getOverlaysById(noOverlays, expectedTkkOverlays[0].dataId);
 
                 expectToEqual(overlay, []);

@@ -18,7 +18,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSvgSheetFacetItemComponent } from './edition-svg-sheet-facet-item.component';
 
@@ -529,24 +529,30 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should do nothing if no id is provided', () => {
-                    const expectedSheetIds = undefined;
+                    const expectedSheetIds: SheetClickEvent = undefined;
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
-                    const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                    const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
                     component.selectSvgSheet(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should emit id of selected svg sheet within same complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedSvgSheet.id,
+                    };
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                    const expectedNextSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedNextSvgSheet.id,
+                    };
                     component.selectSvgSheet(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
@@ -555,7 +561,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 it('... should emit id of selected svg sheet with partial within same complex', () => {
                     const expectedSheetIdWithPartial =
                         expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetIdWithPartial };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedSheetIdWithPartial,
+                    };
 
                     component.selectSvgSheet(expectedSheetIds);
 
@@ -563,12 +572,18 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should emit id of selected svg sheet for another complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedSvgSheet.id,
+                    };
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                    const expectedNextSheetIds: SheetClickEvent = {
+                        complexId: expectedNextComplexId,
+                        sheetId: expectedNextSvgSheet.id,
+                    };
                     component.selectSvgSheet(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
@@ -577,7 +592,10 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                 it('... should emit id of selected svg sheet with partial for another complex', () => {
                     const expectedSheetIdWithPartial =
                         expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
-                    const expectedSheetIds = { complexId: expectedNextComplexId, sheetId: expectedSheetIdWithPartial };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedNextComplexId,
+                        sheetId: expectedSheetIdWithPartial,
+                    };
 
                     component.selectSvgSheet(expectedSheetIds);
 

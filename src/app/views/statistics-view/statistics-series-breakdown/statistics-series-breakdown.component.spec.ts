@@ -136,7 +136,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                 const trDes = getAndExpectDebugElementByCss(theadDes[0], 'tr', 2, 2);
                 const thDes = getAndExpectDebugElementByCss(trDes[0], 'th', 3, 3);
 
-                const expectedHeaders = [
+                const expectedHeaders: Array<{
+                    text: string;
+                    rowspan: string | null;
+                    colspan: string | null;
+                    classes: string;
+                }> = [
                     { text: 'Series / Section', rowspan: '2', colspan: null, classes: 'text-center align-bottom' },
                     {
                         text: 'Complexes',

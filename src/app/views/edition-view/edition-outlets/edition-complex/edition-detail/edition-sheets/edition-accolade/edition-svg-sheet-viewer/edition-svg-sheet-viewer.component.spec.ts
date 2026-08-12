@@ -723,7 +723,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection = undefined;
+                const expectedDirection: number = undefined;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
@@ -1351,7 +1351,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should not do anything if no overlay is provided', () => {
-                const selectedOverlays = undefined;
+                const selectedOverlays: EditionSvgOverlay[] = undefined;
 
                 (component as any)._onTkkOverlaySelect(selectedOverlays);
 

@@ -74,8 +74,8 @@
                             </div>
                         }
                         <!-- static image -->
-                        @let imageId = graph.staticImage;
-                        @let imageSrc = getStaticImage(imageId);
+                        @let imageKey = graph.staticImage;
+                        @let imageSrc = getStaticImage(imageKey);
 
                         @if (imageSrc) {
                             <div class="awg-graph-static mt-3">
@@ -83,7 +83,7 @@
                                 <img
                                     [src]="imageSrc"
                                     width="100%"
-                                    [alt]="'Static network representation of data for ' + imageId" />
+                                    [alt]="'Static network representation of data for ' + imageKey" />
                             </div>
                         }
                     </div>

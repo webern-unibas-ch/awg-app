@@ -31,7 +31,7 @@ describe('OrderByPipe (DONE)', () => {
     });
 
     it('... should work with not defined array as well', () => {
-        const array = undefined;
+        const array: any[] | undefined = undefined;
         expect(pipe.transform(array, 'anything')).toBeUndefined();
         expect(pipe.transform(array, 'anything')).toEqual(array);
     });
@@ -391,7 +391,7 @@ describe('OrderByPipe (DONE)', () => {
             const res = [1, 2, 3];
 
             expectToEqual(
-                pipe.transform(arr, null, false, true, (a, b) => (a > b ? 1 : -1)),
+                pipe.transform(arr, null, false, true, (a: number, b: number) => (a > b ? 1 : -1)),
                 res
             );
         });
@@ -400,10 +400,10 @@ describe('OrderByPipe (DONE)', () => {
             const arr = ['$10,0', '$2,0', '$100,0'];
             const res = ['$2,0', '$10,0', '$100,0'];
 
-            const parse = value => Number.parseInt(value.replace(/[^0-9]/g, ''), 10);
+            const parse = (value: string) => Number.parseInt(value.replace(/[^0-9]/g, ''), 10);
 
             expectToEqual(
-                pipe.transform(arr, null, false, true, (a, b) => {
+                pipe.transform(arr, null, false, true, (a: string, b: string) => {
                     const newA = parse(a);
                     const newB = parse(b);
                     return newA > newB ? 1 : -1;
@@ -607,9 +607,9 @@ describe('OrderByPipe (DONE)', () => {
         });
 
         it('... should sort dates also including null as date', () => {
-            const a = { date: new Date(1980, 11, 31, 0, 0, 0, 0) };
-            const b = { date: null };
-            const c = { date: new Date(1978, 10, 12, 0, 0, 0, 0) };
+            const a: { date: Date | null } = { date: new Date(1980, 11, 31, 0, 0, 0, 0) };
+            const b: { date: Date | null } = { date: null };
+            const c: { date: Date | null } = { date: new Date(1978, 10, 12, 0, 0, 0, 0) };
 
             const collection = [a, b, c];
             const result = [c, a, b];

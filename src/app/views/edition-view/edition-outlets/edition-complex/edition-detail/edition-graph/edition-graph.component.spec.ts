@@ -724,7 +724,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         });
 
                         it('... should display header and image of static graph', () => {
-                            const imageId = staticImageData.graph[0].staticImage;
+                            const imageKey = staticImageData.graph[0].staticImage;
 
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -740,8 +740,11 @@ describe('EditionGraphComponent (DONE)', () => {
 
                             expectToContain(hEl.textContent, 'Statischer Graph');
 
-                            expectToContain(imgEl.src, component.GRAPH_IMAGES[imageId]);
-                            expectToContain(imgEl.alt, 'Static network representation of data for ' + imageId);
+                            expectToContain(
+                                imgEl.src,
+                                component.GRAPH_IMAGES[imageKey as keyof typeof component.GRAPH_IMAGES]
+                            );
+                            expectToContain(imgEl.alt, 'Static network representation of data for ' + imageKey);
                         });
                     });
                 });

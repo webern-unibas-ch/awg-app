@@ -45,7 +45,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedSelectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;

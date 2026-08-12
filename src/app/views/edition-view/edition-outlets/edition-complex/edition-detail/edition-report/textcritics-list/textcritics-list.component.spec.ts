@@ -20,7 +20,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { TextcriticalCommentary, Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
@@ -534,7 +534,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if evaluations array is empty', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -552,7 +552,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -575,7 +575,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if evaluations array is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaEvaluationsComponent', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[1];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -595,7 +595,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     it('... should pass down `id` data to first EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -613,13 +613,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[1].id);
+                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -653,14 +653,14 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                         expectToEqual(
                             evaluationsCmp.evaluations,
-                            expectedTextcriticsListData.textcritics[1].evaluations
+                            expectedTextcriticsListData.textcritics[0].evaluations
                         );
                     });
                 });
 
                 describe('...  if commmentary is an empty object', () => {
                     it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -678,7 +678,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
 
                     it('... should display a no content message (small.text-muted) in another paragraph within item body div', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[0];
+                        const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -701,7 +701,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                 describe('...  if commentary is not empty', () => {
                     it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
-                        const textcritics = expectedTextcriticsListData.textcritics[1];
+                        const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -721,7 +721,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     it('... should pass down `id` data to second EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -739,13 +739,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[1].id);
+                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            `div#${expectedTextcriticsListData.textcritics[1].id} > div.accordion-collapse > div.accordion-body`,
+                            `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
                             1,
                             1,
                             'open'
@@ -777,7 +777,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.commentary, expectedTextcriticsListData.textcritics[1].commentary);
+                        expectToEqual(tableCmp.commentary, expectedTextcriticsListData.textcritics[0].commentary);
                     });
 
                     it('... should pass down `id` to EditionTkaTableComponent (stubbed)', () => {
@@ -791,7 +791,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.id, expectedTextcriticsListData.textcritics[1].id);
+                        expectToEqual(tableCmp.id, expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `isRowtable` to EditionTkaTableComponent (stubbed)', () => {
@@ -805,7 +805,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.isRowtable, expectedTextcriticsListData.textcritics[1].rowtable);
+                        expectToEqual(tableCmp.isRowtable, expectedTextcriticsListData.textcritics[0].rowtable);
                     });
                 });
             });
@@ -847,36 +847,42 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should not do anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
+                const expectedSheetIds: SheetClickEvent = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });
 
             it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: SheetClickEvent = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
 
             it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: SheetClickEvent = {
+                    complexId: expectedNextComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);

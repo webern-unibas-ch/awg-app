@@ -291,12 +291,15 @@ export class GraphVisualizerService {
      *
      * It executes a given query against a given triple store.
      *
-     * @param {any} store The given triplestore.
+     * @param {typeof rdfstore} store The given triplestore.
      * @param {string} query The given query string.
      *
      * @returns {Promise<RDFStoreConstructResponse | RDFStoreSelectResponse>} A promise of the rdfstore construct or select response.
      */
-    private _executeQuery(store: any, query: string): Promise<RDFStoreConstructResponse | RDFStoreSelectResponse> {
+    private _executeQuery(
+        store: typeof rdfstore,
+        query: string
+    ): Promise<RDFStoreConstructResponse | RDFStoreSelectResponse> {
         return new Promise((resolve, reject) => {
             store.execute(query, (err: unknown, res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 if (err) {

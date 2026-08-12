@@ -183,7 +183,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     it('... if selected section has empty opus complexes, but given mnr complexes', async () => {
                         const currentMnr = expectedSection.content?.complexTypes?.mnr ?? [];
 
-                        const expectedSectionWithEmptyOpusComplexes = {
+                        const expectedSectionWithEmptyOpusComplexes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -206,7 +206,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     it('... if selected section has empty mnr complexes, but given opus complexes', async () => {
                         const currentOpus = expectedSection.content?.complexTypes?.opus ?? [];
 
-                        const expectedSectionWithEmptyMnrComplexes = {
+                        const expectedSectionWithEmptyMnrComplexes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -235,7 +235,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     it('... should contain no inner div.awg-edition-section-detail-opus if no opus complexes are given', async () => {
                         const currentMnr = expectedSection.content?.complexTypes?.mnr ?? [];
 
-                        const expectedSectionWithEmptyOpusComplexes = {
+                        const expectedSectionWithEmptyOpusComplexes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -316,7 +316,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     it('... should contain no inner div.awg-edition-section-detail-mnr if no mnr complexes are given', async () => {
                         const currentOpus = expectedSection.content?.complexTypes?.opus ?? [];
 
-                        const expectedSectionWithEmptyMnrComplexes = {
+                        const expectedSectionWithEmptyMnrComplexes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -392,7 +392,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but one EditionSectionDetailPlaceholder ...', () => {
                     it('... if selectedSection has no complexTypes...', async () => {
-                        const expectedSectionWithNoComplexTypes = {
+                        const expectedSectionWithNoComplexTypes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -410,7 +410,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
 
                     it('... if selectedSection has empty opus and mnr complexTypes', async () => {
-                        const expectedSectionWithEmptyComplexTypes = {
+                        const expectedSectionWithEmptyComplexTypes: EditionOutlineSection = {
                             ...expectedSection,
                             content: {
                                 ...expectedSection.content,
@@ -434,7 +434,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
                 it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', async () => {
                     const targetSection = expectedSeries.sections[4];
-                    const expectedSectionWithNoComplexTypes = {
+                    const expectedSectionWithNoComplexTypes: EditionOutlineSection = {
                         ...targetSection,
                         content: {
                             ...targetSection.content,

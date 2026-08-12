@@ -188,7 +188,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             it('... no color is provided', () => {
                 const d3Selection: D3Selection = expectedSvgRootGroup;
-                const color = undefined;
+                const color: string = undefined;
                 service.fillD3SelectionWithColor(d3Selection, color);
 
                 expect(d3Selection).toBeDefined();

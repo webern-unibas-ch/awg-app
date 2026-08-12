@@ -55,7 +55,7 @@ describe('ModalService (DONE)', () => {
 
         // Test data
         expectedSnippetKey = structuredClone(mockEditionData.mockModalSnippet);
-        const expectedText = MODAL_TEXT_SNIPPETS[expectedSnippetKey] || '';
+        const expectedText = MODAL_TEXT_SNIPPETS[expectedSnippetKey as keyof typeof MODAL_TEXT_SNIPPETS] || '';
         expectedTextModalData = {
             type: 'text',
             id: expectedSnippetKey,

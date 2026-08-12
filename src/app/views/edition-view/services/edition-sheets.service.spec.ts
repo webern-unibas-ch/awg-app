@@ -43,7 +43,7 @@ describe('EditionSheetsService (DONE)', () => {
         expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets);
         expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsListData.textcritics);
-        expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[1].commentary);
+        expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[0].commentary);
 
         // Spies on service functions
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
@@ -174,7 +174,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return the correct id of the next sheet (including partials)', () => {
-            let expectedOrderOfSheets;
+            let expectedOrderOfSheets: EditionSvgSheet[];
 
             beforeEach(() => {
                 expectedOrderOfSheets = [
@@ -272,7 +272,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return empty comment array, but correct preamble', () => {
             it('... if no textcritical commentary is given', () => {
-                const expectedResult = { preamble: '', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     undefined,
@@ -283,7 +283,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no textcritical comment blocks are given', () => {
-                const expectedResult = { preamble: '', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     { preamble: '', comments: [] },
@@ -294,7 +294,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no overlays are given', () => {
-                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
@@ -305,7 +305,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no comments match the given overlay', () => {
-                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
                 expectedOverlays = [
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
                 ];

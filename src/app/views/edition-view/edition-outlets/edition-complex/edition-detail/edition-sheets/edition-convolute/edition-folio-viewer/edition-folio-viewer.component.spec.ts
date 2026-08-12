@@ -619,7 +619,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     component.canvasArray = [svgSelection];
 
                     isSelectedSvgSheetSpy.mockImplementation(
-                        contentSegmentId => contentSegmentId === expectedSvgSheet.id
+                        (contentSegmentId: string) => contentSegmentId === expectedSvgSheet.id
                     );
 
                     component.toggleActiveClass();
@@ -627,7 +627,9 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                     expectToBe(svgGroupSelection1.classed('active'), true);
                     expectToBe(svgGroupSelection2.classed('active'), false);
 
-                    isSelectedSvgSheetSpy.mockImplementation(contentSegmentId => contentSegmentId === 'another-id');
+                    isSelectedSvgSheetSpy.mockImplementation(
+                        (contentSegmentId: string) => contentSegmentId === 'another-id'
+                    );
 
                     component.toggleActiveClass();
 

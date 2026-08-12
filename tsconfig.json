@@ -16,7 +16,7 @@
         "sourceMap": true,
         "strict": true,
         "strictNullChecks": false,
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "useDefineForClassFields": false,
         "target": "ES2022",
         "module": "preserve",

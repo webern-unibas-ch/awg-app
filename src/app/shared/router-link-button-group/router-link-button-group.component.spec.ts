@@ -27,7 +27,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedRouterLinkButtons: RouterLinkButton[];
     let expectedOrderOfRouterlinks: string[][];

@@ -70,18 +70,18 @@ export class EditionGraphComponent {
     /**
      * Public method: getStaticImage.
      *
-     * It retrieves the static image source path for a given image id.
+     * It retrieves the static image source path for a given image key.
      *
-     * @param {string} imageId The given image id.
+     * @param {string} imageKey The given image key.
      * @returns {string | null} The retrieved image source path or null.
      */
-    getStaticImage(imageId: string | undefined): string | null {
-        if (!imageId) {
+    getStaticImage(imageKey: string | undefined): string | null {
+        if (!imageKey) {
             return null;
         }
 
-        if (imageId in this.GRAPH_IMAGES) {
-            return this.GRAPH_IMAGES[imageId as keyof typeof this.GRAPH_IMAGES];
+        if (imageKey in this.GRAPH_IMAGES) {
+            return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES];
         }
 
         return null;

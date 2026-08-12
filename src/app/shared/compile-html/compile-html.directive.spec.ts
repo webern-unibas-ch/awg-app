@@ -402,7 +402,13 @@ describe('CompileHtmlDirective (DONE)', () => {
             });
 
             describe('... should navigate to', () => {
-                const testCases = [
+                interface NavigationTestCase {
+                    desc: string;
+                    getAttributes: () => Record<string, string | undefined>;
+                    getExpectedArgs: () => string | FragmentClickEvent | SheetClickEvent;
+                    getExpectedSpy: () => Spy;
+                }
+                const testCases: NavigationTestCase[] = [
                     {
                         desc: 'text modal snippet if data-modal-id is given',
                         getAttributes: () => ({ 'data-modal-id': expectedTextModalId }),

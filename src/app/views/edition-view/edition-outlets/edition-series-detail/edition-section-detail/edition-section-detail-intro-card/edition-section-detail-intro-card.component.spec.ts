@@ -25,7 +25,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;

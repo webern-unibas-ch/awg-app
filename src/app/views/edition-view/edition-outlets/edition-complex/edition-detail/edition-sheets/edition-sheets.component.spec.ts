@@ -36,7 +36,7 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionSheetsService } from '@awg-views/edition-view/services/edition-sheets.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
@@ -197,7 +197,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[1];
+        expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[0];
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         // Serive spies
@@ -210,7 +210,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         );
         editionSheetsServiceSelectConvoluteSpy = vi
             .spyOn(mockEditionSheetsService, 'selectConvolute')
-            .mockReturnValue(expectedFolioConvoluteData[0]);
+            .mockReturnValue(expectedFolioConvoluteData.convolutes[0]);
         editionSheetsServiceSelectSvgSheetByIdSpy = vi
             .spyOn(mockEditionSheetsService, 'selectSvgSheetById')
             .mockReturnValue(expectedSvgSheet);
@@ -872,36 +872,48 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should do nothing if no id is provided', () => {
-                    const expectedSheetIds = undefined;
+                    const expectedSheetIds: SheetClickEvent = undefined;
                     component.onSvgSheetSelect(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
-                    const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                    const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
                     component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedSheetId,
+                    };
                     component.onSvgSheetSelect(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                    const expectedNextSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedNextSheetId,
+                    };
                     component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    const expectedSheetIds: SheetClickEvent = {
+                        complexId: expectedComplexId,
+                        sheetId: expectedSheetId,
+                    };
                     component.onSvgSheetSelect(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                    const expectedNextSheetIds: SheetClickEvent = {
+                        complexId: expectedNextComplexId,
+                        sheetId: expectedNextSheetId,
+                    };
                     component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
@@ -945,7 +957,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... should return an empty string if', () => {
                     it('... svgSheetsData is undefined', () => {
-                        const mockSvgSheetsData = undefined;
+                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
 
@@ -1223,7 +1235,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... with svgSheetsData not available and id not given from query params', () => {
                     it('... should trigger `onSvgSheetSelect` with no id', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
-                        const mockSvgSheetsData = undefined;
+                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 
@@ -1235,7 +1247,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     it('... should reset `selectedSvgSheet` to undefined', () => {
                         mockActivatedRoute.testQueryParamMap = { id: '' };
-                        const mockSvgSheetsData = undefined;
+                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
 
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 

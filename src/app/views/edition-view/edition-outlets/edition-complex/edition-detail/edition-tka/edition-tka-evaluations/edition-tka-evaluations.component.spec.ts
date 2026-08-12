@@ -54,7 +54,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1].evaluations);
+        expectedEvaluations = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].evaluations);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaEvaluationsComponent);

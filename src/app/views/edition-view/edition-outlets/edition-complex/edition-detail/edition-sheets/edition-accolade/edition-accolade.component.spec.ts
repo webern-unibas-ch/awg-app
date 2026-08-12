@@ -173,7 +173,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedSvgSheetsData = {
             sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
         };
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         const overlayType = EditionSvgOverlayTypes.tkk;
@@ -682,7 +682,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
 
                 it('... should not emit anything if no direction is provided', () => {
-                    const expectedDirection = undefined;
+                    const expectedDirection: number = undefined;
                     component.browseSvgSheet(expectedDirection);
 
                     expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);

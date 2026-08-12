@@ -25,7 +25,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedComplex: EditionComplex;
     let expectedEditionLabel: string;
