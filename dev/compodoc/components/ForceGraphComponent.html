@@ -796,7 +796,7 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_clickedOnNode(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, d: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>)</code>
+                    <code>_clickedOnNode(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, d: <a href="../classes/D3SimulationNode.html" target="_self">D3SimulationNode</a>)</code>
                 </td>
             </tr>
 
@@ -847,7 +847,7 @@ contains a short or longform of &quot;rdf:type&quot;.</p>
                                         <tr>
                                                 <td>d</td>
                                             <td>
-                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+                                                            <code><a href="../classes/D3SimulationNode.html" target="_self" >D3SimulationNode</a></code>
                                             </td>
 
                                             <td>
@@ -3838,7 +3838,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this._forceSimulation &#x3D; D3_FORCE.forceSimulation();
 
         // Create forces
-        const chargeForce &#x3D; D3_FORCE.forceManyBody().strength(
+        const chargeForce &#x3D; D3_FORCE.forceManyBody&lt;D3SimulationNode&gt;().strength(
             (d: D3SimulationNode) &#x3D;&gt; this._nodeRadius(d) * FORCES.CHARGE_STRENGTH
         );
 
@@ -3850,9 +3850,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        const linkForce &#x3D; D3_FORCE.forceLink()
+        const linkForce &#x3D; D3_FORCE.forceLink&lt;D3SimulationNode, D3SimulationLink&gt;()
             .links(this._simulationData.links)
-            .id((d: D3SimulationLink) &#x3D;&gt; d.predicate)
+            .id((d: D3SimulationNode) &#x3D;&gt; d.id)
             .distance(FORCES.LINK_DISTANCE);
 
         // Add forces
@@ -4035,7 +4035,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Emits the node.
      */
-    private _clickedOnNode(event: any, d): void {
+    private _clickedOnNode(event: any, d: D3SimulationNode): void {
         if (event.defaultPrevented) {
             return;
         } // Dragged
@@ -4055,7 +4055,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
-        const dragStart &#x3D; (event: any, d): void &#x3D;&gt; {
+        const dragStart &#x3D; (event: any, d: D3SimulationNode): void &#x3D;&gt; {
             /** Preventing propagation of dragstart to parent elements */
             event.sourceEvent.stopPropagation();
 
@@ -4067,12 +4067,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Make sure you can&#x27;t drag the circle outside the box
-        const dragged &#x3D; (event: any, d): void &#x3D;&gt; {
+        const dragged &#x3D; (event: any, d: D3SimulationNode): void &#x3D;&gt; {
             d.fx &#x3D; event.x;
             d.fy &#x3D; event.y;
         };
 
-        const dragEnd &#x3D; (event: any, d): void &#x3D;&gt; {
+        const dragEnd &#x3D; (event: any, d: D3SimulationNode): void &#x3D;&gt; {
             if (!event.active) {
                 simulation.alphaTarget(0);
             }
@@ -4081,7 +4081,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour &#x3D; D3_DRAG.drag()
+        const dragBehaviour: D3DragBehaviour &#x3D; D3_DRAG.drag&lt;any, any, D3SimulationNode&gt;()
             .on(&#x27;start&#x27;, dragStart)
             .on(&#x27;drag&#x27;, dragged)
             .on(&#x27;end&#x27;, dragEnd);

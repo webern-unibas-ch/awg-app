@@ -551,7 +551,7 @@ export class D3Service {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour &#x3D; D3_DRAG.drag()
+        const dragBehaviour: D3DragBehaviour &#x3D; D3_DRAG.drag&lt;any, any, D3SimulationNode&gt;()
             .on(&#x27;start&#x27;, dragStart)
             .on(&#x27;drag&#x27;, dragged)
             .on(&#x27;end&#x27;, dragEnd);

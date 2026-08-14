@@ -275,8 +275,11 @@ to structure outline information of the edition series.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LabeledRoute } from &#x27;@awg-shared/models/labeled-route.model&#x27;;
-import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
-import { EditionRouteConstant } from &#x27;@awg-views/edition-view/models&#x27;;
+import {
+    EDITION_ROUTE_CONSTANTS,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
 
 import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
 
@@ -614,7 +617,8 @@ export class EditionOutline {
         { series, sections }: EditionOutlineSeriesJsonData,
         getComplexById: (id: string) &#x3D;&gt; EditionComplex | undefined
     ): EditionOutlineSeries &#x3D;&gt; {
-        const seriesConstant: EditionRouteConstant &#x3D; EDITION_ROUTE_CONSTANTS[&#x27;SERIES_&#x27; + series];
+        const seriesConstant: EditionRouteConstant &#x3D;
+            EDITION_ROUTE_CONSTANTS[(&#x27;SERIES_&#x27; + series) as EditionRouteConstantsKey];
         return {
             series: seriesConstant,
             sections: sections.map(section &#x3D;&gt; this._mapSection(section, seriesConstant, getComplexById)),
@@ -641,7 +645,9 @@ export class EditionOutline {
     ): EditionOutlineSection &#x3D;&gt; {
         const routes &#x3D; EDITION_ROUTE_CONSTANTS;
         const sectionConstant: EditionRouteConstant &#x3D;
-            seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27; ? routes.SERIES_3_SECTION_5 : routes[&#x27;SECTION_&#x27; + section];
+            seriesConstant.route &#x3D;&#x3D;&#x3D; &#x27;3&#x27; &amp;&amp; section &#x3D;&#x3D;&#x3D; &#x27;5&#x27;
+                ? routes.SERIES_3_SECTION_5
+                : routes[(&#x27;SECTION_&#x27; + section) as EditionRouteConstantsKey];
 
         const labeledSectionRoute: LabeledRoute &#x3D; {
             label: &#x60;${routes.EDITION.short} ${seriesConstant.short}/${sectionConstant.short}&#x60;,

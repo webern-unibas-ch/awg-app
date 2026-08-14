@@ -944,15 +944,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link" >D3SimulationNodeTriple</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EDITION_CATALOGUE_TYPE_CONSTANTS.html" data-type="entity-link" >EDITION_CATALOGUE_TYPE_CONSTANTS</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EDITION_ROUTE_CONSTANTS.html" data-type="entity-link" >EDITION_ROUTE_CONSTANTS</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EDITION_TYPE_CONSTANTS.html" data-type="entity-link" >EDITION_TYPE_CONSTANTS</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
                             </li>
                             <li class="link">
@@ -989,7 +980,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionSvgSheetContent.html" data-type="entity-link" >EditionSvgSheetContent</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSvgSheetList.html" data-type="entity-link" >EditionSvgSheetList</a>
+                                <a href="classes/EditionSvgSheetsList.html" data-type="entity-link" >EditionSvgSheetsList</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Folio.html" data-type="entity-link" >Folio</a>

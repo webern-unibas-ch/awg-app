@@ -3850,10 +3850,10 @@ export class FolioService {
             class: &#x27;content-segment-label&#x27;,
             x: centeredXPosition,
             y: centeredYPosition,
+            &#x27;font-family&#x27;: this._contentSegmentFontFamily,
+            &#x27;dominant-baseline&#x27;: &#x27;middle&#x27;,
+            &#x27;text-anchor&#x27;: &#x27;middle&#x27;,
         };
-        attributes[&#x27;font-family&#x27;] &#x3D; this._contentSegmentFontFamily;
-        attributes[&#x27;dominant-baseline&#x27;] &#x3D; &#x27;middle&#x27;;
-        attributes[&#x27;text-anchor&#x27;] &#x3D; &#x27;middle&#x27;;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, &#x27;text&#x27;, attributes).style(
             &#x27;font-size&#x27;,
@@ -3910,8 +3910,8 @@ export class FolioService {
             class: &#x27;content-segment-shape&#x27;,
             points: segmentVertices,
             fill: this._contentSegmentFillColor,
+            &#x27;stroke-width&#x27;: adjustedStrokeWidth,
         };
-        attributes[&#x27;stroke-width&#x27;] &#x3D; adjustedStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, &#x27;polygon&#x27;, attributes);
     }
@@ -3938,8 +3938,8 @@ export class FolioService {
             height: y2 - y1,
             fill: this._sheetFillColor,
             stroke: this._bgColor,
+            &#x27;stroke-width&#x27;: this._sheetStrokeWidth,
         };
-        attributes[&#x27;stroke-width&#x27;] &#x3D; this._sheetStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgSheetGroup, &#x27;rect&#x27;, attributes);
     }
@@ -4021,8 +4021,8 @@ export class FolioService {
             height: y2 - y1,
             fill: this._sheetFillColor,
             stroke: this._bgColor,
+            &#x27;stroke-width&#x27;: this._sheetStrokeWidth,
         };
-        attributes[&#x27;stroke-width&#x27;] &#x3D; this._sheetStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgTrademarkGroup, &#x27;rect&#x27;, attributes);
     }
@@ -4060,8 +4060,8 @@ export class FolioService {
             fill: this._disabledColor,
             stroke: this._disabledColor,
             transform: transform,
+            &#x27;stroke-width&#x27;: this._contentSegmentStrokeWidth,
         };
-        symbolAttributes[&#x27;stroke-width&#x27;] &#x3D; this._contentSegmentStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgTrademarkGroup, &#x27;path&#x27;, symbolAttributes);
     }
@@ -4098,8 +4098,8 @@ export class FolioService {
             x: labelPosition.x,
             y: labelPosition.y,
             fill: this._bgColor,
+            &#x27;dominant-baseline&#x27;: &#x27;hanging&#x27;,
         };
-        attributes[&#x27;dominant-baseline&#x27;] &#x3D; &#x27;hanging&#x27;;
 
         this._appendSvgElementWithAttrs(svgSystemsGroup, &#x27;text&#x27;, attributes).text(labelIndex);
     }
@@ -4124,8 +4124,8 @@ export class FolioService {
                 x2: x2,
                 y2: y2,
                 stroke: this._bgColor,
+                &#x27;stroke-width&#x27;: this._systemsLineStrokeWidth,
             };
-            attributes[&#x27;stroke-width&#x27;] &#x3D; this._systemsLineStrokeWidth;
 
             this._appendSvgElementWithAttrs(svgSystemsGroup, &#x27;line&#x27;, attributes);
         });

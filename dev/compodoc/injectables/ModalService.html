@@ -236,8 +236,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="109"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:109</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -314,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="82"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:82</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="83"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -391,8 +391,8 @@ and supply it with the required ModalData input.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="62"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:62</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -671,7 +671,8 @@ export class ModalService {
      */
     openTextModal(snippetKey?: string | null): void {
         const id &#x3D; snippetKey || &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
-        const textSnippet &#x3D; MODAL_TEXT_SNIPPETS[id] || &#x27;&#x27;;
+        const isValidKey &#x3D; Object.hasOwn(MODAL_TEXT_SNIPPETS, id);
+        const textSnippet &#x3D; isValidKey ? MODAL_TEXT_SNIPPETS[id as keyof typeof MODAL_TEXT_SNIPPETS] : &#x27;&#x27;;
 
         const modalData: ModalData &#x3D; {
             type: &#x27;text&#x27;,

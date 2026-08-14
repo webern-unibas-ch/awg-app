@@ -1522,7 +1522,7 @@ export class GraphVisualizerComponent implements OnInit {
         } catch (err) {
             console.error(&#x27;#queryLocalstore got error:&#x27;, err);
 
-            if (err.message &amp;&amp; err.name) {
+            if (err instanceof Error) {
                 if (err.message.includes(&#x27;undefined&#x27;)) {
                     this.showToastMessage(
                         new ToastMessage(err.name, &#x27;The query did not return any results.&#x27;, 5000),
@@ -1530,6 +1530,8 @@ export class GraphVisualizerComponent implements OnInit {
                     );
                 }
                 this.showToastMessage(new ToastMessage(err.name, err.message, 5000), &#x27;error&#x27;);
+            } else {
+                this.showToastMessage(new ToastMessage(&#x27;Query Error&#x27;, String(err), 5000), &#x27;error&#x27;);
             }
 
             // Capture query time

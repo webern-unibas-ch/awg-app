@@ -365,7 +365,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getDefaultSheetId(svgSheetsData: <a href="../classes/EditionSvgSheetList.html" target="_self">EditionSvgSheetList</a>)</code>
+                    <code>_getDefaultSheetId(svgSheetsData: <a href="../classes/EditionSvgSheetsList.html" target="_self">EditionSvgSheetsList</a>)</code>
                 </td>
             </tr>
 
@@ -400,7 +400,7 @@ of the edition view of the app.</p>
                                         <tr>
                                                 <td>svgSheetsData</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgSheetList.html" target="_self" >EditionSvgSheetList</a></code>
+                                                            <code><a href="../classes/EditionSvgSheetsList.html" target="_self" >EditionSvgSheetsList</a></code>
                                             </td>
 
                                             <td>
@@ -443,7 +443,7 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_handleQueryParams(queryParams: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>, svgSheetsData: <a href="../classes/EditionSvgSheetList.html" target="_self">EditionSvgSheetList</a>)</code>
+                    <code>_handleQueryParams(queryParams: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>, svgSheetsData: <a href="../classes/EditionSvgSheetsList.html" target="_self">EditionSvgSheetsList</a>)</code>
                 </td>
             </tr>
 
@@ -494,7 +494,7 @@ of the edition view of the app.</p>
                                         <tr>
                                                 <td>svgSheetsData</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgSheetList.html" target="_self" >EditionSvgSheetList</a></code>
+                                                            <code><a href="../classes/EditionSvgSheetsList.html" target="_self" >EditionSvgSheetsList</a></code>
                                             </td>
 
                                             <td>
@@ -1492,7 +1492,7 @@ import { UTILS } from &#x27;@awg-shared/utils/object-utils&#x27;;
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvolute,
     TextcriticalCommentary,
     Textcritics,
@@ -1725,10 +1725,10 @@ export class EditionSheetsComponent {
      *
      * It returns the id of the first sheet of the svgSheetsData as default.
      *
-     * @param {EditionSvgSheetList} svgSheetsData The given svgSheetsData.     *
+     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.     *
      * @returns {string} The default sheet id.
      */
-    private _getDefaultSheetId(svgSheetsData: EditionSvgSheetList): string {
+    private _getDefaultSheetId(svgSheetsData: EditionSvgSheetsList): string {
         const sheets &#x3D; svgSheetsData?.sheets;
         const defaultSheet &#x3D; sheets?.textEditions?.[0] || sheets?.sketchEditions?.[0];
         const defaultSheetContentPartial &#x3D; defaultSheet?.content?.[0]?.partial ?? &#x27;&#x27;;
@@ -1742,10 +1742,10 @@ export class EditionSheetsComponent {
      * It handles the query params and selects the corresponding SVG sheet.
      *
      * @param {ParamMap} queryParams The given query paramMap of the activated route.
-     * @param {EditionSvgSheetList} svgSheetsData The given svgSheetsData.
+     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.
      * @returns {void} Handles the query params and selects the corresponding SVG sheet.
      */
-    private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetList): void {
+    private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetsList): void {
         const sheetIdFromQueryParams &#x3D; queryParams?.get(&#x27;id&#x27;);
 
         if (sheetIdFromQueryParams &amp;&amp; svgSheetsData) {

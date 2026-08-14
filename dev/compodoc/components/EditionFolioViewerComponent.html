@@ -395,7 +395,7 @@ and displays the convolute folios.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_calculateViewBoxDimension(folioSettings: <a href="../classes/FolioSettings.html" target="_self">FolioSettings</a>, dimension: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_calculateViewBoxDimension(folioSettings: <a href="../classes/FolioSettings.html" target="_self">FolioSettings</a>, dimension: "X" | "Y")</code>
                 </td>
             </tr>
 
@@ -447,7 +447,7 @@ based on the given folio settings.</p>
                                         <tr>
                                                 <td>dimension</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>&quot;X&quot; | &quot;Y&quot;</code>
                                             </td>
 
                                             <td>
@@ -497,8 +497,8 @@ based on the given folio settings.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="265"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/edition-folio-viewer.component.ts:265</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/edition-folio-viewer.component.ts:266</a></div>
                         </td>
                     </tr>
 
@@ -1340,10 +1340,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      *
      * @returns {number} The calculated dimension.
      */
-    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: string): number {
-        const format &#x3D; &#x60;format${dimension}&#x60;;
-        const offset &#x3D; &#x60;initialOffset${dimension}&#x60;;
-        return (folioSettings[format] + 2 * folioSettings[offset]) * folioSettings.factor;
+    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: &#x27;X&#x27; | &#x27;Y&#x27;): number {
+        const format &#x3D; dimension &#x3D;&#x3D;&#x3D; &#x27;X&#x27; ? folioSettings.formatX : folioSettings.formatY;
+        const offset &#x3D; dimension &#x3D;&#x3D;&#x3D; &#x27;X&#x27; ? folioSettings.initialOffsetX : folioSettings.initialOffsetY;
+
+        return (format + 2 * offset) * folioSettings.factor;
     }
 
     /**

@@ -209,7 +209,7 @@ from a graph json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -282,6 +282,15 @@ export class GraphRDFData {
 }
 
 /**
+ * The GraphSparqlQueryType type.
+ *
+ * It is used in the context of the edition view
+ * to store the type of a graph query
+ * from a graph json file.
+ */
+export type GraphSparqlQueryType &#x3D; &#x27;select&#x27; | &#x27;construct&#x27; | &#x27;ask&#x27; | &#x27;count&#x27; | &#x27;describe&#x27; | &#x27;update&#x27; | null;
+
+/**
  * The GraphSparqlQuery class.
  *
  * It is used in the context of the edition view
@@ -292,7 +301,7 @@ export class GraphSparqlQuery {
     /**
      * The type of a query.
      */
-    queryType: string;
+    queryType: GraphSparqlQueryType;
 
     /**
      * The label of a query.

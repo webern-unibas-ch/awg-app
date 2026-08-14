@@ -171,7 +171,7 @@ to describe a list of edition complexes.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="268" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:268</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="264" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:264</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -196,8 +196,13 @@ to describe a list of edition complexes.</p>
 import { PERSONS_DATA } from &#x27;@awg-shared/meta/persons.data&#x27;;
 import { LabeledRoute } from &#x27;@awg-shared/models/labeled-route.model&#x27;;
 
-import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from &#x27;../edition-routes.constants&#x27;;
-import { EditionRouteConstant } from &#x27;./edition-route-constant.model&#x27;;
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+    EditionCatalogueTypeConstantsKey,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from &#x27;../edition-routes.constants&#x27;;
 
 /**
  * The EditionComplexJsonPersonRef interface.
@@ -371,8 +376,12 @@ export class EditionComplex {
 
         this.respStatement &#x3D; this._mapRespStatement(respStatement);
 
-        const seriesConstant &#x3D; this._mapPubStatement(&#x27;SERIES_&#x27;, pubStatement?.series);
-        const sectionConstant &#x3D; this._mapPubStatement(&#x27;SECTION_&#x27;, pubStatement?.section);
+        const seriesKey &#x3D; &#x60;SERIES_${pubStatement?.series?.toUpperCase()}&#x60; as EditionRouteConstantsKey;
+        const seriesConstant &#x3D; EDITION_ROUTE_CONSTANTS[seriesKey] ?? new EditionRouteConstant();
+
+        const sectionKey &#x3D; &#x60;SECTION_${pubStatement?.section?.toUpperCase()}&#x60; as EditionRouteConstantsKey;
+        const sectionConstant &#x3D; EDITION_ROUTE_CONSTANTS[sectionKey] ?? new EditionRouteConstant();
+
         this.pubStatement &#x3D;
             seriesConstant.route &amp;&amp; sectionConstant.route
                 ? {
@@ -413,22 +422,9 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
-    }
+        const key &#x3D; catalogueType.toUpperCase() as EditionCatalogueTypeConstantsKey;
 
-    /**
-     * Private method: _mapPubStatement.
-     *
-     * It maps the publication statement to the corresponding route constant.
-     *
-     * @param {string} prefix The given prefix.
-     * @param {string} value The given value.
-     *
-     * @returns {EditionRouteConstant} The corresponding route constant.
-     */
-    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        const key &#x3D; value ? &#x60;${prefix}${value.toUpperCase()}&#x60; : &#x27;&#x27;;
-        return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**

@@ -252,28 +252,28 @@ export class D3ForceSimulation {
      *
      * It keeps the charging force.
      */
-    private _chargeForce;
+    private _chargeForce: D3_FORCE.Force&lt;D3SimulationNode, D3SimulationLink&gt;;
 
     /**
      * Private variable: _centerForce.
      *
      * It keeps the centering force.
      */
-    private _centerForce;
+    private _centerForce: D3_FORCE.Force&lt;D3SimulationNode, D3SimulationLink&gt;;
 
     /**
      * Private variable: _collideForce.
      *
      * It keeps the colliding force.
      */
-    private _collideForce;
+    private _collideForce: D3_FORCE.Force&lt;D3SimulationNode, D3SimulationLink&gt;;
 
     /**
      * Private variable: _linkForce.
      *
      * It keeps the linking force.
      */
-    private _linkForce;
+    private _linkForce: D3_FORCE.Force&lt;D3SimulationNode, D3SimulationLink&gt;;
 
     /**
      * Constructor of the D3ForceSimulation class.
@@ -345,19 +345,21 @@ export class D3ForceSimulation {
      */
     private _createForces(options: D3ForceSimulationOptions): void {
         // Create forces
-        this._chargeForce &#x3D; D3_FORCE.forceManyBody().strength((d: D3SimulationNode) &#x3D;&gt; d[&#x27;r&#x27;] * FORCES.CHARGE_STRENGTH);
+        this._chargeForce &#x3D; D3_FORCE.forceManyBody&lt;D3SimulationNode&gt;().strength(
+            (d: D3SimulationNode) &#x3D;&gt; d.r * FORCES.CHARGE_STRENGTH
+        );
 
         this._centerForce &#x3D; D3_FORCE.forceCenter(options.width / 2, options.height / 2);
 
-        this._collideForce &#x3D; D3_FORCE.forceCollide()
+        this._collideForce &#x3D; D3_FORCE.forceCollide&lt;D3SimulationNode&gt;()
             .strength(FORCES.COLLISION_STRENGTH)
-            .radius(d &#x3D;&gt; d[&#x27;r&#x27;] + 5)
+            .radius((d: D3SimulationNode) &#x3D;&gt; d.r + 5)
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        this._linkForce &#x3D; D3_FORCE.forceLink()
+        this._linkForce &#x3D; D3_FORCE.forceLink&lt;D3SimulationNode, D3SimulationLink&gt;()
             .links(this.links)
-            .id((d: D3SimulationLink) &#x3D;&gt; d.predicate)
+            .id((d: D3SimulationNode) &#x3D;&gt; d.id)
             .distance(FORCES.LINK_DISTANCE); // FORCES.LINKS
     }
 

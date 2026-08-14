@@ -215,7 +215,7 @@ from a graph json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -247,7 +247,7 @@ from a graph json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -273,13 +273,13 @@ from a graph json file.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#GraphSparqlQueryType" target="_self" >GraphSparqlQueryType</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -352,6 +352,15 @@ export class GraphRDFData {
 }
 
 /**
+ * The GraphSparqlQueryType type.
+ *
+ * It is used in the context of the edition view
+ * to store the type of a graph query
+ * from a graph json file.
+ */
+export type GraphSparqlQueryType &#x3D; &#x27;select&#x27; | &#x27;construct&#x27; | &#x27;ask&#x27; | &#x27;count&#x27; | &#x27;describe&#x27; | &#x27;update&#x27; | null;
+
+/**
  * The GraphSparqlQuery class.
  *
  * It is used in the context of the edition view
@@ -362,7 +371,7 @@ export class GraphSparqlQuery {
     /**
      * The type of a query.
      */
-    queryType: string;
+    queryType: GraphSparqlQueryType;
 
     /**
      * The label of a query.

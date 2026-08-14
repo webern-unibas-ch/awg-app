@@ -897,11 +897,11 @@ and returns the D3 selection of the created overlay group.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The selection of the overlay group.</p>
+                                <p>The selection of the overlay group, or undefined.</p>
 
                             </div>
                 </td>
@@ -930,8 +930,8 @@ and returns the D3 selection of the created overlay group.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="380"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:380</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="384"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:384</a></div>
                         </td>
                     </tr>
 
@@ -1066,8 +1066,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="433"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:433</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="437"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:437</a></div>
                         </td>
                     </tr>
 
@@ -1176,8 +1176,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="455"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:455</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="459"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:459</a></div>
                         </td>
                     </tr>
 
@@ -1302,8 +1302,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="477"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:477</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="481"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:481</a></div>
                         </td>
                     </tr>
 
@@ -1363,11 +1363,11 @@ which receives the list of selected tkk overlays.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>[] | undefined</code>
+                            <b>Returns : </b>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The found overlays or undefined.</p>
+                                <p>The found overlays.</p>
 
                             </div>
                 </td>
@@ -1396,8 +1396,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="493"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:493</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="497"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:497</a></div>
                         </td>
                     </tr>
 
@@ -1474,8 +1474,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="508"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:508</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="512"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:512</a></div>
                         </td>
                     </tr>
 
@@ -1554,8 +1554,8 @@ otherwise uses group id (default).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="522"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:522</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="526"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:526</a></div>
                         </td>
                     </tr>
 
@@ -1648,8 +1648,8 @@ otherwise uses group id (default).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="551"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:551</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="555"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:555</a></div>
                         </td>
                     </tr>
 
@@ -2813,9 +2813,13 @@ export class EditionSvgOverlayService {
      * @param {string} id The given id.
      * @param {DOMRect} dim The given dimensions of the SVG element.
      *
-     * @returns {D3Selection} The selection of the overlay group.
+     * @returns {D3Selection | undefined} The selection of the overlay group, or undefined.
      */
-    private _createTkkOverlayGroup(svgRootGroup: D3Selection | undefined, id: string, dim: DOMRect): D3Selection {
+    private _createTkkOverlayGroup(
+        svgRootGroup: D3Selection | undefined,
+        id: string,
+        dim: DOMRect
+    ): D3Selection | undefined {
         if (!svgRootGroup || !id) {
             return undefined;
         }
@@ -2910,7 +2914,7 @@ export class EditionSvgOverlayService {
      */
     private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, overlayType: string): D3Selection {
         if (!svgRootGroup || !dataId || !overlayType) {
-            return undefined;
+            return svgRootGroup?.selectAll(null);
         }
         // Get D3 selection of target group
         const targetGroupSelection: D3Selection &#x3D; this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
@@ -2950,9 +2954,9 @@ export class EditionSvgOverlayService {
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
      * @param {string} dataId The given data id.
      *
-     * @returns {EditionSvgOverlay[] | undefined } The found overlays or undefined.
+     * @returns {EditionSvgOverlay[] } The found overlays.
      */
-    private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] | undefined {
+    private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] {
         if (!Array.isArray(overlays)) {
             return [];
         }
