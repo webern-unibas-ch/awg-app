@@ -1138,84 +1138,112 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToBe(result, expectedNoResults);
                 });
 
-                it('... should return empty array on error', async () => {
-                    const expectedError = { status: 404, statusText: 'error' };
+                describe('... on error', () => {
+                    it('... should return empty array', async () => {
+                        const expectedError = { status: 404, statusText: 'error' };
 
-                    vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
-                    serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
 
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
 
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual([]);
-                });
+                        await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                        await expect(lastValueFrom(component.queryResult$)).resolves.toEqual([]);
+                    });
 
-                it('... should log an error on error', async () => {
-                    const expectedError = { status: 404, statusText: 'error' };
+                    it('... should log an error', async () => {
+                        const expectedError = { status: 404, statusText: 'error' };
 
-                    const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                    serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
-                    errorSpy.mockClear();
+                        const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+                        errorSpy.mockClear();
 
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
 
-                    expectSpyCall(errorSpy, 2);
-                    expectToEqual(errorSpy.mock.calls[0], ['#queryLocalstore got error:', expectedError]);
-                    // Error logged by `showToastMessage` method
-                    expectToEqual(errorSpy.mock.calls[1], ['Query Error', ':', String(expectedError)]);
-                });
+                        expectSpyCall(errorSpy, 2);
+                        expectToEqual(errorSpy.mock.calls[0], ['#queryLocalstore got error:', expectedError]);
+                        // Error logged by `showToastMessage` method
+                        expectToEqual(errorSpy.mock.calls[1], ['Query Error', ':', String(expectedError.statusText)]);
+                    });
 
-                it('... should trigger `showToastMessage` on structured object error', async () => {
-                    const expectedError = new Error('error message');
-                    expectedError.name = 'Error';
-                    const expectedToastMessage = new ToastMessage(expectedError.name, expectedError.message, 5000);
+                    describe('... should trigger `showToastMessage` correctly on', () => {
+                        it.each([
+                            {
+                                desc: 'a structured error object (Error)',
+                                error: (() => {
+                                    const err = new Error('error message');
+                                    err.name = 'Error';
+                                    return err;
+                                })(),
+                                expectedCalls: [[new ToastMessage('Error', 'error message', 5000), 'error']],
+                            },
+                            {
+                                desc: 'a structured error object (Error) with message containing `undefined`',
+                                error: (() => {
+                                    const err = new Error('error message undefined');
+                                    err.name = 'Error';
+                                    return err;
+                                })(),
+                                expectedCalls: [
+                                    [new ToastMessage('Error', 'The query did not return any results.', 5000), 'error'],
+                                    [new ToastMessage('Error', 'error message undefined', 5000), 'error'],
+                                ],
+                            },
+                            {
+                                desc: 'a plain object with a `message` property',
+                                error: { status: 400, message: 'Custom API error message' },
+                                expectedCalls: [
+                                    [new ToastMessage('Query Error', 'Custom API error message', 5000), 'error'],
+                                ],
+                            },
+                            {
+                                desc: 'a plain object with a `statusText` property (like HTTP errors)',
+                                error: { status: 404, statusText: 'Not Found' },
+                                expectedCalls: [[new ToastMessage('Query Error', 'Not Found', 5000), 'error']],
+                            },
+                            {
+                                desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
+                                error: { errorCode: 999, fatal: true },
+                                expectedCalls: [
+                                    [new ToastMessage('Query Error', '{"errorCode":999,"fatal":true}', 5000), 'error'],
+                                ],
+                            },
+                            {
+                                desc: 'an object where `JSON.stringify` returns undefined (forces the || String fallback)',
+                                error: {
+                                    toJSON: (): undefined => undefined,
+                                },
+                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
+                            },
+                            {
+                                desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
+                                error: (() => {
+                                    const circularObj: any = { foo: 'bar' };
+                                    circularObj.self = circularObj;
+                                    return circularObj;
+                                })(),
+                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
+                            },
+                            {
+                                desc: 'a primitive string error',
+                                error: 'Fatal Store Crash',
+                                expectedCalls: [[new ToastMessage('Query Error', 'Fatal Store Crash', 5000), 'error']],
+                            },
+                        ])('... $desc', async ({ error, expectedCalls }) => {
+                            vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                            serviceDoQuerySpy.mockImplementation(() => Promise.reject(error));
 
-                    vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
-                    serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+                            component.performQuery();
+                            await detectChangesOnPush(fixture);
 
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(showToastMessageSpy, 1);
-                    expectToEqual(showToastMessageSpy.mock.calls[0], [expectedToastMessage, 'error']);
-                });
-
-                it('... should trigger `showToastMessage` with fallback on primitive string error', async () => {
-                    const primitiveError = 'Fatal Store Crash';
-                    const expectedToastMessage = new ToastMessage('Query Error', primitiveError, 5000);
-
-                    vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                    serviceDoQuerySpy.mockImplementation(() => Promise.reject(primitiveError));
-
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(showToastMessageSpy, 1);
-                    expectToEqual(showToastMessageSpy.mock.calls[0], [expectedToastMessage, 'error']);
-                });
-
-                it('... should trigger `showToastMessage` 2x if error message contains `undefined`', async () => {
-                    const expectedError = new Error('error message undefined');
-                    expectedError.name = 'Error';
-
-                    const expectedToastMessage1 = new ToastMessage(
-                        'Error',
-                        'The query did not return any results.',
-                        5000
-                    );
-                    const expectedToastMessage2 = new ToastMessage(expectedError.name, expectedError.message, 5000);
-
-                    vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
-                    serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
-
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(showToastMessageSpy, 2);
-                    expectToEqual(showToastMessageSpy.mock.calls[0], [expectedToastMessage1, 'error']);
-                    expectToEqual(showToastMessageSpy.mock.calls[1], [expectedToastMessage2, 'error']);
+                            expectSpyCall(showToastMessageSpy, expectedCalls.length);
+                            expectedCalls.forEach((expectedCall, index) => {
+                                expectToEqual(showToastMessageSpy.mock.calls[index], expectedCall);
+                            });
+                        });
+                    });
                 });
             });
 

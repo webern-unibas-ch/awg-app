@@ -758,32 +758,14 @@ describe('EditionGraphComponent (DONE)', () => {
                 });
 
                 describe('... should return null if', () => {
-                    it('... no imageKey is provided', () => {
-                        const result = component.getStaticImage(undefined);
-
-                        expectToBe(result, null);
-                    });
-
-                    it('... an empty imageKey is provided', () => {
-                        const result = component.getStaticImage('');
-
-                        expectToBe(result, null);
-                    });
-
-                    it('... the imageKey does not exist in data', () => {
-                        const result = component.getStaticImage('NON_EXISTENT_KEY');
-
-                        expectToBe(result, null);
-                    });
-
-                    it('... the imageKey exists but the mapped value is an empty string', () => {
-                        const result = component.getStaticImage('OP12');
-
-                        expectToBe(result, null);
-                    });
-
-                    it('... the imageKey includes prototype properties like `toString`', () => {
-                        const result = component.getStaticImage('toString');
+                    it.each([
+                        { desc: 'no imageKey is provided', imageKey: undefined },
+                        { desc: 'an empty imageKey is provided', imageKey: '' },
+                        { desc: 'the imageKey does not exist in data', imageKey: 'NON_EXISTENT_KEY' },
+                        { desc: 'the imageKey exists but the mapped value is an empty string', imageKey: 'OP12' },
+                        { desc: 'the imageKey includes prototype properties like `toString`', imageKey: 'toString' },
+                    ])('... should return null if $desc', ({ imageKey }) => {
+                        const result = component.getStaticImage(imageKey);
 
                         expectToBe(result, null);
                     });
