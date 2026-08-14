@@ -45,7 +45,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedSelectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
@@ -66,7 +66,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            imports: [FontAwesomeTestingModule, NgbAccordionModule, NgbDropdownModule, NgbConfigModule],
             declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     });

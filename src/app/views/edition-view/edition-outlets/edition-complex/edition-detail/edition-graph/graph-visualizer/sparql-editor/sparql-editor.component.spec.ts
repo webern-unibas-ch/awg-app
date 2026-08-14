@@ -5,13 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
-import {
-    NgbAccordionDirective,
-    NgbAccordionModule,
-    NgbConfig,
-    NgbDropdown,
-    NgbDropdownModule,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorView } from 'codemirror';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -94,7 +88,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
-    class NgbAnimationConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -105,7 +99,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAnimationConfigModule, NgbAccordionDirective, NgbDropdown],
+            imports: [NgbAccordionModule, NgbConfigModule, NgbDropdownModule],
             declarations: [SparqlEditorComponent, CodeMirrorStubComponent, ViewHandleButtongGroupStubComponent],
         }).compileComponents();
     });

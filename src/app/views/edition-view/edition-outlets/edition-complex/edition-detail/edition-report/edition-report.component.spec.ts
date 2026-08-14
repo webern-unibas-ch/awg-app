@@ -108,7 +108,7 @@ describe('EditionReportComponent', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject_1(NgbConfig);
 
@@ -132,7 +132,8 @@ describe('EditionReportComponent', () => {
                 AlertErrorStubComponent,
                 CompileHtmlDirective,
                 TwelveToneSpinnerStubComponent,
-                NgbAccordionWithConfigModule,
+                NgbAccordionModule,
+                NgbConfigModule,
             ],
             declarations: [
                 EditionReportComponent,

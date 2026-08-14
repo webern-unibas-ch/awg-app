@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetFacet component.
@@ -33,7 +33,7 @@ export class EditionSvgSheetFacetComponent {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheetList;
+    svgSheetsData: EditionSvgSheetsList;
 
     /**
      * Input variable: selectedSvgSheet.

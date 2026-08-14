@@ -1,6 +1,6 @@
 import { Component, TemplateRef, inject } from '@angular/core';
 
-import { Toast, ToastService } from './toast.service';
+import { ToastService } from './toast.service';
 
 /**
  * The Toast component.
@@ -27,11 +27,10 @@ export class ToastComponent {
      *
      * It checks if a given toast is provided as a template or text.
      *
-     * @param {*} toast The given queryResult.
-     *
+     * @param {string | TemplateRef<any>} value The toast value to check.
      * @returns {boolean} The boolean value of the check result.
      */
-    isTemplate(toast: Toast): boolean {
-        return toast.textOrTpl instanceof TemplateRef;
+    isTemplate(value: string | TemplateRef<any>): value is TemplateRef<any> {
+        return value instanceof TemplateRef;
     }
 }

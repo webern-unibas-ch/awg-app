@@ -7,7 +7,7 @@ import { UTILS } from '@awg-shared/utils/object-utils';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvolute,
     TextcriticalCommentary,
     Textcritics,
@@ -240,10 +240,10 @@ export class EditionSheetsComponent {
      *
      * It returns the id of the first sheet of the svgSheetsData as default.
      *
-     * @param {EditionSvgSheetList} svgSheetsData The given svgSheetsData.     *
+     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.     *
      * @returns {string} The default sheet id.
      */
-    private _getDefaultSheetId(svgSheetsData: EditionSvgSheetList): string {
+    private _getDefaultSheetId(svgSheetsData: EditionSvgSheetsList): string {
         const sheets = svgSheetsData?.sheets;
         const defaultSheet = sheets?.textEditions?.[0] || sheets?.sketchEditions?.[0];
         const defaultSheetContentPartial = defaultSheet?.content?.[0]?.partial ?? '';
@@ -257,10 +257,10 @@ export class EditionSheetsComponent {
      * It handles the query params and selects the corresponding SVG sheet.
      *
      * @param {ParamMap} queryParams The given query paramMap of the activated route.
-     * @param {EditionSvgSheetList} svgSheetsData The given svgSheetsData.
+     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.
      * @returns {void} Handles the query params and selects the corresponding SVG sheet.
      */
-    private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetList): void {
+    private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetsList): void {
         const sheetIdFromQueryParams = queryParams?.get('id');
 
         if (sheetIdFromQueryParams && svgSheetsData) {

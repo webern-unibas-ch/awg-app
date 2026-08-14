@@ -20,7 +20,7 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescriptionContentsComponent } from './source-description-contents.component';
 
@@ -515,36 +515,42 @@ describe('SourceDescriptionContentsComponent', () => {
             });
 
             it('... should do nothing if no id is provided', () => {
-                const expectedSheetIds = undefined;
+                const expectedSheetIds: SheetClickEvent = undefined;
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
 
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });
 
             it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: SheetClickEvent = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
             });
 
             it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                const expectedNextSheetIds: SheetClickEvent = {
+                    complexId: expectedNextComplexId,
+                    sheetId: expectedNextSheetId,
+                };
                 component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);

@@ -33,7 +33,7 @@ describe('DisclaimerWorkeditionsComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            imports: [FontAwesomeTestingModule, NgbPopoverModule, NgbConfigModule],
             declarations: [DisclaimerWorkeditionsComponent],
         }).compileComponents();
     });

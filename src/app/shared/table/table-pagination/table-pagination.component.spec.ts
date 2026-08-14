@@ -48,7 +48,7 @@ describe('TablePaginationComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbConfigModule],
+            imports: [NgbPaginationModule, NgbConfigModule],
             declarations: [TablePaginationComponent],
         }).compileComponents();
     });

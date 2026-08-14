@@ -8,7 +8,13 @@ import * as N3 from 'n3';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { QuerySelectResult, RDFStoreConstructResponseTriple, Triple } from '../models';
+import {
+    QuerySelectResult,
+    RDFStoreConstructResponse,
+    RDFStoreConstructResponseTriple,
+    RDFStoreSelectResponse,
+    Triple,
+} from '../models';
 import { PrefixPipe } from '../prefix-pipe';
 
 import { GraphVisualizerService } from './graph-visualizer.service';
@@ -735,7 +741,10 @@ describe('GraphVisualizerService', () => {
             const result = await graphVisualizerService.parseTripleString(triples);
 
             expect(result).toBeDefined();
-            expectToEqual(result.namespaces, { ex: 'http://example.org/', ex2: 'http://example2.org/' });
+            expectToEqual(result.namespaces, {
+                ex: 'http://example.org/',
+                ex2: 'http://example2.org/',
+            } as unknown as N3.Prefixes);
             expectToBe(Array.isArray(result.quads), true);
             expectToBe(result.quads.length, 1);
             expectToBe(result.quads[0].subject.id, 'http://example.org/subject');
@@ -908,7 +917,7 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return `undefined` if the given IRI is undefined', () => {
-            const iri = undefined;
+            const iri: string = undefined;
             const namespaces = { ex: 'http://example.org/' };
 
             const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
@@ -917,7 +926,7 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return `null` if the given IRI is null', () => {
-            const iri = null;
+            const iri: string = null;
             const namespaces = { ex: 'http://example.org/' };
 
             const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
@@ -952,9 +961,9 @@ describe('GraphVisualizerService', () => {
 
         it('... should reject if store.create encounters an error', async () => {
             const expectedError = new Error('Test error');
-            const mockStoreWithCreateError = {
-                create: callback => {
-                    callback(expectedError, null);
+            const mockStoreWithCreateError: any = {
+                create: (callback: (err: Error | null, res: any) => void) => {
+                    callback(expectedError, null as any);
                 },
             };
 
@@ -995,7 +1004,7 @@ describe('GraphVisualizerService', () => {
                 '<http://example.org/subject2> <http://example.org/predicate2> <http://example.org/object2> .',
             ];
 
-            const result = await (graphVisualizerService as any)._executeQuery(store, query);
+            const result: RDFStoreConstructResponse = await (graphVisualizerService as any)._executeQuery(store, query);
 
             expectToBe(result.triples.length, 2);
             result.triples.forEach((triple, index: number) => {
@@ -1018,11 +1027,11 @@ describe('GraphVisualizerService', () => {
                 },
             ];
 
-            const result = await (graphVisualizerService as any)._executeQuery(store, query);
+            const result: RDFStoreSelectResponse = await (graphVisualizerService as any)._executeQuery(store, query);
 
             expectToBe(result.length, 2);
             result.forEach((triple, index: number) => {
-                expectToEqual(triple, expectedQueryResult[index]);
+                expectToEqual(triple, expectedQueryResult[index] as any);
             });
         });
 
@@ -1034,9 +1043,9 @@ describe('GraphVisualizerService', () => {
 
         it('... should reject and throw/log an error if store.execute encounters an error', async () => {
             const expectedError = new Error('Test error');
-            const mockStore = {
-                execute: (query, callback) => {
-                    callback(expectedError, null);
+            const mockStore: any = {
+                execute: (_query: string, callback: (err: Error | null, res: any) => void) => {
+                    callback(expectedError, null as any);
                 },
             };
 
@@ -1252,8 +1261,8 @@ describe('GraphVisualizerService', () => {
 
         describe('... should return an empty object if', () => {
             it('... the input object is empty', () => {
-                const inputObj = {};
-                const keyMap = {
+                const inputObj: Record<string, string> = {};
+                const keyMap: Record<string, string> = {
                     token: 'type',
                     type: 'datatype',
                     lang: 'xml:lang',
@@ -1265,8 +1274,8 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... the input object is null', () => {
-                const inputObj = null;
-                const keyMap = {
+                const inputObj: Record<string, string> = null;
+                const keyMap: Record<string, string> = {
                     token: 'type',
                     type: 'datatype',
                     lang: 'xml:lang',
@@ -1278,8 +1287,8 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... the input object is undefined', () => {
-                const inputObj = undefined;
-                const keyMap = {
+                const inputObj: Record<string, string> = undefined;
+                const keyMap: Record<string, string> = {
                     token: 'type',
                     type: 'datatype',
                     lang: 'xml:lang',
@@ -1293,11 +1302,11 @@ describe('GraphVisualizerService', () => {
 
         describe('... should return the original object if', () => {
             it('... the new keys object is empty', () => {
-                const inputObj = {
+                const inputObj: Record<string, string> = {
                     key1: 'value1',
                     key2: 'value2',
                 };
-                const keyMap = {};
+                const keyMap: Record<string, string> = {};
 
                 const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
 
@@ -1305,11 +1314,11 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... the new keys object is null', () => {
-                const inputObj = {
+                const inputObj: Record<string, string> = {
                     key1: 'value1',
                     key2: 'value2',
                 };
-                const keyMap = null;
+                const keyMap: Record<string, string> = null;
 
                 const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
 
@@ -1317,11 +1326,11 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... the new keys object is undefined', () => {
-                const inputObj = {
+                const inputObj: Record<string, string> = {
                     key1: 'value1',
                     key2: 'value2',
                 };
-                const keyMap = undefined;
+                const keyMap: Record<string, string> = undefined;
 
                 const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
 
@@ -1330,15 +1339,15 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return an object with mapped keys', () => {
-            const inputObj = {
+            const inputObj: Record<string, string> = {
                 key1: 'value1',
                 key2: 'value2',
             };
-            const keyMap = {
+            const keyMap: Record<string, string> = {
                 key1: 'key1Mapped',
                 key2: 'key2Mapped',
             };
-            const outputObj = {
+            const outputObj: Record<string, string> = {
                 key1Mapped: 'value1',
                 key2Mapped: 'value2',
             };
@@ -1362,8 +1371,8 @@ describe('GraphVisualizerService', () => {
             const outputObj = {
                 type: 'literal',
                 datatype: 'http://www.w3.org/2001/XMLSchema#string',
+                'xml:lang': 'en',
             };
-            outputObj['xml:lang'] = 'en';
 
             const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
 
@@ -1754,37 +1763,42 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return a QuerySelectResult object with mapped bindings and vars', () => {
-            const selectResponse = [
+            const selectResponse: RDFStoreSelectResponse = [
                 {
-                    key1: {
-                        token: 'uri',
+                    subject: {
+                        label: 'awg:Op25_1',
+                        type: 'uri',
                         value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
                     },
-                    key2: {
-                        token: 'literal',
-                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                    predicate: {
+                        datatype: 'http://www.w3.org/2001/XMLSchema#integer',
+                        label: 1,
+                        type: 'literal',
                         value: '1',
                     },
                 },
-            ];
-            const expectedQueryResult = {
+            ] as unknown as RDFStoreSelectResponse;
+
+            const expectedQueryResult: {
+                status: number;
+                data: QuerySelectResult | string;
+            } = {
                 status: 200,
                 data: {
                     head: {
-                        vars: ['key1', 'key2'],
+                        vars: ['subject', 'predicate'],
                     },
                     body: {
                         bindings: [
                             {
-                                key1: {
+                                subject: {
                                     label: 'awg:Op25_1',
-                                    type: 'uri',
+                                    datatype: 'uri',
                                     value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
                                 },
-                                key2: {
-                                    datatype: 'http://www.w3.org/2001/XMLSchema#integer',
-                                    label: 1,
-                                    type: 'literal',
+                                predicate: {
+                                    label: '1',
+                                    datatype: 'literal',
                                     value: '1',
                                 },
                             },
@@ -1799,8 +1813,11 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return status=400 and `Query returned no results` if selectRespone is empty', () => {
-            const selectResponse = [];
-            const expectedResponse = {
+            const selectResponse: RDFStoreSelectResponse = [];
+            const expectedResponse: {
+                status: number;
+                data: QuerySelectResult | string;
+            } = {
                 status: 400,
                 data: 'Query returned no results',
             };
@@ -1811,8 +1828,11 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should return status=404 and undefined if selectRespone is undefined or null', () => {
-            const selectResponse = undefined;
-            const expectedResponse = {
+            const selectResponse: RDFStoreSelectResponse = undefined;
+            const expectedResponse: {
+                status: number;
+                data: QuerySelectResult | string;
+            } = {
                 status: 404,
                 data: undefined,
             };
@@ -1821,7 +1841,7 @@ describe('GraphVisualizerService', () => {
 
             expectToEqual(result, expectedResponse);
 
-            const selectResponse2 = null;
+            const selectResponse2: RDFStoreSelectResponse = null;
 
             const result2 = (graphVisualizerService as any)._prepareSelectResponse(selectResponse2);
 
@@ -1829,19 +1849,21 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should trigger `_prepareMappedBindings` method', () => {
-            const selectResponse = [
+            const selectResponse: RDFStoreSelectResponse = [
                 {
-                    key1: {
-                        token: 'uri',
+                    subject: {
+                        type: 'uri',
+                        label: 'awg:Op25_1',
                         value: 'https://edition.anton-webern.ch/webern-onto#Op25_1',
                     },
-                    key2: {
-                        token: 'literal',
-                        type: 'http://www.w3.org/2001/XMLSchema#integer',
+                    predicate: {
+                        type: 'literal',
+                        label: 1,
+                        datatype: 'http://www.w3.org/2001/XMLSchema#integer',
                         value: '1',
                     },
                 },
-            ];
+            ] as unknown as RDFStoreSelectResponse;
 
             const prepareMappedBindingsSpy = vi.spyOn(graphVisualizerService as any, '_prepareMappedBindings');
 

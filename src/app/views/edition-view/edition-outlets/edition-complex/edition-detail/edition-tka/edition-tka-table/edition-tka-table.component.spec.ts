@@ -73,7 +73,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedSketchId = 'test_Sk1';
-        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1].commentary);
+        expectedCommentary = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0].commentary);
 
         const totalBlockHeaderRows = expectedCommentary.comments.filter(block => block.blockHeader).length;
         expectedTotalCommentRows = expectedCommentary.comments.reduce(

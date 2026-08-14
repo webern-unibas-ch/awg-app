@@ -38,7 +38,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
@@ -55,7 +55,7 @@ class EditionSvgSheetFacetStubComponent {
     @Input()
     isMinimized = false;
     @Input()
-    svgSheetsData: EditionSvgSheetList;
+    svgSheetsData: EditionSvgSheetsList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
@@ -112,7 +112,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
-    let expectedSvgSheetsData: EditionSvgSheetList;
+    let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
@@ -125,7 +125,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -148,7 +148,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, FullscreenToggleStubComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, FullscreenToggleStubComponent],
             declarations: [
                 EditionAccoladeComponent,
                 EditionSvgSheetViewerStubComponent,
@@ -173,7 +173,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedSvgSheetsData = {
             sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
         };
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         const overlayType = EditionSvgOverlayTypes.tkk;
@@ -682,7 +682,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
 
                 it('... should not emit anything if no direction is provided', () => {
-                    const expectedDirection = undefined;
+                    const expectedDirection: number = undefined;
                     component.browseSvgSheet(expectedDirection);
 
                     expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);

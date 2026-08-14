@@ -1,5 +1,1277 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { Folio, FolioConvoluteList } from '@awg-views/edition-view/models/folio.model';
+import { GraphList } from '@awg-views/edition-view/models/graph.model';
+import { IntroList } from '@awg-views/edition-view/models/intro.model';
+import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
+import { RowtablesList } from '@awg-views/edition-view/models/rowtables.model';
+import { SourceDescriptionList } from '@awg-views/edition-view/models/source-description.model';
+import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+import { SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+
+/**
+ * Test helper data constant: mockFolioConvoluteData.
+ *
+ * It provides a mocked folioConvoluteData object.
+ */
+export const mockFolioConvoluteData: FolioConvoluteList = {
+    convolutes: [
+        {
+            convoluteId: 'A',
+            convoluteLabel: 'Test convolute A',
+            folios: [
+                {
+                    folioId: '1',
+                    systems: '18',
+                    dimensions: {
+                        height: 180,
+                        width: 267,
+                    },
+                    trademarkPosition: 'unten links',
+                    content: [
+                        {
+                            complexId: 'op12',
+                            sheetId: 'M212_Sk1',
+                            sigle: 'M 212 Sk1',
+                            sigleAddendum: 'T. 1–2, [3–6]',
+                            selectable: true,
+                            linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+                            segmentSplit: 1,
+                            segments: [
+                                {
+                                    position: 1,
+                                    startSystem: 2,
+                                    endSystem: 4,
+                                },
+                            ],
+                        },
+                        {
+                            complexId: 'op12',
+                            sheetId: 'M212_Sk3',
+                            sigle: 'M 212 Sk3',
+                            sigleAddendum: 'T. 3',
+                            segmentSplit: 1,
+                            segments: [
+                                {
+                                    position: 1,
+                                    startSystem: 5,
+                                    endSystem: 7,
+                                    relativeToSystem: 'above',
+                                },
+                            ],
+                        },
+                        {
+                            complexId: 'op12',
+                            sheetId: 'M212_Sk2',
+                            sigle: 'M 212 Sk2',
+                            sigleAddendum: 'T. 2',
+                            segmentSplit: 1,
+                            segments: [
+                                {
+                                    position: 1,
+                                    startSystem: 5,
+                                    endSystem: 7,
+                                    relativeToSystem: 'below',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+            linkTo: '',
+        },
+        {
+            convoluteId: 'B',
+            convoluteLabel: 'Test convolute B',
+            folios: [],
+            linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockReversedFolio.
+ *
+ * It provides a mocked reversed folio object.
+ */
+export const mockReversedFolio: Folio = {
+    folioId: '1',
+    systems: '18',
+    reversed: true,
+    dimensions: {
+        height: 180,
+        width: 267,
+    },
+    content: [
+        {
+            complexId: 'op12',
+            sheetId: 'M212_Sk1_1',
+            sigle: 'M 212 Sk1.1',
+            sigleAddendum: '',
+            selectable: undefined,
+            reversed: true,
+            linkTo: undefined,
+            segmentSplit: 1,
+            segments: [
+                {
+                    position: 1,
+                    startSystem: 4,
+                    endSystem: 2,
+                },
+            ],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockGraphEmptyData.
+ *
+ * It provides a mocked graph data object with empty content.
+ */
+export const mockGraphEmptyData: GraphList = {
+    graph: [
+        {
+            id: 'test-graph-empty-id',
+            title: 'Test graph empty',
+            description: [],
+            rdfData: {
+                queryList: [],
+                triples: '',
+            },
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockIntroSectionData.
+ *
+ * It provides a mocked intro section data object.
+ */
+export const mockIntroSectionData: IntroList = {
+    intro: [
+        {
+            id: 'test_intro',
+            content: [
+                {
+                    blockId: 'test_block_id_1',
+                    blockHeader: 'Test block header 1',
+                    blockContent: [
+                        "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
+                        "In <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a data-complex-id='testComplex1' data-intro-fragment-id='note-80'>80</a></sup>",
+                        "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
+                    ],
+                    blockNotes: [
+                        "<span id='note-80' class='note'><a class='note-backlink' data-complex-id='testComplex1' data-intro-fragment-id='note-80-backlink'>80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
+                    ],
+                },
+                {
+                    blockId: 'test_block_id_2',
+                    blockHeader: 'Test block header 2',
+                    blockContent: ['Test block content 2'],
+                    blockNotes: ['Test block notes 2'],
+                },
+            ],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockIntroSectionFilteredData.
+ *
+ * It provides a mocked intro data object with filtered content.
+ */
+export const mockIntroSectionFilteredData: IntroList = {
+    intro: [
+        {
+            id: 'test_intro',
+            content: [
+                {
+                    blockId: 'test_block_id_2',
+                    blockHeader: 'Test block header 2',
+                    blockContent: ['Test block content 2'],
+                    blockNotes: ['Test block notes 2'],
+                },
+            ],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockIntroComplexData.
+ *
+ * It provides a mocked empty intro data object as used in an edition complex.
+ */
+export const mockIntroComplexData: IntroList = {
+    intro: [
+        {
+            id: 'test_block_id_2',
+            content: [],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockModalSnippet.
+ *
+ * It provides a mocked modal snippet string.
+ */
+export const mockModalSnippet = 'OP12_SHEET_COMING_SOON';
+
+/**
+ * Test helper data constant: mockPreface Data.
+ *
+ * It provides a mocked preface data object.
+ */
+export const mockPrefaceData: PrefaceList = {
+    preface: [
+        {
+            id: 'de',
+            content: [
+                "<p class='block-lead'>Die AWG gliedert sich in drei Serien:</p>",
+                "<p>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</p>",
+                "<p class='block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
+            ],
+        },
+        {
+            id: 'en',
+            content: [
+                "<p class='block-lead'>The AWG is divided into three series:</p>",
+                "<p>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</p>",
+                "<p class='block-lead small'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
+            ],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockRowtablesData.
+ *
+ * It provides a mocked rowtablesData object.
+ */
+export const mockRowtablesData: RowtablesList = {
+    rowtables: [
+        { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
+        { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
+        { route: '/disrt1', short: 'Dis RT1', full: 'Disabled Test Rowtable 1', id: 'SkRT', disabled: true },
+        { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSourceListData.
+ *
+ * It provides a mocked sourceListData object.
+ */
+export const mockSourceListData: SourceList = {
+    sources: [
+        {
+            siglum: 'A',
+            siglumAddendum: '',
+            type: 'Test type 1',
+            location: 'Test location 1.',
+            hasDescription: true,
+            linkTo: 'source_A',
+        },
+        {
+            siglum: 'B',
+            siglumAddendum: '',
+            type: 'Test type 2',
+            location: 'Test location 2.',
+            hasDescription: false,
+            linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+        },
+        {
+            siglum: 'C',
+            siglumAddendum: '',
+            missing: true,
+            type: 'Test type 3',
+            location: 'Test location 3.',
+            hasDescription: false,
+            linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSourceListDataWithTexts.
+ *
+ * It provides a mocked sourceListData object with text sources.
+ */
+export const mockSourceListDataWithTexts: SourceList = {
+    sources: [
+        {
+            siglum: 'A',
+            siglumAddendum: 'a',
+            type: 'Test type 1',
+            location: 'Test location 1.',
+            hasDescription: true,
+            linkTo: 'source_Aa',
+        },
+        {
+            siglum: 'B',
+            siglumAddendum: 'H',
+            type: 'Test type 2',
+            location: 'Test location 2.',
+            hasDescription: false,
+            linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+        },
+    ],
+    textSources: [
+        {
+            id: 'text_textA',
+            siglum: 'textA',
+            siglumAddendum: '',
+            type: 'Text type 1',
+            location: 'Text location 1.',
+        },
+        {
+            id: 'text_textB',
+            siglum: 'textB',
+            siglumAddendum: 'H',
+            type: 'Text type 2',
+            location: 'Text location 2.',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSourceDescriptionListData.
+ *
+ * It provides a mocked sourceDescriptionListData object.
+ */
+export const mockSourceDescriptionListData: SourceDescriptionList = {
+    sources: [
+        {
+            id: 'source_A',
+            siglum: 'A',
+            siglumAddendum: '',
+            type: 'Skizzen',
+            location: 'CH-Bps, Sammlung Anton Webern.',
+            physDesc: {},
+        },
+        {
+            id: 'source_Aa',
+            siglum: 'A',
+            siglumAddendum: 'a',
+            type: '',
+            location: 'Wien, Testcentre.',
+            physDesc: {
+                conditions: [
+                    "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Textfassung 2</strong></a>",
+                ],
+                writingMaterialStrings: [
+                    'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                    'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
+                ],
+                writingInstruments: {
+                    main: 'Bleistift',
+                    secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
+                },
+                titles: ['test titles 1', 'test titles 2'],
+                dates: ['test dates 1', 'test dates 2'],
+                paginations: ['test paginations 1', 'test paginations 2'],
+                measureNumbers: ['test measure numbers 1', 'test measure numbers 2'],
+                instrumentations: ['test instrumentations 1', 'test instrumentations 2'],
+                annotations: ['test annotations'],
+                contents: [
+                    {
+                        item: 'Test item',
+                        itemLinkTo: {
+                            complexId: 'testComplex1',
+                            sheetId: 'test_item_id_1',
+                        },
+                        itemDescription: '(test description)',
+                        folios: [
+                            {
+                                folio: '1r',
+                                folioLinkTo: 'test_folio_id_1',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '1–2',
+                                            measure: '1–3',
+                                            linkTo: 'test_id_1',
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '3–4',
+                                            systemDescription: '(test system description)',
+                                            measure: '4–6',
+                                            linkTo: 'test_id_2',
+                                        },
+                                    ],
+                                ],
+                            },
+                            {
+                                folio: '29v',
+                                folioLinkTo: '',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '7–8',
+                                            measure: '10–12',
+                                            linkTo: 'test_id_4',
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '9–10',
+                                            measure: '13–15',
+                                            linkTo: 'test_id_5',
+                                        },
+                                    ],
+                                ],
+                            },
+                            {
+                                folio: '2',
+                                isPage: true,
+                                folioLinkTo: 'test_folio_id_2',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '1–2',
+                                            measure: '1–3',
+                                            linkTo: 'test_id_2_1',
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '3–4',
+                                            systemDescription: '(test system description)',
+                                            measure: '4–6',
+                                            linkTo: 'test_id_2_2',
+                                        },
+                                    ],
+                                ],
+                            },
+                            {
+                                folio: '100v',
+                                folioLinkTo: '',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '7–8',
+                                            measure: '',
+                                            linkTo: '',
+                                        },
+                                    ],
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        item: 'Test item 2 without link',
+                        itemLinkTo: {},
+                        itemDescription: '(test description 2)',
+                        folios: [
+                            {
+                                folio: '1r',
+                                folioLinkTo: 'test_folio_id_1',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '1a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'G',
+                                                rowBase: 'g',
+                                                rowNumber: '1',
+                                            },
+                                        },
+                                        {
+                                            system: '1b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'K',
+                                                rowBase: 'gis',
+                                                rowNumber: '2',
+                                            },
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '2a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'U',
+                                                rowBase: 'g',
+                                                rowNumber: '3',
+                                            },
+                                        },
+                                        {
+                                            system: '2b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'KU',
+                                                rowBase: 'fis',
+                                                rowNumber: '4',
+                                            },
+                                        },
+                                    ],
+                                ],
+                            },
+                            {
+                                folio: '29v',
+                                folioLinkTo: '',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '1a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'G',
+                                                rowBase: 'g',
+                                                rowNumber: '1',
+                                            },
+                                        },
+                                        {
+                                            system: '1b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'K',
+                                                rowBase: 'gis',
+                                                rowNumber: '2',
+                                            },
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '2a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'U',
+                                                rowBase: 'g',
+                                                rowNumber: '3',
+                                            },
+                                        },
+                                        {
+                                            system: '2b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'KU',
+                                                rowBase: 'fis',
+                                                rowNumber: '4',
+                                            },
+                                        },
+                                    ],
+                                ],
+                            },
+                            {
+                                folio: '2',
+                                folioLinkTo: '',
+                                folioDescription: '',
+                                systemGroups: [
+                                    [
+                                        {
+                                            system: '1a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'G',
+                                                rowBase: 'g',
+                                                rowNumber: '1',
+                                            },
+                                        },
+                                        {
+                                            system: '1b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'K',
+                                                rowBase: 'gis',
+                                                rowNumber: '2',
+                                            },
+                                        },
+                                    ],
+                                    [
+                                        {
+                                            system: '2a',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'U',
+                                                rowBase: 'g',
+                                                rowNumber: '3',
+                                            },
+                                        },
+                                        {
+                                            system: '2b',
+                                            measure: '',
+                                            linkTo: '',
+                                            row: {
+                                                rowType: 'KU',
+                                                rowBase: 'fis',
+                                                rowNumber: '4',
+                                            },
+                                        },
+                                    ],
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        item: 'Test item 3 without description',
+                        itemLinkTo: {
+                            complexId: 'testComplex1',
+                            sheetId: 'test_item_id_2',
+                        },
+                        itemDescription: '',
+                        folios: [],
+                    },
+                    {
+                        item: '',
+                        itemLinkTo: {},
+                        itemDescription: '',
+                        folios: [
+                            {
+                                folio: '2v',
+                                folioLinkTo: '',
+                                folioDescription: 'Test item 4 without item',
+                                systemGroups: [],
+                            },
+                        ],
+                    },
+                ],
+                corrections: [
+                    {
+                        id: 'source_Aa_corr_1',
+                        label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
+                        evaluations: [
+                            'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
+                        ],
+                        commentary: {
+                            preamble: 'Korrekturen 1:',
+                            comments: [
+                                {
+                                    blockHeader: '',
+                                    blockComments: [
+                                        {
+                                            measure: '3–4',
+                                            system: '',
+                                            position: '',
+                                            comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
+                                        },
+                                        {
+                                            measure: '4',
+                                            system: 'Klav. o.',
+                                            position: '',
+                                            comment:
+                                                'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
+        },
+        {
+            id: 'source_BH',
+            siglum: 'B',
+            siglumAddendum: 'H',
+            missing: true,
+            type: 'Handexemplar von <strong>G</strong>.',
+            location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
+            physDesc: {
+                conditions: [
+                    "Siehe <a data-complex-id='testComplex1' data-report-fragment-id='source_G'><strong>G</strong></a>.",
+                ],
+                writingMaterialStrings: [
+                    'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
+                    'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
+                ],
+                writingMaterials: [
+                    {
+                        materialType: 'Notenpapier',
+                        systems: {
+                            totalSystems: 14,
+                            totalSystemsAddendum: 'unten beschnitten',
+                            additionalInfo: '',
+                        },
+                        dimensions: {
+                            orientation: 'quer',
+                            height: {
+                                uncertainty: 'ca.',
+                                value: '160–180',
+                            },
+                            width: {
+                                uncertainty: '',
+                                value: '267',
+                            },
+                            unit: 'mm',
+                        },
+                        trademark: {
+                            variant: 'JE_NO2_LIN12_OP3_J',
+                            alt: '',
+                            locus: [
+                                {
+                                    preFolioInfo: 'auf dem Kopf stehend',
+                                    folios: ['1r'],
+                                    position: 'unten links',
+                                },
+                            ],
+                        },
+                        watermark: {},
+                        folioAddendum: '1',
+                    },
+                    {
+                        materialType: 'Notenpapier',
+                        systems: {
+                            totalSystems: 16,
+                            totalSystemsAddendum: '',
+                            additionalInfo: '',
+                        },
+                        dimensions: {
+                            orientation: 'hoch',
+                            height: {
+                                uncertainty: '',
+                                value: '270',
+                            },
+                            width: {
+                                uncertainty: '',
+                                value: '175',
+                            },
+                            unit: 'mm',
+                        },
+                        trademark: {},
+                        watermark: {},
+                        folioAddendum: '2',
+                    },
+                ],
+            },
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSourceEvaluationListData.
+ *
+ * It provides a mocked sourceEvaluationListData object.
+ */
+export const mockSourceEvaluationListData: SourceEvaluationList = {
+    sources: [
+        {
+            id: 'op25',
+            content: [
+                '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
+                "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten u. a. <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a data-complex-id='testComplex1' data-sheet-id='test_item_id_1'><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
+            ],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSourceEvaluationListEmptyData.
+ *
+ * It provides a mocked sourceEvaluationListData object with empty content.
+ */
+export const mockSourceEvaluationListEmptyData: SourceEvaluationList = {
+    sources: [
+        {
+            id: 'op25',
+            content: [],
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_WE1.
+ *
+ * It provides a mocked svg sheet workEdition object.
+ */
+export const mockSvgSheet_WE1: EditionSvgSheet = {
+    id: 'test-WE1',
+    label: 'Test WE1',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: '',
+        },
+        {
+            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
+            image: '',
+            partial: 'b',
+            convolute: '',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_TF1.
+ *
+ * It provides a mocked svg sheet textEdition object.
+ */
+export const mockSvgSheet_TF1: EditionSvgSheet = {
+    id: 'test-TF1',
+    label: 'Test TF1',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: 'B',
+        },
+        {
+            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
+            image: '',
+            partial: 'b',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk1.
+ *
+ * It provides a mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk1: EditionSvgSheet = {
+    id: 'test-1',
+    label: 'Test Sk1',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
+            image: '',
+            partial: '',
+            convolute: 'A',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk2.
+ *
+ * It provides a mocked svg sheet sketchEdition object with partials.
+ */
+export const mockSvgSheet_Sk2: EditionSvgSheet = {
+    id: 'test-2',
+    label: 'Test Sk2 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: 'A',
+        },
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
+            image: '',
+            partial: 'b',
+            convolute: 'A',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk2a.
+ *
+ * It provides a mocked partial svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk2a: EditionSvgSheet = {
+    id: 'test-2',
+    label: 'Test Sk2 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: 'A',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk2b.
+ *
+ * It provides a mocked partial svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk2b: EditionSvgSheet = {
+    id: 'test-2',
+    label: 'Test Sk2 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
+            image: '',
+            partial: 'b',
+            convolute: 'A',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk3.
+ *
+ * It provides a mocked svg sheet sketchEdition object with partials.
+ */
+export const mockSvgSheet_Sk3: EditionSvgSheet = {
+    id: 'test-3',
+    label: 'Test Sk3 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: 'B',
+        },
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
+            image: '',
+            partial: 'b',
+            convolute: 'B',
+        },
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
+            image: '',
+            partial: 'c',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk3a.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk3a: EditionSvgSheet = {
+    id: 'test-3',
+    label: 'Test Sk3 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
+            image: '',
+            partial: 'a',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk3b.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk3b: EditionSvgSheet = {
+    id: 'test-3',
+    label: 'Test Sk3 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+            image: '',
+            partial: 'b',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk3c.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk3c: EditionSvgSheet = {
+    id: 'test-3',
+    label: 'Test Sk3 with partials',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
+            image: '',
+            partial: 'c',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk4.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk4: EditionSvgSheet = {
+    id: 'test-4',
+    label: 'Test Sk4',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+            image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+            partial: '',
+            convolute: 'B',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk5.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk5: EditionSvgSheet = {
+    id: 'test-5',
+    label: 'Test Sk5',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+            image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+            partial: '',
+            convolute: 'C',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheet_Sk6.
+ *
+ * It provides another mocked svg sheet sketchEdition object.
+ */
+export const mockSvgSheet_Sk6: EditionSvgSheet = {
+    id: 'test-6',
+    label: 'Test Sk6',
+    content: [
+        {
+            svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+            image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+            partial: '',
+            convolute: 'D',
+        },
+    ],
+};
+
+/**
+ * Test helper data constant: mockSvgSheetList.
+ *
+ * It provides a mocked svg sheet list object.
+ */
+export const mockSvgSheetList: EditionSvgSheetsList = {
+    sheets: {
+        workEditions: [
+            {
+                id: 'test-WE1',
+                label: 'Test WE1',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
+                        image: '',
+                        partial: 'a',
+                        convolute: '',
+                    },
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
+                        image: '',
+                        partial: 'b',
+                        convolute: '',
+                    },
+                ],
+            },
+        ],
+        textEditions: [
+            {
+                id: 'test-TF1',
+                label: 'Test TF1',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
+                        image: '',
+                        partial: 'a',
+                        convolute: 'B',
+                    },
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
+                        image: '',
+                        partial: 'b',
+                        convolute: 'B',
+                    },
+                ],
+            },
+        ],
+        sketchEditions: [
+            {
+                id: 'test-1',
+                label: 'Test Sk1',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
+                        image: '',
+                        partial: '',
+                        convolute: 'A',
+                    },
+                ],
+            },
+            {
+                id: 'test-2',
+                label: 'Test Sk2 with partials',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
+                        image: '',
+                        partial: 'a',
+                        convolute: 'A',
+                    },
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
+                        image: '',
+                        partial: 'b',
+                        convolute: 'A',
+                    },
+                ],
+            },
+            {
+                id: 'test-3',
+                label: 'Test Sk3 with partials',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
+                        image: '',
+                        partial: 'a',
+                        convolute: 'B',
+                    },
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
+                        image: '',
+                        partial: 'b',
+                        convolute: 'B',
+                    },
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
+                        image: '',
+                        partial: 'c',
+                        convolute: 'B',
+                    },
+                ],
+            },
+            {
+                id: 'test-4',
+                label: 'Test Sk4',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+                        image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                        partial: '',
+                        convolute: 'B',
+                    },
+                ],
+            },
+            {
+                id: 'test-5',
+                label: 'Test Sk5',
+                content: [
+                    {
+                        svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+                        image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+                        partial: '',
+                        convolute: 'C',
+                    },
+                ],
+            },
+        ],
+    },
+};
+
+/**
+ * Test helper data constant: mocktextcriticsListData.
+ *
+ * It provides a mocked textcriticsListData object.
+ */
+export const mockTextcriticsListData: TextcriticsList = {
+    textcritics: [
+        {
+            id: 'test-1',
+            label: 'test1',
+            evaluations: [
+                'test evaluation 1',
+                "In <strong>Sk2</strong> werden T. 11–12 aus <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Sk1</strong></a> bzw. T. 10–11 aus <a data-complex-id='testComplex1' data-report-fragment-id='source_B'><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
+            ],
+            rowtable: true,
+            commentary: {
+                preamble: 'This is a preamble.',
+                comments: [
+                    {
+                        blockHeader: 'blockheader 1',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-1',
+                                measure: '10',
+                                system: '12',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-2',
+                                measure: '10',
+                                system: '12',
+                                position: '2. Note',
+                                comment:
+                                    "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test SkXYZ</strong></a> T. [11] und <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a>.",
+                            },
+                            {
+                                svgGroupId: 'svg-group-3',
+                                measure: '{13}',
+                                system: '12',
+                                position: '3. Note',
+                                comment:
+                                    "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
+                            },
+                            {
+                                svgGroupId: 'svg-group-4',
+                                measure: '[12]',
+                                system: '13',
+                                position: '',
+                                comment: 'radierte, nicht entzifferbare Schicht.',
+                            },
+                        ],
+                    },
+                    {
+                        blockHeader: 'blockheader 2',
+                        blockComments: [
+                            {
+                                svgGroupId: 'svg-group-5',
+                                measure: '11',
+                                system: '13',
+                                position: '1. Note',
+                                comment: 'Viertelnote überschreibt Halbe Note.',
+                            },
+                            {
+                                svgGroupId: 'svg-group-6',
+                                measure: '11',
+                                system: '13',
+                                position: '2. Note',
+                                comment: 'Halbe Note überschreibt Viertelnote.',
+                            },
+                        ],
+                    },
+                ],
+            },
+            linkBoxes: [],
+        },
+        {
+            id: 'test-2',
+            label: 'test2',
+            evaluations: [],
+            commentary: { preamble: '', comments: [] },
+            linkBoxes: [],
+        },
+    ],
+};
+
 /**
  * Test helper data file: mockEditionData.
  *
@@ -8,1264 +1280,33 @@
  * Exposed to be called from tests.
  */
 export const mockEditionData = {
-    /**
-     * Test helper data constant: mockFolioConvoluteData.
-     *
-     * It provides a mocked folioConvoluteData object.
-     */
-    mockFolioConvoluteData: {
-        convolutes: [
-            {
-                convoluteId: 'A',
-                convoluteLabel: 'Test convolute A',
-                folios: [
-                    {
-                        folioId: '1',
-                        systems: '18',
-                        dimensions: {
-                            height: 180,
-                            width: 267,
-                        },
-                        trademarkPosition: 'unten links',
-                        content: [
-                            {
-                                complexId: 'op12',
-                                sheetId: 'M212_Sk1',
-                                sigle: 'M 212 Sk1',
-                                sigleAddendum: 'T. 1–2, [3–6]',
-                                selectable: true,
-                                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-                                segmentSplit: 1,
-                                segments: [
-                                    {
-                                        position: 1,
-                                        startSystem: 2,
-                                        endSystem: 4,
-                                    },
-                                ],
-                            },
-                            {
-                                complexId: 'op12',
-                                sheetId: 'M212_Sk3',
-                                sigle: 'M 212 Sk3',
-                                sigleAddendum: 'T. 3',
-                                segmentSplit: 1,
-                                segments: [
-                                    {
-                                        position: 1,
-                                        startSystem: 5,
-                                        endSystem: 7,
-                                        relativeToSystem: 'above',
-                                    },
-                                ],
-                            },
-                            {
-                                complexId: 'op12',
-                                sheetId: 'M212_Sk2',
-                                sigle: 'M 212 Sk2',
-                                sigleAddendum: 'T. 2',
-                                segmentSplit: 1,
-                                segments: [
-                                    {
-                                        position: 1,
-                                        startSystem: 5,
-                                        endSystem: 7,
-                                        relativeToSystem: 'below',
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
-                linkTo: '',
-            },
-            {
-                convoluteId: 'B',
-                convoluteLabel: 'Test convolute B',
-                folios: [],
-                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockReversedFolio.
-     *
-     * It provides a mocked reversed folio object.
-     */
-    mockReversedFolio: {
-        folioId: '1',
-        systems: '18',
-        reversed: true,
-        dimensions: {
-            height: 180,
-            width: 267,
-        },
-        content: [
-            {
-                complexId: 'op12',
-                sheetId: 'M212_Sk1_1',
-                sigle: 'M 212 Sk1.1',
-                sigleAddendum: '',
-                selectable: undefined,
-                reversed: true,
-                linkTo: undefined,
-                segmentSplit: 1,
-                segments: [
-                    {
-                        position: 1,
-                        startSystem: 4,
-                        endSystem: 2,
-                    },
-                ],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockGraphEmptyData.
-     *
-     * It provides a mocked graph data object with empty content.
-     */
-    mockGraphEmptyData: {
-        graph: [
-            {
-                id: 'test-graph-empty-id',
-                title: 'Test graph empty',
-                description: [],
-                rdfData: {
-                    queryList: [],
-                    triples: '',
-                },
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockIntroSectionData.
-     *
-     * It provides a mocked intro section data object.
-     */
-    mockIntroSectionData: {
-        intro: [
-            {
-                id: 'test_intro',
-                content: [
-                    {
-                        blockId: 'test_block_id_1',
-                        blockHeader: 'Test block header 1',
-                        blockContent: [
-                            "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.",
-                            "In <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> neu skizziert.<sup id='note-80-backlink' class='note-link'><a data-complex-id='testComplex1' data-intro-fragment-id='note-80'>80</a></sup>",
-                            "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
-                        ],
-                        blockNotes: [
-                            "<span id='note-80' class='note'><a class='note-backlink' data-complex-id='testComplex1' data-intro-fragment-id='note-80-backlink'>80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
-                        ],
-                    },
-                    {
-                        blockId: 'test_block_id_2',
-                        blockHeader: 'Test block header 2',
-                        blockContent: ['Test block content 2'],
-                        blockNotes: ['Test block notes 2'],
-                    },
-                ],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockIntroSectionFilteredData.
-     *
-     * It provides a mocked intro data object with filtered content.
-     */
-    mockIntroSectionFilteredData: {
-        intro: [
-            {
-                id: 'test_intro',
-                content: [
-                    {
-                        blockId: 'test_block_id_2',
-                        blockHeader: 'Test block header 2',
-                        blockContent: ['Test block content 2'],
-                        blockNotes: ['Test block notes 2'],
-                    },
-                ],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockIntroComplexData.
-     *
-     * It provides a mocked empty intro data object as used in an edition complex.
-     */
-    mockIntroComplexData: {
-        intro: [
-            {
-                id: 'test_block_id_2',
-                content: [],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockModalSnippet.
-     *
-     * It provides a mocked modal snippet string.
-     */
-    mockModalSnippet: 'OP12_SHEET_COMING_SOON',
-
-    /**
-     * Test helper data constant: mockPreface Data.
-     *
-     * It provides a mocked preface data object.
-     */
-    mockPrefaceData: {
-        preface: [
-            {
-                id: 'de',
-                content: [
-                    "<p class='block-lead'>Die AWG gliedert sich in drei Serien:</p>",
-                    "<p>Sie werden nicht zu dem für den Druck typischen <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>.-Zeichen vereinheitlicht.</p>",
-                    "<p class='block-lead small'>Zugang zur AWG-Online-Edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
-                ],
-            },
-            {
-                id: 'en',
-                content: [
-                    "<p class='block-lead'>The AWG is divided into three series:</p>",
-                    "<p>They are not unified to the <span class='glyph unicode'>{{ref.getGlyph('[ped]')}}</span>. character typical for printing.</p>",
-                    "<p class='block-lead small'>Access to the AWG online edition: <a href='https://edition.anton-webern.ch' class='link'>edition.anton-webern.ch</a></p>",
-                ],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockRowtablesData.
-     *
-     * It provides a mocked rowtablesData object.
-     */
-    mockRowtablesData: {
-        rowtables: [
-            { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
-            { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
-            { route: '/disrt1', short: 'Dis RT1', full: 'Disabled Test Rowtable 1', id: 'SkRT', disabled: true },
-            { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSourceListData.
-     *
-     * It provides a mocked sourceListData object.
-     */
-    mockSourceListData: {
-        sources: [
-            {
-                siglum: 'A',
-                siglumAddendum: '',
-                type: 'Test type 1',
-                location: 'Test location 1.',
-                hasDescription: true,
-                linkTo: 'source_A',
-            },
-            {
-                siglum: 'B',
-                siglumAddendum: '',
-                type: 'Test type 2',
-                location: 'Test location 2.',
-                hasDescription: false,
-                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-            },
-            {
-                siglum: 'C',
-                siglumAddendum: '',
-                missing: true,
-                type: 'Test type 3',
-                location: 'Test location 3.',
-                hasDescription: false,
-                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSourceListDataWithTexts.
-     *
-     * It provides a mocked sourceListData object with text sources.
-     */
-    mockSourceListDataWithTexts: {
-        sources: [
-            {
-                siglum: 'A',
-                siglumAddendum: 'a',
-                type: 'Test type 1',
-                location: 'Test location 1.',
-                hasDescription: true,
-                linkTo: 'source_Aa',
-            },
-            {
-                siglum: 'B',
-                siglumAddendum: 'H',
-                type: 'Test type 2',
-                location: 'Test location 2.',
-                hasDescription: false,
-                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
-            },
-        ],
-        textSources: [
-            {
-                id: 'text_textA',
-                siglum: 'textA',
-                siglumAddendum: '',
-                type: 'Text type 1',
-                location: 'Text location 1.',
-            },
-            {
-                id: 'text_textB',
-                siglum: 'textB',
-                siglumAddendum: 'H',
-                type: 'Text type 2',
-                location: 'Text location 2.',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSourceDescriptionListData.
-     *
-     * It provides a mocked sourceDescriptionListData object.
-     */
-    mockSourceDescriptionListData: {
-        sources: [
-            {
-                id: 'source_A',
-                siglum: 'A',
-                siglumAddendum: '',
-                type: 'Skizzen',
-                location: 'CH-Bps, Sammlung Anton Webern.',
-                physDesc: {},
-            },
-            {
-                id: 'source_Aa',
-                siglum: 'A',
-                siglumAddendum: 'a',
-                type: '',
-                location: 'Wien, Testcentre.',
-                physDesc: {
-                    conditions: [
-                        "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Textfassung 2</strong></a>",
-                    ],
-                    writingMaterialStrings: [
-                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
-                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
-                    ],
-                    writingInstruments: {
-                        main: 'Bleistift',
-                        secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
-                    },
-                    titles: ['test titles 1', 'test titles 2'],
-                    dates: ['test dates 1', 'test dates 2'],
-                    paginations: ['test paginations 1', 'test paginations 2'],
-                    measureNumbers: ['test measure numbers 1', 'test measure numbers 2'],
-                    instrumentations: ['test instrumentations 1', 'test instrumentations 2'],
-                    annotations: ['test annotations'],
-                    contents: [
-                        {
-                            item: 'Test item',
-                            itemLinkTo: {
-                                complexId: 'testComplex1',
-                                sheetId: 'test_item_id_1',
-                            },
-                            itemDescription: '(test description)',
-                            folios: [
-                                {
-                                    folio: '1r',
-                                    folioLinkTo: 'test_folio_id_1',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '1–2',
-                                                measure: '1–3',
-                                                linkTo: 'test_id_1',
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '3–4',
-                                                systemDescription: '(test system description)',
-                                                measure: '4–6',
-                                                linkTo: 'test_id_2',
-                                            },
-                                        ],
-                                    ],
-                                },
-                                {
-                                    folio: '29v',
-                                    folioLinkTo: '',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '7–8',
-                                                measure: '10–12',
-                                                linkTo: 'test_id_4',
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '9–10',
-                                                measure: '13–15',
-                                                linkTo: 'test_id_5',
-                                            },
-                                        ],
-                                    ],
-                                },
-                                {
-                                    folio: '2',
-                                    isPage: true,
-                                    folioLinkTo: 'test_folio_id_2',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '1–2',
-                                                measure: '1–3',
-                                                linkTo: 'test_id_2_1',
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '3–4',
-                                                systemDescription: '(test system description)',
-                                                measure: '4–6',
-                                                linkTo: 'test_id_2_2',
-                                            },
-                                        ],
-                                    ],
-                                },
-                                {
-                                    folio: '100v',
-                                    folioLinkTo: '',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '7–8',
-                                                measure: '',
-                                                linkTo: '',
-                                            },
-                                        ],
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            item: 'Test item 2 without link',
-                            itemLinkTo: {},
-                            itemDescription: '(test description 2)',
-                            folios: [
-                                {
-                                    folio: '1r',
-                                    folioLinkTo: 'test_folio_id_1',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '1a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'G',
-                                                    rowBase: 'g',
-                                                    rowNumber: '1',
-                                                },
-                                            },
-                                            {
-                                                system: '1b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'K',
-                                                    rowBase: 'gis',
-                                                    rowNumber: '2',
-                                                },
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '2a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'U',
-                                                    rowBase: 'g',
-                                                    rowNumber: '3',
-                                                },
-                                            },
-                                            {
-                                                system: '2b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'KU',
-                                                    rowBase: 'fis',
-                                                    rowNumber: '4',
-                                                },
-                                            },
-                                        ],
-                                    ],
-                                },
-                                {
-                                    folio: '29v',
-                                    folioLinkTo: '',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '1a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'G',
-                                                    rowBase: 'g',
-                                                    rowNumber: '1',
-                                                },
-                                            },
-                                            {
-                                                system: '1b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'K',
-                                                    rowBase: 'gis',
-                                                    rowNumber: '2',
-                                                },
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '2a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'U',
-                                                    rowBase: 'g',
-                                                    rowNumber: '3',
-                                                },
-                                            },
-                                            {
-                                                system: '2b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'KU',
-                                                    rowBase: 'fis',
-                                                    rowNumber: '4',
-                                                },
-                                            },
-                                        ],
-                                    ],
-                                },
-                                {
-                                    folio: '2',
-                                    folioLinkTo: '',
-                                    folioDescription: '',
-                                    systemGroups: [
-                                        [
-                                            {
-                                                system: '1a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'G',
-                                                    rowBase: 'g',
-                                                    rowNumber: '1',
-                                                },
-                                            },
-                                            {
-                                                system: '1b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'K',
-                                                    rowBase: 'gis',
-                                                    rowNumber: '2',
-                                                },
-                                            },
-                                        ],
-                                        [
-                                            {
-                                                system: '2a',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'U',
-                                                    rowBase: 'g',
-                                                    rowNumber: '3',
-                                                },
-                                            },
-                                            {
-                                                system: '2b',
-                                                measure: '',
-                                                linkTo: '',
-                                                row: {
-                                                    rowType: 'KU',
-                                                    rowBase: 'fis',
-                                                    rowNumber: '4',
-                                                },
-                                            },
-                                        ],
-                                    ],
-                                },
-                            ],
-                        },
-                        {
-                            item: 'Test item 3 without description',
-                            itemLinkTo: {
-                                complexId: 'testComplex1',
-                                sheetId: 'test_item_id_2',
-                            },
-                            itemDescription: '',
-                            folios: [],
-                        },
-                        {
-                            item: '',
-                            itemLinkTo: {},
-                            itemDescription: '',
-                            folios: [
-                                {
-                                    folio: '2v',
-                                    folioLinkTo: '',
-                                    folioDescription: 'Test item 4 without item',
-                                    systemGroups: [],
-                                },
-                            ],
-                        },
-                    ],
-                    corrections: [
-                        {
-                            id: 'source_Aa_corr_1',
-                            label: 'Korrekturen 1 in <strong>B</strong> (mit Tinte)',
-                            evaluations: [
-                                'Die Beschreibung der Korrekturen bezieht sich auf „Der Tag ist vergangen“ M 212: Textfassung 1.',
-                            ],
-                            commentary: {
-                                preamble: 'Korrekturen 1:',
-                                comments: [
-                                    {
-                                        blockHeader: '',
-                                        blockComments: [
-                                            {
-                                                measure: '3–4',
-                                                system: '',
-                                                position: '',
-                                                comment: 'Auf Tektur. ##Unter Tektur: ##Notenbeispiel?####',
-                                            },
-                                            {
-                                                measure: '4',
-                                                system: 'Klav. o.',
-                                                position: '',
-                                                comment:
-                                                    'Auf Rasur. Ante correcturam: Ganze Pause? Bassschlüssel nach Korrektur hinzugefügt.',
-                                            },
-                                        ],
-                                    },
-                                ],
-                            },
-                        },
-                    ],
-                },
-            },
-            {
-                id: 'source_BH',
-                siglum: 'B',
-                siglumAddendum: 'H',
-                missing: true,
-                type: 'Handexemplar von <strong>G</strong>.',
-                location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
-                physDesc: {
-                    conditions: [
-                        "Siehe <a data-complex-id='testComplex1' data-report-fragment-id='source_G'><strong>G</strong></a>.",
-                    ],
-                    writingMaterialStrings: [
-                        'Notenpapier, 14 Systeme (unten beschnitten), Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_2_12# auf dem Kopf stehend auf Bl. 1<sup>r</sup> unten links (Bl. 1)',
-                        'Notenpapier, 16 Systeme, Format: hoch 270 × 175 mm, kein Firmenzeichen (Bl. 2)',
-                    ],
-                    writingMaterials: [
-                        {
-                            materialType: 'Notenpapier',
-                            systems: {
-                                totalSystems: 14,
-                                totalSystemsAddendum: 'unten beschnitten',
-                                additionalInfo: '',
-                            },
-                            dimensions: {
-                                orientation: 'quer',
-                                height: {
-                                    uncertainty: 'ca.',
-                                    value: '160–180',
-                                },
-                                width: {
-                                    uncertainty: '',
-                                    value: '267',
-                                },
-                                unit: 'mm',
-                            },
-                            trademark: {
-                                variant: 'JE_NO2_LIN12_OP3_J',
-                                alt: '',
-                                locus: [
-                                    {
-                                        preFolioInfo: 'auf dem Kopf stehend',
-                                        folios: ['1r'],
-                                        position: 'unten links',
-                                    },
-                                ],
-                            },
-                            watermark: {},
-                            folioAddendum: '1',
-                        },
-                        {
-                            materialType: 'Notenpapier',
-                            systems: {
-                                totalSystems: 16,
-                                totalSystemsAddendum: '',
-                                additionalInfo: '',
-                            },
-                            dimensions: {
-                                orientation: 'hoch',
-                                height: {
-                                    uncertainty: '',
-                                    value: '270',
-                                },
-                                width: {
-                                    uncertainty: '',
-                                    value: '175',
-                                },
-                                unit: 'mm',
-                            },
-                            trademark: {},
-                            watermark: {},
-                            folioAddendum: '2',
-                        },
-                    ],
-                },
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSourceEvaluationListData.
-     *
-     * It provides a mocked sourceEvaluationListData object.
-     */
-    mockSourceEvaluationListData: {
-        sources: [
-            {
-                id: 'op25',
-                content: [
-                    '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten u. a. <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a data-complex-id='testComplex1' data-sheet-id='test_item_id_1'><strong>Test Sk1</strong></a> vorformulierten Fassung dar.",
-                ],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSourceEvaluationListEmptyData.
-     *
-     * It provides a mocked sourceEvaluationListData object with empty content.
-     */
-    mockSourceEvaluationListEmptyData: {
-        sources: [
-            {
-                id: 'op25',
-                content: [],
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_WE1.
-     *
-     * It provides a mocked svg sheet workEdition object.
-     */
-    mockSvgSheet_WE1: {
-        id: 'test-WE1',
-        label: 'Test WE1',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: '',
-            },
-            {
-                svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
-                image: '',
-                partial: 'b',
-                convolute: '',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_TF1.
-     *
-     * It provides a mocked svg sheet textEdition object.
-     */
-    mockSvgSheet_TF1: {
-        id: 'test-TF1',
-        label: 'Test TF1',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: 'B',
-            },
-            {
-                svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
-                image: '',
-                partial: 'b',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk1.
-     *
-     * It provides a mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk1: {
-        id: 'test-1',
-        label: 'Test Sk1',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
-                image: '',
-                partial: '',
-                convolute: 'A',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk2.
-     *
-     * It provides a mocked svg sheet sketchEdition object with partials.
-     */
-    mockSvgSheet_Sk2: {
-        id: 'test-2',
-        label: 'Test Sk2 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: 'A',
-            },
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
-                image: '',
-                partial: 'b',
-                convolute: 'A',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk2a.
-     *
-     * It provides a mocked partial svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk2a: {
-        id: 'test-2',
-        label: 'Test Sk2 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: 'A',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk2b.
-     *
-     * It provides a mocked partial svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk2b: {
-        id: 'test-2',
-        label: 'Test Sk2 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
-                image: '',
-                partial: 'b',
-                convolute: 'A',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk3.
-     *
-     * It provides a mocked svg sheet sketchEdition object with partials.
-     */
-    mockSvgSheet_Sk3: {
-        id: 'test-3',
-        label: 'Test Sk3 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: 'B',
-            },
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
-                image: '',
-                partial: 'b',
-                convolute: 'B',
-            },
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
-                image: '',
-                partial: 'c',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk3a.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk3a: {
-        id: 'test-3',
-        label: 'Test Sk3 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
-                image: '',
-                partial: 'a',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk3b.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk3b: {
-        id: 'test-3',
-        label: 'Test Sk3 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-                image: '',
-                partial: 'b',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk3c.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk3c: {
-        id: 'test-3',
-        label: 'Test Sk3 with partials',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
-                image: '',
-                partial: 'c',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk4.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk4: {
-        id: 'test-4',
-        label: 'Test Sk4',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
-                partial: '',
-                convolute: 'B',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk5.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk5: {
-        id: 'test-5',
-        label: 'Test Sk5',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
-                partial: '',
-                convolute: 'C',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheet_Sk6.
-     *
-     * It provides another mocked svg sheet sketchEdition object.
-     */
-    mockSvgSheet_Sk6: {
-        id: 'test-6',
-        label: 'Test Sk6',
-        content: [
-            {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
-                partial: '',
-                convolute: 'D',
-            },
-        ],
-    },
-
-    /**
-     * Test helper data constant: mockSvgSheetList.
-     *
-     * It provides a mocked svg sheet list object.
-     */
-    mockSvgSheetList: {
-        sheets: {
-            workEditions: [
-                {
-                    id: 'test-WE1',
-                    label: 'Test WE1',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
-                            image: '',
-                            partial: 'a',
-                            convolute: '',
-                        },
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
-                            image: '',
-                            partial: 'b',
-                            convolute: '',
-                        },
-                    ],
-                },
-            ],
-            textEditions: [
-                {
-                    id: 'test-TF1',
-                    label: 'Test TF1',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
-                            image: '',
-                            partial: 'a',
-                            convolute: 'B',
-                        },
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
-                            image: '',
-                            partial: 'b',
-                            convolute: 'B',
-                        },
-                    ],
-                },
-            ],
-            sketchEditions: [
-                {
-                    id: 'test-1',
-                    label: 'Test Sk1',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
-                            image: '',
-                            partial: '',
-                            convolute: 'A',
-                        },
-                    ],
-                },
-                {
-                    id: 'test-2',
-                    label: 'Test Sk2 with partials',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
-                            image: '',
-                            partial: 'a',
-                            convolute: 'A',
-                        },
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
-                            image: '',
-                            partial: 'b',
-                            convolute: 'A',
-                        },
-                    ],
-                },
-                {
-                    id: 'test-3',
-                    label: 'Test Sk3 with partials',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
-                            image: '',
-                            partial: 'a',
-                            convolute: 'B',
-                        },
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
-                            image: '',
-                            partial: 'b',
-                            convolute: 'B',
-                        },
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
-                            image: '',
-                            partial: 'c',
-                            convolute: 'B',
-                        },
-                    ],
-                },
-                {
-                    id: 'test-4',
-                    label: 'Test Sk4',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-                            image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
-                            partial: '',
-                            convolute: 'B',
-                        },
-                    ],
-                },
-                {
-                    id: 'test-5',
-                    label: 'Test Sk5',
-                    content: [
-                        {
-                            svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
-                            image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
-                            partial: '',
-                            convolute: 'C',
-                        },
-                    ],
-                },
-            ],
-        },
-    },
-
-    /**
-     * Test helper data constant: mocktextcriticsListData.
-     *
-     * It provides a mocked textcriticsListData object.
-     */
-    mockTextcriticsListData: {
-        textcritics: [
-            {
-                id: 'test-1',
-                label: 'test1',
-                evaluations: [],
-                commentary: { preamble: '', comments: [] },
-                linkBoxes: [],
-            },
-            {
-                id: 'test-2',
-                label: 'test2',
-                evaluations: [
-                    'test evaluation 1',
-                    "In <strong>Sk2</strong> werden T. 11–12 aus <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Sk1</strong></a> bzw. T. 10–11 aus <a data-complex-id='testComplex1' data-report-fragment-id='source_B'><strong>B</strong></a> neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>C</strong></a> entspricht. Vgl. die implizite Harmonik mit dem <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> in <strong>Sk1.3</strong>.",
-                ],
-                rowtable: true,
-                commentary: {
-                    preamble: 'This is a preamble.',
-                    comments: [
-                        {
-                            blockHeader: 'blockheader 1',
-                            blockComments: [
-                                {
-                                    svgGroupId: 'svg-group-1',
-                                    measure: '10',
-                                    system: '12',
-                                    position: '1. Note',
-                                    comment: 'Viertelnote überschreibt Halbe Note.',
-                                },
-                                {
-                                    svgGroupId: 'svg-group-2',
-                                    measure: '10',
-                                    system: '12',
-                                    position: '2. Note',
-                                    comment:
-                                        "Die Skizzen in <a data-complex-id='testComplex1' data-report-fragment-id='source_A'><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a data-modal-id='OP12_SHEET_COMING_SOON'><strong>Test SkXYZ</strong></a> T. [11] und <a data-complex-id='testComplex1' data-sheet-id='test-1'><strong>Test Sk1</strong></a>.",
-                                },
-                                {
-                                    svgGroupId: 'svg-group-3',
-                                    measure: '{13}',
-                                    system: '12',
-                                    position: '3. Note',
-                                    comment:
-                                        "<span class='glyph'>{{ref.getGlyph('[a]')}}</span> überschreibt <span class='glyph'>{{ref.getGlyph('[b]')}}</span>.",
-                                },
-                                {
-                                    svgGroupId: 'svg-group-4',
-                                    measure: '[12]',
-                                    system: '13',
-                                    position: '',
-                                    comment: 'radierte, nicht entzifferbare Schicht.',
-                                },
-                            ],
-                        },
-                        {
-                            blockHeader: 'blockheader 2',
-                            blockComments: [
-                                {
-                                    svgGroupId: 'svg-group-5',
-                                    measure: '11',
-                                    system: '13',
-                                    position: '1. Note',
-                                    comment: 'Viertelnote überschreibt Halbe Note.',
-                                },
-                                {
-                                    svgGroupId: 'svg-group-6',
-                                    measure: '11',
-                                    system: '13',
-                                    position: '2. Note',
-                                    comment: 'Halbe Note überschreibt Viertelnote.',
-                                },
-                            ],
-                        },
-                    ],
-                },
-                linkBoxes: [],
-            },
-        ],
-    },
+    mockFolioConvoluteData,
+    mockReversedFolio,
+    mockGraphEmptyData,
+    mockIntroSectionData,
+    mockIntroSectionFilteredData,
+    mockIntroComplexData,
+    mockModalSnippet,
+    mockPrefaceData,
+    mockRowtablesData,
+    mockSourceListData,
+    mockSourceListDataWithTexts,
+    mockSourceDescriptionListData,
+    mockSourceEvaluationListData,
+    mockSourceEvaluationListEmptyData,
+    mockSvgSheet_WE1,
+    mockSvgSheet_TF1,
+    mockSvgSheet_Sk1,
+    mockSvgSheet_Sk2,
+    mockSvgSheet_Sk2a,
+    mockSvgSheet_Sk2b,
+    mockSvgSheet_Sk3,
+    mockSvgSheet_Sk3a,
+    mockSvgSheet_Sk3b,
+    mockSvgSheet_Sk3c,
+    mockSvgSheet_Sk4,
+    mockSvgSheet_Sk5,
+    mockSvgSheet_Sk6,
+    mockSvgSheetList,
+    mockTextcriticsListData,
 };

@@ -74,13 +74,16 @@
                             </div>
                         }
                         <!-- static image -->
-                        @if (graph.staticImage && GRAPH_IMAGES[graph.staticImage]) {
+                        @let imageKey = graph.staticImage;
+                        @let imageSrc = getStaticImage(imageKey);
+
+                        @if (imageSrc) {
                             <div class="awg-graph-static mt-3">
                                 <h4>Statischer Graph</h4>
                                 <img
-                                    [src]="GRAPH_IMAGES[graph.staticImage]"
+                                    [src]="imageSrc"
                                     width="100%"
-                                    [alt]="'Static network representation of data for ' + graph.staticImage" />
+                                    [alt]="'Static network representation of data for ' + imageKey" />
                             </div>
                         }
                     </div>

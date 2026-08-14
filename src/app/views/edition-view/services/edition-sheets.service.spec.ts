@@ -11,7 +11,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
-    EditionSvgSheetList,
+    EditionSvgSheetsList,
     FolioConvolute,
     TextcriticalCommentary,
     Textcritics,
@@ -25,7 +25,7 @@ describe('EditionSheetsService (DONE)', () => {
     let expectedFolioConvolutes: FolioConvolute[];
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSelectedSheet: EditionSvgSheet;
-    let expectedSheets: EditionSvgSheetList['sheets'];
+    let expectedSheets: EditionSvgSheetsList['sheets'];
     let expectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedTextcriticsArray: Textcritics[];
 
@@ -43,7 +43,7 @@ describe('EditionSheetsService (DONE)', () => {
         expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets);
         expectedTextcriticsArray = structuredClone(mockEditionData.mockTextcriticsListData.textcritics);
-        expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[1].commentary);
+        expectedTextcriticalCommentary = structuredClone(expectedTextcriticsArray[0].commentary);
 
         // Spies on service functions
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
@@ -174,7 +174,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return the correct id of the next sheet (including partials)', () => {
-            let expectedOrderOfSheets;
+            let expectedOrderOfSheets: EditionSvgSheet[];
 
             beforeEach(() => {
                 expectedOrderOfSheets = [
@@ -272,7 +272,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return empty comment array, but correct preamble', () => {
             it('... if no textcritical commentary is given', () => {
-                const expectedResult = { preamble: '', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     undefined,
@@ -283,7 +283,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no textcritical comment blocks are given', () => {
-                const expectedResult = { preamble: '', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     { preamble: '', comments: [] },
@@ -294,7 +294,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no overlays are given', () => {
-                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
@@ -305,7 +305,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no comments match the given overlay', () => {
-                const expectedResult = { preamble: 'This is a preamble.', comments: [] };
+                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
                 expectedOverlays = [
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
                 ];
@@ -581,10 +581,18 @@ describe('EditionSheetsService (DONE)', () => {
 
                 editionSheetsService.selectSvgSheetById(incompleteSheets, 'someId');
 
-                expectSpyCall(consoleSpy, 1);
+                expectSpyCall(consoleSpy, 3);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition types in svg-sheets.json: workEditions,textEditions,sketchEditions'
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: workEditions'
+                );
+                expectToEqual(
+                    mockConsole.get(1),
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: textEditions'
+                );
+                expectToEqual(
+                    mockConsole.get(2),
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
 
@@ -599,7 +607,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectSpyCall(consoleSpy, 1);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition types in svg-sheets.json: sketchEditions'
+                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
         });

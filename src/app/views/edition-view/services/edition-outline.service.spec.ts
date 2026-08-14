@@ -8,9 +8,9 @@ import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
-import { EditionOutlineSeriesJsonData } from '../models/edition-outline.model';
+import { EditionOutlineJsonData, EditionOutlineSeriesJsonData } from '../models/edition-outline.model';
 import { EditionComplexesService } from './edition-complexes.service';
 import { EditionOutlineService } from './edition-outline.service';
 
@@ -111,23 +111,25 @@ describe('EditionOutlineService (DONE)', () => {
                 .spyOn(editionComplexesService, 'getEditionComplexById')
                 .mockReturnValueOnce(undefined);
 
-            const rawOutlineDataWithUnknownComplex = [
-                {
-                    series: '2',
-                    sections: [
-                        {
-                            section: '4',
-                            content: {
-                                intro: { disabled: false },
-                                complexTypes: { opus: [{ complex: 'UNKNOWN_ID', disabled: false }], mnr: [] },
+            const rawOutlineDataWithUnknownComplex: EditionOutlineJsonData = {
+                editionOutline: [
+                    {
+                        series: '2',
+                        sections: [
+                            {
+                                section: '4',
+                                content: {
+                                    intro: { disabled: false },
+                                    complexTypes: { opus: [{ complex: 'UNKNOWN_ID', disabled: false }], mnr: [] },
+                                },
+                                disabled: false,
                             },
-                            disabled: false,
-                        },
-                    ],
-                },
-            ];
+                        ],
+                    },
+                ],
+            };
 
-            (service as any)._rawOutlineDataSignal.set(rawOutlineDataWithUnknownComplex);
+            (service as any)._rawOutlineDataSignal.set(rawOutlineDataWithUnknownComplex['editionOutline']);
 
             const outline = service.editionOutline();
             const section = outline[0].sections[0];
@@ -166,7 +168,7 @@ describe('EditionOutlineService (DONE)', () => {
     });
 
     describe('EditionOutline (Model)', () => {
-        const mockGetComplex = () => undefined;
+        const mockGetComplex = (): EditionComplex | undefined => undefined;
 
         describe('... should return an empty outline array if ', () => {
             it('... input data is null', () => {

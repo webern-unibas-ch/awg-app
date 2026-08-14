@@ -437,10 +437,10 @@ export class FolioService {
             class: 'content-segment-label',
             x: centeredXPosition,
             y: centeredYPosition,
+            'font-family': this._contentSegmentFontFamily,
+            'dominant-baseline': 'middle',
+            'text-anchor': 'middle',
         };
-        attributes['font-family'] = this._contentSegmentFontFamily;
-        attributes['dominant-baseline'] = 'middle';
-        attributes['text-anchor'] = 'middle';
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'text', attributes).style(
             'font-size',
@@ -497,8 +497,8 @@ export class FolioService {
             class: 'content-segment-shape',
             points: segmentVertices,
             fill: this._contentSegmentFillColor,
+            'stroke-width': adjustedStrokeWidth,
         };
-        attributes['stroke-width'] = adjustedStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'polygon', attributes);
     }
@@ -525,8 +525,8 @@ export class FolioService {
             height: y2 - y1,
             fill: this._sheetFillColor,
             stroke: this._bgColor,
+            'stroke-width': this._sheetStrokeWidth,
         };
-        attributes['stroke-width'] = this._sheetStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgSheetGroup, 'rect', attributes);
     }
@@ -608,8 +608,8 @@ export class FolioService {
             height: y2 - y1,
             fill: this._sheetFillColor,
             stroke: this._bgColor,
+            'stroke-width': this._sheetStrokeWidth,
         };
-        attributes['stroke-width'] = this._sheetStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgTrademarkGroup, 'rect', attributes);
     }
@@ -647,8 +647,8 @@ export class FolioService {
             fill: this._disabledColor,
             stroke: this._disabledColor,
             transform: transform,
+            'stroke-width': this._contentSegmentStrokeWidth,
         };
-        symbolAttributes['stroke-width'] = this._contentSegmentStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgTrademarkGroup, 'path', symbolAttributes);
     }
@@ -685,8 +685,8 @@ export class FolioService {
             x: labelPosition.x,
             y: labelPosition.y,
             fill: this._bgColor,
+            'dominant-baseline': 'hanging',
         };
-        attributes['dominant-baseline'] = 'hanging';
 
         this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(labelIndex);
     }
@@ -711,8 +711,8 @@ export class FolioService {
                 x2: x2,
                 y2: y2,
                 stroke: this._bgColor,
+                'stroke-width': this._systemsLineStrokeWidth,
             };
-            attributes['stroke-width'] = this._systemsLineStrokeWidth;
 
             this._appendSvgElementWithAttrs(svgSystemsGroup, 'line', attributes);
         });

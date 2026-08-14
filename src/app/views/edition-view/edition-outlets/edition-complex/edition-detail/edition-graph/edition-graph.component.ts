@@ -65,7 +65,23 @@ export class EditionGraphComponent {
     readonly GRAPH_IMAGES = {
         OP12: '',
         OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
-    };
+    } satisfies Record<string, string>;
+
+    /**
+     * Public method: getStaticImage.
+     *
+     * It retrieves the static image source path for a given image key.
+     *
+     * @param {string} imageKey The given image key.
+     * @returns {string | null} The retrieved image source path or null.
+     */
+    getStaticImage(imageKey: string | undefined): string | null {
+        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
+            return null;
+        }
+
+        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
+    }
 
     /**
      * Public method: openModal.

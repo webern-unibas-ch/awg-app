@@ -55,7 +55,7 @@ describe('ModalService (DONE)', () => {
 
         // Test data
         expectedSnippetKey = structuredClone(mockEditionData.mockModalSnippet);
-        const expectedText = MODAL_TEXT_SNIPPETS[expectedSnippetKey] || '';
+        const expectedText = MODAL_TEXT_SNIPPETS[expectedSnippetKey as keyof typeof MODAL_TEXT_SNIPPETS] || '';
         expectedTextModalData = {
             type: 'text',
             id: expectedSnippetKey,
@@ -135,6 +135,20 @@ describe('ModalService (DONE)', () => {
                 service.openTextModal(unknownKey);
 
                 expectSpyCall(openSpy, 1, [expectedUnknownModalData]);
+            });
+
+            it('... should prepare ModalData with empty content if snippetKey is a prototype property and trigger `_open`', () => {
+                const prototypeKey = 'toString';
+                const expectedPrototypeModalData = {
+                    type: 'text',
+                    id: prototypeKey,
+                    title: 'Hinweis',
+                    content: '',
+                };
+
+                service.openTextModal(prototypeKey);
+
+                expectSpyCall(openSpy, 1, [expectedPrototypeModalData]);
             });
         });
 

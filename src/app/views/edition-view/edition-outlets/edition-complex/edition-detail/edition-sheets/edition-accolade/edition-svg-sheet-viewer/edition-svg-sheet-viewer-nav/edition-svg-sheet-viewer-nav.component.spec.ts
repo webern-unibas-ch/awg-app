@@ -125,7 +125,7 @@ describe('EditionSvgSheetViewerNavComponent', () => {
             });
 
             it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection = undefined;
+                const expectedDirection: number = undefined;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);

@@ -2,8 +2,13 @@ import { MetaPerson } from '@awg-shared/meta/meta.model';
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
-import { EDITION_CATALOGUE_TYPE_CONSTANTS, EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionRouteConstant } from './edition-route-constant.model';
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+    EditionCatalogueTypeConstantsKey,
+    EditionRouteConstant,
+    EditionRouteConstantsKey,
+} from '../edition-routes.constants';
 
 /**
  * The EditionComplexJsonPersonRef interface.
@@ -177,8 +182,12 @@ export class EditionComplex {
 
         this.respStatement = this._mapRespStatement(respStatement);
 
-        const seriesConstant = this._mapPubStatement('SERIES_', pubStatement?.series);
-        const sectionConstant = this._mapPubStatement('SECTION_', pubStatement?.section);
+        const seriesKey = `SERIES_${pubStatement?.series?.toUpperCase()}` as EditionRouteConstantsKey;
+        const seriesConstant = EDITION_ROUTE_CONSTANTS[seriesKey] ?? new EditionRouteConstant();
+
+        const sectionKey = `SECTION_${pubStatement?.section?.toUpperCase()}` as EditionRouteConstantsKey;
+        const sectionConstant = EDITION_ROUTE_CONSTANTS[sectionKey] ?? new EditionRouteConstant();
+
         this.pubStatement =
             seriesConstant.route && sectionConstant.route
                 ? {
@@ -219,22 +228,9 @@ export class EditionComplex {
      * @returns {EditionRouteConstant} The corresponding route constant.
      */
     private _mapCatalogueType(catalogueType: string): EditionRouteConstant {
-        return EDITION_CATALOGUE_TYPE_CONSTANTS[catalogueType.toUpperCase()] ?? new EditionRouteConstant();
-    }
+        const key = catalogueType.toUpperCase() as EditionCatalogueTypeConstantsKey;
 
-    /**
-     * Private method: _mapPubStatement.
-     *
-     * It maps the publication statement to the corresponding route constant.
-     *
-     * @param {string} prefix The given prefix.
-     * @param {string} value The given value.
-     *
-     * @returns {EditionRouteConstant} The corresponding route constant.
-     */
-    private _mapPubStatement(prefix: string, value?: string): EditionRouteConstant {
-        const key = value ? `${prefix}${value.toUpperCase()}` : '';
-        return EDITION_ROUTE_CONSTANTS[key] ?? new EditionRouteConstant();
+        return EDITION_CATALOGUE_TYPE_CONSTANTS[key] ?? new EditionRouteConstant();
     }
 
     /**

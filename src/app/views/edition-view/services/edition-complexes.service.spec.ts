@@ -1,3 +1,4 @@
+import { isSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -6,9 +7,8 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { PERSONS_DATA } from '@awg-shared/meta/persons.data';
-import { EditionComplex, EditionComplexJsonPersonRef } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionComplexJsonPersonRef } from '@awg-views/edition-view/models/edition-complex.model';
 
-import { isSignal } from '@angular/core';
 import { EditionComplexesService } from './edition-complexes.service';
 
 describe('EditionComplexesService (DONE)', () => {
@@ -204,7 +204,7 @@ describe('EditionComplexesService (DONE)', () => {
                     catalogueType: type,
                     catalogueNumber: num,
                 };
-                const respStmt = { editors: [], lastModified: '---' };
+                const respStmt = { editors: [] as EditionComplexJsonPersonRef[], lastModified: '---' };
                 const { actualList, expectedList } = setupAndGetComplexList(titleStmt, respStmt, id);
 
                 expectToEqual(actualList, expectedList);

@@ -247,10 +247,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      *
      * @returns {number} The calculated dimension.
      */
-    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: string): number {
-        const format = `format${dimension}`;
-        const offset = `initialOffset${dimension}`;
-        return (folioSettings[format] + 2 * folioSettings[offset]) * folioSettings.factor;
+    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: 'X' | 'Y'): number {
+        const format = dimension === 'X' ? folioSettings.formatX : folioSettings.formatY;
+        const offset = dimension === 'X' ? folioSettings.initialOffsetX : folioSettings.initialOffsetY;
+
+        return (format + 2 * offset) * folioSettings.factor;
     }
 
     /**

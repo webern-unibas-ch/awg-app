@@ -31,7 +31,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let expectedTrademarks: typeof EDITION_TRADEMARKS_DATA;
     let expectedWritingMaterials: SourceDescriptionWritingMaterial[];
 
     beforeEach(async () => {
@@ -49,7 +48,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedTrademarks = EDITION_TRADEMARKS_DATA;
         expectedWritingMaterials = JSON.parse(
             JSON.stringify(mockEditionData.mockSourceDescriptionListData.sources[2].physDesc.writingMaterials)
         );
@@ -62,10 +60,6 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `writingMaterials`', () => {
             expect(component.writingMaterials).toBeUndefined();
-        });
-
-        it('... should have `TRADEMARKS`', () => {
-            expectToEqual(component.TRADEMARKS, expectedTrademarks);
         });
 
         describe('VIEW', () => {
@@ -297,18 +291,20 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                     expectToEqual(result, { route: '', full: 'Not a known trademark.', short: 'unknown' });
                 });
 
-                it('... should return unknown trademark when variant is not provided', () => {
-                    let variant = null;
+                it('... should return unknown trademark when variant is empty, null, or undefined', () => {
+                    const expectedFallback = { route: '', full: 'Not a known trademark.', short: 'unknown' };
 
-                    const result1 = component.getTrademark(variant);
+                    expectToEqual(component.getTrademark(''), expectedFallback);
+                    expectToEqual(component.getTrademark(null as any), expectedFallback);
+                    expectToEqual(component.getTrademark(undefined as any), expectedFallback);
+                });
 
-                    expectToEqual(result1, { route: '', full: 'Not a known trademark.', short: 'unknown' });
+                it('... should return unknown trademark for prototype properties like `toString`', () => {
+                    const variant = 'toString';
 
-                    variant = undefined;
+                    const result = component.getTrademark(variant);
 
-                    const result2 = component.getTrademark(variant);
-
-                    expectToEqual(result2, { route: '', full: 'Not a known trademark.', short: 'unknown' });
+                    expectToEqual(result, { route: '', full: 'Not a known trademark.', short: 'unknown' });
                 });
             });
 

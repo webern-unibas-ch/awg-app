@@ -137,7 +137,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 { desc: 'bootstrapLogo is missing from logos', missingKey: 'bootstrap' },
             ])('... $desc', ({ missingKey }) => {
                 const incompleteLogos = structuredClone(expectedLogosData);
-                incompleteLogos[missingKey] = undefined;
+                incompleteLogos[missingKey as keyof typeof expectedLogosData] = undefined;
 
                 fixture.componentRef.setInput('logosData', incompleteLogos);
                 fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);

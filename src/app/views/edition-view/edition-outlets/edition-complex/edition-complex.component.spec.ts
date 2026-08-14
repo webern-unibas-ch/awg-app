@@ -9,7 +9,7 @@ import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionComplexesService, EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -384,7 +384,6 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedComplexId };
-                    // Apply changes
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
@@ -416,12 +415,16 @@ describe('EditionComplexComponent (DONE)', () => {
                     });
 
                     mockActivatedRoute.testParamMap = { complexId: expectedComplexId };
-                    // Apply changes
                     fixture.detectChanges();
 
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                     expectToEqual(editionStateService.selectedEditionComplex(), unknownCatTypeComplex);
                     expectToEqual(component.selectedEditionComplex(), unknownCatTypeComplex);
+
+                    expectToEqual(
+                        component.selectedEditionComplex()?.titleStatement.catalogueType,
+                        new EditionRouteConstant()
+                    );
                 });
 
                 it('... should get an edition complex with missing resp statement from EditionStateService', () => {
@@ -451,6 +454,45 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectSpyCall(updateEditionComplexFromRouteSpy, 1);
                     expectToEqual(editionStateService.selectedEditionComplex(), missingRespComplex);
                     expectToEqual(component.selectedEditionComplex(), missingRespComplex);
+                });
+
+                it('... should get an edition complex with editor $ref not found in PERSONS_DATA from EditionStateService', () => {
+                    const unknownEditorComplex = new EditionComplex(
+                        {
+                            title: 'Test Complex',
+                            catalogueType: 'OPUS',
+                            catalogueNumber: '12',
+                        },
+                        {
+                            editors: [{ $ref: 'PERSON_UNKNOWN' }],
+                            lastModified: '2026-08-12',
+                        },
+                        { series: '1', section: '5' }
+                    );
+
+                    expectedComplexId = 'op12';
+                    complexesServiceGetEditionComplexByIdSpy.mockImplementationOnce((id: string) => {
+                        if (id.toLowerCase() === expectedComplexId.toLowerCase()) {
+                            return unknownEditorComplex;
+                        }
+                        return null;
+                    });
+
+                    mockActivatedRoute.testParamMap = { complexId: expectedComplexId };
+                    fixture.detectChanges();
+
+                    expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                    expectToEqual(editionStateService.selectedEditionComplex(), unknownEditorComplex);
+                    expectToEqual(component.selectedEditionComplex(), unknownEditorComplex);
+
+                    const mappedEditors = component.selectedEditionComplex()?.respStatement?.editors;
+                    expect(mappedEditors).toBeDefined();
+                    expectToBe(mappedEditors?.length, 1);
+                    expectToEqual(mappedEditors?.[0], {
+                        name: 'PERSON_UNKNOWN',
+                        homepage: '',
+                        identifiers: {},
+                    });
                 });
 
                 describe('... if edition complex is found but series or section are missing', () => {

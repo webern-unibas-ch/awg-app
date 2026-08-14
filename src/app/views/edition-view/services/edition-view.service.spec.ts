@@ -10,10 +10,16 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
 import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data/edition-assets.data';
-import { EditionDataAssetsKeys } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionDataAssetsKeys,
+    EditionViewData,
+    EditionViewDataTypeMapping,
+    EditionViewKey,
+} from '@awg-views/edition-view/models/edition-data.model';
 
 import { EditionDataService } from './edition-data.service';
 
+import { EditionSvgSheetsList, TextcriticsList } from '../models';
 import { EditionViewService } from './edition-view.service';
 
 describe('EditionViewService', () => {
@@ -191,27 +197,27 @@ describe('EditionViewService', () => {
     describe('... single-data view signals', () => {
         describe.each([
             {
-                signalName: 'prefaceViewData',
+                signalName: 'prefaceViewData' as keyof EditionViewService,
                 dataKey: 'prefaceData',
-                viewName: 'preface',
+                viewName: 'preface' as EditionViewKey,
                 mockData: { preface: [{ id: 'pref-1' }] },
             },
             {
-                signalName: 'rowtablesViewData',
+                signalName: 'rowtablesViewData' as keyof EditionViewService,
                 dataKey: 'rowtablesData',
-                viewName: 'rowtables',
+                viewName: 'rowtables' as EditionViewKey,
                 mockData: { rowtables: [{ id: 'rt-1' }] },
             },
             {
-                signalName: 'introViewData',
+                signalName: 'introViewData' as keyof EditionViewService,
                 dataKey: 'introData',
-                viewName: 'intro',
+                viewName: 'intro' as EditionViewKey,
                 mockData: { intro: [{ id: 'intro-1' }] },
             },
             {
-                signalName: 'graphViewData',
+                signalName: 'graphViewData' as keyof EditionViewService,
                 dataKey: 'graphData',
-                viewName: 'graph',
+                viewName: 'graph' as EditionViewKey,
                 mockData: { graph: [{ id: 'graph-1' }] },
             },
         ])('#$signalName()', ({ signalName, dataKey, viewName, mockData }) => {
@@ -239,7 +245,7 @@ describe('EditionViewService', () => {
             it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
-                const result = service[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 expectToEqual(result.data, { [dataKey]: null });
                 expectToBe(result.isLoading, true);
@@ -253,9 +259,10 @@ describe('EditionViewService', () => {
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
 
-                const result = (service as any)[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
+                const key = dataKey as keyof typeof result.data;
 
-                expectToEqual(result.data[dataKey], mockData);
+                expectToEqual(result.data[key], mockData);
                 expectToBe(result.isLoading, false);
                 expectToBe(result.error, null);
             });
@@ -267,7 +274,7 @@ describe('EditionViewService', () => {
                 (mockEditionDataService as any)[dataKey].set(mockData);
                 mockIsLoadingSignal.set(true);
 
-                const result = service[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 expectToBe(result.isLoading, true);
             });
@@ -279,10 +286,13 @@ describe('EditionViewService', () => {
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
 
-                const mockError = { message: `Failed to fetch ${viewName} assets` };
+                const mockError = {
+                    key: viewName as EditionDataAssetsKeys,
+                    error: `Failed to fetch ${viewName} assets`,
+                };
                 getErrorSpy.mockReturnValue(signal(mockError));
 
-                const result = (service as any)[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 expectToEqual(result.error, mockError);
             });
@@ -292,8 +302,8 @@ describe('EditionViewService', () => {
     describe('... multi-data view signals', () => {
         describe.each([
             {
-                signalName: 'sheetsViewData',
-                viewName: 'sheets',
+                signalName: 'sheetsViewData' as keyof EditionViewService,
+                viewName: 'sheets' as EditionViewKey,
                 signalsSetup: [
                     { dataKey: 'folioConvoluteData', mockValue: { convolutes: [{ id: 'fol-1' }] } },
                     {
@@ -304,8 +314,8 @@ describe('EditionViewService', () => {
                 ],
             },
             {
-                signalName: 'reportViewData',
-                viewName: 'report',
+                signalName: 'reportViewData' as keyof EditionViewService,
+                viewName: 'report' as EditionViewKey,
                 signalsSetup: [
                     { dataKey: 'sourceListData', mockValue: { sources: [{ id: 'src-1' }] } },
                     { dataKey: 'sourceDescriptionData', mockValue: { sources: [{ id: 'desc-1' }] } },
@@ -349,10 +359,11 @@ describe('EditionViewService', () => {
             it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
-                const result = service[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 signalsSetup.forEach(({ dataKey }) => {
-                    expectToBe(result.data[dataKey], null);
+                    const key = dataKey as keyof typeof result.data;
+                    expectToBe(result.data[key], null);
                 });
                 expectToBe(result.isLoading, true);
                 expectToBe(result.error, null);
@@ -367,10 +378,11 @@ describe('EditionViewService', () => {
                     (mockEditionDataService as any)[dataKey].set(mockValue);
                 });
 
-                const result = (service as any)[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
-                    expectToEqual(result.data[dataKey], mockValue);
+                    const key = dataKey as keyof typeof result.data;
+                    expectToEqual(result.data[key], mockValue);
                 });
                 expectToBe(result.isLoading, false);
                 expectToBe(result.error, null);
@@ -385,7 +397,7 @@ describe('EditionViewService', () => {
                 });
                 mockIsLoadingSignal.set(true);
 
-                const result = service[signalName]();
+                const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
 
                 expectToBe(result.isLoading, true);
             });
@@ -456,7 +468,11 @@ describe('EditionViewService', () => {
                 const viewKey = 'preface';
                 const signalMap: any[] = [['prefaceData', signal({ content: [] })]];
                 const dataFallback = EDITION_ASSETS_DATA.CONFIG[viewKey].fallback;
-                const mockFallback = { data: { prefaceData: dataFallback }, isLoading: true, error: null };
+                const mockFallback: EditionViewData<typeof viewKey> = {
+                    data: { prefaceData: dataFallback },
+                    isLoading: true,
+                    error: null,
+                };
 
                 getFallbackForInactiveViewSpy.mockReturnValue(mockFallback);
 
@@ -483,8 +499,10 @@ describe('EditionViewService', () => {
                 it('... for a multi-data view (e.g., sheets)', () => {
                     const viewKey = 'sheets';
                     const mockFolio = { id: 'convolute-1' };
-                    const mockSvgSheets = { sheets: [] };
-                    const mockTextcritics = { comments: [] };
+                    const mockSvgSheets: EditionSvgSheetsList = {
+                        sheets: { workEditions: [], textEditions: [], sketchEditions: [] },
+                    };
+                    const mockTextcritics: TextcriticsList = { textcritics: [] };
 
                     const signalMap: any[] = [
                         ['folioConvoluteData', signal(mockFolio)],
@@ -784,14 +802,19 @@ describe('EditionViewService', () => {
         });
 
         describe('#_getFallbackForInactiveView()', () => {
+            const viewKey: EditionViewKey = 'sheets';
+            const dataKeys: Array<keyof EditionViewDataTypeMapping[typeof viewKey]> = ['folioConvoluteData'];
+
             it('... should have a method `_getFallbackForInactiveView`', () => {
                 expect((service as any)._getFallbackForInactiveView).toBeDefined();
             });
 
             it('... should return a fallback if the viewKey is not included in the activeView', () => {
-                const viewKey = 'sheets';
-                const dataKeys = ['folioConvoluteData'];
-                const mockFallback = { data: {}, isLoading: true, error: null };
+                const mockFallback: EditionViewData<typeof viewKey> = {
+                    data: { folioConvoluteData: null, svgSheetsData: null, textcriticsData: null },
+                    isLoading: true,
+                    error: null,
+                };
 
                 currentViewNameSpy.mockReturnValue('preface');
                 const createFallbackSpy = vi.spyOn(service as any, '_createFallback').mockReturnValue(mockFallback);
@@ -805,9 +828,11 @@ describe('EditionViewService', () => {
             it('... should return a fallback and update `_previousViewName` asynchronously if the view is active but changed', () => {
                 vi.useFakeTimers();
 
-                const viewKey = 'sheets';
-                const dataKeys = ['folioConvoluteData'];
-                const mockFallback = { data: {}, isLoading: true, error: null };
+                const mockFallback: EditionViewData<typeof viewKey> = {
+                    data: { folioConvoluteData: null, svgSheetsData: null, textcriticsData: null },
+                    isLoading: true,
+                    error: null,
+                };
 
                 currentViewNameSpy.mockReturnValue('sheets');
                 (service as any)._previousViewName.set('preface');
@@ -827,9 +852,6 @@ describe('EditionViewService', () => {
             });
 
             it('... should return null if the view is active and matches the `_previousViewName` (steady state)', () => {
-                const viewKey = 'sheets';
-                const dataKeys = ['folioConvoluteData'];
-
                 currentViewNameSpy.mockReturnValue('sheets');
                 (service as any)._previousViewName.set('sheets');
 

@@ -48,6 +48,11 @@ export class D3SimulationNode implements D3_FORCE.SimulationNodeDatum {
     instance: boolean;
 
     /**
+     * The radius of the simulation node.
+     */
+    r: number;
+
+    /**
      * The index of the simulation node.
      *
      * optional property from d3.SimulationLinkDatum
@@ -109,6 +114,7 @@ export class D3SimulationNode implements D3_FORCE.SimulationNodeDatum {
         this.label = id;
         this.weight = 1;
         this.type = type;
+        this.r = 5;
         this.owlClass = false;
         this.instance = false;
     }

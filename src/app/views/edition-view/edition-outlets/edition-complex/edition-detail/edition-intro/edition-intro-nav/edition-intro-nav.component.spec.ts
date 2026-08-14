@@ -25,7 +25,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
-    let routerLinks;
+    let routerLinks: RouterLinkStubDirective[];
 
     let expectedIntroBlockContent: IntroBlock[];
     let expectedNotesLabel: string;

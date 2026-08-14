@@ -30,7 +30,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -41,7 +41,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule],
+            imports: [NgbAccordionModule, NgbConfigModule],
             declarations: [UnsupportedTypeResultsComponent],
         }).compileComponents();
     });

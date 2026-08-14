@@ -6,7 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
-import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
@@ -62,7 +62,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    class NgbConfigModule {
         constructor() {
             const config = inject(NgbConfig);
 
@@ -73,7 +73,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule, NgbAccordionDirective, TwelveToneSpinnerStubComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, TwelveToneSpinnerStubComponent],
             declarations: [SelectResultsComponent, SparqlNoResultsStubComponent, SparqlTableStubComponent],
         }).compileComponents();
     });
@@ -349,7 +349,10 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.head is undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                        const undefinedQueryResult: QuerySelectResult = {
+                            head: undefined,
+                            body: { bindings: [{ test: 'Test' }] },
+                        };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -366,7 +369,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.body is undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                        const undefinedQueryResult: QuerySelectResult = { head: { vars: ['Test'] }, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -383,7 +386,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.head and queryResult.body are undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: undefined, body: undefined };
+                        const undefinedQueryResult: QuerySelectResult = { head: undefined, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -597,7 +600,10 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.head is undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                        const undefinedQueryResult: QuerySelectResult = {
+                            head: undefined,
+                            body: { bindings: [{ test: 'Test' }] },
+                        };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -614,7 +620,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.body is undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                        const undefinedQueryResult: QuerySelectResult = { head: { vars: ['Test'] }, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -631,7 +637,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     it('... queryResult.head and queryResult.body are undefined', async () => {
                         // Mock undefined response
-                        const undefinedQueryResult = { head: undefined, body: undefined };
+                        const undefinedQueryResult: QuerySelectResult = { head: undefined, body: undefined };
                         component.queryResult$ = observableOf(undefinedQueryResult);
                         await detectChangesOnPush(fixture);
 
@@ -698,7 +704,7 @@ describe('SelectResultsComponent (DONE)', () => {
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult[0]);
+                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
             });
 
             it('... should be triggered by change of queryResult', async () => {

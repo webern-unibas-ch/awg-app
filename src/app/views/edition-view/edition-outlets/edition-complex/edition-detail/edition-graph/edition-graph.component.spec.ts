@@ -724,7 +724,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         });
 
                         it('... should display header and image of static graph', () => {
-                            const imageId = staticImageData.graph[0].staticImage;
+                            const imageKey = staticImageData.graph[0].staticImage;
 
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -740,8 +740,11 @@ describe('EditionGraphComponent (DONE)', () => {
 
                             expectToContain(hEl.textContent, 'Statischer Graph');
 
-                            expectToContain(imgEl.src, component.GRAPH_IMAGES[imageId]);
-                            expectToContain(imgEl.alt, 'Static network representation of data for ' + imageId);
+                            expectToContain(
+                                imgEl.src,
+                                component.GRAPH_IMAGES[imageKey as keyof typeof component.GRAPH_IMAGES]
+                            );
+                            expectToContain(imgEl.alt, 'Static network representation of data for ' + imageKey);
                         });
                     });
                 });
@@ -749,6 +752,53 @@ describe('EditionGraphComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
+            describe('#getStaticImage()', () => {
+                it('... should have a method `getStaticImage()`', () => {
+                    expect(component.getStaticImage).toBeDefined();
+                });
+
+                describe('... should return null if', () => {
+                    it('... no imageKey is provided', () => {
+                        const result = component.getStaticImage(undefined);
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... an empty imageKey is provided', () => {
+                        const result = component.getStaticImage('');
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... the imageKey does not exist in data', () => {
+                        const result = component.getStaticImage('NON_EXISTENT_KEY');
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... the imageKey exists but the mapped value is an empty string', () => {
+                        const result = component.getStaticImage('OP12');
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... the imageKey includes prototype properties like `toString`', () => {
+                        const result = component.getStaticImage('toString');
+
+                        expectToBe(result, null);
+                    });
+                });
+
+                it('... should return the static image path for a given imageKey with non-empty mapped value', () => {
+                    const imageKey = 'OP25';
+                    const expectedImagePath = component.GRAPH_IMAGES[imageKey as keyof typeof component.GRAPH_IMAGES];
+
+                    const result = component.getStaticImage(imageKey);
+
+                    expectToBe(result, expectedImagePath);
+                });
+            });
+
             describe('#openModal()', () => {
                 it('... should have a method `openModal()`', () => {
                     expect(component.openModal).toBeDefined();

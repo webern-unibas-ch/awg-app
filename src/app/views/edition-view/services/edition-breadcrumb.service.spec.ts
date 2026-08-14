@@ -239,13 +239,13 @@ describe('EditionBreadcrumbService', () => {
                 expect((service as any)._getOverviewBreadcrumbs).toBeDefined();
             });
 
-            const testCases = [
+            it.each([
                 {
                     desc: ' root breadcrumbs for overview (without series and section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: () => null,
-                    section: () => null,
-                    expected: () => [
+                    series: (): EditionOutlineSeries => null,
+                    section: (): EditionOutlineSection => null,
+                    expected: (): LabeledRoute[] => [
                         { ...expectedRootItem, route: [] },
                         { label: '', route: [] },
                     ],
@@ -253,9 +253,9 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series only (without section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: () => expectedSeries,
-                    section: () => null,
-                    expected: () => [
+                    series: (): EditionOutlineSeries => expectedSeries,
+                    section: (): EditionOutlineSection => null,
+                    expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         { label: expectedSeries.series.full, route: [] },
                         { label: '', route: [] },
@@ -264,9 +264,9 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series and section (without intro)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: () => expectedSeries,
-                    section: () => expectedSection,
-                    expected: () => [
+                    series: (): EditionOutlineSeries => expectedSeries,
+                    section: (): EditionOutlineSection => expectedSection,
+                    expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         {
                             label: expectedSeries.series.full,
@@ -279,9 +279,9 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series, section and active intro view',
                     context: { name: 'intro', isIntro: true, isPreface: false, isRowtables: false },
-                    series: () => expectedSeries,
-                    section: () => expectedSection,
-                    expected: () => [
+                    series: (): EditionOutlineSeries => expectedSeries,
+                    section: (): EditionOutlineSection => expectedSection,
+                    expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         {
                             label: expectedSeries.series.full,
@@ -294,9 +294,7 @@ describe('EditionBreadcrumbService', () => {
                         { label: EDITION_INTRO.full, route: [] },
                     ],
                 },
-            ];
-
-            it.each(testCases)('... should return expected $desc', ({ context, series, section, expected }) => {
+            ])('... should return expected $desc', ({ context, series, section, expected }) => {
                 const expectedBreadcrumbs = expected();
 
                 const actualBreadcrumbs: LabeledRoute[] = (service as any)._getOverviewBreadcrumbs(

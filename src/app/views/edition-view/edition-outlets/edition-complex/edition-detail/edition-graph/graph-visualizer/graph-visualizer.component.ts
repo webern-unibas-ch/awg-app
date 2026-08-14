@@ -274,7 +274,7 @@ export class GraphVisualizerComponent implements OnInit {
         } catch (err) {
             console.error('#queryLocalstore got error:', err);
 
-            if (err.message && err.name) {
+            if (err instanceof Error) {
                 if (err.message.includes('undefined')) {
                     this.showToastMessage(
                         new ToastMessage(err.name, 'The query did not return any results.', 5000),
@@ -282,6 +282,8 @@ export class GraphVisualizerComponent implements OnInit {
                     );
                 }
                 this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
+            } else {
+                this.showToastMessage(new ToastMessage('Query Error', String(err), 5000), 'error');
             }
 
             // Capture query time

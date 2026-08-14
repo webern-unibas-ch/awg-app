@@ -328,7 +328,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             let linkDes: DebugElement[];
-            let routerLinks;
+            let routerLinks: RouterLinkStubDirective[];
 
             beforeEach(async () => {
                 // Mock data state

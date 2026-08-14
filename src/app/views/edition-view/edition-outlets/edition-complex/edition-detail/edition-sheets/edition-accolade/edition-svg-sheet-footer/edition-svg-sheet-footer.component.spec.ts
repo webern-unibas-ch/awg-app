@@ -84,7 +84,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
         expectedShowTka = true;
 
@@ -270,7 +270,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
 
             it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
-                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+                component.selectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1]);
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
@@ -302,7 +302,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 it('... evaluations array is empty', async () => {
                     component.showEvaluation = true;
                     component.selectedTextcritics = structuredClone(
-                        mockEditionData.mockTextcriticsListData.textcritics[0]
+                        mockEditionData.mockTextcriticsListData.textcritics[1]
                     );
                     await detectChangesOnPush(fixture);
 

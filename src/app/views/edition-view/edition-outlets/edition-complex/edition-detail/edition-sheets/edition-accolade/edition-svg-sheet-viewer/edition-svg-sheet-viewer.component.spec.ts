@@ -723,7 +723,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection = undefined;
+                const expectedDirection: number = undefined;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
@@ -1310,11 +1310,13 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should trigger on click on link box (D3 event)', async () => {
                 const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
 
-                serviceCreateSvgOverlaysSpy.mockImplementation((rootGroupSelection, onLinkBoxSelectFn) => {
-                    rootGroupSelection.selectAll('g.link-box').on('click', function () {
-                        onLinkBoxSelectFn((this as SVGGElement).id);
-                    });
-                });
+                serviceCreateSvgOverlaysSpy.mockImplementation(
+                    (rootGroupSelection: D3Selection, onLinkBoxSelectFn: (id: string) => void) => {
+                        rootGroupSelection.selectAll('g.link-box').on('click', function (this: any) {
+                            onLinkBoxSelectFn((this as SVGGElement).id);
+                        });
+                    }
+                );
 
                 (component as any)._createSvgOverlays();
                 fixture.detectChanges();
@@ -1349,7 +1351,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should not do anything if no overlay is provided', () => {
-                const selectedOverlays = undefined;
+                const selectedOverlays: EditionSvgOverlay[] = undefined;
 
                 (component as any)._onTkkOverlaySelect(selectedOverlays);
 
