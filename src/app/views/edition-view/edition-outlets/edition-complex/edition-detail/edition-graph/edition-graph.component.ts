@@ -76,16 +76,11 @@ export class EditionGraphComponent {
      * @returns {string | null} The retrieved image source path or null.
      */
     getStaticImage(imageKey: string | undefined): string | null {
-        if (!imageKey) {
+        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
             return null;
         }
 
-        const key = imageKey as keyof typeof this.GRAPH_IMAGES;
-        if (key in this.GRAPH_IMAGES) {
-            return this.GRAPH_IMAGES[key];
-        }
-
-        return null;
+        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
     }
 
     /**

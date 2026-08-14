@@ -136,6 +136,20 @@ describe('ModalService (DONE)', () => {
 
                 expectSpyCall(openSpy, 1, [expectedUnknownModalData]);
             });
+
+            it('... should prepare ModalData with empty content if snippetKey is a prototype property and trigger `_open`', () => {
+                const prototypeKey = 'toString';
+                const expectedPrototypeModalData = {
+                    type: 'text',
+                    id: prototypeKey,
+                    title: 'Hinweis',
+                    content: '',
+                };
+
+                service.openTextModal(prototypeKey);
+
+                expectSpyCall(openSpy, 1, [expectedPrototypeModalData]);
+            });
         });
 
         describe('#openImageModal()', () => {

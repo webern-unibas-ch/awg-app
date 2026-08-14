@@ -758,28 +758,38 @@ describe('EditionGraphComponent (DONE)', () => {
                 });
 
                 describe('... should return null if', () => {
-                    it('... no key is provided', () => {
+                    it('... no imageKey is provided', () => {
                         const result = component.getStaticImage(undefined);
 
                         expectToBe(result, null);
                     });
 
-                    it('... an empty key is provided', () => {
+                    it('... an empty imageKey is provided', () => {
                         const result = component.getStaticImage('');
 
                         expectToBe(result, null);
                     });
 
-                    it('... if the key is not found', () => {
-                        const invalidKey = 'INVALID_KEY';
+                    it('... the imageKey does not exist in data', () => {
+                        const result = component.getStaticImage('NON_EXISTENT_KEY');
 
-                        const result = component.getStaticImage(invalidKey);
+                        expectToBe(result, null);
+                    });
+
+                    it('... the imageKey exists but the mapped value is an empty string', () => {
+                        const result = component.getStaticImage('OP12');
+
+                        expectToBe(result, null);
+                    });
+
+                    it('... the imageKey includes prototype properties like `toString`', () => {
+                        const result = component.getStaticImage('toString');
 
                         expectToBe(result, null);
                     });
                 });
 
-                it('... should return the static image path for a given key', () => {
+                it('... should return the static image path for a given imageKey with non-empty mapped value', () => {
                     const imageKey = 'OP25';
                     const expectedImagePath = component.GRAPH_IMAGES[imageKey as keyof typeof component.GRAPH_IMAGES];
 

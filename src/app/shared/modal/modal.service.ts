@@ -39,7 +39,7 @@ export class ModalService {
      */
     openTextModal(snippetKey?: string | null): void {
         const id = snippetKey || 'CONTENTS_NOT_AVAILABLE';
-        const isValidKey = id in MODAL_TEXT_SNIPPETS;
+        const isValidKey = Object.hasOwn(MODAL_TEXT_SNIPPETS, id);
         const textSnippet = isValidKey ? MODAL_TEXT_SNIPPETS[id as keyof typeof MODAL_TEXT_SNIPPETS] : '';
 
         const modalData: ModalData = {

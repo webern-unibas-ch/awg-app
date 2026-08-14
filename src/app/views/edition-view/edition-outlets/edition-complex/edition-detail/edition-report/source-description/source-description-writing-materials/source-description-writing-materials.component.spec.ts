@@ -291,18 +291,20 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                     expectToEqual(result, { route: '', full: 'Not a known trademark.', short: 'unknown' });
                 });
 
-                it('... should return unknown trademark when variant is not provided', () => {
-                    let variant = null;
+                it('... should return unknown trademark when variant is empty, null, or undefined', () => {
+                    const expectedFallback = { route: '', full: 'Not a known trademark.', short: 'unknown' };
 
-                    const result1 = component.getTrademark(variant);
+                    expectToEqual(component.getTrademark(''), expectedFallback);
+                    expectToEqual(component.getTrademark(null as any), expectedFallback);
+                    expectToEqual(component.getTrademark(undefined as any), expectedFallback);
+                });
 
-                    expectToEqual(result1, { route: '', full: 'Not a known trademark.', short: 'unknown' });
+                it('... should return unknown trademark for prototype properties like `toString`', () => {
+                    const variant = 'toString';
 
-                    variant = undefined;
+                    const result = component.getTrademark(variant);
 
-                    const result2 = component.getTrademark(variant);
-
-                    expectToEqual(result2, { route: '', full: 'Not a known trademark.', short: 'unknown' });
+                    expectToEqual(result, { route: '', full: 'Not a known trademark.', short: 'unknown' });
                 });
             });
 
