@@ -1531,7 +1531,26 @@ export class GraphVisualizerComponent implements OnInit {
                 }
                 this.showToastMessage(new ToastMessage(err.name, err.message, 5000), &#x27;error&#x27;);
             } else {
-                this.showToastMessage(new ToastMessage(&#x27;Query Error&#x27;, String(err), 5000), &#x27;error&#x27;);
+                let errorMessage: string;
+
+                if (err &amp;&amp; typeof err &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+                    const anyObjectErr &#x3D; err as Record&lt;string, unknown&gt;;
+
+                    if (typeof anyObjectErr[&#x27;message&#x27;] &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; anyObjectErr[&#x27;message&#x27;]) {
+                        errorMessage &#x3D; anyObjectErr[&#x27;message&#x27;];
+                    } else if (typeof anyObjectErr[&#x27;statusText&#x27;] &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; anyObjectErr[&#x27;statusText&#x27;]) {
+                        errorMessage &#x3D; anyObjectErr[&#x27;statusText&#x27;];
+                    } else {
+                        try {
+                            errorMessage &#x3D; JSON.stringify(anyObjectErr) || String(anyObjectErr);
+                        } catch {
+                            errorMessage &#x3D; String(anyObjectErr);
+                        }
+                    }
+                } else {
+                    errorMessage &#x3D; String(err);
+                }
+                this.showToastMessage(new ToastMessage(&#x27;Query Error&#x27;, errorMessage, 5000), &#x27;error&#x27;);
             }
 
             // Capture query time
