@@ -1204,11 +1204,27 @@ describe('GraphVisualizerComponent (DONE)', () => {
                                 expectedCalls: [[new ToastMessage('Query Error', 'Not Found', 5000), 'error']],
                             },
                             {
-                                desc: 'a plain object without a `message` or `statusText` property (forces JSON.stringify)',
+                                desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
                                 error: { errorCode: 999, fatal: true },
                                 expectedCalls: [
                                     [new ToastMessage('Query Error', '{"errorCode":999,"fatal":true}', 5000), 'error'],
                                 ],
+                            },
+                            {
+                                desc: 'an object where `JSON.stringify` returns undefined (forces the || String fallback)',
+                                error: {
+                                    toJSON: (): undefined => undefined,
+                                },
+                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
+                            },
+                            {
+                                desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
+                                error: (() => {
+                                    const circularObj: any = { foo: 'bar' };
+                                    circularObj.self = circularObj;
+                                    return circularObj;
+                                })(),
+                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
                             },
                             {
                                 desc: 'a primitive string error',

@@ -286,12 +286,18 @@ export class GraphVisualizerComponent implements OnInit {
                 let errorMessage: string;
 
                 if (err && typeof err === 'object') {
-                    if ('message' in err && (err as any).message) {
-                        errorMessage = String((err as any).message);
-                    } else if ('statusText' in err && (err as any).statusText) {
-                        errorMessage = String((err as any).statusText);
+                    const anyObjectErr = err as Record<string, unknown>;
+
+                    if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
+                        errorMessage = anyObjectErr['message'];
+                    } else if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
+                        errorMessage = anyObjectErr['statusText'];
                     } else {
-                        errorMessage = JSON.stringify(err);
+                        try {
+                            errorMessage = JSON.stringify(anyObjectErr) || String(anyObjectErr);
+                        } catch {
+                            errorMessage = String(anyObjectErr);
+                        }
                     }
                 } else {
                     errorMessage = String(err);
