@@ -283,7 +283,20 @@ export class GraphVisualizerComponent implements OnInit {
                 }
                 this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
             } else {
-                this.showToastMessage(new ToastMessage('Query Error', String(err), 5000), 'error');
+                let errorMessage: string;
+
+                if (err && typeof err === 'object') {
+                    if ('message' in err && (err as any).message) {
+                        errorMessage = String((err as any).message);
+                    } else if ('statusText' in err && (err as any).statusText) {
+                        errorMessage = String((err as any).statusText);
+                    } else {
+                        errorMessage = JSON.stringify(err);
+                    }
+                } else {
+                    errorMessage = String(err);
+                }
+                this.showToastMessage(new ToastMessage('Query Error', errorMessage, 5000), 'error');
             }
 
             // Capture query time
