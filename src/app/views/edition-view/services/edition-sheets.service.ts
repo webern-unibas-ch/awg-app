@@ -199,7 +199,7 @@ export class EditionSheetsService {
      *
      * @returns {FolioConvolute} The convolute that was found, or undefined.
      */
-    private _findConvoluteById(folioConvolutes: FolioConvolute[], id: string): FolioConvolute {
+    private _findConvoluteById(folioConvolutes: FolioConvolute[], id: string): FolioConvolute | undefined {
         // Find the convolute with the given id in folioConvoluteData.convolutes array
         const convolute = folioConvolutes.find(conv => conv.convoluteId === id);
 

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSectionDetailIntroCard component.
@@ -17,18 +17,9 @@ import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-
 })
 export class EditionSectionDetailIntroCardComponent {
     /**
-     * Input variable: selectedSeries.
+     * Readonly input signal: selectedSection.
      *
-     * It keeps the selected series of the edition.
+     * It holds the selected section of the edition.
      */
-    @Input()
-    selectedSeries: EditionOutlineSeries;
-
-    /**
-     * Input variable: selectedSection.
-     *
-     * It keeps the selected section of the edition.
-     */
-    @Input()
-    selectedSection: EditionOutlineSection;
+    readonly selectedSection = input.required<EditionOutlineSection | null>();
 }

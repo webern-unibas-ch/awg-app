@@ -1,11 +1,11 @@
 /**
- * The Source class.
+ * The Source interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single source
  * from a sourcelist json file.
  */
-export class Source {
+export interface Source {
     /**
      * The siglum of a source.
      */
@@ -43,13 +43,13 @@ export class Source {
 }
 
 /**
- * The TextSource class.
+ * The TextSource interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single text source
  * from a sourcelist json file.
  */
-export class TextSource {
+export interface TextSource {
     /**
      * The id of a text source.
      */
@@ -87,7 +87,7 @@ export class SourceList {
     /**
      * The array of sources from a source list.
      */
-    sources: Source[];
+    sources: Source[] = [];
 
     /**
      * The array of text sources from a source list.

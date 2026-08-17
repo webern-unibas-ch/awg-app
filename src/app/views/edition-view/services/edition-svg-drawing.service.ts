@@ -47,9 +47,13 @@ export class EditionSvgDrawingService {
      * @param {SVGSVGElement} svgEl The given SVGSVGElement.
      * @param {SVGGElement} svgRootGroupEl The given SVGGElement.
      *
-     * @returns {Promise<D3Selection>} A promise that resolves to the D3 selection.
+     * @returns {Promise<D3Selection | undefined>} A promise that resolves to the D3 selection, or undefined.
      */
-    async createSvg(svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise<D3Selection> {
+    async createSvg(
+        svgFilePath: string,
+        svgEl: SVGSVGElement,
+        svgRootGroupEl: SVGGElement
+    ): Promise<D3Selection | undefined> {
         if (!svgFilePath || !svgEl || !svgRootGroupEl) {
             return undefined;
         }
@@ -58,7 +62,11 @@ export class EditionSvgDrawingService {
         const fetchedSvgFile: Document = await this._fetchSvgFile(svgFilePath);
 
         // Get the SVG XML DOM tree and its content (svg-root)
-        const fetchedSvgXML: SVGSVGElement = fetchedSvgFile.getElementsByTagName('svg')[0];
+        const fetchedSvgXML: SVGSVGElement | undefined = fetchedSvgFile.getElementsByTagName('svg')[0];
+        if (!fetchedSvgXML) {
+            console.error('The fetched file does not contain a valid <svg> element.');
+            return undefined;
+        }
 
         const vb = this._getViewBox(fetchedSvgXML);
 
@@ -110,7 +118,7 @@ export class EditionSvgDrawingService {
      */
     getContainerDimensions(containerEl: ElementRef<HTMLElement>): { width: number; height: number } {
         if (!containerEl) {
-            return { width: undefined, height: undefined };
+            return { width: 0, height: 0 };
         }
 
         const w = containerEl.nativeElement.clientWidth;
@@ -130,9 +138,9 @@ export class EditionSvgDrawingService {
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
      * @param {string} id The given id.
      *
-     * @returns {D3Selection} The D3 selection of the found element.
+     * @returns {D3Selection | undefined} The D3 selection of the found element, or undefined.
      */
-    getD3SelectionById(svgRootGroup: D3Selection, id: string): D3Selection {
+    getD3SelectionById(svgRootGroup: D3Selection, id: string): D3Selection | undefined {
         if (!svgRootGroup || !id) {
             return undefined;
         }
@@ -148,16 +156,13 @@ export class EditionSvgDrawingService {
      * @param dataId The data id to select.
      * @param attr The data attribute name (default: 'data-tkk-id').
      *
-     * @returns {D3Selection} The D3 selection of the found element(s).
+     * @returns {D3Selection | undefined} The D3 selection of the found element(s), or undefined.
      */
     getD3SelectionByDataId(
         svgRootGroup: D3Selection,
         dataId: string,
         attr: string = EditionSvgOverlayTypes.dataTkkId
-    ): D3Selection {
-        if (!svgRootGroup || !dataId) {
-            return undefined;
-        }
+    ): D3Selection | undefined {
         const selector = `[${attr}="${dataId}"]`;
         const selection = svgRootGroup.selectAll(selector);
         return selection.empty() ? this.getD3SelectionById(svgRootGroup, dataId) : selection;
@@ -171,9 +176,9 @@ export class EditionSvgDrawingService {
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
      * @param {string} selector The given selector class.
      *
-     * @returns {D3Selection} The D3 selection of all found groups.
+     * @returns {D3Selection | undefined} The D3 selection of all found groups, or undefined.
      */
-    getGroupsBySelector(svgRootGroup: D3Selection, selector: string): D3Selection {
+    getGroupsBySelector(svgRootGroup: D3Selection, selector: string): D3Selection | undefined {
         if (!svgRootGroup) {
             return undefined;
         }
@@ -190,16 +195,19 @@ export class EditionSvgDrawingService {
      * @returns {Map<string, boolean>} A map of all supplied classes from the SVG sheet root group.
      */
     getSuppliedClasses(svgRootGroup: D3Selection): Map<string, boolean> {
-        if (!svgRootGroup) {
-            return undefined;
-        }
-
         // (Re-)Initialize the map
         this._suppliedClasses = new Map();
 
-        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, 'supplied');
+        if (!svgRootGroup) {
+            return this._suppliedClasses;
+        }
 
-        suppliedSelections.each((d, i, nodes) => {
+        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, 'supplied');
+        if (!suppliedSelections) {
+            return this._suppliedClasses;
+        }
+
+        suppliedSelections.each((_d, i, nodes) => {
             const element = D3_SELECTION.select(nodes[i]);
             const classNames = element.attr('class').split(' ');
             const nextToSupplied = classNames[classNames.indexOf('supplied') + 1];
@@ -242,8 +250,11 @@ export class EditionSvgDrawingService {
         // Get D3 selection of supplied elements
         const selector = className ? `supplied.${className}` : 'supplied';
         const suppliedSelections = this.getGroupsBySelector(svgRootGroup, selector);
-        const opacity = isCurrentlyVisible ? 0 : 1;
+        if (!suppliedSelections) {
+            return;
+        }
 
+        const opacity = isCurrentlyVisible ? 0 : 1;
         suppliedSelections.style('opacity', opacity);
     }
 

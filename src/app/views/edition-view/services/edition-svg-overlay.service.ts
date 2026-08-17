@@ -175,7 +175,7 @@ export class EditionSvgOverlayService {
         if (!rootGroupSelection) {
             return;
         }
-        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
+        const overlayGroups = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
         if (!overlayGroups) {
             return;
         }
@@ -213,8 +213,7 @@ export class EditionSvgOverlayService {
         onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) => void,
         createOverlayFn: (group: SVGGElement, type: string) => void
     ): void {
-        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
-
+        const overlayGroups = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
         if (!overlayGroups) {
             return;
         }
@@ -246,10 +245,10 @@ export class EditionSvgOverlayService {
         onSelectFn: (id: string) => void
     ): void {
         const linkBoxGroupId: string = group.id;
-        const linkBoxGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(
-            svgRootGroupSelection,
-            linkBoxGroupId
-        );
+        const linkBoxGroupSelection = this._svgDrawingService.getD3SelectionById(svgRootGroupSelection, linkBoxGroupId);
+        if (!linkBoxGroupSelection) {
+            return;
+        }
 
         const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
         linkBoxGroupPathSelection.style('fill', this.linkBoxOverlayFillColor);
@@ -350,9 +349,12 @@ export class EditionSvgOverlayService {
         const overlayGroupClass = `${type}-overlay-group`;
         const overlayGroupBoxClass = `${overlayGroupClass}-box`;
 
-        const targetGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(svgRootGroup, id);
-        targetGroupSelection.append('g').attr('class', `${overlayGroupClass}`);
+        const targetGroupSelection = this._svgDrawingService.getD3SelectionById(svgRootGroup, id);
+        if (!targetGroupSelection) {
+            return undefined;
+        }
 
+        targetGroupSelection.append('g').attr('class', `${overlayGroupClass}`);
         const targetOverlayGroupSelection: D3Selection = targetGroupSelection.select(`g.${overlayGroupClass}`);
 
         // Create overlay box for target overlay group
@@ -439,7 +441,11 @@ export class EditionSvgOverlayService {
             return svgRootGroup?.selectAll(null);
         }
         // Get D3 selection of target group
-        const targetGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
+        const targetGroupSelection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
+        if (!targetGroupSelection) {
+            return svgRootGroup.selectAll(null);
+        }
+
         // Get D3 selection of overlay group box
         return targetGroupSelection.selectAll(`rect.${overlayType}-overlay-group-box`);
     }

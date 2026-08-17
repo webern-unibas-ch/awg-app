@@ -5,7 +5,7 @@
         <awg-twelve-tone-spinner />
     } @else {
         <div class="awg-rowtables-view row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-            @let rowtables = view.data.rowtablesData.rowtables;
+            @let rowtables = view.data.rowtablesData?.rowtables ?? [];
 
             @for (rowtable of rowtables; track rowtable.route) {
                 <div class="col">

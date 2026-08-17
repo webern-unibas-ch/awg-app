@@ -8,6 +8,7 @@ import {
     SimpleChanges,
 } from '@angular/core';
 
+import { UTILS } from '@awg-shared/utils/object-utils';
 import {
     D3Selection,
     EditionSvgSheet,
@@ -49,7 +50,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * It keeps the selected convolute.
      */
     @Input()
-    selectedConvolute: FolioConvolute;
+    selectedConvolute: FolioConvolute | undefined;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -57,7 +58,14 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * It keeps the selected SVG sheet.
      */
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
+
+    /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
 
     /**
      * Public variable: canvasArray.
@@ -130,15 +138,17 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         // Empty canvasArray
         this.canvasArray = [];
 
+        const currentSheet = this.selectedSvgSheet;
+
         // Check if data arrays have the same length
-        if (this.viewBoxArray.length !== this.folioSvgDataArray.length) {
+        if (this.viewBoxArray.length !== this.folioSvgDataArray.length || !currentSheet) {
             return;
         }
 
         // Apply data to render the SVG image with d3.js
         this.folioSvgDataArray.forEach((folioSvgData: FolioSvgData, folioIndex: number) => {
             // Init canvas
-            const svgId = `#folio-${this.selectedSvgSheet.id}-${folioSvgData.sheet.folioId}`;
+            const svgId = `#folio-${currentSheet.id}-${folioSvgData.sheet.folioId}`;
 
             const svgCanvas: D3Selection = this._d3Select(svgId);
 
@@ -190,18 +200,19 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         this.viewBoxArray = [];
 
         // If selectedConvolute or folios are undefined, return early
-        if (!this.selectedConvolute?.folios) {
+        const folios = this.selectedConvolute?.folios;
+        if (!folios) {
             return;
         }
 
         // Loop over folios of selected convolute
-        this.folioSvgDataArray = this.selectedConvolute.folios.map((folio: Folio) => {
+        this.folioSvgDataArray = folios.map((folio: Folio) => {
             // Create folio settings for each folio
             const folioSettings = {
                 ...this._folioSettings,
                 formatX: +folio.dimensions.width,
                 formatY: +folio.dimensions.height,
-                numberOfFolios: this.selectedConvolute.folios.length,
+                numberOfFolios: folios.length,
             };
 
             // Prepare viewbox settings by calculating the width and height for the viewBox string

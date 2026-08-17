@@ -72,28 +72,28 @@ export class EditionSheetsComponent {
      *
      * It keeps the selected convolute.
      */
-    selectedConvolute: FolioConvolute;
+    selectedConvolute: FolioConvolute | undefined;
 
     /**
      * Public variable: selectedSvgSheet.
      *
      * It keeps the selected SVG sheet.
      */
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
      * Public variable: selectedTextcriticalCommentary.
      *
      * It keeps the selected textcritical commentary.
      */
-    selectedTextcriticalCommentary: TextcriticalCommentary;
+    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
 
     /**
      * Public variable: selectedTextcritics.
      *
      * It keeps the textcritics of the selected SVG sheet.
      */
-    selectedTextcritics: Textcritics;
+    selectedTextcritics: Textcritics | undefined;
 
     /**
      * Public variable: showTka.
@@ -153,18 +153,20 @@ export class EditionSheetsComponent {
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
-        const sheets = this.viewData().data.svgSheetsData.sheets;
-        const editionType = this._editionSheetsService.getCurrentEditionType(this.selectedSvgSheet, sheets);
+        const sheets = this.viewData().data.svgSheetsData?.sheets;
+        const selectedSheet = this.selectedSvgSheet;
+
+        if (!sheets || !selectedSheet) {
+            return;
+        }
+
+        const editionType = this._editionSheetsService.getCurrentEditionType(selectedSheet, sheets);
         if (!editionType) {
             return;
         }
 
         const editionTypeSheets = sheets[editionType];
-        const nextSheetId = this._editionSheetsService.getNextSheetId(
-            direction,
-            this.selectedSvgSheet,
-            editionTypeSheets
-        );
+        const nextSheetId = this._editionSheetsService.getNextSheetId(direction, selectedSheet, editionTypeSheets);
 
         this.onSvgSheetSelect({ complexId: '', sheetId: nextSheetId });
     }
@@ -199,12 +201,15 @@ export class EditionSheetsComponent {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentary = this._editionSheetsService.filterTextcriticalCommentaryForOverlays(
-            this.selectedTextcritics.commentary,
-            overlays
-        );
+        this.selectedTextcriticalCommentary = this.selectedTextcritics?.commentary
+            ? this._editionSheetsService.filterTextcriticalCommentaryForOverlays(
+                  this.selectedTextcritics.commentary,
+                  overlays
+              )
+            : undefined;
 
-        this.showTkA = !UTILS.isEmptyArray(this.selectedTextcriticalCommentary.comments);
+        const comments = this.selectedTextcriticalCommentary?.comments ?? [];
+        this.showTkA = !UTILS.isEmptyArray(comments);
     }
 
     /**
@@ -298,20 +303,29 @@ export class EditionSheetsComponent {
         if (!sheetId) {
             return;
         }
-        const view = this.viewData();
-        const sheets = view.data.svgSheetsData.sheets;
-        const convolutes = view.data.folioConvoluteData.convolutes;
-        const textcritics = view.data.textcriticsData.textcritics;
+        const data = this.viewData().data;
+        const sheets = data.svgSheetsData?.sheets;
+        const convolutes = data.folioConvoluteData?.convolutes;
+        const textcritics = data.textcriticsData?.textcritics;
 
-        this.selectedSvgSheet = this._editionSheetsService.selectSvgSheetById(sheets, sheetId);
-        this.selectedConvolute = this._editionSheetsService.selectConvolute(convolutes, sheets, this.selectedSvgSheet);
-        this.selectedTextcritics = this._editionSheetsService.findTextcritics(textcritics, this.selectedSvgSheet);
+        if (!sheets || !convolutes || !textcritics) {
+            return;
+        }
+
+        const currentSheet = this._editionSheetsService.selectSvgSheetById(sheets, sheetId);
+        this.selectedSvgSheet = currentSheet;
+
+        this.selectedConvolute = currentSheet
+            ? this._editionSheetsService.selectConvolute(convolutes, sheets, currentSheet)
+            : undefined;
+        this.selectedTextcritics = currentSheet
+            ? this._editionSheetsService.findTextcritics(textcritics, currentSheet)
+            : undefined;
 
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);
 
-        if (!UTILS.isEmptyObject(this.selectedTextcritics?.commentary)) {
-            this.selectedTextcriticalCommentary = this.selectedTextcritics.commentary;
-        }
+        const commentary = this.selectedTextcritics?.commentary;
+        this.selectedTextcriticalCommentary = commentary && !UTILS.isEmptyObject(commentary) ? commentary : undefined;
     }
 }

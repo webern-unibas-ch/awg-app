@@ -21,14 +21,14 @@ export class EditionTkaLabelComponent {
      *
      * It keeps the id of the sheet or textcritics.
      */
-    @Input() id: string;
+    @Input() id: string | undefined;
 
     /**
      * Input variable: labelType.
      *
      * It keeps the type of the label.
      */
-    @Input() labelType: 'evaluation' | 'commentary';
+    @Input() labelType: 'evaluation' | 'commentary' | undefined;
 
     /**
      * Protected readonly variable: EDITION_UTILS.

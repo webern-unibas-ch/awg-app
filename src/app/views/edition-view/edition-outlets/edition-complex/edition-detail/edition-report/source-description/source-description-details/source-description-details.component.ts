@@ -21,7 +21,7 @@ export class SourceDescriptionDetailsComponent {
      * It keeps the details array.
      */
     @Input()
-    details: string[];
+    details: string[] | undefined;
 
     /**
      * Input variable: detailsClass.
@@ -29,7 +29,7 @@ export class SourceDescriptionDetailsComponent {
      * It keeps the class name for the details.
      */
     @Input()
-    detailsClass: string;
+    detailsClass: string | undefined;
 
     /**
      * Input variable: detailsLabel.
@@ -37,7 +37,7 @@ export class SourceDescriptionDetailsComponent {
      * It keeps the label for the details.
      */
     @Input()
-    detailsLabel: string;
+    detailsLabel: string | undefined;
 
     /**
      * Protected readonly variable: UTILS.

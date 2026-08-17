@@ -1,13 +1,13 @@
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 
 /**
- * The TextcriticalBlock class.
+ * The TextcriticalBlock interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single textcritical block
  * from a textcritics json file.
  */
-export class TextcriticalCommentBlock {
+export interface TextcriticalCommentBlock {
     /**
      * An optional header of the textcritical block.
      */
@@ -20,13 +20,13 @@ export class TextcriticalCommentBlock {
 }
 
 /**
- * The TextcriticalComment class.
+ * The TextcriticalComment interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single textcritical comment
  * from a textcritics json file.
  */
-export class TextcriticalComment {
+export interface TextcriticalComment {
     /**
      * The svgGroupId of the textcritical comment.
      */
@@ -64,12 +64,12 @@ export class TextcriticalCommentary {
     /**
      * The preamble of the textcritical commentary.
      */
-    preamble: string;
+    preamble = '';
 
     /**
      * The array of textcritical comment blocks from a textcritics list.
      */
-    comments: TextcriticalCommentBlock[];
+    comments: TextcriticalCommentBlock[] = [];
 }
 
 /**
@@ -83,22 +83,22 @@ export class Textcritics {
     /**
      * The id of the textcritics.
      */
-    id: string;
+    id = '';
 
     /**
      * The label of the textcritics.
      */
-    label: string;
+    label = '';
 
     /**
      * The evaluations of the textcritics.
      */
-    evaluations: string[];
+    evaluations: string[] = [];
 
     /**
      * The commentary of the textcritics.
      */
-    commentary: TextcriticalCommentary;
+    commentary: TextcriticalCommentary = new TextcriticalCommentary();
 
     /**
      * The array of link boxes from a textcritics list.
@@ -122,5 +122,5 @@ export class TextcriticsList {
     /**
      * The array of textcritics from a textcritics list.
      */
-    textcritics: Textcritics[];
+    textcritics: Textcritics[] = [];
 }

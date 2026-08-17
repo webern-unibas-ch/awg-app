@@ -14,7 +14,7 @@ import { Folio, FolioContent, FolioSegment } from './folio.model';
  */
 function round(value: number, decimals: number): number {
     if (Number.isNaN(value)) {
-        return undefined;
+        return NaN;
     }
     return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
 }
@@ -314,6 +314,12 @@ export class FolioCalculationContentSegmentVertices {
         }
         const systemLines = this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        if (!systemLines || systemLines.length === 0) {
+            throw new Error(
+                `[FolioService] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
+            );
+        }
+
         let offset: number;
         switch (segment.relativeToSystem) {
             case 'below':
@@ -326,7 +332,18 @@ export class FolioCalculationContentSegmentVertices {
                 offset = 0;
         }
 
-        const yValue = isStart ? systemLines[0].START_POINT.y : systemLines.at(-1).END_POINT.y;
+        let yValue = 0;
+        if (isStart) {
+            const firstLine = systemLines[0];
+            if (firstLine) {
+                yValue = firstLine.START_POINT.y;
+            }
+        } else {
+            const lastLine = systemLines.at(-1);
+            if (lastLine) {
+                yValue = lastLine.END_POINT.y;
+            }
+        }
         const correction = this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
@@ -364,32 +381,32 @@ export class FolioCalculationContentSegment {
     /**
      * The centered X position of the content segment.
      */
-    centeredXPosition: number;
+    centeredXPosition = 0;
 
     /**
      * The centered y position of the content segment.
      */
-    centeredYPosition: number;
+    centeredYPosition = 0;
 
     /**
      * The label for the id of the edition complex of the content segment.
      */
-    complexId: string;
+    complexId = '';
 
     /**
      * The link to a convolute description in the critical report.
      */
-    linkTo: string;
+    linkTo = '';
 
     /**
      * The boolean flag if the content segment is reversed.
      */
-    reversed: boolean;
+    reversed = false;
 
     /**
      * The segment of a content segment.
      */
-    segment: FolioSegment;
+    segment!: FolioSegment;
 
     /**
      * The segment split of the content segment.
@@ -399,37 +416,37 @@ export class FolioCalculationContentSegment {
     /**
      * The array of label strings for the content segment.
      */
-    segmentLabelArray: string[];
+    segmentLabelArray: string[] = [];
 
     /**
      * The label for the content segment.
      */
-    segmentLabel: string;
+    segmentLabel = '';
 
     /**
      * The boolean flag if the content segment can be selected.
      */
-    selectable: boolean;
+    selectable = false;
 
     /**
      * The label for the id of the content segment.
      */
-    sheetId: string;
+    sheetId = '';
 
     /**
      * The label for the sigle of the content segment.
      */
-    sigle: string;
+    sigle = '';
 
     /**
      * The label for the sigle addendum of the content segment.
      */
-    sigleAddendum: string;
+    sigleAddendum = '';
 
     /**
      * The vertices of a content segment.
      */
-    vertices: FolioCalculationContentSegmentVertices;
+    vertices!: FolioCalculationContentSegmentVertices;
 
     /**
      * Constructor of the FolioCalculationContentSegment class.
@@ -589,10 +606,10 @@ export class FolioCalculationSheet {
      *
      * It calculates the rectanble of the trademark based on the given position string.
      *
-     * @param {string} position The given trademark position string.
-     * @returns {FolioCalculationRectangle} The calculated rectangle of the trademark.
+     * @param {string | undefined} position The given trademark position string, or undefined.
+     * @returns {FolioCalculationRectangle | undefined} The calculated rectangle of the trademark, or undefined.
      */
-    private _calculateTrademarkRectangle(position: string): FolioCalculationRectangle {
+    private _calculateTrademarkRectangle(position: string | undefined): FolioCalculationRectangle | undefined {
         if (!position) {
             return undefined;
         }

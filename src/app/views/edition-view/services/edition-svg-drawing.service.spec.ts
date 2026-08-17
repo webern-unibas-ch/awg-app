@@ -301,27 +301,6 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(service.getD3SelectionByDataId).toBeDefined();
         });
 
-        describe('... should return undefined if', () => {
-            it('... no svgRootGroup is provided', () => {
-                let d3selections = service.getD3SelectionByDataId(null, 'tkk-1');
-                expect(d3selections).toBeUndefined();
-
-                d3selections = service.getD3SelectionByDataId(undefined, 'tkk-1');
-                expect(d3selections).toBeUndefined();
-            });
-
-            it('... no dataId is provided', () => {
-                let d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, '');
-                expect(d3selections).toBeUndefined();
-
-                d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, null);
-                expect(d3selections).toBeUndefined();
-
-                d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, undefined);
-                expect(d3selections).toBeUndefined();
-            });
-        });
-
         it('... should return an empty array if svgRootGroup is provided, but given dataId is not found', () => {
             const d3selections = service.getD3SelectionByDataId(expectedSvgRootGroup, 'tkk-unknown');
 

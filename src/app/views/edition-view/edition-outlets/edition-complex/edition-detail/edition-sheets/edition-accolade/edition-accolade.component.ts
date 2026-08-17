@@ -37,7 +37,7 @@ export class EditionAccoladeComponent {
      * It keeps the toggle state of the sheet facet.
      */
     @Input()
-    isSheetFacetMinimized: boolean;
+    isSheetFacetMinimized = false;
 
     /**
      * Input variable: svgSheetsData.
@@ -45,7 +45,7 @@ export class EditionAccoladeComponent {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheetsList;
+    svgSheetsData: EditionSvgSheetsList | null = null;
 
     /**
      * Input variable: selectedSvgSheet.
@@ -53,7 +53,7 @@ export class EditionAccoladeComponent {
      * It keeps the selected svg sheet.
      */
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
      * Input variable: selectedTextcriticalCommentary.
@@ -61,7 +61,7 @@ export class EditionAccoladeComponent {
      * It keeps the selected textcritical commentary.
      */
     @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary;
+    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
 
     /**
      * Input variable: selectedTextcritics.
@@ -69,7 +69,7 @@ export class EditionAccoladeComponent {
      * It keeps the selected textcritics of a selected svg sheet.
      */
     @Input()
-    selectedTextcritics: Textcritics;
+    selectedTextcritics: Textcritics | undefined;
 
     /**
      * Input variable: showTkA.
@@ -77,7 +77,7 @@ export class EditionAccoladeComponent {
      * If the textcritics shall be displayed.
      */
     @Input()
-    showTkA: boolean;
+    showTkA = false;
 
     /**
      * Output variable: browseSvgSheetRequest.

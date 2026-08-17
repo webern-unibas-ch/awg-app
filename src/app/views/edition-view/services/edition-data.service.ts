@@ -284,7 +284,7 @@ export class EditionDataService {
             state.complex?.pubStatement?.series?.route === state.series.series?.route &&
             state.complex?.pubStatement?.section?.route === state.section.section?.route;
 
-        if (isComplexValid) {
+        if (state.complex && isComplexValid) {
             const complexPath = this._getAssetPathForEditionComplex(state.complex);
             const complexIntroStream$ = this._fetchJsonData<IntroList>(complexPath, file, fallbackValue, assetsKey);
 

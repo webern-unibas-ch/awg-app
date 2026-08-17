@@ -12,11 +12,7 @@ import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
 import { HomeViewCard } from '@awg-views/home-view/home-view-card/home-view-card.model';
 
-import {
-    EditionOutlineComplexItem,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-} from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineComplexItem, EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
 import {
     StatisticsComplexBreakdown,
@@ -215,10 +211,7 @@ export class EditionSectionDetailDisclaimerStubComponent {}
     standalone: false,
 })
 export class EditionSectionDetailIntroCardStubComponent {
-    @Input()
-    selectedSeries: EditionOutlineSeries;
-    @Input()
-    selectedSection: EditionOutlineSection;
+    readonly selectedSection = input.required<EditionOutlineSection>();
 }
 
 @Component({
@@ -227,10 +220,7 @@ export class EditionSectionDetailIntroCardStubComponent {
     standalone: false,
 })
 export class EditionSectionDetailPlaceholderStubComponent {
-    @Input()
-    selectedSeries: EditionOutlineSeries;
-    @Input()
-    selectedSection: EditionOutlineSection;
+    readonly selectedSection = input.required<EditionOutlineSection>();
 }
 
 // ============================================================================

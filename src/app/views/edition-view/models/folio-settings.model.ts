@@ -1,9 +1,9 @@
 /**
- * The folio settings class.
+ * The folio settings interface.
  *
  * It is used to store the basic settings of the edition folios.
  */
-export class FolioSettings {
+export interface FolioSettings {
     /**
      * The zoom factor to be applied.
      */

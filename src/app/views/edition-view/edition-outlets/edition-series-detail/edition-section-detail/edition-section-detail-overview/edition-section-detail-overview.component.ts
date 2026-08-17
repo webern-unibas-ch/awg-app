@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { EditionStateService } from '@awg-views/edition-view/services';
@@ -18,13 +18,6 @@ import { EditionStateService } from '@awg-views/edition-view/services';
 })
 export class EditionSectionDetailOverviewComponent {
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
      * Protected readonly variable: UTILS.
      *
      * It keeps the reference to the {@link UTILS} methods.
@@ -32,12 +25,9 @@ export class EditionSectionDetailOverviewComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Readonly signal: editionData.
+     * Readonly signal: selectedEditionSection.
      *
-     * It holds the synchronized state of the selected edition series and section.
+     * It holds the state of the selected edition section.
      */
-    readonly editionData = computed(() => ({
-        series: this._editionStateService.selectedEditionSeries(),
-        section: this._editionStateService.selectedEditionSection(),
-    }));
+    readonly selectedEditionSection = inject(EditionStateService).selectedEditionSection;
 }

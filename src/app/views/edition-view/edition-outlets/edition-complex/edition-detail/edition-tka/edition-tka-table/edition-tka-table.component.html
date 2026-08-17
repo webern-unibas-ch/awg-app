@@ -1,51 +1,53 @@
 <table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
-    @if (commentary.preamble) {
+    @if (commentary?.preamble; as preamble) {
         <caption class="awg-edition-tka-table-preamble mb-0">
-            <span [awgCompileHtml]="commentary.preamble"> </span>
+            <span [awgCompileHtml]="preamble"> </span>
         </caption>
     }
-    @if (!UTILS.isEmptyArray(commentary.comments)) {
-        <thead>
-            <tr>
-                @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
-                    <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }} text-nowrap">
-                        {{ tableHeader.label }}
-                    </th>
+    @if (commentary?.comments; as comments) {
+        @if (!UTILS.isEmptyArray(comments)) {
+            <thead>
+                <tr>
+                    @for (tableHeader of getTableHeaderStrings(); track tableHeader.reference) {
+                        <th scope="col" class="awg-edition-tka-table-header {{ tableHeader.reference }} text-nowrap">
+                            {{ tableHeader.label }}
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (textcriticalCommentBlock of comments; track $index) {
+                    @if (textcriticalCommentBlock.blockHeader) {
+                        <tr class="table-light table-group-divider">
+                            <td colspan="4" class="awg-edition-tka-table-block-header">
+                                <span [awgCompileHtml]="textcriticalCommentBlock.blockHeader"></span>
+                            </td>
+                        </tr>
+                    }
+                    @for (
+                        textcriticalComment of textcriticalCommentBlock.blockComments;
+                        track textcriticalComment.svgGroupId
+                    ) {
+                        <tr
+                            [id]="textcriticalComment.svgGroupId + '-entry'"
+                            [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
+                            [ngbTooltip]="textcriticalComment.svgGroupId"
+                            tooltipClass="awg-group-id-tooltip"
+                            placement="left"
+                            class="awg-edition-tka-table-comment">
+                            <td [awgAbbr]="textcriticalComment.measure"></td>
+                            <td [awgAbbr]="textcriticalComment.system"></td>
+                            <td [innerHTML]="textcriticalComment.position"></td>
+                            <td>
+                                <span
+                                    [awgCompileHtml]="
+                                        getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
+                                    "></span>
+                            </td>
+                        </tr>
+                    }
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @for (textcriticalCommentBlock of commentary.comments; track $index) {
-                @if (textcriticalCommentBlock.blockHeader) {
-                    <tr class="table-light table-group-divider">
-                        <td colspan="4" class="awg-edition-tka-table-block-header">
-                            <span [awgCompileHtml]="textcriticalCommentBlock.blockHeader"></span>
-                        </td>
-                    </tr>
-                }
-                @for (
-                    textcriticalComment of textcriticalCommentBlock.blockComments;
-                    track textcriticalComment.svgGroupId
-                ) {
-                    <tr
-                        [id]="textcriticalComment.svgGroupId + '-entry'"
-                        [attr.data-svg-group-id]="textcriticalComment.svgGroupId"
-                        [ngbTooltip]="textcriticalComment.svgGroupId"
-                        tooltipClass="awg-group-id-tooltip"
-                        placement="left"
-                        class="awg-edition-tka-table-comment">
-                        <td [awgAbbr]="textcriticalComment.measure"></td>
-                        <td [awgAbbr]="textcriticalComment.system"></td>
-                        <td [innerHTML]="textcriticalComment.position"></td>
-                        <td>
-                            <span
-                                [awgCompileHtml]="
-                                    getComment(textcriticalComment.comment, textcriticalComment.svgGroupId)
-                                "></span>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
+            </tbody>
+        }
     }
 </table>

@@ -54,12 +54,12 @@ export interface EditionComplexesJsonData {
 }
 
 /**
- * The EditionComplexTitleStatement class.
+ * The EditionComplexTitleStatement interface.
  *
  * It is used in the context of the edition view
  * to store information about the title statement of an edition complex.
  */
-export class EditionComplexTitleStatement {
+export interface EditionComplexTitleStatement {
     /**
      * The title of a title statement.
      */
@@ -77,12 +77,12 @@ export class EditionComplexTitleStatement {
 }
 
 /**
- * The EditionComplexRespStatement class.
+ * The EditionComplexRespStatement interface.
  *
  * It is used in the context of the edition view
  * to store information about the responsibility statement of an edition complex.
  */
-export class EditionComplexRespStatement {
+export interface EditionComplexRespStatement {
     /**
      * The editors of an edition complex.
      */
@@ -104,17 +104,17 @@ export class EditionComplexPubStatement {
     /**
      * The labeled route for the series/section of the current edition complex.
      */
-    labeledSectionRoute: LabeledRoute;
+    labeledSectionRoute: LabeledRoute = { label: '', route: [] };
 
     /**
      * The route for the current series.
      */
-    series: EditionRouteConstant;
+    series: EditionRouteConstant = new EditionRouteConstant();
 
     /**
      * The route for the current section.
      */
-    section: EditionRouteConstant;
+    section: EditionRouteConstant = new EditionRouteConstant();
 }
 
 /**
@@ -166,7 +166,7 @@ export class EditionComplex {
         pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
-            return;
+            throw new Error('[EditionComplex] Cannot instantiate complex: Missing catalogueType or catalogueNumber.');
         }
 
         // Helper constants
