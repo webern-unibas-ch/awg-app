@@ -256,7 +256,6 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryType The given query type.
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
-     *
      * @returns {Promise<QueryResult>} The result of the query.
      */
     private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<QueryResult> {
@@ -281,29 +280,12 @@ export class GraphVisualizerComponent implements OnInit {
                         'error'
                     );
                 }
-                this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
-            } else {
-                let errorMessage: string;
-
-                if (err && typeof err === 'object') {
-                    const anyObjectErr = err as Record<string, unknown>;
-
-                    if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
-                        errorMessage = anyObjectErr['message'];
-                    } else if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
-                        errorMessage = anyObjectErr['statusText'];
-                    } else {
-                        try {
-                            errorMessage = JSON.stringify(anyObjectErr) || String(anyObjectErr);
-                        } catch {
-                            errorMessage = String(anyObjectErr);
-                        }
-                    }
-                } else {
-                    errorMessage = String(err);
-                }
-                this.showToastMessage(new ToastMessage('Query Error', errorMessage, 5000), 'error');
             }
+
+            const errorTitle = err instanceof Error ? err.name : 'Query Error';
+            const errorMessage = this._getErrorMessage(err);
+
+            this.showToastMessage(new ToastMessage(errorTitle, errorMessage, 5000), 'error');
 
             // Capture query time
             this.queryTime = Date.now() - t1;
@@ -311,5 +293,42 @@ export class GraphVisualizerComponent implements OnInit {
             result = [];
         }
         return result;
+    }
+
+    /**
+     * Private method: _getErrorMessage.
+     *
+     * It retrieves the message to display on error.
+     *
+     * @param {unknown} err The given unknown error.
+     * @returns {string} The error message.
+     */
+    private _getErrorMessage(err: unknown): string {
+        if (err instanceof Error) {
+            return err.message;
+        }
+
+        if (err && typeof err === 'object') {
+            const anyObjectErr = err as Record<string, unknown>;
+
+            if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
+                return anyObjectErr['message'];
+            }
+            if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
+                return anyObjectErr['statusText'];
+            }
+            try {
+                return JSON.stringify(anyObjectErr);
+            } catch {
+                const objectKeys = Object.keys(anyObjectErr).join(', ');
+                return `[Complex Error Object with keys: ${objectKeys}]`;
+            }
+        }
+
+        if (typeof err === 'string' || typeof err === 'number' || typeof err === 'boolean') {
+            return `${err}`;
+        }
+
+        return 'Unknown error format';
     }
 }
