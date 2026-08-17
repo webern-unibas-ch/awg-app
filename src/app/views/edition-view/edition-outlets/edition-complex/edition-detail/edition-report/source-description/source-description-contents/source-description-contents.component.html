@@ -17,21 +17,22 @@
     </p>
 
     @for (content of contents; track $index) {
-        @if (content.item || content.itemDescription) {
+        @let hasItemOrDesc = content.item || content.itemDescription;
+        @let hasFolios = content.folios?.length;
+
+        @if (hasItemOrDesc) {
             <details
                 class="awg-source-description-content-details half-para-margin"
                 [id]="$index"
                 [attr.open]="openAllContentDetails ? '' : null">
                 <!-- content.itemDescription -->
-
                 <summary class="awg-source-description-content-item-summary no-para-margin">
                     <span class="awg-source-description-content-item">
                         @if (content.item) {
-                            @if (UTILS.isEmptyObject(content.itemLinkTo)) {
-                                <strong>{{ content.item }}</strong>
-                            } @else {
-                                @let sheetIds =
-                                    { complexId: content.itemLinkTo.complexId, sheetId: content.itemLinkTo.sheetId };
+                            @let link = content.itemLinkTo;
+
+                            @if (link && link.complexId && link.sheetId) {
+                                @let sheetIds = { complexId: link.complexId, sheetId: link.sheetId };
                                 <a
                                     (click)="selectSvgSheet(sheetIds)"
                                     (keyup.enter)="selectSvgSheet(sheetIds)"
@@ -39,6 +40,8 @@
                                     tabindex="0"
                                     ><strong>{{ content.item }}</strong></a
                                 >
+                            } @else {
+                                <strong>{{ content.item }}</strong>
                             }
 
                             @if (content.itemDescription) {
@@ -56,11 +59,11 @@
                 </summary>
 
                 <!-- content.folios -->
-                @if (!UTILS.isEmptyArray(content?.folios)) {
+                @if (hasFolios) {
                     <awg-source-description-content-table [content]="content" />
                 }
             </details>
-        } @else if (!UTILS.isEmptyArray(content?.folios)) {
+        } @else if (hasFolios) {
             <awg-source-description-content-table [content]="content" />
         }
     }

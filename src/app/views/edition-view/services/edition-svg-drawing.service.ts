@@ -44,15 +44,15 @@ export class EditionSvgDrawingService {
      * and returns a promise of the selection.
      *
      * @param {string} svgFilePath The given path to the svg file.
-     * @param {SVGSVGElement} svgEl The given SVGSVGElement.
-     * @param {SVGGElement} svgRootGroupEl The given SVGGElement.
+     * @param {SVGSVGElement| undefined} svgEl The given SVGSVGElement, or undefined.
+     * @param {SVGGElement| undefined} svgRootGroupEl The given SVGGElement, or undefined.
      *
      * @returns {Promise<D3Selection | undefined>} A promise that resolves to the D3 selection, or undefined.
      */
     async createSvg(
         svgFilePath: string,
-        svgEl: SVGSVGElement,
-        svgRootGroupEl: SVGGElement
+        svgEl: SVGSVGElement | undefined,
+        svgRootGroupEl: SVGGElement | undefined
     ): Promise<D3Selection | undefined> {
         if (!svgFilePath || !svgEl || !svgRootGroupEl) {
             return undefined;
@@ -231,16 +231,12 @@ export class EditionSvgDrawingService {
      * It toggles the opacity of the supplied class with the given className.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} labelOrClassName The given class label or class name if label is not provided.
+     * @param {string} labelOrClassName The given class label or class name if label is not provided (or empty string for all classes).
      * @param {boolean} isCurrentlyVisible The given current visibility state of the class.
      *
      * @returns {void} Toggles the opacity of the supplied class with the given className.
      */
     toggleSuppliedClassOpacity(svgRootGroup: D3Selection, labelOrClassName: string, isCurrentlyVisible: boolean): void {
-        if (!svgRootGroup) {
-            return;
-        }
-
         // Reverse lookup to get the class name from the lookup table
         const className =
             Array.from(this._suppliedClassesLabelLookup.entries()).find(

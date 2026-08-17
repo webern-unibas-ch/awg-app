@@ -6,7 +6,7 @@
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
             @for (folioSvgData of folioSvgDataArray; track folioSvgData.sheet?.folioId) {
-                @let folioId = folioSvgData.sheet?.folioId ?? '';
+                @let folioId = folioSvgData.sheet.folioId;
                 @let svgId = `folio-${sheetId}-${folioId}`;
 
                 <div class="col-sm-6 col-lg-{{ colSize }} svgCol">

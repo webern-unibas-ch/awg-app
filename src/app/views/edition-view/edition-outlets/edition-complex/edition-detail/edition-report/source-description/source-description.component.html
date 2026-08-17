@@ -31,88 +31,94 @@
                         }
                     </div>
                     <!-- physDesc -->
-                    @if (!UTILS.isEmptyObject(sourceDescription.physDesc)) {
+                    @let physDesc = sourceDescription?.physDesc;
+                    @if (physDesc) {
                         <div class="awg-source-description-phys-desc">
                             <!-- conditions -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.conditions)) {
+                            @let conditions = physDesc.conditions || [];
+                            @if (conditions.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.conditions"
+                                    [details]="conditions"
                                     detailsLabel=""
                                     detailsClass="conditions" />
                             }
                             <!-- writingMaterials -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.writingMaterials)) {
-                                <awg-source-description-writing-materials
-                                    [writingMaterials]="sourceDescription.physDesc.writingMaterials" />
-                            } @else if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.writingMaterialStrings)) {
+                            @let writingMaterials = physDesc.writingMaterials || [];
+                            @let writingMaterialStrings = physDesc.writingMaterialStrings || [];
+                            @if (writingMaterials.length) {
+                                <awg-source-description-writing-materials [writingMaterials]="writingMaterials" />
+                            } @else if (writingMaterialStrings.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.writingMaterialStrings"
+                                    [details]="writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
                                     detailsClass="writing-materials" />
                             }
                             <!-- writingInstruments -->
-                            @if (!UTILS.isEmptyObject(sourceDescription.physDesc.writingInstruments)) {
-                                @if (sourceDescription.physDesc.writingInstruments.main) {
-                                    <p class="awg-source-description-writing-instruments">
-                                        <span class="smallcaps">Schreibstoff:&nbsp;</span>
-                                        <span
-                                            [awgCompileHtml]="
-                                                getWritingInstruments(sourceDescription.physDesc.writingInstruments)
-                                            "></span>
-                                    </p>
-                                }
+                            @let writingInstruments = physDesc.writingInstruments;
+                            @if (writingInstruments?.main) {
+                                <p class="awg-source-description-writing-instruments">
+                                    <span class="smallcaps">Schreibstoff:&nbsp;</span>
+                                    <span [awgCompileHtml]="getWritingInstruments(writingInstruments)"></span>
+                                </p>
                             }
-                            <!-- title -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.titles)) {
+                            <!-- titles -->
+                            @let titles = physDesc.titles || [];
+                            @if (titles.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.titles"
+                                    [details]="titles"
                                     detailsLabel="Titel"
                                     detailsClass="titles" />
                             }
-                            <!-- date -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.dates)) {
+                            <!-- dates -->
+                            @let dates = physDesc.dates || [];
+                            @if (dates.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.dates"
+                                    [details]="dates"
                                     detailsLabel="Datierung"
                                     detailsClass="dates" />
                             }
                             <!-- pagination -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.paginations)) {
+                            @let paginations = physDesc.paginations || [];
+                            @if (paginations.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.paginations"
+                                    [details]="paginations"
                                     detailsLabel="Paginierung"
                                     detailsClass="paginations" />
                             }
                             <!-- measureNumbers -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.measureNumbers)) {
+                            @let measureNumbers = physDesc.measureNumbers || [];
+                            @if (measureNumbers.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.measureNumbers"
+                                    [details]="measureNumbers"
                                     detailsLabel="Taktzahlen"
                                     detailsClass="measure-numbers" />
                             }
-                            <!-- instrumentation -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.instrumentations)) {
+                            <!-- instrumentations -->
+                            @let instrumentations = physDesc.instrumentations || [];
+                            @if (instrumentations.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.instrumentations"
+                                    [details]="instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
                                     detailsClass="instrumentations" />
                             }
                             <!-- annotations -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.annotations)) {
+                            @let annotations = physDesc.annotations || [];
+                            @if (annotations.length) {
                                 <awg-source-description-details
-                                    [details]="sourceDescription.physDesc.annotations"
+                                    [details]="annotations"
                                     detailsLabel="Eintragungen"
                                     detailsClass="annotations" />
                             }
                             <!-- contents -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.contents)) {
-                                <awg-source-description-contents [contents]="sourceDescription.physDesc.contents" />
+                            @let contents = physDesc.contents || [];
+                            @if (contents.length) {
+                                <awg-source-description-contents [contents]="contents" />
                             }
 
                             <!-- corrections -->
-                            @if (!UTILS.isEmptyArray(sourceDescription?.physDesc?.corrections)) {
-                                <awg-source-description-corrections
-                                    [corrections]="sourceDescription.physDesc.corrections" />
+                            @let corrections = physDesc.corrections || [];
+                            @if (corrections.length) {
+                                <awg-source-description-corrections [corrections]="corrections" />
                             }
                         </div>
                     }

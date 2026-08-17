@@ -1,30 +1,29 @@
 <address>
     @let contact = contactMetaData();
     @let page = pageMetaData();
+    @let address = contact.address;
+    @let phone = contact.phone;
+    @let email = contact.email;
 
     <p id="awg-contact-address-header" class="smallcaps">
         <strong>
-            <a [href]="page?.awgProjectUrl">{{ page?.awgProjectName }}</a>
+            <a [href]="page.awgProjectUrl">{{ page.awgProjectName }}</a>
         </strong>
     </p>
     <p class="awg-contact-address-content">
-        <span id="awg-contact-address-institution">{{ contact?.address?.institution }}</span>
+        <span id="awg-contact-address-institution">{{ address.institution }}</span>
         <br />
-        <span id="awg-contact-address-street">{{ contact?.address?.street }}</span>
+        <span id="awg-contact-address-street">{{ address.street }}</span>
         <br />
-        <span id="awg-contact-address-postal-city"
-            >{{ contact?.address?.postalCode }}&nbsp;{{ contact?.address?.city }}</span
-        >
+        <span id="awg-contact-address-postal-city">{{ address.postalCode }}&nbsp;{{ address.city }}</span>
         <br />
-        <span id="awg-contact-address-country">{{ contact?.address?.country }}</span>
+        <span id="awg-contact-address-country">{{ address.country }}</span>
     </p>
     <p class="awg-contact-address-content">
-        <span id="awg-contact-address-phone">{{ contact?.phone?.label }}&nbsp;{{ contact?.phone?.number }}</span>
+        <span id="awg-contact-address-phone">{{ phone.label }}&nbsp;{{ phone.number }}</span>
         <br />
         <span id="awg-contact-address-email"
-            >{{ contact?.email?.label }}&nbsp;<a [href]="contact?.email?.mailto">{{
-                contact?.email?.safeString
-            }}</a></span
+            >{{ email.label }}&nbsp;<a [href]="email.mailto">{{ email.safeString }}</a></span
         >
     </p>
 </address>

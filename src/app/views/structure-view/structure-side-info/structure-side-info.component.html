@@ -5,7 +5,7 @@
         <p>&#9671;</p>
         <p>
             Konzept/Grafik:
-            @if (structureMetaData?.authors?.[0]; as author) {
+            @if (structureMetaData.authors[0]; as author) {
                 <span class="awg-structure-info-author">
                     <a [href]="author.homepage">{{ author.name }}</a>
                     <awg-meta-identifier-badges [identifiers]="author.identifiers" />

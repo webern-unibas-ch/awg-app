@@ -141,7 +141,9 @@ export class EditionIntroComponent implements OnDestroy {
             });
 
             introNavLinks.forEach((navLink: HTMLAnchorElement) => {
-                navLink.classList.toggle('active', navLink.hash.includes(activeIntroSectionId));
+                const activeHash = activeIntroSectionId ? `#${activeIntroSectionId}` : null;
+
+                navLink.classList.toggle('active', navLink.hash === activeHash);
             });
         }
     }

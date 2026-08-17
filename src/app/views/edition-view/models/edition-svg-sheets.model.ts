@@ -1,3 +1,5 @@
+import { EditionTypeKey } from './edition-type.model';
+
 /**
  * The EditionSvgSheetContent interface.
  *
@@ -52,22 +54,6 @@ export class EditionSvgSheet {
 }
 
 /**
- * The EDITION_SVG_SHEETS_KEYS const.
- *
- * It is used in the context of the edition view
- * to define the keys of a svg sheets list.
- */
-export const EDITION_SVG_SHEETS_KEYS = ['workEditions', 'textEditions', 'sketchEditions'] as const;
-
-/**
- * The EditionSvgSheetsKey type.
- *
- * It is used in the context of the edition view
- * to define the type of a svg sheet list.
- */
-export type EditionSvgSheetsKey = (typeof EDITION_SVG_SHEETS_KEYS)[number];
-
-/**
  * The EditionSvgSheetsList class.
  *
  * It is used in the context of the edition view
@@ -78,7 +64,7 @@ export class EditionSvgSheetsList {
     /**
      * The array of sheets from a svg sheet list.
      */
-    sheets: { [key in EditionSvgSheetsKey]: EditionSvgSheet[] } = {
+    sheets: { [key in EditionTypeKey]: EditionSvgSheet[] } = {
         workEditions: [],
         textEditions: [],
         sketchEditions: [],

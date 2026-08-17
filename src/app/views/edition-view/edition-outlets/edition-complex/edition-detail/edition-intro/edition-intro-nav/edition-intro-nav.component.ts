@@ -24,7 +24,7 @@ export class EditionIntroNavComponent {
      * It keeps the content blocks of the intro.
      */
     @Input()
-    introBlockContent: IntroBlock[];
+    introBlockContent: IntroBlock[] = [];
 
     /**
      * Input variable: notesLabel.
@@ -32,7 +32,7 @@ export class EditionIntroNavComponent {
      * It keeps the notes label of the intro.
      */
     @Input()
-    notesLabel: string;
+    notesLabel = '';
 
     /**
      * Model signal: selectedLanguage.

@@ -21,20 +21,20 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
 })
 export class EditionSvgSheetFooterComponent {
     /**
-     * Input variable: selectedTextcriticalCommentary.
-     *
-     * It keeps the selected textcritical commentary.
-     */
-    @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary;
-
-    /**
      * Input variable: selectedTextcritics.
      *
      * It keeps the selected textcritics of a selected svg sheet.
      */
     @Input()
-    selectedTextcritics: Textcritics;
+    selectedTextcritics: Textcritics | undefined;
+
+    /**
+     * Input variable: selectedTextcriticalCommentary.
+     *
+     * It keeps the selected textcritical commentary.
+     */
+    @Input()
+    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
 
     /**
      * Input variable: showTkA.
@@ -42,7 +42,7 @@ export class EditionSvgSheetFooterComponent {
      * If the textcritics shall be displayed.
      */
     @Input()
-    showTkA: boolean;
+    showTkA = false;
 
     /**
      * Protected readonly variable: UTILS.

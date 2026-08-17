@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
 import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
 
 /**
@@ -23,14 +22,7 @@ export class SourceDescriptionComponent {
      * It keeps the source list data.
      */
     @Input()
-    sourceDescriptionListData: SourceDescriptionList;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+    sourceDescriptionListData: SourceDescriptionList | null = null;
 
     /**
      * Public method: getWritingInstruments.
@@ -38,15 +30,17 @@ export class SourceDescriptionComponent {
      * It retrieves the string representation of the writing instruments
      * provided in the source description.
      *
-     * @param {SourceDescriptionWritingInstruments} writingInstruments The given writing instruments data.
+     * @param {SourceDescriptionWritingInstruments | undefined} writingInstruments The given writing instruments data, or undefined.
      * @returns {string} The retrieved writing instruments string.
      */
-    getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments): string {
-        const secondaryInstruments = writingInstruments.secondary?.join(', ');
-        const instrumentsString = secondaryInstruments
-            ? `${writingInstruments.main}; ${secondaryInstruments}`
-            : writingInstruments.main;
+    getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments | undefined): string {
+        if (!writingInstruments?.main) {
+            return '';
+        }
 
-        return `${instrumentsString}.`;
+        const main = writingInstruments.main;
+        const secondary = writingInstruments.secondary?.join(', ');
+
+        return secondary ? `${main}; ${secondary}.` : `${main}.`;
     }
 }

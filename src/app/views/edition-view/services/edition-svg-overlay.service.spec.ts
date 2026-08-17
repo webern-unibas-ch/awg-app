@@ -301,10 +301,9 @@ describe('EditionSvgOverlayService', () => {
             getOverlaysAndSelectionSpy.mockImplementation(
                 (_rootGroup: D3Selection, overlays: EditionSvgOverlay[], dataId: string, overlayType: string) => {
                     const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
-                    const overlayGroupRectSelection =
-                        found.length > 0
-                            ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
-                            : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
+                    const overlayGroupRectSelection = found.length
+                        ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
+                        : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
                     return [found, overlayGroupRectSelection];
                 }
             );

@@ -34,7 +34,7 @@ export class TextcriticsListComponent {
      * It keeps the textcritics list data.
      */
     @Input()
-    textcriticsListData: TextcriticsList;
+    textcriticsListData: TextcriticsList | null = null;
 
     /**
      * Protected readonly variable: EDITION_UTILS.

@@ -24,23 +24,23 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     /**
      * Input variable: id.
      *
-     * It keeps the id of the selected svg sheet
+     * It keeps the id of the selected svg sheet.
      */
-    @Input() id: string;
+    @Input() id = '';
 
     /**
      * Input variable: suppliedClasses.
      *
      * It keeps the supplied classes as a map of class names and their visibility.
      */
-    @Input() suppliedClasses: Map<string, boolean>;
+    @Input() suppliedClasses = new Map<string, boolean>();
 
     /**
      * Input variable: hasAvailableTkkOverlays.
      *
      * It keeps the information whether there are available tkk overlays.
      */
-    @Input() hasAvailableTkkOverlays: boolean;
+    @Input() hasAvailableTkkOverlays = false;
 
     /**
      * Output variable: selectOverlaysRequest.
@@ -114,7 +114,7 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      * @returns {void} Toggles the visibility of all supplied classes.
      */
     toggleAllClassesOpacity(): void {
-        this._onSuppliedClassesOpacityToggle(undefined, this.allClassesVisible);
+        this._onSuppliedClassesOpacityToggle('', this.allClassesVisible);
         this.allClassesVisible = !this.allClassesVisible;
 
         // Update visibility of supplied classes if allClassesVisible flag changes
@@ -149,7 +149,7 @@ export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
      *
      * It emits the supplied classes opacity toggle request.
      *
-     * @param className The class name.
+     * @param className The class name (or empty string for all classes).
      * @param isCurrentlyVisible The visibility of the class.
      *
      * @returns {void} Emits the supplied classes opacity toggle request.

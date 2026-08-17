@@ -6,17 +6,11 @@
         </div>
 
         <div class="col-6 col-md-2 order-md-first m-auto">
-            @if (logosData?.['unibas']; as unibasLogo) {
-                <awg-logo [logoData]="unibasLogo" />
-            }
+            <awg-logo [logoData]="logosData.unibas" />
         </div>
         <div class="col-6 col-md-3 m-auto">
-            @if (logosData?.['sagw']; as sagwLogo) {
-                <awg-logo [logoData]="sagwLogo" />
-            }
-            @if (logosData?.['snf']; as snfLogo) {
-                <awg-logo [logoData]="snfLogo" />
-            }
+            <awg-logo [logoData]="logosData.sagw" />
+            <awg-logo [logoData]="logosData.snf" />
         </div>
     </div>
 

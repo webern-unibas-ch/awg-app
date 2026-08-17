@@ -23,7 +23,7 @@ export class RouterLinkButtonGroupComponent {
      * It keeps the array of router link buttons.
      */
     @Input()
-    routerLinkButtons: RouterLinkButton[];
+    routerLinkButtons: RouterLinkButton[] = [];
 
     /**
      * Optional input variable: queryParamsHandling.

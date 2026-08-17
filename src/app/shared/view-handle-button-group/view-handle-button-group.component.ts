@@ -9,7 +9,7 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -35,15 +35,15 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * It keeps the list of view handles.
      */
     @Input()
-    viewHandles: ViewHandle[];
+    viewHandles: ViewHandle[] = [];
 
     /**
      * Input variable: selectedViewType.
      *
      * It keeps the selected view type.
      */
-    @Input()
-    selectedViewType: ViewHandleTypes;
+    @Input({ required: true })
+    selectedViewType!: ViewHandleTypes;
 
     /**
      * Output variable: viewChangeRequest.
@@ -58,7 +58,9 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      *
      * It keeps the reactive form group for the view handle.
      */
-    viewHandleControlForm: UntypedFormGroup;
+    viewHandleControlForm!: FormGroup<{
+        viewHandleControl: FormControl<ViewHandleTypes | null>;
+    }>;
 
     /**
      * Private readonly variable: _destroyed$.

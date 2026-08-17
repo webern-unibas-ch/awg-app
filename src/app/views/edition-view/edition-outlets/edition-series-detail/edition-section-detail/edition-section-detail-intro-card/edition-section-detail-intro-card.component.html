@@ -1,5 +1,5 @@
 @if (selectedSection(); as section) {
-    @if (section.content?.intro; as intro) {
+    @if (section.content.intro; as intro) {
         <div class="card awg-edition-card h-100">
             <h5 class="card-header">
                 <span class="awg-edition-info-header-title" [innerHTML]="'Einleitung'"></span>
@@ -9,11 +9,11 @@
             </div>
             <div class="card-footer d-flex flex-column">
                 <p class="mt-auto text-end">
-                    @let sectionRoute = section.labeledRoute?.route?.join('/');
+                    @let sectionRoute = section.labeledRoute.route.join('/');
                     <a
                         [routerLink]="[sectionRoute, 'intro']"
                         class="btn btn-outline-info"
-                        [class.disabled]="intro.disabled ?? true"
+                        [class.disabled]="intro.disabled"
                         >Mehr ...
                     </a>
                 </p>

@@ -6,30 +6,33 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    <!-- convolute label -->
-                    <div class="awg-convolute-label">
-                        <p>
-                            <a [routerLink]="['../report']" [fragment]="'source_' + selectedConvolute.convoluteId">{{
-                                selectedConvolute.convoluteLabel
-                            }}</a>
-                        </p>
-                    </div>
+                    @if (selectedConvolute; as convolute) {
+                        @let fragmentId = 'source_' + convolute.convoluteId;
+                        @let label = convolute.convoluteLabel;
 
-                    <!-- viewer for convolute folios -->
-                    <awg-edition-folio-viewer
-                        [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet" />
+                        <!-- convolute label -->
+                        <div class="awg-convolute-label">
+                            <p>
+                                <a [routerLink]="['../report']" [fragment]="fragmentId">{{ label }}</a>
+                            </p>
+                        </div>
 
-                    <!-- convolute legend -->
-                    <div class="awg-convolute-legend col-12">
-                        Legende:&nbsp;
-                        @for (legend of folioLegends; track legend.colorClass) {
-                            <span [class]="legend.colorClass">
-                                <fa-icon [icon]="faSquare" />
-                                {{ legend.label }}
-                            </span>
-                        }
-                    </div>
+                        <!-- viewer for convolute folios -->
+                        <awg-edition-folio-viewer
+                            [selectedConvolute]="convolute"
+                            [selectedSvgSheet]="selectedSvgSheet" />
+
+                        <!-- convolute legend -->
+                        <div class="awg-convolute-legend col-12">
+                            Legende:&nbsp;
+                            @for (legend of folioLegends; track legend.colorClass) {
+                                <span [class]="legend.colorClass">
+                                    <fa-icon [icon]="faSquare" />
+                                    {{ legend.label }}
+                                </span>
+                            }
+                        </div>
+                    }
                 </ng-template>
             </div>
         </div>

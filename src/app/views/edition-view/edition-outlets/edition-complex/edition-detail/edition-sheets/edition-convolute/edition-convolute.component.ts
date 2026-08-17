@@ -43,7 +43,7 @@ export class EditionConvoluteComponent {
      * It keeps the selected convolute.
      */
     @Input()
-    selectedConvolute: FolioConvolute;
+    selectedConvolute: FolioConvolute | undefined;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -51,7 +51,7 @@ export class EditionConvoluteComponent {
      * It keeps the selected svg sheet.
      */
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
      * Public variable: faSquare.

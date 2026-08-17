@@ -44,7 +44,7 @@ export class SourceListComponent {
      * It keeps the source list data.
      */
     @Input()
-    sourceListData: SourceList;
+    sourceListData: SourceList | null = null;
 
     /**
      * Protected readonly variable: UTILS.

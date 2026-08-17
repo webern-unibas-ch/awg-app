@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import {
-    EDITION_SVG_SHEETS_KEYS,
-    EditionSvgSheet,
-    EditionSvgSheetsKey,
-    EditionSvgSheetsList,
-} from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgOverlay, FolioConvolute, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EDITION_TYPE_KEYS, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
 
 /**
  * The Edition sheets service.
@@ -54,17 +50,17 @@ export class EditionSheetsService {
      * @param {EditionSvgSheet} selectedSvgSheet The given selected SVG sheet.
      * @param {EditionSvgSheetsList['sheets']} sheets The given array of objects representing the available SVG sheets.
      *
-     * @returns {EditionSvgSheetsKey | undefined} A string representing the current edition type, or undefined if not found.
+     * @returns {EditionTypeKey | undefined} A string representing the current edition type, or undefined if not found.
      */
     getCurrentEditionType(
         selectedSvgSheet: EditionSvgSheet,
         sheets: EditionSvgSheetsList['sheets']
-    ): EditionSvgSheetsKey | undefined {
+    ): EditionTypeKey | undefined {
         const selectedSheetContent = selectedSvgSheet?.content?.[0];
         const partial = selectedSheetContent?.partial;
         const sheetId = partial ? selectedSvgSheet.id + partial : selectedSvgSheet.id;
 
-        const editionType = (Object.keys(sheets) as EditionSvgSheetsKey[]).find(
+        const editionType = (Object.keys(sheets) as EditionTypeKey[]).find(
             type => this._findSvgSheetIndexById(sheets[type], sheetId) >= 0
         );
 
@@ -173,9 +169,9 @@ export class EditionSheetsService {
         }
 
         // Validate that expected edition types exist
-        for (const key of EDITION_SVG_SHEETS_KEYS) {
+        for (const key of EDITION_TYPE_KEYS) {
             if (!sheets[key]) {
-                console.error(`EditionSheetsService: Missing edition type in svg-sheets.json: ${key}`);
+                console.error(`[EditionSheetsService]: Missing edition type in svg-sheets.json: ${key}`);
                 continue;
             }
 

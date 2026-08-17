@@ -113,13 +113,13 @@ describe('CodemirrorComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(initSpy, 2, expectedState);
-                expectToEqual(component.editor.state, expectedState);
+                expectToEqual(component._editor.state, expectedState);
             });
 
             it('... should init the editor with the correct content if given', () => {
                 expectSpyCall(initSpy, 1);
 
-                expectToBe(component.editor.state.doc.toString(), expectedContent);
+                expectToBe(component._editor.state.doc.toString(), expectedContent);
             });
 
             it('... should init an empty editor if no content is given', () => {
@@ -130,7 +130,7 @@ describe('CodemirrorComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(initSpy, 1);
-                expectToBe(component.editor.state.doc.toString(), '');
+                expectToBe(component._editor.state.doc.toString(), '');
             });
         });
 
@@ -140,7 +140,7 @@ describe('CodemirrorComponent', () => {
             });
 
             it('... should not trigger if editor update does not change the document', () => {
-                component.editor.dispatch({
+                component._editor.dispatch({
                     selection: {
                         anchor: 0,
                     },
@@ -153,10 +153,10 @@ describe('CodemirrorComponent', () => {
 
             it('... should trigger on change of content input', () => {
                 const otherContent = 'SELECT * WHERE { ?s ?changed ?o }';
-                component.editor.dispatch({
+                component._editor.dispatch({
                     changes: {
                         from: 0,
-                        to: component.editor.state.doc.length,
+                        to: component._editor.state.doc.length,
                         insert: otherContent,
                     },
                 });
@@ -167,10 +167,10 @@ describe('CodemirrorComponent', () => {
 
             describe('... should emit provided content on editor change', () => {
                 it('... if string is thruthy', () => {
-                    component.editor.dispatch({
+                    component._editor.dispatch({
                         changes: {
                             from: 0,
-                            to: component.editor.state.doc.length,
+                            to: component._editor.state.doc.length,
                             insert: expectedContent,
                         },
                     });
@@ -181,10 +181,10 @@ describe('CodemirrorComponent', () => {
                 });
 
                 it('... if string is empty', () => {
-                    component.editor.dispatch({
+                    component._editor.dispatch({
                         changes: {
                             from: 0,
-                            to: component.editor.state.doc.length,
+                            to: component._editor.state.doc.length,
                             insert: '',
                         },
                     });
@@ -198,7 +198,7 @@ describe('CodemirrorComponent', () => {
 
         describe('#ngOnChanges()', () => {
             it('... should update the editor on changes of content', () => {
-                editorDispatchSpy = vi.spyOn(component.editor, 'dispatch');
+                editorDispatchSpy = vi.spyOn(component._editor, 'dispatch');
 
                 // Directly trigger ngOnChanges
                 component.content = 'SELECT * WHERE { ?s ?changed ?o }';
@@ -213,7 +213,7 @@ describe('CodemirrorComponent', () => {
 
             describe('... should not trigger on changes of content', () => {
                 beforeEach(() => {
-                    editorDispatchSpy = vi.spyOn(component.editor, 'dispatch');
+                    editorDispatchSpy = vi.spyOn(component._editor, 'dispatch');
                 });
 
                 it('... if first change', () => {
@@ -239,7 +239,7 @@ describe('CodemirrorComponent', () => {
                 it('... if editor is undefined', () => {
                     // Directly trigger ngOnChanges
                     component.content = 'SELECT * WHERE { ?s ?changed ?o }';
-                    component.editor = undefined;
+                    component._editor = undefined;
                     component.ngOnChanges({
                         content: new SimpleChange(expectedContent, component.content, false),
                     });
@@ -337,7 +337,7 @@ describe('CodemirrorComponent', () => {
 
             expect(() => fixture.detectChanges()).not.toThrow();
             expectSpyCall(supportsRangeGeometrySpy, 1);
-            expectToBe(component.editor.state.doc.toString(), expectedContent);
+            expectToBe(component._editor.state.doc.toString(), expectedContent);
         });
     });
 });

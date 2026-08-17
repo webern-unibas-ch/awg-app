@@ -75,14 +75,14 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the triples of the query result.
      */
-    @Input() currentQueryResultTriples: Triple[];
+    @Input() currentQueryResultTriples: Triple[] = [];
 
     /**
      * Input variable: height.
      *
      * It keeps the default height of the component.
      */
-    @Input() height: number;
+    @Input() height = 0;
 
     /**
      * Output variable: clickedNodeRequest.
@@ -96,21 +96,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graphContainer', { static: true }) graphContainer: ElementRef<HTMLDivElement>;
+    @ViewChild('graphContainer', { static: true }) graphContainer!: ElementRef<HTMLDivElement>;
 
     /**
      * ViewChild variable: sliderInput.
      *
      * It keeps the reference to the input range slider.
      */
-    @ViewChild('sliderInput', { static: true }) sliderInput: ElementRef<HTMLInputElement>;
+    @ViewChild('sliderInput', { static: true }) sliderInput!: ElementRef<HTMLInputElement>;
 
     /**
      * ViewChild variable: sliderInputLabel.
      *
      * It keeps the reference to the input sliderInputLabel.
      */
-    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel: ElementRef<HTMLSpanElement>;
+    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel!: ElementRef<HTMLSpanElement>;
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -151,49 +151,49 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the D3 svg selection.
      */
-    private _svg: D3Selection;
+    private _svg: D3Selection | undefined;
 
     /**
      * Private variable: _zoomGroup.
      *
      * It keeps the D3 zoomGroup selection.
      */
-    private _zoomGroup: D3Selection;
+    private _zoomGroup: D3Selection | undefined;
 
     /**
      * Private variable: _zoomBehaviour.
      *
      * It keeps the D3 zoom behaviour.
      */
-    private _zoomBehaviour: D3ZoomBehaviour;
+    private _zoomBehaviour: D3ZoomBehaviour | undefined;
 
     /**
      * Private variable: _forceSimulation.
      *
      * It keeps the D3 force simulation.
      */
-    private _forceSimulation: D3Simulation;
+    private _forceSimulation: D3Simulation | undefined;
 
     /**
      * Private variable: _simulationData.
      *
      * It keeps the data for the D3 force simulation.
      */
-    private _simulationData: D3SimulationData;
+    private _simulationData: D3SimulationData | undefined;
 
     /**
      * Private variable: _divWidth.
      *
      * It keeps the width of the container div.
      */
-    private _divWidth: number;
+    private _divWidth = 0;
 
     /**
      * Private variable: _divHeight.
      *
      * It keeps the height of the container div.
      */
-    private _divHeight: number;
+    private _divHeight = 0;
 
     /**
      * Private readonly variable: _resize$.
@@ -304,7 +304,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Sets the initial translation and scale factor.
      */
     onReCenter(): void {
-        if (!this._svg || !(this._divWidth && this._divHeight)) {
+        if (!this._zoomBehaviour || !this._svg || !(this._divWidth && this._divHeight)) {
             return;
         }
         this.onZoomChange(this.sliderConfig.initial);
@@ -451,6 +451,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Sets up the simulation.
      */
     private _setupForceSimulation(): void {
+        if (!this._simulationData) {
+            return;
+        }
+
         // Set up the simulation
         this._forceSimulation = D3_FORCE.forceSimulation();
 
@@ -498,7 +502,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the svg container.
      */
     private _updateSVG(): void {
-        if (!this._svg) {
+        if (!this._svg || !this._zoomGroup || !this._simulationData || !this._forceSimulation) {
             return;
         }
 
@@ -617,7 +621,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Sets the zoom for the rescale.
      */
     private _reScaleZoom(): void {
-        if (!this._svg || !this.sliderConfig.value) {
+        if (!this._zoomBehaviour || !this._svg || !this.sliderConfig.value) {
             return;
         }
         this._zoomBehaviour.scaleTo(this._svg, this.sliderConfig.value);
@@ -767,7 +771,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _getContainerDimensions(container: ElementRef<HTMLDivElement>): { width: number; height: number } {
         if (!container?.nativeElement) {
-            return null;
+            return { width: 0, height: 0 };
         }
         return { width: container.nativeElement.clientWidth, height: container.nativeElement.clientHeight };
     }
@@ -783,7 +787,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _nodeRadius(node: D3SimulationNode): number {
         if (!node) {
-            return null;
+            return 0;
         }
 
         let defaultRadius = 8;
@@ -842,12 +846,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {D3SimulationData} The D3 graph data.
      */
     private _triplesToD3GraphData(triples: Triple[], labelMap: Map<string, string>): D3SimulationData {
-        if (!triples) {
-            return undefined;
-        }
-
-        // Graph
         const graphData: D3SimulationData = new D3SimulationData();
+
+        if (!triples) {
+            return graphData;
+        }
 
         const nodeMap = new Map<string, D3SimulationNode>();
 
@@ -933,7 +936,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the position.
      */
     private _updateNodePositions(nodes: D3Selection): void {
-        nodes.attr('cx', (d: D3SimulationNode) => d.x).attr('cy', (d: D3SimulationNode) => d.y);
+        nodes.attr('cx', (d: D3SimulationNode) => d.x ?? 0).attr('cy', (d: D3SimulationNode) => d.y ?? 0);
 
         /*
         // constrains the nodes to be within a box
@@ -962,7 +965,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the position.
      */
     private _updateNodeTextPositions(nodeTexts: D3Selection): void {
-        nodeTexts.attr('x', (d: D3SimulationNode) => d.x + 12).attr('y', (d: D3SimulationNode) => d.y + 3);
+        nodeTexts
+            .attr('x', (d: D3SimulationNode) => (d.x ?? 0) + 12)
+            .attr('y', (d: D3SimulationNode) => (d.y ?? 0) + 3);
     }
 
     /**
@@ -978,10 +983,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _updateLinkPositions(links: D3Selection): void {
         links.attr('d', (d: D3SimulationNodeTriple) => {
-            const x1 = d.nodeSubject.x;
-            const y1 = d.nodeSubject.y;
-            let x2 = d.nodeObject.x;
-            let y2 = d.nodeObject.y;
+            const x1 = d.nodeSubject.x ?? 0;
+            const y1 = d.nodeSubject.y ?? 0;
+            let x2 = d.nodeObject.x ?? 0;
+            let y2 = d.nodeObject.y ?? 0;
             const dr = 0;
 
             // Defaults for normal edge.
@@ -1013,26 +1018,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 y2 = y2 + 1;
             }
 
-            return (
-                'M' +
-                x1 +
-                ',' +
-                y1 +
-                'A' +
-                drx +
-                ',' +
-                dry +
-                ' ' +
-                xRotation +
-                ',' +
-                largeArc +
-                ',' +
-                sweep +
-                ' ' +
-                x2 +
-                ',' +
-                y2
-            );
+            return `M${x1},${y1}A${drx},${dry} ${xRotation},${largeArc},${sweep} ${x2},${y2}`;
         });
     }
 
@@ -1049,17 +1035,34 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
             .attr('x', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return 20 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
-                }
+                const sX = d.nodeSubject.x ?? 0;
+                const pX = d.nodePredicate.x ?? 0;
+                const oX = d.nodeObject.x ?? 0;
 
-                return 10 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
+                const sY = d.nodeSubject.y ?? 0;
+                const oY = d.nodeObject.y ?? 0;
+
+                const centerX = (sX + pX + oX) / 3;
+
+                if (sX === oX && sY === oY) {
+                    return 20 + centerX;
+                }
+                return 10 + centerX;
             })
             .attr('y', (d: D3SimulationNodeTriple) => {
-                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
-                    return -40 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+                const sX = d.nodeSubject.x ?? 0;
+                const oX = d.nodeObject.x ?? 0;
+
+                const sY = d.nodeSubject.y ?? 0;
+                const pY = d.nodePredicate.y ?? 0;
+                const oY = d.nodeObject.y ?? 0;
+
+                const centerY = (sY + pY + oY) / 3;
+
+                if (sX === oX && sY === oY) {
+                    return -40 + centerY;
                 }
-                return 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+                return 4 + centerY;
             });
     }
 }

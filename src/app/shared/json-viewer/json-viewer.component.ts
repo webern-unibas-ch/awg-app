@@ -33,5 +33,5 @@ export class JsonViewerComponent {
      * It keeps the header for the json viewer.
      */
     @Input()
-    jsonViewerHeader: string;
+    jsonViewerHeader = '';
 }

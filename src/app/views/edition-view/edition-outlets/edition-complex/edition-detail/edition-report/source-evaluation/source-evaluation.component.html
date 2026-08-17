@@ -1,8 +1,8 @@
 @if (sourceEvaluationListData) {
     <div class="awg-source-evaluation-list card">
         <div class="card-body">
-            @let content = sourceEvaluationListData.sources?.[0]?.content || [];
-            @if (UTILS.isEmptyArray(content)) {
+            @let content = sourceEvaluationListData.sources[0].content || [];
+            @if (UTILS.isEmptyArray(content) && editionComplex) {
                 <p class="awg-source-evaluation-empty p-5 border rounded-3">
                     <small class="text-muted"
                         >[Die Quellenbewertung zum Editionskomplex

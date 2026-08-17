@@ -1,4 +1,4 @@
-@if (queryResult) {
+@if (queryResult(); as queryResult) {
     <awg-table
         [tableTitle]="'SELECT Anfrage'"
         [headerInputData]="queryResult.head.vars"

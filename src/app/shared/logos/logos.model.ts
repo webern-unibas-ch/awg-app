@@ -43,5 +43,5 @@ export type Logos = {
     /**
      * The collection of logos mapped by their keys.
      */
-    [key in LogoKeys]?: Logo;
+    [key in LogoKeys]: Logo;
 };

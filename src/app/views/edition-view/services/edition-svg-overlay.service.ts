@@ -107,7 +107,7 @@ export class EditionSvgOverlayService {
      * Returns true if there are available TKK overlays.
      */
     get hasAvailableTkkOverlays(): boolean {
-        return !!this._tkkOverlaysState.available && this._tkkOverlaysState.available.length > 0;
+        return !!this._tkkOverlaysState.available?.length;
     }
 
     /**
@@ -411,7 +411,7 @@ export class EditionSvgOverlayService {
                     this._updateTkkOverlayColor(overlays, overlayGroupRectSelection, EditionSvgOverlayActionTypes.fill);
                 })
                 .on('click', () => {
-                    if (overlays.length > 0) {
+                    if (overlays.length) {
                         overlays.forEach(overlay => (overlay.isSelected = !overlay.isSelected));
                     }
                     this._updateTkkOverlayColor(

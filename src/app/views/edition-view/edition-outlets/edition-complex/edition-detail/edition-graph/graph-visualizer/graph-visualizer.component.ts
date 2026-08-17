@@ -4,7 +4,7 @@
  */
 import { ChangeDetectionStrategy, Component, inject, input, Input, OnInit } from '@angular/core';
 
-import { EMPTY, from, Observable } from 'rxjs';
+import { EMPTY, Observable, from as observableFrom } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
@@ -32,7 +32,7 @@ export class GraphVisualizerComponent implements OnInit {
      * It keeps the input data for the RDF graph.
      */
     @Input()
-    graphRDFInputData: GraphRDFData;
+    graphRDFInputData: GraphRDFData = new GraphRDFData();
 
     /**
      * Readonly input signal: isFullscreenMode.
@@ -53,35 +53,35 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It keeps the input query string of the graph visualization.
      */
-    query: GraphSparqlQuery;
+    query: GraphSparqlQuery = new GraphSparqlQuery();
 
     /**
      * Public variable: queryList.
      *
      * It keeps the input query list of the graph visualization.
      */
-    queryList: GraphSparqlQuery[];
+    queryList: GraphSparqlQuery[] = [];
 
     /**
      * Public variable: queryResult$.
      *
      * It keeps the result of the query as an observable of QueryResult.
      */
-    queryResult$: Observable<QueryResult>;
+    queryResult$: Observable<QueryResult> = EMPTY;
 
     /**
      * Public variable: queryTime.
      *
      * It keeps the duration time of the query.
      */
-    queryTime: number;
+    queryTime = 0;
 
     /**
      * Public variable: triples.
      *
      * It keeps the input triple string of the graph visualization.
      */
-    triples: string;
+    triples = '';
 
     /**
      * Private readonly injection variable: _graphVisualizerService.
@@ -169,7 +169,7 @@ export class GraphVisualizerComponent implements OnInit {
         if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
             // Query local store
             const result = this._queryLocalStore(this.query.queryType, this.query.queryString, this.triples);
-            this.queryResult$ = from(result);
+            this.queryResult$ = observableFrom(result);
         } else {
             this.queryResult$ = EMPTY;
         }

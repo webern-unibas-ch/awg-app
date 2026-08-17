@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 
+import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-app/views/edition-view/models/edition-type.model';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models';
 
 /**
@@ -33,7 +34,7 @@ export class EditionSvgSheetFacetComponent {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheetsList;
+    svgSheetsData: EditionSvgSheetsList | null = null;
 
     /**
      * Input variable: selectedSvgSheet.
@@ -41,7 +42,7 @@ export class EditionSvgSheetFacetComponent {
      * It keeps the selected svg sheet.
      */
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
      * Output variable: toggleSheetFacetRequest.
@@ -50,6 +51,20 @@ export class EditionSvgSheetFacetComponent {
      */
     @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
+     * Public readonly variable: EDITION_TYPE_LABEL_MAP.
+     *
+     * It keeps the map of the edition type keys and their corresponding labels.
+     */
+    readonly EDITION_TYPE_LABEL_MAP = EDITION_TYPE_LABEL_MAP;
+
+    /**
+     * Public readonly variable: EDITION_TYPE_KEYS.
+     *
+     * It keeps the available keys for the edition types.
+     */
+    readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
 
     /**
      * Public variable: faAnglesLeft.

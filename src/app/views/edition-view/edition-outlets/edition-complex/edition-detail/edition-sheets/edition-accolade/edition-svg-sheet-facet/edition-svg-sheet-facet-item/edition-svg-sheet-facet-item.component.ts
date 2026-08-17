@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, Input } from '@angular/core';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EditionSvgSheet } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
+import { EditionTypeLabel } from '@awg-views/edition-view/models/edition-type.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -28,12 +29,11 @@ export class EditionSvgSheetFacetItemComponent {
     private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Input variable: facetItemLabel.
+     * Readonly input signal: facetItemLabel.
      *
-     * It keeps the label of the facet item.
+     * It holds the label of the facet item.
      */
-    @Input()
-    facetItemLabel: string;
+    facetItemLabel = input.required<EditionTypeLabel>();
 
     /**
      * Input variable: svgSheets.
@@ -41,7 +41,7 @@ export class EditionSvgSheetFacetItemComponent {
      * It keeps the svg sheets.
      */
     @Input()
-    svgSheets: EditionSvgSheet[];
+    svgSheets: EditionSvgSheet[] = [];
 
     /**
      * Input variable: selectedSvgSheet.
@@ -49,7 +49,7 @@ export class EditionSvgSheetFacetItemComponent {
      * It keeps the selected svg sheet.
      */
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
      * Protected readonly variable: UTILS.

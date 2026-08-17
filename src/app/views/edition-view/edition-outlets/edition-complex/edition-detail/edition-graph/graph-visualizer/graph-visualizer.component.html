@@ -45,7 +45,7 @@
                         [isFullscreen]="isFullscreen"
                         (clickedTableRequest)="onTableNodeClick($event)" />
                 } @else {
-                    <awg-unsupported-type-results [queryType]="query.queryType" [isFullscreen]="isFullscreen" />
+                    <awg-unsupported-type-results [queryType]="query.queryType || ''" [isFullscreen]="isFullscreen" />
                 }
             }
         </div>

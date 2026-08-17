@@ -63,7 +63,7 @@ export class GraphVisualizerService {
      */
     checkNamespacesInQuery(queryStr: string, turtleStr: string): string {
         if (!queryStr || !turtleStr) {
-            return undefined;
+            return '';
         }
         const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
         const sparqlNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
@@ -122,7 +122,7 @@ export class GraphVisualizerService {
         if (queryType === 'construct') {
             const response = res as RDFStoreConstructResponse;
             const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
-            const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
+            const constructResponse = this._prepareConstructResponse(response.triples || [], namespaces, mimeType);
             return constructResponse;
         }
 
@@ -506,12 +506,11 @@ export class GraphVisualizerService {
      * It prepares the data of the select response.
      *
      * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
-     *
-     * @returns  {status: number; data: QuerySelectResult | string } An object with a status code, and the data as QuerySelectResult or string.
+     * @returns  {status: number; data: QuerySelectResult | string | undefined } An object with a status code, and the data as QuerySelectResult, string, or undefined.
      */
     private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
         status: number;
-        data: QuerySelectResult | string;
+        data: QuerySelectResult | string | undefined;
     } {
         if (!selectResponse) {
             return { status: 404, data: undefined };

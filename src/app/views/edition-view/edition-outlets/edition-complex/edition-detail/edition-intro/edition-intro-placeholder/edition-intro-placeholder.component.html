@@ -1,7 +1,11 @@
-<div class="awg-edition-intro-placeholder">
-    <p class="text-muted small">
-        [Die Einleitung zum Editionskomplex <span [innerHTML]="editionComplex?.complexId?.full"></span> erscheint im
-        Zusammenhang der vollständigen Edition von <span [innerHTML]="editionComplex?.complexId?.short"></span> in
-        {{ editionComplex?.pubStatement?.labeledSectionRoute.label }}.]
-    </p>
-</div>
+@let complexId = editionComplex?.complexId;
+@let sectionRoute = editionComplex?.pubStatement?.labeledSectionRoute;
+
+@if (complexId && sectionRoute) {
+    <div class="awg-edition-intro-placeholder">
+        <p class="text-muted small">
+            [Die Einleitung zum Editionskomplex <span [innerHTML]="complexId.full"></span> erscheint im Zusammenhang der
+            vollständigen Edition von <span [innerHTML]="complexId.short"></span> in {{ sectionRoute.label }}.]
+        </p>
+    </div>
+}

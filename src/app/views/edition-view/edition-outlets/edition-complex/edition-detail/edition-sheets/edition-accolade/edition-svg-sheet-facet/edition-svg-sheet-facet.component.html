@@ -9,20 +9,16 @@
         </button>
         @if (!isMinimized) {
             <div class="card-body">
-                <awg-edition-svg-sheet-facet-item
-                    [facetItemLabel]="'Werkeditionen'"
-                    [svgSheets]="svgSheetsData.sheets.workEditions"
-                    [selectedSvgSheet]="selectedSvgSheet" />
-                <hr />
-                <awg-edition-svg-sheet-facet-item
-                    [facetItemLabel]="'Texteditionen'"
-                    [svgSheets]="svgSheetsData.sheets.textEditions"
-                    [selectedSvgSheet]="selectedSvgSheet" />
-                <hr />
-                <awg-edition-svg-sheet-facet-item
-                    [facetItemLabel]="'Skizzeneditionen'"
-                    [svgSheets]="svgSheetsData.sheets.sketchEditions"
-                    [selectedSvgSheet]="selectedSvgSheet" />
+                @for (key of EDITION_TYPE_KEYS; track key; let isLast = $last) {
+                    <awg-edition-svg-sheet-facet-item
+                        [facetItemLabel]="EDITION_TYPE_LABEL_MAP[key]"
+                        [svgSheets]="svgSheetsData.sheets[key]"
+                        [selectedSvgSheet]="selectedSvgSheet" />
+
+                    @if (!isLast) {
+                        <hr />
+                    }
+                }
             </div>
         }
     </div>

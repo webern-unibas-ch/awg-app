@@ -22,7 +22,7 @@ export class SourceDescriptionCorrectionsComponent {
      * It keeps the corrections data.
      */
     @Input()
-    corrections: Textcritics[];
+    corrections: Textcritics[] = [];
 
     /**
      * Public variable: openAllCorrectionDetails.

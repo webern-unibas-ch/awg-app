@@ -37,7 +37,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps the list of precomposed SPARQL queries.
      */
     @Input()
-    queryList: GraphSparqlQuery[];
+    queryList: GraphSparqlQuery[] = [];
 
     /**
      * Input variable: query.
@@ -45,7 +45,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps the input for the SPARQL query.
      */
     @Input()
-    query: GraphSparqlQuery;
+    query: GraphSparqlQuery = new GraphSparqlQuery();
 
     /**
      * Input variable: isFullscreen.
@@ -53,7 +53,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Output variable: errorMessageRequest.
