@@ -419,9 +419,9 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    const urlTree = routerLink.urlTree;
+                    const urlTreeString = routerLink.urlTree?.toString() ?? '';
 
-                    expectToBe(urlTree.toString(), expectedRouterLinks[index].join('/'));
+                    expectToBe(urlTreeString, expectedRouterLinks[index].join('/'));
                 }
             });
 

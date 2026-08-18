@@ -201,12 +201,12 @@ describe('EditionSheetsService (DONE)', () => {
                     );
 
                     if (index < expectedOrderOfSheets.length - 1) {
-                        const nextSheet = expectedOrderOfSheets.at(index + 1);
+                        const nextSheet = expectedOrderOfSheets[index + 1];
                         const expectedNextSheetId = nextSheet.id + (nextSheet.content?.[0]?.partial || '');
 
                         expectToEqual(nextSheetId, expectedNextSheetId);
                     } else {
-                        expectToEqual(nextSheetId, expectedOrderOfSheets.at(index).id);
+                        expectToEqual(nextSheetId, expectedOrderOfSheets[index].id);
                     }
                 });
             });
@@ -223,12 +223,12 @@ describe('EditionSheetsService (DONE)', () => {
                     );
 
                     if (index < expectedOrderOfSheets.length - 1) {
-                        const nextSheet = expectedOrderOfSheets.at(index + 1);
+                        const nextSheet = expectedOrderOfSheets[index + 1];
                         const expectedNextSheetId = nextSheet.id + (nextSheet.content?.[0]?.partial || '');
 
                         expectToEqual(nextSheetId, expectedNextSheetId);
                     } else {
-                        expectToEqual(nextSheetId, expectedOrderOfSheets.at(index).id);
+                        expectToEqual(nextSheetId, expectedOrderOfSheets[index].id);
                     }
                 });
             });
@@ -237,7 +237,9 @@ describe('EditionSheetsService (DONE)', () => {
         describe('... should return the id of the selected sheet', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
                 const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
-                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1));
+
+                expect(expectedSheetArray.at(-1)).toBeDefined();
+                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1)!);
                 const direction = 1;
 
                 const nextSheetId = editionSheetsService.getNextSheetId(
@@ -270,12 +272,12 @@ describe('EditionSheetsService (DONE)', () => {
             expect(editionSheetsService.filterTextcriticalCommentaryForOverlays).toBeDefined();
         });
 
-        describe('... should return empty comment array, but correct preamble', () => {
-            it('... if no textcritical commentary is given', () => {
-                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
+        describe('... should return empty comments array, but correct preamble', () => {
+            it('... if default TextcriticalCommentary is given', () => {
+                const expectedResult = new TextcriticalCommentary();
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
-                    undefined,
+                    new TextcriticalCommentary(),
                     expectedOverlays
                 );
 
@@ -283,36 +285,32 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no textcritical comment blocks are given', () => {
-                const expectedResult: TextcriticalCommentary = { preamble: '', comments: [] };
+                const expectedResult = new TextcriticalCommentary();
+                expectedResult.preamble = 'This is a preamble.';
+
+                const testCommentary = new TextcriticalCommentary();
+                testCommentary.preamble = 'This is a preamble.';
+                testCommentary.comments = [];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
-                    { preamble: '', comments: [] },
+                    testCommentary,
                     expectedOverlays
-                );
-
-                expectToEqual(result, expectedResult);
-            });
-
-            it('... if no overlays are given', () => {
-                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
-
-                const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
-                    expectedTextcriticalCommentary,
-                    undefined
                 );
 
                 expectToEqual(result, expectedResult);
             });
 
             it('... if no comments match the given overlay', () => {
-                const expectedResult: TextcriticalCommentary = { preamble: 'This is a preamble.', comments: [] };
-                expectedOverlays = [
+                const expectedResult = new TextcriticalCommentary();
+                expectedResult.preamble = 'This is a preamble.';
+                expectedResult.comments = [];
+                const notMatchingOverlays = [
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
                 ];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
-                    expectedOverlays
+                    notMatchingOverlays
                 );
 
                 expectToEqual(result, expectedResult);
@@ -323,17 +321,10 @@ describe('EditionSheetsService (DONE)', () => {
             expectedOverlays = [];
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
-                    expectedOverlays.push(
-                        new EditionSvgOverlay(
-                            EditionSvgOverlayTypes.tkk,
-                            blockComment.svgGroupId,
-                            blockComment.svgGroupId,
-                            true
-                        )
-                    );
+                    const id = blockComment.svgGroupId ?? '';
+                    expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true));
                 });
             });
-
             const expectedResult = expectedTextcriticalCommentary;
 
             const filteredCommentary = editionSheetsService.filterTextcriticalCommentaryForOverlays(
@@ -347,14 +338,8 @@ describe('EditionSheetsService (DONE)', () => {
         it('... should find a comment for a single selected item by id', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
-                    expectedOverlays = [
-                        new EditionSvgOverlay(
-                            EditionSvgOverlayTypes.tkk,
-                            blockComment.svgGroupId,
-                            blockComment.svgGroupId,
-                            true
-                        ),
-                    ];
+                    const id = blockComment.svgGroupId ?? '';
+                    expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
 
                     const expectedResult = {
                         preamble: expectedTextcriticalCommentary.preamble,
@@ -377,20 +362,21 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should find comments for multiple selected items by id', () => {
+            const firstComment = expectedTextcriticalCommentary.comments[0];
+            const lastComment = expectedTextcriticalCommentary.comments.at(-1);
+
+            expect(firstComment).toBeDefined();
+            expect(lastComment).toBeDefined();
+
             const selectedBlockComments = [
-                structuredClone(expectedTextcriticalCommentary.comments[0].blockComments[0]),
-                structuredClone(expectedTextcriticalCommentary.comments.at(-1).blockComments[0]),
+                structuredClone(firstComment.blockComments[0]),
+                structuredClone(lastComment!.blockComments[0]),
             ];
 
-            expectedOverlays = selectedBlockComments.map(
-                blockComment =>
-                    new EditionSvgOverlay(
-                        EditionSvgOverlayTypes.tkk,
-                        blockComment.svgGroupId,
-                        blockComment.svgGroupId,
-                        true
-                    )
-            );
+            expectedOverlays = selectedBlockComments.map(blockComment => {
+                const id = blockComment.svgGroupId ?? '';
+                return new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true);
+            });
 
             const expectedResult = {
                 preamble: expectedTextcriticalCommentary.preamble,
@@ -417,60 +403,6 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return `undefined` if', () => {
-            it('... no convolute data is given', () => {
-                const convolute = editionSheetsService.selectConvolute(
-                    undefined,
-                    expectedSheets,
-                    expectedSelectedSheet
-                );
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no sheets are given', () => {
-                const convolute = editionSheetsService.selectConvolute(
-                    expectedFolioConvolutes,
-                    undefined,
-                    expectedSelectedSheet
-                );
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no selected sheet is given', () => {
-                const convolute = editionSheetsService.selectConvolute(
-                    expectedFolioConvolutes,
-                    expectedSheets,
-                    undefined
-                );
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no convolute and no sheets are given', () => {
-                const convolute = editionSheetsService.selectConvolute(undefined, undefined, expectedSelectedSheet);
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no convolute and no selected sheet are given', () => {
-                const convolute = editionSheetsService.selectConvolute(undefined, expectedSheets, undefined);
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no sheets and no selected sheet are given', () => {
-                const convolute = editionSheetsService.selectConvolute(expectedFolioConvolutes, undefined, undefined);
-
-                expect(convolute).toBeUndefined();
-            });
-
-            it('... no convolute, no sheets and no selected sheet are given', () => {
-                const convolute = editionSheetsService.selectConvolute(undefined, undefined, undefined);
-
-                expect(convolute).toBeUndefined();
-            });
-
             it('... the selected sheet is in the workEditions section of the given sheet list', () => {
                 expectedSelectedSheet = structuredClone(mockEditionData.mockSvgSheet_WE1);
 
@@ -540,26 +472,10 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return empty EditionSvgSheet object if', () => {
-            it('... no sheet list is given', () => {
-                const expectedResult = new EditionSvgSheet();
-
-                const sheet = editionSheetsService.selectSvgSheetById(undefined, expectedSelectedSheet.id);
-
-                expectToEqual(sheet, expectedResult);
-            });
-
             it('... no sheet id is given', () => {
                 const expectedResult = new EditionSvgSheet();
 
-                const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, undefined);
-
-                expectToEqual(sheet, expectedResult);
-            });
-
-            it('... no sheet list and no sheet id are given', () => {
-                const expectedResult = new EditionSvgSheet();
-
-                const sheet = editionSheetsService.selectSvgSheetById(undefined, undefined);
+                const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, '');
 
                 expectToEqual(sheet, expectedResult);
             });
@@ -584,15 +500,15 @@ describe('EditionSheetsService (DONE)', () => {
                 expectSpyCall(consoleSpy, 3);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition type in svg-sheets.json: workEditions'
+                    '[EditionSheetsService]: Missing edition type in svg-sheets.json: workEditions'
                 );
                 expectToEqual(
                     mockConsole.get(1),
-                    'EditionSheetsService: Missing edition type in svg-sheets.json: textEditions'
+                    '[EditionSheetsService]: Missing edition type in svg-sheets.json: textEditions'
                 );
                 expectToEqual(
                     mockConsole.get(2),
-                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
+                    '[EditionSheetsService]: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
 
@@ -607,7 +523,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectSpyCall(consoleSpy, 1);
                 expectToEqual(
                     mockConsole.get(0),
-                    'EditionSheetsService: Missing edition type in svg-sheets.json: sketchEditions'
+                    '[EditionSheetsService]: Missing edition type in svg-sheets.json: sketchEditions'
                 );
             });
         });
@@ -850,7 +766,10 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
                 const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = expectedSheetArray.length - 1;
-                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1));
+
+                expect(expectedSheetArray.at(-1)).toBeDefined();
+                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1)!);
+
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
                 const direction = 1;
 
@@ -889,16 +808,16 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         describe('... should return -1 if', () => {
-            it('... the given sheetArray is undefined', () => {
-                const index = editionSheetsService['_findSvgSheetIndexById'](undefined, 'someId');
+            it('... the given sheetArray is empty', () => {
+                const index = editionSheetsService['_findSvgSheetIndexById']([], 'someId');
 
                 expectToBe(index, -1);
             });
 
-            it('... the given id is undefined', () => {
+            it('... the given id is empty', () => {
                 const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
 
-                const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, undefined);
+                const index = editionSheetsService['_findSvgSheetIndexById'](expectedSheetArray, '');
 
                 expectToBe(index, -1);
             });

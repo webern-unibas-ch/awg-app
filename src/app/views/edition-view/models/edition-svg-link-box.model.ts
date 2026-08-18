@@ -9,10 +9,10 @@ export interface EditionSvgLinkBox {
     /**
      * The svgGroupId of the link box.
      */
-    svgGroupId?: string;
+    svgGroupId: string;
 
     /**
-     * The link to another svg.
+     * The link to another svg sheet.
      */
     linkTo: { complexId: string; sheetId: string };
 }

@@ -287,9 +287,9 @@ describe('HomeViewCardComponent (DONE)', () => {
             it('... can get correct linkParams from template', () => {
                 const internalLink = expectedInternalCardData.link as HomeViewCardInternalLink;
                 const expectedRouterLink = internalLink.route.join('/');
-                const urlTree = routerLinks[0].urlTree;
+                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
 
-                expectToEqual(urlTree.toString(), expectedRouterLink);
+                expectToEqual(urlTreeString, expectedRouterLink);
             });
 
             it('... can click all links in template', async () => {

@@ -126,14 +126,14 @@ export class EditionSvgOverlayService {
      *
      * It creates the D3 SVG overlays for the textcritical comments and link boxes.
      *
-     * @param {D3Selection} rootGroupSelection The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
      * @param {Function} onLinkBoxSelectFn The callback function for the click event of the link box overlay, which receives the id of the clicked link box group.
      * @param {Function} onTkkOverlaySelectFn The callback function for the click event of the tkk overlay, which receives the list of selected tkk overlays.
      *
      * @returns {void} Creates the D3 SVG sheet overlays.
      */
     createSvgOverlays(
-        rootGroupSelection: D3Selection,
+        rootGroupSelection: D3Selection | undefined,
         onLinkBoxSelectFn: (id: string) => void,
         onTkkOverlaySelectFn: (selected: EditionSvgOverlay[]) => void
     ): void {
@@ -165,13 +165,17 @@ export class EditionSvgOverlayService {
      *
      * Toggles highlight on or off for all tkk overlays in the given root group selection.
      *
-     * @param {D3Selection} rootGroupSelection The D3 selection of the SVG root group.
+     * @param {D3Selection| undefined} rootGroupSelection The D3 selection of the SVG root group, or undefined.
      * @param {string} overlayType The overlay type (should be 'tkk').
      * @param {boolean} highlight Whether to highlight (true) or remove highlight (false).
      *
      * @returns {void}
      */
-    toggleTkkOverlayHighlights(rootGroupSelection: D3Selection, overlayType: string, highlight: boolean): void {
+    toggleTkkOverlayHighlights(
+        rootGroupSelection: D3Selection | undefined,
+        overlayType: string,
+        highlight: boolean
+    ): void {
         if (!rootGroupSelection) {
             return;
         }

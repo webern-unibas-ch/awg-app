@@ -216,9 +216,9 @@ describe('NavbarItemComponent (DONE)', () => {
                                 });
 
                                 it('... can get correct linkParams from template', () => {
-                                    const urlTree = routerLinks[0].urlTree;
+                                    const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
 
-                                    expectToBe(urlTree.toString(), expectedRouterlinks[0].join('/'));
+                                    expectToBe(urlTreeString, expectedRouterlinks[0].join('/'));
                                 });
 
                                 it('... can click all links in template', async () => {

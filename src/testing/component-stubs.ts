@@ -195,7 +195,7 @@ export class EditionJumbotronStubComponent {
 })
 export class EditionSectionDetailComplexCardStubComponent {
     @Input()
-    complexes: EditionOutlineComplexItem[];
+    complexes: EditionOutlineComplexItem[] = [];
 }
 
 @Component({

@@ -5,7 +5,11 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { expectSpyCall, expectToBe } from '@testing/expect-helper';
 
-import { EditionOutlineComplexTypes, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import {
+    EditionOutlineComplexItem,
+    EditionOutlineComplexTypes,
+    EditionOutlineSeries,
+} from '@awg-views/edition-view/models';
 
 import { Statistics, StatisticsSectionBreakdown, StatisticsSeriesBreakdown } from '../models/statistics.model';
 import { StatisticsService } from './statistics.service';
@@ -335,7 +339,7 @@ describe('StatisticsService', () => {
                     { disabled: false, complex: { complexId: { route: '/op2' } } },
                     { disabled: true, complex: { complexId: { route: '/op3' } } },
                 ],
-                mnr: [],
+                mnr: [] as EditionOutlineComplexItem[],
             } as EditionOutlineComplexTypes;
 
             (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
@@ -353,7 +357,7 @@ describe('StatisticsService', () => {
 
         it('... should correctly count and separate mnr and mnrX complexes', () => {
             const complexTypes: EditionOutlineComplexTypes = {
-                opus: [],
+                opus: [] as EditionOutlineComplexItem[],
                 mnr: [
                     { disabled: false, complex: { complexId: { route: '/m30' } } },
                     { disabled: false, complex: { complexId: { route: '/mx402' } } },

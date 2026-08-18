@@ -109,9 +109,6 @@ export class EditionSheetsService {
         commentary: TextcriticalCommentary,
         overlays: EditionSvgOverlay[]
     ): TextcriticalCommentary {
-        if (!commentary?.comments || !overlays) {
-            return { preamble: commentary?.preamble || '', comments: [] };
-        }
         const filteredComments = commentary.comments
             .map(block => {
                 const filteredBlock = {
@@ -143,10 +140,6 @@ export class EditionSheetsService {
         sheets: EditionSvgSheetsList['sheets'],
         selectedSheet: EditionSvgSheet
     ): FolioConvolute | undefined {
-        if (!convolutes || !sheets || !selectedSheet) {
-            return undefined;
-        }
-
         const editionType = this.getCurrentEditionType(selectedSheet, sheets);
         const convoluteId = editionType === 'sketchEditions' ? selectedSheet.content[0].convolute : '';
 
@@ -164,7 +157,7 @@ export class EditionSheetsService {
      * @returns {EditionSvgSheet} The sheet that was found.
      */
     selectSvgSheetById(sheets: EditionSvgSheetsList['sheets'], id: string): EditionSvgSheet {
-        if (!sheets || !id) {
+        if (!id) {
             return new EditionSvgSheet();
         }
 
@@ -280,7 +273,7 @@ export class EditionSheetsService {
      * @returns {number} The index of the sheet in the array.
      */
     private _findSvgSheetIndexById(sheetArray: EditionSvgSheet[], id: string): number {
-        if (!sheetArray || !id) {
+        if (!id) {
             return -1;
         }
         return sheetArray.findIndex(sheet => {

@@ -268,8 +268,9 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTree = routerLinks[0].urlTree;
-                expectToBe(urlTree.toString(), '/home');
+                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+
+                expectToBe(urlTreeString, '/home');
             });
 
             it('... can click `home` link in template', async () => {
