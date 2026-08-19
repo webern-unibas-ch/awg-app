@@ -28,7 +28,7 @@ import { SourceDescriptionContentsComponent } from './source-description-content
 @Component({ selector: 'awg-source-description-content-table', template: '', standalone: false })
 class SourceDescriptionContentTableStubComponent {
     @Input()
-    content: SourceDescriptionContent;
+    content: SourceDescriptionContent | undefined;
 }
 
 describe('SourceDescriptionContentsComponent', () => {
@@ -469,7 +469,9 @@ describe('SourceDescriptionContentsComponent', () => {
                 let expectedContentsWithFoliosLength: number;
 
                 beforeEach(() => {
-                    expectedContentsWithFolios = component.contents.filter(content => content.folios.length > 0);
+                    expectedContentsWithFolios = component.contents.filter(
+                        content => (content.folios?.length ?? 0) > 0
+                    );
                     expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
                 });
 
@@ -514,14 +516,9 @@ describe('SourceDescriptionContentsComponent', () => {
                 expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
             });
 
-            it('... should do nothing if no id is provided', () => {
-                const expectedSheetIds: SheetClickEvent = undefined;
+            it('... should do nothing if no sheetId is provided', () => {
+                const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
                 component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
-
-                const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });

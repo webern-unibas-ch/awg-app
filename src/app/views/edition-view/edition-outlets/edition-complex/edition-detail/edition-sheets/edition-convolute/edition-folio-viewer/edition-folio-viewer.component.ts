@@ -200,10 +200,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         this.viewBoxArray = [];
 
         // If selectedConvolute or folios are undefined, return early
-        const folios = this.selectedConvolute?.folios;
-        if (!folios) {
+        if (!this.selectedConvolute?.folios.length) {
             return;
         }
+
+        const folios = this.selectedConvolute.folios;
 
         // Loop over folios of selected convolute
         this.folioSvgDataArray = folios.map((folio: Folio) => {
@@ -235,10 +236,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * @returns {void} Toggles the css class.
      */
     toggleActiveClass(): void {
-        if (!this.canvasArray) {
-            return;
-        }
-
         this.canvasArray.forEach(canvas => {
             canvas.selectAll('.content-segment-group').classed('active', (d, i, nodes) => {
                 const contentSegmentId = D3_SELECTION.select(nodes[i]).attr('contentSegmentId');

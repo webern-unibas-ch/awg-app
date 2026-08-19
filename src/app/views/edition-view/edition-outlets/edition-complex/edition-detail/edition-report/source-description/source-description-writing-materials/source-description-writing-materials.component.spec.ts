@@ -172,7 +172,13 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 );
                 const trademarkSpanEl: HTMLSpanElement = trademarkSpanDes[0].nativeElement;
 
-                const expectedTrademark = component.getTrademark(expectedWritingMaterials[0].trademark.variant);
+                const trademark = expectedWritingMaterials[0].trademark;
+
+                if (!trademark?.variant) {
+                    throw new Error('Expected first writing material to have a trademark variant.');
+                }
+
+                const expectedTrademark = component.getTrademark(trademark.variant);
 
                 // Process HTML expression of expected text content
                 const expectedHtmlTextContent = mockDocument.createElement('span');
@@ -189,7 +195,14 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
             });
 
             it('... should contain a trademark span with CompileHtmlDirective if an alt text is available instead of a variant', async () => {
-                const mockMaterialsWithAlt = structuredClone(expectedWritingMaterials);
+                const mockMaterialsWithAlt = structuredClone(
+                    expectedWritingMaterials
+                ) as SourceDescriptionWritingMaterial[];
+
+                if (!mockMaterialsWithAlt[0]?.trademark) {
+                    throw new Error('Expected first writing material to have a trademark');
+                }
+
                 mockMaterialsWithAlt[0].trademark.variant = '';
                 mockMaterialsWithAlt[0].trademark.alt = 'Special trademark text';
 
@@ -314,16 +327,16 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 });
 
                 describe('... should return empty string', () => {
-                    it('... if locus is undefined', () => {
-                        const locus: SourceDescriptionWritingMaterialItemLocus = undefined;
+                    it('... if locus.folios is undefined', () => {
+                        const locus: SourceDescriptionWritingMaterialItemLocus = {};
 
                         const result = component.getItemLocus(locus);
 
                         expectToBe(result, '');
                     });
 
-                    it('... if locus is an empty object', () => {
-                        const locus: SourceDescriptionWritingMaterialItemLocus = {};
+                    it('... if locus.folios is an empty array', () => {
+                        const locus: SourceDescriptionWritingMaterialItemLocus = { folios: [] };
 
                         const result = component.getItemLocus(locus);
 

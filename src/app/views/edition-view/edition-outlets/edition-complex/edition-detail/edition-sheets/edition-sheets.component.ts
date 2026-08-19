@@ -222,7 +222,7 @@ export class EditionSheetsComponent {
      * @returns {void} Navigates to the selected SVG sheet.
      */
     onSvgSheetSelect(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+        if (!sheetIds.sheetId) {
             return;
         }
         this._navigationService.navigateToSvgSheet(sheetIds);
@@ -249,11 +249,16 @@ export class EditionSheetsComponent {
      * @returns {string} The default sheet id.
      */
     private _getDefaultSheetId(svgSheetsData: EditionSvgSheetsList): string {
-        const sheets = svgSheetsData?.sheets;
-        const defaultSheet = sheets?.textEditions?.[0] || sheets?.sketchEditions?.[0];
-        const defaultSheetContentPartial = defaultSheet?.content?.[0]?.partial ?? '';
+        const sheets = svgSheetsData.sheets;
+        const defaultSheet = sheets.textEditions[0] || sheets.sketchEditions[0];
 
-        return (defaultSheet?.id || '') + defaultSheetContentPartial;
+        if (!defaultSheet) {
+            return '';
+        }
+
+        const defaultSheetContentPartial = defaultSheet.content?.[0]?.partial ?? '';
+
+        return defaultSheet.id + defaultSheetContentPartial;
     }
 
     /**

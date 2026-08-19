@@ -47,7 +47,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content);
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
         expectedNotesLabel = 'Test notes label';
         expectedSelectedLanguage = LanguageId.DE;
 

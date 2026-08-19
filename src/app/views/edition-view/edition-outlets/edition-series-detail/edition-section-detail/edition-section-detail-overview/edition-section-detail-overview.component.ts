@@ -25,9 +25,9 @@ export class EditionSectionDetailOverviewComponent {
     protected readonly UTILS = UTILS;
 
     /**
-     * Readonly signal: selectedEditionSection.
+     * Readonly signal: selectedSection.
      *
      * It holds the state of the selected edition section.
      */
-    readonly selectedEditionSection = inject(EditionStateService).selectedEditionSection;
+    readonly selectedSection = inject(EditionStateService).selectedEditionSection;
 }

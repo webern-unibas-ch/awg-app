@@ -237,9 +237,13 @@ describe('EditionSheetsService (DONE)', () => {
         describe('... should return the id of the selected sheet', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
                 const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
+                const lastSheet = expectedSheetArray.at(-1);
 
-                expect(expectedSheetArray.at(-1)).toBeDefined();
-                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1)!);
+                if (!lastSheet) {
+                    throw new Error('Expected last sheet to be defined');
+                }
+
+                expectedSelectedSheet = structuredClone(lastSheet);
                 const direction = 1;
 
                 const nextSheetId = editionSheetsService.getNextSheetId(
@@ -365,12 +369,13 @@ describe('EditionSheetsService (DONE)', () => {
             const firstComment = expectedTextcriticalCommentary.comments[0];
             const lastComment = expectedTextcriticalCommentary.comments.at(-1);
 
-            expect(firstComment).toBeDefined();
-            expect(lastComment).toBeDefined();
+            if (!firstComment?.blockComments?.[0] || !lastComment?.blockComments?.[0]) {
+                throw new Error('Expected firstComment or lastComment arrays to be defined');
+            }
 
             const selectedBlockComments = [
                 structuredClone(firstComment.blockComments[0]),
-                structuredClone(lastComment!.blockComments[0]),
+                structuredClone(lastComment.blockComments[0]),
             ];
 
             expectedOverlays = selectedBlockComments.map(blockComment => {
@@ -766,11 +771,9 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is +1 and the sheet array does not have a next sheet', () => {
                 const expectedSheetArray = structuredClone(expectedSheets['sketchEditions']);
                 const expectedCurrentSheetIndex = expectedSheetArray.length - 1;
+                const lastSheet = expectedSheetArray[expectedCurrentSheetIndex];
 
-                expect(expectedSheetArray.at(-1)).toBeDefined();
-                expectedSelectedSheet = structuredClone(expectedSheetArray.at(-1)!);
-
-                const expectedCurrentSheetId = expectedSelectedSheet.id;
+                const expectedCurrentSheetId = lastSheet.id;
                 const direction = 1;
 
                 const nextSheetId = editionSheetsService['_findNextSheetIdForNonPartialSheet'](
@@ -780,7 +783,7 @@ describe('EditionSheetsService (DONE)', () => {
                     expectedCurrentSheetId
                 );
 
-                expectToEqual(nextSheetId, expectedSelectedSheet.id);
+                expectToEqual(nextSheetId, expectedCurrentSheetId);
             });
 
             it('... when direction is -1 and the sheet array does not have a previous sheet', () => {

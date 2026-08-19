@@ -41,9 +41,9 @@ import { EditionIntroComponent } from './edition-intro.component';
 })
 class EditionIntroContentStubComponent {
     @Input()
-    introBlockContent: IntroBlock[];
+    introBlockContent: IntroBlock[] = [];
     @Input()
-    notesLabel: string;
+    notesLabel = '';
 }
 
 @Component({
@@ -53,9 +53,9 @@ class EditionIntroContentStubComponent {
 })
 class EditionIntroNavStubComponent {
     @Input()
-    introBlockContent: IntroBlock[];
+    introBlockContent: IntroBlock[] = [];
     @Input()
-    notesLabel: string;
+    notesLabel = '';
     selectedLanguage = model.required<LanguageId>();
 }
 
@@ -66,17 +66,7 @@ class EditionIntroNavStubComponent {
 })
 class EditionIntroPartialDisclaimerStubComponent {
     @Input()
-    editionComplex: EditionComplex;
-    @Input()
-    editionLabel: string;
-    @Input()
-    editionRoute: string;
-    @Input()
-    seriesRoute: string;
-    @Input()
-    sectionRoute: string;
-    @Input()
-    introRoute: string;
+    editionComplex: EditionComplex | null = null;
 }
 
 @Component({
@@ -86,9 +76,9 @@ class EditionIntroPartialDisclaimerStubComponent {
 })
 class EditionIntroPlaceholderStubComponent {
     @Input()
-    editionComplex: EditionComplex;
+    editionComplex: EditionComplex | null = null;
     @Input()
-    editionLabel: string;
+    editionLabel = '';
 }
 
 describe('IntroComponent (DONE)', () => {
@@ -435,7 +425,7 @@ describe('IntroComponent (DONE)', () => {
                             );
                         });
 
-                        it('... should pass down `editionComplex`, `editionLabel`, and routes to EditionIntroPartialDisclaimerComponent', () => {
+                        it('... should pass down `editionComplex` to EditionIntroPartialDisclaimerComponent', () => {
                             const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroPartialDisclaimerStubComponent,
@@ -447,26 +437,6 @@ describe('IntroComponent (DONE)', () => {
                             ) as EditionIntroPartialDisclaimerStubComponent;
 
                             expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex, expectedComplex);
-                            expectToEqual(
-                                editionIntroPartialDisclaimerCmp.editionLabel,
-                                expectedEditionRouteConstants.EDITION.short
-                            );
-                            expectToEqual(
-                                editionIntroPartialDisclaimerCmp.editionRoute,
-                                expectedEditionRouteConstants.EDITION.route
-                            );
-                            expectToEqual(
-                                editionIntroPartialDisclaimerCmp.seriesRoute,
-                                expectedEditionRouteConstants.SERIES.route
-                            );
-                            expectToEqual(
-                                editionIntroPartialDisclaimerCmp.sectionRoute,
-                                expectedEditionRouteConstants.SECTION.route
-                            );
-                            expectToEqual(
-                                editionIntroPartialDisclaimerCmp.introRoute,
-                                expectedEditionRouteConstants.EDITION_INTRO.route
-                            );
                         });
 
                         it('... should contain one EditionIntroContentComponent (stubbed)', () => {

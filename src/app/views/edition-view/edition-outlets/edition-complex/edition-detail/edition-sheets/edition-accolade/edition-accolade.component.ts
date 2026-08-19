@@ -144,9 +144,6 @@ export class EditionAccoladeComponent {
      * @returns {void} Opens the text modal.
      */
     openModal(id: string): void {
-        if (!id) {
-            return;
-        }
         this._modalService.openTextModal(id);
     }
 
@@ -187,9 +184,6 @@ export class EditionAccoladeComponent {
      * @returns {void} Emits the boolean.
      */
     toggleSheetFacet(isMinimized: boolean): void {
-        if (isMinimized === undefined) {
-            return;
-        }
         this.toggleSheetFacetRequest.emit(isMinimized);
     }
 }

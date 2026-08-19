@@ -243,8 +243,8 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: ' root breadcrumbs for overview (without series and section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: (): EditionOutlineSeries => null,
-                    section: (): EditionOutlineSection => null,
+                    series: (): EditionOutlineSeries | null => null,
+                    section: (): EditionOutlineSection | null => null,
                     expected: (): LabeledRoute[] => [
                         { ...expectedRootItem, route: [] },
                         { label: '', route: [] },
@@ -253,8 +253,8 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series only (without section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: (): EditionOutlineSeries => expectedSeries,
-                    section: (): EditionOutlineSection => null,
+                    series: (): EditionOutlineSeries | null => expectedSeries,
+                    section: (): EditionOutlineSection | null => null,
                     expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         { label: expectedSeries.series.full, route: [] },
@@ -264,8 +264,8 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series and section (without intro)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
-                    series: (): EditionOutlineSeries => expectedSeries,
-                    section: (): EditionOutlineSection => expectedSection,
+                    series: (): EditionOutlineSeries | null => expectedSeries,
+                    section: (): EditionOutlineSection | null => expectedSection,
                     expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         {
@@ -279,8 +279,8 @@ describe('EditionBreadcrumbService', () => {
                 {
                     desc: 'breadcrumbs for a series, section and active intro view',
                     context: { name: 'intro', isIntro: true, isPreface: false, isRowtables: false },
-                    series: (): EditionOutlineSeries => expectedSeries,
-                    section: (): EditionOutlineSection => expectedSection,
+                    series: (): EditionOutlineSeries | null => expectedSeries,
+                    section: (): EditionOutlineSection | null => expectedSection,
                     expected: (): LabeledRoute[] => [
                         expectedRootItem,
                         {

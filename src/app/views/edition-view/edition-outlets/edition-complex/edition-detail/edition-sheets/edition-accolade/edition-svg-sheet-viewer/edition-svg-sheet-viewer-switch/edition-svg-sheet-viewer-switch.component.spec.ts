@@ -1,4 +1,4 @@
-import { Component, DebugElement, Input, SimpleChange } from '@angular/core';
+import { DebugElement, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionTkaLabelStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -16,19 +17,6 @@ import {
 } from '@testing/expect-helper';
 
 import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer-switch.component';
-
-// Mock components
-@Component({
-    selector: 'awg-edition-tka-label',
-    template: '',
-    standalone: false,
-})
-class EditionTkaLabelStubComponent {
-    @Input()
-    id: string;
-    @Input()
-    labelType: 'evaluation' | 'commentary';
-}
 
 describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let component: EditionSvgSheetViewerSwitchComponent;
@@ -419,20 +407,19 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.id, expectedId);
+                expectToBe(labelCmp.id(), expectedId);
             });
 
             it('... should pass down `labelType` data to EditionTkaLabelComponent (stubbed)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'commentary');
+                expectToBe(labelCmp.labelType(), 'commentary');
             });
 
             it('... should trigger `toggleTkkClassesHighlight` on click on form-switch for tkk', async () => {
                 const formSwitchInputDes = getAndExpectDebugElementByCss(compDe, 'input.form-check-input#tkk', 1, 1);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleTkkClassesHighlightSpy, 1);

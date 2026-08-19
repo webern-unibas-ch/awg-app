@@ -98,7 +98,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 ...expectedFolioSettings,
                 formatX: +folio.dimensions.width,
                 formatY: +folio.dimensions.height,
-                numberOfFolios: expectedConvolute.folios.length,
+                numberOfFolios: expectedConvolute?.folios.length ?? 0,
             };
 
             expectedFolioSettingsArray.push(folioSettings);
@@ -505,11 +505,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                         expectSpyCall(serviceGetFolioSvgDataSpy, 1);
                     });
 
-                    it('... given selectedConvolute.folios are undefined', () => {
+                    it('... given selectedConvolute.folios are empty', () => {
                         expectSpyCall(serviceGetFolioSvgDataSpy, 1);
 
-                        const expectedConvoluteWithoutFolios = structuredClone(expectedConvolute);
-                        expectedConvoluteWithoutFolios.folios = undefined;
+                        const expectedConvoluteWithoutFolios = {
+                            ...expectedConvolute,
+                            folios: [],
+                        } as FolioConvolute;
 
                         component.selectedConvolute = expectedConvoluteWithoutFolios;
 
@@ -597,14 +599,6 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 it('should have a method `toggleActiveClass`', () => {
                     expect(component.toggleActiveClass).toBeDefined();
-                });
-
-                it('should not do anything if canvasArray is not defined', () => {
-                    component.canvasArray = undefined;
-
-                    component.toggleActiveClass();
-
-                    expectSpyCall(isSelectedSvgSheetSpy, 0);
                 });
 
                 it('should check if each content segment group is active', () => {

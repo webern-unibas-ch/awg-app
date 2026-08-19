@@ -155,13 +155,16 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
-                let expectedTrLength = 0;
-
                 // Get number of systemgroups of each folio
-                expectedContent.folios.forEach(folio => {
-                    const folioTrLength = folio.systemGroups.length > 0 ? folio.systemGroups.length : 1;
-                    expectedTrLength += folioTrLength;
-                });
+                if (!expectedContent.folios) {
+                    throw new Error('Expected folios to be defined');
+                }
+
+                const expectedTrLength = expectedContent.folios.reduce((total, folio) => {
+                    const folioLength = folio.systemGroups?.length ?? 0;
+                    const folioTrLength = folioLength > 0 ? folioLength : 1;
+                    return total + folioTrLength;
+                }, 0);
 
                 getAndExpectDebugElementByCss(
                     tableDes[0],
@@ -181,14 +184,19 @@ describe('SourceDescriptionContentTableComponent', () => {
 
                 let expectedTdLength = 0;
 
+                if (!expectedContent.folios) {
+                    throw new Error('Expected folios to be defined');
+                }
+
                 expectedContent.folios.forEach(folio => {
+                    const systemGroups = folio.systemGroups ?? [];
                     // Get number of systems per systemgroup of each folio
-                    let systemGroupTdLength = folio.systemGroups.reduce(
-                        (totalLength, systemGroup) => totalLength + systemGroup.length + 1,
+                    let systemGroupTdLength = systemGroups.reduce(
+                        (totalLength, systemGroup) => totalLength + (systemGroup?.length ?? 0) + 1,
                         0
                     );
 
-                    if (folio.systemGroups.length === 0) {
+                    if (systemGroups.length === 0) {
                         systemGroupTdLength += 1;
                     }
 
@@ -240,11 +248,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
+                const expectedLength = expectedContent.folios?.length ?? 0;
                 getAndExpectDebugElementByCss(
                     tableDes[0],
                     'tr > td span.awg-source-description-content-item-folio',
-                    expectedContent.folios.length,
-                    expectedContent.folios.length
+                    expectedLength,
+                    expectedLength
                 );
             });
 
@@ -256,11 +265,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
+                const expectedLength = expectedContent.folios?.length ?? 0;
                 const folioDes = getAndExpectDebugElementByCss(
                     tableDes[0],
                     'tr > td[colspan]',
-                    expectedContent.folios.length,
-                    expectedContent.folios.length
+                    expectedLength,
+                    expectedLength
                 );
 
                 // Get anchor of first folio
@@ -283,11 +293,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
+                const expectedLength = expectedContent.folios?.length ?? 0;
                 const folioDes = getAndExpectDebugElementByCss(
                     tableDes[0],
                     'tr > td[colspan]',
-                    expectedContent.folios.length,
-                    expectedContent.folios.length
+                    expectedLength,
+                    expectedLength
                 );
 
                 // Check second folio for anchor link
@@ -312,11 +323,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
+                const expectedLength = expectedContent.folios?.length ?? 0;
                 const folioDes = getAndExpectDebugElementByCss(
                     tableDes[0],
                     'tr > td[colspan]',
-                    expectedContent.folios.length,
-                    expectedContent.folios.length
+                    expectedLength,
+                    expectedLength
                 );
 
                 // Get anchor of third folio
@@ -343,11 +355,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                     1
                 );
 
+                const expectedLength = expectedContents[3].folios?.length ?? 0;
                 const folioDes = getAndExpectDebugElementByCss(
                     tableDes[0],
                     'tr > td[colspan]',
-                    expectedContents[3].folios.length,
-                    expectedContents[3].folios.length
+                    expectedLength,
+                    expectedLength
                 );
 
                 // Get td of first folio
@@ -377,12 +390,12 @@ describe('SourceDescriptionContentTableComponent', () => {
                         1
                     );
 
-                    // Get folios of first table
+                    const expectedLength = expectedContent.folios?.length ?? 0;
                     const folioDes = getAndExpectDebugElementByCss(
                         tableDes[0],
                         'tr > td[colspan]',
-                        expectedContent.folios.length,
-                        expectedContent.folios.length
+                        expectedLength,
+                        expectedLength
                     );
 
                     // Get anchor of first folio
@@ -395,14 +408,9 @@ describe('SourceDescriptionContentTableComponent', () => {
                 });
             });
 
-            it('... should do nothing if no id is provided', () => {
-                const expectedSheetIds: SheetClickEvent = undefined;
+            it('... should do nothing if no sheetId is provided', () => {
+                const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
                 component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
-
-                const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
             });

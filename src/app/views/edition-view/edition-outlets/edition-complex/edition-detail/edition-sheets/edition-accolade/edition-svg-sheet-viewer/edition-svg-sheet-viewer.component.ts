@@ -295,10 +295,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * @returns {void} Emits the direction.
      */
-    browseSvgSheet(direction: number): void {
-        if (!direction) {
-            return;
-        }
+    browseSvgSheet(direction: 1 | -1): void {
         this.browseSvgSheetRequest.emit(direction);
     }
 
@@ -393,7 +390,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Sets the initial zoom translation and scale factor.
      */
     resetZoom(): void {
-        if (!this.svgSheetSelection || !this.sliderConfig) {
+        if (!this.svgSheetSelection) {
             return;
         }
 
@@ -528,9 +525,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Emits the overlays.
      */
     private _onTkkOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        if (!overlays) {
-            return;
-        }
         this.selectOverlaysRequest.emit(overlays);
     }
 

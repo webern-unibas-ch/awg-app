@@ -52,19 +52,19 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.id = expectedId;
-            component.labelType = expectedLabelType;
+            fixture.componentRef.setInput('id', expectedId);
+            fixture.componentRef.setInput('labelType', expectedLabelType);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `id`', () => {
-            expectToBe(component.id, expectedId);
+        it('... should have signal `id` to hold the expected id', () => {
+            expectToBe(component.id(), expectedId);
         });
 
-        it('... should have `labelType`', () => {
-            expectToBe(component.labelType, expectedLabelType);
+        it('... should have signal `labelType` to hold the expected type', () => {
+            expectToBe(component.labelType(), expectedLabelType);
         });
 
         describe('VIEW', () => {
@@ -73,8 +73,8 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
                     { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    component.labelType = 'evaluation';
-                    component.id = id;
+                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('labelType', 'evaluation');
 
                     await detectChangesOnPush(fixture);
 
@@ -90,8 +90,8 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
                     { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    component.labelType = 'commentary';
-                    component.id = id;
+                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('labelType', 'commentary');
 
                     await detectChangesOnPush(fixture);
 

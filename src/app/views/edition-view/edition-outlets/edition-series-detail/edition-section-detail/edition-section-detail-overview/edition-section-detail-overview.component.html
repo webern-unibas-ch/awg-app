@@ -1,15 +1,15 @@
-@if (selectedEditionSection(); as section) {
+@if (selectedSection(); as section) {
     @let content = section.content;
-    @let opusList = content?.complexTypes?.opus;
-    @let mnrList = content?.complexTypes?.mnr;
+    @let opusList = content.complexTypes.opus;
+    @let mnrList = content.complexTypes.mnr;
 
-    @if (UTILS.isEmptyArray(opusList) && UTILS.isEmptyArray(mnrList)) {
+    @if (!opusList.length && !mnrList.length) {
         <awg-edition-section-detail-placeholder [selectedSection]="section" />
     } @else {
         <div class="awg-edition-section-detail">
             <awg-edition-section-detail-disclaimer />
 
-            @if (content?.intro && !content.intro.disabled) {
+            @if (content.intro && !content.intro.disabled) {
                 <div class="awg-edition-section-detail-intro para p-3 shadow border rounded-3">
                     <div class="row">
                         <div class="col-12 col-xl-8">
@@ -18,13 +18,13 @@
                     </div>
                 </div>
             }
-            @if (!UTILS.isEmptyArray(opusList)) {
+            @if (opusList.length) {
                 <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
                     <h5>nach Opusnummer:</h5>
                     <awg-edition-section-detail-complex-card [complexes]="opusList" />
                 </div>
             }
-            @if (!UTILS.isEmptyArray(mnrList)) {
+            @if (mnrList.length) {
                 <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
                     <h5>nach Moldenhauer-Nummer:</h5>
                     <awg-edition-section-detail-complex-card [complexes]="mnrList" />

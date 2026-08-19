@@ -1,4 +1,4 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -6,6 +6,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faChevronDown, faChevronRight, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+import {
+    EditionTkaEvaluationsStubComponent,
+    EditionTkaLabelStubComponent,
+    EditionTkaTableStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
@@ -18,45 +23,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
-
-// Mock components
-@Component({
-    selector: 'awg-edition-tka-evaluations',
-    template: '',
-    standalone: false,
-})
-class EditionTkaEvaluationsStubComponent {
-    @Input()
-    evaluations: string[];
-}
-
-@Component({
-    selector: 'awg-edition-tka-label',
-    template: '',
-    standalone: false,
-})
-class EditionTkaLabelStubComponent {
-    @Input()
-    id: string;
-    @Input()
-    labelType: 'evaluation' | 'commentary';
-}
-
-@Component({
-    selector: 'awg-edition-tka-table',
-    template: '',
-    standalone: false,
-})
-class EditionTkaTableStubComponent {
-    @Input()
-    commentary: TextcriticalCommentary;
-    @Input()
-    id?: string;
-    @Input()
-    isCorrections = false;
-    @Input()
-    isRowtable = false;
-}
 
 describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let component: EditionSvgSheetFooterComponent;
@@ -251,7 +217,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(spanDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.id, expectedSelectedTextcritics.id);
+                expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
             });
 
             it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
@@ -266,7 +232,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(spanDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'evaluation');
+                expectToBe(labelCmp.labelType(), 'evaluation');
             });
 
             it('... should contain a second span in p with `---` if selectedTextcritics.evaluations is empty', async () => {
@@ -426,7 +392,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.id, expectedSelectedTextcritics.id);
+                expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
             });
 
             it('... should pass down `labelType` to the second EditionTkaLabelComponent', () => {
@@ -440,7 +406,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const labelDes = getAndExpectDebugElementByDirective(divDes[0], EditionTkaLabelStubComponent, 1, 1);
                 const labelCmp = labelDes[0].injector.get(EditionTkaLabelStubComponent) as EditionTkaLabelStubComponent;
 
-                expectToBe(labelCmp.labelType, 'commentary');
+                expectToBe(labelCmp.labelType(), 'commentary');
             });
 
             it('... should pass down `selectedTextcriticalCommentary` to the EditionTkaTableComponent', () => {

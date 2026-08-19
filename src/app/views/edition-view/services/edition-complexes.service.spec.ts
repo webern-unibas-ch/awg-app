@@ -244,10 +244,10 @@ describe('EditionComplexesService (DONE)', () => {
             expectToBe(complex.respStatement.lastModified, '');
         });
 
-        it('... should return empty editors and preserve lastModified if respStatement.editors is null', () => {
+        it('... should return empty editors and preserve lastModified if respStatement.editors is empty', () => {
             const { complex } = setupAndGetComplexList(
                 defaultTitleStmt,
-                { editors: null, lastModified: '2024-01-01' },
+                { editors: [], lastModified: '2024-01-01' },
                 'op100'
             );
 

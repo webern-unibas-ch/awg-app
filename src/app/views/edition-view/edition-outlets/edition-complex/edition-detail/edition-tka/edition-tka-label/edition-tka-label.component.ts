@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 
@@ -17,18 +17,18 @@ import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 })
 export class EditionTkaLabelComponent {
     /**
-     * Input variable: id.
+     * Readonly input variable: id.
      *
-     * It keeps the id of the sheet or textcritics.
+     * It holds the id of the sheet or textcritics.
      */
-    @Input() id: string | undefined;
+    readonly id = input.required<string>();
 
     /**
-     * Input variable: labelType.
+     * Readonly input variable: labelType.
      *
-     * It keeps the type of the label.
+     * It hols the type of the label.
      */
-    @Input() labelType: 'evaluation' | 'commentary' | undefined;
+    readonly labelType = input.required<'evaluation' | 'commentary'>();
 
     /**
      * Protected readonly variable: EDITION_UTILS.

@@ -66,7 +66,7 @@ export class SourceDescriptionWritingMaterialsComponent {
      * @returns {string} The retrieved locus string.
      */
     getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
-        if (!locus.folios || locus.folios.length === 0) {
+        if (!locus.folios?.length) {
             return '';
         }
 

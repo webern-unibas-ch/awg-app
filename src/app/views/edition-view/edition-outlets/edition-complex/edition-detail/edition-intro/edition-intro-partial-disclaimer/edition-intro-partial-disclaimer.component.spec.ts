@@ -28,10 +28,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let routerLinks: RouterLinkStubDirective[];
 
     let expectedComplex: EditionComplex;
-    let expectedEditionLabel: string;
-    let expectedEditionRoute: string;
-    let expectedSeriesRoute: string;
-    let expectedSectionRoute: string;
     let expectedIntroRoute: string;
 
     beforeEach(async () => {
@@ -44,10 +40,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         // Test data
         const complexId = 'op12';
         expectedComplex = EditionStateHelper.getComplex(complexId);
-        expectedEditionLabel = EDITION_ROUTE_CONSTANTS.EDITION.short;
-        expectedEditionRoute = EDITION_ROUTE_CONSTANTS.EDITION.route;
-        expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES.route;
-        expectedSectionRoute = EDITION_ROUTE_CONSTANTS.SECTION.route;
         expectedIntroRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
 
         // Create component fixture
@@ -63,22 +55,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).toBeUndefined();
-        });
-
-        it('... should not have `editionLabel`', () => {
-            expect(component.editionLabel).toBeUndefined();
-        });
-
-        it('... should not have `editionRoute`', () => {
-            expect(component.editionRoute).toBeUndefined();
-        });
-
-        it('... should not have `seriesRoute`', () => {
-            expect(component.seriesRoute).toBeUndefined();
-        });
-
-        it('... should not have `sectionRoute`', () => {
-            expect(component.sectionRoute).toBeUndefined();
         });
 
         it('... should not have `introRoute`', () => {
@@ -105,11 +81,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.editionComplex = expectedComplex;
-            component.editionLabel = expectedEditionLabel;
-            component.editionRoute = expectedEditionRoute;
-            component.seriesRoute = expectedSeriesRoute;
-            component.sectionRoute = expectedSectionRoute;
-            component.introRoute = expectedIntroRoute;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -118,27 +89,6 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         it('... should have `editionComplex`', () => {
             expectToEqual(component.editionComplex, expectedComplex);
         });
-
-        it('... should have `editionLabel`', () => {
-            expectToBe(component.editionLabel, expectedEditionLabel);
-        });
-
-        it('... should have `editionRoute`', () => {
-            expectToBe(component.editionRoute, expectedEditionRoute);
-        });
-
-        it('... should have `seriesRoute`', () => {
-            expectToBe(component.seriesRoute, expectedSeriesRoute);
-        });
-
-        it('... should have `sectionRoute`', () => {
-            expectToBe(component.sectionRoute, expectedSectionRoute);
-        });
-
-        it('... should have `introRoute`', () => {
-            expectToBe(component.introRoute, expectedIntroRoute);
-        });
-
         describe('VIEW', () => {
             it('... should display text-muted disclaimer in paragraph', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
@@ -148,11 +98,9 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 expectToContain(pEl.classList, 'text-muted');
                 expectToContain(pEl.classList, 'no-para-margin');
 
-                const awg = component.editionLabel;
-                const series = component.editionComplex?.pubStatement?.series?.short;
-                const section = component.editionComplex?.pubStatement?.section?.short;
+                const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
+                const expectedText = `[Siehe auch die gesamte Einleitung zu ${sectionRoute?.label}.]`;
 
-                const expectedText = `[Siehe auch die gesamte Einleitung zu ${awg} ${series}/${section}.]`;
                 expectToBe(pEl.textContent.trim(), expectedText);
             });
         });
@@ -172,14 +120,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const routerLink of routerLinks) {
-                    const expectedRouterLink = [
-                        expectedEditionRoute,
-                        expectedSeriesRoute,
-                        expectedComplex.pubStatement.series.route,
-                        expectedSectionRoute,
-                        expectedComplex.pubStatement.section.route,
-                        expectedIntroRoute,
-                    ];
+                    const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
+                    const expectedRouterLink = [sectionRoute?.route.join('/'), expectedIntroRoute];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
                 }
             });
@@ -187,14 +129,8 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             it('... can click all links in template', async () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = [
-                        expectedEditionRoute,
-                        expectedSeriesRoute,
-                        expectedComplex.pubStatement.series.route,
-                        expectedSectionRoute,
-                        expectedComplex.pubStatement.section.route,
-                        expectedIntroRoute,
-                    ];
+                    const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
+                    const expectedRouterLink = [sectionRoute?.route.join('/'), expectedIntroRoute];
 
                     expectToBe(routerLink.navigatedTo, null);
 

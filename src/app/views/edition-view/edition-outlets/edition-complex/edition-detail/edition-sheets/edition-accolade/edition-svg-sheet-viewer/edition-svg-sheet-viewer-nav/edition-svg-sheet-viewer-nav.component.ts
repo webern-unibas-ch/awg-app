@@ -19,7 +19,7 @@ export class EditionSvgSheetViewerNavComponent {
      * It keeps an event emitter for the next or pevious index of an svg sheet.
      */
     @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    browseSvgSheetRequest: EventEmitter<1 | -1> = new EventEmitter();
 
     /**
      * Public method: browseSvgSheet.
@@ -27,14 +27,11 @@ export class EditionSvgSheetViewerNavComponent {
      * It emits a given direction to the {@link browseSvgSheetRequest}
      * to browse to the previous or next sheet of the selected svg sheet.
      *
-     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {1 | -1} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
      *
      * @returns {void} Emits the direction.
      */
-    browseSvgSheet(direction: number): void {
-        if (!direction) {
-            return;
-        }
+    browseSvgSheet(direction: 1 | -1): void {
         this.browseSvgSheetRequest.emit(direction);
     }
 }

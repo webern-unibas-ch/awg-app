@@ -11,6 +11,7 @@ import { mockConsole } from '@testing/mock-helper';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 import {
+    D3Selection,
     Folio,
     FolioCalculation,
     FolioCalculationLine,
@@ -307,7 +308,7 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgCanvas: D3_SELECTION.Selection<SVGSVGElement, undefined, null, undefined>;
+            let expectedSvgCanvas: D3Selection;
             let expectedViewBox: ViewBox;
 
             beforeEach(() => {
@@ -370,8 +371,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgCanvas: D3_SELECTION.Selection<SVGSVGElement, undefined, null, undefined>;
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgCanvas: D3Selection;
+            let expectedSvgSheetGroup: D3Selection;
 
             beforeEach(() => {
                 expectedSvgCanvas = D3_SELECTION.create('svg');
@@ -405,10 +406,10 @@ describe('FolioService (DONE)', () => {
     });
 
     describe('#_addFolioSheetToSvgCanvas', () => {
-        let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+        let svgSheetGroup: D3Selection;
         let folioId: string;
         let sheetRectangle: FolioCalculationRectangle;
-        let trademarkRectangle: FolioCalculationRectangle;
+        let trademarkRectangle: FolioCalculationRectangle | undefined;
 
         beforeEach(() => {
             ({ folioId, sheetRectangle, trademarkRectangle } = expectedFolioSvgData.sheet);
@@ -458,7 +459,7 @@ describe('FolioService (DONE)', () => {
         it('... should append a rect element with correct attributes to the svgSheetGroup', () => {
             expect(svgSheetGroup).toBeDefined();
 
-            const rectElement = svgSheetGroup.select('rect');
+            const rectElement: D3Selection = svgSheetGroup.select('rect');
 
             expect(rectElement).toBeDefined();
             expectToBe(rectElement.attr('x'), String(sheetRectangle.UPPER_LEFT_CORNER.x));
@@ -488,7 +489,7 @@ describe('FolioService (DONE)', () => {
             it('... should append a trademarkGroup to the svgSheetGroup', () => {
                 expect(svgSheetGroup).toBeDefined();
 
-                const trademarkGroupElement = svgSheetGroup.select('g.trademark-group');
+                const trademarkGroupElement: D3Selection = svgSheetGroup.select('g.trademark-group');
 
                 expect(trademarkGroupElement).toBeDefined();
             });
@@ -514,7 +515,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+                    const trademarkRectangleElement: D3Selection = svgSheetGroup.select('rect.trademark-rectangle');
 
                     expect(trademarkRectangleElement).toBeDefined();
                     expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
@@ -537,7 +538,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -568,7 +569,7 @@ describe('FolioService (DONE)', () => {
 
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -620,7 +621,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+                    const trademarkRectangleElement: D3Selection = svgSheetGroup.select('rect.trademark-rectangle');
 
                     expect(trademarkRectangleElement).toBeDefined();
                     expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
@@ -643,7 +644,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -675,7 +676,7 @@ describe('FolioService (DONE)', () => {
 
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -723,7 +724,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+                    const trademarkRectangleElement: D3Selection = svgSheetGroup.select('rect.trademark-rectangle');
 
                     expect(trademarkRectangleElement).toBeDefined();
                     expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
@@ -746,7 +747,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -778,7 +779,7 @@ describe('FolioService (DONE)', () => {
 
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -828,7 +829,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+                    const trademarkRectangleElement: D3Selection = svgSheetGroup.select('rect.trademark-rectangle');
 
                     expect(trademarkRectangleElement).toBeDefined();
                     expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
@@ -851,7 +852,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -883,7 +884,7 @@ describe('FolioService (DONE)', () => {
 
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -928,7 +929,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkRectangle with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkRectangleElement = svgSheetGroup.select('rect.trademark-rectangle');
+                    const trademarkRectangleElement: D3Selection = svgSheetGroup.select('rect.trademark-rectangle');
 
                     expect(trademarkRectangleElement).toBeDefined();
                     expectToBe(trademarkRectangleElement.attr('class'), 'trademark-rectangle');
@@ -951,7 +952,7 @@ describe('FolioService (DONE)', () => {
                 it('... should append a trademarkSymbol with correct attributes to the svgSheetGroup', () => {
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -983,7 +984,7 @@ describe('FolioService (DONE)', () => {
 
                     expect(svgSheetGroup).toBeDefined();
 
-                    const trademarkSymbolElement = svgSheetGroup.select('path.trademark-symbol');
+                    const trademarkSymbolElement: D3Selection = svgSheetGroup.select('path.trademark-symbol');
 
                     expect(trademarkSymbolElement).toBeDefined();
                     expectToBe(trademarkSymbolElement.attr('class'), 'trademark-symbol');
@@ -1004,7 +1005,7 @@ describe('FolioService (DONE)', () => {
 
         describe('... should set sheet vertex to NaN if', () => {
             it('... sheet width is NaN in folioCalculation model', () => {
-                const altSvgSheetGroup = D3_SELECTION.create('g');
+                const altSvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                 expectedFolioSettings.formatX = NaN;
                 const altFolioSvgData = new FolioSvgData(
@@ -1017,7 +1018,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... sheet height is NaN in folioCalculation model', () => {
-                const altSvgSheetGroup = D3_SELECTION.create('g');
+                const altSvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                 expectedFolioSettings.formatY = NaN;
                 const altFolioSvgData = new FolioSvgData(
@@ -1037,7 +1038,7 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
 
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
@@ -1051,7 +1052,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... should not append anything and log an error if', () => {
                 it('... number of systems is not given in folioCalculation model', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    const emptySvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                     expectedReversedFolio.systems = '';
                     const emptyFolioSvgData = new FolioSvgData(
@@ -1123,17 +1124,22 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should trigger `_appendSystemsGroupLines` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.systemsLabelPositions.length - 1;
+                const systems = expectedFolioSvgData.systems;
+                const systemIndex = systems.systemsLabelPositions.length - 1;
+                const lastSystemsLines = systems.systemsLines.at(-1);
 
                 expectedSvgSheetGroup
                     .append('g')
                     .attr('systemLineGroupId', systemIndex + 1)
                     .attr('class', 'system-line-group');
+                const expectedLineGroupSelection: D3Selection = expectedSvgSheetGroup.select(
+                    `[systemLineGroupId="${systemIndex + 1}"]`
+                );
 
                 expectToBe(vi.mocked(appendSystemsGroupLinesSpy).mock.calls.length, systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLinesSpy, systemIndex + 1, [
-                    expectedSvgSheetGroup.select(`[systemLineGroupId="${systemIndex + 1}"]`),
-                    expectedFolioSvgData.systems.systemsLines.at(-1),
+                    expectedLineGroupSelection,
+                    lastSystemsLines,
                 ]);
             });
 
@@ -1141,8 +1147,8 @@ describe('FolioService (DONE)', () => {
                 const systemsGroups = expectedSvgSheetGroup.selectAll('.systems-group').nodes();
 
                 systemsGroups.forEach((group, i) => {
-                    const systemsGroup = D3_SELECTION.select(group);
-                    const textElement = systemsGroup.select('text');
+                    const systemsGroup: D3Selection = D3_SELECTION.select(group);
+                    const textElement: D3Selection = systemsGroup.select('text');
 
                     expectToBe(textElement.empty(), false);
                     expectToBe(textElement.text(), String(i + 1));
@@ -1153,8 +1159,8 @@ describe('FolioService (DONE)', () => {
                 const systemsGroups = expectedSvgSheetGroup.selectAll('.systems-group').nodes();
 
                 systemsGroups.forEach((group, i) => {
-                    const systemsGroup = D3_SELECTION.select(group);
-                    const textElement = systemsGroup.select('text');
+                    const systemsGroup: D3Selection = D3_SELECTION.select(group);
+                    const textElement: D3Selection = systemsGroup.select('text');
                     const expectedLabel = expectedFolioSvgData.systems.systemsLabelPositions[i];
 
                     expectToBe(textElement.attr('class'), 'system-label');
@@ -1170,7 +1176,7 @@ describe('FolioService (DONE)', () => {
                 const systemLineGroups = expectedSvgSheetGroup.selectAll('.system-line-group').nodes();
 
                 systemLineGroups.forEach((group, i) => {
-                    const systemLineGroup = D3_SELECTION.select(group);
+                    const systemLineGroup: D3Selection = D3_SELECTION.select(group);
 
                     expectToBe(
                         systemLineGroup.selectAll('line').size(),
@@ -1183,11 +1189,11 @@ describe('FolioService (DONE)', () => {
                 const systemLineGroups = expectedSvgSheetGroup.selectAll('.system-line-group').nodes();
 
                 systemLineGroups.forEach((group, i) => {
-                    const systemLineGroup = D3_SELECTION.select(group);
+                    const systemLineGroup: D3Selection = D3_SELECTION.select(group);
                     const lineElements = systemLineGroup.selectAll('line').nodes();
 
                     lineElements.forEach((lineNode, j) => {
-                        const lineElement = D3_SELECTION.select(lineNode);
+                        const lineElement: D3Selection = D3_SELECTION.select(lineNode);
                         const expectedLine = expectedFolioSvgData.systems.systemsLines[i][j];
 
                         expectToBe(lineElement.attr('class'), 'system-line');
@@ -1210,7 +1216,7 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
 
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
@@ -1224,7 +1230,7 @@ describe('FolioService (DONE)', () => {
 
             describe('... should not append anything if', () => {
                 it('... contentSegments array is empty', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    const emptySvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                     const emptyFolioSvgData = new FolioSvgData(
                         new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
@@ -1236,21 +1242,8 @@ describe('FolioService (DONE)', () => {
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
                 });
 
-                it('... contentSegments array contains null or undefined', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
-
-                    const emptyFolioSvgData = new FolioSvgData(
-                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
-                    );
-                    emptyFolioSvgData.contentSegments = [null, undefined];
-
-                    (folioService as any)._addFolioContentSegmentsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
-
-                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
-                });
-
                 it('... content.segments are not given in folioCalculation model (with log error)', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    const emptySvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                     expectedReversedFolio.content[0].segments = undefined;
                     const emptyFolioSvgData = new FolioSvgData(
@@ -1266,10 +1259,16 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... content.segments length is greater than segmentSplit in folioCalculation model (with log error)', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    const emptySvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
-                    const segments = expectedReversedFolio.content[0].segments;
-                    const partitionIndex = expectedReversedFolio.content[0].segmentSplit - 1;
+                    const folioContent = expectedReversedFolio.content[0];
+
+                    if (!folioContent?.segments?.[0] || !folioContent.segmentSplit) {
+                        throw new Error('Expected folioContent, segments[0], or segmentSplit to be defined');
+                    }
+
+                    const segments = folioContent.segments;
+                    const partitionIndex = folioContent.segmentSplit - 1;
                     segments.push(segments[partitionIndex]);
 
                     const emptyFolioSvgData = new FolioSvgData(
@@ -1285,7 +1284,7 @@ describe('FolioService (DONE)', () => {
                 });
 
                 it('... number of systems is not given in folioCalculation model (with log error)', () => {
-                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    const emptySvgSheetGroup: D3Selection = D3_SELECTION.create('g');
 
                     expectedReversedFolio.systems = '';
                     const emptyFolioSvgData = new FolioSvgData(
@@ -1316,7 +1315,7 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 expectedFolioSvgData.contentSegments.forEach((_contentContentSegment, i) => {
-                    const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
+                    const contentSegmentGroup: D3Selection = D3_SELECTION.select(contentSegmentGroups[i]);
                     const callArgs = vi.mocked(appendContentSegmentLinkSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [contentSegmentGroup]);
@@ -1327,8 +1326,8 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 contentSegmentGroups.forEach(contentSegmentGroup => {
-                    const group = D3_SELECTION.select(contentSegmentGroup);
-                    const contentSegmentLink = group.select('a');
+                    const group: D3Selection = D3_SELECTION.select(contentSegmentGroup);
+                    const contentSegmentLink: D3Selection = group.select('a');
 
                     expect(contentSegmentLink).toBeDefined();
                     expectToBe(group.selectAll('a').size(), 1);
@@ -1341,8 +1340,8 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
-                    const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
-                    const contentSegmentLink = contentSegmentGroup.select('a');
+                    const contentSegmentGroup: D3Selection = D3_SELECTION.select(contentSegmentGroups[i]);
+                    const contentSegmentLink: D3Selection = contentSegmentGroup.select('a');
                     const callArgs = vi.mocked(appendContentSegmentLinkPolygonSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [
@@ -1357,8 +1356,8 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 contentSegmentGroups.forEach(contentSegmentGroup => {
-                    const group = D3_SELECTION.select(contentSegmentGroup);
-                    const contentSegmentLink = group.select('a');
+                    const group: D3Selection = D3_SELECTION.select(contentSegmentGroup);
+                    const contentSegmentLink: D3Selection = group.select('a');
                     const polygonElement = contentSegmentLink.select('polygon');
 
                     expect(polygonElement).toBeDefined();
@@ -1372,8 +1371,8 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
-                    const contentSegmentGroup = D3_SELECTION.select(contentSegmentGroups[i]);
-                    const contentSegmentLink = contentSegmentGroup.select('a');
+                    const contentSegmentGroup: D3Selection = D3_SELECTION.select(contentSegmentGroups[i]);
+                    const contentSegmentLink: D3Selection = contentSegmentGroup.select('a');
                     const callArgs = vi.mocked(appendContentSegmentLinkLabelSpy).mock.calls[i];
 
                     expectToEqual(callArgs, [contentSegmentLink, expectedFolioSvgData.contentSegments[i]]);
@@ -1384,8 +1383,8 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentGroups = expectedSvgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 contentSegmentGroups.forEach((contentSegmentGroup, i) => {
-                    const group = D3_SELECTION.select(contentSegmentGroup);
-                    const contentSegmentLink = group.select('a');
+                    const group: D3Selection = D3_SELECTION.select(contentSegmentGroup);
+                    const contentSegmentLink: D3Selection = group.select('a');
                     const textElement = contentSegmentLink.select('text');
 
                     expect(textElement).toBeDefined();
@@ -1412,8 +1411,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgCanvas: D3_SELECTION.Selection<SVGSVGElement, undefined, null, undefined>;
-            let expectedSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgCanvas: D3Selection;
+            let expectedSheetGroup: D3Selection;
             let expectedSheetGroupId: string;
             let expectedSheetGroupClass: string;
 
@@ -1469,7 +1468,7 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
@@ -1489,13 +1488,13 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should trigger `_appendContentSegmentGroupTitle` with correct arguments', () => {
-                const contentSegmentGroup = expectedSvgSheetGroup.select('g.content-segment-group');
+                const contentSegmentGroup: D3Selection = expectedSvgSheetGroup.select('g.content-segment-group');
 
                 expectSpyCall(appendContentSegmentGroupTitleSpy, 1, [contentSegmentGroup, expectedContentSegment]);
             });
 
             it('... should trigger trigger NavigationService with the correct ids when the content segment is selectable and clicked', () => {
-                const contentSegmentGroup = expectedSvgSheetGroup.select('g.content-segment-group');
+                const contentSegmentGroup: D3Selection = expectedSvgSheetGroup.select('g.content-segment-group');
                 expectedContentSegment.selectable = true;
 
                 // Dispatch a click event manually
@@ -1508,7 +1507,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should trigger ModalService with the correct id when the content segment is not selectable and clicked', () => {
-                const contentSegmentGroup = expectedSvgSheetGroup.select('g.content-segment-group');
+                const contentSegmentGroup: D3Selection = expectedSvgSheetGroup.select('g.content-segment-group');
                 expectedContentSegment.selectable = false;
 
                 // Dispatch a click event manually
@@ -1525,8 +1524,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedContentSegmentGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
+            let expectedContentSegmentGroup: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
@@ -1627,12 +1626,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedContentSegmentGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedContentSegmentGroup: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const svg = D3_SELECTION.create('svg');
+                const svg: D3Selection = D3_SELECTION.create('svg');
                 expectedContentSegmentGroup = svg.append('g');
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
@@ -1652,14 +1651,14 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should append a title element to the SVG group', () => {
-                const titleElement = expectedContentSegmentGroup.select('title');
+                const titleElement: D3Selection = expectedContentSegmentGroup.select('title');
 
                 expect(titleElement).toBeDefined();
                 expectToBe(expectedContentSegmentGroup.selectAll('title').size(), 1);
             });
 
             it('... should set the text content of the title element', () => {
-                const titleElement = expectedContentSegmentGroup.select('title');
+                const titleElement: D3Selection = expectedContentSegmentGroup.select('title');
 
                 expectToBe(titleElement.text(), expectedContentSegment.segmentLabel);
             });
@@ -1683,11 +1682,11 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedContentSegmentGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedContentSegmentGroup: D3Selection;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const svg = D3_SELECTION.create('svg');
+                const svg: D3Selection = D3_SELECTION.create('svg');
                 expectedContentSegmentGroup = svg.append('g');
 
                 (folioService as any)._appendContentSegmentLink(expectedContentSegmentGroup);
@@ -1706,20 +1705,20 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should append one link element to the SVG group', () => {
-                const linkElement = expectedContentSegmentGroup.select('a');
+                const linkElement: D3Selection = expectedContentSegmentGroup.select('a');
 
                 expect(linkElement).toBeDefined();
                 expectToBe(expectedContentSegmentGroup.selectAll('a').size(), 1);
             });
 
             it('... should set the `class` attribute of the link element', () => {
-                const linkElement = expectedContentSegmentGroup.select('a');
+                const linkElement: D3Selection = expectedContentSegmentGroup.select('a');
 
                 expectToBe(linkElement.attr('class'), 'content-segment-link');
             });
 
             it('... should only have specified attribute', () => {
-                const linkElement = expectedContentSegmentGroup.select('a');
+                const linkElement: D3Selection = expectedContentSegmentGroup.select('a');
 
                 const expectedAttributes = ['class'].map(attr => attr.toLowerCase());
                 const actualAttributesList = (linkElement.node() as Element).attributes;
@@ -1737,12 +1736,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedContentSegmentLink: D3_SELECTION.Selection<SVGAElement, undefined, null, undefined>;
+            let expectedContentSegmentLink: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const contentSegmentGroup = D3_SELECTION.create('g');
+                const contentSegmentGroup: D3Selection = D3_SELECTION.create('g');
                 expectedContentSegmentLink = contentSegmentGroup.append('svg:a');
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
@@ -1766,7 +1765,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should trigger `_appendContentSegmentLinkLabelTspanElements` with correct arguments', () => {
-                const contentSegmentLinkLabel = expectedContentSegmentLink.select('text');
+                const contentSegmentLinkLabel: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectSpyCall(appendContentSegmentLinkLabelTspanElementsSpy, 1, [
                     contentSegmentLinkLabel,
@@ -1775,7 +1774,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should rotate the label if reversed is true', () => {
-                const contentSegmentLinkReversed = D3_SELECTION.create('svg:a');
+                const contentSegmentLinkReversed: D3Selection = D3_SELECTION.create('svg:a');
 
                 const folioSvgData = new FolioSvgData(
                     new FolioCalculation(
@@ -1805,12 +1804,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedContentSegmentLink: D3_SELECTION.Selection<SVGAElement, undefined, null, undefined>;
+            let expectedContentSegmentLink: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const contentSegmentGroup = D3_SELECTION.create('g');
+                const contentSegmentGroup: D3Selection = D3_SELECTION.create('g');
                 expectedContentSegmentLink = contentSegmentGroup.append('svg:a');
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
@@ -1840,56 +1839,56 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should append one text element to the SVG content segment link', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expect(textElement).toBeDefined();
                 expectToBe(expectedContentSegmentLink.selectAll('text').size(), 1);
             });
 
             it('... should set the `class` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('class'), 'content-segment-label');
             });
 
             it('... should set the `x` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('x'), String(expectedContentSegment.centeredXPosition));
             });
 
             it('... should set the `y` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('y'), String(expectedContentSegment.centeredYPosition));
             });
 
             it('... should set the `font-family` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('font-family'), expectedContentSegmentFontFamily);
             });
 
             it('... should set the `dominant-baseline` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('dominant-baseline'), 'middle');
             });
 
             it('... should set the `text-anchor` attribute of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.attr('text-anchor'), 'middle');
             });
 
             it('... should set the `font-size` style of the text element', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 expectToBe(textElement.style('font-size'), expectedContentSegmentFontSize);
             });
 
             it('... should only have specified attributes', () => {
-                const textElement = expectedContentSegmentLink.select('text');
+                const textElement: D3Selection = expectedContentSegmentLink.select('text');
 
                 const expectedAttributes = [
                     'class',
@@ -1915,12 +1914,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedLabelSelection: D3_SELECTION.Selection<SVGTextElement, undefined, null, undefined>;
+            let expectedLabelSelection: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const contentSegmentGroup = D3_SELECTION.create('g');
+                const contentSegmentGroup: D3Selection = D3_SELECTION.create('g');
                 expectedLabelSelection = contentSegmentGroup.append('text');
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
@@ -2019,7 +2018,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should not append a second tspan element if the labelArray has only one content segment', () => {
-                const contentSegmentLinkLabel = D3_SELECTION.create('text');
+                const contentSegmentLinkLabel: D3Selection = D3_SELECTION.create('text');
                 expectedContentSegment.segmentLabelArray = ['test'];
 
                 (folioService as any)._appendContentSegmentLinkLabelTspanElements(
@@ -2031,7 +2030,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should not append a tspan element if the labelArray is empty', () => {
-                const contentSegmentLinkLabel = D3_SELECTION.create('text');
+                const contentSegmentLinkLabel: D3Selection = D3_SELECTION.create('text');
                 expectedContentSegment.segmentLabelArray = [];
 
                 (folioService as any)._appendContentSegmentLinkLabelTspanElements(
@@ -2050,13 +2049,13 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedContentSegmentLink: D3_SELECTION.Selection<SVGAElement, undefined, null, undefined>;
+            let expectedContentSegmentLink: D3Selection;
             let expectedContentSegment: FolioSvgContentSegment;
             let expectedAdjustedStrokeWidth: number;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const contentSegmentGroup = D3_SELECTION.create('g');
+                const contentSegmentGroup: D3Selection = D3_SELECTION.create('g');
                 expectedContentSegmentLink = contentSegmentGroup.append('svg:a');
 
                 const systemsLength = expectedFolioSvgData.systems.systemsLines.length;
@@ -2087,14 +2086,14 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should append one polygon element to the SVG content segment link', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 expect(polygonElement).toBeDefined();
                 expectToBe(expectedContentSegmentLink.selectAll('polygon').size(), 1);
             });
 
             it('... should append one polygon element to the SVG content segment link even if content.segmentSplit is not given in folioCalculation model', () => {
-                const altSegmentLink = D3_SELECTION.create('svg:a');
+                const altSegmentLink: D3Selection = D3_SELECTION.create('svg:a');
 
                 expectedReversedFolio.content[0].segmentSplit = undefined;
                 const altFolioSvgData = new FolioSvgData(
@@ -2114,10 +2113,15 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should append one polygon element to the SVG content segment link even if segment.position is not given or less than segmentSplit in folioCalculation model', () => {
-                const altSegmentLink = D3_SELECTION.create('svg:a');
+                const altSegmentLink: D3Selection = D3_SELECTION.create('svg:a');
+                const folioContent = expectedReversedFolio.content[0];
 
-                expectedReversedFolio.content[0].segmentSplit = 1;
-                expectedReversedFolio.content[0].segments[0].position = undefined;
+                if (!folioContent?.segments?.[0]) {
+                    throw new Error('Expected folioContent or segments[0] to be defined');
+                }
+
+                folioContent.segmentSplit = 1;
+                folioContent.segments[0].position = undefined;
                 const altFolioSvgData = new FolioSvgData(
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
@@ -2135,25 +2139,25 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should set the `class` attribute of the polygon element', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 expectToBe(polygonElement.attr('class'), 'content-segment-shape');
             });
 
             it('... should set the `points` attribute of the polygon element', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 expectToBe(polygonElement.attr('points'), expectedContentSegment.segmentVertices);
             });
 
             it('... should set the `fill` attribute of the polygon element', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 expectToBe(polygonElement.attr('fill'), expectedContentSegmentFillColor);
             });
 
             it('... should set the `stroke-width` attribute of the polygon element to default value if no number of systems is given', () => {
-                const altSegmentLink = D3_SELECTION.create('svg:a');
+                const altSegmentLink: D3Selection = D3_SELECTION.create('svg:a');
 
                 const altFolioSvgData = new FolioSvgData(
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
@@ -2170,13 +2174,13 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should adjust the `stroke-width` attribute of the polygon element based on the number of systems if given', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 expectToBe(polygonElement.attr('stroke-width'), String(expectedAdjustedStrokeWidth));
             });
 
             it('... should only have specified attributes', () => {
-                const polygonElement = expectedContentSegmentLink.select('polygon');
+                const polygonElement: D3Selection = expectedContentSegmentLink.select('polygon');
 
                 const expectedAttributes = ['class', 'points', 'fill', 'stroke-width'].map(attr => attr.toLowerCase());
                 const actualAttributesList = (polygonElement.node() as Element).attributes;
@@ -2194,8 +2198,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedRectElement: D3_SELECTION.Selection<SVGRectElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
+            let expectedRectElement: D3Selection;
 
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
@@ -2281,8 +2285,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedTitleElement: D3_SELECTION.Selection<SVGTitleElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
+            let expectedTitleElement: D3Selection;
             let folioId: string;
             let sheetGroupTitle: string;
             let sheetGroupTitleClass: string;
@@ -2340,8 +2344,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedSvgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
+            let expectedSvgTrademarkGroup: D3Selection;
 
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
@@ -2393,8 +2397,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSheetGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedTrademarkGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSvgSheetGroup: D3Selection;
+            let expectedTrademarkGroup: D3Selection;
             let trademarkGroupId: string;
             let trademarkGroupClass: string;
 
@@ -2450,8 +2454,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedRectElement: D3_SELECTION.Selection<SVGRectElement, undefined, null, undefined>;
+            let expectedSvgTrademarkGroup: D3Selection;
+            let expectedRectElement: D3Selection;
             let trademarkRectangleClass: string;
 
             beforeEach(() => {
@@ -2556,8 +2560,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedSymbolPathElement: D3_SELECTION.Selection<SVGPathElement, undefined, null, undefined>;
+            let expectedSvgTrademarkGroup: D3Selection;
+            let expectedSymbolPathElement: D3Selection;
             let trademarkSymbolClass: string;
             let trademarkSymbolTransform: string;
             let x1: number, x2: number, y1: number, y2: number;
@@ -2643,8 +2647,8 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgTrademarkGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
-            let expectedTitleElement: D3_SELECTION.Selection<SVGTitleElement, undefined, null, undefined>;
+            let expectedSvgTrademarkGroup: D3Selection;
+            let expectedTitleElement: D3Selection;
             let trademarkTitle: string;
             let trademarkTitleClass: string;
 
@@ -2701,12 +2705,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSystemsGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSystemsGroup: D3Selection;
             let systemIndex: number;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const svg = D3_SELECTION.create('svg');
+                const svg: D3Selection = D3_SELECTION.create('svg');
                 expectedSystemsGroup = svg.append('g');
 
                 systemIndex = 0;
@@ -2740,46 +2744,46 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should set the text content of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
 
                 expectToBe(textElement.empty(), false);
                 expectToBe(textElement.text(), String(systemIndex + 1));
             });
 
             it('... should set the `class` attribute of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
 
                 expectToBe(textElement.attr('class'), 'system-label');
             });
 
             it('... should set the `x` attribute of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
                 const { x } = expectedFolioSvgData.systems.systemsLabelPositions[systemIndex];
 
                 expectToBe(textElement.attr('x'), String(x));
             });
 
             it('... should set the `y` attribute of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
                 const { y } = expectedFolioSvgData.systems.systemsLabelPositions[systemIndex];
 
                 expectToBe(textElement.attr('y'), String(y));
             });
 
             it('... should set the `dominant-baseline` attribute of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
 
                 expectToBe(textElement.attr('dominant-baseline'), 'hanging');
             });
 
             it('... should set the `fill` attribute of the text element', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
 
                 expectToBe(textElement.attr('fill'), expectedBgColor);
             });
 
             it('... should only have specified attributes', () => {
-                const textElement = expectedSystemsGroup.select('text');
+                const textElement: D3Selection = expectedSystemsGroup.select('text');
 
                 const expectedAttributes = ['class', 'x', 'y', 'fill', 'dominant-baseline'].map(attr =>
                     attr.toLowerCase()
@@ -2799,12 +2803,12 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSystemsGroup: D3_SELECTION.Selection<SVGGElement, undefined, null, undefined>;
+            let expectedSystemsGroup: D3Selection;
             let expectedSystemArray: FolioCalculationLine[];
 
             beforeEach(() => {
                 // Create a new SVG group for testing
-                const svg = D3_SELECTION.create('svg');
+                const svg: D3Selection = D3_SELECTION.create('svg');
                 expectedSystemsGroup = svg.append('g');
 
                 expectedSystemArray = expectedFolioSvgData.systems.systemsLines[0];
@@ -2817,12 +2821,17 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should trigger `_appendSvgElementWithAttrs` for each line with correct arguments', () => {
+                const lastSystem = expectedSystemArray.at(-1);
+                if (!lastSystem) {
+                    throw new Error('Expected last system to be defined');
+                }
+
                 const attributes = {
                     class: 'system-line',
-                    x1: expectedSystemArray.at(-1).START_POINT.x,
-                    y1: expectedSystemArray.at(-1).START_POINT.y,
-                    x2: expectedSystemArray.at(-1).END_POINT.x,
-                    y2: expectedSystemArray.at(-1).END_POINT.y,
+                    x1: lastSystem.START_POINT.x,
+                    y1: lastSystem.START_POINT.y,
+                    x2: lastSystem.END_POINT.x,
+                    y2: lastSystem.END_POINT.y,
                     stroke: expectedBgColor,
                     'stroke-width': expectedSystemsLineStrokeWidth,
                 };
@@ -2919,7 +2928,7 @@ describe('FolioService (DONE)', () => {
         });
 
         describe('... when called', () => {
-            let expectedSvgSelection: D3_SELECTION.Selection<SVGSVGElement, undefined, null, undefined>;
+            let expectedSvgSelection: D3Selection;
 
             let type: string;
             let attributes: Record<string, any>;
@@ -2957,7 +2966,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should set the correct attributes on the appended element', () => {
-                const group = expectedSvgSelection.select('g');
+                const group: D3Selection = expectedSvgSelection.select('g');
 
                 Object.entries(attributes).forEach(([attrId, attrValue]) => {
                     expectToBe(group.attr(attrId), attrValue.toString());
@@ -2965,7 +2974,7 @@ describe('FolioService (DONE)', () => {
             });
 
             it('... should only have given attributes on the appended element', () => {
-                const group = expectedSvgSelection.select('g');
+                const group: D3Selection = expectedSvgSelection.select('g');
                 const expectedAttributes = Object.keys(attributes);
                 const actualAttributesList = (group.node() as Element).attributes;
                 const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);

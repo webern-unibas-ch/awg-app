@@ -54,7 +54,7 @@ import { EditionReportComponent } from './edition-report.component';
 })
 class SourceListStubComponent {
     @Input()
-    sourceListData: SourceList;
+    sourceListData: SourceList | null = null;
 }
 
 @Component({
@@ -64,7 +64,7 @@ class SourceListStubComponent {
 })
 class SourceDescriptionStubComponent {
     @Input()
-    sourceDescriptionListData: SourceDescriptionList;
+    sourceDescriptionListData: SourceDescriptionList | null = null;
 }
 
 @Component({
@@ -74,9 +74,9 @@ class SourceDescriptionStubComponent {
 })
 class SourceEvaluationStubComponent {
     @Input()
-    editionComplex: EditionComplex;
+    editionComplex: EditionComplex | null = null;
     @Input()
-    sourceEvaluationListData: SourceEvaluationList;
+    sourceEvaluationListData: SourceEvaluationList | null = null;
 }
 
 @Component({
@@ -86,7 +86,7 @@ class SourceEvaluationStubComponent {
 })
 export class TextcriticsListStubComponent {
     @Input()
-    textcriticsListData: TextcriticsList;
+    textcriticsListData: TextcriticsList | null = null;
 }
 
 describe('EditionReportComponent', () => {

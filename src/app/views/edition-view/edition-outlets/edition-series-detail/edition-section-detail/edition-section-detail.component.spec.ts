@@ -166,9 +166,9 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     const mockSeriesWithRoute = {
                         series: {
                             short: 'series-1',
-                            route: undefined,
+                            route: '',
                         },
-                        sections: [],
+                        sections: [] as EditionOutlineSection[],
                     } as EditionOutlineSeries;
 
                     editionStateService.updateSelectedEditionSeries(mockSeriesWithRoute);
@@ -179,14 +179,28 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
                 });
 
-                it('... if section is missing (undefined)', () => {
-                    const mockSeries = { series: { route: 'series-1' }, sections: [] } as EditionOutlineSeries;
-                    editionStateService.updateSelectedEditionSeries(mockSeries);
-                    fixture.componentRef.setInput('sectionId', 'sec-999');
+                it('... if `sectionId` is missing', () => {
+                    editionStateService.updateSelectedEditionSeries(expectedSeries);
+                    fixture.componentRef.setInput('sectionId', null);
 
                     fixture.detectChanges();
 
-                    expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, ['series-1', 'sec-999']);
+                    expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                });
+
+                it('... if section cannot be found by id', () => {
+                    const nonMatchingSectionId = 'sec-999';
+                    const mockSeries = {
+                        series: { route: 'series-1' },
+                        sections: [] as EditionOutlineSection[],
+                    } as EditionOutlineSeries;
+                    editionStateService.updateSelectedEditionSeries(mockSeries);
+                    fixture.componentRef.setInput('sectionId', nonMatchingSectionId);
+
+                    fixture.detectChanges();
+
+                    expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 1, ['series-1', nonMatchingSectionId]);
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
                 });
 

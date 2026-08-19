@@ -24,7 +24,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let mockEditionGlyphService: Partial<EditionGlyphService>;
+    let mockEditionGlyphService: EditionGlyphService;
 
     let expectedEvaluations: string[];
 
@@ -40,7 +40,7 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
                         return 'glyphString';
                 }
             },
-        };
+        } as EditionGlyphService;
 
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective],

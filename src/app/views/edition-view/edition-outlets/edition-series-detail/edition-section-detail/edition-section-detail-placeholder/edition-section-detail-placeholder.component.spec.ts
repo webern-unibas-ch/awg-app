@@ -7,7 +7,7 @@ import { AlertInfoStubComponent } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
 
@@ -16,9 +16,7 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     let fixture: ComponentFixture<EditionSectionDetailPlaceholderComponent>;
     let compDe: DebugElement;
 
-    let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
-
     let expectedInfoMessage: string;
 
     beforeEach(async () => {
@@ -30,7 +28,6 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
 
         const sectionLabel = expectedSection.labeledRoute.label;
@@ -47,10 +44,6 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedSeries`', () => {
-            expect(component.selectedSeries).toBeUndefined();
-        });
-
         it('... should not have `selectedSection`', () => {
             expect(component.selectedSection).toBeUndefined();
         });
@@ -71,8 +64,7 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = structuredClone(expectedSeries);
-            component.selectedSection = structuredClone(expectedSection);
+            fixture.componentRef.setInput('selectedSection', structuredClone(expectedSection));
 
             // Trigger initial data binding
             fixture.detectChanges();

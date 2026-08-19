@@ -55,9 +55,9 @@ class EditionSvgSheetFacetStubComponent {
     @Input()
     isMinimized = false;
     @Input()
-    svgSheetsData: EditionSvgSheetsList;
+    svgSheetsData: EditionSvgSheetsList | null = null;
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
     @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
@@ -69,7 +69,7 @@ class EditionSvgSheetFacetStubComponent {
 })
 class EditionSvgSheetViewerStubComponent {
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet?: EditionSvgSheet;
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
     @Output()
@@ -85,11 +85,11 @@ class EditionSvgSheetViewerStubComponent {
 })
 class EditionSvgSheetFooterStubComponent {
     @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary;
+    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
     @Input()
-    selectedTextcritics: Textcritics;
+    selectedTextcritics: Textcritics | undefined;
     @Input()
-    showTkA: boolean;
+    showTkA = false;
 }
 
 describe('EditionAccoladeComponent (DONE)', () => {
@@ -681,30 +681,18 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
                 });
 
-                it('... should not emit anything if no direction is provided', () => {
-                    const expectedDirection: number = undefined;
-                    component.browseSvgSheet(expectedDirection);
-
-                    expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
-                });
-
-                it('... should emit a given direction', () => {
+                it('... should emit 1 for forward direction', () => {
                     const expectedDirection = 1;
                     component.browseSvgSheet(expectedDirection);
 
                     expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
                 });
 
-                it('... should emit the correct direction', () => {
-                    let expectedDirection = 1;
+                it('... should emit -1 for backward direction', () => {
+                    const expectedDirection = -1;
                     component.browseSvgSheet(expectedDirection);
 
                     expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-
-                    expectedDirection = -1;
-                    component.browseSvgSheet(expectedDirection);
-
-                    expectSpyCall(browseSvgSheetRequestEmitSpy, 2, expectedDirection);
                 });
             });
 
@@ -729,29 +717,16 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectSpyCall(openModalSpy, 1, expectedSnippet);
                 });
 
-                describe('... should do nothing if ', () => {
-                    it('... id is undefined', () => {
-                        component.openModal(undefined);
-
-                        expectSpyCall(serviceOpenModalSpy, 0);
-                    });
-
-                    it('... id is null', () => {
-                        component.openModal(undefined);
-
-                        expectSpyCall(serviceOpenModalSpy, 0, null);
-                    });
-                    it('... id is empty string', () => {
-                        component.openModal('');
-
-                        expectSpyCall(serviceOpenModalSpy, 0);
-                    });
-                });
-
                 it('... should trigger ModalService with id of given modal snippet', () => {
                     component.openModal(expectedModalSnippet);
 
                     expectSpyCall(serviceOpenModalSpy, 1, expectedModalSnippet);
+                });
+
+                it('... should trigger ModalService with empty string if id is empty', () => {
+                    component.openModal('');
+
+                    expectSpyCall(serviceOpenModalSpy, 1, '');
                 });
             });
 
@@ -878,12 +853,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                         expectSpyCall(toggleSheetFacetSpy, 1, false);
                     });
-                });
-
-                it('... should not emit anything if no value is provided', () => {
-                    component.toggleSheetFacet(undefined);
-
-                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 0, undefined);
                 });
 
                 it('... should emit toggleSheetFacetRequest with correct value', () => {

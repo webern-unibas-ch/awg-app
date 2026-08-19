@@ -92,7 +92,7 @@ export class EditionSvgSheetFacetItemComponent {
      * @returns {void} Navigates to the selected SVG sheet.
      */
     selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+        if (!sheetIds.sheetId) {
             return;
         }
         this._navigationService.navigateToSvgSheet(sheetIds);
