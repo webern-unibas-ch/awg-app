@@ -12,6 +12,7 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import {
     expectSpyCall,
     expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -70,16 +71,16 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have a view handle control form', () => {
-            expect(component.viewHandleControlForm).toBeUndefined();
+        it('... should have default `viewHandles` input', () => {
+            expectToEqual(component.viewHandles, []);
         });
 
-        it('... should not have a selected view type', () => {
+        it('... should not have `selectedViewType`', () => {
             expect(component.selectedViewType).toBeUndefined();
         });
 
-        it('... should not have a list of view handles', () => {
-            expect(component.viewHandles).toBeUndefined();
+        it('... should not have `viewHandleControlForm`', () => {
+            expect(component.viewHandleControlForm).toBeUndefined();
         });
 
         describe('VIEW', () => {

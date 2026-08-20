@@ -75,7 +75,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the triples of the query result.
      */
-    @Input() currentQueryResultTriples: Triple[] = [];
+    @Input() currentQueryResultTriples?: Triple[];
 
     /**
      * Input variable: height.

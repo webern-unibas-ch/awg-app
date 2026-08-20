@@ -82,16 +82,16 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have no `id` yet', () => {
-            expect(component.id).toBeUndefined();
+        it('... should have default `id` input', () => {
+            expectToBe(component.id, '');
         });
 
-        it('... should have no `suppliedClasses` yet', () => {
-            expect(component.suppliedClasses).toBeUndefined();
+        it('... should have default `suppliedClasses`', () => {
+            expectToEqual(component.suppliedClasses, new Map<string, boolean>());
         });
 
-        it('... should have no `hasAvailableTkkOverlays` yet', () => {
-            expect(component.hasAvailableTkkOverlays).toBeUndefined();
+        it('... should have default `hasAvailableTkkOverlays`', () => {
+            expectToBe(component.hasAvailableTkkOverlays, false);
         });
 
         it('... should have allClassesVisible = `true`', () => {
@@ -534,11 +534,11 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             it('... should trigger _onSuppliedClassesOpacityToggle() with the correct parameters', () => {
                 component.toggleAllClassesOpacity();
 
-                expectSpyCall(onSuppliedClassesOpacityToggleSpy, 1, [undefined, expectedAllClassesVisible]);
+                expectSpyCall(onSuppliedClassesOpacityToggleSpy, 1, ['', expectedAllClassesVisible]);
 
                 component.toggleAllClassesOpacity();
 
-                expectSpyCall(onSuppliedClassesOpacityToggleSpy, 2, [undefined, !expectedAllClassesVisible]);
+                expectSpyCall(onSuppliedClassesOpacityToggleSpy, 2, ['', !expectedAllClassesVisible]);
             });
 
             it('... should toggle the `allClassesVisible` flag', () => {
@@ -660,7 +660,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 component.toggleAllClassesOpacity();
 
                 expectSpyCall(emitToggleSuppliedClassesOpacityRequestSpy, 1, {
-                    className: undefined,
+                    className: '',
                     isCurrentlyVisible: true,
                 });
             });

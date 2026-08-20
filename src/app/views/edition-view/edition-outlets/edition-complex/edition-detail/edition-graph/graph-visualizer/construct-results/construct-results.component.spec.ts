@@ -112,16 +112,16 @@ describe('ConstructResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined();
+        it('... should have default `queryResult` input', () => {
+            expectToEqual(component.queryResult$, EMPTY);
         });
 
-        it('... should not have defaultForceGraphHeight', () => {
-            expect(component.defaultForceGraphHeight).toBeUndefined();
+        it('... should have default `defaultForceGraphHeight` input', () => {
+            expectToBe(component.defaultForceGraphHeight, 0);
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         describe('VIEW', () => {

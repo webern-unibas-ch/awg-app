@@ -92,15 +92,13 @@ describe('SourceListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have sourceListData', () => {
-            expect(component.sourceListData).toBeUndefined();
+        it('... should have default `sourceListData` input', () => {
+            expectToBe(component.sourceListData, null);
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.card with with div.card-body, but no tables yet', () => {
-                const divCardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
-
-                getAndExpectDebugElementByCss(divCardBodyDes[0], 'table', 0, 0);
+            it('... should contain no div.card-body yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 0, 0);
             });
         });
     });

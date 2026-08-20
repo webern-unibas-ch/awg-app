@@ -67,8 +67,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `corrections`', () => {
-            expect(component.corrections).toBeUndefined();
+        it('... should have default `corrections` input', () => {
+            expectToEqual(component.corrections, []);
         });
 
         it('... should have `openAllCorrectionDetails`', () => {
@@ -476,7 +476,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                             if (expectedCorrections[index].rowtable) {
                                 expectToBe(editionTkaTableCmp.isRowtable, expectedCorrections[index].rowtable);
                             } else {
-                                expect(editionTkaTableCmp.isRowtable).toBeUndefined();
+                                expectToBe(editionTkaTableCmp.isRowtable, false);
                             }
                         });
                     });

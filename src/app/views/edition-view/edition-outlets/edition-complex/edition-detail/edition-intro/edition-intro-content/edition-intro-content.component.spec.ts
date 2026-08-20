@@ -48,12 +48,12 @@ describe('EditionIntroContentComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `introBlockContent`', () => {
-            expect(component.introBlockContent).toBeUndefined();
+        it('... should have default `introBlockContent` input', () => {
+            expectToEqual(component.introBlockContent, []);
         });
 
-        it('... should not have `notesLabel`', () => {
-            expect(component.notesLabel).toBeUndefined();
+        it('... should have default `notesLabel` input', () => {
+            expectToBe(component.notesLabel, '');
         });
 
         describe('VIEW', () => {
@@ -346,7 +346,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                     getAndExpectDebugElementByCss(
                         getNotesSectionDe(),
-                        'small > div.awg-edition-intro-note',
+                        'div.awg-edition-intro-note.small',
                         totalBlockNotesLength,
                         totalBlockNotesLength
                     );

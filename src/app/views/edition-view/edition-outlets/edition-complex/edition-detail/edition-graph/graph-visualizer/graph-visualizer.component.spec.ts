@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, EmptyError, lastValueFrom, Observable, take } from 'rxjs';
+import { EMPTY, EmptyError, firstValueFrom, lastValueFrom, Observable, take } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -249,8 +249,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have input `graphRDFInputData`', () => {
-            expect(component.graphRDFInputData).toBeUndefined();
+        it('... should have default input `graphRDFInputData`', () => {
+            expectToEqual(component.graphRDFInputData, new GraphRDFData());
         });
 
         it('... should have input signal `isFullscreenMode` to hold the default value', () => {
@@ -259,28 +259,28 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expectToBe(component.isFullscreenMode(), false);
         });
 
-        it('... should not have `query`', () => {
-            expect(component.query).toBeUndefined();
-        });
-
-        it('... should not have `queryList`', () => {
-            expect(component.queryList).toBeUndefined();
-        });
-
-        it('... should not have `queryResult`', () => {
-            expect(component.queryResult$).toBeUndefined();
-        });
-
-        it('... should not have `queryTime`', () => {
-            expect(component.queryTime).toBeUndefined();
-        });
-
-        it('... should not have `triples`', () => {
-            expect(component.triples).toBeUndefined();
-        });
-
-        it('... should have `defaultForceGraphHeight` ', () => {
+        it('... should have default `defaultForceGraphHeight` ', () => {
             expectToBe(component.defaultForceGraphHeight, 500);
+        });
+
+        it('... should have default `query`', () => {
+            expectToEqual(component.query, new GraphSparqlQuery());
+        });
+
+        it('... should have default `queryList`', () => {
+            expectToEqual(component.queryList, []);
+        });
+
+        it('... should have default `queryResult`', () => {
+            expectToEqual(component.queryResult$, EMPTY);
+        });
+
+        it('... should have default `queryTime`', () => {
+            expectToBe(component.queryTime, 0);
+        });
+
+        it('... should have default `triples`', () => {
+            expectToBe(component.triples, '');
         });
 
         it('... should not have triggered `resetTriples()`', () => {
@@ -292,8 +292,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should not contain any content (div.row)', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
+            it('... should contain a main div with 2 child divs', () => {
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[0], 'div.awg-graph-visualizer > div', 2, 2);
             });
         });
     });
@@ -685,6 +686,37 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expectToBe(resultsCmp.queryType, 'other');
                 });
+
+                it('... should pass down empty string to UnsupportedTypeResultsComponent if queryType is missing', async () => {
+                    component.query.queryType = null;
+                    await detectChangesOnPush(fixture);
+
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        UnsupportedTypeResultsStubComponent,
+                        1,
+                        1
+                    );
+                    const resultsCmp = resultsDes[0].injector.get(
+                        UnsupportedTypeResultsStubComponent
+                    ) as UnsupportedTypeResultsStubComponent;
+
+                    expectToBe(resultsCmp.queryType, '');
+                });
+
+                it('... should have `isFullscreen` passed down from main component', () => {
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        UnsupportedTypeResultsStubComponent,
+                        1,
+                        1
+                    );
+                    const resultsCmp = resultsDes[0].injector.get(
+                        UnsupportedTypeResultsStubComponent
+                    ) as UnsupportedTypeResultsStubComponent;
+
+                    expectToBe(resultsCmp.isFullscreen, false);
+                });
             });
         });
 
@@ -1072,180 +1104,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('#_queryLocalStore()', () => {
-                beforeEach(async () => {
-                    // Set construct mode
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
-                });
-
-                it('... should have a method `_queryLocalStore`', () => {
-                    expect((component as any)._queryLocalStore).toBeDefined();
-                });
-
-                it('... should trigger `graphVisualizerService.doQuery`', async () => {
-                    const expectedCallback = [
-                        'construct',
-                        expectedGraphRDFData.queryList[0].queryString,
-                        expectedGraphRDFData.triples,
-                    ];
-
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(queryLocalStoreSpy, 2, expectedCallback);
-                    expectSpyCall(serviceDoQuerySpy, 2, expectedCallback);
-                });
-
-                it('... should return query result on success (construct)', async () => {
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
-                });
-
-                it('... should return query result on success (select)', async () => {
-                    // Set select query type
-                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
-                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
-
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
-                });
-
-                it('... should return string message on successful select query with no results', async () => {
-                    const expectedNoResults = 'Query returned no results';
-                    const expectedCallback = [
-                        'select',
-                        expectedGraphRDFData.queryList[0].queryString,
-                        expectedGraphRDFData.triples,
-                    ];
-
-                    serviceDoQuerySpy.mockResolvedValue(expectedNoResults);
-
-                    const result = await (component as any)._queryLocalStore(
-                        expectedCallback[0],
-                        expectedCallback[1],
-                        expectedCallback[2]
-                    );
-
-                    expectToBe(result, expectedNoResults);
-                });
-
-                describe('... on error', () => {
-                    it('... should return empty array', async () => {
-                        const expectedError = { status: 404, statusText: 'error' };
-
-                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
-
-                        component.performQuery();
-                        await detectChangesOnPush(fixture);
-
-                        await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                        await expect(lastValueFrom(component.queryResult$)).resolves.toEqual([]);
-                    });
-
-                    it('... should log an error', async () => {
-                        const expectedError = { status: 404, statusText: 'error' };
-
-                        const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
-                        errorSpy.mockClear();
-
-                        component.performQuery();
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(errorSpy, 2);
-                        expectToEqual(errorSpy.mock.calls[0], ['#queryLocalstore got error:', expectedError]);
-                        // Error logged by `showToastMessage` method
-                        expectToEqual(errorSpy.mock.calls[1], ['Query Error', ':', String(expectedError.statusText)]);
-                    });
-
-                    describe('... should trigger `showToastMessage` correctly on', () => {
-                        it.each([
-                            {
-                                desc: 'a structured error object (Error)',
-                                error: (() => {
-                                    const err = new Error('error message');
-                                    err.name = 'Error';
-                                    return err;
-                                })(),
-                                expectedCalls: [[new ToastMessage('Error', 'error message', 5000), 'error']],
-                            },
-                            {
-                                desc: 'a structured error object (Error) with message containing `undefined`',
-                                error: (() => {
-                                    const err = new Error('error message undefined');
-                                    err.name = 'Error';
-                                    return err;
-                                })(),
-                                expectedCalls: [
-                                    [new ToastMessage('Error', 'The query did not return any results.', 5000), 'error'],
-                                    [new ToastMessage('Error', 'error message undefined', 5000), 'error'],
-                                ],
-                            },
-                            {
-                                desc: 'a plain object with a `message` property',
-                                error: { status: 400, message: 'Custom API error message' },
-                                expectedCalls: [
-                                    [new ToastMessage('Query Error', 'Custom API error message', 5000), 'error'],
-                                ],
-                            },
-                            {
-                                desc: 'a plain object with a `statusText` property (like HTTP errors)',
-                                error: { status: 404, statusText: 'Not Found' },
-                                expectedCalls: [[new ToastMessage('Query Error', 'Not Found', 5000), 'error']],
-                            },
-                            {
-                                desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
-                                error: { errorCode: 999, fatal: true },
-                                expectedCalls: [
-                                    [new ToastMessage('Query Error', '{"errorCode":999,"fatal":true}', 5000), 'error'],
-                                ],
-                            },
-                            {
-                                desc: 'an object where `JSON.stringify` returns undefined (forces the || String fallback)',
-                                error: {
-                                    toJSON: (): undefined => undefined,
-                                },
-                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
-                            },
-                            {
-                                desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
-                                error: (() => {
-                                    const circularObj: any = { foo: 'bar' };
-                                    circularObj.self = circularObj;
-                                    return circularObj;
-                                })(),
-                                expectedCalls: [[new ToastMessage('Query Error', '[object Object]', 5000), 'error']],
-                            },
-                            {
-                                desc: 'a primitive string error',
-                                error: 'Fatal Store Crash',
-                                expectedCalls: [[new ToastMessage('Query Error', 'Fatal Store Crash', 5000), 'error']],
-                            },
-                        ])('... $desc', async ({ error, expectedCalls }) => {
-                            vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                            serviceDoQuerySpy.mockImplementation(() => Promise.reject(error));
-
-                            component.performQuery();
-                            await detectChangesOnPush(fixture);
-
-                            expectSpyCall(showToastMessageSpy, expectedCalls.length);
-                            expectedCalls.forEach((expectedCall, index) => {
-                                expectToEqual(showToastMessageSpy.mock.calls[index], expectedCall);
-                            });
-                        });
-                    });
-                });
-            });
-
             describe('#showToastMessage()', () => {
                 beforeEach(async () => {
                     // Set construct mode
@@ -1545,6 +1403,243 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expectSpyCall(onTableNodeClickSpy, 1, expectedUri);
                     expectSpyCall(consoleSpy, 1, ['GraphVisualizerComponent# tableClick on URI', expectedUri]);
+                });
+            });
+
+            describe('#_queryLocalStore()', () => {
+                beforeEach(async () => {
+                    // Set construct mode
+                    component.query.queryType = 'construct';
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should have a method `_queryLocalStore`', () => {
+                    expect((component as any)._queryLocalStore).toBeDefined();
+                });
+
+                it('... should trigger `graphVisualizerService.doQuery`', async () => {
+                    const expectedCallback = [
+                        'construct',
+                        expectedGraphRDFData.queryList[0].queryString,
+                        expectedGraphRDFData.triples,
+                    ];
+
+                    component.performQuery();
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(performQuerySpy, 2, undefined);
+                    expectSpyCall(queryLocalStoreSpy, 2, expectedCallback);
+                    expectSpyCall(serviceDoQuerySpy, 2, expectedCallback);
+                });
+
+                it('... should return query result on success (construct)', async () => {
+                    component.performQuery();
+                    await detectChangesOnPush(fixture);
+
+                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
+                });
+
+                it('... should return query result on success (select)', async () => {
+                    // Set select query type
+                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
+                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
+
+                    component.performQuery();
+                    await detectChangesOnPush(fixture);
+
+                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
+                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
+                });
+
+                it('... should return string message on successful select query with no results', async () => {
+                    const expectedNoResults = 'Query returned no results';
+                    const expectedCallback = [
+                        'select',
+                        expectedGraphRDFData.queryList[0].queryString,
+                        expectedGraphRDFData.triples,
+                    ];
+
+                    serviceDoQuerySpy.mockResolvedValue(expectedNoResults);
+
+                    const result = await (component as any)._queryLocalStore(
+                        expectedCallback[0],
+                        expectedCallback[1],
+                        expectedCallback[2]
+                    );
+
+                    expectToBe(result, expectedNoResults);
+                });
+
+                describe('... on error', () => {
+                    it('... should return empty array', async () => {
+                        const expectedError = { status: 404, statusText: 'error' };
+
+                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
+
+                        const queryResult = await firstValueFrom(component.queryResult$);
+
+                        expectToEqual(queryResult, []);
+                    });
+
+                    it('... should log an error', async () => {
+                        const expectedError = { status: 404, statusText: 'error' };
+
+                        const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+                        errorSpy.mockClear();
+
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(errorSpy, 2);
+                        expectToEqual(errorSpy.mock.calls[0], ['#queryLocalstore got error:', expectedError]);
+                        // Error logged by `showToastMessage` method
+                        expectToEqual(errorSpy.mock.calls[1], ['Query Error', ':', String(expectedError.statusText)]);
+                    });
+
+                    it('... should delegate error parsing to _getErrorMessage and trigger showToastMessage', async () => {
+                        const error = new Error('some error');
+                        const expectedParsedMessage = 'Parsed Error Message Via Helper';
+
+                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                        const getErrorMessageSpy = vi
+                            .spyOn(component as any, '_getErrorMessage')
+                            .mockReturnValue(expectedParsedMessage);
+
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(error));
+
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
+
+                        expect(getErrorMessageSpy).toHaveBeenCalledWith(error);
+
+                        expectSpyCall(showToastMessageSpy, 1);
+                        expectToEqual(showToastMessageSpy.mock.calls[0], [
+                            new ToastMessage('Error', expectedParsedMessage, 5000),
+                            'error',
+                        ]);
+                    });
+
+                    it('... should trigger a special toast message if the error message contains `undefined`', async () => {
+                        const specialError = new Error('The query returned an undefined result.');
+                        specialError.name = 'Query Error';
+
+                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(specialError));
+                        showToastMessageSpy.mockClear();
+
+                        component.performQuery();
+                        await detectChangesOnPush(fixture);
+
+                        expectSpyCall(showToastMessageSpy, 2);
+
+                        expectToEqual(showToastMessageSpy.mock.calls[0], [
+                            new ToastMessage('Query Error', 'The query did not return any results.', 5000),
+                            'error',
+                        ]);
+                        expectToEqual(showToastMessageSpy.mock.calls[1], [
+                            new ToastMessage('Query Error', 'The query returned an undefined result.', 5000),
+                            'error',
+                        ]);
+                    });
+                });
+            });
+
+            describe('#_getErrorMessage()', () => {
+                it('... should have a method `_getErrorMessage`', () => {
+                    expect((component as any)._getErrorMessage).toBeDefined();
+                });
+
+                describe('... should parse error messages correctly for various error types', () => {
+                    it.each([
+                        {
+                            desc: 'a structured error object (Error)',
+                            error: (() => {
+                                const err = new Error('error message');
+                                err.name = 'Error';
+                                return err;
+                            })(),
+                            expectedMessage: 'error message',
+                        },
+                        {
+                            desc: 'a structured error object (Error) with specific message',
+                            error: (() => {
+                                const err = new Error('error message undefined');
+                                err.name = 'Error';
+                                return err;
+                            })(),
+                            expectedMessage: 'error message undefined',
+                        },
+                        {
+                            desc: 'a plain object with a `message` property',
+                            error: { status: 400, message: 'Custom API error message' },
+                            expectedMessage: 'Custom API error message',
+                        },
+                        {
+                            desc: 'a plain object with a `statusText` property (like HTTP errors)',
+                            error: { status: 404, statusText: 'Not Found' },
+                            expectedMessage: 'Not Found',
+                        },
+                        {
+                            desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
+                            error: { errorCode: 999, fatal: true },
+                            expectedMessage: '{"errorCode":999,"fatal":true}',
+                        },
+                        {
+                            desc: 'an object where `JSON.stringify` returns undefined',
+                            error: {
+                                toJSON: (): undefined => undefined,
+                            },
+                            expectedMessage: undefined,
+                        },
+                        {
+                            desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
+                            error: (() => {
+                                const circularObj: any = { foo: 'bar' };
+                                circularObj.self = circularObj;
+                                return circularObj;
+                            })(),
+                            expectedMessage: '[Complex Error Object with keys: foo, self]',
+                        },
+                        {
+                            desc: 'a primitive string error',
+                            error: 'Fatal Store Crash',
+                            expectedMessage: 'Fatal Store Crash',
+                        },
+                        {
+                            desc: 'a primitive number error',
+                            error: 500,
+                            expectedMessage: '500',
+                        },
+                        {
+                            desc: 'a primitive boolean error',
+                            error: false,
+                            expectedMessage: 'false',
+                        },
+                        {
+                            desc: 'an unknown format (like null)',
+                            error: null as any,
+                            expectedMessage: 'Unknown error format',
+                        },
+                        {
+                            desc: 'an unknown format (like undefined)',
+                            error: undefined as any,
+                            expectedMessage: 'Unknown error format',
+                        },
+                    ])('... with $desc', ({ error, expectedMessage }) => {
+                        const result = component['_getErrorMessage'](error);
+
+                        if (expectedMessage === undefined) {
+                            expect(result).toBeUndefined();
+                        } else {
+                            expectToBe(result, expectedMessage);
+                        }
+                    });
                 });
             });
         });

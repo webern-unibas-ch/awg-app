@@ -76,8 +76,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('... should not have `showTkA`', () => {
-            expect(component.showTkA).toBeUndefined();
+        it('... should have default `showTkA` input', () => {
+            expectToBe(component.showTkA, false);
         });
 
         it('... should have fontawesome icons', () => {

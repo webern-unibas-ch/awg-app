@@ -32,7 +32,7 @@
                     </div>
                     <!-- physDesc -->
                     @let physDesc = sourceDescription?.physDesc;
-                    @if (physDesc) {
+                    @if (!UTILS.isEmptyObject(physDesc)) {
                         <div class="awg-source-description-phys-desc">
                             <!-- conditions -->
                             @let conditions = physDesc.conditions || [];

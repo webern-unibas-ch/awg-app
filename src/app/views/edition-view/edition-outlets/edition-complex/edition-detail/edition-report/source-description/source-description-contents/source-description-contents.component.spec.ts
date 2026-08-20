@@ -99,8 +99,8 @@ describe('SourceDescriptionContentsComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `contents`', () => {
-            expect(component.contents).toBeUndefined();
+        it('... should have default `contents` input', () => {
+            expectToEqual(component.contents, []);
         });
 
         it('... should have `openAllContentDetails`', () => {

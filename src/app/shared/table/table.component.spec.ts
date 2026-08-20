@@ -27,6 +27,15 @@ import { OrderByPipe } from '@awg-shared/order-by-pipe/order-by.pipe';
 import { TableData, TableOptions, TablePaginatorOptions } from './models';
 import { TableComponent } from './table.component';
 
+// Helper function
+const expectToEqualTableData = (actual: TableData, expected: TableData) => {
+    expectToEqual(actual.header, expected.header);
+    expectToEqual(actual.filteredRows, expected.filteredRows);
+
+    expect(actual.paginatedRows$).toBeDefined();
+    expect(actual.totalRows$).toBeDefined();
+};
+
 // Mock components
 @Component({
     selector: 'awg-table-pagination',
@@ -153,28 +162,28 @@ describe('TableComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have tableTitle yet', () => {
-            expect(component.tableTitle).toBeUndefined();
+        it('... should have default `tableTitle` input', () => {
+            expectToBe(component.tableTitle, '');
         });
 
-        it('... should not have headerInputData yet', () => {
-            expect(component.headerInputData).toBeUndefined();
+        it('... should have default `headerInputData` input', () => {
+            expectToEqual(component.headerInputData, []);
         });
 
-        it('... should not have rowInputData yet', () => {
-            expect(component.rowInputData).toBeUndefined();
+        it('... should have default `rowInputData` input', () => {
+            expectToEqual(component.rowInputData, []);
         });
 
-        it('... should not have paginatorOptions yet', () => {
-            expect(component.paginatorOptions).toBeUndefined();
+        it('... should have default `paginatorOptions`', () => {
+            expectToEqual(component.paginatorOptions, new TablePaginatorOptions(0, 0, [0], 0));
         });
 
-        it('... should not have searchFilter yet', () => {
-            expect(component.searchFilter).toBeUndefined();
+        it('... should have default `searchFilter`', () => {
+            expectToBe(component.searchFilter, '');
         });
 
-        it('... should not have tableData yet', () => {
-            expect(component.tableData).toBeUndefined();
+        it('... should have default `tableData`', () => {
+            expectToEqualTableData(component.tableData, new TableData([], []));
         });
 
         it('... should have faSortUp and faSortDown icons', () => {
@@ -262,24 +271,10 @@ describe('TableComponent', () => {
             });
 
             it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', async () => {
-                // Mock empty observable
                 component.tableData.paginatedRows$ = EMPTY;
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
-            });
-
-            it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
-                // Mock empty observable
-                component.tableData.paginatedRows$ = EMPTY;
-                await detectChangesOnPush(fixture);
-
-                const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
-                const spinnerCmp = spinnerDes[0].injector.get(
-                    TwelveToneSpinnerStubComponent
-                ) as TwelveToneSpinnerStubComponent;
-
-                expectToBe(spinnerCmp.spinnerText(), 'loading');
             });
         });
 

@@ -1,13 +1,13 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { AlertInfoStubComponent } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
 
@@ -44,20 +44,15 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedSection`', () => {
-            expect(component.selectedSection).toBeUndefined();
+        it('... should throw due to missing required input signal `selectedSection`', () => {
+            expectToBe(isSignal(component.selectedSection), true);
+
+            expect(() => component.selectedSection()).toThrow();
         });
 
         describe('VIEW', () => {
-            it('... should contain an AlertInfoComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
-            });
-
-            it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
-                const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
-
-                expect(() => alertInfoCmp.infoMessage()).toThrow();
+            it('... should contain no AlertInfoComponent (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 0, 0);
             });
         });
     });
@@ -71,6 +66,10 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain an AlertInfoComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
+            });
+
             it('... should pass down correct values to AlertInfoComponent (`infoMessage `)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoStubComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;

@@ -52,12 +52,12 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
+        it('... should have default `editionComplex` input', () => {
+            expectToBe(component.editionComplex, null);
         });
 
-        it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceEvaluationListData).toBeUndefined();
+        it('... should have default `sourceDescriptionListData` input', () => {
+            expectToBe(component.sourceEvaluationListData, null);
         });
 
         describe('VIEW', () => {

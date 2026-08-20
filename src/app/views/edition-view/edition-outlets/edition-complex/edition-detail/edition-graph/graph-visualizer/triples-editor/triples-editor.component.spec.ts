@@ -106,12 +106,12 @@ describe('TriplesEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have triples', () => {
-            expect(component.triples).toBeUndefined();
+        it('... should have default `triples` input', () => {
+            expectToBe(component.triples, '');
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         it('... should have cmTurtleMode', () => {

@@ -95,16 +95,16 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have svgSheetsData', () => {
-            expect(component.svgSheetsData).toBeUndefined();
+        it('... should have default `isMinimized` input', () => {
+            expectToBe(component.isMinimized, false);
         });
 
-        it('... should not have selectedSvgSheet', () => {
+        it('... should have default `svgSheetsData` input', () => {
+            expectToBe(component.svgSheetsData, null);
+        });
+
+        it('... should not have `selectedSvgSheet`', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
-        });
-
-        it('... should have isMinimized set to false by default', () => {
-            expectToBe(component.isMinimized, expectedIsMinimized);
         });
 
         it('... should have fontawesome icons', () => {

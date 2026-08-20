@@ -66,29 +66,29 @@ export class SourceDescriptionWritingMaterialsComponent {
      * @returns {string} The retrieved locus string.
      */
     getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
-        if (!locus.folios?.length) {
-            return '';
-        }
-
-        const folios = locus.folios
-            .filter(Boolean)
-            .map(folio =>
-                folio.endsWith('v') || folio.endsWith('r')
-                    ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>`
-                    : folio
-            );
-
         let foliosStr = '';
-        if (folios.length === 1) {
-            foliosStr = folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
-        } else if (folios.length > 1) {
-            foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.slice(-1)}`;
+
+        if (locus.folios?.length) {
+            const folios = locus.folios
+                .filter(Boolean)
+                .map(folio =>
+                    folio.endsWith('v') || folio.endsWith('r')
+                        ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>`
+                        : folio
+                );
+
+            if (folios.length === 1) {
+                foliosStr = folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
+            } else if (folios.length > 1) {
+                foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.slice(-1)}`;
+            }
         }
 
-        const preInfo = locus.preFolioInfo ? `${locus.preFolioInfo} ` : '';
-        const pos = locus.position ? `${foliosStr && ' '}${locus.position}` : '';
+        const preInfo = locus.preFolioInfo || '';
+        const position = locus.position || '';
 
-        return preInfo + foliosStr + pos;
+        const parts = [preInfo, foliosStr, position].filter(Boolean);
+        return parts.join(' ');
     }
 
     /**
@@ -117,7 +117,15 @@ export class SourceDescriptionWritingMaterialsComponent {
         const h = getDimension(height);
         const w = getDimension(width);
 
-        return h && w ? `Format: ${orientation} ${h} × ${w} ${unit}` : '';
+        if (!h && !w) {
+            return '';
+        }
+
+        const prefix = orientation ? `Format: ${orientation}` : 'Format:';
+        const formatStr = `${h} × ${w}`;
+        const parts = [prefix, formatStr, unit].filter(Boolean);
+
+        return parts.join(' ');
     }
 
     /**

@@ -22,7 +22,8 @@ import {
 import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { GraphSparqlQuery } from '@awg-views/edition-view/models';
+
+import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
 
@@ -166,16 +167,16 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryList', () => {
-            expect(component.queryList).toBeUndefined();
+        it('... should have default `queryList` input', () => {
+            expectToEqual(component.queryList, []);
         });
 
-        it('... should not have query', () => {
-            expect(component.query).toBeUndefined();
+        it('... should have default `query` input', () => {
+            expectToEqual(component.query, new GraphSparqlQuery());
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         it('... should have cmSparqlMode', () => {
@@ -1126,11 +1127,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                     },
                     {
                         desc: 'queryList is empty',
-                        query: expectedConstructQuery1,
+                        query: { ...expectedConstructQuery1 },
                         list: [],
                     },
                     {
-                        desc: 'query fields are blank/null and queryList is empty',
+                        desc: 'query fields are blank and queryList is empty',
                         query: { queryType: null, queryLabel: '', queryString: '' } as GraphSparqlQuery,
                         list: [],
                     },
@@ -1289,23 +1290,24 @@ describe('SparqlEditorComponent (DONE)', () => {
                     {
                         desc: 'find and select the first construct query',
                         setup: () => {},
-                        inputQuery: expectedConstructQuery1,
+                        getInputQuery: () => expectedConstructQuery1,
                         expectedReset: expectedConstructQuery1,
                     },
                     {
                         desc: 'find and select the second construct query',
                         setup: () => {},
-                        inputQuery: expectedConstructQuery2,
+                        getInputQuery: () => expectedConstructQuery2,
                         expectedReset: expectedConstructQuery2,
                     },
                     {
                         desc: 'fall back to the first query in queryList if query is unknown',
                         setup: () => {},
-                        inputQuery: {
-                            queryLabel: 'Other Test Query',
-                            queryType: 'select',
-                            queryString: 'SELECT * WHERE { ?other rdfs:label ?query }',
-                        } as GraphSparqlQuery,
+                        getInputQuery: () =>
+                            ({
+                                queryLabel: 'Other Test Query',
+                                queryType: 'select',
+                                queryString: 'SELECT * WHERE { ?other rdfs:label ?query }',
+                            }) as GraphSparqlQuery,
                         expectedReset: expectedConstructQuery1,
                     },
                     {
@@ -1313,25 +1315,27 @@ describe('SparqlEditorComponent (DONE)', () => {
                         setup: () => {
                             component.queryList = [];
                         },
-                        inputQuery: {
-                            queryLabel: 'Fallback Test',
-                            queryType: 'select',
-                            queryString: 'SELECT * WHERE { ?s ?p ?o }',
-                        } as GraphSparqlQuery,
+                        getInputQuery: () =>
+                            ({
+                                queryLabel: 'Fallback Test',
+                                queryType: 'select',
+                                queryString: 'SELECT * WHERE { ?s ?p ?o }',
+                            }) as GraphSparqlQuery,
                         expectedReset: {
                             queryLabel: 'Fallback Test',
                             queryType: 'select',
                             queryString: 'SELECT * WHERE { ?s ?p ?o }',
                         } as GraphSparqlQuery,
                     },
-                ])('... should $desc', async ({ setup, inputQuery, expectedReset }) => {
+                ])('... should $desc', async ({ setup, getInputQuery, expectedReset }) => {
                     setup();
 
-                    component.onQueryListChange(inputQuery);
+                    const query = getInputQuery();
+                    component.onQueryListChange(query);
 
                     await detectChangesOnPush(fixture);
 
-                    expectSpyCall(onQueryListChangeSpy, 1, inputQuery);
+                    expectSpyCall(onQueryListChangeSpy, 1, query);
                     expectSpyCall(resetQuerySpy, 1, expectedReset);
                 });
             });
@@ -1556,18 +1560,33 @@ describe('SparqlEditorComponent (DONE)', () => {
 
             describe('... should return ViewHandleTypes.GRAPH for any queryType other than `select`', () => {
                 it.each([
-                    { desc: 'construct ', query: expectedConstructQuery1 },
-                    { desc: 'ask', query: { ...expectedConstructQuery1, queryType: 'ask' } },
-                    { desc: 'count', query: { ...expectedConstructQuery1, queryType: 'count' } },
-                    { desc: 'describe', query: { ...expectedConstructQuery1, queryType: 'describe' } },
-                    { desc: 'update', query: { ...expectedConstructQuery1, queryType: 'udpate' } },
-                    { desc: 'null', query: { ...expectedConstructQuery1, queryType: null } },
+                    { desc: 'construct ', getQuery: () => expectedConstructQuery1 },
+                    {
+                        desc: 'ask',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'ask' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'count',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'count' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'describe',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'describe' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'update',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'udpate' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'null',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: null as GraphSparqlQueryType }),
+                    },
                     {
                         desc: 'unknown',
-                        query: { ...expectedConstructQuery1, queryType: 'completely_unknown' } as any,
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'completely_unknown' }) as any,
                     },
-                ])('... with queryType = $desc`', ({ query }) => {
-                    component.query = query;
+                ])('... with queryType = $desc`', ({ getQuery }) => {
+                    component.query = getQuery();
 
                     component.setViewType();
 

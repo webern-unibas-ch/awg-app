@@ -127,8 +127,10 @@ export class TableComponent implements OnInit {
      * @returns {void} Inits the table data.
      */
     initTable(): void {
-        if (this.headerInputData && this.rowInputData) {
+        if (this.headerInputData?.length && this.rowInputData?.length) {
             this.tableData = new TableData(this.headerInputData, this.rowInputData);
+        } else {
+            this.tableData = new TableData([], []);
         }
 
         this.paginatorOptions = new TablePaginatorOptions(

@@ -67,8 +67,8 @@ describe('CodemirrorComponent', () => {
             expect(component.mode).toBeUndefined();
         });
 
-        it('... should not have content', () => {
-            expect(component.content).toBeUndefined();
+        it('... should have empty content', () => {
+            expectToBe(component.content, '');
         });
 
         describe('VIEW', () => {

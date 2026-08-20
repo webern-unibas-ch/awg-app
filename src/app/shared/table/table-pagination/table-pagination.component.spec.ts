@@ -81,12 +81,12 @@ describe('TablePaginationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have collectionSize', () => {
-            expect(component.collectionSize).toBeUndefined();
+        it('... should have default `collectionSize` input', () => {
+            expectToBe(component.collectionSize, 0);
         });
 
-        it('... should not have page', () => {
-            expect(component.page).toBeUndefined();
+        it('... should have default `page` input', () => {
+            expectToBe(component.page, 0);
         });
 
         it('... should have FILTER_PAG_REGEX', () => {

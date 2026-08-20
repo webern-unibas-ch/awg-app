@@ -50,10 +50,10 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have signal `selectedSection` to hold null', () => {
+        it('... should throw due to missing required input signal `selectedSection`', () => {
             expectToBe(isSignal(component.selectedSection), true);
 
-            expectToBe(component.selectedSection(), null);
+            expect(() => component.selectedSection()).toThrow();
         });
 
         describe('VIEW', () => {

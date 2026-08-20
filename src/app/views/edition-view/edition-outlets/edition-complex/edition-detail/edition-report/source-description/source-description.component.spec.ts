@@ -96,8 +96,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceDescriptionListData).toBeUndefined();
+        it('... should have default `sourceDescriptionListData` input', () => {
+            expectToBe(component.sourceDescriptionListData, null);
         });
 
         describe('VIEW', () => {

@@ -1140,7 +1140,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 await (component as any)._createSvg();
 
-                expectSpyCall(consoleSpy, 1, 'No svg sheet container ref');
+                expectSpyCall(consoleSpy, 1, '[EditionSvgSheetViewer] Missing svg sheet container ref');
             });
 
             it('... should set svgSheetSelection and svgSheetRootGroupSelection', async () => {

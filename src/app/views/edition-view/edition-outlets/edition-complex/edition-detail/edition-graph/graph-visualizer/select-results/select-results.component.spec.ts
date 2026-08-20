@@ -109,16 +109,16 @@ describe('SelectResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined();
+        it('... should have default `queryResult` input', () => {
+            expectToEqual(component.queryResult$, EMPTY);
         });
 
-        it('... should not have queryTime', () => {
-            expect(component.queryTime).toBeUndefined();
+        it('... should have default `queryTime` input', () => {
+            expectToBe(component.queryTime, 0);
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         describe('VIEW', () => {
@@ -565,13 +565,16 @@ describe('SelectResultsComponent (DONE)', () => {
                         query: { head: { vars: [] as string[] }, body: { bindings: [] } },
                     },
                 ])('... $desc', async ({ query }) => {
-                    isValidSelectQueryResultSpy.mockClear();
-
                     component.queryResult$ = observableOf<QuerySelectResult | string | undefined>(query);
                     await detectChangesOnPush(fixture);
 
+                    // Clear the spy call count
+                    isValidSelectQueryResultSpy.mockClear();
+
+                    const result = component.isValidSelectQueryResult(query);
+
                     expectSpyCall(isValidSelectQueryResultSpy, 1, query);
-                    expectToBe(component.isValidSelectQueryResult(query), false);
+                    expectToBe(result, false);
                 });
             });
 
@@ -592,13 +595,16 @@ describe('SelectResultsComponent (DONE)', () => {
                         },
                     },
                 ])('... $desc', async ({ query }) => {
-                    isValidSelectQueryResultSpy.mockClear();
-
                     component.queryResult$ = observableOf(query);
                     await detectChangesOnPush(fixture);
 
+                    // Clear the spy call count
+                    isValidSelectQueryResultSpy.mockClear();
+
+                    const result = component.isValidSelectQueryResult(query);
+
                     expectSpyCall(isValidSelectQueryResultSpy, 1, query);
-                    expectToBe(component.isValidSelectQueryResult(query), true);
+                    expectToBe(result, true);
                 });
             });
         });

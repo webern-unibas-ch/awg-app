@@ -925,7 +925,11 @@ describe('GraphVisualizerService', () => {
 
                 const result = (graphVisualizerService as any)._abbreviate(value, namespaces);
 
-                expectToEqual(result, value);
+                if (value === undefined) {
+                    expect(result).toBeUndefined();
+                } else {
+                    expectToEqual(result, value);
+                }
             });
         });
     });

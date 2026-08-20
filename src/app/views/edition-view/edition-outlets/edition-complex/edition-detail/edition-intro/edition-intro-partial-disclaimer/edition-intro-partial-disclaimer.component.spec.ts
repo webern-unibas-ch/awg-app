@@ -53,26 +53,17 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
+        it('... should have default `editionComplex` input', () => {
+            expectToBe(component.editionComplex, null);
         });
 
-        it('... should not have `introRoute`', () => {
-            expect(component.introRoute).toBeUndefined();
+        it('... should have `introRoute`', () => {
+            expectToBe(component.introRoute, expectedIntroRoute);
         });
 
         describe('VIEW', () => {
-            it('... should contain a `div.awg-edition-intro-placeholder`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
-            });
-
-            it('... should contain a text-muted paragraph (no-para-margin) in div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-
-                expectToContain(pEl.classList, 'text-muted');
-                expectToContain(pEl.classList, 'no-para-margin');
+            it('... should contain no `div.awg-edition-intro-placeholder` yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 0, 0);
             });
         });
     });
@@ -89,7 +80,21 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         it('... should have `editionComplex`', () => {
             expectToEqual(component.editionComplex, expectedComplex);
         });
+
         describe('VIEW', () => {
+            it('... should contain a `div.awg-edition-intro-placeholder`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
+            });
+
+            it('... should contain a text-muted paragraph (no-para-margin) in div', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
+
+                expectToContain(pEl.classList, 'text-muted');
+                expectToContain(pEl.classList, 'no-para-margin');
+            });
+
             it('... should display text-muted disclaimer in paragraph', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);

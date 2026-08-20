@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -40,12 +40,16 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `id`', () => {
-            expect(component.id).toBeUndefined();
+        it('... should throw due to missing required input signal `id`', () => {
+            expectToBe(isSignal(component.id), true);
+
+            expect(() => component.id()).toThrow();
         });
 
-        it('... should not have `labelType`', () => {
-            expect(component.labelType).toBeUndefined();
+        it('... should throw due to missing required input signal `labelType`', () => {
+            expectToBe(isSignal(component.labelType), true);
+
+            expect(() => component.labelType()).toThrow();
         });
     });
 

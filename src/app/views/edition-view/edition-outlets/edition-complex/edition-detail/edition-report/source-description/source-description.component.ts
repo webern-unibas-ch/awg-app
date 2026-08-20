@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { UTILS } from '@awg-shared/utils/object-utils';
 import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
 
 /**
@@ -25,6 +26,13 @@ export class SourceDescriptionComponent {
     sourceDescriptionListData: SourceDescriptionList | null = null;
 
     /**
+     * Protected readonly variable: UTILS.
+     *
+     * It keeps the reference to the {@link UTILS} methods.
+     */
+    protected readonly UTILS = UTILS;
+
+    /**
      * Public method: getWritingInstruments.
      *
      * It retrieves the string representation of the writing instruments
@@ -34,7 +42,7 @@ export class SourceDescriptionComponent {
      * @returns {string} The retrieved writing instruments string.
      */
     getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments | undefined): string {
-        if (!writingInstruments?.main) {
+        if (!writingInstruments) {
             return '';
         }
 

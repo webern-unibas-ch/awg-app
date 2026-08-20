@@ -58,8 +58,8 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `writingMaterials`', () => {
-            expect(component.writingMaterials).toBeUndefined();
+        it('... should have default `writingMaterials` input', () => {
+            expectToEqual(component.writingMaterials, []);
         });
 
         describe('VIEW', () => {
@@ -441,6 +441,27 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                     expect(component.getDimensions).toBeDefined();
                 });
 
+                describe('... should return empty string', () => {
+                    it('... if dimensions is undefined', () => {
+                        const result = component.getDimensions(undefined);
+
+                        expectToBe(result, '');
+                    });
+
+                    it('... if both height and width are undefined', () => {
+                        const dimensions: SourceDescriptionWritingMaterialDimensions = {
+                            orientation: 'hoch',
+                            height: undefined,
+                            width: undefined,
+                            unit: 'mm',
+                        };
+
+                        const result = component.getDimensions(dimensions);
+
+                        expectToBe(result, '');
+                    });
+                });
+
                 it('... should return format string without uncertainty', () => {
                     const format: SourceDescriptionWritingMaterialDimensions = {
                         orientation: 'hoch',
@@ -493,7 +514,7 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                     expectToBe(result, 'Format: quer 170 × 270 inches');
                 });
 
-                it('... should handle missing values gracefully', () => {
+                it('... should handle single missing dimensions values gracefully', () => {
                     const format: SourceDescriptionWritingMaterialDimensions = {
                         orientation: 'hoch',
                         height: { value: '170', uncertainty: '' },

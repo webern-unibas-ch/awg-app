@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
@@ -93,7 +94,8 @@ export class AppComponent {
                         return child.snapshot.data['title'];
                     }
                     return appTitle;
-                })
+                }),
+                takeUntilDestroyed()
             )
             .subscribe({
                 next: (pageTitle: string) => {

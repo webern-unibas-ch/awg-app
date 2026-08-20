@@ -101,13 +101,13 @@ describe('FooterComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
                 });
 
-                it('... should contain one footer declaration component (stubbed) in first inner div', () => {
+                it('... should contain one FooterDeclarationComponent (stubbed) in first inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
                     getAndExpectDebugElementByDirective(divDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
 
-                it('... should throw due to missing required values for footer declaration component', () => {
+                it('... should throw due to missing required values for FooterDeclarationComponent', () => {
                     const footerDeclarationDes = getAndExpectDebugElementByDirective(
                         compDe,
                         FooterDeclarationStubComponent,
@@ -122,16 +122,26 @@ describe('FooterComponent (DONE)', () => {
                     expect(() => footerDeclarationCmp.pageMetaData()).toThrow();
                 });
 
-                it('... should contain no logo components (stubbed) in second inner div yet', () => {
+                it('... should contain one LogoComponent (stubbed) in second inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[1], LogoStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[1], LogoStubComponent, 1, 1);
                 });
 
-                it('... should contain no logo components in third inner div yet', () => {
+                it('... should contain two LogoComponents in third inner div', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-main div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(divDes[2], LogoStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[2], LogoStubComponent, 2, 2);
+                });
+
+                it('... should throw due to missing required values for LogoComponents', () => {
+                    const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+                    const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
+
+                    // Expect the required inputs to throw if not provided
+                    logoCmps.forEach(logoCmp => {
+                        expect(() => logoCmp.logoData()).toThrow();
+                    });
                 });
             });
 

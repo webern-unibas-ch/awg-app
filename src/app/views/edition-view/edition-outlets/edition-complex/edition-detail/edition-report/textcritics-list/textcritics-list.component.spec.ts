@@ -109,8 +109,8 @@ describe('TextcriticsListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `textcriticsListData`', () => {
-            expect(component.textcriticsListData).toBeUndefined();
+        it('... should have default `textcriticsListData` input', () => {
+            expectToBe(component.textcriticsListData, null);
         });
 
         describe('VIEW', () => {

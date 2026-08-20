@@ -135,9 +135,12 @@ describe('JsonViewerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `jsonViewerData` and `jsonViewerHeader`', () => {
+        it('... should not have `jsonViewerData`', () => {
             expect(component.jsonViewerData).toBeUndefined();
-            expect(component.jsonViewerHeader).toBeUndefined();
+        });
+
+        it('... should have empty `jsonViewerHeader`', () => {
+            expectToBe(component.jsonViewerHeader, '');
         });
 
         describe('VIEW', () => {

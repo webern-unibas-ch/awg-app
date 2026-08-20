@@ -166,7 +166,9 @@ export class EditionComplex {
         pubStatement: { series: string; section: string }
     ) {
         if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
-            throw new Error('[EditionComplex] Cannot instantiate complex: Missing catalogueType or catalogueNumber.');
+            throw new Error(
+                '[EditionComplexModel] Cannot instantiate complex: Missing catalogueType or catalogueNumber.'
+            );
         }
 
         // Helper constants

@@ -84,12 +84,12 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `buttonArray` input', () => {
-            expect(component.routerLinkButtons).toBeUndefined();
+        it('... should have default empty `buttonArray`', () => {
+            expectToEqual(component.routerLinkButtons, []);
         });
 
         it('... should have default empty `queryParamsHandling` input', () => {
-            expect(component.queryParamsHandling).toBeFalsy();
+            expectToBe(component.queryParamsHandling, '');
         });
 
         describe('#selectButton()', () => {

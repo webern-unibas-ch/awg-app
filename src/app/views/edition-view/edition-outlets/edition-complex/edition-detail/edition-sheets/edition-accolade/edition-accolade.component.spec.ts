@@ -210,12 +210,12 @@ describe('EditionAccoladeComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `isSheetFacetMinimized`', () => {
-            expect(component.isSheetFacetMinimized).toBeUndefined();
+        it('... should have default `isSheetFacetMinimized` input', () => {
+            expectToBe(component.isSheetFacetMinimized, false);
         });
 
-        it('... should not have `svgSheetsData`', () => {
-            expect(component.svgSheetsData).toBeUndefined();
+        it('... should have default `svgSheetsData` input', () => {
+            expectToBe(component.svgSheetsData, null);
         });
 
         it('... should not have `selectedSvgSheet`', () => {
@@ -230,8 +230,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('... should not have `showTkA`', () => {
-            expect(component.showTkA).toBeUndefined();
+        it('... should have default `showTkA` inpu', () => {
+            expectToBe(component.showTkA, false);
         });
 
         it('... should have signal `isFullscreen` to hold false', () => {

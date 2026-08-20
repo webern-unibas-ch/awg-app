@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -93,15 +93,17 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have facetItemLabel', () => {
-            expect(component.facetItemLabel).toBeUndefined();
+        it('... should throw due to missing required input signal `facetItemLabel`', () => {
+            expectToBe(isSignal(component.facetItemLabel), true);
+
+            expect(() => component.facetItemLabel()).toThrow();
         });
 
-        it('... should not have svgSheets', () => {
-            expect(component.svgSheets).toBeUndefined();
+        it('... should have default `svgSheets` input', () => {
+            expectToEqual(component.svgSheets, []);
         });
 
-        it('... should not have selectedSvgSheet', () => {
+        it('... should not have `selectedSvgSheet`', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 

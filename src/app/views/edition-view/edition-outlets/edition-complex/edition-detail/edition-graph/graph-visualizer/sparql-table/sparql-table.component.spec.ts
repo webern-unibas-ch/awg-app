@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -78,8 +78,10 @@ describe('SparqlTableComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
-            expect(component.queryResult).toBeUndefined();
+        it('... should throw due to missing required input signal `queryResult`', () => {
+            expectToBe(isSignal(component.queryResult), true);
+
+            expect(() => component.queryResult()).toThrow();
         });
 
         describe('VIEW', () => {
