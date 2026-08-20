@@ -14,7 +14,7 @@ import { Toast, ToastService } from './toast.service';
 })
 class MockTemplateComponent {
     @ViewChild('template', { static: true })
-    public template: TemplateRef<any>;
+    public template!: TemplateRef<any>;
 }
 
 describe('ToastService (DONE)', () => {

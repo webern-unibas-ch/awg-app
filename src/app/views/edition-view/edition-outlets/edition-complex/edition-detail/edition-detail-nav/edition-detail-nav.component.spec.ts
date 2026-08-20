@@ -33,7 +33,7 @@ function getExpectedRouterLinkButtons(complex: EditionComplex): RouterLinkButton
 })
 class RouterLinkButtonGroupStubComponent {
     @Input()
-    routerLinkButtons: RouterLinkButton[];
+    routerLinkButtons: RouterLinkButton[] = [];
     @Input()
     queryParamsHandling?: QueryParamsHandling = '';
     @Output()

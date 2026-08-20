@@ -135,7 +135,7 @@ export class TableComponent implements OnInit {
             1,
             10,
             [5, 10, 25, 50, 100, 200],
-            this.rowInputData?.length || 0
+            this.rowInputData.length || 0
         );
         this.searchFilter = '';
 

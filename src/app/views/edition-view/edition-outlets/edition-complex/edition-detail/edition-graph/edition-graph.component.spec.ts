@@ -49,7 +49,7 @@ import { EditionGraphComponent } from './edition-graph.component';
 })
 class GraphVisualizerStubComponent {
     @Input()
-    graphRDFInputData: GraphRDFData;
+    graphRDFInputData: GraphRDFData = new GraphRDFData();
     readonly isFullscreenMode = input<boolean>(false);
 }
 
@@ -302,7 +302,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 it('... should not contain a div in div.awg-edition-graph-view if graph data is not provided', async () => {
                     const noGraphData = new GraphList();
-                    noGraphData.graph = undefined;
+                    noGraphData.graph = [];
 
                     mockViewDataSignal.set(
                         createMockViewData(
@@ -476,7 +476,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         // No queryList
                         graphWithoutRdfData.graph[0].rdfData = new GraphRDFData();
                         graphWithoutRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
-                        graphWithoutRdfData.graph[0].rdfData.queryList = undefined;
+                        graphWithoutRdfData.graph[0].rdfData.queryList = [];
 
                         mockViewDataSignal.set(
                             createMockViewData(
@@ -499,7 +499,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         // No triples
                         graphWithoutRdfData.graph[0].rdfData = new GraphRDFData();
-                        graphWithoutRdfData.graph[0].rdfData.triples = undefined;
+                        graphWithoutRdfData.graph[0].rdfData.triples = '';
                         graphWithoutRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
                         mockViewDataSignal.set(
@@ -812,17 +812,6 @@ describe('EditionGraphComponent (DONE)', () => {
                 });
 
                 describe('... should do nothing if ', () => {
-                    it('... id is undefined', () => {
-                        component.openModal(undefined);
-
-                        expectSpyCall(serviceOpenModalSpy, 0);
-                    });
-
-                    it('... id is null', () => {
-                        component.openModal(undefined);
-
-                        expectSpyCall(serviceOpenModalSpy, 0, null);
-                    });
                     it('... id is empty string', () => {
                         component.openModal('');
 

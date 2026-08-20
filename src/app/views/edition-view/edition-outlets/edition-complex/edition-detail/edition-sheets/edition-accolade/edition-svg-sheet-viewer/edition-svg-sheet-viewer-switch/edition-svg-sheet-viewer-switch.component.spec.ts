@@ -267,7 +267,6 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                     1
                 );
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                 expectSpyCall(toggleAllClassesOpacitySpy, 1);
@@ -322,7 +321,6 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                         1
                     );
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(formSwitchInputDes[0], fixture);
 
                     expectSpyCall(toggleSingleSuppliedClassOpacitySpy, index + 1, [key]);

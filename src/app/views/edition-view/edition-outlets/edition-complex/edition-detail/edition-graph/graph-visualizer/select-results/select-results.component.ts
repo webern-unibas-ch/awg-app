@@ -77,7 +77,7 @@ export class SelectResultsComponent {
         if (!selectQueryResult || typeof selectQueryResult === 'string') {
             return false;
         }
-        if (UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings)) {
+        if (UTILS.isEmptyArray(selectQueryResult.head.vars) || UTILS.isEmptyArray(selectQueryResult.body.bindings)) {
             return false;
         }
 

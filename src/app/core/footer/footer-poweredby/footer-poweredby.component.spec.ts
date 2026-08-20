@@ -119,11 +119,11 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         describe('... should have computed signal `poweredByData` to hold null if ...', () => {
             it.each([
                 { desc: 'pageMetaData is an empty object {}', logos: expectedLogosData, meta: {} as MetaPage },
-                { desc: 'pageMetaData is null', logos: expectedLogosData, meta: null as unknown as MetaPage },
-                { desc: 'pageMetaData is undefined', logos: expectedLogosData, meta: undefined as unknown as MetaPage },
+                { desc: 'pageMetaData is null', logos: expectedLogosData, meta: null as any },
+                { desc: 'pageMetaData is undefined', logos: expectedLogosData, meta: undefined as any },
                 { desc: 'logos is an empty object {}', logos: {} as Logos, meta: expectedPageMetaData },
-                { desc: 'logos is null', logos: null as unknown as Logos, meta: expectedPageMetaData },
-                { desc: 'logos is undefined', logos: undefined as unknown as Logos, meta: expectedPageMetaData },
+                { desc: 'logos is null', logos: null as any, meta: expectedPageMetaData },
+                { desc: 'logos is undefined', logos: undefined as any, meta: expectedPageMetaData },
             ])('... $desc', ({ logos, meta }) => {
                 fixture.componentRef.setInput('logosData', logos);
                 fixture.componentRef.setInput('pageMetaData', meta);
@@ -137,7 +137,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 { desc: 'bootstrapLogo is missing from logos', missingKey: 'bootstrap' },
             ])('... $desc', ({ missingKey }) => {
                 const incompleteLogos = structuredClone(expectedLogosData);
-                incompleteLogos[missingKey as keyof typeof expectedLogosData] = undefined;
+
+                delete incompleteLogos[missingKey as keyof typeof expectedLogosData];
 
                 fixture.componentRef.setInput('logosData', incompleteLogos);
                 fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
@@ -147,7 +148,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
             it('... devUrl is missing from meta', () => {
                 const incompletePageMetaData = structuredClone(expectedPageMetaData);
-                incompletePageMetaData.awgAppDevUrl = undefined;
+                incompletePageMetaData.awgAppDevUrl = '';
 
                 fixture.componentRef.setInput('logosData', expectedLogosData);
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);

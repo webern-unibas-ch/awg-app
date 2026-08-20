@@ -993,7 +993,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(resetZoomSpy, 2);

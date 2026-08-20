@@ -226,24 +226,6 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('#selectButton()', () => {
             describe('... should do nothing if...', () => {
-                it('... routerLinkButton is null', () => {
-                    const nullButton: RouterLinkButton = null;
-
-                    component.selectButton(nullButton);
-
-                    expectSpyCall(selectButtonSpy, 1, nullButton);
-                    expectSpyCall(emitSpy, 0);
-                });
-
-                it('... routerLinkButton is undefined', () => {
-                    const undefinedButton: RouterLinkButton = undefined;
-
-                    component.selectButton(undefinedButton);
-
-                    expectSpyCall(selectButtonSpy, 1, undefinedButton);
-                    expectSpyCall(emitSpy, 0);
-                });
-
                 it('... routerLinkButton is disabled', () => {
                     const disabledButton: RouterLinkButton = new RouterLinkButton(
                         '/data/search',
@@ -265,19 +247,16 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
                 const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectToNotContain(btnEl0.classList, 'disabled');
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectToContain(btnEl1.classList, 'disabled');
                 expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectToContain(btnEl2.classList, 'disabled');

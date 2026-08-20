@@ -210,7 +210,6 @@ describe('SourceDescriptionContentsComponent', () => {
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');

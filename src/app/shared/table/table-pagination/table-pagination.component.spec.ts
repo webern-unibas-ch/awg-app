@@ -291,8 +291,8 @@ describe('TablePaginationComponent (DONE)', () => {
                 expectSpyCall(onPageChangeSpy, 1, expectedNewPage);
             });
 
-            it('... should not do anything if newPage is not given', () => {
-                component.onPageChange(undefined);
+            it('... should do nothing if newPage is 0', () => {
+                component.onPageChange(0);
 
                 expectSpyCall(emitPageChangeSpy, 0);
                 expectSpyCall(emitPageChangeRequestSpy, 0);
@@ -376,8 +376,8 @@ describe('TablePaginationComponent (DONE)', () => {
                     expectToBe(component.page, 1);
                 });
 
-                it('... to 1 if the given value is undefined', () => {
-                    component.selectPage(undefined);
+                it('... to 1 if the given value is empty', () => {
+                    component.selectPage('');
 
                     expectToBe(component.page, 1);
                 });

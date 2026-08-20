@@ -142,37 +142,37 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
                 expectToBe(component.versionData(), null);
 
-                fixture.componentRef.setInput('pageMetaData', undefined as unknown as MetaPage);
+                fixture.componentRef.setInput('pageMetaData', undefined as any);
                 expectToBe(component.versionData(), null);
 
-                fixture.componentRef.setInput('pageMetaData', null as unknown as MetaPage);
+                fixture.componentRef.setInput('pageMetaData', null as any);
                 expectToBe(component.versionData(), null);
             });
 
-            it('... `awgAppGithubUrl` is missing', () => {
+            it('... `awgAppGithubUrl` is empty', () => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
-                    awgAppGithubUrl: undefined,
+                    awgAppGithubUrl: '',
                 } as MetaPage;
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
                 expectToBe(component.versionData(), null);
             });
 
-            it('... `awgAppVersion` is missing', () => {
+            it('... `awgAppVersion` is empty', () => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
-                    awgAppVersion: undefined,
+                    awgAppVersion: '',
                 } as MetaPage;
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
                 expectToBe(component.versionData(), null);
             });
 
-            it('... `awgAppVersionReleaseDate` is missing', () => {
+            it('... `awgAppVersionReleaseDate` is empty', () => {
                 const incompletePageMetaData = {
                     ...expectedPageMetaData,
-                    awgAppVersionReleaseDate: undefined,
+                    awgAppVersionReleaseDate: '',
                 } as MetaPage;
                 fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
 
@@ -215,11 +215,11 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTree0 = routerLinks[0].urlTree;
-                const urlTree1 = routerLinks[1].urlTree;
+                const urlTreeString1 = routerLinks[0].urlTree?.toString();
+                const urlTreeString2 = routerLinks[1].urlTree?.toString();
 
-                expectToBe(urlTree0.toString(), '/contact#awg-imprint');
-                expectToBe(urlTree1.toString(), '/contact#awg-documentation');
+                expectToBe(urlTreeString1, '/contact#awg-imprint');
+                expectToBe(urlTreeString2, '/contact#awg-documentation');
             });
             it('... can click imprint link in template', async () => {
                 const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);

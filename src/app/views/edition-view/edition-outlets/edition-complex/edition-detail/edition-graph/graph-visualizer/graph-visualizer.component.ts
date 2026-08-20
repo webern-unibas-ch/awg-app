@@ -135,7 +135,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Resets the initial query.
      */
     resetQuery(query?: GraphSparqlQuery): void {
-        if (!this.graphRDFInputData.queryList) {
+        if (!this.graphRDFInputData.queryList.length) {
             return;
         }
 
@@ -230,7 +230,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the message.
      */
     showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
-        if (!toastMessage?.message) {
+        if (!toastMessage.message) {
             return;
         }
 

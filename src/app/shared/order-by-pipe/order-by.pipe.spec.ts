@@ -416,10 +416,6 @@ describe('OrderByPipe (DONE)', () => {
             const arr = [3, 2, 1];
             const res = [1, 2, 3];
 
-            it('... should still work if comparator is null', () => {
-                expectToEqual(pipe.transform(arr, null, false, true, null), res);
-            });
-
             it('... should still work if comparator is undefined', () => {
                 expectToEqual(pipe.transform(arr, null, false, true, undefined), res);
                 expectToEqual(pipe.transform(arr, null, false, true, void 0), res);

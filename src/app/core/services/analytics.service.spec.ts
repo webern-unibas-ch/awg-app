@@ -104,7 +104,7 @@ describe('AnalyticsService (DONE)', () => {
 
         it('... should not initialize the analytics tracker without endpoint', () => {
             // No endpoint provided
-            setupAnalytics(analyticsService, null, expectedAnalyticsId);
+            setupAnalytics(analyticsService, '', expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expectToBe((analyticsService as any)._isInitialized, false);
@@ -112,7 +112,7 @@ describe('AnalyticsService (DONE)', () => {
 
         it('... should not initialize the analytics tracker without analyticsId', () => {
             // No id provided
-            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, null);
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, '');
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expectToBe((analyticsService as any)._isInitialized, false);
@@ -173,23 +173,24 @@ describe('AnalyticsService (DONE)', () => {
             expect(analyticsService.trackPageView).toBeDefined();
         });
 
-        it('... should do nothing if analytics is not initialized successfully', () => {
-            // Init analytics
-            setupAnalytics(analyticsService, null, expectedAnalyticsId);
+        describe('... should do nothing if', () => {
+            it('... isInitialized is false', () => {
+                (analyticsService as any).isInitialized = false;
 
-            analyticsService.trackPageView(expectedPage);
+                analyticsService.trackPageView(expectedPage);
 
-            expectSpyCall(gtagSpy, 0, null);
-            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
-        });
+                expectSpyCall(gtagSpy, 0, null);
+                expectToBe(gtagSpy.mock.calls.length > 0, false);
+            });
 
-        it('... should do nothing if isInitialized is set to false', () => {
-            (analyticsService as any).isInitialized = false;
+            it('... no page is given', () => {
+                setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
-            analyticsService.trackPageView(expectedPage);
+                analyticsService.trackPageView('');
 
-            expectSpyCall(gtagSpy, 0, null);
-            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
+                expectSpyCall(gtagSpy, 0, '');
+                expectToBe(gtagSpy.mock.calls.length > 0, false);
+            });
         });
 
         it('... should run if analytics is initialized successfully', () => {
@@ -207,16 +208,6 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 1);
-        });
-
-        it('... should not track if no page is given', () => {
-            // Init analytics
-            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
-
-            analyticsService.trackPageView(null);
-
-            expectSpyCall(gtagSpy, 0, null);
-            expectToBe(vi.mocked(gtagSpy).mock.calls.length > 0, false);
         });
 
         it('... should track the given page', () => {
@@ -257,12 +248,12 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(otherPage);
 
             expectSpyCall(gtagSpy, 2, otherAnalyticsEvent);
-            expect(vi.mocked(gtagSpy).mock.calls.length > 0).toBeTruthy();
-            expectToBe(vi.mocked(gtagSpy).mock.calls.length, 2);
-            expectToEqual(vi.mocked(gtagSpy).mock.calls[0], expectedAnalyticsEvent);
-            expectToEqual(vi.mocked(gtagSpy).mock.calls[0], expectedAnalyticsEvent);
-            expectToEqual(vi.mocked(gtagSpy).mock.calls[1], otherAnalyticsEvent);
-            expectToEqual(vi.mocked(gtagSpy).mock.lastCall, otherAnalyticsEvent);
+            expect(gtagSpy.mock.calls.length > 0).toBeTruthy();
+            expectToBe(gtagSpy.mock.calls.length, 2);
+            expectToEqual(gtagSpy.mock.calls[0], expectedAnalyticsEvent);
+            expectToEqual(gtagSpy.mock.calls[0], expectedAnalyticsEvent);
+            expectToEqual(gtagSpy.mock.calls[1], otherAnalyticsEvent);
+            expectToEqual(gtagSpy.mock.lastCall, otherAnalyticsEvent);
 
             expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
             expectToEqual(mockAnalytics.getGtag(1), otherAnalyticsEvent);

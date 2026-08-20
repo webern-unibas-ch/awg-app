@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EmptyError, lastValueFrom, Observable, take } from 'rxjs';
+import { EMPTY, EmptyError, lastValueFrom, Observable, take } from 'rxjs';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -32,11 +32,11 @@ import { GraphVisualizerComponent } from './graph-visualizer.component';
 })
 class ConstructResultsStubComponent {
     @Input()
-    queryResult$: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]> = EMPTY;
     @Input()
-    defaultForceGraphHeight: number;
+    defaultForceGraphHeight = 0;
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
     @Output()
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 }
@@ -48,11 +48,11 @@ class ConstructResultsStubComponent {
 })
 class SelectResultsStubComponent {
     @Input()
-    queryResult$: Observable<QuerySelectResult | string | undefined>;
+    queryResult$: Observable<QuerySelectResult | string | undefined> = EMPTY;
     @Input()
-    queryTime: number;
+    queryTime = 0;
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -64,11 +64,11 @@ class SelectResultsStubComponent {
 })
 class SparqlEditorStubComponent {
     @Input()
-    queryList: GraphSparqlQuery[];
+    queryList: GraphSparqlQuery[] = [];
     @Input()
-    query: GraphSparqlQuery;
+    query: GraphSparqlQuery = new GraphSparqlQuery();
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
     @Output()
     errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
     @Output()
@@ -93,9 +93,9 @@ class ToastStubComponent {}
 })
 class TriplesEditorStubComponent {
     @Input()
-    triples: string;
+    triples = '';
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
     @Output()
     errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
     @Output()
@@ -113,9 +113,9 @@ class TriplesEditorStubComponent {
 })
 class UnsupportedTypeResultsStubComponent {
     @Input()
-    queryType: string; // Query.queryType ?
+    queryType = '';
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 }
 
 describe('GraphVisualizerComponent (DONE)', () => {
@@ -123,8 +123,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let fixture: ComponentFixture<GraphVisualizerComponent>;
     let compDe: DebugElement;
 
-    let mockGraphVisualizerService: Partial<GraphVisualizerService>;
-    let graphVisualizerService: Partial<GraphVisualizerService>;
+    let mockGraphVisualizerService: GraphVisualizerService;
     let toastService: ToastService;
 
     let expectedGraphRDFData: GraphRDFData;
@@ -160,7 +159,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const isSelectQuery = queryString.toLowerCase().includes('select');
                 return isSelectQuery ? Promise.resolve(expectedSelectResult) : Promise.resolve(expectedConstructResult);
             },
-        };
+        } as unknown as GraphVisualizerService;
 
         await TestBed.configureTestingModule({
             declarations: [
@@ -182,7 +181,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Inject services
-        graphVisualizerService = TestBed.inject(GraphVisualizerService);
+        mockGraphVisualizerService = TestBed.inject(GraphVisualizerService);
         toastService = TestBed.inject(ToastService);
 
         // Test data
@@ -345,7 +344,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             ];
 
             await expect(
-                graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
+                mockGraphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
             ).resolves.toEqual(expectedConstructResult);
 
             expect(component.queryTime).toBeDefined();
@@ -735,12 +734,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(component.triples, expectedGraphRDFData.triples);
                 });
 
-                it('... should not do anything if no triples are provided from rdf data', async () => {
+                it('... should do nothing if no triples are provided from rdf data', async () => {
                     expectSpyCall(resetTriplesSpy, 1);
 
                     // Set undefined triples
-                    component.triples = undefined;
-                    component.graphRDFInputData.triples = undefined;
+                    component.triples = '';
+                    component.graphRDFInputData.triples = '';
                     await detectChangesOnPush(fixture);
 
                     // Reset triples
@@ -748,7 +747,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(resetTriplesSpy, 2);
-                    expect(component.triples).toBeUndefined();
+                    expectToBe(component.triples, '');
                 });
             });
 
@@ -880,12 +879,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
                 });
 
-                it('... should not do anything if no queryList is provided from RDF data', async () => {
+                it('... should do nothing if no queryList is provided from RDF data', async () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
                     // Set undefined triples
-                    component.queryList = undefined;
-                    component.graphRDFInputData.queryList = undefined;
+                    component.queryList = [];
+                    component.graphRDFInputData.queryList = [];
                     await detectChangesOnPush(fixture);
 
                     // Reset query
@@ -899,7 +898,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(resetQuerySpy, 2, changedQuery);
-                    expect(component.queryList).toBeUndefined();
+                    expectToEqual(component.queryList, []);
                 });
 
                 it('... should trigger `performQuery()`', async () => {
@@ -1282,18 +1281,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(showToastMessageSpy, 1);
                 });
 
-                describe('... should not do anything', () => {
-                    it('... if no toastMessage is provided', () => {
-                        const toastMessage: ToastMessage = undefined;
-                        consoleSpy.mockClear();
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(showToastMessageSpy, 1, [undefined]);
-                        expectSpyCall(toastServiceAddSpy, 0);
-                        expectSpyCall(consoleSpy, 0);
-                    });
-
+                describe('... should do nothing', () => {
                     it('... if no toastMessage.message is provided', () => {
                         const toastMessage = new ToastMessage('Error1', '', 500);
                         consoleSpy.mockClear();

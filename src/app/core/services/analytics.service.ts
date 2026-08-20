@@ -97,7 +97,7 @@ export class AnalyticsService {
      * @returns {void} Configures and sends the page view to Analytics.
      */
     trackPageView(page: string): void {
-        if (!page || this._isInitialized !== true) {
+        if (!page || !this._isInitialized) {
             return;
         }
 

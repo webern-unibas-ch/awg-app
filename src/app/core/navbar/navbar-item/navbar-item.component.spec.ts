@@ -32,7 +32,7 @@ import { NavbarItemComponent } from './navbar-item.component';
 class TestHostComponent {
     @ViewChild(NavbarItemComponent) navbarItemComponent!: NavbarItemComponent;
 
-    testItem: NavbarItem | null = null;
+    testItem: NavbarItem = NAVBAR_ITEMS.home;
     testId = '';
     isTestDropdown = false;
 }

@@ -53,7 +53,7 @@ export class RouterLinkButtonGroupComponent {
      * Emits the selected router link button.
      */
     selectButton(routerLinkButton: RouterLinkButton): void {
-        if (!routerLinkButton || routerLinkButton.disabled) {
+        if (routerLinkButton.disabled) {
             return;
         }
         this.selectButtonRequest.emit(routerLinkButton);

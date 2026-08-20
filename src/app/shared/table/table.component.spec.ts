@@ -35,9 +35,9 @@ import { TableComponent } from './table.component';
 })
 class TablePaginationStubComponent {
     @Input()
-    collectionSize: number;
+    collectionSize = 0;
     @Input()
-    page: number;
+    page = 0;
     @Output()
     pageChange: EventEmitter<number> = new EventEmitter();
     @Output()
@@ -311,8 +311,8 @@ describe('TableComponent', () => {
                 });
 
                 describe('... to empty object', () => {
-                    it('... if headerInputData is not given', async () => {
-                        component.headerInputData = undefined;
+                    it('... if headerInputData is empty', async () => {
+                        component.headerInputData = [];
                         component.rowInputData = expectedRowInputData;
 
                         component.initTable();
@@ -330,9 +330,9 @@ describe('TableComponent', () => {
                         await expect(lastValueFrom(component.tableData.totalRows$)).resolves.toEqual([]);
                     });
 
-                    it('... if rowInputData is not given', async () => {
+                    it('... if rowInputData is empty', async () => {
                         component.headerInputData = expectedHeaderInputData;
-                        component.rowInputData = undefined;
+                        component.rowInputData = [];
 
                         component.initTable();
                         fixture.detectChanges();
@@ -350,8 +350,8 @@ describe('TableComponent', () => {
                     });
 
                     it('... if both headerInputData and rowInputData are not given', async () => {
-                        component.headerInputData = undefined;
-                        component.rowInputData = undefined;
+                        component.headerInputData = [];
+                        component.rowInputData = [];
 
                         component.initTable();
                         fixture.detectChanges();
@@ -378,8 +378,8 @@ describe('TableComponent', () => {
                 expectToEqual(component.paginatorOptions.collectionSize, expectedPaginatorOptions.collectionSize);
             });
 
-            it('... should set paginatorOptions.collectionSize to 0 if tableData.rowInputData is not given', () => {
-                component.rowInputData = undefined;
+            it('... should set paginatorOptions.collectionSize to 0 if tableData.rowInputData is empty', () => {
+                component.rowInputData = [];
                 component.initTable();
                 fixture.detectChanges();
 
@@ -558,9 +558,10 @@ describe('TableComponent', () => {
             });
 
             describe('should filter tableData', () => {
-                it('... by matching searchFilter', async () => {
+                it('... by matching searchFilter', () => {
                     const searchFilter = 'ValueColumn1Row1';
-                    await component.onPageSizeChange(searchFilter);
+
+                    component.onPageSizeChange(searchFilter);
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
@@ -604,7 +605,7 @@ describe('TableComponent', () => {
                 });
 
                 it('... if table data is empty (empty array)', async () => {
-                    component.tableData = new TableData(null, null);
+                    component.tableData = new TableData([], []);
 
                     component.onPageSizeChange('');
                     fixture.detectChanges();
@@ -637,24 +638,16 @@ describe('TableComponent', () => {
             });
 
             describe('should not do anything', () => {
-                it('... if tableData is undefined', () => {
-                    component.tableData = undefined;
+                it('... if headerInputData is empty array', () => {
+                    component.headerInputData = [];
 
                     component.onPageSizeChange('test');
 
                     expectSpyCall(paginateRowsSpy, 1);
                 });
 
-                it('... if headerInputData is undefined', () => {
-                    component.headerInputData = undefined;
-
-                    component.onPageSizeChange('test');
-
-                    expectSpyCall(paginateRowsSpy, 1);
-                });
-
-                it('... if rowInputData is undefined', () => {
-                    component.rowInputData = undefined;
+                it('... if rowInputData is enpty array', () => {
+                    component.rowInputData = [];
 
                     component.onPageSizeChange('test');
 
@@ -787,8 +780,8 @@ describe('TableComponent', () => {
                 });
             });
 
-            it('... should not do anything if no key is given', () => {
-                component.onSort(undefined);
+            it('... should do nothing if no key is given', () => {
+                component.onSort('');
                 fixture.detectChanges();
 
                 expectToBe(component.tableOptions.selectedKey, expectedHeaderInputData[0]);

@@ -10,14 +10,14 @@
             class="awg-router-link-btn"
             [class.first]="isFirst"
             [class.last]="isLast"
-            [class.disabled]="routerLinkButton?.disabled"
-            [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
+            [class.disabled]="routerLinkButton.disabled"
+            [routerLink]="[routerLinkButton.root, routerLinkButton.link]"
             [queryParamsHandling]="queryParamsHandling"
             routerLinkActive="active"
             (click)="selectButton(routerLinkButton)"
             (keydown)="selectButton(routerLinkButton)"
             tabindex="0">
-            {{ routerLinkButton?.label | uppercase }}
+            {{ routerLinkButton.label | uppercase }}
         </div>
     }
 </div>

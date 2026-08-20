@@ -177,7 +177,6 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
@@ -522,12 +521,10 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         1
                     );
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                     expectSpyCall(toggleAllCorrectionDetailsSpy, 1);
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                     expectSpyCall(toggleAllCorrectionDetailsSpy, 2);

@@ -434,7 +434,7 @@ describe('EditionComplexComponent (DONE)', () => {
                             catalogueType: 'OPUS',
                             catalogueNumber: '100',
                         },
-                        null,
+                        null as any,
                         { series: '1', section: '5' }
                     );
                     expectedComplexId = 'op100';
@@ -620,7 +620,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                 it('... should not get an edition complex with missing title statement from EditionStateService', () => {
                     const missingTitleComplex = new EditionComplex(
-                        null,
+                        null as any,
                         {
                             editors: [],
                             lastModified: '---',
@@ -657,7 +657,7 @@ describe('EditionComplexComponent (DONE)', () => {
                             editors: [],
                             lastModified: '---',
                         },
-                        null
+                        null as any
                     );
                     expectedComplexId = 'op100';
                     mockActivatedRoute.testParamMap = { complexId: expectedComplexId };

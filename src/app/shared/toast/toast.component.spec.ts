@@ -16,7 +16,7 @@ import { Toast, ToastService } from './toast.service';
 })
 class MockTemplateComponent {
     @ViewChild('template', { static: true })
-    public template: TemplateRef<any>;
+    public template!: TemplateRef<any>;
 }
 
 // Mock ngb-toast component
@@ -27,13 +27,13 @@ class MockTemplateComponent {
 })
 class NgbToastStubComponent {
     @Input()
-    header: string;
+    header = '';
     @Input()
-    class: string;
+    class = '';
     @Input()
-    autohide: boolean;
+    autohide = false;
     @Input()
-    delay: number;
+    delay = 0;
     @Output()
     hide: EventEmitter<Toast> = new EventEmitter();
 }

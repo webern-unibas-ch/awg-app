@@ -467,13 +467,13 @@ describe('EditionBreadcrumbComponent', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTree0 = routerLinks[0].urlTree;
-                const urlTree1 = routerLinks[1].urlTree;
-                const urlTree2 = routerLinks[2].urlTree;
+                const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
 
-                expectToBe(urlTree0.toString(), expectedRootItem.route.join('/'));
-                expectToBe(urlTree1.toString(), [...expectedRootItem.route, series.route].join('/'));
-                expectToBe(urlTree2.toString(), labeledSectionRoute.route.join('/'));
+                expectToBe(urlTreeString1, expectedRootItem.route.join('/'));
+                expectToBe(urlTreeString2, [...expectedRootItem.route, series.route].join('/'));
+                expectToBe(urlTreeString3, labeledSectionRoute.route.join('/'));
             });
 
             const clickTestCases = [
