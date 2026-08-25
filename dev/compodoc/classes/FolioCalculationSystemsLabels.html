@@ -223,7 +223,7 @@ to calculate the labels of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="874" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:874</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="891" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:891</a></div>
                             </td>
                         </tr>
 
@@ -350,7 +350,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="864" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:864</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="881" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:881</a></div>
                         </td>
                     </tr>
 
@@ -390,7 +390,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="869" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:869</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="886" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:886</a></div>
                         </td>
                     </tr>
 
@@ -418,13 +418,13 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>FolioCalculationPoint[]</code>
+                        <i>Type : </i>        <code><a href="../interfaces/Folio.html" target="_self" >FolioCalculationPoint[]</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="874" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:874</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="891" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:891</a></div>
                         </td>
                     </tr>
 
@@ -466,8 +466,8 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="903"
-                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:903</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="920"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:920</a></div>
                         </td>
                     </tr>
 
@@ -479,7 +479,7 @@ from the yArray, the calculated margins and dimensions and the zoom factor.</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>FolioCalculationPoint[]</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Folio.html" target="_self" >FolioCalculationPoint[]</a></code>
 
                         </div>
                             <div class="io-description">
@@ -516,7 +516,7 @@ import { Folio, FolioContent, FolioSegment } from &#x27;./folio.model&#x27;;
  */
 function round(value: number, decimals: number): number {
     if (Number.isNaN(value)) {
-        return undefined;
+        return NaN;
     }
     return Number(Math.round(Number(value + &#x27;e&#x27; + decimals)) + &#x27;e-&#x27; + decimals);
 }
@@ -816,6 +816,12 @@ export class FolioCalculationContentSegmentVertices {
         }
         const systemLines &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        if (!systemLines || systemLines.length &#x3D;&#x3D;&#x3D; 0) {
+            throw new Error(
+                &#x60;[FolioService] Cannot calculate Y value: No system lines found for system ${systemIndex}.&#x60;
+            );
+        }
+
         let offset: number;
         switch (segment.relativeToSystem) {
             case &#x27;below&#x27;:
@@ -828,7 +834,18 @@ export class FolioCalculationContentSegmentVertices {
                 offset &#x3D; 0;
         }
 
-        const yValue &#x3D; isStart ? systemLines[0].START_POINT.y : systemLines.at(-1).END_POINT.y;
+        let yValue &#x3D; 0;
+        if (isStart) {
+            const firstLine &#x3D; systemLines[0];
+            if (firstLine) {
+                yValue &#x3D; firstLine.START_POINT.y;
+            }
+        } else {
+            const lastLine &#x3D; systemLines.at(-1);
+            if (lastLine) {
+                yValue &#x3D; lastLine.END_POINT.y;
+            }
+        }
         const correction &#x3D; this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
@@ -866,32 +883,32 @@ export class FolioCalculationContentSegment {
     /**
      * The centered X position of the content segment.
      */
-    centeredXPosition: number;
+    centeredXPosition &#x3D; 0;
 
     /**
      * The centered y position of the content segment.
      */
-    centeredYPosition: number;
+    centeredYPosition &#x3D; 0;
 
     /**
      * The label for the id of the edition complex of the content segment.
      */
-    complexId: string;
+    complexId &#x3D; &#x27;&#x27;;
 
     /**
      * The link to a convolute description in the critical report.
      */
-    linkTo: string;
+    linkTo &#x3D; &#x27;&#x27;;
 
     /**
      * The boolean flag if the content segment is reversed.
      */
-    reversed: boolean;
+    reversed &#x3D; false;
 
     /**
      * The segment of a content segment.
      */
-    segment: FolioSegment;
+    segment!: FolioSegment;
 
     /**
      * The segment split of the content segment.
@@ -901,37 +918,37 @@ export class FolioCalculationContentSegment {
     /**
      * The array of label strings for the content segment.
      */
-    segmentLabelArray: string[];
+    segmentLabelArray: string[] &#x3D; [];
 
     /**
      * The label for the content segment.
      */
-    segmentLabel: string;
+    segmentLabel &#x3D; &#x27;&#x27;;
 
     /**
      * The boolean flag if the content segment can be selected.
      */
-    selectable: boolean;
+    selectable &#x3D; false;
 
     /**
      * The label for the id of the content segment.
      */
-    sheetId: string;
+    sheetId &#x3D; &#x27;&#x27;;
 
     /**
      * The label for the sigle of the content segment.
      */
-    sigle: string;
+    sigle &#x3D; &#x27;&#x27;;
 
     /**
      * The label for the sigle addendum of the content segment.
      */
-    sigleAddendum: string;
+    sigleAddendum &#x3D; &#x27;&#x27;;
 
     /**
      * The vertices of a content segment.
      */
-    vertices: FolioCalculationContentSegmentVertices;
+    vertices!: FolioCalculationContentSegmentVertices;
 
     /**
      * Constructor of the FolioCalculationContentSegment class.
@@ -1091,10 +1108,10 @@ export class FolioCalculationSheet {
      *
      * It calculates the rectanble of the trademark based on the given position string.
      *
-     * @param {string} position The given trademark position string.
-     * @returns {FolioCalculationRectangle} The calculated rectangle of the trademark.
+     * @param {string | undefined} position The given trademark position string, or undefined.
+     * @returns {FolioCalculationRectangle | undefined} The calculated rectangle of the trademark, or undefined.
      */
-    private _calculateTrademarkRectangle(position: string): FolioCalculationRectangle {
+    private _calculateTrademarkRectangle(position: string | undefined): FolioCalculationRectangle | undefined {
         if (!position) {
             return undefined;
         }

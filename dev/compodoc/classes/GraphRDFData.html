@@ -210,9 +210,14 @@ from a graph json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -242,9 +247,14 @@ from a graph json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -269,51 +279,51 @@ from a graph json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Graph {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class GraphRDFData {
+    /**
+     * The predefined query list for a graph.
+     */
+    queryList: GraphSparqlQuery[] &#x3D; [];
+
+    /**
+     * The predefined triples for a graph.
+     */
+    triples &#x3D; &#x27;&#x27;;
+}
+
+/**
+ * The Graph class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single graph
+ * from a graph json file.
+ */
+export class Graph {
     /**
      * The id of a graph.
      */
-    id: string;
+    id &#x3D; &#x27;&#x27;;
 
     /**
      * The title of a graph.
      */
-    title: string;
+    title &#x3D; &#x27;&#x27;;
 
     /**
      * The description of a graph
      * with additional information.
      */
-    description: string[];
+    description: string[] &#x3D; [];
 
     /**
      * The RDF data for a graph.
      */
-    rdfData: GraphRDFData;
+    rdfData: GraphRDFData &#x3D; new GraphRDFData();
 
     /**
      * An optional staticImage of a graph.
      */
     staticImage?: string;
-}
-
-/**
- * The GraphRDFData class.
- *
- * It is used in the context of the edition view
- * to store the RDF data for a single graph
- * from a graph json file.
- */
-export class GraphRDFData {
-    /**
-     * The predefined query list for a graph.
-     */
-    queryList: GraphSparqlQuery[];
-
-    /**
-     * The predefined triples for a graph.
-     */
-    triples: string;
 }
 
 /**
@@ -336,17 +346,17 @@ export class GraphSparqlQuery {
     /**
      * The type of a query.
      */
-    queryType: GraphSparqlQueryType;
+    queryType: GraphSparqlQueryType &#x3D; null;
 
     /**
      * The label of a query.
      */
-    queryLabel: string;
+    queryLabel &#x3D; &#x27;&#x27;;
 
     /**
      * The string of the query itself.
      */
-    queryString: string;
+    queryString &#x3D; &#x27;&#x27;;
 }
 
 /**
@@ -360,7 +370,7 @@ export class GraphList {
     /**
      * The array of graphs from a graph list.
      */
-    graph: Graph[];
+    graph: Graph[] &#x3D; [];
 }
 </code></pre>
     </div>

@@ -210,6 +210,11 @@ from a textcritics json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:72</a></div>
@@ -242,6 +247,11 @@ from a textcritics json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:67</a></div>
@@ -272,13 +282,13 @@ from a textcritics json file.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionSvgLinkBox } from &#x27;./edition-svg-link-box.model&#x27;;
 
 /**
- * The TextcriticalBlock class.
+ * The TextcriticalBlock interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single textcritical block
  * from a textcritics json file.
  */
-export class TextcriticalCommentBlock {
+export interface TextcriticalCommentBlock {
     /**
      * An optional header of the textcritical block.
      */
@@ -291,13 +301,13 @@ export class TextcriticalCommentBlock {
 }
 
 /**
- * The TextcriticalComment class.
+ * The TextcriticalComment interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single textcritical comment
  * from a textcritics json file.
  */
-export class TextcriticalComment {
+export interface TextcriticalComment {
     /**
      * The svgGroupId of the textcritical comment.
      */
@@ -335,12 +345,12 @@ export class TextcriticalCommentary {
     /**
      * The preamble of the textcritical commentary.
      */
-    preamble: string;
+    preamble &#x3D; &#x27;&#x27;;
 
     /**
      * The array of textcritical comment blocks from a textcritics list.
      */
-    comments: TextcriticalCommentBlock[];
+    comments: TextcriticalCommentBlock[] &#x3D; [];
 }
 
 /**
@@ -354,22 +364,22 @@ export class Textcritics {
     /**
      * The id of the textcritics.
      */
-    id: string;
+    id &#x3D; &#x27;&#x27;;
 
     /**
      * The label of the textcritics.
      */
-    label: string;
+    label &#x3D; &#x27;&#x27;;
 
     /**
      * The evaluations of the textcritics.
      */
-    evaluations: string[];
+    evaluations: string[] &#x3D; [];
 
     /**
      * The commentary of the textcritics.
      */
-    commentary: TextcriticalCommentary;
+    commentary: TextcriticalCommentary &#x3D; new TextcriticalCommentary();
 
     /**
      * The array of link boxes from a textcritics list.
@@ -393,7 +403,7 @@ export class TextcriticsList {
     /**
      * The array of textcritics from a textcritics list.
      */
-    textcritics: Textcritics[];
+    textcritics: Textcritics[] &#x3D; [];
 }
 </code></pre>
     </div>

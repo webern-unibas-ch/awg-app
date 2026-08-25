@@ -533,7 +533,7 @@ export class EditionSectionDetailComponent {
             const series &#x3D; this._editionStateService.selectedEditionSeries();
             const currentSectionId &#x3D; this.sectionId();
 
-            if (!series?.series?.route) {
+            if (!series?.series?.route || !currentSectionId) {
                 this._editionStateService.updateSelectedEditionSection(null);
                 return;
             }

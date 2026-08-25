@@ -207,6 +207,11 @@ from a source evaluation json file.</p>
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/models/source-evaluation.model.ts:31</a></div>
@@ -234,7 +239,7 @@ from a source evaluation json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceEvaluation {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface SourceEvaluation {
     /**
      * The id of a sourceEvaluation.
      */
@@ -257,7 +262,7 @@ export class SourceEvaluationList {
     /**
      * The array of sources from a source evaluation list.
      */
-    sources: SourceEvaluation[];
+    sources: SourceEvaluation[] &#x3D; [];
 }
 </code></pre>
     </div>

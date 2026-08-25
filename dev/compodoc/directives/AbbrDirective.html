@@ -256,6 +256,11 @@
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:25</a></div>
@@ -505,7 +510,7 @@ export class AbbrDirective implements OnInit {
      *
      * It keeps the text value with a possible abbreviation.
      */
-    @Input(&#x27;awgAbbr&#x27;) text: string;
+    @Input(&#x27;awgAbbr&#x27;) text &#x3D; &#x27;&#x27;;
 
     /**
      * Private readonly variable: _abbreviations.

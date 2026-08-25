@@ -221,7 +221,7 @@ to calculate the dimensions of the systems on the folio canvas.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="786" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:786</a></div>
                             </td>
                         </tr>
 
@@ -310,7 +310,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="744" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:744</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="761" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:761</a></div>
                         </td>
                     </tr>
 
@@ -344,7 +344,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="749" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:749</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="766" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:766</a></div>
                         </td>
                     </tr>
 
@@ -378,7 +378,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="754" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:754</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="771" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:771</a></div>
                         </td>
                     </tr>
 
@@ -412,7 +412,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="759" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:759</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="776" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:776</a></div>
                         </td>
                     </tr>
 
@@ -446,7 +446,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="769" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:769</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="786" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:786</a></div>
                         </td>
                     </tr>
 
@@ -480,7 +480,7 @@ from the sheet and the calculated margins.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="764" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:764</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="781" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:781</a></div>
                         </td>
                     </tr>
 
@@ -521,7 +521,7 @@ import { Folio, FolioContent, FolioSegment } from &#x27;./folio.model&#x27;;
  */
 function round(value: number, decimals: number): number {
     if (Number.isNaN(value)) {
-        return undefined;
+        return NaN;
     }
     return Number(Math.round(Number(value + &#x27;e&#x27; + decimals)) + &#x27;e-&#x27; + decimals);
 }
@@ -821,6 +821,12 @@ export class FolioCalculationContentSegmentVertices {
         }
         const systemLines &#x3D; this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
 
+        if (!systemLines || systemLines.length &#x3D;&#x3D;&#x3D; 0) {
+            throw new Error(
+                &#x60;[FolioService] Cannot calculate Y value: No system lines found for system ${systemIndex}.&#x60;
+            );
+        }
+
         let offset: number;
         switch (segment.relativeToSystem) {
             case &#x27;below&#x27;:
@@ -833,7 +839,18 @@ export class FolioCalculationContentSegmentVertices {
                 offset &#x3D; 0;
         }
 
-        const yValue &#x3D; isStart ? systemLines[0].START_POINT.y : systemLines.at(-1).END_POINT.y;
+        let yValue &#x3D; 0;
+        if (isStart) {
+            const firstLine &#x3D; systemLines[0];
+            if (firstLine) {
+                yValue &#x3D; firstLine.START_POINT.y;
+            }
+        } else {
+            const lastLine &#x3D; systemLines.at(-1);
+            if (lastLine) {
+                yValue &#x3D; lastLine.END_POINT.y;
+            }
+        }
         const correction &#x3D; this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
 
         return round(yValue + correction, 2);
@@ -871,32 +888,32 @@ export class FolioCalculationContentSegment {
     /**
      * The centered X position of the content segment.
      */
-    centeredXPosition: number;
+    centeredXPosition &#x3D; 0;
 
     /**
      * The centered y position of the content segment.
      */
-    centeredYPosition: number;
+    centeredYPosition &#x3D; 0;
 
     /**
      * The label for the id of the edition complex of the content segment.
      */
-    complexId: string;
+    complexId &#x3D; &#x27;&#x27;;
 
     /**
      * The link to a convolute description in the critical report.
      */
-    linkTo: string;
+    linkTo &#x3D; &#x27;&#x27;;
 
     /**
      * The boolean flag if the content segment is reversed.
      */
-    reversed: boolean;
+    reversed &#x3D; false;
 
     /**
      * The segment of a content segment.
      */
-    segment: FolioSegment;
+    segment!: FolioSegment;
 
     /**
      * The segment split of the content segment.
@@ -906,37 +923,37 @@ export class FolioCalculationContentSegment {
     /**
      * The array of label strings for the content segment.
      */
-    segmentLabelArray: string[];
+    segmentLabelArray: string[] &#x3D; [];
 
     /**
      * The label for the content segment.
      */
-    segmentLabel: string;
+    segmentLabel &#x3D; &#x27;&#x27;;
 
     /**
      * The boolean flag if the content segment can be selected.
      */
-    selectable: boolean;
+    selectable &#x3D; false;
 
     /**
      * The label for the id of the content segment.
      */
-    sheetId: string;
+    sheetId &#x3D; &#x27;&#x27;;
 
     /**
      * The label for the sigle of the content segment.
      */
-    sigle: string;
+    sigle &#x3D; &#x27;&#x27;;
 
     /**
      * The label for the sigle addendum of the content segment.
      */
-    sigleAddendum: string;
+    sigleAddendum &#x3D; &#x27;&#x27;;
 
     /**
      * The vertices of a content segment.
      */
-    vertices: FolioCalculationContentSegmentVertices;
+    vertices!: FolioCalculationContentSegmentVertices;
 
     /**
      * Constructor of the FolioCalculationContentSegment class.
@@ -1096,10 +1113,10 @@ export class FolioCalculationSheet {
      *
      * It calculates the rectanble of the trademark based on the given position string.
      *
-     * @param {string} position The given trademark position string.
-     * @returns {FolioCalculationRectangle} The calculated rectangle of the trademark.
+     * @param {string | undefined} position The given trademark position string, or undefined.
+     * @returns {FolioCalculationRectangle | undefined} The calculated rectangle of the trademark, or undefined.
      */
-    private _calculateTrademarkRectangle(position: string): FolioCalculationRectangle {
+    private _calculateTrademarkRectangle(position: string | undefined): FolioCalculationRectangle | undefined {
         if (!position) {
             return undefined;
         }

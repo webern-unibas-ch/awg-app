@@ -923,7 +923,7 @@ and triggers the method to get the JSON data.</p>
 </div>
 
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Signal&lt;IntroList&gt;</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Intro.html" target="_self" >Signal&lt;IntroList&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -1001,7 +1001,7 @@ and triggers the method to get the JSON data.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+                            <b>Returns : </b>        <code><a href="../interfaces/Intro.html" target="_self" >Observable&lt;IntroList&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -2164,13 +2164,13 @@ export class EditionDataService {
             state.complex?.pubStatement?.series?.route &#x3D;&#x3D;&#x3D; state.series.series?.route &amp;&amp;
             state.complex?.pubStatement?.section?.route &#x3D;&#x3D;&#x3D; state.section.section?.route;
 
-        if (isComplexValid) {
+        if (state.complex &amp;&amp; isComplexValid) {
             const complexPath &#x3D; this._getAssetPathForEditionComplex(state.complex);
             const complexIntroStream$ &#x3D; this._fetchJsonData&lt;IntroList&gt;(complexPath, file, fallbackValue, assetsKey);
 
             return observableForkJoin([sectionIntroStream$, complexIntroStream$]).pipe(
                 map(([sectionIntroData, complexIntroData]) &#x3D;&gt; {
-                    if (complexIntroData?.intro?.length &gt; 0) {
+                    if (complexIntroData?.intro?.length) {
                         const blockId &#x3D; complexIntroData.intro[0].id;
                         return this._filterSectionIntroDataByBlockId(sectionIntroData, blockId);
                     }

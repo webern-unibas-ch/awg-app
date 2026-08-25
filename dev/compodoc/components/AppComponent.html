@@ -280,7 +280,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/app.component.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/app.component.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -325,8 +325,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="119"
-                                    class="link-to-prism">src/app/app.component.ts:119</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="121"
+                                    class="link-to-prism">src/app/app.component.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -413,7 +413,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/app.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/app.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -453,7 +453,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/app.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/app.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -493,7 +493,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/app.component.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/app.component.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -533,7 +533,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/app.component.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/app.component.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -573,7 +573,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/app.component.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/app.component.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -611,7 +611,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/app.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/app.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -632,6 +632,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject } from &#x27;@angular/core&#x27;;
+import { takeUntilDestroyed } from &#x27;@angular/core/rxjs-interop&#x27;;
 import { Title } from &#x27;@angular/platform-browser&#x27;;
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from &#x27;@angular/router&#x27;;
 
@@ -719,14 +720,15 @@ export class AppComponent {
 
                     // Get page title from route data
                     let child &#x3D; this._activatedRoute.firstChild;
-                    while (child.firstChild) {
+                    while (child &amp;&amp; child.firstChild) {
                         child &#x3D; child.firstChild;
                     }
-                    if (child.snapshot.data[&#x27;title&#x27;]) {
+                    if (child &amp;&amp; child.snapshot.data[&#x27;title&#x27;]) {
                         return child.snapshot.data[&#x27;title&#x27;];
                     }
                     return appTitle;
-                })
+                }),
+                takeUntilDestroyed()
             )
             .subscribe({
                 next: (pageTitle: string) &#x3D;&gt; {

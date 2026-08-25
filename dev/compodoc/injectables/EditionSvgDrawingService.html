@@ -256,8 +256,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="259"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:259</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:276</a></div>
                         </td>
                     </tr>
 
@@ -334,8 +334,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="272"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:272</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="289"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:289</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +405,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createSvg(svgFilePath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement)</code>
+                    <code>createSvg(svgFilePath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, svgEl: SVGSVGElement | undefined, svgRootGroupEl: SVGGElement | undefined)</code>
                 </td>
             </tr>
 
@@ -457,7 +457,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgEl</td>
                                             <td>
-                                                        <code>SVGSVGElement</code>
+                                                        <code>SVGSVGElement | undefined</code>
                                             </td>
 
                                             <td>
@@ -466,14 +466,14 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given SVGSVGElement.</p>
+                                                    <p>The given SVGSVGElement, or undefined.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
                                                 <td>svgRootGroupEl</td>
                                             <td>
-                                                        <code>SVGGElement</code>
+                                                        <code>SVGGElement | undefined</code>
                                             </td>
 
                                             <td>
@@ -482,7 +482,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given SVGGElement.</p>
+                                                    <p>The given SVGGElement, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -490,11 +490,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >Promise&lt;D3Selection&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >Promise&lt;D3Selection | undefined&gt;</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>A promise that resolves to the D3 selection.</p>
+                                <p>A promise that resolves to the D3 selection, or undefined.</p>
 
                             </div>
                 </td>
@@ -521,8 +521,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="95"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:95</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -613,8 +613,8 @@ and returns a promise of the selection.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="111"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:111</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -682,15 +682,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getD3SelectionByDataId(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getD3SelectionByDataId(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="153"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:153</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:159</a></div>
                         </td>
                     </tr>
 
@@ -718,7 +718,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -729,7 +729,7 @@ and returns a promise of the selection.</p>
                                             </td>
 
                                             <td>
-                                                    <p>The D3 selection of the SVG root group.</p>
+                                                    <p>The D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -774,11 +774,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of the found element(s).</p>
+                                <p>The D3 selection of the found element(s), or undefined.</p>
 
                             </div>
                 </td>
@@ -798,15 +798,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getD3SelectionById(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getD3SelectionById(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -833,7 +833,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -842,7 +842,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -866,11 +866,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of the found element.</p>
+                                <p>The D3 selection of the found element, or undefined.</p>
 
                             </div>
                 </td>
@@ -890,15 +890,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getGroupsBySelector(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getGroupsBySelector(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, selector: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="176"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:176</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="182"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:182</a></div>
                         </td>
                     </tr>
 
@@ -925,7 +925,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -934,7 +934,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -958,11 +958,11 @@ and returns a promise of the selection.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of all found groups.</p>
+                                <p>The D3 selection of all found groups, or undefined.</p>
 
                             </div>
                 </td>
@@ -982,15 +982,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getSuppliedClasses(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>)</code>
+<code>getSuppliedClasses(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="192"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:192</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="199"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:199</a></div>
                         </td>
                     </tr>
 
@@ -1017,7 +1017,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -1026,7 +1026,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -1058,15 +1058,15 @@ and returns a promise of the selection.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>toggleSuppliedClassOpacity(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, labelOrClassName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isCurrentlyVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>toggleSuppliedClassOpacity(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, labelOrClassName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isCurrentlyVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="231"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:231</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="241"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-drawing.service.ts:241</a></div>
                         </td>
                     </tr>
 
@@ -1093,7 +1093,7 @@ and returns a promise of the selection.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
                                             </td>
 
                                             <td>
@@ -1102,7 +1102,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
 
                                             </td>
                                         </tr>
@@ -1118,7 +1118,7 @@ and returns a promise of the selection.</p>
 
 
                                             <td>
-                                                    <p>The given class label or class name if label is not provided.</p>
+                                                    <p>The given class label or class name if label is not provided (or empty string for all classes).</p>
 
                                             </td>
                                         </tr>
@@ -1299,12 +1299,16 @@ export class EditionSvgDrawingService {
      * and returns a promise of the selection.
      *
      * @param {string} svgFilePath The given path to the svg file.
-     * @param {SVGSVGElement} svgEl The given SVGSVGElement.
-     * @param {SVGGElement} svgRootGroupEl The given SVGGElement.
+     * @param {SVGSVGElement| undefined} svgEl The given SVGSVGElement, or undefined.
+     * @param {SVGGElement| undefined} svgRootGroupEl The given SVGGElement, or undefined.
      *
-     * @returns {Promise&lt;D3Selection&gt;} A promise that resolves to the D3 selection.
+     * @returns {Promise&lt;D3Selection | undefined&gt;} A promise that resolves to the D3 selection, or undefined.
      */
-    async createSvg(svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise&lt;D3Selection&gt; {
+    async createSvg(
+        svgFilePath: string,
+        svgEl: SVGSVGElement | undefined,
+        svgRootGroupEl: SVGGElement | undefined
+    ): Promise&lt;D3Selection | undefined&gt; {
         if (!svgFilePath || !svgEl || !svgRootGroupEl) {
             return undefined;
         }
@@ -1313,7 +1317,11 @@ export class EditionSvgDrawingService {
         const fetchedSvgFile: Document &#x3D; await this._fetchSvgFile(svgFilePath);
 
         // Get the SVG XML DOM tree and its content (svg-root)
-        const fetchedSvgXML: SVGSVGElement &#x3D; fetchedSvgFile.getElementsByTagName(&#x27;svg&#x27;)[0];
+        const fetchedSvgXML: SVGSVGElement | undefined &#x3D; fetchedSvgFile.getElementsByTagName(&#x27;svg&#x27;)[0];
+        if (!fetchedSvgXML) {
+            console.error(&#x27;[EditionSvgDrawingService]: The fetched file does not contain a valid &lt;svg&gt; element.&#x27;);
+            return undefined;
+        }
 
         const vb &#x3D; this._getViewBox(fetchedSvgXML);
 
@@ -1351,6 +1359,7 @@ export class EditionSvgDrawingService {
         if (!svgEl || !color) {
             return;
         }
+
         svgEl.attr(&#x27;fill&#x27;, color);
     }
 
@@ -1364,10 +1373,6 @@ export class EditionSvgDrawingService {
      * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
      */
     getContainerDimensions(containerEl: ElementRef&lt;HTMLElement&gt;): { width: number; height: number } {
-        if (!containerEl) {
-            return { width: undefined, height: undefined };
-        }
-
         const w &#x3D; containerEl.nativeElement.clientWidth;
         const h &#x3D; containerEl.nativeElement.clientHeight;
 
@@ -1382,15 +1387,16 @@ export class EditionSvgDrawingService {
      *
      * It selects an element with the given id, if available, from the given svgRootGroup.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} id The given id.
      *
-     * @returns {D3Selection} The D3 selection of the found element.
+     * @returns {D3Selection | undefined} The D3 selection of the found element, or undefined.
      */
-    getD3SelectionById(svgRootGroup: D3Selection, id: string): D3Selection {
+    getD3SelectionById(svgRootGroup: D3Selection | undefined, id: string): D3Selection | undefined {
         if (!svgRootGroup || !id) {
             return undefined;
         }
+
         return svgRootGroup.select(&#x27;#&#x27; + id);
     }
 
@@ -1399,20 +1405,21 @@ export class EditionSvgDrawingService {
      *
      * Selects elements by a data attribute (default: data-tkk-id) or falls back to id.
      *
-     * @param svgRootGroup The D3 selection of the SVG root group.
-     * @param dataId The data id to select.
-     * @param attr The data attribute name (default: &#x27;data-tkk-id&#x27;).
+     * @param {D3Selection | undefined} svgRootGroup The D3 selection of the SVG root group, or undefined.
+     * @param {string} dataId The data id to select.
+     * @param {string} attr The data attribute name (default: &#x27;data-tkk-id&#x27;).
      *
-     * @returns {D3Selection} The D3 selection of the found element(s).
+     * @returns {D3Selection | undefined} The D3 selection of the found element(s), or undefined.
      */
     getD3SelectionByDataId(
-        svgRootGroup: D3Selection,
+        svgRootGroup: D3Selection | undefined,
         dataId: string,
         attr: string &#x3D; EditionSvgOverlayTypes.dataTkkId
-    ): D3Selection {
-        if (!svgRootGroup || !dataId) {
+    ): D3Selection | undefined {
+        if (!svgRootGroup) {
             return undefined;
         }
+
         const selector &#x3D; &#x60;[${attr}&#x3D;&quot;${dataId}&quot;]&#x60;;
         const selection &#x3D; svgRootGroup.selectAll(selector);
         return selection.empty() ? this.getD3SelectionById(svgRootGroup, dataId) : selection;
@@ -1423,15 +1430,15 @@ export class EditionSvgDrawingService {
      *
      * It selects all groups with the &quot;given selector class, if available, from the given svgRootGroup.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      * @param {string} selector The given selector class.
-     *
-     * @returns {D3Selection} The D3 selection of all found groups.
+     * @returns {D3Selection | undefined} The D3 selection of all found groups, or undefined.
      */
-    getGroupsBySelector(svgRootGroup: D3Selection, selector: string): D3Selection {
+    getGroupsBySelector(svgRootGroup: D3Selection | undefined, selector: string): D3Selection | undefined {
         if (!svgRootGroup) {
             return undefined;
         }
+
         return svgRootGroup.selectAll(&#x27;g.&#x27; + selector);
     }
 
@@ -1440,21 +1447,24 @@ export class EditionSvgDrawingService {
      *
      * It gets all supplied classes from the SVG sheet root group.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
      *
      * @returns {Map&lt;string, boolean&gt;} A map of all supplied classes from the SVG sheet root group.
      */
-    getSuppliedClasses(svgRootGroup: D3Selection): Map&lt;string, boolean&gt; {
-        if (!svgRootGroup) {
-            return undefined;
-        }
-
+    getSuppliedClasses(svgRootGroup: D3Selection | undefined): Map&lt;string, boolean&gt; {
         // (Re-)Initialize the map
         this._suppliedClasses &#x3D; new Map();
 
-        const suppliedSelections &#x3D; this.getGroupsBySelector(svgRootGroup, &#x27;supplied&#x27;);
+        if (!svgRootGroup) {
+            return this._suppliedClasses;
+        }
 
-        suppliedSelections.each((d, i, nodes) &#x3D;&gt; {
+        const suppliedSelections &#x3D; this.getGroupsBySelector(svgRootGroup, &#x27;supplied&#x27;);
+        if (!suppliedSelections) {
+            return this._suppliedClasses;
+        }
+
+        suppliedSelections.each((_d, i, nodes) &#x3D;&gt; {
             const element &#x3D; D3_SELECTION.select(nodes[i]);
             const classNames &#x3D; element.attr(&#x27;class&#x27;).split(&#x27; &#x27;);
             const nextToSupplied &#x3D; classNames[classNames.indexOf(&#x27;supplied&#x27;) + 1];
@@ -1477,13 +1487,17 @@ export class EditionSvgDrawingService {
      *
      * It toggles the opacity of the supplied class with the given className.
      *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} labelOrClassName The given class label or class name if label is not provided.
+     * @param {D3Selection | undefined} svgRootGroup The given D3 selection of the SVG root group, or undefined.
+     * @param {string} labelOrClassName The given class label or class name if label is not provided (or empty string for all classes).
      * @param {boolean} isCurrentlyVisible The given current visibility state of the class.
      *
      * @returns {void} Toggles the opacity of the supplied class with the given className.
      */
-    toggleSuppliedClassOpacity(svgRootGroup: D3Selection, labelOrClassName: string, isCurrentlyVisible: boolean): void {
+    toggleSuppliedClassOpacity(
+        svgRootGroup: D3Selection | undefined,
+        labelOrClassName: string,
+        isCurrentlyVisible: boolean
+    ): void {
         if (!svgRootGroup) {
             return;
         }
@@ -1497,8 +1511,11 @@ export class EditionSvgDrawingService {
         // Get D3 selection of supplied elements
         const selector &#x3D; className ? &#x60;supplied.${className}&#x60; : &#x27;supplied&#x27;;
         const suppliedSelections &#x3D; this.getGroupsBySelector(svgRootGroup, selector);
-        const opacity &#x3D; isCurrentlyVisible ? 0 : 1;
+        if (!suppliedSelections) {
+            return;
+        }
 
+        const opacity &#x3D; isCurrentlyVisible ? 0 : 1;
         suppliedSelections.style(&#x27;opacity&#x27;, opacity);
     }
 
