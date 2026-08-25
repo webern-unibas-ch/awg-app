@@ -351,6 +351,17 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-sheets-view', 0, 0);
+            });
+
             describe('on error', () => {
                 const expectedErrorObject: EditionDataAssetsError = {
                     key: 'svgSheets',
@@ -859,7 +870,6 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... should set `showTkA` to false if', () => {
                     it('... selectedTextcritics or commentary is missing', () => {
-                        // 1. Setze die Textkritik so auf undefined, dass der äußere ternäre Operator fehlschlägt
                         component.selectedTextcritics = undefined;
                         const expectedOverlays = [
                             new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
@@ -867,23 +877,21 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                         component.onOverlaySelect(expectedOverlays);
 
-                        // 2. Erwartung prüfen: Kommentar muss undefined sein und showTkA false
                         expect(component.selectedTextcriticalCommentary).toBeUndefined();
                         expectToBe(component.showTkA, false);
                     });
 
                     it('... the filtered commentary contains no comments', () => {
+                        component.selectedTextcritics = expectedSelectedTextcritics;
                         const expectedOverlays = [
                             new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
                         ];
                         const emptyCommentary = {
                             preamble: 'Test Preamble',
-                            comments: [], // <-- Leeres Array triggert UTILS.isEmptyArray(comments) -> true -> !true = false
+                            comments: [],
                         };
 
-                        // Spion anweisen, das leere Kommentar-Objekt zurückzugeben
                         editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(emptyCommentary);
-                        component.selectedTextcritics = expectedSelectedTextcritics;
 
                         component.onOverlaySelect(expectedOverlays);
 
@@ -1280,20 +1288,56 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... should do nothing if', () => {
-                    it('... sheet id is undefined', () => {
-                        (component as any)._selectSvgSheet(undefined);
+                    it.each([
+                        {
+                            desc: 'sheet id is undefined',
+                            sheetId: undefined as any,
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'sheet id is null',
+                            sheetId: null as any,
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'sheet id is an empty string',
+                            sheetId: '',
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'svgSheetsData.sheets is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                svgSheetsData: undefined,
+                            }),
+                        },
+                        {
+                            desc: 'folioConvoluteData.convolutes is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                folioConvoluteData: undefined,
+                            }),
+                        },
+                        {
+                            desc: 'textcriticsData.textcritics is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                textcriticsData: undefined,
+                            }),
+                        },
+                    ])('... $desc', async ({ sheetId, content }) => {
+                        mockViewDataSignal.set(
+                            createMockViewData(content() as any, {
+                                isLoading: false,
+                                error: null,
+                            })
+                        );
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockClear();
 
-                        expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
-                    });
-
-                    it('... sheet id is null', () => {
-                        (component as any)._selectSvgSheet(null);
-
-                        expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
-                    });
-
-                    it('... sheet id is empty string', () => {
-                        (component as any)._selectSvgSheet('');
+                        (component as any)._selectSvgSheet(sheetId);
 
                         expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
                     });
@@ -1329,6 +1373,59 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectToEqual(component.selectedConvolute, expectedConvolute);
                         expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
                         expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
+                    });
+                });
+
+                describe('... should handle missing or incomplete currentSheet gracefully', () => {
+                    beforeEach(() => {
+                        mockViewDataSignal.set(
+                            createMockViewData(expectedViewDataContent, {
+                                isLoading: false,
+                                error: null,
+                            })
+                        );
+                        onOverlaySelectSpy.mockClear();
+                    });
+
+                    it('... should set `selectedConvolute` and `selectedTextcritics` to undefined if currentSheet is not found', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(undefined);
+
+                        (component as any)._selectSvgSheet('unknown-id');
+
+                        expect(component.selectedSvgSheet).toBeUndefined();
+                        expect(component.selectedConvolute).toBeUndefined();
+                        expect(component.selectedTextcritics).toBeUndefined();
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                        expectSpyCall(onOverlaySelectSpy, 1, []);
+                    });
+
+                    it('... should set `selectedTextcriticalCommentary` to undefined if textcritics has no commentary', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
+                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
+
+                        const textcriticsWithoutCommentary = { ...structuredClone(expectedSelectedTextcritics) } as any;
+                        delete textcriticsWithoutCommentary.commentary;
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithoutCommentary);
+
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+
+                        expectToEqual(component.selectedTextcritics, textcriticsWithoutCommentary);
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                    });
+
+                    it('... should set `selectedTextcriticalCommentary` to undefined if commentary is an empty object', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
+                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
+
+                        const textcriticsWithEmptyCommentary = {
+                            ...expectedSelectedTextcritics,
+                            commentary: {} as any,
+                        };
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithEmptyCommentary);
+
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
                     });
                 });
             });

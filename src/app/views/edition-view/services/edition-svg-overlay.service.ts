@@ -441,8 +441,8 @@ export class EditionSvgOverlayService {
      * @returns {D3Selection} The D3 selection of the found element.
      */
     private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, overlayType: string): D3Selection {
-        if (!svgRootGroup || !dataId || !overlayType) {
-            return svgRootGroup?.selectAll(null);
+        if (!dataId || !overlayType) {
+            return svgRootGroup.selectAll(null);
         }
         // Get D3 selection of target group
         const targetGroupSelection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);

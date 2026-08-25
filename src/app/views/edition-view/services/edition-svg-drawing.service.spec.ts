@@ -30,6 +30,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
     let mockDocument: Document;
 
+    let consoleSpy: Spy;
     let getD3SelectionByIdSpy: Spy;
 
     let expectedSvg: D3Selection;
@@ -91,6 +92,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
         createD3TestSuppliedClassesGroups(expectedSvgRootGroup, expectedSuppliedClassNames);
 
         // Spies
+        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
         getD3SelectionByIdSpy = vi.spyOn(service, 'getD3SelectionById');
     });
 
@@ -106,6 +108,19 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expect(service).toBeTruthy();
     });
 
+    describe('mock test objects (self-test)', () => {
+        it('... should use mock console', () => {
+            console.error('Test');
+
+            expectSpyCall(consoleSpy, 1);
+            expectToBe(mockConsole.get(0), 'Test');
+        });
+
+        it('... should clear mock console after each run', () => {
+            expect(mockConsole.get(0)).toBeUndefined();
+        });
+    });
+
     it('... should have `_suppliedClassesLabelLookup` map', () => {
         expectToBe(service['_suppliedClassesLabelLookup'].size, expectedSuppliedClassesLabelLookup.size);
         expectToEqual(service['_suppliedClassesLabelLookup'], expectedSuppliedClassesLabelLookup);
@@ -116,7 +131,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#createSvg()', () => {
-        let fetchSvgFileSpy: ReturnType<typeof vi.fn>;
+        let fetchSvgFileSpy: Spy;
 
         beforeEach(() => {
             // Create a mock Document with SVG content that has child elements
@@ -141,23 +156,42 @@ describe('EditionSvgDrawingService (DONE)', () => {
             it('... no svgFilePath is provided', async () => {
                 expectSpyCall(fetchSvgFileSpy, 0);
 
-                await expect(service.createSvg('', expectedSvg.node(), expectedSvgRootGroup.node())).resolves.toEqual(
-                    undefined
-                );
+                const result = await service.createSvg('', expectedSvg.node(), expectedSvgRootGroup.node());
+
+                expect(result).toBeUndefined();
             });
 
             it('... no svgElement is provided', async () => {
                 expectSpyCall(fetchSvgFileSpy, 0);
 
-                await expect(service.createSvg('test-path', undefined, expectedSvgRootGroup.node())).resolves.toEqual(
-                    undefined
-                );
+                const result = await service.createSvg('test-path', undefined, expectedSvgRootGroup.node());
+
+                expect(result).toBeUndefined();
             });
 
             it('... no svgRootGroup is provided', async () => {
                 expectSpyCall(fetchSvgFileSpy, 0);
 
-                await expect(service.createSvg('test-path', expectedSvg.node(), undefined)).resolves.toEqual(undefined);
+                const result = await service.createSvg('test-path', expectedSvg.node(), undefined);
+
+                expect(result).toBeUndefined();
+            });
+
+            it('... the fetched file does not contain a valid svg element', async () => {
+                const invalidSvgContent = '<div><p>This is not an SVG file</p></div>';
+                const parser = new DOMParser();
+                const mockInvalidDocument = parser.parseFromString(invalidSvgContent, 'image/svg+xml');
+
+                fetchSvgFileSpy.mockReturnValueOnce(Promise.resolve(mockInvalidDocument));
+
+                const result = await service.createSvg('invalid-path', expectedSvg.node(), expectedSvgRootGroup.node());
+
+                expectSpyCall(fetchSvgFileSpy, 1);
+                expectToEqual(
+                    mockConsole.get(0),
+                    '[EditionSvgDrawingService]: The fetched file does not contain a valid <svg> element.'
+                );
+                expect(result).toBeUndefined();
             });
         });
 
@@ -188,7 +222,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             it('... no color is provided', () => {
                 const d3Selection: D3Selection = expectedSvgRootGroup;
-                const color: string = '';
+                const color = '';
 
                 service.fillD3SelectionWithColor(d3Selection, color);
 
@@ -273,6 +307,12 @@ describe('EditionSvgDrawingService (DONE)', () => {
     describe('#getD3SelectionByDataId()', () => {
         it('... should have a method `getD3SelectionByDataId`', () => {
             expect(service.getD3SelectionByDataId).toBeDefined();
+        });
+
+        it('... should return undefined if no svgRootGroup is provided', () => {
+            const d3selections = service.getD3SelectionByDataId(undefined, 'tkk-1');
+
+            expect(d3selections).toBeUndefined();
         });
 
         it('... should return an empty array if svgRootGroup is provided, but given dataId is not found', () => {
@@ -441,17 +481,20 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectToBe(suppliedClasses.size, 0);
             });
 
-            it('... svgRootGroup is provided, but has no supplied classes', () => {
+            it('... `getGroupsBySelector` returns undefined / no selections found', () => {
                 expectedSvg = createD3TestSvg(mockDocument);
                 expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
-                createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
-                createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
+
+                const getGroupsSpy = vi.spyOn(service, 'getGroupsBySelector').mockReturnValue(undefined);
 
                 const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
 
+                expectSpyCall(getGroupsSpy, 1, [expectedSvgRootGroup, 'supplied']);
                 expect(suppliedClasses).toBeDefined();
                 expect(suppliedClasses).toBeInstanceOf(Map);
                 expectToBe(suppliedClasses.size, 0);
+
+                getGroupsSpy.mockRestore();
             });
         });
 
@@ -496,23 +539,42 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(service.toggleSuppliedClassOpacity).toBeDefined();
         });
 
-        it('... should do nothing if no svgRootGroup is provided', () => {
-            const suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
-            const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
+        describe('... should do nothing if', () => {
+            let suppliedClassName: string;
+            let expectedSelection: D3Selection;
+            let opacityBefore: string;
 
-            expect(suppliedSelections).toBeTruthy();
+            beforeEach(() => {
+                suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
+                const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
 
-            const node = suppliedSelections?.nodes()[0];
-            expect(node).toBeTruthy();
+                expect(suppliedSelections).toBeTruthy();
 
-            const expectedSelection = D3_SELECTION.select(node);
-            const opacityBefore = expectedSelection.style('opacity');
+                const node = suppliedSelections?.nodes()[0];
+                expect(node).toBeTruthy();
 
-            service.toggleSuppliedClassOpacity(undefined, suppliedClassName, true);
+                expectedSelection = D3_SELECTION.select(node);
+                opacityBefore = expectedSelection.style('opacity');
+            });
 
-            const opacity = expectedSelection.style('opacity');
+            it('... no svgRootGroup is provided', () => {
+                service.toggleSuppliedClassOpacity(undefined, suppliedClassName, true);
 
-            expectToEqual(opacity, opacityBefore);
+                const opacityAfter = expectedSelection.style('opacity');
+
+                expectToEqual(opacityAfter, opacityBefore);
+            });
+
+            it('... `getGroupsBySelector` returns undefined / no selections found', () => {
+                const getGroupsSpy = vi.spyOn(service, 'getGroupsBySelector').mockReturnValue(undefined);
+
+                service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, true);
+
+                const opacityAfter = expectedSelection.style('opacity');
+                expectToEqual(opacityAfter, opacityBefore);
+
+                getGroupsSpy.mockRestore();
+            });
         });
 
         it('... should toggle opacity of a single supplied class', () => {

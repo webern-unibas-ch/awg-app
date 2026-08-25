@@ -64,7 +64,7 @@ export class EditionSvgDrawingService {
         // Get the SVG XML DOM tree and its content (svg-root)
         const fetchedSvgXML: SVGSVGElement | undefined = fetchedSvgFile.getElementsByTagName('svg')[0];
         if (!fetchedSvgXML) {
-            console.error('The fetched file does not contain a valid <svg> element.');
+            console.error('[EditionSvgDrawingService]: The fetched file does not contain a valid <svg> element.');
             return undefined;
         }
 

@@ -131,7 +131,7 @@ export class EditionSheetsComponent {
     constructor() {
         effect(() => {
             const queryParams = this._queryParams();
-            const svgSheetsData = this.viewData().data.svgSheetsData;
+            const svgSheetsData = this.viewData()?.data?.svgSheetsData;
             const complex = this.selectedEditionComplex();
 
             if (!complex || !svgSheetsData?.sheets) {
@@ -153,7 +153,7 @@ export class EditionSheetsComponent {
      * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
      */
     onBrowseSvgSheet(direction: number): void {
-        const sheets = this.viewData().data.svgSheetsData?.sheets;
+        const sheets = this.viewData()?.data?.svgSheetsData?.sheets;
         const selectedSheet = this.selectedSvgSheet;
 
         if (!sheets || !selectedSheet) {
@@ -209,7 +209,7 @@ export class EditionSheetsComponent {
             : undefined;
 
         const comments = this.selectedTextcriticalCommentary?.comments ?? [];
-        this.showTkA = !UTILS.isEmptyArray(comments);
+        this.showTkA = comments.length > 0;
     }
 
     /**
@@ -308,10 +308,10 @@ export class EditionSheetsComponent {
         if (!sheetId) {
             return;
         }
-        const data = this.viewData().data;
-        const sheets = data.svgSheetsData?.sheets;
-        const convolutes = data.folioConvoluteData?.convolutes;
-        const textcritics = data.textcriticsData?.textcritics;
+        const data = this.viewData()?.data;
+        const sheets = data?.svgSheetsData?.sheets;
+        const convolutes = data?.folioConvoluteData?.convolutes;
+        const textcritics = data?.textcriticsData?.textcritics;
 
         if (!sheets || !convolutes || !textcritics) {
             return;

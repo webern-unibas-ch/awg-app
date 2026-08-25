@@ -270,6 +270,17 @@ describe('IntroComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-intro-view', 0, 0);
+            });
+
             describe('on error', () => {
                 const expectedErrorObject: EditionDataAssetsError = {
                     key: 'intro',
