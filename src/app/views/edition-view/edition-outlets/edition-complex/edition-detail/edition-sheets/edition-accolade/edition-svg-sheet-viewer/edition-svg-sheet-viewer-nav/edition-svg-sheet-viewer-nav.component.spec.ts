@@ -104,50 +104,38 @@ describe('EditionSvgSheetViewerNavComponent', () => {
                 expect(component.browseSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on click on div.prev', async () => {
-                const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
+            describe('... should trigger on click on', () => {
+                it('... div.prev', async () => {
+                    const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
+                    const expectedDirection = -1;
+
+                    await clickAndAwaitChanges(divPrevDes[0], fixture);
+
+                    expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
+                });
+
+                it('... div.next', async () => {
+                    const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
+                    const expectedDirection = 1;
+
+                    await clickAndAwaitChanges(divNextDes[0], fixture);
+
+                    expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
+                });
+            });
+
+            it('... should emit 1 for forward direction', () => {
+                const expectedDirection = 1;
+                component.browseSvgSheet(expectedDirection);
+
+                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
+            });
+
+            it('... should emit -1 for backward direction', () => {
                 const expectedDirection = -1;
-
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(divPrevDes[0], fixture);
-
-                expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-            });
-
-            it('... should trigger on click on div.next', async () => {
-                const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-                const expectedDirection = 1;
-
-                // Trigger click with click helper & wait for changes
-                await clickAndAwaitChanges(divNextDes[0], fixture);
-
-                expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-            });
-
-            it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection: number = undefined;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
-            });
-
-            it('... should emit a given direction', () => {
-                const expectedDirection = 1;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            });
-
-            it('... should emit the correct direction', () => {
-                let expectedDirection = 1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-
-                expectedDirection = -1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 2, expectedDirection);
             });
         });
     });

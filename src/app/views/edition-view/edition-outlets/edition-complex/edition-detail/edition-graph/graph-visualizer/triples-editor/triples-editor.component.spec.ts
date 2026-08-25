@@ -6,7 +6,6 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
-import { EditorView } from 'codemirror';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -31,14 +30,11 @@ import { TriplesEditorComponent } from './triples-editor.component';
     standalone: false,
 })
 class CodeMirrorStubComponent {
+    @Input({ required: true }) mode!: CmMode;
     @Input()
-    mode: CmMode;
-    @Input()
-    content: string;
+    content = '';
     @Output()
     contentChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output()
-    editor: EditorView;
 }
 
 describe('TriplesEditorComponent (DONE)', () => {
@@ -110,12 +106,12 @@ describe('TriplesEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have triples', () => {
-            expect(component.triples).toBeUndefined();
+        it('... should have default `triples` input', () => {
+            expectToBe(component.triples, '');
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         it('... should have cmTurtleMode', () => {

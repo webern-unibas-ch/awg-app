@@ -20,7 +20,7 @@ export class UnsupportedTypeResultsComponent {
      * It keeps the type of the query.
      */
     @Input()
-    queryType: string;
+    queryType = '';
 
     /**
      * Input variable: isFullscreen.
@@ -28,7 +28,7 @@ export class UnsupportedTypeResultsComponent {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Public method: isAccordionItemDisabled.

@@ -8,17 +8,17 @@ export class EditionRouteConstant {
     /**
      * The route path of a route constant.
      */
-    route: string;
+    route = '';
 
     /**
      * The short label of a route constant.
      */
-    short: string;
+    short = '';
 
     /**
      * The full label of a route constant.
      */
-    full: string;
+    full = '';
 }
 
 /**

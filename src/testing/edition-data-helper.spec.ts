@@ -43,7 +43,7 @@ describe('EditionDataHelper (DONE)', () => {
                 prefaceData: {
                     preface: [
                         {
-                            ...defaultData.prefaceData.preface[0],
+                            ...(defaultData.prefaceData?.preface[0] ?? { id: 'de-preface', content: [] }),
                             content: ['Changed content.'],
                         },
                     ],
@@ -60,9 +60,9 @@ describe('EditionDataHelper (DONE)', () => {
             });
         });
 
-        it('... should allow to override fields to undefined within the data object', () => {
+        it('... should allow to override fields to null within the data object', () => {
             const emptyData: EditionViewDataContent<'preface'> = {
-                prefaceData: undefined,
+                prefaceData: null,
             };
             const result = createMockViewData<'preface'>(defaultData, {
                 data: emptyData,

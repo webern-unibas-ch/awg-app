@@ -4,7 +4,7 @@
  */
 import { ChangeDetectionStrategy, Component, inject, input, Input, OnInit } from '@angular/core';
 
-import { EMPTY, from, Observable } from 'rxjs';
+import { EMPTY, Observable, from as observableFrom } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
@@ -32,7 +32,7 @@ export class GraphVisualizerComponent implements OnInit {
      * It keeps the input data for the RDF graph.
      */
     @Input()
-    graphRDFInputData: GraphRDFData;
+    graphRDFInputData: GraphRDFData = new GraphRDFData();
 
     /**
      * Readonly input signal: isFullscreenMode.
@@ -53,35 +53,35 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It keeps the input query string of the graph visualization.
      */
-    query: GraphSparqlQuery;
+    query: GraphSparqlQuery = new GraphSparqlQuery();
 
     /**
      * Public variable: queryList.
      *
      * It keeps the input query list of the graph visualization.
      */
-    queryList: GraphSparqlQuery[];
+    queryList: GraphSparqlQuery[] = [];
 
     /**
      * Public variable: queryResult$.
      *
      * It keeps the result of the query as an observable of QueryResult.
      */
-    queryResult$: Observable<QueryResult>;
+    queryResult$: Observable<QueryResult> = EMPTY;
 
     /**
      * Public variable: queryTime.
      *
      * It keeps the duration time of the query.
      */
-    queryTime: number;
+    queryTime = 0;
 
     /**
      * Public variable: triples.
      *
      * It keeps the input triple string of the graph visualization.
      */
-    triples: string;
+    triples = '';
 
     /**
      * Private readonly injection variable: _graphVisualizerService.
@@ -135,7 +135,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Resets the initial query.
      */
     resetQuery(query?: GraphSparqlQuery): void {
-        if (!this.graphRDFInputData.queryList) {
+        if (!this.graphRDFInputData.queryList.length) {
             return;
         }
 
@@ -169,7 +169,7 @@ export class GraphVisualizerComponent implements OnInit {
         if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
             // Query local store
             const result = this._queryLocalStore(this.query.queryType, this.query.queryString, this.triples);
-            this.queryResult$ = from(result);
+            this.queryResult$ = observableFrom(result);
         } else {
             this.queryResult$ = EMPTY;
         }
@@ -230,7 +230,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the message.
      */
     showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
-        if (!toastMessage?.message) {
+        if (!toastMessage.message) {
             return;
         }
 
@@ -256,7 +256,6 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {string} queryType The given query type.
      * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
-     *
      * @returns {Promise<QueryResult>} The result of the query.
      */
     private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<QueryResult> {
@@ -281,29 +280,12 @@ export class GraphVisualizerComponent implements OnInit {
                         'error'
                     );
                 }
-                this.showToastMessage(new ToastMessage(err.name, err.message, 5000), 'error');
-            } else {
-                let errorMessage: string;
-
-                if (err && typeof err === 'object') {
-                    const anyObjectErr = err as Record<string, unknown>;
-
-                    if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
-                        errorMessage = anyObjectErr['message'];
-                    } else if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
-                        errorMessage = anyObjectErr['statusText'];
-                    } else {
-                        try {
-                            errorMessage = JSON.stringify(anyObjectErr) || String(anyObjectErr);
-                        } catch {
-                            errorMessage = String(anyObjectErr);
-                        }
-                    }
-                } else {
-                    errorMessage = String(err);
-                }
-                this.showToastMessage(new ToastMessage('Query Error', errorMessage, 5000), 'error');
             }
+
+            const errorTitle = err instanceof Error ? err.name : 'Query Error';
+            const errorMessage = this._getErrorMessage(err);
+
+            this.showToastMessage(new ToastMessage(errorTitle, errorMessage, 5000), 'error');
 
             // Capture query time
             this.queryTime = Date.now() - t1;
@@ -311,5 +293,42 @@ export class GraphVisualizerComponent implements OnInit {
             result = [];
         }
         return result;
+    }
+
+    /**
+     * Private method: _getErrorMessage.
+     *
+     * It retrieves the message to display on error.
+     *
+     * @param {unknown} err The given unknown error.
+     * @returns {string} The error message.
+     */
+    private _getErrorMessage(err: unknown): string {
+        if (err instanceof Error) {
+            return err.message;
+        }
+
+        if (err && typeof err === 'object') {
+            const anyObjectErr = err as Record<string, unknown>;
+
+            if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
+                return anyObjectErr['message'];
+            }
+            if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
+                return anyObjectErr['statusText'];
+            }
+            try {
+                return JSON.stringify(anyObjectErr);
+            } catch {
+                const objectKeys = Object.keys(anyObjectErr).join(', ');
+                return `[Complex Error Object with keys: ${objectKeys}]`;
+            }
+        }
+
+        if (typeof err === 'string' || typeof err === 'number' || typeof err === 'boolean') {
+            return `${err}`;
+        }
+
+        return 'Unknown error format';
     }
 }

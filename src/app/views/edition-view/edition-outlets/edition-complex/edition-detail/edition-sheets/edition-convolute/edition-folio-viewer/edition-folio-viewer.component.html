@@ -1,11 +1,17 @@
 <!-- embedded svg: Edition Folio Viewer -->
-@if (folioSvgDataArray) {
+@if (folioSvgDataArray && !UTILS.isEmptyArray(folioSvgDataArray)) {
+    @let colSize = 12 / folioSvgDataArray.length;
+    @let sheetId = selectedSvgSheet?.id ?? '';
+
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
             @for (folioSvgData of folioSvgDataArray; track folioSvgData.sheet?.folioId) {
-                <div class="col-sm-6 col-lg-{{ 12 / folioSvgDataArray?.length }} svgCol">
-                    <span class="text-muted">[{{ folioSvgData.sheet?.folioId }}]</span>
-                    <svg id="folio-{{ selectedSvgSheet?.id }}-{{ folioSvgData.sheet?.folioId }}"></svg>
+                @let folioId = folioSvgData.sheet.folioId;
+                @let svgId = `folio-${sheetId}-${folioId}`;
+
+                <div class="col-sm-6 col-lg-{{ colSize }} svgCol">
+                    <span class="text-muted">[{{ folioId }}]</span>
+                    <svg [id]="svgId"></svg>
                 </div>
             }
         </div>

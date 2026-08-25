@@ -68,12 +68,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryType', () => {
-            expect(component.queryType).toBeUndefined();
+        it('... should have default `queryType` input', () => {
+            expectToBe(component.queryType, '');
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         describe('VIEW', () => {

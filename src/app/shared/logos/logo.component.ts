@@ -40,9 +40,9 @@ export class LogoComponent {
     readonly logoClassList = computed(() => {
         const id = this.logoData().id;
 
-        const isSnfLogo = id === LOGOS_DATA['snf'].id;
-        const isUnibasLogo = id === LOGOS_DATA['unibas'].id;
-        const isSagwLogo = id === LOGOS_DATA['sagw'].id;
+        const isSnfLogo = id === LOGOS_DATA.snf.id;
+        const isUnibasLogo = id === LOGOS_DATA.unibas.id;
+        const isSagwLogo = id === LOGOS_DATA.sagw.id;
 
         let classList = '';
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {

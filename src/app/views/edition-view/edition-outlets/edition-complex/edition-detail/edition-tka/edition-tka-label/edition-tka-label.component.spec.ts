@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -40,31 +40,35 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `id`', () => {
-            expect(component.id).toBeUndefined();
+        it('... should throw due to missing required input signal `id`', () => {
+            expectToBe(isSignal(component.id), true);
+
+            expect(() => component.id()).toThrow();
         });
 
-        it('... should not have `labelType`', () => {
-            expect(component.labelType).toBeUndefined();
+        it('... should throw due to missing required input signal `labelType`', () => {
+            expectToBe(isSignal(component.labelType), true);
+
+            expect(() => component.labelType()).toThrow();
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.id = expectedId;
-            component.labelType = expectedLabelType;
+            fixture.componentRef.setInput('id', expectedId);
+            fixture.componentRef.setInput('labelType', expectedLabelType);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `id`', () => {
-            expectToBe(component.id, expectedId);
+        it('... should have signal `id` to hold the expected id', () => {
+            expectToBe(component.id(), expectedId);
         });
 
-        it('... should have `labelType`', () => {
-            expectToBe(component.labelType, expectedLabelType);
+        it('... should have signal `labelType` to hold the expected type', () => {
+            expectToBe(component.labelType(), expectedLabelType);
         });
 
         describe('VIEW', () => {
@@ -73,8 +77,8 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
                     { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    component.labelType = 'evaluation';
-                    component.id = id;
+                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('labelType', 'evaluation');
 
                     await detectChangesOnPush(fixture);
 
@@ -90,8 +94,8 @@ describe('EditionTkaLabelComponent (DONE)', () => {
                     { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
                     { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    component.labelType = 'commentary';
-                    component.id = id;
+                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('labelType', 'commentary');
 
                     await detectChangesOnPush(fixture);
 

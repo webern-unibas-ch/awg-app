@@ -22,5 +22,5 @@ export class EditionSectionDetailComplexCardComponent {
      * It keeps the complexes of the card view.
      */
     @Input()
-    complexes: EditionOutlineComplexItem[];
+    complexes: EditionOutlineComplexItem[] | undefined;
 }

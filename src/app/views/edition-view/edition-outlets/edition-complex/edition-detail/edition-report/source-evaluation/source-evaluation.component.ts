@@ -23,7 +23,7 @@ export class SourceEvaluationComponent {
      * It keeps the information about the current edition complex.
      */
     @Input()
-    editionComplex: EditionComplex;
+    editionComplex: EditionComplex | null = null;
 
     /**
      * Input variable: sourceEvaluationListData.
@@ -31,7 +31,7 @@ export class SourceEvaluationComponent {
      * It keeps the source evaluation data.
      */
     @Input()
-    sourceEvaluationListData: SourceEvaluationList;
+    sourceEvaluationListData: SourceEvaluationList | null = null;
 
     /**
      * Protected readonly variable: UTILS.

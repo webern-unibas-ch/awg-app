@@ -1,10 +1,11 @@
-import { Component, DebugElement, DOCUMENT, Input } from '@angular/core';
+import { DebugElement, DOCUMENT } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { EditionTkaTableStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -17,22 +18,9 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
+import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
-
-// Mock components
-@Component({ selector: 'awg-edition-tka-table', template: '', standalone: false })
-class EditionTkaTableStubComponent {
-    @Input()
-    commentary: TextcriticalCommentary;
-    @Input()
-    isCorrections = false;
-    @Input()
-    isRowtable = false;
-    @Input()
-    isSketchId = false;
-}
 
 describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     let component: SourceDescriptionCorrectionsComponent;
@@ -59,7 +47,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
         // Test data
         const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
-        expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections;
+        expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections ?? [];
         expectedOpenAllCorrectionDetails = false;
         // Create component fixture
         fixture = TestBed.createComponent(SourceDescriptionCorrectionsComponent);
@@ -79,8 +67,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `corrections`', () => {
-            expect(component.corrections).toBeUndefined();
+        it('... should have default `corrections` input', () => {
+            expectToEqual(component.corrections, []);
         });
 
         it('... should have `openAllCorrectionDetails`', () => {
@@ -189,7 +177,6 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                 expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
@@ -489,7 +476,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                             if (expectedCorrections[index].rowtable) {
                                 expectToBe(editionTkaTableCmp.isRowtable, expectedCorrections[index].rowtable);
                             } else {
-                                expect(editionTkaTableCmp.isRowtable).toBeUndefined();
+                                expectToBe(editionTkaTableCmp.isRowtable, false);
                             }
                         });
                     });
@@ -534,12 +521,10 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         1
                     );
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                     expectSpyCall(toggleAllCorrectionDetailsSpy, 1);
 
-                    // Trigger click with click helper & wait for changes
                     await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
 
                     expectSpyCall(toggleAllCorrectionDetailsSpy, 2);

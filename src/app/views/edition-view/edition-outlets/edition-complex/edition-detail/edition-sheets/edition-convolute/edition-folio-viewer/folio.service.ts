@@ -266,10 +266,6 @@ export class FolioService {
      */
     private _addFolioContentSegmentsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         folioSvgData?.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
-            if (!contentSegment) {
-                return;
-            }
-
             // Draw content segment group.
             const svgContentSegmentGroup = this._appendContentSegmentGroup(svgSheetGroup, contentSegment);
 

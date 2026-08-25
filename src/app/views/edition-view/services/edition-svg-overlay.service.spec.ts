@@ -29,7 +29,7 @@ describe('EditionSvgOverlayService', () => {
     let service: EditionSvgOverlayService;
 
     let mockDocument: Document;
-    let mockEditionSvgDrawingService: Partial<EditionSvgDrawingService>;
+    let mockEditionSvgDrawingService: EditionSvgDrawingService;
 
     let createTkkOverlayGroupSpy: Spy;
     let createTkkOverlayHandlersSpy: Spy;
@@ -38,6 +38,7 @@ describe('EditionSvgOverlayService', () => {
     let updateTkkOverlayColorSpy: Spy;
     let serviceFillD3SelectionWithColorSpy: Spy;
     let serviceGetD3SelectionByIdSpy: Spy;
+    let serviceGetD3SelectionByDataIdSpy: Spy;
     let serviceGetGroupsBySelectorSpy: Spy;
 
     let expectedSvg: D3Selection;
@@ -81,7 +82,7 @@ describe('EditionSvgOverlayService', () => {
                 return selection && !selection.empty() ? selection : rootGroup?.select(`#${dataId}`);
             },
             getGroupsBySelector: (rootGroup: D3Selection, selector: string) => rootGroup?.selectAll('g.' + selector),
-        };
+        } as unknown as EditionSvgDrawingService;
 
         TestBed.configureTestingModule({
             providers: [{ provide: EditionSvgDrawingService, useValue: mockEditionSvgDrawingService }],
@@ -130,6 +131,7 @@ describe('EditionSvgOverlayService', () => {
 
         serviceFillD3SelectionWithColorSpy = vi.spyOn(mockEditionSvgDrawingService, 'fillD3SelectionWithColor');
         serviceGetD3SelectionByIdSpy = vi.spyOn(mockEditionSvgDrawingService, 'getD3SelectionById');
+        serviceGetD3SelectionByDataIdSpy = vi.spyOn(mockEditionSvgDrawingService, 'getD3SelectionByDataId');
         serviceGetGroupsBySelectorSpy = vi.spyOn(mockEditionSvgDrawingService, 'getGroupsBySelector');
     });
 
@@ -301,10 +303,9 @@ describe('EditionSvgOverlayService', () => {
             getOverlaysAndSelectionSpy.mockImplementation(
                 (_rootGroup: D3Selection, overlays: EditionSvgOverlay[], dataId: string, overlayType: string) => {
                     const found = overlays.filter((o: EditionSvgOverlay) => o.dataId === dataId);
-                    const overlayGroupRectSelection =
-                        found.length > 0
-                            ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
-                            : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
+                    const overlayGroupRectSelection = found.length
+                        ? expectedSvgRootGroup.selectAll(`#${found[0]?.dataId} rect.${overlayType}`)
+                        : expectedSvgRootGroup.selectAll(`#${dataId} rect.${overlayType}`);
                     return [found, overlayGroupRectSelection];
                 }
             );
@@ -449,12 +450,6 @@ describe('EditionSvgOverlayService', () => {
                 testToggleTkkOverlayHighlights(
                     '... with transparent color if `isCurrentlyHighlighted` is false',
                     false,
-                    EditionSvgOverlayActionTypes.transparent
-                );
-
-                testToggleTkkOverlayHighlights(
-                    '... with transparent color if `isCurrentlyHighlighted` is undefined',
-                    undefined,
                     EditionSvgOverlayActionTypes.transparent
                 );
             });
@@ -639,10 +634,26 @@ describe('EditionSvgOverlayService', () => {
             expect((service as any)._createLinkBoxOverlay).toBeDefined();
         });
 
+        it('... should do nothing if `getD3SelectionById` returns undefined / no selections found', () => {
+            serviceGetD3SelectionByIdSpy.mockReturnValueOnce(undefined);
+
+            const createLinkBoxOverlayHandlersSpy = vi.spyOn(service as any, '_createLinkBoxOverlayHandlers');
+
+            (service as any)._createLinkBoxOverlay(expectedSvgRootGroup, mockGroup, onLinkBoxSelectSpy);
+
+            expectSpyCall(serviceGetD3SelectionByIdSpy, 1, [expectedSvgRootGroup, 'link-box-1']);
+
+            expect(mockLinkBoxGroupSelection.select).not.toHaveBeenCalled();
+            expect(mockLinkBoxGroupPathSelection.style).not.toHaveBeenCalled();
+            expectSpyCall(createLinkBoxOverlayHandlersSpy, 0);
+
+            createLinkBoxOverlayHandlersSpy.mockRestore();
+        });
+
         it('... should trigger `getD3SelectionById` and set fill color', () => {
             (service as any)._createLinkBoxOverlay(expectedSvgRootGroup, mockGroup, onLinkBoxSelectSpy);
 
-            expect(serviceGetD3SelectionByIdSpy).toHaveBeenCalledWith(expectedSvgRootGroup, 'link-box-1');
+            expectSpyCall(serviceGetD3SelectionByIdSpy, 1, [expectedSvgRootGroup, 'link-box-1']);
             expect(mockLinkBoxGroupSelection.select).toHaveBeenCalledWith('path');
             expect(mockLinkBoxGroupPathSelection.style).toHaveBeenCalledWith('fill', service.linkBoxOverlayFillColor);
         });
@@ -658,6 +669,8 @@ describe('EditionSvgOverlayService', () => {
                 mockGroup.id,
                 onLinkBoxSelectSpy,
             ]);
+
+            createLinkBoxOverlayHandlersSpy.mockRestore();
         });
     });
 
@@ -783,7 +796,7 @@ describe('EditionSvgOverlayService', () => {
                 const rootGroup: D3Selection = expectedSvgRootGroup;
                 const overlays = (service as any)._tkkOverlaysState.available;
                 const mockGroup = {
-                    id: null,
+                    id: '',
                     getAttribute: (attr: string) => (attr === 'data-tkk-id' ? 'data-only-id' : null),
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 } as Partial<SVGElement> as SVGElement;
@@ -816,7 +829,7 @@ describe('EditionSvgOverlayService', () => {
                 const rootGroup: D3Selection = expectedSvgRootGroup;
                 const overlays = (service as any)._tkkOverlaysState.available;
                 const mockGroup = {
-                    id: null,
+                    id: '',
                     getAttribute: () => null,
                     getBBox: () => ({ width: 10, height: 10, x: 0, y: 0 }),
                 } as Partial<SVGElement> as SVGElement;
@@ -914,39 +927,43 @@ describe('EditionSvgOverlayService', () => {
     });
 
     describe('#_createTkkOverlayGroup()', () => {
+        let dim: DOMRect;
+        const id = 'tkk-1';
+        const type = EditionSvgOverlayTypes.tkk;
+
+        beforeEach(() => {
+            dim = expectedSvgRootGroup.nodes()[0].getBBox();
+        });
+
         it('... should have a method `_createTkkOverlayGroup`', () => {
             expect((service as any)._createTkkOverlayGroup).toBeDefined();
         });
 
         describe('... should do nothing if', () => {
             it('... no svgRootGroup is provided', () => {
-                const rootGroup: D3Selection = null;
-                const id = 'tkk-1';
-                const dim = expectedSvgRootGroup.nodes()[0].getBBox();
-
-                const d3selections = (service as any)._createTkkOverlayGroup(rootGroup, id, dim);
+                const d3selections = (service as any)._createTkkOverlayGroup(undefined, id, dim);
 
                 expect(d3selections).toBeUndefined();
             });
 
             it('... no id is provided', () => {
-                const rootGroup: D3Selection = expectedSvgRootGroup;
-                const id: string = null;
-                const dim = expectedSvgRootGroup.nodes()[0].getBBox();
+                const d3selections = (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, '', dim);
 
-                const d3selections = (service as any)._createTkkOverlayGroup(rootGroup, id, dim);
+                expect(d3selections).toBeUndefined();
+            });
 
+            it('... `getD3SelectionById` returns undefined / no selections found', () => {
+                serviceGetD3SelectionByIdSpy.mockReturnValueOnce(undefined);
+
+                const d3selections = (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, id, dim);
+
+                expectSpyCall(serviceGetD3SelectionByIdSpy, 1, [expectedSvgRootGroup, id]);
                 expect(d3selections).toBeUndefined();
             });
         });
 
         it('... should create an overlay group', () => {
-            const rootGroup: D3Selection = expectedSvgRootGroup;
-            const id = 'tkk-1';
-            const dim = expectedSvgRootGroup.nodes()[0].getBBox();
-            const type = EditionSvgOverlayTypes.tkk;
-
-            const d3selections = (service as any)._createTkkOverlayGroup(rootGroup, id, dim);
+            const d3selections = (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, id, dim);
 
             expect(d3selections).toBeDefined();
             expectToBe(d3selections.node().nodeName, 'rect');
@@ -1234,26 +1251,8 @@ describe('EditionSvgOverlayService', () => {
             expect((service as any)._getOverlayGroupRectSelection).toBeDefined();
         });
 
-        describe('... should handle missing parameters if', () => {
-            it('... no svgRootGroup is provided (return undefined)', () => {
-                let d3selections = (service as any)._getOverlayGroupRectSelection(
-                    null,
-                    'tkk-1',
-                    EditionSvgOverlayTypes.tkk
-                );
-
-                expect(d3selections).toBeUndefined();
-
-                d3selections = (service as any)._getOverlayGroupRectSelection(
-                    undefined,
-                    'tkk-1',
-                    EditionSvgOverlayTypes.tkk
-                );
-
-                expect(d3selections).toBeUndefined();
-            });
-
-            it('... no id is provided (return empty selection)', () => {
+        describe('... should return empty selection if', () => {
+            it('... no id is provided', () => {
                 const expectedEmptySelection = expectedSvgRootGroup.selectAll(null);
 
                 let d3selections = (service as any)._getOverlayGroupRectSelection(
@@ -1281,7 +1280,7 @@ describe('EditionSvgOverlayService', () => {
                 expectToEqual(d3selections, expectedEmptySelection);
             });
 
-            it('... no type is provided (return empty selection)', () => {
+            it('... no type is provided', () => {
                 const expectedEmptySelection = expectedSvgRootGroup.selectAll(null);
                 let d3selections = (service as any)._getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', null);
 
@@ -1293,6 +1292,21 @@ describe('EditionSvgOverlayService', () => {
 
                 d3selections = (service as any)._getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', '');
 
+                expectToEqual(d3selections, expectedEmptySelection);
+            });
+
+            it('... `getD3SelectionByDataId` returns undefind / no selections found', () => {
+                const expectedEmptySelection = expectedSvgRootGroup.selectAll(null);
+
+                serviceGetD3SelectionByDataIdSpy.mockReturnValue(undefined);
+
+                const d3selections = (service as any)._getOverlayGroupRectSelection(
+                    expectedSvgRootGroup,
+                    'non-existent-id',
+                    EditionSvgOverlayTypes.tkk
+                );
+
+                expectSpyCall(serviceGetD3SelectionByDataIdSpy, 1, [expectedSvgRootGroup, 'non-existent-id']);
                 expectToEqual(d3selections, expectedEmptySelection);
             });
         });
@@ -1315,7 +1329,8 @@ describe('EditionSvgOverlayService', () => {
                     expectedSvgRootGroup,
                     EditionSvgOverlayTypes.tkk
                 );
-                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+                const tkkNode = tkkGroups?.nodes()[0] as any;
+                const expectedDimensions = tkkNode?.getBBox ? tkkNode.getBBox() : { x: 0, y: 0, width: 10, height: 10 };
                 const otherType = 'other-type';
 
                 (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions);
@@ -1350,7 +1365,8 @@ describe('EditionSvgOverlayService', () => {
                     expectedSvgRootGroup,
                     EditionSvgOverlayTypes.tkk
                 );
-                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+                const tkkNode = tkkGroups?.nodes()[0] as any;
+                const expectedDimensions = tkkNode?.getBBox ? tkkNode.getBBox() : { x: 0, y: 0, width: 10, height: 10 };
                 const expectedType = EditionSvgOverlayTypes.tkk;
 
                 (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions);
@@ -1372,7 +1388,8 @@ describe('EditionSvgOverlayService', () => {
                     expectedSvgRootGroup,
                     EditionSvgOverlayTypes.tkk
                 );
-                const expectedDimensions = tkkGroups.nodes()[0].getBBox();
+                const tkkNode = tkkGroups?.nodes()[0] as any;
+                const expectedDimensions = tkkNode?.getBBox ? tkkNode.getBBox() : { x: 0, y: 0, width: 10, height: 10 };
                 const expectedType = EditionSvgOverlayTypes.tkk;
 
                 (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions);
@@ -1722,7 +1739,7 @@ describe('EditionSvgOverlayService', () => {
             beforeEach(() => {
                 const expectedType = EditionSvgOverlayTypes.tkk;
                 const tkkGroups = mockEditionSvgDrawingService.getGroupsBySelector(expectedSvgRootGroup, expectedType);
-                const tkkNode = tkkGroups.nodes()[0] as any;
+                const tkkNode = tkkGroups?.nodes()[0] as any;
                 const expectedDimensions = tkkNode?.getBBox ? tkkNode.getBBox() : { x: 0, y: 0, width: 10, height: 10 };
 
                 (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions);
@@ -1761,7 +1778,7 @@ describe('EditionSvgOverlayService', () => {
             beforeEach(() => {
                 const expectedType = EditionSvgOverlayTypes.tkk;
                 const tkkGroups = mockEditionSvgDrawingService.getGroupsBySelector(expectedSvgRootGroup, expectedType);
-                const tkkNode = tkkGroups.nodes()[0] as any;
+                const tkkNode = tkkGroups?.nodes()[0] as any;
                 const expectedDimensions = tkkNode?.getBBox ? tkkNode.getBBox() : { x: 0, y: 0, width: 10, height: 10 };
 
                 (service as any)._createTkkOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions);

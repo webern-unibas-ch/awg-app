@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
@@ -86,14 +87,15 @@ export class AppComponent {
 
                     // Get page title from route data
                     let child = this._activatedRoute.firstChild;
-                    while (child.firstChild) {
+                    while (child && child.firstChild) {
                         child = child.firstChild;
                     }
-                    if (child.snapshot.data['title']) {
+                    if (child && child.snapshot.data['title']) {
                         return child.snapshot.data['title'];
                     }
                     return appTitle;
-                })
+                }),
+                takeUntilDestroyed()
             )
             .subscribe({
                 next: (pageTitle: string) => {

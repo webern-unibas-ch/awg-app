@@ -58,7 +58,7 @@ export class RouterLinkStubDirective {
     /**
      * The router fragment after navigation.
      */
-    navigatedToFragment: string = null;
+    navigatedToFragment: string | null = null;
 
     /**
      * Listener that sets the navigation target after click.
@@ -66,7 +66,7 @@ export class RouterLinkStubDirective {
     @HostListener('click')
     onClick() {
         this.navigatedTo = this.linkParams;
-        this.navigatedToFragment = this.fragment;
+        this.navigatedToFragment = this.fragment || null;
     }
 }
 // #enddocregion router-link-stub
@@ -107,12 +107,12 @@ export class ActivatedRouteStub {
     /**
      * Private variable for test parameters.
      */
-    private _testParams: {};
+    private _testParams: {} = {};
 
     /**
      * Private readonly ReplaySubject to handle route paramMaps.
      */
-    private readonly _paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
+    private readonly _paramMapSubject = new BehaviorSubject(convertToParamMap({}));
 
     /**
      * Observable that contains a map of the test parameters
@@ -123,12 +123,12 @@ export class ActivatedRouteStub {
     /**
      * Private variable: _testParamMap
      */
-    private _testParamMap: ParamMap;
+    private _testParamMap: ParamMap | undefined;
 
     /**
      * Private readonly BehaviourSubject to handle query parameters.
      */
-    private readonly _queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
+    private readonly _queryParamMapSubject = new BehaviorSubject(convertToParamMap({}));
 
     /**
      * Observable that contains a map of the query parameters
@@ -139,7 +139,7 @@ export class ActivatedRouteStub {
     /**
      * Private variable: _testQueryParamMap
      */
-    private _testQueryParamMap: ParamMap;
+    private _testQueryParamMap: ParamMap | undefined;
 
     /**
      * Private readonly BehaviourSubject to handle children parameters.
@@ -155,7 +155,7 @@ export class ActivatedRouteStub {
     /**
      * Private variable: _testChildren
      */
-    private _testChildren: Params;
+    private _testChildren: Params | undefined;
 
     /**
      * Private readonly BehaviorSubject to handle test route url.
@@ -171,7 +171,7 @@ export class ActivatedRouteStub {
     /**
      * Private variable: _testUrl
      */
-    private _testUrl: UrlSegmentStub[];
+    private _testUrl: UrlSegmentStub[] = [];
 
     /**
      * Constructor for the ActivatedRouteStub (stub).
@@ -196,7 +196,7 @@ export class ActivatedRouteStub {
      *
      * @returns The latest test route paramMap.
      */
-    get testParamMap() {
+    get testParamMap(): ParamMap | undefined {
         return this._testParamMap;
     }
 
@@ -205,7 +205,7 @@ export class ActivatedRouteStub {
      *
      * @returns The latest test route queryParamMap.
      */
-    get testQueryParamMap() {
+    get testQueryParamMap(): ParamMap | undefined {
         return this._testQueryParamMap;
     }
 
@@ -214,7 +214,7 @@ export class ActivatedRouteStub {
      *
      * @returns The latest test route children.
      */
-    get testChildren() {
+    get testChildren(): Params | undefined {
         return this._testChildren;
     }
 

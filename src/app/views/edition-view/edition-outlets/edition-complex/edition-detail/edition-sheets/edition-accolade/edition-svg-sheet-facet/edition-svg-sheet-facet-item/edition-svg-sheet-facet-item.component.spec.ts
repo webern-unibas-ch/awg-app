@@ -1,10 +1,11 @@
-import { Component, DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { DisclaimerWorkeditionsStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -21,14 +22,6 @@ import { EditionSvgSheet } from '@awg-app/views/edition-view/models/edition-svg-
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSvgSheetFacetItemComponent } from './edition-svg-sheet-facet-item.component';
-
-// Mock components
-@Component({
-    selector: 'awg-disclaimer-workeditions',
-    template: '',
-    standalone: false,
-})
-class DisclaimerWorkeditionsStubComponent {}
 
 describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     let component: EditionSvgSheetFacetItemComponent;
@@ -100,15 +93,17 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have facetItemLabel', () => {
-            expect(component.facetItemLabel).toBeUndefined();
+        it('... should throw due to missing required input signal `facetItemLabel`', () => {
+            expectToBe(isSignal(component.facetItemLabel), true);
+
+            expect(() => component.facetItemLabel()).toThrow();
         });
 
-        it('... should not have svgSheets', () => {
-            expect(component.svgSheets).toBeUndefined();
+        it('... should have default `svgSheets` input', () => {
+            expectToEqual(component.svgSheets, []);
         });
 
-        it('... should not have selectedSvgSheet', () => {
+        it('... should not have `selectedSvgSheet`', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
@@ -129,7 +124,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.facetItemLabel = expectedFacetItemLabel;
+            fixture.componentRef.setInput('facetItemLabel', expectedFacetItemLabel);
             component.svgSheets = structuredClone(expectedSvgSheets);
             component.selectedSvgSheet = structuredClone(expectedSvgSheet);
 
@@ -138,7 +133,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
         });
 
         it('... should have `facetItemLabel` input', () => {
-            expectToBe(component.facetItemLabel, expectedFacetItemLabel);
+            expectToBe(component.facetItemLabel(), expectedFacetItemLabel);
         });
 
         it('... should have `svgSheets` input', () => {
@@ -159,7 +154,8 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should contain a DisclaimerWorkeditions component if facetItemLabel=`Werkeditionen` ', async () => {
-                component.facetItemLabel = 'Werkeditionen';
+                fixture.componentRef.setInput('facetItemLabel', 'Werkeditionen');
+
                 await detectChangesOnPush(fixture);
 
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
@@ -528,14 +524,9 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
                     });
                 });
 
-                it('... should do nothing if no id is provided', () => {
-                    const expectedSheetIds: SheetClickEvent = undefined;
+                it('... should do nothing if no sheetId is provided', () => {
+                    const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
                     component.selectSvgSheet(expectedSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
-
-                    const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
-                    component.selectSvgSheet(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });

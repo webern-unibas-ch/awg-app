@@ -1,13 +1,13 @@
 import { Textcritics } from './textcritics.model';
 
 /**
- * The SourceDescriptionSystemRow class.
+ * The SourceDescriptionSystemRow interface.
  *
  * It is used in the context of the edition view
  * to store the data for a system row of a source description
  * from a source description json file.
  */
-export class SourceDescriptionSystemRow {
+export interface SourceDescriptionSystemRow {
     /**
      * The type of the row (optional).
      */
@@ -25,13 +25,13 @@ export class SourceDescriptionSystemRow {
 }
 
 /**
- * The SourceDescriptionSystem class.
+ * The SourceDescriptionSystem interface.
  *
  * It is used in the context of the edition view
  * to store the data for a system of a source description
  * from a source description json file.
  */
-export class SourceDescriptionSystem {
+export interface SourceDescriptionSystem {
     /**
      * The system label (optional).
      */
@@ -59,13 +59,13 @@ export class SourceDescriptionSystem {
 }
 
 /**
- * The SourceDescriptionFolio class.
+ * The SourceDescriptionFolio interface.
  *
  * It is used in the context of the edition view
  * to store the data for a folio of a source description
  * from a source description json file.
  */
-export class SourceDescriptionFolio {
+export interface SourceDescriptionFolio {
     /**
      * The folio label (optional).
      */
@@ -93,13 +93,13 @@ export class SourceDescriptionFolio {
 }
 
 /**
- * The SourceDescriptionContent class.
+ * The SourceDescriptionContent interface.
  *
  * It is used in the context of the edition view
  * to store the data for the content of a source description
  * from a source description json file.
  */
-export class SourceDescriptionContent {
+export interface SourceDescriptionContent {
     /**
      * The content item (optional).
      */
@@ -122,13 +122,13 @@ export class SourceDescriptionContent {
 }
 
 /**
- * The SourceDescriptionWritingMaterialDimension class.
+ * The SourceDescriptionWritingMaterialDimension interface.
  *
  * It is used in the context of the edition view
  * to store the data for the dimensions of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialDimension {
+export interface SourceDescriptionWritingMaterialDimension {
     /**
      * The uncertainty of the dimension of the writing material (optional).
      */
@@ -141,13 +141,13 @@ export class SourceDescriptionWritingMaterialDimension {
 }
 
 /**
- * The SourceDescriptionWritingMaterialDimensions class.
+ * The SourceDescriptionWritingMaterialDimensions interface.
  *
  * It is used in the context of the edition view
  * to store the data for the dimensions of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialDimensions {
+export interface SourceDescriptionWritingMaterialDimensions {
     /**
      * The orientation of the writing material (optional).
      */
@@ -170,13 +170,13 @@ export class SourceDescriptionWritingMaterialDimensions {
 }
 
 /**
- * The SourceDescriptionWritingMaterialTrademark class.
+ * The SourceDescriptionWritingMaterialTrademark interface.
  *
  * It is used in the context of the edition view
  * to store the data for the trademark of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialTrademark {
+export interface SourceDescriptionWritingMaterialTrademark {
     /**
      * The variant of the trademark used on the writing material (optional).
      */
@@ -194,13 +194,13 @@ export class SourceDescriptionWritingMaterialTrademark {
 }
 
 /**
- * The SourceDescriptionWritingMaterialItemLocus class.
+ * The SourceDescriptionWritingMaterialItemLocus interface.
  *
  * It is used in the context of the edition view
  * to store the data for the locus of an item of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialItemLocus {
+export interface SourceDescriptionWritingMaterialItemLocus {
     /**
      * An additional info to the item locus on the writing material placed before the folios (optional).
      */
@@ -218,13 +218,13 @@ export class SourceDescriptionWritingMaterialItemLocus {
 }
 
 /**
- * The SourceDescriptionWritingMaterialSystems class.
+ * The SourceDescriptionWritingMaterialSystems interface.
  *
  * It is used in the context of the edition view
  * to store the data for the systems of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialSystems {
+export interface SourceDescriptionWritingMaterialSystems {
     /**
      * The total number of systems available (optional).
      */
@@ -242,13 +242,13 @@ export class SourceDescriptionWritingMaterialSystems {
 }
 
 /**
- * The SourceDescriptionWritingMaterialWatermark class.
+ * The SourceDescriptionWritingMaterialWatermark interface.
  *
  * It is used in the context of the edition view
  * to store the data for the watermark of the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterialWatermark {
+export interface SourceDescriptionWritingMaterialWatermark {
     /**
      * The variant of the watermark (optional).
      */
@@ -266,13 +266,13 @@ export class SourceDescriptionWritingMaterialWatermark {
 }
 
 /**
- * The SourceDescriptionWritingMaterial class.
+ * The SourceDescriptionWritingMaterial interface.
  *
  * It is used in the context of the edition view
  * to store the data for the writing material of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingMaterial {
+export interface SourceDescriptionWritingMaterial {
     /**
      * The type of the writing material (optional).
      */
@@ -305,13 +305,13 @@ export class SourceDescriptionWritingMaterial {
 }
 
 /**
- * The SourceDescriptionWritingInstruments class.
+ * The SourceDescriptionWritingInstruments interface.
  *
  * It is used in the context of the edition view
  * to store the data for the writing instruments of a source description
  * from a source description json file.
  */
-export class SourceDescriptionWritingInstruments {
+export interface SourceDescriptionWritingInstruments {
     /**
      * The main writing instrument used in a source (optional).
      */
@@ -324,13 +324,13 @@ export class SourceDescriptionWritingInstruments {
 }
 
 /**
- * The SourceDescriptionPhysDesc class.
+ * The SourceDescriptionPhysDesc interface.
  *
  * It is used in the context of the edition view
  * to store the data for the physical description of a source description
  * from a source description json file.
  */
-export class SourceDescriptionPhysDesc {
+export interface SourceDescriptionPhysDesc {
     /**
      * The conditions of a source (optional).
      */
@@ -393,13 +393,13 @@ export class SourceDescriptionPhysDesc {
 }
 
 /**
- * The SourceDescription class.
+ * The SourceDescription interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single source description
  * from a source description json file.
  */
-export class SourceDescription {
+export interface SourceDescription {
     /**
      * The id of a sourceDescription.
      */
@@ -447,5 +447,5 @@ export class SourceDescriptionList {
     /**
      * The array of sources from a source description list.
      */
-    sources: SourceDescription[];
+    sources: SourceDescription[] = [];
 }

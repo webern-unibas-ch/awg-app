@@ -22,7 +22,7 @@ export class EditionIntroPlaceholderComponent {
      * It keeps the editionComplex for the intro placeholder.
      */
     @Input()
-    editionComplex: EditionComplex;
+    editionComplex: EditionComplex | null = null;
 
     /**
      * Input variable: editionLabel.
@@ -30,5 +30,5 @@ export class EditionIntroPlaceholderComponent {
      * It keeps the edition label for the intro placeholder.
      */
     @Input()
-    editionLabel: string;
+    editionLabel = '';
 }

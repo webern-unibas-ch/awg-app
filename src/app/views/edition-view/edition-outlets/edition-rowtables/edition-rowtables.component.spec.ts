@@ -111,6 +111,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
+            });
+
             describe('on error', () => {
                 const expectedErrorObject: EditionDataAssetsError = {
                     key: 'rowtables',

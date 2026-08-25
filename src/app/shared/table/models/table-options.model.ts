@@ -1,12 +1,12 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * The TableOptions class.
+ * The TableOptions interface.
  *
  * It is used in the context of the app framework
  * to store the options for a table.
  */
-export class TableOptions {
+export interface TableOptions {
     /**
      * The selected key of the Table options.
      */

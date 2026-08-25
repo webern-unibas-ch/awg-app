@@ -55,9 +55,9 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            const getParagraphDes = () => getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
+            const getParagraphDes = () => getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 2, 2);
 
-            it('... should contain one div.text-center with 4 paragraphs', () => {
+            it('... should contain one div.text-center with 2 paragraphs', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 getParagraphDes();
             });
@@ -71,17 +71,6 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 expectToBe(pEl1.textContent, 'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
                 expectToBe(pEl2.textContent, 'Möglicherweise können Sie Ihre Anfrage anpassen.');
             });
-
-            it('... should contain one empty link in 3rd paragraph', () => {
-                const aDes3 = getAndExpectDebugElementByCss(getParagraphDes()[2], 'p > a', 1, 1);
-                const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
-
-                expectToBe(aEl3.href, '');
-            });
-
-            it('... should contain one logo component (stubbed) in 4th paragraph', () => {
-                getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoStubComponent, 1, 1);
-            });
         });
     });
 
@@ -94,6 +83,11 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         describe('VIEW', () => {
             const getParagraphDes = () => getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 4);
 
+            it('... should contain one div.text-center with 4 paragraphs', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
+                getParagraphDes();
+            });
+
             it('... should contain correct link in 3rd paragraph', () => {
                 const aDes3 = getAndExpectDebugElementByCss(getParagraphDes()[2], 'p > a', 1, 1);
                 const aEl3: HTMLAnchorElement = aDes3[0].nativeElement;
@@ -102,19 +96,23 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 expectToBe(aEl3.textContent, expectedLogosData['sparql'].href);
             });
 
-            it('... should pass down logo data to logo link component in 4th paragraph', () => {
+            it('... should contain one LogoComponent (stubbed) in 4th paragraph', () => {
+                getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoStubComponent, 1, 1);
+            });
+
+            it('... should have default linkClass on LogoComponent', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 1, 1);
+                const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
+
+                expectToBe(logoCmp.linkClass(), 'awg-logo-link');
+            });
+
+            it('... should pass down `logoData` to LogoComponent in 4th paragraph', () => {
                 const logoDes = getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoStubComponent, 1, 1);
                 const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
 
                 expectToBe(logoCmps.length, 1);
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['sparql']);
-            });
-
-            it('... should have default linkClass on logo component', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 1, 1);
-                const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
-
-                expectToBe(logoCmp.linkClass(), 'awg-logo-link');
             });
         });
     });

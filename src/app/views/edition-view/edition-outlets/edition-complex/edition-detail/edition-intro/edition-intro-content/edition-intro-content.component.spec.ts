@@ -34,7 +34,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content);
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
         expectedNotesLabel = 'Test notes label';
 
         // Create component fixture
@@ -48,12 +48,12 @@ describe('EditionIntroContentComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `introBlockContent`', () => {
-            expect(component.introBlockContent).toBeUndefined();
+        it('... should have default `introBlockContent` input', () => {
+            expectToEqual(component.introBlockContent, []);
         });
 
-        it('... should not have `notesLabel`', () => {
-            expect(component.notesLabel).toBeUndefined();
+        it('... should have default `notesLabel` input', () => {
+            expectToBe(component.notesLabel, '');
         });
 
         describe('VIEW', () => {
@@ -340,13 +340,13 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 it('... should contain as many (small) div.awg-edition-intro-note as block notes in data', () => {
                     // Count total block notes length by reducing block notes arrays
                     const totalBlockNotesLength = expectedIntroBlockContent.reduce(
-                        (acc, block) => acc + block.blockNotes.length,
+                        (acc, block) => acc + (block.blockNotes?.length ?? 0),
                         0
                     );
 
                     getAndExpectDebugElementByCss(
                         getNotesSectionDe(),
-                        'small > div.awg-edition-intro-note',
+                        'div.awg-edition-intro-note.small',
                         totalBlockNotesLength,
                         totalBlockNotesLength
                     );
@@ -354,7 +354,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                 it('... should pass the correct html note strings to the CompileHtmlDirective', () => {
                     const totalBlockNotesLength = expectedIntroBlockContent.reduce(
-                        (acc, block) => acc + block.blockNotes.length,
+                        (acc, block) => acc + (block.blockNotes?.length ?? 0),
                         0
                     );
 

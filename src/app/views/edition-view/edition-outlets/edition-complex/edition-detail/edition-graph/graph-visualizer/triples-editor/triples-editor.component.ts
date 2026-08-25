@@ -25,7 +25,7 @@ export class TriplesEditorComponent {
      * It keeps the input string for the RDF triples.
      */
     @Input()
-    triples: string;
+    triples = '';
 
     /**
      * Input variable: isFullscreen.
@@ -33,7 +33,7 @@ export class TriplesEditorComponent {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Output variable: errorMessageRequest.

@@ -22,7 +22,7 @@ export class AbbrDirective implements OnInit {
      *
      * It keeps the text value with a possible abbreviation.
      */
-    @Input('awgAbbr') text: string;
+    @Input('awgAbbr') text = '';
 
     /**
      * Private readonly variable: _abbreviations.

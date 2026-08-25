@@ -6,6 +6,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_SELECTION from 'd3-selection';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -98,7 +99,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 ...expectedFolioSettings,
                 formatX: +folio.dimensions.width,
                 formatY: +folio.dimensions.height,
-                numberOfFolios: expectedConvolute.folios.length,
+                numberOfFolios: expectedConvolute?.folios.length ?? 0,
             };
 
             expectedFolioSettingsArray.push(folioSettings);
@@ -291,9 +292,44 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 colDes.forEach((colDe, index) => {
                     const svgDes = getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
                     const svgEl: SVGSVGElement = svgDes[0].nativeElement;
-                    const expectedSvgId = `folio-${expectedSvgSheet.id}-${expectedFolioSvgDataArray[index].sheet.folioId}`;
+                    const folioId = expectedFolioSvgDataArray[index].sheet.folioId;
+                    const expectedSvgId = `folio-${expectedSvgSheet.id}-${folioId}`;
 
                     expectToBe(svgEl.id, expectedSvgId);
+                });
+            });
+
+            describe('... should have svg id without sheet id if', () => {
+                it.each([
+                    {
+                        desc: 'sheet is undefined',
+                        getSheet: () => undefined,
+                    },
+                    {
+                        desc: 'sheet id is empty string',
+                        getSheet: () => ({ ...structuredClone(expectedSvgSheet), id: '' }),
+                    },
+                ])('... $desc', async ({ getSheet }) => {
+                    component.selectedSvgSheet = getSheet();
+
+                    await detectChangesOnPush(fixture);
+
+                    const rowDes = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
+                    const colDes = getAndExpectDebugElementByCss(
+                        rowDes[0],
+                        'div.svgCol',
+                        expectedFolioSvgDataArray.length,
+                        expectedFolioSvgDataArray.length
+                    );
+
+                    colDes.forEach((colDe, index) => {
+                        const svgDes = getAndExpectDebugElementByCss(colDe, 'svg', 1, 1);
+                        const svgEl: SVGSVGElement = svgDes[0].nativeElement;
+                        const folioId = expectedFolioSvgDataArray[index].sheet.folioId;
+                        const expectedSvgId = `folio--${folioId}`;
+
+                        expectToBe(svgEl.id, expectedSvgId);
+                    });
                 });
             });
         });
@@ -505,11 +541,13 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                         expectSpyCall(serviceGetFolioSvgDataSpy, 1);
                     });
 
-                    it('... given selectedConvolute.folios are undefined', () => {
+                    it('... given selectedConvolute.folios are empty', () => {
                         expectSpyCall(serviceGetFolioSvgDataSpy, 1);
 
-                        const expectedConvoluteWithoutFolios = structuredClone(expectedConvolute);
-                        expectedConvoluteWithoutFolios.folios = undefined;
+                        const expectedConvoluteWithoutFolios = {
+                            ...expectedConvolute,
+                            folios: [],
+                        } as FolioConvolute;
 
                         component.selectedConvolute = expectedConvoluteWithoutFolios;
 
@@ -597,14 +635,6 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
                 it('should have a method `toggleActiveClass`', () => {
                     expect(component.toggleActiveClass).toBeDefined();
-                });
-
-                it('should not do anything if canvasArray is not defined', () => {
-                    component.canvasArray = undefined;
-
-                    component.toggleActiveClass();
-
-                    expectSpyCall(isSelectedSvgSheetSpy, 0);
                 });
 
                 it('should check if each content segment group is active', () => {

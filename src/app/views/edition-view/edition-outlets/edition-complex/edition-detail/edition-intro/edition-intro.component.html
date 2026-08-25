@@ -8,36 +8,29 @@
             <awg-twelve-tone-spinner />
         } @else {
             @let complex = selectedEditionComplex();
-            @let intro = view.data.introData.intro;
             @let lang = selectedLanguage();
             @let notesLabel = notesSectionLabel();
+            @let introContent = view.data.introData?.intro?.[lang]?.content || [];
 
             <div class="awg-edition-intro-view p-5 border rounded-3">
                 <div class="row justify-content-center">
-                    @if (UTILS.isEmptyArray(intro?.[lang]?.content)) {
+                    @if (introContent.length === 0) {
                         <awg-edition-intro-placeholder
                             class="col-12"
                             [editionComplex]="complex"
                             [editionLabel]="editionRouteConstants.EDITION.short" />
                     } @else {
                         @if (complex) {
-                            <awg-edition-intro-partial-disclaimer
-                                class="col-12 col-xl-6"
-                                [editionComplex]="complex"
-                                [editionLabel]="editionRouteConstants.EDITION.short"
-                                [editionRoute]="editionRouteConstants.EDITION.route"
-                                [seriesRoute]="editionRouteConstants.SERIES.route"
-                                [sectionRoute]="editionRouteConstants.SECTION.route"
-                                [introRoute]="editionRouteConstants.EDITION_INTRO.route" />
+                            <awg-edition-intro-partial-disclaimer class="col-12 col-xl-6" [editionComplex]="complex" />
                         }
                         <awg-edition-intro-content
                             class="col-12 col-xl-10"
-                            [introBlockContent]="intro[lang].content"
+                            [introBlockContent]="introContent"
                             [notesLabel]="notesLabel" />
 
                         <awg-edition-intro-nav
                             class="col-12 col-xl-2 d-none d-xl-block"
-                            [introBlockContent]="intro[lang].content"
+                            [introBlockContent]="introContent"
                             [notesLabel]="notesLabel"
                             [(selectedLanguage)]="selectedLanguage" />
                     }

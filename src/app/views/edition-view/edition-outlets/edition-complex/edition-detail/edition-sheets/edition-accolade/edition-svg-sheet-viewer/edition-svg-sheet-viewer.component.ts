@@ -187,14 +187,14 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It keeps the width of the container div.
      */
-    private _divWidth: number;
+    private _divWidth = 0;
 
     /**
      * Private variable: _divHeight.
      *
      * It keeps the height of the container div.
      */
-    private _divHeight: number;
+    private _divHeight = 0;
 
     /**
      * Private variable: _isRendered.
@@ -208,7 +208,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It keeps the D3 zoom behaviour.
      */
-    private _zoomBehaviour: D3ZoomBehaviour;
+    private _zoomBehaviour: D3ZoomBehaviour | undefined;
 
     /**
      * Private readonly variable: _destroyed$.
@@ -231,7 +231,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     @HostListener('window:resize') onResize() {
         // Guard against resize before view is rendered
-        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection) {
+        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection || !this.svgSheetContainerRef) {
             return;
         }
 
@@ -295,10 +295,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * @returns {void} Emits the direction.
      */
-    browseSvgSheet(direction: number): void {
-        if (!direction) {
-            return;
-        }
+    browseSvgSheet(direction: 1 | -1): void {
         this.browseSvgSheetRequest.emit(direction);
     }
 
@@ -312,6 +309,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Toggles the opacity of the supplied class.
      */
     onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
+        if (!this.svgSheetRootGroupSelection) {
+            return;
+        }
+
         const { className, isCurrentlyVisible } = input;
         this._svgDrawingService.toggleSuppliedClassOpacity(
             this.svgSheetRootGroupSelection,
@@ -330,6 +331,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Toggles the transparency of the tkk classes.
      */
     onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
+        if (!this.svgSheetRootGroupSelection) {
+            return;
+        }
+
         this._svgOverlayService.toggleTkkOverlayHighlights(
             this.svgSheetRootGroupSelection,
             EditionSvgOverlayTypes.tkk,
@@ -363,7 +368,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._clearSvg();
         this._svgOverlayService.clearSvgOverlays();
 
-        this.svgSheetFilePath = this.selectedSvgSheet?.content?.[0].svg;
+        this.svgSheetFilePath = this.selectedSvgSheet?.content?.[0].svg || '';
         if (!this.svgSheetFilePath) {
             return;
         }
@@ -385,7 +390,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Sets the initial zoom translation and scale factor.
      */
     resetZoom(): void {
-        if (!this.svgSheetSelection || !this.sliderConfig) {
+        if (!this.svgSheetSelection) {
             return;
         }
 
@@ -415,7 +420,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private async _createSvg(): Promise<void> {
         if (!this.svgSheetContainerRef) {
-            console.warn('No svg sheet container ref');
+            console.warn('[EditionSvgSheetViewer] Missing svg sheet container ref');
             return;
         }
 
@@ -425,6 +430,11 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             this.svgSheetElementRef?.nativeElement,
             this.svgSheetRootGroupRef?.nativeElement
         );
+
+        if (!this.svgSheetSelection) {
+            console.warn('[EditionSvgSheetViewer] Failed to create svg sheet selection');
+            return;
+        }
 
         // Create a D3 selection object of the svg root group of the svg template element
         this.svgSheetRootGroupSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root-group');
@@ -443,6 +453,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Creates the D3 SVG sheet overlays.
      */
     private _createSvgOverlays(): void {
+        if (!this.svgSheetRootGroupSelection) {
+            return;
+        }
+
         this._svgOverlayService.createSvgOverlays(
             this.svgSheetRootGroupSelection,
             id => this._onLinkBoxSelect(id),
@@ -464,8 +478,8 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     private _getContainerDimensions(containerEl: ElementRef<HTMLElement>): void {
         const dimensions = this._svgDrawingService.getContainerDimensions(containerEl);
 
-        this._divWidth = this._divWidth ? this._divWidth : dimensions.width;
-        this._divHeight = this._divHeight ? this._divHeight : dimensions.height;
+        this._divWidth = this._divWidth || dimensions.width;
+        this._divHeight = this._divHeight || dimensions.height;
     }
 
     /**
@@ -476,6 +490,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Gets the supplied classes.
      */
     private _getSuppliedClasses(): void {
+        if (!this.svgSheetRootGroupSelection) {
+            return;
+        }
+
         this.suppliedClasses = this._svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
     }
 
@@ -507,9 +525,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Emits the overlays.
      */
     private _onTkkOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        if (!overlays) {
-            return;
-        }
         this.selectOverlaysRequest.emit(overlays);
     }
 
@@ -521,7 +536,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Sets the zoom for the rescale.
      */
     private _rescaleZoom(): void {
-        if (!this.svgSheetSelection || !this.sliderConfig.value) {
+        if (!this._zoomBehaviour || !this.svgSheetSelection || !this.sliderConfig.value) {
             return;
         }
         this._zoomBehaviour.scaleTo(this.svgSheetSelection, this.sliderConfig.value);

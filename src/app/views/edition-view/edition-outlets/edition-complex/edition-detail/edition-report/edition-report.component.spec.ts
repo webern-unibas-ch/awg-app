@@ -54,7 +54,7 @@ import { EditionReportComponent } from './edition-report.component';
 })
 class SourceListStubComponent {
     @Input()
-    sourceListData: SourceList;
+    sourceListData: SourceList | null = null;
 }
 
 @Component({
@@ -64,7 +64,7 @@ class SourceListStubComponent {
 })
 class SourceDescriptionStubComponent {
     @Input()
-    sourceDescriptionListData: SourceDescriptionList;
+    sourceDescriptionListData: SourceDescriptionList | null = null;
 }
 
 @Component({
@@ -74,9 +74,9 @@ class SourceDescriptionStubComponent {
 })
 class SourceEvaluationStubComponent {
     @Input()
-    editionComplex: EditionComplex;
+    editionComplex: EditionComplex | null = null;
     @Input()
-    sourceEvaluationListData: SourceEvaluationList;
+    sourceEvaluationListData: SourceEvaluationList | null = null;
 }
 
 @Component({
@@ -86,7 +86,7 @@ class SourceEvaluationStubComponent {
 })
 export class TextcriticsListStubComponent {
     @Input()
-    textcriticsListData: TextcriticsList;
+    textcriticsListData: TextcriticsList | null = null;
 }
 
 describe('EditionReportComponent', () => {
@@ -252,6 +252,17 @@ describe('EditionReportComponent', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-report-view', 0, 0);
+            });
+
             describe('on error', () => {
                 const expectedErrorObject: EditionDataAssetsError = {
                     key: 'textcritics',

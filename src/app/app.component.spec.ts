@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, Router, RouterModule, Routes } from '@angular/router';
@@ -28,8 +28,7 @@ class NavbarStubComponent {}
     standalone: false,
 })
 class ViewContainerStubComponent {
-    @Input()
-    activateSideOutlet: boolean;
+    readonly activateSideOutlet = input.required<boolean>();
 }
 
 @Component({
@@ -199,6 +198,10 @@ describe('AppComponent (DONE)', () => {
                     expectedPath: '/test2/test3(side:test2)',
                 },
             ])('... $desc', async ({ commands, expectedPath }) => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() => router.navigate(commands));
 
                 expect(success).toBeTruthy();
@@ -213,24 +216,25 @@ describe('AppComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one header component (stubbed)', () => {
+            it('... should contain one NavbarComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
             });
 
-            it('... should contain one view container component (stubbed)', () => {
+            it('... should contain one ViewContainerComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
             });
 
-            it('... should not pass down `showSideOutlet` to view container component yet', () => {
+            it('... should throw due to missing required values for ViewContainerComponent', () => {
                 const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
                 const viewContainerCmp = viewContainerDes[0].injector.get(
                     ViewContainerStubComponent
                 ) as ViewContainerStubComponent;
 
-                expect(viewContainerCmp.activateSideOutlet).toBeUndefined();
+                // Expect the required inputs to throw if not provided
+                expect(() => viewContainerCmp.activateSideOutlet()).toThrow();
             });
 
-            it('... should contain one footer component (stubbed)', () => {
+            it('... should contain one FooterComponent (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
             });
         });
@@ -245,12 +249,20 @@ describe('AppComponent (DONE)', () => {
             });
 
             it('... should call AnalyticsService to track page view after navigation', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 await fixture.ngZone.run(() => router.navigate(['']));
 
                 expectSpyCall(trackpageViewSpy, 1, '/test1');
             });
 
             it('... should call AnalyticsService to track page view after navigation changed', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 await fixture.ngZone.run(() => router.navigate(['']));
                 expectSpyCall(trackpageViewSpy, 1, '/test1');
 
@@ -272,6 +284,10 @@ describe('AppComponent (DONE)', () => {
             });
 
             it('... should set the custom page title from route data if available', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 await fixture.ngZone.run(() => router.navigate(['/test1']));
                 expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
 
@@ -280,6 +296,10 @@ describe('AppComponent (DONE)', () => {
             });
 
             it('... should set the default page title if route data title is not available', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 await fixture.ngZone.run(() => router.navigate(['/test2']));
 
                 expectSpyCall(setTitleSpy, 1, 'Default Page Title');
@@ -288,43 +308,69 @@ describe('AppComponent (DONE)', () => {
 
         describe('SideOutlet', () => {
             it('... should set `activateSideOutlet` to false if not given in route data', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() => router.navigate(['/test1']));
+
                 expect(success).toBeTruthy();
                 expectToBe(component.activateSideOutlet, false);
             });
 
             it('... should set `activateSideOutlet` to true if given in route data', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() =>
                     router.navigate([{ outlets: { primary: 'test2', side: 'test2' } }])
                 );
+
                 expect(success).toBeTruthy();
                 expectToBe(component.activateSideOutlet, true);
             });
 
             it('... should set `activateSideOutlet` to true if given in parent route data', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() =>
                     router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
                 );
+
                 expect(success).toBeTruthy();
                 expectToBe(component.activateSideOutlet, true);
             });
 
             it('... should set `activateSideOutlet` to false if not given in parent route data', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
+
                 expect(success).toBeTruthy();
                 expectToBe(component.activateSideOutlet, false);
             });
 
             it('... should set `activateSideOutlet` back to false if navigating back to route without side outlet', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() =>
                     router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
                 );
+
                 expect(success).toBeTruthy();
                 expectToBe(component.activateSideOutlet, true);
 
                 const success2 = await fixture.ngZone.run(() =>
                     router.navigate([{ outlets: { primary: 'test1', side: null } }])
                 );
+
                 expect(success2).toBeTruthy();
                 expectToBe(component.activateSideOutlet, false);
             });
@@ -339,9 +385,14 @@ describe('AppComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `activateSideOutlet` to view container component', async () => {
+                if (!fixture.ngZone) {
+                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                }
+
                 const success = await fixture.ngZone.run(() =>
                     router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
                 );
+
                 expect(success).toBeTruthy();
 
                 await detectChangesOnPush(fixture);
@@ -351,7 +402,7 @@ describe('AppComponent (DONE)', () => {
                     ViewContainerStubComponent
                 ) as ViewContainerStubComponent;
 
-                expectToBe(viewContainerCmp.activateSideOutlet, expectedActivateSideOutlet);
+                expectToBe(viewContainerCmp.activateSideOutlet(), expectedActivateSideOutlet);
             });
         });
 

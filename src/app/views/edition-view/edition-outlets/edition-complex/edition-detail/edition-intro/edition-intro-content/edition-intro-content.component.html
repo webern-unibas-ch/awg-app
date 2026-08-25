@@ -1,4 +1,4 @@
-@if (introBlockContent) {
+@if (introBlockContent.length) {
     <div class="awg-edition-intro-content">
         @for (introBlock of introBlockContent; track $index) {
             <section class="awg-edition-intro-section" [id]="introBlock.blockId">
@@ -7,7 +7,7 @@
                         <p class="heading" [awgCompileHtml]="introBlock.blockHeader"></p>
                     </div>
                 }
-                @if (introBlock.blockContent.length > 0) {
+                @if (introBlock.blockContent.length) {
                     @for (blockContent of introBlock.blockContent; track $index) {
                         <div class="awg-edition-intro-block" [awgCompileHtml]="blockContent"></div>
                     }
@@ -19,9 +19,9 @@
             <h5>{{ notesLabel }}</h5>
             <div class="awg-edition-intro-notes">
                 @for (introBlock of introBlockContent; track $index) {
-                    @if (introBlock.blockNotes.length > 0) {
+                    @if (introBlock.blockNotes?.length) {
                         @for (note of introBlock.blockNotes; track $index) {
-                            <small><div class="awg-edition-intro-note" [awgCompileHtml]="note"></div></small>
+                            <div class="awg-edition-intro-note small" [awgCompileHtml]="note"></div>
                         }
                     }
                 }

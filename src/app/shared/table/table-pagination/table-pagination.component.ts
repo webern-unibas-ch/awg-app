@@ -20,7 +20,7 @@ export class TablePaginationComponent {
      * It keeps the collectionSize of the pagination.
      */
     @Input()
-    collectionSize: number;
+    collectionSize = 0;
 
     /**
      * Input variable: page.
@@ -28,7 +28,7 @@ export class TablePaginationComponent {
      * It keeps the page of the pagination.
      */
     @Input()
-    page: number;
+    page = 0;
 
     /**
      * Output variable: pageChange.

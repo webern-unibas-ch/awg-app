@@ -1,11 +1,11 @@
 /**
- * The IntroBlock class.
+ * The IntroBlock interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single intro block
  * from a intro json file.
  */
-export class IntroBlock {
+export interface IntroBlock {
     /**
      * The id of an intro block.
      */
@@ -28,13 +28,13 @@ export class IntroBlock {
 }
 
 /**
- * The Intro class.
+ * The Intro interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single intro
  * from a intro json file.
  */
-export class Intro {
+export interface Intro {
     /**
      * The id of an intro.
      */
@@ -57,5 +57,5 @@ export class IntroList {
     /**
      * The array of intros from a intro list.
      */
-    intro: Intro[];
+    intro: Intro[] = [];
 }

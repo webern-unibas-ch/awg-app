@@ -4,7 +4,7 @@
     } @else if (view.isLoading) {
         <awg-twelve-tone-spinner />
     } @else {
-        @let preface = view.data.prefaceData.preface;
+        @let preface = view.data.prefaceData?.preface ?? [];
 
         <div class="awg-preface-view p-5 border rounded-3">
             <awg-language-switcher [(selectedLanguage)]="selectedLanguage" />

@@ -69,7 +69,7 @@ describe('EditionDataService (DONE)', () => {
     const expectedRowtablesFilePath = `${baseRoute}${editionRoute}/${config['rowtables'].file}`;
 
     // Helper function to expect and flush an HTTP request
-    function expectAndFlush(url: string, mockData: unknown, options = { status: 200, statusText: 'OK' }): void {
+    function expectAndFlush(url: string, mockData: any, options = { status: 200, statusText: 'OK' }): void {
         const req = httpTestingController.expectOne(url);
         expectToBe(req.request.method, 'GET');
         req.flush(mockData, options);
@@ -348,10 +348,9 @@ describe('EditionDataService (DONE)', () => {
             it('... should return a signal holding the fetched data from correct static path', async () => {
                 const assetsKey: EditionStaticDataAssetsKeys = 'preface';
 
-                let staticDataSignal: Signal<any>;
-                TestBed.runInInjectionContext(() => {
-                    staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
-                });
+                const staticDataSignal = TestBed.runInInjectionContext(
+                    () => (service as any)._getStaticEditionDataByKey(assetsKey) as Signal<any>
+                );
 
                 // Initial value should be the fallback value
                 expectToEqual(staticDataSignal(), config[assetsKey].fallback);
@@ -373,10 +372,9 @@ describe('EditionDataService (DONE)', () => {
                 const assetsKey: EditionStaticDataAssetsKeys = 'rowtables';
                 const expectedFallback = config[assetsKey].fallback;
 
-                let staticDataSignal: Signal<any>;
-                TestBed.runInInjectionContext(() => {
-                    staticDataSignal = (service as any)._getStaticEditionDataByKey(assetsKey);
-                });
+                const staticDataSignal = TestBed.runInInjectionContext(
+                    () => (service as any)._getStaticEditionDataByKey(assetsKey) as Signal<any>
+                );
 
                 // Initial value should be the fallback value
                 expectToEqual(staticDataSignal(), expectedFallback);
@@ -466,14 +464,14 @@ describe('EditionDataService (DONE)', () => {
                         editionStateService.updateSelectedEditionComplex(null);
                         clearErrorForSpy.mockClear();
 
-                        let resultSignal: Signal<any>;
-                        TestBed.runInInjectionContext(() => {
-                            resultSignal = (service as any)._getEditionDataByComplex(
-                                expectedFile,
-                                expectedFallback,
-                                assetsKey
-                            );
-                        });
+                        const resultSignal = TestBed.runInInjectionContext(
+                            () =>
+                                (service as any)._getEditionDataByComplex(
+                                    expectedFile,
+                                    expectedFallback,
+                                    assetsKey
+                                ) as Signal<any>
+                        );
                         expectToEqual(resultSignal(), expectedFallback);
                         await new Promise(resolve => setTimeout(resolve, 0));
 
@@ -494,14 +492,14 @@ describe('EditionDataService (DONE)', () => {
 
                         editionStateService.updateSelectedEditionComplex(expectedComplex);
 
-                        let resultSignal: Signal<any>;
-                        TestBed.runInInjectionContext(() => {
-                            resultSignal = (service as any)._getEditionDataByComplex(
-                                expectedFile,
-                                expectedFallback,
-                                assetsKey
-                            );
-                        });
+                        const resultSignal = TestBed.runInInjectionContext(
+                            () =>
+                                (service as any)._getEditionDataByComplex(
+                                    expectedFile,
+                                    expectedFallback,
+                                    assetsKey
+                                ) as Signal<any>
+                        );
                         expectToEqual(resultSignal(), expectedFallback);
 
                         await new Promise(resolve => setTimeout(resolve, 0));
@@ -560,20 +558,18 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should return a signal initialized with an empty IntroList fallback', () => {
-                let resultSignal: Signal<IntroList>;
-                TestBed.runInInjectionContext(() => {
-                    resultSignal = (service as any)._getIntroData();
-                });
+                const resultSignal = TestBed.runInInjectionContext(
+                    () => (service as any)._getIntroData() as Signal<IntroList>
+                );
                 expectToBe(isSignal(resultSignal), true);
 
                 expectToEqual(resultSignal(), new IntroList());
             });
 
             it('... should react to state changes', async () => {
-                let resultSignal: Signal<IntroList>;
-                TestBed.runInInjectionContext(() => {
-                    resultSignal = (service as any)._getIntroData();
-                });
+                const resultSignal = TestBed.runInInjectionContext(
+                    () => (service as any)._getIntroData() as Signal<IntroList>
+                );
                 expectToBe(isSignal(resultSignal), true);
 
                 const mockState: {
@@ -658,7 +654,7 @@ describe('EditionDataService (DONE)', () => {
                 const expectedFile = config['intro'].file;
                 const expectedFallback = new IntroList();
 
-                let nonMatchingComplex: EditionComplex;
+                let nonMatchingComplex: EditionComplex | null;
                 let expectedSectionIntroData: IntroList;
 
                 beforeEach(() => {
@@ -767,15 +763,14 @@ describe('EditionDataService (DONE)', () => {
 
             it('... should return the correct section intro data for a given block id', () => {
                 const blockId = 'test_block_id_2';
-                const expectedBlock = expectedIntroSectionData.intro[0].content.find(
-                    block => block.blockId === blockId
-                );
+                const expectedIntro = expectedIntroSectionData.intro[0];
+                const expectedBlock = expectedIntro.content?.find(block => block.blockId === blockId);
 
                 const result = (service as any)._filterSectionIntroDataByBlockId(expectedIntroSectionData, blockId);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
-                expectToBe(result.intro[0].id, expectedIntroSectionData.intro[0].id);
+                expectToBe(result.intro[0].id, expectedIntro.id);
                 expectToEqual(result.intro[0].content, [expectedBlock]);
             });
 

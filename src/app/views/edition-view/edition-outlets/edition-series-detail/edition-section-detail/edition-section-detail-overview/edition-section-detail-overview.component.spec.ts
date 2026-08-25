@@ -31,7 +31,6 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
     let editionStateService: EditionStateService;
 
-    let expectedEditionData: { series: EditionOutlineSeries; section: EditionOutlineSection };
     let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
 
@@ -55,7 +54,6 @@ describe('EditionSectionDetailOverviewComponent', () => {
         // Test data
         expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
-        expectedEditionData = { series: expectedSeries, section: expectedSection };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSectionDetailOverviewComponent);
@@ -68,10 +66,10 @@ describe('EditionSectionDetailOverviewComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have signal `editionData` to hold empty data', () => {
-            expectToBe(isSignal(component.editionData), true);
+        it('... should have signal `selectedSection` to hold null', () => {
+            expectToBe(isSignal(component.selectedSection), true);
 
-            expectToEqual(component.editionData(), { series: null, section: null });
+            expectToEqual(component.selectedSection(), null);
         });
 
         describe('VIEW', () => {
@@ -106,8 +104,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have signal `editionData` to hold the expected data', () => {
-            expectToEqual(component.editionData(), expectedEditionData);
+        it('should have signal `selectedSection` to hold the expected data', () => {
+            expectToEqual(component.selectedSection(), expectedSection);
         });
 
         describe('VIEW', () => {
@@ -133,7 +131,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionSectionDetailIntroCardStubComponent, 1, 1);
                 });
 
-                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailIntroCardComponent', () => {
+                it('... should pass down selectedSection to EditionSectionDetailIntroCardComponent', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro', 1, 1);
                     const introCardDes = getAndExpectDebugElementByDirective(
                         divDes[0],
@@ -145,8 +143,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         EditionSectionDetailIntroCardStubComponent
                     ) as EditionSectionDetailIntroCardStubComponent;
 
-                    expectToEqual(introCardCmp.selectedSeries, expectedSeries);
-                    expectToEqual(introCardCmp.selectedSection, expectedSection);
+                    expectToEqual(introCardCmp.selectedSection(), expectedSection);
                 });
             });
 
@@ -189,7 +186,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                                 ...expectedSection.content,
                                 complexTypes: {
                                     ...expectedSection.content?.complexTypes,
-                                    opus: undefined,
+                                    opus: [],
                                 },
                                 sectionComplexes: [...currentMnr],
                             },
@@ -212,7 +209,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                                 ...expectedSection.content,
                                 complexTypes: {
                                     ...expectedSection.content?.complexTypes,
-                                    mnr: undefined,
+                                    mnr: [],
                                 },
                                 sectionComplexes: [...currentOpus],
                             },
@@ -241,7 +238,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                                 ...expectedSection.content,
                                 complexTypes: {
                                     ...expectedSection.content?.complexTypes,
-                                    opus: undefined,
+                                    opus: [],
                                 },
                                 sectionComplexes: [...currentMnr],
                             },
@@ -322,7 +319,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                                 ...expectedSection.content,
                                 complexTypes: {
                                     ...expectedSection.content?.complexTypes,
-                                    mnr: undefined,
+                                    mnr: [],
                                 },
                                 sectionComplexes: [...currentOpus],
                             },
@@ -391,24 +388,6 @@ describe('EditionSectionDetailOverviewComponent', () => {
 
             describe('... with no complexes', () => {
                 describe('... should contain no outer div.awg-edition-section-detail, but one EditionSectionDetailPlaceholder ...', () => {
-                    it('... if selectedSection has no complexTypes...', async () => {
-                        const expectedSectionWithNoComplexTypes: EditionOutlineSection = {
-                            ...expectedSection,
-                            content: {
-                                ...expectedSection.content,
-                                complexTypes: undefined,
-                                sectionComplexes: [],
-                            },
-                        };
-
-                        editionStateService.updateSelectedEditionSeries(expectedSeries);
-                        editionStateService.updateSelectedEditionSection(expectedSectionWithNoComplexTypes);
-                        await detectChangesOnPush(fixture);
-
-                        getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, EditionSectionDetailPlaceholderStubComponent, 1, 1);
-                    });
-
                     it('... if selectedSection has empty opus and mnr complexTypes', async () => {
                         const expectedSectionWithEmptyComplexTypes: EditionOutlineSection = {
                             ...expectedSection,
@@ -416,8 +395,8 @@ describe('EditionSectionDetailOverviewComponent', () => {
                                 ...expectedSection.content,
                                 complexTypes: {
                                     ...expectedSection.content.complexTypes,
-                                    opus: undefined,
-                                    mnr: undefined,
+                                    opus: [],
+                                    mnr: [],
                                 },
                                 sectionComplexes: [],
                             },
@@ -432,26 +411,22 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     });
                 });
 
-                it('... should pass down selectedSeries and selectedSection to EditionSectionDetailPlaceholder', async () => {
-                    const targetSection = expectedSeries.sections[4];
-                    const expectedSectionWithNoComplexTypes: EditionOutlineSection = {
-                        ...targetSection,
+                it('... should pass down selectedSection to EditionSectionDetailPlaceholder', async () => {
+                    const expectedSectionWithEmptyComplexTypes: EditionOutlineSection = {
+                        ...expectedSection,
                         content: {
-                            ...targetSection.content,
-                            complexTypes: undefined,
+                            ...expectedSection.content,
+                            complexTypes: {
+                                ...expectedSection.content.complexTypes,
+                                opus: [],
+                                mnr: [],
+                            },
                             sectionComplexes: [],
                         },
                     };
 
-                    const expectedSeriesWithSectionWithNoComplexTypes = {
-                        ...expectedSeries,
-                        sections: expectedSeries.sections.map((sec, idx) =>
-                            idx === 4 ? expectedSectionWithNoComplexTypes : sec
-                        ),
-                    };
-
-                    editionStateService.updateSelectedEditionSeries(expectedSeriesWithSectionWithNoComplexTypes);
-                    editionStateService.updateSelectedEditionSection(expectedSectionWithNoComplexTypes);
+                    editionStateService.updateSelectedEditionSeries(expectedSeries);
+                    editionStateService.updateSelectedEditionSection(expectedSectionWithEmptyComplexTypes);
                     await detectChangesOnPush(fixture);
 
                     const placeholderDes = getAndExpectDebugElementByDirective(
@@ -464,8 +439,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         EditionSectionDetailPlaceholderStubComponent
                     ) as EditionSectionDetailPlaceholderStubComponent;
 
-                    expectToEqual(placeholderCmp.selectedSeries, expectedSeriesWithSectionWithNoComplexTypes);
-                    expectToEqual(placeholderCmp.selectedSection, expectedSectionWithNoComplexTypes);
+                    expectToEqual(placeholderCmp.selectedSection(), expectedSectionWithEmptyComplexTypes);
                 });
             });
         });

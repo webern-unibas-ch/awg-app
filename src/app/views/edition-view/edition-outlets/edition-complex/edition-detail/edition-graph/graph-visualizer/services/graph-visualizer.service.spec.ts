@@ -192,28 +192,28 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
         });
 
-        describe('... should return `undefined` if', () => {
+        describe('... should return an empty string if', () => {
             it.each([
                 {
                     desc: 'no queryString is given',
-                    query: undefined,
+                    query: '',
                     triples:
                         '@prefix ex: <http://example.org/> <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>',
                 },
                 {
                     desc: 'no tripleString is given',
                     query: 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o }',
-                    triples: undefined,
+                    triples: '',
                 },
                 {
                     desc: 'no queryString and tripleString is given',
-                    query: undefined,
-                    triples: undefined,
+                    query: '',
+                    triples: '',
                 },
             ])('... $desc', ({ query, triples }) => {
                 const result = graphVisualizerService.checkNamespacesInQuery(query, triples);
 
-                expect(result).toBeUndefined();
+                expectToBe(result, '');
             });
         });
 
@@ -471,17 +471,17 @@ describe('GraphVisualizerService', () => {
             expect(graphVisualizerService.extractLabelsFromTriples).toBeDefined();
         });
 
-        it('... should return an empty Map if no triples are given', () => {
-            const result1 = graphVisualizerService.extractLabelsFromTriples(null);
-            const result2 = graphVisualizerService.extractLabelsFromTriples(undefined);
-            const result3 = graphVisualizerService.extractLabelsFromTriples([]);
+        describe('... should return an empty Map if triples are falsy or empty', () => {
+            it.each([
+                { desc: 'null', value: null },
+                { desc: 'undefined', value: undefined },
+                { desc: 'an empty array', value: [] as Triple[] },
+            ])('... with $desc', ({ value }) => {
+                const result = graphVisualizerService.extractLabelsFromTriples(value);
 
-            expectToBe(result1 instanceof Map, true);
-            expectToBe(result2 instanceof Map, true);
-            expectToBe(result3 instanceof Map, true);
-            expectToBe(result1.size, 0);
-            expectToBe(result2.size, 0);
-            expectToBe(result3.size, 0);
+                expectToBe(result instanceof Map, true);
+                expectToBe(result.size, 0);
+            });
         });
 
         it('... should extract rdfs:label triples with short form predicates', () => {
@@ -916,22 +916,21 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        it('... should return `undefined` if the given IRI is undefined', () => {
-            const iri: string = undefined;
-            const namespaces = { ex: 'http://example.org/' };
+        describe('... should return the falsy input value directly if it is not a valid IRI string', () => {
+            it.each([
+                { desc: 'undefined', value: undefined },
+                { desc: 'null', value: null },
+            ])('... with $desc', ({ value }) => {
+                const namespaces = { ex: 'http://example.org/' };
 
-            const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+                const result = (graphVisualizerService as any)._abbreviate(value, namespaces);
 
-            expect(result).toBeUndefined();
-        });
-
-        it('... should return `null` if the given IRI is null', () => {
-            const iri: string = null;
-            const namespaces = { ex: 'http://example.org/' };
-
-            const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
-
-            expectToBe(result, null);
+                if (value === undefined) {
+                    expect(result).toBeUndefined();
+                } else {
+                    expectToEqual(result, value);
+                }
+            });
         });
     });
 
@@ -1005,9 +1004,10 @@ describe('GraphVisualizerService', () => {
             ];
 
             const result: RDFStoreConstructResponse = await (graphVisualizerService as any)._executeQuery(store, query);
+            const triples = result.triples ?? [];
 
-            expectToBe(result.triples.length, 2);
-            result.triples.forEach((triple, index: number) => {
+            expectToBe(triples.length, 2);
+            triples.forEach((triple, index: number) => {
                 expectToBe(triple.toString().trim(), expectedQueryResult[index]);
             });
         });
@@ -1259,80 +1259,36 @@ describe('GraphVisualizerService', () => {
             expect((graphVisualizerService as any)._mapKeys).toBeDefined();
         });
 
-        describe('... should return an empty object if', () => {
-            it('... the input object is empty', () => {
-                const inputObj: Record<string, string> = {};
-                const keyMap: Record<string, string> = {
+        describe('... should return an empty object if the input object is falsy or empty', () => {
+            it.each([
+                { desc: 'empty', input: {} },
+                { desc: 'null', input: null },
+                { desc: 'undefined', input: undefined },
+            ])('... with input = $desc', ({ input }) => {
+                const keyMap = {
                     token: 'type',
                     type: 'datatype',
                     lang: 'xml:lang',
                 };
 
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
-
-                expectToEqual(result, {});
-            });
-
-            it('... the input object is null', () => {
-                const inputObj: Record<string, string> = null;
-                const keyMap: Record<string, string> = {
-                    token: 'type',
-                    type: 'datatype',
-                    lang: 'xml:lang',
-                };
-
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
-
-                expectToEqual(result, {});
-            });
-
-            it('... the input object is undefined', () => {
-                const inputObj: Record<string, string> = undefined;
-                const keyMap: Record<string, string> = {
-                    token: 'type',
-                    type: 'datatype',
-                    lang: 'xml:lang',
-                };
-
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+                const result = (graphVisualizerService as any)._mapKeys(input, keyMap);
 
                 expectToEqual(result, {});
             });
         });
 
-        describe('... should return the original object if', () => {
-            it('... the new keys object is empty', () => {
-                const inputObj: Record<string, string> = {
+        describe('... should return the original object if the keyMap is', () => {
+            it.each([
+                { desc: 'empty', map: {} },
+                { desc: 'null', map: null },
+                { desc: 'undefined', map: undefined },
+            ])('... $desc', ({ map }) => {
+                const inputObj = {
                     key1: 'value1',
                     key2: 'value2',
                 };
-                const keyMap: Record<string, string> = {};
 
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
-
-                expectToEqual(result, inputObj);
-            });
-
-            it('... the new keys object is null', () => {
-                const inputObj: Record<string, string> = {
-                    key1: 'value1',
-                    key2: 'value2',
-                };
-                const keyMap: Record<string, string> = null;
-
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
-
-                expectToEqual(result, inputObj);
-            });
-
-            it('... the new keys object is undefined', () => {
-                const inputObj: Record<string, string> = {
-                    key1: 'value1',
-                    key2: 'value2',
-                };
-                const keyMap: Record<string, string> = undefined;
-
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+                const result = (graphVisualizerService as any)._mapKeys(inputObj, map);
 
                 expectToEqual(result, inputObj);
             });
@@ -1762,6 +1718,37 @@ describe('GraphVisualizerService', () => {
             expect((graphVisualizerService as any)._prepareSelectResponse).toBeDefined();
         });
 
+        describe('... should return status=404 and undefined if selectResponse is falsy', () => {
+            const expectedResponse = {
+                status: 404,
+                data: undefined,
+            };
+
+            it.each([
+                { desc: 'undefined', value: undefined },
+                { desc: 'null', value: null },
+            ])('... with $desc', ({ value }) => {
+                const result = (graphVisualizerService as any)._prepareSelectResponse(value);
+
+                expectToEqual(result, expectedResponse);
+            });
+        });
+
+        it('... should return status=400 and `Query returned no results` if selectRespone is empty', () => {
+            const selectResponse: RDFStoreSelectResponse = [];
+            const expectedResponse: {
+                status: number;
+                data: QuerySelectResult | string;
+            } = {
+                status: 400,
+                data: 'Query returned no results',
+            };
+
+            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+
+            expectToEqual(result, expectedResponse);
+        });
+
         it('... should return a QuerySelectResult object with mapped bindings and vars', () => {
             const selectResponse: RDFStoreSelectResponse = [
                 {
@@ -1810,42 +1797,6 @@ describe('GraphVisualizerService', () => {
             const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
 
             expectToEqual(result, expectedQueryResult);
-        });
-
-        it('... should return status=400 and `Query returned no results` if selectRespone is empty', () => {
-            const selectResponse: RDFStoreSelectResponse = [];
-            const expectedResponse: {
-                status: number;
-                data: QuerySelectResult | string;
-            } = {
-                status: 400,
-                data: 'Query returned no results',
-            };
-
-            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
-
-            expectToEqual(result, expectedResponse);
-        });
-
-        it('... should return status=404 and undefined if selectRespone is undefined or null', () => {
-            const selectResponse: RDFStoreSelectResponse = undefined;
-            const expectedResponse: {
-                status: number;
-                data: QuerySelectResult | string;
-            } = {
-                status: 404,
-                data: undefined,
-            };
-
-            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
-
-            expectToEqual(result, expectedResponse);
-
-            const selectResponse2: RDFStoreSelectResponse = null;
-
-            const result2 = (graphVisualizerService as any)._prepareSelectResponse(selectResponse2);
-
-            expectToEqual(result2, expectedResponse);
         });
 
         it('... should trigger `_prepareMappedBindings` method', () => {

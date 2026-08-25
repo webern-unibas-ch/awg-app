@@ -1,11 +1,11 @@
 /**
- * The SourceEvaluation class.
+ * The SourceEvaluation interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single source evaluation
  * from a source evaluation json file.
  */
-export class SourceEvaluation {
+export interface SourceEvaluation {
     /**
      * The id of a sourceEvaluation.
      */
@@ -28,5 +28,5 @@ export class SourceEvaluationList {
     /**
      * The array of sources from a source evaluation list.
      */
-    sources: SourceEvaluation[];
+    sources: SourceEvaluation[] = [];
 }

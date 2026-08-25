@@ -40,13 +40,13 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'commentary'" />:
                                 </p>
-                                @if (UTILS.isEmptyArray(textcritics.commentary?.comments)) {
+                                @if (UTILS.isEmptyArray(textcritics.commentary.comments)) {
                                     <ng-container *ngTemplateOutlet="noContent" />
                                 } @else {
                                     <awg-edition-tka-table
                                         [commentary]="textcritics.commentary"
                                         [id]="textcritics.id"
-                                        [isRowtable]="textcritics.rowtable" />
+                                        [isRowtable]="textcritics.rowtable ?? false" />
                                 }
                             </div>
                             <ng-template #noContent>

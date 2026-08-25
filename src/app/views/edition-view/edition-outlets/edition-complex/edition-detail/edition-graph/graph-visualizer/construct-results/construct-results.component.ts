@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
 import { D3SimulationNode, Triple } from '../models';
@@ -25,7 +25,7 @@ export class ConstructResultsComponent {
      * It keeps the result of the query as an observable of triples.
      */
     @Input()
-    queryResult$: Observable<Triple[] | undefined>;
+    queryResult$: Observable<Triple[]> = EMPTY;
 
     /**
      * Input variable: defaultForceGraphHeight.
@@ -33,7 +33,7 @@ export class ConstructResultsComponent {
      * It keeps the default height for the force graph.
      */
     @Input()
-    defaultForceGraphHeight: number;
+    defaultForceGraphHeight = 0;
 
     /**
      * Input variable: isFullscreen.
@@ -41,7 +41,7 @@ export class ConstructResultsComponent {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Output variable: clickedNodeRequest.

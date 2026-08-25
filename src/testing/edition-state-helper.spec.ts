@@ -17,7 +17,7 @@ describe('EditionStateHelper (DONE)', () => {
         it('... should return a structured clone (deep copy) that protects the cache from mutations', () => {
             const firstRun = EditionStateHelper.getOutline();
 
-            if (firstRun.length > 0 && firstRun[0].sections?.length > 0) {
+            if (firstRun.length && firstRun[0].sections?.length) {
                 firstRun[0].sections[0].section.route = 'MUTATED_ROUTE';
             }
 

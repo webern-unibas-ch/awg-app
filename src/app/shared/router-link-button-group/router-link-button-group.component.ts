@@ -23,7 +23,7 @@ export class RouterLinkButtonGroupComponent {
      * It keeps the array of router link buttons.
      */
     @Input()
-    routerLinkButtons: RouterLinkButton[];
+    routerLinkButtons: RouterLinkButton[] = [];
 
     /**
      * Optional input variable: queryParamsHandling.
@@ -53,7 +53,7 @@ export class RouterLinkButtonGroupComponent {
      * Emits the selected router link button.
      */
     selectButton(routerLinkButton: RouterLinkButton): void {
-        if (!routerLinkButton || routerLinkButton.disabled) {
+        if (routerLinkButton.disabled) {
             return;
         }
         this.selectButtonRequest.emit(routerLinkButton);

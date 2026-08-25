@@ -47,7 +47,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content);
+        expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
         expectedNotesLabel = 'Test notes label';
         expectedSelectedLanguage = LanguageId.DE;
 
@@ -60,12 +60,12 @@ describe('EditionIntroNavComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `introBlockContent`', () => {
-            expect(component.introBlockContent).toBeUndefined();
+        it('... should have default `introBlockContent` input', () => {
+            expectToEqual(component.introBlockContent, []);
         });
 
-        it('... should not have `notesLabel`', () => {
-            expect(component.notesLabel).toBeUndefined();
+        it('... should have default `notesLabel` input', () => {
+            expectToBe(component.notesLabel, '');
         });
 
         it('... should throw due to missing required input for model signal `selectedLanguage`', () => {

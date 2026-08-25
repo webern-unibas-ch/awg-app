@@ -1,4 +1,4 @@
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, input, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -21,6 +21,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
 
+import { EditionTypeLabel } from '@awg-app/views/edition-view/models/edition-type.model';
 import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.component';
 
 // Mock components
@@ -30,9 +31,9 @@ import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.compone
     standalone: false,
 })
 class EditionSvgSheetFacetItemStubComponent {
-    @Input() facetItemLabel: string;
-    @Input() svgSheets: EditionSvgSheet[];
-    @Input() selectedSvgSheet: EditionSvgSheet;
+    facetItemLabel = input.required<EditionTypeLabel>();
+    @Input() svgSheets: EditionSvgSheet[] = [];
+    @Input() selectedSvgSheet: EditionSvgSheet | undefined;
 }
 
 describe('EditionSvgSheetFacetComponent (DONE)', () => {
@@ -94,16 +95,16 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have svgSheetsData', () => {
-            expect(component.svgSheetsData).toBeUndefined();
+        it('... should have default `isMinimized` input', () => {
+            expectToBe(component.isMinimized, false);
         });
 
-        it('... should not have selectedSvgSheet', () => {
+        it('... should have default `svgSheetsData` input', () => {
+            expectToBe(component.svgSheetsData, null);
+        });
+
+        it('... should not have `selectedSvgSheet`', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
-        });
-
-        it('... should have isMinimized set to false by default', () => {
-            expectToBe(component.isMinimized, expectedIsMinimized);
         });
 
         it('... should have fontawesome icons', () => {
@@ -139,9 +140,9 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
 
         it('... should have `svgSheetsData` input', () => {
             expectToEqual(component.svgSheetsData, expectedSvgSheetsData);
-            expectToBe(component.svgSheetsData.sheets.workEditions.length, 0);
-            expectToBe(component.svgSheetsData.sheets.textEditions.length, 0);
-            expectToBe(component.svgSheetsData.sheets.sketchEditions.length, 3);
+            expectToBe(component.svgSheetsData?.sheets.workEditions.length, 0);
+            expectToBe(component.svgSheetsData?.sheets.textEditions.length, 0);
+            expectToBe(component.svgSheetsData?.sheets.sketchEditions.length, 3);
         });
 
         it('... should have `selectedSvgSheet` input', () => {
@@ -149,16 +150,16 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer div.card if svgSheetsData is not defined', async () => {
+            it('... should contain no outer div.card if svgSheetsData is null', async () => {
                 // Reset svgSheetsData
-                component.svgSheetsData = undefined;
+                component.svgSheetsData = null;
 
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
             });
 
-            it('... should contain one outer div.card if svgSheetsData is defined', () => {
+            it('... should contain one outer div.card if svgSheetsData is given', () => {
                 const cardDes = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 const cardEl: HTMLDivElement = cardDes[0].nativeElement;
 
@@ -219,9 +220,9 @@ describe('EditionSvgSheetFacetComponent (DONE)', () => {
                         );
 
                         expectToBe(sheetFacetItemCmp.length, 3);
-                        expectToBe(sheetFacetItemCmp[0].facetItemLabel, 'Werkeditionen');
-                        expectToBe(sheetFacetItemCmp[1].facetItemLabel, 'Texteditionen');
-                        expectToBe(sheetFacetItemCmp[2].facetItemLabel, 'Skizzeneditionen');
+                        expectToBe(sheetFacetItemCmp[0].facetItemLabel(), 'Werkeditionen');
+                        expectToBe(sheetFacetItemCmp[1].facetItemLabel(), 'Texteditionen');
+                        expectToBe(sheetFacetItemCmp[2].facetItemLabel(), 'Skizzeneditionen');
                     });
 
                     it('... should pass down selectedSvgSheet to EditionSvgSheetFacetItemComponent', () => {

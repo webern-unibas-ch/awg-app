@@ -1,12 +1,16 @@
 <div class="text-center">
     <p>Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.</p>
     <p>Möglicherweise können Sie Ihre Anfrage anpassen.</p>
-    <p>
-        Ausführliche Informationen zu SPARQL finden Sie unter:
-        <a [href]="logosData?.['sparql'].href">{{ logosData?.['sparql'].href }}</a
-        >.
-    </p>
-    <p>
-        <awg-logo [logoData]="logosData?.['sparql']" class="sparql-logo-small" />
-    </p>
+
+    @let sparqlLogo = logosData.sparql;
+    @if (sparqlLogo) {
+        <p>
+            Ausführliche Informationen zu SPARQL finden Sie unter:
+            <a [href]="sparqlLogo.href">{{ sparqlLogo.href }}</a
+            >.
+        </p>
+        <p>
+            <awg-logo [logoData]="sparqlLogo" class="sparql-logo-small" />
+        </p>
+    }
 </div>

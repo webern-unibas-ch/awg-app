@@ -1,10 +1,10 @@
 /**
- * The EditionRowtables class.
+ * The EditionRowtables interface.
  *
  * It is used in the context of the edition view
  * to store information about rowtables.
  */
-export class Rowtables {
+export interface Rowtables {
     /**
      * The route of a rowtable.
      */
@@ -41,5 +41,5 @@ export class RowtablesList {
     /**
      * The array of rowtables from a rowtables list.
      */
-    rowtables: Rowtables[];
+    rowtables: Rowtables[] = [];
 }

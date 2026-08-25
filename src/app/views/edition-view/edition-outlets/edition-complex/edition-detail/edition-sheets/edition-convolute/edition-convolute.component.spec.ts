@@ -34,9 +34,9 @@ interface IFolioLegend {
 })
 class EditionFolioViewerStubComponent {
     @Input()
-    selectedConvolute: FolioConvolute;
+    selectedConvolute: FolioConvolute | undefined;
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 }
 
 describe('EditionConvoluteComponent (DONE)', () => {

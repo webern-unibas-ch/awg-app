@@ -30,28 +30,28 @@ import { SourceDescriptionComponent } from './source-description.component';
 @Component({ selector: 'awg-source-description-contents', template: '', standalone: false })
 class SourceDescriptionContentsStubComponent {
     @Input()
-    contents: SourceDescriptionContent[];
+    contents: SourceDescriptionContent[] = [];
 }
 @Component({ selector: 'awg-source-description-corrections', template: '', standalone: false })
 class SourceDescriptionCorrectionsStubComponent {
     @Input()
-    corrections: Textcritics[];
+    corrections: Textcritics[] = [];
 }
 
 @Component({ selector: 'awg-source-description-details', template: '', standalone: false })
 class SourceDescriptionDetailsStubComponent {
     @Input()
-    details: string[];
+    details: string[] | undefined;
     @Input()
-    detailsClass: string;
+    detailsClass: string | undefined;
     @Input()
-    detailsLabel: string;
+    detailsLabel: string | undefined;
 }
 
 @Component({ selector: 'awg-source-description-writing-materials', template: '', standalone: false })
 class SourceDescriptionWritingMaterialsStubComponent {
     @Input()
-    writingMaterials: SourceDescriptionWritingMaterial[];
+    writingMaterials: SourceDescriptionWritingMaterial[] = [];
 }
 
 describe('SourceDescriptionComponent (DONE)', () => {
@@ -96,8 +96,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceDescriptionListData).toBeUndefined();
+        it('... should have default `sourceDescriptionListData` input', () => {
+            expectToBe(component.sourceDescriptionListData, null);
         });
 
         describe('VIEW', () => {
@@ -293,7 +293,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     describe('... the first paragraph', () => {
                         it('... should display a siglum (bold) with addendum', () => {
                             const expectedSiglum = expectedSourceDescriptionListData.sources[1].siglum;
-                            const expectedAddendum = expectedSourceDescriptionListData.sources[1].siglumAddendum;
+                            const expectedAddendum = expectedSourceDescriptionListData.sources[1].siglumAddendum ?? '';
 
                             const pEl: HTMLParagraphElement = paragraphDes[0].nativeElement;
 
@@ -430,8 +430,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         let expectedInstrumentsData: SourceDescriptionWritingInstruments;
 
                         beforeEach(() => {
-                            expectedInstrumentsData =
+                            const instruments =
                                 expectedSourceDescriptionListData.sources[1].physDesc.writingInstruments;
+
+                            if (!instruments) {
+                                throw new Error('Expected writingInstruments to be defined.');
+                            }
+
+                            expectedInstrumentsData = instruments;
 
                             const physDescDes = getAndExpectDebugElementByCss(
                                 compDe,
@@ -483,14 +489,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 2, 2);
                             const spanEl: HTMLSpanElement = spanDes[1].nativeElement;
 
+                            const secondaryInstruments = expectedInstrumentsData.secondary ?? [];
+                            const secondaryString =
+                                secondaryInstruments.length > 0 ? '; ' + secondaryInstruments.join(', ') : '';
+
                             // Process HTML expression of expected text content
                             const expectedHtmlTextContent = mockDocument.createElement('p');
                             expectedHtmlTextContent.innerHTML =
-                                '<span>' +
-                                expectedInstrumentsData.main +
-                                '; ' +
-                                expectedInstrumentsData.secondary.join(', ') +
-                                '.</span>';
+                                '<span>' + expectedInstrumentsData.main + secondaryString + '.</span>';
 
                             expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                         });
@@ -791,7 +797,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 it('... the first paragraph displaying a siglum (bold) with addendum and brackets (missing)', () => {
                     const expectedSiglum = expectedSourceDescriptionListData.sources[2].siglum;
-                    const expectedAddendum = expectedSourceDescriptionListData.sources[2].siglumAddendum;
+                    const expectedAddendum = expectedSourceDescriptionListData.sources[2].siglumAddendum ?? '';
 
                     const descHeadDes = getAndExpectDebugElementByCss(
                         compDe,

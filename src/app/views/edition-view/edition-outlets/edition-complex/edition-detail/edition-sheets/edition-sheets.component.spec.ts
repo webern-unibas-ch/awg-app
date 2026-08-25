@@ -23,8 +23,6 @@ import {
     EditionComplex,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
-    EditionSvgSheet,
-    EditionSvgSheetsList,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalCommentary,
@@ -36,6 +34,11 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetContent,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionSheetsService } from '@awg-views/edition-view/services/edition-sheets.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
@@ -51,17 +54,17 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 })
 class EditionAccoladeStubComponent {
     @Input()
-    isSheetFacetMinimized: boolean;
+    isSheetFacetMinimized = false;
     @Input()
-    svgSheetsData: EditionSvgSheetsList;
+    svgSheetsData: EditionSvgSheetsList | null = null;
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
     @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary;
+    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
     @Input()
-    selectedTextcritics: Textcritics;
+    selectedTextcritics: Textcritics | undefined;
     @Input()
-    showTkA: boolean;
+    showTkA = false;
     @Output()
     browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
     @Output()
@@ -79,9 +82,9 @@ class EditionAccoladeStubComponent {
 })
 class EditionConvoluteStubComponent {
     @Input()
-    selectedConvolute: FolioConvolute;
+    selectedConvolute: FolioConvolute | undefined;
     @Input()
-    selectedSvgSheet: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet | undefined;
 }
 
 describe('EditionSheetsComponent (DONE)', () => {
@@ -348,6 +351,17 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-sheets-view', 0, 0);
+            });
+
             describe('on error', () => {
                 const expectedErrorObject: EditionDataAssetsError = {
                     key: 'svgSheets',
@@ -394,7 +408,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             createMockViewData(
                                 {
                                     folioConvoluteData: expectedFolioConvoluteData,
-                                    svgSheetsData: undefined,
+                                    svgSheetsData: null,
                                     textcriticsData: expectedTextcriticsListData,
                                 },
                                 {
@@ -730,7 +744,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectSpyCall(onSvgSheetSelectSpy, initialCalls);
 
                         const expectedLinkBoxId = 'linkBox1';
-                        component.selectedSvgSheet = null;
+                        component.selectedSvgSheet = undefined;
 
                         component.onLinkBoxSelect(expectedLinkBoxId);
 
@@ -744,7 +758,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         const expectedLinkBoxId = 'linkBox1';
                         component.selectedSvgSheet = expectedSvgSheet;
                         component.selectedTextcritics = expectedSelectedTextcritics;
-                        component.selectedTextcritics.linkBoxes = null;
+                        component.selectedTextcritics.linkBoxes = undefined;
 
                         component.onLinkBoxSelect(expectedLinkBoxId);
 
@@ -830,14 +844,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 it('... should correctly filter textcritical commentary and set `showTka` to true', () => {
                     for (const comment of expectedSelectedTextcriticalCommentary.comments) {
                         for (const blockComment of comment.blockComments) {
-                            const expectedOverlays = [
-                                new EditionSvgOverlay(
-                                    EditionSvgOverlayTypes.tkk,
-                                    blockComment.svgGroupId,
-                                    blockComment.svgGroupId,
-                                    true
-                                ),
-                            ];
+                            const id = blockComment.svgGroupId ?? '';
+                            const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
                             const expectedCommentary = {
                                 preamble: expectedSelectedTextcriticalCommentary.preamble,
                                 comments: [
@@ -859,6 +867,38 @@ describe('EditionSheetsComponent (DONE)', () => {
                         }
                     }
                 });
+
+                describe('... should set `showTkA` to false if', () => {
+                    it('... selectedTextcritics or commentary is missing', () => {
+                        component.selectedTextcritics = undefined;
+                        const expectedOverlays = [
+                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
+                        ];
+
+                        component.onOverlaySelect(expectedOverlays);
+
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                        expectToBe(component.showTkA, false);
+                    });
+
+                    it('... the filtered commentary contains no comments', () => {
+                        component.selectedTextcritics = expectedSelectedTextcritics;
+                        const expectedOverlays = [
+                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
+                        ];
+                        const emptyCommentary = {
+                            preamble: 'Test Preamble',
+                            comments: [],
+                        };
+
+                        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(emptyCommentary);
+
+                        component.onOverlaySelect(expectedOverlays);
+
+                        expectToEqual(component.selectedTextcriticalCommentary, emptyCommentary);
+                        expectToBe(component.showTkA, false);
+                    });
+                });
             });
 
             describe('#onSvgSheetSelect()', () => {
@@ -871,14 +911,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onSvgSheetSelect).toBeDefined();
                 });
 
-                it('... should do nothing if no id is provided', () => {
-                    const expectedSheetIds: SheetClickEvent = undefined;
+                it('... should do nothing if no sheetId is provided', () => {
+                    const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
                     component.onSvgSheetSelect(expectedSheetIds);
-
-                    expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
-
-                    const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
-                    component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
@@ -956,33 +991,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... should return an empty string if', () => {
-                    it('... svgSheetsData is undefined', () => {
-                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
-
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
-
-                        expectToBe(result, '');
-                    });
-
-                    it('... textEditions are empty', () => {
-                        const mockSvgSheetsData = { sheets: { textEditions: [] } } as EditionSvgSheetsList;
-
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
-
-                        expectToBe(result, '');
-                    });
-
-                    it('... sketchEditions are empty', () => {
-                        const mockSvgSheetsData = { sheets: { sketchEditions: [] } } as EditionSvgSheetsList;
-
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
-
-                        expectToBe(result, '');
-                    });
-
                     it('... textEditions and sketchEditions are empty', () => {
                         const mockSvgSheetsData = {
-                            sheets: { textEditions: [], sketchEditions: [] },
+                            sheets: { textEditions: [] as EditionSvgSheet[], sketchEditions: [] as EditionSvgSheet[] },
                         } as EditionSvgSheetsList;
 
                         const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
@@ -993,8 +1004,8 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... with text editions', () => {
                     it('... should default to text editions when text and sketch editions are present', () => {
-                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
-                        const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
+                        const mockSheet1 = { id: 'sheet1', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
+                        const mockSheet2 = { id: 'sheet2', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
                                 textEditions: [mockSheet1],
@@ -1008,11 +1019,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should return the id of the first text edition sheet by default (no partials)', () => {
-                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+                        const mockSheet1 = { id: 'sheet1', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
                                 textEditions: [mockSheet1],
-                                sketchEditions: [],
+                                sketchEditions: [] as EditionSvgSheet[],
                             },
                         } as EditionSvgSheetsList;
 
@@ -1032,7 +1043,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         const mockSvgSheetsData = {
                             sheets: {
                                 textEditions: [mockSheet1],
-                                sketchEditions: [],
+                                sketchEditions: [] as EditionSvgSheet[],
                             },
                         } as EditionSvgSheetsList;
 
@@ -1059,7 +1070,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         const mockSvgSheetsData = {
                             sheets: {
                                 textEditions: [mockSheet1, mockSheet2],
-                                sketchEditions: [],
+                                sketchEditions: [] as EditionSvgSheet[],
                             },
                         } as EditionSvgSheetsList;
 
@@ -1083,7 +1094,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'd' },
                             ],
                         } as EditionSvgSheet;
-                        const mockSheet3 = { id: 'sheet3', content: [] } as EditionSvgSheet;
+                        const mockSheet3 = { id: 'sheet3', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
                                 workEditions: [mockSheet1],
@@ -1100,10 +1111,10 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... without text editions', () => {
                     it('... should return the id of the first sketch sheet by default (no partials)', () => {
-                        const mockSheet1 = { id: 'sheet1', content: [] } as EditionSvgSheet;
+                        const mockSheet1 = { id: 'sheet1', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
-                                textEditions: [],
+                                textEditions: [] as EditionSvgSheet[],
                                 sketchEditions: [mockSheet1],
                             },
                         } as EditionSvgSheetsList;
@@ -1123,7 +1134,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
-                                textEditions: [],
+                                textEditions: [] as EditionSvgSheet[],
                                 sketchEditions: [mockSheet1],
                             },
                         } as EditionSvgSheetsList;
@@ -1150,7 +1161,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         } as EditionSvgSheet;
                         const mockSvgSheetsData = {
                             sheets: {
-                                textEditions: [],
+                                textEditions: [] as EditionSvgSheet[],
                                 sketchEditions: [mockSheet1, mockSheet2],
                             },
                         } as EditionSvgSheetsList;
@@ -1168,7 +1179,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                                 { svg: '', image: '', partial: 'b' },
                             ],
                         } as EditionSvgSheet;
-                        const mockSheet2 = { id: 'sheet2', content: [] } as EditionSvgSheet;
+                        const mockSheet2 = { id: 'sheet2', content: [] as EditionSvgSheetContent[] } as EditionSvgSheet;
                         const mockSheet3 = {
                             id: 'sheet3',
                             content: [
@@ -1233,10 +1244,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... with svgSheetsData not available and id not given from query params', () => {
-                    it('... should trigger `onSvgSheetSelect` with no id', () => {
-                        mockActivatedRoute.testQueryParamMap = { id: '' };
-                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
+                    let mockSvgSheetsData: EditionSvgSheetsList;
 
+                    beforeEach(() => {
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
+
+                        mockSvgSheetsData = {
+                            sheets: {
+                                textEditions: [],
+                                sketchEditions: [],
+                            },
+                        } as any;
+                    });
+                    it('... should trigger `onSvgSheetSelect` with no id', () => {
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 
                         expectSpyCall(onSvgSheetSelectSpy, 1, {
@@ -1246,9 +1266,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should reset `selectedSvgSheet` to undefined', () => {
-                        mockActivatedRoute.testQueryParamMap = { id: '' };
-                        const mockSvgSheetsData: EditionSvgSheetsList = undefined;
-
                         (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 
                         expect(component.selectedSvgSheet).toBeUndefined();
@@ -1271,20 +1288,56 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 describe('... should do nothing if', () => {
-                    it('... sheet id is undefined', () => {
-                        (component as any)._selectSvgSheet(undefined);
+                    it.each([
+                        {
+                            desc: 'sheet id is undefined',
+                            sheetId: undefined as any,
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'sheet id is null',
+                            sheetId: null as any,
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'sheet id is an empty string',
+                            sheetId: '',
+                            content: () => expectedViewDataContent,
+                        },
+                        {
+                            desc: 'svgSheetsData.sheets is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                svgSheetsData: undefined,
+                            }),
+                        },
+                        {
+                            desc: 'folioConvoluteData.convolutes is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                folioConvoluteData: undefined,
+                            }),
+                        },
+                        {
+                            desc: 'textcriticsData.textcritics is missing',
+                            sheetId: 'validId',
+                            content: () => ({
+                                ...expectedViewDataContent,
+                                textcriticsData: undefined,
+                            }),
+                        },
+                    ])('... $desc', async ({ sheetId, content }) => {
+                        mockViewDataSignal.set(
+                            createMockViewData(content() as any, {
+                                isLoading: false,
+                                error: null,
+                            })
+                        );
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockClear();
 
-                        expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
-                    });
-
-                    it('... sheet id is null', () => {
-                        (component as any)._selectSvgSheet(null);
-
-                        expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
-                    });
-
-                    it('... sheet id is empty string', () => {
-                        (component as any)._selectSvgSheet('');
+                        (component as any)._selectSvgSheet(sheetId);
 
                         expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
                     });
@@ -1320,6 +1373,59 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectToEqual(component.selectedConvolute, expectedConvolute);
                         expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
                         expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
+                    });
+                });
+
+                describe('... should handle missing or incomplete currentSheet gracefully', () => {
+                    beforeEach(() => {
+                        mockViewDataSignal.set(
+                            createMockViewData(expectedViewDataContent, {
+                                isLoading: false,
+                                error: null,
+                            })
+                        );
+                        onOverlaySelectSpy.mockClear();
+                    });
+
+                    it('... should set `selectedConvolute` and `selectedTextcritics` to undefined if currentSheet is not found', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(undefined);
+
+                        (component as any)._selectSvgSheet('unknown-id');
+
+                        expect(component.selectedSvgSheet).toBeUndefined();
+                        expect(component.selectedConvolute).toBeUndefined();
+                        expect(component.selectedTextcritics).toBeUndefined();
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                        expectSpyCall(onOverlaySelectSpy, 1, []);
+                    });
+
+                    it('... should set `selectedTextcriticalCommentary` to undefined if textcritics has no commentary', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
+                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
+
+                        const textcriticsWithoutCommentary = { ...structuredClone(expectedSelectedTextcritics) } as any;
+                        delete textcriticsWithoutCommentary.commentary;
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithoutCommentary);
+
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+
+                        expectToEqual(component.selectedTextcritics, textcriticsWithoutCommentary);
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                    });
+
+                    it('... should set `selectedTextcriticalCommentary` to undefined if commentary is an empty object', () => {
+                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
+                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
+
+                        const textcriticsWithEmptyCommentary = {
+                            ...expectedSelectedTextcritics,
+                            commentary: {} as any,
+                        };
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithEmptyCommentary);
+
+                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+
+                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
                     });
                 });
             });

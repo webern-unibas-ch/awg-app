@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import { UTILS } from '@awg-shared/utils/object-utils';
-import { QuerySelectResult } from '../models';
+import { QuerySelectResult } from '../models/query-result.model';
 
 /**
  * The SelectResults component.
@@ -25,7 +25,7 @@ export class SelectResultsComponent {
      * It keeps the query result as an observable.
      */
     @Input()
-    queryResult$: Observable<QuerySelectResult | string | undefined>;
+    queryResult$: Observable<QuerySelectResult | string | undefined> = EMPTY;
 
     /**
      * Input variable: queryTime.
@@ -33,7 +33,7 @@ export class SelectResultsComponent {
      * It keeps the duration time of the query.
      */
     @Input()
-    queryTime: number;
+    queryTime = 0;
 
     /**
      * Input variable: isFullscreen.
@@ -41,7 +41,7 @@ export class SelectResultsComponent {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Output variable: clickedTableRequest.
@@ -77,7 +77,7 @@ export class SelectResultsComponent {
         if (!selectQueryResult || typeof selectQueryResult === 'string') {
             return false;
         }
-        if (UTILS.isEmptyArray(selectQueryResult.head?.vars) || UTILS.isEmptyArray(selectQueryResult.body?.bindings)) {
+        if (UTILS.isEmptyArray(selectQueryResult.head.vars) || UTILS.isEmptyArray(selectQueryResult.body.bindings)) {
             return false;
         }
 

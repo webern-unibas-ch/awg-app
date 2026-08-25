@@ -32,7 +32,7 @@ export class SourceDescriptionContentTableComponent {
      * It keeps the folio contents array.
      */
     @Input()
-    content: SourceDescriptionContent;
+    content: SourceDescriptionContent | undefined;
 
     /**
      * Protected readonly variable: UTILS.

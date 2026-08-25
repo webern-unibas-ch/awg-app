@@ -326,8 +326,10 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             // Trigger initial data binding
             fixture.detectChanges();
 
-            expectedSvgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef.nativeElement);
-            expectedSvgSheetRootGroupSelection = D3_SELECTION.select(component.svgSheetRootGroupRef.nativeElement);
+            expectedSvgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef?.nativeElement as any);
+            expectedSvgSheetRootGroupSelection = D3_SELECTION.select(
+                component.svgSheetRootGroupRef?.nativeElement as any
+            );
 
             createD3TestTkkGroups(expectedSvgSheetRootGroupSelection, expectedTkkOverlays);
             createD3TestLinkBoxGroups(expectedSvgSheetRootGroupSelection, expectedLinkBoxes);
@@ -352,19 +354,19 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 1
             );
 
-            expectToEqual(component.svgSheetContainerRef.nativeElement, svgSheetContainerDes[0].nativeElement);
+            expectToEqual(component.svgSheetContainerRef?.nativeElement, svgSheetContainerDes[0].nativeElement);
         });
 
         it('... should have `svgSheetElementRef` ViewChild', () => {
             const svgSheetDes = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
 
-            expectToEqual(component.svgSheetElementRef.nativeElement, svgSheetDes[0].nativeElement);
+            expectToEqual(component.svgSheetElementRef?.nativeElement, svgSheetDes[0].nativeElement);
         });
 
         it('... should have `svgSheetRootGroupRef` ViewChild', () => {
             const svgRootGroupDes = getAndExpectDebugElementByCss(compDe, 'g#awg-edition-svg-sheet-root-group', 1, 1);
 
-            expectToEqual(component.svgSheetRootGroupRef.nativeElement, svgRootGroupDes[0].nativeElement);
+            expectToEqual(component.svgSheetRootGroupRef?.nativeElement, svgRootGroupDes[0].nativeElement);
         });
 
         it('... should have `suppliedClasses`', () => {
@@ -722,30 +724,18 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expectSpyCall(browseSvgSheetSpy, 2, 1);
             });
 
-            it('... should not emit anything if no direction is provided', () => {
-                const expectedDirection: number = undefined;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 0, expectedDirection);
-            });
-
-            it('... should emit a given direction', () => {
+            it('... should emit 1 for forward direction', () => {
                 const expectedDirection = 1;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
             });
 
-            it('... should emit the correct direction', () => {
-                let expectedDirection = 1;
+            it('... should emit -1 for backward direction', () => {
+                const expectedDirection = -1;
                 component.browseSvgSheet(expectedDirection);
 
                 expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-
-                expectedDirection = -1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 2, expectedDirection);
             });
         });
 
@@ -834,7 +824,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should set given zoom value to sliderConfig.value', () => {
-                let expectedZoom = null;
+                let expectedZoom = 0;
                 component.onZoomChange(expectedZoom);
 
                 expectToBe(component.sliderConfig.value, expectedZoom);
@@ -1003,36 +993,21 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
 
-                // Trigger click with click helper & wait for changes
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(resetZoomSpy, 2);
             });
 
-            describe('... should do nothing if', () => {
-                it('... svgSheetSelection is not set', () => {
-                    expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(resetZoomTranslationSpy, 1);
+            it('... should do nothing if svgSheetSelection is not set', () => {
+                expectSpyCall(onZoomChangeSpy, 1);
+                expectSpyCall(resetZoomTranslationSpy, 1);
 
-                    component.svgSheetSelection = undefined;
+                component.svgSheetSelection = undefined;
 
-                    component.resetZoom();
+                component.resetZoom();
 
-                    expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(resetZoomTranslationSpy, 1);
-                });
-
-                it('... sliderConfig is not set', () => {
-                    expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(resetZoomTranslationSpy, 1);
-
-                    component.sliderConfig = undefined;
-
-                    component.resetZoom();
-
-                    expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(resetZoomTranslationSpy, 1);
-                });
+                expectSpyCall(onZoomChangeSpy, 1);
+                expectSpyCall(resetZoomTranslationSpy, 1);
             });
 
             it('... should trigger `onZoomChange` function with initial value of sliderConfig', () => {
@@ -1165,7 +1140,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 await (component as any)._createSvg();
 
-                expectSpyCall(consoleSpy, 1, 'No svg sheet container ref');
+                expectSpyCall(consoleSpy, 1, '[EditionSvgSheetViewer] Missing svg sheet container ref');
             });
 
             it('... should set svgSheetSelection and svgSheetRootGroupSelection', async () => {
@@ -1173,8 +1148,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 expect(serviceCreateSvgSpy).toHaveBeenCalledWith(
                     component.svgSheetFilePath,
-                    component.svgSheetElementRef.nativeElement,
-                    component.svgSheetRootGroupRef.nativeElement
+                    component.svgSheetElementRef?.nativeElement,
+                    component.svgSheetRootGroupRef?.nativeElement
                 );
                 expectToBe(component.svgSheetSelection, mockSvgSelection);
                 expectToBe(component.svgSheetRootGroupSelection, mockRootGroupSelection);
@@ -1350,14 +1325,6 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expect((component as any)._onTkkOverlaySelect).toBeDefined();
             });
 
-            it('... should not do anything if no overlay is provided', () => {
-                const selectedOverlays: EditionSvgOverlay[] = undefined;
-
-                (component as any)._onTkkOverlaySelect(selectedOverlays);
-
-                expectSpyCall(emitSelectOverlaysRequestSpy, 0);
-            });
-
             it('... should emit given overlays', () => {
                 const selectedOverlays = expectedTkkOverlays;
 
@@ -1389,6 +1356,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             describe('... should do nothing if', () => {
+                it('... `_zoomBehaviour` is not set', () => {
+                    (component as any)._zoomBehaviour = undefined;
+
+                    (component as any)._rescaleZoom();
+
+                    expectSpyCall(scaleToSpy, 0);
+                });
+
                 it('... `svgSheetSelection` is not set', () => {
                     component.svgSheetSelection = undefined;
 
@@ -1397,8 +1372,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     expectSpyCall(scaleToSpy, 0);
                 });
 
-                it('... `sliderConfig.value` is not set', () => {
-                    component.sliderConfig.value = undefined;
+                it('... `sliderConfig.value` is zero', () => {
+                    component.sliderConfig.value = 0;
 
                     (component as any)._rescaleZoom();
 
@@ -1429,14 +1404,24 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expectSpyCall(resetZoomTranslationSpy, 2);
             });
 
-            it('... should do nothing if svgSheetSelection is not set', () => {
-                component.svgSheetSelection = undefined;
+            describe('... should do nothing if', () => {
+                it('... svgSheetRootGroupSelection is not set', () => {
+                    component.svgSheetRootGroupSelection = undefined;
 
-                const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection, 'attr');
+                    expect(() => {
+                        (component as any)._resetZoomTranslation();
+                    }).not.toThrow();
+                });
 
-                (component as any)._resetZoomTranslation();
+                it('... svgSheetSelection is not set', () => {
+                    component.svgSheetSelection = undefined;
 
-                expectSpyCall(attrSpy, 0);
+                    const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection as any, 'attr');
+
+                    (component as any)._resetZoomTranslation();
+
+                    expectSpyCall(attrSpy, 0);
+                });
             });
 
             it('... should set a transform attribute to the `svgSheetRootGroupSelection`', () => {
@@ -1537,8 +1522,8 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should update transform, slider value and slider label on zoom', () => {
                 const zoomContext = { attr: vi.fn() };
                 const svg = { call: vi.fn() };
-                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as any;
-                component.sliderInputLabel = { nativeElement: { innerText: '' } } as any;
+                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
+                component.sliderInputLabel = { nativeElement: { innerText: '' } } as ElementRef;
 
                 (component as any)._zoomHandler(zoomContext as any, svg as any);
                 const zoomed = (component as any)._zoomBehaviour.on('zoom');
@@ -1569,7 +1554,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should not update slider label if sliderInputLabel is missing', () => {
                 const svg = createD3TestSvg(mockDocument);
                 const rootGroup = createD3TestRootGroup(svg);
-                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as any;
+                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
                 component.sliderInputLabel = undefined;
 
                 (component as any)._zoomHandler(rootGroup, svg);

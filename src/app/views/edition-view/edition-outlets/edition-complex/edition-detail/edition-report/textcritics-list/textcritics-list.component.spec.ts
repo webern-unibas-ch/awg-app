@@ -1,4 +1,4 @@
-import { Component, DebugElement, DOCUMENT, inject, Input, NgModule } from '@angular/core';
+import { DebugElement, DOCUMENT, inject, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,6 +7,12 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    DisclaimerWorkeditionsStubComponent,
+    EditionTkaEvaluationsStubComponent,
+    EditionTkaLabelStubComponent,
+    EditionTkaTableStubComponent,
+} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -19,56 +25,10 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { TextcriticalCommentary, Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { TextcriticsListComponent } from './textcritics-list.component';
-
-// Mock components
-@Component({
-    selector: 'awg-disclaimer-workeditions',
-    template: '',
-    standalone: false,
-})
-class DisclaimerWorkeditionsStubComponent {}
-
-@Component({
-    selector: 'awg-edition-tka-evaluations',
-    template: '',
-    standalone: false,
-})
-class EditionTkaEvaluationsStubComponent {
-    @Input()
-    evaluations: string[];
-}
-
-@Component({
-    selector: 'awg-edition-tka-label',
-    template: '',
-    standalone: false,
-})
-class EditionTkaLabelStubComponent {
-    @Input()
-    id: string;
-    @Input()
-    labelType: 'evaluation' | 'commentary';
-}
-
-@Component({
-    selector: 'awg-edition-tka-table',
-    template: '',
-    standalone: false,
-})
-class EditionTkaTableStubComponent {
-    @Input()
-    commentary: TextcriticalCommentary;
-    @Input()
-    id?: string;
-    @Input()
-    isCorrections = false;
-    @Input()
-    isRowtable = false;
-}
 
 describe('TextcriticsListComponent (DONE)', () => {
     let component: TextcriticsListComponent;
@@ -149,8 +109,8 @@ describe('TextcriticsListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `textcriticsListData`', () => {
-            expect(component.textcriticsListData).toBeUndefined();
+        it('... should have default `textcriticsListData` input', () => {
+            expectToBe(component.textcriticsListData, null);
         });
 
         describe('VIEW', () => {
@@ -613,7 +573,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[0].id);
+                        expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `labelType` data to first EditionTkaLabelComponent (stubbed)', () => {
@@ -637,7 +597,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.labelType, 'evaluation');
+                        expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 
                     it('... should pass down `evaluations` data to EditionTkaEvaluationsComponent (stubbed)', () => {
@@ -739,7 +699,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.id, expectedTextcriticsListData.textcritics[0].id);
+                        expectToBe(labelCmp.id(), expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `labelType` data to second EditionTkaLabelComponent (stubbed)', () => {
@@ -763,7 +723,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaLabelStubComponent
                         ) as EditionTkaLabelStubComponent;
 
-                        expectToBe(labelCmp.labelType, 'commentary');
+                        expectToBe(labelCmp.labelType(), 'commentary');
                     });
 
                     it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
@@ -846,14 +806,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                 }
             });
 
-            it('... should not do anything if no id is provided', () => {
-                const expectedSheetIds: SheetClickEvent = undefined;
+            it('... should do nothing if no sheetId is provided', () => {
+                const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
                 component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
-
-                const expectedNextSheetIds: SheetClickEvent = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });

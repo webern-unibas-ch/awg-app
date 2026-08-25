@@ -126,7 +126,7 @@ describe('CompileHtmlDirective (DONE)', () => {
             it.each([
                 {
                     desc: 'an empty string if content is missing',
-                    inputValue: null,
+                    inputValue: '',
                     expectedOutput: '',
                 },
                 {

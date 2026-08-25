@@ -1,14 +1,16 @@
 <table class="awg-source-description-content-table half-para-margin" role="presentation">
-    @for (folio of content.folios; track $index; let lastFolio = $last) {
+    @for (folio of content?.folios || []; track $index; let lastFolio = $last) {
+        @let parentComplexId = content?.itemLinkTo?.complexId || '';
+
         <ng-template #folioCellTemplate let-folio>
-            <td
-                [attr.colspan]="UTILS.isEmptyArray(folio.systemGroups) ? 2 : 1"
-                class="awg-source-description-content-table-datacell">
-                @if (folio.folioLinkTo) {
-                    @let folioSheetIds = { complexId: content.itemLinkTo.complexId, sheetId: folio.folioLinkTo };
+            @let colspan = UTILS.isEmptyArray(folio.systemGroups) ? 2 : 1;
+            <td [attr.colspan]="colspan" class="awg-source-description-content-table-datacell">
+                @let folioLinkId = folio.folioLinkTo;
+                @if (folioLinkId) {
+                    @let sheetIds = { complexId: parentComplexId, sheetId: folioLinkId };
                     <a
-                        (click)="selectSvgSheet(folioSheetIds)"
-                        (keyup.enter)="selectSvgSheet(folioSheetIds)"
+                        (click)="selectSvgSheet(sheetIds)"
+                        (keyup.enter)="selectSvgSheet(sheetIds)"
                         role="link"
                         tabindex="0"
                         ><ng-template *ngTemplateOutlet="folioTemplate; context: { $implicit: folio }"
@@ -110,8 +112,7 @@
                             @if (system.measure) {
                                 <span class="awg-source-description-content-item-measure">
                                     @if (system.linkTo) {
-                                        @let systemSheetIds =
-                                            { complexId: content.itemLinkTo.complexId, sheetId: system.linkTo };
+                                        @let systemSheetIds = { complexId: parentComplexId, sheetId: system.linkTo };
                                         <a
                                             (click)="selectSvgSheet(systemSheetIds)"
                                             (keyup.enter)="selectSvgSheet(systemSheetIds)"
@@ -150,8 +151,7 @@
                                     >
 
                                     @if (system.linkTo) {
-                                        @let systemRowSheetIds =
-                                            { complexId: content.itemLinkTo.complexId, sheetId: system.linkTo };
+                                        @let systemRowSheetIds = { complexId: parentComplexId, sheetId: system.linkTo };
                                         <a
                                             (click)="selectSvgSheet(systemRowSheetIds)"
                                             (keyup.enter)="selectSvgSheet(systemRowSheetIds)"

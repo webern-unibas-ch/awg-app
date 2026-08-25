@@ -37,7 +37,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps the list of precomposed SPARQL queries.
      */
     @Input()
-    queryList: GraphSparqlQuery[];
+    queryList: GraphSparqlQuery[] = [];
 
     /**
      * Input variable: query.
@@ -45,7 +45,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps the input for the SPARQL query.
      */
     @Input()
-    query: GraphSparqlQuery;
+    query: GraphSparqlQuery = new GraphSparqlQuery();
 
     /**
      * Input variable: isFullscreen.
@@ -53,7 +53,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen: boolean;
+    isFullscreen = false;
 
     /**
      * Output variable: errorMessageRequest.
@@ -156,7 +156,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {void} Sets the selected view type.
      */
     setViewType(): void {
-        this.selectedViewType = this.query?.queryType === 'select' ? ViewHandleTypes.TABLE : ViewHandleTypes.GRAPH;
+        this.selectedViewType = this.query.queryType === 'select' ? ViewHandleTypes.TABLE : ViewHandleTypes.GRAPH;
     }
 
     /**
@@ -222,7 +222,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {boolean} The boolean value of the check result.
      */
     isExampleQueriesEnabled(): boolean {
-        return !!(this.query?.queryType && this.query?.queryLabel && this.query?.queryString && this.queryList);
+        return !!(this.query.queryType && this.query.queryLabel && this.query.queryString && this.queryList.length);
     }
 
     /**
@@ -249,15 +249,15 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {void} Performs the given query.
      */
     onQueryListChange(query: GraphSparqlQuery): void {
-        if (!(query && this.queryList)) {
-            return;
-        }
-        // Find the given query in the queryList or take its first item
-        query =
+        // Find the given query in the queryList or take its first item or the given query as fallback
+        const foundQuery =
             this.queryList.find(
                 (q: GraphSparqlQuery) => query.queryLabel === q.queryLabel && query.queryType === q.queryType
-            ) || this.queryList[0];
-        this.resetQuery(query);
+            ) ??
+            this.queryList[0] ??
+            query;
+
+        this.resetQuery(foundQuery);
     }
 
     /**
@@ -286,9 +286,6 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {void} Triggers the request.
      */
     resetQuery(query: GraphSparqlQuery): void {
-        if (!query) {
-            return;
-        }
         this.resetQueryRequest.emit(query);
     }
 

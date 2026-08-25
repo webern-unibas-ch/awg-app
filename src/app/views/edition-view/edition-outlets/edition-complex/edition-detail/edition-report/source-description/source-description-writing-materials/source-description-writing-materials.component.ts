@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data/edition-trademarks.data';
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import {
@@ -31,14 +30,7 @@ export class SourceDescriptionWritingMaterialsComponent {
      * It keeps the writingMaterials array.
      */
     @Input()
-    writingMaterials: SourceDescriptionWritingMaterial[];
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+    writingMaterials: SourceDescriptionWritingMaterial[] = [];
 
     /**
      * Public method: getTradeMark.
@@ -74,30 +66,29 @@ export class SourceDescriptionWritingMaterialsComponent {
      * @returns {string} The retrieved locus string.
      */
     getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
-        if (UTILS.isEmptyObject(locus)) {
-            return '';
+        let foliosStr = '';
+
+        if (locus.folios?.length) {
+            const folios = locus.folios
+                .filter(Boolean)
+                .map(folio =>
+                    folio.endsWith('v') || folio.endsWith('r')
+                        ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>`
+                        : folio
+                );
+
+            if (folios.length === 1) {
+                foliosStr = folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
+            } else if (folios.length > 1) {
+                foliosStr = `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.slice(-1)}`;
+            }
         }
 
-        const formatFolio = (folio: string) =>
-            folio.endsWith('v') || folio.endsWith('r') ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>` : folio;
+        const preInfo = locus.preFolioInfo || '';
+        const position = locus.position || '';
 
-        const getFoliosString = (folios: string[]) => {
-            if (folios.length === 1) {
-                return folios[0].includes('all') ? 'auf allen Blättern' : `auf Bl. ${folios[0]}`;
-            } else if (folios.length > 1) {
-                return `auf Bl. ${folios.slice(0, -1).join(', ')} und ${folios.slice(-1)}`;
-            }
-            return '';
-        };
-
-        const formattedFolios = locus.folios.map(formatFolio);
-        const foliosString = getFoliosString(formattedFolios);
-
-        const infoString = locus.preFolioInfo ? `${locus.preFolioInfo} ` : '';
-        const positionWhiteSpace = foliosString ? ' ' : '';
-        const positionString = locus.position ? `${positionWhiteSpace}${locus.position}` : '';
-
-        return `${infoString}${foliosString}${positionString}`;
+        const parts = [preInfo, foliosStr, position].filter(Boolean);
+        return parts.join(' ');
     }
 
     /**
@@ -106,20 +97,35 @@ export class SourceDescriptionWritingMaterialsComponent {
      * It retrieves the string representation of the dimensions
      * of the writing material provided in the source description.
      *
-     * @param {SourceDescriptionWritingMaterialDimensions} dimensions The given dimensions data.
+     * @param {SourceDescriptionWritingMaterialDimensions | undefined} dimensions The given dimensions data, or undefined.
      * @returns {string} The retrieved dimensions string.
      */
-    getDimensions(dimensions: SourceDescriptionWritingMaterialDimensions): string {
+    getDimensions(dimensions: SourceDescriptionWritingMaterialDimensions | undefined): string {
+        if (!dimensions) {
+            return '';
+        }
+
         const { orientation, height, width, unit } = dimensions;
 
-        const getDimension = (dimension: SourceDescriptionWritingMaterialDimension) => {
-            if (UTILS.isEmptyObject(dimension)) {
+        const getDimension = (dim: SourceDescriptionWritingMaterialDimension | undefined): string => {
+            if (!dim?.value) {
                 return '';
             }
-            return dimension.uncertainty ? `${dimension.uncertainty} ${dimension.value}` : dimension.value;
+            return dim.uncertainty ? `${dim.uncertainty} ${dim.value}` : dim.value;
         };
 
-        return `Format: ${orientation} ${getDimension(height)} × ${getDimension(width)} ${unit}`;
+        const h = getDimension(height);
+        const w = getDimension(width);
+
+        if (!h && !w) {
+            return '';
+        }
+
+        const prefix = orientation ? `Format: ${orientation}` : 'Format:';
+        const formatStr = `${h} × ${w}`;
+        const parts = [prefix, formatStr, unit].filter(Boolean);
+
+        return parts.join(' ');
     }
 
     /**
@@ -128,16 +134,18 @@ export class SourceDescriptionWritingMaterialsComponent {
      * It retrieves the systems of the writing material
      * provided in the source description.
      *
-     * @param {SourceDescriptionWritingMaterialSystems} systems The given systems data.
+     * @param {SourceDescriptionWritingMaterialSystems| undefined} systems The given systems data, or undefined.
      * @returns {string} The retrieved systems string.
      */
-    getSystems(systems: SourceDescriptionWritingMaterialSystems): string {
-        const systemsOutput = [
-            `${systems.totalSystems} ${systems.totalSystems === 1 ? 'System' : 'Systeme'}`,
-            systems.totalSystemsAddendum && ` (${systems.totalSystemsAddendum})`,
-            systems.additionalInfo && `, ${systems.additionalInfo}`,
-        ];
+    getSystems(systems: SourceDescriptionWritingMaterialSystems | undefined): string {
+        if (!systems?.totalSystems) {
+            return '';
+        }
 
-        return systemsOutput.filter(Boolean).join('');
+        const total = `${systems.totalSystems} ${systems.totalSystems === 1 ? 'System' : 'Systeme'}`;
+        const addendum = systems.totalSystemsAddendum ? ` (${systems.totalSystemsAddendum})` : '';
+        const info = systems.additionalInfo ? `, ${systems.additionalInfo}` : '';
+
+        return total + addendum + info;
     }
 }

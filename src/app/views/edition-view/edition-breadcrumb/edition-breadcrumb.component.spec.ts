@@ -165,9 +165,10 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString, expectedRootItem.route.join('/'));
                     });
                 });
 
@@ -202,9 +203,10 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString, expectedRootItem.route.join('/'));
                     });
                 });
 
@@ -264,9 +266,10 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString, expectedRootItem.route.join('/'));
                     });
                 });
 
@@ -304,10 +307,12 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
 
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString1, expectedRootItem.route.join('/'));
                         expectToEqual(
-                            routerLinks[1].urlTree.toString(),
+                            urlTreeString2,
                             [...expectedRootItem.route, expectedSeries.series.route].join('/')
                         );
                     });
@@ -349,14 +354,17 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString1, expectedRootItem.route.join('/'));
                         expectToEqual(
-                            routerLinks[1].urlTree.toString(),
+                            urlTreeString2,
                             [...expectedRootItem.route, expectedSeries.series.route].join('/')
                         );
-                        expectToEqual(routerLinks[2].urlTree.toString(), expectedSection.labeledRoute.route.join('/'));
+                        expectToEqual(urlTreeString3, expectedSection.labeledRoute.route.join('/'));
                     });
                 });
 
@@ -409,14 +417,14 @@ describe('EditionBreadcrumbComponent', () => {
                             expectedLinkLength
                         );
                         const routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                        const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
+                        const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                        const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
 
                         expectToBe(routerLinks.length, expectedLinkLength);
-                        expectToEqual(routerLinks[0].urlTree.toString(), expectedRootItem.route.join('/'));
-                        expectToEqual(
-                            routerLinks[1].urlTree.toString(),
-                            [...expectedRootItem.route, series.route].join('/')
-                        );
-                        expectToEqual(routerLinks[2].urlTree.toString(), labeledSectionRoute.route.join('/'));
+                        expectToEqual(urlTreeString1, expectedRootItem.route.join('/'));
+                        expectToEqual(urlTreeString2, [...expectedRootItem.route, series.route].join('/'));
+                        expectToEqual(urlTreeString3, labeledSectionRoute.route.join('/'));
                     });
                 });
             });
@@ -459,13 +467,13 @@ describe('EditionBreadcrumbComponent', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                const urlTree0 = routerLinks[0].urlTree;
-                const urlTree1 = routerLinks[1].urlTree;
-                const urlTree2 = routerLinks[2].urlTree;
+                const urlTreeString1 = routerLinks[0].urlTree?.toString() ?? '';
+                const urlTreeString2 = routerLinks[1].urlTree?.toString() ?? '';
+                const urlTreeString3 = routerLinks[2].urlTree?.toString() ?? '';
 
-                expectToBe(urlTree0.toString(), expectedRootItem.route.join('/'));
-                expectToBe(urlTree1.toString(), [...expectedRootItem.route, series.route].join('/'));
-                expectToBe(urlTree2.toString(), labeledSectionRoute.route.join('/'));
+                expectToBe(urlTreeString1, expectedRootItem.route.join('/'));
+                expectToBe(urlTreeString2, [...expectedRootItem.route, series.route].join('/'));
+                expectToBe(urlTreeString3, labeledSectionRoute.route.join('/'));
             });
 
             const clickTestCases = [

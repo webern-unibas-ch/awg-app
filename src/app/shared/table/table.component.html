@@ -4,7 +4,7 @@
             <div class="col-sm-4">
                 <p>
                     {{ tableTitle }}<br />
-                    ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)
+                    ({{ tableData.filteredRows.length }} von {{ totalRows?.length }} Ergebnissen)
                 </p>
             </div>
             <div class="col-sm-6">
@@ -26,7 +26,7 @@
     <div class="awg-pagination d-flex justify-content-between p-2">
         <!-- top pagination -->
         <awg-table-pagination
-            [collectionSize]="tableData.filteredRows?.length"
+            [collectionSize]="tableData.filteredRows.length"
             [(page)]="paginatorOptions.page"
             (pageChangeRequest)="onPageSizeChange(searchFilter)" />
         <div ngbDropdown class="d-inline-block">
@@ -47,11 +47,11 @@
     </div>
 }
 
-@if (tableData?.paginatedRows$ | async; as paginatedRows) {
+@if (tableData.paginatedRows$ | async; as paginatedRows) {
     <table aria-label="Table for SPARQL query results" class="table table-striped">
         <thead>
             <tr>
-                @for (headerLabel of tableData?.header; track headerLabel) {
+                @for (headerLabel of tableData.header; track headerLabel) {
                     <th scope="col" (click)="onSort(headerLabel)" (keydown)="onSort(headerLabel)" tabindex="0">
                         {{ headerLabel }}&nbsp;
                         @if (headerLabel === tableOptions.selectedKey) {
@@ -106,7 +106,7 @@
     <div class="awg-pagination d-flex justify-content-between p-2">
         <!-- bottom pagination -->
         <awg-table-pagination
-            [collectionSize]="tableData.filteredRows?.length"
+            [collectionSize]="tableData.filteredRows.length"
             [(page)]="paginatorOptions.page"
             (pageChangeRequest)="onPageSizeChange(searchFilter)" />
         <div ngbDropdown class="d-inline-block">

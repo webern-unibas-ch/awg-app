@@ -59,7 +59,7 @@ describe('PrefixPipe', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
 
-            expect(() => pipe.transform(shortForm, undefined)).toThrow(
+            expect(() => pipe.transform(shortForm, undefined as any)).toThrow(
                 `The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: undefined.`
             );
         });

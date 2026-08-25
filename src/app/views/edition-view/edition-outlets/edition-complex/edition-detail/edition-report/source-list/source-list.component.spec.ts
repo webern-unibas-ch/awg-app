@@ -92,15 +92,13 @@ describe('SourceListComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have sourceListData', () => {
-            expect(component.sourceListData).toBeUndefined();
+        it('... should have default `sourceListData` input', () => {
+            expectToBe(component.sourceListData, null);
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.card with with div.card-body, but no tables yet', () => {
-                const divCardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
-
-                getAndExpectDebugElementByCss(divCardBodyDes[0], 'table', 0, 0);
+            it('... should contain no div.card-body yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 0, 0);
             });
         });
     });
@@ -275,7 +273,7 @@ describe('SourceListComponent (DONE)', () => {
                             const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
 
                             const expectedSiglum = expectedSourceListData.sources[index].siglum;
-                            const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+                            const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum ?? '';
 
                             expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
@@ -382,7 +380,7 @@ describe('SourceListComponent (DONE)', () => {
                             const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
 
                             const expectedSiglum = expectedSourceListData.sources[index].siglum;
-                            const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+                            const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum ?? '';
 
                             expectToBe(aEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
@@ -616,14 +614,16 @@ describe('SourceListComponent (DONE)', () => {
                 });
 
                 it('... should contain as many additional rows (tr) in second table body as text sources in sourceListData', () => {
-                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const textSources = expectedSourceListData.textSources ?? [];
+                    const expectedSourcesLength = textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                     getAndExpectDebugElementByCss(tableBodyDes[1], 'tr', expectedSourcesLength, expectedSourcesLength);
                 });
 
                 it('... should contain two columns (one th, one td) in each additional row (tr)', () => {
-                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const textSources = expectedSourceListData.textSources ?? [];
+                    const expectedSourcesLength = textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                     const rowDes = getAndExpectDebugElementByCss(
@@ -644,7 +644,8 @@ describe('SourceListComponent (DONE)', () => {
 
                 describe('... text siglum in header column (th)', () => {
                     it('... should have text siglum id', () => {
-                        const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                        const textSources = expectedSourceListData.textSources ?? [];
+                        const expectedSourcesLength = textSources.length + 1;
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                         const rowDes = getAndExpectDebugElementByCss(
@@ -661,14 +662,15 @@ describe('SourceListComponent (DONE)', () => {
                             const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
                             const columnEl: HTMLTableCellElement = columnDes[0].nativeElement;
 
-                            const expectedId = expectedSourceListData.textSources[index - 1].id;
+                            const expectedId = textSources[index - 1].id;
 
                             expectToBe(columnEl.id, expectedId);
                         });
                     });
 
                     it('... should contain text siglum container span', () => {
-                        const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                        const textSources = expectedSourceListData.textSources ?? [];
+                        const expectedSourcesLength = textSources.length + 1;
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                         const rowDes = getAndExpectDebugElementByCss(
@@ -694,21 +696,24 @@ describe('SourceListComponent (DONE)', () => {
                             const containerSpanEl: HTMLSpanElement = containerSpanDes[0].nativeElement;
 
                             const expectedSiglum =
-                                expectedSourceListData.textSources[index - 1].siglum +
-                                expectedSourceListData.textSources[index - 1].siglumAddendum;
+                                textSources[index - 1].siglum + textSources[index - 1].siglumAddendum;
 
                             expectToBe(containerSpanEl.textContent.trim(), expectedSiglum.trim());
                         });
                     });
 
                     it('... should display text siglum and siglum addendum if present', async () => {
+                        if (!expectedSourceListData.textSources || expectedSourceListData.textSources.length < 2) {
+                            throw new Error('Expected textSources to have at least 2.');
+                        }
                         expectedSourceListData.textSources[0].siglumAddendum = 'a';
                         expectedSourceListData.textSources[1].siglumAddendum = 'H';
 
                         component.sourceListData = structuredClone(expectedSourceListData);
                         await detectChangesOnPush(fixture);
 
-                        const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                        const textSources = expectedSourceListData.textSources ?? [];
+                        const expectedSourcesLength = textSources.length + 1;
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
                         const rowDes = getAndExpectDebugElementByCss(
@@ -740,8 +745,8 @@ describe('SourceListComponent (DONE)', () => {
                             const siglumAddendumSpanDes = spanDes[1];
                             const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
 
-                            const expectedSiglum = expectedSourceListData.textSources[index - 1].siglum;
-                            const expectedAddendum = expectedSourceListData.textSources[index - 1].siglumAddendum;
+                            const expectedSiglum = textSources[index - 1].siglum;
+                            const expectedAddendum = textSources[index - 1].siglumAddendum ?? '';
 
                             expectToBe(
                                 containerSpanEl.textContent.trim(),
@@ -762,7 +767,7 @@ describe('SourceListComponent (DONE)', () => {
                     let textSourcesData: TextSource[];
 
                     beforeEach(() => {
-                        textSourcesData = expectedSourceListData.textSources;
+                        textSourcesData = expectedSourceListData.textSources ?? [];
                         const expectedSourcesLength = textSourcesData.length;
 
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);

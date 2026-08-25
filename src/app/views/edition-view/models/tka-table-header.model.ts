@@ -1,10 +1,10 @@
 /**
- * The TkaTableHeaderColumn class.
+ * The TkaTableHeaderColumn interface.
  *
  * It is used in the context of the edition view
  * to store the data for a tka table header column.
  */
-export class TkaTableHeaderColumn {
+export interface TkaTableHeaderColumn {
     /**
      * The reference of the header column.
      */

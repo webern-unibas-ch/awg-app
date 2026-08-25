@@ -32,9 +32,9 @@ import { ConstructResultsComponent } from './construct-results.component';
 })
 class ForceGraphStubComponent {
     @Input()
-    currentQueryResultTriples: Triple[];
+    currentQueryResultTriples: Triple[] = [];
     @Input()
-    height: number;
+    height = 0;
     @Output()
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
@@ -112,34 +112,29 @@ describe('ConstructResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined();
+        it('... should have default `queryResult` input', () => {
+            expectToEqual(component.queryResult$, EMPTY);
         });
 
-        it('... should not have defaultForceGraphHeight', () => {
-            expect(component.defaultForceGraphHeight).toBeUndefined();
+        it('... should have default `defaultForceGraphHeight` input', () => {
+            expectToBe(component.defaultForceGraphHeight, 0);
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
-                // Div.accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
-                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
 
-                // Body (div.accordion-collapse)
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
                 const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
@@ -174,17 +169,13 @@ describe('ConstructResultsComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('not in fullscreen mode', () => {
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-
-                    // Div.accordion-item
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-construct-results.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
@@ -205,7 +196,6 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
@@ -213,24 +203,19 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // Item header button
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should toggle item body on click', async () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
                         1,
                         1
                     );
-
-                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
 
                     // Item body is open
@@ -245,7 +230,6 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     expectToContain(itemBodyEl.classList, 'show');
 
-                    // Click header button
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body is collapsed
@@ -260,7 +244,6 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     expectToContain(itemBodyEl.classList, 'collapse');
 
-                    // Click header button
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body is open again
@@ -278,11 +261,9 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
                     it('... queryResult$ is EMPTY', async () => {
-                        // Mock empty observable
                         component.queryResult$ = EMPTY;
                         await detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
@@ -291,225 +272,17 @@ describe('ConstructResultsComponent (DONE)', () => {
                         );
 
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult$ is undefined', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf(undefined);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult$ is null', async () => {
-                        // Mock null response
-                        component.queryResult$ = observableOf(null);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
-                        // Mock null response
-                        component.queryResult$ = observableOf(null);
-                        await detectChangesOnPush(fixture);
-
-                        const spinnerDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TwelveToneSpinnerStubComponent,
-                            1,
-                            1
-                        );
-                        const spinnerCmp = spinnerDes[0].injector.get(
-                            TwelveToneSpinnerStubComponent
-                        ) as TwelveToneSpinnerStubComponent;
-
-                        expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... queryResult is empty array', async () => {
-                        // Mock empty array
-                        component.queryResult$ = observableOf([]);
+                    it('... isValidConstructQueryResult returns false', async () => {
+                        isValidConstructQueryResultSpy.mockReturnValue(false);
+
+                        component.queryResult$ = observableOf([] as Triple[]);
                         await detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            { subject: undefined, predicate: undefined, object: undefined },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([{ subject: '', predicate: '', object: '' }]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.subject is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: undefined,
-                                predicate: 'example:has',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: '',
-                                predicate: 'example:has',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.predicate is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: undefined,
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: '',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.object is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: 'example:has',
-                                object: undefined,
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: 'example:has',
-                                object: '',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
                             1,
@@ -521,7 +294,6 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain item body with ForceGraphComponent (stubbed) if results are available', () => {
-                    // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
@@ -529,7 +301,6 @@ describe('ConstructResultsComponent (DONE)', () => {
                         1
                     );
 
-                    // ForceGraph
                     getAndExpectDebugElementByDirective(bodyDes[0], ForceGraphStubComponent, 1, 1);
                 });
 
@@ -546,23 +317,18 @@ describe('ConstructResultsComponent (DONE)', () => {
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    // Set fullscreen mode
                     component.isFullscreen = true;
                     await detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-
-                    // Item (div.accordion-item)
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-construct-results.accordion-item',
                         1,
                         1
                     );
-                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
@@ -583,7 +349,6 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 it('... should display item header button', () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
@@ -595,12 +360,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
                 it('... should not toggle item body on click', async () => {
-                    // Header debug elements
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-construct-results > div.accordion-header',
@@ -625,7 +388,6 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                     expectToContain(itemBodyEl.classList, 'show');
 
-                    // Click header button
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
                     // Item body does not close again
@@ -657,224 +419,16 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
                     });
-
-                    it('... queryResult$ is undefined', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf(undefined);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult$ is null', async () => {
-                        // Mock null response
-                        component.queryResult$ = observableOf(null);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
-                        // Mock null response
-                        component.queryResult$ = observableOf(null);
-                        await detectChangesOnPush(fixture);
-
-                        const spinnerDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            TwelveToneSpinnerStubComponent,
-                            1,
-                            1
-                        );
-                        const spinnerCmp = spinnerDes[0].injector.get(
-                            TwelveToneSpinnerStubComponent
-                        ) as TwelveToneSpinnerStubComponent;
-
-                        expectToBe(spinnerCmp.spinnerText(), 'loading');
-                    });
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... queryResult is empty array', async () => {
-                        // Mock empty array
-                        component.queryResult$ = observableOf([]);
+                    it('... isValidConstructQueryResult returns false', async () => {
+                        isValidConstructQueryResultSpy.mockReturnValue(false);
+
+                        component.queryResult$ = observableOf([] as Triple[]);
                         await detectChangesOnPush(fixture);
 
-                        // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            { subject: undefined, predicate: undefined, object: undefined },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([{ subject: '', predicate: '', object: '' }]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.subject is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: undefined,
-                                predicate: 'example:has',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: '',
-                                predicate: 'example:has',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.predicate is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: undefined,
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: '',
-                                object: 'example:Success',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult.object is undefined or empty string', async () => {
-                        // Mock undefined response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: 'example:has',
-                                object: undefined,
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-
-                        // Mock empty response
-                        component.queryResult$ = observableOf([
-                            {
-                                subject: 'example:Test',
-                                predicate: 'example:has',
-                                object: '',
-                            },
-                        ]);
-                        await detectChangesOnPush(fixture);
-
-                        // Item body
-                        getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
                             1,
@@ -924,7 +478,6 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
                 component.isFullscreen = true;
 
                 expectToBe(component.isAccordionItemDisabled(), true);
@@ -943,7 +496,6 @@ describe('ConstructResultsComponent (DONE)', () => {
             it('... should be triggered by change of queryResult', async () => {
                 expectSpyCall(isValidConstructQueryResultSpy, 3, [expectedQueryResult]);
 
-                // Mock another queryResult
                 const anotherQueryResult = [
                     {
                         subject: 'example:AnotherTest',
@@ -961,35 +513,19 @@ describe('ConstructResultsComponent (DONE)', () => {
                 it.each([
                     {
                         desc: 'queryResult is empty array',
-                        query: [],
-                    },
-                    {
-                        desc: 'subject is undefined',
-                        query: [{ subject: undefined, predicate: 'example:has', object: 'example:Success' }],
+                        query: [] as Triple[],
                     },
                     {
                         desc: 'subject is an empty string',
                         query: [{ subject: '', predicate: 'example:has', object: 'example:Success' }],
                     },
                     {
-                        desc: 'predicate is undefined',
-                        query: [{ subject: 'example:Test', predicate: undefined, object: 'example:Success' }],
-                    },
-                    {
                         desc: 'predicate is an empty string',
                         query: [{ subject: 'example:Test', predicate: '', object: 'example:Success' }],
                     },
                     {
-                        desc: 'object is undefined',
-                        query: [{ subject: 'example:Test', predicate: 'example:has', object: undefined }],
-                    },
-                    {
                         desc: 'object is an empty string',
                         query: [{ subject: 'example:Test', predicate: 'example:has', object: '' }],
-                    },
-                    {
-                        desc: 'all fields are undefined',
-                        query: [{ subject: undefined, predicate: undefined, object: undefined }],
                     },
                     {
                         desc: 'all fields are empty strings',

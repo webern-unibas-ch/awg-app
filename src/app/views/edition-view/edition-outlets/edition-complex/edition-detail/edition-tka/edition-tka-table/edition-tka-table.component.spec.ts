@@ -32,7 +32,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
-    let mockEditionSnippetService: Partial<EditionSnippetService>;
+    let mockEditionSnippetService: EditionSnippetService;
     let glyphService: EditionGlyphService;
 
     let getCommentSpy: Spy;
@@ -52,7 +52,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     beforeEach(async () => {
         mockEditionSnippetService = {
             getComment: (comment: string): string => comment,
-        };
+        } as EditionSnippetService;
 
         await TestBed.configureTestingModule({
             declarations: [EditionTkaTableComponent, AbbrDirective],

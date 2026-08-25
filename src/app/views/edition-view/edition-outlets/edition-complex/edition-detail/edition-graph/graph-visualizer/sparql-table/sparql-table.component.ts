@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
 
 import { QuerySelectResult } from '../models';
 
@@ -17,20 +17,11 @@ import { QuerySelectResult } from '../models';
 })
 export class SparqlTableComponent {
     /**
-     * Input variable: queryResult.
+     * Readonly input signal: queryResult.
      *
-     * It keeps the result of the query.
+     * It holds the result of the query.
      */
-    @Input()
-    queryResult: QuerySelectResult;
-
-    /**
-     * Input variable: queryTime.
-     *
-     * It keeps the duration time of the query.
-     */
-    @Input()
-    queryTime: number;
+    readonly queryResult = input.required<QuerySelectResult>();
 
     /**
      * Output variable: clickedTableRequest.

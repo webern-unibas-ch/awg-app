@@ -27,7 +27,7 @@ export class TableComponent implements OnInit {
      * It keeps the title for the table.
      */
     @Input()
-    tableTitle: string;
+    tableTitle = '';
 
     /**
      * Input variable: headerInputData.
@@ -35,7 +35,7 @@ export class TableComponent implements OnInit {
      * It keeps the input data for the table header.
      */
     @Input()
-    headerInputData: any;
+    headerInputData: string[] = [];
 
     /**
      * Input variable: rowInputData.
@@ -43,7 +43,7 @@ export class TableComponent implements OnInit {
      * It keeps the input data for the table rows.
      */
     @Input()
-    rowInputData: any;
+    rowInputData: any[] = [];
 
     /**
      * Output variable: clickedTableValueRequest.
@@ -80,21 +80,21 @@ export class TableComponent implements OnInit {
      *
      * It keeps the options of the Paginator.
      */
-    paginatorOptions: TablePaginatorOptions;
+    paginatorOptions: TablePaginatorOptions = new TablePaginatorOptions(0, 0, [0], 0);
 
     /**
      * Public variable: searchFilter.
      *
      * It keeps the string value of the search filter.
      */
-    searchFilter: string;
+    searchFilter = '';
 
     /**
      * Public variable: tableData.
      *
      * It keeps the data arrays of the table.
      */
-    tableData: TableData;
+    tableData: TableData = new TableData([], []);
 
     /**
      * Public variable: tableOptions.
@@ -127,17 +127,17 @@ export class TableComponent implements OnInit {
      * @returns {void} Inits the table data.
      */
     initTable(): void {
-        if (!this.headerInputData || !this.rowInputData) {
-            this.tableData = new TableData([], []);
-        } else {
+        if (this.headerInputData?.length && this.rowInputData?.length) {
             this.tableData = new TableData(this.headerInputData, this.rowInputData);
+        } else {
+            this.tableData = new TableData([], []);
         }
 
         this.paginatorOptions = new TablePaginatorOptions(
             1,
             10,
             [5, 10, 25, 50, 100, 200],
-            this.rowInputData?.length || 0
+            this.rowInputData.length || 0
         );
         this.searchFilter = '';
 
@@ -158,7 +158,7 @@ export class TableComponent implements OnInit {
      * @returns {void} Emits the new start position.
      */
     onPageSizeChange(searchFilter: string, selectedPageSizeOption?: number): void {
-        if (!this.tableData || !this.headerInputData || !this.rowInputData) {
+        if (!this.headerInputData.length || !this.rowInputData?.length) {
             return;
         }
         if (selectedPageSizeOption) {

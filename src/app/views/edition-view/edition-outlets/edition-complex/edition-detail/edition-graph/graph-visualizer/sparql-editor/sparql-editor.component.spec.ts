@@ -6,7 +6,6 @@ type Spy = ReturnType<typeof vi.spyOn>;
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditorView } from 'codemirror';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -23,7 +22,8 @@ import {
 import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { GraphSparqlQuery } from '@awg-views/edition-view/models';
+
+import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
 
@@ -33,14 +33,10 @@ import { SparqlEditorComponent } from './sparql-editor.component';
     standalone: false,
 })
 class CodeMirrorStubComponent {
-    @Input()
-    mode: CmMode;
-    @Input()
-    content: string;
+    @Input({ required: true }) mode!: CmMode;
+    @Input() content = '';
     @Output()
     contentChange: EventEmitter<string> = new EventEmitter<string>();
-    @Output()
-    editor: EditorView;
 }
 
 @Component({
@@ -50,9 +46,9 @@ class CodeMirrorStubComponent {
 })
 class ViewHandleButtongGroupStubComponent {
     @Input()
-    viewHandles: ViewHandle[];
-    @Input()
-    selectedViewType: ViewHandleTypes;
+    viewHandles: ViewHandle[] = [];
+    @Input({ required: true })
+    selectedViewType!: ViewHandleTypes;
     @Output()
     viewChangeRequest: EventEmitter<ViewHandleTypes> = new EventEmitter();
 }
@@ -171,16 +167,16 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryList', () => {
-            expect(component.queryList).toBeUndefined();
+        it('... should have default `queryList` input', () => {
+            expectToEqual(component.queryList, []);
         });
 
-        it('... should not have query', () => {
-            expect(component.query).toBeUndefined();
+        it('... should have default `query` input', () => {
+            expectToEqual(component.query, new GraphSparqlQuery());
         });
 
-        it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined();
+        it('... should have default `isFullscreen` input', () => {
+            expectToBe(component.isFullscreen, false);
         });
 
         it('... should have cmSparqlMode', () => {
@@ -1108,63 +1104,45 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.isExampleQueriesEnabled).toBeDefined();
             });
 
-            it('... should return true if queryList = true and query is a valid query (has queryType, queryLabel, queryString)', () => {
+            it('... should return true if queryList is given and query is a valid query (has queryType, queryLabel, queryString)', () => {
                 expectToBe(component.isExampleQueriesEnabled(), true);
             });
 
-            it('... should return false if query is falsy', async () => {
-                component.query = undefined;
+            describe('... should return false if', () => {
+                it.each([
+                    {
+                        desc: 'query.queryType is null',
+                        query: { ...expectedConstructQuery1, queryType: null },
+                        list: [expectedConstructQuery1],
+                    },
+                    {
+                        desc: 'query.queryLabel is an empty string',
+                        query: { ...expectedConstructQuery1, queryLabel: '' },
+                        list: [expectedConstructQuery1],
+                    },
+                    {
+                        desc: 'query.queryString is an empty string',
+                        query: { ...expectedConstructQuery1, queryString: '' },
+                        list: [expectedConstructQuery1],
+                    },
+                    {
+                        desc: 'queryList is empty',
+                        query: { ...expectedConstructQuery1 },
+                        list: [],
+                    },
+                    {
+                        desc: 'query fields are blank and queryList is empty',
+                        query: { queryType: null, queryLabel: '', queryString: '' } as GraphSparqlQuery,
+                        list: [],
+                    },
+                ])('... $desc', async ({ query, list }) => {
+                    component.query = query;
+                    component.queryList = list;
 
-                // Change detection
-                await detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
-                expectToBe(component.isExampleQueriesEnabled(), false);
-            });
-
-            it('... should return false if query.queryType is falsy', async () => {
-                component.query.queryType = undefined;
-
-                // Change detection
-                await detectChangesOnPush(fixture);
-
-                expectToBe(component.isExampleQueriesEnabled(), false);
-            });
-
-            it('... should return false if query.queryLabel is falsy', async () => {
-                component.query.queryLabel = undefined;
-
-                // Change detection
-                await detectChangesOnPush(fixture);
-
-                expectToBe(component.isExampleQueriesEnabled(), false);
-            });
-
-            it('... should return false if query.queryString is falsy', async () => {
-                component.query.queryString = undefined;
-
-                // Change detection
-                await detectChangesOnPush(fixture);
-
-                expectToBe(component.isExampleQueriesEnabled(), false);
-            });
-
-            it('... should return false if queryList is falsy', async () => {
-                component.queryList = undefined;
-
-                // Change detection
-                await detectChangesOnPush(fixture);
-
-                expectToBe(component.isExampleQueriesEnabled(), false);
-            });
-
-            it('... should return false if query (incl. type, label & string) and queryList not exist', async () => {
-                component.query = undefined;
-                component.queryList = undefined;
-
-                // Change detection
-                await detectChangesOnPush(fixture);
-
-                expectToBe(component.isExampleQueriesEnabled(), false);
+                    expectToBe(component.isExampleQueriesEnabled(), false);
+                });
             });
         });
 
@@ -1307,48 +1285,59 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(resetQuerySpy, 1, expectedConstructQuery2);
             });
 
-            it('... should not trigger resetQuery if no query is provided', async () => {
-                component.onQueryListChange(undefined);
-                await detectChangesOnPush(fixture);
+            describe('... should handle query changes correctly', () => {
+                it.each([
+                    {
+                        desc: 'find and select the first construct query',
+                        setup: () => {},
+                        getInputQuery: () => expectedConstructQuery1,
+                        expectedReset: expectedConstructQuery1,
+                    },
+                    {
+                        desc: 'find and select the second construct query',
+                        setup: () => {},
+                        getInputQuery: () => expectedConstructQuery2,
+                        expectedReset: expectedConstructQuery2,
+                    },
+                    {
+                        desc: 'fall back to the first query in queryList if query is unknown',
+                        setup: () => {},
+                        getInputQuery: () =>
+                            ({
+                                queryLabel: 'Other Test Query',
+                                queryType: 'select',
+                                queryString: 'SELECT * WHERE { ?other rdfs:label ?query }',
+                            }) as GraphSparqlQuery,
+                        expectedReset: expectedConstructQuery1,
+                    },
+                    {
+                        desc: 'fall back to the given query itself if queryList is empty',
+                        setup: () => {
+                            component.queryList = [];
+                        },
+                        getInputQuery: () =>
+                            ({
+                                queryLabel: 'Fallback Test',
+                                queryType: 'select',
+                                queryString: 'SELECT * WHERE { ?s ?p ?o }',
+                            }) as GraphSparqlQuery,
+                        expectedReset: {
+                            queryLabel: 'Fallback Test',
+                            queryType: 'select',
+                            queryString: 'SELECT * WHERE { ?s ?p ?o }',
+                        } as GraphSparqlQuery,
+                    },
+                ])('... should $desc', async ({ setup, getInputQuery, expectedReset }) => {
+                    setup();
 
-                expectSpyCall(onQueryListChangeSpy, 1, undefined);
-                expectSpyCall(resetQuerySpy, 0, 0);
-            });
+                    const query = getInputQuery();
+                    component.onQueryListChange(query);
 
-            it('... should not trigger resetQuery if no queryList is provided', async () => {
-                component.queryList = undefined;
-                component.onQueryListChange(expectedConstructQuery2);
-                await detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
-                expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
-                expectSpyCall(resetQuerySpy, 0, 0);
-            });
-
-            it('... should find query in queryList and trigger resetQuery with correct query', async () => {
-                // First query
-                component.onQueryListChange(expectedConstructQuery1);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery1);
-                expectSpyCall(resetQuerySpy, 1, expectedConstructQuery1);
-
-                // Second query
-                component.onQueryListChange(expectedConstructQuery2);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery2);
-                expectSpyCall(resetQuerySpy, 2, expectedConstructQuery2);
-
-                // Unknown query
-                const otherQuery = new GraphSparqlQuery();
-                otherQuery.queryLabel = 'Other Test Query';
-                otherQuery.queryString = 'SELECT * WHERE { ?other rdfs:label ?query }';
-
-                component.onQueryListChange(otherQuery);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(onQueryListChangeSpy, 3, otherQuery);
-                expectSpyCall(resetQuerySpy, 3, expectedConstructQuery1);
+                    expectSpyCall(onQueryListChangeSpy, 1, query);
+                    expectSpyCall(resetQuerySpy, 1, expectedReset);
+                });
             });
         });
 
@@ -1507,15 +1496,6 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(resetQuerySpy, 1);
             });
 
-            it('... should not emit anything if no query is provided', async () => {
-                // Query is undefined
-                component.resetQuery(undefined);
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(resetQuerySpy, 1, undefined);
-                expectSpyCall(emitResestQueryRequestSpy, 0);
-            });
-
             it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -1566,18 +1546,6 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(setViewTypeSpy, 1);
             });
 
-            it('... should return ViewHandleTypes.GRAPH if querytype is `construct`', () => {
-                component.query = expectedConstructQuery1;
-                component.setViewType();
-
-                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
-
-                component.query = expectedConstructQuery2;
-                component.setViewType();
-
-                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
-            });
-
             it('... should return ViewHandleTypes.TABLE if querytype is `select`', () => {
                 component.query = expectedSelectQuery1;
                 component.setViewType();
@@ -1590,18 +1558,40 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
             });
 
-            it('... should fall back to ViewHandleTypes.GRAPH if queryType is unknown', () => {
-                component.query = { ...expectedConstructQuery1, queryType: 'ask' } as any;
-                component.setViewType();
+            describe('... should return ViewHandleTypes.GRAPH for any queryType other than `select`', () => {
+                it.each([
+                    { desc: 'construct ', getQuery: () => expectedConstructQuery1 },
+                    {
+                        desc: 'ask',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'ask' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'count',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'count' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'describe',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'describe' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'update',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'udpate' as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'null',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: null as GraphSparqlQueryType }),
+                    },
+                    {
+                        desc: 'unknown',
+                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'completely_unknown' }) as any,
+                    },
+                ])('... with queryType = $desc`', ({ getQuery }) => {
+                    component.query = getQuery();
 
-                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
-            });
+                    component.setViewType();
 
-            it('... should fall back to ViewHandleTypes.GRAPH if query is undefined', () => {
-                component.query = undefined;
-                component.setViewType();
-
-                expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
+                    expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
+                });
             });
         });
 
@@ -1668,7 +1658,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query.queryType = expectedConstructQuery1.queryType;
                 component.query.queryString = expectedConstructQuery1.queryString;
 
-                expect(() => component.switchQueryType(undefined)).toThrow(
+                expect(() => component.switchQueryType(undefined as any)).toThrow(
                     `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: undefined.`
                 );
             });

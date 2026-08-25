@@ -61,7 +61,7 @@ export class D3ForceSimulation {
      *
      * It keeps the d3 simulation.
      */
-    forceSimulation: D3Simulation;
+    forceSimulation!: D3Simulation;
 
     /**
      * Public variable: nodes.
@@ -82,28 +82,28 @@ export class D3ForceSimulation {
      *
      * It keeps the charging force.
      */
-    private _chargeForce: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
+    private _chargeForce!: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
 
     /**
      * Private variable: _centerForce.
      *
      * It keeps the centering force.
      */
-    private _centerForce: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
+    private _centerForce!: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
 
     /**
      * Private variable: _collideForce.
      *
      * It keeps the colliding force.
      */
-    private _collideForce: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
+    private _collideForce!: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
 
     /**
      * Private variable: _linkForce.
      *
      * It keeps the linking force.
      */
-    private _linkForce: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
+    private _linkForce!: D3_FORCE.Force<D3SimulationNode, D3SimulationLink>;
 
     /**
      * Constructor of the D3ForceSimulation class.

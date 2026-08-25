@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -15,7 +15,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models';
 
 import { EditionSectionDetailIntroCardComponent } from './edition-section-detail-intro-card.component';
 
@@ -27,7 +27,6 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks: RouterLinkStubDirective[];
 
-    let expectedSeries: EditionOutlineSeries;
     let expectedSection: EditionOutlineSection;
 
     beforeEach(async () => {
@@ -38,7 +37,6 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
 
         // Create component fixture
@@ -52,12 +50,10 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `selectedSeries`', () => {
-            expect(component.selectedSeries).toBeUndefined();
-        });
+        it('... should throw due to missing required input signal `selectedSection`', () => {
+            expectToBe(isSignal(component.selectedSection), true);
 
-        it('... should not have `selectedSection`', () => {
-            expect(component.selectedSection).toBeUndefined();
+            expect(() => component.selectedSection()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -69,19 +65,14 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.selectedSeries = structuredClone(expectedSeries);
-            component.selectedSection = structuredClone(expectedSection);
+            fixture.componentRef.setInput('selectedSection', structuredClone(expectedSection));
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `selectedSeries`', () => {
-            expectToEqual(component.selectedSeries, expectedSeries);
-        });
-
-        it('... should have `selectedSection`', () => {
-            expectToEqual(component.selectedSection, expectedSection);
+        it('... should have signal `selectedSection` to hold the expected section', () => {
+            expectToEqual(component.selectedSection(), expectedSection);
         });
 
         describe('VIEW', () => {
@@ -160,14 +151,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const routerLink of routerLinks) {
-                    const expectedRouterLink = [
-                        '/edition',
-                        'series',
-                        expectedSeries.series.route,
-                        'section',
-                        expectedSection.section.route,
-                        'intro',
-                    ];
+                    const expectedRouterLink = [expectedSection.labeledRoute.route.join('/'), 'intro'];
                     expectToEqual(routerLink.linkParams, expectedRouterLink);
                 }
             });
@@ -175,14 +159,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
             it('... can click all links in template', async () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = [
-                        '/edition',
-                        'series',
-                        expectedSeries.series.route,
-                        'section',
-                        expectedSection.section.route,
-                        'intro',
-                    ];
+                    const expectedRouterLink = [expectedSection.labeledRoute.route.join('/'), 'intro'];
 
                     expectToBe(routerLink.navigatedTo, null);
 

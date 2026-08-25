@@ -1,11 +1,13 @@
+import { EditionTypeKey } from './edition-type.model';
+
 /**
- * The EditionSvgSheetContent class.
+ * The EditionSvgSheetContent interface.
  *
  * It is used in the context of the edition view
  * to store the data for the content of a single svg sheet
  * in a svg sheet json file.
  */
-export class EditionSvgSheetContent {
+export interface EditionSvgSheetContent {
     /**
      * The path to the svg file of the sheet.
      */
@@ -24,7 +26,7 @@ export class EditionSvgSheetContent {
     /**
      * The associated convolute of the sheet.
      */
-    convolute?: string;
+    convolute: string;
 }
 
 /**
@@ -38,34 +40,18 @@ export class EditionSvgSheet {
     /**
      * The sheet's id (string).
      */
-    id: string;
+    id = '';
 
     /**
      * The label for the sheet.
      */
-    label: string;
+    label = '';
 
     /**
      * The content of the sheet.
      */
-    content: EditionSvgSheetContent[];
+    content: EditionSvgSheetContent[] = [];
 }
-
-/**
- * The EDITION_SVG_SHEETS_KEYS const.
- *
- * It is used in the context of the edition view
- * to define the keys of a svg sheets list.
- */
-export const EDITION_SVG_SHEETS_KEYS = ['workEditions', 'textEditions', 'sketchEditions'] as const;
-
-/**
- * The EditionSvgSheetsKey type.
- *
- * It is used in the context of the edition view
- * to define the type of a svg sheet list.
- */
-export type EditionSvgSheetsKey = (typeof EDITION_SVG_SHEETS_KEYS)[number];
 
 /**
  * The EditionSvgSheetsList class.
@@ -78,7 +64,9 @@ export class EditionSvgSheetsList {
     /**
      * The array of sheets from a svg sheet list.
      */
-    sheets: {
-        [key in EditionSvgSheetsKey]: EditionSvgSheet[];
+    sheets: { [key in EditionTypeKey]: EditionSvgSheet[] } = {
+        workEditions: [],
+        textEditions: [],
+        sketchEditions: [],
     };
 }

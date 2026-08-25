@@ -32,7 +32,7 @@ export class EditionTkaTableComponent {
      * It keeps the commentary data.
      */
     @Input()
-    commentary: TextcriticalCommentary;
+    commentary: TextcriticalCommentary | undefined;
 
     /**
      * Input variable: id.

@@ -22,7 +22,7 @@ export class EditionIntroContentComponent {
      * It keeps the content blocks of the intro.
      */
     @Input()
-    introBlockContent: IntroBlock[];
+    introBlockContent: IntroBlock[] = [];
 
     /**
      * Input variable: notesLabel.
@@ -30,5 +30,5 @@ export class EditionIntroContentComponent {
      * It keeps the notes label of the intro.
      */
     @Input()
-    notesLabel: string;
+    notesLabel = '';
 }

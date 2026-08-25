@@ -11,7 +11,7 @@
                     }
 
                     <span class="smallcaps"
-                        ><awg-edition-tka-label [id]="selectedTextcritics?.id" [labelType]="'evaluation'" />:</span
+                        ><awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'evaluation'" />:</span
                     >
 
                     @if (UTILS.isEmptyArray(selectedTextcritics.evaluations)) {
@@ -27,12 +27,12 @@
             <div class="card awg-edition-svg-sheet-footer-textcritics">
                 <div class="card-body">
                     <p class="smallcaps">
-                        <awg-edition-tka-label [id]="selectedTextcritics?.id" [labelType]="'commentary'" />:
+                        <awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'commentary'" />:
                     </p>
                     <awg-edition-tka-table
                         [commentary]="selectedTextcriticalCommentary"
-                        [id]="selectedTextcritics?.id"
-                        [isRowtable]="selectedTextcritics?.rowtable" />
+                        [id]="selectedTextcritics.id"
+                        [isRowtable]="selectedTextcritics.rowtable ?? false" />
                 </div>
             </div>
         }

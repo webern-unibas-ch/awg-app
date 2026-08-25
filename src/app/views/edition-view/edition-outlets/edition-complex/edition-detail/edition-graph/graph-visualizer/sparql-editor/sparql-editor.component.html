@@ -29,33 +29,36 @@
                         ngbDropdownToggle
                         aria-label="Toggle dropdown"></button>
                     <div class="dropdown-menu" ngbDropdownMenu>
-                        <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
-                        @for (q of queryList; track q) {
-                            @if (q.queryType === 'construct') {
-                                <a
-                                    ngbDropdownItem
-                                    [class.disabled]="q === query"
-                                    (click)="onQueryListChange(q)"
-                                    (keyup.enter)="onQueryListChange(q)"
-                                    role="link"
-                                    tabindex="0">
-                                    <span>{{ q.queryLabel }}</span>
-                                </a>
+                        @let constructQueries = queryList.filter(q => q.queryType === 'construct');
+                        @let selectQueries = queryList.filter(q => q.queryType === 'select');
+
+                        <ng-template #queryItem let-q>
+                            <a
+                                ngbDropdownItem
+                                [class.disabled]="q === query"
+                                (click)="onQueryListChange(q)"
+                                (keyup.enter)="onQueryListChange(q)"
+                                role="link"
+                                tabindex="0">
+                                <span>{{ q.queryLabel }}</span>
+                            </a>
+                        </ng-template>
+
+                        @if (constructQueries.length) {
+                            <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
+                            @for (q of constructQueries; track q) {
+                                <ng-container *ngTemplateOutlet="queryItem; context: { $implicit: q }" />
                             }
                         }
-                        <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
-                        @for (q of queryList; track q) {
-                            @if (q.queryType === 'select') {
-                                <a
-                                    ngbDropdownItem
-                                    [class.disabled]="q === query"
-                                    (click)="onQueryListChange(q)"
-                                    (keyup.enter)="onQueryListChange(q)"
-                                    role="link"
-                                    tabindex="0">
-                                    <span>{{ q.queryLabel }}</span>
-                                </a>
+
+                        @if (constructQueries.length && selectQueries.length) {
+                            <div class="dropdown-divider"></div>
+                        }
+
+                        @if (selectQueries.length) {
+                            <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
+                            @for (q of selectQueries; track q) {
+                                <ng-container *ngTemplateOutlet="queryItem; context: { $implicit: q }" />
                             }
                         }
                     </div>

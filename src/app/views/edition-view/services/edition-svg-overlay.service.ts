@@ -107,7 +107,7 @@ export class EditionSvgOverlayService {
      * Returns true if there are available TKK overlays.
      */
     get hasAvailableTkkOverlays(): boolean {
-        return !!this._tkkOverlaysState.available && this._tkkOverlaysState.available.length > 0;
+        return !!this._tkkOverlaysState.available?.length;
     }
 
     /**
@@ -126,14 +126,14 @@ export class EditionSvgOverlayService {
      *
      * It creates the D3 SVG overlays for the textcritical comments and link boxes.
      *
-     * @param {D3Selection} rootGroupSelection The given D3 selection of the SVG root group.
+     * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
      * @param {Function} onLinkBoxSelectFn The callback function for the click event of the link box overlay, which receives the id of the clicked link box group.
      * @param {Function} onTkkOverlaySelectFn The callback function for the click event of the tkk overlay, which receives the list of selected tkk overlays.
      *
      * @returns {void} Creates the D3 SVG sheet overlays.
      */
     createSvgOverlays(
-        rootGroupSelection: D3Selection,
+        rootGroupSelection: D3Selection | undefined,
         onLinkBoxSelectFn: (id: string) => void,
         onTkkOverlaySelectFn: (selected: EditionSvgOverlay[]) => void
     ): void {
@@ -165,17 +165,21 @@ export class EditionSvgOverlayService {
      *
      * Toggles highlight on or off for all tkk overlays in the given root group selection.
      *
-     * @param {D3Selection} rootGroupSelection The D3 selection of the SVG root group.
+     * @param {D3Selection| undefined} rootGroupSelection The D3 selection of the SVG root group, or undefined.
      * @param {string} overlayType The overlay type (should be 'tkk').
      * @param {boolean} highlight Whether to highlight (true) or remove highlight (false).
      *
      * @returns {void}
      */
-    toggleTkkOverlayHighlights(rootGroupSelection: D3Selection, overlayType: string, highlight: boolean): void {
+    toggleTkkOverlayHighlights(
+        rootGroupSelection: D3Selection | undefined,
+        overlayType: string,
+        highlight: boolean
+    ): void {
         if (!rootGroupSelection) {
             return;
         }
-        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
+        const overlayGroups = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
         if (!overlayGroups) {
             return;
         }
@@ -213,8 +217,7 @@ export class EditionSvgOverlayService {
         onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) => void,
         createOverlayFn: (group: SVGGElement, type: string) => void
     ): void {
-        const overlayGroups: D3Selection = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
-
+        const overlayGroups = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
         if (!overlayGroups) {
             return;
         }
@@ -246,10 +249,10 @@ export class EditionSvgOverlayService {
         onSelectFn: (id: string) => void
     ): void {
         const linkBoxGroupId: string = group.id;
-        const linkBoxGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(
-            svgRootGroupSelection,
-            linkBoxGroupId
-        );
+        const linkBoxGroupSelection = this._svgDrawingService.getD3SelectionById(svgRootGroupSelection, linkBoxGroupId);
+        if (!linkBoxGroupSelection) {
+            return;
+        }
 
         const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
         linkBoxGroupPathSelection.style('fill', this.linkBoxOverlayFillColor);
@@ -350,9 +353,12 @@ export class EditionSvgOverlayService {
         const overlayGroupClass = `${type}-overlay-group`;
         const overlayGroupBoxClass = `${overlayGroupClass}-box`;
 
-        const targetGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionById(svgRootGroup, id);
-        targetGroupSelection.append('g').attr('class', `${overlayGroupClass}`);
+        const targetGroupSelection = this._svgDrawingService.getD3SelectionById(svgRootGroup, id);
+        if (!targetGroupSelection) {
+            return undefined;
+        }
 
+        targetGroupSelection.append('g').attr('class', `${overlayGroupClass}`);
         const targetOverlayGroupSelection: D3Selection = targetGroupSelection.select(`g.${overlayGroupClass}`);
 
         // Create overlay box for target overlay group
@@ -409,7 +415,7 @@ export class EditionSvgOverlayService {
                     this._updateTkkOverlayColor(overlays, overlayGroupRectSelection, EditionSvgOverlayActionTypes.fill);
                 })
                 .on('click', () => {
-                    if (overlays.length > 0) {
+                    if (overlays.length) {
                         overlays.forEach(overlay => (overlay.isSelected = !overlay.isSelected));
                     }
                     this._updateTkkOverlayColor(
@@ -435,11 +441,15 @@ export class EditionSvgOverlayService {
      * @returns {D3Selection} The D3 selection of the found element.
      */
     private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, overlayType: string): D3Selection {
-        if (!svgRootGroup || !dataId || !overlayType) {
-            return svgRootGroup?.selectAll(null);
+        if (!dataId || !overlayType) {
+            return svgRootGroup.selectAll(null);
         }
         // Get D3 selection of target group
-        const targetGroupSelection: D3Selection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
+        const targetGroupSelection = this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
+        if (!targetGroupSelection) {
+            return svgRootGroup.selectAll(null);
+        }
+
         // Get D3 selection of overlay group box
         return targetGroupSelection.selectAll(`rect.${overlayType}-overlay-group-box`);
     }

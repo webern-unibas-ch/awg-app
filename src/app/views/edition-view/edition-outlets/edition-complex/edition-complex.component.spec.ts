@@ -434,7 +434,7 @@ describe('EditionComplexComponent (DONE)', () => {
                             catalogueType: 'OPUS',
                             catalogueNumber: '100',
                         },
-                        null,
+                        null as any,
                         { series: '1', section: '5' }
                     );
                     expectedComplexId = 'op100';
@@ -618,32 +618,21 @@ describe('EditionComplexComponent (DONE)', () => {
                     expectToEqual(component.selectedEditionComplex(), null);
                 });
 
-                it('... should not get an edition complex with missing title statement from EditionStateService', () => {
-                    const missingTitleComplex = new EditionComplex(
-                        null,
-                        {
-                            editors: [],
-                            lastModified: '---',
-                        },
-                        { series: '1', section: '5' }
+                it('... should not get an edition complex with missing title statement (and throw) from EditionComplexModel ', () => {
+                    const createIncompleteComplex = () => {
+                        new EditionComplex(
+                            null as any,
+                            {
+                                editors: [],
+                                lastModified: '---',
+                            },
+                            { series: '1', section: '5' }
+                        );
+                    };
+
+                    expect(createIncompleteComplex).toThrow(
+                        '[EditionComplexModel] Cannot instantiate complex: Missing catalogueType or catalogueNumber.'
                     );
-                    expectedComplexId = 'op100';
-                    mockActivatedRoute.testParamMap = { complexId: expectedComplexId };
-
-                    // Spy on the static method and provide a custom implementation
-                    complexesServiceGetEditionComplexByIdSpy.mockImplementationOnce((id: string) => {
-                        if (id.toLowerCase() === expectedComplexId.toLowerCase()) {
-                            return missingTitleComplex;
-                        }
-                        return null;
-                    });
-
-                    // Apply changes
-                    fixture.detectChanges();
-
-                    expectSpyCall(updateEditionComplexFromRouteSpy, 1);
-                    expectToEqual(editionStateService.selectedEditionComplex(), null);
-                    expectToEqual(component.selectedEditionComplex(), null);
                 });
 
                 it('... should not get an edition complex with missing pub statement from EditionStateService', () => {
@@ -657,7 +646,7 @@ describe('EditionComplexComponent (DONE)', () => {
                             editors: [],
                             lastModified: '---',
                         },
-                        null
+                        null as any
                     );
                     expectedComplexId = 'op100';
                     mockActivatedRoute.testParamMap = { complexId: expectedComplexId };

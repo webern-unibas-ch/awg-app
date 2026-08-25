@@ -20,5 +20,5 @@ export class EditionTkaEvaluationsComponent {
      * It keeps the evaluations data.
      */
     @Input()
-    evaluations: string[];
+    evaluations: string[] | undefined;
 }

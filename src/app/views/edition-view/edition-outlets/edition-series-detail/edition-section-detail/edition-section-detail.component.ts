@@ -59,7 +59,7 @@ export class EditionSectionDetailComponent {
             const series = this._editionStateService.selectedEditionSeries();
             const currentSectionId = this.sectionId();
 
-            if (!series?.series?.route) {
+            if (!series?.series?.route || !currentSectionId) {
                 this._editionStateService.updateSelectedEditionSection(null);
                 return;
             }

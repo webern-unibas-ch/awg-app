@@ -47,8 +47,6 @@ describe('EditionUtils (DONE)', () => {
 
             describe('... should return false if the ID', () => {
                 it.each([
-                    { desc: 'is undefined', id: undefined },
-                    { desc: 'is null', id: null },
                     { desc: 'is empty string', id: '' },
                     { desc: 'is a regular sketch edition ID', id: 'op12_Sk1' },
                     { desc: 'is a regular text edition ID', id: 'op12_TF1' },

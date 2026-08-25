@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -18,11 +18,11 @@ import { SparqlTableComponent } from './sparql-table.component';
 })
 class TableStubComponent {
     @Input()
-    tableTitle: string;
+    tableTitle = '';
     @Input()
-    headerInputData: any;
+    headerInputData: string[] = [];
     @Input()
-    rowInputData: any;
+    rowInputData: any[] = [];
     @Output()
     clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -34,13 +34,11 @@ describe('SparqlTableComponent (DONE)', () => {
     let fixture: ComponentFixture<SparqlTableComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QuerySelectResult;
-    let expectedQueryTime: number;
-
-    let expectedTableTitle: string;
-
     let tableClickSpy: Spy;
     let emitSpy: Spy;
+
+    let expectedQueryResult: QuerySelectResult;
+    let expectedTableTitle: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -63,7 +61,6 @@ describe('SparqlTableComponent (DONE)', () => {
             },
         ];
         expectedQueryResult = { head: { vars: varKeys }, body: { bindings: b } };
-        expectedQueryTime = 5000;
 
         expectedTableTitle = 'SELECT Anfrage';
 
@@ -81,12 +78,10 @@ describe('SparqlTableComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
-            expect(component.queryResult).toBeUndefined();
-        });
+        it('... should throw due to missing required input signal `queryResult`', () => {
+            expectToBe(isSignal(component.queryResult), true);
 
-        it('... should not have queryTime', () => {
-            expect(component.queryTime).toBeUndefined();
+            expect(() => component.queryResult()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -99,19 +94,14 @@ describe('SparqlTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.queryResult = expectedQueryResult;
-            component.queryTime = expectedQueryTime;
+            fixture.componentRef.setInput('queryResult', expectedQueryResult);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `queryResult` input', () => {
-            expectToEqual(component.queryResult, expectedQueryResult);
-        });
-
-        it('... should have `queryTime` input', () => {
-            expectToBe(component.queryTime, expectedQueryTime);
+        it('... should have signal `queryResult` to hold the expected result', () => {
+            expectToEqual(component.queryResult(), expectedQueryResult);
         });
 
         describe('VIEW', () => {

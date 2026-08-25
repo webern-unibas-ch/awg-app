@@ -3,37 +3,41 @@
     <span class="awg-source-description-writing-materials-content">
         @for (writingMaterial of writingMaterials; track $index; let lastWritingMaterial = $last) {
             <span class="awg-source-description-writing-material">
-                @if (writingMaterial.materialType) {
-                    <span class="awg-source-description-writing-material-type">{{ writingMaterial.materialType }}</span
+                <!-- materialType -->
+                @let materialType = writingMaterial?.materialType || '';
+                @if (materialType) {
+                    <span class="awg-source-description-writing-material-type">{{ materialType }}</span
                     >,
                 }
-                @if (!UTILS.isEmptyObject(writingMaterial.systems)) {
-                    <span class="awg-source-description-writing-material-systems">
-                        {{ getSystems(writingMaterial.systems) }}</span
+                <!-- systems -->
+                @let systems = getSystems(writingMaterial?.systems);
+                @if (systems) {
+                    <span class="awg-source-description-writing-material-systems"> {{ systems }}</span
                     >,
                 }
-                @if (!UTILS.isEmptyObject(writingMaterial.dimensions)) {
-                    <span class="awg-source-description-writing-material-dimensions">
-                        {{ getDimensions(writingMaterial.dimensions) }}</span
+                <!-- dimensions -->
+                @let dimensions = getDimensions(writingMaterial?.dimensions);
+                @if (dimensions) {
+                    <span class="awg-source-description-writing-material-dimensions"> {{ dimensions }}</span
                     >,
                 }
-                @if (
-                    !UTILS.isEmptyObject(writingMaterial.trademark) &&
-                    (writingMaterial.trademark?.variant || writingMaterial.trademark?.alt)
-                ) {
+                <!-- trademark -->
+                @let trademark = writingMaterial?.trademark;
+                @if (trademark && (trademark.variant || trademark.alt)) {
                     <span class="awg-source-description-writing-material-trademark"
                         ><span>Firmenzeichen: </span>
-                        @if (writingMaterial.trademark.variant) {
+                        @if (trademark.variant) {
+                            @let variant = getTrademark(trademark.variant);
                             <br /><img
                                 class="img-thumbnail"
-                                [src]="getTrademark(writingMaterial.trademark.variant)?.route"
-                                [title]="getTrademark(writingMaterial.trademark.variant)?.full"
-                                [alt]="getTrademark(writingMaterial.trademark.variant)?.short" /><br />
+                                [src]="variant.route"
+                                [title]="variant.full"
+                                [alt]="variant.short" /><br />
                         } @else {
-                            <span [awgCompileHtml]="writingMaterial.trademark.alt"></span>&nbsp;
+                            <span [awgCompileHtml]="trademark.alt || ''"></span>&nbsp;
                         }
                     </span>
-                    @for (locus of writingMaterial.trademark.locus; track $index) {
+                    @for (locus of trademark.locus || []; track $index) {
                         <span
                             class="awg-source-description-writing-material-trademark-locus"
                             [innerHTML]="getItemLocus(locus)"></span>
@@ -41,23 +45,25 @@
                 } @else {
                     <span class="awg-source-description-writing-material-trademark">kein Firmenzeichen</span>
                 }
-                @if (!UTILS.isEmptyObject(writingMaterial.watermark) && writingMaterial.watermark?.variant) {
+                <!-- watermark -->
+                @let watermark = writingMaterial?.watermark;
+                @if (watermark && watermark?.variant) {
                     <span class="awg-source-description-writing-material-watermark"
                         ><span>, Wasserzeichen: </span>
-                        @if (writingMaterial.watermark.variant) {
-                            <span
-                                ><em>{{ writingMaterial.watermark.variant }}</em></span
-                            >&nbsp;
-                        }
+                        <span
+                            ><em>{{ watermark.variant }}</em></span
+                        >&nbsp;
                     </span>
-                    @for (locus of writingMaterial.watermark.locus; track $index) {
+                    @for (locus of watermark.locus || []; track $index) {
                         <span [innerHTML]="getItemLocus(locus)"></span>
                     }
                     <span>&nbsp;lesbar</span>
                 }
-                @if (writingMaterial.folioAddendum) {
+                <!-- folioAddendum -->
+                @let folioAddendum = writingMaterial?.folioAddendum || '';
+                @if (folioAddendum) {
                     <span class="awg-source-description-writing-material-folio-addendum"
-                        >&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span
+                        >&nbsp;(Bl. {{ folioAddendum }})</span
                     >
                 }
                 @if (!lastWritingMaterial) {

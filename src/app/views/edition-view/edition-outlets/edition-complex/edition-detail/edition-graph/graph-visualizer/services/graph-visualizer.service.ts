@@ -63,7 +63,7 @@ export class GraphVisualizerService {
      */
     checkNamespacesInQuery(queryStr: string, turtleStr: string): string {
         if (!queryStr || !turtleStr) {
-            return undefined;
+            return '';
         }
         const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
         const sparqlNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
@@ -122,7 +122,7 @@ export class GraphVisualizerService {
         if (queryType === 'construct') {
             const response = res as RDFStoreConstructResponse;
             const namespaces = this._extractNamespacesFromString(NamespaceType.TURTLE, ttlString);
-            const constructResponse = this._prepareConstructResponse(response.triples, namespaces, mimeType);
+            const constructResponse = this._prepareConstructResponse(response.triples || [], namespaces, mimeType);
             return constructResponse;
         }
 
@@ -136,11 +136,11 @@ export class GraphVisualizerService {
      * Subject URIs are transformed using PrefixPipe - only those matching
      * default prefixes get shortened to prefix form, others remain as full URIs.
      *
-     * @param {Triple[]} triples The given triple array.
+     * @param {Triple[] | null | undefined} triples The given triple array, or null, or undefined.
      *
      * @returns {Map<string, string>} A map of URI (shortened or full) to label mappings.
      */
-    extractLabelsFromTriples(triples: Triple[]): Map<string, string> {
+    extractLabelsFromTriples(triples: Triple[] | null | undefined): Map<string, string> {
         const labelMap = new Map<string, string>();
 
         if (!triples) {
@@ -202,7 +202,7 @@ export class GraphVisualizerService {
      *
      * @returns {Triple[]} The array of limited triples.
      */
-    limitTriples(triples: Triple[], limit: number): Triple[] {
+    limitTriples(triples: Triple[] | null | undefined, limit: number): Triple[] {
         if (!triples) {
             return [];
         }
@@ -242,12 +242,12 @@ export class GraphVisualizerService {
      *
      * It abbreviates the namespaces of a given iri.
      *
-     * @param {string} iri The given iri string.
+     * @param {string | null | undefined} iri The given iri string, or null, or undefined.
      * @param {Namespace} namespaces The given namespaces.
      *
      * @returns {string} The abbreviated or original iri string.
      */
-    private _abbreviate(iri: string, namespaces: Namespace): string {
+    private _abbreviate(iri: string | null | undefined, namespaces: Namespace): string | null | undefined {
         if (!iri?.startsWith('http') || !namespaces) {
             return iri;
         }
@@ -409,7 +409,10 @@ export class GraphVisualizerService {
      *
      * @returns {Record<string, string>} An object with the new keys.
      */
-    private _mapKeys(obj: Record<string, string>, keyMap: Record<string, string>): Record<string, string> {
+    private _mapKeys(
+        obj: Record<string, string> | null | undefined,
+        keyMap: Record<string, string> | null | undefined
+    ): Record<string, string> {
         if (!obj) {
             return {};
         }
@@ -422,7 +425,7 @@ export class GraphVisualizerService {
                 acc[newKey] = value;
                 return acc;
             },
-            {} as { [key: string]: string }
+            {} as Record<string, string>
         );
     }
 
@@ -492,9 +495,9 @@ export class GraphVisualizerService {
             };
 
             if (shouldAbbreviate) {
-                s = this._abbreviate(s, namespaces);
-                p = this._abbreviate(p, namespaces);
-                o = this._abbreviate(o, namespaces);
+                s = this._abbreviate(s, namespaces) ?? '';
+                p = this._abbreviate(p, namespaces) ?? '';
+                o = this._abbreviate(o, namespaces) ?? '';
             }
             return { subject: s, predicate: p, object: o };
         });
@@ -506,12 +509,11 @@ export class GraphVisualizerService {
      * It prepares the data of the select response.
      *
      * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
-     *
-     * @returns  {status: number; data: QuerySelectResult | string } An object with a status code, and the data as QuerySelectResult or string.
+     * @returns  {status: number; data: QuerySelectResult | string | undefined } An object with a status code, and the data as QuerySelectResult, string, or undefined.
      */
-    private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
+    private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse | null | undefined): {
         status: number;
-        data: QuerySelectResult | string;
+        data: QuerySelectResult | string | undefined;
     } {
         if (!selectResponse) {
             return { status: 404, data: undefined };

@@ -236,7 +236,7 @@ export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecen
     expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
     // If spy was called, check if it was called with value x
-    if (spy.mock.calls.length > 0) {
+    if (spy.mock.calls.length) {
         if (expectedMostRecentValue !== undefined && Array.isArray(expectedMostRecentValue)) {
             expectedMostRecentValue.forEach((value, index) => {
                 expectRecentSpyCall(spy, value, index);

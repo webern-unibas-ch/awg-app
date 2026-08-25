@@ -62,14 +62,14 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      *
      * It keeps the mode of the codemirror editor.
      */
-    @Input() mode: CmMode;
+    @Input({ required: true }) mode!: CmMode;
 
     /**
      * Input variable: content.
      *
      * It keeps the content of the codemirror editor.
      */
-    @Input() content: string;
+    @Input() content = '';
 
     /**
      * Output variable: contentChange.
@@ -79,18 +79,18 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     @Output() contentChange: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: editor.
-     *
-     * It keeps the EditorView instance.
-     */
-    @Output() editor: EditorView;
-
-    /**
      * ViewChild variable: codemirrorhost.
      *
      * It keeps the reference to the HTML template of the codemirror editor.
      */
-    @ViewChild('codemirrorhost') codemirrorhost: ElementRef<HTMLDivElement> = null;
+    @ViewChild('codemirrorhost') codemirrorhost!: ElementRef<HTMLDivElement>;
+
+    /**
+     * Private variable: _editor.
+     *
+     * It keeps the EditorView instance.
+     */
+    private _editor: EditorView | undefined;
 
     /**
      * Angular life cycle hook: ngOnChanges.
@@ -104,13 +104,13 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
             changes['content'] &&
             !changes['content'].isFirstChange() &&
             typeof changes['content'].currentValue === 'string' &&
-            this.editor &&
-            this.content !== this.editor.state.doc.toString()
+            this._editor &&
+            this.content !== this._editor.state.doc.toString()
         ) {
-            this.editor.dispatch({
+            this._editor.dispatch({
                 changes: {
                     from: 0,
-                    to: this.editor.state.doc.length,
+                    to: this._editor.state.doc.length,
                     insert: this.content,
                 },
             });
@@ -181,7 +181,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
      * @returns {void} Inits the editor view.
      */
     init(state: EditorState): void {
-        this.editor = new EditorView({
+        this._editor = new EditorView({
             state,
             parent: this.codemirrorhost.nativeElement,
         });

@@ -2,6 +2,7 @@ import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
     ScrollToTopButtonStubComponent,
@@ -43,6 +44,8 @@ describe('StatisticsViewComponent', () => {
     let compDe: DebugElement;
 
     let mockStatisticsService: Mocked<Partial<StatisticsService>>;
+
+    let getStatisticsFromOutlineSpy: Spy;
 
     let mockOutlineSignal: WritableSignal<EditionOutlineSeries[] | null>;
     let expectedStatisticsData: Statistics;
@@ -90,7 +93,9 @@ describe('StatisticsViewComponent', () => {
 
     beforeEach(() => {
         // Service spies
-        mockStatisticsService.getStatisticsFromOutline.mockReturnValue(null);
+        getStatisticsFromOutlineSpy = vi
+            .spyOn(mockStatisticsService, 'getStatisticsFromOutline')
+            .mockReturnValue(new Statistics());
 
         // Test data
         expectedStatisticsData = {
@@ -176,7 +181,7 @@ describe('StatisticsViewComponent', () => {
 
             expectToEqual(component.statisticsData(), null);
 
-            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 0);
+            expectSpyCall(getStatisticsFromOutlineSpy, 0);
         });
 
         it('... should have computed signal `complexBreakdownData` to hold null', () => {
@@ -206,7 +211,7 @@ describe('StatisticsViewComponent', () => {
         beforeEach(() => {
             // Set input signals with test data
             mockOutlineSignal.set([{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }]);
-            mockStatisticsService.getStatisticsFromOutline.mockReturnValue(expectedStatisticsData);
+            getStatisticsFromOutlineSpy.mockReturnValue(expectedStatisticsData);
 
             fixture.detectChanges();
         });
@@ -214,7 +219,7 @@ describe('StatisticsViewComponent', () => {
         it('... should have computed signal `statisticsData` to hold the provided data', () => {
             expectToEqual(component.statisticsData(), expectedStatisticsData);
 
-            expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 1, [
+            expectSpyCall(getStatisticsFromOutlineSpy, 1, [
                 [{ series: { route: '1', short: 'I', full: 'Serie 1' }, sections: [] }],
             ]);
         });
@@ -252,7 +257,7 @@ describe('StatisticsViewComponent', () => {
 
         describe('... if no outline is provided', () => {
             beforeEach(() => {
-                mockStatisticsService.getStatisticsFromOutline.mockClear();
+                getStatisticsFromOutlineSpy.mockClear();
                 mockOutlineSignal.set(null);
 
                 fixture.detectChanges();
@@ -261,7 +266,7 @@ describe('StatisticsViewComponent', () => {
             it('... should have re-computed signal `statisticsData` to hold null', () => {
                 expectToEqual(component.statisticsData(), null);
 
-                expectSpyCall(mockStatisticsService.getStatisticsFromOutline, 0);
+                expectSpyCall(getStatisticsFromOutlineSpy, 0);
             });
 
             it('... should have re-computed signal `complexBreakdownData` to hold null', () => {

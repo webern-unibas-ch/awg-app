@@ -27,11 +27,11 @@
                 @for (evaluation of correction.evaluations; track $index) {
                     <p class="awg-source-description-correction-evaluation mb-0" [awgCompileHtml]="evaluation"></p>
                 }
-                @if (correction.commentary.comments.length > 0) {
+                @if (correction.commentary.comments.length) {
                     <awg-edition-tka-table
                         [commentary]="correction.commentary"
                         [isCorrections]="true"
-                        [isRowtable]="correction.rowtable" />
+                        [isRowtable]="correction.rowtable ?? false" />
                 }
             </div>
         </details>

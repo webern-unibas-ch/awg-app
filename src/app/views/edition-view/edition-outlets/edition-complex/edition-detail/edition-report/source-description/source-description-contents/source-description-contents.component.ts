@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-
 import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -32,7 +30,7 @@ export class SourceDescriptionContentsComponent {
      * It keeps the folio contents array.
      */
     @Input()
-    contents: SourceDescriptionContent[];
+    contents: SourceDescriptionContent[] = [];
 
     /**
      * Public variable: openAllContentDetails.
@@ -40,13 +38,6 @@ export class SourceDescriptionContentsComponent {
      * It keeps the boolean value to set the open state of all details in the source description contents.
      */
     openAllContentDetails = true;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
 
     /**
      * Public method: selectSvgSheet.

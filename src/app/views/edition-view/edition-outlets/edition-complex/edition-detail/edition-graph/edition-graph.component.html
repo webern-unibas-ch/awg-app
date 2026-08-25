@@ -8,7 +8,7 @@
             <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-graph-view p-5 border rounded-3">
-                @for (graph of view.data.graphData.graph; track graph.id) {
+                @for (graph of view.data.graphData?.graph || []; track graph.id) {
                     <div>
                         <!-- graph description -->
                         <div class="awg-graph-description">
@@ -23,16 +23,20 @@
                                     aber kontinuierlich ergänzt.</span
                                 >
                             </p>
-                            @if (UTILS.isEmptyArray(graph.description) && !graph.rdfData?.triples) {
+                            @if (graph.description.length === 0 && !graph.rdfData.triples) {
                                 <p class="awg-graph-description-placeholder">
                                     @let complex = selectedEditionComplex();
-                                    <small class="text-muted"
-                                        >[Die Graph-Visualisierungen zum Editionskomplex
-                                        <span [innerHTML]="complex.complexId.full"></span> erscheinen im Zusammenhang
-                                        der vollständigen Edition von
-                                        <span [innerHTML]="complex.complexId.short"></span> in
-                                        {{ complex.pubStatement.labeledSectionRoute.label }}.]
-                                    </small>
+                                    @let complexId = complex?.complexId;
+                                    @let sectionRoute = complex?.pubStatement?.labeledSectionRoute;
+
+                                    @if (complexId && sectionRoute) {
+                                        <small class="text-muted"
+                                            >[Die Graph-Visualisierungen zum Editionskomplex
+                                            <span [innerHTML]="complexId.full"></span> erscheinen im Zusammenhang der
+                                            vollständigen Edition von <span [innerHTML]="complexId.short"></span> in
+                                            {{ sectionRoute.label }}.]
+                                        </small>
+                                    }
                                 </p>
                             } @else {
                                 @for (description of graph.description; track $index) {
