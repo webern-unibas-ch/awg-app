@@ -26,7 +26,7 @@ export class EditionTkaLabelComponent {
     /**
      * Readonly input variable: labelType.
      *
-     * It hols the type of the label.
+     * It holds the type of the label.
      */
     readonly labelType = input.required<'evaluation' | 'commentary'>();
 

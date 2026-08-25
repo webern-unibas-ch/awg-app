@@ -9,10 +9,10 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 
@@ -74,13 +74,13 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      *
      * It keeps the instance of the injected Angular FormBuilder.
      */
-    private readonly _formBuilder = inject(UntypedFormBuilder);
+    private readonly _formBuilder = inject(FormBuilder);
 
     /**
      * Getter for the view handle control value.
      */
-    get viewHandleControl(): UntypedFormControl {
-        return this.viewHandleControlForm.get('viewHandleControl') as UntypedFormControl;
+    get viewHandleControl(): FormControl<ViewHandleTypes | null> {
+        return this.viewHandleControlForm.controls.viewHandleControl;
     }
 
     /**
@@ -133,7 +133,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      */
     private _createFormGroup(view: ViewHandleTypes): void {
         this.viewHandleControlForm = this._formBuilder.group({
-            viewHandleControl: view,
+            viewHandleControl: new FormControl<ViewHandleTypes | null>(view),
         });
 
         this._listenToUserInputChange();
@@ -149,11 +149,16 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * @returns {void} Listens to changing view type.
      */
     private _listenToUserInputChange(): void {
-        this.viewHandleControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
-            next: (view: ViewHandleTypes) => {
-                this._onViewChange(view);
-            },
-        });
+        this.viewHandleControl.valueChanges
+            .pipe(
+                filter((view): view is ViewHandleTypes => view !== null),
+                takeUntil(this._destroyed$)
+            )
+            .subscribe({
+                next: (view: ViewHandleTypes) => {
+                    this._onViewChange(view);
+                },
+            });
     }
 
     /**
