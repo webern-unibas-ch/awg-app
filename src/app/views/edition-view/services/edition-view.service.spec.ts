@@ -1,4 +1,4 @@
-import { isSignal, signal, WritableSignal } from '@angular/core';
+import { isSignal, Signal, signal, WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
@@ -25,7 +25,7 @@ import { EditionViewService } from './edition-view.service';
 describe('EditionViewService', () => {
     let service: EditionViewService;
 
-    let mockEditionDataService: Partial<EditionDataService>;
+    let mockEditionDataService: EditionDataService;
 
     let currentViewNameSpy: Spy;
     let buildViewDataSpy: Spy;
@@ -49,7 +49,7 @@ describe('EditionViewService', () => {
             svgSheetsData: signal<any>(null),
             textcriticsData: signal<any>(null),
             getErrorForDataAssets: vi.fn().mockImplementation(() => signal(null)),
-        };
+        } as unknown as EditionDataService;
 
         mockIsLoadingSignal = signal<boolean>(false);
 
@@ -66,11 +66,11 @@ describe('EditionViewService', () => {
         service = TestBed.inject(EditionViewService);
 
         // Spies
-        currentViewNameSpy = vi.spyOn(service as any, '_currentViewName');
-        buildViewDataSpy = vi.spyOn(service as any, '_buildViewData');
-        getFallbackForInactiveViewSpy = vi.spyOn(service as any, '_getFallbackForInactiveView');
-        getUniqueAssetKeysSpy = vi.spyOn(service as any, '_getUniqueAssetKeys');
-        isViewDataEmptySpy = vi.spyOn(service as any, '_isViewDataEmpty');
+        currentViewNameSpy = vi.spyOn(service, '_currentViewName' as any);
+        buildViewDataSpy = vi.spyOn(service, '_buildViewData' as any);
+        getFallbackForInactiveViewSpy = vi.spyOn(service, '_getFallbackForInactiveView' as any);
+        getUniqueAssetKeysSpy = vi.spyOn(service, '_getUniqueAssetKeys' as any);
+        isViewDataEmptySpy = vi.spyOn(service, '_isViewDataEmpty' as any);
         getErrorSpy = vi.spyOn(mockEditionDataService, 'getErrorForDataAssets');
     });
 
@@ -110,15 +110,15 @@ describe('EditionViewService', () => {
         };
 
         it('... should have a signal `_currentViewName`', () => {
-            expect((service as any)._currentViewName).toBeDefined();
+            expect(service['_currentViewName']).toBeDefined();
 
-            expectToBe(isSignal((service as any)._currentViewName), true);
+            expectToBe(isSignal(service['_currentViewName']), true);
         });
 
         it('... should start with holding the parsed view name based on the current router URL', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
-            const result = (freshService as any)._currentViewName();
+            const result = freshService['_currentViewName']();
 
             expectToBe(result, 'preface');
         });
@@ -126,11 +126,11 @@ describe('EditionViewService', () => {
         it('... should hold the parsed active view when a NavigationEnd event occurs', async () => {
             const freshService = await createFreshServiceWithUrl('/edition/preface');
 
-            expectToBe((freshService as any)._currentViewName(), 'preface');
+            expectToBe(freshService['_currentViewName'](), 'preface');
 
             await harness.navigateByUrl('/edition/complex/op12/sheets');
 
-            expectToBe((freshService as any)._currentViewName(), 'sheets');
+            expectToBe(freshService['_currentViewName'](), 'sheets');
         });
 
         it('... should return an empty string if the navigation destination has no primary segments', async () => {
@@ -138,7 +138,7 @@ describe('EditionViewService', () => {
 
             await harness.navigateByUrl('/(sidebar:help)');
 
-            expectToBe((freshService as any)._currentViewName(), '');
+            expectToBe(freshService['_currentViewName'](), '');
         });
     });
 
@@ -254,7 +254,7 @@ describe('EditionViewService', () => {
 
             it(`... should reactively update ${signalName} if ${dataKey} emits`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
@@ -269,7 +269,7 @@ describe('EditionViewService', () => {
 
             it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
                 mockIsLoadingSignal.set(true);
@@ -281,7 +281,7 @@ describe('EditionViewService', () => {
 
             it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 (mockEditionDataService as any)[dataKey].set(mockData);
@@ -371,7 +371,7 @@ describe('EditionViewService', () => {
 
             it(`... should reactively update ${signalName} if all source signals emit`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
@@ -390,7 +390,7 @@ describe('EditionViewService', () => {
 
             it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
                     (mockEditionDataService as any)[dataKey].set(mockValue);
@@ -404,7 +404,7 @@ describe('EditionViewService', () => {
 
             it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
-                (service as any)._previousViewName.set(viewName);
+                service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
 
                 signalsSetup.forEach(({ dataKey, mockValue }) => {
@@ -423,7 +423,7 @@ describe('EditionViewService', () => {
                 describe('... `extraContentCheck` specific to sheetsViewData', () => {
                     it('... should keep `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
-                        (service as any)._previousViewName.set(viewName);
+                        service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
 
                         (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
@@ -439,7 +439,7 @@ describe('EditionViewService', () => {
 
                     it('... should set `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
-                        (service as any)._previousViewName.set(viewName);
+                        service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
 
                         (mockEditionDataService as any)['folioConvoluteData'].set({ convolutes: [{ id: 'fol-1' }] });
@@ -461,7 +461,7 @@ describe('EditionViewService', () => {
     describe('METHODS', () => {
         describe('#_buildViewData()', () => {
             it('... should have a method `_buildViewData`', () => {
-                expect((service as any)._buildViewData).toBeDefined();
+                expect(service['_buildViewData']).toBeDefined();
             });
 
             it('... should return fallback if view is inactive', () => {
@@ -476,7 +476,7 @@ describe('EditionViewService', () => {
 
                 getFallbackForInactiveViewSpy.mockReturnValue(mockFallback);
 
-                const result = (service as any)._buildViewData(viewKey, signalMap);
+                const result = service['_buildViewData'](viewKey, signalMap);
 
                 expectToEqual(result, mockFallback);
             });
@@ -484,21 +484,21 @@ describe('EditionViewService', () => {
             describe('... should return unpacked data signal if view is active', () => {
                 it('... for a single-data view (e.g., preface)', () => {
                     const viewKey = 'preface';
-                    const mockData = { content: ['item1'] };
+                    const mockData = { preface: [] };
                     const signalMap: any[] = [['prefaceData', signal(mockData)]];
 
                     getFallbackForInactiveViewSpy.mockReturnValue(null);
                     isViewDataEmptySpy.mockReturnValue(false);
                     mockIsLoadingSignal.set(false);
 
-                    const result = (service as any)._buildViewData(viewKey, signalMap);
+                    const result = service['_buildViewData'](viewKey, signalMap);
 
                     expectToEqual(result.data, { prefaceData: mockData });
                 });
 
                 it('... for a multi-data view (e.g., sheets)', () => {
                     const viewKey = 'sheets';
-                    const mockFolio = { id: 'convolute-1' };
+                    const mockFolio = { convolutes: [] };
                     const mockSvgSheets: EditionSvgSheetsList = {
                         sheets: { workEditions: [], textEditions: [], sketchEditions: [] },
                     };
@@ -514,7 +514,7 @@ describe('EditionViewService', () => {
                     isViewDataEmptySpy.mockReturnValue(false);
                     mockIsLoadingSignal.set(false);
 
-                    const result = (service as any)._buildViewData(viewKey, signalMap);
+                    const result = service['_buildViewData'](viewKey, signalMap);
 
                     expectToEqual(result.data, {
                         folioConvoluteData: mockFolio,
@@ -558,7 +558,7 @@ describe('EditionViewService', () => {
                     isViewDataEmptySpy.mockReturnValue(dataEmpty);
                     mockIsLoadingSignal.set(isLoading);
 
-                    const result = (service as any)._buildViewData(viewKey, signalMap);
+                    const result = service['_buildViewData'](viewKey, signalMap);
 
                     expectToBe(result.isLoading, expected);
                 });
@@ -567,14 +567,14 @@ describe('EditionViewService', () => {
             it('... should fetch and return errors from the EditionDataService using unique asset keys', () => {
                 const viewKey = 'sheets';
                 const signalMap: any[] = [['folioConvoluteData', signal({ id: '1' })]];
-                const mockError = { message: 'Failed to load assets' };
                 const mockAssetKeys = ['folioConvolute'];
+                const mockError = { key: mockAssetKeys[0] as EditionDataAssetsKeys, error: 'Failed to load assets' };
 
                 getFallbackForInactiveViewSpy.mockReturnValue(null);
                 getUniqueAssetKeysSpy.mockReturnValue(mockAssetKeys);
                 getErrorSpy.mockReturnValue(() => mockError);
 
-                const result = (service as any)._buildViewData(viewKey, signalMap);
+                const result = service['_buildViewData'](viewKey, signalMap);
 
                 expectSpyCall(getErrorSpy, 1, [mockAssetKeys]);
                 expectToEqual(result.error, mockError);
@@ -588,7 +588,7 @@ describe('EditionViewService', () => {
                 getFallbackForInactiveViewSpy.mockReturnValue(null);
                 isViewDataEmptySpy.mockReturnValue(false);
 
-                (service as any)._buildViewData(viewKey, signalMap, extraContentCheck);
+                service['_buildViewData'](viewKey, signalMap, extraContentCheck);
 
                 expectSpyCall(isViewDataEmptySpy, 1, [
                     { prefaceData: { content: [] } },
@@ -600,7 +600,7 @@ describe('EditionViewService', () => {
 
         describe('#_isViewDataEmpty()', () => {
             it('... should have a method `_isViewDataEmpty`', () => {
-                expect((service as any)._isViewDataEmpty).toBeDefined();
+                expect(service['_isViewDataEmpty']).toBeDefined();
             });
 
             describe('... should return true if a nested array in any of the specified dataKeys is empty', () => {
@@ -621,7 +621,8 @@ describe('EditionViewService', () => {
                         dataKeys: ['sourceListData', 'textcriticsData'],
                     },
                 ])('... when processing $desc', ({ typedData, dataKeys }) => {
-                    const result = (service as any)._isViewDataEmpty(typedData, dataKeys);
+                    const mockData: any = typedData;
+                    const result = service['_isViewDataEmpty'](mockData, dataKeys as any);
 
                     expectToBe(result, true);
                 });
@@ -658,7 +659,9 @@ describe('EditionViewService', () => {
                         dataKeys: ['rowtablesData'],
                     },
                 ])('... when $desc', ({ typedData, dataKeys }) => {
-                    const result = (service as any)._isViewDataEmpty(typedData, dataKeys);
+                    const mockData: any = typedData;
+
+                    const result = service['_isViewDataEmpty'](mockData, dataKeys as any);
 
                     expectToBe(result, false);
                 });
@@ -667,31 +670,31 @@ describe('EditionViewService', () => {
             describe('... should evaluate the optional `extraContentCheck` callback', () => {
                 it('... should return true if `extraContentCheck` returns true, even if data arrays are not empty', () => {
                     const typedData = {
-                        introData: { intros: [{ id: 'intro-1' }] },
+                        introData: { intro: [{ id: 'intro-1' }] },
                     };
                     const dataKeys = ['introData'];
                     const extraContentCheck = () => true;
 
-                    const result = (service as any)._isViewDataEmpty(typedData, dataKeys, extraContentCheck);
+                    const result = service['_isViewDataEmpty'](typedData, dataKeys as any, extraContentCheck);
 
                     expectToBe(result, true);
                 });
 
                 it('... should return false if `extraContentCheck` returns false and data arrays are not empty', () => {
                     const typedData = {
-                        introData: { intros: [{ id: 'intro-1' }] },
+                        introData: { intro: [{ id: 'intro-1' }] },
                     };
                     const dataKeys = ['introData'];
                     const extraContentCheck = () => false;
 
-                    const result = (service as any)._isViewDataEmpty(typedData, dataKeys, extraContentCheck);
+                    const result = service['_isViewDataEmpty'](typedData, dataKeys as any, extraContentCheck);
 
                     expectToBe(result, false);
                 });
 
                 it('... should call the `extraContentCheck` callback with the complete typedData object', () => {
                     const typedData = {
-                        graphData: { graphs: [{ id: 'graph-1' }] },
+                        graphData: { graph: [{ id: 'graph-1' } as any] },
                     };
                     const dataKeys = ['graphData'];
                     let passedData: any = null;
@@ -700,7 +703,7 @@ describe('EditionViewService', () => {
                         return false;
                     };
 
-                    (service as any)._isViewDataEmpty(typedData, dataKeys, extraContentCheck);
+                    service['_isViewDataEmpty'](typedData, dataKeys as any, extraContentCheck);
 
                     expectToEqual(passedData, typedData);
                 });
@@ -709,32 +712,38 @@ describe('EditionViewService', () => {
 
         describe('#_getUniqueAssetKeys()', () => {
             it('... should have a method `_getUniqueAssetKeys`', () => {
-                expect((service as any)._getUniqueAssetKeys).toBeDefined();
+                expect(service['_getUniqueAssetKeys']).toBeDefined();
             });
 
             it('... should return an empty array if `signalMap` is empty', () => {
                 const signalMap: any[] = [];
 
-                const result = (service as any)._getUniqueAssetKeys('preface', signalMap);
+                const result = service['_getUniqueAssetKeys']('preface', signalMap);
 
                 expectToEqual(result, []);
             });
 
             describe('... should return the `viewKey` itself for single-data views like ', () => {
-                it.each([
+                it.each<{
+                    viewKey: EditionViewKey;
+                    signalMap: Array<[any, Signal<any>]>;
+                }>([
                     { viewKey: 'preface', signalMap: [['prefaceData', signal(null)]] },
                     { viewKey: 'rowtables', signalMap: [['rowtablesData', signal(null)]] },
                     { viewKey: 'intro', signalMap: [['introData', signal(null)]] },
                     { viewKey: 'graph', signalMap: [['graphData', signal(null)]] },
                 ])('... for $viewKey', ({ viewKey, signalMap }) => {
-                    const result = (service as any)._getUniqueAssetKeys(viewKey, signalMap);
+                    const result = service['_getUniqueAssetKeys']<any>(viewKey, signalMap);
 
-                    expectToEqual(result, [viewKey]);
+                    expectToEqual(result, [viewKey as EditionDataAssetsKeys]);
                 });
             });
 
             describe('... should strip `Data` suffix from `dataKeys` for multi-data views like', () => {
-                it.each([
+                it.each<{
+                    viewKey: EditionViewKey;
+                    signalMap: Array<[any, Signal<any>]>;
+                }>([
                     {
                         viewKey: 'sheets',
                         signalMap: [
@@ -753,7 +762,7 @@ describe('EditionViewService', () => {
                         ],
                     },
                 ])('... $viewKey', ({ viewKey, signalMap }) => {
-                    const result = (service as any)._getUniqueAssetKeys(viewKey, signalMap);
+                    const result = service['_getUniqueAssetKeys']<any>(viewKey, signalMap);
 
                     const expectedKeys = Array.from(
                         new Set(signalMap.map(([dataKey]) => (dataKey as string).replace('Data', '')))
@@ -768,9 +777,9 @@ describe('EditionViewService', () => {
                 const signalMap = [
                     ['statistics', signal(null)],
                     ['historyData', signal(null)],
-                ];
+                ] as [any, any][];
 
-                const result = (service as any)._getUniqueAssetKeys(viewKey, signalMap);
+                const result = service['_getUniqueAssetKeys']<any>(viewKey, signalMap);
 
                 expectToEqual(result, ['statistics', 'history']);
             });
@@ -782,7 +791,7 @@ describe('EditionViewService', () => {
                         signalMap: [
                             ['prefaceData', signal(1)],
                             ['prefaceData', signal(2)],
-                        ],
+                        ] as [any, any][],
                         expected: ['preface'],
                     },
                     {
@@ -790,11 +799,11 @@ describe('EditionViewService', () => {
                         signalMap: [
                             ['prefaceData', signal(1)],
                             ['preface', signal(2)],
-                        ],
+                        ] as [any, any][],
                         expected: ['preface'],
                     },
                 ])('... when processing $desc', ({ signalMap, expected }) => {
-                    const result = (service as any)._getUniqueAssetKeys('preface', signalMap);
+                    const result = service['_getUniqueAssetKeys']('preface', signalMap);
 
                     expectToEqual(result, expected);
                 });
@@ -806,7 +815,7 @@ describe('EditionViewService', () => {
             const dataKeys: Array<keyof EditionViewDataTypeMapping[typeof viewKey]> = ['folioConvoluteData'];
 
             it('... should have a method `_getFallbackForInactiveView`', () => {
-                expect((service as any)._getFallbackForInactiveView).toBeDefined();
+                expect(service['_getFallbackForInactiveView']).toBeDefined();
             });
 
             it('... should return a fallback if the viewKey is not included in the activeView', () => {
@@ -817,9 +826,9 @@ describe('EditionViewService', () => {
                 };
 
                 currentViewNameSpy.mockReturnValue('preface');
-                const createFallbackSpy = vi.spyOn(service as any, '_createFallback').mockReturnValue(mockFallback);
+                const createFallbackSpy = vi.spyOn(service, '_createFallback' as any).mockReturnValue(mockFallback);
 
-                const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
+                const result = service['_getFallbackForInactiveView'](viewKey, dataKeys);
 
                 expectToEqual(result, mockFallback);
                 expectSpyCall(createFallbackSpy, 1, [dataKeys]);
@@ -835,27 +844,27 @@ describe('EditionViewService', () => {
                 };
 
                 currentViewNameSpy.mockReturnValue('sheets');
-                (service as any)._previousViewName.set('preface');
+                service['_previousViewName'].set('preface');
 
-                vi.spyOn(service as any, '_createFallback').mockReturnValue(mockFallback);
+                vi.spyOn(service, '_createFallback' as any).mockReturnValue(mockFallback);
 
-                const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
+                const result = service['_getFallbackForInactiveView'](viewKey, dataKeys);
 
                 expectToEqual(result, mockFallback);
-                expectToBe((service as any)._previousViewName(), 'preface');
+                expectToBe(service['_previousViewName'](), 'preface');
 
                 vi.advanceTimersByTime(0);
 
-                expectToBe((service as any)._previousViewName(), 'sheets');
+                expectToBe(service['_previousViewName'](), 'sheets');
 
                 vi.useRealTimers();
             });
 
             it('... should return null if the view is active and matches the `_previousViewName` (steady state)', () => {
                 currentViewNameSpy.mockReturnValue('sheets');
-                (service as any)._previousViewName.set('sheets');
+                service['_previousViewName'].set('sheets');
 
-                const result = (service as any)._getFallbackForInactiveView(viewKey, dataKeys);
+                const result = service['_getFallbackForInactiveView'](viewKey, dataKeys);
 
                 expectToBe(result, null);
             });
@@ -863,13 +872,13 @@ describe('EditionViewService', () => {
 
         describe('#_createFallback()', () => {
             it('... should have a method `_createFallback`', () => {
-                expect((service as any)._createFallback).toBeDefined();
+                expect(service['_createFallback']).toBeDefined();
             });
 
             it('... should return a fallback object with isLoading set to true and error set to null', () => {
                 const dataKeys = ['prefaceData'];
 
-                const result = (service as any)._createFallback(dataKeys);
+                const result = service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
 
                 expect(result).toBeDefined();
                 expectToBe(result.isLoading, true);
@@ -880,7 +889,8 @@ describe('EditionViewService', () => {
                 it('... for single-data view signals', () => {
                     const dataKeys = ['prefaceData'];
 
-                    const result = (service as any)._createFallback(dataKeys);
+                    const result =
+                        service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
 
                     expectToEqual(result.data, {
                         prefaceData: null,
@@ -888,12 +898,13 @@ describe('EditionViewService', () => {
                 });
 
                 it('... for multi-data view signals', () => {
-                    const dataKeys = ['folioCOnvoluteData', 'svgSheetsData', 'textcriticsData'];
+                    const dataKeys = ['folioConvoluteData', 'svgSheetsData', 'textcriticsData'];
 
-                    const result = (service as any)._createFallback(dataKeys);
+                    const result =
+                        service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
 
                     expectToEqual(result.data, {
-                        folioCOnvoluteData: null,
+                        folioConvoluteData: null,
                         svgSheetsData: null,
                         textcriticsData: null,
                     });
@@ -903,7 +914,7 @@ describe('EditionViewService', () => {
             it('... should handle an empty array of data keys gracefully', () => {
                 const dataKeys: any[] = [];
 
-                const result = (service as any)._createFallback(dataKeys);
+                const result = service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
 
                 expectToEqual(result.data, {});
                 expectToBe(result.isLoading, true);
@@ -913,8 +924,10 @@ describe('EditionViewService', () => {
             it('... should return a new object instance on every invocation to prevent shared references', () => {
                 const dataKeys = ['prefaceData'];
 
-                const firstResult = (service as any)._createFallback(dataKeys);
-                const secondResult = (service as any)._createFallback(dataKeys);
+                const firstResult =
+                    service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
+                const secondResult =
+                    service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(dataKeys);
 
                 expect(firstResult).not.toBe(secondResult);
                 expect(firstResult.data).not.toBe(secondResult.data);
@@ -923,25 +936,27 @@ describe('EditionViewService', () => {
             it('... should create valid fallbacks for all configured keys', () => {
                 const configKeys = Object.keys(EDITION_ASSETS_DATA.CONFIG) as EditionDataAssetsKeys[];
 
-                const result = (service as any)._createFallback(configKeys);
+                const result = service['_createFallback']<keyof EditionViewDataTypeMapping[EditionViewKey]>(configKeys);
 
                 configKeys.forEach(key => {
-                    expect(result.data).toHaveProperty(key);
-                    expectToBe(result.data[key], null);
+                    const viewData = result.data as Record<EditionDataAssetsKeys, null>;
+
+                    expect(viewData).toHaveProperty(key);
+                    expectToBe(viewData[key], null);
                 });
             });
         });
 
         describe('#_parseViewFromUrl()', () => {
             it('... should have a method `_parseViewFromUrl`', () => {
-                expect((service as any)._parseViewFromUrl).toBeDefined();
+                expect(service['_parseViewFromUrl']).toBeDefined();
             });
 
             describe('... should return the last segment path for general edition views', () => {
                 it.each([{ view: 'preface' }, { view: 'rowtables' }])('... $view', ({ view }) => {
                     const url = `/edition/${view}`;
 
-                    const result = (service as any)._parseViewFromUrl(url);
+                    const result = service['_parseViewFromUrl'](url);
 
                     expectToBe(result, view);
                 });
@@ -953,7 +968,7 @@ describe('EditionViewService', () => {
                     ({ view }) => {
                         const url = `/edition/complex/op12/${view}`;
 
-                        const result = (service as any)._parseViewFromUrl(url);
+                        const result = service['_parseViewFromUrl'](url);
 
                         expectToBe(result, view);
                     }
@@ -963,7 +978,7 @@ describe('EditionViewService', () => {
             it('... should return the last segment path and ignore query parameters or matrix parameters', () => {
                 const url = '/edition/complex/op12/sheets?id=M212_TF1a#folio-1';
 
-                const result = (service as any)._parseViewFromUrl(url);
+                const result = service['_parseViewFromUrl'](url);
 
                 expect(result).toBe('sheets');
             });
@@ -971,7 +986,7 @@ describe('EditionViewService', () => {
             it('... should return the single segment path if the URL has only one segment', () => {
                 const url = '/edition';
 
-                const result = (service as any)._parseViewFromUrl(url);
+                const result = service['_parseViewFromUrl'](url);
 
                 expectToBe(result, 'edition');
             });
@@ -982,7 +997,7 @@ describe('EditionViewService', () => {
                     { desc: 'the URL is completely empty', url: '' },
                     { desc: 'there is a secondary outlet without primary', url: '/(sidebar:help)' },
                 ])('... $desc', ({ url }) => {
-                    const result = (service as any)._parseViewFromUrl(url);
+                    const result = service['_parseViewFromUrl'](url);
 
                     expectToBe(result, '');
                 });

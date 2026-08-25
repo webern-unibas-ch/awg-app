@@ -30,9 +30,9 @@ describe('LoadingService (DONE)', () => {
     });
 
     it('... should have private signal `_pendingRequests` to hold the default value', () => {
-        expectToBe(isSignal((loadingService as any)._pendingRequests), true);
+        expectToBe(isSignal(loadingService['_pendingRequests']), true);
 
-        expectToEqual((loadingService as any)._pendingRequests(), []);
+        expectToEqual(loadingService['_pendingRequests'](), []);
     });
 
     it('... should have computed signal `isLoading` to hold true after registering a request', () => {
@@ -47,7 +47,7 @@ describe('LoadingService (DONE)', () => {
 
     describe('... should have computed signal `isLoading` to hold false if ...', () => {
         it('... no requests are registered', () => {
-            expectToEqual((loadingService as any)._pendingRequests(), []);
+            expectToEqual(loadingService['_pendingRequests'](), []);
             expectToBe(loadingService.isLoading(), false);
         });
 
@@ -71,7 +71,7 @@ describe('LoadingService (DONE)', () => {
 
                 loadingService.registerRequest(req);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req]);
+                expectToEqual(loadingService['_pendingRequests'](), [req]);
                 expectToBe(loadingService.isLoading(), true);
             });
 
@@ -81,22 +81,22 @@ describe('LoadingService (DONE)', () => {
 
                 loadingService.registerRequest(req1);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToEqual(loadingService['_pendingRequests'](), [req1]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.registerRequest(req2);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
+                expectToEqual(loadingService['_pendingRequests'](), [req1, req2]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(req1);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req2]);
+                expectToEqual(loadingService['_pendingRequests'](), [req2]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(req2);
 
-                expectToEqual((loadingService as any)._pendingRequests(), []);
+                expectToEqual(loadingService['_pendingRequests'](), []);
                 expectToBe(loadingService.isLoading(), false);
             });
         });
@@ -110,11 +110,11 @@ describe('LoadingService (DONE)', () => {
                 const req = createMockRequest('/api/test');
 
                 loadingService.registerRequest(req);
-                expectToEqual((loadingService as any)._pendingRequests(), [req]);
+                expectToEqual(loadingService['_pendingRequests'](), [req]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(req);
-                expectToEqual((loadingService as any)._pendingRequests(), []);
+                expectToEqual(loadingService['_pendingRequests'](), []);
             });
 
             it('... should only update pending requests and recompute `isLoading` to false when all requests are deregistered', () => {
@@ -124,17 +124,17 @@ describe('LoadingService (DONE)', () => {
                 loadingService.registerRequest(req1);
                 loadingService.registerRequest(req2);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req1, req2]);
+                expectToEqual(loadingService['_pendingRequests'](), [req1, req2]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(req1);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req2]);
+                expectToEqual(loadingService['_pendingRequests'](), [req2]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(req2);
 
-                expectToEqual((loadingService as any)._pendingRequests(), []);
+                expectToEqual(loadingService['_pendingRequests'](), []);
                 expectToBe(loadingService.isLoading(), false);
             });
 
@@ -144,12 +144,12 @@ describe('LoadingService (DONE)', () => {
 
                 loadingService.registerRequest(req1);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToEqual(loadingService['_pendingRequests'](), [req1]);
                 expectToBe(loadingService.isLoading(), true);
 
                 loadingService.deregisterRequest(fakeReq);
 
-                expectToEqual((loadingService as any)._pendingRequests(), [req1]);
+                expectToEqual(loadingService['_pendingRequests'](), [req1]);
                 expectToBe(loadingService.isLoading(), true);
             });
         });

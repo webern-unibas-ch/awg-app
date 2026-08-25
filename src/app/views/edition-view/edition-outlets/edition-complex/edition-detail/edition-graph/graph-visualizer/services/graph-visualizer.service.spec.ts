@@ -9,6 +9,8 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { mockConsole } from '@testing/mock-helper';
 
 import {
+    Namespace,
+    NamespaceType,
     QuerySelectResult,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
@@ -184,7 +186,7 @@ describe('GraphVisualizerService', () => {
     });
 
     it('... should have not _store property yet', () => {
-        expect((graphVisualizerService as any)._store).toBeUndefined();
+        expect(graphVisualizerService['_store']).toBeUndefined();
     });
 
     describe('#checkNamespacesInQuery()', () => {
@@ -255,16 +257,6 @@ describe('GraphVisualizerService', () => {
                 });
             });
         });
-
-        it('... should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
-            const tripleStr =
-                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
-            const expectedError = 'The type must be TURTLE or SPARQL, but was: undefined.';
-
-            expect(() => (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr)).toThrow(
-                expectedError
-            );
-        });
     });
 
     describe('#doQuery()', () => {
@@ -277,7 +269,7 @@ describe('GraphVisualizerService', () => {
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
             const queryType = 'construct';
-            const loadTriplesSpy = vi.spyOn(graphVisualizerService as any, '_loadTriplesInStore');
+            const loadTriplesSpy = vi.spyOn(graphVisualizerService, '_loadTriplesInStore' as any);
 
             await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
@@ -290,7 +282,7 @@ describe('GraphVisualizerService', () => {
                 '[{"@id":"http://example.org/object"},{"@id":"http://example.org/subject","http://example.org/predicate":[{"@id":"http://example.org/object"}]}]';
             const queryType = 'construct';
             const mimeType = 'application/ld+json';
-            const loadTriplesSpy = vi.spyOn(graphVisualizerService as any, '_loadTriplesInStore');
+            const loadTriplesSpy = vi.spyOn(graphVisualizerService, '_loadTriplesInStore' as any);
 
             await graphVisualizerService.doQuery(queryType, queryStr, tripleStr, mimeType);
 
@@ -305,8 +297,8 @@ describe('GraphVisualizerService', () => {
 
             await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
-            expect((graphVisualizerService as any)._store).toBeDefined();
-            expectToEqual((graphVisualizerService as any)._store.constructor.name, 'MockStore');
+            expect(graphVisualizerService['_store']).toBeDefined();
+            expectToEqual(graphVisualizerService['_store'].constructor.name, 'MockStore');
         });
 
         describe('should perform a given query with a given turtle string against the rdfstore', () => {
@@ -442,7 +434,7 @@ describe('GraphVisualizerService', () => {
                         '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                     const queryType = 'select';
 
-                    vi.spyOn(graphVisualizerService as any, '_executeQuery').mockResolvedValue('');
+                    vi.spyOn(graphVisualizerService, '_executeQuery' as any).mockResolvedValue('');
 
                     const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
@@ -457,7 +449,7 @@ describe('GraphVisualizerService', () => {
                 const queryType = 'select';
                 const expectedResponse = 'Query returned no results';
 
-                vi.spyOn(graphVisualizerService as any, '_executeQuery').mockResolvedValue([]);
+                vi.spyOn(graphVisualizerService, '_executeQuery' as any).mockResolvedValue([]);
 
                 const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
@@ -797,11 +789,16 @@ describe('GraphVisualizerService', () => {
 
     describe('#_abbreviate()', () => {
         it('... should have a method `_abbreviate`', () => {
-            expect((graphVisualizerService as any)._abbreviate).toBeDefined();
+            expect(graphVisualizerService['_abbreviate']).toBeDefined();
         });
 
         describe('... should return an abbreviated IRI if', () => {
-            it.each([
+            it.each<{
+                desc: string;
+                iri: string;
+                namespaces: Namespace;
+                expectedAbbreviation: string;
+            }>([
                 {
                     desc: 'the given IRI matches a given namespace',
                     iri: 'http://example.org/subject',
@@ -830,14 +827,19 @@ describe('GraphVisualizerService', () => {
                     expectedAbbreviation: 'ex1:subject',
                 },
             ])('... $desc', ({ iri, namespaces, expectedAbbreviation }) => {
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+                const result = graphVisualizerService['_abbreviate'](iri, namespaces);
 
                 expectToBe(result, expectedAbbreviation);
             });
         });
 
         describe('... should return a partially (incorrect) abbreviated IRI if the namespace ', () => {
-            it.each([
+            it.each<{
+                desc: string;
+                iri: string;
+                namespaces: Namespace;
+                expected: string;
+            }>([
                 {
                     desc: 'does not have a trailing slash',
                     iri: 'http://example.org/subject',
@@ -857,14 +859,18 @@ describe('GraphVisualizerService', () => {
                     expected: 'ex:',
                 },
             ])('... $desc', ({ iri, namespaces, expected }) => {
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+                const result = graphVisualizerService['_abbreviate'](iri, namespaces);
 
                 expectToBe(result, expected);
             });
         });
 
         describe('... should return the original IRI if', () => {
-            it.each([
+            it.each<{
+                desc: string;
+                iri: string;
+                namespaces: Namespace;
+            }>([
                 {
                     desc: 'the given IRI does not start with http',
                     iri: 'ex:subject',
@@ -878,12 +884,12 @@ describe('GraphVisualizerService', () => {
                 {
                     desc: 'the given namespaces are undefined',
                     iri: 'http://example.org/subject',
-                    namespaces: undefined,
+                    namespaces: undefined as any,
                 },
                 {
                     desc: 'the given namespaces are null',
                     iri: 'http://example.org/subject',
-                    namespaces: null,
+                    namespaces: null as any,
                 },
                 {
                     desc: 'the given IRI does not match a given namespace',
@@ -910,7 +916,7 @@ describe('GraphVisualizerService', () => {
                     namespaces: { ex: 'http://example.org/' },
                 },
             ])('... $desc', ({ iri, namespaces }) => {
-                const result = (graphVisualizerService as any)._abbreviate(iri, namespaces);
+                const result = graphVisualizerService['_abbreviate'](iri, namespaces);
 
                 expectToBe(result, iri);
             });
@@ -923,7 +929,7 @@ describe('GraphVisualizerService', () => {
             ])('... with $desc', ({ value }) => {
                 const namespaces = { ex: 'http://example.org/' };
 
-                const result = (graphVisualizerService as any)._abbreviate(value, namespaces);
+                const result = graphVisualizerService['_abbreviate'](value, namespaces);
 
                 if (value === undefined) {
                     expect(result).toBeUndefined();
@@ -936,15 +942,15 @@ describe('GraphVisualizerService', () => {
 
     describe('#_createStore()', () => {
         it('... should have a method `_createStore`', () => {
-            expect((graphVisualizerService as any)._createStore).toBeDefined();
+            expect(graphVisualizerService['_createStore']).toBeDefined();
         });
 
         it('... should return a Promise of an rdfstore instance', async () => {
-            await expect((graphVisualizerService as any)._createStore(mockRdfstore)).resolves.not.toThrow();
+            await expect(graphVisualizerService['_createStore'](mockRdfstore)).resolves.not.toThrow();
         });
 
         it('... should return a Promise of an rdfstore instance with load and execute methods', async () => {
-            const result = await (graphVisualizerService as any)._createStore(mockRdfstore);
+            const result = await graphVisualizerService['_createStore'](mockRdfstore);
 
             expect(result).toBeDefined();
             expectToBe(result.constructor.name, 'MockStore');
@@ -955,7 +961,7 @@ describe('GraphVisualizerService', () => {
         it('... should reject if rdfstore is not available in the current runtime', async () => {
             const expectedError = new Error('rdfstore is not available in the current runtime.');
 
-            await expect((graphVisualizerService as any)._createStore(undefined)).rejects.toEqual(expectedError);
+            await expect(graphVisualizerService['_createStore'](undefined)).rejects.toEqual(expectedError);
         });
 
         it('... should reject if store.create encounters an error', async () => {
@@ -968,7 +974,7 @@ describe('GraphVisualizerService', () => {
 
             const storeSpy = vi.spyOn(mockStoreWithCreateError, 'create');
 
-            await expect((graphVisualizerService as any)._createStore(mockStoreWithCreateError)).rejects.toEqual(
+            await expect(graphVisualizerService['_createStore'](mockStoreWithCreateError)).rejects.toEqual(
                 expectedError
             );
 
@@ -980,7 +986,7 @@ describe('GraphVisualizerService', () => {
         let store: MockStore;
 
         beforeEach(async () => {
-            store = await (graphVisualizerService as any)._createStore(mockRdfstore);
+            store = await graphVisualizerService['_createStore'](mockRdfstore);
 
             let tripleStr =
                 '@prefix ex: <http://example.org/>. @prefix ex1: <http://example1.org>. @prefix ex2: <http://example2.org>.';
@@ -989,11 +995,11 @@ describe('GraphVisualizerService', () => {
                 tripleStr += `<http://example.org/subject${i}> <http://example.org/predicate${i}> <http://example.org/object${i}>. `;
             }
 
-            await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+            await graphVisualizerService['_loadTriplesInStore'](store, tripleStr);
         });
 
         it('... should have a method `_executeQuery`', () => {
-            expect((graphVisualizerService as any)._executeQuery).toBeDefined();
+            expect(graphVisualizerService['_executeQuery']).toBeDefined();
         });
 
         it('... should resolve a construct response for a CONSTRUCT query', async () => {
@@ -1003,7 +1009,7 @@ describe('GraphVisualizerService', () => {
                 '<http://example.org/subject2> <http://example.org/predicate2> <http://example.org/object2> .',
             ];
 
-            const result: RDFStoreConstructResponse = await (graphVisualizerService as any)._executeQuery(store, query);
+            const result = (await graphVisualizerService['_executeQuery'](store, query)) as RDFStoreConstructResponse;
             const triples = result.triples ?? [];
 
             expectToBe(triples.length, 2);
@@ -1027,7 +1033,7 @@ describe('GraphVisualizerService', () => {
                 },
             ];
 
-            const result: RDFStoreSelectResponse = await (graphVisualizerService as any)._executeQuery(store, query);
+            const result = (await graphVisualizerService['_executeQuery'](store, query)) as RDFStoreSelectResponse;
 
             expectToBe(result.length, 2);
             result.forEach((triple, index: number) => {
@@ -1038,7 +1044,7 @@ describe('GraphVisualizerService', () => {
         it('... should reject if query is empty', async () => {
             const emptyQuery = '';
 
-            await expect((graphVisualizerService as any)._executeQuery(store, emptyQuery)).rejects.toThrow();
+            await expect(graphVisualizerService['_executeQuery'](store, emptyQuery)).rejects.toThrow();
         });
 
         it('... should reject and throw/log an error if store.execute encounters an error', async () => {
@@ -1053,9 +1059,7 @@ describe('GraphVisualizerService', () => {
 
             const testQuery = 'SELECT * WHERE { ?s ?p ?o }';
 
-            await expect((graphVisualizerService as any)._executeQuery(mockStore, testQuery)).rejects.toEqual(
-                expectedError
-            );
+            await expect(graphVisualizerService['_executeQuery'](mockStore, testQuery)).rejects.toEqual(expectedError);
 
             expectSpyCall(storeSpy, 1, [testQuery, expect.any(Function)]);
             expectSpyCall(consoleSpy, 1, ['_executeQuery# got ERROR', expectedError]);
@@ -1064,7 +1068,7 @@ describe('GraphVisualizerService', () => {
 
     describe('#_extractNamespacesFromString()', () => {
         it('... should have a method `_extractNamespacesFromString`', () => {
-            expect((graphVisualizerService as any)._extractNamespacesFromString).toBeDefined();
+            expect(graphVisualizerService['_extractNamespacesFromString']).toBeDefined();
         });
 
         it('... should return an object with namespaces from a given turtle string', () => {
@@ -1072,7 +1076,7 @@ describe('GraphVisualizerService', () => {
                 '@prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
             const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
 
-            const result = (graphVisualizerService as any)._extractNamespacesFromString('TURTLE', turtleStr);
+            const result = graphVisualizerService['_extractNamespacesFromString'](NamespaceType.TURTLE, turtleStr);
 
             expectToEqual(result, expectedNamespaces);
         });
@@ -1082,7 +1086,7 @@ describe('GraphVisualizerService', () => {
                 'PREFIX ex: <http://example.org/>. PREFIX ex2: <http://example2.org>. SELECT * WHERE { ?s ?p ?o }';
             const expectedNamespaces = { ex: 'http://example.org/', ex2: 'http://example2.org' };
 
-            const result = (graphVisualizerService as any)._extractNamespacesFromString('SPARQL', sparqlStr);
+            const result = graphVisualizerService['_extractNamespacesFromString'](NamespaceType.SPARQL, sparqlStr);
 
             expectToEqual(result, expectedNamespaces);
         });
@@ -1092,11 +1096,11 @@ describe('GraphVisualizerService', () => {
                 const emptyStr = '';
                 const expectedNamespaces = {};
 
-                const result = (graphVisualizerService as any)._extractNamespacesFromString('TURTLE', emptyStr);
+                const result = graphVisualizerService['_extractNamespacesFromString'](NamespaceType.TURTLE, emptyStr);
 
                 expectToEqual(result, expectedNamespaces);
 
-                const result2 = (graphVisualizerService as any)._extractNamespacesFromString('SPARQL', emptyStr);
+                const result2 = graphVisualizerService['_extractNamespacesFromString'](NamespaceType.SPARQL, emptyStr);
 
                 expectToEqual(result2, expectedNamespaces);
             });
@@ -1106,8 +1110,8 @@ describe('GraphVisualizerService', () => {
                     '<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                 const expectedNamespaces = {};
 
-                const result = (graphVisualizerService as any)._extractNamespacesFromString(
-                    'TURTLE',
+                const result = graphVisualizerService['_extractNamespacesFromString'](
+                    NamespaceType.TURTLE,
                     noPrefixTurtleStr
                 );
 
@@ -1118,8 +1122,8 @@ describe('GraphVisualizerService', () => {
                 const noPrefixSparqlStr = 'SELECT * WHERE { ?s ?p ?o }';
                 const expectedNamespaces = {};
 
-                const result = (graphVisualizerService as any)._extractNamespacesFromString(
-                    'SPARQL',
+                const result = graphVisualizerService['_extractNamespacesFromString'](
+                    NamespaceType.SPARQL,
                     noPrefixSparqlStr
                 );
 
@@ -1132,7 +1136,7 @@ describe('GraphVisualizerService', () => {
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
             const expectedError = 'The type must be TURTLE or SPARQL, but was: OTHER.';
 
-            expect(() => (graphVisualizerService as any)._extractNamespacesFromString('OTHER', tripleStr)).toThrow(
+            expect(() => graphVisualizerService['_extractNamespacesFromString']('OTHER' as any, tripleStr)).toThrow(
                 expectedError
             );
         });
@@ -1140,7 +1144,7 @@ describe('GraphVisualizerService', () => {
 
     describe('#_extractQNamePrefixesFromSPARQLWhereClause()', () => {
         it('... should have a method `_extractQNamePrefixesFromSPARQLWhereClause`', () => {
-            expect((graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause).toBeDefined();
+            expect(graphVisualizerService['_extractQNamePrefixesFromSPARQLWhereClause']).toBeDefined();
         });
 
         describe('... should return', () => {
@@ -1176,7 +1180,7 @@ describe('GraphVisualizerService', () => {
                     expected: ['_', 'Ex1', 'EX2', 'ex', 'ex1', 'ex2'],
                 },
             ])('... $desc', ({ query, expected }) => {
-                const result = (graphVisualizerService as any)._extractQNamePrefixesFromSPARQLWhereClause(query);
+                const result = graphVisualizerService['_extractQNamePrefixesFromSPARQLWhereClause'](query);
 
                 expectToEqual(result, expected);
             });
@@ -1187,11 +1191,11 @@ describe('GraphVisualizerService', () => {
         let store: MockStore;
 
         beforeEach(async () => {
-            store = await (graphVisualizerService as any)._createStore(mockRdfstore);
+            store = await graphVisualizerService['_createStore'](mockRdfstore);
         });
 
         it('... should have a method `_loadTriplesInStore`', () => {
-            expect((graphVisualizerService as any)._loadTriplesInStore).toBeDefined();
+            expect(graphVisualizerService['_loadTriplesInStore']).toBeDefined();
         });
 
         describe('... should load triples into the rdfstore', () => {
@@ -1206,7 +1210,7 @@ describe('GraphVisualizerService', () => {
                     (_, i) => `<${base}/subject${i}> <${base}/predicate${i}> <${base}/object${i}>.`
                 ).join(' ');
 
-                const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr);
+                const size = await graphVisualizerService['_loadTriplesInStore'](store, tripleStr);
 
                 expectToBe(size, expectedSize);
             });
@@ -1234,7 +1238,7 @@ describe('GraphVisualizerService', () => {
                     mimeType: 'application/ld+json',
                 },
             ])('... $desc', async ({ tripleStr, mimeType }) => {
-                const size = await (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType);
+                const size = await graphVisualizerService['_loadTriplesInStore'](store, tripleStr, mimeType);
 
                 expectToBe(size, 1);
             });
@@ -1246,9 +1250,9 @@ describe('GraphVisualizerService', () => {
             const expectedErrorMessage = `Cannot find parser for the provided media type:${mimeType}`;
             const expectedError = new Error(expectedErrorMessage);
 
-            await expect(
-                (graphVisualizerService as any)._loadTriplesInStore(store, tripleStr, mimeType)
-            ).rejects.toThrow(expectedErrorMessage);
+            await expect(graphVisualizerService['_loadTriplesInStore'](store, tripleStr, mimeType)).rejects.toThrow(
+                expectedErrorMessage
+            );
 
             expectSpyCall(consoleSpy, 1, ['_loadTriplesInStore# got ERROR', expectedError]);
         });
@@ -1256,7 +1260,7 @@ describe('GraphVisualizerService', () => {
 
     describe('_mapKeys', () => {
         it('... should have a method `_mapKeys`', () => {
-            expect((graphVisualizerService as any)._mapKeys).toBeDefined();
+            expect(graphVisualizerService['_mapKeys']).toBeDefined();
         });
 
         describe('... should return an empty object if the input object is falsy or empty', () => {
@@ -1271,7 +1275,7 @@ describe('GraphVisualizerService', () => {
                     lang: 'xml:lang',
                 };
 
-                const result = (graphVisualizerService as any)._mapKeys(input, keyMap);
+                const result = graphVisualizerService['_mapKeys'](input, keyMap);
 
                 expectToEqual(result, {});
             });
@@ -1288,7 +1292,7 @@ describe('GraphVisualizerService', () => {
                     key2: 'value2',
                 };
 
-                const result = (graphVisualizerService as any)._mapKeys(inputObj, map);
+                const result = graphVisualizerService['_mapKeys'](inputObj, map);
 
                 expectToEqual(result, inputObj);
             });
@@ -1308,7 +1312,7 @@ describe('GraphVisualizerService', () => {
                 key2Mapped: 'value2',
             };
 
-            const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+            const result = graphVisualizerService['_mapKeys'](inputObj, keyMap);
 
             expectToEqual(result, outputObj);
         });
@@ -1330,7 +1334,7 @@ describe('GraphVisualizerService', () => {
                 'xml:lang': 'en',
             };
 
-            const result = (graphVisualizerService as any)._mapKeys(inputObj, keyMap);
+            const result = graphVisualizerService['_mapKeys'](inputObj, keyMap);
 
             expectToEqual(result, outputObj);
         });
@@ -1338,11 +1342,11 @@ describe('GraphVisualizerService', () => {
 
     describe('_prepareMappedBindings', () => {
         it('... should have a method `_prepareMappedBindings`', () => {
-            expect((graphVisualizerService as any)._prepareMappedBindings).toBeDefined();
+            expect(graphVisualizerService['_prepareMappedBindings']).toBeDefined();
         });
 
         it('... should return an array with mapped bindings and label', () => {
-            const selectResponse = [
+            const mockSelectResponse: any = [
                 {
                     key1: {
                         token: 'uri',
@@ -1371,13 +1375,13 @@ describe('GraphVisualizerService', () => {
                 },
             ];
 
-            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+            const result = graphVisualizerService['_prepareMappedBindings'](mockSelectResponse);
 
             expectToEqual(result, expectedMappedBindings);
         });
 
         it('... should return a prefixed label for a URI value', () => {
-            const selectResponse = [
+            const mockSelectResponse: any = [
                 {
                     key1: {
                         token: 'uri',
@@ -1408,14 +1412,14 @@ describe('GraphVisualizerService', () => {
                 },
             ];
 
-            const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+            const result = graphVisualizerService['_prepareMappedBindings'](mockSelectResponse);
 
             expectToEqual(result, expectedMappedBindings);
         });
 
         describe('... should return a number label for', () => {
             it('... literal integer values', () => {
-                const selectResponse = [
+                const mockSelectResponse: any = [
                     {
                         key1: {
                             token: 'literal',
@@ -1435,13 +1439,13 @@ describe('GraphVisualizerService', () => {
                     },
                 ];
 
-                const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+                const result = graphVisualizerService['_prepareMappedBindings'](mockSelectResponse);
 
                 expectToEqual(result, expectedMappedBindings);
             });
 
             it('... literal non-negative integer values', () => {
-                const selectResponse = [
+                const mockSelectResponse: any = [
                     {
                         key1: {
                             token: 'literal',
@@ -1461,14 +1465,14 @@ describe('GraphVisualizerService', () => {
                     },
                 ];
 
-                const result = (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+                const result = graphVisualizerService['_prepareMappedBindings'](mockSelectResponse);
 
                 expectToEqual(result, expectedMappedBindings);
             });
         });
 
         it('... should trigger `_mapKeys` method for each key', () => {
-            const selectResponse = [
+            const mockSelectResponse: any = [
                 {
                     key1: {
                         token: 'uri',
@@ -1481,9 +1485,9 @@ describe('GraphVisualizerService', () => {
                     },
                 },
             ];
-            const mapKeysSpy = vi.spyOn(graphVisualizerService as any, '_mapKeys');
+            const mapKeysSpy = vi.spyOn(graphVisualizerService, '_mapKeys' as any);
 
-            (graphVisualizerService as any)._prepareMappedBindings(selectResponse);
+            graphVisualizerService['_prepareMappedBindings'](mockSelectResponse);
 
             expectSpyCall(mapKeysSpy, 2);
         });
@@ -1491,7 +1495,7 @@ describe('GraphVisualizerService', () => {
 
     describe('#_prepareConstructResponse()', () => {
         it('... should have a method `_prepareConstructResponse`', () => {
-            expect((graphVisualizerService as any)._prepareConstructResponse).toBeDefined();
+            expect(graphVisualizerService['_prepareConstructResponse']).toBeDefined();
         });
 
         describe('should flatten and abbreviate the given StoreTriples', () => {
@@ -1502,7 +1506,7 @@ describe('GraphVisualizerService', () => {
                     exs: 'https://example.org/',
                 };
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces);
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1534,11 +1538,7 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypeTurtle = 'text/turtle';
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(
-                    triples,
-                    namespaces,
-                    mimetypeTurtle
-                );
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces, mimetypeTurtle);
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1570,11 +1570,7 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypeEmpty = '';
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(
-                    triples,
-                    namespaces,
-                    mimetypeEmpty
-                );
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces, mimetypeEmpty);
 
                 expectToBe(result[0].subject, 'ex:subject1');
                 expectToBe(result[0].predicate, 'ex:predicate1');
@@ -1604,9 +1600,9 @@ describe('GraphVisualizerService', () => {
                     ex: 'http://example.org/',
                     exs: 'https://example.org/',
                 };
-                const abbreviateSpy = vi.spyOn(graphVisualizerService as any, '_abbreviate');
+                const abbreviateSpy = vi.spyOn(graphVisualizerService, '_abbreviate' as any);
 
-                (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
+                graphVisualizerService['_prepareConstructResponse'](triples, namespaces);
 
                 const tripleLength = triples.length;
                 const tripleKeysLength = Object.keys(triples[0]).length;
@@ -1621,7 +1617,7 @@ describe('GraphVisualizerService', () => {
                 const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {};
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces);
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
@@ -1651,7 +1647,7 @@ describe('GraphVisualizerService', () => {
                     ot: 'http://other.org/',
                 };
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(triples, namespaces);
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces);
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
@@ -1683,11 +1679,7 @@ describe('GraphVisualizerService', () => {
                 };
                 const mimetypePlain = 'text/plain';
 
-                const result = (graphVisualizerService as any)._prepareConstructResponse(
-                    triples,
-                    namespaces,
-                    mimetypePlain
-                );
+                const result = graphVisualizerService['_prepareConstructResponse'](triples, namespaces, mimetypePlain);
 
                 expectToBe(result[0].subject, 'http://example.org/subject1');
                 expectToBe(result[0].predicate, 'http://example.org/predicate1');
@@ -1715,7 +1707,7 @@ describe('GraphVisualizerService', () => {
 
     describe('_prepareSelectResponse', () => {
         it('... should have a method `_prepareSelectResponse`', () => {
-            expect((graphVisualizerService as any)._prepareSelectResponse).toBeDefined();
+            expect(graphVisualizerService['_prepareSelectResponse']).toBeDefined();
         });
 
         describe('... should return status=404 and undefined if selectResponse is falsy', () => {
@@ -1728,7 +1720,7 @@ describe('GraphVisualizerService', () => {
                 { desc: 'undefined', value: undefined },
                 { desc: 'null', value: null },
             ])('... with $desc', ({ value }) => {
-                const result = (graphVisualizerService as any)._prepareSelectResponse(value);
+                const result = graphVisualizerService['_prepareSelectResponse'](value);
 
                 expectToEqual(result, expectedResponse);
             });
@@ -1744,7 +1736,7 @@ describe('GraphVisualizerService', () => {
                 data: 'Query returned no results',
             };
 
-            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+            const result = graphVisualizerService['_prepareSelectResponse'](selectResponse);
 
             expectToEqual(result, expectedResponse);
         });
@@ -1794,7 +1786,7 @@ describe('GraphVisualizerService', () => {
                 },
             };
 
-            const result = (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+            const result = graphVisualizerService['_prepareSelectResponse'](selectResponse);
 
             expectToEqual(result, expectedQueryResult);
         });
@@ -1816,9 +1808,9 @@ describe('GraphVisualizerService', () => {
                 },
             ] as unknown as RDFStoreSelectResponse;
 
-            const prepareMappedBindingsSpy = vi.spyOn(graphVisualizerService as any, '_prepareMappedBindings');
+            const prepareMappedBindingsSpy = vi.spyOn(graphVisualizerService, '_prepareMappedBindings' as any);
 
-            (graphVisualizerService as any)._prepareSelectResponse(selectResponse);
+            graphVisualizerService['_prepareSelectResponse'](selectResponse);
 
             expectSpyCall(prepareMappedBindingsSpy, 1, [selectResponse]);
         });

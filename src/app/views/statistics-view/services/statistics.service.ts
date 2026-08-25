@@ -146,8 +146,8 @@ export class StatisticsService {
      *
      * @returns {boolean} True if the complex route starts with `/mx`, otherwise false.
      */
-    private _isMnrX(complex: EditionOutlineComplexItem | undefined): boolean {
-        const route = complex?.complex?.complexId?.route;
+    private _isMnrX(complex: EditionOutlineComplexItem): boolean {
+        const route = complex.complex?.complexId?.route;
         return typeof route === 'string' && route.startsWith('/mx');
     }
 
@@ -159,7 +159,7 @@ export class StatisticsService {
      * @param {Statistics} stats The overall edition statistics.
      * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
-     * @param {Object} complexTypes The object containing the opus and mnr complex lists.
+     * @param {EditionOutlineComplexTypes | undefined} complexTypes The object containing the opus and mnr complex lists, or undefined.
      *
      * @returns {void} Processes all complexes and updates the counters in the provided statistics objects.
      */
@@ -167,7 +167,7 @@ export class StatisticsService {
         stats: Statistics,
         seriesStats: StatisticsSeriesBreakdown,
         sectionStats: StatisticsSectionBreakdown,
-        complexTypes: EditionOutlineComplexTypes
+        complexTypes: EditionOutlineComplexTypes | undefined
     ): void {
         if (!complexTypes) {
             return;

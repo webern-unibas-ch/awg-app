@@ -107,7 +107,7 @@ export class EditionSvgOverlayService {
      * Returns true if there are available TKK overlays.
      */
     get hasAvailableTkkOverlays(): boolean {
-        return !!this._tkkOverlaysState.available?.length;
+        return !!this._tkkOverlaysState.available.length;
     }
 
     /**
@@ -534,10 +534,6 @@ export class EditionSvgOverlayService {
      * @returns {string} The color of the given tkk overlay.
      */
     private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
-        if (!overlay) {
-            return this.tkkOverlayFillColor;
-        }
-
         if (overlayActionType === EditionSvgOverlayActionTypes.transparent) {
             return this.tkkOverlayTransparentFillColor;
         }
@@ -567,7 +563,7 @@ export class EditionSvgOverlayService {
         overlayGroupRectSelection: D3Selection,
         overlayActionType: EditionSvgOverlayActionTypes
     ): void {
-        if (!overlays || overlays.length === 0 || !overlayGroupRectSelection || !overlayActionType) {
+        if (!overlays.length) {
             return;
         }
 

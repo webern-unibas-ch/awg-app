@@ -144,7 +144,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             const mockSvgDocument = parser.parseFromString(mockSvgContent, 'image/svg+xml');
 
             fetchSvgFileSpy = vi
-                .spyOn(service as any, '_fetchSvgFile')
+                .spyOn(service, '_fetchSvgFile' as any)
                 .mockReturnValue(Promise.resolve(mockSvgDocument));
         });
 

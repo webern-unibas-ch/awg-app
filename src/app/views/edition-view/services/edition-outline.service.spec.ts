@@ -82,9 +82,9 @@ describe('EditionOutlineService (DONE)', () => {
     });
 
     it('... should have signal `_rawOutlineDataSignal` to hold empty array', () => {
-        expectToBe(isSignal((service as any)._rawOutlineDataSignal), true);
+        expectToBe(isSignal(service['_rawOutlineDataSignal']), true);
 
-        expectToEqual((service as any)._rawOutlineDataSignal(), []);
+        expectToEqual(service['_rawOutlineDataSignal'](), []);
     });
 
     describe('#editionOutline()', () => {
@@ -99,7 +99,7 @@ describe('EditionOutlineService (DONE)', () => {
                 editionComplexesService.getEditionComplexById(id)
             ).outline;
 
-            (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+            service['_rawOutlineDataSignal'].set(expectedRawOutlineData);
 
             const outline = service.editionOutline();
 
@@ -129,7 +129,7 @@ describe('EditionOutlineService (DONE)', () => {
                 ],
             };
 
-            (service as any)._rawOutlineDataSignal.set(rawOutlineDataWithUnknownComplex['editionOutline']);
+            service['_rawOutlineDataSignal'].set(rawOutlineDataWithUnknownComplex['editionOutline']);
 
             const outline = service.editionOutline();
             const section = outline[0].sections[0];
@@ -141,24 +141,8 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         describe('... should compute an empty array if the given raw edition data is', () => {
-            it('... null', () => {
-                (service as any)._rawOutlineDataSignal.set(null);
-
-                const editionOutline = service.editionOutline();
-
-                expectToEqual(editionOutline, []);
-            });
-
-            it('... undefined', () => {
-                (service as any)._rawOutlineDataSignal.set(undefined);
-
-                const editionOutline = service.editionOutline();
-
-                expectToEqual(editionOutline, []);
-            });
-
             it('... empty array', () => {
-                (service as any)._rawOutlineDataSignal.set([]);
+                service['_rawOutlineDataSignal'].set([]);
 
                 const editionOutline = service.editionOutline();
 
@@ -192,14 +176,14 @@ describe('EditionOutlineService (DONE)', () => {
             });
 
             it('... should set the `_rawOutlineDataSignal`', () => {
-                expectToEqual((service as any)._rawOutlineDataSignal(), []);
+                expectToEqual(service['_rawOutlineDataSignal'](), []);
 
                 service.initializeEditionOutline();
 
                 expectSpyCall(initializeEditionOutlineSpy, 1);
 
                 expectToEqual(
-                    (service as any)._rawOutlineDataSignal(),
+                    service['_rawOutlineDataSignal'](),
                     jsonEditionOutline['editionOutline'] as EditionOutlineSeriesJsonData[]
                 );
             });
@@ -215,7 +199,7 @@ describe('EditionOutlineService (DONE)', () => {
                     editionComplexesService.getEditionComplexById(id)
                 ).outline;
 
-                (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+                service['_rawOutlineDataSignal'].set(expectedRawOutlineData);
 
                 const series = service.getEditionSeriesById(EDITION_ROUTE_CONSTANTS.SERIES_2.route);
 
@@ -229,7 +213,7 @@ describe('EditionOutlineService (DONE)', () => {
             });
 
             it('... should return editionSection with given id', () => {
-                (service as any)._rawOutlineDataSignal.set(expectedRawOutlineData);
+                service['_rawOutlineDataSignal'].set(expectedRawOutlineData);
 
                 const expectedOutline: EditionOutlineSeries[] = new EditionOutline(expectedRawOutlineData, id =>
                     editionComplexesService.getEditionComplexById(id)

@@ -49,7 +49,7 @@ describe('EditionNavigationService (DONE)', () => {
         router = TestBed.inject(Router);
 
         // Service spies
-        navigateWithComplexIdSpy = vi.spyOn(service as any, '_navigateWithComplexId');
+        navigateWithComplexIdSpy = vi.spyOn(service, '_navigateWithComplexId' as any);
         navigationSpy = vi.spyOn(router, 'navigate').mockReturnValue(Promise.resolve(true));
 
         // Test data
@@ -294,7 +294,7 @@ describe('EditionNavigationService (DONE)', () => {
 
         describe('#_navigateWithComplexId()', () => {
             it('... should have a method `_navigateWithComplexId`', () => {
-                expect((service as any)._navigateWithComplexId).toBeDefined();
+                expect(service['_navigateWithComplexId']).toBeDefined();
             });
 
             describe('... should navigate within same complex if', () => {
@@ -302,16 +302,6 @@ describe('EditionNavigationService (DONE)', () => {
                 const expectedNavigationExtras = { fragment: '' };
 
                 it.each([
-                    {
-                        desc: 'complex id is undefined',
-                        complexId: undefined,
-                        getExpectedRoute: () => expectedComplexBaseRoute,
-                    },
-                    {
-                        desc: 'complex id is null',
-                        complexId: null,
-                        getExpectedRoute: () => expectedComplexBaseRoute,
-                    },
                     {
                         desc: 'complex id is empty string',
                         complexId: '',
@@ -323,7 +313,7 @@ describe('EditionNavigationService (DONE)', () => {
                         getExpectedRoute: () => `/edition/complex/${expectedComplexId}`,
                     },
                 ])(`... $desc`, ({ complexId, getExpectedRoute }) => {
-                    (service as any)._navigateWithComplexId(complexId, expectedTargetRoute, expectedNavigationExtras);
+                    service['_navigateWithComplexId'](complexId, expectedTargetRoute, expectedNavigationExtras);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
                         complexId,
@@ -344,7 +334,7 @@ describe('EditionNavigationService (DONE)', () => {
                     const expectedTargetRoute = 'targetRoute';
                     const expectedNavigationExtras = { fragment: '' };
 
-                    (service as any)._navigateWithComplexId(
+                    service['_navigateWithComplexId'](
                         expectedNextComplexId,
                         expectedTargetRoute,
                         expectedNavigationExtras
@@ -359,100 +349,6 @@ describe('EditionNavigationService (DONE)', () => {
                         [expectedNextComplexRoute, expectedTargetRoute],
                         expectedNavigationExtras,
                     ]);
-                });
-            });
-
-            describe('... should navigate to series overview if selectedComplex is null', () => {
-                beforeEach(() => {
-                    editionStateService.updateSelectedEditionComplex(null);
-                });
-
-                it.each([
-                    {
-                        desc: 'with a given sheet id',
-                        getTargetRoute: () => expectedSheetRoute,
-                        getNavigationExtras: () => ({ queryParams: { id: expectedSvgSheet.id } }),
-                    },
-                    {
-                        desc: 'with a given report fragment',
-                        getTargetRoute: () => expectedReportRoute,
-                        getNavigationExtras: () => ({ fragment: expectedReportFragment }),
-                    },
-                ])(`... $desc`, ({ getTargetRoute, getNavigationExtras }) => {
-                    const expectedTargetRoute = getTargetRoute();
-                    const expectedNavigationExtras = getNavigationExtras();
-
-                    (service as any)._navigateWithComplexId(undefined, expectedTargetRoute, expectedNavigationExtras);
-
-                    expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        undefined,
-                        expectedTargetRoute,
-                        expectedNavigationExtras,
-                    ]);
-
-                    expectSpyCall(navigationSpy, 1, [
-                        ['/edition/series', expectedTargetRoute],
-                        expectedNavigationExtras,
-                    ]);
-                });
-            });
-
-            describe('... with no edition complex id given', () => {
-                describe('... should navigate within same complex to a given', () => {
-                    it.each([
-                        {
-                            desc: 'intro route with a fragment',
-                            getTargetRoute: () => expectedIntroRoute,
-                            getNavigationExtras: () => ({ fragment: expectedIntroFragment }),
-                        },
-                        {
-                            desc: 'intro route without a fragment',
-                            getTargetRoute: () => expectedIntroRoute,
-                            getNavigationExtras: () => ({ fragment: '' }),
-                        },
-                        {
-                            desc: 'report route with a fragment',
-                            getTargetRoute: () => expectedReportRoute,
-                            getNavigationExtras: () => ({ fragment: expectedReportFragment }),
-                        },
-                        {
-                            desc: 'report route without a fragment',
-                            getTargetRoute: () => expectedReportRoute,
-                            getNavigationExtras: () => ({ fragment: '' }),
-                        },
-                        {
-                            desc: 'sheet route with a sheet id',
-                            getTargetRoute: () => expectedSheetRoute,
-                            getNavigationExtras: () => ({ queryParams: { id: expectedSvgSheet.id } }),
-                        },
-                        {
-                            desc: 'sheet route without a sheet id',
-                            getTargetRoute: () => expectedSheetRoute,
-                            getNavigationExtras: () => ({ queryParams: { id: '' } }),
-                        },
-                    ])(`... $desc`, ({ getTargetRoute, getNavigationExtras }) => {
-                        const expectedTargetRoute = getTargetRoute();
-                        const expectedNavigationExtras = getNavigationExtras();
-
-                        const expectedRouteCommands =
-                            expectedTargetRoute === expectedIntroRoute
-                                ? []
-                                : [expectedComplexBaseRoute, expectedTargetRoute];
-
-                        (service as any)._navigateWithComplexId(
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras
-                        );
-
-                        expectSpyCall(navigateWithComplexIdSpy, 1, [
-                            undefined,
-                            expectedTargetRoute,
-                            expectedNavigationExtras,
-                        ]);
-
-                        expectSpyCall(navigationSpy, 1, [expectedRouteCommands, expectedNavigationExtras]);
-                    });
                 });
             });
 
@@ -499,7 +395,7 @@ describe('EditionNavigationService (DONE)', () => {
                                 ? []
                                 : [expectedComplexRoute, expectedTargetRoute];
 
-                        (service as any)._navigateWithComplexId(
+                        service['_navigateWithComplexId'](
                             expectedComplexId,
                             expectedTargetRoute,
                             expectedNavigationExtras
@@ -561,7 +457,7 @@ describe('EditionNavigationService (DONE)', () => {
                                 ? []
                                 : [expectedNextComplexRoute, expectedTargetRoute];
 
-                        (service as any)._navigateWithComplexId(
+                        service['_navigateWithComplexId'](
                             expectedNextComplexId,
                             expectedTargetRoute,
                             expectedNavigationExtras
@@ -574,6 +470,90 @@ describe('EditionNavigationService (DONE)', () => {
                         ]);
 
                         expectSpyCall(navigationSpy, 1, [expectedRouteCommands, expectedNavigationExtras]);
+                    });
+                });
+            });
+
+            describe('... with no edition complex id given', () => {
+                describe('... should navigate within same complex to a given', () => {
+                    it.each([
+                        {
+                            desc: 'intro route with a fragment',
+                            getTargetRoute: () => expectedIntroRoute,
+                            getNavigationExtras: () => ({ fragment: expectedIntroFragment }),
+                        },
+                        {
+                            desc: 'intro route without a fragment',
+                            getTargetRoute: () => expectedIntroRoute,
+                            getNavigationExtras: () => ({ fragment: '' }),
+                        },
+                        {
+                            desc: 'report route with a fragment',
+                            getTargetRoute: () => expectedReportRoute,
+                            getNavigationExtras: () => ({ fragment: expectedReportFragment }),
+                        },
+                        {
+                            desc: 'report route without a fragment',
+                            getTargetRoute: () => expectedReportRoute,
+                            getNavigationExtras: () => ({ fragment: '' }),
+                        },
+                        {
+                            desc: 'sheet route with a sheet id',
+                            getTargetRoute: () => expectedSheetRoute,
+                            getNavigationExtras: () => ({ queryParams: { id: expectedSvgSheet.id } }),
+                        },
+                        {
+                            desc: 'sheet route without a sheet id',
+                            getTargetRoute: () => expectedSheetRoute,
+                            getNavigationExtras: () => ({ queryParams: { id: '' } }),
+                        },
+                    ])(`... $desc`, ({ getTargetRoute, getNavigationExtras }) => {
+                        const expectedTargetRoute = getTargetRoute();
+                        const expectedNavigationExtras = getNavigationExtras();
+
+                        const expectedRouteCommands =
+                            expectedTargetRoute === expectedIntroRoute
+                                ? []
+                                : [expectedComplexBaseRoute, expectedTargetRoute];
+
+                        service['_navigateWithComplexId']('', expectedTargetRoute, expectedNavigationExtras);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
+
+                        expectSpyCall(navigationSpy, 1, [expectedRouteCommands, expectedNavigationExtras]);
+                    });
+                });
+            });
+
+            describe('... with no edition complex id and selectedComplex = null', () => {
+                describe('... should navigate to series overview', () => {
+                    beforeEach(() => {
+                        editionStateService.updateSelectedEditionComplex(null);
+                    });
+
+                    it.each([
+                        {
+                            desc: 'with a given sheet id',
+                            getTargetRoute: () => expectedSheetRoute,
+                            getNavigationExtras: () => ({ queryParams: { id: expectedSvgSheet.id } }),
+                        },
+                        {
+                            desc: 'with a given report fragment',
+                            getTargetRoute: () => expectedReportRoute,
+                            getNavigationExtras: () => ({ fragment: expectedReportFragment }),
+                        },
+                    ])(`... $desc`, ({ getTargetRoute, getNavigationExtras }) => {
+                        const expectedTargetRoute = getTargetRoute();
+                        const expectedNavigationExtras = getNavigationExtras();
+
+                        service['_navigateWithComplexId']('', expectedTargetRoute, expectedNavigationExtras);
+
+                        expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedTargetRoute, expectedNavigationExtras]);
+
+                        expectSpyCall(navigationSpy, 1, [
+                            ['/edition/series', expectedTargetRoute],
+                            expectedNavigationExtras,
+                        ]);
                     });
                 });
             });

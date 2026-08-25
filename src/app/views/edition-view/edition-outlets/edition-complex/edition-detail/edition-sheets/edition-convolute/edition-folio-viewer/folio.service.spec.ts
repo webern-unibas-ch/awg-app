@@ -109,35 +109,35 @@ describe('FolioService (DONE)', () => {
         serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
         serviceOpenTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
-        addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSheetToSvgCanvas');
-        addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioSystemsToSvgCanvas');
-        addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService as any, '_addFolioContentSegmentsToSvgCanvas');
-        appendCanvasSheetGroupSpy = vi.spyOn(folioService as any, '_appendCanvasSheetGroup');
-        appendContentSegmentGroupSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroup');
-        appendContentSegmentGroupElementSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupElement');
-        appendContentSegmentGroupTitleSpy = vi.spyOn(folioService as any, '_appendContentSegmentGroupTitle');
-        appendContentSegmentLinkSpy = vi.spyOn(folioService as any, '_appendContentSegmentLink');
-        appendContentSegmentLinkLabelSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkLabel');
+        addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioSheetToSvgCanvas' as any);
+        addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioSystemsToSvgCanvas' as any);
+        addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioContentSegmentsToSvgCanvas' as any);
+        appendCanvasSheetGroupSpy = vi.spyOn(folioService, '_appendCanvasSheetGroup' as any);
+        appendContentSegmentGroupSpy = vi.spyOn(folioService, '_appendContentSegmentGroup' as any);
+        appendContentSegmentGroupElementSpy = vi.spyOn(folioService, '_appendContentSegmentGroupElement' as any);
+        appendContentSegmentGroupTitleSpy = vi.spyOn(folioService, '_appendContentSegmentGroupTitle' as any);
+        appendContentSegmentLinkSpy = vi.spyOn(folioService, '_appendContentSegmentLink' as any);
+        appendContentSegmentLinkLabelSpy = vi.spyOn(folioService, '_appendContentSegmentLinkLabel' as any);
         appendContentSegmentLinkLabelTextElementSpy = vi.spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkLabelTextElement'
+            folioService,
+            '_appendContentSegmentLinkLabelTextElement' as any
         );
         appendContentSegmentLinkLabelTspanElementsSpy = vi.spyOn(
-            folioService as any,
-            '_appendContentSegmentLinkLabelTspanElements'
+            folioService,
+            '_appendContentSegmentLinkLabelTspanElements' as any
         );
-        appendContentSegmentLinkPolygonSpy = vi.spyOn(folioService as any, '_appendContentSegmentLinkPolygon');
-        appendSheetGroupSheetTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetTitle');
-        appendSheetGroupSheetRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupSheetRectangle');
-        appendSheetGroupTrademarkSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademark');
-        appendSheetGroupTrademarkGroupSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkGroup');
-        appendSheetGroupTrademarkRectangleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkRectangle');
-        appendSheetGroupTrademarkSymbolSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkSymbol');
-        appendSheetGroupTrademarkTitleSpy = vi.spyOn(folioService as any, '_appendSheetGroupTrademarkTitle');
+        appendContentSegmentLinkPolygonSpy = vi.spyOn(folioService, '_appendContentSegmentLinkPolygon' as any);
+        appendSheetGroupSheetTitleSpy = vi.spyOn(folioService, '_appendSheetGroupSheetTitle' as any);
+        appendSheetGroupSheetRectangleSpy = vi.spyOn(folioService, '_appendSheetGroupSheetRectangle' as any);
+        appendSheetGroupTrademarkSpy = vi.spyOn(folioService, '_appendSheetGroupTrademark' as any);
+        appendSheetGroupTrademarkGroupSpy = vi.spyOn(folioService, '_appendSheetGroupTrademarkGroup' as any);
+        appendSheetGroupTrademarkRectangleSpy = vi.spyOn(folioService, '_appendSheetGroupTrademarkRectangle' as any);
+        appendSheetGroupTrademarkSymbolSpy = vi.spyOn(folioService, '_appendSheetGroupTrademarkSymbol' as any);
+        appendSheetGroupTrademarkTitleSpy = vi.spyOn(folioService, '_appendSheetGroupTrademarkTitle' as any);
 
-        appendSystemsGroupLabelSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLabel');
-        appendSystemsGroupLinesSpy = vi.spyOn(folioService as any, '_appendSystemsGroupLines');
-        appendSvgElementWithAttrsSpy = vi.spyOn(folioService as any, '_appendSvgElementWithAttrs');
+        appendSystemsGroupLabelSpy = vi.spyOn(folioService, '_appendSystemsGroupLabel' as any);
+        appendSystemsGroupLinesSpy = vi.spyOn(folioService, '_appendSystemsGroupLines' as any);
+        appendSvgElementWithAttrsSpy = vi.spyOn(folioService, '_appendSvgElementWithAttrs' as any);
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
         // Test data
@@ -208,55 +208,55 @@ describe('FolioService (DONE)', () => {
 
     describe('default values', () => {
         it('... should have `_bgColor`', () => {
-            expectToBe((folioService as any)._bgColor, expectedBgColor);
+            expectToBe(folioService['_bgColor'], expectedBgColor);
         });
 
         it('... should have `_disabledColor`', () => {
-            expectToBe((folioService as any)._disabledColor, expectedDisabledColor);
+            expectToBe(folioService['_disabledColor'], expectedDisabledColor);
         });
 
         it('... should have `_fgColor`', () => {
-            expectToBe((folioService as any)._fgColor, expectedFgColor);
+            expectToBe(folioService['_fgColor'], expectedFgColor);
         });
 
         it('... should have `_contentSegmentFillColor`', () => {
-            expectToBe((folioService as any)._contentSegmentFillColor, expectedContentSegmentFillColor);
+            expectToBe(folioService['_contentSegmentFillColor'], expectedContentSegmentFillColor);
         });
 
         it('... should have `_sheetFillColor`', () => {
-            expectToBe((folioService as any)._sheetFillColor, expectedSheetFillColor);
+            expectToBe(folioService['_sheetFillColor'], expectedSheetFillColor);
         });
 
         it('... should have `_contentSegmentFontFamily`', () => {
-            expectToBe((folioService as any)._contentSegmentFontFamily, expectedContentSegmentFontFamily);
+            expectToBe(folioService['_contentSegmentFontFamily'], expectedContentSegmentFontFamily);
         });
 
         it('... should have `_contentSegmentFontSize`', () => {
-            expectToBe((folioService as any)._contentSegmentFontSize, expectedContentSegmentFontSize);
+            expectToBe(folioService['_contentSegmentFontSize'], expectedContentSegmentFontSize);
         });
 
         it('... should have `_contentSegmentOffsetCorrection`', () => {
-            expectToBe((folioService as any)._contentSegmentOffsetCorrection, expectedContentSegmentOffsetCorrection);
+            expectToBe(folioService['_contentSegmentOffsetCorrection'], expectedContentSegmentOffsetCorrection);
         });
 
         it('... should have `_contentSegmentStrokeWidth`', () => {
-            expectToBe((folioService as any)._contentSegmentStrokeWidth, expectedContentSegmentStrokeWidth);
+            expectToBe(folioService['_contentSegmentStrokeWidth'], expectedContentSegmentStrokeWidth);
         });
 
         it('... should have `_defaultNumberOfSystems`', () => {
-            expectToBe((folioService as any)._defaultNumberOfSystems, expectedDefaultNumberOfSystems);
+            expectToBe(folioService['_defaultNumberOfSystems'], expectedDefaultNumberOfSystems);
         });
 
         it('... should have `_reversedRotationAngle`', () => {
-            expectToBe((folioService as any)._reversedRotationAngle, expectedReversedRotationAngle);
+            expectToBe(folioService['_reversedRotationAngle'], expectedReversedRotationAngle);
         });
 
         it('... should have `_sheetStrokeWidth`', () => {
-            expectToBe((folioService as any)._sheetStrokeWidth, expectedSheetStrokeWidth);
+            expectToBe(folioService['_sheetStrokeWidth'], expectedSheetStrokeWidth);
         });
 
         it('... should have `_systemsLineStrokeWidth`', () => {
-            expectToBe((folioService as any)._systemsLineStrokeWidth, expectedSystemsLineStrokeWidth);
+            expectToBe(folioService['_systemsLineStrokeWidth'], expectedSystemsLineStrokeWidth);
         });
     });
 
@@ -294,7 +294,8 @@ describe('FolioService (DONE)', () => {
                 new FolioCalculation(expectedFolioSettings, expectedDefaultFolio, 0)
             );
 
-            (folioService as any)._contentSegmentOffsetCorrection = undefined;
+            const serviceMock = folioService as any;
+            serviceMock['_contentSegmentOffsetCorrection'] = undefined;
 
             const result = folioService.getFolioSvgData(expectedFolioSettings, expectedDefaultFolio);
 
@@ -416,11 +417,11 @@ describe('FolioService (DONE)', () => {
 
             svgSheetGroup = D3_SELECTION.create('g');
 
-            (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, expectedFolioSvgData);
+            folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, expectedFolioSvgData);
         });
 
         it('... should have a method `_addFolioSheetToSvgCanvas`', () => {
-            expect((folioService as any)._addFolioSheetToSvgCanvas).toBeDefined();
+            expect(folioService['_addFolioSheetToSvgCanvas']).toBeDefined();
         });
 
         it('... should trigger `_appendSheetGroupSheetTitle` with correct arguments', () => {
@@ -442,7 +443,7 @@ describe('FolioService (DONE)', () => {
                 new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
             );
 
-            (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altFolioSvgData);
+            folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altFolioSvgData);
 
             // No additional call
             expectSpyCall(appendSheetGroupTrademarkSpy, 1, [svgSheetGroup, trademarkRectangle, folioId]);
@@ -565,7 +566,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expect(svgSheetGroup).toBeDefined();
 
@@ -598,7 +599,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expectedUpperLeftCorner = new FolioCalculationPoint(
                         sheetRectangle.LOWER_RIGHT_CORNER.x -
@@ -672,7 +673,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expect(svgSheetGroup).toBeDefined();
 
@@ -705,7 +706,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expectedUpperLeftCorner = new FolioCalculationPoint(
                         sheetRectangle.UPPER_LEFT_CORNER.x + expectedSheetMarginOffset,
@@ -775,7 +776,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expect(svgSheetGroup).toBeDefined();
 
@@ -808,7 +809,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expectedUpperLeftCorner = new FolioCalculationPoint(
                         sheetRectangle.LOWER_RIGHT_CORNER.x -
@@ -880,7 +881,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expect(svgSheetGroup).toBeDefined();
 
@@ -913,7 +914,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expectedUpperLeftCorner = new FolioCalculationPoint(0, 0);
                     expectedLowerRightCorner = new FolioCalculationPoint(
@@ -980,7 +981,7 @@ describe('FolioService (DONE)', () => {
 
                     svgSheetGroup = D3_SELECTION.create('g');
 
-                    (folioService as any)._addFolioSheetToSvgCanvas(svgSheetGroup, altSvgData);
+                    folioService['_addFolioSheetToSvgCanvas'](svgSheetGroup, altSvgData);
 
                     expect(svgSheetGroup).toBeDefined();
 
@@ -1012,7 +1013,7 @@ describe('FolioService (DONE)', () => {
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
 
-                (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
+                folioService['_addFolioSheetToSvgCanvas'](altSvgSheetGroup, altFolioSvgData);
 
                 expectToEqual(altFolioSvgData.sheet.sheetRectangle.LOWER_RIGHT_CORNER.x, NaN);
             });
@@ -1025,7 +1026,7 @@ describe('FolioService (DONE)', () => {
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
 
-                (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
+                folioService['_addFolioSheetToSvgCanvas'](altSvgSheetGroup, altFolioSvgData);
 
                 expectToEqual(altFolioSvgData.sheet.sheetRectangle.LOWER_RIGHT_CORNER.y, NaN);
             });
@@ -1034,7 +1035,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_addFolioSystemsToSvgCanvas', () => {
         it('... should have a method `_addFolioSystemsToSvgCanvas`', () => {
-            expect((folioService as any)._addFolioSystemsToSvgCanvas).toBeDefined();
+            expect(folioService['_addFolioSystemsToSvgCanvas']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1043,7 +1044,7 @@ describe('FolioService (DONE)', () => {
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._addFolioSystemsToSvgCanvas(expectedSvgSheetGroup, expectedFolioSvgData);
+                folioService['_addFolioSystemsToSvgCanvas'](expectedSvgSheetGroup, expectedFolioSvgData);
             });
 
             afterEach(() => {
@@ -1059,7 +1060,7 @@ describe('FolioService (DONE)', () => {
                         new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                     );
 
-                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+                    folioService['_addFolioSystemsToSvgCanvas'](emptySvgSheetGroup, emptyFolioSvgData);
 
                     expectToBe(emptySvgSheetGroup.selectAll('.systems-group').size(), 0);
                     expectToBe(emptySvgSheetGroup.selectAll('.system-line-group').size(), 0);
@@ -1102,7 +1103,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._addFolioSystemsToSvgCanvas(expectedSvgSheetGroup, altFolioSvgData);
+                folioService['_addFolioSystemsToSvgCanvas'](expectedSvgSheetGroup, altFolioSvgData);
 
                 const systemIndex = altFolioSvgData.systems.systemsLines.length - 1;
                 const labelIndex = altFolioSvgData.systems.systemsLines.length - systemIndex; // Reversed label index
@@ -1212,7 +1213,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_addFolioContentSegmentsToSvgCanvas', () => {
         it('... should have a method `_addFolioContentSegmentsToSvgCanvas`', () => {
-            expect((folioService as any)._addFolioContentSegmentsToSvgCanvas).toBeDefined();
+            expect(folioService['_addFolioContentSegmentsToSvgCanvas']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1221,7 +1222,7 @@ describe('FolioService (DONE)', () => {
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._addFolioContentSegmentsToSvgCanvas(expectedSvgSheetGroup, expectedFolioSvgData);
+                folioService['_addFolioContentSegmentsToSvgCanvas'](expectedSvgSheetGroup, expectedFolioSvgData);
             });
 
             afterEach(() => {
@@ -1237,7 +1238,7 @@ describe('FolioService (DONE)', () => {
                     );
                     emptyFolioSvgData.contentSegments = [];
 
-                    (folioService as any)._addFolioContentSegmentsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+                    folioService['_addFolioContentSegmentsToSvgCanvas'](emptySvgSheetGroup, emptyFolioSvgData);
 
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
                 });
@@ -1250,7 +1251,7 @@ describe('FolioService (DONE)', () => {
                         new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                     );
 
-                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+                    folioService['_addFolioSystemsToSvgCanvas'](emptySvgSheetGroup, emptyFolioSvgData);
 
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
 
@@ -1275,7 +1276,7 @@ describe('FolioService (DONE)', () => {
                         new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                     );
 
-                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+                    folioService['_addFolioSystemsToSvgCanvas'](emptySvgSheetGroup, emptyFolioSvgData);
 
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
 
@@ -1291,7 +1292,7 @@ describe('FolioService (DONE)', () => {
                         new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                     );
 
-                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+                    folioService['_addFolioSystemsToSvgCanvas'](emptySvgSheetGroup, emptyFolioSvgData);
 
                     expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
 
@@ -1407,7 +1408,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendCanvasSheetGroup', () => {
         it('... should have a method `_appendCanvasSheetGroup`', () => {
-            expect((folioService as any)._appendCanvasSheetGroup).toBeDefined();
+            expect(folioService['_appendCanvasSheetGroup']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1422,7 +1423,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgCanvas = D3_SELECTION.create('svg');
 
-                (folioService as any)._appendCanvasSheetGroup(expectedSvgCanvas, expectedSheetGroupId);
+                folioService['_appendCanvasSheetGroup'](expectedSvgCanvas, expectedSheetGroupId);
 
                 expectedSheetGroup = expectedSvgCanvas.select('g.sheet-group');
             });
@@ -1464,7 +1465,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentGroup', () => {
         it('... should have a method `_appendContentSegmentGroup`', () => {
-            expect((folioService as any)._appendContentSegmentGroup).toBeDefined();
+            expect(folioService['_appendContentSegmentGroup']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1476,7 +1477,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendContentSegmentGroup(expectedSvgSheetGroup, expectedContentSegment);
+                folioService['_appendContentSegmentGroup'](expectedSvgSheetGroup, expectedContentSegment);
             });
 
             afterEach(() => {
@@ -1520,7 +1521,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentGroupElement', () => {
         it('... should have a method `_appendContentSegmentGroupElement`', () => {
-            expect((folioService as any)._appendContentSegmentGroupElement).toBeDefined();
+            expect(folioService['_appendContentSegmentGroupElement']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1533,7 +1534,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                expectedContentSegmentGroup = (folioService as any)._appendContentSegmentGroupElement(
+                expectedContentSegmentGroup = folioService['_appendContentSegmentGroupElement'](
                     expectedSvgSheetGroup,
                     expectedContentSegment
                 );
@@ -1584,7 +1585,7 @@ describe('FolioService (DONE)', () => {
             it('... should set the correct `stroke` attribute of the group element (if not selectable)', () => {
                 expectedContentSegment.selectable = false;
 
-                expectedContentSegmentGroup = (folioService as any)._appendContentSegmentGroupElement(
+                expectedContentSegmentGroup = folioService['_appendContentSegmentGroupElement'](
                     expectedSvgSheetGroup,
                     expectedContentSegment
                 );
@@ -1599,7 +1600,7 @@ describe('FolioService (DONE)', () => {
             it('... should set the correct `fill` attribute of the group element (if not selectable)', () => {
                 expectedContentSegment.selectable = false;
 
-                expectedContentSegmentGroup = (folioService as any)._appendContentSegmentGroupElement(
+                expectedContentSegmentGroup = folioService['_appendContentSegmentGroupElement'](
                     expectedSvgSheetGroup,
                     expectedContentSegment
                 );
@@ -1622,7 +1623,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentGroupTitle', () => {
         it('... should have a method `_appendContentSegmentGroupTitle`', () => {
-            expect((folioService as any)._appendContentSegmentGroupTitle).toBeDefined();
+            expect(folioService['_appendContentSegmentGroupTitle']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1636,10 +1637,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendContentSegmentGroupTitle(
-                    expectedContentSegmentGroup,
-                    expectedContentSegment
-                );
+                folioService['_appendContentSegmentGroupTitle'](expectedContentSegmentGroup, expectedContentSegment);
             });
 
             afterEach(() => {
@@ -1678,7 +1676,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentLink', () => {
         it('... should have a method `_appendContentSegmentLink`', () => {
-            expect((folioService as any)._appendContentSegmentLink).toBeDefined();
+            expect(folioService['_appendContentSegmentLink']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1689,7 +1687,7 @@ describe('FolioService (DONE)', () => {
                 const svg: D3Selection = D3_SELECTION.create('svg');
                 expectedContentSegmentGroup = svg.append('g');
 
-                (folioService as any)._appendContentSegmentLink(expectedContentSegmentGroup);
+                folioService['_appendContentSegmentLink'](expectedContentSegmentGroup);
             });
 
             afterEach(() => {
@@ -1732,7 +1730,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentLinkLabel', () => {
         it('... should have a method `_appendContentSegmentLinkLabel`', () => {
-            expect((folioService as any)._appendContentSegmentLinkLabel).toBeDefined();
+            expect(folioService['_appendContentSegmentLinkLabel']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1746,10 +1744,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendContentSegmentLinkLabel(
-                    expectedContentSegmentLink,
-                    expectedContentSegment
-                );
+                folioService['_appendContentSegmentLinkLabel'](expectedContentSegmentLink, expectedContentSegment);
             });
 
             afterEach(() => {
@@ -1786,10 +1781,7 @@ describe('FolioService (DONE)', () => {
                 const reversedContentSegment = folioSvgData.contentSegments[0];
                 const expectedTransform = `rotate(${expectedReversedRotationAngle}, ${reversedContentSegment.centeredXPosition}, ${reversedContentSegment.centeredYPosition})`;
 
-                (folioService as any)._appendContentSegmentLinkLabel(
-                    contentSegmentLinkReversed,
-                    reversedContentSegment
-                );
+                folioService['_appendContentSegmentLinkLabel'](contentSegmentLinkReversed, reversedContentSegment);
 
                 const contentSegmentLinkLabel = contentSegmentLinkReversed.select('text');
 
@@ -1800,7 +1792,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentLinkLabelTextElement', () => {
         it('... should have a method `_appendContentSegmentLinkLabelTextElement`', () => {
-            expect((folioService as any)._appendContentSegmentLinkLabelTextElement).toBeDefined();
+            expect(folioService['_appendContentSegmentLinkLabelTextElement']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1814,7 +1806,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendContentSegmentLinkLabelTextElement(
+                folioService['_appendContentSegmentLinkLabelTextElement'](
                     expectedContentSegmentLink,
                     expectedContentSegment.centeredXPosition,
                     expectedContentSegment.centeredYPosition
@@ -1910,7 +1902,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentLinkLabelTspanElements', () => {
         it('... should have a method `_appendContentSegmentLinkLabelTspanElements`', () => {
-            expect((folioService as any)._appendContentSegmentLinkLabelTspanElements).toBeDefined();
+            expect(folioService['_appendContentSegmentLinkLabelTspanElements']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -1924,7 +1916,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                folioService['_appendContentSegmentLinkLabelTspanElements'](
                     expectedLabelSelection,
                     expectedContentSegment
                 );
@@ -2021,7 +2013,7 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentLinkLabel: D3Selection = D3_SELECTION.create('text');
                 expectedContentSegment.segmentLabelArray = ['test'];
 
-                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                folioService['_appendContentSegmentLinkLabelTspanElements'](
                     contentSegmentLinkLabel,
                     expectedContentSegment
                 );
@@ -2033,7 +2025,7 @@ describe('FolioService (DONE)', () => {
                 const contentSegmentLinkLabel: D3Selection = D3_SELECTION.create('text');
                 expectedContentSegment.segmentLabelArray = [];
 
-                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                folioService['_appendContentSegmentLinkLabelTspanElements'](
                     contentSegmentLinkLabel,
                     expectedContentSegment
                 );
@@ -2045,7 +2037,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendContentSegmentLinkPolygon', () => {
         it('... should have a method `_appendContentSegmentLinkPolygon`', () => {
-            expect((folioService as any)._appendContentSegmentLinkPolygon).toBeDefined();
+            expect(folioService['_appendContentSegmentLinkPolygon']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2063,7 +2055,7 @@ describe('FolioService (DONE)', () => {
                 expectedAdjustedStrokeWidth =
                     expectedContentSegmentStrokeWidth * (expectedDefaultNumberOfSystems / systemsLength);
 
-                (folioService as any)._appendContentSegmentLinkPolygon(
+                folioService['_appendContentSegmentLinkPolygon'](
                     expectedContentSegmentLink,
                     expectedContentSegment.segmentVertices,
                     systemsLength
@@ -2100,7 +2092,7 @@ describe('FolioService (DONE)', () => {
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
 
-                (folioService as any)._appendContentSegmentLinkPolygon(
+                folioService['_appendContentSegmentLinkPolygon'](
                     altSegmentLink,
                     altFolioSvgData.contentSegments[0].segmentVertices,
                     altFolioSvgData.systems.systemsLines.length
@@ -2126,7 +2118,7 @@ describe('FolioService (DONE)', () => {
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
 
-                (folioService as any)._appendContentSegmentLinkPolygon(
+                folioService['_appendContentSegmentLinkPolygon'](
                     altSegmentLink,
                     altFolioSvgData.contentSegments[0].segmentVertices,
                     altFolioSvgData.systems.systemsLines.length
@@ -2163,7 +2155,7 @@ describe('FolioService (DONE)', () => {
                     new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
                 );
 
-                (folioService as any)._appendContentSegmentLinkPolygon(
+                folioService['_appendContentSegmentLinkPolygon'](
                     altSegmentLink,
                     altFolioSvgData.contentSegments[0].segmentVertices
                 );
@@ -2194,7 +2186,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupSheetRectangle', () => {
         it('... should have a method `_appendSheetGroupSheetRectangle`', () => {
-            expect((folioService as any)._appendSheetGroupSheetRectangle).toBeDefined();
+            expect(folioService['_appendSheetGroupSheetRectangle']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2204,7 +2196,7 @@ describe('FolioService (DONE)', () => {
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupSheetRectangle(expectedSvgSheetGroup, expectedSheetRectangle);
+                folioService['_appendSheetGroupSheetRectangle'](expectedSvgSheetGroup, expectedSheetRectangle);
 
                 expectedRectElement = expectedSvgSheetGroup.select('rect');
             });
@@ -2281,7 +2273,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupSheetTitle', () => {
         it('... should have a method `_appendSheetGroupSheetTitle`', () => {
-            expect((folioService as any)._appendSheetGroupSheetTitle).toBeDefined();
+            expect(folioService['_appendSheetGroupSheetTitle']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2297,7 +2289,7 @@ describe('FolioService (DONE)', () => {
                 sheetGroupTitle = `Bl. ${folioId}`;
                 sheetGroupTitleClass = 'sheet-group-title';
 
-                (folioService as any)._appendSheetGroupSheetTitle(expectedSvgSheetGroup, folioId);
+                folioService['_appendSheetGroupSheetTitle'](expectedSvgSheetGroup, folioId);
 
                 expectedTitleElement = expectedSvgSheetGroup.select('title');
             });
@@ -2340,20 +2332,22 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupTrademark', () => {
         it('... should have a method `_appendSheetGroupTrademark`', () => {
-            expect((folioService as any)._appendSheetGroupTrademark).toBeDefined();
+            expect(folioService['_appendSheetGroupTrademark']).toBeDefined();
         });
 
         describe('... when called', () => {
             let expectedSvgSheetGroup: D3Selection;
             let expectedSvgTrademarkGroup: D3Selection;
+            const expectedReversed = false;
 
             beforeEach(() => {
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupTrademark(
+                folioService['_appendSheetGroupTrademark'](
                     expectedSvgSheetGroup,
                     expectedTrademarkRectangle,
-                    expectedFolioSvgData.sheet.folioId
+                    expectedFolioSvgData.sheet.folioId,
+                    expectedReversed
                 );
 
                 expectedSvgTrademarkGroup = expectedSvgSheetGroup.select('g.trademark-group');
@@ -2382,6 +2376,7 @@ describe('FolioService (DONE)', () => {
                 expectSpyCall(appendSheetGroupTrademarkSymbolSpy, 1, [
                     expectedSvgTrademarkGroup,
                     expectedTrademarkRectangle,
+                    expectedReversed,
                 ]);
             });
 
@@ -2393,7 +2388,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupTrademarkGroup', () => {
         it('... should have a method `_appendSheetGroupTrademarkGroup`', () => {
-            expect((folioService as any)._appendSheetGroupTrademarkGroup).toBeDefined();
+            expect(folioService['_appendSheetGroupTrademarkGroup']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2408,7 +2403,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupTrademarkGroup(expectedSvgSheetGroup, trademarkGroupId);
+                folioService['_appendSheetGroupTrademarkGroup'](expectedSvgSheetGroup, trademarkGroupId);
 
                 expectedTrademarkGroup = expectedSvgSheetGroup.select('g.trademark-group');
             });
@@ -2450,7 +2445,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupTrademarkRectangle', () => {
         it('... should have a method `_appendSheetGroupTrademarkRectangle`', () => {
-            expect((folioService as any)._appendSheetGroupTrademarkRectangle).toBeDefined();
+            expect(folioService['_appendSheetGroupTrademarkRectangle']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2463,7 +2458,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgTrademarkGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupTrademarkRectangle(
+                folioService['_appendSheetGroupTrademarkRectangle'](
                     expectedSvgTrademarkGroup,
                     expectedTrademarkRectangle
                 );
@@ -2556,7 +2551,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupTrademarkSymbol', () => {
         it('... should have a method `_appendSheetGroupTrademarkSymbol`', () => {
-            expect((folioService as any)._appendSheetGroupTrademarkSymbol).toBeDefined();
+            expect(folioService['_appendSheetGroupTrademarkSymbol']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2574,9 +2569,10 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgTrademarkGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupTrademarkSymbol(
+                folioService['_appendSheetGroupTrademarkSymbol'](
                     expectedSvgTrademarkGroup,
-                    expectedTrademarkRectangle
+                    expectedTrademarkRectangle,
+                    false
                 );
 
                 expectedSymbolPathElement = expectedSvgTrademarkGroup.select('path');
@@ -2643,7 +2639,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSheetGroupTrademarkTitle', () => {
         it('... should have a method `_appendSheetGroupTrademarkTitle`', () => {
-            expect((folioService as any)._appendSheetGroupTrademarkTitle).toBeDefined();
+            expect(folioService['_appendSheetGroupTrademarkTitle']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2658,7 +2654,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSvgTrademarkGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._appendSheetGroupTrademarkTitle(expectedSvgTrademarkGroup);
+                folioService['_appendSheetGroupTrademarkTitle'](expectedSvgTrademarkGroup);
 
                 expectedTitleElement = expectedSvgTrademarkGroup.select('title');
             });
@@ -2701,7 +2697,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSystemsGroupLabel', () => {
         it('... should have a method `_appendSystemsGroupLabel`', () => {
-            expect((folioService as any)._appendSystemsGroupLabel).toBeDefined();
+            expect(folioService['_appendSystemsGroupLabel']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2715,7 +2711,7 @@ describe('FolioService (DONE)', () => {
 
                 systemIndex = 0;
 
-                (folioService as any)._appendSystemsGroupLabel(
+                folioService['_appendSystemsGroupLabel'](
                     expectedSystemsGroup,
                     expectedFolioSvgData.systems.systemsLabelPositions[systemIndex],
                     systemIndex + 1
@@ -2799,7 +2795,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSystemsGroupLines', () => {
         it('... should have a method `_appendSystemsGroupLines`', () => {
-            expect((folioService as any)._appendSystemsGroupLines).toBeDefined();
+            expect(folioService['_appendSystemsGroupLines']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2813,7 +2809,7 @@ describe('FolioService (DONE)', () => {
 
                 expectedSystemArray = expectedFolioSvgData.systems.systemsLines[0];
 
-                (folioService as any)._appendSystemsGroupLines(expectedSystemsGroup, expectedSystemArray);
+                folioService['_appendSystemsGroupLines'](expectedSystemsGroup, expectedSystemArray);
             });
 
             afterEach(() => {
@@ -2924,7 +2920,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#_appendSvgElementWithAttrs', () => {
         it('... should have a method `_appendSvgElementWithAttrs`', () => {
-            expect((folioService as any)._appendSvgElementWithAttrs).toBeDefined();
+            expect(folioService['_appendSvgElementWithAttrs']).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -2943,7 +2939,7 @@ describe('FolioService (DONE)', () => {
                     class: 'testClass',
                 };
 
-                (folioService as any)._appendSvgElementWithAttrs(expectedSvgSelection, type, attributes);
+                folioService['_appendSvgElementWithAttrs'](expectedSvgSelection, type, attributes);
             });
 
             afterEach(() => {
@@ -2956,11 +2952,11 @@ describe('FolioService (DONE)', () => {
 
                 expect(expectedSvgSelection.select('g')).toBeDefined();
 
-                (folioService as any)._appendSvgElementWithAttrs(expectedSvgSelection, 'title', attributes);
+                folioService['_appendSvgElementWithAttrs'](expectedSvgSelection, 'title', attributes);
 
                 expect(expectedSvgSelection.select('title')).toBeDefined();
 
-                (folioService as any)._appendSvgElementWithAttrs(expectedSvgSelection, 'rect', attributes);
+                folioService['_appendSvgElementWithAttrs'](expectedSvgSelection, 'rect', attributes);
 
                 expect(expectedSvgSelection.select('rect')).toBeDefined();
             });
