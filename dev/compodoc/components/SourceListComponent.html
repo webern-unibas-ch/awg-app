@@ -780,7 +780,7 @@ export class SourceListComponent {
      * @returns {void} Navigates to the selected report fragment.
      */
     private _navigateToReportFragment(reportIds: FragmentClickEvent): void {
-        if (!reportIds?.fragmentId) {
+        if (!reportIds.fragmentId) {
             return;
         }
         this._navigationService.navigateToReportFragment(reportIds);

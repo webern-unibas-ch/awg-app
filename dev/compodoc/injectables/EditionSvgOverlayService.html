@@ -1648,8 +1648,8 @@ otherwise uses group id (default).</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="565"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:565</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="561"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:561</a></div>
                         </td>
                     </tr>
 
@@ -2585,7 +2585,7 @@ export class EditionSvgOverlayService {
      * Returns true if there are available TKK overlays.
      */
     get hasAvailableTkkOverlays(): boolean {
-        return !!this._tkkOverlaysState.available?.length;
+        return !!this._tkkOverlaysState.available.length;
     }
 
     /**
@@ -3012,10 +3012,6 @@ export class EditionSvgOverlayService {
      * @returns {string} The color of the given tkk overlay.
      */
     private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
-        if (!overlay) {
-            return this.tkkOverlayFillColor;
-        }
-
         if (overlayActionType &#x3D;&#x3D;&#x3D; EditionSvgOverlayActionTypes.transparent) {
             return this.tkkOverlayTransparentFillColor;
         }
@@ -3045,7 +3041,7 @@ export class EditionSvgOverlayService {
         overlayGroupRectSelection: D3Selection,
         overlayActionType: EditionSvgOverlayActionTypes
     ): void {
-        if (!overlays || overlays.length &#x3D;&#x3D;&#x3D; 0 || !overlayGroupRectSelection || !overlayActionType) {
+        if (!overlays.length) {
             return;
         }
 
