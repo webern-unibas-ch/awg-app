@@ -87,13 +87,11 @@ export class AppComponent {
 
                     // Get page title from route data
                     let child = this._activatedRoute.firstChild;
-                    while (child && child.firstChild) {
+                    while (child?.firstChild) {
                         child = child.firstChild;
                     }
-                    if (child && child.snapshot.data['title']) {
-                        return child.snapshot.data['title'];
-                    }
-                    return appTitle;
+
+                    return child?.snapshot?.data?.['title'] ?? appTitle;
                 }),
                 takeUntilDestroyed()
             )

@@ -119,10 +119,11 @@ const mockRdfstore = {
 describe('GraphVisualizerService', () => {
     let graphVisualizerService: GraphVisualizerService;
 
+    let consoleSpy: Spy;
+    let handleErrorSpy: Spy;
+
     let expectedTriples: Triple[];
     let expectedConstructResponseTriples: RDFStoreConstructResponseTriple[];
-
-    let consoleSpy: Spy;
 
     beforeEach(() => {
         (globalThis as any).rdfstore = mockRdfstore;
@@ -171,8 +172,9 @@ describe('GraphVisualizerService', () => {
             },
         ];
 
-        // Spies on service functions
+        // Spies
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+        handleErrorSpy = vi.spyOn(graphVisualizerService, '_handleError' as any);
     });
 
     afterEach(() => {
@@ -630,14 +632,14 @@ describe('GraphVisualizerService', () => {
                 { desc: 'is an ASK query', query: 'ASK WHERE { ?s ?p ?o }', expected: 'ask' },
                 { desc: 'is a DESCRIBE query', query: 'DESCRIBE ?s WHERE { ?s ?p ?o }', expected: 'describe' },
                 { desc: 'is a COUNT query', query: 'COUNT ?s WHERE { ?s ?p ?o }', expected: 'count' },
-                { desc: 'is a DELETE query', query: 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }', expected: 'update' },
+                { desc: 'is a DELETE query', query: 'DELETE {?s ?p ?o } WHERE { ?s ?p ?o }', expected: 'update' },
                 { desc: 'is an INSERT query', query: 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ', expected: 'update' },
                 {
                     desc: 'starts with prefixes',
                     query: 'PREFIX ex: <http://example.org> SELECT * WHERE { ?s ?p ?o }',
                     expected: 'select',
                 },
-            ])('...  if the query $desc', ({ query, expected }) => {
+            ])('... if the query $desc', ({ query, expected }) => {
                 expectToBe(graphVisualizerService.getQuerytype(query), expected);
             });
         });
@@ -757,14 +759,19 @@ describe('GraphVisualizerService', () => {
             expectToBe(result.quads.length, 0);
         });
 
-        describe('... should throw an error', () => {
+        describe('... should throw an error and trigger `_handleError`', () => {
             it('... for missing dots', async () => {
                 const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/>  @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                    '@prefix ex: <http://example.org/> @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
 
                 await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
                     'Expected declaration to end with a dot on line 1.'
                 );
+
+                expectSpyCall(handleErrorSpy, 1, [
+                    expect.any(Object),
+                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
+                ]);
             });
 
             it('... for missing @', async () => {
@@ -774,6 +781,11 @@ describe('GraphVisualizerService', () => {
                 await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
                     'Expected entity but got . on line 1.'
                 );
+
+                expectSpyCall(handleErrorSpy, 1, [
+                    expect.any(Object),
+                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
+                ]);
             });
 
             it('... for missing prefix marker', async () => {
@@ -783,6 +795,24 @@ describe('GraphVisualizerService', () => {
                 await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
                     'Undefined prefix "ex2:" on line 1.'
                 );
+
+                expectSpyCall(handleErrorSpy, 1, [
+                    expect.any(Object),
+                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
+                ]);
+            });
+
+            it('... if the parsing process fails', async () => {
+                const invalidTriples = 'not a valid triple';
+
+                await expect(graphVisualizerService.parseTripleString(invalidTriples)).rejects.toThrow();
+
+                expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+
+                expectSpyCall(handleErrorSpy, 1, [
+                    expect.any(Object),
+                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
+                ]);
             });
         });
     });
@@ -959,12 +989,14 @@ describe('GraphVisualizerService', () => {
         });
 
         it('... should reject if rdfstore is not available in the current runtime', async () => {
-            const expectedError = new Error('rdfstore is not available in the current runtime.');
+            const expectedError = new Error(
+                '[GraphVisualizerService] rdfstore is not available in the current runtime.'
+            );
 
             await expect(graphVisualizerService['_createStore'](undefined)).rejects.toEqual(expectedError);
         });
 
-        it('... should reject if store.create encounters an error', async () => {
+        it('... should reject and trigger `_handleError` if store.create encounters an error', async () => {
             const expectedError = new Error('Test error');
             const mockStoreWithCreateError: any = {
                 create: (callback: (err: Error | null, res: any) => void) => {
@@ -979,6 +1011,10 @@ describe('GraphVisualizerService', () => {
             );
 
             expectSpyCall(storeSpy, 1, [expect.any(Function)]);
+            expectSpyCall(handleErrorSpy, 1, [
+                expectedError,
+                '[GraphVisualizerService] An unknown error occurred while creating the rdfstore instance.',
+            ]);
         });
     });
 
@@ -1047,7 +1083,7 @@ describe('GraphVisualizerService', () => {
             await expect(graphVisualizerService['_executeQuery'](store, emptyQuery)).rejects.toThrow();
         });
 
-        it('... should reject and throw/log an error if store.execute encounters an error', async () => {
+        it('... should reject and trigger `_handleError` if store.execute encounters an error', async () => {
             const expectedError = new Error('Test error');
             const mockStore: any = {
                 execute: (_query: string, callback: (err: Error | null, res: any) => void) => {
@@ -1062,7 +1098,10 @@ describe('GraphVisualizerService', () => {
             await expect(graphVisualizerService['_executeQuery'](mockStore, testQuery)).rejects.toEqual(expectedError);
 
             expectSpyCall(storeSpy, 1, [testQuery, expect.any(Function)]);
-            expectSpyCall(consoleSpy, 1, ['_executeQuery# got ERROR', expectedError]);
+            expectSpyCall(handleErrorSpy, 1, [
+                expectedError,
+                '[GraphVisualizerService] An unknown error occurred while executing the query against the rdfstore.',
+            ]);
         });
     });
 
@@ -1244,7 +1283,7 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        it('... should reject and throw/log an error if no parser is found for the provided mimeType', async () => {
+        it('... should reject and trigger `_handleError` if no parser is found for the provided mimeType', async () => {
             const tripleStr = '@prefix ex: <http://example.org/>. ex:subject ex:predicate ex:object.';
             const mimeType = 'application/rdf+xml';
             const expectedErrorMessage = `Cannot find parser for the provided media type:${mimeType}`;
@@ -1254,7 +1293,10 @@ describe('GraphVisualizerService', () => {
                 expectedErrorMessage
             );
 
-            expectSpyCall(consoleSpy, 1, ['_loadTriplesInStore# got ERROR', expectedError]);
+            expectSpyCall(handleErrorSpy, 1, [
+                expectedError,
+                '[GraphVisualizerService] An unknown error occurred while loading the triples into the rdfstore.',
+            ]);
         });
     });
 
@@ -1813,6 +1855,43 @@ describe('GraphVisualizerService', () => {
             graphVisualizerService['_prepareSelectResponse'](selectResponse);
 
             expectSpyCall(prepareMappedBindingsSpy, 1, [selectResponse]);
+        });
+    });
+
+    describe('_handleError', () => {
+        it('... should have a method `_handleError`', () => {
+            expect(graphVisualizerService['_handleError']).toBeDefined();
+        });
+
+        it('... should return the original error if an instance of Error is passed', () => {
+            const originalError = new Error('Original parsing error');
+            const fallbackMessage = '[GraphVisualizerService] A parsing error occurred.';
+
+            const result = graphVisualizerService['_handleError'](originalError, fallbackMessage);
+
+            expect(result).toBeInstanceOf(Error);
+            expectToBe(result, originalError);
+            expectToBe(result.message, 'Original parsing error');
+        });
+
+        it('... should return a new Error with the string message if a string is passed', () => {
+            const errorString = 'Syntax error on line 5';
+            const fallbackMessage = '[GraphVisualizerService] A fallback error occurred.';
+
+            const result = graphVisualizerService['_handleError'](errorString, fallbackMessage);
+
+            expect(result).toBeInstanceOf(Error);
+            expectToBe(result.message, errorString);
+        });
+
+        it('... should return a new Error with the fallback message if an unknown type or undefined is passed', () => {
+            const unknownError = { someUnexpectedProperty: 'error' };
+            const fallbackMessage = '[GraphVisualizerService] A fallback error occurred.';
+
+            const result = graphVisualizerService['_handleError'](unknownError, fallbackMessage);
+
+            expect(result).toBeInstanceOf(Error);
+            expectToBe(result.message, fallbackMessage);
         });
     });
 });
