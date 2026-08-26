@@ -325,8 +325,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="121"
-                                    class="link-to-prism">src/app/app.component.ts:121</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/app.component.ts:119</a></div>
                         </td>
                     </tr>
 
@@ -720,13 +720,11 @@ export class AppComponent {
 
                     // Get page title from route data
                     let child &#x3D; this._activatedRoute.firstChild;
-                    while (child &amp;&amp; child.firstChild) {
+                    while (child?.firstChild) {
                         child &#x3D; child.firstChild;
                     }
-                    if (child &amp;&amp; child.snapshot.data[&#x27;title&#x27;]) {
-                        return child.snapshot.data[&#x27;title&#x27;];
-                    }
-                    return appTitle;
+
+                    return child?.snapshot?.data?.[&#x27;title&#x27;] ?? appTitle;
                 }),
                 takeUntilDestroyed()
             )
