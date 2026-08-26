@@ -572,13 +572,13 @@ describe('IntroComponent (DONE)', () => {
         describe('METHODS', () => {
             describe('#_initScrollListener()', () => {
                 it('... should have a method `_initScrollListener`', () => {
-                    expect((component as any)._initScrollListener).toBeDefined();
+                    expect(component['_initScrollListener']).toBeDefined();
                 });
 
                 it('.... should trigger `_onIntroScroll` method when window is scrolled', () => {
-                    const onIntroScrollSpy = vi.spyOn(component as any, '_onIntroScroll');
+                    const onIntroScrollSpy = vi.spyOn(component, '_onIntroScroll' as any);
 
-                    (component as any)._initScrollListener();
+                    component['_initScrollListener']();
 
                     window.dispatchEvent(new Event('scroll'));
 
@@ -632,26 +632,12 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 it('... should have a method `_onIntroScroll`', () => {
-                    expect((component as any)._onIntroScroll).toBeDefined();
+                    expect(component['_onIntroScroll']).toBeDefined();
                 });
 
                 describe('... should do nothing if', () => {
-                    it('... event is undefined', () => {
-                        (component as any)._onIntroScroll(undefined);
-
-                        expectToNotContain(navLink1.classList, 'active');
-                        expectToNotContain(navLink2.classList, 'active');
-                    });
-
-                    it('... event is null', () => {
-                        (component as any)._onIntroScroll(null);
-
-                        expectToNotContain(navLink1.classList, 'active');
-                        expectToNotContain(navLink2.classList, 'active');
-                    });
-
                     it('... event is not of type `scroll`', () => {
-                        (component as any)._onIntroScroll(new Event('click'));
+                        component['_onIntroScroll'](new Event('click'));
 
                         expectToNotContain(navLink1.classList, 'active');
                         expectToNotContain(navLink2.classList, 'active');
@@ -671,7 +657,7 @@ describe('IntroComponent (DONE)', () => {
                     window.dispatchEvent(new Event('scroll'));
                     await detectChangesOnPush(fixture);
 
-                    (component as any)._onIntroScroll(new Event('scroll'));
+                    component['_onIntroScroll'](new Event('scroll'));
 
                     expectToContain(navLink1.classList, 'active');
                     expectToNotContain(navLink2.classList, 'active');
@@ -690,7 +676,7 @@ describe('IntroComponent (DONE)', () => {
                     window.dispatchEvent(new Event('scroll'));
                     await detectChangesOnPush(fixture);
 
-                    (component as any)._onIntroScroll(new Event('scroll'));
+                    component['_onIntroScroll'](new Event('scroll'));
 
                     expectToContain(navLink1.classList, 'active');
                     expectToNotContain(navLink2.classList, 'active');

@@ -240,12 +240,12 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         resetZoomSpy = vi.spyOn(component, 'resetZoom');
 
         // Spies on private functions
-        clearSvgSpy = vi.spyOn(component as any, '_clearSvg');
-        createSvgSpy = vi.spyOn(component as any, '_createSvg');
-        getContainerDimensionsSpy = vi.spyOn(component as any, '_getContainerDimensions');
-        rescaleZoomSpy = vi.spyOn(component as any, '_rescaleZoom');
-        resetZoomTranslationSpy = vi.spyOn(component as any, '_resetZoomTranslation');
-        zoomHandlerSpy = vi.spyOn(component as any, '_zoomHandler');
+        clearSvgSpy = vi.spyOn(component, '_clearSvg' as any);
+        createSvgSpy = vi.spyOn(component, '_createSvg' as any);
+        getContainerDimensionsSpy = vi.spyOn(component, '_getContainerDimensions' as any);
+        rescaleZoomSpy = vi.spyOn(component, '_rescaleZoom' as any);
+        resetZoomTranslationSpy = vi.spyOn(component, '_resetZoomTranslation' as any);
+        zoomHandlerSpy = vi.spyOn(component, '_zoomHandler' as any);
 
         // Spies for service methods
         serviceClearSvgOverlaysSpy = vi.spyOn(mockEditionSvgOverlayService, 'clearSvgOverlays');
@@ -308,7 +308,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have `_isRendered` set to false', () => {
-            expectToBe((component as any)._isRendered, false);
+            expectToBe(component['_isRendered'], false);
         });
 
         describe('VIEW', () => {
@@ -375,7 +375,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have `_isRendered` set to true', () => {
-            expectToBe((component as any)._isRendered, true);
+            expectToBe(component['_isRendered'], true);
         });
 
         describe('VIEW', () => {
@@ -656,7 +656,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             beforeEach(() => {
                 // Record spy call count before current call
                 countBefore = vi.mocked(getContainerDimensionsSpy).mock.calls.length;
-                resizeSubjectNextSpy = vi.spyOn((component as any)._resize$, 'next');
+                resizeSubjectNextSpy = vi.spyOn(component['_resize$'], 'next');
             });
 
             describe('... should do nothing if ...', () => {
@@ -664,7 +664,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetSelection = {} as any;
                     component.svgSheetRootGroupSelection = undefined;
 
-                    (component as any).onResize();
+                    component.onResize();
 
                     expectSpyCall(getContainerDimensionsSpy, countBefore);
                     expectSpyCall(resizeSubjectNextSpy, 0);
@@ -674,7 +674,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetSelection = undefined;
                     component.svgSheetRootGroupSelection = {} as any;
 
-                    (component as any).onResize();
+                    component.onResize();
 
                     expectSpyCall(getContainerDimensionsSpy, countBefore);
                     expectSpyCall(resizeSubjectNextSpy, 0);
@@ -684,7 +684,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetSelection = undefined;
                     component.svgSheetRootGroupSelection = undefined;
 
-                    (component as any).onResize();
+                    component.onResize();
 
                     expectSpyCall(getContainerDimensionsSpy, countBefore);
                     expectSpyCall(resizeSubjectNextSpy, 0);
@@ -695,7 +695,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 component.svgSheetSelection = {} as any;
                 component.svgSheetRootGroupSelection = {} as any;
 
-                (component as any).onResize();
+                component.onResize();
 
                 expectSpyCall(getContainerDimensionsSpy, countBefore + 1, component.svgSheetContainerRef);
                 expect(resizeSubjectNextSpy).toHaveBeenCalledWith(true);
@@ -853,7 +853,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
         describe('#renderSheet()', () => {
             beforeEach(() => {
                 resetZoomSpy.mockImplementation(() => {});
-                vi.spyOn(component as any, '_createSvgOverlays').mockImplementation(() => {});
+                vi.spyOn(component, '_createSvgOverlays' as any).mockImplementation(() => {});
             });
 
             it('... should have a method `renderSheet`', () => {
@@ -864,7 +864,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 it('... ngOnChanges only when `_isRendered` is true and selectedSvgSheet changes', async () => {
                     expectSpyCall(renderSheetSpy, 1);
 
-                    (component as any)._isRendered = true;
+                    component['_isRendered'] = true;
 
                     // Directly trigger ngOnChanges
                     component.ngOnChanges({
@@ -875,7 +875,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                     expectSpyCall(renderSheetSpy, 2);
 
-                    (component as any)._isRendered = false;
+                    component['_isRendered'] = false;
 
                     // Directly trigger ngOnChanges
                     component.ngOnChanges({
@@ -886,7 +886,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                     expectSpyCall(renderSheetSpy, 2);
 
-                    (component as any)._isRendered = true;
+                    component['_isRendered'] = true;
 
                     // Directly trigger ngOnChanges
                     component.ngOnChanges({
@@ -904,7 +904,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     try {
                         expectSpyCall(renderSheetSpy, 1);
 
-                        (component as any)._resize$.next();
+                        component['_resize$'].next(true);
 
                         // Flush pending debounce timer(s)
                         await vi.runAllTimersAsync();
@@ -1041,14 +1041,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should have a method `_clearSvg`', () => {
-                expect((component as any)._clearSvg).toBeDefined();
+                expect(component['_clearSvg']).toBeDefined();
             });
 
             it('... should remove all children from both svgSheetRootGroupSelection and svgSheetSelection', () => {
                 component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
                 component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
 
-                (component as any)._clearSvg();
+                component['_clearSvg']();
 
                 expectSpyCall(selectAllRootGroupSpy, 1, '*');
                 expectSpyCall(removeRootGroupSpy, 1);
@@ -1062,7 +1062,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetRootGroupSelection = undefined;
                     component.svgSheetSelection = { selectAll: selectAllSheetSpy } as any;
 
-                    expect(() => (component as any)._clearSvg()).not.toThrow();
+                    expect(() => component['_clearSvg']()).not.toThrow();
 
                     expectSpyCall(selectAllRootGroupSpy, 0);
                     expectSpyCall(removeRootGroupSpy, 0);
@@ -1075,7 +1075,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetSelection = undefined;
                     component.svgSheetRootGroupSelection = { selectAll: selectAllRootGroupSpy } as any;
 
-                    expect(() => (component as any)._clearSvg()).not.toThrow();
+                    expect(() => component['_clearSvg']()).not.toThrow();
 
                     expectSpyCall(selectAllRootGroupSpy, 1, '*');
                     expectSpyCall(removeRootGroupSpy, 1);
@@ -1088,7 +1088,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetRootGroupSelection = undefined;
                     component.svgSheetSelection = undefined;
 
-                    expect(() => (component as any)._clearSvg()).not.toThrow();
+                    expect(() => component['_clearSvg']()).not.toThrow();
 
                     expectSpyCall(selectAllRootGroupSpy, 0);
                     expectSpyCall(removeRootGroupSpy, 0);
@@ -1131,20 +1131,20 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should have a method `_createSvg`', () => {
-                expect((component as any)._createSvg).toBeDefined();
+                expect(component['_createSvg']).toBeDefined();
             });
 
             it('... should not throw and should warn if svgSheetContainerRef is missing', async () => {
                 component.svgSheetContainerRef = undefined;
                 const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(mockConsole.log);
 
-                await (component as any)._createSvg();
+                await component['_createSvg']();
 
                 expectSpyCall(consoleSpy, 1, '[EditionSvgSheetViewer] Missing svg sheet container ref');
             });
 
             it('... should set svgSheetSelection and svgSheetRootGroupSelection', async () => {
-                await (component as any)._createSvg();
+                await component['_createSvg']();
 
                 expect(serviceCreateSvgSpy).toHaveBeenCalledWith(
                     component.svgSheetFilePath,
@@ -1156,14 +1156,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             });
 
             it('... should trigger `_getContainerDimensions` with svgSheetContainerRef', async () => {
-                await (component as any)._createSvg();
+                await component['_createSvg']();
 
                 // Probably called once first with onResize
                 expectSpyCall(getContainerDimensionsSpy, 2, component.svgSheetContainerRef);
             });
 
             it('... should trigger `_zoomHandler` with correct arguments', async () => {
-                await (component as any)._createSvg();
+                await component['_createSvg']();
 
                 // Probably called once first with onResize
                 expectSpyCall(zoomHandlerSpy, 2, [mockRootGroupSelection, mockSvgSelection]);
@@ -1172,15 +1172,15 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_createSvgOverlays()', () => {
             it('... should have a method `_createSvgOverlays`', () => {
-                expect((component as any)._createSvgOverlays).toBeDefined();
+                expect(component['_createSvgOverlays']).toBeDefined();
             });
 
             it('... should trigger `createSvgOverlays` from service with correct arguments', () => {
                 const countBefore = vi.mocked(serviceCreateSvgOverlaysSpy).mock.calls.length;
-                const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
-                const onTkkOverlaySelectSpy = vi.spyOn(component as any, '_onTkkOverlaySelect');
+                const onLinkBoxSelectSpy = vi.spyOn(component, '_onLinkBoxSelect' as any);
+                const onTkkOverlaySelectSpy = vi.spyOn(component, '_onTkkOverlaySelect' as any);
 
-                (component as any)._createSvgOverlays();
+                component['_createSvgOverlays']();
 
                 expectSpyCall(serviceCreateSvgOverlaysSpy, countBefore + 1, [
                     expectedSvgSheetRootGroupSelection,
@@ -1207,14 +1207,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     .spyOn(mockEditionSvgOverlayService, 'hasAvailableTkkOverlays', 'get')
                     .mockReturnValue(true);
 
-                (component as any)._createSvgOverlays();
+                component['_createSvgOverlays']();
 
                 expectSpyCall(getterSpy, 1);
                 expectToBe(component.hasAvailableTkkOverlays, true);
 
                 getterSpy.mockReturnValue(false);
 
-                (component as any)._createSvgOverlays();
+                component['_createSvgOverlays']();
 
                 expectSpyCall(getterSpy, 2);
                 expectToBe(component.hasAvailableTkkOverlays, false);
@@ -1223,7 +1223,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_getContainerDimensions()', () => {
             it('... should have a method `_getContainerDimensions`', () => {
-                expect((component as any)._getContainerDimensions).toBeDefined();
+                expect(component['_getContainerDimensions']).toBeDefined();
             });
 
             it('... should set `_divWidth` and `_divHeight` from service dimensions when not set', () => {
@@ -1232,14 +1232,14 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     .spyOn(mockEditionSvgDrawingService, 'getContainerDimensions')
                     .mockReturnValue({ width: 321, height: 123 });
 
-                (component as any)._divWidth = undefined;
-                (component as any)._divHeight = undefined;
+                component['_divWidth'] = 0;
+                component['_divHeight'] = 0;
 
-                (component as any)._getContainerDimensions(container);
+                component['_getContainerDimensions'](container);
 
                 expectSpyCall(dimensionsSpy, 1, [container]);
-                expectToBe((component as any)._divWidth, 321);
-                expectToBe((component as any)._divHeight, 123);
+                expectToBe(component['_divWidth'], 321);
+                expectToBe(component['_divHeight'], 123);
             });
 
             it('... should not overwrite `_divWidth` and `_divHeight` once already set', () => {
@@ -1248,30 +1248,30 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     .spyOn(mockEditionSvgDrawingService, 'getContainerDimensions')
                     .mockReturnValue({ width: 999, height: 888 });
 
-                (component as any)._divWidth = 111;
-                (component as any)._divHeight = 222;
+                component['_divWidth'] = 111;
+                component['_divHeight'] = 222;
 
-                (component as any)._getContainerDimensions(container);
+                component['_getContainerDimensions'](container);
 
                 expectSpyCall(dimensionsSpy, 1, [container]);
-                expectToBe((component as any)._divWidth, 111);
-                expectToBe((component as any)._divHeight, 222);
+                expectToBe(component['_divWidth'], 111);
+                expectToBe(component['_divHeight'], 222);
             });
         });
 
         describe('#_getSuppliedClasses()', () => {
             it('... should have a method `_getSuppliedClasses`', () => {
-                expect((component as any)._getSuppliedClasses).toBeDefined();
+                expect(component['_getSuppliedClasses']).toBeDefined();
             });
 
             it('... should call `getSuppliedClasses` method from svg drawing service', () => {
-                (component as any)._getSuppliedClasses();
+                component['_getSuppliedClasses']();
 
                 expectSpyCall(serviceGetSuppliedClassesSpy, 2, expectedSvgSheetRootGroupSelection);
             });
 
             it('... should return a map of supplied class names and set `suppliedClasses`', () => {
-                (component as any)._getSuppliedClasses();
+                component['_getSuppliedClasses']();
 
                 expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
             });
@@ -1279,11 +1279,11 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_onLinkBoxSelect()', () => {
             it('... should have a method `_onLinkBoxSelect`', () => {
-                expect((component as any)._onLinkBoxSelect).toBeDefined();
+                expect(component['_onLinkBoxSelect']).toBeDefined();
             });
 
             it('... should trigger on click on link box (D3 event)', async () => {
-                const onLinkBoxSelectSpy = vi.spyOn(component as any, '_onLinkBoxSelect');
+                const onLinkBoxSelectSpy = vi.spyOn(component, '_onLinkBoxSelect' as any);
 
                 serviceCreateSvgOverlaysSpy.mockImplementation(
                     (rootGroupSelection: D3Selection, onLinkBoxSelectFn: (id: string) => void) => {
@@ -1293,7 +1293,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     }
                 );
 
-                (component as any)._createSvgOverlays();
+                component['_createSvgOverlays']();
                 fixture.detectChanges();
 
                 const linkBoxDes = getAndExpectDebugElementByCss(compDe, 'g.link-box', 1, 1);
@@ -1306,7 +1306,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should not emit anything if no link box id is provided', () => {
                 const expectedLinkBoxId = '';
 
-                (component as any)._onLinkBoxSelect(expectedLinkBoxId);
+                component['_onLinkBoxSelect'](expectedLinkBoxId);
 
                 expectSpyCall(emitSelectLinkBoxRequestSpy, 0);
             });
@@ -1314,7 +1314,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             it('... should emit a given link box id', () => {
                 const expectedLinkBoxId = expectedLinkBoxes[0].svgGroupId;
 
-                (component as any)._onLinkBoxSelect(expectedLinkBoxId);
+                component['_onLinkBoxSelect'](expectedLinkBoxId);
 
                 expectSpyCall(emitSelectLinkBoxRequestSpy, 1, expectedLinkBoxId);
             });
@@ -1322,13 +1322,13 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_onTkkOverlaySelect()', () => {
             it('... should have a method `_onTkkOverlaySelect`', () => {
-                expect((component as any)._onTkkOverlaySelect).toBeDefined();
+                expect(component['_onTkkOverlaySelect']).toBeDefined();
             });
 
             it('... should emit given overlays', () => {
                 const selectedOverlays = expectedTkkOverlays;
 
-                (component as any)._onTkkOverlaySelect(selectedOverlays);
+                component['_onTkkOverlaySelect'](selectedOverlays);
 
                 expectSpyCall(emitSelectOverlaysRequestSpy, 1, [selectedOverlays]);
             });
@@ -1338,11 +1338,19 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
             let scaleToSpy: Spy;
 
             beforeEach(() => {
-                scaleToSpy = vi.spyOn((component as any)._zoomBehaviour, 'scaleTo');
+                const svg = createD3TestSvg(mockDocument);
+                const rootGroup = createD3TestRootGroup(svg);
+                component['_zoomHandler'](rootGroup, svg);
+
+                if (!component['_zoomBehaviour']) {
+                    expect.fail('Expected component._zoomBehaviour to be defined');
+                }
+
+                scaleToSpy = vi.spyOn(component['_zoomBehaviour'], 'scaleTo');
             });
 
             it('... should have a method `_rescaleZoom`', () => {
-                expect((component as any)._rescaleZoom).toBeDefined();
+                expect(component['_rescaleZoom']).toBeDefined();
             });
 
             it('... should trigger from call to `onZoomChange()`', () => {
@@ -1357,9 +1365,9 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
             describe('... should do nothing if', () => {
                 it('... `_zoomBehaviour` is not set', () => {
-                    (component as any)._zoomBehaviour = undefined;
+                    component['_zoomBehaviour'] = undefined;
 
-                    (component as any)._rescaleZoom();
+                    component['_rescaleZoom']();
 
                     expectSpyCall(scaleToSpy, 0);
                 });
@@ -1367,7 +1375,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 it('... `svgSheetSelection` is not set', () => {
                     component.svgSheetSelection = undefined;
 
-                    (component as any)._rescaleZoom();
+                    component['_rescaleZoom']();
 
                     expectSpyCall(scaleToSpy, 0);
                 });
@@ -1375,7 +1383,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 it('... `sliderConfig.value` is zero', () => {
                     component.sliderConfig.value = 0;
 
-                    (component as any)._rescaleZoom();
+                    component['_rescaleZoom']();
 
                     expectSpyCall(scaleToSpy, 0);
                 });
@@ -1385,7 +1393,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 expect(component.svgSheetSelection).toBeTruthy();
                 expect(component.sliderConfig.value).toBeTruthy();
 
-                (component as any)._rescaleZoom();
+                component['_rescaleZoom']();
 
                 expectSpyCall(scaleToSpy, 1, [expectedSvgSheetSelection, expectedSliderConfig.value]);
             });
@@ -1393,7 +1401,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_resetZoomTranslation()', () => {
             it('... should have a method `_resetZoomTranslation`', () => {
-                expect((component as any)._resetZoomTranslation).toBeDefined();
+                expect(component['_resetZoomTranslation']).toBeDefined();
             });
 
             it('... should trigger from call to `resetZoom()`', () => {
@@ -1409,7 +1417,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     component.svgSheetRootGroupSelection = undefined;
 
                     expect(() => {
-                        (component as any)._resetZoomTranslation();
+                        component['_resetZoomTranslation']();
                     }).not.toThrow();
                 });
 
@@ -1418,7 +1426,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                     const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection as any, 'attr');
 
-                    (component as any)._resetZoomTranslation();
+                    component['_resetZoomTranslation']();
 
                     expectSpyCall(attrSpy, 0);
                 });
@@ -1430,7 +1438,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
                 const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection, 'attr');
 
-                (component as any)._resetZoomTranslation();
+                component['_resetZoomTranslation']();
 
                 // SvgSheetGroup was overwritten
                 expect(component.svgSheetRootGroupSelection).not.toEqual(expectedSvgSheetRootGroupSelection);
@@ -1442,7 +1450,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_roundToScaleStepDecimalPrecision()', () => {
             it('... should have a method `_roundToScaleStepDecimalPrecision`', () => {
-                expect((component as any)._roundToScaleStepDecimalPrecision).toBeDefined();
+                expect(component['_roundToScaleStepDecimalPrecision']).toBeDefined();
             });
 
             describe('... should return the nearest scale step', () => {
@@ -1496,7 +1504,7 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                     for (const [givenValue, expectedNearestStep] of values) {
                         it(`... for stepSize ${stepSize} and given value ${givenValue} returns ${expectedNearestStep}`, () => {
                             component.sliderConfig.stepSize = stepSize;
-                            const result = (component as any)._roundToScaleStepDecimalPrecision(givenValue);
+                            const result = component['_roundToScaleStepDecimalPrecision'](givenValue);
                             expectToBe(result, expectedNearestStep);
                         });
                     }
@@ -1506,17 +1514,17 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
 
         describe('#_zoomHandler()', () => {
             it('... should have a method `_zoomHandler`', () => {
-                expect((component as any)._zoomHandler).toBeDefined();
+                expect(component['_zoomHandler']).toBeDefined();
             });
 
             it('... should create zoom behaviour and apply it to svg', () => {
                 const zoomContext = { attr: vi.fn() };
                 const svg = { call: vi.fn() };
 
-                (component as any)._zoomHandler(zoomContext as any, svg as any);
+                component['_zoomHandler'](zoomContext as any, svg as any);
 
-                expect((component as any)._zoomBehaviour).toBeDefined();
-                expectSpyCall(svg.call as any, 1, [(component as any)._zoomBehaviour]);
+                expect(component['_zoomBehaviour']).toBeDefined();
+                expectSpyCall(svg.call as any, 1, [component['_zoomBehaviour']]);
             });
 
             it('... should update transform, slider value and slider label on zoom', () => {
@@ -1525,13 +1533,24 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
                 component.sliderInputLabel = { nativeElement: { innerText: '' } } as ElementRef;
 
-                (component as any)._zoomHandler(zoomContext as any, svg as any);
-                const zoomed = (component as any)._zoomBehaviour.on('zoom');
-                const transform = { k: 2.345 };
+                component['_zoomHandler'](zoomContext as any, svg as any);
 
-                zoomed({ transform });
+                if (!component['_zoomBehaviour']) {
+                    expect.fail('Expected component._zoomBehaviour to be defined');
+                }
 
-                expectSpyCall(zoomContext.attr as any, 1, ['transform', transform]);
+                const zoomed = component['_zoomBehaviour'].on('zoom');
+
+                if (!zoomed) {
+                    expect.fail('Expected a zoom event handler to be registered');
+                }
+
+                const mockEvent = {
+                    transform: { k: 2.35 },
+                };
+                zoomed(mockEvent, undefined);
+
+                expectSpyCall(zoomContext.attr as any, 1, ['transform', mockEvent.transform]);
                 expectToBe(component.sliderConfig.value, 2.35);
                 expectToBe(component.sliderInput.nativeElement.value, 2.35);
                 expectToBe(component.sliderInputLabel.nativeElement.innerText, '2.35x');
@@ -1544,9 +1563,19 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 component.sliderInputLabel = undefined;
                 component.sliderConfig.value = component.sliderConfig.initial;
 
-                (component as any)._zoomHandler(rootGroup, svg);
-                const zoomed = (component as any)._zoomBehaviour.on('zoom');
-                zoomed({ transform: { k: 2.34 } });
+                component['_zoomHandler'](rootGroup, svg);
+
+                if (!component['_zoomBehaviour']) {
+                    expect.fail('Expected component._zoomBehaviour to be defined');
+                }
+
+                const zoomed = component['_zoomBehaviour'].on('zoom');
+
+                if (!zoomed) {
+                    expect.fail('Expected a zoom event handler to be registered');
+                }
+
+                zoomed({ transform: { k: 2.35 } }, undefined);
 
                 expectToBe(component.sliderConfig.value, component.sliderConfig.initial);
             });
@@ -1557,12 +1586,22 @@ describe('EditionSvgSheetViewerComponent (DONE)', () => {
                 component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
                 component.sliderInputLabel = undefined;
 
-                (component as any)._zoomHandler(rootGroup, svg);
-                const zoomed = (component as any)._zoomBehaviour.on('zoom');
-                zoomed({ transform: { k: 2.34 } });
+                component['_zoomHandler'](rootGroup, svg);
 
-                expectToBe(component.sliderConfig.value, 2.34);
-                expectToBe(component.sliderInput.nativeElement.value, 2.34);
+                if (!component['_zoomBehaviour']) {
+                    expect.fail('Expected component._zoomBehaviour to be defined');
+                }
+
+                const zoomed = component['_zoomBehaviour'].on('zoom');
+
+                if (!zoomed) {
+                    expect.fail('Expected a zoom event handler to be registered');
+                }
+
+                zoomed({ transform: { k: 2.35 } }, undefined);
+
+                expectToBe(component.sliderConfig.value, 2.35);
+                expectToBe(component.sliderInput.nativeElement.value, 2.35);
             });
         });
     });

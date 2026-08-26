@@ -231,7 +231,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         serviceCheckNamespacesInQuerySpy = vi.spyOn(mockGraphVisualizerService, 'checkNamespacesInQuery');
         onTableNodeClickSpy = vi.spyOn(component, 'onTableNodeClick');
         performQuerySpy = vi.spyOn(component, 'performQuery');
-        queryLocalStoreSpy = vi.spyOn(component as any, '_queryLocalStore');
+        queryLocalStoreSpy = vi.spyOn(component, '_queryLocalStore' as any);
         resetQuerySpy = vi.spyOn(component, 'resetQuery');
         resetTriplesSpy = vi.spyOn(component, 'resetTriples');
         showToastMessageSpy = vi.spyOn(component, 'showToastMessage');
@@ -1414,7 +1414,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have a method `_queryLocalStore`', () => {
-                    expect((component as any)._queryLocalStore).toBeDefined();
+                    expect(component['_queryLocalStore']).toBeDefined();
                 });
 
                 it('... should trigger `graphVisualizerService.doQuery`', async () => {
@@ -1462,7 +1462,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     serviceDoQuerySpy.mockResolvedValue(expectedNoResults);
 
-                    const result = await (component as any)._queryLocalStore(
+                    const result = await component['_queryLocalStore'](
                         expectedCallback[0],
                         expectedCallback[1],
                         expectedCallback[2]
@@ -1508,7 +1508,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                         vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
                         const getErrorMessageSpy = vi
-                            .spyOn(component as any, '_getErrorMessage')
+                            .spyOn(component, '_getErrorMessage' as any)
                             .mockReturnValue(expectedParsedMessage);
 
                         serviceDoQuerySpy.mockImplementation(() => Promise.reject(error));
@@ -1552,7 +1552,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             describe('#_getErrorMessage()', () => {
                 it('... should have a method `_getErrorMessage`', () => {
-                    expect((component as any)._getErrorMessage).toBeDefined();
+                    expect(component['_getErrorMessage']).toBeDefined();
                 });
 
                 describe('... should parse error messages correctly for various error types', () => {

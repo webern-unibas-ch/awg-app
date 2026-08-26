@@ -434,7 +434,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 expectedSourceDescriptionListData.sources[1].physDesc.writingInstruments;
 
                             if (!instruments) {
-                                throw new Error('Expected writingInstruments to be defined.');
+                                expect.fail('Expected writingInstruments to be defined.');
                             }
 
                             expectedInstrumentsData = instruments;

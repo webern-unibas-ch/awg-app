@@ -172,9 +172,6 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * @returns {void} Emits the view to the view change request.
      */
     private _onViewChange(view: ViewHandleTypes): void {
-        if (!view) {
-            return;
-        }
         this.viewChangeRequest.emit(view);
     }
 }

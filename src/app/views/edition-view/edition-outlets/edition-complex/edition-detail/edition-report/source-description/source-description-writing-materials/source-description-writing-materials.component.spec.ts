@@ -175,7 +175,7 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 const trademark = expectedWritingMaterials[0].trademark;
 
                 if (!trademark?.variant) {
-                    throw new Error('Expected first writing material to have a trademark variant.');
+                    expect.fail('Expected first writing material to have a trademark variant.');
                 }
 
                 const expectedTrademark = component.getTrademark(trademark.variant);
@@ -200,7 +200,7 @@ describe('SourceDescriptionWritingMaterialsComponent (DONE)', () => {
                 ) as SourceDescriptionWritingMaterial[];
 
                 if (!mockMaterialsWithAlt[0]?.trademark) {
-                    throw new Error('Expected first writing material to have a trademark');
+                    expect.fail('Expected first writing material to have a trademark');
                 }
 
                 mockMaterialsWithAlt[0].trademark.variant = '';

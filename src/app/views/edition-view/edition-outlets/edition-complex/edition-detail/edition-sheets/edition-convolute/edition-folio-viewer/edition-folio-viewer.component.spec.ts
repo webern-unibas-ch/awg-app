@@ -116,7 +116,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
         // Component spies
         createSVGCanvasSpy = vi.spyOn(component, 'createSVGCanvas');
-        d3SelectSpy = vi.spyOn(component as any, '_d3Select');
+        d3SelectSpy = vi.spyOn(component, '_d3Select' as any);
         isSelectedSvgSheetSpy = vi.spyOn(component, 'isSelectedSvgSheet');
         prepareFolioSvgOutputSpy = vi.spyOn(component, 'prepareFolioSvgOutput');
         toggleActiveClassSpy = vi.spyOn(component, 'toggleActiveClass');
@@ -160,7 +160,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         });
 
         it('... should have `_folioSettings` object', () => {
-            expectToEqual((component as any)._folioSettings, expectedFolioSettings);
+            expectToEqual(component['_folioSettings'], expectedFolioSettings);
         });
 
         describe('VIEW', () => {
@@ -670,7 +670,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             describe('#_calculateViewBoxDimension()', () => {
                 it('... should have a method `_calculateViewBoxDimension`', () => {
-                    expect((component as any)._calculateViewBoxDimension).toBeDefined();
+                    expect(component['_calculateViewBoxDimension']).toBeDefined();
                 });
 
                 it('... should calculate viewBox dimension for X input', () => {
@@ -679,7 +679,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                         (expectedFolioSettings.formatX + 2 * expectedFolioSettings.initialOffsetX) *
                         expectedFolioSettings.factor;
 
-                    const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
+                    const result = component['_calculateViewBoxDimension'](expectedFolioSettings, dimension);
 
                     expectToEqual(result, expectedDimension);
                 });
@@ -690,7 +690,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                         (expectedFolioSettings.formatY + 2 * expectedFolioSettings.initialOffsetY) *
                         expectedFolioSettings.factor;
 
-                    const result = (component as any)._calculateViewBoxDimension(expectedFolioSettings, dimension);
+                    const result = component['_calculateViewBoxDimension'](expectedFolioSettings, dimension);
 
                     expectToEqual(result, expectedDimension);
                 });
@@ -698,14 +698,14 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             describe('#_d3Select()', () => {
                 it('... should have a method `_d3Select`', () => {
-                    expect((component as any)._d3Select).toBeDefined();
+                    expect(component['_d3Select']).toBeDefined();
                 });
 
                 it('... should return the D3 selection of a given selector', () => {
                     const selector = 'test-selector';
                     const expectedSelection = D3_SELECTION.select(selector);
 
-                    const result = (component as any)._d3Select(selector);
+                    const result = component['_d3Select'](selector);
 
                     expectToEqual(result, expectedSelection);
                 });

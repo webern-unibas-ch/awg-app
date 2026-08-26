@@ -231,7 +231,7 @@ describe('EditionSheetsComponent (DONE)', () => {
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
         onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
-        selectSvgSheetSpy = vi.spyOn(component as any, '_selectSvgSheet');
+        selectSvgSheetSpy = vi.spyOn(component, '_selectSvgSheet' as any);
     });
 
     afterEach(() => {
@@ -987,7 +987,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
             describe('#_getDefaultSheetId()', () => {
                 it('... should have a method `_getDefaultSheetId`', () => {
-                    expect((component as any)._getDefaultSheetId).toBeDefined();
+                    expect(component['_getDefaultSheetId']).toBeDefined();
                 });
 
                 describe('... should return an empty string if', () => {
@@ -996,7 +996,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             sheets: { textEditions: [] as EditionSvgSheet[], sketchEditions: [] as EditionSvgSheet[] },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, '');
                     });
@@ -1013,7 +1013,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, mockSheet1.id);
                     });
@@ -1027,7 +1027,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, mockSheet1.id);
                     });
@@ -1047,7 +1047,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet1a');
                     });
@@ -1074,7 +1074,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet1a');
                     });
@@ -1103,7 +1103,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet2c');
                     });
@@ -1119,7 +1119,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, mockSheet1.id);
                     });
@@ -1139,7 +1139,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet1a');
                     });
@@ -1166,7 +1166,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet1a');
                     });
@@ -1195,7 +1195,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                             },
                         } as EditionSvgSheetsList;
 
-                        const result = (component as any)._getDefaultSheetId(mockSvgSheetsData);
+                        const result = component['_getDefaultSheetId'](mockSvgSheetsData);
 
                         expectToBe(result, 'sheet3c');
                     });
@@ -1209,7 +1209,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should have a method `_handleQueryParams`', () => {
-                    expect((component as any)._handleQueryParams).toBeDefined();
+                    expect(component['_handleQueryParams']).toBeDefined();
                 });
 
                 describe('... with svgSheetsData available and id given from query params', () => {
@@ -1217,10 +1217,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                         const sheetId = 'test-TF1';
                         mockActivatedRoute.testQueryParamMap = { id: sheetId };
 
-                        (component as any)._handleQueryParams(
-                            mockActivatedRoute.testQueryParamMap,
-                            expectedSvgSheetsData
-                        );
+                        if (!mockActivatedRoute.testQueryParamMap) {
+                            expect.fail('Expected mockActivatedRoute.testQueryParamMap to be defined');
+                        }
+
+                        component['_handleQueryParams'](mockActivatedRoute.testQueryParamMap, expectedSvgSheetsData);
 
                         expectSpyCall(selectSvgSheetSpy, 1, sheetId);
                     });
@@ -1228,13 +1229,14 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                 describe('... with svgSheetsData available and id not given from query params', () => {
                     it('... should always trigger `onSvgSheetSelect` with the default sheet id', () => {
-                        mockActivatedRoute.testQueryParamMap = { id: '' };
                         const defaultSheetId = 'test-TF1a';
+                        mockActivatedRoute.testQueryParamMap = { id: '' };
 
-                        (component as any)._handleQueryParams(
-                            mockActivatedRoute.testQueryParamMap,
-                            expectedSvgSheetsData
-                        );
+                        if (!mockActivatedRoute.testQueryParamMap) {
+                            expect.fail('Expected mockActivatedRoute.testQueryParamMap to be defined');
+                        }
+
+                        component['_handleQueryParams'](mockActivatedRoute.testQueryParamMap, expectedSvgSheetsData);
 
                         expectSpyCall(onSvgSheetSelectSpy, 1, {
                             complexId: '',
@@ -1257,7 +1259,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                         } as any;
                     });
                     it('... should trigger `onSvgSheetSelect` with no id', () => {
-                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
+                        if (!mockActivatedRoute.testQueryParamMap) {
+                            expect.fail('Expected mockActivatedRoute.testQueryParamMap to be defined');
+                        }
+
+                        component['_handleQueryParams'](mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 
                         expectSpyCall(onSvgSheetSelectSpy, 1, {
                             complexId: '',
@@ -1266,7 +1272,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should reset `selectedSvgSheet` to undefined', () => {
-                        (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
+                        if (!mockActivatedRoute.testQueryParamMap) {
+                            expect.fail('Expected mockActivatedRoute.testQueryParamMap to be defined');
+                        }
+
+                        component['_handleQueryParams'](mockActivatedRoute.testQueryParamMap, mockSvgSheetsData);
 
                         expect(component.selectedSvgSheet).toBeUndefined();
                     });
@@ -1276,7 +1286,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     component.isFirstPageLoad.set(true);
                     mockActivatedRoute.testQueryParamMap = { id: 'sheetId' };
 
-                    (component as any)._handleQueryParams(mockActivatedRoute.testQueryParamMap, expectedSvgSheetsData);
+                    if (!mockActivatedRoute.testQueryParamMap) {
+                        expect.fail('Expected mockActivatedRoute.testQueryParamMap to be defined');
+                    }
+
+                    component['_handleQueryParams'](mockActivatedRoute.testQueryParamMap, expectedSvgSheetsData);
 
                     expectToBe(component.isFirstPageLoad(), false);
                 });
@@ -1284,7 +1298,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
             describe('#_selectSvgSheet()', () => {
                 it('... should have a method `_selectSvgSheet`', () => {
-                    expect((component as any)._selectSvgSheet).toBeDefined();
+                    expect(component['_selectSvgSheet']).toBeDefined();
                 });
 
                 describe('... should do nothing if', () => {
@@ -1337,7 +1351,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         );
                         editionSheetsServiceSelectSvgSheetByIdSpy.mockClear();
 
-                        (component as any)._selectSvgSheet(sheetId);
+                        component['_selectSvgSheet'](sheetId);
 
                         expectSpyCall(editionSheetsServiceSelectSvgSheetByIdSpy, 0);
                     });
@@ -1351,7 +1365,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should set correct `selectedSvgSheet`, `selectedConvolute` and `selectedTextcritics`', () => {
-                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        component['_selectSvgSheet'](expectedSvgSheet.id);
 
                         expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
                         expectToEqual(component.selectedConvolute, expectedConvolute);
@@ -1361,13 +1375,13 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... should trigger `onOverlaySelect()` with empty array to clear overlay selections and textcritical comments', () => {
                         expectSpyCall(onOverlaySelectSpy, 0);
 
-                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        component['_selectSvgSheet'](expectedSvgSheet.id);
 
                         expectSpyCall(onOverlaySelectSpy, 1, []);
                     });
 
                     it('... should set correct `selectedTextcriticalCommentary`', () => {
-                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        component['_selectSvgSheet'](expectedSvgSheet.id);
 
                         expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
                         expectToEqual(component.selectedConvolute, expectedConvolute);
@@ -1390,7 +1404,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... should set `selectedConvolute` and `selectedTextcritics` to undefined if currentSheet is not found', () => {
                         editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(undefined);
 
-                        (component as any)._selectSvgSheet('unknown-id');
+                        component['_selectSvgSheet']('unknown-id');
 
                         expect(component.selectedSvgSheet).toBeUndefined();
                         expect(component.selectedConvolute).toBeUndefined();
@@ -1407,7 +1421,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         delete textcriticsWithoutCommentary.commentary;
                         editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithoutCommentary);
 
-                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        component['_selectSvgSheet'](expectedSvgSheet.id);
 
                         expectToEqual(component.selectedTextcritics, textcriticsWithoutCommentary);
                         expect(component.selectedTextcriticalCommentary).toBeUndefined();
@@ -1423,7 +1437,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         };
                         editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithEmptyCommentary);
 
-                        (component as any)._selectSvgSheet(expectedSvgSheet.id);
+                        component['_selectSvgSheet'](expectedSvgSheet.id);
 
                         expect(component.selectedTextcriticalCommentary).toBeUndefined();
                     });

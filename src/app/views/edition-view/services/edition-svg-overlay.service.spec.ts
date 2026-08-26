@@ -960,7 +960,7 @@ describe('EditionSvgOverlayService', () => {
             const d3selections = service['_createTkkOverlayGroup'](expectedSvgRootGroup, id, dim);
 
             if (!d3selections) {
-                throw new Error('Expected d3selections to be defined');
+                expect.fail('Expected d3selections to be defined');
             }
 
             expect(d3selections).toBeDefined();

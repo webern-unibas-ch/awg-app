@@ -1265,7 +1265,7 @@ describe('FolioService (DONE)', () => {
                     const folioContent = expectedReversedFolio.content[0];
 
                     if (!folioContent?.segments?.[0] || !folioContent.segmentSplit) {
-                        throw new Error('Expected folioContent, segments[0], or segmentSplit to be defined');
+                        expect.fail('Expected folioContent, segments[0], or segmentSplit to be defined');
                     }
 
                     const segments = folioContent.segments;
@@ -2109,7 +2109,7 @@ describe('FolioService (DONE)', () => {
                 const folioContent = expectedReversedFolio.content[0];
 
                 if (!folioContent?.segments?.[0]) {
-                    throw new Error('Expected folioContent or segments[0] to be defined');
+                    expect.fail('Expected folioContent or segments[0] to be defined');
                 }
 
                 folioContent.segmentSplit = 1;
@@ -2819,7 +2819,7 @@ describe('FolioService (DONE)', () => {
             it('... should trigger `_appendSvgElementWithAttrs` for each line with correct arguments', () => {
                 const lastSystem = expectedSystemArray.at(-1);
                 if (!lastSystem) {
-                    throw new Error('Expected last system to be defined');
+                    expect.fail('Expected last system to be defined');
                 }
 
                 const attributes = {

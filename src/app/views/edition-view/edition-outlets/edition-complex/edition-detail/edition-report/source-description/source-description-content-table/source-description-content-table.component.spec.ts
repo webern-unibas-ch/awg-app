@@ -157,7 +157,7 @@ describe('SourceDescriptionContentTableComponent', () => {
 
                 // Get number of systemgroups of each folio
                 if (!expectedContent.folios) {
-                    throw new Error('Expected folios to be defined');
+                    expect.fail('Expected folios to be defined');
                 }
 
                 const expectedTrLength = expectedContent.folios.reduce((total, folio) => {
@@ -185,7 +185,7 @@ describe('SourceDescriptionContentTableComponent', () => {
                 let expectedTdLength = 0;
 
                 if (!expectedContent.folios) {
-                    throw new Error('Expected folios to be defined');
+                    expect.fail('Expected folios to be defined');
                 }
 
                 expectedContent.folios.forEach(folio => {

@@ -199,7 +199,7 @@ describe('AppComponent (DONE)', () => {
                 },
             ])('... $desc', async ({ commands, expectedPath }) => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() => router.navigate(commands));
@@ -250,7 +250,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should call AnalyticsService to track page view after navigation', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 await fixture.ngZone.run(() => router.navigate(['']));
@@ -260,7 +260,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should call AnalyticsService to track page view after navigation changed', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 await fixture.ngZone.run(() => router.navigate(['']));
@@ -285,7 +285,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set the custom page title from route data if available', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 await fixture.ngZone.run(() => router.navigate(['/test1']));
@@ -297,7 +297,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set the default page title if route data title is not available', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 await fixture.ngZone.run(() => router.navigate(['/test2']));
@@ -309,7 +309,7 @@ describe('AppComponent (DONE)', () => {
         describe('SideOutlet', () => {
             it('... should set `activateSideOutlet` to false if not given in route data', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() => router.navigate(['/test1']));
@@ -320,7 +320,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set `activateSideOutlet` to true if given in route data', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() =>
@@ -333,7 +333,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set `activateSideOutlet` to true if given in parent route data', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() =>
@@ -346,7 +346,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set `activateSideOutlet` to false if not given in parent route data', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
@@ -357,7 +357,7 @@ describe('AppComponent (DONE)', () => {
 
             it('... should set `activateSideOutlet` back to false if navigating back to route without side outlet', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() =>
@@ -386,7 +386,7 @@ describe('AppComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should pass down `activateSideOutlet` to view container component', async () => {
                 if (!fixture.ngZone) {
-                    throw new Error('[AppComponent] NgZone is missing from fixture');
+                    expect.fail('[AppComponent] NgZone is missing from fixture');
                 }
 
                 const success = await fixture.ngZone.run(() =>
@@ -408,7 +408,7 @@ describe('AppComponent (DONE)', () => {
 
         describe('#_hasSideOutlet()', () => {
             it('... should have a method `_hasSideOutlet`', () => {
-                expect((component as any)._hasSideOutlet).toBeDefined();
+                expect(component['_hasSideOutlet']).toBeDefined();
             });
 
             it('... should return true if route has side outlet', () => {
@@ -417,7 +417,7 @@ describe('AppComponent (DONE)', () => {
                     children: [],
                 } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
+                expectToBe(component['_hasSideOutlet'](mockRoute), true);
             });
 
             it('... should return true if any child route has side outlet', () => {
@@ -431,7 +431,7 @@ describe('AppComponent (DONE)', () => {
                     ],
                 } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
+                expectToBe(component['_hasSideOutlet'](mockRoute), true);
             });
 
             it('... should return false if route has no side outlet', () => {
@@ -445,7 +445,7 @@ describe('AppComponent (DONE)', () => {
                     ],
                 } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), false);
+                expectToBe(component['_hasSideOutlet'](mockRoute), false);
             });
         });
     });

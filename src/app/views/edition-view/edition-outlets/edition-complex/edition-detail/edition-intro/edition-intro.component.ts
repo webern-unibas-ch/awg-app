@@ -123,7 +123,7 @@ export class EditionIntroComponent implements OnDestroy {
      * on window scroll.
      */
     private _onIntroScroll(event: Event): void {
-        if (event?.type === 'scroll') {
+        if (event.type === 'scroll') {
             const scrollPosition = globalThis.scrollY || document.documentElement.scrollTop;
             const introSections: NodeListOf<HTMLElement> = document.querySelectorAll('.awg-edition-intro-section');
             const introNavLinks: NodeListOf<HTMLAnchorElement> =
