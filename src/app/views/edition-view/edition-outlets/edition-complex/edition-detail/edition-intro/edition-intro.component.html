@@ -14,7 +14,7 @@
 
             <div class="awg-edition-intro-view p-5 border rounded-3">
                 <div class="row justify-content-center">
-                    @if (introContent.length === 0) {
+                    @if (!introContent.length) {
                         <awg-edition-intro-placeholder
                             class="col-12"
                             [editionComplex]="complex"

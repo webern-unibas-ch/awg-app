@@ -32,7 +32,6 @@ export class StatisticsService {
      * It calculates comprehensive statistics from the edition outline data.
      *
      * @param {EditionOutlineSeries[]} editionOutline The edition outline data.
-     *
      * @returns {Statistics} The calculated statistics.
      */
     getStatisticsFromOutline(editionOutline: EditionOutlineSeries[]): Statistics {
@@ -93,7 +92,6 @@ export class StatisticsService {
      *
      * @param {number} active The number of active items.
      * @param {number} total The total number of items.
-     *
      * @returns {number} The rounded percentage rate.
      */
     private _calculateProgressRate(active: number, total: number): number {
@@ -106,7 +104,6 @@ export class StatisticsService {
      * It calculates a rounded average value from a list of progress rates.
      *
      * @param {number[]} progressRates The list of progress rates to average.
-     *
      * @returns {number} The rounded averageprogress rate, or 0 if the list is empty.
      */
     private _calculateCombinedProgressRate(progressRates: number[]): number {
@@ -126,7 +123,6 @@ export class StatisticsService {
      * @param {StatisticsComplexCounter[]} targets The statistics targets to update.
      * @param {StatisticsComplexType} complexType The complex category.
      * @param {boolean} isActive Flag indicating whether the complex is active.
-     *
      * @returns {void} Registers the complex in all targets by calling their registerComplex method.
      */
     private _incrementComplexCounters(
@@ -142,8 +138,7 @@ export class StatisticsService {
      *
      * It checks whether a complex belongs to the MNR_X category.
      *
-     * @param {unknown} complex The complex object to inspect.
-     *
+     * @param {EditionOutlineComplexItem} complex The complex object to inspect.
      * @returns {boolean} True if the complex route starts with `/mx`, otherwise false.
      */
     private _isMnrX(complex: EditionOutlineComplexItem): boolean {
@@ -160,7 +155,6 @@ export class StatisticsService {
      * @param {StatisticsSeriesBreakdown} seriesStats The current series statistics.
      * @param {StatisticsSectionBreakdown} sectionStats The current section statistics.
      * @param {EditionOutlineComplexTypes | undefined} complexTypes The object containing the opus and mnr complex lists, or undefined.
-     *
      * @returns {void} Processes all complexes and updates the counters in the provided statistics objects.
      */
     private _processComplexes(
