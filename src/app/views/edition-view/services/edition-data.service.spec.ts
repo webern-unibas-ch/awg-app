@@ -88,10 +88,10 @@ describe('EditionDataService (DONE)', () => {
 
         // Spies
         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-        clearErrorForSpy = vi.spyOn(service as any, '_clearErrorFor');
-        fetchJsonDataSpy = vi.spyOn(service as any, '_fetchJsonData');
-        getAssetPathSpy = vi.spyOn(service as any, '_getAssetPathForEditionComplex');
-        getEditionDataByComplexSpy = vi.spyOn(service as any, '_getEditionDataByComplex');
+        clearErrorForSpy = vi.spyOn(service, '_clearErrorFor' as any);
+        fetchJsonDataSpy = vi.spyOn(service, '_fetchJsonData' as any);
+        getAssetPathSpy = vi.spyOn(service, '_getAssetPathForEditionComplex' as any);
+        getEditionDataByComplexSpy = vi.spyOn(service, '_getEditionDataByComplex' as any);
 
         // Test data
         expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
@@ -236,7 +236,7 @@ describe('EditionDataService (DONE)', () => {
 
                     await new Promise(resolve => setTimeout(resolve, 0));
 
-                    const complexPath = (service as any)._getAssetPathForEditionComplex(expectedComplex);
+                    const complexPath = service['_getAssetPathForEditionComplex'](expectedComplex);
                     const file = config[assetKey].file;
                     const expectedComplexUrl = `${complexPath}/${file}`;
 
@@ -261,9 +261,9 @@ describe('EditionDataService (DONE)', () => {
     });
 
     it('... should have signal `_dataError` to hold null', () => {
-        expectToBe(isSignal((service as any)._dataError), true);
+        expectToBe(isSignal(service['_dataError']), true);
 
-        expectToBe((service as any)._dataError(), null);
+        expectToBe(service['_dataError'](), null);
     });
 
     describe('METHODS', () => {
@@ -281,7 +281,7 @@ describe('EditionDataService (DONE)', () => {
 
             it('... should return a signal that holds the error if the active error key is included in the given keys array', () => {
                 const mockAssetsError: EditionDataAssetsError = { key: 'graph', error: mockError };
-                (service as any)._dataError.set(mockAssetsError);
+                service['_dataError'].set(mockAssetsError);
 
                 const errorSignal = service.getErrorForDataAssets(testKeys);
 
@@ -290,7 +290,7 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... should return a signal that holds null if', () => {
                 it('... there is currently no active error', () => {
-                    (service as any)._dataError.set(null);
+                    service['_dataError'].set(null);
 
                     const errorSignal = service.getErrorForDataAssets(testKeys);
 
@@ -299,7 +299,7 @@ describe('EditionDataService (DONE)', () => {
 
                 it('... the active error key is not included in the given keys', () => {
                     const mockAssetsError: EditionDataAssetsError = { key: 'intro', error: mockError };
-                    (service as any)._dataError.set(mockAssetsError);
+                    service['_dataError'].set(mockAssetsError);
 
                     const errorSignal = service.getErrorForDataAssets(testKeys);
 
@@ -308,16 +308,16 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should reactively update its value when the _dataError signal changes', () => {
-                (service as any)._dataError.set(null);
+                service['_dataError'].set(null);
                 const errorSignal = service.getErrorForDataAssets(testKeys);
                 expectToBe(errorSignal(), null);
 
                 const mockAssetsError: EditionDataAssetsError = { key: 'textcritics', error: mockError };
-                (service as any)._dataError.set(mockAssetsError);
+                service['_dataError'].set(mockAssetsError);
 
                 expectToEqual(errorSignal(), mockAssetsError);
 
-                (service as any)._dataError.set(null);
+                service['_dataError'].set(null);
 
                 expectToBe(errorSignal(), null);
             });
@@ -325,7 +325,7 @@ describe('EditionDataService (DONE)', () => {
 
         describe('#_getAssetPathForEditionComplex()', () => {
             it('... should have a method `_getAssetPathForEditionComplex`', () => {
-                expect((service as any)._getAssetPathForEditionComplex).toBeDefined();
+                expect(service['_getAssetPathForEditionComplex']).toBeDefined();
             });
 
             it('... should return the generated assetPath', () => {
@@ -334,7 +334,7 @@ describe('EditionDataService (DONE)', () => {
 
                 const expectedPath = `${baseRoute}${sectionPath}${complexIdRoute}`;
 
-                const result = (service as any)._getAssetPathForEditionComplex(expectedComplex);
+                const result = service['_getAssetPathForEditionComplex'](expectedComplex);
 
                 expectToBe(result, expectedPath);
             });
@@ -342,14 +342,14 @@ describe('EditionDataService (DONE)', () => {
 
         describe('#_getStaticEditionDataByKey()', () => {
             it('... should have a method `_getStaticEditionDataByKey`', () => {
-                expect((service as any)._getStaticEditionDataByKey).toBeDefined();
+                expect(service['_getStaticEditionDataByKey']).toBeDefined();
             });
 
             it('... should return a signal holding the fetched data from correct static path', async () => {
                 const assetsKey: EditionStaticDataAssetsKeys = 'preface';
 
                 const staticDataSignal = TestBed.runInInjectionContext(
-                    () => (service as any)._getStaticEditionDataByKey(assetsKey) as Signal<any>
+                    () => service['_getStaticEditionDataByKey'](assetsKey) as Signal<any>
                 );
 
                 // Initial value should be the fallback value
@@ -373,7 +373,7 @@ describe('EditionDataService (DONE)', () => {
                 const expectedFallback = config[assetsKey].fallback;
 
                 const staticDataSignal = TestBed.runInInjectionContext(
-                    () => (service as any)._getStaticEditionDataByKey(assetsKey) as Signal<any>
+                    () => service['_getStaticEditionDataByKey'](assetsKey) as Signal<any>
                 );
 
                 // Initial value should be the fallback value
@@ -398,7 +398,7 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should have a method `_getComplexEditionDataByKey`', () => {
-                expect((service as any)._getComplexEditionDataByKey).toBeDefined();
+                expect(service['_getComplexEditionDataByKey']).toBeDefined();
             });
 
             const complexKeys: EditionComplexDataAssetsKeys[] = [
@@ -417,7 +417,7 @@ describe('EditionDataService (DONE)', () => {
                     const expectedFile = config[assetsKey].file;
                     const expectedFallback = config[assetsKey].fallback;
 
-                    const resultSignal = (service as any)._getComplexEditionDataByKey(assetsKey);
+                    const resultSignal = service['_getComplexEditionDataByKey'](assetsKey);
 
                     expectSpyCall(getEditionDataByComplexSpy, 1, [expectedFile, expectedFallback, assetsKey]);
 
@@ -437,7 +437,7 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should have a method `_getEditionDataByComplex`', () => {
-                expect((service as any)._getEditionDataByComplex).toBeDefined();
+                expect(service['_getEditionDataByComplex']).toBeDefined();
             });
 
             describe('... when selectedEditionComplex changes', () => {
@@ -466,7 +466,7 @@ describe('EditionDataService (DONE)', () => {
 
                         const resultSignal = TestBed.runInInjectionContext(
                             () =>
-                                (service as any)._getEditionDataByComplex(
+                                service['_getEditionDataByComplex'](
                                     expectedFile,
                                     expectedFallback,
                                     assetsKey
@@ -494,7 +494,7 @@ describe('EditionDataService (DONE)', () => {
 
                         const resultSignal = TestBed.runInInjectionContext(
                             () =>
-                                (service as any)._getEditionDataByComplex(
+                                service['_getEditionDataByComplex'](
                                     expectedFile,
                                     expectedFallback,
                                     assetsKey
@@ -522,7 +522,7 @@ describe('EditionDataService (DONE)', () => {
                         editionStateService.updateSelectedEditionComplex(null);
 
                         TestBed.runInInjectionContext(() => {
-                            (service as any)._getEditionDataByComplex(expectedFile, expectedFallback, assetsKey);
+                            service['_getEditionDataByComplex'](expectedFile, expectedFallback, assetsKey);
                         });
                         await new Promise(resolve => setTimeout(resolve, 0));
 
@@ -553,13 +553,13 @@ describe('EditionDataService (DONE)', () => {
                 vi.spyOn(editionStateService, 'selectedEditionComplex').mockImplementation(() => mockComplexSignal());
 
                 streamSpy = vi
-                    .spyOn(service as any, '_getIntroDataStream')
+                    .spyOn(service, '_getIntroDataStream' as any)
                     .mockReturnValue(observableOf(new IntroList()));
             });
 
             it('... should return a signal initialized with an empty IntroList fallback', () => {
                 const resultSignal = TestBed.runInInjectionContext(
-                    () => (service as any)._getIntroData() as Signal<IntroList>
+                    () => service['_getIntroData']() as Signal<IntroList>
                 );
                 expectToBe(isSignal(resultSignal), true);
 
@@ -568,7 +568,7 @@ describe('EditionDataService (DONE)', () => {
 
             it('... should react to state changes', async () => {
                 const resultSignal = TestBed.runInInjectionContext(
-                    () => (service as any)._getIntroData() as Signal<IntroList>
+                    () => service['_getIntroData']() as Signal<IntroList>
                 );
                 expectToBe(isSignal(resultSignal), true);
 
@@ -596,7 +596,7 @@ describe('EditionDataService (DONE)', () => {
             const mockSection = EditionStateHelper.getSection('1', '5');
 
             it('... should have a method `_getIntroDataStream`', () => {
-                expect((service as any)._getIntroDataStream).toBeDefined();
+                expect(service['_getIntroDataStream']).toBeDefined();
             });
 
             it('... should clear errors for the intro asset key every time it is called', async () => {
@@ -610,7 +610,7 @@ describe('EditionDataService (DONE)', () => {
                     complex: EditionComplex | null;
                 } = { series: null, section: null, complex: null };
 
-                const result$ = (service as any)._getIntroDataStream(mockState);
+                const result$ = service['_getIntroDataStream'](mockState);
                 await lastValueFrom(result$);
 
                 expectSpyCall(clearErrorForSpy, 1, assetsKey);
@@ -628,7 +628,7 @@ describe('EditionDataService (DONE)', () => {
                     ];
 
                     it.each(incompleteStates)('... %s', async (_, mockState) => {
-                        const result$ = (service as any)._getIntroDataStream(mockState);
+                        const result$ = service['_getIntroDataStream'](mockState);
                         const res = await lastValueFrom(result$);
 
                         expectToEqual(res, new IntroList());
@@ -642,7 +642,7 @@ describe('EditionDataService (DONE)', () => {
                         complex: EditionComplex | null;
                     } = { series: null, section: null, complex: null };
 
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     await lastValueFrom(result$);
 
                     expectSpyCall(fetchJsonDataSpy, 0);
@@ -666,7 +666,7 @@ describe('EditionDataService (DONE)', () => {
                     const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
                     fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
 
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     await lastValueFrom(result$);
 
                     expectSpyCall(fetchJsonDataSpy, 1, [expectedSectionPath, expectedFile, expectedFallback, 'intro']);
@@ -677,7 +677,7 @@ describe('EditionDataService (DONE)', () => {
                     const mockState = { series: mockSeries, section: mockSection, complex: nonMatchingComplex };
                     fetchJsonDataSpy.mockReturnValue(observableOf(expectedSectionIntroData));
 
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     const res = await lastValueFrom(result$);
 
                     expectToEqual(res, expectedSectionIntroData);
@@ -695,7 +695,7 @@ describe('EditionDataService (DONE)', () => {
                 beforeEach(() => {
                     matchingComplex = expectedComplex;
 
-                    filterIntroDataSpy = vi.spyOn(service as any, '_filterSectionIntroDataByBlockId');
+                    filterIntroDataSpy = vi.spyOn(service, '_filterSectionIntroDataByBlockId' as any);
                 });
 
                 it('... should fetch both the section and the complex intro data from their respective paths', async () => {
@@ -704,7 +704,7 @@ describe('EditionDataService (DONE)', () => {
                         .mockReturnValueOnce(observableOf(expectedIntroComplexData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     await lastValueFrom(result$);
 
                     expect(fetchJsonDataSpy).toHaveBeenCalledTimes(2);
@@ -716,7 +716,7 @@ describe('EditionDataService (DONE)', () => {
                         'intro'
                     );
 
-                    const expectedComplexPath = (service as any)._getAssetPathForEditionComplex(matchingComplex);
+                    const expectedComplexPath = service['_getAssetPathForEditionComplex'](matchingComplex);
                     expect(fetchJsonDataSpy).toHaveBeenNthCalledWith(
                         2,
                         expectedComplexPath,
@@ -732,7 +732,7 @@ describe('EditionDataService (DONE)', () => {
                         .mockReturnValueOnce(observableOf(expectedIntroComplexData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     const res = await lastValueFrom(result$);
 
                     expectSpyCall(filterIntroDataSpy, 1, [expectedIntroSectionData, 'test_block_id_2']);
@@ -747,7 +747,7 @@ describe('EditionDataService (DONE)', () => {
                         .mockReturnValueOnce(observableOf(emptyComplexIntroData));
 
                     const mockState = { series: mockSeries, section: mockSection, complex: matchingComplex };
-                    const result$ = (service as any)._getIntroDataStream(mockState);
+                    const result$ = service['_getIntroDataStream'](mockState);
                     const res = await lastValueFrom(result$);
 
                     expect(filterIntroDataSpy).not.toHaveBeenCalled();
@@ -758,7 +758,7 @@ describe('EditionDataService (DONE)', () => {
 
         describe('#_filterSectionIntroDataByBlockId()', () => {
             it('... should have a method `_filterSectionIntroDataByBlockId`', () => {
-                expect((service as any)._filterSectionIntroDataByBlockId).toBeDefined();
+                expect(service['_filterSectionIntroDataByBlockId']).toBeDefined();
             });
 
             it('... should return the correct section intro data for a given block id', () => {
@@ -766,7 +766,7 @@ describe('EditionDataService (DONE)', () => {
                 const expectedIntro = expectedIntroSectionData.intro[0];
                 const expectedBlock = expectedIntro.content?.find(block => block.blockId === blockId);
 
-                const result = (service as any)._filterSectionIntroDataByBlockId(expectedIntroSectionData, blockId);
+                const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, blockId);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
@@ -776,10 +776,7 @@ describe('EditionDataService (DONE)', () => {
 
             describe('... should return an empty content array or original data if', () => {
                 it('... no block id is given', () => {
-                    const result = (service as any)._filterSectionIntroDataByBlockId(
-                        expectedIntroSectionData,
-                        undefined
-                    );
+                    const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, '');
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
@@ -789,7 +786,7 @@ describe('EditionDataService (DONE)', () => {
 
                 it('... no intro data section is found for given block id', () => {
                     const blockId = 'notExistingId';
-                    const result = (service as any)._filterSectionIntroDataByBlockId(expectedIntroSectionData, blockId);
+                    const result = service['_filterSectionIntroDataByBlockId'](expectedIntroSectionData, blockId);
 
                     expect(result).toBeDefined();
                     expect(result.intro[0]).toBeDefined();
@@ -802,7 +799,7 @@ describe('EditionDataService (DONE)', () => {
                 const blockId = 'test_block_id';
                 const incompleteData = { intro: undefined } as any;
 
-                const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
+                const result = service['_filterSectionIntroDataByBlockId'](incompleteData, blockId);
 
                 expectToEqual(result, incompleteData);
             });
@@ -812,7 +809,7 @@ describe('EditionDataService (DONE)', () => {
                 const incompleteData: IntroList = {
                     intro: [{ id: 'intro_1', content: undefined as any }],
                 };
-                const result = (service as any)._filterSectionIntroDataByBlockId(incompleteData, blockId);
+                const result = service['_filterSectionIntroDataByBlockId'](incompleteData, blockId);
 
                 expect(result).toBeDefined();
                 expect(result.intro[0]).toBeDefined();
@@ -822,7 +819,7 @@ describe('EditionDataService (DONE)', () => {
 
         describe('#_fetchJsonData()', () => {
             it('... should have a method `_fetchJsonData`', () => {
-                expect((service as any)._fetchJsonData).toBeDefined();
+                expect(service['_fetchJsonData']).toBeDefined();
             });
 
             it('... should return an Observable<any>', () => {
@@ -834,12 +831,7 @@ describe('EditionDataService (DONE)', () => {
 
                 const expectedUrl = `${expectedPath}/${expectedFile}`;
 
-                const result = (service as any)._fetchJsonData(
-                    expectedPath,
-                    expectedFile,
-                    expectedFallback,
-                    expectedKey
-                );
+                const result = service['_fetchJsonData'](expectedPath, expectedFile, expectedFallback, expectedKey);
 
                 result.subscribe({
                     next: (res: any) => {
@@ -861,14 +853,9 @@ describe('EditionDataService (DONE)', () => {
                 const expectedKey: EditionDataAssetsKeys = 'graph';
                 const expectedUrl = `${expectedPath}/${expectedFile}`;
 
-                const handleErrorSpy = vi.spyOn(service as any, '_handleError');
+                const handleErrorSpy = vi.spyOn(service, '_handleError' as any);
 
-                const result = (service as any)._fetchJsonData(
-                    expectedPath,
-                    expectedFile,
-                    expectedFallback,
-                    expectedKey
-                );
+                const result = service['_fetchJsonData'](expectedPath, expectedFile, expectedFallback, expectedKey);
 
                 result.subscribe({
                     next: (res: any) => {
@@ -890,14 +877,9 @@ describe('EditionDataService (DONE)', () => {
                 // Respond with no data
                 // (empty response cannot be flushed with httpTestingController,
                 // So we mock the http get method to return EMPTY)
-                vi.spyOn((service as any)._http, 'get').mockReturnValue(EMPTY);
+                vi.spyOn(service['_http'], 'get').mockReturnValue(EMPTY);
 
-                const result$ = (service as any)._fetchJsonData(
-                    expectedPath,
-                    expectedFile,
-                    expectedFallback,
-                    expectedKey
-                );
+                const result$ = service['_fetchJsonData'](expectedPath, expectedFile, expectedFallback, expectedKey);
                 const res = await lastValueFrom(result$, { defaultValue: expectedFallback });
 
                 expectToEqual(res, expectedFallback);
@@ -917,7 +899,7 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should have a method `_handleError`', () => {
-                expect((service as any)._handleError).toBeDefined();
+                expect(service['_handleError']).toBeDefined();
             });
 
             describe('... when called', () => {
@@ -926,7 +908,7 @@ describe('EditionDataService (DONE)', () => {
                 let errorHandlerFn: (error: HttpErrorResponse) => Observable<any>;
 
                 beforeEach(() => {
-                    errorHandlerFn = (service as any)._handleError(expectedKey, expectedFallback);
+                    errorHandlerFn = service['_handleError'](expectedKey, expectedFallback);
                 });
 
                 it('... should return an Observable that emits the fallback value', async () => {
@@ -937,7 +919,7 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 it('... should log the error message with the correct format', async () => {
-                    const logErrorSpy = vi.spyOn(service as any, '_logError').mockImplementation(() => {});
+                    const logErrorSpy = vi.spyOn(service, '_logError' as any).mockImplementation(() => {});
 
                     const result$ = errorHandlerFn(mockError);
                     await lastValueFrom(result$); // Resolve the observable to trigger the error handling
@@ -952,7 +934,7 @@ describe('EditionDataService (DONE)', () => {
                     const result$ = errorHandlerFn(mockError);
                     await lastValueFrom(result$); // Resolve the observable to trigger the error handling
 
-                    expectToEqual((service as any)._dataError(), {
+                    expectToEqual(service['_dataError'](), {
                         key: expectedKey,
                         error: mockError,
                     });
@@ -962,12 +944,12 @@ describe('EditionDataService (DONE)', () => {
             it('... should allow result to be undefined and return it as fallback', async () => {
                 const expectedKey: EditionDataAssetsKeys = 'intro';
 
-                const errorHandlerFn = (service as any)._handleError(expectedKey, undefined);
+                const errorHandlerFn = service['_handleError'](expectedKey, undefined);
                 const result$ = errorHandlerFn(mockError);
                 const res = await lastValueFrom(result$);
 
                 expect(res).toBeUndefined();
-                expectToEqual((service as any)._dataError(), {
+                expectToEqual(service['_dataError'](), {
                     key: expectedKey,
                     error: mockError,
                 });
@@ -976,13 +958,13 @@ describe('EditionDataService (DONE)', () => {
 
         describe('#_logError()', () => {
             it('... should have a method `_logError`', () => {
-                expect((service as any)._logError).toBeDefined();
+                expect(service['_logError']).toBeDefined();
             });
 
             it('... should log the given error message', () => {
                 const expectedMessage = 'Test error message';
 
-                (service as any)._logError(expectedMessage);
+                service['_logError'](expectedMessage);
 
                 expectSpyCall(consoleSpy, 1, expectedMessage);
             });
@@ -998,26 +980,26 @@ describe('EditionDataService (DONE)', () => {
             });
 
             it('... should have a method `_clearErrorFor`', () => {
-                expect((service as any)._clearErrorFor).toBeDefined();
+                expect(service['_clearErrorFor']).toBeDefined();
             });
 
             it('... should clear an error if the given key matches the current error key', () => {
-                (service as any)._dataError.set({ key: testKey, error: mockError });
+                service['_dataError'].set({ key: testKey, error: mockError });
 
                 // Call with the same key
-                (service as any)._clearErrorFor(testKey);
+                service['_clearErrorFor'](testKey);
 
-                expectToBe((service as any)._dataError(), null);
+                expectToBe(service['_dataError'](), null);
             });
 
             it('... should not clear an error if the given key does not match the current error key', () => {
                 const expectedErrorState = { key: testKey, error: mockError };
-                (service as any)._dataError.set(expectedErrorState);
+                service['_dataError'].set(expectedErrorState);
 
                 // Call with a different key
-                (service as any)._clearErrorFor(otherKey);
+                service['_clearErrorFor'](otherKey);
 
-                expectToEqual((service as any)._dataError(), expectedErrorState);
+                expectToEqual(service['_dataError'](), expectedErrorState);
             });
 
             it('... should handle sequentially occurring errors and only clear the active one', () => {
@@ -1025,30 +1007,30 @@ describe('EditionDataService (DONE)', () => {
                 const secondError = new HttpErrorResponse({ error: 'Second Error' });
 
                 // Set multiple errors for different keys
-                (service as any)._dataError.set({ key: 'graph', error: firstError });
-                (service as any)._dataError.set({ key: 'intro', error: secondError });
+                service['_dataError'].set({ key: 'graph', error: firstError });
+                service['_dataError'].set({ key: 'intro', error: secondError });
 
                 // Try to clear the first error (which is not the current one)
-                (service as any)._clearErrorFor('graph');
+                service['_clearErrorFor']('graph');
 
                 // The actual error should still be present
-                expectToEqual((service as any)._dataError(), {
+                expectToEqual(service['_dataError'](), {
                     key: 'intro',
                     error: secondError,
                 });
 
                 // Clear the current error
-                (service as any)._clearErrorFor('intro');
+                service['_clearErrorFor']('intro');
 
-                expectToBe((service as any)._dataError(), null);
+                expectToBe(service['_dataError'](), null);
             });
 
             it('... should do nothing if there is currently no data error', () => {
-                (service as any)._dataError.set(null);
+                service['_dataError'].set(null);
 
-                (service as any)._clearErrorFor(testKey);
+                service['_clearErrorFor'](testKey);
 
-                expectToBe((service as any)._dataError(), null);
+                expectToBe(service['_dataError'](), null);
             });
         });
     });

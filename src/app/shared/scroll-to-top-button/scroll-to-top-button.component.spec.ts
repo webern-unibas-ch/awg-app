@@ -51,7 +51,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Component spies
-        scrollToTopSpy = vi.spyOn(component as any, 'scrollToTop');
+        scrollToTopSpy = vi.spyOn(component, 'scrollToTop' as any);
     });
 
     afterEach(() => {
@@ -125,7 +125,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
         describe('METHODS', () => {
             describe('#onWindowScroll()', () => {
                 it('... should have a method `onWindowScroll`', () => {
-                    expect((component as any).onWindowScroll).toBeDefined();
+                    expect(component['onWindowScroll']).toBeDefined();
                 });
 
                 describe('... should set `showScrollButton` signal based on scrollY position if ...', () => {
@@ -138,7 +138,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
 
                         windowScrollYSpy.mockReturnValue(scrollY as any);
 
-                        (component as any).onWindowScroll();
+                        component['onWindowScroll']();
 
                         expectToBe(component.showScrollButton(), expected);
                     });
@@ -147,13 +147,13 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
                 it('... should toggle `showScrollButton` based on scrollY position of scroll event', () => {
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold - 1);
 
-                    (component as any).onWindowScroll();
+                    component['onWindowScroll']();
 
                     expectToBe(component.showScrollButton(), false);
 
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold + 1);
 
-                    (component as any).onWindowScroll();
+                    component['onWindowScroll']();
 
                     expectToBe(component.showScrollButton(), true);
                 });
@@ -161,11 +161,11 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
 
             describe('#scrollToTop()', () => {
                 it('... should have a method `scrollToTop`', () => {
-                    expect((component as any).scrollToTop).toBeDefined();
+                    expect(component['scrollToTop']).toBeDefined();
                 });
 
                 it('... should trigger window:scrollTo with correct parameters', () => {
-                    (component as any).scrollToTop();
+                    component['scrollToTop']();
 
                     expectSpyCall(windowScrollToSpy, 1, { top: 0, behavior: 'smooth' });
                 });
@@ -175,11 +175,11 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
 
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold + 1);
 
-                    (component as any).onWindowScroll();
+                    component['onWindowScroll']();
 
                     expectToBe(component.showScrollButton(), true);
 
-                    (component as any).scrollToTop();
+                    component['scrollToTop']();
 
                     expectSpyCall(windowScrollToSpy, baselineCallCount + 1, { top: 0, behavior: 'smooth' });
                 });

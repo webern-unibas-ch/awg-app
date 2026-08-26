@@ -240,7 +240,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const lastSheet = expectedSheetArray.at(-1);
 
                 if (!lastSheet) {
-                    throw new Error('Expected last sheet to be defined');
+                    expect.fail('Expected last sheet to be defined');
                 }
 
                 expectedSelectedSheet = structuredClone(lastSheet);
@@ -370,7 +370,7 @@ describe('EditionSheetsService (DONE)', () => {
             const lastComment = expectedTextcriticalCommentary.comments.at(-1);
 
             if (!firstComment?.blockComments?.[0] || !lastComment?.blockComments?.[0]) {
-                throw new Error('Expected firstComment or lastComment arrays to be defined');
+                expect.fail('Expected firstComment or lastComment arrays to be defined');
             }
 
             const selectedBlockComments = [

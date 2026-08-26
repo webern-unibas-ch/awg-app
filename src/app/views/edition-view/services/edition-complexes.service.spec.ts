@@ -29,7 +29,7 @@ describe('EditionComplexesService (DONE)', () => {
         // Spies for service methods
         initializeEditionComplexesListSpy = vi.spyOn(service, 'initializeEditionComplexesList');
         setEditionComplexesListSpy = vi.spyOn(service, 'setEditionComplexesList');
-        fetchEditionComplexesDataSpy = vi.spyOn(service as any, '_fetchEditionComplexesData');
+        fetchEditionComplexesDataSpy = vi.spyOn(service, '_fetchEditionComplexesData' as any);
     });
 
     afterEach(() => {
@@ -41,9 +41,9 @@ describe('EditionComplexesService (DONE)', () => {
     });
 
     it('... should have signal `_editionComplexesListSignal` to hold an empty object', () => {
-        expectToBe(isSignal((service as any)._editionComplexesListSignal), true);
+        expectToBe(isSignal(service['_editionComplexesListSignal']), true);
 
-        expectToEqual((service as any)._editionComplexesListSignal(), {});
+        expectToEqual(service['_editionComplexesListSignal'](), {});
     });
 
     describe('#editionComplexesList()', () => {
@@ -258,11 +258,11 @@ describe('EditionComplexesService (DONE)', () => {
 
     describe('#_fetchEditionComplexesData()', () => {
         it('... should have a method `_fetchEditionComplexesData`', () => {
-            expect((service as any)._fetchEditionComplexesData).toBeDefined();
+            expect(service['_fetchEditionComplexesData']).toBeDefined();
         });
 
         it('... should fetch the edition complexes data', () => {
-            const editionComplexesList = (service as any)._fetchEditionComplexesData();
+            const editionComplexesList = service['_fetchEditionComplexesData']();
 
             expect(editionComplexesList).toBeDefined();
             expect(editionComplexesList).not.toEqual({});

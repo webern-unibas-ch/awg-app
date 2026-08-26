@@ -213,7 +213,7 @@ describe('EditionBreadcrumbService', () => {
 
         describe('#_getComplexBreadcrumbs()', () => {
             it('... should have a method `_getComplexBreadcrumbs`', () => {
-                expect((service as any)._getComplexBreadcrumbs).toBeDefined();
+                expect(service['_getComplexBreadcrumbs']).toBeDefined();
             });
 
             it('... should return expected breadcrumbs for complex', () => {
@@ -227,7 +227,7 @@ describe('EditionBreadcrumbService', () => {
                     { label: complex.complexId.short, route: [] },
                 ];
 
-                const actualBreadcrumbs = (service as any)._getComplexBreadcrumbs(expectedRootItem, complex);
+                const actualBreadcrumbs = service['_getComplexBreadcrumbs'](expectedRootItem, complex);
 
                 expectToBe(actualBreadcrumbs.length, 4);
                 expectToEqual(actualBreadcrumbs, expectedBreadcrumbs);
@@ -236,10 +236,16 @@ describe('EditionBreadcrumbService', () => {
 
         describe('#_getOverviewBreadcrumbs()', () => {
             it('... should have a method _getOverviewBreadcrumbs', () => {
-                expect((service as any)._getOverviewBreadcrumbs).toBeDefined();
+                expect(service['_getOverviewBreadcrumbs']).toBeDefined();
             });
 
-            it.each([
+            it.each<{
+                desc: string;
+                context: EditionViewContext;
+                series: () => EditionOutlineSeries | null;
+                section: () => EditionOutlineSection | null;
+                expected: () => LabeledRoute[];
+            }>([
                 {
                     desc: ' root breadcrumbs for overview (without series and section)',
                     context: { name: 'graph', isIntro: false, isPreface: false, isRowtables: false },
@@ -297,7 +303,7 @@ describe('EditionBreadcrumbService', () => {
             ])('... should return expected $desc', ({ context, series, section, expected }) => {
                 const expectedBreadcrumbs = expected();
 
-                const actualBreadcrumbs: LabeledRoute[] = (service as any)._getOverviewBreadcrumbs(
+                const actualBreadcrumbs: LabeledRoute[] = service['_getOverviewBreadcrumbs'](
                     expectedRootItem,
                     context,
                     series(),

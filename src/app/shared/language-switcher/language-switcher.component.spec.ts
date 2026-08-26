@@ -55,7 +55,7 @@ describe('LanguageSwitcherComponent (DONE)', () => {
         });
 
         it('... should have `languages`', () => {
-            expectToEqual((component as any).languages, expectedLanguages);
+            expectToEqual(component['languages'], expectedLanguages);
         });
 
         describe('VIEW', () => {

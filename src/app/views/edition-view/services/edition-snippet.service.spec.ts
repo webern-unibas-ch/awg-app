@@ -26,7 +26,7 @@ describe('EditionSnippetService (DONE)', () => {
     });
 
     it('... should have static `SAFE_SNIPPET_ID_PATTERN`', () => {
-        const pattern = (EditionSnippetService as any).SAFE_SNIPPET_ID_PATTERN as RegExp;
+        const pattern = EditionSnippetService['SAFE_SNIPPET_ID_PATTERN'] as RegExp;
 
         expect(pattern).toBeDefined();
         expectToBe(pattern.source, '^[A-Za-z0-9_-]+$');
@@ -128,21 +128,21 @@ describe('EditionSnippetService (DONE)', () => {
 
     describe('#_isSafeSnippetId()', () => {
         it('... should have a method `_isSafeSnippetId`', () => {
-            expect((editionSnippetService as any)._isSafeSnippetId).toBeDefined();
+            expect(editionSnippetService['_isSafeSnippetId']).toBeDefined();
         });
 
         it('... should return true for safe snippet ids', () => {
-            const resultA = (editionSnippetService as any)._isSafeSnippetId('awg-tkk-m133_tf4-015');
-            const resultB = (editionSnippetService as any)._isSafeSnippetId('abc_123-XYZ');
+            const resultA = editionSnippetService['_isSafeSnippetId']('awg-tkk-m133_tf4-015');
+            const resultB = editionSnippetService['_isSafeSnippetId']('abc_123-XYZ');
 
             expectToBe(resultA, true);
             expectToBe(resultB, true);
         });
 
         it('... should return false for unsafe snippet ids', () => {
-            const resultA = (editionSnippetService as any)._isSafeSnippetId('bad id');
-            const resultB = (editionSnippetService as any)._isSafeSnippetId("bad'id");
-            const resultC = (editionSnippetService as any)._isSafeSnippetId('<bad>');
+            const resultA = editionSnippetService['_isSafeSnippetId']('bad id');
+            const resultB = editionSnippetService['_isSafeSnippetId']("bad'id");
+            const resultC = editionSnippetService['_isSafeSnippetId']('<bad>');
 
             expectToBe(resultA, false);
             expectToBe(resultB, false);
@@ -152,13 +152,13 @@ describe('EditionSnippetService (DONE)', () => {
 
     describe('#_escapeHtmlAttribute()', () => {
         it('... should have a method `_escapeHtmlAttribute`', () => {
-            expect((editionSnippetService as any)._escapeHtmlAttribute).toBeDefined();
+            expect(editionSnippetService['_escapeHtmlAttribute']).toBeDefined();
         });
 
         it('... should escape html-sensitive characters', () => {
             const value = '&"<>\'';
 
-            const result = (editionSnippetService as any)._escapeHtmlAttribute(value);
+            const result = editionSnippetService['_escapeHtmlAttribute'](value);
 
             expectToBe(result, '&amp;&quot;&lt;&gt;&#39;');
         });
@@ -166,7 +166,7 @@ describe('EditionSnippetService (DONE)', () => {
         it('... should return unchanged value if no escaping is needed', () => {
             const value = 'awg-tkk-m133_tf4-015';
 
-            const result = (editionSnippetService as any)._escapeHtmlAttribute(value);
+            const result = editionSnippetService['_escapeHtmlAttribute'](value);
 
             expectToBe(result, value);
         });

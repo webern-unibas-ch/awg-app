@@ -76,7 +76,7 @@ describe('StatisticsService', () => {
         ]);
 
         // Spies
-        incrementSpy = vi.spyOn(service as any, '_incrementComplexCounters');
+        incrementSpy = vi.spyOn(service, '_incrementComplexCounters' as any);
     });
 
     afterEach(() => {
@@ -186,70 +186,70 @@ describe('StatisticsService', () => {
 
     describe('#_calculateProgressRate()', () => {
         it('... should have a method `_calculateProgressRate`', () => {
-            expect((service as any)._calculateProgressRate).toBeDefined();
+            expect(service['_calculateProgressRate']).toBeDefined();
         });
 
         describe('... should return 0 when ...', () => {
             it('... total is 0', () => {
-                expectToBe((service as any)._calculateProgressRate(10, 0), 0);
+                expectToBe(service['_calculateProgressRate'](10, 0), 0);
             });
 
             it('... active is 0', () => {
-                expectToBe((service as any)._calculateProgressRate(0, 10), 0);
+                expectToBe(service['_calculateProgressRate'](0, 10), 0);
             });
 
             it('... both active and total are 0', () => {
-                expectToBe((service as any)._calculateProgressRate(0, 0), 0);
+                expectToBe(service['_calculateProgressRate'](0, 0), 0);
             });
         });
 
         it('... should return 100 when active equals total', () => {
-            expectToBe((service as any)._calculateProgressRate(5, 5), 100);
+            expectToBe(service['_calculateProgressRate'](5, 5), 100);
         });
 
         it('... should return the rounded percentage of active over total', () => {
-            expectToBe((service as any)._calculateProgressRate(1, 3), 33);
-            expectToBe((service as any)._calculateProgressRate(2, 3), 67);
-            expectToBe((service as any)._calculateProgressRate(1, 4), 25);
+            expectToBe(service['_calculateProgressRate'](1, 3), 33);
+            expectToBe(service['_calculateProgressRate'](2, 3), 67);
+            expectToBe(service['_calculateProgressRate'](1, 4), 25);
         });
     });
 
     describe('#_calculateCombinedProgressRate()', () => {
         it('... should have a method `_calculateCombinedProgressRate`', () => {
-            expect((service as any)._calculateCombinedProgressRate).toBeDefined();
+            expect(service['_calculateCombinedProgressRate']).toBeDefined();
         });
 
         describe('... should return 0 when ...', () => {
             it('... the input array is empty', () => {
-                expectToBe((service as any)._calculateCombinedProgressRate([]), 0);
+                expectToBe(service['_calculateCombinedProgressRate']([]), 0);
             });
 
             it('... all values in the array are 0', () => {
-                expectToBe((service as any)._calculateCombinedProgressRate([0, 0, 0]), 0);
+                expectToBe(service['_calculateCombinedProgressRate']([0, 0, 0]), 0);
             });
         });
 
         it('... should return the single value for a one-element array', () => {
-            expectToBe((service as any)._calculateCombinedProgressRate([75]), 75);
+            expectToBe(service['_calculateCombinedProgressRate']([75]), 75);
         });
 
         it('... should return the rounded average for multiple values', () => {
-            expectToBe((service as any)._calculateCombinedProgressRate([0, 100]), 50);
-            expectToBe((service as any)._calculateCombinedProgressRate([0, 100, 0]), 33);
-            expectToBe((service as any)._calculateCombinedProgressRate([33, 67, 100]), 67);
+            expectToBe(service['_calculateCombinedProgressRate']([0, 100]), 50);
+            expectToBe(service['_calculateCombinedProgressRate']([0, 100, 0]), 33);
+            expectToBe(service['_calculateCombinedProgressRate']([33, 67, 100]), 67);
         });
     });
 
     describe('#_incrementComplexCounters()', () => {
         it('... should have a method `_incrementComplexCounters`', () => {
-            expect((service as any)._incrementComplexCounters).toBeDefined();
+            expect(service['_incrementComplexCounters']).toBeDefined();
         });
 
         it('... should call registerComplex on each target with given type and activity', () => {
             const targetA = { registerComplex: vi.fn() };
             const targetB = { registerComplex: vi.fn() };
 
-            (service as any)._incrementComplexCounters([targetA, targetB], 'opus', true);
+            service['_incrementComplexCounters']([targetA, targetB], 'opus', true);
 
             expectSpyCall(targetA.registerComplex, 1, ['opus', true]);
             expectSpyCall(targetB.registerComplex, 1, ['opus', true]);
@@ -258,7 +258,7 @@ describe('StatisticsService', () => {
         it('... should pass isActive as false when complex is not active', () => {
             const target = { registerComplex: vi.fn() };
 
-            (service as any)._incrementComplexCounters([target], 'mnr', false);
+            service['_incrementComplexCounters']([target], 'mnr', false);
 
             expectSpyCall(target.registerComplex, 1, ['mnr', false]);
         });
@@ -266,39 +266,40 @@ describe('StatisticsService', () => {
 
     describe('#_isMnrX()', () => {
         it('... should have a method `_isMnrX`', () => {
-            expect((service as any)._isMnrX).toBeDefined();
+            expect(service['_isMnrX']).toBeDefined();
         });
 
         describe('... should return true when ...', () => {
             it('... route starts with `/mx`', () => {
-                const complex = { complex: { complexId: { route: '/mx403' } } };
-                expectToBe((service as any)._isMnrX(complex), true);
+                const complex = { complex: { complexId: { route: '/mx403' } } } as EditionOutlineComplexItem;
+
+                expectToBe(service['_isMnrX'](complex), true);
             });
 
             it('... route is exactly `/mx`', () => {
-                const complex = { complex: { complexId: { route: '/mx' } } };
-                expectToBe((service as any)._isMnrX(complex), true);
+                const complex = { complex: { complexId: { route: '/mx' } } } as EditionOutlineComplexItem;
+
+                expectToBe(service['_isMnrX'](complex), true);
             });
         });
 
         describe('... should return false when ...', () => {
             it('... route does not start with `/mx`', () => {
-                const complex = { complex: { complexId: { route: '/m403' } } };
-                expectToBe((service as any)._isMnrX(complex), false);
+                const complex = { complex: { complexId: { route: '/m403' } } } as EditionOutlineComplexItem;
+
+                expectToBe(service['_isMnrX'](complex), false);
             });
 
             it('... route is undefined', () => {
-                const complex = { complex: { complexId: {} } };
-                expectToBe((service as any)._isMnrX(complex), false);
+                const complex = { complex: { complexId: {} } } as EditionOutlineComplexItem;
+
+                expectToBe(service['_isMnrX'](complex), false);
             });
 
             it('... complex object is missing complexId', () => {
-                const complex = { complex: {} };
-                expectToBe((service as any)._isMnrX(complex), false);
-            });
+                const complex = { complex: {} } as EditionOutlineComplexItem;
 
-            it('... complex object is undefined', () => {
-                expectToBe((service as any)._isMnrX(undefined), false);
+                expectToBe(service['_isMnrX'](complex), false);
             });
         });
     });
@@ -319,11 +320,11 @@ describe('StatisticsService', () => {
         });
 
         it('... should have a method `_processComplexes`', () => {
-            expect((service as any)._processComplexes).toBeDefined();
+            expect(service['_processComplexes']).toBeDefined();
         });
 
         it('... should do nothing if complexTypes is undefined', () => {
-            (service as any)._processComplexes(stats, seriesStats, sectionStats, undefined);
+            service['_processComplexes'](stats, seriesStats, sectionStats, undefined as any);
 
             expectToBe(stats.totalComplexes, 0);
             expectToBe(seriesStats.totalComplexes, 0);
@@ -342,7 +343,7 @@ describe('StatisticsService', () => {
                 mnr: [] as EditionOutlineComplexItem[],
             } as EditionOutlineComplexTypes;
 
-            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
+            service['_processComplexes'](stats, seriesStats, sectionStats, complexTypes);
 
             expectToBe(stats.totalComplexes, 3);
             expectToBe(stats.complexBreakdown.opus, 3);
@@ -364,7 +365,7 @@ describe('StatisticsService', () => {
                 ],
             } as EditionOutlineComplexTypes;
 
-            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
+            service['_processComplexes'](stats, seriesStats, sectionStats, complexTypes);
 
             expectToBe(stats.totalComplexes, 2);
             expectToBe(stats.complexBreakdown.opus, 0);
@@ -390,7 +391,7 @@ describe('StatisticsService', () => {
                 ],
             } as EditionOutlineComplexTypes;
 
-            (service as any)._processComplexes(stats, seriesStats, sectionStats, complexTypes);
+            service['_processComplexes'](stats, seriesStats, sectionStats, complexTypes);
 
             const expectedTotalCalls = complexTypes.opus.length + complexTypes.mnr.length;
             expectSpyCall(incrementSpy, expectedTotalCalls);

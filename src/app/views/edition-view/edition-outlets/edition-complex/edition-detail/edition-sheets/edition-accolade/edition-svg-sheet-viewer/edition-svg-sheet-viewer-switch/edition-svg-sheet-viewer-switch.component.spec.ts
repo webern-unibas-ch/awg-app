@@ -29,7 +29,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
     let toggleSingleSuppliedClassOpacitySpy: Spy;
     let toggleAllClassesOpacitySpy: Spy;
     let toggleTkkClassesHighlightSpy: Spy;
-    let toggleUpdateAllClassesVisibilitySpy: Spy;
+    let updateAllClassesVisibilitySpy: Spy;
 
     let expectedId: string;
     let expectedClass1: string;
@@ -66,11 +66,11 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
         // Spies
         emitToggleSuppliedClassesOpacityRequestSpy = vi.spyOn(component.toggleSuppliedClassesOpacityRequest, 'emit');
         emitToggleTkkClassesHighlightRequestSpy = vi.spyOn(component.toggleTkkClassesHighlightRequest, 'emit');
-        onSuppliedClassesOpacityToggleSpy = vi.spyOn(component as any, '_onSuppliedClassesOpacityToggle');
         toggleSingleSuppliedClassOpacitySpy = vi.spyOn(component, 'toggleSingleSuppliedClassOpacity');
         toggleAllClassesOpacitySpy = vi.spyOn(component, 'toggleAllClassesOpacity');
         toggleTkkClassesHighlightSpy = vi.spyOn(component, 'toggleTkkClassesHighlight');
-        toggleUpdateAllClassesVisibilitySpy = vi.spyOn(component as any, '_updateAllClassesVisibility');
+        onSuppliedClassesOpacityToggleSpy = vi.spyOn(component, '_onSuppliedClassesOpacityToggle' as any);
+        updateAllClassesVisibilitySpy = vi.spyOn(component, '_updateAllClassesVisibility' as any);
     });
 
     afterEach(() => {
@@ -636,13 +636,13 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             it('... should trigger _updateAllClassesVisibility()', () => {
                 component.toggleTkkClassesHighlight();
 
-                expectSpyCall(toggleUpdateAllClassesVisibilitySpy, 1);
+                expectSpyCall(updateAllClassesVisibilitySpy, 1);
             });
         });
 
         describe('#_onSuppliedClassesOpacityToggle()', () => {
             it('... should have a method `_onSuppliedClassesOpacityToggle`', () => {
-                expect((component as any)._onSuppliedClassesOpacityToggle).toBeDefined();
+                expect(component['_onSuppliedClassesOpacityToggle']).toBeDefined();
             });
 
             it('... should emit the supplied className and visibility to the toggle request for a single supplied class', () => {
@@ -668,7 +668,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
 
         describe('#_updateAllClassesVisibility()', () => {
             it('... should have a method `_updateAllClassesVisibility`', () => {
-                expect((component as any)._updateAllClassesVisibility).toBeDefined();
+                expect(component['_updateAllClassesVisibility']).toBeDefined();
             });
 
             describe('... should do nothing if', () => {
@@ -677,7 +677,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                     component.suppliedClasses.set(expectedClass2, !expectedAllClassesVisible);
                     component.tkkHighlightingVisible = expectedTkkHighlightingVisible;
 
-                    (component as any)._updateAllClassesVisibility();
+                    component['_updateAllClassesVisibility']();
 
                     expectToBe(component.allClassesVisible, expectedAllClassesVisible);
                 });
@@ -687,7 +687,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                     component.suppliedClasses.set(expectedClass2, expectedAllClassesVisible);
                     component.tkkHighlightingVisible = !expectedAllClassesVisible;
 
-                    (component as any)._updateAllClassesVisibility();
+                    component['_updateAllClassesVisibility']();
 
                     expectToBe(component.allClassesVisible, expectedAllClassesVisible);
                 });
@@ -698,7 +698,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 component.suppliedClasses.set(expectedClass2, !expectedAllClassesVisible);
                 component.tkkHighlightingVisible = !expectedTkkHighlightingVisible;
 
-                (component as any)._updateAllClassesVisibility();
+                component['_updateAllClassesVisibility']();
 
                 expectToBe(component.allClassesVisible, !expectedAllClassesVisible);
 
@@ -706,7 +706,7 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
                 component.suppliedClasses.set(expectedClass2, expectedAllClassesVisible);
                 component.tkkHighlightingVisible = expectedTkkHighlightingVisible;
 
-                (component as any)._updateAllClassesVisibility();
+                component['_updateAllClassesVisibility']();
 
                 expectToBe(component.allClassesVisible, expectedAllClassesVisible);
             });

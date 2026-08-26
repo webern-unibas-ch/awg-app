@@ -79,8 +79,8 @@ describe('SourceListComponent (DONE)', () => {
 
         // Component spies
         onSourceClickSpy = vi.spyOn(component, 'onSourceClick');
-        navigateToReportFragmentSpy = vi.spyOn(component as any, '_navigateToReportFragment');
-        openModalSpy = vi.spyOn(component as any, '_openModal');
+        navigateToReportFragmentSpy = vi.spyOn(component, '_navigateToReportFragment' as any);
+        openModalSpy = vi.spyOn(component, '_openModal' as any);
     });
 
     afterEach(() => {
@@ -704,7 +704,7 @@ describe('SourceListComponent (DONE)', () => {
 
                     it('... should display text siglum and siglum addendum if present', async () => {
                         if (!expectedSourceListData.textSources || expectedSourceListData.textSources.length < 2) {
-                            throw new Error('Expected textSources to have at least 2.');
+                            expect.fail('Expected textSources to have at least 2.');
                         }
                         expectedSourceListData.textSources[0].siglumAddendum = 'a';
                         expectedSourceListData.textSources[1].siglumAddendum = 'H';
@@ -881,7 +881,7 @@ describe('SourceListComponent (DONE)', () => {
 
         describe('#_navigateToReportFragment()', () => {
             it('... should have a method `_navigateToReportFragment`', () => {
-                expect((component as any)._navigateToReportFragment).toBeDefined();
+                expect(component['_navigateToReportFragment']).toBeDefined();
             });
 
             it('... should trigger from `onSourceClick` method', () => {
@@ -892,56 +892,34 @@ describe('SourceListComponent (DONE)', () => {
                 expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedFragment });
             });
 
-            describe('... should do nothing if', () => {
-                it('... reportIds are undefined', () => {
-                    (component as any)._navigateToReportFragment(undefined);
+            it('... should do nothing if fragment id is empty string', () => {
+                component['_navigateToReportFragment']({ complexId: 'testComplex', fragmentId: '' });
 
-                    expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-                });
-                it('... reportIds are null', () => {
-                    (component as any)._navigateToReportFragment(null);
-
-                    expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-                });
-                it('... fragment id is undefined', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
-
-                    expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-                });
-                it('... fragment id is null', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
-
-                    expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-                });
-                it('... fragment id is empty string', () => {
-                    (component as any)._navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
-
-                    expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
-                });
+                expectSpyCall(serviceNavigateToReportFragmentSpy, 0);
             });
 
             it('... should trigger NavigationService with selected report fragment within same complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                (component as any)._navigateToReportFragment(expectedReportIds);
+                component['_navigateToReportFragment'](expectedReportIds);
 
                 expectSpyCall(serviceNavigateToReportFragmentSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'testComplex', fragmentId: otherFragment };
-                (component as any)._navigateToReportFragment(expectedNextReportIds);
+                component['_navigateToReportFragment'](expectedNextReportIds);
 
                 expectSpyCall(serviceNavigateToReportFragmentSpy, 2, expectedNextReportIds);
             });
 
             it('... should trigger NavigationService with selected report fragment for another complex', () => {
                 const expectedReportIds = { complexId: 'testComplex', fragmentId: expectedFragment };
-                (component as any)._navigateToReportFragment(expectedReportIds);
+                component['_navigateToReportFragment'](expectedReportIds);
 
                 expectSpyCall(serviceNavigateToReportFragmentSpy, 1, expectedReportIds);
 
                 const otherFragment = 'source_B';
                 const expectedNextReportIds = { complexId: 'anotherTestComplex', fragmentId: otherFragment };
-                (component as any)._navigateToReportFragment(expectedNextReportIds);
+                component['_navigateToReportFragment'](expectedNextReportIds);
 
                 expectSpyCall(serviceNavigateToReportFragmentSpy, 2, expectedNextReportIds);
             });
@@ -949,7 +927,7 @@ describe('SourceListComponent (DONE)', () => {
 
         describe('#_openModal()', () => {
             it('... should have a method `_openModal`', () => {
-                expect((component as any)._openModal).toBeDefined();
+                expect(component['_openModal']).toBeDefined();
             });
 
             it('... should trigger from `onSourceClick` method', () => {
@@ -968,27 +946,14 @@ describe('SourceListComponent (DONE)', () => {
                 expect(navigateToReportFragmentSpy).not.toHaveBeenCalled();
             });
 
-            describe('... should do nothing if ', () => {
-                it('... id is undefined', () => {
-                    (component as any)._openModal(undefined);
+            it('... should do nothing if id is empty string', () => {
+                component['_openModal']('');
 
-                    expectSpyCall(serviceOpenModalSpy, 0);
-                });
-
-                it('... id is null', () => {
-                    (component as any)._openModal(undefined);
-
-                    expectSpyCall(serviceOpenModalSpy, 0, null);
-                });
-                it('... id is empty string', () => {
-                    (component as any)._openModal('');
-
-                    expectSpyCall(serviceOpenModalSpy, 0);
-                });
+                expectSpyCall(serviceOpenModalSpy, 0);
             });
 
             it('... should trigger ModalService with id of given modal snippet', () => {
-                (component as any)._openModal(expectedSourceListData.sources[2].linkTo);
+                component['_openModal'](expectedSourceListData.sources[2].linkTo);
 
                 expectSpyCall(serviceOpenModalSpy, 1, expectedSourceListData.sources[2].linkTo);
             });

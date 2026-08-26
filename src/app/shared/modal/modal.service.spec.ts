@@ -50,7 +50,7 @@ describe('ModalService (DONE)', () => {
         service = TestBed.inject(ModalService);
 
         // Spies
-        openSpy = vi.spyOn(service as any, '_open');
+        openSpy = vi.spyOn(service, '_open' as any);
         openModalSpy = vi.spyOn(mockModal, 'open');
 
         // Test data
@@ -166,7 +166,7 @@ describe('ModalService (DONE)', () => {
 
         describe('#_open()', () => {
             it('... should have a method `_open`', () => {
-                expect((service as any)._open).toBeDefined();
+                expect(service['_open']).toBeDefined();
             });
 
             const modalCases = [{ type: 'text' }, { type: 'image' }];
@@ -175,7 +175,7 @@ describe('ModalService (DONE)', () => {
                 it.each(modalCases)('...  $type modal', ({ type }) => {
                     const expectedData = type === 'text' ? expectedTextModalData : expectedImageModalData;
 
-                    (service as any)._open(expectedData);
+                    service['_open'](expectedData);
 
                     expectSpyCall(openModalSpy, 1, [
                         ModalComponent,
@@ -192,7 +192,7 @@ describe('ModalService (DONE)', () => {
                 it.each(modalCases)('... $type modal', ({ type }) => {
                     const expectedData = type === 'text' ? expectedTextModalData : expectedImageModalData;
 
-                    (service as any)._open(expectedData);
+                    service['_open'](expectedData);
 
                     expectToEqual(mockModalRef.componentInstance.modalData, expectedData);
                 });
@@ -211,7 +211,7 @@ describe('ModalService (DONE)', () => {
 
         describe('#_getDismissReason()', () => {
             it('... should have a method `_getDismissReason`', () => {
-                expect((service as any)._getDismissReason).toBeDefined();
+                expect(service['_getDismissReason']).toBeDefined();
             });
 
             it.each([

@@ -9,12 +9,13 @@ import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsConfigEvent, AnalyticsService } from './analytics.service';
 
-// Helper functions for  Analytics setup
+// Helper functions for Analytics setup
 function setupAnalytics(service: AnalyticsService, endpoint: string, id: string, pageView?: boolean) {
-    (service as any)._analyticsEndpoint = endpoint;
-    (service as any)._analyticsId = id;
+    const serviceMock = service as any;
+    serviceMock._analyticsEndpoint = endpoint;
+    serviceMock._analyticsId = id;
     if (pageView) {
-        (service as any)._sendPageView = pageView;
+        serviceMock._sendPageView = pageView;
     }
 
     return service.initializeAnalytics();
@@ -107,7 +108,7 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, '', expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expectToBe((analyticsService as any)._isInitialized, false);
+            expectToBe(analyticsService['_isInitialized'], false);
         });
 
         it('... should not initialize the analytics tracker without analyticsId', () => {
@@ -115,14 +116,14 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, '');
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expectToBe((analyticsService as any)._isInitialized, false);
+            expectToBe(analyticsService['_isInitialized'], false);
         });
 
         it('... should initialize the analytics tracker with given endpoint and id', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expectToBe((analyticsService as any)._isInitialized, true);
+            expectToBe(analyticsService['_isInitialized'], true);
         });
 
         it('... should log a replacement message in develop mode', () => {
@@ -159,7 +160,7 @@ describe('AnalyticsService (DONE)', () => {
             const prependSpy = vi.spyOn(mockDocument.head, 'prepend').mockImplementation(() => {
                 // Intentional empty test override
             });
-            const scriptSpy = vi.spyOn(analyticsService as any, '_prependAnalyticsScript');
+            const scriptSpy = vi.spyOn(analyticsService, '_prependAnalyticsScript' as any);
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
@@ -175,7 +176,7 @@ describe('AnalyticsService (DONE)', () => {
 
         describe('... should do nothing if', () => {
             it('... isInitialized is false', () => {
-                (analyticsService as any).isInitialized = false;
+                analyticsService['_isInitialized'] = false;
 
                 analyticsService.trackPageView(expectedPage);
 
@@ -203,7 +204,7 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should run if isInitialized is set to true', () => {
-            (analyticsService as any)._isInitialized = true;
+            analyticsService['_isInitialized'] = true;
 
             analyticsService.trackPageView(expectedPage);
 

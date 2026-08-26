@@ -269,7 +269,7 @@ describe('CodemirrorComponent', () => {
                         value: undefined,
                     });
 
-                    expectToBe((component as any)._supportsRangeGeometry(), false);
+                    expectToBe(component['_supportsRangeGeometry'](), false);
                 } finally {
                     if (hadOwnCreateRange && ownCreateRangeDescriptor) {
                         Object.defineProperty(document, 'createRange', ownCreateRangeDescriptor);
@@ -285,7 +285,7 @@ describe('CodemirrorComponent', () => {
                     getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
                 } as unknown as Range);
 
-                expectToBe((component as any)._supportsRangeGeometry(), true);
+                expectToBe(component['_supportsRangeGeometry'](), true);
 
                 createRangeSpy.mockRestore();
             });
@@ -295,7 +295,7 @@ describe('CodemirrorComponent', () => {
                     getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
                 } as unknown as Range);
 
-                expectToBe((component as any)._supportsRangeGeometry(), false);
+                expectToBe(component['_supportsRangeGeometry'](), false);
 
                 createRangeSpy.mockRestore();
             });
@@ -305,7 +305,7 @@ describe('CodemirrorComponent', () => {
                     getClientRects: () => [] as unknown as DOMRectList,
                 } as unknown as Range);
 
-                expectToBe((component as any)._supportsRangeGeometry(), false);
+                expectToBe(component['_supportsRangeGeometry'](), false);
 
                 createRangeSpy.mockRestore();
             });
@@ -314,7 +314,7 @@ describe('CodemirrorComponent', () => {
 
     describe('#ngAfterViewInit() integration', () => {
         it('... should initialize with setup extensions if range geometry APIs are available', () => {
-            const supportsRangeGeometrySpy = vi.spyOn(component as any, '_supportsRangeGeometry').mockReturnValue(true);
+            const supportsRangeGeometrySpy = vi.spyOn(component, '_supportsRangeGeometry' as any).mockReturnValue(true);
             const initLocalSpy = vi.spyOn(component, 'init').mockImplementation(() => undefined);
 
             component.mode = sparql;
@@ -327,7 +327,7 @@ describe('CodemirrorComponent', () => {
 
         it('... should initialize the editor without throwing if range geometry APIs are unavailable', () => {
             const supportsRangeGeometrySpy = vi
-                .spyOn(component as any, '_supportsRangeGeometry')
+                .spyOn(component, '_supportsRangeGeometry' as any)
                 .mockReturnValue(false);
 
             component.mode = sparql;

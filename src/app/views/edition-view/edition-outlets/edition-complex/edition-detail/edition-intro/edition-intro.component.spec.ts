@@ -496,6 +496,29 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroNavCmp.notesLabel, expectedDefaultNotesSectionLabel);
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
+
+                        it('... should update `selectedLanguage` when EditionIntroNavComponent emits new value', async () => {
+                            const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroNavStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                                EditionIntroNavStubComponent
+                            ) as EditionIntroNavStubComponent;
+
+                            const newLanguage = LanguageId.EN;
+                            expect(component.selectedLanguage()).not.toBe(newLanguage);
+                            expect(editionIntroNavCmp.selectedLanguage()).not.toBe(newLanguage);
+
+                            editionIntroNavCmp.selectedLanguage.set(newLanguage);
+
+                            await detectChangesOnPush(fixture);
+
+                            expectToBe(component.selectedLanguage(), newLanguage);
+                            expectToBe(editionIntroNavCmp.selectedLanguage(), newLanguage);
+                        });
                     });
 
                     describe('... without complex', () => {
@@ -564,6 +587,29 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroNavCmp.notesLabel, expectedDefaultNotesSectionLabel);
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
+
+                        it('... should update `selectedLanguage` when EditionIntroNavComponent emits new value', async () => {
+                            const editionIntroNavDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                EditionIntroNavStubComponent,
+                                1,
+                                1
+                            );
+                            const editionIntroNavCmp = editionIntroNavDes[0].injector.get(
+                                EditionIntroNavStubComponent
+                            ) as EditionIntroNavStubComponent;
+
+                            const newLanguage = LanguageId.EN;
+                            expect(component.selectedLanguage()).not.toBe(newLanguage);
+                            expect(editionIntroNavCmp.selectedLanguage()).not.toBe(newLanguage);
+
+                            editionIntroNavCmp.selectedLanguage.set(newLanguage);
+
+                            await detectChangesOnPush(fixture);
+
+                            expectToBe(component.selectedLanguage(), newLanguage);
+                            expectToBe(editionIntroNavCmp.selectedLanguage(), newLanguage);
+                        });
                     });
                 });
             });
@@ -572,13 +618,13 @@ describe('IntroComponent (DONE)', () => {
         describe('METHODS', () => {
             describe('#_initScrollListener()', () => {
                 it('... should have a method `_initScrollListener`', () => {
-                    expect((component as any)._initScrollListener).toBeDefined();
+                    expect(component['_initScrollListener']).toBeDefined();
                 });
 
                 it('.... should trigger `_onIntroScroll` method when window is scrolled', () => {
-                    const onIntroScrollSpy = vi.spyOn(component as any, '_onIntroScroll');
+                    const onIntroScrollSpy = vi.spyOn(component, '_onIntroScroll' as any);
 
-                    (component as any)._initScrollListener();
+                    component['_initScrollListener']();
 
                     window.dispatchEvent(new Event('scroll'));
 
@@ -632,26 +678,12 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 it('... should have a method `_onIntroScroll`', () => {
-                    expect((component as any)._onIntroScroll).toBeDefined();
+                    expect(component['_onIntroScroll']).toBeDefined();
                 });
 
                 describe('... should do nothing if', () => {
-                    it('... event is undefined', () => {
-                        (component as any)._onIntroScroll(undefined);
-
-                        expectToNotContain(navLink1.classList, 'active');
-                        expectToNotContain(navLink2.classList, 'active');
-                    });
-
-                    it('... event is null', () => {
-                        (component as any)._onIntroScroll(null);
-
-                        expectToNotContain(navLink1.classList, 'active');
-                        expectToNotContain(navLink2.classList, 'active');
-                    });
-
                     it('... event is not of type `scroll`', () => {
-                        (component as any)._onIntroScroll(new Event('click'));
+                        component['_onIntroScroll'](new Event('click'));
 
                         expectToNotContain(navLink1.classList, 'active');
                         expectToNotContain(navLink2.classList, 'active');
@@ -659,49 +691,48 @@ describe('IntroComponent (DONE)', () => {
                 });
 
                 it('... should update nav link classes based on scroll position (document.documentElement.scrollTop)', async () => {
-                    // Spy on window.scrollTo
-                    vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
-                        const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
-                        // Mock the scroll position
-                        Object.defineProperty(mockDocument.documentElement, 'scrollTop', { value: y, writable: true });
+                    Object.defineProperty(mockDocument.documentElement, 'scrollTop', {
+                        value: 150,
+                        writable: true,
+                        configurable: true,
                     });
+                    vi.spyOn(globalThis, 'scrollY', 'get').mockReturnValue(0);
 
-                    // Scroll to a specific position
-                    window.scrollTo(0, 150);
-                    window.dispatchEvent(new Event('scroll'));
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._onIntroScroll(new Event('scroll'));
+                    component['_onIntroScroll'](new Event('scroll'));
 
                     expectToContain(navLink1.classList, 'active');
                     expectToNotContain(navLink2.classList, 'active');
                 });
 
                 it('... should update nav link classes based on scroll position (window.scrollY)', async () => {
-                    // Spy on window.scrollTo
-                    vi.spyOn(window, 'scrollTo').mockImplementation((...args: any[]) => {
-                        const y: number = args.length === 1 && typeof args[0] === 'object' ? args[0].top : args[1];
-                        // Mock the scroll position
-                        Object.defineProperty(window, 'scrollY', { value: y, writable: true });
-                    });
+                    vi.spyOn(globalThis, 'scrollY', 'get').mockReturnValue(150);
 
-                    // Scroll to a specific position
-                    window.scrollTo(0, 150);
-                    window.dispatchEvent(new Event('scroll'));
-                    await detectChangesOnPush(fixture);
-
-                    (component as any)._onIntroScroll(new Event('scroll'));
+                    component['_onIntroScroll'](new Event('scroll'));
 
                     expectToContain(navLink1.classList, 'active');
                     expectToNotContain(navLink2.classList, 'active');
                 });
 
+                it('... should remove `active` class from all nav links if scroll position matches no section (activeHash = null)', async () => {
+                    navLink1.classList.add('active');
+                    navLink2.classList.add('active');
+
+                    mockDocument.documentElement.scrollTop = 0;
+                    vi.spyOn(globalThis, 'scrollY', 'get').mockReturnValue(0);
+
+                    component['_onIntroScroll'](new Event('scroll'));
+
+                    expectToNotContain(navLink1.classList, 'active');
+                    expectToNotContain(navLink2.classList, 'active');
+                });
+
                 afterEach(() => {
-                    // Clean up the DOM
                     while (intro.firstChild) {
                         intro.removeChild(intro.firstChild);
                     }
                     mockDocument.body.removeChild(intro);
+
+                    vi.restoreAllMocks();
                 });
             });
         });

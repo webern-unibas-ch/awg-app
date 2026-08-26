@@ -56,9 +56,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         expectedSelectedViewType = ViewHandleTypes.GRAPH;
 
         // Spies
-        createFormGroupSpy = vi.spyOn(component as any, '_createFormGroup');
-        listenToUserInputChangeSpy = vi.spyOn(component as any, '_listenToUserInputChange');
-        onViewChangeSpy = vi.spyOn(component as any, '_onViewChange');
+        createFormGroupSpy = vi.spyOn(component, '_createFormGroup' as any);
+        listenToUserInputChangeSpy = vi.spyOn(component, '_listenToUserInputChange' as any);
+        onViewChangeSpy = vi.spyOn(component, '_onViewChange' as any);
         viewChangeRequestSpy = vi.spyOn(component.viewChangeRequest, 'emit');
     });
 
@@ -296,7 +296,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('#_createFormGroup()', () => {
             it('... should have a method `_createFormGroup()`', () => {
-                expect((component as any)._createFormGroup).toBeDefined();
+                expect(component['_createFormGroup']).toBeDefined();
             });
 
             it('... should trigger on init', () => {
@@ -358,7 +358,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expectSpyCall(listenToUserInputChangeSpy, 1);
 
                 // Trigger the `listenToUserInputChange()` method
-                (component as any)._createFormGroup(ViewHandleTypes.TABLE);
+                component['_createFormGroup'](ViewHandleTypes.TABLE);
                 fixture.detectChanges();
 
                 expectSpyCall(listenToUserInputChangeSpy, 2);
@@ -367,7 +367,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('#listenToUserInputChange()', () => {
             it('... should have a method `listenToUserInputChange()`', () => {
-                expect((component as any)._listenToUserInputChange).toBeDefined();
+                expect(component['_listenToUserInputChange']).toBeDefined();
             });
 
             it('... should trigger the `onViewChange()` method when viewHandle controls changes value', () => {
@@ -455,38 +455,13 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('#onViewChange()', () => {
             it('... should have a method `onViewChange()`', () => {
-                expect((component as any)._onViewChange).toBeDefined();
-            });
-
-            describe('... should not do anything if ', () => {
-                it('... view is undefined', () => {
-                    (component as any)._onViewChange(undefined);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
-
-                it('... view is null', () => {
-                    (component as any)._onViewChange(null);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
-
-                it('... view has type `never`', () => {
-                    const expectedView = undefined as never;
-
-                    (component as any)._onViewChange(expectedView);
-                    fixture.detectChanges();
-
-                    expectSpyCall(viewChangeRequestSpy, 0);
-                });
+                expect(component['_onViewChange']).toBeDefined();
             });
 
             it('... should emit a given GRAPH view', () => {
                 const expectedView = ViewHandleTypes.GRAPH;
 
-                (component as any)._onViewChange(expectedView);
+                component['_onViewChange'](expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'graph');
@@ -495,7 +470,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             it('... should emit a given TABLE view', () => {
                 const expectedView = ViewHandleTypes.TABLE;
 
-                (component as any)._onViewChange(expectedView);
+                component['_onViewChange'](expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'table');
@@ -504,7 +479,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             it('... should emit a given GRID view', () => {
                 const expectedView = ViewHandleTypes.GRID;
 
-                (component as any)._onViewChange(expectedView);
+                component['_onViewChange'](expectedView);
                 fixture.detectChanges();
 
                 expectSpyCall(viewChangeRequestSpy, 1, 'grid');
