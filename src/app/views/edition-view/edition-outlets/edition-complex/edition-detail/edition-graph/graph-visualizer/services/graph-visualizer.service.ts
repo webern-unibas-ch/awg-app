@@ -290,6 +290,7 @@ export class GraphVisualizerService {
                             '[GraphVisualizerService] An unknown error occurred while creating the rdfstore instance.'
                         )
                     );
+                    return;
                 }
                 resolve(createdStore);
             });
@@ -319,6 +320,7 @@ export class GraphVisualizerService {
                             '[GraphVisualizerService] An unknown error occurred while executing the query against the rdfstore.'
                         )
                     );
+                    return;
                 }
 
                 resolve(res);
@@ -411,6 +413,7 @@ export class GraphVisualizerService {
                             '[GraphVisualizerService] An unknown error occurred while loading the triples into the rdfstore.'
                         )
                     );
+                    return;
                 }
                 resolve(size);
             });

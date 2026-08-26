@@ -632,14 +632,14 @@ describe('GraphVisualizerService', () => {
                 { desc: 'is an ASK query', query: 'ASK WHERE { ?s ?p ?o }', expected: 'ask' },
                 { desc: 'is a DESCRIBE query', query: 'DESCRIBE ?s WHERE { ?s ?p ?o }', expected: 'describe' },
                 { desc: 'is a COUNT query', query: 'COUNT ?s WHERE { ?s ?p ?o }', expected: 'count' },
-                { desc: 'is a DELETE query', query: 'DELETE  {?s ?p ?o } WHERE { ?s ?p ?o }', expected: 'update' },
+                { desc: 'is a DELETE query', query: 'DELETE {?s ?p ?o } WHERE { ?s ?p ?o }', expected: 'update' },
                 { desc: 'is an INSERT query', query: 'INSERT { ?s ?p ?o } WHERE { ?s ?p ?o} ', expected: 'update' },
                 {
                     desc: 'starts with prefixes',
                     query: 'PREFIX ex: <http://example.org> SELECT * WHERE { ?s ?p ?o }',
                     expected: 'select',
                 },
-            ])('...  if the query $desc', ({ query, expected }) => {
+            ])('... if the query $desc', ({ query, expected }) => {
                 expectToBe(graphVisualizerService.getQuerytype(query), expected);
             });
         });
@@ -762,7 +762,7 @@ describe('GraphVisualizerService', () => {
         describe('... should throw an error and trigger `_handleError`', () => {
             it('... for missing dots', async () => {
                 const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/>  @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                    '@prefix ex: <http://example.org/> @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
 
                 await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
                     'Expected declaration to end with a dot on line 1.'
@@ -996,7 +996,7 @@ describe('GraphVisualizerService', () => {
             await expect(graphVisualizerService['_createStore'](undefined)).rejects.toEqual(expectedError);
         });
 
-        it('... should reject  and trigger `_handleError` if store.create encounters an error', async () => {
+        it('... should reject and trigger `_handleError` if store.create encounters an error', async () => {
             const expectedError = new Error('Test error');
             const mockStoreWithCreateError: any = {
                 create: (callback: (err: Error | null, res: any) => void) => {
@@ -1865,7 +1865,7 @@ describe('GraphVisualizerService', () => {
 
         it('... should return the original error if an instance of Error is passed', () => {
             const originalError = new Error('Original parsing error');
-            const fallbackMessage = '[GraphVisualizerService] A parsing error occured.';
+            const fallbackMessage = '[GraphVisualizerService] A parsing error occurred.';
 
             const result = graphVisualizerService['_handleError'](originalError, fallbackMessage);
 
