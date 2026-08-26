@@ -14,7 +14,7 @@ import { Folio, FolioContent, FolioSegment } from './folio.model';
  */
 function round(value: number, decimals: number): number {
     if (Number.isNaN(value)) {
-        return NaN;
+        return Number.NaN;
     }
     return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
 }

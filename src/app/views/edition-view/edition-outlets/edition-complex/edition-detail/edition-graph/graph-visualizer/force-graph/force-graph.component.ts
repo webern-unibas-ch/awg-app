@@ -419,11 +419,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this._divHeight = height - 45;
 
         // ==================== Add SVG =====================
-        if (!this._svg) {
-            this._svg = D3_SELECTION.select(this.graphContainer.nativeElement)
-                .append('svg')
-                .attr('class', 'force-graph');
-        }
+        this._svg ??= D3_SELECTION.select(this.graphContainer.nativeElement).append('svg').attr('class', 'force-graph');
+
         this._svg.attr('width', this._divWidth).attr('height', this._divHeight);
 
         // ==================== Add Encompassing Group for Zoom =====================

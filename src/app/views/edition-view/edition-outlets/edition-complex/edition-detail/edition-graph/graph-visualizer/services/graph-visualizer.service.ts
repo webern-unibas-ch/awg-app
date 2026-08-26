@@ -223,9 +223,14 @@ export class GraphVisualizerService {
         const jsonTriples: N3.Quad[] = [];
 
         return new Promise((resolve, reject) => {
-            parser.parse(triples, (error: unknown, quad: N3.Quad, prefixes: N3.Prefixes) => {
-                if (error) {
-                    reject(error);
+            parser.parse(triples, (err: unknown, quad: N3.Quad, prefixes: N3.Prefixes) => {
+                if (err) {
+                    reject(
+                        this._handleError(
+                            err,
+                            '[GraphVisualizerService] An unknown error occurred while parsing the triples.'
+                        )
+                    );
                     return;
                 }
                 if (quad) {
@@ -273,13 +278,18 @@ export class GraphVisualizerService {
     private _createStore(store: typeof rdfstore): Promise<typeof rdfstore> {
         return new Promise((resolve, reject) => {
             if (!store?.create) {
-                reject(new Error('rdfstore is not available in the current runtime.'));
+                reject(new Error('[GraphVisualizerService] rdfstore is not available in the current runtime.'));
                 return;
             }
 
             store.create((err: unknown, createdStore: typeof rdfstore) => {
                 if (err) {
-                    reject(err);
+                    reject(
+                        this._handleError(
+                            err,
+                            '[GraphVisualizerService] An unknown error occurred while creating the rdfstore instance.'
+                        )
+                    );
                 }
                 resolve(createdStore);
             });
@@ -303,8 +313,12 @@ export class GraphVisualizerService {
         return new Promise((resolve, reject) => {
             store.execute(query, (err: unknown, res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 if (err) {
-                    console.error('_executeQuery# got ERROR', err);
-                    reject(err);
+                    reject(
+                        this._handleError(
+                            err,
+                            '[GraphVisualizerService] An unknown error occurred while executing the query against the rdfstore.'
+                        )
+                    );
                 }
 
                 resolve(res);
@@ -391,8 +405,12 @@ export class GraphVisualizerService {
         return new Promise((resolve, reject) => {
             store.load(mimeType, triples, (err: unknown, size: number) => {
                 if (err) {
-                    console.error('_loadTriplesInStore# got ERROR', err);
-                    reject(err);
+                    reject(
+                        this._handleError(
+                            err,
+                            '[GraphVisualizerService] An unknown error occurred while loading the triples into the rdfstore.'
+                        )
+                    );
                 }
                 resolve(size);
             });
@@ -534,5 +552,22 @@ export class GraphVisualizerService {
         };
 
         return { status: 200, data: reformatted };
+    }
+
+    /**
+     * Private method: _handleError.
+     *
+     * It converts a given unknown error to an Error object, or creates a new Error with a fallback message.
+     *
+     * @param {unknown} err The given unknown error.
+     * @param {string} fallbackMessage The given fallback message.
+     * @returns {Error} An Error object.
+     */
+    private _handleError(err: unknown, fallbackMessage: string): Error {
+        if (err instanceof Error) {
+            return err;
+        }
+
+        return new Error(typeof err === 'string' ? err : fallbackMessage);
     }
 }
