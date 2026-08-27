@@ -155,7 +155,7 @@
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.67.0",
         "vitest": "^4.1.11",
-        "webpack-bundle-analyzer": "^5.3.1"
+        "webpack-bundle-analyzer": "^5.3.2"
     },
     "resolutions": {
         "sqlite3/node-gyp": "^12.2.0",
