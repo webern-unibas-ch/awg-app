@@ -32,13 +32,13 @@
 <title>cluster_GraphVisualizerModule_declarations</title>
 <polygon fill="none" stroke="black" points="332,-78 332,-130 1905,-130 1905,-78 332,-78"/>
 </g>
-<g id="clust13" class="cluster">
-<title>cluster_GraphVisualizerModule_exports</title>
-<polygon fill="none" stroke="black" points="989,-208 989,-260 1183,-260 1183,-208 989,-208"/>
-</g>
 <g id="clust12" class="cluster">
 <title>cluster_GraphVisualizerModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 324,-130 324,-78 16,-78"/>
+</g>
+<g id="clust13" class="cluster">
+<title>cluster_GraphVisualizerModule_exports</title>
+<polygon fill="none" stroke="black" points="989,-208 989,-260 1183,-260 1183,-208 989,-208"/>
 </g>
 <!-- ConstructResultsComponent -->
 <g id="node1" class="node">
