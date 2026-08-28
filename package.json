@@ -139,7 +139,7 @@
         "angular-eslint": "^21.4.0",
         "commit-and-tag-version": "^12.7.3",
         "conventional-recommended-bump": "^12.1.0",
-        "eslint": "^10.9.0",
+        "eslint": "^10.9.1",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-jsdoc": "^64.2.1",
