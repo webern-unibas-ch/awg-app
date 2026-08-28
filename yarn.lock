@@ -3565,19 +3565,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ng-bootstrap/ng-bootstrap@npm:^20.0.0":
-  version: 20.0.0
-  resolution: "@ng-bootstrap/ng-bootstrap@npm:20.0.0"
+"@ng-bootstrap/ng-bootstrap@npm:^21.0.0":
+  version: 21.0.0
+  resolution: "@ng-bootstrap/ng-bootstrap@npm:21.0.0"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ^21.0.0
-    "@angular/core": ^21.0.0
-    "@angular/forms": ^21.0.0
-    "@angular/localize": ^21.0.0
+    "@angular/common": ^22.0.0
+    "@angular/core": ^22.0.0
+    "@angular/forms": ^22.0.0
+    "@angular/localize": ^22.0.0
     "@popperjs/core": ^2.11.8
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/92af3f87c29028ef2c417e9269026357209dd2e5f61b333a08decb73ad034101877e2c0dd05b95f876530edee0dd3ef8d8764ad17e28e3d7f0a0f2ea1ad6f560
+  checksum: 10c0/8d26cca6afe801290352dcb36cec17ea22ec1a05ba3ed7ea678b7f6f7b6e5ece30d94d594ad3b006054d6e3db519f739372aec35f3ea2bbbd94b58d658790292
   languageName: node
   linkType: hard
 
@@ -5757,7 +5757,7 @@ __metadata:
     "@eslint/js": "npm:^10.0.1"
     "@fortawesome/angular-fontawesome": "npm:^4.0.0"
     "@fortawesome/free-solid-svg-icons": "npm:^7.3.1"
-    "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
+    "@ng-bootstrap/ng-bootstrap": "npm:^21.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/n3": "npm:^1.26.1"
