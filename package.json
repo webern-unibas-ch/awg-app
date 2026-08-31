@@ -148,7 +148,7 @@
         "gzipper": "^8.3.0",
         "husky": "^9.1.7",
         "jsdom": "^30.0.1",
-        "lint-staged": "^17.3.0",
+        "lint-staged": "^17.4.1",
         "playwright": "^1.62.1",
         "prettier": "^3.9.6",
         "source-map-explorer": "^2.5.3",
