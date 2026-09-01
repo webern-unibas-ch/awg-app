@@ -5785,7 +5785,7 @@ __metadata:
     husky: "npm:^9.1.7"
     jsdom: "npm:^30.0.1"
     lint-staged: "npm:^17.3.0"
-    n3: "npm:^2.3.0"
+    n3: "npm:^2.6.4"
     ngx-json-viewer: "npm:^3.2.1"
     playwright: "npm:^1.62.1"
     prettier: "npm:^3.9.6"
@@ -10878,13 +10878,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"n3@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "n3@npm:2.3.0"
+"n3@npm:^2.6.4":
+  version: 2.6.4
+  resolution: "n3@npm:2.6.4"
   dependencies:
     buffer: "npm:^6.0.3"
     readable-stream: "npm:^4.0.0"
-  checksum: 10c0/f6869bf1392f766965dc8c8c00bd1737fbeef346c0b45a975bf143b8690c482ee0dbb8b6bb2147bf6e9dde2706f907a1eeed433e1596de80ad47b82b471d3c27
+  checksum: 10c0/3201599293d83bcb7aa737818d5f4cf2ba0493881d429eee1a1a71206d37438a291d9a8c20ab5263736bf635440347198f5fd27703432de34637465f2c27aa15
   languageName: node
   linkType: hard
 
