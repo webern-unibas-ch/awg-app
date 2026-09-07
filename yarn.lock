@@ -4874,7 +4874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^26.2.0":
+"@types/node@npm:*":
   version: 26.2.0
   resolution: "@types/node@npm:26.2.0"
   dependencies:
@@ -4883,7 +4883,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^26.4.0":
+"@types/node@npm:^26.4.0, @types/node@npm:^26.4.1":
   version: 26.4.1
   resolution: "@types/node@npm:26.4.1"
   dependencies:
@@ -5863,7 +5863,7 @@ __metadata:
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
     "@types/n3": "npm:^1.26.1"
-    "@types/node": "npm:^26.2.0"
+    "@types/node": "npm:^26.4.1"
     "@vitest/browser-playwright": "npm:^4.1.11"
     "@vitest/coverage-v8": "npm:^4.1.11"
     angular-cli-ghpages: "npm:^3.0.3"
