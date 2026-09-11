@@ -102,7 +102,7 @@
         "@angular/platform-server": "^21.2.19",
         "@angular/router": "^21.2.14",
         "@codemirror/legacy-modes": "^6.5.3",
-        "@fortawesome/angular-fontawesome": "^4.0.0",
+        "@fortawesome/angular-fontawesome": "^5.1.0",
         "@fortawesome/free-solid-svg-icons": "^7.3.1",
         "@ng-bootstrap/ng-bootstrap": "^20.0.0",
         "@popperjs/core": "^2.11.8",
