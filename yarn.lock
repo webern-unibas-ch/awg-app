@@ -4752,13 +4752,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/n3@npm:^1.26.1":
-  version: 1.26.1
-  resolution: "@types/n3@npm:1.26.1"
+"@types/n3@npm:^1.26.4":
+  version: 1.26.4
+  resolution: "@types/n3@npm:1.26.4"
   dependencies:
     "@rdfjs/types": "npm:*"
     "@types/node": "npm:*"
-  checksum: 10c0/4797463efdf0e8425074bb0301ae1b83d7e04b39e3fc584e4e0f69e772883c6ef517983a764c7f9357bcefae42d978d1e857264ec5ecab643157d2f4f555fd17
+  checksum: 10c0/7a8823ab7e112016d2d1f0974b3303f3530bda1be211c14c74ddf3c3f641483bdfffdcfbb8b6756b742e12976e2d9807f841e28d8cf6153ea075e90831818368
   languageName: node
   linkType: hard
 
@@ -5672,7 +5672,7 @@ __metadata:
     "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
     "@popperjs/core": "npm:^2.11.8"
     "@types/d3": "npm:^7.4.3"
-    "@types/n3": "npm:^1.26.1"
+    "@types/n3": "npm:^1.26.4"
     "@types/node": "npm:^26.5.0"
     "@vitest/browser-playwright": "npm:^5.0.0"
     "@vitest/coverage-v8": "npm:^5.0.0"
