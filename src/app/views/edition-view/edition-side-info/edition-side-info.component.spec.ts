@@ -24,7 +24,7 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { EditionInfoComponent } from './edition-info.component';
+import { EditionSideInfoComponent } from './edition-side-info.component';
 
 /** Helper functions */
 function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[] {
@@ -72,9 +72,9 @@ function getExpectedItemTitles(sections: EditionOutlineSection[], includeDisable
     return itemTitles;
 }
 
-describe('EditionInfoComponent (DONE)', () => {
-    let component: EditionInfoComponent;
-    let fixture: ComponentFixture<EditionInfoComponent>;
+describe('EditionSideInfoComponent (DONE)', () => {
+    let component: EditionSideInfoComponent;
+    let fixture: ComponentFixture<EditionSideInfoComponent>;
     let compDe: DebugElement;
 
     let router: Router;
@@ -95,7 +95,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionInfoComponent],
+            imports: [EditionSideInfoComponent],
             providers: [provideRouter([])],
         }).compileComponents();
 
@@ -129,7 +129,7 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionInfoComponent);
+        fixture = TestBed.createComponent(EditionSideInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -155,7 +155,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 .mockReturnValueOnce(undefined)
                 .mockReturnValueOnce(expectedSections[1]);
 
-            const freshFixture = TestBed.createComponent(EditionInfoComponent);
+            const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
             const freshComponent = freshFixture.componentInstance;
 
             const result = freshComponent.sectionsData();

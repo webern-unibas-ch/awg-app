@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
-import { EditionInfoComponent } from './edition-info/edition-info.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
+import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';
 import { EditionViewComponent } from './edition-view.component';
 
@@ -20,7 +20,7 @@ import { EditionViewComponent } from './edition-view.component';
         SharedModule,
         EditionViewRoutingModule,
         EditionBreadcrumbComponent,
-        EditionInfoComponent,
+        EditionSideInfoComponent,
         EditionJumbotronComponent,
         EditionViewComponent,
     ],
