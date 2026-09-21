@@ -151,12 +151,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionInfoComponent } from &#x27;./edition-info/edition-info.component&#x27;;
 import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
 import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
 import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series-detail&#x27;;
 import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-series-detail/edition-sections&#x27;;
+import { EditionSideInfoComponent } from &#x27;./edition-side-info/edition-side-info.component&#x27;;
 import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 
 /* Routes of the EditionViewModule */
@@ -164,7 +164,7 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         outlet: &#x27;side&#x27;,
-        component: EditionInfoComponent,
+        component: EditionSideInfoComponent,
     },
     {
         path: &#x27;&#x27;,
