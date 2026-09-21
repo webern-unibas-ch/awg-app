@@ -272,26 +272,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionReportRoutingModule.html" data-type="entity-link" >EditionReportRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionRowtablesModule.html" data-type="entity-link" >EditionRowtablesModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' : 'data-bs-target="#xs-components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' :
-                                            'id="xs-components-links-module-EditionRowtablesModule-897464e0be660e4d6ebb8e93ca86c62030a3ae3f7aa5b3901e111c52297fdf279578c9c8edb72de3f90105e92bad0ad7eeb277291aa29ccb641f66e6004c103b"' }>
-                                            <li class="link">
-                                                <a href="components/EditionRowtablesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionRowtablesComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionRowtablesRoutingModule.html" data-type="entity-link" >EditionRowtablesRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionSectionDetailModule.html" data-type="entity-link" >EditionSectionDetailModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -730,6 +710,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionRowtablesComponent.html" data-type="entity-link" >EditionRowtablesComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionSectionDetailComplexCardComponent.html" data-type="entity-link" >EditionSectionDetailComplexCardComponent</a>

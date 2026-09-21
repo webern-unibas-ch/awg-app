@@ -182,6 +182,9 @@
                             <a href="#EDITION_ROUTE_CONSTANTS" title="src/app/views/edition-view/edition-routes.constants.ts" ><b>EDITION_ROUTE_CONSTANTS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-routes.constants.ts)</a>
                         </li>
                         <li>
+                            <a href="#EDITION_ROWTABLES_ROUTES" title="src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables.routes.ts" ><b>EDITION_ROWTABLES_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../edition-rowtables.routes.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EDITION_TRADEMARKS_DATA" title="src/app/views/edition-view/data/edition-trademarks.data.ts" ><b>EDITION_TRADEMARKS_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../edition-trademarks.data.ts)</a>
                         </li>
                         <li>
@@ -369,9 +372,6 @@
                         </li>
                         <li>
                             <a href="#routedEditionReportComponents" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report-routing.module.ts" ><b>routedEditionReportComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-report-routing.module.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#routedEditionRowtablesComponents" title="src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables-routing.module.ts" ><b>routedEditionRowtablesComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-rowtables-routing.module.ts)</a>
                         </li>
                         <li>
                             <a href="#routedEditionSectionDetailComponents" title="src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail-routing.module.ts" ><b>routedEditionSectionDetailComponents</b>&nbsp;&nbsp;&nbsp;(src/.../edition-section-detail-routing.module.ts)</a>
@@ -610,7 +610,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-241-g444ff71b2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-242-g00ceb6bbf&#x27;</code>
                     </td>
                 </tr>
 
@@ -1749,6 +1749,47 @@ to store glyph data.</p>
                     <div class="io-description"><p>Object constant: EDITION_GRAPH_IMAGES_DATA.</p>
 <p>It is used in the context of the edition view
 to store graph images data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EDITION_ROWTABLES_ROUTES"></a>
+                    <span class="name">
+                        <span ><b>EDITION_ROWTABLES_ROUTES</b></span>
+                        <a href="#EDITION_ROWTABLES_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+        path: &#x27;&#x27;,
+        component: EditionRowtablesComponent,
+        data: { title: &#x27;AWG Online Edition – Row tables&#x27; },
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes for the EditionRowtables.</p>
 </div>
                 </td>
             </tr>
@@ -3558,10 +3599,10 @@ It automatically handles request completion, errors, and cancellations.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
     rowtables: [
-        { route: &#x27;/enrt1&#x27;, short: &#x27;En RT1&#x27;, full: &#x27;Enabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
-        { route: &#x27;/enrt2&#x27;, short: &#x27;En RT2&#x27;, full: &#x27;Enabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
-        { route: &#x27;/disrt1&#x27;, short: &#x27;Dis RT1&#x27;, full: &#x27;Disabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
-        { route: &#x27;/disrt2&#x27;, short: &#x27;Dis RT2&#x27;, full: &#x27;Disabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
+        { route: &#x27;/enrt1&#x27;, short: &#x27;Enabled RT1&#x27;, full: &#x27;Enabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
+        { route: &#x27;/enrt2&#x27;, short: &#x27;Enabled RT2&#x27;, full: &#x27;Enabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: false },
+        { route: &#x27;/disrt1&#x27;, short: &#x27;Disabled RT1&#x27;, full: &#x27;Disabled Test Rowtable 1&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
+        { route: &#x27;/disrt2&#x27;, short: &#x27;Disabled RT2&#x27;, full: &#x27;Disabled Test Rowtable 2&#x27;, id: &#x27;SkRT&#x27;, disabled: true },
     ],
 }</code>
                     </td>
@@ -5635,42 +5676,6 @@ It automatically handles request completion, errors, and cancellations.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/EditionReportModule.html">EditionReportModule</a>:
 <a href="../components/EditionReportComponent.html">EditionReportComponent</a>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-rowtables/edition-rowtables-routing.module.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="routedEditionRowtablesComponents"></a>
-                    <span class="name">
-                        <span ><b>routedEditionRowtablesComponents</b></span>
-                        <a href="#routedEditionRowtablesComponents"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[EditionRowtablesComponent]</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Routed components of the <a href="../modules/EditionRowtablesModule.html">EditionRowtablesModule</a>:
-<a href="../components/EditionRowtablesComponent.html">EditionRowtablesComponent</a>.</p>
 </div>
                 </td>
             </tr>
