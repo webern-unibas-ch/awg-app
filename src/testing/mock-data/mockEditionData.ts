@@ -252,10 +252,10 @@ export const mockPrefaceData: PrefaceList = {
  */
 export const mockRowtablesData: RowtablesList = {
     rowtables: [
-        { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
-        { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
-        { route: '/disrt1', short: 'Dis RT1', full: 'Disabled Test Rowtable 1', id: 'SkRT', disabled: true },
-        { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
+        { route: '/enrt1', short: 'Enabled RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
+        { route: '/enrt2', short: 'Enabled RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
+        { route: '/disrt1', short: 'Disabled RT1', full: 'Disabled Test Rowtable 1', id: 'SkRT', disabled: true },
+        { route: '/disrt2', short: 'Disabled RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
     ],
 };
 

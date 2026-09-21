@@ -1,10 +1,10 @@
 import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
@@ -16,8 +16,9 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 import { RowtablesList } from '@awg-views/edition-view/models';
 import {
     EditionDataAssetsError,
@@ -33,6 +34,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionRowtablesComponent>;
     let compDe: DebugElement;
 
+    let router: Router;
+
     let mockViewDataSignal: WritableSignal<EditionViewData<'rowtables'>>;
     let expectedViewDataContent: EditionViewDataContent<'rowtables'>;
     let expectedDefaultViewDataContent: EditionViewDataContent<'rowtables'>;
@@ -44,9 +47,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [EditionRowtablesComponent, RouterLinkStubDirective],
+            imports: [EditionRowtablesComponent, AlertErrorComponent, TwelveToneSpinnerComponent],
             providers: [
+                provideRouter([]),
                 {
                     provide: EditionViewService,
                     useValue: { rowtablesViewData: mockViewDataSignal.asReadonly() },
@@ -56,6 +59,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     beforeEach(() => {
+        // Inject services
+        router = TestBed.inject(Router);
+
         // Test data
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
 
@@ -77,12 +83,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no AlertErrorComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+            it('... should contain no AlertErrorComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            it('... should contain no TwelveToneSpinnerComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
             });
 
             it('... should contain no div.awg-rowtables-view yet', () => {
@@ -116,8 +122,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                 await detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
                 getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
             });
 
@@ -139,18 +145,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain rowtables view or spinner, but one AlertErrorComponent (stubbed)', () => {
+                it('... should not contain rowtables view or spinner, but one AlertErrorComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
-                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(
-                        AlertErrorStubComponent
-                    ) as AlertErrorStubComponent;
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -166,23 +170,18 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain rowtables view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
+                it('... should not contain rowtables view or alert, but one TwelveToneSpinnerComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
-                    const spinnerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        TwelveToneSpinnerStubComponent,
-                        1,
-                        1
-                    );
+                    const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerStubComponent
-                    ) as TwelveToneSpinnerStubComponent;
+                        TwelveToneSpinnerComponent
+                    ) as TwelveToneSpinnerComponent;
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -338,7 +337,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             let linkDes: DebugElement[];
-            let routerLinks: RouterLinkStubDirective[];
+            let routerLinks: RouterLink[];
 
             beforeEach(async () => {
                 // Mock data state
@@ -351,16 +350,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                 await detectChangesOnPush(fixture);
 
-                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    RouterLinkStubDirective,
+                    RouterLink,
                     expectedRowtablesData.rowtables.length,
                     expectedRowtablesData.rowtables.length
                 );
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -369,9 +366,11 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
             it('... can get correct linkParams from template', () => {
                 for (const [index, routerLink] of routerLinks.entries()) {
-                    const expectedRouterLink = ['../complex' + expectedRowtablesData.rowtables[index].route, 'sheets'];
+                    const rowtable = expectedRowtablesData.rowtables[index];
+                    const expectedRouterLink = `/complex${rowtable.route}/sheets?id=${rowtable.id}`;
+                    const urlTreeString = routerLink.urlTree?.toString();
 
-                    expectToEqual(routerLink.linkParams, expectedRouterLink);
+                    expectToBe(urlTreeString, expectedRouterLink);
                 }
             });
 
@@ -384,16 +383,25 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... can click all links in template', async () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
-                    const linkDe = linkDes[index];
-                    const expectedRouterLink = ['../complex' + expectedRowtablesData.rowtables[index].route, 'sheets'];
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                    expectToBe(routerLink.navigatedTo, null);
+                for (const [index] of routerLinks.entries()) {
+                    navigateSpy.mockClear();
+
+                    const linkDe = linkDes[index];
+                    const rowtable = expectedRowtablesData.rowtables[index];
+                    const expectedRouterLink = `/complex${rowtable.route}/sheets?id=${rowtable.id}`;
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
+                    expect(navigateSpy).toHaveBeenCalled();
+                    const firstCallArg = navigateSpy.mock.calls[0][0];
+                    const actualUrl = firstCallArg.toString();
+
+                    expectToBe(actualUrl, expectedRouterLink);
                 }
+
+                navigateSpy.mockRestore();
             });
         });
     });
