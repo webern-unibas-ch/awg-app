@@ -23,8 +23,8 @@ const EDITION_VIEW_ROUTES: Routes = [
             {
                 path: 'preface',
                 loadChildren: () =>
-                    import('./edition-outlets/edition-preface/edition-preface.module').then(
-                        m => m.EditionPrefaceModule
+                    import('./edition-outlets/edition-preface/edition-preface.routes').then(
+                        m => m.EDITION_PREFACE_ROUTES
                     ),
             },
             {
