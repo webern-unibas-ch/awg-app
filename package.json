@@ -150,7 +150,7 @@
         "jsdom": "^30.0.1",
         "lint-staged": "^17.5.1",
         "playwright": "^1.63.0",
-        "prettier": "^3.9.6",
+        "prettier": "^3.9.8",
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.70.0",
