@@ -24,7 +24,7 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
-import { EditionInfoComponent } from './edition-info.component';
+import { EditionSideInfoComponent } from './edition-side-info.component';
 
 /** Helper functions */
 function getExpectedRouterlinks(sections: EditionOutlineSection[]): string[] {
@@ -72,9 +72,9 @@ function getExpectedItemTitles(sections: EditionOutlineSection[], includeDisable
     return itemTitles;
 }
 
-describe('EditionInfoComponent (DONE)', () => {
-    let component: EditionInfoComponent;
-    let fixture: ComponentFixture<EditionInfoComponent>;
+describe('EditionSideInfoComponent (DONE)', () => {
+    let component: EditionSideInfoComponent;
+    let fixture: ComponentFixture<EditionSideInfoComponent>;
     let compDe: DebugElement;
 
     let router: Router;
@@ -95,7 +95,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionInfoComponent],
+            imports: [EditionSideInfoComponent],
             providers: [provideRouter([])],
         }).compileComponents();
 
@@ -129,7 +129,7 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedItemTitlesWithLinks = getExpectedItemTitles(expectedSections, false);
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionInfoComponent);
+        fixture = TestBed.createComponent(EditionSideInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -155,7 +155,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 .mockReturnValueOnce(undefined)
                 .mockReturnValueOnce(expectedSections[1]);
 
-            const freshFixture = TestBed.createComponent(EditionInfoComponent);
+            const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
             const freshComponent = freshFixture.componentInstance;
 
             const result = freshComponent.sectionsData();
@@ -393,6 +393,45 @@ describe('EditionInfoComponent (DONE)', () => {
 
                         getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
                     });
+                });
+
+                it('... should not render intro link when section intro is disabled', async () => {
+                    const sectionWithDisabledIntro: EditionOutlineSection = {
+                        ...expectedSections[0],
+                        content: {
+                            ...expectedSections[0].content,
+                            intro: {
+                                ...expectedSections[0].content?.intro,
+                                disabled: true,
+                            },
+                        },
+                    };
+
+                    outlineServiceGetEditionSectionByIdSpy
+                        .mockReturnValueOnce(sectionWithDisabledIntro)
+                        .mockReturnValueOnce(expectedSections[1]);
+
+                    const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
+                    const freshDe = freshFixture.debugElement;
+                    freshFixture.detectChanges();
+
+                    const itemDes = getAndExpectDebugElementByCss(
+                        freshDe,
+                        'div.accordion-item',
+                        expectedSections.length + 1,
+                        expectedSections.length + 1
+                    );
+
+                    // Open the item body for the section with disabled intro
+                    const itemHeaderDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    await clickAndAwaitChanges(btnDes[0], freshFixture);
+
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
+
+                    const allComplexesCount = sectionWithDisabledIntro.content?.sectionComplexes?.length ?? 0;
+
+                    getAndExpectDebugElementByCss(itemBodyDes[0], 'p', allComplexesCount, allComplexesCount);
                 });
 
                 it('... should render titles of all available edition info items', () => {

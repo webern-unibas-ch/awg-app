@@ -9,17 +9,17 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
 /**
- * The EditionInfo component.
+ * The EditionSideInfo component.
  *
  * It contains the side-info section of the edition view.
  */
 @Component({
-    selector: 'awg-edition-info',
-    templateUrl: './edition-info.component.html',
-    styleUrls: ['./edition-info.component.scss'],
+    selector: 'awg-edition-side-info',
+    templateUrl: './edition-side-info.component.html',
+    styleUrls: ['./edition-side-info.component.scss'],
     imports: [NgbAccordionModule, RouterLink],
 })
-export class EditionInfoComponent {
+export class EditionSideInfoComponent {
     /**
      * Private readonly injection variable: _editionOutlineService.
      *

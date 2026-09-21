@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionInfoComponent } from './edition-info/edition-info.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
+import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewComponent } from './edition-view.component';
 
 /* Routes of the EditionViewModule */
@@ -14,7 +14,7 @@ const EDITION_VIEW_ROUTES: Routes = [
     {
         path: '',
         outlet: 'side',
-        component: EditionInfoComponent,
+        component: EditionSideInfoComponent,
     },
     {
         path: '',
