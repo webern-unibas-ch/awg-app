@@ -3,11 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import {
-    AlertErrorStubComponent,
-    LanguageSwitcherStubComponent,
-    TwelveToneSpinnerStubComponent,
-} from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
@@ -18,8 +13,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+import { LanguageSwitcherComponent } from '@awg-shared/language-switcher/language-switcher.component';
 import { LanguageId } from '@awg-shared/language-switcher/language.model';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import {
     EditionDataAssetsError,
@@ -49,12 +47,12 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [
-                AlertErrorStubComponent,
+                EditionPrefaceComponent,
+                AlertErrorComponent,
                 CompileHtmlDirective,
-                LanguageSwitcherStubComponent,
-                TwelveToneSpinnerStubComponent,
+                LanguageSwitcherComponent,
+                TwelveToneSpinnerComponent,
             ],
-            declarations: [EditionPrefaceComponent],
             providers: [
                 { provide: EditionViewService, useValue: { prefaceViewData: mockViewDataSignal.asReadonly() } },
             ],
@@ -90,20 +88,20 @@ describe('EditionPrefaceComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no AlertErrorComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+            it('... should contain no AlertErrorComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+            it('... should contain no TwelveToneSpinnerComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
             });
 
             it('... should contain no outer div.awg-preface-view yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
             });
 
-            it('... should contain no LanguageSwitcherComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 0, 0);
+            it('... should contain no LanguageSwitcherComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 0, 0);
             });
         });
     });
@@ -133,8 +131,8 @@ describe('EditionPrefaceComponent (DONE)', () => {
 
                 await detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
-                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
                 getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
             });
 
@@ -156,18 +154,16 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain preface view or spinner, but one AlertErrorComponent (stubbed)', () => {
+                it('... should not contain preface view or spinner, but one AlertErrorComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
-                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(
-                        AlertErrorStubComponent
-                    ) as AlertErrorStubComponent;
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -183,23 +179,18 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
+                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
-                    const spinnerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        TwelveToneSpinnerStubComponent,
-                        1,
-                        1
-                    );
+                    const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerStubComponent
-                    ) as TwelveToneSpinnerStubComponent;
+                        TwelveToneSpinnerComponent
+                    ) as TwelveToneSpinnerComponent;
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -222,33 +213,23 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
                 });
 
-                it('... should contain one LanguageSwitcherComponent (stubbed) in div.awg-preface-view', () => {
+                it('... should contain one LanguageSwitcherComponent in div.awg-preface-view', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
-                    getAndExpectDebugElementByDirective(divDes[0], LanguageSwitcherStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], LanguageSwitcherComponent, 1, 1);
                 });
 
                 it('... should pass down `selectedLanguage` to LanguageSwitcherComponent', () => {
-                    const switcherDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        LanguageSwitcherStubComponent,
-                        1,
-                        1
-                    );
+                    const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
                     const switcherCmp = switcherDes[0].injector.get(
-                        LanguageSwitcherStubComponent
-                    ) as LanguageSwitcherStubComponent;
+                        LanguageSwitcherComponent
+                    ) as LanguageSwitcherComponent;
 
                     expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
                 });
 
                 it('... should update `selectedLanguage` when LanguageSwitcherComponent emits a change', () => {
-                    const switcherDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        LanguageSwitcherStubComponent,
-                        1,
-                        1
-                    );
+                    const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
 
                     expectToBe(component.selectedLanguage(), LanguageId.DE);
 
@@ -308,6 +289,22 @@ describe('EditionPrefaceComponent (DONE)', () => {
                             });
                         }
                     );
+
+                    it('... should render no preface blocks if preface for selected language is missing', () => {
+                        const prefaceWithoutEnglish = { preface: [expectedPrefaceData.preface[0]] };
+
+                        mockViewDataSignal.set(
+                            createMockViewData(
+                                { prefaceData: prefaceWithoutEnglish },
+                                { isLoading: false, error: null }
+                            )
+                        );
+                        component.selectedLanguage.set(LanguageId.EN);
+                        fixture.detectChanges();
+
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface-block', 0, 0);
+                    });
                 });
             });
         });
