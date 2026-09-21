@@ -30,8 +30,8 @@ const EDITION_VIEW_ROUTES: Routes = [
             {
                 path: 'rowtables',
                 loadChildren: () =>
-                    import('./edition-outlets/edition-rowtables/edition-rowtables.module').then(
-                        m => m.EditionRowtablesModule
+                    import('./edition-outlets/edition-rowtables/edition-rowtables.routes').then(
+                        m => m.EDITION_ROWTABLES_ROUTES
                     ),
             },
             {
