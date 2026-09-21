@@ -395,6 +395,45 @@ describe('EditionSideInfoComponent (DONE)', () => {
                     });
                 });
 
+                it('... should not render intro link when section intro is disabled', async () => {
+                    const sectionWithDisabledIntro: EditionOutlineSection = {
+                        ...expectedSections[0],
+                        content: {
+                            ...expectedSections[0].content,
+                            intro: {
+                                ...expectedSections[0].content?.intro,
+                                disabled: true,
+                            },
+                        },
+                    };
+
+                    outlineServiceGetEditionSectionByIdSpy
+                        .mockReturnValueOnce(sectionWithDisabledIntro)
+                        .mockReturnValueOnce(expectedSections[1]);
+
+                    const freshFixture = TestBed.createComponent(EditionSideInfoComponent);
+                    const freshDe = freshFixture.debugElement;
+                    freshFixture.detectChanges();
+
+                    const itemDes = getAndExpectDebugElementByCss(
+                        freshDe,
+                        'div.accordion-item',
+                        expectedSections.length + 1,
+                        expectedSections.length + 1
+                    );
+
+                    // Open the item body for the section with disabled intro
+                    const itemHeaderDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-header', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
+                    await clickAndAwaitChanges(btnDes[0], freshFixture);
+
+                    const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
+
+                    const allComplexesCount = sectionWithDisabledIntro.content?.sectionComplexes?.length ?? 0;
+
+                    getAndExpectDebugElementByCss(itemBodyDes[0], 'p', allComplexesCount, allComplexesCount);
+                });
+
                 it('... should render titles of all available edition info items', () => {
                     const itemTitles = expectedItemTitles;
 
