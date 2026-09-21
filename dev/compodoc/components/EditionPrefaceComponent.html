@@ -182,6 +182,15 @@ of the edition view of the app.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/AlertErrorComponent.html" target="_self" >AlertErrorComponent</a></code>
+                                <code><a href="../directives/CompileHtmlDirective.html" target="_self" >CompileHtmlDirective</a></code>
+                                <code><a href="../components/LanguageSwitcherComponent.html" target="_self" >LanguageSwitcherComponent</a></code>
+                                <code><a href="../components/TwelveToneSpinnerComponent.html" target="_self" >TwelveToneSpinnerComponent</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -273,7 +282,7 @@ of the edition view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -312,7 +321,7 @@ of the edition view of the app.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-preface/edition-preface.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -334,7 +343,11 @@ of the edition view of the app.</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject, signal } from &#x27;@angular/core&#x27;;
 
+import { AlertErrorComponent } from &#x27;@awg-shared/alert-error/alert-error.component&#x27;;
+import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
+import { LanguageSwitcherComponent } from &#x27;@awg-shared/language-switcher/language-switcher.component&#x27;;
 import { LanguageId } from &#x27;@awg-shared/language-switcher/language.model&#x27;;
+import { TwelveToneSpinnerComponent } from &#x27;@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component&#x27;;
 
 import { EditionViewService } from &#x27;@awg-views/edition-view/services/edition-view.service&#x27;;
 
@@ -349,7 +362,7 @@ import { EditionViewService } from &#x27;@awg-views/edition-view/services/editio
     templateUrl: &#x27;./edition-preface.component.html&#x27;,
     styleUrls: [&#x27;./edition-preface.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [AlertErrorComponent, CompileHtmlDirective, LanguageSwitcherComponent, TwelveToneSpinnerComponent],
 })
 export class EditionPrefaceComponent {
     /**

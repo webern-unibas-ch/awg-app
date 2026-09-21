@@ -223,26 +223,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionIntroRoutingModule.html" data-type="entity-link" >EditionIntroRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionPrefaceModule.html" data-type="entity-link" >EditionPrefaceModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' : 'data-bs-target="#xs-components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' :
-                                            'id="xs-components-links-module-EditionPrefaceModule-6308526cb957d60016464287e7fdcc29d38a79eb6c7f14fe8326f991e3d44276cf894b0916594ec3ac136f746abda7aeb9ee01a86f3b0ce87c92151cb5bd14d3"' }>
-                                            <li class="link">
-                                                <a href="components/EditionPrefaceComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionPrefaceComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionPrefaceRoutingModule.html" data-type="entity-link" >EditionPrefaceRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionReportModule.html" data-type="entity-link" >EditionReportModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -710,6 +690,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionPrefaceComponent.html" data-type="entity-link" >EditionPrefaceComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionRowtablesComponent.html" data-type="entity-link" >EditionRowtablesComponent</a>

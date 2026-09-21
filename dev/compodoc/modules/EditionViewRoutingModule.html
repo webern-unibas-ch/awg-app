@@ -173,8 +173,8 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
             {
                 path: &#x27;preface&#x27;,
                 loadChildren: () &#x3D;&gt;
-                    &quot;import(&#x27;./edition-outlets/edition-preface/edition-preface.module&#x27;).then(\n\
-                        m &#x3D;&gt; m.EditionPrefaceModule\n\
+                    &quot;import(&#x27;./edition-outlets/edition-preface/edition-preface.routes&#x27;).then(\n\
+                        m &#x3D;&gt; m.EDITION_PREFACE_ROUTES\n\
                     )&quot;,
             },
             {
