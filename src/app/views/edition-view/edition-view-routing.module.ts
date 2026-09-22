@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionSeriesComponent } from './edition-outlets/edition-series';
+import { EditionSeriesComponent } from './edition-outlets/edition-outline/edition-series.component';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
@@ -132,14 +132,12 @@ const EDITION_VIEW_ROUTES: Routes = [
 /**
  * Routed components of the {@link EditionViewModule}:
  * {@link EditionComplexComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent}, {@link EditionSeriesComponent},
- * and {@link EditionSeriesDetailComponent}.
+ * {@link EditionSectionsComponent}, and {@link EditionSeriesDetailComponent}.
  */
 export const routedEditionViewComponents = [
     EditionComplexComponent,
     EditionDetailNavComponent,
     EditionSectionsComponent,
-    EditionSeriesComponent,
     EditionSeriesDetailComponent,
 ];
 
