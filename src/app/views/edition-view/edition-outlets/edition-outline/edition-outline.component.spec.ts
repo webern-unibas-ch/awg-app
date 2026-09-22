@@ -14,8 +14,9 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionOutlineComponent } from './edition-outline.component';
 import { EditionSeriesCardComponent } from './edition-series-card/edition-series-card.component';
@@ -38,7 +39,7 @@ describe('EditionOutlineComponent (DONE)', () => {
         mockOutlineSignal = signal(expectedOutline);
 
         await TestBed.configureTestingModule({
-            imports: [EditionOutlineComponent],
+            imports: [EditionOutlineComponent, EditionSeriesCardComponent],
             providers: [
                 provideRouter([]),
                 {

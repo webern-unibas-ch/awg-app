@@ -1,4 +1,5 @@
-import { Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
 
@@ -12,7 +13,8 @@ import { EditionOutlineService, EditionStateService } from '@awg-views/edition-v
     selector: 'awg-edition-series-detail',
     templateUrl: './edition-series-detail.component.html',
     styleUrls: ['./edition-series-detail.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterOutlet],
 })
 export class EditionSeriesDetailComponent {
     /**

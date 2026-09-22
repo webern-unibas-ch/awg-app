@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
-import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
-import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
+import { EditionSectionsComponent } from './edition-outlets/edition-outline/edition-series-detail/edition-sections/edition-sections.component';
+import { EditionSeriesDetailComponent } from './edition-outlets/edition-outline/edition-series-detail/edition-series-detail.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewComponent } from './edition-view.component';
 
@@ -131,15 +131,9 @@ const EDITION_VIEW_ROUTES: Routes = [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionComplexComponent}, {@link EditionDetailNavComponent},
- * {@link EditionSectionsComponent}, and {@link EditionSeriesDetailComponent}.
+ * {@link EditionComplexComponent}, {@link EditionDetailNavComponent}.
  */
-export const routedEditionViewComponents = [
-    EditionComplexComponent,
-    EditionDetailNavComponent,
-    EditionSectionsComponent,
-    EditionSeriesDetailComponent,
-];
+export const routedEditionViewComponents = [EditionComplexComponent, EditionDetailNavComponent];
 
 /**
  * EditionView module routing.

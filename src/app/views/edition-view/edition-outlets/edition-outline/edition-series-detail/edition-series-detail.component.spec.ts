@@ -9,8 +9,9 @@ import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionSeriesDetailComponent } from './edition-series-detail.component';
 

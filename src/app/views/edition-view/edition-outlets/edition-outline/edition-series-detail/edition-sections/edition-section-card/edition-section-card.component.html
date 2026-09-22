@@ -1,0 +1,31 @@
+@if (displayedSection(); as section) {
+    <div class="card awg-edition-section-card h-100 shadow">
+        <div class="row g-0 h-100">
+            @if (!section.disabled) {
+                <div class="col-4 col-sm-2 col-md-12 awg-img-container">
+                    @let imgSrc = 'assets/img' + section.labeledRoute.route.join('/') + '/cover.jpg';
+                    @let imgLabel = section.labeledRoute.label;
+
+                    <img [src]="imgSrc" [title]="imgLabel" class="card-img-top img-fluid" alt="Cover {{ imgLabel }}" />
+                </div>
+            }
+            <div
+                [class]="{ 'col-8 col-sm-10': !section.disabled }"
+                class="col-md-12 d-flex flex-column awg-edition-section-card-content">
+                <div class="card-body flex-grow-1" [class.awg-card-border-top]="!section.disabled">
+                    <h5 class="card-title" [class.text-muted]="section.disabled">
+                        {{ section.section.full }}
+                    </h5>
+                </div>
+                <div class="card-footer text-end">
+                    <a
+                        [routerLink]="[section.section.route]"
+                        class="btn btn-outline-info"
+                        [class.disabled]="section.disabled"
+                        >Mehr ...
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
