@@ -1,0 +1,29 @@
+@if (displayedSeries(); as series) {
+    <div class="card awg-edition-series-card h-100 shadow">
+        @let seriesRoute = series.series.route;
+        @let seriesLabel = series.series.full;
+
+        <h5 class="card-header">
+            {{ seriesLabel }}
+        </h5>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                @for (section of series.sections; track section.section.route) {
+                    @let sectionRoute = section.section.route;
+                    @let sectionLabel = section.section.full;
+
+                    <li class="list-group-item">
+                        @if (!section.disabled) {
+                            <a [routerLink]="[seriesRoute, 'section', sectionRoute]">{{ sectionLabel }}</a>
+                        } @else {
+                            <span class="text-muted">{{ sectionLabel }}</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="card-footer text-end">
+            <a [routerLink]="[seriesRoute]" class="btn btn-outline-info">Mehr ...</a>
+        </div>
+    </div>
+}

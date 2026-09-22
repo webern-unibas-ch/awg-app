@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionSeriesComponent } from './edition-outlets/edition-outline/edition-series.component';
+import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
@@ -42,7 +42,7 @@ const EDITION_VIEW_ROUTES: Routes = [
             {
                 // Overview of series.
                 path: 'series',
-                component: EditionSeriesComponent,
+                component: EditionOutlineComponent,
             },
             {
                 // Series by id (I, II, III).

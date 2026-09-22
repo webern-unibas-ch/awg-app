@@ -6,21 +6,21 @@
     @let editionComplex = selectedEditionComplex();
 
     @if (context.isPreface) {
-        <div class="awg-edition-preface para">
+        <div class="awg-edition-preface-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
             <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
         </div>
     }
 
     @if (context.isRowtables) {
-        <div class="awg-edition-rowtables para">
+        <div class="awg-edition-rowtables-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
             <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
         </div>
     }
 
     @if (editionComplex) {
-        <div class="awg-edition-complex">
+        <div class="awg-edition-complex-view">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
             <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
 
@@ -50,7 +50,7 @@
     }
 
     @if (editionComplex === null && !context.isRowtables && !context.isPreface) {
-        <div class="awg-edition-series para">
+        <div class="awg-edition-outline-view para">
             <awg-edition-breadcrumb [items]="breadcrumbItems()" />
             <awg-edition-jumbotron [id]="EDITION_VIEW_ID" [title]="jumbotronTitle()" />
         </div>

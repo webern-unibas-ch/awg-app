@@ -181,10 +181,10 @@ describe('EditionViewComponent (DONE)', () => {
 
             describe('... should contain no sub-components yet', () => {
                 it.each([
-                    { desc: '`div.awg-edition-preface`', selector: 'div.awg-edition-preface' },
-                    { desc: '`div.awg-edition-rowtables`', selector: 'div.awg-edition-rowtables' },
-                    { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
-                    { desc: '`div.awg-edition-series`', selector: 'div.awg-edition-series' },
+                    { desc: '`div.awg-edition-preface-view`', selector: 'div.awg-edition-preface-view' },
+                    { desc: '`div.awg-edition-rowtables-view`', selector: 'div.awg-edition-rowtables-view' },
+                    { desc: '`div.awg-edition-complex-view`', selector: 'div.awg-edition-complex-view' },
+                    { desc: '`div.awg-edition-outline-view`', selector: 'div.awg-edition-outline-view' },
                 ])('... should contain no $desc in `div.awg-edition-view` yet', ({ selector }) => {
                     getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
                 });
@@ -282,13 +282,13 @@ describe('EditionViewComponent (DONE)', () => {
         describe('VIEW', () => {
             const getEditionViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-view', 1, 1);
             const getPrefaceDes = () =>
-                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-preface', 1, 1);
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-preface-view', 1, 1);
             const getRowtableDes = () =>
-                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-rowtables', 1, 1);
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-rowtables-view', 1, 1);
             const getComplexDes = () =>
-                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-complex', 1, 1);
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-complex-view', 1, 1);
             const getSeriesDes = () =>
-                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-series', 1, 1);
+                getAndExpectDebugElementByCss(getEditionViewDes()[0], 'div.awg-edition-outline-view', 1, 1);
 
             describe('... if `viewContext` is preface', () => {
                 beforeEach(() => {
@@ -306,11 +306,11 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(component.jumbotronTitle(), EDITION_ROUTE_CONSTANTS.PREFACE.full);
                 });
 
-                it('... should have one `div.awg-edition-preface` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-preface-view` in `div.awg-edition-view`', () => {
                     getPrefaceDes();
                 });
 
-                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-preface`', () => {
+                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-preface-view`', () => {
                     const prefaceDes = getPrefaceDes();
 
                     getAndExpectDebugElementByDirective(prefaceDes[0], EditionBreadcrumbStubComponent, 1, 1);
@@ -363,11 +363,11 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(component.jumbotronTitle(), 'Übersicht');
                 });
 
-                it('... should have one `div.awg-edition-rowtables` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-rowtables-view` in `div.awg-edition-view`', () => {
                     getRowtableDes();
                 });
 
-                it('... should have BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-rowtables`', () => {
+                it('... should have BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-rowtables-view`', () => {
                     const rowtableDes = getRowtableDes();
 
                     getAndExpectDebugElementByDirective(rowtableDes[0], EditionBreadcrumbStubComponent, 1, 1);
@@ -436,11 +436,11 @@ describe('EditionViewComponent (DONE)', () => {
                     expectToBe(component.jumbotronTitle(), expectedComplex.complexId.full);
                 });
 
-                it('... should have one `div.awg-edition-complex` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-complex-view` in `div.awg-edition-view`', () => {
                     getComplexDes();
                 });
 
-                it('... should have a BreadcrumbComponent (stubbed), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex`', () => {
+                it('... should have a BreadcrumbComponent (stubbed), a JumbotronComponent (stubbed) and a responsibility div in `div.awg-edition-complex-view`', () => {
                     const complexDes = getComplexDes();
 
                     getAndExpectDebugElementByDirective(complexDes[0], EditionBreadcrumbStubComponent, 1, 1);
@@ -584,19 +584,19 @@ describe('EditionViewComponent (DONE)', () => {
 
                 describe('... should contain no view-specific-components', () => {
                     it.each([
-                        { desc: '`div.awg-edition-preface`', selector: 'div.awg-edition-preface' },
-                        { desc: '`div.awg-edition-rowtables`', selector: 'div.awg-edition-rowtables' },
-                        { desc: '`div.awg-edition-complex`', selector: 'div.awg-edition-complex' },
+                        { desc: '`div.awg-edition-preface-view`', selector: 'div.awg-edition-preface-view' },
+                        { desc: '`div.awg-edition-rowtables-view`', selector: 'div.awg-edition-rowtables-view' },
+                        { desc: '`div.awg-edition-complex-view`', selector: 'div.awg-edition-complex-view' },
                     ])('... should contain no $desc in `div.awg-edition-view`', ({ selector }) => {
                         getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
                     });
                 });
 
-                it('... should have one `div.awg-edition-series` in `div.awg-edition-view`', () => {
+                it('... should have one `div.awg-edition-outline` in `div.awg-edition-view`', () => {
                     getSeriesDes();
                 });
 
-                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-series`', () => {
+                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-outline-view`', () => {
                     const seriesDes = getSeriesDes();
 
                     getAndExpectDebugElementByDirective(seriesDes[0], EditionBreadcrumbStubComponent, 1, 1);
