@@ -32,6 +32,7 @@ import { EDITION_ROUTE_CONSTANTS } from './edition-routes.constants';
 
 import { EditionComplex } from './models/edition-complex.model';
 import { EditionViewContext } from './models/edition-data.model';
+import { EditionOutlineSection, EditionOutlineSeries } from './models/edition-outline.model';
 
 import { EditionBreadcrumbService } from './services/edition-breadcrumb.service';
 import { EditionStateService } from './services/edition-state.service';
@@ -58,6 +59,8 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedPrefaceViewContext: EditionViewContext;
     let expectedRowtablesViewContext: EditionViewContext;
     let expectedComplex: EditionComplex;
+    let expectedSeries: EditionOutlineSeries;
+    let expectedSection: EditionOutlineSection;
 
     const expectedTitle = 'Editionsübersicht';
     const expectedId = 'awg-edition-view';
@@ -117,6 +120,8 @@ describe('EditionViewComponent (DONE)', () => {
 
         const complexId = 'op12';
         expectedComplex = EditionStateHelper.getComplex(complexId);
+        expectedSeries = EditionStateHelper.getSeries('1');
+        expectedSection = EditionStateHelper.getSection('1', '5');
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionViewComponent);
@@ -244,38 +249,50 @@ describe('EditionViewComponent (DONE)', () => {
                 {
                     desc: 'preface title if viewContext is preface',
                     context: () => expectedPrefaceViewContext,
-                    expected: () => EDITION_ROUTE_CONSTANTS.PREFACE.full,
+                    title: () => EDITION_ROUTE_CONSTANTS.PREFACE.full,
                 },
                 {
                     desc: 'rowtables title if viewContext is rowtables',
                     context: () => expectedRowtablesViewContext,
-                    expected: () => 'Übersicht',
+                    title: () => 'Übersicht',
                 },
                 {
                     desc: 'complex title if a complex is selected and no special view is active',
                     context: () => expectedDefaultViewContext,
-                    expected: () => expectedComplex.complexId.full,
+                    title: () => expectedComplex.complexId.full,
                     setup: () => editionStateService.updateSelectedEditionComplex(expectedComplex),
                 },
                 {
                     desc: 'intro title if viewContext is intro',
                     context: () => expectedIntroViewContext,
-                    expected: () => EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full,
+                    title: () => EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full,
+                },
+                {
+                    desc: 'section title if a section is selected without a complex',
+                    context: () => expectedDefaultViewContext,
+                    title: () => expectedSection.section.full,
+                    setup: () => editionStateService.updateSelectedEditionSection(expectedSection),
+                },
+                {
+                    desc: 'series title if a series is selected without a section',
+                    context: () => expectedDefaultViewContext,
+                    title: () => expectedSeries.series.full,
+                    setup: () => editionStateService.updateSelectedEditionSeries(expectedSeries),
                 },
                 {
                     desc: 'EDITION_VIEW_TITLE as default',
                     context: () => expectedDefaultViewContext,
-                    expected: () => expectedTitle,
+                    title: () => expectedTitle,
                     setup: () => editionStateService.updateSelectedEditionComplex(null),
                 },
-            ])('... should hold $desc', ({ context, expected, setup }) => {
+            ])('... should hold $desc', ({ context, title, setup }) => {
                 if (setup) {
                     setup();
                 }
 
                 mockViewContextSignal.set(context());
 
-                expectToBe(component.jumbotronTitle(), expected());
+                expectToBe(component.jumbotronTitle(), title());
             });
         });
 
@@ -561,93 +578,91 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            describe('... if `selectedEditionComplex` is not given, and `viewContext` is not preface or rowtables', () => {
-                beforeEach(() => {
-                    mockViewContextSignal.set(expectedDefaultViewContext);
-                    editionStateService.updateSelectedEditionComplex(null);
-                    editionStateService.updateSelectedEditionSeries(null);
-                    editionStateService.updateSelectedEditionSection(null);
-
-                    fixture.detectChanges();
-                });
-
-                it('... should have state signals to hold the expected values', () => {
-                    expectToEqual(component.viewContext(), expectedDefaultViewContext);
-                    expectToBe(component.selectedEditionComplex(), null);
-                    expectToBe(component.selectedEditionSeries(), null);
-                    expectToBe(component.selectedEditionSection(), null);
-                });
-
-                it('... should have signal `jumbotronTitle` to hold the default title', () => {
-                    expectToBe(component.jumbotronTitle(), expectedTitle);
-                });
-
-                describe('... should contain no view-specific-components', () => {
-                    it.each([
-                        { desc: '`div.awg-edition-preface-view`', selector: 'div.awg-edition-preface-view' },
-                        { desc: '`div.awg-edition-rowtables-view`', selector: 'div.awg-edition-rowtables-view' },
-                        { desc: '`div.awg-edition-complex-view`', selector: 'div.awg-edition-complex-view' },
-                    ])('... should contain no $desc in `div.awg-edition-view`', ({ selector }) => {
-                        getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
-                    });
-                });
-
-                it('... should have one `div.awg-edition-outline` in `div.awg-edition-view`', () => {
-                    getSeriesDes();
-                });
-
-                it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-outline-view`', () => {
-                    const seriesDes = getSeriesDes();
-
-                    getAndExpectDebugElementByDirective(seriesDes[0], EditionBreadcrumbStubComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(seriesDes[0], EditionJumbotronStubComponent, 1, 1);
-                });
-
-                it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
-                    const breadcrumbDes = getAndExpectDebugElementByDirective(
-                        getSeriesDes()[0],
-                        EditionBreadcrumbStubComponent,
-                        1,
-                        1
-                    );
-                    const breadcrumbCmp = breadcrumbDes[0].injector.get(
-                        EditionBreadcrumbStubComponent
-                    ) as EditionBreadcrumbStubComponent;
-
-                    expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
-                });
-
-                it('... should pass down `editionViewId` and `editionViewTitle` to JumbotronComponent (stubbed)', () => {
-                    const jumbotronDes = getAndExpectDebugElementByDirective(
-                        getSeriesDes()[0],
-                        EditionJumbotronStubComponent,
-                        1,
-                        1
-                    );
-                    const jumbotronCmp = jumbotronDes[0].injector.get(
-                        EditionJumbotronStubComponent
-                    ) as EditionJumbotronStubComponent;
-
-                    expectToBe(jumbotronCmp.id(), expectedId);
-                    expectToBe(jumbotronCmp.title(), expectedTitle);
-                });
-
-                describe('... if `viewContext` is intro', () => {
+            describe.each([
+                {
+                    desc: 'no edition complex, series, or section is selected',
+                    setup: () => editionStateService.updateSelectedEditionSeries(null),
+                    title: (): string => expectedTitle,
+                    complex: (): EditionComplex | null => null,
+                    series: (): EditionOutlineSeries | null => null,
+                    section: (): EditionOutlineSection | null => null,
+                },
+                {
+                    desc: 'an edition series is selected without a section',
+                    setup: () => editionStateService.updateSelectedEditionSeries(expectedSeries),
+                    title: (): string => expectedSeries.series.full,
+                    complex: (): EditionComplex | null => null,
+                    series: (): EditionOutlineSeries | null => expectedSeries,
+                    section: (): EditionOutlineSection | null => null,
+                },
+                {
+                    desc: 'an edition series and section are selected',
+                    setup: () => {
+                        editionStateService.updateSelectedEditionSeries(expectedSeries);
+                        editionStateService.updateSelectedEditionSection(expectedSection);
+                    },
+                    title: (): string => expectedSection.section.full,
+                    complex: (): EditionComplex | null => null,
+                    series: (): EditionOutlineSeries | null => expectedSeries,
+                    section: (): EditionOutlineSection | null => expectedSection,
+                },
+            ])(
+                '... if $desc and `viewContext` is not rowtables or preface',
+                ({ setup, title, complex, series, section }) => {
                     beforeEach(() => {
-                        mockViewContextSignal.set(expectedIntroViewContext);
+                        mockViewContextSignal.set(expectedDefaultViewContext);
+                        setup();
 
                         fixture.detectChanges();
                     });
 
-                    it('... should have signal `viewContext` to hold true for intro view', () => {
-                        expectToEqual(component.viewContext(), expectedIntroViewContext);
+                    it('... should have state signals to hold the expected values', () => {
+                        expectToEqual(component.viewContext(), expectedDefaultViewContext);
+                        expectToEqual(component.selectedEditionComplex(), complex());
+                        expectToEqual(component.selectedEditionSeries(), series());
+                        expectToEqual(component.selectedEditionSection(), section());
                     });
 
-                    it('... should have signal `jumbotronTitle` to hold the intro title', () => {
-                        expectToBe(component.jumbotronTitle(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                    it('... should have signal `jumbotronTitle` to hold the default title', () => {
+                        expectToBe(component.jumbotronTitle(), title());
                     });
 
-                    it('... should pass down correct title to JumbotronComponent (stubbed)', () => {
+                    describe('... should contain no view-specific-components', () => {
+                        it.each([
+                            { desc: '`div.awg-edition-preface-view`', selector: 'div.awg-edition-preface-view' },
+                            { desc: '`div.awg-edition-rowtables-view`', selector: 'div.awg-edition-rowtables-view' },
+                            { desc: '`div.awg-edition-complex-view`', selector: 'div.awg-edition-complex-view' },
+                        ])('... should contain no $desc in `div.awg-edition-view`', ({ selector }) => {
+                            getAndExpectDebugElementByCss(getEditionViewDes()[0], selector, 0, 0);
+                        });
+                    });
+
+                    it('... should have one `div.awg-edition-outline` in `div.awg-edition-view`', () => {
+                        getSeriesDes();
+                    });
+
+                    it('... should have a BreadcrumbComponent (stubbed) and a JumbotronComponent (stubbed) in `div.awg-edition-outline-view`', () => {
+                        const seriesDes = getSeriesDes();
+
+                        getAndExpectDebugElementByDirective(seriesDes[0], EditionBreadcrumbStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(seriesDes[0], EditionJumbotronStubComponent, 1, 1);
+                    });
+
+                    it('... should pass down `breadcrumbItems` to BreadcrumbComponent (stubbed)', () => {
+                        const breadcrumbDes = getAndExpectDebugElementByDirective(
+                            getSeriesDes()[0],
+                            EditionBreadcrumbStubComponent,
+                            1,
+                            1
+                        );
+                        const breadcrumbCmp = breadcrumbDes[0].injector.get(
+                            EditionBreadcrumbStubComponent
+                        ) as EditionBreadcrumbStubComponent;
+
+                        expectToEqual(breadcrumbCmp.items(), component.breadcrumbItems());
+                    });
+
+                    it('... should pass down `editionViewId` and the expected title to JumbotronComponent (stubbed)', () => {
                         const jumbotronDes = getAndExpectDebugElementByDirective(
                             getSeriesDes()[0],
                             EditionJumbotronStubComponent,
@@ -659,10 +674,41 @@ describe('EditionViewComponent (DONE)', () => {
                         ) as EditionJumbotronStubComponent;
 
                         expectToBe(jumbotronCmp.id(), expectedId);
-                        expectToBe(jumbotronCmp.title(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        expectToBe(jumbotronCmp.title(), title());
                     });
-                });
-            });
+
+                    describe('... if `viewContext` is intro', () => {
+                        beforeEach(() => {
+                            mockViewContextSignal.set(expectedIntroViewContext);
+
+                            fixture.detectChanges();
+                        });
+
+                        it('... should have signal `viewContext` to hold true for intro view', () => {
+                            expectToEqual(component.viewContext(), expectedIntroViewContext);
+                        });
+
+                        it('... should have signal `jumbotronTitle` to hold the intro title', () => {
+                            expectToBe(component.jumbotronTitle(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        });
+
+                        it('... should pass down correct title to JumbotronComponent (stubbed)', () => {
+                            const jumbotronDes = getAndExpectDebugElementByDirective(
+                                getSeriesDes()[0],
+                                EditionJumbotronStubComponent,
+                                1,
+                                1
+                            );
+                            const jumbotronCmp = jumbotronDes[0].injector.get(
+                                EditionJumbotronStubComponent
+                            ) as EditionJumbotronStubComponent;
+
+                            expectToBe(jumbotronCmp.id(), expectedId);
+                            expectToBe(jumbotronCmp.title(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
+                        });
+                    });
+                }
+            );
         });
     });
 });
