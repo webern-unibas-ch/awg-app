@@ -1,5 +1,6 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -16,7 +17,6 @@ import {
 
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 
-import { provideRouter, Router, RouterLink } from '@angular/router';
 import { EditionSectionDetailIntroCardComponent } from './edition-section-detail-intro-card.component';
 
 describe('EditionSectionDetailIntroCardComponent (DONE)', () => {

@@ -81,7 +81,7 @@ describe('EditionSectionsComponent (DONE)', () => {
 
                 fixture.detectChanges();
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sections-grid', 0, 0);
             });
 
             it('... should contain one div.awg-edition-sections-grid', () => {

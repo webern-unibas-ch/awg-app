@@ -111,7 +111,7 @@ describe('EditionOutlineComponent (DONE)', () => {
 
                 fixture.detectChanges();
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-outline', 0, 0);
             });
 
             it('... should contain one `div.awg-edition-outline`', () => {
