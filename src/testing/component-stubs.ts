@@ -13,8 +13,8 @@ import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { HomeViewCard } from '@awg-views/home-view/home-view-card/home-view-card.model';
 
 import { EditionOutlineComplexItem, EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
 
-import { TextcriticalCommentary } from '@awg-app/views/edition-view/models/textcritics.model';
 import {
     StatisticsComplexBreakdown,
     StatisticsComplexBreakdownData,

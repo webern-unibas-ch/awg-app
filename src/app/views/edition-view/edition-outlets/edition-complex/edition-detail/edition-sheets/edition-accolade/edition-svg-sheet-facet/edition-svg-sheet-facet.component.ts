@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 
-import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-app/views/edition-view/models/edition-type.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-view/models/edition-type.model';
 
 /**
  * The EditionSvgSheetFacet component.

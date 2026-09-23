@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { EditionOutlineSeries } from '@awg-app/views/edition-view/models/edition-outline.model';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
 /**
  * The EditionSeriesCard component.
