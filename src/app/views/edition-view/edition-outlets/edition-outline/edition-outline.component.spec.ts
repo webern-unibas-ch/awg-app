@@ -98,9 +98,9 @@ describe('EditionOutlineComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            const getSeriesDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+            const getSeriesDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-outline', 1, 1);
             const getSeriesTextDes = () =>
-                getAndExpectDebugElementByCss(getSeriesDes()[0], 'div.awg-edition-series-text', 1, 1);
+                getAndExpectDebugElementByCss(getSeriesDes()[0], 'div.awg-edition-outline-text', 1, 1);
             const getSeriesGridDes = () =>
                 getAndExpectDebugElementByCss(getSeriesDes()[0], 'div.awg-edition-series-grid', 1, 1);
             const getGridColDes = (expectedLength: number) =>
@@ -114,19 +114,19 @@ describe('EditionOutlineComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 0, 0);
             });
 
-            it('... should contain one `div.awg-edition-series`', () => {
+            it('... should contain one `div.awg-edition-outline`', () => {
                 getSeriesDes();
             });
 
-            it('... should contain one `div.awg-edition-series-text` in `div.awg-edition-series`', () => {
+            it('... should contain one `div.awg-edition-outline-text` in `div.awg-edition-outline`', () => {
                 getSeriesTextDes();
             });
 
-            it('... should contain two paragraphs in `div.awg-edition-series-text`', () => {
+            it('... should contain two paragraphs in `div.awg-edition-outline-text`', () => {
                 getAndExpectDebugElementByCss(getSeriesTextDes()[0], 'p', 2, 2);
             });
 
-            it('... should contain one `div.awg-edition-series-grid` in `div.awg-edition-series`', () => {
+            it('... should contain one `div.awg-edition-series-grid` in `div.awg-edition-outline`', () => {
                 getSeriesGridDes();
             });
 

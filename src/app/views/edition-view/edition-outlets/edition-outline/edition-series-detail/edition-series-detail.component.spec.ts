@@ -1,13 +1,12 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
@@ -20,7 +19,6 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesDetailComponent>;
     let compDe: DebugElement;
 
-    let mockActivatedRoute: ActivatedRouteStub;
     let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
@@ -32,12 +30,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     let expectedSeriesId: string;
 
     beforeEach(async () => {
-        // Mocked activated route
-        mockActivatedRoute = new ActivatedRouteStub();
-
         await TestBed.configureTestingModule({
-            declarations: [EditionSeriesDetailComponent, RouterOutletStubComponent],
-            providers: [{ provide: ActivatedRoute, useValue: mockActivatedRoute }],
+            imports: [EditionSeriesDetailComponent, RouterOutlet],
         }).compileComponents();
     });
 
@@ -88,8 +82,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one router outlet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
             });
         });
     });
@@ -104,8 +98,8 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain one router outlet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
             });
         });
 

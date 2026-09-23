@@ -23,5 +23,5 @@ export class EditionSeriesCardComponent {
      *
      * It holds the data for the series to be displayed.
      */
-    readonly displayedSeries = input.required<EditionOutlineSeries>();
+    readonly displayedSeries = input.required<EditionOutlineSeries | null>();
 }

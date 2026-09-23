@@ -5,7 +5,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
-import { EditionSectionsComponent } from './edition-outlets/edition-outline/edition-series-detail/edition-sections/edition-sections.component';
+import { EditionSectionsComponent } from './edition-outlets/edition-outline/edition-sections/edition-sections.component';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-outline/edition-series-detail/edition-series-detail.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';

@@ -91,7 +91,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
             };
 
             it('... should render no content if displayed series is not available', () => {
-                fixture.componentRef.setInput('displayedSeries', null as any);
+                fixture.componentRef.setInput('displayedSeries', null);
 
                 fixture.detectChanges();
 
