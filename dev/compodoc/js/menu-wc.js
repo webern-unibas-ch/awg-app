@@ -621,6 +621,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/AlertInfoComponent.html" data-type="entity-link" >AlertInfoComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ButtonMoreComponent.html" data-type="entity-link" >ButtonMoreComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/ButtonScrollToTopComponent.html" data-type="entity-link" >ButtonScrollToTopComponent</a>
                             </li>
                             <li class="link">
