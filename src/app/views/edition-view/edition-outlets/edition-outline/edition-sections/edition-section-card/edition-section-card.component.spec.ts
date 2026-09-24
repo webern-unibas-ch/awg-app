@@ -135,7 +135,7 @@ describe('EditionSectionCardComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(getCardFooterDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should pass down correct targetRoute to ButtonMoreComponent', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getCardFooterDes()[0],
                     ButtonMoreComponent,
@@ -147,7 +147,7 @@ describe('EditionSectionCardComponent (DONE)', () => {
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.section.route]);
             });
 
-            it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+            it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getCardFooterDes()[0],
                     ButtonMoreComponent,
@@ -191,7 +191,7 @@ describe('EditionSectionCardComponent (DONE)', () => {
                     expectToContain(titleEl.classList, 'text-muted');
                 });
 
-                it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+                it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(
                         getCardFooterDes()[0],
                         ButtonMoreComponent,

@@ -842,7 +842,7 @@ describe('StatisticsProgressBarComponent', () => {
                 expectToContain(progressEl.classList, 'me-2');
             });
 
-            it('... should pass down correct height, value, type and ariaLabel to NgbProgressbar', () => {
+            it('... should pass down the correct height, value, type and ariaLabel to NgbProgressbar', () => {
                 const progressDes = getAndExpectDebugElementByDirective(compDe, NgbProgressbar, 1, 1);
                 const progressCmp = progressDes[0].injector.get(NgbProgressbar) as NgbProgressbar;
 

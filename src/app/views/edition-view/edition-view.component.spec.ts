@@ -692,7 +692,7 @@ describe('EditionViewComponent (DONE)', () => {
                             expectToBe(component.jumbotronTitle(), EDITION_ROUTE_CONSTANTS.EDITION_INTRO.full);
                         });
 
-                        it('... should pass down correct title to JumbotronComponent (stubbed)', () => {
+                        it('... should pass down the correct title to JumbotronComponent (stubbed)', () => {
                             const jumbotronDes = getAndExpectDebugElementByDirective(
                                 getSeriesDes()[0],
                                 EditionJumbotronStubComponent,

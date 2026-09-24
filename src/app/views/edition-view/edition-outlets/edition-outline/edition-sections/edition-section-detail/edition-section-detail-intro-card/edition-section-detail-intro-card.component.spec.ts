@@ -144,7 +144,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(getTextEndParaDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should pass down correct targetRoute to ButtonMoreComponent', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getTextEndParaDes()[0],
                     ButtonMoreComponent,
@@ -156,7 +156,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.labeledRoute.route.join('/'), 'intro']);
             });
 
-            it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+            it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getTextEndParaDes()[0],
                     ButtonMoreComponent,

@@ -280,7 +280,7 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
             });
 
-            it('... should pass down correct values to heading component (`id` and `title`)', () => {
+            it('... should pass down the correct values to heading component (`id` and `title`)', () => {
                 const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
@@ -296,7 +296,7 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoStubComponent, 1, 1);
             });
 
-            it('... should pass down correct values to AlertInfoComponent (`infoMessage `)', () => {
+            it('... should pass down the correct values to AlertInfoComponent (`infoMessage `)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(
                     getHomeViewContentDes()[0],
                     AlertInfoStubComponent,

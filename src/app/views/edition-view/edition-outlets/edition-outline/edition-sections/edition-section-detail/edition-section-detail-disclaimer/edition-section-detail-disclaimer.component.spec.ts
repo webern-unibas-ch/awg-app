@@ -58,7 +58,7 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down correct values to AlertInfoComponent (`infoMessage`)', () => {
+            it('... should pass down the correct values to AlertInfoComponent (`infoMessage`)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent) as AlertInfoComponent;
 

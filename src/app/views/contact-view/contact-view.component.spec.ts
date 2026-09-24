@@ -180,7 +180,7 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down correct values to heading components (`id` and `title`)', () => {
+            it('... should pass down the correct values to heading components (`id` and `title`)', () => {
                 const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
