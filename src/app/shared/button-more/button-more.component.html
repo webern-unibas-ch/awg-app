@@ -1,9 +1,5 @@
-<a
-    [routerLink]="targetRoute()"
-    [queryParams]="queryParams()"
-    class="btn btn-outline-info"
-    [class.disabled]="disabled()"
-    [attr.aria-disabled]="disabled() ? true : null"
-    [attr.tabindex]="disabled() ? -1 : null">
-    Mehr …
-</a>
+@if (!disabled()) {
+    <a [routerLink]="targetRoute()" [queryParams]="queryParams()" class="btn btn-outline-info">Mehr …</a>
+} @else {
+    <button type="button" class="btn btn-outline-dark disabled" disabled>Mehr …</button>
+}

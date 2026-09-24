@@ -75,32 +75,18 @@ describe('ButtonMoreComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one anchor', () => {
-                getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-            });
-
-            it('... should display the correct button text', () => {
-                const buttonText = 'Mehr …';
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const anchorEl: HTMLElement = anchorDes[0].nativeElement;
-
-                expectToBe(anchorEl.textContent?.trim(), buttonText);
-            });
-
-            it('... should have the correct default classes', () => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const anchorEl: HTMLElement = anchorDes[0].nativeElement;
-
-                expect(anchorEl.classList).toHaveLength(2);
-                expectToContain(anchorEl.classList, 'btn');
-                expectToContain(anchorEl.classList, 'btn-outline-info');
+            it('... should contain no anchor and no button', () => {
+                getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'button', 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         const getAnchorDes = () => getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-        const getAnchorEl = () => getAnchorDes()[0].nativeElement as HTMLElement;
+        const getAnchorEl = () => getAnchorDes()[0].nativeElement as HTMLAnchorElement;
+        const getButtonDes = () => getAndExpectDebugElementByCss(compDe, 'button', 1, 1);
+        const getButtonEl = () => getButtonDes()[0].nativeElement as HTMLButtonElement;
 
         beforeEach(() => {
             // Simulate the parent setting the input properties
@@ -125,20 +111,33 @@ describe('ButtonMoreComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('should bind the correct href URL from route and queryParams', () => {
-                expectToBe(getAnchorEl().getAttribute('href'), expectedRoute);
-            });
+            describe('... with disabled = false', () => {
+                it('... should contain one anchor, but no button', () => {
+                    getAnchorDes();
+                    getAndExpectDebugElementByCss(compDe, 'button', 0, 0);
+                });
 
-            it('... should not have class `disabled`', () => {
-                expectToNotContain(getAnchorEl().classList, 'disabled');
-            });
+                it('... should display the correct anchor text', () => {
+                    const buttonText = 'Mehr …';
 
-            it('... should have aria-disabled set to null', () => {
-                expectToBe(getAnchorEl().getAttribute('aria-disabled'), null);
-            });
+                    expectToBe(getAnchorEl().textContent?.trim(), buttonText);
+                });
 
-            it('... should have tabindex set to null', () => {
-                expectToBe(getAnchorEl().getAttribute('tabindex'), null);
+                it('... should have the correct classes', () => {
+                    const anchorEl = getAnchorEl();
+
+                    expect(anchorEl.classList).toHaveLength(2);
+                    expectToContain(anchorEl.classList, 'btn');
+                    expectToContain(anchorEl.classList, 'btn-outline-info');
+                });
+
+                it('... should not have class `disabled`', () => {
+                    expectToNotContain(getAnchorEl().classList, 'disabled');
+                });
+
+                it('should bind the correct href URL from route and queryParams', () => {
+                    expectToBe(getAnchorEl().getAttribute('href'), expectedRoute);
+                });
             });
 
             describe('... with disabled = true', () => {
@@ -147,16 +146,28 @@ describe('ButtonMoreComponent', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should have class `disabled`', () => {
-                    expectToContain(getAnchorEl().classList, 'disabled');
+                it('... should contain one button, but no anchor', () => {
+                    getButtonDes();
+                    getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
                 });
 
-                it('... should have aria-disabled set to true', () => {
-                    expectToBe(getAnchorEl().getAttribute('aria-disabled'), 'true');
+                it('... should display the correct button text', () => {
+                    const buttonText = 'Mehr …';
+
+                    expectToBe(getButtonEl().textContent?.trim(), buttonText);
                 });
 
-                it('... should have tabindex set to -1', () => {
-                    expectToBe(getAnchorEl().getAttribute('tabindex'), '-1');
+                it('... should have the correct classes including `disabled`', () => {
+                    const buttonEl = getButtonEl();
+
+                    expect(buttonEl.classList).toHaveLength(3);
+                    expectToContain(buttonEl.classList, 'btn');
+                    expectToContain(buttonEl.classList, 'btn-outline-dark');
+                    expectToContain(buttonEl.classList, 'disabled');
+                });
+
+                it('... should disable the button element via the native disabled property', () => {
+                    expectToBe(getButtonEl().disabled, true);
                 });
             });
         });
