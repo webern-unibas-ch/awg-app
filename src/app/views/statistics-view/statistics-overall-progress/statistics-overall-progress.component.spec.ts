@@ -122,7 +122,7 @@ describe('StatisticsOverallProgressComponent', () => {
                 getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarStubComponent, 1, 1);
             });
 
-            it('... should pass down correct values (incl. progress rate) to progress bar component', () => {
+            it('... should pass down the correct values (incl. progress rate) to progress bar component', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 const progressBarDes = getAndExpectDebugElementByDirective(
                     cardBodyDes[0],

@@ -300,7 +300,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down correct targetRoute to ButtonMoreComponent for each complex', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
@@ -310,7 +310,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down correct disabled state to ButtonMoreComponent for each complex', () => {
+            it('... should pass down the correct disabled state to ButtonMoreComponent for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);

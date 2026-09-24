@@ -120,7 +120,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 );
             });
 
-            it('... should have CompileHtmlDirective on paragraphs and pass down correct evaluations', () => {
+            it('... should have CompileHtmlDirective on paragraphs and pass down the correct evaluations', () => {
                 const expectedContent = expectedSourceEvaluationListData.sources[0].content;
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,

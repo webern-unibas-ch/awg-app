@@ -138,7 +138,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
             });
 
-            it('... should pass down correct values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
+            it('... should pass down the correct values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
                 const expectedIdentifiers = expectedStructureMetaData.authors[0].identifiers;
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(

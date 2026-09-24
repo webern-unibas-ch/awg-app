@@ -363,7 +363,7 @@ describe('StatisticsViewComponent', () => {
                 );
             });
 
-            it('... should pass down correct summaryData to statistics summary component', () => {
+            it('... should pass down the correct summaryData to statistics summary component', () => {
                 const summaryDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
                     StatisticsSummaryStubComponent,
@@ -384,7 +384,7 @@ describe('StatisticsViewComponent', () => {
                 );
             });
 
-            it('... should pass down correct overallProgressData to statistics overall progress component', () => {
+            it('... should pass down the correct overallProgressData to statistics overall progress component', () => {
                 const overallProgressDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
                     StatisticsOverallProgressStubComponent,
@@ -405,7 +405,7 @@ describe('StatisticsViewComponent', () => {
                 );
             });
 
-            it('... should pass down correct complexBreakdownData to statistics complex breakdown component', () => {
+            it('... should pass down the correct complexBreakdownData to statistics complex breakdown component', () => {
                 const complexBreakdownDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
                     StatisticsComplexBreakdownStubComponent,
@@ -428,7 +428,7 @@ describe('StatisticsViewComponent', () => {
                 );
             });
 
-            it('... should pass down correct seriesBreakdownData to statistics series breakdown component', () => {
+            it('... should pass down the correct seriesBreakdownData to statistics series breakdown component', () => {
                 const seriesBreakdownDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
                     StatisticsSeriesBreakdownStubComponent,

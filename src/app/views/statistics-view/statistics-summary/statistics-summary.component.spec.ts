@@ -161,7 +161,7 @@ describe('StatisticsSummaryComponent', () => {
                 });
             });
 
-            it('... should pass down correct card data to each card component', () => {
+            it('... should pass down the correct card data to each card component', () => {
                 const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const cardDes = getAndExpectDebugElementByDirective(
                     cardsDes[0],

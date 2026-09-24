@@ -118,7 +118,7 @@ describe('StructureViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down correct values to heading component (`id` and `title`)', () => {
+            it('... should pass down the correct values to heading component (`id` and `title`)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
                 const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
