@@ -8,10 +8,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
+    ButtonScrollToTopStubComponent,
     EditionBreadcrumbStubComponent,
     EditionJumbotronStubComponent,
     MetaIdentifierBadgesStubComponent,
-    ScrollToTopButtonStubComponent,
 } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
@@ -22,9 +22,9 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
@@ -87,18 +87,18 @@ describe('EditionViewComponent (DONE)', () => {
             .overrideComponent(EditionViewComponent, {
                 remove: {
                     imports: [
+                        ButtonScrollToTopComponent,
                         EditionBreadcrumbComponent,
                         EditionJumbotronComponent,
                         MetaIdentifierBadgesComponent,
-                        ScrollToTopButtonComponent,
                     ],
                 },
                 add: {
                     imports: [
+                        ButtonScrollToTopStubComponent,
                         EditionBreadcrumbStubComponent,
                         EditionJumbotronStubComponent,
                         MetaIdentifierBadgesStubComponent,
-                        ScrollToTopButtonStubComponent,
                     ],
                 },
             })
@@ -181,7 +181,7 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-edition-view`', () => {
-                getAndExpectDebugElementByDirective(getEditionViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getEditionViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
             });
 
             describe('... should contain no sub-components yet', () => {

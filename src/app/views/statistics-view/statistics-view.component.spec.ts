@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vi
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
-    ScrollToTopButtonStubComponent,
+    ButtonScrollToTopStubComponent,
     StatisticsComplexBreakdownStubComponent,
     StatisticsOverallProgressStubComponent,
     StatisticsSeriesBreakdownStubComponent,
@@ -20,7 +20,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
@@ -71,20 +71,20 @@ describe('StatisticsViewComponent', () => {
             .overrideComponent(StatisticsViewComponent, {
                 remove: {
                     imports: [
+                        ButtonScrollToTopComponent,
                         StatisticsComplexBreakdownComponent,
                         StatisticsOverallProgressComponent,
                         StatisticsSeriesBreakdownComponent,
                         StatisticsSummaryComponent,
-                        ScrollToTopButtonComponent,
                     ],
                 },
                 add: {
                     imports: [
+                        ButtonScrollToTopStubComponent,
                         StatisticsComplexBreakdownStubComponent,
                         StatisticsOverallProgressStubComponent,
                         StatisticsSeriesBreakdownStubComponent,
                         StatisticsSummaryStubComponent,
-                        ScrollToTopButtonStubComponent,
                     ],
                 },
             })
@@ -304,7 +304,7 @@ describe('StatisticsViewComponent', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-statistics-view`', () => {
-                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
             });
 
             it('... should contain a container and row div in outer div', () => {

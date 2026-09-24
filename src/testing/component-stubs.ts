@@ -142,10 +142,10 @@ export class MetaIdentifierBadgesStubComponent {
 }
 
 @Component({
-    selector: 'awg-scroll-to-top-button',
+    selector: 'awg-button-scroll-to-top',
     template: '',
 })
-export class ScrollToTopButtonStubComponent {}
+export class ButtonScrollToTopStubComponent {}
 
 @Component({
     selector: 'awg-twelve-tone-spinner',

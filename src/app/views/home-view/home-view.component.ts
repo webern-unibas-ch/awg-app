@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { RouterLink } from '@angular/router';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
@@ -29,11 +29,11 @@ import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AlertInfoComponent,
+        ButtonScrollToTopComponent,
         ExternalLinkDirective,
         HeadingComponent,
         HomeViewCardComponent,
         RouterLink,
-        ScrollToTopButtonComponent,
     ],
 })
 export class HomeViewComponent {

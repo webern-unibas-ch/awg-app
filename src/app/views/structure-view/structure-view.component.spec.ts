@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { HeadingStubComponent, ScrollToTopButtonStubComponent } from '@testing/component-stubs';
+import { ButtonScrollToTopStubComponent, HeadingStubComponent } from '@testing/component-stubs';
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { StructureViewComponent } from './structure-view.component';
 
@@ -27,8 +27,8 @@ describe('StructureViewComponent (DONE)', () => {
             declarations: [],
         })
             .overrideComponent(StructureViewComponent, {
-                remove: { imports: [HeadingComponent, ScrollToTopButtonComponent] },
-                add: { imports: [HeadingStubComponent, ScrollToTopButtonStubComponent] },
+                remove: { imports: [ButtonScrollToTopComponent, HeadingComponent] },
+                add: { imports: [ButtonScrollToTopStubComponent, HeadingStubComponent] },
             })
             .compileComponents();
     });
@@ -69,7 +69,7 @@ describe('StructureViewComponent (DONE)', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-structure-view`', () => {
-                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
             });
 
             it('... should contain one heading component (stubbed) in `div.awg-structure-view`', () => {
