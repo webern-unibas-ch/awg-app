@@ -103,6 +103,8 @@ export class EditionViewComponent {
      */
     readonly jumbotronTitle = computed<string>(() => {
         const context = this.viewContext();
+        const series = this.selectedEditionSeries();
+        const section = this.selectedEditionSection();
         const complex = this.selectedEditionComplex();
         const { PREFACE, EDITION_INTRO } = EDITION_ROUTE_CONSTANTS;
 
@@ -120,6 +122,14 @@ export class EditionViewComponent {
 
         if (context.isIntro) {
             return EDITION_INTRO.full;
+        }
+
+        if (section) {
+            return section.section.full;
+        }
+
+        if (series) {
+            return series.series.full;
         }
 
         return this.EDITION_VIEW_TITLE;

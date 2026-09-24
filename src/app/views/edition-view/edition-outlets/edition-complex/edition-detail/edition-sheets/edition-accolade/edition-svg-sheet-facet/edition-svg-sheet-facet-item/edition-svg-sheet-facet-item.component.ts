@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, input, Input } from '@angul
 
 import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { EditionSvgSheet } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionTypeLabel } from '@awg-views/edition-view/models/edition-type.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 

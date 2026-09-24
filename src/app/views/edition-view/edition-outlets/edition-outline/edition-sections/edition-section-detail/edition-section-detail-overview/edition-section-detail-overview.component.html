@@ -1,0 +1,38 @@
+@if (selectedSection(); as section) {
+    @let content = section.content;
+    @let opusList = content.complexTypes.opus;
+    @let mnrList = content.complexTypes.mnr;
+
+    @if (!opusList.length && !mnrList.length) {
+        <awg-edition-section-detail-placeholder [selectedSection]="section" />
+    } @else {
+        <div class="awg-edition-section-detail">
+            <awg-edition-section-detail-disclaimer />
+
+            @if (content.intro && !content.intro.disabled) {
+                <div class="awg-edition-section-detail-preamble para p-3 shadow border rounded-3">
+                    <div class="row">
+                        <div class="awg-edition-section-detail-intro-container col-12 col-xl-8">
+                            <awg-edition-section-detail-intro-card [selectedSection]="section" />
+                        </div>
+                        <div class="awg-edition-section-detail-cover-container col-xl-4 d-none d-xl-block">
+                            <awg-edition-section-detail-cover [selectedSection]="section" />
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (opusList.length) {
+                <div class="awg-edition-section-detail-opus para p-3 shadow border rounded-3">
+                    <h5>nach Opusnummer:</h5>
+                    <awg-edition-section-detail-complex-card [displayedComplexes]="opusList" />
+                </div>
+            }
+            @if (mnrList.length) {
+                <div class="awg-edition-section-detail-mnr p-3 shadow border rounded-3">
+                    <h5>nach Moldenhauer-Nummer:</h5>
+                    <awg-edition-section-detail-complex-card [displayedComplexes]="mnrList" />
+                </div>
+            }
+        </div>
+    }
+}

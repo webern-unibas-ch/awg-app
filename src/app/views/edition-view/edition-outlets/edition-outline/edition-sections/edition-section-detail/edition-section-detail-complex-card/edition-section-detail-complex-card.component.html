@@ -1,0 +1,49 @@
+@if (displayedComplexes(); as complexes) {
+    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+        @for (complex of complexes; track complex.complex.complexId.short) {
+            <div class="col">
+                <div class="card awg-edition-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" [class.text-muted]="complex.disabled">
+                            <span
+                                class="awg-edition-info-header-title"
+                                [innerHTML]="complex.complex.complexId.full"></span>
+                        </h5>
+                    </div>
+                    <div class="card-footer">
+                        @if (!complex.disabled) {
+                            <p class="awg-edition-responsibility">
+                                @let resp = complex.complex.respStatement;
+                                @let versionDate =
+                                    resp.lastModified === '---' ? '---' : (resp.lastModified | date: 'longDate');
+
+                                <small class="text-muted">
+                                    Ediert von
+                                    @for (editor of resp.editors; track editor.name; let isLast = $last) {
+                                        <span class="editor">
+                                            <a [href]="editor.homepage">{{ editor.name }}</a>
+                                            @if (!isLast) {
+                                                <span>&nbsp;&&nbsp;</span>
+                                            }
+                                        </span>
+                                    }
+                                    <br />
+                                    Versionsdatum:
+                                    <span class="version">{{ versionDate }}</span>
+                                </small>
+                            </p>
+                        }
+                        <p class="text-end">
+                            <a
+                                [routerLink]="[complex.complex.baseRoute]"
+                                class="btn btn-outline-info"
+                                [class.disabled]="complex.disabled"
+                                >Mehr ...
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

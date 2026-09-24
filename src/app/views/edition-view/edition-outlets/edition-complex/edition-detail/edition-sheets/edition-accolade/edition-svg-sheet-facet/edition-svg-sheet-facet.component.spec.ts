@@ -19,9 +19,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-app/views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionTypeLabel } from '@awg-views/edition-view/models/edition-type.model';
 
-import { EditionTypeLabel } from '@awg-app/views/edition-view/models/edition-type.model';
 import { EditionSvgSheetFacetComponent } from './edition-svg-sheet-facet.component';
 
 // Mock components
