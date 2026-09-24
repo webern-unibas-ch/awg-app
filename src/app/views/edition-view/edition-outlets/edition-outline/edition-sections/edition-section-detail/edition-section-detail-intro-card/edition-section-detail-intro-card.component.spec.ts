@@ -91,7 +91,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
                     fixture.detectChanges();
 
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-card', 0, 0);
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro-card', 0, 0);
                 });
 
                 it('... selected section has no intro content', () => {
@@ -107,7 +107,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
 
                     fixture.detectChanges();
 
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-card', 0, 0);
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-intro-card', 0, 0);
                 });
             });
 
