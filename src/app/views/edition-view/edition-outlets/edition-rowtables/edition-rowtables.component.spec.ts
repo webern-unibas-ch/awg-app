@@ -1,10 +1,9 @@
 import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router, RouterLink } from '@angular/router';
+import { provideRouter } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import {
@@ -18,13 +17,14 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
-import { RowtablesList } from '@awg-views/edition-view/models';
 import {
     EditionDataAssetsError,
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
+import { RowtablesList } from '@awg-views/edition-view/models/rowtables.model';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionRowtablesComponent } from './edition-rowtables.component';
@@ -33,8 +33,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowtablesComponent;
     let fixture: ComponentFixture<EditionRowtablesComponent>;
     let compDe: DebugElement;
-
-    let router: Router;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'rowtables'>>;
     let expectedViewDataContent: EditionViewDataContent<'rowtables'>;
@@ -47,7 +45,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [EditionRowtablesComponent, AlertErrorComponent, TwelveToneSpinnerComponent],
+            imports: [EditionRowtablesComponent, AlertErrorComponent, ButtonMoreComponent, TwelveToneSpinnerComponent],
             providers: [
                 provideRouter([]),
                 {
@@ -59,9 +57,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        router = TestBed.inject(Router);
-
         // Test data
         expectedRowtablesData = structuredClone(mockEditionData.mockRowtablesData);
 
@@ -117,6 +112,30 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            const getRowtablesLength = () => expectedRowtablesData?.rowtables?.length || 0;
+            const getRowtablesViewDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view.row', 1, 1);
+            const getRowtablesColDes = () =>
+                getAndExpectDebugElementByCss(
+                    getRowtablesViewDes()[0],
+                    'div.col',
+                    getRowtablesLength(),
+                    getRowtablesLength()
+                );
+            const getCardBodyDes = () =>
+                getAndExpectDebugElementByCss(
+                    getRowtablesViewDes()[0],
+                    'div.card-body',
+                    getRowtablesLength(),
+                    getRowtablesLength()
+                );
+            const getCardFooterDes = () =>
+                getAndExpectDebugElementByCss(
+                    getRowtablesViewDes()[0],
+                    'div.card-footer',
+                    getRowtablesLength(),
+                    getRowtablesLength()
+                );
+
             it('... should render nothing if viewData is not available', async () => {
                 mockViewDataSignal.set(null as any);
 
@@ -201,59 +220,37 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 });
 
                 it('... should contain one outer div.awg-rowtables-view.row', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view.row', 1, 1);
+                    getRowtablesViewDes();
                 });
 
                 it('... should contain as many inner div.col as entries in rowtablesData', () => {
-                    const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view.row', 1, 1);
-
                     expectToBe(expectedRowtablesData.rowtables.length, 4);
-                    getAndExpectDebugElementByCss(
-                        rowDes[0],
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                    getRowtablesColDes();
                 });
 
                 it('... should contain one div.card with body and footer in each div.col ', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                    const colDes = getRowtablesColDes();
 
-                    divDes.forEach(divDe => {
-                        getAndExpectDebugElementByCss(divDe, 'div.card', 1, 1);
-                        getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
-                        getAndExpectDebugElementByCss(divDe, 'div.card-footer', 1, 1);
+                    colDes.forEach(colDe => {
+                        getAndExpectDebugElementByCss(colDe, 'div.card', 1, 1);
+                        getAndExpectDebugElementByCss(colDe, 'div.card-body', 1, 1);
+                        getAndExpectDebugElementByCss(colDe, 'div.card-footer', 1, 1);
                     });
                 });
 
                 it('... should contain one h5.card-title in each div.card-body', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                    const cardBodyDes = getCardBodyDes();
 
-                    divDes.forEach(divDe => {
-                        getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    cardBodyDes.forEach(cardBodyDe => {
+                        getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                     });
                 });
 
                 it('... should display the correct titles in h5.card-title', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                    const cardBodyDes = getCardBodyDes();
 
-                    divDes.forEach((divDe, index) => {
-                        const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    cardBodyDes.forEach((cardBodyDe, index) => {
+                        const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                         const expectedHeading = 'Reihentabelle ' + expectedRowtablesData.rowtables[index].short;
@@ -263,15 +260,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 });
 
                 it('... should text-mute the title of disabled rowtables', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                    const cardBodyDes = getCardBodyDes();
 
-                    divDes.forEach((divDe, index) => {
-                        const hDes = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    cardBodyDes.forEach((cardBodyDe, index) => {
+                        const hDes = getAndExpectDebugElementByCss(cardBodyDe, 'h5.card-title', 1, 1);
                         const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                         if (expectedRowtablesData.rowtables[index].disabled) {
@@ -282,126 +274,69 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain one anchor button in each div.card-footer', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                it('... should contain one ButtonMoreComponent in each div.card-footer', () => {
+                    const cardFooterDes = getCardFooterDes();
 
-                    divDes.forEach(divDe => {
-                        getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    cardFooterDes.forEach(cardFooterDe => {
+                        getAndExpectDebugElementByDirective(cardFooterDe, ButtonMoreComponent, 1, 1);
                     });
                 });
 
-                it('... should display the correct text in anchor buttons', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
+                    const cardFooterDes = getCardFooterDes();
 
-                    divDes.forEach(divDe => {
-                        const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                    cardFooterDes.forEach((cardFooterDe, index) => {
+                        const buttonMoreDes = getAndExpectDebugElementByDirective(
+                            cardFooterDe,
+                            ButtonMoreComponent,
+                            1,
+                            1
+                        );
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                        const expectedText = 'Mehr ...';
+                        const rowtable = expectedRowtablesData.rowtables[index];
+                        const expectedTargetRoute = ['../complex' + rowtable.route, 'sheets'];
 
-                        expectToBe(aEl.textContent.trim(), expectedText);
+                        expectToEqual(buttonMoreCmp.targetRoute(), expectedTargetRoute);
                     });
                 });
 
-                it('... should disable the buttons of disabled rowtables', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.col',
-                        expectedRowtablesData.rowtables.length,
-                        expectedRowtablesData.rowtables.length
-                    );
+                it('... should pass down the correct queryParams to ButtonMoreComponent', () => {
+                    const cardFooterDes = getCardFooterDes();
 
-                    divDes.forEach((divDe, index) => {
-                        const aDes = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
-                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                    cardFooterDes.forEach((cardFooterDe, index) => {
+                        const buttonMoreDes = getAndExpectDebugElementByDirective(
+                            cardFooterDe,
+                            ButtonMoreComponent,
+                            1,
+                            1
+                        );
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                        if (expectedRowtablesData.rowtables[index].disabled) {
-                            expectToContain(aEl.classList, 'disabled');
-                        } else {
-                            expectToNotContain(aEl.classList, 'disabled');
-                        }
+                        const rowtable = expectedRowtablesData.rowtables[index];
+                        const expectedQueryParams = { id: rowtable.id };
+
+                        expectToEqual(buttonMoreCmp.queryParams(), expectedQueryParams);
                     });
                 });
-            });
-        });
 
-        describe('[routerLink]', () => {
-            let linkDes: DebugElement[];
-            let routerLinks: RouterLink[];
+                it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
+                    const cardFooterDes = getCardFooterDes();
 
-            beforeEach(async () => {
-                // Mock data state
-                mockViewDataSignal.set(
-                    createMockViewData(expectedViewDataContent, {
-                        isLoading: false,
-                        error: null,
-                    })
-                );
+                    cardFooterDes.forEach((cardFooterDe, index) => {
+                        const buttonMoreDes = getAndExpectDebugElementByDirective(
+                            cardFooterDe,
+                            ButtonMoreComponent,
+                            1,
+                            1
+                        );
+                        const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                await detectChangesOnPush(fixture);
+                        const rowtable = expectedRowtablesData.rowtables[index];
 
-                linkDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    RouterLink,
-                    expectedRowtablesData.rowtables.length,
-                    expectedRowtablesData.rowtables.length
-                );
-
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
-            });
-
-            it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedRowtablesData.rowtables.length);
-            });
-
-            it('... can get correct linkParams from template', () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
-                    const rowtable = expectedRowtablesData.rowtables[index];
-                    const expectedRouterLink = `/complex${rowtable.route}/sheets?id=${rowtable.id}`;
-                    const urlTreeString = routerLink.urlTree?.toString();
-
-                    expectToBe(urlTreeString, expectedRouterLink);
-                }
-            });
-
-            it('... can get correct queryParams from template', () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
-                    const expectedQueryParams = { id: expectedRowtablesData.rowtables[index].id };
-
-                    expectToEqual(routerLink.queryParams, expectedQueryParams);
-                }
-            });
-
-            it('... can click all links in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-                for (const [index] of routerLinks.entries()) {
-                    navigateSpy.mockClear();
-
-                    const linkDe = linkDes[index];
-                    const rowtable = expectedRowtablesData.rowtables[index];
-                    const expectedRouterLink = `/complex${rowtable.route}/sheets?id=${rowtable.id}`;
-
-                    await clickAndAwaitChanges(linkDe, fixture);
-
-                    expect(navigateSpy).toHaveBeenCalled();
-                    const firstCallArg = navigateSpy.mock.calls[0][0];
-                    const actualUrl = firstCallArg.toString();
-
-                    expectToBe(actualUrl, expectedRouterLink);
-                }
-
-                navigateSpy.mockRestore();
+                        expectToBe(buttonMoreCmp.disabled(), rowtable.disabled);
+                    });
+                });
             });
         });
     });

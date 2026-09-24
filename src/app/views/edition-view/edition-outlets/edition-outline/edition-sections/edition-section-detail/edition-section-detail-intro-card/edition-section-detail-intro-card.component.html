@@ -10,12 +10,7 @@
             <div class="card-footer d-flex flex-column">
                 <p class="mt-auto text-end">
                     @let sectionRoute = section.labeledRoute.route.join('/');
-                    <a
-                        [routerLink]="[sectionRoute, 'intro']"
-                        class="btn btn-outline-info"
-                        [class.disabled]="intro.disabled"
-                        >Mehr ...
-                    </a>
+                    <awg-button-more [targetRoute]="[sectionRoute, 'intro']" [disabled]="intro.disabled" />
                 </p>
             </div>
         </div>

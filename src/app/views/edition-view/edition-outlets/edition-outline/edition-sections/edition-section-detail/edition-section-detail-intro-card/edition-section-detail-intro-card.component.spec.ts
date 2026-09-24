@@ -1,21 +1,19 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router, RouterLink } from '@angular/router';
+import { provideRouter } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
-    expectToContain,
     expectToEqual,
-    expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSectionDetailIntroCardComponent } from './edition-section-detail-intro-card.component';
 
@@ -24,21 +22,16 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSectionDetailIntroCardComponent>;
     let compDe: DebugElement;
 
-    let router: Router;
-
     let expectedSection: EditionOutlineSection;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSectionDetailIntroCardComponent],
+            imports: [EditionSectionDetailIntroCardComponent, ButtonMoreComponent],
             providers: [provideRouter([])],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        router = TestBed.inject(Router);
-
         // Test data
         expectedSection = EditionStateHelper.getSection('1', '5');
 
@@ -147,66 +140,32 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 getTextEndParaDes();
             });
 
-            it('... should have a link to intro in text-end paragraph', () => {
-                const aDes = getAndExpectDebugElementByCss(getTextEndParaDes()[0], 'a', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                const expectedLinkText = 'Mehr ...';
-
-                expectToBe(aEl.textContent.trim(), expectedLinkText);
+            it('... should have a ButtonMoreComponent in text-end paragraph', () => {
+                getAndExpectDebugElementByDirective(getTextEndParaDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should disable links only for disabled intros', () => {
-                const aDes = getAndExpectDebugElementByCss(getTextEndParaDes()[0], 'a', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+            it('... should pass down correct targetRoute to ButtonMoreComponent', () => {
+                const buttonMoreDes = getAndExpectDebugElementByDirective(
+                    getTextEndParaDes()[0],
+                    ButtonMoreComponent,
+                    1,
+                    1
+                );
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                if (expectedSection.content.intro.disabled) {
-                    expectToContain(aEl.classList, 'disabled');
-                } else {
-                    expectToNotContain(aEl.classList, 'disabled');
-                }
-            });
-        });
-
-        describe('[routerLink]', () => {
-            let linkDes: DebugElement[];
-            let routerLinks: RouterLink[];
-
-            beforeEach(() => {
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
-
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+                expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.labeledRoute.route.join('/'), 'intro']);
             });
 
-            it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, 1);
-            });
+            it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+                const buttonMoreDes = getAndExpectDebugElementByDirective(
+                    getTextEndParaDes()[0],
+                    ButtonMoreComponent,
+                    1,
+                    1
+                );
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-            it('... can get correct linkParams from template', () => {
-                for (const routerLink of routerLinks) {
-                    const expectedRouterLink = expectedSection.labeledRoute.route.join('/') + '/intro';
-
-                    expectToBe(routerLink.urlTree?.toString(), expectedRouterLink);
-                }
-            });
-
-            it('... can click all links in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-                for (const [index] of routerLinks.entries()) {
-                    navigateSpy.mockClear();
-
-                    const linkDe = linkDes[index];
-                    const expectedRouterLink = expectedSection.labeledRoute.route.join('/') + '/intro';
-
-                    await clickAndAwaitChanges(linkDe, fixture);
-
-                    expect(navigateSpy).toHaveBeenCalled();
-                    const firstCallArg = navigateSpy.mock.calls[0][0];
-                    const actualUrl = firstCallArg.toString();
-
-                    expectToBe(actualUrl, expectedRouterLink);
-                }
+                expectToBe(buttonMoreCmp.disabled(), expectedSection.content.intro.disabled);
             });
         });
     });

@@ -1,0 +1,17 @@
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn-outline-info:hover,
+.btn-outline-info:focus,
+.btn-outline-info:focus-visible,
+.btn-outline-info:active {
+    color: #fff !important;
+}
+
+.btn-outline-info:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(23, 162, 184, 0.5);
+}

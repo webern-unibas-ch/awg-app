@@ -1,0 +1,5 @@
+@if (!disabled()) {
+    <a [routerLink]="targetRoute()" [queryParams]="queryParams()" class="btn btn-outline-info">Mehr …</a>
+} @else {
+    <button type="button" class="btn btn-outline-dark disabled" disabled>Mehr …</button>
+}
