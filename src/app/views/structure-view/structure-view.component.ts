@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 /**
  * The StructureView component.
@@ -15,7 +15,7 @@ import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scr
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ExternalLinkDirective, HeadingComponent, ScrollToTopButtonComponent],
+    imports: [ButtonScrollToTopComponent, ExternalLinkDirective, HeadingComponent],
 })
 export class StructureViewComponent {
     /**

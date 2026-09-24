@@ -9,11 +9,11 @@ import { faArrowUp, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { ScrollToTopButtonComponent } from './scroll-to-top-button.component';
+import { ButtonScrollToTopComponent } from './button-scroll-to-top.component';
 
-describe('ScrollToTopButtonComponent (DONE)', () => {
-    let component: ScrollToTopButtonComponent;
-    let fixture: ComponentFixture<ScrollToTopButtonComponent>;
+describe('ButtonScrollToTopComponent (DONE)', () => {
+    let component: ButtonScrollToTopComponent;
+    let fixture: ComponentFixture<ButtonScrollToTopComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -28,7 +28,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ScrollToTopButtonComponent],
+            imports: [ButtonScrollToTopComponent],
         }).compileComponents();
     });
 
@@ -46,7 +46,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
         expectedArrowIcon = faArrowUp;
 
         // Create component fixture
-        fixture = TestBed.createComponent(ScrollToTopButtonComponent);
+        fixture = TestBed.createComponent(ButtonScrollToTopComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -75,7 +75,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
 
         describe('#VIEW', () => {
             it('... should contain no scroll-to-top button', () => {
-                getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'button.awg-btn-scroll-to-top', 0, 0);
             });
         });
     });
@@ -89,7 +89,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
         describe('#VIEW', () => {
             describe('... with `showScrollButton` signal set to false', () => {
                 it('... should contain no scroll-to-top button', () => {
-                    getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 0, 0);
+                    getAndExpectDebugElementByCss(compDe, 'button.awg-btn-scroll-to-top', 0, 0);
                 });
             });
 
@@ -100,12 +100,12 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
                     fixture.detectChanges();
                 });
 
-                it('... should contain one button.awg-scroll-to-top', () => {
-                    getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 1, 1);
+                it('... should contain one scroll-to-top button', () => {
+                    getAndExpectDebugElementByCss(compDe, 'button.awg-btn-scroll-to-top', 1, 1);
                 });
 
                 it('... should display arrow icon in scroll button ', () => {
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-btn-scroll-to-top', 1, 1);
                     const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
                     const faIconIns = faIconDes[0].componentInstance.icon;
 
@@ -113,7 +113,7 @@ describe('ScrollToTopButtonComponent (DONE)', () => {
                 });
 
                 it('... should trigger `scrollToTop` method on button click', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-scroll-to-top-btn', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-btn-scroll-to-top', 1, 1);
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
 

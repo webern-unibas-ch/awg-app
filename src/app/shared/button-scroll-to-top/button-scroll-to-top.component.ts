@@ -4,21 +4,21 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * The ScrollToTopButton component.
+ * The ButtonScrollToTop component.
  *
  * It contains the scroll-to-top button.
  */
 @Component({
-    selector: 'awg-scroll-to-top-button',
-    templateUrl: './scroll-to-top-button.component.html',
-    styleUrls: ['./scroll-to-top-button.component.scss'],
+    selector: 'awg-button-scroll-to-top',
+    templateUrl: './button-scroll-to-top.component.html',
+    styleUrls: ['./button-scroll-to-top.component.scss'],
     host: {
         '(window:scroll)': 'onWindowScroll()',
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
-export class ScrollToTopButtonComponent {
+export class ButtonScrollToTopComponent {
     /**
      * Private readonly injection variable: _document.
      *

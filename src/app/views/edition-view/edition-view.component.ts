@@ -2,8 +2,8 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
@@ -26,10 +26,10 @@ import { EditionViewService } from './services/edition-view.service';
     styleUrls: ['./edition-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
+        ButtonScrollToTopComponent,
         EditionBreadcrumbComponent,
         EditionJumbotronComponent,
         MetaIdentifierBadgesComponent,
-        ScrollToTopButtonComponent,
         DatePipe,
         RouterOutlet,
     ],

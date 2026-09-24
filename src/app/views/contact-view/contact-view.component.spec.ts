@@ -6,9 +6,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+    ButtonScrollToTopStubComponent,
     HeadingStubComponent,
     MetaIdentifierBadgesStubComponent,
-    ScrollToTopButtonStubComponent,
 } from '@testing/component-stubs';
 import {
     expectToBe,
@@ -18,11 +18,11 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { MetaIdentifierBadgesComponent } from '@awg-shared/meta/meta-identifier-badges/meta-identifier-badges.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { ContactViewComponent } from './contact-view.component';
 
@@ -50,9 +50,9 @@ describe('ContactViewComponent (DONE)', () => {
             providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
             .overrideComponent(ContactViewComponent, {
-                remove: { imports: [HeadingComponent, MetaIdentifierBadgesComponent, ScrollToTopButtonComponent] },
+                remove: { imports: [ButtonScrollToTopComponent, HeadingComponent, MetaIdentifierBadgesComponent] },
                 add: {
-                    imports: [HeadingStubComponent, MetaIdentifierBadgesStubComponent, ScrollToTopButtonStubComponent],
+                    imports: [ButtonScrollToTopStubComponent, HeadingStubComponent, MetaIdentifierBadgesStubComponent],
                 },
             })
             .compileComponents();
@@ -121,7 +121,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-contact-view`', () => {
-                getAndExpectDebugElementByDirective(getContactViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getContactViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
             });
 
             it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {

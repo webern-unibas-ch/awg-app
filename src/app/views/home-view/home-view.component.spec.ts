@@ -8,9 +8,9 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     AlertInfoStubComponent,
+    ButtonScrollToTopStubComponent,
     HeadingStubComponent,
     HomeViewCardStubComponent,
-    ScrollToTopButtonStubComponent,
 } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
@@ -22,10 +22,10 @@ import {
 } from '@testing/expect-helper';
 
 import { AlertInfoComponent } from '@awg-shared/alert-info/alert-info.component';
+import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
 import { HeadingComponent } from '@awg-shared/heading/heading.component';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
-import { ScrollToTopButtonComponent } from '@awg-shared/scroll-to-top-button/scroll-to-top-button.component';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
@@ -75,14 +75,14 @@ describe('HomeViewComponent (DONE)', () => {
         })
             .overrideComponent(HomeViewComponent, {
                 remove: {
-                    imports: [AlertInfoComponent, HeadingComponent, HomeViewCardComponent, ScrollToTopButtonComponent],
+                    imports: [AlertInfoComponent, ButtonScrollToTopComponent, HeadingComponent, HomeViewCardComponent],
                 },
                 add: {
                     imports: [
                         AlertInfoStubComponent,
+                        ButtonScrollToTopStubComponent,
                         HeadingStubComponent,
                         HomeViewCardStubComponent,
-                        ScrollToTopButtonStubComponent,
                     ],
                 },
             })
@@ -196,7 +196,7 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should contain one ScrollToTop component (stubbed) in `div.awg-home-view`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewDes()[0], ScrollToTopButtonStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
             });
 
             it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {

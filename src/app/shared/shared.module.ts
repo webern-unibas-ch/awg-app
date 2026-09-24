@@ -14,6 +14,7 @@ import { CodeMirrorModule } from './codemirror/codemirror.module';
 // Shared components
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
+import { ButtonScrollToTopComponent } from './button-scroll-to-top/button-scroll-to-top.component';
 import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions/disclaimer-workeditions.component';
 import { FullscreenToggleComponent } from './fullscreen/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
@@ -24,7 +25,6 @@ import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
-import { ScrollToTopButtonComponent } from './scroll-to-top-button/scroll-to-top-button.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -58,6 +58,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
         AlertInfoComponent,
+        ButtonScrollToTopComponent,
         FullscreenToggleComponent,
         HeadingComponent,
         LanguageSwitcherComponent,
@@ -65,7 +66,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LogoComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
-        ScrollToTopButtonComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
         CompileHtmlDirective,
@@ -92,6 +92,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         SharedNgbootstrapModule,
         AlertErrorComponent,
         AlertInfoComponent,
+        ButtonScrollToTopComponent,
         DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
         HeadingComponent,
@@ -102,7 +103,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         MetaIdentifierBadgesComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
-        ScrollToTopButtonComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
