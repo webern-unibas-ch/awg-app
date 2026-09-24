@@ -252,41 +252,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionReportRoutingModule.html" data-type="entity-link" >EditionReportRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionSectionDetailModule.html" data-type="entity-link" >EditionSectionDetailModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' : 'data-bs-target="#xs-components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' :
-                                            'id="xs-components-links-module-EditionSectionDetailModule-8fb96e3fdfced04928c799e3f9acfb72181f3070746cab5ef13c42cc07428f282f1b430fd15e47022a9256bed1a3673bd7f04c07346a0b079ba7f3398abcfb04"' }>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailComplexCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailComplexCardComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailDisclaimerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailDisclaimerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailIntroCardComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailIntroCardComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailOverviewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailOverviewComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSectionDetailPlaceholderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionDetailPlaceholderComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSectionDetailRoutingModule.html" data-type="entity-link" >EditionSectionDetailRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionSheetsModule.html" data-type="entity-link" >EditionSheetsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -393,13 +358,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionViewModule.html" data-type="entity-link" >EditionViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionViewModule-39cca4ac9ad6e15785315f559ce64a807cb0e400293e9ffc89f2dc6c762cae6b8da8fc45fb872a75bcdcf86f20f917641643295b34c7a0bb9a07aee2ad701e22"' : 'data-bs-target="#xs-components-links-module-EditionViewModule-39cca4ac9ad6e15785315f559ce64a807cb0e400293e9ffc89f2dc6c762cae6b8da8fc45fb872a75bcdcf86f20f917641643295b34c7a0bb9a07aee2ad701e22"' }>
+                                            'data-bs-target="#components-links-module-EditionViewModule-db4013e5f87562c800e19d6254e1881db74318c7677b2eed83cbea9856ec0d62d2fe46d3db4a15993c26faba09608dc975f7b9dcdb36dc8c4bcd02708055dca8"' : 'data-bs-target="#xs-components-links-module-EditionViewModule-db4013e5f87562c800e19d6254e1881db74318c7677b2eed83cbea9856ec0d62d2fe46d3db4a15993c26faba09608dc975f7b9dcdb36dc8c4bcd02708055dca8"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionViewModule-39cca4ac9ad6e15785315f559ce64a807cb0e400293e9ffc89f2dc6c762cae6b8da8fc45fb872a75bcdcf86f20f917641643295b34c7a0bb9a07aee2ad701e22"' :
-                                            'id="xs-components-links-module-EditionViewModule-39cca4ac9ad6e15785315f559ce64a807cb0e400293e9ffc89f2dc6c762cae6b8da8fc45fb872a75bcdcf86f20f917641643295b34c7a0bb9a07aee2ad701e22"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionViewModule-db4013e5f87562c800e19d6254e1881db74318c7677b2eed83cbea9856ec0d62d2fe46d3db4a15993c26faba09608dc975f7b9dcdb36dc8c4bcd02708055dca8"' :
+                                            'id="xs-components-links-module-EditionViewModule-db4013e5f87562c800e19d6254e1881db74318c7677b2eed83cbea9856ec0d62d2fe46d3db4a15993c26faba09608dc975f7b9dcdb36dc8c4bcd02708055dca8"' }>
                                             <li class="link">
                                                 <a href="components/EditionBreadcrumbComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionBreadcrumbComponent</a>
                                             </li>
@@ -413,10 +378,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionJumbotronComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSectionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionsComponent</a>
+                                                <a href="components/EditionOutlineComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionOutlineComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSeriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSeriesComponent</a>
+                                                <a href="components/EditionSectionsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionsComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/EditionSeriesDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSeriesDetailComponent</a>
@@ -692,13 +657,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionOutlineComponent.html" data-type="entity-link" >EditionOutlineComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionPrefaceComponent.html" data-type="entity-link" >EditionPrefaceComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionRowtablesComponent.html" data-type="entity-link" >EditionRowtablesComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionSectionCardComponent.html" data-type="entity-link" >EditionSectionCardComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionSectionDetailComplexCardComponent.html" data-type="entity-link" >EditionSectionDetailComplexCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionDetailComponent.html" data-type="entity-link" >EditionSectionDetailComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionDetailCoverComponent.html" data-type="entity-link" >EditionSectionDetailCoverComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionSectionDetailDisclaimerComponent.html" data-type="entity-link" >EditionSectionDetailDisclaimerComponent</a>
@@ -707,7 +684,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionSectionDetailIntroCardComponent.html" data-type="entity-link" >EditionSectionDetailIntroCardComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionSectionDetailOverviewComponent.html" data-type="entity-link" >EditionSectionDetailOverviewComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionSectionDetailPlaceholderComponent.html" data-type="entity-link" >EditionSectionDetailPlaceholderComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSectionsComponent.html" data-type="entity-link" >EditionSectionsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSeriesCardComponent.html" data-type="entity-link" >EditionSeriesCardComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSeriesDetailComponent.html" data-type="entity-link" >EditionSeriesDetailComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionSideInfoComponent.html" data-type="entity-link" >EditionSideInfoComponent</a>
