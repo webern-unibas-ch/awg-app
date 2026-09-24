@@ -2,10 +2,10 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 import { DebugElement, isSignal, LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, RouterLink } from '@angular/router';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
@@ -16,17 +16,15 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
 
-import { provideRouter, Router, RouterLink } from '@angular/router';
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 
 describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
     let component: EditionSectionDetailComplexCardComponent;
     let fixture: ComponentFixture<EditionSectionDetailComplexCardComponent>;
     let compDe: DebugElement;
-
-    let router: Router;
 
     let expectedComplexes: EditionOutlineComplexItem[];
     let expectedLength: number;
@@ -37,15 +35,12 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSectionDetailComplexCardComponent, DatePipe, RouterLink],
+            imports: [EditionSectionDetailComplexCardComponent, ButtonMoreComponent, DatePipe, RouterLink],
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        router = TestBed.inject(Router);
-
         // Test data
         const section = EditionStateHelper.getSection('1', '5');
         expectedComplexes = section?.content.sectionComplexes ?? [];
@@ -298,70 +293,31 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should have a link to complex in text-end paragraph for each complex', () => {
+            it('... should have a ButtonMoreComponent in text-end paragraph for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach(pDe => {
-                    const aDes = getAndExpectDebugElementByCss(pDe, 'a', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                    const expectedLinkText = 'Mehr ...';
-
-                    expectToBe(aEl.textContent.trim(), expectedLinkText);
+                    getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
                 });
             });
 
-            it('... should disable links only for disabled editionComplexes', () => {
+            it('... should pass down correct targetRoute to ButtonMoreComponent for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
-                    const aDes = getAndExpectDebugElementByCss(pDe, 'a', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                    const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
+                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                    if (expectedComplexes[index].disabled) {
-                        expectToContain(aEl.classList, 'disabled');
-                    } else {
-                        expectToNotContain(aEl.classList, 'disabled');
-                    }
-                });
-            });
-        });
-
-        describe('[routerLink]', () => {
-            let linkDes: DebugElement[];
-            let routerLinks: RouterLink[];
-
-            beforeEach(() => {
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, expectedLength, expectedLength);
-
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
-            });
-
-            it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedLength);
-            });
-
-            it('... can get correct linkParams for each complex link from template', () => {
-                routerLinks.forEach((routerLink, index) => {
-                    const expectedRouterLink = expectedComplexes[index].complex.baseRoute;
-
-                    expectToBe(routerLink.urlTree?.toString(), expectedRouterLink);
+                    expectToEqual(buttonMoreCmp.targetRoute(), [expectedComplexes[index].complex.baseRoute]);
                 });
             });
 
-            it('... can click all links in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+            it('... should pass down correct disabled state to ButtonMoreComponent for each complex', () => {
+                const pDes = getCardFooterParagraphDes();
+                pDes.forEach((pDe, index) => {
+                    const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
+                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                for (const [index, linkDe] of linkDes.entries()) {
-                    navigateSpy.mockClear();
-
-                    const expectedRouterLink = expectedComplexes[index].complex.baseRoute;
-
-                    await clickAndAwaitChanges(linkDe, fixture);
-
-                    expect(navigateSpy).toHaveBeenCalled();
-                    expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRouterLink);
-                }
-
-                navigateSpy.mockRestore();
+                    expectToBe(buttonMoreCmp.disabled(), expectedComplexes[index].disabled);
+                });
             });
         });
     });

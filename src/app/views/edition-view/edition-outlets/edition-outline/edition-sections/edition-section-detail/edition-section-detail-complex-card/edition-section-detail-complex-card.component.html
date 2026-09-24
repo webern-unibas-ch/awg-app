@@ -34,12 +34,9 @@
                             </p>
                         }
                         <p class="text-end">
-                            <a
-                                [routerLink]="[complex.complex.baseRoute]"
-                                class="btn btn-outline-info"
-                                [class.disabled]="complex.disabled"
-                                >Mehr ...
-                            </a>
+                            <awg-button-more
+                                [targetRoute]="[complex.complex.baseRoute]"
+                                [disabled]="complex.disabled" />
                         </p>
                     </div>
                 </div>

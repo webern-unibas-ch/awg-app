@@ -1,0 +1,9 @@
+<a
+    [routerLink]="targetRoute()"
+    [queryParams]="queryParams()"
+    class="btn btn-outline-info"
+    [class.disabled]="disabled()"
+    [attr.aria-disabled]="disabled() ? true : null"
+    [attr.tabindex]="disabled() ? -1 : null">
+    Mehr …
+</a>

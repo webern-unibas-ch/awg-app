@@ -1,19 +1,20 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router, RouterLink } from '@angular/router';
+import { provideRouter } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
     expectToContain,
+    expectToEqual,
     expectToNotContain,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSectionCardComponent } from './edition-section-card.component';
@@ -22,8 +23,6 @@ describe('EditionSectionCardComponent (DONE)', () => {
     let component: EditionSectionCardComponent;
     let fixture: ComponentFixture<EditionSectionCardComponent>;
     let compDe: DebugElement;
-
-    let router: Router;
 
     let expectedSection: EditionOutlineSection;
     let expectedDisabledSection: EditionOutlineSection;
@@ -36,9 +35,6 @@ describe('EditionSectionCardComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        router = TestBed.inject(Router);
-
         // Test data
         const series = EditionStateHelper.getSeries('1');
         expectedSection = series.sections.find(section => !section.disabled) as EditionOutlineSection;
@@ -67,7 +63,10 @@ describe('EditionSectionCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Simulate the parent setting the input properties
             fixture.componentRef.setInput('displayedSection', expectedSection);
+
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -77,6 +76,7 @@ describe('EditionSectionCardComponent (DONE)', () => {
 
         describe('VIEW', () => {
             const getCardDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-card', 1, 1);
+            const getCardFooterDes = () => getAndExpectDebugElementByCss(getCardDes()[0], 'div.card-footer', 1, 1);
 
             it('... should render no content if displayed section is not available', () => {
                 fixture.componentRef.setInput('displayedSection', null);
@@ -97,7 +97,7 @@ describe('EditionSectionCardComponent (DONE)', () => {
             it('... should render the card layout', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-card-content', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.card-footer', 1, 1);
+                getCardFooterDes();
             });
 
             it('... should render the cover image', () => {
@@ -130,82 +130,78 @@ describe('EditionSectionCardComponent (DONE)', () => {
                 expectToBe(titleEl.textContent?.trim(), expectedSection.section.full);
                 expectToNotContain(titleEl.classList, 'text-muted');
             });
-        });
 
-        describe('... with a disabled section', () => {
-            beforeEach(() => {
-                fixture.componentRef.setInput('displayedSection', expectedDisabledSection);
-                fixture.detectChanges();
+            it('... should have a ButtonMoreComponent in div.card-footer', () => {
+                getAndExpectDebugElementByDirective(getCardFooterDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should omit the cover image and content columns', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-img-container', 0, 0);
-
-                const contentEl: HTMLDivElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-section-card-content',
+            it('... should pass down correct targetRoute to ButtonMoreComponent', () => {
+                const buttonMoreDes = getAndExpectDebugElementByDirective(
+                    getCardFooterDes()[0],
+                    ButtonMoreComponent,
                     1,
                     1
-                )[0].nativeElement;
+                );
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                expectToNotContain(contentEl.classList, 'col-8');
-                expectToNotContain(contentEl.classList, 'col-sm-10');
+                expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.section.route]);
             });
 
-            it('... should omit the image border and mute the section title', () => {
-                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
-                const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
+            it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+                const buttonMoreDes = getAndExpectDebugElementByDirective(
+                    getCardFooterDes()[0],
+                    ButtonMoreComponent,
+                    1,
+                    1
+                );
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                expectToNotContain(bodyEl.classList, 'awg-card-border-top');
-
-                const titleDes = getAndExpectDebugElementByCss(compDe, 'h5.card-title', 1, 1);
-                const titleEl: HTMLHeadingElement = titleDes[0].nativeElement;
-
-                expectToContain(titleEl.classList, 'text-muted');
+                expectToBe(buttonMoreCmp.disabled(), false);
             });
 
-            it('... should disable the footer link', () => {
-                const linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
-                const linkEl: HTMLAnchorElement = linkDes[0].nativeElement;
+            describe('... with a disabled section', () => {
+                beforeEach(() => {
+                    fixture.componentRef.setInput('displayedSection', expectedDisabledSection);
+                    fixture.detectChanges();
+                });
 
-                expectToContain(linkEl.classList, 'disabled');
-            });
-        });
+                it('... should omit the cover image and content columns', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-img-container', 0, 0);
 
-        describe('[routerLink]', () => {
-            let linkDes: DebugElement[];
-            let routerLinks: RouterLink[];
+                    const contentEl: HTMLDivElement = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-section-card-content',
+                        1,
+                        1
+                    )[0].nativeElement;
 
-            beforeEach(() => {
-                fixture.componentRef.setInput('displayedSection', expectedSection);
-                fixture.detectChanges();
+                    expectToNotContain(contentEl.classList, 'col-8');
+                    expectToNotContain(contentEl.classList, 'col-sm-10');
+                });
 
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
+                it('... should omit the image border and mute the section title', () => {
+                    const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+                    const bodyEl: HTMLDivElement = bodyDes[0].nativeElement;
 
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
-            });
+                    expectToNotContain(bodyEl.classList, 'awg-card-border-top');
 
-            it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, 1);
-            });
+                    const titleDes = getAndExpectDebugElementByCss(compDe, 'h5.card-title', 1, 1);
+                    const titleEl: HTMLHeadingElement = titleDes[0].nativeElement;
 
-            it('... can get correct linkParams for the section link from template', () => {
-                const expectedRouterLink = `/${expectedSection.section.route}`;
+                    expectToContain(titleEl.classList, 'text-muted');
+                });
 
-                expectToBe(routerLinks[0].urlTree?.toString(), expectedRouterLink);
-            });
+                it('... should pass down correct disabled state to ButtonMoreComponent', () => {
+                    const buttonMoreDes = getAndExpectDebugElementByDirective(
+                        getCardFooterDes()[0],
+                        ButtonMoreComponent,
+                        1,
+                        1
+                    );
+                    const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-            it('... can click the section link in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-                const expectedRouterLink = `/${expectedSection.section.route}`;
-
-                await clickAndAwaitChanges(linkDes[0], fixture);
-
-                expect(navigateSpy).toHaveBeenCalled();
-                expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRouterLink);
-
-                navigateSpy.mockRestore();
+                    expectToBe(buttonMoreCmp.disabled(), true);
+                });
             });
         });
     });

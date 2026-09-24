@@ -19,12 +19,7 @@
                     </h5>
                 </div>
                 <div class="card-footer text-end">
-                    <a
-                        [routerLink]="[section.section.route]"
-                        class="btn btn-outline-info"
-                        [class.disabled]="section.disabled"
-                        >Mehr ...
-                    </a>
+                    <awg-button-more [targetRoute]="[section.section.route]" [disabled]="section.disabled" />
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
@@ -17,7 +17,7 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     templateUrl: './edition-rowtables.component.html',
     styleUrls: ['./edition-rowtables.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [AlertErrorComponent, TwelveToneSpinnerComponent, RouterLink],
+    imports: [AlertErrorComponent, ButtonMoreComponent, TwelveToneSpinnerComponent],
 })
 export class EditionRowtablesComponent {
     /**

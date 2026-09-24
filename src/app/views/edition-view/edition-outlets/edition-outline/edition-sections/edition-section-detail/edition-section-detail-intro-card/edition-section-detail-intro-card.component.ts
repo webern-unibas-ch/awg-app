@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
 import { EditionOutlineSection } from '@awg-views/edition-view/models';
 
 /**
@@ -14,7 +14,7 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models';
     templateUrl: './edition-section-detail-intro-card.component.html',
     styleUrls: ['./edition-section-detail-intro-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink],
+    imports: [ButtonMoreComponent],
 })
 export class EditionSectionDetailIntroCardComponent {
     /**

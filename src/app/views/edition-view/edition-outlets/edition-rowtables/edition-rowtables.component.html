@@ -16,13 +16,10 @@
                             </h5>
                         </div>
                         <div class="card-footer text-end">
-                            <a
-                                [routerLink]="['../complex' + rowtable.route, 'sheets']"
+                            <awg-button-more
+                                [targetRoute]="['../complex' + rowtable.route, 'sheets']"
                                 [queryParams]="{ id: rowtable.id }"
-                                class="btn btn-outline-info"
-                                [class.disabled]="rowtable.disabled"
-                                >Mehr ...
-                            </a>
+                                [disabled]="rowtable.disabled" />
                         </div>
                     </div>
                 </div>

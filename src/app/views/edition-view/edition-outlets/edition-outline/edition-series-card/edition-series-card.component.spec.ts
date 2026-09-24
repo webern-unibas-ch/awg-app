@@ -1,10 +1,9 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter, Router, RouterLink } from '@angular/router';
+import { provideRouter, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
@@ -13,7 +12,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSeriesCardComponent } from './edition-series-card.component';
 
@@ -22,21 +22,16 @@ describe('EditionSeriesCardComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSeriesCardComponent>;
     let compDe: DebugElement;
 
-    let router: Router;
-
     let expectedSeries: EditionOutlineSeries;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSeriesCardComponent],
+            imports: [EditionSeriesCardComponent, ButtonMoreComponent, RouterLink],
             providers: [provideRouter([])],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // Inject services
-        router = TestBed.inject(Router);
-
         // Test data
         expectedSeries = EditionStateHelper.getSeries('1');
 
@@ -66,6 +61,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Simulate the parent setting the input properties
             fixture.componentRef.setInput('displayedSeries', structuredClone(expectedSeries));
 
             // Trigger initial data binding
@@ -164,82 +160,20 @@ describe('EditionSeriesCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should have a routerLink in div.card-footer', () => {
-                getAndExpectDebugElementByDirective(getCardFooterDes()[0], RouterLink, 1, 1);
+            it('... should have a ButtonMoreComponent in div.card-footer', () => {
+                getAndExpectDebugElementByDirective(getCardFooterDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should display correct text in the routerLink in div.card-footer', () => {
-                const footerLinkDes = getAndExpectDebugElementByDirective(getCardFooterDes()[0], RouterLink, 1, 1);
-                const footerLinkEl: HTMLAnchorElement = footerLinkDes[0].nativeElement;
-
-                expectToBe(footerLinkEl.textContent.trim(), 'Mehr ...');
-            });
-        });
-
-        describe('[routerLink]', () => {
-            let linkDes: DebugElement[];
-            let routerLinks: RouterLink[];
-
-            let expectedEnabledSections: EditionOutlineSection[];
-
-            beforeEach(() => {
-                expectedEnabledSections = expectedSeries.sections.filter(section => !section.disabled);
-
-                linkDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    RouterLink,
-                    expectedEnabledSections.length + 1,
-                    expectedEnabledSections.length + 1
+            it('... should pass down correct targetRoute to ButtonMoreComponent', () => {
+                const buttonMoreDes = getAndExpectDebugElementByDirective(
+                    getCardFooterDes()[0],
+                    ButtonMoreComponent,
+                    1,
+                    1
                 );
+                const buttonMoreCmp = buttonMoreDes[0].injector.get(ButtonMoreComponent) as ButtonMoreComponent;
 
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
-            });
-
-            it('... can get correct number of routerLinks from template', () => {
-                expectToBe(routerLinks.length, expectedEnabledSections.length + 1);
-            });
-
-            it('... can get correct linkParams for the section links from template', () => {
-                expectedEnabledSections.forEach((section, index) => {
-                    const expectedRouterLink = `/${expectedSeries.series.route}/section/${section.section.route}`;
-
-                    expectToBe(routerLinks[index].urlTree?.toString(), expectedRouterLink);
-                });
-            });
-
-            it('... can get correct linkParams for the series link from template', () => {
-                const seriesLink = routerLinks[routerLinks.length - 1];
-                const expectedRouterLink = `/${expectedSeries.series.route}`;
-
-                expectToBe(seriesLink.urlTree?.toString(), expectedRouterLink);
-            });
-
-            it('... can click a section link in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-                const sectionLinkDe = linkDes[0];
-                const expectedRouterLink = `/${expectedSeries.series.route}/section/${expectedEnabledSections[0].section.route}`;
-
-                await clickAndAwaitChanges(sectionLinkDe, fixture);
-
-                expect(navigateSpy).toHaveBeenCalled();
-                expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRouterLink);
-
-                navigateSpy.mockRestore();
-            });
-
-            it('... can click the series link in template', async () => {
-                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-
-                const seriesLinkDe = linkDes[linkDes.length - 1];
-                const expectedRouterLink = `/${expectedSeries.series.route}`;
-
-                await clickAndAwaitChanges(seriesLinkDe, fixture);
-
-                expect(navigateSpy).toHaveBeenCalled();
-                expectToBe(navigateSpy.mock.calls[0][0].toString(), expectedRouterLink);
-
-                navigateSpy.mockRestore();
+                expectToEqual(buttonMoreCmp.targetRoute(), [expectedSeries.series.route]);
             });
         });
     });
