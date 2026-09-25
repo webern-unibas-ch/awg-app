@@ -191,38 +191,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link" >EditionGraphRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionIntroModule.html" data-type="entity-link" >EditionIntroModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' : 'data-bs-target="#xs-components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' :
-                                            'id="xs-components-links-module-EditionIntroModule-83e4b5b73a3a4ba39b8252f7e782b56b116d114f07746baabb25425bfd24ebd3b996e3f6016c0699e4de024580d8e0f92bd9576892ab72c634e567a18fb7bda5"' }>
-                                            <li class="link">
-                                                <a href="components/EditionIntroComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroContentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroContentComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroNavComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroPartialDisclaimerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroPartialDisclaimerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionIntroPlaceholderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroPlaceholderComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionIntroRoutingModule.html" data-type="entity-link" >EditionIntroRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionReportModule.html" data-type="entity-link" >EditionReportModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -648,6 +616,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionDetailComponent.html" data-type="entity-link" >EditionDetailComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionIntroComponent.html" data-type="entity-link" >EditionIntroComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionIntroContentComponent.html" data-type="entity-link" >EditionIntroContentComponent</a>
                             </li>
                             <li class="link">
@@ -869,6 +840,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="directives-links"' : 'id="xs-directives-links"' }>
                                 <li class="link">
                                     <a href="directives/CompileHtmlDirective.html" data-type="entity-link" >CompileHtmlDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/EditionIntroScrollDirective.html" data-type="entity-link" >EditionIntroScrollDirective</a>
                                 </li>
                                 <li class="link">
                                     <a href="directives/ExternalLinkDirective.html" data-type="entity-link" >ExternalLinkDirective</a>

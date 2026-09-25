@@ -151,7 +151,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
+import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex/edition-complex.component&#x27;;
 import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
 import { EditionOutlineComponent } from &#x27;./edition-outlets/edition-outline/edition-outline.component&#x27;;
 import { EditionSideInfoComponent } from &#x27;./edition-side-info/edition-side-info.component&#x27;;
@@ -217,8 +217,8 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                             {
                                 path: &#x27;intro&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module&#x27;).then(\n\
-                                        m &#x3D;&gt; m.EditionIntroModule\n\
+                                    &quot;import(&#x27;./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.routes&#x27;).then(\n\
+                                        m &#x3D;&gt; m.EDITION_INTRO_ROUTES\n\
                                     )&quot;,
                             },
                             {

@@ -182,6 +182,12 @@ of the edition view of the app.</p>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../directives/CompileHtmlDirective.html" target="_self" >CompileHtmlDirective</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -256,18 +262,18 @@ of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro-content/edition-intro-content.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro-content/edition-intro-content.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: introBlockContent.</p>
-<p>It keeps the content blocks of the intro.</p>
+                        <div class="io-description"><p>Readonly input signal: introBlockContent.</p>
+<p>It holds the content blocks of the intro.</p>
 </div>
                     </td>
                 </tr>
@@ -289,7 +295,7 @@ of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Required : </i>&nbsp;<b>true</b>
                     </td>
                 </tr>
                         <tr>
@@ -299,8 +305,8 @@ of the edition view of the app.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: notesLabel.</p>
-<p>It keeps the notes label of the intro.</p>
+                        <div class="io-description"><p>Readonly input signal: notesLabel.</p>
+<p>It holds the notes label of the intro.</p>
 </div>
                     </td>
                 </tr>
@@ -316,9 +322,11 @@ of the edition view of the app.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 
-import { IntroBlock } from &#x27;@awg-views/edition-view/models&#x27;;
+import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
+
+import { IntroBlock } from &#x27;@awg-views/edition-view/models/intro.model&#x27;;
 
 /**
  * The EditionIntroContent component.
@@ -331,54 +339,51 @@ import { IntroBlock } from &#x27;@awg-views/edition-view/models&#x27;;
     templateUrl: &#x27;./edition-intro-content.component.html&#x27;,
     styleUrls: [&#x27;./edition-intro-content.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [CompileHtmlDirective],
 })
 export class EditionIntroContentComponent {
     /**
-     * Input variable: introBlockContent.
+     * Readonly input signal: introBlockContent.
      *
-     * It keeps the content blocks of the intro.
+     * It holds the content blocks of the intro.
      */
-    @Input()
-    introBlockContent: IntroBlock[] &#x3D; [];
+    readonly introBlockContent &#x3D; input.required&lt;IntroBlock[]&gt;();
 
     /**
-     * Input variable: notesLabel.
+     * Readonly input signal: notesLabel.
      *
-     * It keeps the notes label of the intro.
+     * It holds the notes label of the intro.
      */
-    @Input()
-    notesLabel &#x3D; &#x27;&#x27;;
+    readonly notesLabel &#x3D; input.required&lt;string&gt;();
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">@if (introBlockContent.length) {
+        <pre class="line-numbers"><code class="language-html">@if (introBlockContent().length) {
+    @let introBlocks &#x3D; introBlockContent();
+
     &lt;div class&#x3D;&quot;awg-edition-intro-content&quot;&gt;
-        @for (introBlock of introBlockContent; track $index) {
+        @for (introBlock of introBlocks; track introBlock.blockId) {
             &lt;section class&#x3D;&quot;awg-edition-intro-section&quot; [id]&#x3D;&quot;introBlock.blockId&quot;&gt;
                 @if (introBlock.blockHeader) {
                     &lt;div class&#x3D;&quot;awg-edition-intro-block&quot;&gt;
                         &lt;p class&#x3D;&quot;heading&quot; [awgCompileHtml]&#x3D;&quot;introBlock.blockHeader&quot;&gt;&lt;/p&gt;
                     &lt;/div&gt;
                 }
-                @if (introBlock.blockContent.length) {
-                    @for (blockContent of introBlock.blockContent; track $index) {
-                        &lt;div class&#x3D;&quot;awg-edition-intro-block&quot; [awgCompileHtml]&#x3D;&quot;blockContent&quot;&gt;&lt;/div&gt;
-                    }
+
+                @for (blockContent of introBlock.blockContent; track $index) {
+                    &lt;div class&#x3D;&quot;awg-edition-intro-block&quot; [awgCompileHtml]&#x3D;&quot;blockContent&quot;&gt;&lt;/div&gt;
                 }
             &lt;/section&gt;
         }
         &lt;section class&#x3D;&quot;awg-edition-intro-section mt-5&quot; id&#x3D;&quot;notes&quot;&gt;
             &lt;hr /&gt;
-            &lt;h5&gt;{{ notesLabel }}&lt;/h5&gt;
+            &lt;h5&gt;{{ notesLabel() }}&lt;/h5&gt;
             &lt;div class&#x3D;&quot;awg-edition-intro-notes&quot;&gt;
-                @for (introBlock of introBlockContent; track $index) {
-                    @if (introBlock.blockNotes?.length) {
-                        @for (note of introBlock.blockNotes; track $index) {
-                            &lt;div class&#x3D;&quot;awg-edition-intro-note small&quot; [awgCompileHtml]&#x3D;&quot;note&quot;&gt;&lt;/div&gt;
-                        }
+                @for (introBlock of introBlocks; track introBlock.blockId) {
+                    @for (blockNote of introBlock.blockNotes; track $index) {
+                        &lt;div class&#x3D;&quot;awg-edition-intro-note small&quot; [awgCompileHtml]&#x3D;&quot;blockNote&quot;&gt;&lt;/div&gt;
                     }
                 }
             &lt;/div&gt;
@@ -535,9 +540,9 @@ export class EditionIntroContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (introBlockContent.length) {    <div class="awg-edition-intro-content">        @for (introBlock of introBlockContent; track $index) {            <section class="awg-edition-intro-section" [id]="introBlock.blockId">                @if (introBlock.blockHeader) {                    <div class="awg-edition-intro-block">                        <p class="heading" [awgCompileHtml]="introBlock.blockHeader"></p>                    </div>                }                @if (introBlock.blockContent.length) {                    @for (blockContent of introBlock.blockContent; track $index) {                        <div class="awg-edition-intro-block" [awgCompileHtml]="blockContent"></div>                    }                }            </section>        }        <section class="awg-edition-intro-section mt-5" id="notes">            <hr />            <h5>{{ notesLabel }}</h5>            <div class="awg-edition-intro-notes">                @for (introBlock of introBlockContent; track $index) {                    @if (introBlock.blockNotes?.length) {                        @for (note of introBlock.blockNotes; track $index) {                            <div class="awg-edition-intro-note small" [awgCompileHtml]="note"></div>                        }                    }                }            </div>        </section>    </div>}</div>'
+        var COMPONENT_TEMPLATE = '<div>@if (introBlockContent().length) {    @let introBlocks = introBlockContent();    <div class="awg-edition-intro-content">        @for (introBlock of introBlocks; track introBlock.blockId) {            <section class="awg-edition-intro-section" [id]="introBlock.blockId">                @if (introBlock.blockHeader) {                    <div class="awg-edition-intro-block">                        <p class="heading" [awgCompileHtml]="introBlock.blockHeader"></p>                    </div>                }                @for (blockContent of introBlock.blockContent; track $index) {                    <div class="awg-edition-intro-block" [awgCompileHtml]="blockContent"></div>                }            </section>        }        <section class="awg-edition-intro-section mt-5" id="notes">            <hr />            <h5>{{ notesLabel() }}</h5>            <div class="awg-edition-intro-notes">                @for (introBlock of introBlocks; track introBlock.blockId) {                    @for (blockNote of introBlock.blockNotes; track $index) {                        <div class="awg-edition-intro-note small" [awgCompileHtml]="blockNote"></div>                    }                }            </div>        </section>    </div>}</div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DisclaimerWorkeditionsComponent', 'selector': 'awg-disclaimer-workeditions'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceDescriptionContentsComponent', 'selector': 'awg-source-description-contents'},{'name': 'SourceDescriptionContentTableComponent', 'selector': 'awg-source-description-content-table'},{'name': 'SourceDescriptionCorrectionsComponent', 'selector': 'awg-source-description-corrections'},{'name': 'SourceDescriptionDetailsComponent', 'selector': 'awg-source-description-details'},{'name': 'SourceDescriptionWritingMaterialsComponent', 'selector': 'awg-source-description-writing-materials'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
-    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroContentComponent'};
 </script>
 <script src="../js/tree.js"></script>
