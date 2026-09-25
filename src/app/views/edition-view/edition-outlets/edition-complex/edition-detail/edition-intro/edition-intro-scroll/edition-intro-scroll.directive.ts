@@ -43,7 +43,9 @@ export class EditionIntroScrollDirective {
      * on window scroll.
      */
     onWindowScroll(): void {
-        if (this._inThrottle) {return;}
+        if (this._inThrottle) {
+            return;
+        }
 
         this._onIntroScroll();
 
@@ -72,7 +74,7 @@ export class EditionIntroScrollDirective {
 
         introSections.forEach(section => {
             const top = section.offsetTop - 10;
-            const bottom = top + section.offsetHeight;
+            const bottom = section.offsetTop + section.offsetHeight;
 
             if (top <= scrollPosition && bottom > scrollPosition) {
                 activeId = section.id;
