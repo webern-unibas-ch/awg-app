@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { IntroBlock } from '@awg-views/edition-view/models';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
+import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
 
 /**
  * The EditionIntroContent component.
@@ -13,22 +15,20 @@ import { IntroBlock } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-content.component.html',
     styleUrls: ['./edition-intro-content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [CompileHtmlDirective],
 })
 export class EditionIntroContentComponent {
     /**
-     * Input variable: introBlockContent.
+     * Readonly input signal: introBlockContent.
      *
-     * It keeps the content blocks of the intro.
+     * It holds the content blocks of the intro.
      */
-    @Input()
-    introBlockContent: IntroBlock[] = [];
+    readonly introBlockContent = input.required<IntroBlock[]>();
 
     /**
-     * Input variable: notesLabel.
+     * Readonly input signal: notesLabel.
      *
-     * It keeps the notes label of the intro.
+     * It holds the notes label of the intro.
      */
-    @Input()
-    notesLabel = '';
+    readonly notesLabel = input.required<string>();
 }

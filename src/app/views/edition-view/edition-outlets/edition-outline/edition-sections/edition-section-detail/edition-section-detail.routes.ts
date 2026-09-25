@@ -14,8 +14,8 @@ export const EDITION_SECTION_DETAIL_ROUTES: Routes = [
             {
                 path: 'intro',
                 loadChildren: () =>
-                    import('../../../edition-complex/edition-detail/edition-intro/edition-intro.module').then(
-                        m => m.EditionIntroModule
+                    import('../../../edition-complex/edition-detail/edition-intro/edition-intro.routes').then(
+                        m => m.EDITION_INTRO_ROUTES
                     ),
             },
             {

@@ -1,10 +1,10 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { LanguageSwitcherStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -12,10 +12,10 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { LanguageSwitcherComponent } from '@awg-shared/language-switcher/language-switcher.component';
 import { LanguageId } from '@awg-shared/language-switcher/language.model';
-import { IntroBlock } from '@awg-views/edition-view/models';
+import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
 
 import { EditionIntroNavComponent } from './edition-intro-nav.component';
 
@@ -24,35 +24,36 @@ describe('EditionIntroNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroNavComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks: RouterLinkStubDirective[];
+    let router: Router;
 
     let expectedIntroBlockContent: IntroBlock[];
     let expectedNotesLabel: string;
     let expectedSelectedLanguage: LanguageId;
 
-    let expectedLinkParam: string;
     let expectedNotesFragment: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [LanguageSwitcherStubComponent],
-            declarations: [EditionIntroNavComponent, RouterLinkStubDirective],
+            imports: [EditionIntroNavComponent, LanguageSwitcherComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionIntroNavComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        router = TestBed.inject(Router);
 
         // Test data
         expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
         expectedNotesLabel = 'Test notes label';
         expectedSelectedLanguage = LanguageId.DE;
 
-        expectedLinkParam = '.';
         expectedNotesFragment = 'notes';
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionIntroNavComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('should create', () => {
@@ -60,12 +61,16 @@ describe('EditionIntroNavComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `introBlockContent` input', () => {
-            expectToEqual(component.introBlockContent, []);
+        it('... should throw due to missing required input signal `introBlockContent`', () => {
+            expectToBe(isSignal(component.introBlockContent), true);
+
+            expect(() => component.introBlockContent()).toThrow();
         });
 
-        it('... should have default `notesLabel` input', () => {
-            expectToBe(component.notesLabel, '');
+        it('... should throw due to missing required input signal `notesLabel`', () => {
+            expectToBe(isSignal(component.notesLabel), true);
+
+            expect(() => component.notesLabel()).toThrow();
         });
 
         it('... should throw due to missing required input for model signal `selectedLanguage`', () => {
@@ -79,8 +84,8 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 0, 0);
             });
 
-            it('... should contain no LanguageSwitcherComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 0, 0);
+            it('... should contain no LanguageSwitcherComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 0, 0);
             });
         });
     });
@@ -88,53 +93,65 @@ describe('EditionIntroNavComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.introBlockContent = expectedIntroBlockContent;
-            component.notesLabel = expectedNotesLabel;
+            fixture.componentRef.setInput('introBlockContent', expectedIntroBlockContent);
+            fixture.componentRef.setInput('notesLabel', expectedNotesLabel);
             fixture.componentRef.setInput('selectedLanguage', expectedSelectedLanguage);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `introBlockContent`', () => {
-            expectToEqual(component.introBlockContent, expectedIntroBlockContent);
+        it('... should have input signal `introBlockContent` to hold the expected content', () => {
+            expectToEqual(component.introBlockContent(), expectedIntroBlockContent);
         });
 
-        it('... should have `notesLabel`', () => {
-            expectToBe(component.notesLabel, expectedNotesLabel);
+        it('... should have input signal `notesLabel` to hold the expected label', () => {
+            expectToBe(component.notesLabel(), expectedNotesLabel);
         });
 
-        it('... should have signal `selectedLanguage` to hold the expected language', () => {
+        it('... should have model signal `selectedLanguage` to hold the expected language', () => {
             expectToEqual(component.selectedLanguage(), expectedSelectedLanguage);
         });
 
         describe('VIEW', () => {
+            const getDivDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 1, 1);
+            const getUlDes = () => getAndExpectDebugElementByCss(getDivDes()[0], 'ul.nav', 1, 1);
+            const getLiDes = () =>
+                getAndExpectDebugElementByCss(
+                    getUlDes()[0],
+                    'li.nav-item',
+                    expectedIntroBlockContent.length + 1,
+                    expectedIntroBlockContent.length + 1
+                );
+
+            it('... should render no content if `introBlockContent` is empty', () => {
+                fixture.componentRef.setInput('introBlockContent', []);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 0, 0);
+            });
+
             it('... should contain one `div.awg-edition-intro-nav`', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 1, 1);
+                getDivDes();
             });
 
             it('... should contain a ul.nav in div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'ul.nav', 1, 1);
+                getUlDes();
             });
 
-            it('... should contain one LanguageSwitcherComponent (stubbed) in ul.nav', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
-
-                getAndExpectDebugElementByDirective(ulDes[0], LanguageSwitcherStubComponent, 1, 1);
+            it('... should contain one LanguageSwitcherComponent in ul.nav', () => {
+                getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
             });
 
             it('... should pass down `selectedLanguage` to LanguageSwitcherComponent', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(
-                    LanguageSwitcherStubComponent
-                ) as LanguageSwitcherStubComponent;
+                const switcherDes = getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
+                const switcherCmp = switcherDes[0].injector.get(LanguageSwitcherComponent) as LanguageSwitcherComponent;
 
                 expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
             });
 
             it('... should update `selectedLanguage` when LanguageSwitcherComponent emits a change', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
+                const switcherDes = getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
 
                 expectToBe(component.selectedLanguage(), LanguageId.DE);
 
@@ -146,44 +163,38 @@ describe('EditionIntroNavComponent (DONE)', () => {
             });
 
             it('... should contain a horizontal line below LanguageSwitcherComponent in ul.nav', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
-                getAndExpectDebugElementByCss(ulDes[0], 'hr.mt-0', 1, 1);
+                getAndExpectDebugElementByCss(getUlDes()[0], 'hr.mt-0', 1, 1);
+            });
+
+            it('... should render no li.nav-items if an `introBlock` does not exist', () => {
+                fixture.componentRef.setInput('introBlockContent', [undefined as unknown as IntroBlock]);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(getUlDes()[0], 'li.nav-item', 1, 1);
+            });
+
+            it('... should render no li.nav-items if an `introBlock` has no `blockHeader`', () => {
+                fixture.componentRef.setInput('introBlockContent', [
+                    { blockId: 'test', blockHeader: undefined, blockContent: [] } as unknown as IntroBlock,
+                ]);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(getUlDes()[0], 'li.nav-item', 1, 1);
             });
 
             it('... should contain as many li.nav-items in ul.nav as block items in introBlockContent (+ 1 for notes', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
-
-                getAndExpectDebugElementByCss(
-                    ulDes[0],
-                    'li.nav-item',
-                    expectedIntroBlockContent.length + 1,
-                    expectedIntroBlockContent.length + 1
-                );
+                getLiDes();
             });
 
             it('... should contain a nav-link in each li.nav-item', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
-                const liDes = getAndExpectDebugElementByCss(
-                    ulDes[0],
-                    'li.nav-item',
-                    expectedIntroBlockContent.length + 1,
-                    expectedIntroBlockContent.length + 1
-                );
-
+                const liDes = getLiDes();
                 liDes.forEach(liDe => {
                     getAndExpectDebugElementByCss(liDe, 'a.awg-edition-intro-nav-link', 1, 1);
                 });
             });
 
             it('... should display correct block header in each nav-link', () => {
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.nav', 1, 1);
-                const liDes = getAndExpectDebugElementByCss(
-                    ulDes[0],
-                    'li.nav-item',
-                    expectedIntroBlockContent.length + 1,
-                    expectedIntroBlockContent.length + 1
-                );
-
+                const liDes = getLiDes();
                 liDes.forEach((liDe, index) => {
                     const aDes = getAndExpectDebugElementByCss(liDe, 'a.awg-edition-intro-nav-link', 1, 1);
                     const aEl: HTMLAnchorElement = aDes[0].nativeElement;
@@ -199,17 +210,25 @@ describe('EditionIntroNavComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+
+            const getExpectedLength = () => expectedIntroBlockContent.length + 1;
+            const getExpectedData = (index: number) => {
+                const isLast = index === getExpectedLength() - 1;
+                const fragment = isLast ? expectedNotesFragment : expectedIntroBlockContent[index]?.blockId;
+                return { fragment, url: `/#${fragment}` };
+            };
+
             beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    RouterLinkStubDirective,
+                    RouterLink,
                     expectedIntroBlockContent.length + 1,
                     expectedIntroBlockContent.length + 1
                 );
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -217,34 +236,39 @@ describe('EditionIntroNavComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                routerLinks.forEach((link: RouterLinkStubDirective) => {
-                    expectToBe(link.linkParams, expectedLinkParam);
+                routerLinks.forEach((link: RouterLink, index: number) => {
+                    const expected = getExpectedData(index);
+                    const urlTreeString = link.urlTree?.toString() ?? '';
+
+                    expectToBe(urlTreeString, expected.url);
                 });
             });
 
             it('... can get correct fragments from template', () => {
-                routerLinks.forEach((link: RouterLinkStubDirective, index: number) => {
-                    const blockFragment = expectedIntroBlockContent[index]?.blockId;
-                    const expectedFragment = index === routerLinks.length - 1 ? expectedNotesFragment : blockFragment;
+                routerLinks.forEach((link: RouterLink, index: number) => {
+                    const expected = getExpectedData(index);
 
-                    expectToBe(link.fragment, expectedFragment);
+                    expectToBe(link.fragment, expected.fragment);
                 });
             });
 
             it('... can click any router links in template', async () => {
-                for (const [index, link] of routerLinks.entries()) {
-                    const linkDe = linkDes[index]; // Link DebugElement
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                    expectToBe(link.navigatedTo, null);
+                for (const [index, linkDe] of linkDes.entries()) {
+                    navigateSpy.mockClear();
+
+                    const expected = getExpectedData(index);
 
                     await clickAndAwaitChanges(linkDe, fixture);
 
-                    const blockFragment = expectedIntroBlockContent[index]?.blockId;
-                    const expectedFragment = index === routerLinks.length - 1 ? expectedNotesFragment : blockFragment;
+                    expect(navigateSpy).toHaveBeenCalled();
+                    const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
-                    expectToBe(link.navigatedTo, expectedLinkParam);
-                    expectToBe(link.navigatedToFragment, expectedFragment);
+                    expectToBe(actualUrl, expected.url);
                 }
+
+                navigateSpy.mockRestore();
             });
         });
     });

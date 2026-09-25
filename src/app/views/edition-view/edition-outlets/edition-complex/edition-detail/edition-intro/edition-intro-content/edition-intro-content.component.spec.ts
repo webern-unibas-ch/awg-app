@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -13,7 +13,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { IntroBlock } from '@awg-views/edition-view/models';
+import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
 
 import { EditionIntroContentComponent } from './edition-intro-content.component';
 
@@ -23,18 +23,19 @@ describe('EditionIntroContentComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedIntroBlockContent: IntroBlock[];
+    let expectedLength: number;
     let expectedNotesLabel: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
-            declarations: [EditionIntroContentComponent],
+            imports: [EditionIntroContentComponent, CompileHtmlDirective],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Test data
         expectedIntroBlockContent = structuredClone(mockEditionData.mockIntroSectionData.intro[0].content ?? []);
+        expectedLength = expectedIntroBlockContent.length;
         expectedNotesLabel = 'Test notes label';
 
         // Create component fixture
@@ -48,12 +49,16 @@ describe('EditionIntroContentComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `introBlockContent` input', () => {
-            expectToEqual(component.introBlockContent, []);
+        it('... should throw due to missing required input signal `introBlockContent`', () => {
+            expectToBe(isSignal(component.introBlockContent), true);
+
+            expect(() => component.introBlockContent()).toThrow();
         });
 
-        it('... should have default `notesLabel` input', () => {
-            expectToBe(component.notesLabel, '');
+        it('... should throw due to missing required input signal `notesLabel`', () => {
+            expectToBe(isSignal(component.notesLabel), true);
+
+            expect(() => component.notesLabel()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -66,22 +71,29 @@ describe('EditionIntroContentComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.introBlockContent = expectedIntroBlockContent;
-            component.notesLabel = expectedNotesLabel;
+            fixture.componentRef.setInput('introBlockContent', expectedIntroBlockContent);
+            fixture.componentRef.setInput('notesLabel', expectedNotesLabel);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `introBlockContent`', () => {
-            expectToEqual(component.introBlockContent, expectedIntroBlockContent);
+        it('... should have input signal `introBlockContent` to hold the expected content', () => {
+            expectToEqual(component.introBlockContent(), expectedIntroBlockContent);
         });
 
-        it('... should have `notesLabel`', () => {
-            expectToBe(component.notesLabel, expectedNotesLabel);
+        it('... should have input signal `notesLabel` to hold the expected label', () => {
+            expectToBe(component.notesLabel(), expectedNotesLabel);
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `introBlockContent` is empty', () => {
+                fixture.componentRef.setInput('introBlockContent', []);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-content', 0, 0);
+            });
+
             it('... should contain one `div.awg-edition-intro-content`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-content', 1, 1);
             });
@@ -90,8 +102,8 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
-                    expectedIntroBlockContent.length + 1,
-                    expectedIntroBlockContent.length + 1
+                    expectedLength + 1,
+                    expectedLength + 1
                 );
             });
 
@@ -99,13 +111,12 @@ describe('EditionIntroContentComponent (DONE)', () => {
                 const sectionDes = getAndExpectDebugElementByCss(
                     compDe,
                     'section.awg-edition-intro-section',
-                    expectedIntroBlockContent.length + 1,
-                    expectedIntroBlockContent.length + 1
+                    expectedLength + 1,
+                    expectedLength + 1
                 );
 
                 sectionDes.forEach((sectionDe, index) => {
-                    const expectedId =
-                        index < expectedIntroBlockContent.length ? expectedIntroBlockContent[index].blockId : 'notes';
+                    const expectedId = index < expectedLength ? expectedIntroBlockContent[index].blockId : 'notes';
 
                     expectToBe(sectionDe.attributes['id'], expectedId);
                 });
@@ -114,17 +125,22 @@ describe('EditionIntroContentComponent (DONE)', () => {
             describe('... content sections', () => {
                 let sectionDes: DebugElement[];
 
-                beforeEach(() => {
-                    sectionDes = getAndExpectDebugElementByCss(
+                const getExpectedLength = () => expectedLength;
+                const getSectionDes = () =>
+                    getAndExpectDebugElementByCss(
                         compDe,
                         'section.awg-edition-intro-section',
-                        expectedIntroBlockContent.length + 1,
-                        expectedIntroBlockContent.length + 1
+                        getExpectedLength() + 1,
+                        getExpectedLength() + 1
                     );
+
+                beforeEach(() => {
+                    sectionDes = getSectionDes();
                 });
+
                 describe('... intro block heading', () => {
                     it('... should not contain an intro block heading if block header is empty', async () => {
-                        expectedIntroBlockContent = [
+                        const introBlockWithoutHeader = [
                             {
                                 blockId: 'testId',
                                 blockHeader: '',
@@ -132,11 +148,18 @@ describe('EditionIntroContentComponent (DONE)', () => {
                                 blockNotes: ['Test notes'],
                             },
                         ];
-                        component.introBlockContent = expectedIntroBlockContent;
+                        fixture.componentRef.setInput('introBlockContent', introBlockWithoutHeader);
                         await detectChangesOnPush(fixture);
 
+                        sectionDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'section.awg-edition-intro-section',
+                            introBlockWithoutHeader.length + 1,
+                            introBlockWithoutHeader.length + 1
+                        );
+
                         sectionDes.forEach((sectionDe, index) => {
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < introBlockWithoutHeader.length) {
                                 getAndExpectDebugElementByCss(
                                     sectionDe,
                                     'div.awg-edition-intro-block > p.heading',
@@ -153,15 +176,15 @@ describe('EditionIntroContentComponent (DONE)', () => {
                             getAndExpectDebugElementByCss(
                                 sectionDe,
                                 'div.awg-edition-intro-block > p.heading',
-                                index < expectedIntroBlockContent.length ? 1 : 0,
-                                index < expectedIntroBlockContent.length ? 1 : 0
+                                index < expectedLength ? 1 : 0,
+                                index < expectedLength ? 1 : 0
                             );
                         });
                     });
 
                     it('... should pass the correct header string to the CompileHtmlDirective', () => {
                         sectionDes.forEach((sectionDe, index) => {
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < expectedLength) {
                                 const currentBlock = expectedIntroBlockContent[index];
 
                                 if (currentBlock.blockHeader) {
@@ -185,16 +208,16 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     it('... should display correct header in each heading', () => {
                         sectionDes.forEach((sectionDe, index) => {
                             // Each section block, except the notes section, should have a heading
-                            const expectedLength = index < expectedIntroBlockContent.length ? 1 : 0;
+                            const expectedHeadingLength = index < expectedLength ? 1 : 0;
 
                             const pDes = getAndExpectDebugElementByCss(
                                 sectionDe,
                                 'div.awg-edition-intro-block > p.heading',
-                                expectedLength,
-                                expectedLength
+                                expectedHeadingLength,
+                                expectedHeadingLength
                             );
 
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < expectedLength) {
                                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
                                 expectToBe(pEl.textContent, expectedIntroBlockContent[index].blockHeader);
                             }
@@ -204,7 +227,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                 describe('... intro block content', () => {
                     it('... should not contain any (additional) intro blocks if block content is empty', async () => {
-                        expectedIntroBlockContent = [
+                        const introBlockWithoutContent = [
                             {
                                 blockId: 'testId',
                                 blockHeader: 'Test header',
@@ -212,11 +235,18 @@ describe('EditionIntroContentComponent (DONE)', () => {
                                 blockNotes: ['Test notes'],
                             },
                         ];
-                        component.introBlockContent = expectedIntroBlockContent;
+                        fixture.componentRef.setInput('introBlockContent', introBlockWithoutContent);
                         await detectChangesOnPush(fixture);
 
+                        sectionDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'section.awg-edition-intro-section',
+                            introBlockWithoutContent.length + 1,
+                            introBlockWithoutContent.length + 1
+                        );
+
                         sectionDes.forEach((sectionDe, index) => {
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < introBlockWithoutContent.length) {
                                 getAndExpectDebugElementByCss(
                                     sectionDe,
                                     'div.awg-edition-intro-block > p.heading',
@@ -230,18 +260,18 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                     it('... should contain as many intro blocks as block content items in data', () => {
                         sectionDes.forEach((sectionDe, index) => {
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < expectedLength) {
                                 const expectedBlockContent = expectedIntroBlockContent[index].blockContent;
                                 const expectedBlockHeader = expectedIntroBlockContent[index].blockHeader;
-                                const expectedLength = expectedBlockHeader
+                                const expectedBlockLength = expectedBlockHeader
                                     ? expectedBlockContent.length + 1
                                     : expectedBlockContent.length;
 
                                 getAndExpectDebugElementByCss(
                                     sectionDe,
                                     'div.awg-edition-intro-block',
-                                    expectedLength,
-                                    expectedLength
+                                    expectedBlockLength,
+                                    expectedBlockLength
                                 );
                             }
                         });
@@ -249,7 +279,7 @@ describe('EditionIntroContentComponent (DONE)', () => {
 
                     it('... should pass the correct html content strings to the CompileHtmlDirective', () => {
                         sectionDes.forEach((sectionDe, index) => {
-                            if (index < expectedIntroBlockContent.length) {
+                            if (index < expectedLength) {
                                 const currentBlock = expectedIntroBlockContent[index];
 
                                 const expectedTotalDirectiveInstances =
@@ -277,13 +307,13 @@ describe('EditionIntroContentComponent (DONE)', () => {
                     });
 
                     it('... should have one anchor in first paragraph, and 3 in the second one in the first section', () => {
-                        const expectedLength = expectedIntroBlockContent[0].blockContent.length + 1;
+                        const expectedBlockLength = expectedIntroBlockContent[0].blockContent.length + 1;
 
                         const divDes = getAndExpectDebugElementByCss(
                             sectionDes[0],
                             'div.awg-edition-intro-block',
-                            expectedLength,
-                            expectedLength
+                            expectedBlockLength,
+                            expectedBlockLength
                         );
 
                         // First div has header
@@ -296,12 +326,11 @@ describe('EditionIntroContentComponent (DONE)', () => {
             describe('... notes section', () => {
                 // Helper function to get the notes section debug element
                 const getNotesSectionDe = (): DebugElement => {
-                    const expectedLength = expectedIntroBlockContent.length + 1;
                     const sectionDes = getAndExpectDebugElementByCss(
                         compDe,
                         'section.awg-edition-intro-section',
-                        expectedLength,
-                        expectedLength
+                        expectedLength + 1,
+                        expectedLength + 1
                     );
                     const lastSection = sectionDes.at(-1);
 

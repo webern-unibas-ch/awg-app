@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -13,22 +13,13 @@ import { EditionComplex } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-placeholder.component.html',
     styleUrls: ['./edition-intro-placeholder.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [],
 })
 export class EditionIntroPlaceholderComponent {
     /**
-     * Input variable: editionComplex.
+     * Readonly input signal: editionComplex.
      *
-     * It keeps the editionComplex for the intro placeholder.
+     * It holds the editionComplex for the intro placeholder.
      */
-    @Input()
-    editionComplex: EditionComplex | null = null;
-
-    /**
-     * Input variable: editionLabel.
-     *
-     * It keeps the edition label for the intro placeholder.
-     */
-    @Input()
-    editionLabel = '';
+    readonly editionComplex = input.required<EditionComplex | null>();
 }

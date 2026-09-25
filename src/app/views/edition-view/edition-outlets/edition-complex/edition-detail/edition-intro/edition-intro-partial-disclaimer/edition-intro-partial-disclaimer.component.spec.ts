@@ -1,7 +1,8 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -12,10 +13,9 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer.component';
 
@@ -24,19 +24,22 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionIntroPartialDisclaimerComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks: RouterLinkStubDirective[];
+    let router: Router;
 
     let expectedComplex: EditionComplex;
     let expectedIntroRoute: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionIntroPartialDisclaimerComponent, RouterLinkStubDirective],
+            imports: [EditionIntroPartialDisclaimerComponent],
+            providers: [provideRouter([])],
         }).compileComponents();
     });
 
     beforeEach(() => {
+        // Inject services
+        router = TestBed.inject(Router);
+
         // Test data
         const complexId = 'op12';
         expectedComplex = EditionStateHelper.getComplex(complexId);
@@ -53,8 +56,10 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `editionComplex` input', () => {
-            expectToBe(component.editionComplex, null);
+        it('... should throw due to missing required input signal `editionComplex`', () => {
+            expectToBe(isSignal(component.editionComplex), true);
+
+            expect(() => component.editionComplex()).toThrow();
         });
 
         it('... should have `introRoute`', () => {
@@ -62,7 +67,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no `div.awg-edition-intro-placeholder` yet', () => {
+            it('... should contain no `div.awg-edition-intro-partial-disclaimer` yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 0, 0);
             });
         });
@@ -71,18 +76,26 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.editionComplex = expectedComplex;
+            fixture.componentRef.setInput('editionComplex', expectedComplex);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedComplex);
+        it('... should have input signal `editionComplex` to hold the expected complex', () => {
+            expectToEqual(component.editionComplex(), expectedComplex);
         });
 
         describe('VIEW', () => {
-            it('... should contain a `div.awg-edition-intro-placeholder`', () => {
+            it('... should render no content if editionComplex is not available', () => {
+                fixture.componentRef.setInput('editionComplex', null);
+
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 0, 0);
+            });
+
+            it('... should contain one `div.awg-edition-intro-partial-disclaimer`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-partial-disclaimer', 1, 1);
             });
 
@@ -103,7 +116,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
                 expectToContain(pEl.classList, 'text-muted');
                 expectToContain(pEl.classList, 'no-para-margin');
 
-                const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
+                const sectionRoute = expectedComplex.pubStatement.labeledSectionRoute;
                 const expectedText = `[Siehe auch die gesamte Einleitung zu ${sectionRoute?.label}.]`;
 
                 expectToBe(pEl.textContent.trim(), expectedText);
@@ -111,12 +124,17 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
-            beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+            let expectedRouterLink: string;
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            beforeEach(() => {
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
+
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+
+                const sectionRoute = expectedComplex.pubStatement.labeledSectionRoute.route.join('/');
+                expectedRouterLink = [sectionRoute, expectedIntroRoute].filter(Boolean).join('/');
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -124,25 +142,24 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                for (const routerLink of routerLinks) {
-                    const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
-                    const expectedRouterLink = [sectionRoute?.route.join('/'), expectedIntroRoute];
-                    expectToEqual(routerLink.linkParams, expectedRouterLink);
-                }
+                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+
+                expectToBe(urlTreeString, expectedRouterLink);
             });
 
             it('... can click all links in template', async () => {
-                for (const [index, routerLink] of routerLinks.entries()) {
-                    const linkDe = linkDes[index];
-                    const sectionRoute = component.editionComplex?.pubStatement?.labeledSectionRoute;
-                    const expectedRouterLink = [sectionRoute?.route.join('/'), expectedIntroRoute];
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                    expectToBe(routerLink.navigatedTo, null);
+                const linkDe = linkDes[0];
 
-                    await clickAndAwaitChanges(linkDe, fixture);
+                await clickAndAwaitChanges(linkDe, fixture);
 
-                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
-                }
+                expect(navigateSpy).toHaveBeenCalled();
+                const actualUrl = navigateSpy.mock.calls[0][0].toString();
+
+                expectToBe(actualUrl, expectedRouterLink);
+
+                navigateSpy.mockRestore();
             });
         });
     });
