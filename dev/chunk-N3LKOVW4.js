@@ -1,1 +1,0 @@
-import{g as i}from"./chunk-NJHF43BL.js";import{Z as o}from"./chunk-CNR2BZY6.js";var s=(()=>{class t{constructor(){this.GLYPHS=i}getGlyph(e){let r=Object.values(this.GLYPHS).find(c=>c.alt===e);return r?r.hex:""}static{this.\u0275fac=function(r){return new(r||t)}}static{this.\u0275prov=o({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{s as a};
