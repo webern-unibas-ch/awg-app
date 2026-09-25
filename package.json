@@ -153,7 +153,7 @@
         "prettier": "^3.9.8",
         "source-map-explorer": "^2.5.3",
         "typescript": "~5.9.3",
-        "typescript-eslint": "^8.70.0",
+        "typescript-eslint": "^8.70.1",
         "vitest": "^5.0.1",
         "webpack-bundle-analyzer": "^5.4.0"
     },
