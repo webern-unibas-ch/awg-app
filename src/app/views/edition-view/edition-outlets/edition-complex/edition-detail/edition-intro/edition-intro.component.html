@@ -12,13 +12,10 @@
             @let notesLabel = notesSectionLabel();
             @let introContent = view.data.introData?.intro?.[lang]?.content || [];
 
-            <div class="awg-edition-intro-view p-5 border rounded-3">
+            <div class="awg-edition-intro-view p-5 border rounded-3" awgEditionIntroScroll>
                 <div class="row justify-content-center">
                     @if (!introContent.length) {
-                        <awg-edition-intro-placeholder
-                            class="col-12"
-                            [editionComplex]="complex"
-                            [editionLabel]="editionRouteConstants.EDITION.short" />
+                        <awg-edition-intro-placeholder class="col-12" [editionComplex]="complex" />
                     } @else {
                         @if (complex) {
                             <awg-edition-intro-partial-disclaimer class="col-12 col-xl-6" [editionComplex]="complex" />

@@ -20,7 +20,7 @@ export class EditionSectionCardComponent {
     /**
      * Readonly input signal: displayedSection.
      *
-     * It holds the data for the section to be displayed.
+     * It holds the section to be displayed.
      */
     readonly displayedSection = input.required<EditionOutlineSection | null>();
 }

@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
 import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder.component';
 
@@ -21,7 +21,7 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionIntroPlaceholderComponent],
+            imports: [EditionIntroPlaceholderComponent],
         }).compileComponents();
     });
 
@@ -43,8 +43,10 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `editionComplex` input', () => {
-            expectToBe(component.editionComplex, null);
+        it('... should throw due to missing required input signal `editionComplex`', () => {
+            expectToBe(isSignal(component.editionComplex), true);
+
+            expect(() => component.editionComplex()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -57,22 +59,30 @@ describe('EditionIntroPlaceholderComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.editionComplex = expectedComplex;
+            fixture.componentRef.setInput('editionComplex', expectedComplex);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedComplex);
+        it('... should have input signal `editionComplex` to hold the expected complex', () => {
+            expectToEqual(component.editionComplex(), expectedComplex);
         });
 
         describe('VIEW', () => {
-            it('... should contain a `div.awg-edition-intro-placeholder`', () => {
+            it('... should render no content if editionComplex is not available', () => {
+                fixture.componentRef.setInput('editionComplex', null);
+
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 0, 0);
+            });
+
+            it('... should contain one outer `div.awg-edition-intro-placeholder`', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
             });
 
-            it('... should contain a small, text-muted paragraph in div', () => {
+            it('... should contain a small, text-muted paragraph in outer div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;

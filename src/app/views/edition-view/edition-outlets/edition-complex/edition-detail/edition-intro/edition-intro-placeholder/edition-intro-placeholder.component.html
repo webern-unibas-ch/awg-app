@@ -1,7 +1,7 @@
-@let complexId = editionComplex?.complexId;
-@let sectionRoute = editionComplex?.pubStatement?.labeledSectionRoute;
+@if (editionComplex(); as complex) {
+    @let complexId = complex.complexId;
+    @let sectionRoute = complex.pubStatement.labeledSectionRoute;
 
-@if (complexId && sectionRoute) {
     <div class="awg-edition-intro-placeholder">
         <p class="text-muted small">
             [Die Einleitung zum Editionskomplex <span [innerHTML]="complexId.full"></span> erscheint im Zusammenhang der

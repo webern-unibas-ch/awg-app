@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -13,16 +14,16 @@ import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.m
     selector: 'awg-edition-intro-partial-disclaimer',
     templateUrl: './edition-intro-partial-disclaimer.component.html',
     styleUrls: ['./edition-intro-partial-disclaimer.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterLink],
 })
 export class EditionIntroPartialDisclaimerComponent {
     /**
-     * Input variable: editionComplex.
+     * Readonly input signal: editionComplex.
      *
-     * It keeps the editionComplex for the intro partial disclaimer.
+     * It holds the editionComplex for the intro partial disclaimer.
      */
-    @Input()
-    editionComplex: EditionComplex | null = null;
+    readonly editionComplex = input.required<EditionComplex | null>();
 
     /**
      * Readonly variable: introRoute.

@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
+import { LanguageSwitcherComponent } from '@awg-shared/language-switcher/language-switcher.component';
 import { LanguageId } from '@awg-shared/language-switcher/language.model';
 
-import { IntroBlock } from '@awg-views/edition-view/models';
+import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
 
 /**
  * The EditionIntroNav component.
@@ -15,24 +17,22 @@ import { IntroBlock } from '@awg-views/edition-view/models';
     templateUrl: './edition-intro-nav.component.html',
     styleUrls: ['./edition-intro-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [LanguageSwitcherComponent, RouterLink],
 })
 export class EditionIntroNavComponent {
     /**
-     * Input variable: introBlockContent.
+     * Readonly input signal: introBlockContent.
      *
-     * It keeps the content blocks of the intro.
+     * It holds the content blocks of the intro.
      */
-    @Input()
-    introBlockContent: IntroBlock[] = [];
+    readonly introBlockContent = input.required<IntroBlock[]>();
 
     /**
-     * Input variable: notesLabel.
+     * Readonly input signal: notesLabel.
      *
-     * It keeps the notes label of the intro.
+     * It holds the notes label of the intro.
      */
-    @Input()
-    notesLabel = '';
+    readonly notesLabel = input.required<string>();
 
     /**
      * Model signal: selectedLanguage.

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionComplexComponent } from './edition-outlets/edition-complex';
+import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
@@ -67,8 +67,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                             {
                                 path: 'intro',
                                 loadChildren: () =>
-                                    import('./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module').then(
-                                        m => m.EditionIntroModule
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.routes').then(
+                                        m => m.EDITION_INTRO_ROUTES
                                     ),
                             },
                             {
