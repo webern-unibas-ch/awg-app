@@ -29,7 +29,7 @@
                 }
                 @if (correction.commentary.comments.length) {
                     <awg-edition-tka-table
-                        [commentary]="correction.commentary"
+                        [displayedCommentary]="correction.commentary"
                         [isCorrections]="true"
                         [isRowtable]="correction.rowtable ?? false" />
                 }

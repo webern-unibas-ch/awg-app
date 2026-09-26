@@ -1,9 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap/tooltip';
+
+import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
-import { UTILS } from '@awg-shared/utils/object-utils';
-import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
-import { EditionSnippetService } from '@awg-views/edition-view/services';
+
+import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
+import { TkaTableHeaderColumn } from '@awg-views/edition-view/models/tka-table-header.model';
+import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
+
+import { TKA_TABLE_HEADERS } from './edition-tka-table.data';
 
 /**
  * The EditionTkaTable component.
@@ -16,7 +23,7 @@ import { EditionSnippetService } from '@awg-views/edition-view/services';
     templateUrl: './edition-tka-table.component.html',
     styleUrls: ['./edition-tka-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [AbbrDirective, CompileHtmlDirective, NgbTooltipModule],
 })
 export class EditionTkaTableComponent {
     /**
@@ -27,76 +34,57 @@ export class EditionTkaTableComponent {
     private readonly _editionSnippetService = inject(EditionSnippetService);
 
     /**
-     * Input variable: commentary.
+     * Readonly input signal: displayedCommentary.
      *
-     * It keeps the commentary data.
+     * It holds the commentary data to be displayed.
      */
-    @Input()
-    commentary: TextcriticalCommentary | undefined;
+    readonly displayedCommentary = input.required<TextcriticalCommentary | undefined>();
 
     /**
-     * Input variable: id.
+     * Readonly input signal: id.
      *
-     * It keeps the id of the sheet or textcritics.
+     * It holds the id of the sheet or textcritics.
      */
-    @Input()
-    id?: string;
+    readonly id = input<string>('');
 
     /**
-     * Input variable: isCorrections.
+     * Readonly input signal: isCorrections.
      *
-     * It keeps a boolean flag to indicate if the table content are corrections.
+     * It holds a boolean flag to indicate if the table content are corrections.
      */
-    @Input()
-    isCorrections = false;
+    readonly isCorrections = input<boolean>(false);
 
     /**
-     * Input variable: isRowtable.
+     * Readonly input signal: isRowtable.
      *
-     * It keeps a boolean flag to indicate if the table content is a rowtable.
+     * It holds a boolean flag to indicate if the table content is a rowtable.
      */
-    @Input()
-    isRowtable = false;
+    readonly isRowtable = input<boolean>(false);
 
     /**
-     * Protected readonly variable: EDITION_UTILS.
+     * Readonly computed signal: tableHeaders.
      *
-     * It keeps the reference to the {@link EDITION_UTILS} methods.
+     * It computes the table header based on the inputs.
      */
-    protected readonly EDITION_UTILS = EDITION_UTILS;
+    readonly tableHeaders = computed<TkaTableHeaderColumn[]>(() => {
+        const id = this.id();
+        const isCorrections = this.isCorrections();
+        const isRowtable = this.isRowtable();
 
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+        let tableHeader = TKA_TABLE_HEADERS['default'];
 
-    /**
-     * Public variable: tableHeaderStrings.
-     *
-     * It keeps different string collections for the table header.
-     */
-    tableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] } = {
-        default: [
-            { reference: 'measure', label: 'Takt' },
-            { reference: 'system', label: 'System' },
-            { reference: 'location', label: 'Ort im Takt' },
-            { reference: 'comment', label: 'Anmerkung' },
-        ],
-        corrections: [
-            { reference: 'measure', label: 'Takt' },
-            { reference: 'system', label: 'System' },
-            { reference: 'location', label: 'Ort im Takt' },
-            { reference: 'comment', label: 'Korrektur' },
-        ],
-        rowtable: [
-            { reference: 'measure', label: 'Folio' },
-            { reference: 'system', label: 'System' },
-            { reference: 'location', label: 'Reihe/Reihenton' },
-            { reference: 'comment', label: 'Anmerkung' },
-        ],
-    };
+        if (isRowtable) {
+            tableHeader = TKA_TABLE_HEADERS['rowtable'];
+        } else if (isCorrections) {
+            tableHeader = TKA_TABLE_HEADERS['corrections'];
+        }
+
+        if (EDITION_UTILS.isSketchId(id) && !isCorrections) {
+            return tableHeader.map(item => (item.ref === 'comment' ? { ...item, label: 'Kommentar' } : item));
+        }
+
+        return tableHeader;
+    });
 
     /**
      * Public method: getComment.
@@ -112,35 +100,5 @@ export class EditionTkaTableComponent {
      */
     getComment(comment: string, svgGroupId?: string): string {
         return this._editionSnippetService.getComment(comment, svgGroupId);
-    }
-
-    /**
-     * Public method: getTableHeaderStrings.
-     *
-     * It returns different table header strings depending on the isRowtable flag.
-     *
-     * @returns {{reference: string, label: string}[]} The table header string collection.
-     */
-    getTableHeaderStrings(): TkaTableHeaderColumn[] {
-        const { rowtable, default: defaultTable, corrections: correctionsTable } = this.tableHeaderStrings;
-
-        let selectedTableHeader: TkaTableHeaderColumn[];
-
-        if (this.isRowtable) {
-            selectedTableHeader = rowtable;
-        } else if (this.isCorrections) {
-            selectedTableHeader = correctionsTable;
-        } else {
-            selectedTableHeader = defaultTable;
-        }
-
-        // Adjust comment label for sketches, but not corrections
-        if (EDITION_UTILS.isSketchId(this.id) && !this.isCorrections) {
-            selectedTableHeader = selectedTableHeader.map(item =>
-                item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
-            );
-        }
-
-        return selectedTableHeader;
     }
 }

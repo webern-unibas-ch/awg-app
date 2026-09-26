@@ -1,27 +1,19 @@
-import { Component, DebugElement, NgModule } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { AbbrDirective } from './abbr.directive';
 
-import { SharedModule } from '@awg-shared/shared.module';
-
-// Test abbr component
+// Mock component
 @Component({
     template: `<p [awgAbbr]="text"></p>`,
-    standalone: false,
+    imports: [AbbrDirective],
 })
 class TestAbbrComponent {
     text = 'This is a test with Klav. and Klav. o. and Ges. It is located in CH-Bps.';
 }
-
-@NgModule({
-    imports: [SharedModule],
-    declarations: [TestAbbrComponent],
-    exports: [TestAbbrComponent],
-})
-class TestAbbrModule {}
 
 describe('AbbrDirective (DONE)', () => {
     let fixture: ComponentFixture<TestAbbrComponent>;
@@ -32,7 +24,7 @@ describe('AbbrDirective (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [TestAbbrModule],
+            imports: [TestAbbrComponent],
         }).compileComponents();
     });
 
@@ -68,7 +60,7 @@ describe('AbbrDirective (DONE)', () => {
     });
 
     it('... should replace abbreviations with <abbr> elements', () => {
-        fixture.detectChanges(); // Trigger initial data binding
+        fixture.detectChanges(); // Trigger data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
@@ -80,8 +72,8 @@ describe('AbbrDirective (DONE)', () => {
     });
 
     it('... should replace all given abbreviations with <abbr> elements', () => {
-        component.text = Array.from(expectedAbbreviations.keys()).join(' ');
-        fixture.detectChanges(); // Trigger initial data binding
+        component.text = Array.from(expectedAbbreviations.keys()).join(' | ');
+        fixture.detectChanges(); // Trigger data binding
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;

@@ -576,7 +576,7 @@ describe('SourceListComponent (DONE)', () => {
                                 AbbrDirective
                             ) as AbbrDirective;
 
-                            expectToBe(directiveIns.text, sourcesData[index].location);
+                            expectToBe(directiveIns.text(), sourcesData[index].location);
                         });
                     });
 

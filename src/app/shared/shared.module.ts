@@ -67,8 +67,9 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         MetaIdentifierBadgesComponent,
         ModalComponent,
         TwelveToneSpinnerComponent,
-        ExternalLinkDirective,
+        AbbrDirective,
         CompileHtmlDirective,
+        ExternalLinkDirective,
     ],
     declarations: [
         DisclaimerWorkeditionsComponent,
@@ -78,7 +79,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         TablePaginationComponent,
         ToastComponent,
         ViewHandleButtonGroupComponent,
-        AbbrDirective,
         OrderByPipe,
     ],
     exports: [

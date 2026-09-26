@@ -13,7 +13,7 @@ import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
     templateUrl: './edition-tka-label.component.html',
     styleUrls: ['./edition-tka-label.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [],
 })
 export class EditionTkaLabelComponent {
     /**

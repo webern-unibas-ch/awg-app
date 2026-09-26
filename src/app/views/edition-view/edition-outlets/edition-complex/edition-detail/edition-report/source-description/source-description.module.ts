@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { EditionTkaModule } from '../../edition-tka/edition-tka.module';
+import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 import { SourceDescriptionContentTableComponent } from './source-description-content-table';
 import { SourceDescriptionContentsComponent } from './source-description-contents';
@@ -17,7 +19,7 @@ import { SourceDescriptionComponent } from './source-description.component';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaModule],
+    imports: [SharedModule, EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
     declarations: [
         SourceDescriptionComponent,
         SourceDescriptionContentsComponent,

@@ -243,7 +243,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     it('... should pass down the source location to the AbbrDirective', () => {
                         const directiveIns = paragraphDes[2].injector.get(AbbrDirective) as AbbrDirective;
 
-                        expectToBe(directiveIns.text, firstSourceDescription.location);
+                        expectToBe(directiveIns.text(), firstSourceDescription.location);
                     });
 
                     it('... should display the source location', () => {
@@ -324,7 +324,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         it('... should pass down the source location to the AbbrDirective', () => {
                             const directiveIns = paragraphDes[1].injector.get(AbbrDirective) as AbbrDirective;
-                            expectToBe(directiveIns.text, secondSourceDescription.location);
+                            expectToBe(directiveIns.text(), secondSourceDescription.location);
                         });
 
                         it('... should display the source location', () => {
