@@ -147,12 +147,6 @@
             </p>
 
 
-            <p class="comment">
-                <h3>Implements</h3>
-            </p>
-            <p class="comment">
-                            <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-            </p>
 
 
         <section data-compodoc="block-metadata">
@@ -210,9 +204,6 @@
                                     <span class="modifier">Private</span>
                                 <a href="#_replaceAbbreviations" >_replaceAbbreviations</a>
                             </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -226,7 +217,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#awgAbbr" >awgAbbr</a>
+                                <a href="#text" >text</a>
                             </li>
                         </ul>
                     </td>
@@ -239,6 +230,32 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:52</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>The constructor of the AbbrDirective.</p>
+<p>It holds an effect that registers a dependency on <code>this.text()</code> and re-runs
+automatically whenever the input signal updates.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -246,8 +263,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="awgAbbr"></a>
-                        <b>awgAbbr</b>
+                        <a name="text"></a>
+                        <b>text</b>
                     </td>
                 </tr>
                 <tr>
@@ -258,18 +275,18 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Default value : </i><code>&#x27;&#x27;, { alias: &#x27;awgAbbr&#x27; }</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:24</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: text.</p>
-<p>It keeps the text value with a possible abbreviation.</p>
+                        <div class="io-description"><p>Readonly input signal: text.</p>
+<p>It holds the text value with a possible abbreviation.</p>
 </div>
                     </td>
                 </tr>
@@ -306,8 +323,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="73"
-                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:73</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -327,47 +344,6 @@ containing the full form as title.</p>
                                 <p>Replaces abbreviations in the text.</p>
 
                             </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:61</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the directive.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
                 </td>
             </tr>
         </tbody>
@@ -425,7 +401,7 @@ when initializing the directive.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -465,7 +441,7 @@ when initializing the directive.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/abbr/abbr.directive.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -486,7 +462,7 @@ when initializing the directive.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, ElementRef, inject, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, effect, ElementRef, inject, input } from &#x27;@angular/core&#x27;;
 
 /**
  * The abbr directive.
@@ -495,9 +471,8 @@ when initializing the directive.</p>
  */
 @Directive({
     selector: &#x27;[awgAbbr]&#x27;,
-    standalone: false,
 })
-export class AbbrDirective implements OnInit {
+export class AbbrDirective {
     /**
      * Private readonly injection variable: _el.
      *
@@ -506,11 +481,11 @@ export class AbbrDirective implements OnInit {
     private readonly _el &#x3D; inject(ElementRef&lt;HTMLElement&gt;);
 
     /**
-     * Input variable: text.
+     * Readonly input signal: text.
      *
-     * It keeps the text value with a possible abbreviation.
+     * It holds the text value with a possible abbreviation.
      */
-    @Input(&#x27;awgAbbr&#x27;) text &#x3D; &#x27;&#x27;;
+    readonly text &#x3D; input&lt;string&gt;(&#x27;&#x27;, { alias: &#x27;awgAbbr&#x27; });
 
     /**
      * Private readonly variable: _abbreviations.
@@ -541,13 +516,15 @@ export class AbbrDirective implements OnInit {
     ]);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * The constructor of the AbbrDirective.
      *
-     * It calls the containing methods
-     * when initializing the directive.
+     * It holds an effect that registers a dependency on &#x60;this.text()&#x60; and re-runs
+     * automatically whenever the input signal updates.
      */
-    ngOnInit(): void {
-        this._replaceAbbreviations();
+    constructor() {
+        effect(() &#x3D;&gt; {
+            this._replaceAbbreviations();
+        });
     }
 
     /**
@@ -559,14 +536,17 @@ export class AbbrDirective implements OnInit {
      * @returns {void} Replaces abbreviations in the text.
      */
     private _replaceAbbreviations(): void {
-        let innerHTML &#x3D; this.text;
+        let innerHTML &#x3D; this.text();
 
         if (!innerHTML) {
+            this._el.nativeElement.innerHTML &#x3D; &#x27;&#x27;;
             return;
         }
 
         // Construct a single regular expression to match any abbreviation
-        const abbreviationsPattern &#x3D; Array.from(this._abbreviations.keys()).join(&#x27;|&#x27;);
+        const abbreviationsPattern &#x3D; Array.from(this._abbreviations.keys())
+            .map(key &#x3D;&gt; key.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, &#x27;\\$&amp;&#x27;))
+            .join(&#x27;|&#x27;);
         const regex &#x3D; new RegExp(String.raw&#x60;(?&lt;!\w)(${abbreviationsPattern})(?!\w)&#x60;, &#x27;g&#x27;);
 
         // Replace abbreviations with &lt;abbr&gt; elements
