@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -12,7 +12,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 
 import { EditionTkaEvaluationsComponent } from './edition-tka-evaluations.component';
@@ -43,14 +42,13 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
         } as EditionGlyphService;
 
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
-            declarations: [EditionTkaEvaluationsComponent],
+            imports: [EditionTkaEvaluationsComponent, CompileHtmlDirective],
             providers: [{ provide: EditionGlyphService, useValue: mockEditionGlyphService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        // INject services
+        // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
@@ -67,12 +65,14 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have evaluations', () => {
-            expect(component.evaluations).toBeUndefined();
+        it('... should throw due to missing required input signal `evaluations`', () => {
+            expectToBe(isSignal(component.evaluations), true);
+
+            expect(() => component.evaluations()).toThrow();
         });
 
         describe('VIEW', () => {
-            it('... should contain no paragraphs with edition-tka-evaluation class yet', () => {
+            it('... should contain no p.awg-edition-tka-evaluation yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-evaluation', 0, 0);
             });
         });
@@ -81,18 +81,18 @@ describe('EditionTkaEvaluationsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.evaluations = structuredClone(expectedEvaluations);
+            fixture.componentRef.setInput('evaluations', structuredClone(expectedEvaluations));
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have evaluations', () => {
-            expectToEqual(component.evaluations, expectedEvaluations);
+        it('... should have input signal `evaluations` to hold the expected data', () => {
+            expectToEqual(component.evaluations(), expectedEvaluations);
         });
 
         describe('VIEW', () => {
-            it('... should contain as many paragraphs with edition-tka-evaluation class as evaluations length', () => {
+            it('... should contain as many p.awg-edition-tka-evaluation as evaluations length', () => {
                 const totalParagraphs = expectedEvaluations.length;
 
                 getAndExpectDebugElementByCss(compDe, 'p.awg-edition-tka-evaluation', totalParagraphs, totalParagraphs);

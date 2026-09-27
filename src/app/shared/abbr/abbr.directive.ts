@@ -1,4 +1,4 @@
-import { Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
+import { Directive, effect, ElementRef, inject, input } from '@angular/core';
 
 /**
  * The abbr directive.
@@ -7,9 +7,8 @@ import { Directive, ElementRef, inject, Input, OnInit } from '@angular/core';
  */
 @Directive({
     selector: '[awgAbbr]',
-    standalone: false,
 })
-export class AbbrDirective implements OnInit {
+export class AbbrDirective {
     /**
      * Private readonly injection variable: _el.
      *
@@ -18,11 +17,11 @@ export class AbbrDirective implements OnInit {
     private readonly _el = inject(ElementRef<HTMLElement>);
 
     /**
-     * Input variable: text.
+     * Readonly input signal: text.
      *
-     * It keeps the text value with a possible abbreviation.
+     * It holds the text value with a possible abbreviation.
      */
-    @Input('awgAbbr') text = '';
+    readonly text = input<string>('', { alias: 'awgAbbr' });
 
     /**
      * Private readonly variable: _abbreviations.
@@ -53,13 +52,15 @@ export class AbbrDirective implements OnInit {
     ]);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * The constructor of the AbbrDirective.
      *
-     * It calls the containing methods
-     * when initializing the directive.
+     * It holds an effect that registers a dependency on `this.text()` and re-runs
+     * automatically whenever the input signal updates.
      */
-    ngOnInit(): void {
-        this._replaceAbbreviations();
+    constructor() {
+        effect(() => {
+            this._replaceAbbreviations();
+        });
     }
 
     /**
@@ -71,14 +72,17 @@ export class AbbrDirective implements OnInit {
      * @returns {void} Replaces abbreviations in the text.
      */
     private _replaceAbbreviations(): void {
-        let innerHTML = this.text;
+        let innerHTML = this.text();
 
         if (!innerHTML) {
+            this._el.nativeElement.innerHTML = '';
             return;
         }
 
         // Construct a single regular expression to match any abbreviation
-        const abbreviationsPattern = Array.from(this._abbreviations.keys()).join('|');
+        const abbreviationsPattern = Array.from(this._abbreviations.keys())
+            .map(key => key.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'))
+            .join('|');
         const regex = new RegExp(String.raw`(?<!\w)(${abbreviationsPattern})(?!\w)`, 'g');
 
         // Replace abbreviations with <abbr> elements

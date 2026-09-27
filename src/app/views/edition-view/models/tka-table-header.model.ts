@@ -8,7 +8,7 @@ export interface TkaTableHeaderColumn {
     /**
      * The reference of the header column.
      */
-    reference: string;
+    ref: string;
 
     /**
      * The label of the header column.

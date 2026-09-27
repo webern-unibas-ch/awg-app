@@ -1,38 +1,29 @@
-import { Component, DebugElement, NgModule } from '@angular/core';
+import { Component, DebugElement, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { AbbrDirective } from './abbr.directive';
 
-import { SharedModule } from '@awg-shared/shared.module';
-
-// Test abbr component
+// Mock component
 @Component({
-    template: `<p [awgAbbr]="text"></p>`,
-    standalone: false,
+    template: `<p [awgAbbr]="text()"></p>`,
+    imports: [AbbrDirective],
 })
 class TestAbbrComponent {
-    text = 'This is a test with Klav. and Klav. o. and Ges. It is located in CH-Bps.';
+    readonly text = input('This is a test with Klav. and Klav. o. and Ges. It is located in CH-Bps.');
 }
-
-@NgModule({
-    imports: [SharedModule],
-    declarations: [TestAbbrComponent],
-    exports: [TestAbbrComponent],
-})
-class TestAbbrModule {}
 
 describe('AbbrDirective (DONE)', () => {
     let fixture: ComponentFixture<TestAbbrComponent>;
-    let component: TestAbbrComponent;
     let compDe: DebugElement;
 
     let expectedAbbreviations: Map<string, string>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [TestAbbrModule],
+            imports: [TestAbbrComponent],
         }).compileComponents();
     });
 
@@ -63,12 +54,11 @@ describe('AbbrDirective (DONE)', () => {
 
         // Create component fixture
         fixture = TestBed.createComponent(TestAbbrComponent);
-        component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
 
     it('... should replace abbreviations with <abbr> elements', () => {
-        fixture.detectChanges(); // Trigger initial data binding
+        fixture.detectChanges();
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
@@ -79,9 +69,30 @@ describe('AbbrDirective (DONE)', () => {
         expectToContain(pEl.innerHTML, '<abbr title="Paul Sacher Stiftung, Basel">CH-Bps</abbr>');
     });
 
+    it('... should update and clear abbreviation markup when text changes', () => {
+        fixture.detectChanges();
+
+        const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
+        const pEl: HTMLParagraphElement = pDes[0].nativeElement;
+
+        expectToContain(pEl.innerHTML, '<abbr title="Klavier">Klav.</abbr>');
+
+        fixture.componentRef.setInput('text', 'Ges.');
+        fixture.detectChanges();
+
+        expectToBe(pEl.innerHTML, '<abbr title="Gesang">Ges.</abbr>');
+        expectToNotContain(pEl.innerHTML, 'Klav.');
+
+        fixture.componentRef.setInput('text', '');
+        fixture.detectChanges();
+
+        expectToBe(pEl.innerHTML, '');
+        getAndExpectDebugElementByCss(pDes[0], 'abbr', 0, 0);
+    });
+
     it('... should replace all given abbreviations with <abbr> elements', () => {
-        component.text = Array.from(expectedAbbreviations.keys()).join(' ');
-        fixture.detectChanges(); // Trigger initial data binding
+        fixture.componentRef.setInput('text', Array.from(expectedAbbreviations.keys()).join(' | '));
+        fixture.detectChanges();
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
@@ -97,8 +108,8 @@ describe('AbbrDirective (DONE)', () => {
     });
 
     it('... should not replace parts of words', () => {
-        component.text = 'This is a test with Klaviert and Klav. o. and Ges.';
-        fixture.detectChanges(); // Trigger data binding
+        fixture.componentRef.setInput('text', 'This is a test with Klaviert and Klav. o. and Ges.');
+        fixture.detectChanges();
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
@@ -109,8 +120,8 @@ describe('AbbrDirective (DONE)', () => {
     });
 
     it('... should handle empty text', () => {
-        component.text = '';
-        fixture.detectChanges(); // Trigger data binding
+        fixture.componentRef.setInput('text', '');
+        fixture.detectChanges();
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;

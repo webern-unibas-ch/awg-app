@@ -65,14 +65,15 @@ describe('TextcriticsListComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective, NgbAccordionModule, NgbConfigModule],
-            declarations: [
-                TextcriticsListComponent,
-                DisclaimerWorkeditionsStubComponent,
+            imports: [
+                CompileHtmlDirective,
                 EditionTkaEvaluationsStubComponent,
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
+                NgbAccordionModule,
+                NgbConfigModule,
             ],
+            declarations: [TextcriticsListComponent, DisclaimerWorkeditionsStubComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
@@ -612,7 +613,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         ) as EditionTkaEvaluationsStubComponent;
 
                         expectToEqual(
-                            evaluationsCmp.evaluations,
+                            evaluationsCmp.evaluations(),
                             expectedTextcriticsListData.textcritics[0].evaluations
                         );
                     });
@@ -737,7 +738,10 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.commentary, expectedTextcriticsListData.textcritics[0].commentary);
+                        expectToEqual(
+                            tableCmp.displayedCommentary(),
+                            expectedTextcriticsListData.textcritics[0].commentary
+                        );
                     });
 
                     it('... should pass down `id` to EditionTkaTableComponent (stubbed)', () => {
@@ -751,7 +755,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.id, expectedTextcriticsListData.textcritics[0].id);
+                        expectToEqual(tableCmp.id(), expectedTextcriticsListData.textcritics[0].id);
                     });
 
                     it('... should pass down `isRowtable` to EditionTkaTableComponent (stubbed)', () => {
@@ -765,7 +769,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                             EditionTkaTableStubComponent
                         ) as EditionTkaTableStubComponent;
 
-                        expectToEqual(tableCmp.isRowtable, expectedTextcriticsListData.textcritics[0].rowtable);
+                        expectToEqual(tableCmp.isRowtable(), expectedTextcriticsListData.textcritics[0].rowtable);
                     });
                 });
             });

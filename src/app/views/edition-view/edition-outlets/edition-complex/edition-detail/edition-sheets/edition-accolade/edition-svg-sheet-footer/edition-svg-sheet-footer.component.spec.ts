@@ -38,13 +38,13 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule],
-            declarations: [
-                EditionSvgSheetFooterComponent,
+            imports: [
                 EditionTkaEvaluationsStubComponent,
                 EditionTkaLabelStubComponent,
                 EditionTkaTableStubComponent,
+                FontAwesomeTestingModule,
             ],
+            declarations: [EditionSvgSheetFooterComponent],
         }).compileComponents();
     });
 
@@ -318,7 +318,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     EditionTkaEvaluationsStubComponent
                 ) as EditionTkaEvaluationsStubComponent;
 
-                expectToEqual(evaluationsCmp.evaluations, expectedSelectedTextcritics.evaluations);
+                expectToEqual(evaluationsCmp.evaluations(), expectedSelectedTextcritics.evaluations);
             });
 
             it('... should contain no textcritics div.card if showTka is false', async () => {
@@ -413,21 +413,21 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToEqual(tableCmp.commentary, expectedSelectedTextcriticalCommentary);
+                expectToEqual(tableCmp.displayedCommentary(), expectedSelectedTextcriticalCommentary);
             });
 
             it('... should pass down `id` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToBe(tableCmp.id, expectedSelectedTextcritics.id);
+                expectToBe(tableCmp.id(), expectedSelectedTextcritics.id);
             });
 
             it('... should pass down `isRowtable` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expectToBe(tableCmp.isRowtable, expectedSelectedTextcritics.rowtable);
+                expectToBe(tableCmp.isRowtable(), expectedSelectedTextcritics.rowtable);
             });
         });
 

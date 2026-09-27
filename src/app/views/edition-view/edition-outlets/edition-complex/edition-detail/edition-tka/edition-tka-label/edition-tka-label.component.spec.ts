@@ -9,8 +9,6 @@ import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helpe
 import { EditionTkaLabelComponent } from './edition-tka-label.component';
 
 // Global constants (used for parameterized tests)
-const expectedId = 'test-1';
-const expectedSketchId = 'test-1_Sk1';
 
 describe('EditionTkaLabelComponent (DONE)', () => {
     let component: EditionTkaLabelComponent;
@@ -18,16 +16,20 @@ describe('EditionTkaLabelComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedLabelType: 'evaluation' | 'commentary';
+    let expectedId: string;
+    let expectedSketchId: string;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionTkaLabelComponent],
+            imports: [EditionTkaLabelComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
         // Test data
         expectedLabelType = 'evaluation';
+        expectedId = 'test-1';
+        expectedSketchId = 'test-1_Sk1';
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaLabelComponent);
@@ -63,21 +65,21 @@ describe('EditionTkaLabelComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have signal `id` to hold the expected id', () => {
+        it('... should have input signal `id` to hold the expected id', () => {
             expectToBe(component.id(), expectedId);
         });
 
-        it('... should have signal `labelType` to hold the expected type', () => {
+        it('... should have input signal `labelType` to hold the expected type', () => {
             expectToBe(component.labelType(), expectedLabelType);
         });
 
         describe('VIEW', () => {
             describe('... should display the correct label text in span when labelType is `evaluation` if', () => {
                 it.each([
-                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Quellenbewertung' },
-                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Skizzenkommentar' },
+                    { desc: 'no sketch id is given', id: () => expectedId, expectedText: 'Quellenbewertung' },
+                    { desc: 'sketch id is given', id: () => expectedSketchId, expectedText: 'Skizzenkommentar' },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('id', id());
                     fixture.componentRef.setInput('labelType', 'evaluation');
 
                     await detectChangesOnPush(fixture);
@@ -91,10 +93,14 @@ describe('EditionTkaLabelComponent (DONE)', () => {
 
             describe('... should display the correct label text in span when labelType is `commentary` if', () => {
                 it.each([
-                    { desc: 'no sketch id is given', id: expectedId, expectedText: 'Textkritische Anmerkungen' },
-                    { desc: 'sketch id is given', id: expectedSketchId, expectedText: 'Textkritische Kommentare' },
+                    { desc: 'no sketch id is given', id: () => expectedId, expectedText: 'Textkritische Anmerkungen' },
+                    {
+                        desc: 'sketch id is given',
+                        id: () => expectedSketchId,
+                        expectedText: 'Textkritische Kommentare',
+                    },
                 ])('... $desc', async ({ id, expectedText }) => {
-                    fixture.componentRef.setInput('id', id);
+                    fixture.componentRef.setInput('id', id());
                     fixture.componentRef.setInput('labelType', 'commentary');
 
                     await detectChangesOnPush(fixture);

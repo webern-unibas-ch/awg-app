@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -25,6 +25,7 @@ import { EditionGlyphService } from '@awg-views/edition-view/services/edition-gl
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
+import { TKA_TABLE_HEADERS } from './edition-tka-table.data';
 
 describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
@@ -36,16 +37,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let glyphService: EditionGlyphService;
 
     let getCommentSpy: Spy;
-    let getTableHeaderStringsSpy: Spy;
     let serviceGetCommentSpy: Spy;
 
     let expectedIsRowTable: boolean;
     let expectedComplexId: string;
     let expectedSketchId: string;
     let expectedCommentary: TextcriticalCommentary;
-    let expectedTableHeaderStrings: {
-        [key: string]: TkaTableHeaderColumn[];
-    };
+    let expectedTableHeaders: Record<string, TkaTableHeaderColumn[]>;
     let expectedTotalCommentRows: number;
     let expectedTotalRows: number;
 
@@ -55,8 +53,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         } as EditionSnippetService;
 
         await TestBed.configureTestingModule({
-            declarations: [EditionTkaTableComponent, AbbrDirective],
-            imports: [CompileHtmlDirective, NgbTooltip],
+            imports: [EditionTkaTableComponent, AbbrDirective, CompileHtmlDirective, NgbTooltip],
             providers: [{ provide: EditionSnippetService, useValue: mockEditionSnippetService }],
         }).compileComponents();
     });
@@ -83,26 +80,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedTotalRows = totalBlockHeaderRows + expectedTotalCommentRows;
 
         expectedIsRowTable = false;
-        expectedTableHeaderStrings = {
-            default: [
-                { reference: 'measure', label: 'Takt' },
-                { reference: 'system', label: 'System' },
-                { reference: 'location', label: 'Ort im Takt' },
-                { reference: 'comment', label: 'Anmerkung' },
-            ],
-            corrections: [
-                { reference: 'measure', label: 'Takt' },
-                { reference: 'system', label: 'System' },
-                { reference: 'location', label: 'Ort im Takt' },
-                { reference: 'comment', label: 'Korrektur' },
-            ],
-            rowtable: [
-                { reference: 'measure', label: 'Folio' },
-                { reference: 'system', label: 'System' },
-                { reference: 'location', label: 'Reihe/Reihenton' },
-                { reference: 'comment', label: 'Anmerkung' },
-            ],
-        };
+        expectedTableHeaders = structuredClone(TKA_TABLE_HEADERS);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaTableComponent);
@@ -110,7 +88,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Spies
-        getTableHeaderStringsSpy = vi.spyOn(component, 'getTableHeaderStrings');
         getCommentSpy = vi.spyOn(component, 'getComment');
     });
 
@@ -123,29 +100,39 @@ describe('EditionTkaTableComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have commentary', () => {
-            expect(component.commentary).toBeUndefined();
+        it('... should throw due to missing required input signal `displayedCommentary`', () => {
+            expectToBe(isSignal(component.displayedCommentary), true);
+
+            expect(() => component.displayedCommentary()).toThrow();
         });
 
-        it('... should not have id', () => {
-            expect(component.id).toBeUndefined();
+        it('... should have input signal `id` to hold the default value', () => {
+            expectToBe(isSignal(component.id), true);
+
+            expectToBe(component.id(), '');
         });
 
-        it('... should have isRowtable = false', () => {
-            expectToBe(component.isRowtable, false);
+        it('... should have input signal `isCorrections` to hold the default value', () => {
+            expectToBe(isSignal(component.isCorrections), true);
+
+            expectToBe(component.isCorrections(), false);
         });
 
-        it('... should have tableHeaderStrings', () => {
-            expectToEqual(component.tableHeaderStrings, expectedTableHeaderStrings);
+        it('... should have input signal `isRowtable` to hold the default value', () => {
+            expectToBe(isSignal(component.isRowtable), true);
+
+            expectToBe(component.isRowtable(), false);
+        });
+
+        it('... should have computed signal `tableHeaders` to hold the expected data', () => {
+            expectToBe(isSignal(component.tableHeaders), true);
+
+            expectToEqual(component.tableHeaders(), expectedTableHeaders['default']);
         });
 
         describe('VIEW', () => {
-            it('... should contain one table without table caption, head or body yet', () => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
-
-                getAndExpectDebugElementByCss(tableDes[0], 'caption', 0, 0);
-                getAndExpectDebugElementByCss(tableDes[0], 'thead', 0, 0);
-                getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
+            it('... should contain no table yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'table', 0, 0);
             });
         });
     });
@@ -153,23 +140,108 @@ describe('EditionTkaTableComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.commentary = structuredClone(expectedCommentary);
-            component.id = expectedComplexId;
-            component.isRowtable = expectedIsRowTable;
+            fixture.componentRef.setInput('displayedCommentary', structuredClone(expectedCommentary));
+            fixture.componentRef.setInput('id', expectedComplexId);
+            fixture.componentRef.setInput('isRowtable', expectedIsRowTable);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have commentary', () => {
-            expectToEqual(component.commentary, expectedCommentary);
+        it('... should have input signal `commentary` to hold the expected data', () => {
+            expectToEqual(component.displayedCommentary(), expectedCommentary);
         });
 
-        it('... should have id', () => {
-            expectToBe(component.id, expectedComplexId);
+        it('... should have input signal `id` to hold the expected id', () => {
+            expectToBe(component.id(), expectedComplexId);
+        });
+
+        it('... should have input signal `isRowtable` to hold the expected value', () => {
+            expectToBe(component.isRowtable(), expectedIsRowTable);
+        });
+
+        it('... should have computed signal `tableHeaders` to hold the expected data', () => {
+            expectToEqual(component.tableHeaders(), expectedTableHeaders['default']);
+        });
+
+        describe('... should have re-computed signal `tableHeaders` to hold the expected data for ...', () => {
+            it.each([
+                // Rowtable Tests
+                {
+                    isRowtable: true,
+                    isCorrections: false,
+                    id: () => expectedComplexId,
+                    expectedKey: 'rowtable',
+                    shouldAdjustComment: false,
+                },
+                {
+                    isRowtable: true,
+                    isCorrections: false,
+                    id: () => expectedSketchId,
+                    expectedKey: 'rowtable',
+                    shouldAdjustComment: true,
+                },
+
+                // Corrections Tests
+                {
+                    isRowtable: false,
+                    isCorrections: true,
+                    id: () => expectedComplexId,
+                    expectedKey: 'corrections',
+                    shouldAdjustComment: false,
+                },
+                {
+                    isRowtable: false,
+                    isCorrections: true,
+                    id: () => expectedSketchId,
+                    expectedKey: 'corrections',
+                    shouldAdjustComment: false,
+                },
+
+                // Default Tests
+                {
+                    isRowtable: false,
+                    isCorrections: false,
+                    id: () => expectedComplexId,
+                    expectedKey: 'default',
+                    shouldAdjustComment: false,
+                },
+                {
+                    isRowtable: false,
+                    isCorrections: false,
+                    id: () => expectedSketchId,
+                    expectedKey: 'default',
+                    shouldAdjustComment: true,
+                },
+            ])(
+                '... isRowtable=$isRowtable, isCorrections=$isCorrections, id=$id',
+                async ({ isRowtable, isCorrections, id, expectedKey, shouldAdjustComment }) => {
+                    fixture.componentRef.setInput('isRowtable', isRowtable);
+                    fixture.componentRef.setInput('isCorrections', isCorrections);
+                    fixture.componentRef.setInput('id', id());
+
+                    await detectChangesOnPush(fixture);
+
+                    let expected = expectedTableHeaders[expectedKey];
+                    if (shouldAdjustComment) {
+                        expected = expected.map(item =>
+                            item.ref === 'comment' ? { ...item, label: 'Kommentar' } : item
+                        );
+                    }
+
+                    expectToEqual(component.tableHeaders(), expected);
+                }
+            );
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `displayedCommentary` is undefined', () => {
+                fixture.componentRef.setInput('displayedCommentary', undefined);
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'table', 0, 0);
+            });
+
             it('... should contain one table with table caption, head and body if commentary provides preamble and comments', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
@@ -182,7 +254,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const commentaryWithoutPreamble = structuredClone(expectedCommentary);
                 commentaryWithoutPreamble.preamble = '';
 
-                component.commentary = commentaryWithoutPreamble;
+                fixture.componentRef.setInput('displayedCommentary', commentaryWithoutPreamble);
                 await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
@@ -196,7 +268,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const commentaryWithoutComments = structuredClone(expectedCommentary);
                 commentaryWithoutComments.comments = [];
 
-                component.commentary = commentaryWithoutComments;
+                fixture.componentRef.setInput('displayedCommentary', commentaryWithoutComments);
                 await detectChangesOnPush(fixture);
 
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
@@ -237,7 +309,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
 
                 it('... should display rowtable table header if `isRowtable` flag is given', async () => {
-                    component.isRowtable = true;
+                    fixture.componentRef.setInput('isRowtable', true);
                     await detectChangesOnPush(fixture);
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -245,12 +317,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowtable'][index].label);
+                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['rowtable'][index].label);
                     });
                 });
 
                 it('... should display corrections table header if `isCorrections` flag is given', async () => {
-                    component.isCorrections = true;
+                    fixture.componentRef.setInput('isCorrections', true);
                     await detectChangesOnPush(fixture);
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -258,7 +330,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['corrections'][index].label);
+                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['corrections'][index].label);
                     });
                 });
 
@@ -268,15 +340,15 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     columnDes.forEach((columnDe, index) => {
                         const columnEl: HTMLTableCellElement = columnDe.nativeElement;
-                        expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['default'][index].label);
+                        expectToBe(columnEl.textContent.trim(), expectedTableHeaders['default'][index].label);
                     });
                 });
 
                 it('... should display default table header with adjusted comment colum if `id` is a sketch id', async () => {
-                    component.id = expectedSketchId;
+                    fixture.componentRef.setInput('id', expectedSketchId);
                     await detectChangesOnPush(fixture);
 
-                    const expected = expectedTableHeaderStrings['default'];
+                    const expected = expectedTableHeaders['default'];
                     expected[3].label = 'Kommentar';
 
                     const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
@@ -295,6 +367,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 it('... should contain rows (tr) for each textcritical comment and block header in table body', () => {
                     getRowDes();
+                });
+
+                it('... should render no header cells if `textcriticalCommentBlock.blockHeader` is missing', async () => {
+                    const commentaryWithoutBlockHeaders = structuredClone(expectedCommentary);
+                    commentaryWithoutBlockHeaders.comments = commentaryWithoutBlockHeaders.comments.map(block => ({
+                        ...block,
+                        blockHeader: undefined,
+                    }));
+
+                    fixture.componentRef.setInput('displayedCommentary', commentaryWithoutBlockHeaders);
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
+                    getAndExpectDebugElementByCss(compDe, 'tbody > tr > td.awg-edition-tka-table-block-header', 0, 0);
                 });
 
                 it('... should contain one cell (td colspan=4) for block headers and four cells (td) for block comments in each row (tr) in table body', () => {
@@ -486,7 +572,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     // 6 blockComments in detected content
                     expectSpyCall(getCommentSpy, 6);
 
-                    component.isRowtable = true;
+                    fixture.componentRef.setInput('isRowtable', true);
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(getCommentSpy, 12);
@@ -520,94 +606,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                     expectSpyCall(serviceGetCommentSpy, 7, [comment, undefined]);
                     expectToBe(result, mockEditionSnippetService.getComment(comment, undefined));
-                });
-            });
-
-            describe('#getTableHeaderStrings()', () => {
-                it('... should have a method `getTableHeaderStrings`', () => {
-                    expect(component.getTableHeaderStrings).toBeDefined();
-                });
-
-                it('... should trigger on change detection', async () => {
-                    expectSpyCall(getTableHeaderStringsSpy, 1);
-
-                    component.isRowtable = true;
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(getTableHeaderStringsSpy, 2);
-
-                    component.id = expectedSketchId;
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(getTableHeaderStringsSpy, 3);
-                });
-
-                it('... should return rowtable header if `isRowtable` flag is given', async () => {
-                    component.isRowtable = true;
-                    component.id = expectedComplexId;
-                    await detectChangesOnPush(fixture);
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expectedTableHeaderStrings['rowtable']);
-                });
-
-                it('... should return rowtable header with adjusted comment colum if `id` is a sketch id', async () => {
-                    component.isRowtable = true;
-                    component.id = expectedSketchId;
-                    await detectChangesOnPush(fixture);
-
-                    const expected = expectedTableHeaderStrings['rowtable'];
-                    expected[3].label = 'Kommentar';
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expected);
-                });
-
-                it('... should return corrections table header if `isCorrections` flag is given', async () => {
-                    component.isCorrections = true;
-                    component.id = expectedComplexId;
-                    await detectChangesOnPush(fixture);
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
-                });
-
-                it('... should not change corrections table header if `id` is a sketch id', async () => {
-                    component.isCorrections = true;
-                    component.id = expectedSketchId;
-                    await detectChangesOnPush(fixture);
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
-                });
-
-                it('... should return default table header if `isRowtable` flag or `isCorrections` are not given', async () => {
-                    component.isRowtable = false;
-                    component.isCorrections = false;
-                    component.id = expectedComplexId;
-                    await detectChangesOnPush(fixture);
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expectedTableHeaderStrings['default']);
-                });
-
-                it('... should return default table header with adjusted comment colum if `id` is a sketch id', async () => {
-                    component.isRowtable = false;
-                    component.isCorrections = false;
-                    component.id = expectedSketchId;
-                    await detectChangesOnPush(fixture);
-
-                    const expected = expectedTableHeaderStrings['default'];
-                    expected[3].label = 'Kommentar';
-
-                    const tableHeaders = component.getTableHeaderStrings();
-
-                    expectToEqual(tableHeaders, expected);
                 });
             });
         });

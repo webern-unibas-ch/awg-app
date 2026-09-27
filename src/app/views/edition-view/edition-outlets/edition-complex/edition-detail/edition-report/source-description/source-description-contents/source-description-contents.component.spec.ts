@@ -56,12 +56,8 @@ describe('SourceDescriptionContentsComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
-            declarations: [
-                SourceDescriptionContentsComponent,
-                SourceDescriptionContentTableStubComponent,
-                AbbrDirective,
-            ],
+            imports: [AbbrDirective, CompileHtmlDirective],
+            declarations: [SourceDescriptionContentsComponent, SourceDescriptionContentTableStubComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });

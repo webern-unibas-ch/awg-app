@@ -54,8 +54,8 @@ describe('SourceListComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective, RouterModule],
-            declarations: [SourceListComponent, AbbrDirective, RouterLinkStubDirective],
+            imports: [AbbrDirective, CompileHtmlDirective, RouterModule],
+            declarations: [SourceListComponent, RouterLinkStubDirective],
             providers: [
                 { provide: ModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
@@ -576,7 +576,7 @@ describe('SourceListComponent (DONE)', () => {
                                 AbbrDirective
                             ) as AbbrDirective;
 
-                            expectToBe(directiveIns.text, sourcesData[index].location);
+                            expectToBe(directiveIns.text(), sourcesData[index].location);
                         });
                     });
 

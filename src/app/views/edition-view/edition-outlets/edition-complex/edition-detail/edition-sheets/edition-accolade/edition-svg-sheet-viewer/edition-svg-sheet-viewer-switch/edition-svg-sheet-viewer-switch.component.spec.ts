@@ -41,8 +41,8 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FormsModule],
-            declarations: [EditionSvgSheetViewerSwitchComponent, EditionTkaLabelStubComponent],
+            imports: [EditionTkaLabelStubComponent, FormsModule],
+            declarations: [EditionSvgSheetViewerSwitchComponent],
         }).compileComponents();
     });
 

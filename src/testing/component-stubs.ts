@@ -234,17 +234,14 @@ export class EditionSectionDetailPlaceholderStubComponent {
 @Component({
     selector: 'awg-edition-tka-evaluations',
     template: '',
-    standalone: false,
 })
 export class EditionTkaEvaluationsStubComponent {
-    @Input()
-    evaluations: string[] | undefined;
+    readonly evaluations = input.required<string[]>();
 }
 
 @Component({
     selector: 'awg-edition-tka-label',
     template: '',
-    standalone: false,
 })
 export class EditionTkaLabelStubComponent {
     readonly id = input.required<string>();
@@ -254,17 +251,12 @@ export class EditionTkaLabelStubComponent {
 @Component({
     selector: 'awg-edition-tka-table',
     template: '',
-    standalone: false,
 })
 export class EditionTkaTableStubComponent {
-    @Input()
-    commentary: TextcriticalCommentary | undefined;
-    @Input()
-    id?: string;
-    @Input()
-    isCorrections = false;
-    @Input()
-    isRowtable = false;
+    readonly displayedCommentary = input.required<TextcriticalCommentary | undefined>();
+    readonly id = input<string>('');
+    readonly isCorrections = input<boolean>(false);
+    readonly isRowtable = input<boolean>(false);
 }
 
 // ============================================================================

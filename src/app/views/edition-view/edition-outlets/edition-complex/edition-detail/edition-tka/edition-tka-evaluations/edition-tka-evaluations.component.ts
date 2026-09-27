@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 /**
  * The EditionTkaEvaluations component.
@@ -11,14 +13,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './edition-tka-evaluations.component.html',
     styleUrls: ['./edition-tka-evaluations.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [CompileHtmlDirective],
 })
 export class EditionTkaEvaluationsComponent {
     /**
-     * Input variable: evaluations.
+     * Readonly input signal: evaluations.
      *
-     * It keeps the evaluations data.
+     * It holds the evaluations data.
      */
-    @Input()
-    evaluations: string[] | undefined;
+    readonly evaluations = input.required<string[]>();
 }
