@@ -80,7 +80,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedTotalRows = totalBlockHeaderRows + expectedTotalCommentRows;
 
         expectedIsRowTable = false;
-        expectedTableHeaders = TKA_TABLE_HEADERS;
+        expectedTableHeaders = structuredClone(TKA_TABLE_HEADERS);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionTkaTableComponent);

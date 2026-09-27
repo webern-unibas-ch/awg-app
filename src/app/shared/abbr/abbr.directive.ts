@@ -75,6 +75,7 @@ export class AbbrDirective {
         let innerHTML = this.text();
 
         if (!innerHTML) {
+            this._el.nativeElement.innerHTML = '';
             return;
         }
 
