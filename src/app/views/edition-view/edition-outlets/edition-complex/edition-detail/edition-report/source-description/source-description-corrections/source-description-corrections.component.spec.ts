@@ -36,8 +36,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
-            declarations: [SourceDescriptionCorrectionsComponent, EditionTkaTableStubComponent],
+            imports: [CompileHtmlDirective, EditionTkaTableStubComponent],
+            declarations: [SourceDescriptionCorrectionsComponent],
         }).compileComponents();
     });
 
@@ -450,7 +450,10 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                                 EditionTkaTableStubComponent
                             ) as EditionTkaTableStubComponent;
 
-                            expectToEqual(editionTkaTableCmp.commentary, expectedCorrections[index].commentary);
+                            expectToEqual(
+                                editionTkaTableCmp.displayedCommentary(),
+                                expectedCorrections[index].commentary
+                            );
                         });
                     });
 
@@ -474,9 +477,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                             ) as EditionTkaTableStubComponent;
 
                             if (expectedCorrections[index].rowtable) {
-                                expectToBe(editionTkaTableCmp.isRowtable, expectedCorrections[index].rowtable);
+                                expectToBe(editionTkaTableCmp.isRowtable(), expectedCorrections[index].rowtable);
                             } else {
-                                expectToBe(editionTkaTableCmp.isRowtable, false);
+                                expectToBe(editionTkaTableCmp.isRowtable(), false);
                             }
                         });
                     });
@@ -500,7 +503,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                                 EditionTkaTableStubComponent
                             ) as EditionTkaTableStubComponent;
 
-                            expectToBe(editionTkaTableCmp.isCorrections, true);
+                            expectToBe(editionTkaTableCmp.isCorrections(), true);
                         });
                     });
                 });

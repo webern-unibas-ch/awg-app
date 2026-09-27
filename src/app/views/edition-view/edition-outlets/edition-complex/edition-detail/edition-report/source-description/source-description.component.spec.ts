@@ -65,14 +65,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
+            imports: [AbbrDirective, CompileHtmlDirective],
             declarations: [
                 SourceDescriptionComponent,
                 SourceDescriptionContentsStubComponent,
                 SourceDescriptionCorrectionsStubComponent,
                 SourceDescriptionDetailsStubComponent,
                 SourceDescriptionWritingMaterialsStubComponent,
-                AbbrDirective,
                 RouterLinkStubDirective,
             ],
         }).compileComponents();
