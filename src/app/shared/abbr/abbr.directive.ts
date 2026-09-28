@@ -1,13 +1,6 @@
 import { Directive, effect, ElementRef, inject, input } from '@angular/core';
 
-import abbreviationsData from 'assets/data/edition/abbreviations.json';
-
-/**
- * Object constant: ABBREVIATIONS.
- *
- * It keeps a map of abbreviations and their full forms.
- */
-const ABBREVIATIONS = new Map<string, string>(Object.entries(abbreviationsData.abbreviations));
+import { ABBR_UTILS } from './abbr.utils';
 
 /**
  * The abbr directive.
@@ -53,26 +46,14 @@ export class AbbrDirective {
      * @returns {void} Replaces abbreviations in the text.
      */
     private _replaceAbbreviations(): void {
-        let innerHTML = this.text();
+        const text = this.text() || '';
+        const element = this._el.nativeElement;
+        element.innerHTML = text;
 
-        if (!innerHTML) {
-            this._el.nativeElement.innerHTML = '';
+        if (!text) {
             return;
         }
 
-        // Construct a single regular expression to match any abbreviation
-        const abbreviationsPattern = Array.from(ABBREVIATIONS.keys())
-            .sort((left, right) => right.length - left.length)
-            .map(key => key.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'))
-            .join('|');
-        const regex = new RegExp(String.raw`(?<!\w)(${abbreviationsPattern})(?!\w)`, 'g');
-
-        // Replace abbreviations with <abbr> elements
-        innerHTML = innerHTML.replace(regex, match => {
-            const full = ABBREVIATIONS.get(match);
-            return `<abbr title="${full}">${match}</abbr>`;
-        });
-
-        this._el.nativeElement.innerHTML = innerHTML;
+        ABBR_UTILS.applyAbbreviations(element);
     }
 }

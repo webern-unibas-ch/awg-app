@@ -1,12 +1,14 @@
-import { ElementRef, Renderer2, signal, WritableSignal } from '@angular/core';
+import { Component, ElementRef, Renderer2, signal, WritableSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.fn>;
 
-import { expectSpyCall, expectToBe } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
+import { ABBR_UTILS } from '@awg-shared/abbr/abbr.utils';
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { EditionGlyphService } from '@awg-views/edition-view/services';
 import {
@@ -16,6 +18,14 @@ import {
 } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { CompileHtmlDirective } from './compile-html.directive';
+
+@Component({
+    template: `<div [awgCompileHtml]="html"></div>`,
+    imports: [CompileHtmlDirective],
+})
+class TestCompileHtmlHostComponent {
+    readonly html = '<p>Klav.</p>';
+}
 
 describe('CompileHtmlDirective (DONE)', () => {
     let directive: CompileHtmlDirective;
@@ -42,12 +52,13 @@ describe('CompileHtmlDirective (DONE)', () => {
     let expectedSvgSheetId: string;
     let expectedTextModalId: string;
 
-    beforeEach(() => {
+    beforeEach(async () => {
         // Mock the input signal and native element
         mockHtmlContentSignal = signal('');
         mockNativeElement = document.createElement('div');
 
         TestBed.configureTestingModule({
+            imports: [TestCompileHtmlHostComponent],
             providers: [
                 CompileHtmlDirective,
                 {
@@ -58,7 +69,9 @@ describe('CompileHtmlDirective (DONE)', () => {
                     provide: Renderer2,
                     useValue: {
                         setAttribute: vi.fn(),
-                        setProperty: vi.fn(),
+                        setProperty: vi.fn((element: HTMLElement, property: string, value: string) => {
+                            (element as any)[property] = value;
+                        }),
                     },
                 },
                 {
@@ -78,6 +91,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                 },
             ],
         });
+        await TestBed.compileComponents();
 
         directive = TestBed.inject(CompileHtmlDirective);
 
@@ -121,6 +135,17 @@ describe('CompileHtmlDirective (DONE)', () => {
         expect(directive).toBeTruthy();
     });
 
+    it('... should apply the directive to a host component and process its HTML', () => {
+        const applyAbbreviationsSpy = vi.spyOn(ABBR_UTILS, 'applyAbbreviations');
+        const fixture = TestBed.createComponent(TestCompileHtmlHostComponent);
+        const hostDebugElement = fixture.debugElement.query(By.directive(CompileHtmlDirective));
+
+        fixture.detectChanges();
+
+        expect(applyAbbreviationsSpy).toHaveBeenCalledWith(hostDebugElement.nativeElement);
+        expectToBe(hostDebugElement.nativeElement.innerHTML, '<p><abbr title="Klavier">Klav.</abbr></p>');
+    });
+
     describe('effect()', () => {
         describe('... should set innerHTML correctly depending on the input including', () => {
             it.each([
@@ -139,12 +164,20 @@ describe('CompileHtmlDirective (DONE)', () => {
                     inputValue: 'Plain Text Content',
                     expectedOutput: 'Plain Text Content',
                 },
-            ])(`... $desc`, async ({ inputValue, expectedOutput }) => {
+                {
+                    desc: 'abbreviations in compiled HTML text nodes',
+                    inputValue: '<p>Klav. o. and <strong>Ges.</strong></p>',
+                    expectedOutput: '<p>Klav. o. and <strong>Ges.</strong></p>',
+                    expectedRenderedOutput:
+                        '<p><abbr title="Klavier oben">Klav. o.</abbr> and <strong><abbr title="Gesang">Ges.</abbr></strong></p>',
+                },
+            ])(`... $desc`, async ({ inputValue, expectedOutput, expectedRenderedOutput }) => {
                 mockHtmlContentSignal.set(inputValue);
 
                 TestBed.tick();
 
                 expectSpyCall(rendererSetPropertySpy, 1, [mockNativeElement, 'innerHTML', expectedOutput]);
+                expectToBe(mockNativeElement.innerHTML, expectedRenderedOutput ?? expectedOutput);
             });
         });
 
@@ -174,6 +207,15 @@ describe('CompileHtmlDirective (DONE)', () => {
             });
         });
 
+        it('... should delegate abbreviation processing to ABBR_UTILS', () => {
+            const applyAbbreviationsSpy = vi.spyOn(ABBR_UTILS, 'applyAbbreviations');
+            mockHtmlContentSignal.set('<p>Klav.</p>');
+
+            TestBed.tick();
+
+            expectSpyCall(applyAbbreviationsSpy, 1, mockNativeElement);
+        });
+
         it('... should call `_applyAccessibilityAttributes()` when htmlContent changes', async () => {
             mockHtmlContentSignal.set('<p>Test</p>');
 
@@ -197,11 +239,47 @@ describe('CompileHtmlDirective (DONE)', () => {
 
                 expectSpyCall(handleInteractionSpy, 1, [mockTarget, mockEvent]);
             });
+
+            it('... should be triggered from a click event on the host element', () => {
+                const fixture = TestBed.createComponent(TestCompileHtmlHostComponent);
+                const hostDebugElement = getAndExpectDebugElementByDirective(
+                    fixture.debugElement,
+                    CompileHtmlDirective,
+                    1,
+                    1
+                );
+                const hostDirective = hostDebugElement[0].injector.get(CompileHtmlDirective);
+                const onHostClickSpy = vi.spyOn(hostDirective as any, 'onHostClick');
+
+                fixture.detectChanges();
+                const clickEvent = new MouseEvent('click', { bubbles: true });
+                hostDebugElement[0].nativeElement.dispatchEvent(clickEvent);
+
+                expectSpyCall(onHostClickSpy, 1, clickEvent);
+            });
         });
 
         describe('#onHostKeydown()', () => {
             it('... should have a method `onHostKeydown`', () => {
                 expect((directive as any).onHostKeydown).toBeDefined();
+            });
+
+            it('... should be triggered from a keydown event on the host element', () => {
+                const fixture = TestBed.createComponent(TestCompileHtmlHostComponent);
+                const hostDebugElement = getAndExpectDebugElementByDirective(
+                    fixture.debugElement,
+                    CompileHtmlDirective,
+                    1,
+                    1
+                );
+                const hostDirective = hostDebugElement[0].injector.get(CompileHtmlDirective);
+                const onHostKeydownSpy = vi.spyOn(hostDirective as any, 'onHostKeydown');
+
+                fixture.detectChanges();
+                const keydownEvent = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true });
+                hostDebugElement[0].nativeElement.dispatchEvent(keydownEvent);
+
+                expectSpyCall(onHostKeydownSpy, 1, keydownEvent);
             });
 
             describe('... should call `_handleInteraction` when pressing', () => {
