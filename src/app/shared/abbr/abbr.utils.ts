@@ -55,7 +55,9 @@ export function applyAbbreviations(root: HTMLElement): void {
             .filter(Boolean)
             .map(part => {
                 const explanation = ABBREVIATIONS[part];
-                if (!explanation) {return doc.createTextNode(part);}
+                if (!explanation) {
+                    return doc.createTextNode(part);
+                }
 
                 const abbr = doc.createElement('abbr');
                 abbr.title = explanation;
