@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+
+import { SourceEvaluationPlaceholderComponent } from './source-evaluation-placeholder/source-evaluation-placeholder.component';
 
 /**
  * The SourceEvaluation component.
@@ -14,29 +18,20 @@ import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/mo
     templateUrl: './source-evaluation.component.html',
     styleUrls: ['./source-evaluation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [CompileHtmlDirective, SourceEvaluationPlaceholderComponent],
 })
 export class SourceEvaluationComponent {
     /**
-     * Input variable:  editionComplex.
+     * Readonly input signal: editionComplex.
      *
-     * It keeps the information about the current edition complex.
+     * It holds the editionComplex for the source evaluation.
      */
-    @Input()
-    editionComplex: EditionComplex | null = null;
+    readonly editionComplex = input.required<EditionComplex | null>();
 
     /**
-     * Input variable: sourceEvaluationListData.
+     * Readonly input signal: sourceEvaluationListData.
      *
-     * It keeps the source evaluation data.
+     * It holds the source evaluation data.
      */
-    @Input()
-    sourceEvaluationListData: SourceEvaluationList | null = null;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+    readonly sourceEvaluationListData = input.required<SourceEvaluationList | null>();
 }
