@@ -4,7 +4,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, it } from 'vitest';
 
 import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
 import { AbbrDirective } from './abbr.directive';
+
+import abbreviationsData from 'assets/data/edition/abbreviations.json';
 
 // Mock component
 @Component({
@@ -29,28 +32,7 @@ describe('AbbrDirective (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedAbbreviations = new Map<string, string>([
-            // General
-            ['Bl.', 'Blatt (r - recto, v - verso)'],
-            ['S.', 'Seite'],
-            ['T.', 'Takt'],
-            // Instrumentations
-            ['Ges.', 'Gesang'],
-            ['Klav. o.', 'Klavier oben'],
-            ['Klav. u.', 'Klavier unten'],
-            ['Klav.', 'Klavier'],
-            // RISM-IDs
-            ['A-Was', 'Arnold Schönberg Center, Wien'],
-            ['A-Wn', 'Österreichische Nationalbibliothek, Musiksammlung, Wien'],
-            ['A-Wst', 'Wienbibliothek im Rathaus, Musiksammlung, Wien'],
-            ['A-Wue', 'Universal Edition, Historisches Archiv, Wien'],
-            ['CH-Bps', 'Paul Sacher Stiftung, Basel'],
-            ['CH-END', 'Dokumentationsbibliothek Walter Labhart, Endingen'],
-            ['GB-Lbl', 'The Britisch Library, London'],
-            ['US-NH', 'Yale University, Irving S. Gilmore Music Library, New Haven, CT'],
-            ['US-NYpm', 'The Morgan Library & Museum, New York City, NY'],
-            ['US-Wc', 'The Library of Congress, Music Division, Washington, D.C.'],
-        ]);
+        expectedAbbreviations = new Map<string, string>(Object.entries(abbreviationsData.abbreviations));
 
         // Create component fixture
         fixture = TestBed.createComponent(TestAbbrComponent);
@@ -108,13 +90,13 @@ describe('AbbrDirective (DONE)', () => {
     });
 
     it('... should not replace parts of words', () => {
-        fixture.componentRef.setInput('text', 'This is a test with Klaviert and Klav. o. and Ges.');
+        fixture.componentRef.setInput('text', 'This is a test with Klaviertaste and Klav. o. and Ges.');
         fixture.detectChanges();
 
         const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
         const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-        expectToNotContain(pEl.innerHTML, '<abbr title="Klavier">Klaviert</abbr>');
+        expectToNotContain(pEl.innerHTML, '<abbr title="Klavier">Klaviertaste</abbr>');
         expectToContain(pEl.innerHTML, '<abbr title="Klavier oben">Klav. o.</abbr>');
         expectToContain(pEl.innerHTML, '<abbr title="Gesang">Ges.</abbr>');
     });

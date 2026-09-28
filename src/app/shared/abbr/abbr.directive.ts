@@ -1,5 +1,14 @@
 import { Directive, effect, ElementRef, inject, input } from '@angular/core';
 
+import abbreviationsData from 'assets/data/edition/abbreviations.json';
+
+/**
+ * Object constant: ABBREVIATIONS.
+ *
+ * It keeps a map of abbreviations and their full forms.
+ */
+const ABBREVIATIONS = new Map<string, string>(Object.entries(abbreviationsData.abbreviations));
+
 /**
  * The abbr directive.
  *
@@ -22,34 +31,6 @@ export class AbbrDirective {
      * It holds the text value with a possible abbreviation.
      */
     readonly text = input<string>('', { alias: 'awgAbbr' });
-
-    /**
-     * Private readonly variable: _abbreviations.
-     *
-     * It keeps a list of abbreviations and their full forms.
-     */
-    private readonly _abbreviations = new Map<string, string>([
-        // General
-        ['Bl.', 'Blatt (r - recto, v - verso)'],
-        ['S.', 'Seite'],
-        ['T.', 'Takt'],
-        // Instrumentations
-        ['Ges.', 'Gesang'],
-        ['Klav. o.', 'Klavier oben'],
-        ['Klav. u.', 'Klavier unten'],
-        ['Klav.', 'Klavier'],
-        // RISM-IDs
-        ['A-Was', 'Arnold Schönberg Center, Wien'],
-        ['A-Wn', 'Österreichische Nationalbibliothek, Musiksammlung, Wien'],
-        ['A-Wst', 'Wienbibliothek im Rathaus, Musiksammlung, Wien'],
-        ['A-Wue', 'Universal Edition, Historisches Archiv, Wien'],
-        ['CH-Bps', 'Paul Sacher Stiftung, Basel'],
-        ['CH-END', 'Dokumentationsbibliothek Walter Labhart, Endingen'],
-        ['GB-Lbl', 'The Britisch Library, London'],
-        ['US-NH', 'Yale University, Irving S. Gilmore Music Library, New Haven, CT'],
-        ['US-NYpm', 'The Morgan Library & Museum, New York City, NY'],
-        ['US-Wc', 'The Library of Congress, Music Division, Washington, D.C.'],
-    ]);
 
     /**
      * The constructor of the AbbrDirective.
@@ -80,14 +61,15 @@ export class AbbrDirective {
         }
 
         // Construct a single regular expression to match any abbreviation
-        const abbreviationsPattern = Array.from(this._abbreviations.keys())
+        const abbreviationsPattern = Array.from(ABBREVIATIONS.keys())
+            .sort((left, right) => right.length - left.length)
             .map(key => key.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'))
             .join('|');
         const regex = new RegExp(String.raw`(?<!\w)(${abbreviationsPattern})(?!\w)`, 'g');
 
         // Replace abbreviations with <abbr> elements
         innerHTML = innerHTML.replace(regex, match => {
-            const full = this._abbreviations.get(match);
+            const full = ABBREVIATIONS.get(match);
             return `<abbr title="${full}">${match}</abbr>`;
         });
 
