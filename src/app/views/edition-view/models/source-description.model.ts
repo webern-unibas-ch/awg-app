@@ -1,3 +1,4 @@
+import { Source } from './source.model';
 import { Textcritics } from './textcritics.model';
 
 /**
@@ -399,36 +400,11 @@ export interface SourceDescriptionPhysDesc {
  * to store the data for a single source description
  * from a source description json file.
  */
-export interface SourceDescription {
+export interface SourceDescription extends Pick<Source, 'siglum' | 'siglumAddendum' | 'missing' | 'type' | 'location'> {
     /**
      * The id of a sourceDescription.
      */
     id: string;
-
-    /**
-     * The siglum of a sourceDescription.
-     */
-    siglum: string;
-
-    /**
-     * The addendum to a siglum of a sourceDescription (optional).
-     */
-    siglumAddendum?: string;
-
-    /**
-     * The flag if a source is missing (optional).
-     */
-    missing?: boolean;
-
-    /**
-     * The type description of a source.
-     */
-    type: string;
-
-    /**
-     * The physical location of a source.
-     */
-    location: string;
 
     /**
      * The physical description of a sourceDescription.

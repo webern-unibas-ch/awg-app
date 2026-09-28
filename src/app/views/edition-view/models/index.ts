@@ -58,7 +58,8 @@ export {
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
 export { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
-export { Source, SourceList } from './source-list.model';
+export { SourceList } from './source-list.model';
+export { Source, TextSource } from './source.model';
 export {
     TextcriticalComment,
     TextcriticalCommentary,

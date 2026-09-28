@@ -87,7 +87,7 @@ describe('EditionIntroPartialDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render no content if editionComplex is not available', () => {
+            it('... should render no content if `editionComplex` is not available', () => {
                 fixture.componentRef.setInput('editionComplex', null);
 
                 fixture.detectChanges();

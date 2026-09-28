@@ -13,12 +13,6 @@ const EDITION_REPORT_ROUTES: Routes = [
 ];
 
 /**
- * Routed components of the {@link EditionReportModule}:
- * {@link EditionReportComponent}.
- */
-export const routedEditionReportComponents = [EditionReportComponent];
-
-/**
  * EditionReport module routing.
  *
  * It activates the EDITION_REPORT_ROUTES.

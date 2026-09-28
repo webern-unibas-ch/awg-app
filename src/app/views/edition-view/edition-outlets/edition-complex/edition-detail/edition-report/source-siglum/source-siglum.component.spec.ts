@@ -1,0 +1,412 @@
+import { DebugElement, isSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
+
+import { Source, TextSource } from '@awg-views/edition-view/models/source.model';
+
+import { SourceSiglumComponent } from './source-siglum.component';
+
+describe('SourceSiglumComponent', () => {
+    let component: SourceSiglumComponent;
+    let fixture: ComponentFixture<SourceSiglumComponent>;
+    let compDe: DebugElement;
+
+    let expectedSourceData: Source;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [SourceSiglumComponent],
+        }).compileComponents();
+    });
+
+    beforeEach(() => {
+        // Test data
+        expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[0]);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(SourceSiglumComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+    });
+
+    it('... should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should throw due to missing required input signal `sourceData`', () => {
+            expectToBe(isSignal(component.sourceData), true);
+
+            expect(() => component.sourceData()).toThrow();
+        });
+
+        it('... should have input signal `isClickable` to hold the default value', () => {
+            expectToBe(isSignal(component.isClickable), true);
+
+            expectToBe(component.isClickable(), false);
+        });
+
+        it('... should have input signal `classPrefix` to hold the default value', () => {
+            expectToBe(isSignal(component.classPrefix), true);
+
+            expectToBe(component.classPrefix(), 'awg-source-list');
+        });
+
+        it('... should have output `clicked`', () => {
+            expect(component.clicked).toBeDefined();
+        });
+
+        it('... should throw when accessing computed signal `hasMissingFlag` due to missing input', () => {
+            expectToBe(isSignal(component.hasMissingFlag), true);
+
+            expect(() => component.hasMissingFlag()).toThrow();
+        });
+
+        it('... should have computed signal `siglumContainerClass` to hold the default value', () => {
+            expectToBe(isSignal(component.siglumContainerClass), true);
+
+            expectToBe(component.siglumContainerClass(), 'awg-source-list-siglum-container');
+        });
+
+        it('... should have computed signal `siglumClass` to hold the default value', () => {
+            expectToBe(isSignal(component.siglumClass), true);
+
+            expectToBe(component.siglumClass(), 'awg-source-list-siglum');
+        });
+
+        it('... should have computed signal `siglumAddendumClass` to hold the default value', () => {
+            expectToBe(isSignal(component.siglumAddendumClass), true);
+
+            expectToBe(component.siglumAddendumClass(), 'awg-source-list-siglum-addendum');
+        });
+
+        describe('VIEW', () => {
+            it('... should contain no span yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'span', 0, 0);
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(async () => {
+            // Simulate the parent setting the input properties
+            fixture.componentRef.setInput('sourceData', structuredClone(expectedSourceData));
+            fixture.componentRef.setInput('isClickable', true);
+            fixture.componentRef.setInput('classPrefix', 'awg-source-list');
+
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        it('... should have input signal `sourceData` to hold the expected data', () => {
+            expectToEqual(component.sourceData(), expectedSourceData);
+        });
+
+        it('... should have input signal `isClickable` to hold the expected value', () => {
+            expectToEqual(component.isClickable(), true);
+        });
+
+        it('... should have input signal `classPrefix` to hold the expected value', () => {
+            expectToEqual(component.classPrefix(), 'awg-source-list');
+        });
+
+        it('... should have computed signal `hasMissingFlag` to hold the expected value', () => {
+            expectToEqual(component.hasMissingFlag(), false);
+        });
+
+        it('... should re-compute `hasMissingFlag` when input changes', () => {
+            fixture.componentRef.setInput('sourceData', { ...expectedSourceData, missing: true });
+            fixture.detectChanges();
+
+            expectToEqual(component.hasMissingFlag(), true);
+        });
+
+        it('... should have computed signal `siglumContainerClass` to hold the expected value', () => {
+            expectToEqual(component.siglumContainerClass(), 'awg-source-list-siglum-container');
+        });
+
+        it('... should have computed signal `siglumClass` to hold the expected value', () => {
+            expectToEqual(component.siglumClass(), 'awg-source-list-siglum');
+        });
+
+        it('... should have computed signal `siglumAddendumClass` to hold the expected value', () => {
+            expectToEqual(component.siglumAddendumClass(), 'awg-source-list-siglum-addendum');
+        });
+
+        it('... should re-compute the class signals when input changes', () => {
+            fixture.componentRef.setInput('classPrefix', 'awg-source-list-text');
+            fixture.detectChanges();
+
+            expectToEqual(component.siglumContainerClass(), 'awg-source-list-text-siglum-container');
+            expectToEqual(component.siglumClass(), 'awg-source-list-text-siglum');
+            expectToEqual(component.siglumAddendumClass(), 'awg-source-list-text-siglum-addendum');
+        });
+
+        describe('VIEW', () => {
+            const getSiglumContainerDes = () =>
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-list-siglum-container', 1, 1);
+
+            it('... should render no content if sourceData is null', async () => {
+                fixture.componentRef.setInput('sourceData', null);
+
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 0, 0);
+            });
+
+            it('... should contain a container span', () => {
+                getSiglumContainerDes();
+            });
+
+            it('... should contain siglum link as link text', () => {
+                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 1, 1);
+
+                const siglumSpanDes = spanDes[0];
+                const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+
+                const expectedSiglum = expectedSourceData.siglum;
+
+                expectToBe(aEl.textContent.trim(), expectedSiglum.trim());
+                expectToBe(aEl.role, 'link');
+                expectToBe(aEl.tabIndex, 0);
+                expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
+            });
+
+            describe('... should display siglum with addendum as link text if present', () => {
+                it.each([
+                    { siglum: 'A', addendum: 'a' },
+                    { siglum: 'B', addendum: 'H' },
+                    { siglum: 'C', addendum: 'F1-F2' },
+                ])('... with addendum $addendum', async ({ siglum, addendum }) => {
+                    expectedSourceData = {
+                        ...mockEditionData.mockSourceListDataWithTexts.sources[0],
+                        siglum,
+                        siglumAddendum: addendum,
+                    };
+
+                    fixture.componentRef.setInput('sourceData', expectedSourceData);
+                    await detectChangesOnPush(fixture);
+
+                    const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                    const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 2, 2);
+
+                    const siglumSpanDes = spanDes[0];
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+
+                    const siglumAddendumSpanDes = spanDes[1];
+                    const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
+
+                    const expectedSiglum = expectedSourceData.siglum;
+                    const expectedAddendum = expectedSourceData.siglumAddendum ?? '';
+
+                    expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+                    expectToBe(aEl.role, 'link');
+                    expectToBe(aEl.tabIndex, 0);
+
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                    expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
+
+                    expectToBe(siglumAddendumSpanEl.textContent.trim(), expectedAddendum.trim());
+                    expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-siglum-addendum');
+                });
+            });
+
+            it('... should emit `clicked` when the siglum link is clicked', async () => {
+                const emitSpy = vi.fn();
+                fixture.componentInstance.clicked.subscribe(emitSpy);
+
+                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
+
+                await clickAndAwaitChanges(aDes[0], fixture);
+
+                expectSpyCall(emitSpy, 1);
+            });
+
+            it('... should emit `clicked` on Enter keyup on the siglum link', () => {
+                const emitSpy = vi.fn();
+                fixture.componentInstance.clicked.subscribe(emitSpy);
+
+                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                aEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true }));
+
+                expectSpyCall(emitSpy, 1);
+            });
+
+            describe('... missing sources', () => {
+                beforeEach(async () => {
+                    expectedSourceData = structuredClone(mockEditionData.mockSourceListData.sources[2]);
+                    fixture.componentRef.setInput('isClickable', true);
+                    fixture.componentRef.setInput('classPrefix', 'awg-source-list');
+
+                    fixture.componentRef.setInput('sourceData', expectedSourceData);
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should display missing sources in brackets as link text', async () => {
+                    const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
+                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                    const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 3, 3);
+
+                    const openingBracketSpanDes = spanDes[0];
+                    const siglumSpanDes = spanDes[1];
+                    const closingBracketSpanDes = spanDes[2];
+
+                    const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                    const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
+
+                    const expectedSiglum = expectedSourceData.siglum;
+
+                    expectToBe(aEl.textContent.trim(), `[${expectedSiglum}]`);
+
+                    expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                    expectToBe(closingBracketSpanEl.textContent.trim(), ']');
+
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                    expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
+                });
+
+                describe('... should display missing sources with addendum in brackets as link text', () => {
+                    it.each([
+                        { siglum: 'A', addendum: 'a' },
+                        { siglum: 'B', addendum: 'H' },
+                        { siglum: 'C', addendum: 'F1-F2' },
+                    ])('... with addendum $addendum', async ({ siglum, addendum }) => {
+                        expectedSourceData = { ...expectedSourceData, siglum, siglumAddendum: addendum };
+
+                        fixture.componentRef.setInput('sourceData', expectedSourceData);
+                        await detectChangesOnPush(fixture);
+
+                        const aDes = getAndExpectDebugElementByCss(fixture.debugElement, 'a', 1, 1);
+                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 4, 4);
+
+                        const openingBracketSpanDes = spanDes[0];
+                        const siglumSpanDes = spanDes[1];
+                        const siglumAddendumSpanDes = spanDes[2];
+                        const closingBracketSpanDes = spanDes[3];
+
+                        const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                        const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                        const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
+                        const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
+
+                        expectToBe(aEl.textContent.trim(), `[${siglum}${addendum}]`);
+
+                        expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                        expectToBe(closingBracketSpanEl.textContent.trim(), ']');
+                        expectToBe(siglumSpanEl.textContent.trim(), siglum);
+                        expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
+                        expectToBe(siglumAddendumSpanEl.textContent.trim(), addendum);
+                        expectToContain(siglumAddendumSpanEl.classList, 'awg-source-list-siglum-addendum');
+
+                        const supDes = getAndExpectDebugElementByCss(siglumAddendumSpanDes, 'sup', 1, 1);
+                        expectToBe(supDes[0].nativeElement.textContent.trim(), addendum);
+                    });
+                });
+
+                it('... should render a missing source without a link when not clickable', async () => {
+                    const mockSource = {
+                        siglum: 'C',
+                        siglumAddendum: '',
+                        missing: true,
+                        type: 'Test type 3',
+                        location: 'Test location 3.',
+                        hasDescription: false,
+                        linkTo: '',
+                    };
+                    fixture.componentRef.setInput('sourceData', structuredClone(mockSource));
+                    fixture.componentRef.setInput('isClickable', false);
+                    await detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 0, 0);
+
+                    const spanDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'span', 3, 3);
+
+                    const openingBracketSpanDes = spanDes[0];
+                    const siglumSpanDes = spanDes[1];
+                    const closingBracketSpanDes = spanDes[2];
+
+                    const openingBracketSpanEl: HTMLSpanElement = openingBracketSpanDes.nativeElement;
+                    const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
+                    const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
+
+                    const expectedSiglum = mockSource.siglum;
+
+                    expectToBe(openingBracketSpanEl.textContent.trim(), '[');
+                    expectToBe(closingBracketSpanEl.textContent.trim(), ']');
+
+                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                    expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
+                });
+            });
+        });
+    });
+
+    describe('... with text sources', () => {
+        let expectedTextSourceData: TextSource;
+
+        beforeEach(async () => {
+            expectedTextSourceData = {
+                id: 'text_textB',
+                siglum: 'textB',
+                siglumAddendum: 'H',
+                type: 'Text type 2',
+                location: 'Text location 2.',
+            };
+            fixture.componentRef.setInput('sourceData', expectedTextSourceData);
+            fixture.componentRef.setInput('classPrefix', 'awg-source-list-text');
+
+            await detectChangesOnPush(fixture);
+        });
+
+        it('... should render a text-source siglum and addendum without a link', () => {
+            expectToEqual(component.sourceData(), expectedTextSourceData);
+            expectToBe(component.hasMissingFlag(), false);
+            expectToBe(component.isClickable(), false);
+
+            const containerDes = getAndExpectDebugElementByCss(
+                compDe,
+                'span.awg-source-list-text-siglum-container',
+                1,
+                1
+            );
+            getAndExpectDebugElementByCss(containerDes[0], 'a', 0, 0);
+
+            const siglumDes = getAndExpectDebugElementByCss(containerDes[0], 'span.awg-source-list-text-siglum', 1, 1);
+            const addendumDes = getAndExpectDebugElementByCss(
+                containerDes[0],
+                'span.awg-source-list-text-siglum-addendum > sup',
+                1,
+                1
+            );
+            const siglumEl: HTMLSpanElement = siglumDes[0].nativeElement;
+            const addendumEl: HTMLElement = addendumDes[0].nativeElement;
+
+            expectToBe(siglumEl.textContent.trim(), expectedTextSourceData.siglum);
+            expectToBe(addendumEl.textContent.trim(), expectedTextSourceData.siglumAddendum);
+        });
+    });
+});

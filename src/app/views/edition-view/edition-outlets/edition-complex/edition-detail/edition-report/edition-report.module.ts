@@ -5,13 +5,16 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionTkaEvaluationsComponent } from '../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../edition-tka/edition-tka-table/edition-tka-table.component';
+
+import { EditionReportComponent } from './edition-report.component';
 import { SourceDescriptionModule } from './source-description/source-description.module';
+import { SourceEvaluationPlaceholderComponent } from './source-evaluation/source-evaluation-placeholder/source-evaluation-placeholder.component';
+import { SourceEvaluationComponent } from './source-evaluation/source-evaluation.component';
+import { SourceListComponent } from './source-list/source-list.component';
+import { SourceSiglumComponent } from './source-siglum/source-siglum.component';
+import { TextcriticsListComponent } from './textcritics-list/textcritics-list.component';
 
-import { SourceEvaluationComponent } from './source-evaluation';
-import { SourceListComponent } from './source-list';
-import { TextcriticsListComponent } from './textcritics-list';
-
-import { EditionReportRoutingModule, routedEditionReportComponents } from './edition-report-routing.module';
+import { EditionReportRoutingModule } from './edition-report-routing.module';
 
 /**
  * The EditionReport module.
@@ -27,15 +30,14 @@ import { EditionReportRoutingModule, routedEditionReportComponents } from './edi
         SharedModule,
         SourceDescriptionModule,
         EditionReportRoutingModule,
+        SourceEvaluationComponent,
+        SourceEvaluationPlaceholderComponent,
+        SourceListComponent,
+        SourceSiglumComponent,
         EditionTkaEvaluationsComponent,
         EditionTkaLabelComponent,
         EditionTkaTableComponent,
     ],
-    declarations: [
-        TextcriticsListComponent,
-        SourceEvaluationComponent,
-        SourceListComponent,
-        routedEditionReportComponents,
-    ],
+    declarations: [TextcriticsListComponent, EditionReportComponent],
 })
 export class EditionReportModule {}
