@@ -1,6 +1,8 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
 
+import { ABBR_UTILS } from '@awg-shared/abbr/abbr.utils';
 import { ModalService } from '@awg-shared/modal/modal.service';
+
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -16,7 +18,6 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
         '(click)': 'onHostClick($event)',
         '(keydown)': 'onHostKeydown($event)',
     },
-    standalone: true,
 })
 export class CompileHtmlDirective {
     /**
@@ -83,6 +84,7 @@ export class CompileHtmlDirective {
 
             this._renderer.setProperty(this._el.nativeElement, 'innerHTML', content);
 
+            ABBR_UTILS.applyAbbreviations(this._el.nativeElement);
             this._applyAccessibilityAttributes();
         });
     }

@@ -1,0 +1,21 @@
+{
+    "abbreviations": {
+        "Bl.": "Blatt (r - recto, v - verso)",
+        "S.": "Seite",
+        "T.": "Takt",
+        "Ges.": "Gesang",
+        "Klav. o.": "Klavier oben",
+        "Klav. u.": "Klavier unten",
+        "Klav.": "Klavier",
+        "A-Was": "Arnold Schönberg Center, Wien",
+        "A-Wn": "Österreichische Nationalbibliothek, Musiksammlung, Wien",
+        "A-Wst": "Wienbibliothek im Rathaus, Musiksammlung, Wien",
+        "A-Wue": "Universal Edition, Historisches Archiv, Wien",
+        "CH-Bps": "Paul Sacher Stiftung, Basel",
+        "CH-END": "Dokumentationsbibliothek Walter Labhart, Endingen",
+        "GB-Lbl": "The British Library, London",
+        "US-NH": "Yale University, Irving S. Gilmore Music Library, New Haven, CT",
+        "US-NYpm": "The Morgan Library & Museum, New York City, NY",
+        "US-Wc": "The Library of Congress, Music Division, Washington, D.C."
+    }
+}
