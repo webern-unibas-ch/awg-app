@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCalendarXmark } from '@fortawesome/free-solid-svg-icons';
-import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap/popover';
 
 /**
  * The DisclaimerWorkeditions component.
@@ -9,37 +11,37 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
  * It contains the disclaimer for work editions.
  */
 @Component({
-    selector: 'awg-disclaimer-workeditions',
-    templateUrl: './disclaimer-workeditions.component.html',
-    styleUrls: ['./disclaimer-workeditions.component.scss'],
-    standalone: false,
+    selector: 'awg-edition-disclaimer-workeditions',
+    templateUrl: './edition-disclaimer-workeditions.component.html',
+    styleUrls: ['./edition-disclaimer-workeditions.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FaIconComponent, NgbPopoverModule],
 })
-export class DisclaimerWorkeditionsComponent {
+export class EditionDisclaimerWorkeditionsComponent {
     /**
-     * Public variable: disclaimer.
-     *
+     * Readonly variable: disclaimer.
      *
      * It keeps the disclaimer for work editions.
      */
-    disclaimer =
+    readonly DISCLAIMER =
         'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
 
     /**
-     * Public variable: faCalendarXmark.
+     * Readonly variable: faCalendarXmark.
      *
      * It instantiates fontawesome's faCalendarXmark icon.
      */
-    faCalendarXmark = faCalendarXmark;
+    readonly faCalendarXmark = faCalendarXmark;
 
     /**
-     * Public injection variable: config.
+     * Readonly injection variable: config.
      *
      * It injects the NgbPopoverConfig service to configure the popover.
      */
-    config: NgbPopoverConfig = inject(NgbPopoverConfig);
+    readonly config: NgbPopoverConfig = inject(NgbPopoverConfig);
 
     /**
-     * Constructor of the DisclaimerWorkeditionsComponent.
+     * Constructor of the EditionDisclaimerWorkeditionsComponent.
      *
      * It initializes the popover configuration for the disclaimer.
      * The popover is placed at the top of the page, inside the body,

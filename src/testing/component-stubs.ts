@@ -93,11 +93,10 @@ export class AlertInfoStubComponent {
 }
 
 @Component({
-    selector: 'awg-disclaimer-workeditions',
+    selector: 'awg-edition-disclaimer-workeditions',
     template: '',
-    standalone: false,
 })
-export class DisclaimerWorkeditionsStubComponent {}
+export class EditionDisclaimerWorkeditionsStubComponent {}
 
 @Component({
     selector: 'awg-fullscreen-toggle',

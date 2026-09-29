@@ -1,61 +1,53 @@
-import { DebugElement, inject, NgModule } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCalendarXmark, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { NgbConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions.component';
+import { EditionDisclaimerWorkeditionsComponent } from './edition-disclaimer-workeditions.component';
 
-describe('DisclaimerWorkeditionsComponent', () => {
-    let component: DisclaimerWorkeditionsComponent;
-    let fixture: ComponentFixture<DisclaimerWorkeditionsComponent>;
+describe('EditionDisclaimerWorkeditionsComponent', () => {
+    let component: EditionDisclaimerWorkeditionsComponent;
+    let fixture: ComponentFixture<EditionDisclaimerWorkeditionsComponent>;
     let compDe: DebugElement;
 
     let expectedDisclaimer: string;
     let expectedFaCalendarXmark: IconDefinition;
 
-    // global NgbConfigModule
-    @NgModule({ imports: [NgbPopoverModule], exports: [NgbPopoverModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbPopoverModule, NgbConfigModule],
-            declarations: [DisclaimerWorkeditionsComponent],
+            imports: [EditionDisclaimerWorkeditionsComponent, NgbPopoverModule],
         }).compileComponents();
+
+        // Disable animation for NgbPopover to avoid timing issues in tests
+        const popoverConfig = TestBed.inject(NgbPopoverConfig);
+        popoverConfig.animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(DisclaimerWorkeditionsComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedDisclaimer =
             'Werkeditionen sind aus rechtlichen Gründen frühestens ab 2049 online verfügbar. Bis dahin konsultieren Sie bitte die entsprechende Printausgabe.';
         expectedFaCalendarXmark = faCalendarXmark;
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionDisclaimerWorkeditionsComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `disclaimer`', () => {
-            expectToEqual(component.disclaimer, expectedDisclaimer);
+        it('... should have `DISCLAIMER`', () => {
+            expectToEqual(component.DISCLAIMER, expectedDisclaimer);
         });
 
         it('... should have `faCalendarXmark`', () => {
@@ -67,13 +59,6 @@ describe('DisclaimerWorkeditionsComponent', () => {
             expectToBe(component.config.container, 'body');
             expectToBe(component.config.triggers, 'mouseenter:mouseleave');
         });
-    });
-
-    describe('AFTER initial data binding', () => {
-        beforeEach(() => {
-            // Trigger initial data binding
-            fixture.detectChanges();
-        });
 
         describe('VIEW', () => {
             it('... should contain a text-danger span', () => {
@@ -83,6 +68,30 @@ describe('DisclaimerWorkeditionsComponent', () => {
                 expectToContain(spanEl.classList, 'text-danger');
             });
 
+            it('... should contain a fa-icon in text-danger span', () => {
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
+
+                getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);
+            });
+
+            it('... should contain no CalendarXmark in fa-icon yet', () => {
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
+
+                const faIconDes = getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);
+                const faIconIns = faIconDes[0].componentInstance.icon;
+
+                expect(faIconIns()).toBeUndefined();
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
             it('... should contain a fa-icon with Xmark in text-danger span', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
 

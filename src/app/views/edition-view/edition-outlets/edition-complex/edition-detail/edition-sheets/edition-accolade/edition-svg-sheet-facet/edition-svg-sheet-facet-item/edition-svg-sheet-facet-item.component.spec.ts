@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { DisclaimerWorkeditionsStubComponent } from '@testing/component-stubs';
+import { EditionDisclaimerWorkeditionsStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -52,7 +52,8 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            declarations: [EditionSvgSheetFacetItemComponent, DisclaimerWorkeditionsStubComponent],
+            imports: [EditionDisclaimerWorkeditionsStubComponent],
+            declarations: [EditionSvgSheetFacetItemComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
@@ -160,7 +161,7 @@ describe('EditionSvgSheetFacetItemComponent (DONE)', () => {
 
                 const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
 
-                getAndExpectDebugElementByDirective(hDes[0], DisclaimerWorkeditionsStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(hDes[0], EditionDisclaimerWorkeditionsStubComponent, 1, 1);
             });
 
             it('... should contain a span in h6.card-title with "---" if svgSheets is empty', async () => {

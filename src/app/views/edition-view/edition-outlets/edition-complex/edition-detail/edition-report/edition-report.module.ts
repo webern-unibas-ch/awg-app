@@ -6,6 +6,7 @@ import { EditionTkaEvaluationsComponent } from '../edition-tka/edition-tka-evalu
 import { EditionTkaLabelComponent } from '../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../edition-tka/edition-tka-table/edition-tka-table.component';
 
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionReportComponent } from './edition-report.component';
 import { SourceDescriptionModule } from './source-description/source-description.module';
 import { SourceEvaluationPlaceholderComponent } from './source-evaluation/source-evaluation-placeholder/source-evaluation-placeholder.component';
@@ -30,14 +31,16 @@ import { EditionReportRoutingModule } from './edition-report-routing.module';
         SharedModule,
         SourceDescriptionModule,
         EditionReportRoutingModule,
+        EditionDisclaimerWorkeditionsComponent,
+        EditionTkaEvaluationsComponent,
+        EditionTkaLabelComponent,
+        EditionTkaTableComponent,
         SourceEvaluationComponent,
         SourceEvaluationPlaceholderComponent,
         SourceListComponent,
         SourceSiglumComponent,
-        EditionTkaEvaluationsComponent,
-        EditionTkaLabelComponent,
-        EditionTkaTableComponent,
+        TextcriticsListComponent,
     ],
-    declarations: [TextcriticsListComponent, EditionReportComponent],
+    declarations: [EditionReportComponent],
 })
 export class EditionReportModule {}

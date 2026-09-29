@@ -15,7 +15,6 @@ import { CodeMirrorModule } from './codemirror/codemirror.module';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { ButtonScrollToTopComponent } from './button-scroll-to-top/button-scroll-to-top.component';
-import { DisclaimerWorkeditionsComponent } from './disclaimer-workeditions/disclaimer-workeditions.component';
 import { FullscreenToggleComponent } from './fullscreen/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
@@ -72,7 +71,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ExternalLinkDirective,
     ],
     declarations: [
-        DisclaimerWorkeditionsComponent,
         JsonViewerComponent,
         RouterLinkButtonGroupComponent,
         TableComponent,
@@ -93,7 +91,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AlertErrorComponent,
         AlertInfoComponent,
         ButtonScrollToTopComponent,
-        DisclaimerWorkeditionsComponent,
         FullscreenToggleComponent,
         HeadingComponent,
         JsonViewerComponent,
