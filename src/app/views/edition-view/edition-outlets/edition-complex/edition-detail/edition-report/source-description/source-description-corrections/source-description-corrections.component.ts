@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
+import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+
+import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
+import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 /**
  * The SourceDescriptionCorrections component.
@@ -13,33 +19,20 @@ import { Textcritics } from '@awg-views/edition-view/models';
     templateUrl: './source-description-corrections.component.html',
     styleUrls: ['./source-description-corrections.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [ButtonExpandAllComponent, CompileHtmlDirective, EditionTkaEvaluationsComponent, EditionTkaTableComponent],
 })
 export class SourceDescriptionCorrectionsComponent {
     /**
-     * Input variable: corrections.
+     * Readonly input signal: corrections.
      *
-     * It keeps the corrections data.
+     * It holds the corrections data.
      */
-    @Input()
-    corrections: Textcritics[] = [];
+    readonly corrections = input.required<Textcritics[]>();
 
     /**
-     * Public variable: openAllCorrectionDetails.
+     * Public signal: openAllCorrectionDetails.
      *
-     * It keeps the boolean value to set the open state of all details in the source description corrections.
+     * It holds the boolean value to set the open state of all details in the source description corrections.
      */
-    openAllCorrectionDetails = false;
-
-    /**
-     * Public method: toggleAllCorrectionDetails.
-     *
-     * It toggles the open state of all details in the source description corrections.
-     *
-     * @param {boolean} open The boolean value to set the open state.
-     * @returns {void} Sets the open state.
-     */
-    toggleAllCorrectionDetails(open: boolean): void {
-        this.openAllCorrectionDetails = open;
-    }
+    openAllCorrectionDetails = signal<boolean>(false);
 }

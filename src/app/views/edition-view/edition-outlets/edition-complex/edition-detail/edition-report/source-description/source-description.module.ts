@@ -5,11 +5,11 @@ import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-ev
 import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
 
-import { SourceDescriptionContentTableComponent } from './source-description-content-table';
-import { SourceDescriptionContentsComponent } from './source-description-contents';
-import { SourceDescriptionCorrectionsComponent } from './source-description-corrections';
-import { SourceDescriptionDetailsComponent } from './source-description-details';
-import { SourceDescriptionWritingMaterialsComponent } from './source-description-writing-materials';
+import { SourceDescriptionContentTableComponent } from './source-description-content-table/source-description-content-table.component';
+import { SourceDescriptionContentsComponent } from './source-description-contents/source-description-contents.component';
+import { SourceDescriptionCorrectionsComponent } from './source-description-corrections/source-description-corrections.component';
+import { SourceDescriptionDetailsComponent } from './source-description-details/source-description-details.component';
+import { SourceDescriptionWritingMaterialsComponent } from './source-description-writing-materials/source-description-writing-materials.component';
 import { SourceDescriptionComponent } from './source-description.component';
 
 /**
@@ -19,12 +19,17 @@ import { SourceDescriptionComponent } from './source-description.component';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
-    declarations: [
-        SourceDescriptionComponent,
+    imports: [
+        SharedModule,
+        EditionTkaEvaluationsComponent,
+        EditionTkaLabelComponent,
+        EditionTkaTableComponent,
+        SourceDescriptionCorrectionsComponent,
         SourceDescriptionContentsComponent,
         SourceDescriptionContentTableComponent,
-        SourceDescriptionCorrectionsComponent,
+    ],
+    declarations: [
+        SourceDescriptionComponent,
         SourceDescriptionDetailsComponent,
         SourceDescriptionWritingMaterialsComponent,
     ],

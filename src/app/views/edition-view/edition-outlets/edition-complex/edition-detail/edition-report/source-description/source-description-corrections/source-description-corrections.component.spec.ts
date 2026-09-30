@@ -1,14 +1,10 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
-import { EditionTkaTableStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -17,8 +13,13 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+
+import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
+import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
 
@@ -29,15 +30,18 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let toggleAllCorrectionDetailsSpy: Spy;
-
     let expectedCorrections: Textcritics[];
     let expectedOpenAllCorrectionDetails: boolean;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective, EditionTkaTableStubComponent],
-            declarations: [SourceDescriptionCorrectionsComponent],
+            imports: [
+                ButtonExpandAllComponent,
+                CompileHtmlDirective,
+                EditionTkaEvaluationsComponent,
+                EditionTkaTableComponent,
+                SourceDescriptionCorrectionsComponent,
+            ],
         }).compileComponents();
     });
 
@@ -49,30 +53,28 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
         expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections ?? [];
         expectedOpenAllCorrectionDetails = false;
+
         // Create component fixture
         fixture = TestBed.createComponent(SourceDescriptionCorrectionsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Spies
-        toggleAllCorrectionDetailsSpy = vi.spyOn(component, 'toggleAllCorrectionDetails');
     });
 
-    afterEach(() => {
-        vi.clearAllMocks();
-    });
-
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `corrections` input', () => {
-            expectToEqual(component.corrections, []);
+        it('... should throw due to missing required input signal `corrections`', () => {
+            expectToBe(isSignal(component.corrections), true);
+
+            expect(() => component.corrections()).toThrow();
         });
 
-        it('... should have `openAllCorrectionDetails`', () => {
-            expectToEqual(component.openAllCorrectionDetails, expectedOpenAllCorrectionDetails);
+        it('... should have signal `openAllCorrectionDetails` to hold the default value', () => {
+            expectToBe(isSignal(component.openAllCorrectionDetails), true);
+
+            expectToEqual(component.openAllCorrectionDetails(), expectedOpenAllCorrectionDetails);
         });
 
         describe('VIEW', () => {
@@ -94,40 +96,9 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain a small muted toggle span in the label paragraph', () => {
+            it('... should contain one ButtonExpandAllComponent in the label paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
-                const toggleSpanDes = getAndExpectDebugElementByCss(
-                    pDes[0],
-                    'span.awg-source-description-corrections-toggle',
-                    1,
-                    1
-                );
-                const toggleSpanEl: HTMLSpanElement = toggleSpanDes[0].nativeElement;
-
-                expectToContain(toggleSpanEl.classList, 'small');
-                expectToContain(toggleSpanEl.classList, 'text-muted');
-            });
-
-            it('... should not display a text in the toggle span yet', () => {
-                const expectedToggleText = '';
-
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
-
-                const toggleSpanDes = getAndExpectDebugElementByCss(
-                    pDes[0],
-                    'span.awg-source-description-corrections-toggle',
-                    1,
-                    1
-                );
-                const toggleTextSpanDes = getAndExpectDebugElementByCss(
-                    toggleSpanDes[0],
-                    'span.awg-source-description-corrections-toggle-text',
-                    1,
-                    1
-                );
-                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
-
-                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
+                getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
             });
 
             it('... should contain no corrections details (yet)', () => {
@@ -141,45 +112,46 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.corrections = expectedCorrections;
+            fixture.componentRef.setInput('corrections', expectedCorrections);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `corrections`', () => {
-            expectToEqual(component.corrections, expectedCorrections);
+        it('... should have input signal `corrections` to hold the expected corrections', () => {
+            expectToEqual(component.corrections(), expectedCorrections);
+        });
+
+        it('... should have signal `openAllCorrectionDetails` to hold the default value', () => {
+            expectToBe(isSignal(component.openAllCorrectionDetails), true);
+
+            expectToEqual(component.openAllCorrectionDetails(), expectedOpenAllCorrectionDetails);
         });
 
         describe('VIEW', () => {
-            it('... should display a text in the toggle span', () => {
-                const expectedToggleText = 'Alles ausklappen';
+            it('... should pass down the correct isOpen state to the ButtonExpandAllComponent', () => {
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
-                const toggleTextSpanDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-description-corrections-toggle-text',
-                    1,
-                    1
-                );
-                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
-
-                expectToBe(toggleTextSpanEl.textContent.trim(), expectedToggleText);
+                expectToEqual(buttonCmp.isOpen(), expectedOpenAllCorrectionDetails);
             });
 
-            it('... should toggle the text in the toggle span on click', async () => {
-                const toggleTextSpanDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-description-corrections-toggle-text',
-                    1,
-                    1
-                );
-                const toggleTextSpanEl: HTMLSpanElement = toggleTextSpanDes[0].nativeElement;
+            it('... should update `openAllCorrectionDetails` when the ButtonExpandAllComponent model changes', async () => {
+                const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
+                const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
-                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles ausklappen');
+                buttonCmp.isOpen.set(true);
 
-                await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
+                await detectChangesOnPush(fixture);
 
-                expectToBe(toggleTextSpanEl.textContent.trim(), 'Alles einklappen');
+                expectToEqual(component.openAllCorrectionDetails(), true);
+
+                buttonCmp.isOpen.set(false);
+
+                await detectChangesOnPush(fixture);
+
+                expectToEqual(component.openAllCorrectionDetails(), false);
             });
 
             describe('... details', () => {
@@ -217,7 +189,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
                 it('... should open or close all details when toggled', async () => {
                     // Open all details
-                    component.toggleAllCorrectionDetails(true);
+                    component.openAllCorrectionDetails.set(true);
 
                     await detectChangesOnPush(fixture);
 
@@ -232,7 +204,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     });
 
                     // Close all details
-                    component.toggleAllCorrectionDetails(false);
+                    component.openAllCorrectionDetails.set(false);
 
                     await detectChangesOnPush(fixture);
 
@@ -333,8 +305,8 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... evaluation', () => {
-                    it('... should contain a paragraph with as many evaluations as each detail has', () => {
+                describe('... EditionTkaEvaluationsComponent', () => {
+                    it('... should contain one EditionTkaEvaluationsComponent for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-description-correction-details',
@@ -343,16 +315,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         );
 
                         detailsDes.forEach(detailsDe => {
-                            getAndExpectDebugElementByCss(
-                                detailsDe,
-                                'p.awg-source-description-correction-evaluation',
-                                1,
-                                1
-                            );
+                            getAndExpectDebugElementByDirective(detailsDe, EditionTkaEvaluationsComponent, 1, 1);
                         });
                     });
 
-                    it('... should pass down the corrections evaluation to the CompileHtmlDirective for each detail', () => {
+                    it('... should pass down the correct evaluations to the EditionTkaEvaluationsComponent for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-description-correction-details',
@@ -361,49 +328,24 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         );
 
                         detailsDes.forEach((detailsDe, index) => {
-                            const pDes = getAndExpectDebugElementByCss(
+                            const evaluationDes = getAndExpectDebugElementByDirective(
                                 detailsDe,
-                                'p.awg-source-description-correction-evaluation',
+                                EditionTkaEvaluationsComponent,
                                 1,
                                 1
                             );
-                            const pDe = pDes[0];
+                            const evaluationCmp = evaluationDes[0].injector.get(
+                                EditionTkaEvaluationsComponent
+                            ) as EditionTkaEvaluationsComponent;
 
-                            const compileHtmlDirective = pDe.injector.get(CompileHtmlDirective);
-
-                            expectToBe(
-                                compileHtmlDirective.htmlContent(),
-                                expectedCorrections[index].evaluations[index]
-                            );
-                        });
-                    });
-
-                    it('... should display the evaluation of each detail', () => {
-                        const detailsDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'details.awg-source-description-correction-details',
-                            expectedCorrections.length,
-                            expectedCorrections.length
-                        );
-
-                        detailsDes.forEach((detailsDe, index) => {
-                            const pDes = getAndExpectDebugElementByCss(
-                                detailsDe,
-                                'p.awg-source-description-correction-evaluation',
-                                1,
-                                1
-                            );
-                            const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-
-                            expect(pEl).toBeTruthy();
-                            expectToEqual(pEl.textContent.trim(), expectedCorrections[index].evaluations[index].trim());
+                            expectToEqual(evaluationCmp.evaluations(), expectedCorrections[index].evaluations);
                         });
                     });
                 });
 
                 describe('... EditionTkaTableComponent', () => {
                     it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', async () => {
-                        component.corrections[0].commentary.comments = [];
+                        component.corrections()[0].commentary.comments = [];
                         await detectChangesOnPush(fixture);
 
                         const detailsDes = getAndExpectDebugElementByCss(
@@ -414,7 +356,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         );
 
                         detailsDes.forEach(detailsDe => {
-                            getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 0, 0);
+                            getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableComponent, 0, 0);
                         });
                     });
 
@@ -427,11 +369,11 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         );
 
                         detailsDes.forEach(detailsDe => {
-                            getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableStubComponent, 1, 1);
+                            getAndExpectDebugElementByDirective(detailsDe, EditionTkaTableComponent, 1, 1);
                         });
                     });
 
-                    it('... should pass down `commentary` to EditionTkaTableComponent (stubbed)', () => {
+                    it('... should pass down the correct values to EditionTkaTableComponent', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-description-correction-details',
@@ -440,107 +382,27 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                         );
 
                         detailsDes.forEach((detailsDe, index) => {
-                            const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                            const tableDes = getAndExpectDebugElementByDirective(
                                 detailsDe,
-                                EditionTkaTableStubComponent,
+                                EditionTkaTableComponent,
                                 1,
                                 1
                             );
-                            const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                                EditionTkaTableStubComponent
-                            ) as EditionTkaTableStubComponent;
+                            const tableCmp = tableDes[0].injector.get(
+                                EditionTkaTableComponent
+                            ) as EditionTkaTableComponent;
 
-                            expectToEqual(
-                                editionTkaTableCmp.displayedCommentary(),
-                                expectedCorrections[index].commentary
-                            );
-                        });
-                    });
-
-                    it('... should pass down `isRowtable` flag to EditionTkaTableComponent (stubbed)', () => {
-                        const detailsDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'details.awg-source-description-correction-details',
-                            expectedCorrections.length,
-                            expectedCorrections.length
-                        );
-
-                        detailsDes.forEach((detailsDe, index) => {
-                            const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                                detailsDe,
-                                EditionTkaTableStubComponent,
-                                1,
-                                1
-                            );
-                            const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                                EditionTkaTableStubComponent
-                            ) as EditionTkaTableStubComponent;
+                            expectToEqual(tableCmp.displayedCommentary(), expectedCorrections[index].commentary);
 
                             if (expectedCorrections[index].rowtable) {
-                                expectToBe(editionTkaTableCmp.isRowtable(), expectedCorrections[index].rowtable);
+                                expectToBe(tableCmp.isRowtable(), expectedCorrections[index].rowtable);
                             } else {
-                                expectToBe(editionTkaTableCmp.isRowtable(), false);
+                                expectToBe(tableCmp.isRowtable(), false);
                             }
+
+                            expectToBe(tableCmp.isCorrections(), true);
                         });
                     });
-
-                    it('... should pass down `isCorrections` flag to EditionTkaTableComponent (stubbed)', () => {
-                        const detailsDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'details.awg-source-description-correction-details',
-                            expectedCorrections.length,
-                            expectedCorrections.length
-                        );
-
-                        detailsDes.forEach(detailsDe => {
-                            const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                                detailsDe,
-                                EditionTkaTableStubComponent,
-                                1,
-                                1
-                            );
-                            const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                                EditionTkaTableStubComponent
-                            ) as EditionTkaTableStubComponent;
-
-                            expectToBe(editionTkaTableCmp.isCorrections(), true);
-                        });
-                    });
-                });
-            });
-        });
-
-        describe('METHODS', () => {
-            describe('#toggleAllCorrectionDetails()', () => {
-                it('... should have a method `toggleAllCorrectionDetails`', () => {
-                    expect(component.toggleAllCorrectionDetails).toBeDefined();
-                });
-
-                it('... should trigger on click', async () => {
-                    const toggleTextSpanDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'span.awg-source-description-corrections-toggle-text',
-                        1,
-                        1
-                    );
-
-                    await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
-
-                    expectSpyCall(toggleAllCorrectionDetailsSpy, 1);
-
-                    await clickAndAwaitChanges(toggleTextSpanDes[0], fixture);
-
-                    expectSpyCall(toggleAllCorrectionDetailsSpy, 2);
-                });
-
-                it('... should toggle the openAllCorrectionDetails flag', () => {
-                    component.toggleAllCorrectionDetails(true);
-
-                    expectToEqual(component.openAllCorrectionDetails, true);
-
-                    component.toggleAllCorrectionDetails(false);
-
-                    expectToEqual(component.openAllCorrectionDetails, false);
                 });
             });
         });
