@@ -24,6 +24,10 @@
 <title>cluster_EditionSvgSheetViewerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1526,-268 1526,-70 8,-70"/>
 </g>
+<g id="clust7" class="cluster">
+<title>cluster_EditionSvgSheetViewerModule_exports</title>
+<polygon fill="none" stroke="black" points="226,-208 226,-260 1001,-260 1001,-208 226,-208"/>
+</g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionSvgSheetViewerModule_declarations</title>
 <polygon fill="none" stroke="black" points="754,-78 754,-130 1518,-130 1518,-78 754,-78"/>
@@ -31,10 +35,6 @@
 <g id="clust6" class="cluster">
 <title>cluster_EditionSvgSheetViewerModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 746,-130 746,-78 16,-78"/>
-</g>
-<g id="clust7" class="cluster">
-<title>cluster_EditionSvgSheetViewerModule_exports</title>
-<polygon fill="none" stroke="black" points="226,-208 226,-260 1001,-260 1001,-208 226,-208"/>
 </g>
 <!-- EditionSvgSheetViewerComponent -->
 <g id="node1" class="node">
