@@ -1,0 +1,26 @@
+.awg-btn-expand-all-container {
+    margin-left: 1em;
+
+    &.text-muted {
+        transition: color 0.2s;
+    }
+
+    &:hover {
+        color: inherit !important;
+    }
+}
+
+.awg-btn-expand-all-btn {
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: 1px auto currentColor;
+        color: inherit !important;
+    }
+}
