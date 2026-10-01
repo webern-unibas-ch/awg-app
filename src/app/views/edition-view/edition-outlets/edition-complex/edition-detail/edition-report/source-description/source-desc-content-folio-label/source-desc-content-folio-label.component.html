@@ -1,0 +1,11 @@
+<span class="awg-source-desc-content-item-folio">
+    <span class="awg-source-desc-content-item-folio-type"><span [awgAbbr]="isPage() ? 'S.' : 'Bl.'"></span>&nbsp;</span>
+
+    @if (hasFolioSuffix()) {
+        <span class="awg-source-desc-content-item-folio-number">
+            {{ folioNumber() }}<sup class="awg-source-desc-content-item-folio-suffix">{{ folioSuffix() }}</sup>
+        </span>
+    } @else {
+        <span class="awg-source-desc-content-item-folio-number">{{ folioNumber() }}</span>
+    }
+</span>
