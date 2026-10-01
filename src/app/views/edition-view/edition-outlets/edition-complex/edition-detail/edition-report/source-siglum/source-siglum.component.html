@@ -1,14 +1,6 @@
 @if (sourceData(); as source) {
     <span [class]="siglumContainerClass()">
-        @if (isClickable()) {
-            <a (click)="clicked.emit()" (keyup.enter)="clicked.emit()" role="link" tabindex="0">
-                <ng-container *ngTemplateOutlet="siglumContent" />
-            </a>
-        } @else {
-            <ng-container *ngTemplateOutlet="siglumContent" />
-        }
-
-        <ng-template #siglumContent>
+        <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
             @if (hasMissingFlag()) {
                 <span>[</span>
             }
@@ -21,6 +13,6 @@
             @if (hasMissingFlag()) {
                 <span>]</span>
             }
-        </ng-template>
+        </awg-conditional-link>
     </span>
 }

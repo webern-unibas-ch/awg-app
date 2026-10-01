@@ -11,8 +11,11 @@ import {
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { Source, TextSource } from '@awg-views/edition-view/models/source.model';
 
@@ -27,7 +30,7 @@ describe('SourceSiglumComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SourceSiglumComponent],
+            imports: [SourceSiglumComponent, ConditionalLinkComponent],
         }).compileComponents();
     });
 
@@ -168,6 +171,17 @@ describe('SourceSiglumComponent', () => {
 
             it('... should contain a container span', () => {
                 getSiglumContainerDes();
+            });
+
+            it('... should contain one ConditionalLinkComponent', () => {
+                getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
+            });
+
+            it('... should pass down the correct values to ConditionalLinkComponent', () => {
+                const conditionalLinkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
+                const conditionalLinkCmp = conditionalLinkDes[0].componentInstance as ConditionalLinkComponent;
+
+                expectToEqual(conditionalLinkCmp.isClickable(), true);
             });
 
             it('... should contain siglum link as link text', () => {

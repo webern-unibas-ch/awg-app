@@ -33,7 +33,7 @@ export class SourceDescContentFolioLabelComponent {
     /**
      * Readonly computed signal: hasFolioSuffix.
      *
-     * It returns true if the label ends with 'v' or 'r'.
+     * It holds true if the label ends with 'v' or 'r'.
      */
     readonly hasFolioSuffix = computed<boolean>(() => {
         const label = this.folioLabel();
@@ -43,14 +43,16 @@ export class SourceDescContentFolioLabelComponent {
     /**
      * Readonly computed signal: folioNumber.
      *
-     * It returns the parsed number part of the folio.
+     * It holds the parsed number part of the folio.
      */
-    readonly folioNumber = computed<string>(() => this.hasFolioSuffix() ? this.folioLabel().slice(0, -1) : this.folioLabel());
+    readonly folioNumber = computed<string>(() =>
+        this.hasFolioSuffix() ? this.folioLabel().slice(0, -1) : this.folioLabel()
+    );
 
     /**
      * Readonly computed signal: folioSuffix.
      *
-     * It returns the parsed suffix part of the folio.
+     * It holds the parsed suffix part of the folio.
      */
-    readonly folioSuffix = computed<string>(() => this.hasFolioSuffix() ? this.folioLabel().slice(-1) : '');
+    readonly folioSuffix = computed<string>(() => (this.hasFolioSuffix() ? this.folioLabel().slice(-1) : ''));
 }
