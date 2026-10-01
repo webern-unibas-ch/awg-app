@@ -1,0 +1,56 @@
+@if (contentSystem(); as system) {
+    <span class="awg-source-desc-content-grid-system-container">
+        <!-- System Number -->
+        @if (system.system) {
+            <span class="awg-source-desc-content-grid-system"> &nbsp;&nbsp;System&nbsp;{{ system.system }}</span>
+        }
+
+        <!-- Divider Colon -->
+        @if (system.systemDescription || system.measure || hasValidRow()) {
+            <span>:&nbsp;</span>
+        }
+
+        <!-- System Description -->
+        @if (system.systemDescription) {
+            <span class="awg-source-desc-content-grid-system-description">
+                <span [awgCompileHtml]="system.systemDescription"></span>
+                @if (system.measure) {
+                    <span>&nbsp;</span>
+                }
+            </span>
+        }
+
+        <!-- Measures -->
+        @if (system.measure) {
+            <span class="awg-source-desc-content-grid-measure">
+                <awg-conditional-link [isClickable]="!!system.linkTo" (clicked)="clicked.emit()">
+                    <span><span [awgAbbr]="'T.'"></span>&nbsp;{{ system.measure }}</span>
+                </awg-conditional-link>
+            </span>
+        }
+
+        <!-- Rows -->
+        @if (hasValidRow()) {
+            <span class="awg-source-desc-content-grid-row">
+                @let row = system.row!;
+                <awg-conditional-link [isClickable]="!!system.linkTo" (clicked)="clicked.emit()">
+                    <span>
+                        <span
+                            >{{ row.rowType }}<sub>{{ row.rowBase }}</sub></span
+                        >
+                        @if (row.rowNumber) {
+                            <span>&nbsp;({{ row.rowNumber }})</span>
+                        }
+                    </span>
+                </awg-conditional-link>
+            </span>
+        }
+
+        <!-- Final Punctuation Marks -->
+        @if (isLastItem()) {
+            <span>.</span>
+        } @else {
+            <span>;</span>
+        }
+    </span>
+}
