@@ -24,143 +24,143 @@
 <title>cluster_EditionSvgSheetViewerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1526,-268 1526,-70 8,-70"/>
 </g>
+<g id="clust6" class="cluster">
+<title>cluster_EditionSvgSheetViewerModule_imports</title>
+<polygon fill="none" stroke="black" points="788,-78 788,-130 1518,-130 1518,-78 788,-78"/>
+</g>
 <g id="clust7" class="cluster">
 <title>cluster_EditionSvgSheetViewerModule_exports</title>
-<polygon fill="none" stroke="black" points="226,-208 226,-260 1001,-260 1001,-208 226,-208"/>
+<polygon fill="none" stroke="black" points="438,-208 438,-260 1213,-260 1213,-208 438,-208"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_EditionSvgSheetViewerModule_declarations</title>
-<polygon fill="none" stroke="black" points="754,-78 754,-130 1518,-130 1518,-78 754,-78"/>
-</g>
-<g id="clust6" class="cluster">
-<title>cluster_EditionSvgSheetViewerModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 746,-130 746,-78 16,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 780,-130 780,-78 16,-78"/>
 </g>
 <!-- EditionSvgSheetViewerComponent -->
 <g id="node1" class="node">
 <title>EditionSvgSheetViewerComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1510.14,-122 1293.86,-122 1293.86,-86 1510.14,-86 1510.14,-122"/>
-<text text-anchor="middle" x="1402" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="772.14,-122 555.86,-122 555.86,-86 772.14,-86 772.14,-122"/>
+<text text-anchor="middle" x="664" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerComponent</text>
 </g>
 <!-- EditionSvgSheetViewerModule -->
 <g id="node4" class="node">
 <title>EditionSvgSheetViewerModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="730.35,-187 727.35,-191 706.35,-191 703.35,-187 535.65,-187 535.65,-151 730.35,-151 730.35,-187"/>
-<text text-anchor="middle" x="633" y="-164.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="942.35,-187 939.35,-191 918.35,-191 915.35,-187 747.65,-187 747.65,-151 942.35,-151 942.35,-187"/>
+<text text-anchor="middle" x="845" y="-164.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerModule</text>
 </g>
 <!-- EditionSvgSheetViewerComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge1" class="edge">
 <title>EditionSvgSheetViewerComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M1402,-122.13C1402,-142.57 1402,-173 1402,-173 1402,-173 740.39,-173 740.39,-173"/>
-<polygon fill="black" stroke="black" points="740.39,-169.5 730.39,-173 740.39,-176.5 740.39,-169.5"/>
+<path fill="none" stroke="black" d="M759.95,-122.11C759.95,-122.11 759.95,-140.99 759.95,-140.99"/>
+<polygon fill="black" stroke="black" points="756.45,-140.99 759.95,-150.99 763.45,-140.99 756.45,-140.99"/>
 </g>
 <!-- EditionSvgSheetViewerNavComponent -->
 <g id="node2" class="node">
 <title>EditionSvgSheetViewerNavComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1275.96,-122 1036.04,-122 1036.04,-86 1275.96,-86 1275.96,-122"/>
-<text text-anchor="middle" x="1156" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerNavComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="537.96,-122 298.04,-122 298.04,-86 537.96,-86 537.96,-122"/>
+<text text-anchor="middle" x="418" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerNavComponent</text>
 </g>
 <!-- EditionSvgSheetViewerNavComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge2" class="edge">
 <title>EditionSvgSheetViewerNavComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M1156,-122.27C1156,-140.56 1156,-166 1156,-166 1156,-166 740.45,-166 740.45,-166"/>
-<polygon fill="black" stroke="black" points="740.45,-162.5 730.45,-166 740.45,-169.5 740.45,-162.5"/>
+<path fill="none" stroke="black" d="M492.23,-122.03C492.23,-138.4 492.23,-160 492.23,-160 492.23,-160 737.2,-160 737.2,-160"/>
+<polygon fill="black" stroke="black" points="737.2,-163.5 747.2,-160 737.2,-156.5 737.2,-163.5"/>
 </g>
 <!-- EditionSvgSheetViewerSwitchComponent -->
 <g id="node3" class="node">
 <title>EditionSvgSheetViewerSwitchComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1017.52,-122 762.48,-122 762.48,-86 1017.52,-86 1017.52,-122"/>
-<text text-anchor="middle" x="890" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerSwitchComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="279.52,-122 24.48,-122 24.48,-86 279.52,-86 279.52,-122"/>
+<text text-anchor="middle" x="152" y="-99.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerSwitchComponent</text>
 </g>
 <!-- EditionSvgSheetViewerSwitchComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge3" class="edge">
 <title>EditionSvgSheetViewerSwitchComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M767.59,-122.01C767.59,-138.05 767.59,-159 767.59,-159 767.59,-159 740.45,-159 740.45,-159"/>
-<polygon fill="black" stroke="black" points="740.45,-155.5 730.45,-159 740.45,-162.5 740.45,-155.5"/>
+<path fill="none" stroke="black" d="M152,-122.11C152,-141.34 152,-169 152,-169 152,-169 737.55,-169 737.55,-169"/>
+<polygon fill="black" stroke="black" points="737.55,-172.5 747.55,-169 737.55,-165.5 737.55,-172.5"/>
 </g>
 <!-- EditionSvgSheetViewerComponent  -->
 <g id="node9" class="node">
 <title>EditionSvgSheetViewerComponent </title>
-<polygon fill="#fb8072" stroke="black" points="993.14,-252 772.86,-252 772.86,-216 993.14,-216 993.14,-252"/>
-<text text-anchor="middle" x="883" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerComponent </text>
+<polygon fill="#fb8072" stroke="black" points="1205.14,-252 984.86,-252 984.86,-216 1205.14,-216 1205.14,-252"/>
+<text text-anchor="middle" x="1095" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerComponent </text>
 </g>
 <!-- EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerComponent  -->
 <g id="edge8" class="edge">
 <title>EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M730.37,-180C800.57,-180 883,-180 883,-180 883,-180 883,-205.72 883,-205.72"/>
-<polygon fill="black" stroke="black" points="879.5,-205.72 883,-215.72 886.5,-205.72 879.5,-205.72"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M942.44,-178C989.75,-178 1036.52,-178 1036.52,-178 1036.52,-178 1036.52,-205.97 1036.52,-205.97"/>
+<polygon fill="black" stroke="black" points="1033.02,-205.97 1036.52,-215.97 1040.02,-205.97 1033.02,-205.97"/>
 </g>
 <!-- EditionSvgSheetViewerNavComponent  -->
 <g id="node10" class="node">
 <title>EditionSvgSheetViewerNavComponent </title>
-<polygon fill="#fb8072" stroke="black" points="754.96,-252 511.04,-252 511.04,-216 754.96,-216 754.96,-252"/>
-<text text-anchor="middle" x="633" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerNavComponent </text>
+<polygon fill="#fb8072" stroke="black" points="966.96,-252 723.04,-252 723.04,-216 966.96,-216 966.96,-252"/>
+<text text-anchor="middle" x="845" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerNavComponent </text>
 </g>
 <!-- EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerNavComponent  -->
 <g id="edge9" class="edge">
 <title>EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerNavComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M633,-187.11C633,-187.11 633,-205.99 633,-205.99"/>
-<polygon fill="black" stroke="black" points="629.5,-205.99 633,-215.99 636.5,-205.99 629.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M845,-187.11C845,-187.11 845,-205.99 845,-205.99"/>
+<polygon fill="black" stroke="black" points="841.5,-205.99 845,-215.99 848.5,-205.99 841.5,-205.99"/>
 </g>
 <!-- EditionSvgSheetViewerSwitchComponent  -->
 <g id="node11" class="node">
 <title>EditionSvgSheetViewerSwitchComponent </title>
-<polygon fill="#fb8072" stroke="black" points="493.52,-252 234.48,-252 234.48,-216 493.52,-216 493.52,-252"/>
-<text text-anchor="middle" x="364" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerSwitchComponent </text>
+<polygon fill="#fb8072" stroke="black" points="705.52,-252 446.48,-252 446.48,-216 705.52,-216 705.52,-252"/>
+<text text-anchor="middle" x="576" y="-229.8" font-family="Times,serif" font-size="14.00">EditionSvgSheetViewerSwitchComponent </text>
 </g>
 <!-- EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerSwitchComponent  -->
 <g id="edge10" class="edge">
 <title>EditionSvgSheetViewerModule&#45;&gt;EditionSvgSheetViewerSwitchComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M535.54,-180C476.97,-180 413.71,-180 413.71,-180 413.71,-180 413.71,-205.72 413.71,-205.72"/>
-<polygon fill="black" stroke="black" points="410.21,-205.72 413.71,-215.72 417.21,-205.72 410.21,-205.72"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M747.52,-178C690.88,-178 630.6,-178 630.6,-178 630.6,-178 630.6,-205.97 630.6,-205.97"/>
+<polygon fill="black" stroke="black" points="627.1,-205.97 630.6,-215.97 634.1,-205.97 627.1,-205.97"/>
 </g>
 <!-- EditionTkaEvaluationsComponent -->
 <g id="node5" class="node">
 <title>EditionTkaEvaluationsComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="738.42,-122 735.42,-126 714.42,-126 711.42,-122 527.58,-122 527.58,-86 738.42,-86 738.42,-122"/>
-<text text-anchor="middle" x="633" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaEvaluationsComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="1510.42,-122 1507.42,-126 1486.42,-126 1483.42,-122 1299.58,-122 1299.58,-86 1510.42,-86 1510.42,-122"/>
+<text text-anchor="middle" x="1405" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaEvaluationsComponent</text>
 </g>
 <!-- EditionTkaEvaluationsComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge4" class="edge">
 <title>EditionTkaEvaluationsComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M633,-122.11C633,-122.11 633,-140.99 633,-140.99"/>
-<polygon fill="black" stroke="black" points="629.5,-140.99 633,-150.99 636.5,-140.99 629.5,-140.99"/>
+<path fill="none" stroke="black" d="M1405,-122.11C1405,-141.34 1405,-169 1405,-169 1405,-169 952.54,-169 952.54,-169"/>
+<polygon fill="black" stroke="black" points="952.54,-165.5 942.54,-169 952.54,-172.5 952.54,-165.5"/>
 </g>
 <!-- EditionTkaLabelComponent -->
 <g id="node6" class="node">
 <title>EditionTkaLabelComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="510.2,-122 507.2,-126 486.2,-126 483.2,-122 333.8,-122 333.8,-86 510.2,-86 510.2,-122"/>
-<text text-anchor="middle" x="422" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaLabelComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="1282.2,-122 1279.2,-126 1258.2,-126 1255.2,-122 1105.8,-122 1105.8,-86 1282.2,-86 1282.2,-122"/>
+<text text-anchor="middle" x="1194" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaLabelComponent</text>
 </g>
 <!-- EditionTkaLabelComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge5" class="edge">
 <title>EditionTkaLabelComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M501.8,-122.01C501.8,-138.05 501.8,-159 501.8,-159 501.8,-159 525.59,-159 525.59,-159"/>
-<polygon fill="black" stroke="black" points="525.59,-162.5 535.59,-159 525.59,-155.5 525.59,-162.5"/>
+<path fill="none" stroke="black" d="M1155.48,-122.03C1155.48,-138.4 1155.48,-160 1155.48,-160 1155.48,-160 952.39,-160 952.39,-160"/>
+<polygon fill="black" stroke="black" points="952.39,-156.5 942.39,-160 952.39,-163.5 952.39,-156.5"/>
 </g>
 <!-- EditionTkaTableComponent -->
 <g id="node7" class="node">
 <title>EditionTkaTableComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="316.2,-122 313.2,-126 292.2,-126 289.2,-122 139.8,-122 139.8,-86 316.2,-86 316.2,-122"/>
-<text text-anchor="middle" x="228" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaTableComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="1088.2,-122 1085.2,-126 1064.2,-126 1061.2,-122 911.8,-122 911.8,-86 1088.2,-86 1088.2,-122"/>
+<text text-anchor="middle" x="1000" y="-99.8" font-family="Times,serif" font-size="14.00">EditionTkaTableComponent</text>
 </g>
 <!-- EditionTkaTableComponent&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge6" class="edge">
 <title>EditionTkaTableComponent&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M275.29,-122.27C275.29,-140.56 275.29,-166 275.29,-166 275.29,-166 525.26,-166 525.26,-166"/>
-<polygon fill="black" stroke="black" points="525.26,-169.5 535.26,-166 525.26,-162.5 525.26,-169.5"/>
+<path fill="none" stroke="black" d="M927.16,-122.11C927.16,-122.11 927.16,-140.99 927.16,-140.99"/>
+<polygon fill="black" stroke="black" points="923.66,-140.99 927.16,-150.99 930.66,-140.99 923.66,-140.99"/>
 </g>
 <!-- SharedModule -->
 <g id="node8" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
-<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="894.42,-122 891.42,-126 870.42,-126 867.42,-122 795.58,-122 795.58,-86 894.42,-86 894.42,-122"/>
+<text text-anchor="middle" x="845" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;EditionSvgSheetViewerModule -->
 <g id="edge7" class="edge">
 <title>SharedModule&#45;&gt;EditionSvgSheetViewerModule</title>
-<path fill="none" stroke="black" d="M73,-122.13C73,-142.57 73,-173 73,-173 73,-173 525.46,-173 525.46,-173"/>
-<polygon fill="black" stroke="black" points="525.46,-176.5 535.46,-173 525.46,-169.5 525.46,-176.5"/>
+<path fill="none" stroke="black" d="M845,-122.11C845,-122.11 845,-140.99 845,-140.99"/>
+<polygon fill="black" stroke="black" points="841.5,-140.99 845,-150.99 848.5,-140.99 841.5,-140.99"/>
 </g>
 </g>
 </svg>
