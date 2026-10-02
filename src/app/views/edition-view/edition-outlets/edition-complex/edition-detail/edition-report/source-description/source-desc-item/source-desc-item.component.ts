@@ -3,13 +3,21 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { isEmptyObject } from '@awg-shared/utils/object-utils';
-import { SourceDescription, SourceDescriptionPhysDesc } from '@awg-views/edition-view/models/source-description.model';
 
+import {
+    SourceDescDetails,
+    SourceDescription,
+    SourceDescriptionPhysDesc,
+} from '@awg-views/edition-view/models/source-description.model';
+
+import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
 import { SourceDescCorrectionsComponent } from '../source-desc-corrections/source-desc-corrections.component';
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';
 import { SourceDescWritingInstrumentsComponent } from '../source-desc-writing-instruments/source-desc-writing-instruments.component';
 import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-materials/source-desc-writing-materials.component';
+
+import { SOURCE_DESC_DETAILS } from './source-desc-item.data';
 
 /**
  * The SourceDescItem component.
@@ -30,6 +38,7 @@ import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-mate
         SourceDescDetailsComponent,
         SourceDescWritingInstrumentsComponent,
         SourceDescWritingMaterialsComponent,
+        SourceSiglumComponent,
     ],
 })
 export class SourceDescItemComponent {
@@ -53,4 +62,17 @@ export class SourceDescItemComponent {
      * It checks whether the source has a non-empty physical description.
      */
     readonly hasPhysDesc = computed<boolean>(() => !isEmptyObject(this.physDesc()));
+
+    /**
+     * Readonly computed signal: details.
+     *
+     * It holds the simple details sections of the physical description
+     * that contain details, in the order of their display.
+     */
+    readonly details = computed<SourceDescDetails[]>(() =>
+        SOURCE_DESC_DETAILS.map(detail => ({
+            ...detail,
+            details: this.physDesc()[detail.key] ?? [],
+        })).filter(detail => detail.details.length > 0)
+    );
 }

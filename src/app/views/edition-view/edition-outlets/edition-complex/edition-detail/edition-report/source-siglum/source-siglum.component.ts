@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { Source, TextSource } from '@awg-views/edition-view/models/source.model';
+import { SourceSiglum } from '@awg-views/edition-view/models/source.model';
 
 /**
  * The SourceSiglum component.
@@ -20,11 +20,11 @@ import { Source, TextSource } from '@awg-views/edition-view/models/source.model'
 })
 export class SourceSiglumComponent {
     /**
-     * Readonly input signal: sourceData.
+     * Readonly input signal: siglumData.
      *
-     * It holds the source data.
+     * It holds the siglum data of the source.
      */
-    readonly sourceData = input.required<Source | TextSource>();
+    readonly siglumData = input.required<SourceSiglum>();
 
     /**
      * Readonly input signal: isClickable.
@@ -52,10 +52,7 @@ export class SourceSiglumComponent {
      *
      * It computes whether the source has a missing flag.
      */
-    readonly hasMissingFlag = computed(() => {
-        const src = this.sourceData();
-        return 'missing' in src && !!src.missing;
-    });
+    readonly hasMissingFlag = computed(() => !!this.siglumData().missing);
 
     /**
      * Readonly computed signal: siglumContainerClass.

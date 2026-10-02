@@ -18,6 +18,7 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 import { SourceDescription } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
+import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
 import { SourceDescCorrectionsComponent } from '../source-desc-corrections/source-desc-corrections.component';
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';
@@ -55,6 +56,26 @@ describe('SourceDescItemComponent', () => {
         return getAndExpectDebugElementByCss(headDes[0], 'p', expectedCount, expectedCount);
     };
 
+    /**
+     * Helper: expectSiglumParagraph.
+     *
+     * It expects the given paragraph to be bold, to contain one SourceSiglumComponent
+     * with the given source and class prefix, and to display the expected text.
+     */
+    const expectSiglumParagraph = (pDe: DebugElement, source: SourceDescription, expectedText: string): void => {
+        const pEl: HTMLParagraphElement = pDe.nativeElement;
+
+        expectToContain(pEl.classList, 'bold');
+        expectToBe(pEl.textContent.trim(), expectedText);
+
+        const siglumDes = getAndExpectDebugElementByDirective(pDe, SourceSiglumComponent, 1, 1);
+        const siglumCmp = siglumDes[0].injector.get(SourceSiglumComponent);
+
+        expectToEqual(siglumCmp.siglumData(), source);
+        expectToBe(siglumCmp.classPrefix(), 'awg-source-desc');
+        expectToBe(siglumCmp.isClickable(), false);
+    };
+
     beforeEach(async () => {
         // Mock services
         mockNavigationService = {
@@ -71,6 +92,7 @@ describe('SourceDescItemComponent', () => {
                 SourceDescItemComponent,
                 SourceDescWritingInstrumentsComponent,
                 SourceDescWritingMaterialsComponent,
+                SourceSiglumComponent,
             ],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
@@ -103,7 +125,7 @@ describe('SourceDescItemComponent', () => {
             expect(() => component.sourceDescription()).toThrow();
         });
 
-        it.each(['physDesc', 'hasPhysDesc'] as const)(
+        it.each(['physDesc', 'hasPhysDesc', 'details'] as const)(
             '... should throw when accessing computed signal `%s` due to missing input',
             signalName => {
                 expectToBe(isSignal(component[signalName]), true);
@@ -149,9 +171,69 @@ describe('SourceDescItemComponent', () => {
             expectToBe(component.hasPhysDesc(), false);
         });
 
+        it('... should have computed signal `details` to hold all details sections in display order', () => {
+            const physDesc = expectedSourceWithAllEntries.physDesc;
+
+            expectToEqual(component.details(), [
+                { key: 'titles', label: 'Titel', cssClass: 'titles', details: physDesc.titles },
+                { key: 'dates', label: 'Datierung', cssClass: 'dates', details: physDesc.dates },
+                { key: 'paginations', label: 'Paginierung', cssClass: 'paginations', details: physDesc.paginations },
+                {
+                    key: 'measureNumbers',
+                    label: 'Taktzahlen',
+                    cssClass: 'measure-numbers',
+                    details: physDesc.measureNumbers,
+                },
+                {
+                    key: 'instrumentations',
+                    label: 'Instrumentenvorsatz',
+                    cssClass: 'instrumentations',
+                    details: physDesc.instrumentations,
+                },
+                { key: 'annotations', label: 'Eintragungen', cssClass: 'annotations', details: physDesc.annotations },
+            ]);
+        });
+
+        it('... should have recomputed signal `details` to skip sections with empty or undefined details', () => {
+            fixture.componentRef.setInput('sourceDescription', {
+                ...expectedSourceWithAllEntries,
+                physDesc: { ...expectedSourceWithAllEntries.physDesc, dates: [], annotations: undefined },
+            });
+
+            expectToEqual(
+                component.details().map(detail => detail.key),
+                ['titles', 'paginations', 'measureNumbers', 'instrumentations']
+            );
+        });
+
+        it('... should have recomputed signal `details` to hold an empty array if physDesc is empty', () => {
+            fixture.componentRef.setInput('sourceDescription', expectedSourceWithoutPhysDesc);
+
+            expectToEqual(component.details(), []);
+        });
+
         describe('VIEW', () => {
             it('... should contain one div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
+            });
+
+            describe('... should not render a head paragraph if', () => {
+                it.each([
+                    { desc: 'siglum', changes: { siglum: '' }, selector: 'awg-source-siglum' },
+                    { desc: 'type', changes: { type: '' }, selector: 'p.awg-source-desc-type' },
+                    { desc: 'location', changes: { location: '' }, selector: 'p.awg-source-desc-location' },
+                ])('... $desc is empty', async ({ changes, selector }) => {
+                    fixture.componentRef.setInput('sourceDescription', {
+                        ...expectedSourceWithoutPhysDesc,
+                        ...changes,
+                    });
+                    await detectChangesOnPush(fixture);
+
+                    const headDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-head', 1, 1);
+
+                    getAndExpectDebugElementByCss(headDes[0], selector, 0, 0);
+                    getAndExpectDebugElementByCss(headDes[0], 'p', 2, 2);
+                });
             });
 
             describe('... with a source without physDesc entries', () => {
@@ -173,18 +255,11 @@ describe('SourceDescItemComponent', () => {
 
                 describe('... the first paragraph', () => {
                     it('... should display a siglum (bold) without an addendum', () => {
-                        const expectedSiglum = expectedSourceWithoutPhysDesc.siglum;
-                        const pEl: HTMLParagraphElement = paragraphDes[0].nativeElement;
-
-                        const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 1, 1);
-                        const siglumSpanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                        expectToContain(pEl.classList, 'awg-source-desc-siglum-container');
-                        expectToContain(pEl.classList, 'bold');
-                        expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
-
-                        expectToContain(siglumSpanEl.classList, 'awg-source-desc-siglum');
-                        expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
+                        expectSiglumParagraph(
+                            paragraphDes[0],
+                            expectedSourceWithoutPhysDesc,
+                            expectedSourceWithoutPhysDesc.siglum
+                        );
                     });
                 });
 
@@ -248,24 +323,13 @@ describe('SourceDescItemComponent', () => {
 
                     describe('... the first paragraph', () => {
                         it('... should display a siglum (bold) with addendum', () => {
-                            const expectedSiglum = expectedSourceWithAllEntries.siglum;
-                            const expectedAddendum = expectedSourceWithAllEntries.siglumAddendum ?? '';
+                            const { siglum, siglumAddendum } = expectedSourceWithAllEntries;
 
-                            const pEl: HTMLParagraphElement = paragraphDes[0].nativeElement;
-
-                            const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 2, 2);
-                            const siglumSpanEl: HTMLSpanElement = spanDes[0].nativeElement;
-                            const addendumSpanEl: HTMLSpanElement = spanDes[1].nativeElement;
-
-                            expectToContain(pEl.classList, 'awg-source-desc-siglum-container');
-                            expectToContain(pEl.classList, 'bold');
-                            expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
-
-                            expectToContain(siglumSpanEl.classList, 'awg-source-desc-siglum');
-                            expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-
-                            expectToContain(addendumSpanEl.classList, 'awg-source-desc-siglum-addendum');
-                            expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
+                            expectSiglumParagraph(
+                                paragraphDes[0],
+                                expectedSourceWithAllEntries,
+                                `${siglum}${siglumAddendum ?? ''}`
+                            );
                         });
                     });
 
@@ -456,26 +520,13 @@ describe('SourceDescItemComponent', () => {
                 });
 
                 it('... the first paragraph displaying a siglum (bold) with addendum and brackets (missing)', () => {
-                    const expectedSiglum = expectedSourceWithWritingMaterials.siglum;
-                    const expectedAddendum = expectedSourceWithWritingMaterials.siglumAddendum ?? '';
+                    const { siglum, siglumAddendum } = expectedSourceWithWritingMaterials;
 
-                    const pEl: HTMLParagraphElement = paragraphDes[0].nativeElement;
-
-                    const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 4, 4);
-
-                    // First span is opening bracket, last span is closing bracket
-                    const siglumSpanEl: HTMLSpanElement = spanDes[1].nativeElement;
-                    const addendumSpanEl: HTMLSpanElement = spanDes[2].nativeElement;
-
-                    expectToContain(pEl.classList, 'awg-source-desc-siglum-container');
-                    expectToContain(pEl.classList, 'bold');
-                    expectToBe(pEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
-
-                    expectToContain(siglumSpanEl.classList, 'awg-source-desc-siglum');
-                    expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
-
-                    expectToContain(addendumSpanEl.classList, 'awg-source-desc-siglum-addendum');
-                    expectToBe(addendumSpanEl.textContent.trim(), expectedAddendum.trim());
+                    expectSiglumParagraph(
+                        paragraphDes[0],
+                        expectedSourceWithWritingMaterials,
+                        `[${siglum}${siglumAddendum ?? ''}]`
+                    );
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -514,6 +565,21 @@ describe('SourceDescItemComponent', () => {
                     expectToBe(detailCmp.detailsClass(), 'conditions');
                 });
 
+                describe('... should contain no details component for conditions if conditions are', () => {
+                    it.each([
+                        { desc: 'undefined', conditions: undefined },
+                        { desc: 'empty', conditions: [] },
+                    ])('... $desc', async ({ conditions }) => {
+                        fixture.componentRef.setInput('sourceDescription', {
+                            ...expectedSourceWithWritingMaterials,
+                            physDesc: { ...expectedSourceWithWritingMaterials.physDesc, conditions },
+                        });
+                        await detectChangesOnPush(fixture);
+
+                        getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescDetailsComponent, 0, 0);
+                    });
+                });
+
                 describe('... the writing materials', () => {
                     it('... should contain one SourceDescWritingMaterialsComponent if writing materials array is not empty', () => {
                         getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescWritingMaterialsComponent, 1, 1);
@@ -534,6 +600,49 @@ describe('SourceDescItemComponent', () => {
                             writingMaterialsCmp.writingMaterials(),
                             expectedSourceWithWritingMaterials.physDesc.writingMaterials
                         );
+                    });
+
+                    describe('... if writingMaterialStrings are undefined', () => {
+                        it.each([
+                            {
+                                desc: 'should still render SourceDescWritingMaterialsComponent if writingMaterials are given',
+                                getWritingMaterials: () => expectedSourceWithWritingMaterials.physDesc.writingMaterials,
+                                expectedWritingMaterialsCmps: 1,
+                            },
+                            {
+                                desc: 'should render no writing materials at all if writingMaterials are undefined, too',
+                                getWritingMaterials: () => undefined,
+                                expectedWritingMaterialsCmps: 0,
+                            },
+                        ])('... $desc', async ({ getWritingMaterials, expectedWritingMaterialsCmps }) => {
+                            fixture.componentRef.setInput('sourceDescription', {
+                                ...expectedSourceWithWritingMaterials,
+                                physDesc: {
+                                    ...expectedSourceWithWritingMaterials.physDesc,
+                                    writingMaterials: getWritingMaterials(),
+                                    writingMaterialStrings: undefined,
+                                },
+                            });
+                            await detectChangesOnPush(fixture);
+
+                            getAndExpectDebugElementByDirective(
+                                getPhysDescDe(),
+                                SourceDescWritingMaterialsComponent,
+                                expectedWritingMaterialsCmps,
+                                expectedWritingMaterialsCmps
+                            );
+
+                            const detailDes = getAndExpectDebugElementByDirective(
+                                getPhysDescDe(),
+                                SourceDescDetailsComponent,
+                                1,
+                                1
+                            );
+                            const detailCmp = detailDes[0].injector.get(SourceDescDetailsComponent);
+
+                            // Only the conditions are rendered as details, no writing material strings
+                            expectToBe(detailCmp.detailsClass(), 'conditions');
+                        });
                     });
                 });
             });

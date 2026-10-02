@@ -2,6 +2,45 @@ import { Source } from './source.model';
 import { Textcritics } from './textcritics.model';
 
 /**
+ * The SourceDescDetailsKey type.
+ *
+ * It is used in the context of the edition view
+ * to name the keys of the physical description of a source description
+ * that are displayed as simple details sections.
+ */
+export type SourceDescDetailsKey =
+    'titles' | 'dates' | 'paginations' | 'measureNumbers' | 'instrumentations' | 'annotations';
+
+/**
+ * The SourceDescDetails interface.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a simple details section of the physical description
+ * of a source description with its key, label, css class and details.
+ */
+export interface SourceDescDetails {
+    /**
+     * The key of the section in the physical description.
+     */
+    key: SourceDescDetailsKey;
+
+    /**
+     * The label of the section.
+     */
+    label: string;
+
+    /**
+     * The css class of the section.
+     */
+    cssClass: string;
+
+    /**
+     * The details of the section.
+     */
+    details: string[];
+}
+
+/**
  * The SourceDescriptionSystemRow interface.
  *
  * It is used in the context of the edition view

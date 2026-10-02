@@ -3,19 +3,8 @@
     <div class="awg-source-desc-head">
         <!-- siglum -->
         @if (source.siglum) {
-            <p class="awg-source-desc-siglum-container bold">
-                @if (source.missing) {
-                    <span>[</span>
-                }
-                <span class="awg-source-desc-siglum">{{ source.siglum }}</span>
-                @if (source.siglumAddendum) {
-                    <span class="awg-source-desc-siglum-addendum"
-                        ><sup>{{ source.siglumAddendum }}</sup></span
-                    >
-                }
-                @if (source.missing) {
-                    <span>]</span>
-                }
+            <p class="bold">
+                <awg-source-siglum [siglumData]="source" classPrefix="awg-source-desc" />
             </p>
         }
         <!-- type -->
@@ -34,7 +23,7 @@
             <!-- conditions -->
             @let conditions = desc.conditions || [];
             @if (conditions.length) {
-                <awg-source-desc-details [details]="conditions" detailsLabel="" detailsClass="conditions" />
+                <awg-source-desc-details [details]="conditions" detailsClass="conditions" />
             }
 
             <!-- writingMaterials -->
@@ -52,52 +41,12 @@
             <!-- writingInstruments -->
             <awg-source-desc-writing-instruments [writingInstruments]="desc.writingInstruments" />
 
-            <!-- titles -->
-            @let titles = desc.titles || [];
-            @if (titles.length) {
-                <awg-source-desc-details [details]="titles" detailsLabel="Titel" detailsClass="titles" />
-            }
-
-            <!-- dates -->
-            @let dates = desc.dates || [];
-            @if (dates.length) {
-                <awg-source-desc-details [details]="dates" detailsLabel="Datierung" detailsClass="dates" />
-            }
-
-            <!-- pagination -->
-            @let paginations = desc.paginations || [];
-            @if (paginations.length) {
+            <!-- titles, dates, paginations, measureNumbers, instrumentations, annotations -->
+            @for (detail of details(); track detail.key) {
                 <awg-source-desc-details
-                    [details]="paginations"
-                    detailsLabel="Paginierung"
-                    detailsClass="paginations" />
-            }
-
-            <!-- measureNumbers -->
-            @let measureNumbers = desc.measureNumbers || [];
-            @if (measureNumbers.length) {
-                <awg-source-desc-details
-                    [details]="measureNumbers"
-                    detailsLabel="Taktzahlen"
-                    detailsClass="measure-numbers" />
-            }
-
-            <!-- instrumentations -->
-            @let instrumentations = desc.instrumentations || [];
-            @if (instrumentations.length) {
-                <awg-source-desc-details
-                    [details]="instrumentations"
-                    detailsLabel="Instrumentenvorsatz"
-                    detailsClass="instrumentations" />
-            }
-
-            <!-- annotations -->
-            @let annotations = desc.annotations || [];
-            @if (annotations.length) {
-                <awg-source-desc-details
-                    [details]="annotations"
-                    detailsLabel="Eintragungen"
-                    detailsClass="annotations" />
+                    [details]="detail.details"
+                    [detailsLabel]="detail.label"
+                    [detailsClass]="detail.cssClass" />
             }
 
             <!-- contents -->

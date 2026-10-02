@@ -218,7 +218,7 @@ describe('SourceListComponent (DONE)', () => {
                             const sourceSiglumCmp = sourceSiglumDe.componentInstance as SourceSiglumComponent;
                             const source = expectedSourceListData.sources[index];
 
-                            expectToEqual(sourceSiglumCmp.sourceData(), source);
+                            expectToEqual(sourceSiglumCmp.siglumData(), source);
                             expectToBe(sourceSiglumCmp.classPrefix(), 'awg-source-list');
                             expectToBe(sourceSiglumCmp.isClickable(), !!(source.hasDescription || source.linkTo));
                         });
@@ -404,7 +404,7 @@ describe('SourceListComponent (DONE)', () => {
                         sourceSiglumDes.forEach((sourceSiglumDe, index) => {
                             const sourceSiglumCmp = sourceSiglumDe.componentInstance as SourceSiglumComponent;
 
-                            expectToEqual(sourceSiglumCmp.sourceData(), textSources[index]);
+                            expectToEqual(sourceSiglumCmp.siglumData(), textSources[index]);
                             expectToBe(sourceSiglumCmp.classPrefix(), 'awg-source-list-text');
                             expectToBe(sourceSiglumCmp.isClickable(), false);
                         });

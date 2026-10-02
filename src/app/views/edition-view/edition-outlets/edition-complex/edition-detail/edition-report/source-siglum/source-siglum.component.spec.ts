@@ -49,10 +49,10 @@ describe('SourceSiglumComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `sourceData`', () => {
-            expectToBe(isSignal(component.sourceData), true);
+        it('... should throw due to missing required input signal `siglumData`', () => {
+            expectToBe(isSignal(component.siglumData), true);
 
-            expect(() => component.sourceData()).toThrow();
+            expect(() => component.siglumData()).toThrow();
         });
 
         it('... should have input signal `isClickable` to hold the default value', () => {
@@ -105,7 +105,7 @@ describe('SourceSiglumComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
-            fixture.componentRef.setInput('sourceData', structuredClone(expectedSourceData));
+            fixture.componentRef.setInput('siglumData', structuredClone(expectedSourceData));
             fixture.componentRef.setInput('isClickable', true);
             fixture.componentRef.setInput('classPrefix', 'awg-source-list');
 
@@ -113,8 +113,8 @@ describe('SourceSiglumComponent', () => {
             fixture.detectChanges();
         });
 
-        it('... should have input signal `sourceData` to hold the expected data', () => {
-            expectToEqual(component.sourceData(), expectedSourceData);
+        it('... should have input signal `siglumData` to hold the expected data', () => {
+            expectToEqual(component.siglumData(), expectedSourceData);
         });
 
         it('... should have input signal `isClickable` to hold the expected value', () => {
@@ -130,7 +130,7 @@ describe('SourceSiglumComponent', () => {
         });
 
         it('... should re-compute `hasMissingFlag` when input changes', () => {
-            fixture.componentRef.setInput('sourceData', { ...expectedSourceData, missing: true });
+            fixture.componentRef.setInput('siglumData', { ...expectedSourceData, missing: true });
             fixture.detectChanges();
 
             expectToEqual(component.hasMissingFlag(), true);
@@ -161,8 +161,8 @@ describe('SourceSiglumComponent', () => {
             const getSiglumContainerDes = () =>
                 getAndExpectDebugElementByCss(compDe, 'span.awg-source-list-siglum-container', 1, 1);
 
-            it('... should render no content if sourceData is null', async () => {
-                fixture.componentRef.setInput('sourceData', null);
+            it('... should render no content if siglumData is null', async () => {
+                fixture.componentRef.setInput('siglumData', null);
 
                 await detectChangesOnPush(fixture);
 
@@ -214,7 +214,7 @@ describe('SourceSiglumComponent', () => {
                         siglumAddendum: addendum,
                     };
 
-                    fixture.componentRef.setInput('sourceData', expectedSourceData);
+                    fixture.componentRef.setInput('siglumData', expectedSourceData);
                     await detectChangesOnPush(fixture);
 
                     const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
@@ -272,7 +272,7 @@ describe('SourceSiglumComponent', () => {
                     fixture.componentRef.setInput('isClickable', true);
                     fixture.componentRef.setInput('classPrefix', 'awg-source-list');
 
-                    fixture.componentRef.setInput('sourceData', expectedSourceData);
+                    fixture.componentRef.setInput('siglumData', expectedSourceData);
                     await detectChangesOnPush(fixture);
                 });
 
@@ -309,7 +309,7 @@ describe('SourceSiglumComponent', () => {
                     ])('... with addendum $addendum', async ({ siglum, addendum }) => {
                         expectedSourceData = { ...expectedSourceData, siglum, siglumAddendum: addendum };
 
-                        fixture.componentRef.setInput('sourceData', expectedSourceData);
+                        fixture.componentRef.setInput('siglumData', expectedSourceData);
                         await detectChangesOnPush(fixture);
 
                         const aDes = getAndExpectDebugElementByCss(fixture.debugElement, 'a', 1, 1);
@@ -351,7 +351,7 @@ describe('SourceSiglumComponent', () => {
                         hasDescription: false,
                         linkTo: '',
                     };
-                    fixture.componentRef.setInput('sourceData', structuredClone(mockSource));
+                    fixture.componentRef.setInput('siglumData', structuredClone(mockSource));
                     fixture.componentRef.setInput('isClickable', false);
                     await detectChangesOnPush(fixture);
 
@@ -390,14 +390,14 @@ describe('SourceSiglumComponent', () => {
                 type: 'Text type 2',
                 location: 'Text location 2.',
             };
-            fixture.componentRef.setInput('sourceData', expectedTextSourceData);
+            fixture.componentRef.setInput('siglumData', expectedTextSourceData);
             fixture.componentRef.setInput('classPrefix', 'awg-source-list-text');
 
             await detectChangesOnPush(fixture);
         });
 
         it('... should render a text-source siglum and addendum without a link', () => {
-            expectToEqual(component.sourceData(), expectedTextSourceData);
+            expectToEqual(component.siglumData(), expectedTextSourceData);
             expectToBe(component.hasMissingFlag(), false);
             expectToBe(component.isClickable(), false);
 

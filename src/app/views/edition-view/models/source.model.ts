@@ -41,6 +41,14 @@ export interface Source {
 }
 
 /**
+ * The SourceSiglum type.
+ *
+ * It stores the data needed to display the siglum of a source
+ * (siglum, addendum and missing flag).
+ */
+export type SourceSiglum = Pick<Source, 'siglum' | 'siglumAddendum' | 'missing'>;
+
+/**
  * The TextSource interface.
  *
  * It stores data for a single text source from a source list JSON file.
