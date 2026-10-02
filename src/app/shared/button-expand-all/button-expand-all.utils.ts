@@ -58,8 +58,8 @@ export function createExpandAllState<K>(keys: () => K[], defaultOpen = false): E
     const allOpen = computed<boolean>(() => keys().every(isOpen));
 
     const setOpen = (key: K, open: boolean): void => {
-        // Prune overrides of keys that are no longer part of the group,
-        // so that they do not resurface with a stale state when re-added later
+        // Prune overrides of keys that are no longer part of the group.
+        // This should avoid a stale state when re-added later.
         const validKeys = new Set<K>([...keys(), key]);
         const updatedKeys = new Set([...toggledKeys()].filter(toggledKey => validKeys.has(toggledKey)));
         let changed = updatedKeys.size !== toggledKeys().size;
