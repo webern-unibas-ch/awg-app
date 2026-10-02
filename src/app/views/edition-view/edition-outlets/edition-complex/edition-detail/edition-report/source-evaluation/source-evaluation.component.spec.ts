@@ -15,7 +15,9 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
+
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
 
 import { SourceEvaluationPlaceholderComponent } from './source-evaluation-placeholder/source-evaluation-placeholder.component';
 import { SourceEvaluationComponent } from './source-evaluation.component';
