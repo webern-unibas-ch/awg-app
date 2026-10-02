@@ -228,7 +228,8 @@ of the critical report of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#openAllCorrectionDetails" >openAllCorrectionDetails</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#correctionsState" >correctionsState</a>
                             </li>
                         </ul>
                     </td>
@@ -281,7 +282,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-corrections/source-desc-corrections.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-corrections/source-desc-corrections.component.ts:31</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -307,10 +308,11 @@ of the critical report of the edition view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="openAllCorrectionDetails"></a>
+                    <a name="correctionsState"></a>
                     <span class="name">
-                        <span ><b>openAllCorrectionDetails</b></span>
-                        <a href="#openAllCorrectionDetails"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>correctionsState</b></span>
+                        <a href="#correctionsState"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -322,19 +324,19 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;boolean&gt;(false)</code>
+                        <i>Default value : </i><code>createExpandAllState(() &#x3D;&gt; this.corrections().map(correction &#x3D;&gt; correction.id), false)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-corrections/source-desc-corrections.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-corrections/source-desc-corrections.component.ts:38</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public signal: openAllCorrectionDetails.</p>
-<p>It holds the boolean value to set the open state of all details in the source description corrections.</p>
+                    <div class="io-description"><p>Readonly variable: correctionsState.</p>
+<p>It holds the open state of the correction details (closed by default).</p>
 </div>
                 </td>
             </tr>
@@ -347,9 +349,10 @@ of the critical report of the edition view of the app.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, input } from &#x27;@angular/core&#x27;;
 
 import { ButtonExpandAllComponent } from &#x27;@awg-shared/button-expand-all/button-expand-all.component&#x27;;
+import { createExpandAllState } from &#x27;@awg-shared/button-expand-all/button-expand-all.utils&#x27;;
 import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
 
 import { Textcritics } from &#x27;@awg-views/edition-view/models/textcritics.model&#x27;;
@@ -379,11 +382,11 @@ export class SourceDescCorrectionsComponent {
     readonly corrections &#x3D; input.required&lt;Textcritics[]&gt;();
 
     /**
-     * Public signal: openAllCorrectionDetails.
+     * Readonly variable: correctionsState.
      *
-     * It holds the boolean value to set the open state of all details in the source description corrections.
+     * It holds the open state of the correction details (closed by default).
      */
-    openAllCorrectionDetails &#x3D; signal&lt;boolean&gt;(false);
+    readonly correctionsState &#x3D; createExpandAllState(() &#x3D;&gt; this.corrections().map(correction &#x3D;&gt; correction.id), false);
 }
 </code></pre>
     </div>
@@ -392,13 +395,15 @@ export class SourceDescCorrectionsComponent {
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;awg-source-desc-corrections&quot;&gt;
     &lt;p class&#x3D;&quot;awg-source-desc-corrections-label no-para-margin&quot;&gt;
         &lt;span class&#x3D;&quot;smallcaps&quot;&gt;Korrekturen:&lt;/span&gt;
-        &lt;awg-button-expand-all [(isOpen)]&#x3D;&quot;openAllCorrectionDetails&quot; /&gt;
+        &lt;awg-button-expand-all [isOpen]&#x3D;&quot;correctionsState.allOpen()&quot; (isOpenChange)&#x3D;&quot;correctionsState.setAll($event)&quot; /&gt;
     &lt;/p&gt;
     @for (correction of corrections(); track correction.id) {
         &lt;details
+            #correctionDetails
             class&#x3D;&quot;awg-source-desc-correction-details half-para-margin&quot;
             [id]&#x3D;&quot;correction.id&quot;
-            [open]&#x3D;&quot;openAllCorrectionDetails()&quot;&gt;
+            [open]&#x3D;&quot;correctionsState.isOpen(correction.id)&quot;
+            (toggle)&#x3D;&quot;correctionsState.setOpen(correction.id, correctionDetails.open)&quot;&gt;
             &lt;summary
                 class&#x3D;&quot;awg-source-desc-correction-summary no-para-margin&quot;
                 [awgCompileHtml]&#x3D;&quot;correction.label + &#x27;:&#x27;&quot;&gt;&lt;/summary&gt;
@@ -449,7 +454,7 @@ export class SourceDescCorrectionsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="awg-source-desc-corrections">    <p class="awg-source-desc-corrections-label no-para-margin">        <span class="smallcaps">Korrekturen:</span>        <awg-button-expand-all [(isOpen)]="openAllCorrectionDetails" />    </p>    @for (correction of corrections(); track correction.id) {        <details            class="awg-source-desc-correction-details half-para-margin"            [id]="correction.id"            [open]="openAllCorrectionDetails()">            <summary                class="awg-source-desc-correction-summary no-para-margin"                [awgCompileHtml]="correction.label + \':\'"></summary>            <div class="p-3 border rounded-3">                <awg-edition-tka-evaluations [evaluations]="correction.evaluations" />                @if (correction.commentary.comments.length) {                    <awg-edition-tka-table                        [displayedCommentary]="correction.commentary"                        [isCorrections]="true"                        [isRowtable]="correction.rowtable ?? false" />                }            </div>        </details>    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="awg-source-desc-corrections">    <p class="awg-source-desc-corrections-label no-para-margin">        <span class="smallcaps">Korrekturen:</span>        <awg-button-expand-all [isOpen]="correctionsState.allOpen()" (isOpenChange)="correctionsState.setAll($event)" />    </p>    @for (correction of corrections(); track correction.id) {        <details            #correctionDetails            class="awg-source-desc-correction-details half-para-margin"            [id]="correction.id"            [open]="correctionsState.isOpen(correction.id)"            (toggle)="correctionsState.setOpen(correction.id, correctionDetails.open)">            <summary                class="awg-source-desc-correction-summary no-para-margin"                [awgCompileHtml]="correction.label + \':\'"></summary>            <div class="p-3 border rounded-3">                <awg-edition-tka-evaluations [evaluations]="correction.evaluations" />                @if (correction.commentary.comments.length) {                    <awg-edition-tka-table                        [displayedCommentary]="correction.commentary"                        [isCorrections]="true"                        [isRowtable]="correction.rowtable ?? false" />                }            </div>        </details>    }</div></div>'
     var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionSvgSheetFacetComponent', 'selector': 'awg-edition-svg-sheet-facet'},{'name': 'EditionSvgSheetFacetItemComponent', 'selector': 'awg-edition-svg-sheet-facet-item'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerNavComponent', 'selector': 'awg-edition-svg-sheet-viewer-nav'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'SourceDescCorrectionsComponent'};

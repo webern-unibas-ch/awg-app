@@ -1193,6 +1193,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionViewDataTypeMapping.html" data-type="entity-link" >EditionViewDataTypeMapping</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/ExpandAllState.html" data-type="entity-link" >ExpandAllState</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Folio.html" data-type="entity-link" >Folio</a>
                             </li>
                             <li class="link">

@@ -134,6 +134,9 @@
                             <a href="#applyAbbreviations" title="src/app/shared/abbr/abbr.utils.ts" ><b>applyAbbreviations</b>&nbsp;&nbsp;&nbsp;(src/.../abbr.utils.ts)</a>
                         </li>
                         <li>
+                            <a href="#createExpandAllState" title="src/app/shared/button-expand-all/button-expand-all.utils.ts" ><b>createExpandAllState</b>&nbsp;&nbsp;&nbsp;(src/.../button-expand-all.utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getDimensions" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-writing-materials/source-desc-writing-materials.utils.ts" ><b>getDimensions</b>&nbsp;&nbsp;&nbsp;(src/.../source-desc-writing-materials.utils.ts)</a>
                         </li>
                         <li>
@@ -233,6 +236,103 @@
                         </div>
                             <div class="io-description">
                                 <p>Wraps abbreviation matches in the element.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/shared/button-expand-all/button-expand-all.utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createExpandAllState"></a>
+                    <span class="name">
+                        <span ><b>createExpandAllState</b></span>
+                        <a href="#createExpandAllState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createExpandAllState(keys, defaultOpen: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Factory function: createExpandAllState.</p>
+<p>It creates the open state for a group of expandable items.
+The state is kept as a default open state plus a set of keys
+that were toggled individually and therefore deviate from the default.
+This way, items that are added later follow the default automatically.
+Overrides of removed items are pruned on the next <code>setOpen</code> call or reset by <code>setAll</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>keys</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>A function returning the keys of all items of the group.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>defaultOpen</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>false</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The initial open state of all items (default: false).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/ExpandAllState.html" target="_self" >ExpandAllState&lt;K&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The created expand all state.</p>
 
                             </div>
                 </td>
