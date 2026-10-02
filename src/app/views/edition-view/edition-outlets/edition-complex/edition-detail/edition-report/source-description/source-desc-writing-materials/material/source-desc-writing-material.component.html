@@ -1,0 +1,25 @@
+<span class="awg-source-desc-writing-material">
+    <!-- materialType -->
+    @if (materialType()) {
+        <span class="awg-source-desc-writing-material-type">{{ materialType() }}</span
+        >,
+    }
+    <!-- systems -->
+    @if (systems()) {
+        <span class="awg-source-desc-writing-material-systems"> {{ systems() }}</span
+        >,
+    }
+    <!-- dimensions -->
+    @if (dimensions()) {
+        <span class="awg-source-desc-writing-material-dimensions"> {{ dimensions() }}</span
+        >,
+    }
+    <!-- trademark -->
+    <awg-source-desc-writing-trademark [trademark]="material().trademark" />
+    <!-- watermark -->
+    <awg-source-desc-writing-watermark [watermark]="material().watermark" />
+    <!-- folioAddendum -->
+    @if (folioAddendum()) {
+        <span class="awg-source-desc-writing-material-folio-addendum">&nbsp;(Bl. {{ folioAddendum() }})</span>
+    }
+</span>

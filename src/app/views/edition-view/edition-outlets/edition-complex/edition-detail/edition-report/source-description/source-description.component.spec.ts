@@ -48,7 +48,7 @@ class SourceDescDetailsStubComponent {
     detailsLabel: string | undefined;
 }
 
-@Component({ selector: 'awg-source-description-writing-materials', template: '', standalone: false })
+@Component({ selector: 'awg-source-desc-writing-materials', template: '', standalone: false })
 class SourceDescriptionWritingMaterialsStubComponent {
     @Input()
     writingMaterials: SourceDescriptionWritingMaterial[] = [];

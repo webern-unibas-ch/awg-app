@@ -46,7 +46,7 @@
                             @let writingMaterials = physDesc.writingMaterials || [];
                             @let writingMaterialStrings = physDesc.writingMaterialStrings || [];
                             @if (writingMaterials.length) {
-                                <awg-source-description-writing-materials [writingMaterials]="writingMaterials" />
+                                <awg-source-desc-writing-materials [writingMaterials]="writingMaterials" />
                             } @else if (writingMaterialStrings.length) {
                                 <awg-source-desc-details
                                     [details]="writingMaterialStrings"

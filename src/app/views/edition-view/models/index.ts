@@ -56,6 +56,8 @@ export {
     SourceDescriptionWritingMaterialDimensions,
     SourceDescriptionWritingMaterialItemLocus,
     SourceDescriptionWritingMaterialSystems,
+    SourceDescriptionWritingMaterialTrademark,
+    SourceDescriptionWritingMaterialWatermark,
 } from './source-description.model';
 export { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 export { SourceList } from './source-list.model';
