@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { SourceDescriptionList } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescItemComponent } from './source-desc-item/source-desc-item.component';
 
@@ -23,5 +23,5 @@ export class SourceDescComponent {
      *
      * It holds the source description list data.
      */
-    readonly sourceDescListData = input.required<SourceDescriptionList>();
+    readonly sourceDescListData = input.required<SourceDescList>();
 }

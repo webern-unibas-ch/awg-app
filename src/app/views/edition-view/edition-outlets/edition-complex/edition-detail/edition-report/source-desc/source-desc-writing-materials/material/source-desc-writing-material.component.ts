@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { SourceDescriptionWritingMaterial } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getDimensions, getSystems } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingTrademarkComponent } from '../trademark/source-desc-writing-trademark.component';
@@ -25,7 +25,7 @@ export class SourceDescWritingMaterialComponent {
      *
      * It holds the writing material data.
      */
-    readonly material = input.required<SourceDescriptionWritingMaterial>();
+    readonly material = input.required<SourceDescWritingMaterial>();
 
     /**
      * Readonly computed signal: materialType.

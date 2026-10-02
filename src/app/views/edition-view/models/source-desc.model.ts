@@ -41,13 +41,13 @@ export interface SourceDescDetails {
 }
 
 /**
- * The SourceDescriptionSystemRow interface.
+ * The SourceDescSystemRow interface.
  *
  * It is used in the context of the edition view
  * to store the data for a system row of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionSystemRow {
+export interface SourceDescSystemRow {
     /**
      * The type of the row (optional).
      */
@@ -65,13 +65,13 @@ export interface SourceDescriptionSystemRow {
 }
 
 /**
- * The SourceDescriptionSystem interface.
+ * The SourceDescSystem interface.
  *
  * It is used in the context of the edition view
  * to store the data for a system of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionSystem {
+export interface SourceDescSystem {
     /**
      * The system label (optional).
      */
@@ -95,17 +95,17 @@ export interface SourceDescriptionSystem {
     /**
      * The system rows (optional).
      */
-    row?: SourceDescriptionSystemRow;
+    row?: SourceDescSystemRow;
 }
 
 /**
- * The SourceDescriptionFolio interface.
+ * The SourceDescFolio interface.
  *
  * It is used in the context of the edition view
  * to store the data for a folio of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionFolio {
+export interface SourceDescFolio {
     /**
      * The folio label (optional).
      */
@@ -129,17 +129,17 @@ export interface SourceDescriptionFolio {
     /**
      * The systemGroups of a folio (optional).
      */
-    systemGroups?: SourceDescriptionSystem[][];
+    systemGroups?: SourceDescSystem[][];
 }
 
 /**
- * The SourceDescriptionContent interface.
+ * The SourceDescContent interface.
  *
  * It is used in the context of the edition view
  * to store the data for the content of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionContent {
+export interface SourceDescContent {
     /**
      * The content item (optional).
      */
@@ -158,17 +158,17 @@ export interface SourceDescriptionContent {
     /**
      * The folios of the content item (optional).
      */
-    folios?: SourceDescriptionFolio[];
+    folios?: SourceDescFolio[];
 }
 
 /**
- * The SourceDescriptionWritingMaterialDimension interface.
+ * The SourceDescWritingMaterialDimension interface.
  *
  * It is used in the context of the edition view
  * to store the data for the dimensions of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialDimension {
+export interface SourceDescWritingMaterialDimension {
     /**
      * The uncertainty of the dimension of the writing material (optional).
      */
@@ -181,13 +181,13 @@ export interface SourceDescriptionWritingMaterialDimension {
 }
 
 /**
- * The SourceDescriptionWritingMaterialDimensions interface.
+ * The SourceDescWritingMaterialDimensions interface.
  *
  * It is used in the context of the edition view
  * to store the data for the dimensions of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialDimensions {
+export interface SourceDescWritingMaterialDimensions {
     /**
      * The orientation of the writing material (optional).
      */
@@ -196,12 +196,12 @@ export interface SourceDescriptionWritingMaterialDimensions {
     /**
      * The height of the writing material (optional).
      */
-    height?: SourceDescriptionWritingMaterialDimension;
+    height?: SourceDescWritingMaterialDimension;
 
     /**
      * The width of the writing material (optional).
      */
-    width?: SourceDescriptionWritingMaterialDimension;
+    width?: SourceDescWritingMaterialDimension;
 
     /**
      * The unit of the dimensions of the writing material (optional).
@@ -210,13 +210,13 @@ export interface SourceDescriptionWritingMaterialDimensions {
 }
 
 /**
- * The SourceDescriptionWritingMaterialTrademark interface.
+ * The SourceDescWritingMaterialTrademark interface.
  *
  * It is used in the context of the edition view
  * to store the data for the trademark of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialTrademark {
+export interface SourceDescWritingMaterialTrademark {
     /**
      * The variant of the trademark used on the writing material (optional).
      */
@@ -230,17 +230,17 @@ export interface SourceDescriptionWritingMaterialTrademark {
     /**
      * The location of the trademark on the writing material (optional).
      */
-    locus?: SourceDescriptionWritingMaterialItemLocus[];
+    locus?: SourceDescWritingMaterialItemLocus[];
 }
 
 /**
- * The SourceDescriptionWritingMaterialItemLocus interface.
+ * The SourceDescWritingMaterialItemLocus interface.
  *
  * It is used in the context of the edition view
  * to store the data for the locus of an item of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialItemLocus {
+export interface SourceDescWritingMaterialItemLocus {
     /**
      * An additional info to the item locus on the writing material placed before the folios (optional).
      */
@@ -258,13 +258,13 @@ export interface SourceDescriptionWritingMaterialItemLocus {
 }
 
 /**
- * The SourceDescriptionWritingMaterialSystems interface.
+ * The SourceDescWritingMaterialSystems interface.
  *
  * It is used in the context of the edition view
  * to store the data for the systems of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialSystems {
+export interface SourceDescWritingMaterialSystems {
     /**
      * The total number of systems available (optional).
      */
@@ -282,13 +282,13 @@ export interface SourceDescriptionWritingMaterialSystems {
 }
 
 /**
- * The SourceDescriptionWritingMaterialWatermark interface.
+ * The SourceDescWritingMaterialWatermark interface.
  *
  * It is used in the context of the edition view
  * to store the data for the watermark of the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterialWatermark {
+export interface SourceDescWritingMaterialWatermark {
     /**
      * The variant of the watermark (optional).
      */
@@ -302,17 +302,17 @@ export interface SourceDescriptionWritingMaterialWatermark {
     /**
      * The locus of the watermark on the writing material (optional).
      */
-    locus?: SourceDescriptionWritingMaterialItemLocus[];
+    locus?: SourceDescWritingMaterialItemLocus[];
 }
 
 /**
- * The SourceDescriptionWritingMaterial interface.
+ * The SourceDescWritingMaterial interface.
  *
  * It is used in the context of the edition view
  * to store the data for the writing material of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingMaterial {
+export interface SourceDescWritingMaterial {
     /**
      * The type of the writing material (optional).
      */
@@ -321,22 +321,22 @@ export interface SourceDescriptionWritingMaterial {
     /**
      * The systems of the writing material (optional).
      */
-    systems?: SourceDescriptionWritingMaterialSystems;
+    systems?: SourceDescWritingMaterialSystems;
 
     /**
      * The dimensions of the writing material (optional).
      */
-    dimensions?: SourceDescriptionWritingMaterialDimensions;
+    dimensions?: SourceDescWritingMaterialDimensions;
 
     /**
      * The trademark of the writing material (optional).
      */
-    trademark?: SourceDescriptionWritingMaterialTrademark;
+    trademark?: SourceDescWritingMaterialTrademark;
 
     /**
      * The watermark of the writing material (optional).
      */
-    watermark?: SourceDescriptionWritingMaterialWatermark;
+    watermark?: SourceDescWritingMaterialWatermark;
 
     /**
      * The folio addendum of the writing material (optional).
@@ -345,13 +345,13 @@ export interface SourceDescriptionWritingMaterial {
 }
 
 /**
- * The SourceDescriptionWritingInstruments interface.
+ * The SourceDescWritingInstruments interface.
  *
  * It is used in the context of the edition view
  * to store the data for the writing instruments of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionWritingInstruments {
+export interface SourceDescWritingInstruments {
     /**
      * The main writing instrument used in a source (optional).
      */
@@ -364,13 +364,13 @@ export interface SourceDescriptionWritingInstruments {
 }
 
 /**
- * The SourceDescriptionPhysDesc interface.
+ * The SourceDescPhysDesc interface.
  *
  * It is used in the context of the edition view
  * to store the data for the physical description of a source description
  * from a source description json file.
  */
-export interface SourceDescriptionPhysDesc {
+export interface SourceDescPhysDesc {
     /**
      * The conditions of a source (optional).
      */
@@ -384,12 +384,12 @@ export interface SourceDescriptionPhysDesc {
     /**
      * The writing materials used for a source (optional).
      */
-    writingMaterials?: SourceDescriptionWritingMaterial[];
+    writingMaterials?: SourceDescWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
      */
-    writingInstruments?: SourceDescriptionWritingInstruments;
+    writingInstruments?: SourceDescWritingInstruments;
 
     /**
      * One or multiple titles as they appear in a source (optional).
@@ -424,7 +424,7 @@ export interface SourceDescriptionPhysDesc {
     /**
      * The content of a source (optional).
      */
-    contents?: SourceDescriptionContent[];
+    contents?: SourceDescContent[];
 
     /**
      * The corrections lists of a source (optional).
@@ -433,34 +433,34 @@ export interface SourceDescriptionPhysDesc {
 }
 
 /**
- * The SourceDescription interface.
+ * The SourceDesc interface.
  *
  * It is used in the context of the edition view
  * to store the data for a single source description
  * from a source description json file.
  */
-export interface SourceDescription extends Pick<Source, 'siglum' | 'siglumAddendum' | 'missing' | 'type' | 'location'> {
+export interface SourceDesc extends Pick<Source, 'siglum' | 'siglumAddendum' | 'missing' | 'type' | 'location'> {
     /**
-     * The id of a sourceDescription.
+     * The id of a source description.
      */
     id: string;
 
     /**
-     * The physical description of a sourceDescription.
+     * The physical description of a source description.
      */
-    physDesc: SourceDescriptionPhysDesc;
+    physDesc: SourceDescPhysDesc;
 }
 
 /**
- * The SourceDescriptionList class.
+ * The SourceDescList class.
  *
  * It is used in the context of the edition view
  * to store the data for a source description list
  * from a source description json file.
  */
-export class SourceDescriptionList {
+export class SourceDescList {
     /**
      * The array of sources from a source description list.
      */
-    sources: SourceDescription[] = [];
+    sources: SourceDesc[] = [];
 }

@@ -19,7 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentItemComponent } from './source-desc-content-item.component';
@@ -34,10 +34,10 @@ describe('SourceDescContentItemComponent', () => {
     let selectSvgSheetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
 
-    let expectedContents: SourceDescriptionContent[];
-    let expectedContent: SourceDescriptionContent;
-    let expectedContentWithoutLink: SourceDescriptionContent;
-    let expectedContentWithoutDescription: SourceDescriptionContent;
+    let expectedContents: SourceDescContent[];
+    let expectedContent: SourceDescContent;
+    let expectedContentWithoutLink: SourceDescContent;
+    let expectedContentWithoutDescription: SourceDescContent;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
@@ -163,7 +163,7 @@ describe('SourceDescContentItemComponent', () => {
                     },
                 ])('... $desc', async ({ missingComplexId, missingSheetId, missingItemLinkTo }) => {
                     const { itemLinkTo, ...content } = expectedContent;
-                    const contentWithoutIds: SourceDescriptionContent = {
+                    const contentWithoutIds: SourceDescContent = {
                         ...content,
                         ...(missingItemLinkTo
                             ? {}

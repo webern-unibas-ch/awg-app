@@ -176,7 +176,7 @@ export class EditionViewService {
     readonly reportViewData = computed(() =>
         this._buildViewData('report', [
             ['sourceListData', this._editionDataService.sourceListData],
-            ['sourceDescriptionData', this._editionDataService.sourceDescriptionData],
+            ['sourceDescData', this._editionDataService.sourceDescData],
             ['sourceEvaluationData', this._editionDataService.sourceEvaluationData],
             ['textcriticsData', this._editionDataService.textcriticsData],
         ])

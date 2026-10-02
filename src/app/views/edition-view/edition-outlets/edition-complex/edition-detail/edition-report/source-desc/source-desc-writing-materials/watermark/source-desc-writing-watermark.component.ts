@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { SourceDescriptionWritingMaterialWatermark } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterialWatermark } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getItemLocus } from '../source-desc-writing-materials.utils';
 
@@ -24,7 +24,7 @@ export class SourceDescWritingWatermarkComponent {
      *
      * It holds the watermark data of the writing material.
      */
-    readonly watermark = input<SourceDescriptionWritingMaterialWatermark | undefined>();
+    readonly watermark = input<SourceDescWritingMaterialWatermark | undefined>();
 
     /**
      * Readonly computed signal: variant.

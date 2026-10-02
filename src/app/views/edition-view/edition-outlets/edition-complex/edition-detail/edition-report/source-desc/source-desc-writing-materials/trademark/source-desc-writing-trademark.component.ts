@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
-import { SourceDescriptionWritingMaterialTrademark } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterialTrademark } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getItemLocus, getTrademark } from '../source-desc-writing-materials.utils';
 
@@ -25,7 +25,7 @@ export class SourceDescWritingTrademarkComponent {
      *
      * It holds the trademark data of the writing material.
      */
-    readonly trademark = input<SourceDescriptionWritingMaterialTrademark | undefined>();
+    readonly trademark = input<SourceDescWritingMaterialTrademark | undefined>();
 
     /**
      * Readonly computed signal: hasTrademark.

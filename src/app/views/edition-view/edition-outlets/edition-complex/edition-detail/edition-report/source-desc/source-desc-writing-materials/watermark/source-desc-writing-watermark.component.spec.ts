@@ -7,7 +7,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { SourceDescriptionWritingMaterialWatermark } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterialWatermark } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getItemLocus } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingWatermarkComponent } from './source-desc-writing-watermark.component';
@@ -17,7 +17,7 @@ describe('SourceDescWritingWatermarkComponent', () => {
     let fixture: ComponentFixture<SourceDescWritingWatermarkComponent>;
     let compDe: DebugElement;
 
-    let expectedWatermark: SourceDescriptionWritingMaterialWatermark;
+    let expectedWatermark: SourceDescWritingMaterialWatermark;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

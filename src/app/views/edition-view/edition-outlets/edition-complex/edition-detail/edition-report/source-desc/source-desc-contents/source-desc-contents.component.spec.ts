@@ -15,7 +15,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 
-import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentGridComponent } from './grid/source-desc-content-grid.component';
@@ -29,7 +29,7 @@ describe('SourceDescContentsComponent', () => {
 
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let expectedContents: SourceDescriptionContent[];
+    let expectedContents: SourceDescContent[];
     let expectedOpenAllContentDetails: boolean;
 
     beforeEach(async () => {
@@ -161,7 +161,7 @@ describe('SourceDescContentsComponent', () => {
             });
 
             describe('... the content details', () => {
-                let expectedContentsWithItems: SourceDescriptionContent[];
+                let expectedContentsWithItems: SourceDescContent[];
                 let expectedContentsWithItemsLength: number;
 
                 beforeEach(() => {
@@ -281,7 +281,7 @@ describe('SourceDescContentsComponent', () => {
             });
 
             describe('... the content tables', () => {
-                let expectedContentsWithFolios: SourceDescriptionContent[];
+                let expectedContentsWithFolios: SourceDescContent[];
                 let expectedContentsWithFoliosLength: number;
 
                 beforeEach(() => {

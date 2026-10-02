@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 
-import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescContentGridComponent } from './grid/source-desc-content-grid.component';
 import { SourceDescContentItemComponent } from './item/source-desc-content-item.component';
@@ -26,7 +26,7 @@ export class SourceDescContentsComponent {
      *
      * It holds the folio contents array.
      */
-    readonly contents = input.required<SourceDescriptionContent[]>();
+    readonly contents = input.required<SourceDescContent[]>();
 
     /**
      * Public signal: openAllContentDetails.

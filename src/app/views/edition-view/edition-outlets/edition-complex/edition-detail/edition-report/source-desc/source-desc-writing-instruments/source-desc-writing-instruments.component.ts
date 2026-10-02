@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
-import { SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingInstruments } from '@awg-views/edition-view/models/source-desc.model';
 
 /**
  * The SourceDescWritingInstruments component.
@@ -23,7 +23,7 @@ export class SourceDescWritingInstrumentsComponent {
      *
      * It holds the writing instruments data.
      */
-    readonly writingInstruments = input<SourceDescriptionWritingInstruments | undefined>();
+    readonly writingInstruments = input<SourceDescWritingInstruments | undefined>();
 
     /**
      * Readonly computed signal: formattedWritingInstruments.
@@ -42,10 +42,10 @@ export class SourceDescWritingInstrumentsComponent {
      * It retrieves the string representation of the writing instruments
      * provided in the source description.
      *
-     * @param {SourceDescriptionWritingInstruments | undefined} writingInstruments The given writing instruments data, or undefined.
+     * @param {SourceDescWritingInstruments | undefined} writingInstruments The given writing instruments data, or undefined.
      * @returns {string} The retrieved writing instruments string.
      */
-    getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments | undefined): string {
+    getWritingInstruments(writingInstruments: SourceDescWritingInstruments | undefined): string {
         if (!writingInstruments) {
             return '';
         }

@@ -1,11 +1,11 @@
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data/edition-trademarks.data';
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import {
-    SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialDimensions,
-    SourceDescriptionWritingMaterialItemLocus,
-    SourceDescriptionWritingMaterialSystems,
-} from '@awg-views/edition-view/models/source-description.model';
+    SourceDescWritingMaterialDimension,
+    SourceDescWritingMaterialDimensions,
+    SourceDescWritingMaterialItemLocus,
+    SourceDescWritingMaterialSystems,
+} from '@awg-views/edition-view/models/source-desc.model';
 
 /**
  * Utils method: getTrademark.
@@ -37,10 +37,10 @@ export function getTrademark(variant: string): EditionRouteConstant {
  * of an item of the writing material (trademark or watermark)
  * provided in the source description.
  *
- * @param {SourceDescriptionWritingMaterialItemLocus} locus The given locus data.
+ * @param {SourceDescWritingMaterialItemLocus} locus The given locus data.
  * @returns {string} The retrieved locus string.
  */
-export function getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): string {
+export function getItemLocus(locus: SourceDescWritingMaterialItemLocus): string {
     let foliosStr = '';
 
     if (locus.folios?.length) {
@@ -72,17 +72,17 @@ export function getItemLocus(locus: SourceDescriptionWritingMaterialItemLocus): 
  * It retrieves the string representation of the dimensions
  * of the writing material provided in the source description.
  *
- * @param {SourceDescriptionWritingMaterialDimensions | undefined} dimensions The given dimensions data, or undefined.
+ * @param {SourceDescWritingMaterialDimensions | undefined} dimensions The given dimensions data, or undefined.
  * @returns {string} The retrieved dimensions string.
  */
-export function getDimensions(dimensions: SourceDescriptionWritingMaterialDimensions | undefined): string {
+export function getDimensions(dimensions: SourceDescWritingMaterialDimensions | undefined): string {
     if (!dimensions) {
         return '';
     }
 
     const { orientation, height, width, unit } = dimensions;
 
-    const getDimension = (dim: SourceDescriptionWritingMaterialDimension | undefined): string => {
+    const getDimension = (dim: SourceDescWritingMaterialDimension | undefined): string => {
         if (!dim?.value) {
             return '';
         }
@@ -109,10 +109,10 @@ export function getDimensions(dimensions: SourceDescriptionWritingMaterialDimens
  * It retrieves the systems of the writing material
  * provided in the source description.
  *
- * @param {SourceDescriptionWritingMaterialSystems | undefined} systems The given systems data, or undefined.
+ * @param {SourceDescWritingMaterialSystems | undefined} systems The given systems data, or undefined.
  * @returns {string} The retrieved systems string.
  */
-export function getSystems(systems: SourceDescriptionWritingMaterialSystems | undefined): string {
+export function getSystems(systems: SourceDescWritingMaterialSystems | undefined): string {
     if (!systems?.totalSystems) {
         return '';
     }

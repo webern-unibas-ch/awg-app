@@ -26,12 +26,12 @@
                 <!-- source desc -->
                 <div ngbAccordionItem="awg-source-desc" [collapsed]="false">
                     <div ngbAccordionHeader>
-                        <button ngbAccordionButton>{{ titles.sourceDescription }}</button>
+                        <button ngbAccordionButton>{{ titles.sourceDesc }}</button>
                     </div>
                     <div ngbAccordionCollapse>
                         <div ngbAccordionBody>
                             <ng-template>
-                                @if (view.data.sourceDescriptionData; as sourceDescListData) {
+                                @if (view.data.sourceDescData; as sourceDescListData) {
                                     <awg-source-desc [sourceDescListData]="sourceDescListData" />
                                 }
                             </ng-template>

@@ -30,7 +30,7 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import {
     EditionComplex,
-    SourceDescriptionList,
+    SourceDescList,
     SourceEvaluationList,
     SourceList,
     TextcriticsList,
@@ -64,7 +64,7 @@ class SourceListStubComponent {
 })
 class SourceDescStubComponent {
     @Input()
-    sourceDescListData: SourceDescriptionList | null = null;
+    sourceDescListData: SourceDescList | null = null;
 }
 
 @Component({
@@ -100,7 +100,7 @@ describe('EditionReportComponent', () => {
     let expectedViewDataContent: EditionViewDataContent<'report'>;
     let expectedDefaultViewDataContent: EditionViewDataContent<'report'>;
     let expectedSourceListData: SourceList;
-    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedSourceDescriptionListData: SourceDescList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedTextcriticsListData: TextcriticsList;
     let expectedComplex: EditionComplex;
@@ -121,7 +121,7 @@ describe('EditionReportComponent', () => {
         // Mock services
         expectedDefaultViewDataContent = {
             sourceListData: new SourceList(),
-            sourceDescriptionData: new SourceDescriptionList(),
+            sourceDescData: new SourceDescList(),
             sourceEvaluationData: new SourceEvaluationList(),
             textcriticsData: new TextcriticsList(),
         };
@@ -228,7 +228,7 @@ describe('EditionReportComponent', () => {
             editionStateService.updateSelectedEditionComplex(expectedComplex);
             expectedViewDataContent = {
                 sourceListData: expectedSourceListData,
-                sourceDescriptionData: expectedSourceDescriptionListData,
+                sourceDescData: expectedSourceDescriptionListData,
                 sourceEvaluationData: expectedSourceEvaluationListData,
                 textcriticsData: expectedTextcriticsListData,
             };
@@ -407,7 +407,7 @@ describe('EditionReportComponent', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
                         const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.titles.sourceDescription);
+                        expectToBe(buttonEl.textContent?.trim(), component.titles.sourceDesc);
                     });
 
                     it('... should contain one source description component (stubbed)', () => {

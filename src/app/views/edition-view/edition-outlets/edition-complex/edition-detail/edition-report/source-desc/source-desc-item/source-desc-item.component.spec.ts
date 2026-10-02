@@ -15,7 +15,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { SourceDescription } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDesc } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
@@ -34,9 +34,9 @@ describe('SourceDescItemComponent', () => {
     let mockDocument: Document;
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let expectedSourceWithoutPhysDesc: SourceDescription;
-    let expectedSourceWithAllEntries: SourceDescription;
-    let expectedSourceWithWritingMaterials: SourceDescription;
+    let expectedSourceDescWithoutPhysDesc: SourceDesc;
+    let expectedSourceDescWithAllEntries: SourceDesc;
+    let expectedSourceDescWithWritingMaterials: SourceDesc;
 
     /**
      * Helper: getPhysDescDe.
@@ -62,7 +62,7 @@ describe('SourceDescItemComponent', () => {
      * It expects the given paragraph to be bold, to contain one SourceSiglumComponent
      * with the given source and class prefix, and to display the expected text.
      */
-    const expectSiglumParagraph = (pDe: DebugElement, source: SourceDescription, expectedText: string): void => {
+    const expectSiglumParagraph = (pDe: DebugElement, source: SourceDesc, expectedText: string): void => {
         const pEl: HTMLParagraphElement = pDe.nativeElement;
 
         expectToContain(pEl.classList, 'bold');
@@ -104,9 +104,9 @@ describe('SourceDescItemComponent', () => {
 
         // Test data
         const sources = structuredClone(mockEditionData.mockSourceDescListData).sources;
-        expectedSourceWithoutPhysDesc = sources[0]; // No physDesc entries
-        expectedSourceWithAllEntries = sources[1]; // All possible physDesc entries, with only writing material strings
-        expectedSourceWithWritingMaterials = sources[2]; // Only conditions and writing materials in physDesc
+        expectedSourceDescWithoutPhysDesc = sources[0]; // No physDesc entries
+        expectedSourceDescWithAllEntries = sources[1]; // All possible physDesc entries, with only writing material strings
+        expectedSourceDescWithWritingMaterials = sources[2]; // Only conditions and writing materials in physDesc
 
         // Create component fixture
         fixture = TestBed.createComponent(SourceDescItemComponent);
@@ -119,10 +119,10 @@ describe('SourceDescItemComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `sourceDescription`', () => {
-            expectToBe(isSignal(component.sourceDescription), true);
+        it('... should throw due to missing required input signal `sourceDescData`', () => {
+            expectToBe(isSignal(component.sourceDescData), true);
 
-            expect(() => component.sourceDescription()).toThrow();
+            expect(() => component.sourceDescData()).toThrow();
         });
 
         it.each(['physDesc', 'hasPhysDesc', 'details'] as const)(
@@ -147,18 +147,18 @@ describe('SourceDescItemComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            fixture.componentRef.setInput('sourceDescription', expectedSourceWithAllEntries);
+            fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithAllEntries);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have input signal `sourceDescription` to hold the provided source description', () => {
-            expectToEqual(component.sourceDescription(), expectedSourceWithAllEntries);
+        it('... should have input signal `sourceDescData` to hold the provided source description', () => {
+            expectToEqual(component.sourceDescData(), expectedSourceDescWithAllEntries);
         });
 
         it('... should have computed signal `physDesc` to hold the physical description', () => {
-            expectToEqual(component.physDesc(), expectedSourceWithAllEntries.physDesc);
+            expectToEqual(component.physDesc(), expectedSourceDescWithAllEntries.physDesc);
         });
 
         it('... should have computed signal `hasPhysDesc` to hold true', () => {
@@ -166,13 +166,13 @@ describe('SourceDescItemComponent', () => {
         });
 
         it('... should have recomputed signal `hasPhysDesc` to hold false if physDesc is empty', () => {
-            fixture.componentRef.setInput('sourceDescription', expectedSourceWithoutPhysDesc);
+            fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithoutPhysDesc);
 
             expectToBe(component.hasPhysDesc(), false);
         });
 
         it('... should have computed signal `details` to hold all details sections in display order', () => {
-            const physDesc = expectedSourceWithAllEntries.physDesc;
+            const physDesc = expectedSourceDescWithAllEntries.physDesc;
 
             expectToEqual(component.details(), [
                 { key: 'titles', label: 'Titel', cssClass: 'titles', details: physDesc.titles },
@@ -195,9 +195,9 @@ describe('SourceDescItemComponent', () => {
         });
 
         it('... should have recomputed signal `details` to skip sections with empty or undefined details', () => {
-            fixture.componentRef.setInput('sourceDescription', {
-                ...expectedSourceWithAllEntries,
-                physDesc: { ...expectedSourceWithAllEntries.physDesc, dates: [], annotations: undefined },
+            fixture.componentRef.setInput('sourceDescData', {
+                ...expectedSourceDescWithAllEntries,
+                physDesc: { ...expectedSourceDescWithAllEntries.physDesc, dates: [], annotations: undefined },
             });
 
             expectToEqual(
@@ -207,7 +207,7 @@ describe('SourceDescItemComponent', () => {
         });
 
         it('... should have recomputed signal `details` to hold an empty array if physDesc is empty', () => {
-            fixture.componentRef.setInput('sourceDescription', expectedSourceWithoutPhysDesc);
+            fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithoutPhysDesc);
 
             expectToEqual(component.details(), []);
         });
@@ -223,8 +223,8 @@ describe('SourceDescItemComponent', () => {
                     { desc: 'type', changes: { type: '' }, selector: 'p.awg-source-desc-type' },
                     { desc: 'location', changes: { location: '' }, selector: 'p.awg-source-desc-location' },
                 ])('... $desc is empty', async ({ changes, selector }) => {
-                    fixture.componentRef.setInput('sourceDescription', {
-                        ...expectedSourceWithoutPhysDesc,
+                    fixture.componentRef.setInput('sourceDescData', {
+                        ...expectedSourceDescWithoutPhysDesc,
                         ...changes,
                     });
                     await detectChangesOnPush(fixture);
@@ -240,7 +240,7 @@ describe('SourceDescItemComponent', () => {
                 let paragraphDes: DebugElement[];
 
                 beforeEach(async () => {
-                    fixture.componentRef.setInput('sourceDescription', expectedSourceWithoutPhysDesc);
+                    fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithoutPhysDesc);
                     await detectChangesOnPush(fixture);
 
                     paragraphDes = getHeadParagraphDes(3);
@@ -257,8 +257,8 @@ describe('SourceDescItemComponent', () => {
                     it('... should display a siglum (bold) without an addendum', () => {
                         expectSiglumParagraph(
                             paragraphDes[0],
-                            expectedSourceWithoutPhysDesc,
-                            expectedSourceWithoutPhysDesc.siglum
+                            expectedSourceDescWithoutPhysDesc,
+                            expectedSourceDescWithoutPhysDesc.siglum
                         );
                     });
                 });
@@ -273,14 +273,14 @@ describe('SourceDescItemComponent', () => {
                     it('... should pass down the source type to the CompileHtmlDirective', () => {
                         const directiveIns = paragraphDes[1].injector.get(CompileHtmlDirective) as CompileHtmlDirective;
 
-                        expectToBe(directiveIns.htmlContent(), expectedSourceWithoutPhysDesc.type);
+                        expectToBe(directiveIns.htmlContent(), expectedSourceDescWithoutPhysDesc.type);
                     });
 
                     it('... should display the source type', () => {
                         const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
 
                         expectToContain(pEl.classList, 'awg-source-desc-type');
-                        expectToBe(pEl.textContent.trim(), expectedSourceWithoutPhysDesc.type.trim());
+                        expectToBe(pEl.textContent.trim(), expectedSourceDescWithoutPhysDesc.type.trim());
                     });
                 });
 
@@ -294,14 +294,14 @@ describe('SourceDescItemComponent', () => {
                     it('... should pass down the source location to the AbbrDirective', () => {
                         const directiveIns = paragraphDes[2].injector.get(AbbrDirective) as AbbrDirective;
 
-                        expectToBe(directiveIns.text(), expectedSourceWithoutPhysDesc.location);
+                        expectToBe(directiveIns.text(), expectedSourceDescWithoutPhysDesc.location);
                     });
 
                     it('... should display the source location', () => {
                         const pEl: HTMLParagraphElement = paragraphDes[2].nativeElement;
 
                         expectToContain(pEl.classList, 'awg-source-desc-location');
-                        expectToBe(pEl.textContent.trim(), expectedSourceWithoutPhysDesc.location.trim());
+                        expectToBe(pEl.textContent.trim(), expectedSourceDescWithoutPhysDesc.location.trim());
                     });
                 });
             });
@@ -323,11 +323,11 @@ describe('SourceDescItemComponent', () => {
 
                     describe('... the first paragraph', () => {
                         it('... should display a siglum (bold) with addendum', () => {
-                            const { siglum, siglumAddendum } = expectedSourceWithAllEntries;
+                            const { siglum, siglumAddendum } = expectedSourceDescWithAllEntries;
 
                             expectSiglumParagraph(
                                 paragraphDes[0],
-                                expectedSourceWithAllEntries,
+                                expectedSourceDescWithAllEntries,
                                 `${siglum}${siglumAddendum ?? ''}`
                             );
                         });
@@ -343,14 +343,14 @@ describe('SourceDescItemComponent', () => {
                         it('... should pass down the source location to the AbbrDirective', () => {
                             const directiveIns = paragraphDes[1].injector.get(AbbrDirective) as AbbrDirective;
 
-                            expectToBe(directiveIns.text(), expectedSourceWithAllEntries.location);
+                            expectToBe(directiveIns.text(), expectedSourceDescWithAllEntries.location);
                         });
 
                         it('... should display the source location', () => {
                             const pEl: HTMLParagraphElement = paragraphDes[1].nativeElement;
 
                             expectToContain(pEl.classList, 'awg-source-desc-location');
-                            expectToBe(pEl.textContent.trim(), expectedSourceWithAllEntries.location.trim());
+                            expectToBe(pEl.textContent.trim(), expectedSourceDescWithAllEntries.location.trim());
                         });
                     });
                 });
@@ -409,7 +409,7 @@ describe('SourceDescItemComponent', () => {
                             );
                             const detailCmp = detailDes[index].injector.get(SourceDescDetailsComponent);
 
-                            expectToEqual(detailCmp.details(), expectedSourceWithAllEntries.physDesc[key]);
+                            expectToEqual(detailCmp.details(), expectedSourceDescWithAllEntries.physDesc[key]);
                             expectToBe(detailCmp.detailsLabel(), label);
                             expectToBe(detailCmp.detailsClass(), cssClass);
                         });
@@ -442,7 +442,7 @@ describe('SourceDescItemComponent', () => {
 
                             expectToEqual(
                                 instrumentsCmp.writingInstruments(),
-                                expectedSourceWithAllEntries.physDesc.writingInstruments
+                                expectedSourceDescWithAllEntries.physDesc.writingInstruments
                             );
                         });
                     });
@@ -461,11 +461,11 @@ describe('SourceDescItemComponent', () => {
                             );
                             const contentsCmp = contentsDes[0].injector.get(SourceDescContentsComponent);
 
-                            expectToEqual(contentsCmp.contents(), expectedSourceWithAllEntries.physDesc.contents);
+                            expectToEqual(contentsCmp.contents(), expectedSourceDescWithAllEntries.physDesc.contents);
                         });
 
                         it('... should contain no SourceDescContentsComponent if contents array is empty or undefined', async () => {
-                            fixture.componentRef.setInput('sourceDescription', expectedSourceWithWritingMaterials);
+                            fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithWritingMaterials);
                             await detectChangesOnPush(fixture);
 
                             getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescContentsComponent, 0, 0);
@@ -488,12 +488,12 @@ describe('SourceDescItemComponent', () => {
 
                             expectToEqual(
                                 correctionsCmp.corrections(),
-                                expectedSourceWithAllEntries.physDesc.corrections
+                                expectedSourceDescWithAllEntries.physDesc.corrections
                             );
                         });
 
                         it('... should contain no SourceDescCorrectionsComponent if corrections array is empty or undefined', async () => {
-                            fixture.componentRef.setInput('sourceDescription', expectedSourceWithWritingMaterials);
+                            fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithWritingMaterials);
                             await detectChangesOnPush(fixture);
 
                             getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescCorrectionsComponent, 0, 0);
@@ -506,7 +506,7 @@ describe('SourceDescItemComponent', () => {
                 let paragraphDes: DebugElement[];
 
                 beforeEach(async () => {
-                    fixture.componentRef.setInput('sourceDescription', expectedSourceWithWritingMaterials);
+                    fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithWritingMaterials);
                     await detectChangesOnPush(fixture);
 
                     paragraphDes = getHeadParagraphDes(3);
@@ -520,11 +520,11 @@ describe('SourceDescItemComponent', () => {
                 });
 
                 it('... the first paragraph displaying a siglum (bold) with addendum and brackets (missing)', () => {
-                    const { siglum, siglumAddendum } = expectedSourceWithWritingMaterials;
+                    const { siglum, siglumAddendum } = expectedSourceDescWithWritingMaterials;
 
                     expectSiglumParagraph(
                         paragraphDes[0],
-                        expectedSourceWithWritingMaterials,
+                        expectedSourceDescWithWritingMaterials,
                         `[${siglum}${siglumAddendum ?? ''}]`
                     );
                 });
@@ -534,7 +534,7 @@ describe('SourceDescItemComponent', () => {
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
-                    expectedHtmlTextContent.innerHTML = expectedSourceWithWritingMaterials.type;
+                    expectedHtmlTextContent.innerHTML = expectedSourceDescWithWritingMaterials.type;
 
                     expectToContain(pEl.classList, 'awg-source-desc-type');
                     expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
@@ -544,7 +544,7 @@ describe('SourceDescItemComponent', () => {
                     const pEl: HTMLParagraphElement = paragraphDes[2].nativeElement;
 
                     expectToContain(pEl.classList, 'awg-source-desc-location');
-                    expectToBe(pEl.textContent.trim(), expectedSourceWithWritingMaterials.location.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSourceDescWithWritingMaterials.location.trim());
                 });
 
                 it('... should contain one details component (stubbed) in physDesc div', () => {
@@ -560,7 +560,7 @@ describe('SourceDescItemComponent', () => {
                     );
                     const detailCmp = detailDes[0].injector.get(SourceDescDetailsComponent);
 
-                    expectToEqual(detailCmp.details(), expectedSourceWithWritingMaterials.physDesc.conditions);
+                    expectToEqual(detailCmp.details(), expectedSourceDescWithWritingMaterials.physDesc.conditions);
                     expectToBe(detailCmp.detailsLabel(), '');
                     expectToBe(detailCmp.detailsClass(), 'conditions');
                 });
@@ -570,9 +570,9 @@ describe('SourceDescItemComponent', () => {
                         { desc: 'undefined', conditions: undefined },
                         { desc: 'empty', conditions: [] },
                     ])('... $desc', async ({ conditions }) => {
-                        fixture.componentRef.setInput('sourceDescription', {
-                            ...expectedSourceWithWritingMaterials,
-                            physDesc: { ...expectedSourceWithWritingMaterials.physDesc, conditions },
+                        fixture.componentRef.setInput('sourceDescData', {
+                            ...expectedSourceDescWithWritingMaterials,
+                            physDesc: { ...expectedSourceDescWithWritingMaterials.physDesc, conditions },
                         });
                         await detectChangesOnPush(fixture);
 
@@ -598,7 +598,7 @@ describe('SourceDescItemComponent', () => {
 
                         expectToEqual(
                             writingMaterialsCmp.writingMaterials(),
-                            expectedSourceWithWritingMaterials.physDesc.writingMaterials
+                            expectedSourceDescWithWritingMaterials.physDesc.writingMaterials
                         );
                     });
 
@@ -606,7 +606,8 @@ describe('SourceDescItemComponent', () => {
                         it.each([
                             {
                                 desc: 'should still render SourceDescWritingMaterialsComponent if writingMaterials are given',
-                                getWritingMaterials: () => expectedSourceWithWritingMaterials.physDesc.writingMaterials,
+                                getWritingMaterials: () =>
+                                    expectedSourceDescWithWritingMaterials.physDesc.writingMaterials,
                                 expectedWritingMaterialsCmps: 1,
                             },
                             {
@@ -615,10 +616,10 @@ describe('SourceDescItemComponent', () => {
                                 expectedWritingMaterialsCmps: 0,
                             },
                         ])('... $desc', async ({ getWritingMaterials, expectedWritingMaterialsCmps }) => {
-                            fixture.componentRef.setInput('sourceDescription', {
-                                ...expectedSourceWithWritingMaterials,
+                            fixture.componentRef.setInput('sourceDescData', {
+                                ...expectedSourceDescWithWritingMaterials,
                                 physDesc: {
-                                    ...expectedSourceWithWritingMaterials.physDesc,
+                                    ...expectedSourceDescWithWritingMaterials.physDesc,
                                     writingMaterials: getWritingMaterials(),
                                     writingMaterialStrings: undefined,
                                 },

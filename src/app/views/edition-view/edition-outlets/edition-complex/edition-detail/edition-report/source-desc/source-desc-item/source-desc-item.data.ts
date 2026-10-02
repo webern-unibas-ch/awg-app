@@ -1,4 +1,4 @@
-import { SourceDescDetails } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescDetails } from '@awg-views/edition-view/models/source-desc.model';
 
 /**
  * Object constant: SOURCE_DESC_DETAILS.

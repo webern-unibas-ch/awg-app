@@ -13,7 +13,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingInstruments } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescWritingInstrumentsComponent } from './source-desc-writing-instruments.component';
 
@@ -24,7 +24,7 @@ describe('SourceDescWritingInstrumentsComponent', () => {
 
     let mockDocument: Document;
 
-    let expectedWritingInstruments: SourceDescriptionWritingInstruments;
+    let expectedWritingInstruments: SourceDescWritingInstruments;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -211,7 +211,7 @@ describe('SourceDescWritingInstrumentsComponent', () => {
                         writingInstruments,
                         expected,
                     }: {
-                        writingInstruments: SourceDescriptionWritingInstruments | undefined;
+                        writingInstruments: SourceDescWritingInstruments | undefined;
                         expected: string;
                     }) => {
                         expectToBe(component.getWritingInstruments(writingInstruments), expected);

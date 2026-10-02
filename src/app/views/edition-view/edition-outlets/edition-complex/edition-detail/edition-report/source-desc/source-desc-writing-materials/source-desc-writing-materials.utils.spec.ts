@@ -4,10 +4,10 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_TRADEMARKS_DATA } from '@awg-views/edition-view/data/edition-trademarks.data';
 import {
-    SourceDescriptionWritingMaterialDimensions,
-    SourceDescriptionWritingMaterialItemLocus,
-    SourceDescriptionWritingMaterialSystems,
-} from '@awg-views/edition-view/models/source-description.model';
+    SourceDescWritingMaterialDimensions,
+    SourceDescWritingMaterialItemLocus,
+    SourceDescWritingMaterialSystems,
+} from '@awg-views/edition-view/models/source-desc.model';
 
 import { getDimensions, getItemLocus, getSystems, getTrademark } from './source-desc-writing-materials.utils';
 
@@ -97,12 +97,9 @@ describe('SourceDescWritingMaterials utils', () => {
                     locus: { preFolioInfo: 'recto', folios: [], position: 'oben links' },
                     expected: 'recto oben links',
                 },
-            ])(
-                '... $desc',
-                ({ locus, expected }: { locus: SourceDescriptionWritingMaterialItemLocus; expected: string }) => {
-                    expectToBe(getItemLocus(locus), expected);
-                }
-            );
+            ])('... $desc', ({ locus, expected }: { locus: SourceDescWritingMaterialItemLocus; expected: string }) => {
+                expectToBe(getItemLocus(locus), expected);
+            });
         });
     });
 
@@ -182,13 +179,7 @@ describe('SourceDescWritingMaterials utils', () => {
                 },
             ])(
                 '... $desc',
-                ({
-                    dimensions,
-                    expected,
-                }: {
-                    dimensions: SourceDescriptionWritingMaterialDimensions;
-                    expected: string;
-                }) => {
+                ({ dimensions, expected }: { dimensions: SourceDescWritingMaterialDimensions; expected: string }) => {
                     expectToBe(getDimensions(dimensions), expected);
                 }
             );
@@ -238,7 +229,7 @@ describe('SourceDescWritingMaterials utils', () => {
                 },
             ])(
                 '... $desc',
-                ({ systems, expected }: { systems: SourceDescriptionWritingMaterialSystems; expected: string }) => {
+                ({ systems, expected }: { systems: SourceDescWritingMaterialSystems; expected: string }) => {
                     expectToBe(getSystems(systems), expected);
                 }
             );

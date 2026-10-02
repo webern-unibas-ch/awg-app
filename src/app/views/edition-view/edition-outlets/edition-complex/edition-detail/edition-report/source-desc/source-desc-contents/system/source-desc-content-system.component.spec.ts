@@ -17,7 +17,7 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescriptionSystem } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescContentSystemComponent } from './source-desc-content-system.component';
 
@@ -28,7 +28,7 @@ describe('SourceDescContentSystemComponent', () => {
 
     let clickedEmitSpy: Spy;
 
-    let expectedContentSystem: SourceDescriptionSystem;
+    let expectedContentSystem: SourceDescSystem;
     let expectedIsLastItem: boolean;
 
     beforeEach(async () => {

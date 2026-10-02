@@ -17,7 +17,7 @@ import {
     IntroList,
     PrefaceList,
     RowtablesList,
-    SourceDescriptionList,
+    SourceDescList,
     SourceEvaluationList,
     SourceList,
     TextcriticsList,
@@ -106,11 +106,11 @@ export class EditionDataService {
     readonly sourceListData = this._getComplexEditionDataByKey<SourceList>('sourceList');
 
     /**
-     * Readonly signal: sourceDescriptionData.
+     * Readonly signal: sourceDescData.
      *
      * It holds the state of the source description data.
      */
-    readonly sourceDescriptionData = this._getComplexEditionDataByKey<SourceDescriptionList>('sourceDescription');
+    readonly sourceDescData = this._getComplexEditionDataByKey<SourceDescList>('sourceDesc');
 
     /**
      * Readonly signal: sourceEvaluationData.

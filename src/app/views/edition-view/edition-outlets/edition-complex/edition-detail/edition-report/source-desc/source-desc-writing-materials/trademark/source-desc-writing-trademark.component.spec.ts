@@ -13,7 +13,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { SourceDescriptionWritingMaterialTrademark } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterialTrademark } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getItemLocus, getTrademark } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingTrademarkComponent } from './source-desc-writing-trademark.component';
@@ -23,7 +23,7 @@ describe('SourceDescWritingTrademarkComponent', () => {
     let fixture: ComponentFixture<SourceDescWritingTrademarkComponent>;
     let compDe: DebugElement;
 
-    let expectedTrademark: SourceDescriptionWritingMaterialTrademark;
+    let expectedTrademark: SourceDescWritingMaterialTrademark;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

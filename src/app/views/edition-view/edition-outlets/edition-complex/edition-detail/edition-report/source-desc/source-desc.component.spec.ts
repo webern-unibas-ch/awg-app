@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { SourceDescriptionList } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescItemComponent } from './source-desc-item/source-desc-item.component';
@@ -25,7 +25,7 @@ describe('SourceDescComponent', () => {
 
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let expectedSourceDescListData: SourceDescriptionList;
+    let expectedSourceDescListData: SourceDescList;
 
     beforeEach(async () => {
         // Mock services
@@ -128,7 +128,7 @@ describe('SourceDescComponent', () => {
                     const itemDes = getAndExpectDebugElementByDirective(divDe, SourceDescItemComponent, 1, 1);
                     const itemCmp = itemDes[0].injector.get(SourceDescItemComponent);
 
-                    expectToEqual(itemCmp.sourceDescription(), expectedSourceDescListData.sources[index]);
+                    expectToEqual(itemCmp.sourceDescData(), expectedSourceDescListData.sources[index]);
                 });
             });
         });

@@ -19,10 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import {
-    SourceDescriptionContent,
-    SourceDescriptionFolio,
-} from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent, SourceDescFolio } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentFolioComponent } from '../folio/source-desc-content-folio.component';
@@ -39,12 +36,12 @@ describe('SourceDescContentGridComponent', () => {
     let selectSvgSheetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
 
-    let expectedContents: SourceDescriptionContent[];
-    let expectedContent: SourceDescriptionContent;
-    let expectedContentWithTwoSystems: SourceDescriptionContent;
-    let expectedContentWithoutSystems: SourceDescriptionContent;
-    let expectedFolios: SourceDescriptionFolio[];
-    let expectedFoliosWithoutSystems: SourceDescriptionFolio[];
+    let expectedContents: SourceDescContent[];
+    let expectedContent: SourceDescContent;
+    let expectedContentWithTwoSystems: SourceDescContent;
+    let expectedContentWithoutSystems: SourceDescContent;
+    let expectedFolios: SourceDescFolio[];
+    let expectedFoliosWithoutSystems: SourceDescFolio[];
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedFolioId: string;
@@ -257,7 +254,7 @@ describe('SourceDescContentGridComponent', () => {
                         systemGroups: undefined,
                     },
                 ])(`... $desc`, async ({ systemGroups }) => {
-                    const contentWithoutSystems: SourceDescriptionContent = {
+                    const contentWithoutSystems: SourceDescContent = {
                         ...expectedContentWithoutSystems,
                         folios: expectedFoliosWithoutSystems.map(folio => ({ ...folio, systemGroups })),
                     };
@@ -388,7 +385,7 @@ describe('SourceDescContentGridComponent', () => {
                             systemGroups: undefined,
                         },
                     ])(`... $desc`, async ({ systemGroups }) => {
-                        const contentWithoutSystems: SourceDescriptionContent = {
+                        const contentWithoutSystems: SourceDescContent = {
                             ...expectedContentWithoutSystems,
                             folios: expectedFoliosWithoutSystems.map(folio => ({ ...folio, systemGroups })),
                         };
@@ -637,7 +634,7 @@ describe('SourceDescContentGridComponent', () => {
                             },
                             {
                                 desc: 'of SourceDescContentSystemComponent with empty sheetId if linkTo is undefined',
-                                getContent: (): SourceDescriptionContent => ({
+                                getContent: (): SourceDescContent => ({
                                     ...expectedContent,
                                     folios: expectedFolios.map((folio, folioIndex) => ({
                                         ...folio,
@@ -656,7 +653,7 @@ describe('SourceDescContentGridComponent', () => {
                             },
                             {
                                 desc: 'of folio ConditionalLinkComponent with empty sheetId if folioLinkTo is undefined',
-                                getContent: (): SourceDescriptionContent => ({
+                                getContent: (): SourceDescContent => ({
                                     ...expectedContent,
                                     folios: expectedFolios.map(folio => ({ ...folio, folioLinkTo: undefined })),
                                 }),

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { SourceDescriptionWritingMaterial } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescWritingMaterialComponent } from './material/source-desc-writing-material.component';
 
@@ -23,5 +23,5 @@ export class SourceDescWritingMaterialsComponent {
      *
      * It holds the writing materials array.
      */
-    readonly writingMaterials = input.required<SourceDescriptionWritingMaterial[]>();
+    readonly writingMaterials = input.required<SourceDescWritingMaterial[]>();
 }

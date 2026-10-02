@@ -37,7 +37,7 @@ export class EditionReportComponent {
      */
     readonly titles = {
         sourceList: '1. Quellenübersicht',
-        sourceDescription: '2. Quellenbeschreibung',
+        sourceDesc: '2. Quellenbeschreibung',
         sourceEvaluation: '3. Quellenbewertung',
         tka: '4. Textkritische Anmerkungen',
     };

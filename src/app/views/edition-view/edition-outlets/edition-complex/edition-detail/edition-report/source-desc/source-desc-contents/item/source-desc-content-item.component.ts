@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -32,7 +32,7 @@ export class SourceDescContentItemComponent {
      *
      * It holds the content data.
      */
-    readonly content = input.required<SourceDescriptionContent>();
+    readonly content = input.required<SourceDescContent>();
 
     /**
      * Readonly computed signal: sheetIds.

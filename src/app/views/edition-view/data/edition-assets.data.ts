@@ -5,7 +5,7 @@ import { GraphList } from '../models/graph.model';
 import { IntroList } from '../models/intro.model';
 import { PrefaceList } from '../models/preface.model';
 import { RowtablesList } from '../models/rowtables.model';
-import { SourceDescriptionList } from '../models/source-description.model';
+import { SourceDescList } from '../models/source-desc.model';
 import { SourceEvaluationList } from '../models/source-evaluation.model';
 import { SourceList } from '../models/source-list.model';
 import { TextcriticsList } from '../models/textcritics.model';
@@ -23,7 +23,7 @@ const EDITION_ASSETS_FILES = {
     prefaceFile: 'preface.json',
     rowtablesFile: 'rowtables.json',
     sourceListFile: 'source-list.json',
-    sourceDescriptionListFile: 'source-description.json',
+    sourceDescListFile: 'source-description.json',
     sourceEvaluationListFile: 'source-evaluation.json',
     svgSheetsFile: 'svg-sheets.json',
     textcriticsFile: 'textcritics.json',
@@ -57,9 +57,9 @@ export const EDITION_ASSETS_DATA = {
         graph: { file: EDITION_ASSETS_FILES.graphFile, fallback: new GraphList() },
         intro: { file: EDITION_ASSETS_FILES.introFile, fallback: new IntroList() },
         sourceList: { file: EDITION_ASSETS_FILES.sourceListFile, fallback: new SourceList() },
-        sourceDescription: {
-            file: EDITION_ASSETS_FILES.sourceDescriptionListFile,
-            fallback: new SourceDescriptionList(),
+        sourceDesc: {
+            file: EDITION_ASSETS_FILES.sourceDescListFile,
+            fallback: new SourceDescList(),
         },
         sourceEvaluation: {
             file: EDITION_ASSETS_FILES.sourceEvaluationListFile,

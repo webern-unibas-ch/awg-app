@@ -4,7 +4,7 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescriptionSystem } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
 
 /**
  * The SourceDescContentSystem component.
@@ -25,7 +25,7 @@ export class SourceDescContentSystemComponent {
      *
      * It holds the content system data.
      */
-    readonly contentSystem = input.required<SourceDescriptionSystem>();
+    readonly contentSystem = input.required<SourceDescSystem>();
 
     /**
      * Readonly input signal: isLastItem.

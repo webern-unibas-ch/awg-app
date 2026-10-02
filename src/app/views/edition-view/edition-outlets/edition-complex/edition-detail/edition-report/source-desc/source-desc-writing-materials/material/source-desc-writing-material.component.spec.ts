@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { SourceDescriptionWritingMaterial } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
 
 import { getDimensions, getSystems } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingTrademarkComponent } from '../trademark/source-desc-writing-trademark.component';
@@ -26,7 +26,7 @@ describe('SourceDescWritingMaterialComponent', () => {
 
     let mockDocument: Document;
 
-    let expectedMaterial: SourceDescriptionWritingMaterial;
+    let expectedMaterial: SourceDescWritingMaterial;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

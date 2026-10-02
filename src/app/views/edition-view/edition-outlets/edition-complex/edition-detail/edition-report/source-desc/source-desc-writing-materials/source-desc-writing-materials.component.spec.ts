@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { SourceDescriptionWritingMaterial } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceDescWritingMaterialComponent } from './material/source-desc-writing-material.component';
 import { SourceDescWritingMaterialsComponent } from './source-desc-writing-materials.component';
@@ -22,7 +22,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
     let fixture: ComponentFixture<SourceDescWritingMaterialsComponent>;
     let compDe: DebugElement;
 
-    let expectedWritingMaterials: SourceDescriptionWritingMaterial[];
+    let expectedWritingMaterials: SourceDescWritingMaterial[];
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

@@ -4,11 +4,7 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { isEmptyObject } from '@awg-shared/utils/object-utils';
 
-import {
-    SourceDescDetails,
-    SourceDescription,
-    SourceDescriptionPhysDesc,
-} from '@awg-views/edition-view/models/source-description.model';
+import { SourceDesc, SourceDescDetails, SourceDescPhysDesc } from '@awg-views/edition-view/models/source-desc.model';
 
 import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
@@ -43,18 +39,18 @@ import { SOURCE_DESC_DETAILS } from './source-desc-item.data';
 })
 export class SourceDescItemComponent {
     /**
-     * Readonly input signal: sourceDescription.
+     * Readonly input signal: sourceDescData.
      *
      * It holds the source description data.
      */
-    readonly sourceDescription = input.required<SourceDescription>();
+    readonly sourceDescData = input.required<SourceDesc>();
 
     /**
      * Readonly computed signal: physDesc.
      *
      * It holds the physical description of the source.
      */
-    readonly physDesc = computed<SourceDescriptionPhysDesc>(() => this.sourceDescription().physDesc);
+    readonly physDesc = computed<SourceDescPhysDesc>(() => this.sourceDescData().physDesc);
 
     /**
      * Readonly computed signal: hasPhysDesc.

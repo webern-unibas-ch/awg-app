@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentFolioComponent } from '../folio/source-desc-content-folio.component';
@@ -40,7 +40,7 @@ export class SourceDescContentGridComponent {
      *
      * It holds the folio contents array.
      */
-    readonly content = input.required<SourceDescriptionContent | undefined>();
+    readonly content = input.required<SourceDescContent | undefined>();
 
     /**
      * Readonly computed signal: parentComplexId.

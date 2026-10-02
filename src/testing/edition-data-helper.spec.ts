@@ -168,7 +168,7 @@ describe('EditionDataHelper (DONE)', () => {
         describe('... when assetKey starts with `source`', () => {
             it.each([
                 { assetKey: 'sourceList' as EditionDataAssetsKeys },
-                { assetKey: 'sourceDescription' as EditionDataAssetsKeys },
+                { assetKey: 'sourceDesc' as EditionDataAssetsKeys },
                 { assetKey: 'sourceEvaluation' as EditionDataAssetsKeys },
             ])('... should populate the sources property for $assetKey with a test entry', ({ assetKey }) => {
                 const fallback = {};
