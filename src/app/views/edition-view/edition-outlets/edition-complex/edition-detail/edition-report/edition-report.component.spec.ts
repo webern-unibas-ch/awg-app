@@ -286,6 +286,47 @@ describe('EditionReportComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
                 });
 
+                describe('... should render the accordion item, but no child component if data is missing:', () => {
+                    it.each([
+                        {
+                            desc: 'sourceListData',
+                            dataKey: 'sourceListData',
+                            itemSelector: 'div#awg-source-list',
+                            component: SourceListComponent,
+                        },
+                        {
+                            desc: 'sourceDescData',
+                            dataKey: 'sourceDescData',
+                            itemSelector: 'div#awg-source-desc',
+                            component: SourceDescComponent,
+                        },
+                        {
+                            desc: 'sourceEvaluationData',
+                            dataKey: 'sourceEvaluationData',
+                            itemSelector: 'div#awg-source-evaluation',
+                            component: SourceEvaluationComponent,
+                        },
+                        {
+                            desc: 'textcriticsData',
+                            dataKey: 'textcriticsData',
+                            itemSelector: 'div#awg-tka-panel',
+                            component: TextcriticsListComponent,
+                        },
+                    ] as const)('... $desc', async ({ dataKey, itemSelector, component: childComponent }) => {
+                        mockViewDataSignal.set(
+                            createMockViewData(
+                                { ...expectedViewDataContent, [dataKey]: null },
+                                { isLoading: false, error: null }
+                            )
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        const itemDes = getAndExpectDebugElementByCss(compDe, itemSelector, 1, 1);
+
+                        getAndExpectDebugElementByDirective(itemDes[0], childComponent, 0, 0);
+                    });
+                });
+
                 describe('... source list', () => {
                     let divDes: DebugElement[];
 
