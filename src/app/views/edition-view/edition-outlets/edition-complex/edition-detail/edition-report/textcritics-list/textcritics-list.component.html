@@ -1,6 +1,6 @@
-@if (textcriticsListData) {
+@if (textcriticsListData(); as textcriticsList) {
     <div ngbAccordion>
-        @for (textcritics of textcriticsListData.textcritics; track textcritics.id) {
+        @for (textcritics of textcriticsList.textcritics; track textcritics.id) {
             <div [ngbAccordionItem]="textcritics.id" [collapsed]="true">
                 <div
                     ngbAccordionHeader
@@ -9,15 +9,16 @@
                         <span [awgCompileHtml]="textcritics.label"></span>
                     </button>
                     <div class="btn-group" role="group" aria-label="Button to sheets">
-                        @if (EDITION_UTILS.isWorkEditionId(textcritics.id)) {
+                        @let isWorkEdition = EDITION_UTILS.isWorkEditionId(textcritics.id);
+                        @if (isWorkEdition) {
                             <button type="button" class="btn btn-sm btn-outline-info">
-                                <awg-disclaimer-workeditions />
+                                <awg-edition-disclaimer-workeditions />
                             </button>
                         }
                         <button
                             type="button"
                             class="btn btn-sm btn-outline-info"
-                            [disabled]="EDITION_UTILS.isWorkEditionId(textcritics.id)"
+                            [disabled]="isWorkEdition"
                             (click)="selectSvgSheet({ complexId: '', sheetId: textcritics.id })">
                             Zum edierten Notentext
                         </button>
@@ -30,7 +31,7 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'evaluation'" />:
                                 </p>
-                                @if (UTILS.isEmptyArray(textcritics.evaluations)) {
+                                @if (!textcritics.evaluations.length) {
                                     <ng-container *ngTemplateOutlet="noContent" />
                                 } @else {
                                     <awg-edition-tka-evaluations [evaluations]="textcritics.evaluations" />
@@ -40,7 +41,7 @@
                                 <p class="smallcaps">
                                     <awg-edition-tka-label [id]="textcritics.id" [labelType]="'commentary'" />:
                                 </p>
-                                @if (UTILS.isEmptyArray(textcritics.commentary.comments)) {
+                                @if (!textcritics.commentary.comments.length) {
                                     <ng-container *ngTemplateOutlet="noContent" />
                                 } @else {
                                     <awg-edition-tka-table

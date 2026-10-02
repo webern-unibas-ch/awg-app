@@ -1,0 +1,65 @@
+@let sourceDesc = sourceDescData();
+<div class="card-body">
+    <div class="awg-source-desc-head">
+        <!-- siglum -->
+        @if (sourceDesc.siglum) {
+            <p class="bold">
+                <awg-source-siglum [siglumData]="sourceDesc" classPrefix="awg-source-desc" />
+            </p>
+        }
+        <!-- type -->
+        @if (sourceDesc.type) {
+            <p class="awg-source-desc-type" [awgCompileHtml]="sourceDesc.type"></p>
+        }
+        <!-- location -->
+        @if (sourceDesc.location) {
+            <p class="awg-source-desc-location" [awgAbbr]="sourceDesc.location"></p>
+        }
+    </div>
+    <!-- physDesc -->
+    @if (hasPhysDesc()) {
+        @let desc = physDesc();
+        <div class="awg-source-desc-phys-desc">
+            <!-- conditions -->
+            @let conditions = desc.conditions || [];
+            @if (conditions.length) {
+                <awg-source-desc-details [details]="conditions" detailsClass="conditions" />
+            }
+
+            <!-- writingMaterials -->
+            @let writingMaterials = desc.writingMaterials || [];
+            @let writingMaterialStrings = desc.writingMaterialStrings || [];
+            @if (writingMaterials.length) {
+                <awg-source-desc-writing-materials [writingMaterials]="writingMaterials" />
+            } @else if (writingMaterialStrings.length) {
+                <awg-source-desc-details
+                    [details]="writingMaterialStrings"
+                    detailsLabel="Beschreibstoff"
+                    detailsClass="writing-materials" />
+            }
+
+            <!-- writingInstruments -->
+            <awg-source-desc-writing-instruments [writingInstruments]="desc.writingInstruments" />
+
+            <!-- titles, dates, paginations, measureNumbers, instrumentations, annotations -->
+            @for (detail of details(); track detail.key) {
+                <awg-source-desc-details
+                    [details]="detail.details"
+                    [detailsLabel]="detail.label"
+                    [detailsClass]="detail.cssClass" />
+            }
+
+            <!-- contents -->
+            @let contents = desc.contents || [];
+            @if (contents.length) {
+                <awg-source-desc-contents [contents]="contents" />
+            }
+
+            <!-- corrections -->
+            @let corrections = desc.corrections || [];
+            @if (corrections.length) {
+                <awg-source-desc-corrections [corrections]="corrections" />
+            }
+        </div>
+    }
+</div>

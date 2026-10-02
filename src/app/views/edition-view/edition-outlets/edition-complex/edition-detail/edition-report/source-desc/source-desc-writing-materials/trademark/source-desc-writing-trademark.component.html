@@ -1,0 +1,15 @@
+@if (hasTrademark()) {
+    <span class="awg-source-desc-writing-material-trademark"
+        ><span>Firmenzeichen: </span>
+        @if (variant(); as variant) {
+            <br /><img class="img-thumbnail" [src]="variant.route" [title]="variant.full" [alt]="variant.short" /><br />
+        } @else {
+            <span [awgCompileHtml]="alt()"></span>&nbsp;
+        }
+    </span>
+    @for (locus of loci(); track $index) {
+        <span class="awg-source-desc-writing-material-trademark-locus" [awgCompileHtml]="locus"></span>
+    }
+} @else {
+    <span class="awg-source-desc-writing-material-trademark">kein Firmenzeichen</span>
+}

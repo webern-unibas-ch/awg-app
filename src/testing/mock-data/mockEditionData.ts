@@ -6,7 +6,7 @@ import { GraphList } from '@awg-views/edition-view/models/graph.model';
 import { IntroList } from '@awg-views/edition-view/models/intro.model';
 import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
 import { RowtablesList } from '@awg-views/edition-view/models/rowtables.model';
-import { SourceDescriptionList } from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
@@ -337,11 +337,11 @@ export const mockSourceListDataWithTexts: SourceList = {
 };
 
 /**
- * Test helper data constant: mockSourceDescriptionListData.
+ * Test helper data constant: mockSourceDescListData.
  *
- * It provides a mocked sourceDescriptionListData object.
+ * It provides a mocked sourceDescListData object.
  */
-export const mockSourceDescriptionListData: SourceDescriptionList = {
+export const mockSourceDescListData: SourceDescList = {
     sources: [
         {
             id: 'source_A',
@@ -1291,7 +1291,7 @@ export const mockEditionData = {
     mockRowtablesData,
     mockSourceListData,
     mockSourceListDataWithTexts,
-    mockSourceDescriptionListData,
+    mockSourceDescListData,
     mockSourceEvaluationListData,
     mockSourceEvaluationListEmptyData,
     mockSvgSheet_WE1,

@@ -1,20 +1,10 @@
-import {
-    Component,
-    DebugElement,
-    inject as inject_1,
-    Input,
-    isSignal,
-    NgModule,
-    signal,
-    WritableSignal,
-} from '@angular/core';
+import { DebugElement, inject as inject_1, isSignal, NgModule, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -25,69 +15,29 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import {
-    EditionComplex,
-    SourceDescriptionList,
-    SourceEvaluationList,
-    SourceList,
-    TextcriticsList,
-} from '@awg-views/edition-view/models';
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { ModalService } from '@awg-shared/modal/modal.service';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import {
     EditionDataAssetsError,
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
+import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
+import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+import { SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
 import { EditionReportComponent } from './edition-report.component';
-
-// Mock components
-
-@Component({
-    selector: 'awg-source-list',
-    template: '',
-    standalone: false,
-})
-class SourceListStubComponent {
-    @Input()
-    sourceListData: SourceList | null = null;
-}
-
-@Component({
-    selector: 'awg-source-description',
-    template: '',
-    standalone: false,
-})
-class SourceDescriptionStubComponent {
-    @Input()
-    sourceDescriptionListData: SourceDescriptionList | null = null;
-}
-
-@Component({
-    selector: 'awg-source-evaluation',
-    template: '',
-    standalone: false,
-})
-class SourceEvaluationStubComponent {
-    @Input()
-    editionComplex: EditionComplex | null = null;
-    @Input()
-    sourceEvaluationListData: SourceEvaluationList | null = null;
-}
-
-@Component({
-    selector: 'awg-textcritics-list',
-    template: '',
-    standalone: false,
-})
-export class TextcriticsListStubComponent {
-    @Input()
-    textcriticsListData: TextcriticsList | null = null;
-}
+import { SourceDescComponent } from './source-desc/source-desc.component';
+import { SourceEvaluationComponent } from './source-evaluation/source-evaluation.component';
+import { SourceListComponent } from './source-list/source-list.component';
+import { TextcriticsListComponent } from './textcritics-list/textcritics-list.component';
 
 describe('EditionReportComponent', () => {
     let component: EditionReportComponent;
@@ -100,7 +50,7 @@ describe('EditionReportComponent', () => {
     let expectedViewDataContent: EditionViewDataContent<'report'>;
     let expectedDefaultViewDataContent: EditionViewDataContent<'report'>;
     let expectedSourceListData: SourceList;
-    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedSourceDescListData: SourceDescList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedTextcriticsListData: TextcriticsList;
     let expectedComplex: EditionComplex;
@@ -121,29 +71,22 @@ describe('EditionReportComponent', () => {
         // Mock services
         expectedDefaultViewDataContent = {
             sourceListData: new SourceList(),
-            sourceDescriptionData: new SourceDescriptionList(),
+            sourceDescData: new SourceDescList(),
             sourceEvaluationData: new SourceEvaluationList(),
             textcriticsData: new TextcriticsList(),
         };
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [
-                AlertErrorStubComponent,
-                CompileHtmlDirective,
-                TwelveToneSpinnerStubComponent,
-                NgbAccordionModule,
-                NgbConfigModule,
+            imports: [EditionReportComponent, NgbConfigModule],
+            providers: [
+                { provide: EditionViewService, useValue: { reportViewData: mockViewDataSignal.asReadonly() } },
+                {
+                    provide: EditionNavigationService,
+                    useValue: { navigateToSvgSheet: vi.fn(), navigateToReportFragment: vi.fn() },
+                },
+                { provide: ModalService, useValue: { open: vi.fn() } },
             ],
-            declarations: [
-                EditionReportComponent,
-                SourceListStubComponent,
-                SourceDescriptionStubComponent,
-                SourceEvaluationStubComponent,
-                TextcriticsListStubComponent,
-                RouterOutletStubComponent,
-            ],
-            providers: [{ provide: EditionViewService, useValue: { reportViewData: mockViewDataSignal.asReadonly() } }],
         }).compileComponents();
     });
 
@@ -153,7 +96,7 @@ describe('EditionReportComponent', () => {
 
         // Test data
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
-        expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
+        expectedSourceDescListData = structuredClone(mockEditionData.mockSourceDescListData);
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
         expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
 
@@ -188,36 +131,36 @@ describe('EditionReportComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
-            it('... should contain no AlertErrorComponent (stubbed)', () => {
+            it('... should contain no AlertErrorComponent', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
+            it('... should contain no TwelveToneSpinnerComponent', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
             });
 
             it('... should contain no div.accordion yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
 
-            it('... should contain no source list component (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 0, 0);
+            it('... should contain no source list component yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceListComponent, 0, 0);
             });
 
-            it('... should contain no source description component (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 0, 0);
+            it('... should contain no source description component yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 0, 0);
             });
 
-            it('... should contain no source evaluation component (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 0, 0);
+            it('... should contain no source evaluation component yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceEvaluationComponent, 0, 0);
             });
 
-            it('... should contain no textcritics list component (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 0, 0);
+            it('... should contain no textcritics list component yet', () => {
+                getAndExpectDebugElementByDirective(compDe, TextcriticsListComponent, 0, 0);
             });
         });
     });
@@ -228,7 +171,7 @@ describe('EditionReportComponent', () => {
             editionStateService.updateSelectedEditionComplex(expectedComplex);
             expectedViewDataContent = {
                 sourceListData: expectedSourceListData,
-                sourceDescriptionData: expectedSourceDescriptionListData,
+                sourceDescData: expectedSourceDescListData,
                 sourceEvaluationData: expectedSourceEvaluationListData,
                 textcriticsData: expectedTextcriticsListData,
             };
@@ -258,8 +201,8 @@ describe('EditionReportComponent', () => {
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-report-view', 0, 0);
             });
 
@@ -281,19 +224,16 @@ describe('EditionReportComponent', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain report view or spinner, but one AlertErrorComponent (stubbed)', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-report-view', 0, 0);
-                    getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                it('... should not contain report view or spinner, but one AlertErrorComponent', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
-                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(
-                        AlertErrorStubComponent
-                    ) as AlertErrorStubComponent;
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -312,23 +252,18 @@ describe('EditionReportComponent', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
+                it('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
-                    const spinnerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        TwelveToneSpinnerStubComponent,
-                        1,
-                        1
-                    );
+                    const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerStubComponent
-                    ) as TwelveToneSpinnerStubComponent;
+                        TwelveToneSpinnerComponent
+                    ) as TwelveToneSpinnerComponent;
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
@@ -351,6 +286,47 @@ describe('EditionReportComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 1, 1);
                 });
 
+                describe('... should render the accordion item, but no child component if data is missing:', () => {
+                    it.each([
+                        {
+                            desc: 'sourceListData',
+                            dataKey: 'sourceListData',
+                            itemSelector: 'div#awg-source-list',
+                            component: SourceListComponent,
+                        },
+                        {
+                            desc: 'sourceDescData',
+                            dataKey: 'sourceDescData',
+                            itemSelector: 'div#awg-source-desc',
+                            component: SourceDescComponent,
+                        },
+                        {
+                            desc: 'sourceEvaluationData',
+                            dataKey: 'sourceEvaluationData',
+                            itemSelector: 'div#awg-source-evaluation',
+                            component: SourceEvaluationComponent,
+                        },
+                        {
+                            desc: 'textcriticsData',
+                            dataKey: 'textcriticsData',
+                            itemSelector: 'div#awg-tka-panel',
+                            component: TextcriticsListComponent,
+                        },
+                    ] as const)('... $desc', async ({ dataKey, itemSelector, component: childComponent }) => {
+                        mockViewDataSignal.set(
+                            createMockViewData(
+                                { ...expectedViewDataContent, [dataKey]: null },
+                                { isLoading: false, error: null }
+                            )
+                        );
+                        await detectChangesOnPush(fixture);
+
+                        const itemDes = getAndExpectDebugElementByCss(compDe, itemSelector, 1, 1);
+
+                        getAndExpectDebugElementByDirective(itemDes[0], childComponent, 0, 0);
+                    });
+                });
+
                 describe('... source list', () => {
                     let divDes: DebugElement[];
 
@@ -360,33 +336,26 @@ describe('EditionReportComponent', () => {
                         divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-list', 1, 1);
                     });
 
-                    it('... should contain one button in div.awg-source-list', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                    it('... should contain one accordion button in div.awg-source-list', () => {
+                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.titles.sourceList);
+                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceList);
                     });
 
-                    it('... should contain one source list component (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(divDes[0], SourceListStubComponent, 1, 1);
+                    it('... should contain one source list component', () => {
+                        getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
                     });
 
                     it('... should pass down sourceListData to SourceListComponent', () => {
-                        const sourceListDes = getAndExpectDebugElementByDirective(
-                            divDes[0],
-                            SourceListStubComponent,
-                            1,
-                            1
-                        );
-                        const sourceListCmp = sourceListDes[0].injector.get(
-                            SourceListStubComponent
-                        ) as SourceListStubComponent;
+                        const sourceListDes = getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
+                        const sourceListCmp = sourceListDes[0].injector.get(SourceListComponent) as SourceListComponent;
 
-                        expectToEqual(sourceListCmp.sourceListData, expectedSourceListData);
+                        expectToEqual(sourceListCmp.sourceListData(), expectedSourceListData);
                     });
                 });
 
@@ -399,33 +368,28 @@ describe('EditionReportComponent', () => {
                         divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-desc', 1, 1);
                     });
 
-                    it('... should contain one button in div.awg-source-desc', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                    it('... should contain one accordion button in div.awg-source-desc', () => {
+                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.titles.sourceDescription);
+                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceDesc);
                     });
 
-                    it('... should contain one source description component (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 1, 1);
+                    it('... should contain one source description component', () => {
+                        getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 1, 1);
                     });
 
-                    it('... should pass down sourceDescriptionListData to SourceDescriptionComponent', () => {
-                        const descriptionDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescriptionStubComponent,
-                            1,
-                            1
-                        );
+                    it('... should pass down sourceDescListData to SourceDescComponent', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 1, 1);
                         const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
+                            SourceDescComponent
+                        ) as SourceDescComponent;
 
-                        expectToEqual(descriptionCmp.sourceDescriptionListData, expectedSourceDescriptionListData);
+                        expectToEqual(descriptionCmp.sourceDescListData(), expectedSourceDescListData);
                     });
                 });
 
@@ -438,34 +402,34 @@ describe('EditionReportComponent', () => {
                         divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-source-evaluation', 1, 1);
                     });
 
-                    it('... should contain one button in div.awg-source-evaluation', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                    it('... should contain one accordion button in div.awg-source-evaluation', () => {
+                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.titles.sourceEvaluation);
+                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceEvaluation);
                     });
 
-                    it('... should contain one source evaluation component (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 1, 1);
+                    it('... should contain one source evaluation component', () => {
+                        getAndExpectDebugElementByDirective(compDe, SourceEvaluationComponent, 1, 1);
                     });
 
                     it('... should pass down sourceEvaluationListData and complex to SourceEvaluationComponent', () => {
                         const evaluationDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceEvaluationStubComponent,
+                            SourceEvaluationComponent,
                             1,
                             1
                         );
                         const evaluationCmp = evaluationDes[0].injector.get(
-                            SourceEvaluationStubComponent
-                        ) as SourceEvaluationStubComponent;
+                            SourceEvaluationComponent
+                        ) as SourceEvaluationComponent;
 
-                        expectToEqual(evaluationCmp.sourceEvaluationListData, expectedSourceEvaluationListData);
-                        expectToEqual(evaluationCmp.editionComplex, expectedComplex);
+                        expectToEqual(evaluationCmp.sourceEvaluationListData(), expectedSourceEvaluationListData);
+                        expectToEqual(evaluationCmp.editionComplex(), expectedComplex);
                     });
                 });
 
@@ -478,33 +442,33 @@ describe('EditionReportComponent', () => {
                         divDes = getAndExpectDebugElementByCss(viewDes[0], 'div#awg-tka-panel', 1, 1);
                     });
 
-                    it('... should contain one button in div.awg-tka-panel', () => {
-                        getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                    it('... should contain one accordion button in div.awg-tka-panel', () => {
+                        getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                     });
 
                     it('... should display button label', () => {
-                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button', 1, 1);
+                        const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
                         const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
 
-                        expectToBe(buttonEl.textContent?.trim(), component.titles.tka);
+                        expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.tka);
                     });
 
-                    it('... should contain one textcritics list component (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 1, 1);
+                    it('... should contain one textcritics list component', () => {
+                        getAndExpectDebugElementByDirective(compDe, TextcriticsListComponent, 1, 1);
                     });
 
                     it('... should pass down textcriticsListData to TextcriticsListComponent', () => {
                         const textcriticsDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            TextcriticsListStubComponent,
+                            TextcriticsListComponent,
                             1,
                             1
                         );
                         const textcriticsCmp = textcriticsDes[0].injector.get(
-                            TextcriticsListStubComponent
-                        ) as TextcriticsListStubComponent;
+                            TextcriticsListComponent
+                        ) as TextcriticsListComponent;
 
-                        expectToEqual(textcriticsCmp.textcriticsListData, expectedTextcriticsListData);
+                        expectToEqual(textcriticsCmp.textcriticsListData(), expectedTextcriticsListData);
                     });
                 });
             });

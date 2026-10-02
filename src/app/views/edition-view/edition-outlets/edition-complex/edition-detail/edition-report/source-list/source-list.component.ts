@@ -1,19 +1,22 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ModalService } from '@awg-shared/modal/modal.service';
-import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { Source, SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { SourceList } from '@awg-views/edition-view/models/source-list.model';
+import { Source } from '@awg-views/edition-view/models/source.model';
 import {
     EditionNavigationService,
     FragmentClickEvent,
 } from '@awg-views/edition-view/services/edition-navigation.service';
 
+import { SourceSiglumComponent } from '../source-siglum/source-siglum.component';
+
 /**
  * The SourceList component.
  *
  * It contains the source list section
- * of the criitical report
+ * of the critical report
  * of the edition view of the app.
  */
 @Component({
@@ -21,7 +24,7 @@ import {
     templateUrl: './source-list.component.html',
     styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [CompileHtmlDirective, SourceSiglumComponent],
 })
 export class SourceListComponent {
     /**
@@ -43,15 +46,7 @@ export class SourceListComponent {
      *
      * It keeps the source list data.
      */
-    @Input()
-    sourceListData: SourceList | null = null;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+    readonly sourceListData = input.required<SourceList | null>();
 
     /**
      * Public method: onSourceClick.

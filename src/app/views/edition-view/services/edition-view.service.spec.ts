@@ -44,7 +44,7 @@ describe('EditionViewService', () => {
             graphData: signal<any>(null),
             folioConvoluteData: signal<any>(null),
             sourceListData: signal<any>(null),
-            sourceDescriptionData: signal<any>(null),
+            sourceDescData: signal<any>(null),
             sourceEvaluationData: signal<any>(null),
             svgSheetsData: signal<any>(null),
             textcriticsData: signal<any>(null),
@@ -318,7 +318,7 @@ describe('EditionViewService', () => {
                 viewName: 'report' as EditionViewKey,
                 signalsSetup: [
                     { dataKey: 'sourceListData', mockValue: { sources: [{ id: 'src-1' }] } },
-                    { dataKey: 'sourceDescriptionData', mockValue: { sources: [{ id: 'desc-1' }] } },
+                    { dataKey: 'sourceDescData', mockValue: { sources: [{ id: 'desc-1' }] } },
                     { dataKey: 'sourceEvaluationData', mockValue: { sources: [{ id: 'eval-1' }] } },
                     { dataKey: 'textcriticsData', mockValue: { textcritics: [{ id: 'tc-2' }] } },
                 ],
@@ -756,7 +756,7 @@ describe('EditionViewService', () => {
                         viewKey: 'report',
                         signalMap: [
                             ['sourceListData', signal(null)],
-                            ['sourceDescriptionData', signal(null)],
+                            ['sourceDescData', signal(null)],
                             ['sourceEvaluationData', signal(null)],
                             ['textcriticsData', signal(null)],
                         ],

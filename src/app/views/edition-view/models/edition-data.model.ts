@@ -4,7 +4,7 @@ import { GraphList } from './graph.model';
 import { IntroList } from './intro.model';
 import { PrefaceList } from './preface.model';
 import { RowtablesList } from './rowtables.model';
-import { SourceDescriptionList } from './source-description.model';
+import { SourceDescList } from './source-desc.model';
 import { SourceEvaluationList } from './source-evaluation.model';
 import { SourceList } from './source-list.model';
 import { TextcriticsList } from './textcritics.model';
@@ -19,7 +19,7 @@ export type EditionComplexDataAssetsKeys =
     | 'graph'
     | 'intro'
     | 'sourceList'
-    | 'sourceDescription'
+    | 'sourceDesc'
     | 'sourceEvaluation'
     | 'svgSheets'
     | 'textcritics';
@@ -94,7 +94,7 @@ export interface EditionViewDataTypeMapping {
      */
     report: {
         sourceListData: SourceList;
-        sourceDescriptionData: SourceDescriptionList;
+        sourceDescData: SourceDescList;
         sourceEvaluationData: SourceEvaluationList;
         textcriticsData: TextcriticsList;
     };

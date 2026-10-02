@@ -81,8 +81,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                             {
                                 path: 'report',
                                 loadChildren: () =>
-                                    import('./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module').then(
-                                        m => m.EditionReportModule
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.routes').then(
+                                        m => m.EDITION_REPORT_ROUTES
                                     ),
                             },
                             {

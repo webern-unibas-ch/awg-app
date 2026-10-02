@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
-import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-app/views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
+import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 /**
  * The TextcriticsList component.
@@ -18,7 +26,15 @@ import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-vi
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        CompileHtmlDirective,
+        EditionDisclaimerWorkeditionsComponent,
+        EditionTkaEvaluationsComponent,
+        EditionTkaLabelComponent,
+        EditionTkaTableComponent,
+        NgTemplateOutlet,
+        NgbAccordionModule,
+    ],
 })
 export class TextcriticsListComponent {
     /**
@@ -29,12 +45,11 @@ export class TextcriticsListComponent {
     private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Input variable: textcriticsListData.
+     * Readonly input signal: textcriticsListData.
      *
-     * It keeps the textcritics list data.
+     * It holds the textcritics list data.
      */
-    @Input()
-    textcriticsListData: TextcriticsList | null = null;
+    readonly textcriticsListData = input.required<TextcriticsList | null>();
 
     /**
      * Protected readonly variable: EDITION_UTILS.
@@ -42,13 +57,6 @@ export class TextcriticsListComponent {
      * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
     protected readonly EDITION_UTILS = EDITION_UTILS;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
 
     /**
      * Public method: selectSvgSheet.

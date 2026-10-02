@@ -1,0 +1,15 @@
+<span class="awg-source-desc-content-item">
+    @if (content().item; as item) {
+        <awg-conditional-link [isClickable]="isClickable()" (clicked)="selectSvgSheet(sheetIds())">
+            <strong>{{ item }}</strong>
+        </awg-conditional-link>
+    }
+
+    @if (content().itemDescription; as itemDescription) {
+        @if (content().item) {
+            <span>&nbsp;</span>
+        }
+        <span class="awg-source-desc-content-item-description"><span [awgCompileHtml]="itemDescription"></span></span>
+    }
+    <span>:</span><br />
+</span>

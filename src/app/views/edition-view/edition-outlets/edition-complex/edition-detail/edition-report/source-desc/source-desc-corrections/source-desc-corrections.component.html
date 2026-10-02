@@ -1,0 +1,25 @@
+<div class="awg-source-desc-corrections">
+    <p class="awg-source-desc-corrections-label no-para-margin">
+        <span class="smallcaps">Korrekturen:</span>
+        <awg-button-expand-all [(isOpen)]="openAllCorrectionDetails" />
+    </p>
+    @for (correction of corrections(); track correction.id) {
+        <details
+            class="awg-source-desc-correction-details half-para-margin"
+            [id]="correction.id"
+            [open]="openAllCorrectionDetails()">
+            <summary
+                class="awg-source-desc-correction-summary no-para-margin"
+                [awgCompileHtml]="correction.label + ':'"></summary>
+            <div class="p-3 border rounded-3">
+                <awg-edition-tka-evaluations [evaluations]="correction.evaluations" />
+                @if (correction.commentary.comments.length) {
+                    <awg-edition-tka-table
+                        [displayedCommentary]="correction.commentary"
+                        [isCorrections]="true"
+                        [isRowtable]="correction.rowtable ?? false" />
+                }
+            </div>
+        </details>
+    }
+</div>

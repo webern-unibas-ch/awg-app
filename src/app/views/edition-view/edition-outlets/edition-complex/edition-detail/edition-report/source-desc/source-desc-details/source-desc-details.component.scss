@@ -1,0 +1,13 @@
+p {
+    display: flex;
+    align-items: baseline;
+
+    .awg-source-desc-details-label {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    .awg-source-desc-details-content {
+        flex: 1;
+    }
+}

@@ -47,18 +47,21 @@ export { Intro, IntroBlock, IntroList } from './intro.model';
 export { Preface, PrefaceList } from './preface.model';
 export { Rowtables, RowtablesList } from './rowtables.model';
 export {
-    SourceDescription,
-    SourceDescriptionContent,
-    SourceDescriptionList,
-    SourceDescriptionWritingInstruments,
-    SourceDescriptionWritingMaterial,
-    SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialDimensions,
-    SourceDescriptionWritingMaterialItemLocus,
-    SourceDescriptionWritingMaterialSystems,
-} from './source-description.model';
+    SourceDesc,
+    SourceDescContent,
+    SourceDescList,
+    SourceDescWritingInstruments,
+    SourceDescWritingMaterial,
+    SourceDescWritingMaterialDimension,
+    SourceDescWritingMaterialDimensions,
+    SourceDescWritingMaterialItemLocus,
+    SourceDescWritingMaterialSystems,
+    SourceDescWritingMaterialTrademark,
+    SourceDescWritingMaterialWatermark,
+} from './source-desc.model';
 export { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
-export { Source, SourceList } from './source-list.model';
+export { SourceList } from './source-list.model';
+export { Source, TextSource } from './source.model';
 export {
     TextcriticalComment,
     TextcriticalCommentary,

@@ -1,0 +1,12 @@
+@if (hasWatermark()) {
+    <span class="awg-source-desc-writing-material-watermark"
+        ><span>, Wasserzeichen: </span>
+        <span
+            ><em>{{ variant() }}</em></span
+        >&nbsp;
+    </span>
+    @for (locus of loci(); track $index) {
+        <span class="awg-source-desc-writing-material-watermark-locus" [awgCompileHtml]="locus"></span>
+    }
+    <span>&nbsp;lesbar</span>
+}
