@@ -657,17 +657,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/router@npm:^21.2.14":
-  version: 21.2.14
-  resolution: "@angular/router@npm:21.2.14"
+"@angular/router@npm:^21.2.24":
+  version: 21.2.24
+  resolution: "@angular/router@npm:21.2.24"
   dependencies:
     tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": 21.2.14
-    "@angular/core": 21.2.14
-    "@angular/platform-browser": 21.2.14
+    "@angular/common": 21.2.24
+    "@angular/core": 21.2.24
+    "@angular/platform-browser": 21.2.24
     rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/042288ae2bef9177fe732bbf81d8272cac23bcd6403698af9cb1687763b7625b1db0c6711cac55165e83a967582035806247d54b7ba86931bb063236b2e26488
+  checksum: 10c0/d5806a4c16e8f16693ce49021e88175c1680eb693e28d24b9c87d652061a7b3cbd494add449c8beed56fb3015b7917021f2eb201899198af86254d23a02a9062
   languageName: node
   linkType: hard
 
@@ -5750,7 +5750,7 @@ __metadata:
     "@angular/platform-browser": "npm:^21.2.14"
     "@angular/platform-browser-dynamic": "npm:^21.2.14"
     "@angular/platform-server": "npm:^21.2.23"
-    "@angular/router": "npm:^21.2.14"
+    "@angular/router": "npm:^21.2.24"
     "@codemirror/legacy-modes": "npm:^6.5.4"
     "@commitlint/cli": "npm:^21.2.3"
     "@commitlint/config-angular": "npm:^21.2.3"
