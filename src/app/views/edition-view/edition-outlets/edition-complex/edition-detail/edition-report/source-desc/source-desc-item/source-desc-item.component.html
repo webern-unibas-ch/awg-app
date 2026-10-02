@@ -1,19 +1,19 @@
-@let source = sourceDescription();
+@let sourceDesc = sourceDescription();
 <div class="card-body">
     <div class="awg-source-desc-head">
         <!-- siglum -->
-        @if (source.siglum) {
+        @if (sourceDesc.siglum) {
             <p class="bold">
-                <awg-source-siglum [siglumData]="source" classPrefix="awg-source-desc" />
+                <awg-source-siglum [siglumData]="sourceDesc" classPrefix="awg-source-desc" />
             </p>
         }
         <!-- type -->
-        @if (source.type) {
-            <p class="awg-source-desc-type" [awgCompileHtml]="source.type"></p>
+        @if (sourceDesc.type) {
+            <p class="awg-source-desc-type" [awgCompileHtml]="sourceDesc.type"></p>
         }
         <!-- location -->
-        @if (source.location) {
-            <p class="awg-source-desc-location" [awgAbbr]="source.location"></p>
+        @if (sourceDesc.location) {
+            <p class="awg-source-desc-location" [awgAbbr]="sourceDesc.location"></p>
         }
     </div>
     <!-- physDesc -->

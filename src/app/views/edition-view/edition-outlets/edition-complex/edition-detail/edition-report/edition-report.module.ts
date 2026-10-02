@@ -8,7 +8,7 @@ import { EditionTkaTableComponent } from '../edition-tka/edition-tka-table/editi
 
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionReportComponent } from './edition-report.component';
-import { SourceDescriptionModule } from './source-description/source-description.module';
+import { SourceDescComponent } from './source-desc/source-desc.component';
 import { SourceEvaluationPlaceholderComponent } from './source-evaluation/source-evaluation-placeholder/source-evaluation-placeholder.component';
 import { SourceEvaluationComponent } from './source-evaluation/source-evaluation.component';
 import { SourceListComponent } from './source-list/source-list.component';
@@ -29,12 +29,12 @@ import { EditionReportRoutingModule } from './edition-report-routing.module';
 @NgModule({
     imports: [
         SharedModule,
-        SourceDescriptionModule,
         EditionReportRoutingModule,
         EditionDisclaimerWorkeditionsComponent,
         EditionTkaEvaluationsComponent,
         EditionTkaLabelComponent,
         EditionTkaTableComponent,
+        SourceDescComponent,
         SourceEvaluationComponent,
         SourceEvaluationPlaceholderComponent,
         SourceListComponent,
