@@ -52,7 +52,7 @@ describe('SourceDescContentsComponent', () => {
     beforeEach(() => {
         // Test data
         expectedContents = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.physDesc?.contents)
+            JSON.stringify(mockEditionData.mockSourceDescListData?.sources[1]?.physDesc?.contents)
         );
         expectedOpenAllContentDetails = true;
 
@@ -176,7 +176,7 @@ describe('SourceDescContentsComponent', () => {
 
                     const detailDes = getAndExpectDebugElementByCss(
                         divDes[0],
-                        'details.awg-source-description-content-details',
+                        'details.awg-source-desc-content-details',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
@@ -191,7 +191,7 @@ describe('SourceDescContentsComponent', () => {
                 it('... should have an id for each content detail', () => {
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-content-details',
+                        'details.awg-source-desc-content-details',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
@@ -212,7 +212,7 @@ describe('SourceDescContentsComponent', () => {
 
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-content-details',
+                        'details.awg-source-desc-content-details',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
@@ -227,7 +227,7 @@ describe('SourceDescContentsComponent', () => {
 
                     const detailsDesClosed = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-content-details',
+                        'details.awg-source-desc-content-details',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
@@ -239,7 +239,7 @@ describe('SourceDescContentsComponent', () => {
                 it('... should contain as many summary elements (with no-para-margin) in details as given content items', () => {
                     const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
+                        'details.awg-source-desc-content-details > summary.awg-source-desc-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );
@@ -254,7 +254,7 @@ describe('SourceDescContentsComponent', () => {
                 it('... should contain one SourceDescContentItemComponent in each summary', () => {
                     const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-content-details > summary.awg-source-description-content-item-summary',
+                        'details.awg-source-desc-content-details > summary.awg-source-desc-content-item-summary',
                         expectedContentsWithItemsLength,
                         expectedContentsWithItemsLength
                     );

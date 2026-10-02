@@ -50,7 +50,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
+        const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescListData);
         expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections ?? [];
         expectedOpenAllCorrectionDetails = false;
 
@@ -104,7 +104,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
             it('... should contain no corrections details (yet)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-corrections', 1, 1);
 
-                getAndExpectDebugElementByCss(divDes[0], 'details.awg-source-description-correction-details', 0, 0);
+                getAndExpectDebugElementByCss(divDes[0], 'details.awg-source-desc-correction-details', 0, 0);
             });
         });
     });
@@ -160,7 +160,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     getAndExpectDebugElementByCss(
                         divDes[0],
-                        'details.awg-source-description-correction-details',
+                        'details.awg-source-desc-correction-details',
                         expectedCorrections.length,
                         expectedCorrections.length
                     );
@@ -169,7 +169,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 it('... should have an id for each correction detail', () => {
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-correction-details',
+                        'details.awg-source-desc-correction-details',
                         expectedCorrections.length,
                         expectedCorrections.length
                     );
@@ -190,7 +190,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-correction-details',
+                        'details.awg-source-desc-correction-details',
                         expectedCorrections.length,
                         expectedCorrections.length
                     );
@@ -205,7 +205,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                     const detailsDesClosed = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-correction-details',
+                        'details.awg-source-desc-correction-details',
                         expectedCorrections.length,
                         expectedCorrections.length
                     );
@@ -218,7 +218,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should contain a summary for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -226,7 +226,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         detailsDes.forEach(detailsDe => {
                             getAndExpectDebugElementByCss(
                                 detailsDe,
-                                'summary.awg-source-description-correction-summary',
+                                'summary.awg-source-desc-correction-summary',
                                 1,
                                 1
                             );
@@ -236,7 +236,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should pass down the corrections label to the CompileHtmlDirective in each summary', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -244,7 +244,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         detailsDes.forEach((detailsDe, index) => {
                             const summaryDes = getAndExpectDebugElementByCss(
                                 detailsDe,
-                                'summary.awg-source-description-correction-summary',
+                                'summary.awg-source-desc-correction-summary',
                                 1,
                                 1
                             );
@@ -259,7 +259,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should display the corrections label for each summary', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -267,7 +267,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         detailsDes.forEach((detailsDe, index) => {
                             const summaryDes = getAndExpectDebugElementByCss(
                                 detailsDe,
-                                'summary.awg-source-description-correction-summary',
+                                'summary.awg-source-desc-correction-summary',
                                 1,
                                 1
                             );
@@ -285,7 +285,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 it('... should contain a round-bordered div container for each detail', () => {
                     const detailsDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'details.awg-source-description-correction-details',
+                        'details.awg-source-desc-correction-details',
                         expectedCorrections.length,
                         expectedCorrections.length
                     );
@@ -304,7 +304,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should contain one EditionTkaEvaluationsComponent for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -317,7 +317,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should pass down the correct evaluations to the EditionTkaEvaluationsComponent for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -345,7 +345,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -358,7 +358,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should contain one EditionTkaTableComponent in each corrections detail if commentary.comments are given', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );
@@ -371,7 +371,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     it('... should pass down the correct values to EditionTkaTableComponent', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'details.awg-source-description-correction-details',
+                            'details.awg-source-desc-correction-details',
                             expectedCorrections.length,
                             expectedCorrections.length
                         );

@@ -1,0 +1,112 @@
+@let source = sourceDescription();
+<div class="card-body">
+    <div class="awg-source-desc-head">
+        <!-- siglum -->
+        @if (source.siglum) {
+            <p class="awg-source-desc-siglum-container bold">
+                @if (source.missing) {
+                    <span>[</span>
+                }
+                <span class="awg-source-desc-siglum">{{ source.siglum }}</span>
+                @if (source.siglumAddendum) {
+                    <span class="awg-source-desc-siglum-addendum"
+                        ><sup>{{ source.siglumAddendum }}</sup></span
+                    >
+                }
+                @if (source.missing) {
+                    <span>]</span>
+                }
+            </p>
+        }
+        <!-- type -->
+        @if (source.type) {
+            <p class="awg-source-desc-type" [awgCompileHtml]="source.type"></p>
+        }
+        <!-- location -->
+        @if (source.location) {
+            <p class="awg-source-desc-location" [awgAbbr]="source.location"></p>
+        }
+    </div>
+    <!-- physDesc -->
+    @if (hasPhysDesc()) {
+        @let desc = physDesc();
+        <div class="awg-source-desc-phys-desc">
+            <!-- conditions -->
+            @let conditions = desc.conditions || [];
+            @if (conditions.length) {
+                <awg-source-desc-details [details]="conditions" detailsLabel="" detailsClass="conditions" />
+            }
+            <!-- writingMaterials -->
+            @let writingMaterials = desc.writingMaterials || [];
+            @let writingMaterialStrings = desc.writingMaterialStrings || [];
+            @if (writingMaterials.length) {
+                <awg-source-desc-writing-materials [writingMaterials]="writingMaterials" />
+            } @else if (writingMaterialStrings.length) {
+                <awg-source-desc-details
+                    [details]="writingMaterialStrings"
+                    detailsLabel="Beschreibstoff"
+                    detailsClass="writing-materials" />
+            }
+            <!-- writingInstruments -->
+            @if (writingInstruments(); as writingInstruments) {
+                <p class="awg-source-desc-writing-instruments">
+                    <span class="smallcaps">Schreibstoff:&nbsp;</span>
+                    <span [awgCompileHtml]="writingInstruments"></span>
+                </p>
+            }
+            <!-- titles -->
+            @let titles = desc.titles || [];
+            @if (titles.length) {
+                <awg-source-desc-details [details]="titles" detailsLabel="Titel" detailsClass="titles" />
+            }
+            <!-- dates -->
+            @let dates = desc.dates || [];
+            @if (dates.length) {
+                <awg-source-desc-details [details]="dates" detailsLabel="Datierung" detailsClass="dates" />
+            }
+            <!-- pagination -->
+            @let paginations = desc.paginations || [];
+            @if (paginations.length) {
+                <awg-source-desc-details
+                    [details]="paginations"
+                    detailsLabel="Paginierung"
+                    detailsClass="paginations" />
+            }
+            <!-- measureNumbers -->
+            @let measureNumbers = desc.measureNumbers || [];
+            @if (measureNumbers.length) {
+                <awg-source-desc-details
+                    [details]="measureNumbers"
+                    detailsLabel="Taktzahlen"
+                    detailsClass="measure-numbers" />
+            }
+            <!-- instrumentations -->
+            @let instrumentations = desc.instrumentations || [];
+            @if (instrumentations.length) {
+                <awg-source-desc-details
+                    [details]="instrumentations"
+                    detailsLabel="Instrumentenvorsatz"
+                    detailsClass="instrumentations" />
+            }
+            <!-- annotations -->
+            @let annotations = desc.annotations || [];
+            @if (annotations.length) {
+                <awg-source-desc-details
+                    [details]="annotations"
+                    detailsLabel="Eintragungen"
+                    detailsClass="annotations" />
+            }
+            <!-- contents -->
+            @let contents = desc.contents || [];
+            @if (contents.length) {
+                <awg-source-desc-contents [contents]="contents" />
+            }
+
+            <!-- corrections -->
+            @let corrections = desc.corrections || [];
+            @if (corrections.length) {
+                <awg-source-desc-corrections [corrections]="corrections" />
+            }
+        </div>
+    }
+</div>

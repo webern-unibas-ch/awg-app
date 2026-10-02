@@ -1,0 +1,7 @@
+<div class="awg-source-desc-list">
+    @for (sourceDescription of sourceDescListData().sources; track sourceDescription.id) {
+        <div class="awg-source-desc card mb-2" [id]="sourceDescription.id">
+            <awg-source-desc-item [sourceDescription]="sourceDescription" />
+        </div>
+    }
+</div>

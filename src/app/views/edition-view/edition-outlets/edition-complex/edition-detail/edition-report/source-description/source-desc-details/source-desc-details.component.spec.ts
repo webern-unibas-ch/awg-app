@@ -133,7 +133,7 @@ describe('SourceDescDetailsComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
                 const pEl: HTMLParagraphElement = pDes[0].nativeElement;
 
-                expectToBe(pEl.className, `awg-source-description-${expectedDetailsClass}`);
+                expectToBe(pEl.className, `awg-source-desc-${expectedDetailsClass}`);
             });
 
             it('... should contain no span with the detailsLabel if not given', async () => {

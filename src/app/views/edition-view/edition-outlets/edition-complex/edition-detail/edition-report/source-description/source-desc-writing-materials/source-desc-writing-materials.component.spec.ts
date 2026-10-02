@@ -33,7 +33,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
     beforeEach(() => {
         // Test data
         expectedWritingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
         );
 
         // Create component fixture

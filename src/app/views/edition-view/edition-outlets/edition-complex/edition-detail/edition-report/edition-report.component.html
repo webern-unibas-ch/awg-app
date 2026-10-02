@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- source description -->
+                <!-- source desc -->
                 <div ngbAccordionItem="awg-source-desc" [collapsed]="false">
                     <div ngbAccordionHeader>
                         <button ngbAccordionButton>{{ titles.sourceDescription }}</button>
@@ -32,7 +32,7 @@
                         <div ngbAccordionBody>
                             <ng-template>
                                 @if (view.data.sourceDescriptionData; as sourceDescriptionListData) {
-                                    <awg-source-description [sourceDescriptionListData]="sourceDescriptionListData" />
+                                    <awg-source-desc [sourceDescListData]="sourceDescriptionListData" />
                                 }
                             </ng-template>
                         </div>

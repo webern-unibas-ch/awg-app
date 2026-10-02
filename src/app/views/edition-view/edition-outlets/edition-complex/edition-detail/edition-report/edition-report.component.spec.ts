@@ -58,13 +58,13 @@ class SourceListStubComponent {
 }
 
 @Component({
-    selector: 'awg-source-description',
+    selector: 'awg-source-desc',
     template: '',
     standalone: false,
 })
-class SourceDescriptionStubComponent {
+class SourceDescStubComponent {
     @Input()
-    sourceDescriptionListData: SourceDescriptionList | null = null;
+    sourceDescListData: SourceDescriptionList | null = null;
 }
 
 @Component({
@@ -138,7 +138,7 @@ describe('EditionReportComponent', () => {
             declarations: [
                 EditionReportComponent,
                 SourceListStubComponent,
-                SourceDescriptionStubComponent,
+                SourceDescStubComponent,
                 SourceEvaluationStubComponent,
                 TextcriticsListStubComponent,
                 RouterOutletStubComponent,
@@ -153,7 +153,7 @@ describe('EditionReportComponent', () => {
 
         // Test data
         expectedSourceListData = structuredClone(mockEditionData.mockSourceListData);
-        expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescriptionListData);
+        expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescListData);
         expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
         expectedTextcriticsListData = structuredClone(mockEditionData.mockTextcriticsListData);
 
@@ -209,7 +209,7 @@ describe('EditionReportComponent', () => {
             });
 
             it('... should contain no source description component (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, SourceDescStubComponent, 0, 0);
             });
 
             it('... should contain no source evaluation component (stubbed) yet', () => {
@@ -411,21 +411,21 @@ describe('EditionReportComponent', () => {
                     });
 
                     it('... should contain one source description component (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(compDe, SourceDescStubComponent, 1, 1);
                     });
 
-                    it('... should pass down sourceDescriptionListData to SourceDescriptionComponent', () => {
+                    it('... should pass down sourceDescListData to SourceDescComponent', () => {
                         const descriptionDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            SourceDescriptionStubComponent,
+                            SourceDescStubComponent,
                             1,
                             1
                         );
                         const descriptionCmp = descriptionDes[0].injector.get(
-                            SourceDescriptionStubComponent
-                        ) as SourceDescriptionStubComponent;
+                            SourceDescStubComponent
+                        ) as SourceDescStubComponent;
 
-                        expectToEqual(descriptionCmp.sourceDescriptionListData, expectedSourceDescriptionListData);
+                        expectToEqual(descriptionCmp.sourceDescListData, expectedSourceDescriptionListData);
                     });
                 });
 

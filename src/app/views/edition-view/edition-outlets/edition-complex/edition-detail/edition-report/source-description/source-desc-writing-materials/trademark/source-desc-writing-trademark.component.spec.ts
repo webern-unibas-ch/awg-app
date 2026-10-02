@@ -34,7 +34,7 @@ describe('SourceDescWritingTrademarkComponent', () => {
     beforeEach(() => {
         // Test data
         const writingMaterials = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData.sources[2].physDesc.writingMaterials)
+            JSON.stringify(mockEditionData.mockSourceDescListData.sources[2].physDesc.writingMaterials)
         );
         expectedTrademark = writingMaterials[0].trademark; // With variant and locus
 

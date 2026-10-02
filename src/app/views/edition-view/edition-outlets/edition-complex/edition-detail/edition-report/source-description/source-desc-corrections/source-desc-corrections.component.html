@@ -5,11 +5,11 @@
     </p>
     @for (correction of corrections(); track correction.id) {
         <details
-            class="awg-source-description-correction-details half-para-margin"
+            class="awg-source-desc-correction-details half-para-margin"
             [id]="correction.id"
             [open]="openAllCorrectionDetails()">
             <summary
-                class="awg-source-description-correction-summary no-para-margin"
+                class="awg-source-desc-correction-summary no-para-margin"
                 [awgCompileHtml]="correction.label + ':'"></summary>
             <div class="p-3 border rounded-3">
                 <awg-edition-tka-evaluations [evaluations]="correction.evaluations" />

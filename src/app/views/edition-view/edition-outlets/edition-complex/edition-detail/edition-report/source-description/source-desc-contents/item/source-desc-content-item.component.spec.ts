@@ -61,7 +61,7 @@ describe('SourceDescContentItemComponent', () => {
 
         // Test data
         expectedContents = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.physDesc?.contents)
+            JSON.stringify(mockEditionData.mockSourceDescListData?.sources[1]?.physDesc?.contents)
         );
         expectedContent = expectedContents[0]; // Item with link and description
         expectedContentWithoutLink = expectedContents[1]; // Item with description, but without link
@@ -184,12 +184,12 @@ describe('SourceDescContentItemComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one span.awg-source-description-content-item', () => {
-                getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-content-item', 1, 1);
+            it('... should contain one span.awg-source-desc-content-item', () => {
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-item', 1, 1);
             });
 
             it('... should end with a colon', () => {
-                const spanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-content-item', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-item', 1, 1);
                 const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent.trim().endsWith(':'), true);
@@ -248,7 +248,7 @@ describe('SourceDescContentItemComponent', () => {
 
                         const contentItemDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'span.awg-source-description-content-item',
+                            'span.awg-source-desc-content-item',
                             1,
                             1
                         );
@@ -262,7 +262,7 @@ describe('SourceDescContentItemComponent', () => {
                         const expectedDescriptionCount = expectedDescription ? 1 : 0;
                         const descriptionDes = getAndExpectDebugElementByCss(
                             contentItemDes[0],
-                            'span.awg-source-description-content-item-description',
+                            'span.awg-source-desc-content-item-description',
                             expectedDescriptionCount,
                             expectedDescriptionCount
                         );
@@ -285,7 +285,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     const descriptionDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-description-content-item-description',
+                        'span.awg-source-desc-content-item-description',
                         1,
                         1
                     );
@@ -318,7 +318,7 @@ describe('SourceDescContentItemComponent', () => {
                         fixture.componentRef.setInput('content', getContent());
                         await detectChangesOnPush(fixture);
 
-                        const spanDes = compDe.queryAll(By.css('span.awg-source-description-content-item > span'));
+                        const spanDes = compDe.queryAll(By.css('span.awg-source-desc-content-item > span'));
                         const spaceDes = spanDes.filter(spanDe => spanDe.nativeElement.textContent === ' ');
 
                         expectToBe(spaceDes.length, expectedSpaces);
@@ -328,7 +328,7 @@ describe('SourceDescContentItemComponent', () => {
                 it('... should contain one CompileHtmlDirective for the description', () => {
                     const descriptionDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-description-content-item-description',
+                        'span.awg-source-desc-content-item-description',
                         1,
                         1
                     );
@@ -339,7 +339,7 @@ describe('SourceDescContentItemComponent', () => {
                 it('... should pass down the description to the CompileHtmlDirective', () => {
                     const descriptionDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-description-content-item-description',
+                        'span.awg-source-desc-content-item-description',
                         1,
                         1
                     );
@@ -365,7 +365,7 @@ describe('SourceDescContentItemComponent', () => {
                 it('... should trigger on click on content item', async () => {
                     const anchorDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-description-content-item a',
+                        'span.awg-source-desc-content-item a',
                         1,
                         1
                     );

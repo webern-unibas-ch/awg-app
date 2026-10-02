@@ -337,11 +337,11 @@ export const mockSourceListDataWithTexts: SourceList = {
 };
 
 /**
- * Test helper data constant: mockSourceDescriptionListData.
+ * Test helper data constant: mockSourceDescListData.
  *
  * It provides a mocked sourceDescriptionListData object.
  */
-export const mockSourceDescriptionListData: SourceDescriptionList = {
+export const mockSourceDescListData: SourceDescriptionList = {
     sources: [
         {
             id: 'source_A',
@@ -1291,7 +1291,7 @@ export const mockEditionData = {
     mockRowtablesData,
     mockSourceListData,
     mockSourceListDataWithTexts,
-    mockSourceDescriptionListData,
+    mockSourceDescListData,
     mockSourceEvaluationListData,
     mockSourceEvaluationListEmptyData,
     mockSvgSheet_WE1,

@@ -24,7 +24,7 @@ import { EditionReportRoutingModule } from './edition-report-routing.module';
  * [routing definition]{@link EditionReportRoutingModule}
  * as well as the {@link SharedModule}
  * and the {@link TextcriticsListComponent}, {@link SourceListComponent},
- * {@link SourceDescriptionComponent}, and {@link SourceEvaluationComponent}.
+ * {@link SourceDescComponent}, and {@link SourceEvaluationComponent}.
  */
 @NgModule({
     imports: [

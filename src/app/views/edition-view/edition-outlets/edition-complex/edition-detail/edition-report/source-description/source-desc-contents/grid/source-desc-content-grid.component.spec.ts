@@ -76,7 +76,7 @@ describe('SourceDescContentGridComponent', () => {
 
         // Test data
         expectedContents = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceDescriptionListData?.sources[1]?.physDesc?.contents)
+            JSON.stringify(mockEditionData.mockSourceDescListData?.sources[1]?.physDesc?.contents)
         );
         expectedContent = expectedContents[0]; // Folios with one system per system group
         expectedContentWithTwoSystems = expectedContents[1]; // Folios with two systems per system group, no itemLinkTo
