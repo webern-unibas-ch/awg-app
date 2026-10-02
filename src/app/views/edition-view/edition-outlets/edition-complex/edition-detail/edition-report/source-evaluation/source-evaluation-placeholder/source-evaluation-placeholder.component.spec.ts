@@ -76,7 +76,7 @@ describe('SourceEvaluationPlaceholderComponent', () => {
 
                 fixture.detectChanges();
 
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-placeholder', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'p.awg-source-evaluation-placeholder', 0, 0);
             });
 
             it('... should contain one p.awg-source-evaluation-placeholder', () => {
