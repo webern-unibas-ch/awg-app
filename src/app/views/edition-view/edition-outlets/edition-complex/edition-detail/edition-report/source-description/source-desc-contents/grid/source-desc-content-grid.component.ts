@@ -6,8 +6,8 @@ import { ConditionalLinkComponent } from '@awg-shared/conditional-link/condition
 import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { SourceDescContentFolioComponent } from '../source-desc-content-folio/source-desc-content-folio.component';
-import { SourceDescContentSystemComponent } from '../source-desc-content-system/source-desc-content-system.component';
+import { SourceDescContentFolioComponent } from '../folio/source-desc-content-folio.component';
+import { SourceDescContentSystemComponent } from '../system/source-desc-content-system.component';
 
 /**
  * The SourceDescContentGridComponent component.

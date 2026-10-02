@@ -18,8 +18,8 @@ import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-e
 import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { SourceDescContentGridComponent } from '../source-desc-content-grid/source-desc-content-grid.component';
-import { SourceDescContentItemComponent } from '../source-desc-content-item/source-desc-content-item.component';
+import { SourceDescContentGridComponent } from './grid/source-desc-content-grid.component';
+import { SourceDescContentItemComponent } from './item/source-desc-content-item.component';
 import { SourceDescContentsComponent } from './source-desc-contents.component';
 
 describe('SourceDescContentsComponent', () => {
