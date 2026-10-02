@@ -27,7 +27,7 @@ import {
 import { SourceDescriptionComponent } from './source-description.component';
 
 // Mock components
-@Component({ selector: 'awg-source-description-contents', template: '', standalone: false })
+@Component({ selector: 'awg-source-desc-contents', template: '', standalone: false })
 class SourceDescriptionContentsStubComponent {
     @Input()
     contents: SourceDescriptionContent[] = [];
@@ -652,7 +652,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     describe('... the contents', () => {
-                        it('... should contain SourceDescriptionContentsComponent if contents array is not empty', () => {
+                        it('... should contain SourceDescContentsComponent if contents array is not empty', () => {
                             const physDescDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-source-description-phys-desc',
@@ -669,7 +669,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             );
                         });
 
-                        it('... should contain no SourceDescriptionContentsComponent if contents array is empty or undefined', () => {
+                        it('... should contain no SourceDescContentsComponent if contents array is empty or undefined', () => {
                             const physDescDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-source-description-phys-desc',
@@ -686,7 +686,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             );
                         });
 
-                        it('... should pass down contents data to SourceDescriptionContentsComponent', () => {
+                        it('... should pass down contents data to SourceDescContentsComponent', () => {
                             const expectedContents = expectedSourceDescriptionListData.sources[1].physDesc.contents;
 
                             const physDescDes = getAndExpectDebugElementByCss(

@@ -6,7 +6,7 @@ import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/ed
 import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 import { SourceDescContentGridComponent } from './source-desc-content-grid/source-desc-content-grid.component';
-import { SourceDescriptionContentsComponent } from './source-description-contents/source-description-contents.component';
+import { SourceDescContentsComponent } from './source-desc-contents/source-desc-contents.component';
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections/source-description-corrections.component';
 import { SourceDescriptionDetailsComponent } from './source-description-details/source-description-details.component';
 import { SourceDescriptionWritingMaterialsComponent } from './source-description-writing-materials/source-description-writing-materials.component';
@@ -25,7 +25,7 @@ import { SourceDescriptionComponent } from './source-description.component';
         EditionTkaLabelComponent,
         EditionTkaTableComponent,
         SourceDescriptionCorrectionsComponent,
-        SourceDescriptionContentsComponent,
+        SourceDescContentsComponent,
         SourceDescContentGridComponent,
     ],
     declarations: [
