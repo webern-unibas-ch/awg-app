@@ -85,6 +85,17 @@ describe('createExpandAllState', () => {
             expectToBe(state.allOpen(), true);
         });
 
+        it('... should drop the override of a removed key so that a re-added key follows the default state', () => {
+            state.setOpen('a', true);
+            keys.set(['b', 'c']);
+            state.setOpen('b', true);
+            keys.set(['a', 'b', 'c']);
+
+            expectToBe(state.isOpen('a'), false);
+            expectToBe(state.isOpen('b'), true);
+            expectToBe(state.allOpen(), false);
+        });
+
         it('... should hold `allOpen` true for an empty group', () => {
             keys.set([]);
 

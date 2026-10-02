@@ -43,6 +43,7 @@ export interface ExpandAllState<K> {
  * The state is kept as a default open state plus a set of keys
  * that were toggled individually and therefore deviate from the default.
  * This way, items that are added later follow the default automatically.
+ * Overrides of removed items are pruned on the next `setOpen` call or reset by `setAll`.
  *
  * @param {() => K[]} keys A function returning the keys of all items of the group.
  * @param {boolean} defaultOpen The initial open state of all items (default: false).
@@ -57,18 +58,24 @@ export function createExpandAllState<K>(keys: () => K[], defaultOpen = false): E
     const allOpen = computed<boolean>(() => keys().every(isOpen));
 
     const setOpen = (key: K, open: boolean): void => {
-        if (isOpen(key) === open) {
-            return;
-        }
-        toggledKeys.update(currentKeys => {
-            const updatedKeys = new Set(currentKeys);
+        // Prune overrides of keys that are no longer part of the group,
+        // so that they do not resurface with a stale state when re-added later
+        const validKeys = new Set<K>([...keys(), key]);
+        const updatedKeys = new Set([...toggledKeys()].filter(toggledKey => validKeys.has(toggledKey)));
+        let changed = updatedKeys.size !== toggledKeys().size;
+
+        if ((defaultOpenState() !== updatedKeys.has(key)) !== open) {
             if (updatedKeys.has(key)) {
                 updatedKeys.delete(key);
             } else {
                 updatedKeys.add(key);
             }
-            return updatedKeys;
-        });
+            changed = true;
+        }
+
+        if (changed) {
+            toggledKeys.set(updatedKeys);
+        }
     };
 
     const setAll = (open: boolean): void => {
