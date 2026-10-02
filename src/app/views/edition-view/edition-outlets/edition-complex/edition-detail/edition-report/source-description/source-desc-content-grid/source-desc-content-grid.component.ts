@@ -1,0 +1,60 @@
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+
+import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
+
+import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
+import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+
+import { SourceDescContentFolioLabelComponent } from '../source-desc-content-folio-label/source-desc-content-folio-label.component';
+import { SourceDescContentSystemComponent } from '../source-desc-content-system/source-desc-content-system.component';
+
+/**
+ * The SourceDescContentGridComponent component.
+ *
+ * It contains the source description content grid
+ * of the critical report of the edition view of the app.
+ */
+@Component({
+    selector: 'awg-source-desc-content-grid',
+    templateUrl: './source-desc-content-grid.component.html',
+    styleUrls: ['./source-desc-content-grid.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        CompileHtmlDirective,
+        ConditionalLinkComponent,
+        SourceDescContentFolioLabelComponent,
+        SourceDescContentSystemComponent,
+    ],
+})
+export class SourceDescContentGridComponent {
+    /**
+     * Private readonly injection variable: _navigationService
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService = inject(EditionNavigationService);
+
+    /**
+     * Readonly input signal: contents.
+     *
+     * It holds the folio contents array.
+     */
+    readonly content = input.required<SourceDescriptionContent | undefined>();
+
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It delegates the navigation for the given complex and SVG sheet IDs
+     * directly to the {@link EditionNavigationService}.
+     *
+     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @returns {void} Navigates to the selected SVG sheet.
+     */
+    selectSvgSheet(sheetIds: SheetClickEvent): void {
+        if (!sheetIds?.sheetId) {
+            return;
+        }
+        this._navigationService.navigateToSvgSheet(sheetIds);
+    }
+}

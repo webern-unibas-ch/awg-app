@@ -5,7 +5,7 @@ import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-ev
 import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
 
-import { SourceDescriptionContentTableComponent } from './source-description-content-table/source-description-content-table.component';
+import { SourceDescContentGridComponent } from './source-desc-content-grid/source-desc-content-grid.component';
 import { SourceDescriptionContentsComponent } from './source-description-contents/source-description-contents.component';
 import { SourceDescriptionCorrectionsComponent } from './source-description-corrections/source-description-corrections.component';
 import { SourceDescriptionDetailsComponent } from './source-description-details/source-description-details.component';
@@ -26,7 +26,7 @@ import { SourceDescriptionComponent } from './source-description.component';
         EditionTkaTableComponent,
         SourceDescriptionCorrectionsComponent,
         SourceDescriptionContentsComponent,
-        SourceDescriptionContentTableComponent,
+        SourceDescContentGridComponent,
     ],
     declarations: [
         SourceDescriptionComponent,

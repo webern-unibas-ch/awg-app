@@ -1,0 +1,44 @@
+@if (content(); as folioContent) {
+    <div class="awg-source-desc-content-grid-container half-para-margin">
+        @for (folio of folioContent.folios || []; track $index; let lastFolio = $last) {
+            @let parentComplexId = folioContent.itemLinkTo?.complexId || '';
+
+            <div class="awg-source-desc-content-grid">
+                <div class="awg-source-desc-content-grid-folio" [class.span-full]="!folio.systemGroups?.length">
+                    @if (folio.folio) {
+                        <awg-conditional-link
+                            [isClickable]="!!folio.folioLinkTo"
+                            (clicked)="
+                                selectSvgSheet({ complexId: parentComplexId, sheetId: folio.folioLinkTo ?? '' })
+                            ">
+                            <awg-source-desc-content-folio-label [folioLabel]="folio.folio" [isPage]="!!folio.isPage" />
+                        </awg-conditional-link>
+                    }
+
+                    @if (folio.folioDescription) {
+                        <span class="awg-source-desc-content-grid-folio-description"
+                            >&nbsp;&nbsp;<span [awgCompileHtml]="folio.folioDescription"></span
+                        ></span>
+                    }
+                </div>
+
+                @if (folio.systemGroups?.length) {
+                    <div class="awg-source-desc-content-grid-systems-container">
+                        @for (systemGroup of folio.systemGroups; track $index; let lastSystemGroup = $last) {
+                            <div class="awg-source-desc-content-grid-system-group">
+                                @for (system of systemGroup; track $index; let lastSystem = $last) {
+                                    <awg-source-desc-content-system
+                                        [contentSystem]="system"
+                                        [isLastItem]="lastFolio && lastSystemGroup && lastSystem"
+                                        (clicked)="
+                                            selectSvgSheet({ complexId: parentComplexId, sheetId: system.linkTo ?? '' })
+                                        " />
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
