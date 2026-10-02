@@ -15,15 +15,13 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import {
-    SourceDescription,
-    SourceDescriptionWritingInstruments,
-} from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescription } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
 import { SourceDescCorrectionsComponent } from '../source-desc-corrections/source-desc-corrections.component';
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';
+import { SourceDescWritingInstrumentsComponent } from '../source-desc-writing-instruments/source-desc-writing-instruments.component';
 import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-materials/source-desc-writing-materials.component';
 import { SourceDescItemComponent } from './source-desc-item.component';
 
@@ -71,6 +69,7 @@ describe('SourceDescItemComponent', () => {
                 SourceDescCorrectionsComponent,
                 SourceDescDetailsComponent,
                 SourceDescItemComponent,
+                SourceDescWritingInstrumentsComponent,
                 SourceDescWritingMaterialsComponent,
             ],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
@@ -104,7 +103,7 @@ describe('SourceDescItemComponent', () => {
             expect(() => component.sourceDescription()).toThrow();
         });
 
-        it.each(['physDesc', 'hasPhysDesc', 'writingInstruments'] as const)(
+        it.each(['physDesc', 'hasPhysDesc'] as const)(
             '... should throw when accessing computed signal `%s` due to missing input',
             signalName => {
                 expectToBe(isSignal(component[signalName]), true);
@@ -148,29 +147,6 @@ describe('SourceDescItemComponent', () => {
             fixture.componentRef.setInput('sourceDescription', expectedSourceWithoutPhysDesc);
 
             expectToBe(component.hasPhysDesc(), false);
-        });
-
-        it('... should have computed signal `writingInstruments` to hold the formatted writing instruments', () => {
-            expectToBe(
-                component.writingInstruments(),
-                component.getWritingInstruments(expectedSourceWithAllEntries.physDesc.writingInstruments)
-            );
-        });
-
-        describe('... should have recomputed signal `writingInstruments` to hold an empty string if', () => {
-            it.each([
-                { desc: 'main writing instrument is missing', writingInstruments: { secondary: ['secondary1'] } },
-                { desc: 'writing instruments are undefined', writingInstruments: undefined },
-                { desc: 'physDesc is empty', writingInstruments: 'emptyPhysDesc' as const },
-            ])('... $desc', ({ writingInstruments }) => {
-                const physDesc =
-                    writingInstruments === 'emptyPhysDesc'
-                        ? {}
-                        : { ...expectedSourceWithAllEntries.physDesc, writingInstruments };
-                fixture.componentRef.setInput('sourceDescription', { ...expectedSourceWithAllEntries, physDesc });
-
-                expectToBe(component.writingInstruments(), '');
-            });
         });
 
         describe('VIEW', () => {
@@ -380,85 +356,29 @@ describe('SourceDescItemComponent', () => {
                     });
 
                     describe('... the writing instruments', () => {
-                        let paragraphDes: DebugElement[];
-                        let expectedInstrumentsData: SourceDescriptionWritingInstruments;
-
-                        beforeEach(() => {
-                            const instruments = expectedSourceWithAllEntries.physDesc.writingInstruments;
-
-                            if (!instruments) {
-                                expect.fail('Expected writingInstruments to be defined.');
-                            }
-
-                            expectedInstrumentsData = instruments;
-
-                            paragraphDes = getAndExpectDebugElementByCss(
+                        it('... should contain one SourceDescWritingInstrumentsComponent in physDesc div', () => {
+                            getAndExpectDebugElementByDirective(
                                 getPhysDescDe(),
-                                'p.awg-source-desc-writing-instruments',
+                                SourceDescWritingInstrumentsComponent,
                                 1,
                                 1
                             );
                         });
 
-                        it('... should display the label in the first span of the paragraph', () => {
-                            const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 2, 2);
-                            const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                            expectToBe(spanEl.textContent.trim(), 'Schreibstoff:');
-                        });
-
-                        it('... should have one CompileHtmlDirective in the writing instruments paragraph', () => {
-                            getAndExpectDebugElementByDirective(paragraphDes[0], CompileHtmlDirective, 1, 1);
-                        });
-
-                        it('... should pass down the formatted instruments string to the CompileHtmlDirective', () => {
-                            const directiveDes = getAndExpectDebugElementByDirective(
-                                paragraphDes[0],
-                                CompileHtmlDirective,
+                        it('... should pass down the writingInstruments to SourceDescWritingInstrumentsComponent', () => {
+                            const instrumentsDes = getAndExpectDebugElementByDirective(
+                                getPhysDescDe(),
+                                SourceDescWritingInstrumentsComponent,
                                 1,
                                 1
                             );
-                            const directiveIns = directiveDes[0].injector.get(
-                                CompileHtmlDirective
-                            ) as CompileHtmlDirective;
-
-                            expectToBe(
-                                directiveIns.htmlContent(),
-                                component.getWritingInstruments(expectedInstrumentsData)
+                            const instrumentsCmp = instrumentsDes[0].injector.get(
+                                SourceDescWritingInstrumentsComponent
                             );
-                        });
 
-                        it('... should display the writingInstruments in the second span of the paragraph', () => {
-                            const spanDes = getAndExpectDebugElementByCss(paragraphDes[0], 'span', 2, 2);
-                            const spanEl: HTMLSpanElement = spanDes[1].nativeElement;
-
-                            const secondaryInstruments = expectedInstrumentsData.secondary ?? [];
-                            const secondaryString =
-                                secondaryInstruments.length > 0 ? '; ' + secondaryInstruments.join(', ') : '';
-
-                            // Process HTML expression of expected text content
-                            const expectedHtmlTextContent = mockDocument.createElement('p');
-                            expectedHtmlTextContent.innerHTML =
-                                '<span>' + expectedInstrumentsData.main + secondaryString + '.</span>';
-
-                            expectToBe(spanEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
-                        });
-
-                        it('... should contain no writing instruments paragraph if main writing instrument is missing', async () => {
-                            fixture.componentRef.setInput('sourceDescription', {
-                                ...expectedSourceWithAllEntries,
-                                physDesc: {
-                                    ...expectedSourceWithAllEntries.physDesc,
-                                    writingInstruments: { secondary: ['secondary1'] },
-                                },
-                            });
-                            await detectChangesOnPush(fixture);
-
-                            getAndExpectDebugElementByCss(
-                                getPhysDescDe(),
-                                'p.awg-source-desc-writing-instruments',
-                                0,
-                                0
+                            expectToEqual(
+                                instrumentsCmp.writingInstruments(),
+                                expectedSourceWithAllEntries.physDesc.writingInstruments
                             );
                         });
                     });
@@ -616,61 +536,6 @@ describe('SourceDescItemComponent', () => {
                         );
                     });
                 });
-            });
-        });
-
-        describe('METHODS', () => {
-            describe('#getWritingInstruments()', () => {
-                it('... should have a method `getWritingInstruments`', () => {
-                    expect(component.getWritingInstruments).toBeDefined();
-                });
-
-                it.each([
-                    {
-                        desc: 'an empty string if writing instruments are undefined',
-                        writingInstruments: undefined,
-                        expected: '',
-                    },
-                    {
-                        desc: 'only main writing instrument when secondary is undefined',
-                        writingInstruments: { main: 'main instrument', secondary: undefined },
-                        expected: 'main instrument.',
-                    },
-                    {
-                        desc: 'only main writing instrument when secondary is an empty array',
-                        writingInstruments: { main: 'main instrument', secondary: [] },
-                        expected: 'main instrument.',
-                    },
-                    {
-                        desc: 'main and a single secondary writing instrument if provided',
-                        writingInstruments: { main: 'main instrument', secondary: ['secondary1'] },
-                        expected: 'main instrument; secondary1.',
-                    },
-                    {
-                        desc: 'main and multiple secondary writing instruments if provided',
-                        writingInstruments: {
-                            main: 'main instrument',
-                            secondary: ['secondary1', 'secondary2', 'secondary3'],
-                        },
-                        expected: 'main instrument; secondary1, secondary2, secondary3.',
-                    },
-                    {
-                        desc: '`undefined` for main if main is undefined',
-                        writingInstruments: { main: undefined, secondary: ['secondary1', 'secondary2'] },
-                        expected: 'undefined; secondary1, secondary2.',
-                    },
-                ])(
-                    '... should return $desc',
-                    ({
-                        writingInstruments,
-                        expected,
-                    }: {
-                        writingInstruments: SourceDescriptionWritingInstruments | undefined;
-                        expected: string;
-                    }) => {
-                        expectToBe(component.getWritingInstruments(writingInstruments), expected);
-                    }
-                );
             });
         });
     });

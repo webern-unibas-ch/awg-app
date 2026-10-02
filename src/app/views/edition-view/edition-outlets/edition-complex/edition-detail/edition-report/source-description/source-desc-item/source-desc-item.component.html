@@ -36,6 +36,7 @@
             @if (conditions.length) {
                 <awg-source-desc-details [details]="conditions" detailsLabel="" detailsClass="conditions" />
             }
+
             <!-- writingMaterials -->
             @let writingMaterials = desc.writingMaterials || [];
             @let writingMaterialStrings = desc.writingMaterialStrings || [];
@@ -47,23 +48,22 @@
                     detailsLabel="Beschreibstoff"
                     detailsClass="writing-materials" />
             }
+
             <!-- writingInstruments -->
-            @if (writingInstruments(); as writingInstruments) {
-                <p class="awg-source-desc-writing-instruments">
-                    <span class="smallcaps">Schreibstoff:&nbsp;</span>
-                    <span [awgCompileHtml]="writingInstruments"></span>
-                </p>
-            }
+            <awg-source-desc-writing-instruments [writingInstruments]="desc.writingInstruments" />
+
             <!-- titles -->
             @let titles = desc.titles || [];
             @if (titles.length) {
                 <awg-source-desc-details [details]="titles" detailsLabel="Titel" detailsClass="titles" />
             }
+
             <!-- dates -->
             @let dates = desc.dates || [];
             @if (dates.length) {
                 <awg-source-desc-details [details]="dates" detailsLabel="Datierung" detailsClass="dates" />
             }
+
             <!-- pagination -->
             @let paginations = desc.paginations || [];
             @if (paginations.length) {
@@ -72,6 +72,7 @@
                     detailsLabel="Paginierung"
                     detailsClass="paginations" />
             }
+
             <!-- measureNumbers -->
             @let measureNumbers = desc.measureNumbers || [];
             @if (measureNumbers.length) {
@@ -80,6 +81,7 @@
                     detailsLabel="Taktzahlen"
                     detailsClass="measure-numbers" />
             }
+
             <!-- instrumentations -->
             @let instrumentations = desc.instrumentations || [];
             @if (instrumentations.length) {
@@ -88,6 +90,7 @@
                     detailsLabel="Instrumentenvorsatz"
                     detailsClass="instrumentations" />
             }
+
             <!-- annotations -->
             @let annotations = desc.annotations || [];
             @if (annotations.length) {
@@ -96,6 +99,7 @@
                     detailsLabel="Eintragungen"
                     detailsClass="annotations" />
             }
+
             <!-- contents -->
             @let contents = desc.contents || [];
             @if (contents.length) {

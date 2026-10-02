@@ -3,15 +3,12 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { isEmptyObject } from '@awg-shared/utils/object-utils';
-import {
-    SourceDescription,
-    SourceDescriptionPhysDesc,
-    SourceDescriptionWritingInstruments,
-} from '@awg-views/edition-view/models/source-description.model';
+import { SourceDescription, SourceDescriptionPhysDesc } from '@awg-views/edition-view/models/source-description.model';
 
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
 import { SourceDescCorrectionsComponent } from '../source-desc-corrections/source-desc-corrections.component';
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';
+import { SourceDescWritingInstrumentsComponent } from '../source-desc-writing-instruments/source-desc-writing-instruments.component';
 import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-materials/source-desc-writing-materials.component';
 
 /**
@@ -31,6 +28,7 @@ import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-mate
         SourceDescContentsComponent,
         SourceDescCorrectionsComponent,
         SourceDescDetailsComponent,
+        SourceDescWritingInstrumentsComponent,
         SourceDescWritingMaterialsComponent,
     ],
 })
@@ -55,35 +53,4 @@ export class SourceDescItemComponent {
      * It checks whether the source has a non-empty physical description.
      */
     readonly hasPhysDesc = computed<boolean>(() => !isEmptyObject(this.physDesc()));
-
-    /**
-     * Readonly computed signal: writingInstruments.
-     *
-     * It holds the string representation of the writing instruments,
-     * or an empty string if no main writing instrument is given.
-     */
-    readonly writingInstruments = computed<string>(() => {
-        const writingInstruments = this.physDesc().writingInstruments;
-        return writingInstruments?.main ? this.getWritingInstruments(writingInstruments) : '';
-    });
-
-    /**
-     * Public method: getWritingInstruments.
-     *
-     * It retrieves the string representation of the writing instruments
-     * provided in the source description.
-     *
-     * @param {SourceDescriptionWritingInstruments | undefined} writingInstruments The given writing instruments data, or undefined.
-     * @returns {string} The retrieved writing instruments string.
-     */
-    getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments | undefined): string {
-        if (!writingInstruments) {
-            return '';
-        }
-
-        const main = writingInstruments.main;
-        const secondary = writingInstruments.secondary?.join(', ');
-
-        return secondary ? `${main}; ${secondary}.` : `${main}.`;
-    }
 }
