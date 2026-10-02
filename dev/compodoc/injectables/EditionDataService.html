@@ -201,7 +201,7 @@ and edition report view.</p>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#sourceDescriptionData" >sourceDescriptionData</a>
+                                <a href="#sourceDescData" >sourceDescData</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -1681,11 +1681,11 @@ for the given data assets.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="sourceDescriptionData"></a>
+                    <a name="sourceDescData"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                        <span ><b>sourceDescriptionData</b></span>
-                        <a href="#sourceDescriptionData"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>sourceDescData</b></span>
+                        <a href="#sourceDescData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1697,7 +1697,7 @@ for the given data assets.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._getComplexEditionDataByKey&lt;SourceDescriptionList&gt;(&#x27;sourceDescription&#x27;)</code>
+                        <i>Default value : </i><code>this._getComplexEditionDataByKey&lt;SourceDescList&gt;(&#x27;sourceDesc&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1708,7 +1708,7 @@ for the given data assets.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly signal: sourceDescriptionData.</p>
+                    <div class="io-description"><p>Readonly signal: sourceDescData.</p>
 <p>It holds the state of the source description data.</p>
 </div>
                 </td>
@@ -1897,7 +1897,7 @@ import {
     IntroList,
     PrefaceList,
     RowtablesList,
-    SourceDescriptionList,
+    SourceDescList,
     SourceEvaluationList,
     SourceList,
     TextcriticsList,
@@ -1986,11 +1986,11 @@ export class EditionDataService {
     readonly sourceListData &#x3D; this._getComplexEditionDataByKey&lt;SourceList&gt;(&#x27;sourceList&#x27;);
 
     /**
-     * Readonly signal: sourceDescriptionData.
+     * Readonly signal: sourceDescData.
      *
      * It holds the state of the source description data.
      */
-    readonly sourceDescriptionData &#x3D; this._getComplexEditionDataByKey&lt;SourceDescriptionList&gt;(&#x27;sourceDescription&#x27;);
+    readonly sourceDescData &#x3D; this._getComplexEditionDataByKey&lt;SourceDescList&gt;(&#x27;sourceDesc&#x27;);
 
     /**
      * Readonly signal: sourceEvaluationData.

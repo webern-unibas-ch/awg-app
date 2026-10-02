@@ -141,7 +141,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/models/source-list.model.ts</code>
+            <code>src/app/views/edition-view/models/source.model.ts</code>
         </p>
 
 
@@ -150,9 +150,7 @@
             </p>
             <p class="comment">
                 <p>The Source interface.</p>
-<p>It is used in the context of the edition view
-to store the data for a single source
-from a sourcelist json file.</p>
+<p>It stores data for a single source from a source list JSON file.</p>
 
             </p>
 
@@ -257,7 +255,7 @@ from a sourcelist json file.</p>
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>A flag if the source has a source description.</p>
+                                    <div class="io-description"><p>A flag if a source has a source description.</p>
 </div>
                                 </td>
                             </tr>
@@ -515,91 +513,78 @@ from a sourcelist json file.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Source {
     /**
      * The siglum of a source.
-     */
+     **/
     siglum: string;
 
     /**
      * The addendum to a siglum of a source.
-     */
+     **/
     siglumAddendum?: string;
 
     /**
      * The flag if a source is missing (optional).
-     */
+     **/
     missing?: boolean;
 
     /**
      * The type description of a source.
-     */
+     **/
     type: string;
 
     /**
      * The physical location of a source.
-     */
+     **/
     location: string;
 
     /**
-     * A flag if the source has a source description.
-     */
+     * A flag if a source has a source description.
+     **/
     hasDescription: boolean;
 
     /**
      * The link to the source description.
-     */
+     **/
     linkTo: string;
 }
 
 /**
+ * The SourceSiglum type.
+ *
+ * It stores the data needed to display the siglum of a source
+ * (siglum, addendum and missing flag).
+ */
+export type SourceSiglum &#x3D; Pick&lt;Source, &#x27;siglum&#x27; | &#x27;siglumAddendum&#x27; | &#x27;missing&#x27;&gt;;
+
+/**
  * The TextSource interface.
  *
- * It is used in the context of the edition view
- * to store the data for a single text source
- * from a sourcelist json file.
+ * It stores data for a single text source from a source list JSON file.
  */
 export interface TextSource {
     /**
      * The id of a text source.
-     */
+     **/
     id: string;
 
     /**
      * The siglum of a text source.
-     */
+     **/
     siglum: string;
 
     /**
-     * The addendum to a siglum of a text source.
-     */
+     * The addendum to a siglum of a text source (optional).
+     **/
     siglumAddendum?: string;
 
     /**
      * The type description of a text source.
-     */
+     **/
     type: string;
 
     /**
      * The physical location of a text source.
-     */
+     **/
     location: string;
-}
-
-/**
- * The SourceList class.
- *
- * It is used in the context of the edition view
- * to store the data for a source list
- * from a sourcelist json file.
- */
-export class SourceList {
-    /**
-     * The array of sources from a source list.
-     */
-    sources: Source[] &#x3D; [];
-
-    /**
-     * The array of text sources from a source list.
-     */
-    textSources?: TextSource[];
 }
 </code></pre>
     </div>

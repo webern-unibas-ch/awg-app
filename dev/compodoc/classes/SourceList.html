@@ -218,7 +218,7 @@ from a sourcelist json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/models/source-list.model.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/edition-view/models/source-list.model.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -251,7 +251,7 @@ from a sourcelist json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/models/source-list.model.ts:95</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/edition-view/models/source-list.model.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -276,76 +276,7 @@ from a sourcelist json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Source {
-    /**
-     * The siglum of a source.
-     */
-    siglum: string;
-
-    /**
-     * The addendum to a siglum of a source.
-     */
-    siglumAddendum?: string;
-
-    /**
-     * The flag if a source is missing (optional).
-     */
-    missing?: boolean;
-
-    /**
-     * The type description of a source.
-     */
-    type: string;
-
-    /**
-     * The physical location of a source.
-     */
-    location: string;
-
-    /**
-     * A flag if the source has a source description.
-     */
-    hasDescription: boolean;
-
-    /**
-     * The link to the source description.
-     */
-    linkTo: string;
-}
-
-/**
- * The TextSource interface.
- *
- * It is used in the context of the edition view
- * to store the data for a single text source
- * from a sourcelist json file.
- */
-export interface TextSource {
-    /**
-     * The id of a text source.
-     */
-    id: string;
-
-    /**
-     * The siglum of a text source.
-     */
-    siglum: string;
-
-    /**
-     * The addendum to a siglum of a text source.
-     */
-    siglumAddendum?: string;
-
-    /**
-     * The type description of a text source.
-     */
-    type: string;
-
-    /**
-     * The physical location of a text source.
-     */
-    location: string;
-}
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Source, TextSource } from &#x27;./source.model&#x27;;
 
 /**
  * The SourceList class.

@@ -197,6 +197,12 @@
                             <a href="#QueryResult" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/query-result.model.ts" ><b>QueryResult</b>&nbsp;&nbsp;&nbsp;(src/.../query-result.model.ts)</a>
                         </li>
                         <li>
+                            <a href="#SourceDescDetailsKey" title="src/app/views/edition-view/models/source-desc.model.ts" ><b>SourceDescDetailsKey</b>&nbsp;&nbsp;&nbsp;(src/.../source-desc.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SourceSiglum" title="src/app/views/edition-view/models/source.model.ts" ><b>SourceSiglum</b>&nbsp;&nbsp;&nbsp;(src/.../source.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#StatisticsComplexBreakdownData" title="src/app/views/statistics-view/models/statistics.model.ts" ><b>StatisticsComplexBreakdownData</b>&nbsp;&nbsp;&nbsp;(src/.../statistics.model.ts)</a>
                         </li>
                         <li>
@@ -411,7 +417,7 @@ to store the keys of the edition route constants.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <code>    <code>&quot;folioConvolute&quot; | &quot;graph&quot; | &quot;intro&quot; | &quot;sourceList&quot; | &quot;sourceDescription&quot; | &quot;sourceEvaluation&quot; | &quot;svgSheets&quot; | &quot;textcritics&quot;</code>
+                    <code>    <code>&quot;folioConvolute&quot; | &quot;graph&quot; | &quot;intro&quot; | &quot;sourceList&quot; | &quot;sourceDesc&quot; | &quot;sourceEvaluation&quot; | &quot;svgSheets&quot; | &quot;textcritics&quot;</code>
 </code>
                 </td>
             </tr>
@@ -757,6 +763,59 @@ mapped by the valid LogoKeys.</p>
             <tr>
                 <td class="col-md-4">
                     <code>    <code>Triple[] | QuerySelectResult | string | undefined</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/views/edition-view/models/source-desc.model.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SourceDescDetailsKey"></a>
+                    <span class="name "><b>SourceDescDetailsKey</b><a href="#SourceDescDetailsKey"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The SourceDescDetailsKey type.</p>
+<p>It is used in the context of the edition view
+to name the keys of the physical description of a source description
+that are displayed as simple details sections.</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>    <code>&quot;titles&quot; | &quot;dates&quot; | &quot;paginations&quot; | &quot;measureNumbers&quot; | &quot;instrumentations&quot; | &quot;annotations&quot;</code>
+</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/views/edition-view/models/source.model.ts</h3>
+    <section data-compodoc="block-typealias">
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SourceSiglum"></a>
+                    <span class="name "><b>SourceSiglum</b><a href="#SourceSiglum"><span class="icon ion-ios-link"></span></a></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The SourceSiglum type.</p>
+<p>It stores the data needed to display the siglum of a source
+(siglum, addendum and missing flag).</p>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <code>        <code><a href="../interfaces/Source.html" target="_self" >Pick&lt;Source | &quot;siglum&quot; | &quot;siglumAddendum&quot; | &quot;missing&quot;&gt;</a></code>
 </code>
                 </td>
             </tr>
