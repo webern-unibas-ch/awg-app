@@ -114,6 +114,12 @@ describe('SourceDescContentGridComponent', () => {
             expect(() => component.content()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `parentComplexId` due to missing input', () => {
+            expectToBe(isSignal(component.parentComplexId), true);
+
+            expect(() => component.parentComplexId()).toThrow();
+        });
+
         describe('VIEW', () => {
             it('... should contain no grid container yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-content-grid-container', 0, 0);
@@ -132,6 +138,31 @@ describe('SourceDescContentGridComponent', () => {
 
         it('... should have input signal `content` to hold the provided content', () => {
             expectToEqual(component.content(), expectedContent);
+        });
+
+        it('... should have computed signal `parentComplexId` to hold the complexId of itemLinkTo', () => {
+            expectToBe(component.parentComplexId(), expectedComplexId);
+        });
+
+        describe('... should have recomputed signal `parentComplexId` to hold an empty string if', () => {
+            it.each([
+                {
+                    desc: 'complexId is empty',
+                    getContent: () => ({ ...expectedContent, itemLinkTo: { complexId: '', sheetId: '' } }),
+                },
+                {
+                    desc: 'itemLinkTo is undefined',
+                    getContent: () => ({ ...expectedContent, itemLinkTo: undefined }),
+                },
+                {
+                    desc: 'content is undefined',
+                    getContent: () => undefined,
+                },
+            ])('... $desc', ({ getContent }) => {
+                fixture.componentRef.setInput('content', getContent());
+
+                expectToBe(component.parentComplexId(), '');
+            });
         });
 
         describe('VIEW', () => {

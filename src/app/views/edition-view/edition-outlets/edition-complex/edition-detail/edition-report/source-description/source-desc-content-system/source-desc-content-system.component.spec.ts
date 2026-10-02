@@ -80,6 +80,18 @@ describe('SourceDescContentSystemComponent', () => {
             expect(() => component.hasValidRow()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `hasDivider` due to missing input', () => {
+            expectToBe(isSignal(component.hasDivider), true);
+
+            expect(() => component.hasDivider()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `isClickable` due to missing input', () => {
+            expectToBe(isSignal(component.isClickable), true);
+
+            expect(() => component.isClickable()).toThrow();
+        });
+
         it('... should have output `clicked`', () => {
             expect(component.clicked).toBeDefined();
         });
@@ -113,16 +125,63 @@ describe('SourceDescContentSystemComponent', () => {
             expectToBe(component.hasValidRow(), true);
         });
 
-        it('... should have recomputed signal `hasValidRow` to hold false if row is missing', () => {
-            fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, row: undefined });
+        describe('... should have recomputed signal `hasValidRow` to hold false if row is', () => {
+            it.each([
+                { desc: 'missing', row: undefined },
+                { desc: 'empty', row: {} },
+            ])('... $desc', ({ row }) => {
+                fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, row });
 
-            expectToBe(component.hasValidRow(), false);
+                expectToBe(component.hasValidRow(), false);
+            });
         });
 
-        it('... should have recomputed signal `hasValidRow` to hold false if row is empty', () => {
-            fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, row: {} });
+        it('... should have computed signal `hasDivider` to hold true', () => {
+            expectToBe(component.hasDivider(), true);
+        });
 
-            expectToBe(component.hasValidRow(), false);
+        describe('... should have recomputed signal `hasDivider` to hold', () => {
+            it.each([
+                {
+                    desc: 'true if only a system description is given',
+                    changes: { measure: undefined, row: undefined },
+                    expected: true,
+                },
+                {
+                    desc: 'true if only a measure is given',
+                    changes: { systemDescription: undefined, row: undefined },
+                    expected: true,
+                },
+                {
+                    desc: 'true if only a valid row is given',
+                    changes: { systemDescription: undefined, measure: undefined },
+                    expected: true,
+                },
+                {
+                    desc: 'false if neither description, measure nor valid row is given',
+                    changes: { systemDescription: undefined, measure: undefined, row: {} },
+                    expected: false,
+                },
+            ])('... $desc', ({ changes, expected }) => {
+                fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, ...changes });
+
+                expectToBe(component.hasDivider(), expected);
+            });
+        });
+
+        it('... should have computed signal `isClickable` to hold true', () => {
+            expectToBe(component.isClickable(), true);
+        });
+
+        describe('... should have recomputed signal `isClickable` to hold false if linkTo is', () => {
+            it.each([
+                { desc: 'empty', linkTo: '' },
+                { desc: 'undefined', linkTo: undefined },
+            ])('... $desc', ({ linkTo }) => {
+                fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, linkTo });
+
+                expectToBe(component.isClickable(), false);
+            });
         });
 
         describe('VIEW', () => {

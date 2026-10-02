@@ -6,7 +6,7 @@
         }
 
         <!-- Divider Colon -->
-        @if (system.systemDescription || system.measure || hasValidRow()) {
+        @if (hasDivider()) {
             <span>:&nbsp;</span>
         }
 
@@ -23,7 +23,7 @@
         <!-- Measures -->
         @if (system.measure) {
             <span class="awg-source-desc-content-grid-measure">
-                <awg-conditional-link [isClickable]="!!system.linkTo" (clicked)="clicked.emit()">
+                <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
                     <span><span [awgAbbr]="'T.'"></span>&nbsp;{{ system.measure }}</span>
                 </awg-conditional-link>
             </span>
@@ -33,7 +33,7 @@
         @if (hasValidRow()) {
             <span class="awg-source-desc-content-grid-row">
                 @let row = system.row!;
-                <awg-conditional-link [isClickable]="!!system.linkTo" (clicked)="clicked.emit()">
+                <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
                     <span>
                         <span
                             >{{ row.rowType }}<sub>{{ row.rowBase }}</sub></span

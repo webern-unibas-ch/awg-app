@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
@@ -41,6 +41,13 @@ export class SourceDescContentGridComponent {
      * It holds the folio contents array.
      */
     readonly content = input.required<SourceDescriptionContent | undefined>();
+
+    /**
+     * Readonly computed signal: parentComplexId.
+     *
+     * It holds the complex id the content item links to, or an empty string.
+     */
+    readonly parentComplexId = computed<string>(() => this.content()?.itemLinkTo?.complexId || '');
 
     /**
      * Public method: selectSvgSheet.

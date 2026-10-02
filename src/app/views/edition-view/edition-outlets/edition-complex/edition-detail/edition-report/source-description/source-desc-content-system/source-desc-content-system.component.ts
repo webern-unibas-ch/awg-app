@@ -53,4 +53,22 @@ export class SourceDescContentSystemComponent {
         }
         return Object.keys(row).length > 0;
     });
+
+    /**
+     * Readonly computed signal: hasDivider.
+     *
+     * It checks whether the divider colon should be displayed,
+     * i.e. if a system description, a measure or a valid row is given.
+     */
+    readonly hasDivider = computed<boolean>(() => {
+        const system = this.contentSystem();
+        return !!(system.systemDescription || system.measure || this.hasValidRow());
+    });
+
+    /**
+     * Readonly computed signal: isClickable.
+     *
+     * It checks whether the current system has a link target.
+     */
+    readonly isClickable = computed<boolean>(() => !!this.contentSystem().linkTo);
 }
