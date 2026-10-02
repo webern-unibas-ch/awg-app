@@ -50,8 +50,8 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        const expectedSourceDescriptionListData = structuredClone(mockEditionData.mockSourceDescListData);
-        expectedCorrections = expectedSourceDescriptionListData.sources[1].physDesc.corrections ?? [];
+        const expectedSourceDescListData = structuredClone(mockEditionData.mockSourceDescListData);
+        expectedCorrections = expectedSourceDescListData.sources[1].physDesc.corrections ?? [];
         expectedOpenAllCorrectionDetails = false;
 
         // Create component fixture
@@ -71,10 +71,10 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
             expect(() => component.corrections()).toThrow();
         });
 
-        it('... should have signal `openAllCorrectionDetails` to hold the default value', () => {
-            expectToBe(isSignal(component.openAllCorrectionDetails), true);
+        it('... should throw when accessing computed signal `correctionsState.allOpen` due to missing input', () => {
+            expectToBe(isSignal(component.correctionsState.allOpen), true);
 
-            expectToEqual(component.openAllCorrectionDetails(), expectedOpenAllCorrectionDetails);
+            expect(() => component.correctionsState.allOpen()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -122,10 +122,14 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
             expectToEqual(component.corrections(), expectedCorrections);
         });
 
-        it('... should have signal `openAllCorrectionDetails` to hold the default value', () => {
-            expectToBe(isSignal(component.openAllCorrectionDetails), true);
+        it('... should have computed signal `correctionsState.allOpen` to hold the default value', () => {
+            expectToEqual(component.correctionsState.allOpen(), expectedOpenAllCorrectionDetails);
+        });
 
-            expectToEqual(component.openAllCorrectionDetails(), expectedOpenAllCorrectionDetails);
+        it('... should have all corrections closed by default', () => {
+            expectedCorrections.forEach(correction => {
+                expectToBe(component.correctionsState.isOpen(correction.id), false);
+            });
         });
 
         describe('VIEW', () => {
@@ -137,7 +141,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllCorrectionDetails);
             });
 
-            it('... should update `openAllCorrectionDetails` when the ButtonExpandAllComponent model changes', async () => {
+            it('... should update `correctionsState` when the ButtonExpandAllComponent model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
@@ -145,13 +149,13 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.openAllCorrectionDetails(), true);
+                expectToEqual(component.correctionsState.allOpen(), true);
 
                 buttonCmp.isOpen.set(false);
 
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.openAllCorrectionDetails(), false);
+                expectToEqual(component.correctionsState.allOpen(), false);
             });
 
             describe('... details', () => {
@@ -182,35 +186,74 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     });
                 });
 
-                it('... should open or close all details when toggled', async () => {
-                    // Open all details
-                    component.openAllCorrectionDetails.set(true);
+                describe('... expand and collapse', () => {
+                    const toggleDetails = async (detailsDe: DebugElement, open: boolean): Promise<void> => {
+                        const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+                        detailsEl.open = open;
+                        detailsEl.dispatchEvent(new Event('toggle'));
+                        await detectChangesOnPush(fixture);
+                    };
 
-                    await detectChangesOnPush(fixture);
+                    const getButtonCmp = (): ButtonExpandAllComponent => {
+                        const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
+                        return buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                    };
 
-                    const detailsDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'details.awg-source-desc-correction-details',
-                        expectedCorrections.length,
-                        expectedCorrections.length
-                    );
-                    detailsDes.forEach(detailsDe => {
-                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                    const getDetailsDes = (): DebugElement[] =>
+                        getAndExpectDebugElementByCss(
+                            compDe,
+                            'details.awg-source-desc-correction-details',
+                            expectedCorrections.length,
+                            expectedCorrections.length
+                        );
+
+                    it('... should have all correction details closed by default', () => {
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                        });
                     });
 
-                    // Close all details
-                    component.openAllCorrectionDetails.set(false);
+                    it('... should open or close all details via the ButtonExpandAllComponent', async () => {
+                        // Open all details
+                        getButtonCmp().isOpen.set(true);
+                        await detectChangesOnPush(fixture);
 
-                    await detectChangesOnPush(fixture);
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                        });
 
-                    const detailsDesClosed = getAndExpectDebugElementByCss(
-                        compDe,
-                        'details.awg-source-desc-correction-details',
-                        expectedCorrections.length,
-                        expectedCorrections.length
-                    );
-                    detailsDesClosed.forEach(detailsDe => {
-                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                        // Close all details
+                        getButtonCmp().isOpen.set(false);
+                        await detectChangesOnPush(fixture);
+
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                        });
+                    });
+
+                    it('... should update the open state of a single correction when its details are toggled', async () => {
+                        await toggleDetails(getDetailsDes()[0], true);
+
+                        expectToBe(component.correctionsState.isOpen(expectedCorrections[0].id), true);
+                    });
+
+                    it('... should switch the button to open when all details are opened individually', async () => {
+                        for (const detailsDe of getDetailsDes()) {
+                            await toggleDetails(detailsDe, true);
+                        }
+
+                        expectToBe(component.correctionsState.allOpen(), true);
+                        expectToBe(getButtonCmp().isOpen(), true);
+                    });
+
+                    it('... should switch the button back to closed when one details element is closed again', async () => {
+                        component.correctionsState.setAll(true);
+                        await detectChangesOnPush(fixture);
+
+                        await toggleDetails(getDetailsDes()[0], false);
+
+                        expectToBe(component.correctionsState.allOpen(), false);
+                        expectToBe(getButtonCmp().isOpen(), false);
                     });
                 });
 

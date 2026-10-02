@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
+import { createExpandAllState } from '@awg-shared/button-expand-all/button-expand-all.utils';
 
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 
@@ -29,9 +30,15 @@ export class SourceDescContentsComponent {
     readonly contents = input.required<SourceDescContent[]>();
 
     /**
-     * Public signal: openAllContentDetails.
+     * Readonly variable: contentsState.
      *
-     * It holds the boolean value to set the open state of all details in the source description contents.
+     * It holds the open state of the content details (open by default).
+     *
+     * Only contents with an item or item description are rendered as details,
+     * so only their indexes are used as keys.
      */
-    openAllContentDetails = signal<boolean>(true);
+    readonly contentsState = createExpandAllState(
+        () => this.contents().flatMap((content, index) => (content.item || content.itemDescription ? [index] : [])),
+        true
+    );
 }
