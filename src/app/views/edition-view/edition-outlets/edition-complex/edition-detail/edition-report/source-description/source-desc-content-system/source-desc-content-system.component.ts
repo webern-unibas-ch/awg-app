@@ -48,7 +48,9 @@ export class SourceDescContentSystemComponent {
      */
     readonly hasValidRow = computed<boolean>(() => {
         const row = this.contentSystem().row;
-        if (!row) {return false;}
+        if (!row) {
+            return false;
+        }
         return Object.keys(row).length > 0;
     });
 }

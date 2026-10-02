@@ -25,7 +25,7 @@ import {
 } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { SourceDescContentFolioLabelComponent } from '../source-desc-content-folio-label/source-desc-content-folio-label.component';
+import { SourceDescContentFolioComponent } from '../source-desc-content-folio/source-desc-content-folio.component';
 import { SourceDescContentSystemComponent } from '../source-desc-content-system/source-desc-content-system.component';
 import { SourceDescContentGridComponent } from './source-desc-content-grid.component';
 
@@ -62,7 +62,7 @@ describe('SourceDescContentGridComponent', () => {
             imports: [
                 CompileHtmlDirective,
                 ConditionalLinkComponent,
-                SourceDescContentFolioLabelComponent,
+                SourceDescContentFolioComponent,
                 SourceDescContentSystemComponent,
                 SourceDescContentGridComponent,
             ],
@@ -246,7 +246,7 @@ describe('SourceDescContentGridComponent', () => {
             });
 
             describe('... folio label', () => {
-                it('... should contain one SourceDescContentFolioLabelComponent in each folio cell', () => {
+                it('... should contain one SourceDescContentFolioComponent in each folio cell', () => {
                     const folioDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-desc-content-grid-folio',
@@ -255,20 +255,20 @@ describe('SourceDescContentGridComponent', () => {
                     );
 
                     folioDes.forEach(folioDe => {
-                        getAndExpectDebugElementByDirective(folioDe, SourceDescContentFolioLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(folioDe, SourceDescContentFolioComponent, 1, 1);
                     });
                 });
 
                 it('... should pass down the correct folioLabel and isPage values', () => {
                     const labelDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        SourceDescContentFolioLabelComponent,
+                        SourceDescContentFolioComponent,
                         expectedFolios.length,
                         expectedFolios.length
                     );
 
                     labelDes.forEach((labelDe, index) => {
-                        const labelCmp = labelDe.injector.get(SourceDescContentFolioLabelComponent);
+                        const labelCmp = labelDe.injector.get(SourceDescContentFolioComponent);
                         const expectedFolio = expectedFolios[index];
 
                         expectToBe(labelCmp.folioLabel(), expectedFolio.folio);
@@ -286,7 +286,7 @@ describe('SourceDescContentGridComponent', () => {
 
                     folioDes.forEach(folioDe => {
                         const linkDes = getAndExpectDebugElementByCss(folioDe, 'awg-conditional-link', 1, 1);
-                        getAndExpectDebugElementByDirective(linkDes[0], SourceDescContentFolioLabelComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(linkDes[0], SourceDescContentFolioComponent, 1, 1);
                     });
                 });
 
@@ -318,7 +318,7 @@ describe('SourceDescContentGridComponent', () => {
                         expectedFolios.length
                     );
 
-                    getAndExpectDebugElementByDirective(folioDes[0], SourceDescContentFolioLabelComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(folioDes[0], SourceDescContentFolioComponent, 0, 0);
                 });
             });
 

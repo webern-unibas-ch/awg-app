@@ -9,13 +9,13 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
  * of the critical report of the edition view of the app.
  */
 @Component({
-    selector: 'awg-source-desc-content-folio-label',
-    templateUrl: './source-desc-content-folio-label.component.html',
-    styleUrl: './source-desc-content-folio-label.component.scss',
+    selector: 'awg-source-desc-content-folio',
+    templateUrl: './source-desc-content-folio.component.html',
+    styleUrl: './source-desc-content-folio.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AbbrDirective],
 })
-export class SourceDescContentFolioLabelComponent {
+export class SourceDescContentFolioComponent {
     /**
      * Readonly input signal: folioLabel.
      *

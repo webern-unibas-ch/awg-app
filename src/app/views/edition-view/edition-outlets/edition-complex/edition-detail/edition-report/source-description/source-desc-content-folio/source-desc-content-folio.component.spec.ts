@@ -7,11 +7,11 @@ import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helpe
 
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 
-import { SourceDescContentFolioLabelComponent } from './source-desc-content-folio-label.component';
+import { SourceDescContentFolioComponent } from './source-desc-content-folio.component';
 
-describe('SourceDescContentFolioLabelComponent (DONE)', () => {
-    let component: SourceDescContentFolioLabelComponent;
-    let fixture: ComponentFixture<SourceDescContentFolioLabelComponent>;
+describe('SourceDescContentFolioComponent (DONE)', () => {
+    let component: SourceDescContentFolioComponent;
+    let fixture: ComponentFixture<SourceDescContentFolioComponent>;
     let compDe: DebugElement;
 
     let expectedFolioLabel: string;
@@ -19,7 +19,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SourceDescContentFolioLabelComponent, AbbrDirective],
+            imports: [SourceDescContentFolioComponent, AbbrDirective],
         }).compileComponents();
     });
 
@@ -29,7 +29,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
         expectedIsPage = false;
 
         // Create component fixture
-        fixture = TestBed.createComponent(SourceDescContentFolioLabelComponent);
+        fixture = TestBed.createComponent(SourceDescContentFolioComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -71,23 +71,18 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one outer span', () => {
-                getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-item-folio', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-folio', 1, 1);
             });
 
             it('... should contain one span for the folio type in the outer span', () => {
-                const folioSpanDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-desc-content-item-folio',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-item-folio-type', 1, 1);
+                const folioSpanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-folio', 1, 1);
+                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-folio-type', 1, 1);
             });
 
             it('... should display no text for the folio type yet', () => {
                 const folioTypeDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-desc-content-item-folio-type',
+                    'span.awg-source-desc-content-folio-type',
                     1,
                     1
                 );
@@ -96,13 +91,8 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
             });
 
             it('... should contain no span for the folio number in the outer span yet', () => {
-                const folioSpanDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-desc-content-item-folio',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-item-folio-number', 0, 0);
+                const folioSpanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-folio', 1, 1);
+                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-folio-number', 0, 0);
             });
         });
     });
@@ -181,7 +171,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
             it('... should display the correct folio type in the folio type span', () => {
                 const folioTypeDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-desc-content-item-folio-type',
+                    'span.awg-source-desc-content-folio-type',
                     1,
                     1
                 );
@@ -191,19 +181,14 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
             });
 
             it('... should contain one span for the folio number in the outer span', () => {
-                const folioSpanDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-desc-content-item-folio',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-item-folio-number', 1, 1);
+                const folioSpanDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-folio', 1, 1);
+                getAndExpectDebugElementByCss(folioSpanDes[0], 'span.awg-source-desc-content-folio-number', 1, 1);
             });
 
             it('... should contain one superscript for the folio suffix in the folio number span', () => {
                 const folioNumberDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-desc-content-item-folio-number',
+                    'span.awg-source-desc-content-folio-number',
                     1,
                     1
                 );
@@ -216,7 +201,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
             it('... should display the expected text for the folio number', () => {
                 const folioNumberDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-desc-content-item-folio-number',
+                    'span.awg-source-desc-content-folio-number',
                     1,
                     1
                 );
@@ -235,7 +220,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
                 it('... should display the expected text for the folio number', () => {
                     const folioNumberDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-desc-content-item-folio-number',
+                        'span.awg-source-desc-content-folio-number',
                         1,
                         1
                     );
@@ -255,7 +240,7 @@ describe('SourceDescContentFolioLabelComponent (DONE)', () => {
                 it('... should display the correct folio type in the folio type span', () => {
                     const folioTypeDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'span.awg-source-desc-content-item-folio-type',
+                        'span.awg-source-desc-content-folio-type',
                         1,
                         1
                     );

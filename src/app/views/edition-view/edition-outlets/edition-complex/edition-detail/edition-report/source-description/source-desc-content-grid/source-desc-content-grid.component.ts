@@ -6,7 +6,7 @@ import { ConditionalLinkComponent } from '@awg-shared/conditional-link/condition
 import { SourceDescriptionContent } from '@awg-views/edition-view/models/source-description.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { SourceDescContentFolioLabelComponent } from '../source-desc-content-folio-label/source-desc-content-folio-label.component';
+import { SourceDescContentFolioComponent } from '../source-desc-content-folio/source-desc-content-folio.component';
 import { SourceDescContentSystemComponent } from '../source-desc-content-system/source-desc-content-system.component';
 
 /**
@@ -23,7 +23,7 @@ import { SourceDescContentSystemComponent } from '../source-desc-content-system/
     imports: [
         CompileHtmlDirective,
         ConditionalLinkComponent,
-        SourceDescContentFolioLabelComponent,
+        SourceDescContentFolioComponent,
         SourceDescContentSystemComponent,
     ],
 })

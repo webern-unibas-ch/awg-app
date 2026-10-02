@@ -11,7 +11,7 @@
                             (clicked)="
                                 selectSvgSheet({ complexId: parentComplexId, sheetId: folio.folioLinkTo ?? '' })
                             ">
-                            <awg-source-desc-content-folio-label [folioLabel]="folio.folio" [isPage]="!!folio.isPage" />
+                            <awg-source-desc-content-folio [folioLabel]="folio.folio" [isPage]="!!folio.isPage" />
                         </awg-conditional-link>
                     }
 
