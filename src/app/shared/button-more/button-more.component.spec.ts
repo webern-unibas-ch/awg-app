@@ -160,7 +160,8 @@ describe('ButtonMoreComponent', () => {
                 it('... should have the correct classes including `disabled`', () => {
                     const buttonEl = getButtonEl();
 
-                    expect(buttonEl.classList).toHaveLength(3);
+                    expect(buttonEl.classList).toHaveLength(4);
+                    expectToContain(buttonEl.classList, 'awg-btn-more');
                     expectToContain(buttonEl.classList, 'btn');
                     expectToContain(buttonEl.classList, 'btn-outline-dark');
                     expectToContain(buttonEl.classList, 'disabled');
