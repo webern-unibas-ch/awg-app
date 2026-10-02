@@ -9,19 +9,19 @@ import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka
 import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 /**
- * The SourceDescriptionCorrections component.
+ * The SourceDescCorrections component.
  *
  * It contains the source description corrections section
  * of the critical report of the edition view of the app.
  */
 @Component({
-    selector: 'awg-source-description-corrections',
-    templateUrl: './source-description-corrections.component.html',
-    styleUrls: ['./source-description-corrections.component.scss'],
+    selector: 'awg-source-desc-corrections',
+    templateUrl: './source-desc-corrections.component.html',
+    styleUrls: ['./source-desc-corrections.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ButtonExpandAllComponent, CompileHtmlDirective, EditionTkaEvaluationsComponent, EditionTkaTableComponent],
 })
-export class SourceDescriptionCorrectionsComponent {
+export class SourceDescCorrectionsComponent {
     /**
      * Readonly input signal: corrections.
      *

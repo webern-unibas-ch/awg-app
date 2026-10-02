@@ -32,8 +32,8 @@ class SourceDescriptionContentsStubComponent {
     @Input()
     contents: SourceDescriptionContent[] = [];
 }
-@Component({ selector: 'awg-source-description-corrections', template: '', standalone: false })
-class SourceDescriptionCorrectionsStubComponent {
+@Component({ selector: 'awg-source-desc-corrections', template: '', standalone: false })
+class SourceDescCorrectionsStubComponent {
     @Input()
     corrections: Textcritics[] = [];
 }
@@ -69,7 +69,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             declarations: [
                 SourceDescriptionComponent,
                 SourceDescriptionContentsStubComponent,
-                SourceDescriptionCorrectionsStubComponent,
+                SourceDescCorrectionsStubComponent,
                 SourceDescriptionDetailsStubComponent,
                 SourceDescriptionWritingMaterialsStubComponent,
                 RouterLinkStubDirective,
@@ -709,7 +709,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     describe('... the corrections', () => {
-                        it('... should contain SourceDescriptionCorrectionsComponent if corrections array is not empty', () => {
+                        it('... should contain SourceDescCorrectionsComponent if corrections array is not empty', () => {
                             const physDescDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-source-description-phys-desc',
@@ -720,13 +720,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             // First physDesc has corrections
                             getAndExpectDebugElementByDirective(
                                 physDescDes[0],
-                                SourceDescriptionCorrectionsStubComponent,
+                                SourceDescCorrectionsStubComponent,
                                 1,
                                 1
                             );
                         });
 
-                        it('... should contain no SourceDescriptionCorrectionsComponent if corrections array is empty or undefined', () => {
+                        it('... should contain no SourceDescCorrectionsComponent if corrections array is empty or undefined', () => {
                             const physDescDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div.awg-source-description-phys-desc',
@@ -737,13 +737,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             // Second physDesc has no corrections
                             getAndExpectDebugElementByDirective(
                                 physDescDes[1],
-                                SourceDescriptionCorrectionsStubComponent,
+                                SourceDescCorrectionsStubComponent,
                                 0,
                                 0
                             );
                         });
 
-                        it('... should pass down corrections data to SourceDescriptionCorrectionsComponent', () => {
+                        it('... should pass down corrections data to SourceDescCorrectionsComponent', () => {
                             const expectedCorrections =
                                 expectedSourceDescriptionListData.sources[1].physDesc.corrections;
 
@@ -756,13 +756,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             // First physDesc has corrections
                             const correctionsDes = getAndExpectDebugElementByDirective(
                                 physDescDes[0],
-                                SourceDescriptionCorrectionsStubComponent,
+                                SourceDescCorrectionsStubComponent,
                                 1,
                                 1
                             );
-                            const correctionsCmp = correctionsDes[0].injector.get(
-                                SourceDescriptionCorrectionsStubComponent
-                            );
+                            const correctionsCmp = correctionsDes[0].injector.get(SourceDescCorrectionsStubComponent);
 
                             expectToEqual(correctionsCmp.corrections, expectedCorrections);
                         });

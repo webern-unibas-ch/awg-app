@@ -3,9 +3,9 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 
 /**
- * The SourceDescContentFolioLabel component.
+ * The SourceDescContentFolio component.
  *
- * It contains the source description content folio label
+ * It contains the source description content folio
  * of the critical report of the edition view of the app.
  */
 @Component({

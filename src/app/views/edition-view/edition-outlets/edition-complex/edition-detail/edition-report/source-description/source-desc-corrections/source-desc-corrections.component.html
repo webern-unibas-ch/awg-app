@@ -1,6 +1,5 @@
-<div class="awg-source-description-corrections">
-    @let openAll = openAllCorrectionDetails();
-    <p class="awg-source-description-corrections-label no-para-margin">
+<div class="awg-source-desc-corrections">
+    <p class="awg-source-desc-corrections-label no-para-margin">
         <span class="smallcaps">Korrekturen:</span>
         <awg-button-expand-all [(isOpen)]="openAllCorrectionDetails" />
     </p>
@@ -8,7 +7,7 @@
         <details
             class="awg-source-description-correction-details half-para-margin"
             [id]="correction.id"
-            [open]="openAll">
+            [open]="openAllCorrectionDetails()">
             <summary
                 class="awg-source-description-correction-summary no-para-margin"
                 [awgCompileHtml]="correction.label + ':'"></summary>

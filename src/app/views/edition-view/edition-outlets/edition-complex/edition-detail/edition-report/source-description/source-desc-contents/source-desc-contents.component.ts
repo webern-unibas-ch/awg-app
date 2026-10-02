@@ -8,7 +8,7 @@ import { SourceDescContentGridComponent } from './grid/source-desc-content-grid.
 import { SourceDescContentItemComponent } from './item/source-desc-content-item.component';
 
 /**
- * The SourceDescriptionContents component.
+ * The SourceDescContents component.
  *
  * It contains the source description contents section
  * of the critical report of the edition view of the app.

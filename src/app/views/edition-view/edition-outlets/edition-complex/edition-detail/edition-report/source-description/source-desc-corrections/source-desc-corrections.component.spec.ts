@@ -21,11 +21,11 @@ import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
 import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
-import { SourceDescriptionCorrectionsComponent } from './source-description-corrections.component';
+import { SourceDescCorrectionsComponent } from './source-desc-corrections.component';
 
-describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
-    let component: SourceDescriptionCorrectionsComponent;
-    let fixture: ComponentFixture<SourceDescriptionCorrectionsComponent>;
+describe('SourceDescCorrectionsComponent (DONE)', () => {
+    let component: SourceDescCorrectionsComponent;
+    let fixture: ComponentFixture<SourceDescCorrectionsComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -40,7 +40,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
                 CompileHtmlDirective,
                 EditionTkaEvaluationsComponent,
                 EditionTkaTableComponent,
-                SourceDescriptionCorrectionsComponent,
+                SourceDescCorrectionsComponent,
             ],
         }).compileComponents();
     });
@@ -55,7 +55,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         expectedOpenAllCorrectionDetails = false;
 
         // Create component fixture
-        fixture = TestBed.createComponent(SourceDescriptionCorrectionsComponent);
+        fixture = TestBed.createComponent(SourceDescCorrectionsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -78,14 +78,14 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.awg-source-description-corrections', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
+            it('... should contain one div.awg-source-desc-corrections', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-corrections', 1, 1);
             });
 
             it('... should contain one paragraph (no-para-margin) in div displaying the corrections label in smallcaps', () => {
                 const expectedLabel = 'Korrekturen:';
 
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
                 expectToContain(pEl.classList, 'no-para-margin');
@@ -97,12 +97,12 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
             });
 
             it('... should contain one ButtonExpandAllComponent in the label paragraph', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
             });
 
             it('... should contain no corrections details (yet)', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-corrections', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-corrections', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'details.awg-source-description-correction-details', 0, 0);
             });
@@ -130,7 +130,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down the correct isOpen state to the ButtonExpandAllComponent', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-corrections-label', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
@@ -156,12 +156,7 @@ describe('SourceDescriptionCorrectionsComponent (DONE)', () => {
 
             describe('... details', () => {
                 it('... should contain as many correction details as items in `corrections` data', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-source-description-corrections',
-                        1,
-                        1
-                    );
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-corrections', 1, 1);
 
                     getAndExpectDebugElementByCss(
                         divDes[0],
