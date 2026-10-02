@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
+import { createExpandAllState } from '@awg-shared/button-expand-all/button-expand-all.utils';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
@@ -30,9 +31,9 @@ export class SourceDescCorrectionsComponent {
     readonly corrections = input.required<Textcritics[]>();
 
     /**
-     * Public signal: openAllCorrectionDetails.
+     * Readonly variable: correctionsState.
      *
-     * It holds the boolean value to set the open state of all details in the source description corrections.
+     * It holds the open state of the correction details (closed by default).
      */
-    openAllCorrectionDetails = signal<boolean>(false);
+    readonly correctionsState = createExpandAllState(() => this.corrections().map(correction => correction.id), false);
 }

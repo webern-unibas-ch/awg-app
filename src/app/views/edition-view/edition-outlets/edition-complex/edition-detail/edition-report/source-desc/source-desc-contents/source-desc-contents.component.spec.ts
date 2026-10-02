@@ -77,10 +77,10 @@ describe('SourceDescContentsComponent', () => {
             expect(() => component.contents()).toThrow();
         });
 
-        it('... should have signal `openAllContentDetails` to hold the default value', () => {
-            expectToBe(isSignal(component.openAllContentDetails), true);
+        it('... should throw when accessing computed signal `contentsState.allOpen` due to missing input', () => {
+            expectToBe(isSignal(component.contentsState.allOpen), true);
 
-            expectToEqual(component.openAllContentDetails(), expectedOpenAllContentDetails);
+            expect(() => component.contentsState.allOpen()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -130,8 +130,8 @@ describe('SourceDescContentsComponent', () => {
             expectToEqual(component.contents(), expectedContents);
         });
 
-        it('... should have signal `openAllContentDetails` to hold the default value', () => {
-            expectToEqual(component.openAllContentDetails(), expectedOpenAllContentDetails);
+        it('... should have computed signal `contentsState.allOpen` to hold the default value', () => {
+            expectToEqual(component.contentsState.allOpen(), expectedOpenAllContentDetails);
         });
 
         describe('VIEW', () => {
@@ -143,7 +143,7 @@ describe('SourceDescContentsComponent', () => {
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllContentDetails);
             });
 
-            it('... should update `openAllContentDetails` when the ButtonExpandAllComponent model changes', async () => {
+            it('... should update `contentsState` when the ButtonExpandAllComponent model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
@@ -151,13 +151,13 @@ describe('SourceDescContentsComponent', () => {
 
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.openAllContentDetails(), true);
+                expectToEqual(component.contentsState.allOpen(), true);
 
                 buttonCmp.isOpen.set(false);
 
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.openAllContentDetails(), false);
+                expectToEqual(component.contentsState.allOpen(), false);
             });
 
             describe('... the content details', () => {
@@ -204,35 +204,77 @@ describe('SourceDescContentsComponent', () => {
                     });
                 });
 
-                it('... should open or close all details when toggled', async () => {
-                    // Close all details
-                    component.openAllContentDetails.set(false);
+                describe('... expand and collapse', () => {
+                    const toggleDetails = async (detailsDe: DebugElement, open: boolean): Promise<void> => {
+                        const detailsEl: HTMLDetailsElement = detailsDe.nativeElement;
+                        detailsEl.open = open;
+                        detailsEl.dispatchEvent(new Event('toggle'));
+                        await detectChangesOnPush(fixture);
+                    };
 
-                    await detectChangesOnPush(fixture);
+                    const getButtonCmp = (): ButtonExpandAllComponent => {
+                        const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
+                        return buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
+                    };
 
-                    const detailsDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'details.awg-source-desc-content-details',
-                        expectedContentsWithItemsLength,
-                        expectedContentsWithItemsLength
-                    );
-                    detailsDes.forEach(detailsDe => {
-                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                    const getDetailsDes = (): DebugElement[] =>
+                        getAndExpectDebugElementByCss(
+                            compDe,
+                            'details.awg-source-desc-content-details',
+                            expectedContentsWithItemsLength,
+                            expectedContentsWithItemsLength
+                        );
+
+                    it('... should have all content details open by default', () => {
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                        });
                     });
 
-                    // Open all details
-                    component.openAllContentDetails.set(true);
+                    it('... should open or close all details via the ButtonExpandAllComponent', async () => {
+                        // Close all details
+                        getButtonCmp().isOpen.set(false);
+                        await detectChangesOnPush(fixture);
 
-                    await detectChangesOnPush(fixture);
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), false);
+                        });
 
-                    const detailsDesClosed = getAndExpectDebugElementByCss(
-                        compDe,
-                        'details.awg-source-desc-content-details',
-                        expectedContentsWithItemsLength,
-                        expectedContentsWithItemsLength
-                    );
-                    detailsDesClosed.forEach(detailsDe => {
-                        expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                        // Open all details
+                        getButtonCmp().isOpen.set(true);
+                        await detectChangesOnPush(fixture);
+
+                        getDetailsDes().forEach(detailsDe => {
+                            expectToBe(detailsDe.nativeElement.hasAttribute('open'), true);
+                        });
+                    });
+
+                    it('... should switch the button to closed when one details element is closed individually', async () => {
+                        await toggleDetails(getDetailsDes()[0], false);
+
+                        expectToBe(component.contentsState.isOpen(0), false);
+                        expectToBe(component.contentsState.allOpen(), false);
+                        expectToBe(getButtonCmp().isOpen(), false);
+                    });
+
+                    it('... should switch the button back to open when the closed details element is opened again', async () => {
+                        await toggleDetails(getDetailsDes()[0], false);
+                        await toggleDetails(getDetailsDes()[0], true);
+
+                        expectToBe(component.contentsState.allOpen(), true);
+                        expectToBe(getButtonCmp().isOpen(), true);
+                    });
+
+                    it('... should switch the button to open when all details are opened individually after closing all', async () => {
+                        component.contentsState.setAll(false);
+                        await detectChangesOnPush(fixture);
+
+                        for (const detailsDe of getDetailsDes()) {
+                            await toggleDetails(detailsDe, true);
+                        }
+
+                        expectToBe(component.contentsState.allOpen(), true);
+                        expectToBe(getButtonCmp().isOpen(), true);
                     });
                 });
 
@@ -280,7 +322,7 @@ describe('SourceDescContentsComponent', () => {
                 });
             });
 
-            describe('... the content tables', () => {
+            describe('... the content grids', () => {
                 let expectedContentsWithFolios: SourceDescContent[];
                 let expectedContentsWithFoliosLength: number;
 
@@ -314,17 +356,17 @@ describe('SourceDescContentsComponent', () => {
                 });
 
                 it('... should pass the content with folios to SourceDescContentGridComponent', () => {
-                    const tableDes = getAndExpectDebugElementByDirective(
+                    const gridDes = getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescContentGridComponent,
                         expectedContentsWithFoliosLength,
                         expectedContentsWithFoliosLength
                     );
 
-                    tableDes.forEach((tableDe, index) => {
-                        const tableComponent: SourceDescContentGridComponent = tableDe.componentInstance;
+                    gridDes.forEach((gridDe, index) => {
+                        const gridCmp: SourceDescContentGridComponent = gridDe.componentInstance;
 
-                        expectToEqual(tableComponent.content(), expectedContentsWithFolios[index]);
+                        expectToEqual(gridCmp.content(), expectedContentsWithFolios[index]);
                     });
                 });
             });

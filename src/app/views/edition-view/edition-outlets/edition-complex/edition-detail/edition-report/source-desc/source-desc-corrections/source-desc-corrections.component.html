@@ -1,13 +1,15 @@
 <div class="awg-source-desc-corrections">
     <p class="awg-source-desc-corrections-label no-para-margin">
         <span class="smallcaps">Korrekturen:</span>
-        <awg-button-expand-all [(isOpen)]="openAllCorrectionDetails" />
+        <awg-button-expand-all [isOpen]="correctionsState.allOpen()" (isOpenChange)="correctionsState.setAll($event)" />
     </p>
     @for (correction of corrections(); track correction.id) {
         <details
+            #correctionDetails
             class="awg-source-desc-correction-details half-para-margin"
             [id]="correction.id"
-            [open]="openAllCorrectionDetails()">
+            [open]="correctionsState.isOpen(correction.id)"
+            (toggle)="correctionsState.setOpen(correction.id, correctionDetails.open)">
             <summary
                 class="awg-source-desc-correction-summary no-para-margin"
                 [awgCompileHtml]="correction.label + ':'"></summary>

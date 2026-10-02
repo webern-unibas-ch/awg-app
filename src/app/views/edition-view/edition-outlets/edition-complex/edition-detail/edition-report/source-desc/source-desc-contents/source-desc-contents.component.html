@@ -1,7 +1,7 @@
 <div class="awg-source-desc-contents">
     <p class="awg-source-desc-contents-label no-para-margin">
         <span class="smallcaps">Inhalt:</span>
-        <awg-button-expand-all [(isOpen)]="openAllContentDetails" />
+        <awg-button-expand-all [isOpen]="contentsState.allOpen()" (isOpenChange)="contentsState.setAll($event)" />
     </p>
 
     @for (content of contents(); track $index) {
@@ -10,9 +10,11 @@
 
         @if (hasItemOrDesc) {
             <details
+                #contentDetails
                 class="awg-source-desc-content-details half-para-margin"
                 [id]="$index"
-                [open]="openAllContentDetails()">
+                [open]="contentsState.isOpen($index)"
+                (toggle)="contentsState.setOpen($index, contentDetails.open)">
                 <!-- content.itemDescription -->
                 <summary class="awg-source-desc-content-item-summary no-para-margin">
                     <awg-source-desc-content-item [content]="content" />
