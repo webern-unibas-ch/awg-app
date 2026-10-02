@@ -37,7 +37,7 @@
                             <!-- conditions -->
                             @let conditions = physDesc.conditions || [];
                             @if (conditions.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="conditions"
                                     detailsLabel=""
                                     detailsClass="conditions" />
@@ -48,7 +48,7 @@
                             @if (writingMaterials.length) {
                                 <awg-source-description-writing-materials [writingMaterials]="writingMaterials" />
                             } @else if (writingMaterialStrings.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="writingMaterialStrings"
                                     detailsLabel="Beschreibstoff"
                                     detailsClass="writing-materials" />
@@ -64,7 +64,7 @@
                             <!-- titles -->
                             @let titles = physDesc.titles || [];
                             @if (titles.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="titles"
                                     detailsLabel="Titel"
                                     detailsClass="titles" />
@@ -72,7 +72,7 @@
                             <!-- dates -->
                             @let dates = physDesc.dates || [];
                             @if (dates.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="dates"
                                     detailsLabel="Datierung"
                                     detailsClass="dates" />
@@ -80,7 +80,7 @@
                             <!-- pagination -->
                             @let paginations = physDesc.paginations || [];
                             @if (paginations.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="paginations"
                                     detailsLabel="Paginierung"
                                     detailsClass="paginations" />
@@ -88,7 +88,7 @@
                             <!-- measureNumbers -->
                             @let measureNumbers = physDesc.measureNumbers || [];
                             @if (measureNumbers.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="measureNumbers"
                                     detailsLabel="Taktzahlen"
                                     detailsClass="measure-numbers" />
@@ -96,7 +96,7 @@
                             <!-- instrumentations -->
                             @let instrumentations = physDesc.instrumentations || [];
                             @if (instrumentations.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="instrumentations"
                                     detailsLabel="Instrumentenvorsatz"
                                     detailsClass="instrumentations" />
@@ -104,7 +104,7 @@
                             <!-- annotations -->
                             @let annotations = physDesc.annotations || [];
                             @if (annotations.length) {
-                                <awg-source-description-details
+                                <awg-source-desc-details
                                     [details]="annotations"
                                     detailsLabel="Eintragungen"
                                     detailsClass="annotations" />

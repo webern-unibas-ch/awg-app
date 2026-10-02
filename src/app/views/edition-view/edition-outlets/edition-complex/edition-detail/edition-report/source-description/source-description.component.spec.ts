@@ -38,8 +38,8 @@ class SourceDescCorrectionsStubComponent {
     corrections: Textcritics[] = [];
 }
 
-@Component({ selector: 'awg-source-description-details', template: '', standalone: false })
-class SourceDescriptionDetailsStubComponent {
+@Component({ selector: 'awg-source-desc-details', template: '', standalone: false })
+class SourceDescDetailsStubComponent {
     @Input()
     details: string[] | undefined;
     @Input()
@@ -70,7 +70,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 SourceDescriptionComponent,
                 SourceDescriptionContentsStubComponent,
                 SourceDescCorrectionsStubComponent,
-                SourceDescriptionDetailsStubComponent,
+                SourceDescDetailsStubComponent,
                 SourceDescriptionWritingMaterialsStubComponent,
                 RouterLinkStubDirective,
             ],
@@ -345,12 +345,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             2
                         );
 
-                        getAndExpectDebugElementByDirective(
-                            physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
-                            8,
-                            8
-                        );
+                        getAndExpectDebugElementByDirective(physDescDes[0], SourceDescDetailsStubComponent, 8, 8);
                     });
 
                     it('... should pass down the conditions to the first details component', () => {
@@ -363,13 +358,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[0].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(
                             detailCmp.details,
@@ -390,13 +385,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                             const detailDes = getAndExpectDebugElementByDirective(
                                 physDescDes[0],
-                                SourceDescriptionDetailsStubComponent,
+                                SourceDescDetailsStubComponent,
                                 8,
                                 8
                             );
                             const detailCmp = detailDes[1].injector.get(
-                                SourceDescriptionDetailsStubComponent
-                            ) as SourceDescriptionDetailsStubComponent;
+                                SourceDescDetailsStubComponent
+                            ) as SourceDescDetailsStubComponent;
 
                             expectToEqual(
                                 detailCmp.details,
@@ -511,13 +506,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[2].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.titles);
                         expectToBe(detailCmp.detailsLabel, 'Titel');
@@ -534,13 +529,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[3].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[1].physDesc.dates);
                         expectToBe(detailCmp.detailsLabel, 'Datierung');
@@ -557,13 +552,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[4].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(
                             detailCmp.details,
@@ -583,13 +578,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[5].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(
                             detailCmp.details,
@@ -609,13 +604,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[6].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(
                             detailCmp.details,
@@ -635,13 +630,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                         const detailDes = getAndExpectDebugElementByDirective(
                             physDescDes[0],
-                            SourceDescriptionDetailsStubComponent,
+                            SourceDescDetailsStubComponent,
                             8,
                             8
                         );
                         const detailCmp = detailDes[7].injector.get(
-                            SourceDescriptionDetailsStubComponent
-                        ) as SourceDescriptionDetailsStubComponent;
+                            SourceDescDetailsStubComponent
+                        ) as SourceDescDetailsStubComponent;
 
                         expectToEqual(
                             detailCmp.details,
@@ -870,7 +865,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(physDescDes[1], SourceDescriptionDetailsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(physDescDes[1], SourceDescDetailsStubComponent, 1, 1);
                 });
 
                 it('... should pass down the conditions to the details component', () => {
@@ -883,13 +878,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     const detailDes = getAndExpectDebugElementByDirective(
                         physDescDes[1],
-                        SourceDescriptionDetailsStubComponent,
+                        SourceDescDetailsStubComponent,
                         1,
                         1
                     );
                     const detailCmp = detailDes[0].injector.get(
-                        SourceDescriptionDetailsStubComponent
-                    ) as SourceDescriptionDetailsStubComponent;
+                        SourceDescDetailsStubComponent
+                    ) as SourceDescDetailsStubComponent;
 
                     expectToEqual(detailCmp.details, expectedSourceDescriptionListData.sources[2].physDesc.conditions);
                     expectToBe(detailCmp.detailsLabel, '');

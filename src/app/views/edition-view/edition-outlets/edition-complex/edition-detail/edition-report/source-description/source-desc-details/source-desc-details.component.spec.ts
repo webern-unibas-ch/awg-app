@@ -1,4 +1,4 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
@@ -13,11 +13,11 @@ import {
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
-import { SourceDescriptionDetailsComponent } from './source-description-details.component';
+import { SourceDescDetailsComponent } from './source-desc-details.component';
 
-describe('SourceDescriptionDetailsComponent (DONE)', () => {
-    let component: SourceDescriptionDetailsComponent;
-    let fixture: ComponentFixture<SourceDescriptionDetailsComponent>;
+describe('SourceDescDetailsComponent (DONE)', () => {
+    let component: SourceDescDetailsComponent;
+    let fixture: ComponentFixture<SourceDescDetailsComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -28,8 +28,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective],
-            declarations: [SourceDescriptionDetailsComponent],
+            imports: [CompileHtmlDirective, SourceDescDetailsComponent],
         }).compileComponents();
     });
 
@@ -43,7 +42,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
         expectedDetailsLabel = 'testDetailsLabel';
 
         // Create component fixture
-        fixture = TestBed.createComponent(SourceDescriptionDetailsComponent);
+        fixture = TestBed.createComponent(SourceDescDetailsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -53,16 +52,28 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `details`', () => {
-            expect(component.details).toBeUndefined();
+        it('... should throw due to missing required input signal `details`', () => {
+            expectToBe(isSignal(component.details), true);
+
+            expect(() => component.details()).toThrow();
         });
 
-        it('... should not have `detailsClass`', () => {
-            expect(component.detailsClass).toBeUndefined();
+        it('... should throw due to missing required input signal `detailsClass`', () => {
+            expectToBe(isSignal(component.detailsClass), true);
+
+            expect(() => component.detailsClass()).toThrow();
         });
 
-        it('... should not have `detailsLabel`', () => {
-            expect(component.detailsLabel).toBeUndefined();
+        it('... should have input signal `detailsLabel` to hold the default value', () => {
+            expectToBe(isSignal(component.detailsLabel), true);
+
+            expectToBe(component.detailsLabel(), '');
+        });
+
+        it('... should throw when accessing computed signal `hasPunctuation` due to missing input', () => {
+            expectToBe(isSignal(component.hasPunctuation), true);
+
+            expect(() => component.hasPunctuation()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -75,24 +86,35 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
-            component.details = expectedDetails;
-            component.detailsClass = expectedDetailsClass;
-            component.detailsLabel = expectedDetailsLabel;
+            fixture.componentRef.setInput('details', expectedDetails);
+            fixture.componentRef.setInput('detailsClass', expectedDetailsClass);
+            fixture.componentRef.setInput('detailsLabel', expectedDetailsLabel);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
         });
 
-        it('... should have `details`', () => {
-            expectToEqual(component.details, expectedDetails);
+        it('... should have input signal `details` to hold the provided details', () => {
+            expectToEqual(component.details(), expectedDetails);
         });
 
-        it('... should have `detailsClass`', () => {
-            expectToEqual(component.detailsClass, expectedDetailsClass);
+        it('... should have input signal `detailsClass` to hold the provided class', () => {
+            expectToBe(component.detailsClass(), expectedDetailsClass);
         });
 
-        it('... should have `detailsLabel`', () => {
-            expectToEqual(component.detailsLabel, expectedDetailsLabel);
+        it('... should have input signal `detailsLabel` to hold the provided label', () => {
+            expectToBe(component.detailsLabel(), expectedDetailsLabel);
+        });
+
+        describe('... should have computed signal `hasPunctuation` to hold', () => {
+            it.each([
+                { desc: 'true for any other detailsClass', detailsClass: 'test-details-class', expected: true },
+                { desc: 'false if detailsClass equals `conditions`', detailsClass: 'conditions', expected: false },
+            ])('... $desc', ({ detailsClass, expected }) => {
+                fixture.componentRef.setInput('detailsClass', detailsClass);
+
+                expectToBe(component.hasPunctuation(), expected);
+            });
         });
 
         describe('VIEW', () => {
@@ -101,7 +123,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain no outer paragraph if no details are given', async () => {
-                component.details = [];
+                fixture.componentRef.setInput('details', []);
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'p', 0, 0);
@@ -115,7 +137,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain no span with the detailsLabel if not given', async () => {
-                component.detailsLabel = '';
+                fixture.componentRef.setInput('detailsLabel', '');
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'span.smallcaps', 0, 0);
@@ -133,16 +155,11 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain a details content span', () => {
-                getAndExpectDebugElementByCss(compDe, 'span.awg-source-description-details-content', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-details-content', 1, 1);
             });
 
             it('... should have one CompileHtmlDirective in the details content span', () => {
-                const contentDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-description-details-content',
-                    1,
-                    1
-                );
+                const contentDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-details-content', 1, 1);
 
                 getAndExpectDebugElementByDirective(
                     contentDes[0],
@@ -153,12 +170,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should pass down the details to the CompileHtmlDirective in the first spans', () => {
-                const contentDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-description-details-content',
-                    1,
-                    1
-                );
+                const contentDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-details-content', 1, 1);
 
                 const directiveDes = getAndExpectDebugElementByDirective(
                     contentDes[0],
@@ -178,7 +190,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-description-details-content > span',
+                    'span.awg-source-desc-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -188,7 +200,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-description-details-content > span',
+                    'span.awg-source-desc-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -206,7 +218,7 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
                 const expectedLength = expectedDetails.length * 2;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-description-details-content > span',
+                    'span.awg-source-desc-details-content > span',
                     expectedLength,
                     expectedLength
                 );
@@ -223,13 +235,13 @@ describe('SourceDescriptionDetailsComponent (DONE)', () => {
             });
 
             it('... should contain no punctuation marks if detailsClass equals `conditions`', async () => {
-                component.detailsClass = 'conditions';
+                fixture.componentRef.setInput('detailsClass', 'conditions');
                 await detectChangesOnPush(fixture);
 
                 const expectedLength = expectedDetails.length;
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'span.awg-source-description-details-content > span',
+                    'span.awg-source-desc-details-content > span',
                     expectedLength,
                     expectedLength
                 );
