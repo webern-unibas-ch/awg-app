@@ -1,13 +1,6 @@
 @if (svgSheetsData(); as sheetsData) {
     <div class="card awg-edition-sheet-facet">
-        <button
-            type="button"
-            class="btn btn-sm border rounded m-2"
-            [title]="toggleLabel()"
-            [attr.aria-label]="toggleLabel()"
-            (click)="toggleSheetFacet()">
-            <fa-icon [icon]="toggleIcon()" />
-        </button>
+        <awg-edition-sheet-facet-toggle [(isMinimized)]="isMinimized" />
         @if (!isMinimized()) {
             <div class="card-body">
                 @for (key of EDITION_TYPE_KEYS; track key; let isLast = $last) {

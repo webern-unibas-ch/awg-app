@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
@@ -51,10 +51,24 @@ export class EditionSheetFacetGroupComponent {
     readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
 
     /**
+     * Readonly computed signal: selectedSheetIds.
+     *
+     * It computes the id and the (optional) partial of the selected svg sheet.
+     * The content of a selected svg sheet with partials is reduced
+     * to the selected partial by the EditionSheetsService.
+     */
+    readonly selectedSheetIds = computed(() => {
+        const selectedSvgSheet = this.selectedSvgSheet();
+
+        return { id: selectedSvgSheet?.id, partial: selectedSvgSheet?.content?.[0]?.partial };
+    });
+
+    /**
      * Public method: isSelectedSvgSheet.
      *
-     * It compares a given id (optionally with a partial) with the id
-     * of the latest selected svg sheet.
+     * It compares a given id (optionally with a partial)
+     * with the id (and partial) of the selected svg sheet.
+     * The partials are only compared if both sides have one.
      *
      * @param {string} id The given sheet id.
      * @param {string} [partial] The optional given partial id.
@@ -62,18 +76,13 @@ export class EditionSheetFacetGroupComponent {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string, partial?: string): boolean {
-        const selectedSvgSheet = this.selectedSvgSheet();
+        const selected = this.selectedSheetIds();
 
-        let givenId = id;
-        let selectedId = selectedSvgSheet?.id;
-
-        // Compare partial id if needed
-        if (partial && selectedSvgSheet?.content?.[0]?.partial) {
-            givenId += partial;
-            selectedId += selectedSvgSheet.content[0].partial;
+        if (id !== selected.id) {
+            return false;
         }
 
-        return givenId === selectedId;
+        return !partial || !selected.partial || partial === selected.partial;
     }
 
     /**

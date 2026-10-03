@@ -133,6 +133,12 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expect(() => component.selectedSvgSheet()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `selectedSheetIds` due to missing input', () => {
+            expectToBe(isSignal(component.selectedSheetIds), true);
+
+            expect(() => component.selectedSheetIds()).toThrow();
+        });
+
         describe('VIEW', () => {
             it('... should contain one h6.card-title without facetGroupLabel (yet)', () => {
                 const hEl: HTMLHeadingElement = getTitleDes()[0].nativeElement;
@@ -164,6 +170,30 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
 
         it('... should have input signal `svgSheets` to hold the provided svg sheets', () => {
             expectToEqual(component.svgSheets(), expectedSvgSheets);
+        });
+
+        it('... should have computed signal `selectedSheetIds` to hold the expected ids', () => {
+            expectToEqual(component.selectedSheetIds(), {
+                id: expectedSvgSheet.id,
+                partial: expectedSvgSheet.content[0].partial,
+            });
+        });
+
+        it('... should have recomputed signal `selectedSheetIds` when input changes', async () => {
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartialA);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.selectedSheetIds(), {
+                id: expectedSvgSheetWithPartialA.id,
+                partial: expectedSvgSheetWithPartialA.content[0].partial,
+            });
+        });
+
+        it('... should have computed signal `selectedSheetIds` to hold undefined ids if no svg sheet is selected', async () => {
+            fixture.componentRef.setInput('selectedSvgSheet', undefined);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.selectedSheetIds(), { id: undefined, partial: undefined });
         });
 
         it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
@@ -382,6 +412,20 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     it('... should be true if given id equals id of selected svg sheet', () => {
                         expectToBe(component.isSelectedSvgSheet(expectedSvgSheet.id), true);
                     });
+
+                    it('... should be true if given id equals id of selected svg sheet with partial', async () => {
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartialA);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id), true);
+                    });
+
+                    it('... should be false if no svg sheet is selected', async () => {
+                        fixture.componentRef.setInput('selectedSvgSheet', undefined);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheet.id), false);
+                    });
                 });
 
                 describe('... with partial', () => {
@@ -396,6 +440,17 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
 
                     it('... should be true if given id with partial equals id with partial of selected svg sheet', () => {
                         expectToBe(component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a'), true);
+                    });
+
+                    it('... should be false if given partial matches but id differs', () => {
+                        expectToBe(component.isSelectedSvgSheet(expectedNextSvgSheet.id, 'a'), false);
+                    });
+
+                    it('... should be true if given id equals id of selected svg sheet without partial', async () => {
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheet.id, 'a'), true);
                     });
                 });
             });

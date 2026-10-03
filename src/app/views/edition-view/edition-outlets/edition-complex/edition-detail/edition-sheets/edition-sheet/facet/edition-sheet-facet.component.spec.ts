@@ -1,13 +1,8 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
-
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -22,6 +17,7 @@ import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/m
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
+import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-toggle.component';
 import { EditionSheetFacetComponent } from './edition-sheet-facet.component';
 
 describe('EditionSheetFacetComponent (DONE)', () => {
@@ -36,16 +32,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
     let expectedSvgSheetWithPartials: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
-    let toggleSheetFacetSpy: Spy;
-    let toggleSheetFacetRequestEmitSpy: Spy;
-
-    const getFacetCardDes = () => getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-sheet-facet', 1, 1);
-    const getToggleButtonDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'button.btn', 1, 1);
-    const getCardBodyDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 1, 1);
-    const getFacetGroupCmps = () =>
-        getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetGroupComponent, 3, 3).map(
-            de => de.injector.get(EditionSheetFacetGroupComponent) as EditionSheetFacetGroupComponent
-        );
+    let isMinimizedChangeSpy: Mock<(value: boolean) => void>;
 
     beforeEach(async () => {
         // Mock services
@@ -54,7 +41,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [EditionSheetFacetComponent, FontAwesomeTestingModule],
+            imports: [EditionSheetFacetComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
@@ -78,8 +65,8 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Spies
-        toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
-        toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
+        isMinimizedChangeSpy = vi.fn<(value: boolean) => void>();
+        component.isMinimized.subscribe(isMinimizedChangeSpy);
     });
 
     afterEach(() => {
@@ -91,12 +78,6 @@ describe('EditionSheetFacetComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have input signal `isMinimized` to hold the default value', () => {
-            expectToBe(isSignal(component.isMinimized), true);
-
-            expectToBe(component.isMinimized(), false);
-        });
-
         it('... should throw due to missing required input signal `svgSheetsData`', () => {
             expectToBe(isSignal(component.svgSheetsData), true);
 
@@ -109,22 +90,16 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expect(() => component.selectedSvgSheet()).toThrow();
         });
 
-        it('... should have computed signal `toggleIcon` to hold the default value', () => {
-            expectToBe(isSignal(component.toggleIcon), true);
+        it('... should have model signal `isMinimized` to hold the default value', () => {
+            expectToBe(isSignal(component.isMinimized), true);
 
-            expectToEqual(component.toggleIcon(), faAnglesLeft);
-        });
-
-        it('... should have computed signal `toggleLabel` to hold the default value', () => {
-            expectToBe(isSignal(component.toggleLabel), true);
-
-            expectToBe(component.toggleLabel(), 'Minimize');
+            expectToBe(component.isMinimized(), false);
         });
 
         describe('VIEW', () => {
-            it('... should contain no facet div.card and no button (yet)', () => {
+            it('... should contain no facet div.card and no EditionSheetFacetToggleComponent (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
-                getAndExpectDebugElementByCss(compDe, 'button', 0, 0);
+                getAndExpectDebugElementByDirective(compDe, EditionSheetFacetToggleComponent, 0, 0);
             });
 
             it('... should contain no EditionSheetFacetGroupComponent (yet)', () => {
@@ -152,32 +127,36 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no facet div.card if svgSheetsData is null', async () => {
+            const getFacetCardDes = () =>
+                getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-sheet-facet', 1, 1);
+            const getToggleDes = () =>
+                getAndExpectDebugElementByDirective(getFacetCardDes()[0], EditionSheetFacetToggleComponent, 1, 1);
+            const getToggleCmp = () =>
+                getToggleDes()[0].injector.get(EditionSheetFacetToggleComponent) as EditionSheetFacetToggleComponent;
+            const getCardBodyDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 1, 1);
+            const getFacetGroupCmps = () =>
+                getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetGroupComponent, 3, 3).map(
+                    de => de.injector.get(EditionSheetFacetGroupComponent) as EditionSheetFacetGroupComponent
+                );
+
+            it('... should contain no facet div.card if svgSheetsData is not available', async () => {
                 fixture.componentRef.setInput('svgSheetsData', null);
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.card', 0, 0);
             });
 
-            it('... should contain one facet div.card with one toggle button if svgSheetsData is given', () => {
-                const buttonEl: HTMLButtonElement = getToggleButtonDes()[0].nativeElement;
+            it('... should contain one facet div.card', () => {
+                getFacetCardDes();
+            });
 
-                expectToBe(buttonEl.type, 'button');
-                expectToBe(buttonEl.className, 'btn btn-sm border rounded m-2');
+            it('... should contain one EditionSheetFacetToggleComponent in the facet div.card', () => {
+                getToggleDes();
             });
 
             describe('... if not minimized', () => {
-                it('... should display anglesLeft icon in toggle button', () => {
-                    const faIconDes = getAndExpectDebugElementByCss(getToggleButtonDes()[0], 'fa-icon', 1, 1);
-
-                    expectToBe(faIconDes[0].componentInstance.icon(), faAnglesLeft);
-                });
-
-                it('... should have title and aria-label "Minimize" on toggle button', () => {
-                    const buttonEl: HTMLButtonElement = getToggleButtonDes()[0].nativeElement;
-
-                    expectToBe(buttonEl.title, 'Minimize');
-                    expectToBe(buttonEl.getAttribute('aria-label'), 'Minimize');
+                it('... should pass down `isMinimized` to the EditionSheetFacetToggleComponent', () => {
+                    expectToBe(getToggleCmp().isMinimized(), false);
                 });
 
                 it('... should contain one div.card-body with one EditionSheetFacetGroupComponent per edition type', () => {
@@ -217,25 +196,12 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should have recomputed signal `toggleIcon` when input changes', () => {
-                    expectToEqual(component.toggleIcon(), faListUl);
+                it('... should have model signal `isMinimized` to hold the provided value', () => {
+                    expectToBe(component.isMinimized(), true);
                 });
 
-                it('... should have recomputed signal `toggleLabel` when input changes', () => {
-                    expectToBe(component.toggleLabel(), 'Maximize');
-                });
-
-                it('... should display listUl icon in toggle button', () => {
-                    const faIconDes = getAndExpectDebugElementByCss(getToggleButtonDes()[0], 'fa-icon', 1, 1);
-
-                    expectToBe(faIconDes[0].componentInstance.icon(), faListUl);
-                });
-
-                it('... should have title and aria-label "Maximize" on toggle button', () => {
-                    const buttonEl: HTMLButtonElement = getToggleButtonDes()[0].nativeElement;
-
-                    expectToBe(buttonEl.title, 'Maximize');
-                    expectToBe(buttonEl.getAttribute('aria-label'), 'Maximize');
+                it('... should pass down `isMinimized` to the EditionSheetFacetToggleComponent', () => {
+                    expectToBe(getToggleCmp().isMinimized(), true);
                 });
 
                 it('... should contain no div.card-body and no EditionSheetFacetGroupComponent', () => {
@@ -243,31 +209,32 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(compDe, EditionSheetFacetGroupComponent, 0, 0);
                 });
             });
-        });
 
-        describe('METHODS', () => {
-            describe('#toggleSheetFacet()', () => {
-                it('... should have a method `toggleSheetFacet`', () => {
-                    expect(component.toggleSheetFacet).toBeDefined();
+            describe('... on `isMinimized` change from EditionSheetFacetToggleComponent', () => {
+                beforeEach(async () => {
+                    getToggleCmp().isMinimized.set(true);
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... should trigger on click on toggle button', async () => {
-                    await clickAndAwaitChanges(getToggleButtonDes()[0], fixture);
-
-                    expectSpyCall(toggleSheetFacetSpy, 1);
+                it('... should have model signal `isMinimized` to hold the value received from the toggle', () => {
+                    expectToBe(component.isMinimized(), true);
                 });
 
-                it('... should emit the negated toggle state of the sheet facet', async () => {
-                    component.toggleSheetFacet();
+                it('... should emit the received value via `isMinimizedChange`', () => {
+                    expectSpyCall(isMinimizedChangeSpy, 1, true);
+                });
 
-                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 1, true);
+                it('... should contain no div.card-body', () => {
+                    getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 0, 0);
+                });
 
-                    fixture.componentRef.setInput('isMinimized', true);
+                it('... should contain the div.card-body again when the toggle changes back', async () => {
+                    getToggleCmp().isMinimized.set(false);
                     await detectChangesOnPush(fixture);
 
-                    component.toggleSheetFacet();
-
-                    expectSpyCall(toggleSheetFacetRequestEmitSpy, 2, false);
+                    expectToBe(component.isMinimized(), false);
+                    expectSpyCall(isMinimizedChangeSpy, 2, false);
+                    getCardBodyDes();
                 });
             });
         });

@@ -59,7 +59,7 @@ class EditionSheetFacetStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet | undefined;
     @Output()
-    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+    isMinimizedChange: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -800,7 +800,7 @@ describe('EditionSheetComponent (DONE)', () => {
                     expect(component.toggleSheetFacet).toBeDefined();
                 });
 
-                describe('... should trigger on toggleSheetFacetRequest event from EditionSheetFacetComponent', () => {
+                describe('... should trigger on isMinimizedChange event from EditionSheetFacetComponent', () => {
                     it('... when sheet facet is not minimized', async () => {
                         component.isSheetFacetMinimized = false;
                         await detectChangesOnPush(fixture);
@@ -815,7 +815,7 @@ describe('EditionSheetComponent (DONE)', () => {
                             EditionSheetFacetStubComponent
                         ) as EditionSheetFacetStubComponent;
 
-                        sheetFacetCmp.toggleSheetFacetRequest.emit(true);
+                        sheetFacetCmp.isMinimizedChange.emit(true);
 
                         expectSpyCall(toggleSheetFacetSpy, 1, true);
                     });
@@ -834,7 +834,7 @@ describe('EditionSheetComponent (DONE)', () => {
                             EditionSheetFacetStubComponent
                         ) as EditionSheetFacetStubComponent;
 
-                        sheetFacetCmp.toggleSheetFacetRequest.emit(false);
+                        sheetFacetCmp.isMinimizedChange.emit(false);
 
                         expectSpyCall(toggleSheetFacetSpy, 1, false);
                     });

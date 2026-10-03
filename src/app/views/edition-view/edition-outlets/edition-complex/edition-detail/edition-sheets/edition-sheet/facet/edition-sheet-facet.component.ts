@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-
-import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-view/models/edition-type.model';
 
 import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
+import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-toggle.component';
 
 /**
  * The EditionSheetFacet component.
@@ -20,16 +18,9 @@ import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-gro
     templateUrl: './edition-sheet-facet.component.html',
     styleUrls: ['./edition-sheet-facet.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [EditionSheetFacetGroupComponent, FaIconComponent],
+    imports: [EditionSheetFacetGroupComponent, EditionSheetFacetToggleComponent],
 })
 export class EditionSheetFacetComponent {
-    /**
-     * Readonly input signal: isMinimized.
-     *
-     * It holds the toggle state of the sheet facet.
-     */
-    readonly isMinimized = input<boolean>(false);
-
     /**
      * Readonly input signal: svgSheetsData.
      *
@@ -45,11 +36,12 @@ export class EditionSheetFacetComponent {
     readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
 
     /**
-     * Readonly output signal: toggleSheetFacetRequest.
+     * Readonly model signal: isMinimized.
      *
-     * It emits the requested toggle state of the sheet facet.
+     * It holds the toggle state of the sheet facet.
+     * @default false
      */
-    readonly toggleSheetFacetRequest = output<boolean>();
+    readonly isMinimized = model<boolean>(false);
 
     /**
      * Readonly variable: EDITION_TYPE_LABEL_MAP.
@@ -64,32 +56,4 @@ export class EditionSheetFacetComponent {
      * It keeps the available keys for the edition types.
      */
     readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
-
-    /**
-     * Readonly computed signal: toggleIcon.
-     *
-     * It computes the fontawesome icon of the toggle button
-     * depending on the toggle state of the sheet facet.
-     */
-    readonly toggleIcon = computed(() => (this.isMinimized() ? faListUl : faAnglesLeft));
-
-    /**
-     * Readonly computed signal: toggleLabel.
-     *
-     * It computes the title and aria label of the toggle button
-     * depending on the toggle state of the sheet facet.
-     */
-    readonly toggleLabel = computed(() => (this.isMinimized() ? 'Maximize' : 'Minimize'));
-
-    /**
-     * Public method: toggleSheetFacet.
-     *
-     * It emits the next toggle state (the negation of {@link isMinimized})
-     * to the {@link toggleSheetFacetRequest} to toggle the sheet facet.
-     *
-     * @returns {void} Emits the requested toggle state.
-     */
-    toggleSheetFacet(): void {
-        this.toggleSheetFacetRequest.emit(!this.isMinimized());
-    }
 }
