@@ -1,27 +1,27 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionSheetViewerNavComponent } from './edition-sheet-viewer-nav.component';
 
-describe('EditionSheetViewerNavComponent', () => {
+describe('EditionSheetViewerNavComponent (DONE)', () => {
     let component: EditionSheetViewerNavComponent;
     let fixture: ComponentFixture<EditionSheetViewerNavComponent>;
     let compDe: DebugElement;
 
-    let mockDocument: Document;
+    let browseRequestSpy: Mock<(direction: 1 | -1) => void>;
 
-    let browseSvgSheetSpy: Spy;
-    let browseSvgSheetRequestEmitSpy: Spy;
+    const getNavDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer-nav', 1, 1);
+    const getButtonDes = (direction: 'prev' | 'next') =>
+        getAndExpectDebugElementByCss(getNavDes()[0], `button.${direction}`, 1, 1);
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionSheetViewerNavComponent],
+            imports: [EditionSheetViewerNavComponent],
         }).compileComponents();
     });
 
@@ -30,66 +30,44 @@ describe('EditionSheetViewerNavComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        mockDocument = TestBed.inject(DOCUMENT);
-
         // Spies
-        browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
-        browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
+        browseRequestSpy = vi.fn<(direction: 1 | -1) => void>();
+        component.browseRequest.subscribe(browseRequestSpy);
     });
 
     afterEach(() => {
         vi.clearAllMocks();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
-            it('... should contain one div.awg-edition-sheet-viewer-nav', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer-nav', 1, 1);
+            it('... should contain one div.awg-edition-sheet-viewer-nav with two buttons', () => {
+                getAndExpectDebugElementByCss(getNavDes()[0], 'button', 2, 2);
             });
 
-            it('... should contain 1 div.prev and 1 div.next in div.awg-edition-sheet-viewer-nav', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer-nav > div', 2, 2);
+            it.each([
+                { direction: 'prev' as const, label: 'Zurück', arrow: '❮' },
+                { direction: 'next' as const, label: 'Weiter', arrow: '❯' },
+            ])(
+                '... should contain one button.$direction with label `$label` and arrow',
+                ({ direction, label, arrow }) => {
+                    const buttonEl: HTMLButtonElement = getButtonDes(direction)[0].nativeElement;
 
-                const sheetViewerNavDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-viewer-nav',
-                    1,
-                    1
-                );
+                    expectToBe(buttonEl.type, 'button');
+                    expectToBe(buttonEl.title, label);
+                    expectToBe(buttonEl.getAttribute('aria-label'), label);
 
-                getAndExpectDebugElementByCss(sheetViewerNavDes[0], 'div.prev', 1, 1);
-                getAndExpectDebugElementByCss(sheetViewerNavDes[0], 'div.next', 1, 1);
-            });
+                    const spanDes = getAndExpectDebugElementByCss(getButtonDes(direction)[0], 'span', 1, 1);
+                    const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-            it('... should display left arrow in div.prev', () => {
-                const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-
-                const spanDes = getAndExpectDebugElementByCss(divPrevDes[0], 'span', 1, 1);
-                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                // Process HTML expression of expected text content
-                const expectedHtmlTextContent = mockDocument.createElement('span');
-                expectedHtmlTextContent.innerHTML = '&#10094;';
-
-                expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
-            });
-
-            it('... should display right arrow in div.next', () => {
-                const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-
-                const spanDes = getAndExpectDebugElementByCss(divNextDes[0], 'span', 1, 1);
-                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                // Process HTML expression of expected text content
-                const expectedHtmlTextContent = mockDocument.createElement('span');
-                expectedHtmlTextContent.innerHTML = '&#10095;';
-
-                expectToBe(spanEl.textContent, expectedHtmlTextContent.textContent);
-            });
+                    expectToBe(spanEl.textContent, arrow);
+                    expectToBe(spanEl.getAttribute('aria-hidden'), 'true');
+                }
+            );
         });
     });
 
@@ -99,43 +77,28 @@ describe('EditionSheetViewerNavComponent', () => {
             fixture.detectChanges();
         });
 
-        describe('#browseSvgSheet()', () => {
-            it('... should have a method `browseSvgSheet`  ', () => {
-                expect(component.browseSvgSheet).toBeDefined();
-            });
+        describe('VIEW', () => {
+            describe('... output `browseRequest`', () => {
+                it.each([
+                    { direction: 'prev' as const, expectedDirection: -1 },
+                    { direction: 'next' as const, expectedDirection: 1 },
+                ])(
+                    '... should emit $expectedDirection on click (incl. Enter/Space) on button.$direction',
+                    async ({ direction, expectedDirection }) => {
+                        await clickAndAwaitChanges(getButtonDes(direction)[0], fixture);
 
-            describe('... should trigger on click on', () => {
-                it('... div.prev', async () => {
-                    const divPrevDes = getAndExpectDebugElementByCss(compDe, 'div.prev', 1, 1);
-                    const expectedDirection = -1;
+                        expectSpyCall(browseRequestSpy, 1, expectedDirection);
+                    }
+                );
 
-                    await clickAndAwaitChanges(divPrevDes[0], fixture);
+                it('... should not emit on keys that do not activate the buttons (e.g. Tab)', () => {
+                    const buttonEl: HTMLButtonElement = getButtonDes('next')[0].nativeElement;
 
-                    expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
+                    buttonEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+                    buttonEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Tab', bubbles: true }));
+
+                    expectSpyCall(browseRequestSpy, 0);
                 });
-
-                it('... div.next', async () => {
-                    const divNextDes = getAndExpectDebugElementByCss(compDe, 'div.next', 1, 1);
-                    const expectedDirection = 1;
-
-                    await clickAndAwaitChanges(divNextDes[0], fixture);
-
-                    expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
-                });
-            });
-
-            it('... should emit 1 for forward direction', () => {
-                const expectedDirection = 1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-            });
-
-            it('... should emit -1 for backward direction', () => {
-                const expectedDirection = -1;
-                component.browseSvgSheet(expectedDirection);
-
-                expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
             });
         });
     });

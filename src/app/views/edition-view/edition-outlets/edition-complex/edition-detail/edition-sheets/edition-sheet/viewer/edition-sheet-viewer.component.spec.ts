@@ -65,7 +65,7 @@ class LicenseStubComponent {}
 })
 class EditionSheetViewerNavStubComponent {
     @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    browseRequest: EventEmitter<number> = new EventEmitter();
 }
 
 @Component({
@@ -709,12 +709,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 ) as EditionSheetViewerNavStubComponent;
 
                 // Direction -1
-                navCmp.browseSvgSheetRequest.emit(-1);
+                navCmp.browseRequest.emit(-1);
 
                 expectSpyCall(browseSvgSheetSpy, 1, -1);
 
                 // Direction 1
-                navCmp.browseSvgSheetRequest.emit(1);
+                navCmp.browseRequest.emit(1);
 
                 expectSpyCall(browseSvgSheetSpy, 2, 1);
             });

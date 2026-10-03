@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
 /**
  * The EditionSheetViewerNav component.
@@ -10,28 +10,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
     templateUrl: './edition-sheet-viewer-nav.component.html',
     styleUrls: ['./edition-sheet-viewer-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class EditionSheetViewerNavComponent {
     /**
-     * Output variable: browseSvgSheetRequest.
+     * Readonly output signal: browseRequest.
      *
-     * It keeps an event emitter for the next or pevious index of an svg sheet.
+     * It emits the direction to browse to the previous (-1) or next (1) svg sheet.
      */
-    @Output()
-    browseSvgSheetRequest: EventEmitter<1 | -1> = new EventEmitter();
-
-    /**
-     * Public method: browseSvgSheet.
-     *
-     * It emits a given direction to the {@link browseSvgSheetRequest}
-     * to browse to the previous or next sheet of the selected svg sheet.
-     *
-     * @param {1 | -1} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
-     *
-     * @returns {void} Emits the direction.
-     */
-    browseSvgSheet(direction: 1 | -1): void {
-        this.browseSvgSheetRequest.emit(direction);
-    }
+    readonly browseRequest = output<1 | -1>();
 }

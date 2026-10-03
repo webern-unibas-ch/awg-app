@@ -5,7 +5,7 @@ import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka
 import { EditionTkaLabelComponent } from '../../../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
-import { EditionSheetViewerNavComponent } from './nav';
+import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSwitchComponent } from './switch';
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 
@@ -18,8 +18,14 @@ import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
-    declarations: [EditionSheetViewerComponent, EditionSheetViewerNavComponent, EditionSheetViewerSwitchComponent],
+    imports: [
+        SharedModule,
+        EditionSheetViewerNavComponent,
+        EditionTkaEvaluationsComponent,
+        EditionTkaLabelComponent,
+        EditionTkaTableComponent,
+    ],
+    declarations: [EditionSheetViewerComponent, EditionSheetViewerSwitchComponent],
     exports: [EditionSheetViewerComponent, EditionSheetViewerNavComponent, EditionSheetViewerSwitchComponent],
 })
 export class EditionSheetViewerModule {}
