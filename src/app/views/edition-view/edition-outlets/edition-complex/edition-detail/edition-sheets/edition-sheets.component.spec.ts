@@ -48,11 +48,11 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 
 // Mock components
 @Component({
-    selector: 'awg-edition-accolade',
+    selector: 'awg-edition-sheet',
     template: '',
     standalone: false,
 })
-class EditionAccoladeStubComponent {
+class EditionSheetStubComponent {
     @Input()
     isSheetFacetMinimized = false;
     @Input()
@@ -163,7 +163,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionAccoladeStubComponent],
+            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionSheetStubComponent],
             providers: [
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -302,8 +302,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
 
-            it('... should contain no AccoladeComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 0, 0);
+            it('... should contain no EditionSheetComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 0, 0);
             });
 
             it('... should contain no ConvoluteComponent (stubbed)', () => {
@@ -486,106 +486,73 @@ describe('EditionSheetsComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 1, 1);
                 });
 
-                describe('... AccoladeComponent (stubbed)', () => {
-                    it('... should contain one AccoladeComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                describe('... EditionSheetComponent (stubbed)', () => {
+                    it('... should contain one EditionSheetComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
                     });
 
-                    it('... should pass down `isSheetFacetMinimized` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                    it('... should pass down `isSheetFacetMinimized` to the EditionSheetComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(accoladeCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
+                        expectToEqual(sheetCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
                     });
 
-                    it('... should pass down `svgSheetsData` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                    it('... should pass down `svgSheetsData` to the EditionSheetComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(accoladeCmp.svgSheetsData, expectedSvgSheetsData);
+                        expectToEqual(sheetCmp.svgSheetsData, expectedSvgSheetsData);
                     });
 
-                    it('... should pass down `selectedSvgSheet` to the EditionAccoladeComponent', async () => {
+                    it('... should pass down `selectedSvgSheet` to the EditionSheetComponent', async () => {
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
                         await detectChangesOnPush(fixture);
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(accoladeCmp.selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetCmp.selectedSvgSheet, expectedSvgSheet);
                     });
 
-                    it('... should pass down `selectedTextcritics` to the EditionAccoladeComponent', async () => {
+                    it('... should pass down `selectedTextcritics` to the EditionSheetComponent', async () => {
                         component.selectedTextcritics = expectedSelectedTextcritics;
                         await detectChangesOnPush(fixture);
 
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(accoladeCmp.selectedTextcritics, expectedSelectedTextcritics);
+                        expectToEqual(sheetCmp.selectedTextcritics, expectedSelectedTextcritics);
                     });
 
-                    it('... should pass down `selectedTextcriticalCommentary` to the EditionAccoladeComponent', async () => {
+                    it('... should pass down `selectedTextcriticalCommentary` to the EditionSheetComponent', async () => {
                         component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
                         await detectChangesOnPush(fixture);
 
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(
-                            accoladeCmp.selectedTextcriticalCommentary,
-                            expectedSelectedTextcriticalCommentary
-                        );
+                        expectToEqual(sheetCmp.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
                     });
 
-                    it('... should pass down `showTkA` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                    it('... should pass down `showTkA` to the EditionSheetComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetStubComponent
+                        ) as EditionSheetStubComponent;
 
-                        expectToEqual(accoladeCmp.showTkA, false);
+                        expectToEqual(sheetCmp.showTkA, false);
                     });
                 });
 
@@ -647,14 +614,12 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onBrowseSvgSheet).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                it('... should trigger on event from EditionSheetComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
                     const expectedDirection = 1;
-                    accoladeCmp.browseSvgSheetRequest.emit(expectedDirection);
+                    sheetCmp.browseSvgSheetRequest.emit(expectedDirection);
 
                     expectSpyCall(onBrowseSvgSheetSpy, 1, [expectedDirection]);
                 });
@@ -726,14 +691,12 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onLinkBoxSelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                it('... should trigger on event from EditionSheetComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
                     const expectedLinkBoxId = 'link-box-1';
-                    accoladeCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+                    sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
 
                     expectSpyCall(onLinkBoxSelectSpy, 1, [expectedLinkBoxId]);
                 });
@@ -823,20 +786,18 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onOverlaySelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', async () => {
+                it('... should trigger on event from EditionSheetComponent', async () => {
                     component.selectedTextcritics = expectedSelectedTextcritics;
                     await detectChangesOnPush(fixture);
 
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
                     const expectedOverlays = [
                         new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
                     ];
 
-                    accoladeCmp.selectOverlaysRequest.emit(expectedOverlays);
+                    sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
                     expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
                 });
@@ -960,14 +921,12 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onToggleSheetFacet).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                it('... should trigger on event from EditionSheetComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
                     expectedIsSheetFacetMinimized = true;
-                    accoladeCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
+                    sheetCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
 
                     expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
                 });

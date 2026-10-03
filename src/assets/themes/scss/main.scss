@@ -29,21 +29,21 @@ a[role='link'][tabindex='0']:hover {
     text-decoration: none;
 }
 a.dropdown-item,
-a.awg-svg-sheet-facet-link:hover,
+a.awg-edition-sheet-facet-link:hover,
 .nav-tabs > li > a {
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
 a.awg-edition-intro-nav-link:hover,
-a.awg-svg-sheet-facet-link,
-a.awg-svg-sheet-facet-link:hover {
+a.awg-edition-sheet-facet-link,
+a.awg-edition-sheet-facet-link:hover {
     border-bottom: none !important;
     text-decoration: none;
 }
 a.dropdown-item:hover,
 button.dropdown-item:hover,
-a.awg-svg-sheet-facet-link.active {
+a.awg-edition-sheet-facet-link.active {
     color: $link-color !important;
 }
 .dropdown-item.active,
@@ -56,11 +56,11 @@ a.awg-svg-sheet-facet-link.active {
     background-color: #f1f3f3 !important;
     color: $link-color !important;
 }
-/* no border color for svg-sheet-facet-link */
-a.awg-svg-sheet-facet-link.active,
-a.awg-svg-sheet-facet-link:active,
-a.awg-svg-sheet-facet-link:hover,
-a.awg-svg-sheet-facet-link:focus {
+/* no border color for sheet-facet-link */
+a.awg-edition-sheet-facet-link.active,
+a.awg-edition-sheet-facet-link:active,
+a.awg-edition-sheet-facet-link:hover,
+a.awg-edition-sheet-facet-link:focus {
     border-color: transparent !important;
 }
 
