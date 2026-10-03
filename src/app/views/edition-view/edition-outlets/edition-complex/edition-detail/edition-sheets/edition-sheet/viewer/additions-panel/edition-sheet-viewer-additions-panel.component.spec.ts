@@ -359,6 +359,10 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
 
         describe('METHODS', () => {
             describe('#toggle()', () => {
+                it('... should have a method `toggle`', () => {
+                    expect(component.toggle).toBeDefined();
+                });
+
                 it.each(['class1', EditionSvgOverlayTypes.tkk])(
                     '... should toggle the visibility of `%s` only and emit the new state',
                     key => {
@@ -385,6 +389,10 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
             });
 
             describe('#toggleAll()', () => {
+                it('... should have a method `toggleAll`', () => {
+                    expect(component.toggleAll).toBeDefined();
+                });
+
                 it('... should hide all additions and emit each change if all are visible', () => {
                     component.toggleAll();
 

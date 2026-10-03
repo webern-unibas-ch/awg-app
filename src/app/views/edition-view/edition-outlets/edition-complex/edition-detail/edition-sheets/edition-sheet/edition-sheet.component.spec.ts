@@ -32,6 +32,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import {
@@ -103,7 +104,6 @@ describe('EditionSheetComponent (DONE)', () => {
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
-    let openModalSpy: Spy;
     let serviceOpenModalSpy: Spy;
     let selectLinkBoxSpy: Spy;
     let selectLinkBoxRequestEmitSpy: Spy;
@@ -119,7 +119,6 @@ describe('EditionSheetComponent (DONE)', () => {
     let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedSelectedTextcritics: Textcritics;
     let expectedShowTkA: boolean;
-    let expectedModalSnippet: string;
     let expectedLinkBoxId: string;
     let expectedIsSheetFacetMinimized: boolean;
 
@@ -148,7 +147,7 @@ describe('EditionSheetComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, FullscreenToggleStubComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, ButtonUsageHintsComponent, FullscreenToggleStubComponent],
             declarations: [
                 EditionSheetComponent,
                 EditionSheetViewerStubComponent,
@@ -167,7 +166,6 @@ describe('EditionSheetComponent (DONE)', () => {
         serviceOpenModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
         // Test data
-        expectedModalSnippet = structuredClone(mockEditionData.mockModalSnippet);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSvgSheetsData = {
@@ -192,7 +190,6 @@ describe('EditionSheetComponent (DONE)', () => {
         // Component spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
-        openModalSpy = vi.spyOn(component, 'openModal');
         selectLinkBoxSpy = vi.spyOn(component, 'selectLinkBox');
         selectLinkBoxRequestEmitSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
         selectOverlaysSpy = vi.spyOn(component, 'selectOverlays');
@@ -372,13 +369,25 @@ describe('EditionSheetComponent (DONE)', () => {
                         1
                     );
 
-                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-                    const expectedTitle = 'Hinweise zur Nutzung';
+                    const msAutoDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto', 1, 1);
 
-                    expectToBe(btnEl.textContent.trim(), expectedTitle);
+                    getAndExpectDebugElementByDirective(msAutoDes[0], ButtonUsageHintsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(msAutoDes[0], FullscreenToggleStubComponent, 1, 1);
+                });
 
-                    getAndExpectDebugElementByDirective(itemHeaderDes[0], FullscreenToggleStubComponent, 1, 1);
+                it('... should pass down `snippetKey` to the ButtonUsageHintsComponent', () => {
+                    const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonUsageHintsComponent, 1, 1);
+                    const buttonCmp = buttonDes[0].injector.get(ButtonUsageHintsComponent);
+
+                    expectToBe(buttonCmp.snippetKey(), 'HINT_EDITION_SHEETS');
+                });
+
+                it('... should open the sheet usage hints via ModalService on click on the ButtonUsageHintsComponent', async () => {
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-button-usage-hints > button', 1, 1);
+
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+
+                    expectSpyCall(serviceOpenModalSpy, 1, 'HINT_EDITION_SHEETS');
                 });
 
                 it('... should contain only FullscreenToggleComponent (stubbed) in other div of header section when in fullscreen mode', async () => {
@@ -395,7 +404,7 @@ describe('EditionSheetComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 0, 0);
+                    getAndExpectDebugElementByDirective(itemHeaderDes[0], ButtonUsageHintsComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(itemHeaderDes[0], FullscreenToggleStubComponent, 1, 1);
                 });
@@ -688,40 +697,6 @@ describe('EditionSheetComponent (DONE)', () => {
                     component.browseSvgSheet(expectedDirection);
 
                     expectSpyCall(browseSvgSheetRequestEmitSpy, 1, expectedDirection);
-                });
-            });
-
-            describe('#openModal()', () => {
-                it('... should have a method `openModal`', () => {
-                    expect(component.openModal).toBeDefined();
-                });
-
-                it('... should trigger on click on header button', async () => {
-                    const itemHeaderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-edition-sheet-view > div.accordion-header',
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'div.ms-auto > button.btn', 1, 1);
-                    const expectedSnippet = 'HINT_EDITION_SHEETS';
-
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(openModalSpy, 1, expectedSnippet);
-                });
-
-                it('... should trigger ModalService with id of given modal snippet', () => {
-                    component.openModal(expectedModalSnippet);
-
-                    expectSpyCall(serviceOpenModalSpy, 1, expectedModalSnippet);
-                });
-
-                it('... should trigger ModalService with empty string if id is empty', () => {
-                    component.openModal('');
-
-                    expectSpyCall(serviceOpenModalSpy, 1, '');
                 });
             });
 

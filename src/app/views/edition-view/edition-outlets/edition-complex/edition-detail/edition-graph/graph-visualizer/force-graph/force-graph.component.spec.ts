@@ -114,6 +114,10 @@ describe('ForceGraphComponent', () => {
 
         describe('METHODS', () => {
             describe('#onZoomChange()', () => {
+                it('... should have a method `onZoomChange`', () => {
+                    expect(component.onZoomChange).toBeDefined();
+                });
+
                 it.each([0.5, 2, 1])('... should set `zoomValue` to the given zoom value %s', expectedZoom => {
                     component.onZoomChange(expectedZoom);
 

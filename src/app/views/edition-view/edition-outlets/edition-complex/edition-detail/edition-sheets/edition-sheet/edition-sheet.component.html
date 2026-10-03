@@ -4,12 +4,7 @@
             <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>
             <div class="ms-auto">
                 @if (!isFullscreen()) {
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-outline-info"
-                        (click)="openModal('HINT_EDITION_SHEETS')">
-                        Hinweise zur Nutzung
-                    </button>
+                    <awg-button-usage-hints snippetKey="HINT_EDITION_SHEETS" />
                 }
                 <awg-fullscreen-toggle [fsElement]="sheetAcc" />
             </div>

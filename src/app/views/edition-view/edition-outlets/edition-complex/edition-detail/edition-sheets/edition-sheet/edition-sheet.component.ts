@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
-import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
@@ -24,13 +23,6 @@ import {
     standalone: false,
 })
 export class EditionSheetComponent {
-    /**
-     * Private readonly injection variable: _modalService
-     *
-     * It keeps the instance of the injected ModalService.
-     */
-    private readonly _modalService = inject(ModalService);
-
     /**
      * Input variable: isSheetFacetMinimized.
      *
@@ -133,18 +125,6 @@ export class EditionSheetComponent {
             return;
         }
         this.browseSvgSheetRequest.emit(direction);
-    }
-
-    /**
-     * Public method: openModal.
-     *
-     * It opens a text modal snippet via the {@link ModalService} for a given id.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the text modal.
-     */
-    openModal(id: string): void {
-        this._modalService.openTextModal(id);
     }
 
     /**

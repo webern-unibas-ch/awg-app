@@ -27,6 +27,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
@@ -63,7 +64,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let mockFullscreenService: Partial<FullscreenService>;
     let mockModalService: Partial<ModalService>;
 
-    let openModalSpy: Spy;
     let serviceOpenModalSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'graph'>>;
@@ -92,6 +92,7 @@ describe('EditionGraphComponent (DONE)', () => {
             imports: [
                 AlertErrorStubComponent,
                 CompileHtmlDirective,
+                ButtonUsageHintsComponent,
                 FullscreenToggleStubComponent,
                 TwelveToneSpinnerStubComponent,
                 FontAwesomeTestingModule,
@@ -127,9 +128,6 @@ describe('EditionGraphComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Component spies
-        openModalSpy = vi.spyOn(component, 'openModal');
     });
 
     afterEach(() => {
@@ -571,26 +569,43 @@ describe('EditionGraphComponent (DONE)', () => {
                             expectToContain(hEl.textContent, 'Dynamischer Graph');
 
                             // Help button
-                            const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 1, 1);
-                            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+                            const buttonDes = getAndExpectDebugElementByDirective(
+                                hDes[0],
+                                ButtonUsageHintsComponent,
+                                1,
+                                1
+                            );
+                            const buttonEl: HTMLElement = buttonDes[0].nativeElement;
 
-                            expectToContain(btnEl.textContent, 'Hinweise zur Nutzung');
+                            expectToContain(buttonEl.classList, 'ms-2');
 
                             // FullscreenToggle
                             getAndExpectDebugElementByDirective(hDes[0], FullscreenToggleStubComponent, 1, 1);
                         });
 
-                        it('... should trigger `#openModal()` from click on help button', async () => {
+                        it('... should pass down `snippetKey` to the ButtonUsageHintsComponent', () => {
+                            const buttonDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                ButtonUsageHintsComponent,
+                                1,
+                                1
+                            );
+                            const buttonCmp = buttonDes[0].injector.get(ButtonUsageHintsComponent);
+
+                            expectToBe(buttonCmp.snippetKey(), 'HINT_EDITION_GRAPH');
+                        });
+
+                        it('... should open the graph usage hints via ModalService on click on the ButtonUsageHintsComponent', async () => {
                             const btnDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'div.awg-graph-dynamic > h4 button.btn',
+                                'div.awg-graph-dynamic > h4 awg-button-usage-hints > button',
                                 1,
                                 1
                             );
 
                             await clickAndAwaitChanges(btnDes[0], fixture);
 
-                            expectSpyCall(openModalSpy, 1, 'HINT_EDITION_GRAPH');
+                            expectSpyCall(serviceOpenModalSpy, 1, 'HINT_EDITION_GRAPH');
                         });
 
                         it('... should contain a paragraph', () => {
@@ -789,53 +804,6 @@ describe('EditionGraphComponent (DONE)', () => {
                     const result = component.getStaticImage(imageKey);
 
                     expectToBe(result, expectedImagePath);
-                });
-            });
-
-            describe('#openModal()', () => {
-                it('... should have a method `openModal()`', () => {
-                    expect(component.openModal).toBeDefined();
-                });
-
-                it('... should trigger from click on help button', async () => {
-                    const graphWithRdfData = expectedGraphEmptyData;
-                    graphWithRdfData.graph[0].rdfData = new GraphRDFData();
-                    graphWithRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
-                    graphWithRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
-
-                    mockViewDataSignal.set(
-                        createMockViewData(
-                            { graphData: graphWithRdfData },
-                            {
-                                isLoading: false,
-                                error: null,
-                            }
-                        )
-                    );
-
-                    await detectChangesOnPush(fixture);
-
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4 button.btn', 1, 1);
-
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(openModalSpy, 1, 'HINT_EDITION_GRAPH');
-                });
-
-                describe('... should do nothing if ', () => {
-                    it('... id is empty string', () => {
-                        component.openModal('');
-
-                        expectSpyCall(serviceOpenModalSpy, 0);
-                    });
-                });
-
-                it('... should trigger ModalService with id of given modal snippet', () => {
-                    const expectedModalId = 'HINT_EDITION_GRAPH';
-
-                    component.openModal(expectedModalId);
-
-                    expectSpyCall(serviceOpenModalSpy, 1, expectedModalId);
                 });
             });
         });

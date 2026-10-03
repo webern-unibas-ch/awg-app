@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
@@ -16,7 +17,13 @@ import { EditionSheetComponent } from './edition-sheet.component';
  * and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionSheetFacetComponent, EditionSheetFooterComponent, EditionSheetViewerModule],
+    imports: [
+        SharedModule,
+        ButtonUsageHintsComponent,
+        EditionSheetFacetComponent,
+        EditionSheetFooterComponent,
+        EditionSheetViewerModule,
+    ],
     declarations: [EditionSheetComponent],
     exports: [EditionSheetComponent],
 })
