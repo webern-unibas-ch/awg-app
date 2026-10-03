@@ -1,19 +1,20 @@
-@if (svgSheetsData) {
+@if (svgSheetsData(); as sheetsData) {
     <div class="card awg-edition-sheet-facet">
         <button
             type="button"
             class="btn btn-sm border rounded m-2"
-            [title]="isMinimized ? 'Maximize' : 'Minimize'"
+            [title]="toggleLabel()"
+            [attr.aria-label]="toggleLabel()"
             (click)="toggleSheetFacet()">
-            <fa-icon [icon]="isMinimized ? faListUl : faAnglesLeft" />
+            <fa-icon [icon]="toggleIcon()" />
         </button>
-        @if (!isMinimized) {
+        @if (!isMinimized()) {
             <div class="card-body">
                 @for (key of EDITION_TYPE_KEYS; track key; let isLast = $last) {
                     <awg-edition-sheet-facet-item
                         [facetItemLabel]="EDITION_TYPE_LABEL_MAP[key]"
-                        [svgSheets]="svgSheetsData.sheets[key]"
-                        [selectedSvgSheet]="selectedSvgSheet" />
+                        [svgSheets]="sheetsData.sheets[key]"
+                        [selectedSvgSheet]="selectedSvgSheet()" />
 
                     @if (!isLast) {
                         <hr />

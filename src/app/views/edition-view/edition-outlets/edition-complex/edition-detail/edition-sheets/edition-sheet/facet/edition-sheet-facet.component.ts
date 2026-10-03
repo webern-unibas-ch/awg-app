@@ -1,14 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-view/models/edition-type.model';
 
+import { EditionSheetFacetItemComponent } from './item/edition-sheet-facet-item.component';
+
 /**
  * The EditionSheetFacet component.
  *
- * It contains the svg sheet facet section
+ * It contains the sheet facet section
  * of the edition view of the app
  * and lets the user select an SVG sheet.
  */
@@ -17,68 +20,66 @@ import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-vi
     templateUrl: './edition-sheet-facet.component.html',
     styleUrls: ['./edition-sheet-facet.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [EditionSheetFacetItemComponent, FaIconComponent],
 })
 export class EditionSheetFacetComponent {
     /**
-     * Public variable: isMinimized.
+     * Readonly input signal: isMinimized.
      *
-     * It keeps the toggle state of the sheet facet.
+     * It holds the toggle state of the sheet facet.
      */
-    @Input()
-    isMinimized = false;
+    readonly isMinimized = input<boolean>(false);
 
     /**
-     * Input variable: svgSheetsData.
+     * Readonly input signal: svgSheetsData.
      *
-     * It keeps the svg sheets data.
+     * It holds the svg sheets data.
      */
-    @Input()
-    svgSheetsData: EditionSvgSheetsList | null = null;
+    readonly svgSheetsData = input.required<EditionSvgSheetsList | null>();
 
     /**
-     * Input variable: selectedSvgSheet.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It holds the selected svg sheet.
      */
-    @Input()
-    selectedSvgSheet: EditionSvgSheet | undefined;
+    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
 
     /**
-     * Output variable: toggleSheetFacetRequest.
+     * Readonly output signal: toggleSheetFacetRequest.
      *
-     * It keeps an event emitter for the toggle state of the sheet facet.
+     * It emits the requested toggle state of the sheet facet.
      */
-    @Output()
-    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+    readonly toggleSheetFacetRequest = output<boolean>();
 
     /**
-     * Public readonly variable: EDITION_TYPE_LABEL_MAP.
+     * Readonly variable: EDITION_TYPE_LABEL_MAP.
      *
      * It keeps the map of the edition type keys and their corresponding labels.
      */
     readonly EDITION_TYPE_LABEL_MAP = EDITION_TYPE_LABEL_MAP;
 
     /**
-     * Public readonly variable: EDITION_TYPE_KEYS.
+     * Readonly variable: EDITION_TYPE_KEYS.
      *
      * It keeps the available keys for the edition types.
      */
     readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
 
     /**
-     * Public variable: faAnglesLeft.
+     * Readonly computed signal: toggleIcon.
      *
-     * It instantiates fontawesome's faAnglesLeft icon.
+     * It computes the fontawesome icon of the toggle button
+     * depending on the toggle state of the sheet facet.
      */
-    faAnglesLeft = faAnglesLeft;
+    readonly toggleIcon = computed(() => (this.isMinimized() ? faListUl : faAnglesLeft));
 
     /**
-     * Public variable: faListUl.
+     * Readonly computed signal: toggleLabel.
      *
-     * It instantiates fontawesome's faListUl icon.
+     * It computes the title and aria label of the toggle button
+     * depending on the toggle state of the sheet facet.
      */
-    faListUl = faListUl;
+    readonly toggleLabel = computed(() => (this.isMinimized() ? 'Maximize' : 'Minimize'));
 
     /**
      * Public method: toggleSheetFacet.
@@ -86,9 +87,9 @@ export class EditionSheetFacetComponent {
      * It emits the next toggle state (the negation of {@link isMinimized})
      * to the {@link toggleSheetFacetRequest} to toggle the sheet facet.
      *
-     * @returns {void} Emits the updated toggle state.
+     * @returns {void} Emits the requested toggle state.
      */
     toggleSheetFacet(): void {
-        this.toggleSheetFacetRequest.emit(!this.isMinimized);
+        this.toggleSheetFacetRequest.emit(!this.isMinimized());
     }
 }

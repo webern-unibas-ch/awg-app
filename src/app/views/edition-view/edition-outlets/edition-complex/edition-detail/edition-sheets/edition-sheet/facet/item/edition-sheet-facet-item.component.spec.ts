@@ -5,7 +5,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { EditionDisclaimerWorkeditionsStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -18,6 +17,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -34,7 +34,6 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     let serviceNavigateToSvgSheetSpy: Spy;
 
     let expectedComplexId: string;
-
     let expectedNextComplexId: string;
     let expectedFacetItemLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
@@ -45,6 +44,29 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     let expectedSvgSheetWithPartialA: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
+    const getTitleDes = () => getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
+    const getDirectLinkDes = () =>
+        getAndExpectDebugElementByCss(
+            compDe,
+            'a.awg-edition-sheet-facet-link',
+            expectedSheetsWithoutPartials.length,
+            expectedSheetsWithoutPartials.length
+        );
+    const getDropdownDes = () =>
+        getAndExpectDebugElementByCss(
+            compDe,
+            'div.awg-edition-sheet-facet-link-dropdown',
+            expectedSheetsWithPartials.length,
+            expectedSheetsWithPartials.length
+        );
+    const getDropdownToggleDes = () =>
+        getAndExpectDebugElementByCss(
+            compDe,
+            'a.awg-edition-sheet-facet-link-dropdown-toggle',
+            expectedSheetsWithPartials.length,
+            expectedSheetsWithPartials.length
+        );
+
     beforeEach(async () => {
         // Mock services
         mockNavigationService = {
@@ -52,8 +74,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [EditionDisclaimerWorkeditionsStubComponent],
-            declarations: [EditionSheetFacetItemComponent],
+            imports: [EditionSheetFacetItemComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
@@ -100,24 +121,28 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expect(() => component.facetItemLabel()).toThrow();
         });
 
-        it('... should have default `svgSheets` input', () => {
-            expectToEqual(component.svgSheets, []);
+        it('... should throw due to missing required input signal `svgSheets`', () => {
+            expectToBe(isSignal(component.svgSheets), true);
+
+            expect(() => component.svgSheets()).toThrow();
         });
 
-        it('... should not have `selectedSvgSheet`', () => {
-            expect(component.selectedSvgSheet).toBeUndefined();
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
+
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 h6.card-title without facetItemLabel (yet)', () => {
-                const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+            it('... should contain one h6.card-title without facetItemLabel (yet)', () => {
+                const hEl: HTMLHeadingElement = getTitleDes()[0].nativeElement;
 
                 expect(hEl.textContent).not.toBeTruthy();
             });
 
-            it('... should not contain any anchors (yet)', () => {
+            it('... should contain no anchors and no dropdowns (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-facet-link-dropdown', 0, 0);
             });
         });
     });
@@ -126,305 +151,218 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('facetItemLabel', expectedFacetItemLabel);
-            component.svgSheets = structuredClone(expectedSvgSheets);
-            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+            fixture.componentRef.setInput('svgSheets', expectedSvgSheets);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `facetItemLabel` input', () => {
+        it('... should have input signal `facetItemLabel` to hold the provided label', () => {
             expectToBe(component.facetItemLabel(), expectedFacetItemLabel);
         });
 
-        it('... should have `svgSheets` input', () => {
-            expectToBe(component.svgSheets.length, 5);
-            expectToEqual(component.svgSheets, expectedSvgSheets);
+        it('... should have input signal `svgSheets` to hold the provided svg sheets', () => {
+            expectToEqual(component.svgSheets(), expectedSvgSheets);
         });
 
-        it('... should have `selectedSvgSheet` input', () => {
-            expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 h6.card-title with facetItemLabel', () => {
-                const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+            describe('title', () => {
+                it('... should display the facetItemLabel in h6.card-title', () => {
+                    const hEl: HTMLHeadingElement = getTitleDes()[0].nativeElement;
 
-                expectToBe(hEl.textContent.trim(), expectedFacetItemLabel + ':');
-            });
-
-            it('... should contain a DisclaimerWorkeditions component if facetItemLabel=`Werkeditionen` ', async () => {
-                fixture.componentRef.setInput('facetItemLabel', 'Werkeditionen');
-
-                await detectChangesOnPush(fixture);
-
-                const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-
-                getAndExpectDebugElementByDirective(hDes[0], EditionDisclaimerWorkeditionsStubComponent, 1, 1);
-            });
-
-            it('... should contain a span in h6.card-title with "---" if svgSheets is empty', async () => {
-                component.svgSheets = [];
-                await detectChangesOnPush(fixture);
-
-                const hDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const spanDes = getAndExpectDebugElementByCss(hDes[0], 'span', 1, 1);
-                const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
-
-                expectToBe(spanEl.textContent, '---');
-            });
-
-            it('... should contain as many direct anchors (a.btn) as svgSheets without partials', () => {
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'a.btn.btn-default',
-                    expectedSheetsWithoutPartials.length,
-                    expectedSheetsWithoutPartials.length
-                );
-            });
-
-            it('... should have `awg-edition-sheet-facet-link` class on direct anchors (no partials)', () => {
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a.btn.btn-default',
-                    expectedSheetsWithoutPartials.length,
-                    expectedSheetsWithoutPartials.length
-                );
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToContain(aEl0.classList, 'awg-edition-sheet-facet-link');
-                expectToContain(aEl1.classList, 'awg-edition-sheet-facet-link');
-            });
-
-            it('... should have `active` class on direct anchors with selected svg sheet and `text-muted` on others (no partials)', () => {
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a.btn.btn-default',
-                    expectedSheetsWithoutPartials.length,
-                    expectedSheetsWithoutPartials.length
-                );
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToContain(aEl0.classList, 'active');
-                expectToNotContain(aEl0.classList, 'text-muted');
-
-                expectToContain(aEl1.classList, 'text-muted');
-                expectToNotContain(aEl1.classList, 'active');
-            });
-
-            it('... should display sheet label in direct anchors (no partials)', () => {
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a.btn.btn-default',
-                    expectedSheetsWithoutPartials.length,
-                    expectedSheetsWithoutPartials.length
-                );
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToBe(aEl0.textContent.trim(), expectedSvgSheet.label);
-                expectToBe(aEl1.textContent.trim(), expectedNextSvgSheet.label);
-            });
-
-            it('... should contain as many dropdowns as svgSheets with partials', () => {
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-            });
-
-            it('... should have one header anchor (#dropDownSheetFacet) in dropdown for partials', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-                dropdownDes.forEach(dropdownDe => {
-                    getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetFacet', 1, 1);
+                    expectToBe(hEl.textContent.trim(), expectedFacetItemLabel + ':');
                 });
-            });
 
-            it('... should have sheet label in dropdown header anchor for partials', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
+                it('... should contain an EditionDisclaimerWorkeditionsComponent if facetItemLabel is `Werkeditionen`', async () => {
+                    fixture.componentRef.setInput('facetItemLabel', 'Werkeditionen');
+                    await detectChangesOnPush(fixture);
 
-                dropdownDes.forEach((dropdownDe, index) => {
-                    const spanDes = getAndExpectDebugElementByCss(dropdownDe, 'a#dropDownSheetFacet > span', 1, 1);
+                    getAndExpectDebugElementByDirective(getTitleDes()[0], EditionDisclaimerWorkeditionsComponent, 1, 1);
+                });
+
+                it('... should contain no EditionDisclaimerWorkeditionsComponent for other labels', () => {
+                    getAndExpectDebugElementByDirective(getTitleDes()[0], EditionDisclaimerWorkeditionsComponent, 0, 0);
+                });
+
+                it('... should contain a span with `---` if svgSheets is empty', async () => {
+                    fixture.componentRef.setInput('svgSheets', []);
+                    await detectChangesOnPush(fixture);
+
+                    const spanDes = getAndExpectDebugElementByCss(getTitleDes()[0], 'span', 1, 1);
                     const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
 
-                    expectToContain(spanEl.textContent, expectedSheetsWithPartials[index].label);
+                    expectToBe(spanEl.textContent, '---');
+                });
+
+                it('... should contain no span with `---` if svgSheets is not empty', () => {
+                    getAndExpectDebugElementByCss(getTitleDes()[0], 'span', 0, 0);
                 });
             });
 
-            it('... should have another span with badge class on dropdown header anchor for partials', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
+            describe('direct anchors (no partials)', () => {
+                it('... should contain as many direct anchors as svgSheets without partials', () => {
+                    const aDes = getDirectLinkDes();
 
-                dropdownDes.forEach(dropdownDe => {
-                    const innerSpanDes = getAndExpectDebugElementByCss(
-                        dropdownDe,
-                        'a#dropDownSheetFacet > span > span.badge',
-                        1,
-                        1
-                    );
-                    const innerSpanEl: HTMLSpanElement = innerSpanDes[0].nativeElement;
-
-                    expectToContain(innerSpanEl.classList, 'badge');
-                });
-            });
-
-            it('... should have sheet partials count in badge on dropdown header anchor for partials', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-
-                dropdownDes.forEach((dropdownDe, index) => {
-                    const innerSpanDes = getAndExpectDebugElementByCss(
-                        dropdownDe,
-                        'a#dropDownSheetFacet > span > span.badge',
-                        1,
-                        1
-                    );
-                    const innerSpanEl: HTMLSpanElement = innerSpanDes[0].nativeElement;
-
-                    expectToBe(innerSpanEl.textContent, expectedSheetsWithPartials[index].content.length.toString());
-                });
-            });
-
-            it('... should have `text-muted` class on dropdown header anchor when svg sheet with partials is not selected', async () => {
-                component.selectedSvgSheet = structuredClone(expectedSvgSheet);
-                await detectChangesOnPush(fixture);
-
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a#dropDownSheetFacet',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-                aDes.forEach(aDe => {
-                    const aEl: HTMLAnchorElement = aDe.nativeElement;
-
-                    expectToContain(aEl.classList, 'text-muted');
-                    expectToNotContain(aEl.classList, 'active');
-                });
-            });
-
-            it('... should have `active` class on dropdown header anchor when svg sheet with partials is selected', async () => {
-                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
-                await detectChangesOnPush(fixture);
-
-                let aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a#dropDownSheetFacet',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-                let aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                let aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToContain(aEl0.classList, 'active');
-                expectToNotContain(aEl0.classList, 'text-muted');
-
-                expectToContain(aEl1.classList, 'text-muted');
-                expectToNotContain(aEl1.classList, 'active');
-
-                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk3b);
-                await detectChangesOnPush(fixture);
-
-                aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a#dropDownSheetFacet',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-                aEl0 = aDes[0].nativeElement;
-                aEl1 = aDes[1].nativeElement;
-
-                expectToContain(aEl0.classList, 'text-muted');
-                expectToNotContain(aEl0.classList, 'active');
-
-                expectToContain(aEl1.classList, 'active');
-                expectToNotContain(aEl1.classList, 'text-muted');
-            });
-
-            it('... should have as many item anchors (.dropdown-item) in dropdown as partials in sheet content', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-
-                dropdownDes.forEach((dropdownDe, index) => {
-                    getAndExpectDebugElementByCss(
-                        dropdownDe,
-                        'a.dropdown-item',
-                        expectedSheetsWithPartials[index].content.length,
-                        expectedSheetsWithPartials[index].content.length
-                    );
-                });
-            });
-
-            it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', async () => {
-                component.selectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
-                await detectChangesOnPush(fixture);
-
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'a#dropDownSheetFacet',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                expectToContain(aEl0.classList, 'active');
-                expectToNotContain(aEl0.classList, 'text-muted');
-
-                expectToContain(aEl1.classList, 'text-muted');
-                expectToNotContain(aEl1.classList, 'active');
-            });
-
-            it('... should display sheet labels in dropdown item anchors (with numbered partials)', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-sheet-facet-link-dropdown',
-                    expectedSheetsWithPartials.length,
-                    expectedSheetsWithPartials.length
-                );
-
-                dropdownDes.forEach((dropdownDe, dropdownIndex) => {
-                    const aDes = getAndExpectDebugElementByCss(
-                        dropdownDe,
-                        'a.dropdown-item',
-                        expectedSheetsWithPartials[dropdownIndex].content.length,
-                        expectedSheetsWithPartials[dropdownIndex].content.length
-                    );
-
-                    aDes.forEach((aDe, anchorIndex) => {
+                    aDes.forEach(aDe => {
                         const aEl: HTMLAnchorElement = aDe.nativeElement;
-                        const sheet = expectedSheetsWithPartials[dropdownIndex];
-                        const anchorLabel = sheet.label + ' [' + (anchorIndex + 1) + '/' + sheet.content.length + ']';
 
-                        expectToBe(aEl.textContent.trim(), anchorLabel);
+                        expectToContain(aEl.classList, 'btn');
+                        expectToContain(aEl.classList, 'btn-default');
+                    });
+                });
+
+                it('... should have `active` class on anchor of selected svg sheet and `text-muted` on others', () => {
+                    const aDes = getDirectLinkDes();
+                    const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
+                    const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
+
+                    expectToContain(aEl0.classList, 'active');
+                    expectToNotContain(aEl0.classList, 'text-muted');
+
+                    expectToContain(aEl1.classList, 'text-muted');
+                    expectToNotContain(aEl1.classList, 'active');
+                });
+
+                it('... should display the sheet labels', () => {
+                    const aDes = getDirectLinkDes();
+                    const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
+                    const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
+
+                    expectToBe(aEl0.textContent.trim(), expectedSvgSheet.label);
+                    expectToBe(aEl1.textContent.trim(), expectedNextSvgSheet.label);
+                });
+            });
+
+            describe('dropdowns (partials)', () => {
+                it('... should contain as many dropdowns as svgSheets with partials', () => {
+                    getDropdownDes();
+                });
+
+                it('... should contain one toggle anchor in each dropdown', () => {
+                    getDropdownDes().forEach(dropdownDe => {
+                        getAndExpectDebugElementByCss(
+                            dropdownDe,
+                            'a.awg-edition-sheet-facet-link-dropdown-toggle',
+                            1,
+                            1
+                        );
+                    });
+                });
+
+                it('... should have a unique id on each toggle anchor referenced by the dropdown menu', () => {
+                    const toggleDes = getDropdownToggleDes();
+                    const ids = toggleDes.map(toggleDe => (toggleDe.nativeElement as HTMLAnchorElement).id);
+
+                    expectToEqual(
+                        ids,
+                        expectedSheetsWithPartials.map(sheet => 'awg-edition-sheet-facet-dropdown-' + sheet.id)
+                    );
+
+                    getDropdownDes().forEach((dropdownDe, index) => {
+                        const menuDes = getAndExpectDebugElementByCss(dropdownDe, 'div.dropdown-menu', 1, 1);
+                        const menuEl: HTMLDivElement = menuDes[0].nativeElement;
+
+                        expectToBe(menuEl.getAttribute('aria-labelledby'), ids[index]);
+                    });
+                });
+
+                it('... should display the sheet label and a badge with the partials count in each toggle anchor', () => {
+                    getDropdownToggleDes().forEach((toggleDe, index) => {
+                        const spanDes = getAndExpectDebugElementByCss(toggleDe, 'span:not(.badge)', 1, 1);
+                        const spanEl: HTMLSpanElement = spanDes[0].nativeElement;
+
+                        expectToContain(spanEl.textContent, expectedSheetsWithPartials[index].label);
+
+                        const badgeDes = getAndExpectDebugElementByCss(spanDes[0], 'span.badge', 1, 1);
+                        const badgeEl: HTMLSpanElement = badgeDes[0].nativeElement;
+
+                        expectToBe(badgeEl.textContent, expectedSheetsWithPartials[index].content.length.toString());
+                    });
+                });
+
+                it('... should have `text-muted` class on all toggle anchors if no svg sheet with partials is selected', () => {
+                    getDropdownToggleDes().forEach(toggleDe => {
+                        const aEl: HTMLAnchorElement = toggleDe.nativeElement;
+
+                        expectToContain(aEl.classList, 'text-muted');
+                        expectToNotContain(aEl.classList, 'active');
+                    });
+                });
+
+                it('... should have `active` class on toggle anchor of selected svg sheet with partials and `text-muted` on others', async () => {
+                    fixture.componentRef.setInput('selectedSvgSheet', mockEditionData.mockSvgSheet_Sk2a);
+                    await detectChangesOnPush(fixture);
+
+                    let toggleDes = getDropdownToggleDes();
+
+                    expectToContain(toggleDes[0].nativeElement.classList, 'active');
+                    expectToNotContain(toggleDes[0].nativeElement.classList, 'text-muted');
+                    expectToContain(toggleDes[1].nativeElement.classList, 'text-muted');
+                    expectToNotContain(toggleDes[1].nativeElement.classList, 'active');
+
+                    fixture.componentRef.setInput('selectedSvgSheet', mockEditionData.mockSvgSheet_Sk3b);
+                    await detectChangesOnPush(fixture);
+
+                    toggleDes = getDropdownToggleDes();
+
+                    expectToContain(toggleDes[0].nativeElement.classList, 'text-muted');
+                    expectToNotContain(toggleDes[0].nativeElement.classList, 'active');
+                    expectToContain(toggleDes[1].nativeElement.classList, 'active');
+                    expectToNotContain(toggleDes[1].nativeElement.classList, 'text-muted');
+                });
+
+                it('... should contain as many item anchors (.dropdown-item) in each dropdown as partials in sheet content', () => {
+                    getDropdownDes().forEach((dropdownDe, index) => {
+                        const expectedLength = expectedSheetsWithPartials[index].content.length;
+
+                        getAndExpectDebugElementByCss(dropdownDe, 'a.dropdown-item', expectedLength, expectedLength);
+                    });
+                });
+
+                it('... should have `active` class on item anchor of selected partial and `text-muted` on others', async () => {
+                    fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartialA);
+                    await detectChangesOnPush(fixture);
+
+                    const itemDes = getAndExpectDebugElementByCss(
+                        getDropdownDes()[0],
+                        'a.dropdown-item',
+                        expectedSvgSheetWithPartials.content.length,
+                        expectedSvgSheetWithPartials.content.length
+                    );
+
+                    itemDes.forEach((itemDe, index) => {
+                        const itemEl: HTMLAnchorElement = itemDe.nativeElement;
+                        const isSelected =
+                            expectedSvgSheetWithPartials.content[index].partial ===
+                            expectedSvgSheetWithPartialA.content[0].partial;
+
+                        expectToBe(itemEl.classList.contains('active'), isSelected);
+                        expectToBe(itemEl.classList.contains('text-muted'), !isSelected);
+                    });
+                });
+
+                it('... should display the sheet labels with numbered partials in item anchors', () => {
+                    getDropdownDes().forEach((dropdownDe, dropdownIndex) => {
+                        const sheet = expectedSheetsWithPartials[dropdownIndex];
+                        const aDes = getAndExpectDebugElementByCss(
+                            dropdownDe,
+                            'a.dropdown-item',
+                            sheet.content.length,
+                            sheet.content.length
+                        );
+
+                        aDes.forEach((aDe, anchorIndex) => {
+                            const aEl: HTMLAnchorElement = aDe.nativeElement;
+                            const anchorLabel =
+                                sheet.label + ' [' + (anchorIndex + 1) + '/' + sheet.content.length + ']';
+
+                            expectToBe(aEl.textContent.trim(), anchorLabel);
+                        });
                     });
                 });
             });
@@ -437,38 +375,27 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 });
 
                 describe('... without partial', () => {
-                    it('... should return false if given id does not equal id of selected svg sheet', () => {
-                        const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
-
-                        expectToBe(comparison, false);
+                    it('... should be false if given id does not equal id of selected svg sheet', () => {
+                        expectToBe(component.isSelectedSvgSheet(expectedNextSvgSheet.id), false);
                     });
 
-                    it('... should return true if given id does equal id of selected svg sheet', () => {
-                        const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
-
-                        expectToBe(comparison, true);
+                    it('... should be true if given id equals id of selected svg sheet', () => {
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheet.id), true);
                     });
                 });
 
                 describe('... with partial', () => {
-                    it('... should return false if given id does not equal id with partial of selected svg sheet', async () => {
-                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
-
+                    beforeEach(async () => {
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartialA);
                         await detectChangesOnPush(fixture);
-
-                        const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
-
-                        expectToBe(comparison, false);
                     });
 
-                    it('... should return true if given id does equal id with partial of selected svg sheet', async () => {
-                        component.selectedSvgSheet = structuredClone(expectedSvgSheetWithPartialA);
+                    it('... should be false if given id with partial does not equal id with partial of selected svg sheet', () => {
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX'), false);
+                    });
 
-                        await detectChangesOnPush(fixture);
-
-                        const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');
-
-                        expectToBe(comparison, true);
+                    it('... should be true if given id with partial equals id with partial of selected svg sheet', () => {
+                        expectToBe(component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a'), true);
                     });
                 });
             });
@@ -480,12 +407,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                 describe('... should trigger on click', () => {
                     it('... on direct anchors', async () => {
-                        const aDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'a.awg-edition-sheet-facet-link',
-                            expectedSheetsWithoutPartials.length,
-                            expectedSheetsWithoutPartials.length
-                        );
+                        const aDes = getDirectLinkDes();
 
                         await clickAndAwaitChanges(aDes[0], fixture);
 
@@ -496,14 +418,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                         expectSpyCall(selectSvgSheetSpy, 2, { complexId: '', sheetId: expectedNextSvgSheet.id });
                     });
 
-                    it('... on dropdown anchors', async () => {
-                        const dropdownDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-sheet-facet-link-dropdown',
-                            expectedSheetsWithPartials.length,
-                            expectedSheetsWithPartials.length
-                        );
-                        for (const [index, dropdownDe] of dropdownDes.entries()) {
+                    it('... on dropdown item anchors', async () => {
+                        for (const [index, dropdownDe] of getDropdownDes().entries()) {
                             const sheet = expectedSheetsWithPartials[index];
                             const aDes = getAndExpectDebugElementByCss(
                                 dropdownDe,
@@ -514,14 +430,42 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                             for (const [anchorIndex, aDe] of aDes.entries()) {
                                 await clickAndAwaitChanges(aDe, fixture);
 
-                                const expectedIdWithPartial = sheet.id + sheet.content[anchorIndex].partial;
-
                                 expectSpyCall(selectSvgSheetSpy, index * 2 + anchorIndex + 1, {
                                     complexId: '',
-                                    sheetId: expectedIdWithPartial,
+                                    sheetId: sheet.id + sheet.content[anchorIndex].partial,
                                 });
                             }
                         }
+                    });
+                });
+
+                describe('... should trigger on enter key', () => {
+                    const pressEnter = async (de: DebugElement) => {
+                        (de.nativeElement as HTMLElement).dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+                        await detectChangesOnPush(fixture);
+                    };
+
+                    it('... on direct anchors', async () => {
+                        await pressEnter(getDirectLinkDes()[0]);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, { complexId: '', sheetId: expectedSvgSheet.id });
+                    });
+
+                    it('... on dropdown item anchors', async () => {
+                        const sheet = expectedSheetsWithPartials[0];
+                        const aDes = getAndExpectDebugElementByCss(
+                            getDropdownDes()[0],
+                            'a.dropdown-item',
+                            sheet.content.length,
+                            sheet.content.length
+                        );
+
+                        await pressEnter(aDes[0]);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, {
+                            complexId: '',
+                            sheetId: sheet.id + sheet.content[0].partial,
+                        });
                     });
                 });
 
@@ -532,7 +476,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
-                it('... should emit id of selected svg sheet within same complex', () => {
+                it('... should navigate to the selected svg sheet within same complex', () => {
                     const expectedSheetIds: SheetClickEvent = {
                         complexId: expectedComplexId,
                         sheetId: expectedSvgSheet.id,
@@ -550,20 +494,17 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
                 });
 
-                it('... should emit id of selected svg sheet with partial within same complex', () => {
-                    const expectedSheetIdWithPartial =
-                        expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                it('... should navigate to the selected svg sheet with partial within same complex', () => {
                     const expectedSheetIds: SheetClickEvent = {
                         complexId: expectedComplexId,
-                        sheetId: expectedSheetIdWithPartial,
+                        sheetId: expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial,
                     };
-
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
                 });
 
-                it('... should emit id of selected svg sheet for another complex', () => {
+                it('... should navigate to the selected svg sheet for another complex', () => {
                     const expectedSheetIds: SheetClickEvent = {
                         complexId: expectedComplexId,
                         sheetId: expectedSvgSheet.id,
@@ -581,14 +522,11 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
                 });
 
-                it('... should emit id of selected svg sheet with partial for another complex', () => {
-                    const expectedSheetIdWithPartial =
-                        expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                it('... should navigate to the selected svg sheet with partial for another complex', () => {
                     const expectedSheetIds: SheetClickEvent = {
                         complexId: expectedNextComplexId,
-                        sheetId: expectedSheetIdWithPartial,
+                        sheetId: expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial,
                     };
-
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);

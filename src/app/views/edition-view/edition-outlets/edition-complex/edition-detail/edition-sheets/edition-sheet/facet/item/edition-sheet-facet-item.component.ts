@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionTypeLabel } from '@awg-views/edition-view/models/edition-type.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -9,7 +10,7 @@ import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-vi
 /**
  * The EditionSheetFacetItem component.
  *
- * It contains an item of the svg sheet facet section
+ * It contains an item of the sheet facet section
  * of the edition view of the app
  * and lets the user select an SVG sheet of a specific edition type.
  */
@@ -18,7 +19,7 @@ import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-vi
     templateUrl: './edition-sheet-facet-item.component.html',
     styleUrls: ['./edition-sheet-facet-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [EditionDisclaimerWorkeditionsComponent, NgbDropdownModule],
 })
 export class EditionSheetFacetItemComponent {
     /**
@@ -33,30 +34,21 @@ export class EditionSheetFacetItemComponent {
      *
      * It holds the label of the facet item.
      */
-    facetItemLabel = input.required<EditionTypeLabel>();
+    readonly facetItemLabel = input.required<EditionTypeLabel>();
 
     /**
-     * Input variable: svgSheets.
+     * Readonly input signal: svgSheets.
      *
-     * It keeps the svg sheets.
+     * It holds the svg sheets of the facet item.
      */
-    @Input()
-    svgSheets: EditionSvgSheet[] = [];
+    readonly svgSheets = input.required<EditionSvgSheet[]>();
 
     /**
-     * Input variable: selectedSvgSheet.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It holds the selected svg sheet.
      */
-    @Input()
-    selectedSvgSheet: EditionSvgSheet | undefined;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
+    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
 
     /**
      * Public method: isSelectedSvgSheet.
@@ -70,13 +62,15 @@ export class EditionSheetFacetItemComponent {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string, partial?: string): boolean {
+        const selectedSvgSheet = this.selectedSvgSheet();
+
         let givenId = id;
-        let selectedId = this.selectedSvgSheet?.id;
+        let selectedId = selectedSvgSheet?.id;
 
         // Compare partial id if needed
-        if (partial && this.selectedSvgSheet?.content?.[0]?.partial) {
+        if (partial && selectedSvgSheet?.content?.[0]?.partial) {
             givenId += partial;
-            selectedId += this.selectedSvgSheet.content[0].partial;
+            selectedId += selectedSvgSheet.content[0].partial;
         }
 
         return givenId === selectedId;
