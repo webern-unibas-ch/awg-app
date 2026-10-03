@@ -30,13 +30,12 @@
 
                 <awg-license />
 
-                @if (hasAvailableTkkOverlays || suppliedClasses.size > 0) {
-                    <awg-edition-sheet-viewer-switch
-                        [id]="selectedSvgSheet.id"
+                @if (hasAvailableTkkOverlays || suppliedClasses.length > 0) {
+                    <awg-edition-sheet-viewer-additions-panel
+                        [sheetId]="selectedSvgSheet.id"
                         [suppliedClasses]="suppliedClasses"
-                        [hasAvailableTkkOverlays]="hasAvailableTkkOverlays"
-                        (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
-                        (toggleTkkClassesHighlightRequest)="onTkkClassesHighlightToggle($event)" />
+                        [hasTkkOverlays]="hasAvailableTkkOverlays"
+                        (visibilityChange)="onAdditionVisibilityChange($event)" />
                 }
             </div>
 

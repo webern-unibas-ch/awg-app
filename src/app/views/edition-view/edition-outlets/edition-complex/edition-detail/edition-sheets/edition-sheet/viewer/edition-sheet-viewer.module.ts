@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
-import { EditionTkaLabelComponent } from '../../../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
-import { EditionSheetViewerSwitchComponent } from './switch';
+import { EditionSheetViewerAdditionsPanelComponent } from './additions-panel/edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 
 /**
@@ -14,18 +13,18 @@ import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
  *
  * It embeds the {@link EditionSheetViewerComponent},
  * {@link EditionSheetViewerNavComponent},
- * {@link EditionSheetViewerSwitchComponent}
+ * {@link EditionSheetViewerAdditionsPanelComponent}
  * as well as the {@link SharedModule}.
  */
 @NgModule({
     imports: [
         SharedModule,
         EditionSheetViewerNavComponent,
+        EditionSheetViewerAdditionsPanelComponent,
         EditionTkaEvaluationsComponent,
-        EditionTkaLabelComponent,
         EditionTkaTableComponent,
     ],
-    declarations: [EditionSheetViewerComponent, EditionSheetViewerSwitchComponent],
-    exports: [EditionSheetViewerComponent, EditionSheetViewerNavComponent, EditionSheetViewerSwitchComponent],
+    declarations: [EditionSheetViewerComponent],
+    exports: [EditionSheetViewerComponent, EditionSheetViewerNavComponent, EditionSheetViewerAdditionsPanelComponent],
 })
 export class EditionSheetViewerModule {}

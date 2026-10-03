@@ -1,0 +1,31 @@
+<div class="card awg-edition-sheet-viewer-additions-panel float-none my-2">
+    <div class="card-header">
+        <span class="mx-2">Editorische Ergänzungen</span>
+    </div>
+    <div class="card-body">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3">
+            <div class="col">
+                <awg-form-switch
+                    [inputId]="inputIdPrefix + 'all'"
+                    [checked]="allVisible()"
+                    (checkedChange)="toggleAll()">
+                    Alle {{ allVisible() ? 'aus' : 'ein' }}blenden
+                </awg-form-switch>
+            </div>
+            @for (key of additionsKeys(); track key) {
+                <div class="col">
+                    <awg-form-switch
+                        [inputId]="inputIdPrefix + key"
+                        [checked]="!!visibility().get(key)"
+                        (checkedChange)="toggle(key)">
+                        @if (key === tkkKey) {
+                            <awg-edition-tka-label [id]="sheetId()" labelType="commentary" />
+                        } @else {
+                            {{ suppliedClassLabels.get(key) ?? key }}
+                        }
+                    </awg-form-switch>
+                </div>
+            }
+        </div>
+    </div>
+</div>

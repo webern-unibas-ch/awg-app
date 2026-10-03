@@ -48,6 +48,7 @@ import {
 import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
 
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
+import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/edition-sheet-viewer-additions-panel.model';
 
 import * as D3_SELECTION from 'd3-selection';
 
@@ -69,23 +70,20 @@ class EditionSheetViewerNavStubComponent {
 }
 
 @Component({
-    selector: 'awg-edition-sheet-viewer-switch',
+    selector: 'awg-edition-sheet-viewer-additions-panel',
     template: '',
     standalone: false,
 })
-class EditionSheetViewerSwitchStubComponent {
+class EditionSheetViewerAdditionsPanelStubComponent {
     @Input()
-    id?: string;
+    sheetId?: string;
     @Input()
-    suppliedClasses?: Map<string, boolean>;
+    suppliedClasses?: readonly string[];
     @Input()
-    hasAvailableTkkOverlays?: boolean;
+    hasTkkOverlays?: boolean;
 
     @Output()
-    toggleSuppliedClassesOpacityRequest: EventEmitter<{
-        className: string;
-        isCurrentlyVisible: boolean;
-    }> = new EventEmitter();
+    visibilityChange: EventEmitter<EditionSheetViewerAdditionsPanelChange> = new EventEmitter();
 }
 
 describe('EditionSheetViewerComponent (DONE)', () => {
@@ -104,7 +102,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let emitSelectLinkBoxRequestSpy: Spy;
     let emitSelectOverlaysRequestSpy: Spy;
     let getContainerDimensionsSpy: Spy;
-    let onSuppliedClassesOpacityToggleSpy: Spy;
+    let onAdditionVisibilityChangeSpy: Spy;
     let onZoomChangeSpy: Spy;
     let renderSheetSpy: Spy;
     let rescaleZoomSpy: Spy;
@@ -129,7 +127,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let expectedTkkOverlays: EditionSvgOverlay[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
     let expectedSuppliedClassNames: string[];
-    let expectedSuppliedClassMap: Map<string, boolean>;
+    let expectedSuppliedClasses: string[];
 
     beforeEach(async () => {
         // --- Robust SVGSVGElement Mock for D3-zoom ---
@@ -168,7 +166,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             getGroupsBySelector: (svgRootGroup: D3Selection, selector: string): D3Selection =>
                 svgRootGroup.selectAll(selector),
 
-            getSuppliedClasses: (): Map<string, boolean> => new Map(),
+            getSuppliedClasses: (): string[] => [],
             toggleSuppliedClassOpacity: (): void => {},
         };
 
@@ -187,7 +185,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             declarations: [
                 EditionSheetViewerComponent,
                 EditionSheetViewerNavStubComponent,
-                EditionSheetViewerSwitchStubComponent,
+                EditionSheetViewerAdditionsPanelStubComponent,
                 LicenseStubComponent,
             ],
             providers: [
@@ -225,16 +223,14 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             },
         ];
         expectedSuppliedClassNames = ['supplied class-1', 'supplied class-2'];
-        expectedSuppliedClassMap = new Map<string, boolean>();
-        expectedSuppliedClassMap.set(expectedSuppliedClassNames[0].split(' ')[1], true);
-        expectedSuppliedClassMap.set(expectedSuppliedClassNames[1].split(' ')[1], true);
+        expectedSuppliedClasses = expectedSuppliedClassNames.map(name => name.split(' ')[1]);
 
         // Spies
         browseSvgSheetSpy = vi.spyOn(component, 'browseSvgSheet');
         browseSvgSheetRequestEmitSpy = vi.spyOn(component.browseSvgSheetRequest, 'emit');
         emitSelectLinkBoxRequestSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
         emitSelectOverlaysRequestSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
-        onSuppliedClassesOpacityToggleSpy = vi.spyOn(component, 'onSuppliedClassesOpacityToggle');
+        onAdditionVisibilityChangeSpy = vi.spyOn(component, 'onAdditionVisibilityChange');
         onZoomChangeSpy = vi.spyOn(component, 'onZoomChange');
         renderSheetSpy = vi.spyOn(component, 'renderSheet');
         resetZoomSpy = vi.spyOn(component, 'resetZoom');
@@ -253,7 +249,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         serviceCreateSvgSpy = vi.spyOn(mockEditionSvgDrawingService, 'createSvg');
         serviceGetSuppliedClassesSpy = vi
             .spyOn(mockEditionSvgDrawingService, 'getSuppliedClasses')
-            .mockReturnValue(expectedSuppliedClassMap);
+            .mockReturnValue(expectedSuppliedClasses);
         serviceToggleSuppliedClassOpacitySpy = vi.spyOn(mockEditionSvgDrawingService, 'toggleSuppliedClassOpacity');
         serviceToggleTkkOverlayHighlightsSpy = vi.spyOn(mockEditionSvgOverlayService, 'toggleTkkOverlayHighlights');
     });
@@ -299,7 +295,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have empty `suppliedClasses`', () => {
-            expectToEqual(component.suppliedClasses, new Map());
+            expectToEqual(component.suppliedClasses, []);
         });
 
         it('... should have empty `svgSheetFilePath`', () => {
@@ -370,8 +366,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have `suppliedClasses`', () => {
-            component.suppliedClasses = expectedSuppliedClassMap;
-            expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
+            expectToEqual(component.suppliedClasses, expectedSuppliedClasses);
         });
 
         it('... should have `_isRendered` set to true', () => {
@@ -503,9 +498,9 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     });
                 });
 
-                describe('EditionSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
-                        component.suppliedClasses = expectedSuppliedClassMap;
+                describe('EditionSheetViewerAdditionsPanelComponent', () => {
+                    it('... should contain 1 awg-edition-sheet-viewer-additions-panel component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
+                        component.suppliedClasses = expectedSuppliedClasses;
                         component.hasAvailableTkkOverlays = false;
                         await detectChangesOnPush(fixture);
 
@@ -518,14 +513,14 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(
                             svgSheetContainerDes[0],
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
                     });
 
-                    it('... should contain 1 awg-edition-sheet-viewer-switch component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
-                        component.suppliedClasses = new Map();
+                    it('... should contain 1 awg-edition-sheet-viewer-additions-panel component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
+                        component.suppliedClasses = [];
                         component.hasAvailableTkkOverlays = true;
                         await detectChangesOnPush(fixture);
 
@@ -538,14 +533,14 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(
                             svgSheetContainerDes[0],
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
                     });
 
-                    it('... should contain no awg-edition-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkkOverlays are available', async () => {
-                        component.suppliedClasses = new Map();
+                    it('... should contain no awg-edition-sheet-viewer-additions-panel component (stubbed) if neither suppliedClasses nor tkkOverlays are available', async () => {
+                        component.suppliedClasses = [];
                         component.hasAvailableTkkOverlays = false;
                         await detectChangesOnPush(fixture);
 
@@ -558,79 +553,79 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
                         getAndExpectDebugElementByDirective(
                             svgSheetContainerDes[0],
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             0,
                             0
                         );
                     });
 
-                    it('... should pass the sheet id to the switch component', async () => {
-                        // Ensure suppliedClasses is set up so the switch component is rendered
-                        component.suppliedClasses = expectedSuppliedClassMap;
+                    it('... should pass the sheet id to the additions panel component', async () => {
+                        // Ensure suppliedClasses is set up so the additions panel component is rendered
+                        component.suppliedClasses = expectedSuppliedClasses;
                         await detectChangesOnPush(fixture);
 
-                        const switchDes = getAndExpectDebugElementByDirective(
+                        const additionsPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
-                        const switchCmp = switchDes[0].injector.get(
-                            EditionSheetViewerSwitchStubComponent
-                        ) as EditionSheetViewerSwitchStubComponent;
+                        const additionsPanelCmp = additionsPanelDes[0].injector.get(
+                            EditionSheetViewerAdditionsPanelStubComponent
+                        ) as EditionSheetViewerAdditionsPanelStubComponent;
 
-                        expectToBe(switchCmp.id, expectedSvgSheet.id);
+                        expectToBe(additionsPanelCmp.sheetId, expectedSvgSheet.id);
                     });
 
-                    it('... should pass the correct suppliedClasses to the switch component', async () => {
-                        component.suppliedClasses = expectedSuppliedClassMap;
+                    it('... should pass the correct suppliedClasses to the additions panel component', async () => {
+                        component.suppliedClasses = expectedSuppliedClasses;
                         await detectChangesOnPush(fixture);
 
-                        const switchDes = getAndExpectDebugElementByDirective(
+                        const additionsPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
-                        const switchCmp = switchDes[0].injector.get(
-                            EditionSheetViewerSwitchStubComponent
-                        ) as EditionSheetViewerSwitchStubComponent;
+                        const additionsPanelCmp = additionsPanelDes[0].injector.get(
+                            EditionSheetViewerAdditionsPanelStubComponent
+                        ) as EditionSheetViewerAdditionsPanelStubComponent;
 
-                        expectToEqual(switchCmp.suppliedClasses, expectedSuppliedClassMap);
+                        expectToEqual(additionsPanelCmp.suppliedClasses, expectedSuppliedClasses);
                     });
 
-                    it('... should pass the default `hasAvailableTkkOverlays` flag (false) to the switch component', async () => {
-                        component.suppliedClasses = expectedSuppliedClassMap;
+                    it('... should pass the default `hasTkkOverlays` flag (false) to the additions panel component', async () => {
+                        component.suppliedClasses = expectedSuppliedClasses;
                         component.hasAvailableTkkOverlays = false;
                         await detectChangesOnPush(fixture);
-                        const switchDes = getAndExpectDebugElementByDirective(
+                        const additionsPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
-                        const switchCmp = switchDes[0].injector.get(
-                            EditionSheetViewerSwitchStubComponent
-                        ) as EditionSheetViewerSwitchStubComponent;
+                        const additionsPanelCmp = additionsPanelDes[0].injector.get(
+                            EditionSheetViewerAdditionsPanelStubComponent
+                        ) as EditionSheetViewerAdditionsPanelStubComponent;
 
-                        expectToBe(switchCmp.hasAvailableTkkOverlays, false);
+                        expectToBe(additionsPanelCmp.hasTkkOverlays, false);
                     });
 
-                    it('... should pass the updated `hasAvailableTkkOverlays` flag (true) to the switch component', async () => {
+                    it('... should pass the updated `hasTkkOverlays` flag (true) to the additions panel component', async () => {
                         component.hasAvailableTkkOverlays = true;
                         await detectChangesOnPush(fixture);
 
-                        const switchDes = getAndExpectDebugElementByDirective(
+                        const additionsPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSheetViewerSwitchStubComponent,
+                            EditionSheetViewerAdditionsPanelStubComponent,
                             1,
                             1
                         );
-                        const switchCmp = switchDes[0].injector.get(
-                            EditionSheetViewerSwitchStubComponent
-                        ) as EditionSheetViewerSwitchStubComponent;
+                        const additionsPanelCmp = additionsPanelDes[0].injector.get(
+                            EditionSheetViewerAdditionsPanelStubComponent
+                        ) as EditionSheetViewerAdditionsPanelStubComponent;
 
-                        expectToBe(switchCmp.hasAvailableTkkOverlays, true);
+                        expectToBe(additionsPanelCmp.hasTkkOverlays, true);
                     });
                 });
             });
@@ -734,57 +729,65 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
         });
 
-        describe('#onSuppliedClassesOpacityToggle()', () => {
-            it('... should have a method `onSuppliedClassesOpacityToggle`', () => {
-                expect(component.onSuppliedClassesOpacityToggle).toBeDefined();
+        describe('#onAdditionVisibilityChange()', () => {
+            it('... should have a method `onAdditionVisibilityChange`', () => {
+                expect(component.onAdditionVisibilityChange).toBeDefined();
             });
 
-            it('... should trigger on event from EditionSheetViewerSettingsComponent', () => {
-                const settingsDes = getAndExpectDebugElementByDirective(
+            it('... should trigger on event from EditionSheetViewerAdditionsPanelComponent', () => {
+                const additionsPanelDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    EditionSheetViewerSwitchStubComponent,
+                    EditionSheetViewerAdditionsPanelStubComponent,
                     1,
                     1
                 );
-                const settingsCmp = settingsDes[0].injector.get(
-                    EditionSheetViewerSwitchStubComponent
-                ) as EditionSheetViewerSwitchStubComponent;
+                const additionsPanelCmp = additionsPanelDes[0].injector.get(
+                    EditionSheetViewerAdditionsPanelStubComponent
+                ) as EditionSheetViewerAdditionsPanelStubComponent;
 
-                const expectedToggleEvent = { className: 'testClass1', isCurrentlyVisible: true };
+                const expectedChange = { key: 'testClass1', isVisible: false };
 
-                settingsCmp.toggleSuppliedClassesOpacityRequest.emit(expectedToggleEvent);
+                additionsPanelCmp.visibilityChange.emit(expectedChange);
 
-                expectSpyCall(onSuppliedClassesOpacityToggleSpy, 1, expectedToggleEvent);
+                expectSpyCall(onAdditionVisibilityChangeSpy, 1, expectedChange);
             });
 
-            it('... should call the `toggleSuppliedClassOpacity` method from svg drawing service with correct parameters', () => {
-                const expectedToggleEvent = { className: 'testClass1', isCurrentlyVisible: true };
+            it.each([true, false])(
+                '... should call `toggleSuppliedClassOpacity` from svg drawing service for a supplied class key (isVisible: %s)',
+                isVisible => {
+                    component.onAdditionVisibilityChange({ key: 'testClass1', isVisible });
 
-                component.onSuppliedClassesOpacityToggle(expectedToggleEvent);
+                    expectSpyCall(serviceToggleSuppliedClassOpacitySpy, 1, [
+                        expectedSvgSheetRootGroupSelection,
+                        'testClass1',
+                        isVisible,
+                    ]);
+                    expectSpyCall(serviceToggleTkkOverlayHighlightsSpy, 0);
+                }
+            );
 
-                expectSpyCall(serviceToggleSuppliedClassOpacitySpy, 1, [
-                    component.svgSheetRootGroupSelection,
-                    expectedToggleEvent.className,
-                    expectedToggleEvent.isCurrentlyVisible,
-                ]);
-            });
-        });
+            it.each([true, false])(
+                '... should call `toggleTkkOverlayHighlights` from svg overlay service for the tkk key (isVisible: %s)',
+                isVisible => {
+                    component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible });
 
-        describe('#onTkkClassesHighlightToggle()', () => {
-            it('... should have a method `onTkkClassesHighlightToggle`', () => {
-                expect(component.onTkkClassesHighlightToggle).toBeDefined();
-            });
+                    expectSpyCall(serviceToggleTkkOverlayHighlightsSpy, 1, [
+                        expectedSvgSheetRootGroupSelection,
+                        EditionSvgOverlayTypes.tkk,
+                        isVisible,
+                    ]);
+                    expectSpyCall(serviceToggleSuppliedClassOpacitySpy, 0);
+                }
+            );
 
-            it('... should trigger `toggleTkkOverlayHighlights` from service with correct arguments', () => {
-                const isCurrentlyHighlighted = false;
+            it('... should do nothing without svg sheet root group selection', () => {
+                component.svgSheetRootGroupSelection = undefined;
 
-                component.onTkkClassesHighlightToggle(isCurrentlyHighlighted);
+                component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible: true });
+                component.onAdditionVisibilityChange({ key: 'testClass1', isVisible: true });
 
-                expectSpyCall(serviceToggleTkkOverlayHighlightsSpy, 1, [
-                    expectedSvgSheetRootGroupSelection,
-                    EditionSvgOverlayTypes.tkk,
-                    isCurrentlyHighlighted,
-                ]);
+                expectSpyCall(serviceToggleTkkOverlayHighlightsSpy, 0);
+                expectSpyCall(serviceToggleSuppliedClassOpacitySpy, 0);
             });
         });
 
@@ -1265,10 +1268,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 expectSpyCall(serviceGetSuppliedClassesSpy, 2, expectedSvgSheetRootGroupSelection);
             });
 
-            it('... should return a map of supplied class names and set `suppliedClasses`', () => {
+            it('... should set `suppliedClasses` to the supplied classes from the svg drawing service', () => {
                 component['_getSuppliedClasses']();
 
-                expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
+                expectToEqual(component.suppliedClasses, expectedSuppliedClasses);
             });
         });
 

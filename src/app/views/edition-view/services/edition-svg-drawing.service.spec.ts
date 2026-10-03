@@ -38,8 +38,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     let expectedOverlays: EditionSvgOverlay[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
     let expectedSuppliedClassNames: string[];
-    let expectedSuppliedClassMap: Map<string, boolean>;
-    let expectedSuppliedClassesLabelLookup: Map<string, string>;
+    let expectedSuppliedClasses: string[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -66,24 +65,8 @@ describe('EditionSvgDrawingService (DONE)', () => {
             },
         ];
 
-        expectedSuppliedClassesLabelLookup = new Map([
-            ['foliation', 'Blattangabe'],
-            ['staffN', 'Systemangabe'],
-            ['measureN', 'Taktzahlen'],
-            ['clef', 'Schlüssel'],
-            ['clef_key', 'Schlüssel mit Tonart'],
-            ['key', 'Tonart'],
-            ['accid', 'Akzidenzien'],
-            ['hyphen', 'Silbentrennung'],
-        ]);
         expectedSuppliedClassNames = ['supplied foliation', 'supplied clef_key', 'supplied unknown-class'];
-        expectedSuppliedClassMap = new Map(
-            expectedSuppliedClassNames.map(name => {
-                const key = name.split(' ')[1];
-                const value = expectedSuppliedClassesLabelLookup.get(key) || key;
-                return [value, true];
-            })
-        );
+        expectedSuppliedClasses = ['foliation', 'clef_key', 'unknown-class'];
 
         expectedSvg = createD3TestSvg(mockDocument);
         expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
@@ -119,15 +102,6 @@ describe('EditionSvgDrawingService (DONE)', () => {
         it('... should clear mock console after each run', () => {
             expect(mockConsole.get(0)).toBeUndefined();
         });
-    });
-
-    it('... should have `_suppliedClassesLabelLookup` map', () => {
-        expectToBe(service['_suppliedClassesLabelLookup'].size, expectedSuppliedClassesLabelLookup.size);
-        expectToEqual(service['_suppliedClassesLabelLookup'], expectedSuppliedClassesLabelLookup);
-    });
-
-    it('... should have empty `_suppliedClasses` map', () => {
-        expectToBe(service['_suppliedClasses'].size, 0);
     });
 
     describe('#createSvg()', () => {
@@ -472,13 +446,11 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(service.getSuppliedClasses).toBeDefined();
         });
 
-        describe('... should return an empty Map if', () => {
+        describe('... should return an empty array if', () => {
             it('... no svgRootGroup is provided', () => {
                 const suppliedClasses = service.getSuppliedClasses(undefined);
 
-                expect(suppliedClasses).toBeDefined();
-                expect(suppliedClasses).toBeInstanceOf(Map);
-                expectToBe(suppliedClasses.size, 0);
+                expectToEqual(suppliedClasses, []);
             });
 
             it('... `getGroupsBySelector` returns undefined / no selections found', () => {
@@ -490,22 +462,16 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
 
                 expectSpyCall(getGroupsSpy, 1, [expectedSvgRootGroup, 'supplied']);
-                expect(suppliedClasses).toBeDefined();
-                expect(suppliedClasses).toBeInstanceOf(Map);
-                expectToBe(suppliedClasses.size, 0);
+                expectToEqual(suppliedClasses, []);
 
                 getGroupsSpy.mockRestore();
             });
         });
 
-        it('... should return a Map of supplied classes if svgRootGroup is provided and has supplied classes', () => {
+        it('... should return the names of all supplied classes if svgRootGroup is provided and has supplied classes', () => {
             const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
 
-            expect(suppliedClasses).toBeDefined();
-            expect(suppliedClasses).toBeInstanceOf(Map);
-            expectToBe(suppliedClasses.size, expectedSuppliedClassNames.length);
-            expectToBe(suppliedClasses.size, expectedSuppliedClassMap.size);
-            expectToEqual(suppliedClasses, expectedSuppliedClassMap);
+            expectToEqual(suppliedClasses, expectedSuppliedClasses);
         });
 
         it('... should ignore supplied groups without a class after `supplied`', () => {
@@ -515,22 +481,17 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
 
-            expect(suppliedClasses).toBeDefined();
-            expect(suppliedClasses).toBeInstanceOf(Map);
-            expectToBe(suppliedClasses.size, 0);
+            expectToEqual(suppliedClasses, []);
         });
 
-        it('... should not add duplicate supplied class labels twice', () => {
+        it('... should not add duplicate supplied classes twice', () => {
             expectedSvg = createD3TestSvg(mockDocument);
             expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
             createD3TestSuppliedClassesGroups(expectedSvgRootGroup, ['supplied foliation', 'supplied foliation']);
 
             const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
 
-            expect(suppliedClasses).toBeDefined();
-            expect(suppliedClasses).toBeInstanceOf(Map);
-            expectToBe(suppliedClasses.size, 1);
-            expectToBe(suppliedClasses.get('Blattangabe'), true);
+            expectToEqual(suppliedClasses, ['foliation']);
         });
     });
 
@@ -584,13 +545,13 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             const expectedSelection = D3_SELECTION.select(suppliedSelections?.nodes()[0]);
 
-            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, true);
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, false);
 
             let opacity = expectedSelection.style('opacity');
 
             expectToEqual(opacity, '0');
 
-            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, false);
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, true);
 
             opacity = expectedSelection.style('opacity');
 
@@ -602,7 +563,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             expect(suppliedSelections).toBeTruthy();
 
-            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', true);
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', false);
 
             suppliedSelections?.nodes().forEach(node => {
                 const expectedSelection = D3_SELECTION.select(node);
@@ -610,7 +571,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectToEqual(opacity, '0');
             });
 
-            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', false);
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', true);
 
             suppliedSelections?.nodes().forEach(node => {
                 const expectedSelection = D3_SELECTION.select(node);

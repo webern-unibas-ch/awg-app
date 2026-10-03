@@ -31,6 +31,8 @@ import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/e
 
 import * as D3_ZOOM from 'd3-zoom';
 
+import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/edition-sheet-viewer-additions-panel.model';
+
 /**
  * The EditionSheetViewer component.
  *
@@ -157,9 +159,9 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     /**
      * Public variable: suppliedClasses.
      *
-     * It keeps a map of the supplied classes.
+     * It keeps the names of the supplied classes of the svg sheet.
      */
-    suppliedClasses: Map<string, boolean> = new Map();
+    suppliedClasses: string[] = [];
 
     /**
      * Public variable: svgSheetFilePath.
@@ -292,7 +294,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * to browse to the previous or next sheet of the selected svg sheet.
      *
      * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
-     *
      * @returns {void} Emits the direction.
      */
     browseSvgSheet(direction: 1 | -1): void {
@@ -300,46 +301,29 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     }
 
     /**
-     * Public method: onSuppliedClassesOpacityToggle.
+     * Public method: onAdditionVisibilityChange.
      *
-     * It toggles the opacity of a given supplied class.
+     * It sets the visibility of an editorial addition of the svg sheet as requested by the additions panel:
+     * the tkk key sets the highlighting of the tkk overlays,
+     * any other key sets the opacity of the supplied class with that name.
      *
-     * @param {{string, boolean}} input The given input with the class name and its current visibility.
-     *
-     * @returns {void} Toggles the opacity of the supplied class.
+     * @param {EditionSheetViewerAdditionsPanelChange} change The given addition key and its requested visibility.
+     * @returns {void} Sets the visibility of the editorial addition.
      */
-    onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
+    onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
         if (!this.svgSheetRootGroupSelection) {
             return;
         }
 
-        const { className, isCurrentlyVisible } = input;
-        this._svgDrawingService.toggleSuppliedClassOpacity(
-            this.svgSheetRootGroupSelection,
-            className,
-            isCurrentlyVisible
-        );
-    }
-
-    /**
-     * Public method: onTkkClassesHighlightToggle.
-     *
-     * It toggles the highlighting of the tkk classes.
-     *
-     * @param {boolean} isCurrentlyHighlighted The current highlighting status.
-     *
-     * @returns {void} Toggles the transparency of the tkk classes.
-     */
-    onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
-        if (!this.svgSheetRootGroupSelection) {
-            return;
+        if (key === EditionSvgOverlayTypes.tkk) {
+            this._svgOverlayService.toggleTkkOverlayHighlights(
+                this.svgSheetRootGroupSelection,
+                EditionSvgOverlayTypes.tkk,
+                isVisible
+            );
+        } else {
+            this._svgDrawingService.toggleSuppliedClassOpacity(this.svgSheetRootGroupSelection, key, isVisible);
         }
-
-        this._svgOverlayService.toggleTkkOverlayHighlights(
-            this.svgSheetRootGroupSelection,
-            EditionSvgOverlayTypes.tkk,
-            isCurrentlyHighlighted
-        );
     }
 
     /**
@@ -348,7 +332,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * It sets the slider value to a given scale step.
      *
      * @param {number} newSliderValue The new slider value.
-     *
      * @returns {void} Sets the new slider value and calls for rescale.
      */
     onZoomChange(newSliderValue: number): void {
@@ -504,7 +487,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * to the {@link selectLinkBoxRequest}.
      *
      * @param {string} linkBoxId The given link box id.
-     *
      * @returns {void} Emits the id.
      */
     private _onLinkBoxSelect(linkBoxId: string): void {
@@ -521,7 +503,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * to the {@link selectOverlaysRequest}.
      *
      * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     *
      * @returns {void} Emits the overlays.
      */
     private _onTkkOverlaySelect(overlays: EditionSvgOverlay[]): void {
@@ -563,7 +544,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
-     *
      * @returns {number} The rounded value.
      */
     private _roundToScaleStepDecimalPrecision(value: number): number {
@@ -595,7 +575,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      *
      * @param {D3Selection} zoomContext The given context that shall be zoomable.
      * @param {D3Selection} svg The given svg container.
-     *
      * @returns {void} Sets the zoom behaviour.
      */
     private _zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
