@@ -13,6 +13,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap/dropdown';
+
 import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -108,6 +110,12 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expectToBe(isSignal(computedSignal), true);
 
             expect(() => computedSignal()).toThrow();
+        });
+
+        it('... should have variable `dropdownPopperOptions` to set a fixed positioning strategy', () => {
+            const defaultOptions = { placement: 'bottom-start' as const, modifiers: [] };
+
+            expectToEqual(component.dropdownPopperOptions(defaultOptions), { ...defaultOptions, strategy: 'fixed' });
         });
 
         describe('VIEW', () => {
@@ -295,6 +303,13 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 it('... should contain one dropdown and no direct anchor', () => {
                     getDropdownDes();
                     getAndExpectDebugElementByCss(compDe, 'a.awg-edition-sheet-facet-item-link', 0, 0);
+                });
+
+                it('... should pass down `dropdownPopperOptions` and no container to the NgbDropdown', () => {
+                    const ngbDropdown = getDropdownDes()[0].injector.get(NgbDropdown);
+
+                    expectToBe(ngbDropdown.popperOptions, component.dropdownPopperOptions);
+                    expect(ngbDropdown.container).toBeFalsy();
                 });
 
                 it('... should have a unique id on the toggle anchor referenced by the dropdown menu', () => {

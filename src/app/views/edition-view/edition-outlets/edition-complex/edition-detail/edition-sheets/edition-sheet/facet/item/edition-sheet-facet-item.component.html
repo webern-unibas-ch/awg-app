@@ -6,7 +6,7 @@
         {{ svgSheet().label }}
     </a>
 } @else if (svgSheet().content.length > 1) {
-    <div class="awg-edition-sheet-facet-item-link-dropdown" ngbDropdown container="body">
+    <div class="awg-edition-sheet-facet-item-link-dropdown" ngbDropdown [popperOptions]="dropdownPopperOptions">
         <a
             class="btn card-text awg-edition-sheet-facet-item-link-dropdown-toggle"
             [class.active]="isActive()"
