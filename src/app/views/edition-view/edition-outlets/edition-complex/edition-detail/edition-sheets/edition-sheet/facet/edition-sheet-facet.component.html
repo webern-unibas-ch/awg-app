@@ -11,8 +11,8 @@
         @if (!isMinimized()) {
             <div class="card-body">
                 @for (key of EDITION_TYPE_KEYS; track key; let isLast = $last) {
-                    <awg-edition-sheet-facet-item
-                        [facetItemLabel]="EDITION_TYPE_LABEL_MAP[key]"
+                    <awg-edition-sheet-facet-group
+                        [facetGroupLabel]="EDITION_TYPE_LABEL_MAP[key]"
                         [svgSheets]="sheetsData.sheets[key]"
                         [selectedSvgSheet]="selectedSvgSheet()" />
 

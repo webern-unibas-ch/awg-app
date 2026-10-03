@@ -1,6 +1,6 @@
 <h6 class="card-title">
-    {{ facetItemLabel() }}:
-    @if (facetItemLabel() === 'Werkeditionen') {
+    {{ facetGroupLabel() }}:
+    @if (facetGroupLabel() === 'Werkeditionen') {
         <awg-edition-disclaimer-workeditions />
     } @else if (!svgSheets().length) {
         <span>---</span>

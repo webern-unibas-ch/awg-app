@@ -8,20 +8,20 @@ import { EditionTypeLabel } from '@awg-views/edition-view/models/edition-type.mo
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
- * The EditionSheetFacetItem component.
+ * The EditionSheetFacetGroup component.
  *
- * It contains an item of the sheet facet section
+ * It contains a group of the sheet facet section
  * of the edition view of the app
  * and lets the user select an SVG sheet of a specific edition type.
  */
 @Component({
-    selector: 'awg-edition-sheet-facet-item',
-    templateUrl: './edition-sheet-facet-item.component.html',
-    styleUrls: ['./edition-sheet-facet-item.component.scss'],
+    selector: 'awg-edition-sheet-facet-group',
+    templateUrl: './edition-sheet-facet-group.component.html',
+    styleUrls: ['./edition-sheet-facet-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EditionDisclaimerWorkeditionsComponent, NgbDropdownModule],
 })
-export class EditionSheetFacetItemComponent {
+export class EditionSheetFacetGroupComponent {
     /**
      * Private readonly injection variable: _navigationService
      *
@@ -30,16 +30,16 @@ export class EditionSheetFacetItemComponent {
     private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Readonly input signal: facetItemLabel.
+     * Readonly input signal: facetGroupLabel.
      *
-     * It holds the label of the facet item.
+     * It holds the label of the facet group.
      */
-    readonly facetItemLabel = input.required<EditionTypeLabel>();
+    readonly facetGroupLabel = input.required<EditionTypeLabel>();
 
     /**
      * Readonly input signal: svgSheets.
      *
-     * It holds the svg sheets of the facet item.
+     * It holds the svg sheets of the facet group.
      */
     readonly svgSheets = input.required<EditionSvgSheet[]>();
 

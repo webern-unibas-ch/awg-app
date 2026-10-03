@@ -21,11 +21,11 @@ import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/
 import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { EditionSheetFacetItemComponent } from './edition-sheet-facet-item.component';
+import { EditionSheetFacetGroupComponent } from './edition-sheet-facet-group.component';
 
-describe('EditionSheetFacetItemComponent (DONE)', () => {
-    let component: EditionSheetFacetItemComponent;
-    let fixture: ComponentFixture<EditionSheetFacetItemComponent>;
+describe('EditionSheetFacetGroupComponent (DONE)', () => {
+    let component: EditionSheetFacetGroupComponent;
+    let fixture: ComponentFixture<EditionSheetFacetGroupComponent>;
     let compDe: DebugElement;
 
     let mockNavigationService: Partial<EditionNavigationService>;
@@ -35,7 +35,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
-    let expectedFacetItemLabel: string;
+    let expectedFacetGroupLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
     let expectedSheetsWithoutPartials: EditionSvgSheet[];
     let expectedSheetsWithPartials: EditionSvgSheet[];
@@ -74,7 +74,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [EditionSheetFacetItemComponent],
+            imports: [EditionSheetFacetGroupComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
         }).compileComponents();
     });
@@ -84,7 +84,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
 
         // Test data
-        expectedFacetItemLabel = 'Testeditionslabel';
+        expectedFacetGroupLabel = 'Testeditionslabel';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets['sketchEditions']);
@@ -98,7 +98,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         expectedSvgSheetWithPartialA = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionSheetFacetItemComponent);
+        fixture = TestBed.createComponent(EditionSheetFacetGroupComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -115,10 +115,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `facetItemLabel`', () => {
-            expectToBe(isSignal(component.facetItemLabel), true);
+        it('... should throw due to missing required input signal `facetGroupLabel`', () => {
+            expectToBe(isSignal(component.facetGroupLabel), true);
 
-            expect(() => component.facetItemLabel()).toThrow();
+            expect(() => component.facetGroupLabel()).toThrow();
         });
 
         it('... should throw due to missing required input signal `svgSheets`', () => {
@@ -134,7 +134,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one h6.card-title without facetItemLabel (yet)', () => {
+            it('... should contain one h6.card-title without facetGroupLabel (yet)', () => {
                 const hEl: HTMLHeadingElement = getTitleDes()[0].nativeElement;
 
                 expect(hEl.textContent).not.toBeTruthy();
@@ -150,7 +150,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            fixture.componentRef.setInput('facetItemLabel', expectedFacetItemLabel);
+            fixture.componentRef.setInput('facetGroupLabel', expectedFacetGroupLabel);
             fixture.componentRef.setInput('svgSheets', expectedSvgSheets);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
@@ -158,8 +158,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have input signal `facetItemLabel` to hold the provided label', () => {
-            expectToBe(component.facetItemLabel(), expectedFacetItemLabel);
+        it('... should have input signal `facetGroupLabel` to hold the provided label', () => {
+            expectToBe(component.facetGroupLabel(), expectedFacetGroupLabel);
         });
 
         it('... should have input signal `svgSheets` to hold the provided svg sheets', () => {
@@ -172,14 +172,14 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('title', () => {
-                it('... should display the facetItemLabel in h6.card-title', () => {
+                it('... should display the facetGroupLabel in h6.card-title', () => {
                     const hEl: HTMLHeadingElement = getTitleDes()[0].nativeElement;
 
-                    expectToBe(hEl.textContent.trim(), expectedFacetItemLabel + ':');
+                    expectToBe(hEl.textContent.trim(), expectedFacetGroupLabel + ':');
                 });
 
-                it('... should contain an EditionDisclaimerWorkeditionsComponent if facetItemLabel is `Werkeditionen`', async () => {
-                    fixture.componentRef.setInput('facetItemLabel', 'Werkeditionen');
+                it('... should contain an EditionDisclaimerWorkeditionsComponent if facetGroupLabel is `Werkeditionen`', async () => {
+                    fixture.componentRef.setInput('facetGroupLabel', 'Werkeditionen');
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByDirective(getTitleDes()[0], EditionDisclaimerWorkeditionsComponent, 1, 1);

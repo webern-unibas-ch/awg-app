@@ -6,7 +6,7 @@ import { faAnglesLeft, faListUl } from '@fortawesome/free-solid-svg-icons';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-view/models/edition-type.model';
 
-import { EditionSheetFacetItemComponent } from './item/edition-sheet-facet-item.component';
+import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
 
 /**
  * The EditionSheetFacet component.
@@ -20,7 +20,7 @@ import { EditionSheetFacetItemComponent } from './item/edition-sheet-facet-item.
     templateUrl: './edition-sheet-facet.component.html',
     styleUrls: ['./edition-sheet-facet.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [EditionSheetFacetItemComponent, FaIconComponent],
+    imports: [EditionSheetFacetGroupComponent, FaIconComponent],
 })
 export class EditionSheetFacetComponent {
     /**

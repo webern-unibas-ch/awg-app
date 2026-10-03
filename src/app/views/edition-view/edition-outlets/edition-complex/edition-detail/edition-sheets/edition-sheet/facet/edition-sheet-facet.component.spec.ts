@@ -21,7 +21,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { EditionSheetFacetItemComponent } from './item/edition-sheet-facet-item.component';
+import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
 import { EditionSheetFacetComponent } from './edition-sheet-facet.component';
 
 describe('EditionSheetFacetComponent (DONE)', () => {
@@ -42,9 +42,9 @@ describe('EditionSheetFacetComponent (DONE)', () => {
     const getFacetCardDes = () => getAndExpectDebugElementByCss(compDe, 'div.card.awg-edition-sheet-facet', 1, 1);
     const getToggleButtonDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'button.btn', 1, 1);
     const getCardBodyDes = () => getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 1, 1);
-    const getFacetItemCmps = () =>
-        getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetItemComponent, 3, 3).map(
-            de => de.injector.get(EditionSheetFacetItemComponent) as EditionSheetFacetItemComponent
+    const getFacetGroupCmps = () =>
+        getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetGroupComponent, 3, 3).map(
+            de => de.injector.get(EditionSheetFacetGroupComponent) as EditionSheetFacetGroupComponent
         );
 
     beforeEach(async () => {
@@ -127,8 +127,8 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'button', 0, 0);
             });
 
-            it('... should contain no EditionSheetFacetItemComponent (yet)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
+            it('... should contain no EditionSheetFacetGroupComponent (yet)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSheetFacetGroupComponent, 0, 0);
             });
         });
     });
@@ -180,22 +180,22 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     expectToBe(buttonEl.getAttribute('aria-label'), 'Minimize');
                 });
 
-                it('... should contain one div.card-body with one EditionSheetFacetItemComponent per edition type', () => {
-                    getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetItemComponent, 3, 3);
+                it('... should contain one div.card-body with one EditionSheetFacetGroupComponent per edition type', () => {
+                    getAndExpectDebugElementByDirective(getCardBodyDes()[0], EditionSheetFacetGroupComponent, 3, 3);
                 });
 
-                it('... should contain one hr between each EditionSheetFacetItemComponent', () => {
+                it('... should contain one hr between each EditionSheetFacetGroupComponent', () => {
                     getAndExpectDebugElementByCss(getCardBodyDes()[0], 'div.card-body > hr', 2, 2);
                 });
 
-                it('... should pass down `facetItemLabel` to each EditionSheetFacetItemComponent', () => {
-                    const labels = getFacetItemCmps().map(cmp => cmp.facetItemLabel());
+                it('... should pass down `facetGroupLabel` to each EditionSheetFacetGroupComponent', () => {
+                    const labels = getFacetGroupCmps().map(cmp => cmp.facetGroupLabel());
 
                     expectToEqual(labels, ['Werkeditionen', 'Texteditionen', 'Skizzeneditionen']);
                 });
 
-                it('... should pass down `svgSheets` to each EditionSheetFacetItemComponent', () => {
-                    const svgSheets = getFacetItemCmps().map(cmp => cmp.svgSheets());
+                it('... should pass down `svgSheets` to each EditionSheetFacetGroupComponent', () => {
+                    const svgSheets = getFacetGroupCmps().map(cmp => cmp.svgSheets());
 
                     expectToEqual(svgSheets, [
                         expectedSvgSheetsData.sheets.workEditions,
@@ -204,8 +204,8 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... should pass down `selectedSvgSheet` to each EditionSheetFacetItemComponent', () => {
-                    getFacetItemCmps().forEach(cmp => {
+                it('... should pass down `selectedSvgSheet` to each EditionSheetFacetGroupComponent', () => {
+                    getFacetGroupCmps().forEach(cmp => {
                         expectToEqual(cmp.selectedSvgSheet(), expectedSvgSheet);
                     });
                 });
@@ -238,9 +238,9 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     expectToBe(buttonEl.getAttribute('aria-label'), 'Maximize');
                 });
 
-                it('... should contain no div.card-body and no EditionSheetFacetItemComponent', () => {
+                it('... should contain no div.card-body and no EditionSheetFacetGroupComponent', () => {
                     getAndExpectDebugElementByCss(getFacetCardDes()[0], 'div.card-body', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, EditionSheetFacetGroupComponent, 0, 0);
                 });
             });
         });
