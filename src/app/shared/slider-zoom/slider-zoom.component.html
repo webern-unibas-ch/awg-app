@@ -1,0 +1,22 @@
+<div class="input-group input-group-sm awg-slider-zoom-container">
+    <span class="input-group-text awg-slider-zoom-label" aria-hidden="true">{{ value() }}x</span>
+    <input
+        #range
+        type="range"
+        class="awg-slider-zoom"
+        aria-label="Zoom"
+        [attr.aria-valuetext]="value() + 'x'"
+        [min]="config().min"
+        [max]="config().max"
+        [step]="config().stepSize"
+        [value]="value()"
+        (input)="value.set(+range.value)" />
+    <button
+        type="button"
+        class="btn btn-sm btn-outline-info"
+        title="Zoom zurücksetzen"
+        aria-label="Zoom zurücksetzen"
+        (click)="resetRequest.emit()">
+        <fa-icon [icon]="faCompressArrowsAlt" />
+    </button>
+</div>

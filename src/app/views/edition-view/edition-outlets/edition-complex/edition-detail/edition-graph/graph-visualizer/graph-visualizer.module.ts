@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
+import { SliderZoomComponent } from '@awg-shared/slider-zoom/slider-zoom.component';
 
 import { ConstructResultsComponent } from './construct-results';
 import { ForceGraphComponent } from './force-graph';
@@ -23,7 +24,7 @@ import { PrefixPipe } from './prefix-pipe';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, SparqlNoResultsComponent],
+    imports: [SharedModule, SparqlNoResultsComponent, SliderZoomComponent],
     declarations: [
         ConstructResultsComponent,
         ForceGraphComponent,

@@ -11,15 +11,16 @@ import {
     OnChanges,
     OnDestroy,
     Output,
+    signal,
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
 
-import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
-import { SliderConfig } from '@awg-shared/shared-models';
+import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
+import { roundToStepPrecision } from '@awg-shared/slider-zoom/slider-zoom.utils';
 import {
     D3Selection,
     D3ZoomBehaviour,
@@ -91,20 +92,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     @ViewChild('svgSheetRootGroup') svgSheetRootGroupRef: ElementRef<SVGGElement> | undefined;
 
     /**
-     * ViewChild variable: _sliderInput.
-     *
-     * It keeps the reference to the input range slider.
-     */
-    @ViewChild('sliderInput') sliderInput: ElementRef | undefined;
-
-    /**
-     * ViewChild variable: _sliderInputLabel.
-     *
-     * It keeps the reference to the input sliderInputLabel.
-     */
-    @ViewChild('sliderInputLabel') sliderInputLabel: ElementRef | undefined;
-
-    /**
      * Input variable: selectedSvgSheet.
      *
      * It keeps the selected svg sheet.
@@ -136,13 +123,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
 
     /**
-     * Public variable: faCompressArrowsAlt.
-     *
-     * It instantiates fontawesome's faCompressArrowsAlt icon.
-     */
-    faCompressArrowsAlt = faCompressArrowsAlt;
-
-    /**
      * Public variable: hasAvailableTkkOverlays.
      *
      * It keeps a boolean flag whether there are available tkk overlays.
@@ -154,7 +134,14 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
+    sliderConfig = new SliderConfig(1, 0.1, 10, 0.01);
+
+    /**
+     * Readonly signal: zoomValue.
+     *
+     * It holds the current zoom factor of the svg sheet (shown by the zoom slider).
+     */
+    readonly zoomValue = signal<number>(this.sliderConfig.initial);
 
     /**
      * Public variable: suppliedClasses.
@@ -329,13 +316,13 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     /**
      * Public method: onZoomChange.
      *
-     * It sets the slider value to a given scale step.
+     * It sets the zoom value to a given scale step.
      *
-     * @param {number} newSliderValue The new slider value.
-     * @returns {void} Sets the new slider value and calls for rescale.
+     * @param {number} newZoomValue The new zoom value.
+     * @returns {void} Sets the new zoom value and calls for rescale.
      */
-    onZoomChange(newSliderValue: number): void {
-        this.sliderConfig.value = newSliderValue;
+    onZoomChange(newZoomValue: number): void {
+        this.zoomValue.set(newZoomValue);
         this._rescaleZoom();
     }
 
@@ -517,10 +504,10 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * @returns {void} Sets the zoom for the rescale.
      */
     private _rescaleZoom(): void {
-        if (!this._zoomBehaviour || !this.svgSheetSelection || !this.sliderConfig.value) {
+        if (!this._zoomBehaviour || !this.svgSheetSelection || !this.zoomValue()) {
             return;
         }
-        this._zoomBehaviour.scaleTo(this.svgSheetSelection, this.sliderConfig.value);
+        this._zoomBehaviour.scaleTo(this.svgSheetSelection, this.zoomValue());
     }
 
     /**
@@ -538,37 +525,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     }
 
     /**
-     * Private method: _roundToScaleStepDecimalPrecision.
-     *
-     * It rounds a given value to the same number of decimal places as the step size of an input range scale.
-     * Cf. https://stackoverflow.com/a/13635455
-     *
-     * @param {number} value The given value to round.
-     * @returns {number} The rounded value.
-     */
-    private _roundToScaleStepDecimalPrecision(value: number): number {
-        const stepSize = this.sliderConfig.stepSize;
-
-        // Count decimals of a given value
-        // Cf. https://stackoverflow.com/a/17369245
-        const countDecimals = (countValue: number): number => {
-            // Return zero if value cannot be rounded
-            if (Math.floor(countValue) === countValue) {
-                return 0;
-            }
-            // Convert the number to a string, split at the decimal point and return the length of the last part of the array
-            return countValue.toString().split('.')[1].length;
-        };
-
-        // Avoid Math.round error
-        // Cf. https://www.jacklmoore.com/notes/rounding-in-javascript/
-        const round = (roundValue: number, decimalPlaces: number): number =>
-            Number(Math.round(Number(roundValue + 'e' + decimalPlaces)) + 'e-' + decimalPlaces);
-
-        return round(value, countDecimals(stepSize));
-    }
-
-    /**
      * Private method: _zoomHandler.
      *
      * It binds a pan and zoom behaviour to an svg element.
@@ -581,20 +537,12 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
         // Perform the zooming
         const zoomed = (event: any): void => {
             const currentTransform = event.transform;
-            const roundedTransformValue = this._roundToScaleStepDecimalPrecision(currentTransform.k);
 
             // Update d3 zoom context
             zoomContext.attr('transform', currentTransform);
 
-            // Update view
-            if (this.sliderInput?.nativeElement) {
-                this.sliderInput.nativeElement.value = roundedTransformValue;
-                this.sliderConfig.value = roundedTransformValue;
-            }
-            // Needed because d3 listener does not update ngModel
-            if (this.sliderInputLabel?.nativeElement) {
-                this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
-            }
+            // Update zoom value (shown by the zoom slider)
+            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.sliderConfig.stepSize));
         };
 
         // Create zoom behaviour

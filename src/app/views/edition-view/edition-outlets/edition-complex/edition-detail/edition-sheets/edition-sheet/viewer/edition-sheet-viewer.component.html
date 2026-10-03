@@ -1,46 +1,30 @@
 @if (selectedSvgSheet) {
-    <div id="awg-edition-svg-container">
-        <div class="awg-edition-sheet-viewer">
-            <div class="awg-edition-svg-icon-bar">
-                <!-- Slider -->
-                <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start mx-2r my-2">
-                    <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
-                    <input
-                        type="range"
-                        #sliderInput
-                        class="awg-edition-svg-zoom-slider"
-                        id="awg-edition-svg-zoom-slider"
-                        name="zoomSlider"
-                        aria-label="Zoom slider"
-                        aria-describedby="slider-label"
-                        [min]="sliderConfig.min"
-                        [max]="sliderConfig.max"
-                        [step]="sliderConfig.stepSize"
-                        [(ngModel)]="sliderConfig.value"
-                        (ngModelChange)="onZoomChange($event)" />
-                    <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">
-                        <fa-icon [icon]="faCompressArrowsAlt" />
-                    </button>
-                </div>
-            </div>
-            <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
-                <svg #svgSheetElement id="awg-edition-svg-sheet">
-                    <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
-                </svg>
-
-                <awg-license />
-
-                @if (hasAvailableTkkOverlays || suppliedClasses.length > 0) {
-                    <awg-edition-sheet-viewer-additions-panel
-                        [sheetId]="selectedSvgSheet.id"
-                        [suppliedClasses]="suppliedClasses"
-                        [hasTkkOverlays]="hasAvailableTkkOverlays"
-                        (visibilityChange)="onAdditionVisibilityChange($event)" />
-                }
-            </div>
-
-            <!-- Next and previous buttons -->
-            <awg-edition-sheet-viewer-nav (browseRequest)="browseSvgSheet($event)" />
+    <div class="awg-edition-sheet-viewer">
+        <div class="awg-edition-sheet-viewer-icon-bar">
+            <awg-slider-zoom
+                class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
+                [config]="sliderConfig"
+                [value]="zoomValue()"
+                (valueChange)="onZoomChange($event)"
+                (resetRequest)="resetZoom()" />
         </div>
+        <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
+            <svg #svgSheetElement id="awg-edition-svg-sheet">
+                <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
+            </svg>
+
+            <awg-license />
+
+            @if (hasAvailableTkkOverlays || suppliedClasses.length > 0) {
+                <awg-edition-sheet-viewer-additions-panel
+                    [sheetId]="selectedSvgSheet.id"
+                    [suppliedClasses]="suppliedClasses"
+                    [hasTkkOverlays]="hasAvailableTkkOverlays"
+                    (visibilityChange)="onAdditionVisibilityChange($event)" />
+            }
+        </div>
+
+        <!-- Next and previous buttons -->
+        <awg-edition-sheet-viewer-nav (browseRequest)="browseSvgSheet($event)" />
     </div>
 }

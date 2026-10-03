@@ -166,7 +166,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 div.card with div.card-body', () => {
+            it('... should contain one div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
@@ -179,7 +179,7 @@ describe('EditionSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
-            it('... should contain 1 div.accordion-item with header and non-collapsed body in div.accordion', () => {
+            it('... should contain one div.accordion-item with header and non-collapsed body in div.accordion', () => {
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
 

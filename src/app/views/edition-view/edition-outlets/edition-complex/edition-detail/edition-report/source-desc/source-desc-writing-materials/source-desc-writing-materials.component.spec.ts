@@ -78,7 +78,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 paragraph (p.awg-source-desc-writing-materials)', () => {
+            it('... should contain one paragraph (p.awg-source-desc-writing-materials)', () => {
                 getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-writing-materials', 1, 1);
             });
 

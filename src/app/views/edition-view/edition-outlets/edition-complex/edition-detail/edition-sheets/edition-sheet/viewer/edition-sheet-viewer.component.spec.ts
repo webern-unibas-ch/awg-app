@@ -9,20 +9,17 @@ import {
     SimpleChange,
 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faCompressArrowsAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges, clickDispatchAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
-    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -37,7 +34,8 @@ import {
     createD3TestTkkGroups,
 } from '@testing/svg-drawing-helper';
 
-import { SliderConfig } from '@awg-shared/shared-models';
+import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
+import { SliderZoomComponent } from '@awg-shared/slider-zoom/slider-zoom.component';
 import {
     D3Selection,
     EditionSvgLinkBox,
@@ -47,8 +45,8 @@ import {
 } from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
 
-import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/edition-sheet-viewer-additions-panel.model';
+import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 
 import * as D3_SELECTION from 'd3-selection';
 
@@ -117,7 +115,6 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let serviceToggleSuppliedClassOpacitySpy: Spy;
     let serviceToggleTkkOverlayHighlightsSpy: Spy;
 
-    let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
@@ -181,7 +178,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, FormsModule],
+            imports: [FontAwesomeTestingModule, SliderZoomComponent],
             declarations: [
                 EditionSheetViewerComponent,
                 EditionSheetViewerNavStubComponent,
@@ -203,8 +200,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedCompressIcon = faCompressArrowsAlt;
-        expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
+        expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01);
 
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
@@ -282,8 +278,8 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             expect(component.svgSheetRootGroupSelection).toBeUndefined();
         });
 
-        it('... should have `faCompressArrowsAlt`', () => {
-            expectToBe(component.faCompressArrowsAlt, expectedCompressIcon);
+        it('... should have signal `zoomValue` to hold the initial zoom value', () => {
+            expectToBe(component.zoomValue(), expectedSliderConfig.initial);
         });
 
         it('... should have `hasAvailableTkkOverlays` set to false', () => {
@@ -378,97 +374,40 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer', 1, 1);
             });
 
-            it('... should contain 1 icon-bar and 1 sheet-container as direct child divs in outer div', () => {
+            it('... should contain one icon-bar and one sheet-container as direct child divs in outer div', () => {
                 const sheetViewerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer > div', 2, 2);
 
-                getAndExpectDebugElementByCss(sheetViewerDes[0], 'div.awg-edition-svg-icon-bar', 1, 1);
+                getAndExpectDebugElementByCss(sheetViewerDes[0], 'div.awg-edition-sheet-viewer-icon-bar', 1, 1);
                 getAndExpectDebugElementByCss(sheetViewerDes[0], 'div.awg-edition-svg-sheet-container', 1, 1);
             });
 
-            describe('awg-edition-svg-icon-bar', () => {
-                it('... should contain 1 div.awg-edition-svg-zoom-slider-container in div.awg-edition-svg-icon-bar', () => {
-                    const divIconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-icon-bar', 1, 1);
-
-                    getAndExpectDebugElementByCss(divIconBarDes[0], 'div.awg-edition-svg-zoom-slider-container', 1, 1);
-                });
-
-                describe('... should contain', () => {
-                    it.each([
-                        { desc: 'one span.input-group-text', selector: 'span.input-group-text' },
-                        { desc: 'one input', selector: 'input#awg-edition-svg-zoom-slider' },
-                        { desc: 'one button', selector: 'button' },
-                    ])('... $desc in zoom slider container', ({ selector }) => {
-                        const divZoomSliderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-svg-zoom-slider-container',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByCss(divZoomSliderDes[0], selector, 1, 1);
-                    });
-                });
-
-                it('... should have correct attributes in input', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
+            describe('awg-edition-sheet-viewer-icon-bar', () => {
+                it('... should contain one SliderZoomComponent in div.awg-edition-sheet-viewer-icon-bar', () => {
+                    const divIconBarDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
+                        'div.awg-edition-sheet-viewer-icon-bar',
                         1,
                         1
                     );
 
-                    const inputDes = getAndExpectDebugElementByCss(
-                        divZoomSliderDes[0],
-                        'input#awg-edition-svg-zoom-slider',
-                        1,
-                        1
-                    );
-                    const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                    expectToBe(inputEl.getAttribute('type'), 'range');
-                    expectToBe(inputEl.getAttribute('min'), expectedSliderConfig.min.toString());
-                    expectToBe(inputEl.getAttribute('max'), expectedSliderConfig.max.toString());
-                    expectToBe(inputEl.getAttribute('step'), expectedSliderConfig.stepSize.toString());
+                    getAndExpectDebugElementByDirective(divIconBarDes[0], SliderZoomComponent, 1, 1);
                 });
 
-                it('... should have correct attributes in button', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
-                        1,
-                        1
-                    );
+                it('... should pass down `config` and `value` to the SliderZoomComponent', async () => {
+                    component.zoomValue.set(2.5);
+                    await detectChangesOnPush(fixture);
 
-                    const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
+                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
+                    const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
 
-                    expectToBe(btnEl.getAttribute('title'), 'Reset zoom');
-                    expectToBe(btnEl.getAttribute('type'), 'submit');
-
-                    expectToContain(btnEl.classList, 'btn');
-                    expectToContain(btnEl.classList, 'btn-sm');
-                    expectToContain(btnEl.classList, 'btn-outline-info');
-                });
-
-                it('... should display compress icon in button', () => {
-                    const divZoomSliderDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-svg-zoom-slider-container',
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
-                    const faIconDes = getAndExpectDebugElementByCss(btnDes[0], 'fa-icon', 1, 1);
-                    const faIconIns = faIconDes[0].componentInstance.icon;
-
-                    expectToEqual(faIconIns(), expectedCompressIcon);
+                    expectToEqual(sliderZoomCmp.config(), expectedSliderConfig);
+                    expectToBe(sliderZoomCmp.value(), 2.5);
                 });
             });
 
             describe('awg-edition-svg-sheet-container', () => {
-                it('... should contain 1 svg#awg-edition-svg-sheet element with a g element', () => {
+                it('... should contain one svg#awg-edition-svg-sheet element with a g element', () => {
                     const svgSheetContainerDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-svg-sheet-container',
@@ -486,7 +425,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 });
 
                 describe('LicenseComponent', () => {
-                    it('... should contain 1 license component (stubbed)', () => {
+                    it('... should contain one license component (stubbed)', () => {
                         const svgSheetContainerDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
@@ -499,7 +438,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 });
 
                 describe('EditionSheetViewerAdditionsPanelComponent', () => {
-                    it('... should contain 1 awg-edition-sheet-viewer-additions-panel component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
+                    it('... should contain one awg-edition-sheet-viewer-additions-panel component (stubbed) if suppliedClasses, but no tkkOverlays are available', async () => {
                         component.suppliedClasses = expectedSuppliedClasses;
                         component.hasAvailableTkkOverlays = false;
                         await detectChangesOnPush(fixture);
@@ -519,7 +458,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should contain 1 awg-edition-sheet-viewer-additions-panel component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
+                    it('... should contain one awg-edition-sheet-viewer-additions-panel component (stubbed) if tkkOverlays, but no suppliedClasses are available', async () => {
                         component.suppliedClasses = [];
                         component.hasAvailableTkkOverlays = true;
                         await detectChangesOnPush(fixture);
@@ -631,7 +570,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
 
             describe('awg-edition-sheet-viewer-nav', () => {
-                it('... should contain 1 awg-edition-sheet-viewer-nav component (stubbed)', () => {
+                it('... should contain one awg-edition-sheet-viewer-nav component (stubbed)', () => {
                     const sheetViewerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer', 1, 1);
 
                     getAndExpectDebugElementByDirective(sheetViewerDes[0], EditionSheetViewerNavStubComponent, 1, 1);
@@ -796,46 +735,23 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 expect(component.onZoomChange).toBeDefined();
             });
 
-            it('... should trigger on change of zoom slider', () => {
+            it('... should trigger on value change of the SliderZoomComponent', () => {
                 expectSpyCall(onZoomChangeSpy, 1);
 
-                const divZoomSliderDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-svg-zoom-slider-container',
-                    1,
-                    1
-                );
-
-                const sliderInputDes = getAndExpectDebugElementByCss(
-                    divZoomSliderDes[0],
-                    'input#awg-edition-svg-zoom-slider',
-                    1,
-                    1
-                );
-                const sliderInputEl: HTMLInputElement = sliderInputDes[0].nativeElement;
+                const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
+                const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
                 const expectedZoom = 7.5;
-                sliderInputEl.value = expectedZoom.toString();
 
-                sliderInputEl.dispatchEvent(new Event('input'));
+                rangeEl.value = expectedZoom.toString();
+                rangeEl.dispatchEvent(new Event('input'));
 
                 expectSpyCall(onZoomChangeSpy, 2, expectedZoom);
             });
 
-            it('... should set given zoom value to sliderConfig.value', () => {
-                let expectedZoom = 0;
+            it.each([0, 5, 1])('... should set `zoomValue` to the given zoom value %s', expectedZoom => {
                 component.onZoomChange(expectedZoom);
 
-                expectToBe(component.sliderConfig.value, expectedZoom);
-
-                expectedZoom = 5;
-                component.onZoomChange(expectedZoom);
-
-                expectToBe(component.sliderConfig.value, expectedZoom);
-
-                expectedZoom = expectedSliderConfig.initial;
-                component.onZoomChange(expectedZoom);
-
-                expectToBe(component.sliderConfig.value, expectedSliderConfig.initial);
+                expectToBe(component.zoomValue(), expectedZoom);
             });
 
             it('... should trigger `_rescaleZoom` function', () => {
@@ -979,17 +895,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 expect(component.resetZoom).toBeDefined();
             });
 
-            it('... should trigger on click on reset button of zoom slider', async () => {
+            it('... should trigger on reset request of the SliderZoomComponent', async () => {
                 expectSpyCall(resetZoomSpy, 1);
 
-                const divZoomSliderDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-edition-svg-zoom-slider-container',
-                    1,
-                    1
-                );
-
-                const btnDes = getAndExpectDebugElementByCss(divZoomSliderDes[0], 'button', 1, 1);
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
 
                 await clickAndAwaitChanges(btnDes[0], fixture);
 
@@ -1378,8 +1287,8 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     expectSpyCall(scaleToSpy, 0);
                 });
 
-                it('... `sliderConfig.value` is zero', () => {
-                    component.sliderConfig.value = 0;
+                it('... `zoomValue` is zero', () => {
+                    component.zoomValue.set(0);
 
                     component['_rescaleZoom']();
 
@@ -1387,13 +1296,13 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `sliderConfig.value` are given', () => {
+            it('... should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `zoomValue` are given', () => {
                 expect(component.svgSheetSelection).toBeTruthy();
-                expect(component.sliderConfig.value).toBeTruthy();
+                expect(component.zoomValue()).toBeTruthy();
 
                 component['_rescaleZoom']();
 
-                expectSpyCall(scaleToSpy, 1, [expectedSvgSheetSelection, expectedSliderConfig.value]);
+                expectSpyCall(scaleToSpy, 1, [expectedSvgSheetSelection, component.zoomValue()]);
             });
         });
 
@@ -1446,70 +1355,6 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
         });
 
-        describe('#_roundToScaleStepDecimalPrecision()', () => {
-            it('... should have a method `_roundToScaleStepDecimalPrecision`', () => {
-                expect(component['_roundToScaleStepDecimalPrecision']).toBeDefined();
-            });
-
-            describe('... should return the nearest scale step', () => {
-                const testCases = [
-                    // Test cases for stepSize 0.01
-                    {
-                        stepSize: 0.01,
-                        values: [
-                            [0, 0],
-                            [0.005, 0.01],
-                            [0.01, 0.01],
-                            [0.014, 0.01],
-                            [0.0149, 0.01],
-                            [0.015, 0.02],
-                            [0.0151, 0.02],
-                            [0.1, 0.1],
-                            [1, 1],
-                        ],
-                    },
-                    // Test cases for stepSize 0.1
-                    {
-                        stepSize: 0.1,
-                        values: [
-                            [0, 0],
-                            [0.05, 0.1],
-                            [0.1, 0.1],
-                            [0.14, 0.1],
-                            [0.149, 0.1],
-                            [0.15, 0.2],
-                            [0.151, 0.2],
-                            [1, 1],
-                        ],
-                    },
-                    // Test cases for stepSize 1
-                    {
-                        stepSize: 1,
-                        values: [
-                            [0, 0],
-                            [0.5, 1],
-                            [1, 1],
-                            [1.4, 1],
-                            [1.49, 1],
-                            [1.5, 2],
-                            [1.51, 2],
-                            [10, 10],
-                        ],
-                    },
-                ];
-
-                for (const { stepSize, values } of testCases) {
-                    for (const [givenValue, expectedNearestStep] of values) {
-                        it(`... for stepSize ${stepSize} and given value ${givenValue} returns ${expectedNearestStep}`, () => {
-                            component.sliderConfig.stepSize = stepSize;
-                            const result = component['_roundToScaleStepDecimalPrecision'](givenValue);
-                            expectToBe(result, expectedNearestStep);
-                        });
-                    }
-                }
-            });
-        });
-
         describe('#_zoomHandler()', () => {
             it('... should have a method `_zoomHandler`', () => {
                 expect(component['_zoomHandler']).toBeDefined();
@@ -1525,11 +1370,9 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 expectSpyCall(svg.call as any, 1, [component['_zoomBehaviour']]);
             });
 
-            it('... should update transform, slider value and slider label on zoom', () => {
+            it('... should update transform and `zoomValue` (rounded to the step size) on zoom', () => {
                 const zoomContext = { attr: vi.fn() };
                 const svg = { call: vi.fn() };
-                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
-                component.sliderInputLabel = { nativeElement: { innerText: '' } } as ElementRef;
 
                 component['_zoomHandler'](zoomContext as any, svg as any);
 
@@ -1544,62 +1387,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 }
 
                 const mockEvent = {
-                    transform: { k: 2.35 },
+                    transform: { k: 2.345 },
                 };
                 zoomed(mockEvent, undefined);
 
                 expectSpyCall(zoomContext.attr as any, 1, ['transform', mockEvent.transform]);
-                expectToBe(component.sliderConfig.value, 2.35);
-                expectToBe(component.sliderInput.nativeElement.value, 2.35);
-                expectToBe(component.sliderInputLabel.nativeElement.innerText, '2.35x');
-            });
-
-            it('... should not update slider value if sliderInput is missing', () => {
-                const svg = createD3TestSvg(mockDocument);
-                const rootGroup = createD3TestRootGroup(svg);
-                component.sliderInput = undefined;
-                component.sliderInputLabel = undefined;
-                component.sliderConfig.value = component.sliderConfig.initial;
-
-                component['_zoomHandler'](rootGroup, svg);
-
-                if (!component['_zoomBehaviour']) {
-                    expect.fail('Expected component._zoomBehaviour to be defined');
-                }
-
-                const zoomed = component['_zoomBehaviour'].on('zoom');
-
-                if (!zoomed) {
-                    expect.fail('Expected a zoom event handler to be registered');
-                }
-
-                zoomed({ transform: { k: 2.35 } }, undefined);
-
-                expectToBe(component.sliderConfig.value, component.sliderConfig.initial);
-            });
-
-            it('... should not update slider label if sliderInputLabel is missing', () => {
-                const svg = createD3TestSvg(mockDocument);
-                const rootGroup = createD3TestRootGroup(svg);
-                component.sliderInput = { nativeElement: { value: component.sliderConfig.initial } } as ElementRef;
-                component.sliderInputLabel = undefined;
-
-                component['_zoomHandler'](rootGroup, svg);
-
-                if (!component['_zoomBehaviour']) {
-                    expect.fail('Expected component._zoomBehaviour to be defined');
-                }
-
-                const zoomed = component['_zoomBehaviour'].on('zoom');
-
-                if (!zoomed) {
-                    expect.fail('Expected a zoom event handler to be registered');
-                }
-
-                zoomed({ transform: { k: 2.35 } }, undefined);
-
-                expectToBe(component.sliderConfig.value, 2.35);
-                expectToBe(component.sliderInput.nativeElement.value, 2.35);
+                expectToBe(component.zoomValue(), 2.35);
             });
         });
     });
