@@ -7,7 +7,7 @@
                     <awg-edition-sheet-facet-group
                         [facetGroupLabel]="EDITION_TYPE_LABEL_MAP[key]"
                         [svgSheets]="sheetsData.sheets[key]"
-                        [selectedSvgSheet]="selectedSvgSheet()" />
+                        [selectedSheetId]="selectedSheetId()" />
 
                     @if (!isLast) {
                         <hr />

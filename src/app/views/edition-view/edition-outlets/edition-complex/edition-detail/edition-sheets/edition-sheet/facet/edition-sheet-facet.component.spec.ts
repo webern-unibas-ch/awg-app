@@ -16,9 +16,9 @@ import { mockEditionData } from '@testing/mock-data';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
+import { EditionSheetFacetComponent } from './edition-sheet-facet.component';
 import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
 import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-toggle.component';
-import { EditionSheetFacetComponent } from './edition-sheet-facet.component';
 
 describe('EditionSheetFacetComponent (DONE)', () => {
     let component: EditionSheetFacetComponent;
@@ -90,6 +90,12 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expect(() => component.selectedSvgSheet()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `selectedSheetId` due to missing input', () => {
+            expectToBe(isSignal(component.selectedSheetId), true);
+
+            expect(() => component.selectedSheetId()).toThrow();
+        });
+
         it('... should have model signal `isMinimized` to hold the default value', () => {
             expectToBe(isSignal(component.isMinimized), true);
 
@@ -124,6 +130,27 @@ describe('EditionSheetFacetComponent (DONE)', () => {
 
         it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        });
+
+        it('... should have computed signal `selectedSheetId` to hold the expected sheet id', () => {
+            expectToEqual(component.selectedSheetId(), {
+                id: expectedSvgSheet.id,
+                partial: expectedSvgSheet.content[0].partial,
+            });
+        });
+
+        it('... should have recomputed signal `selectedSheetId` when a svg sheet with partial is selected', async () => {
+            fixture.componentRef.setInput('selectedSvgSheet', mockEditionData.mockSvgSheet_Sk2a);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.selectedSheetId(), { id: mockEditionData.mockSvgSheet_Sk2a.id, partial: 'a' });
+        });
+
+        it('... should have computed signal `selectedSheetId` to hold undefined id if no svg sheet is selected', async () => {
+            fixture.componentRef.setInput('selectedSvgSheet', undefined);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.selectedSheetId(), { id: undefined, partial: undefined });
         });
 
         describe('VIEW', () => {
@@ -183,9 +210,9 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... should pass down `selectedSvgSheet` to each EditionSheetFacetGroupComponent', () => {
+                it('... should pass down `selectedSheetId` to each EditionSheetFacetGroupComponent', () => {
                     getFacetGroupCmps().forEach(cmp => {
-                        expectToEqual(cmp.selectedSvgSheet(), expectedSvgSheet);
+                        expectToEqual(cmp.selectedSheetId(), component.selectedSheetId());
                     });
                 });
             });
