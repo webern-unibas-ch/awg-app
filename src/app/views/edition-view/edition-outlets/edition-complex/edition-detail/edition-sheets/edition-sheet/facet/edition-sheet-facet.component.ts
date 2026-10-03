@@ -5,7 +5,7 @@ import {
     EditionSvgSheetId,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { EDITION_TYPE_KEYS, EDITION_TYPE_LABEL_MAP } from '@awg-views/edition-view/models/edition-type.model';
+import { EDITION_TYPE_KEYS } from '@awg-views/edition-view/models/edition-type.model';
 
 import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
 import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-toggle.component';
@@ -46,13 +46,6 @@ export class EditionSheetFacetComponent {
      * @default false
      */
     readonly isMinimized = model<boolean>(false);
-
-    /**
-     * Readonly variable: EDITION_TYPE_LABEL_MAP.
-     *
-     * It keeps the map of the edition type keys and their corresponding labels.
-     */
-    readonly EDITION_TYPE_LABEL_MAP = EDITION_TYPE_LABEL_MAP;
 
     /**
      * Readonly variable: EDITION_TYPE_KEYS.

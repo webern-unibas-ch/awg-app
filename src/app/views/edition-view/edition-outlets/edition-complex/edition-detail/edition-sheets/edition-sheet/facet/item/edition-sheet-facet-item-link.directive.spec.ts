@@ -88,77 +88,44 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
         expect(getDirective()).toBeTruthy();
     });
 
-    describe('INPUTS', () => {
-        it('... should have input signal `sheetIds` to hold the provided sheet ids', () => {
-            expectToBe(isSignal(getDirective().sheetIds), true);
+    it('... should have input signal `sheetIds` to hold the provided sheet ids', () => {
+        expectToBe(isSignal(getDirective().sheetIds), true);
 
-            expectToEqual(getDirective().sheetIds(), expectedSheetIds);
-        });
-
-        it('... should have input signal `isActive` to hold the provided value', () => {
-            expectToBe(isSignal(getDirective().isActive), true);
-
-            expectToBe(getDirective().isActive(), false);
-        });
+        expectToEqual(getDirective().sheetIds(), expectedSheetIds);
     });
 
-    describe('HOST', () => {
-        it('... should set `role="link"` and `tabindex="0"` on the anchor', () => {
-            expectToBe(getLinkEl().getAttribute('role'), 'link');
-            expectToBe(getLinkEl().getAttribute('tabindex'), '0');
-        });
+    it('... should have input signal `isActive` to hold the provided value', () => {
+        expectToBe(isSignal(getDirective().isActive), true);
 
-        it('... should keep the existing classes of the anchor', () => {
-            expectToContain(getLinkEl().classList, 'test-link');
-        });
+        expectToBe(getDirective().isActive(), false);
+    });
 
-        it('... should have `text-muted` and no `active` class if not active', () => {
-            expectToContain(getLinkEl().classList, 'text-muted');
-            expectToNotContain(getLinkEl().classList, 'active');
-        });
+    it('... should set `role="link"` and `tabindex="0"` on the anchor', () => {
+        expectToBe(getLinkEl().getAttribute('role'), 'link');
+        expectToBe(getLinkEl().getAttribute('tabindex'), '0');
+    });
 
-        it('... should have `active` and no `text-muted` class if active', async () => {
-            hostComponent.isActive.set(true);
-            await detectChangesOnPush(fixture);
+    it('... should keep the existing classes of the anchor', () => {
+        expectToContain(getLinkEl().classList, 'test-link');
+    });
 
-            expectToContain(getLinkEl().classList, 'active');
-            expectToNotContain(getLinkEl().classList, 'text-muted');
-        });
+    it('... should have `text-muted` and no `active` class if not active', () => {
+        expectToContain(getLinkEl().classList, 'text-muted');
+        expectToNotContain(getLinkEl().classList, 'active');
+    });
+
+    it('... should have `active` and no `text-muted` class if active', async () => {
+        hostComponent.isActive.set(true);
+        await detectChangesOnPush(fixture);
+
+        expectToContain(getLinkEl().classList, 'active');
+        expectToNotContain(getLinkEl().classList, 'text-muted');
     });
 
     describe('METHODS', () => {
         describe('#select()', () => {
             it('... should have a method `select`', () => {
                 expect(getDirective().select).toBeDefined();
-            });
-
-            it('... should trigger on click on the anchor', async () => {
-                await clickAndAwaitChanges(getLinkDes()[0], fixture);
-
-                expectSpyCall(selectSpy, 1);
-            });
-
-            it('... should trigger on enter key on the anchor', async () => {
-                getLinkEl().dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(selectSpy, 1);
-            });
-
-            it('... should navigate to the provided sheet ids', () => {
-                getDirective().select();
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
-            });
-
-            it('... should navigate to the provided sheet ids with partial', async () => {
-                const expectedSheetIdsWithPartial: SheetClickEvent = { complexId: 'testComplex1', sheetId: 'test-2a' };
-                hostComponent.sheetIds.set(expectedSheetIdsWithPartial);
-                await detectChangesOnPush(fixture);
-
-                getDirective().select();
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIdsWithPartial);
             });
 
             it('... should do nothing if no sheetId is provided', async () => {
@@ -168,6 +135,42 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 getDirective().select();
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
+            });
+
+            describe('... should trigger on', () => {
+                it('... click on the anchor', async () => {
+                    await clickAndAwaitChanges(getLinkDes()[0], fixture);
+
+                    expectSpyCall(selectSpy, 1);
+                });
+
+                it('... enter key on the anchor', async () => {
+                    getLinkEl().dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(selectSpy, 1);
+                });
+            });
+
+            describe('... should navigate to the provided sheet ids', () => {
+                it('... without partial', () => {
+                    getDirective().select();
+
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
+                });
+
+                it('... with partial', async () => {
+                    const expectedSheetIdsWithPartial: SheetClickEvent = {
+                        complexId: 'testComplex1',
+                        sheetId: 'test-2a',
+                    };
+                    hostComponent.sheetIds.set(expectedSheetIdsWithPartial);
+                    await detectChangesOnPush(fixture);
+
+                    getDirective().select();
+
+                    expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIdsWithPartial);
+                });
             });
         });
     });

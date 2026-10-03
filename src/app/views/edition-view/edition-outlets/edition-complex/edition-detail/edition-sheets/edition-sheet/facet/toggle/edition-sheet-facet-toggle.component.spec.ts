@@ -65,7 +65,7 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
         it('... should have computed signal `toggleLabel` to hold the default value', () => {
             expectToBe(isSignal(component.toggleLabel), true);
 
-            expectToBe(component.toggleLabel(), 'Minimize');
+            expectToBe(component.toggleLabel(), 'Minimieren');
         });
 
         describe('VIEW', () => {
@@ -74,7 +74,9 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
 
                 expectToBe(buttonEl.type, 'button');
                 expectToBe(buttonEl.className, 'btn btn-sm border rounded m-2');
+            });
 
+            it('... should contain one one fa-icon in button', () => {
                 getIconDes();
             });
         });
@@ -102,7 +104,7 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
             it('... should have computed signal `toggleLabel` to hold the default value', () => {
                 expectToBe(isSignal(component.toggleLabel), true);
 
-                expectToBe(component.toggleLabel(), 'Minimize');
+                expectToBe(component.toggleLabel(), 'Minimieren');
             });
 
             describe('VIEW', () => {
@@ -110,11 +112,11 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
                     expectToBe(getIconDes()[0].componentInstance.icon(), faAnglesLeft);
                 });
 
-                it('... should have title and aria-label "Minimize" on button', () => {
+                it('... should have title and aria-label "Minimieren" on button', () => {
                     const buttonEl: HTMLButtonElement = getButtonDes()[0].nativeElement;
 
-                    expectToBe(buttonEl.title, 'Minimize');
-                    expectToBe(buttonEl.getAttribute('aria-label'), 'Minimize');
+                    expectToBe(buttonEl.title, 'Minimieren');
+                    expectToBe(buttonEl.getAttribute('aria-label'), 'Minimieren');
                 });
             });
 
@@ -133,7 +135,7 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
                 });
 
                 it('... should have recomputed signal `toggleLabel` when input changes', () => {
-                    expectToBe(component.toggleLabel(), 'Maximize');
+                    expectToBe(component.toggleLabel(), 'Maximieren');
                 });
 
                 describe('VIEW', () => {
@@ -141,11 +143,11 @@ describe('EditionSheetFacetToggleComponent (DONE)', () => {
                         expectToBe(getIconDes()[0].componentInstance.icon(), faListUl);
                     });
 
-                    it('... should have title and aria-label "Maximize" on button', () => {
+                    it('... should have title and aria-label "Maximieren" on button', () => {
                         const buttonEl: HTMLButtonElement = getButtonDes()[0].nativeElement;
 
-                        expectToBe(buttonEl.title, 'Maximize');
-                        expectToBe(buttonEl.getAttribute('aria-label'), 'Maximize');
+                        expectToBe(buttonEl.title, 'Maximieren');
+                        expectToBe(buttonEl.getAttribute('aria-label'), 'Maximieren');
                     });
                 });
             });

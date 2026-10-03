@@ -97,19 +97,17 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expect(() => component.selectedSheetId()).toThrow();
         });
 
-        it('... should throw when accessing computed signals due to missing inputs', () => {
-            const computedSignals = [
-                component.isActive,
-                component.sheetIds,
-                component.dropdownId,
-                component.partialLinks,
-            ];
+        it.each([
+            { name: 'isActive' as const },
+            { name: 'sheetIds' as const },
+            { name: 'dropdownId' as const },
+            { name: 'partialLinks' as const },
+        ])('... should throw when accessing computed signal `$name` due to missing inputs', ({ name }) => {
+            const computedSignal = component[name];
 
-            computedSignals.forEach(computedSignal => {
-                expectToBe(isSignal(computedSignal), true);
+            expectToBe(isSignal(computedSignal), true);
 
-                expect(() => computedSignal()).toThrow();
-            });
+            expect(() => computedSignal()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -159,6 +157,14 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
             it('... should have computed signal `sheetIds` to hold the expected sheet ids', () => {
                 expectToEqual(component.sheetIds(), { complexId: '', sheetId: expectedSvgSheet.id });
+            });
+
+            it('... should have computed signal `dropdownId` to hold the expected id (unused without partials)', () => {
+                expectToBe(component.dropdownId(), 'awg-edition-sheet-facet-item-dropdown-' + expectedSvgSheet.id);
+            });
+
+            it('... should have computed signal `partialLinks` to hold an empty array', () => {
+                expectToEqual(component.partialLinks(), []);
             });
 
             describe('VIEW', () => {

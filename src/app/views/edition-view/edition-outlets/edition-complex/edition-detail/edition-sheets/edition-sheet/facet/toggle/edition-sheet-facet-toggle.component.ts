@@ -39,7 +39,7 @@ export class EditionSheetFacetToggleComponent {
      * It computes the title and aria label of the toggle button
      * depending on the minimized state of the sheet facet.
      */
-    readonly toggleLabel = computed(() => (this.isMinimized() ? 'Maximize' : 'Minimize'));
+    readonly toggleLabel = computed(() => (this.isMinimized() ? 'Maximieren' : 'Minimieren'));
 
     /**
      * Public method: toggle.

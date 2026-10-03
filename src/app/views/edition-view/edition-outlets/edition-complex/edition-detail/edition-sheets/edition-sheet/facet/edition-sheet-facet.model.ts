@@ -25,3 +25,22 @@ export interface EditionSheetFacetPartialLink {
      */
     isActive: boolean;
 }
+
+/**
+ * The EditionSheetFacetVisibleRange interface.
+ *
+ * It is used in the context of the sheet facet of the edition view
+ * to describe the range of facet items that are (at least partly) visible
+ * in a scrollable facet group list.
+ */
+export interface EditionSheetFacetVisibleRange {
+    /**
+     * The (1-based) position of the first visible item.
+     */
+    first: number;
+
+    /**
+     * The (1-based) position of the last visible item.
+     */
+    last: number;
+}

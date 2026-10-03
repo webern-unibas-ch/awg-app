@@ -1,0 +1,17 @@
+.awg-edition-sheet-facet-group-details > summary {
+    margin-bottom: 0.5rem;
+}
+
+// Limit long groups (e.g. sketch editions) to keep the facet shorter than the sheet viewer
+.awg-edition-sheet-facet-group-list {
+    max-height: 60vh;
+    overflow-y: auto;
+
+    // Scroll shadows: indicate more content above/below (cover gradients scroll with the content)
+    background:
+        linear-gradient(var(--bs-card-bg, #fff) 30%, transparent) top / 100% 2rem no-repeat local,
+        linear-gradient(transparent, var(--bs-card-bg, #fff) 70%) bottom / 100% 2rem no-repeat local,
+        radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.15), transparent) top / 100% 0.75rem no-repeat scroll,
+        radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.15), transparent) bottom / 100% 0.75rem no-repeat
+            scroll;
+}

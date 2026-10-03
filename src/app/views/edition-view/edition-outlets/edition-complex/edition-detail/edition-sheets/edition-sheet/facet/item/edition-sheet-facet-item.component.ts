@@ -56,12 +56,15 @@ export class EditionSheetFacetItemComponent {
     /**
      * Readonly computed signal: partialLinks.
      *
-     * It computes the partial links of the svg sheet for the dropdown.
-     * A partial is active if the svg sheet is selected
-     * and the partials match (they are only compared if both sides have one).
+     * It computes the partial links (if present) of the svg sheet for the dropdown.
      */
     readonly partialLinks = computed<EditionSheetFacetPartialLink[]>(() => {
         const svgSheet = this.svgSheet();
+
+        if (svgSheet.content.length <= 1) {
+            return [];
+        }
+
         const isActive = this.isActive();
         const selectedPartial = this.selectedSheetId().partial;
 

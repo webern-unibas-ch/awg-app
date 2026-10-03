@@ -146,7 +146,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expectToEqual(component.selectedSheetId(), { id: mockEditionData.mockSvgSheet_Sk2a.id, partial: 'a' });
         });
 
-        it('... should have computed signal `selectedSheetId` to hold undefined id if no svg sheet is selected', async () => {
+        it('... should have recomputed signal `selectedSheetId` to hold undefined id if no svg sheet is selected', async () => {
             fixture.componentRef.setInput('selectedSvgSheet', undefined);
             await detectChangesOnPush(fixture);
 
@@ -194,10 +194,10 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(getCardBodyDes()[0], 'div.card-body > hr', 2, 2);
                 });
 
-                it('... should pass down `facetGroupLabel` to each EditionSheetFacetGroupComponent', () => {
-                    const labels = getFacetGroupCmps().map(cmp => cmp.facetGroupLabel());
+                it('... should pass down `editionTypeKey` to each EditionSheetFacetGroupComponent', () => {
+                    const keys = getFacetGroupCmps().map(cmp => cmp.editionTypeKey());
 
-                    expectToEqual(labels, ['Werkeditionen', 'Texteditionen', 'Skizzeneditionen']);
+                    expectToEqual(keys, ['workEditions', 'textEditions', 'sketchEditions']);
                 });
 
                 it('... should pass down `svgSheets` to each EditionSheetFacetGroupComponent', () => {
