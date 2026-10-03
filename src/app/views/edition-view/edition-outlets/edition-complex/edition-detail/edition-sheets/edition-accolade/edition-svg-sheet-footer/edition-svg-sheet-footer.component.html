@@ -1,40 +1,33 @@
+@let textcritics = selectedTextcritics();
 <div class="awg-edition-svg-sheet-footer mt-4">
-    @if (!UTILS.isEmptyObject(selectedTextcritics)) {
-        <div class="card awg-edition-svg-sheet-footer-evaluation">
-            <div class="card-body">
-                <p (click)="toggleEvaluation()" (keydown)="toggleEvaluation()" tabindex="0" style="cursor: pointer">
-                    @if (!UTILS.isEmptyArray(selectedTextcritics.evaluations)) {
-                        <span>
-                            <fa-icon [icon]="showEvaluation ? faChevronDown : faChevronRight" />
-                            &nbsp;
-                        </span>
-                    }
-
+    <div class="card awg-edition-svg-sheet-footer-evaluation">
+        <div class="card-body">
+            @if (textcritics.evaluations.length) {
+                <details class="awg-edition-svg-sheet-footer-evaluation-details">
+                    <summary class="smallcaps">
+                        <awg-edition-tka-label [id]="textcritics.id" labelType="evaluation" />:
+                    </summary>
+                    <awg-edition-tka-evaluations [evaluations]="textcritics.evaluations" />
+                </details>
+            } @else {
+                <p>
                     <span class="smallcaps"
-                        ><awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'evaluation'" />:</span
+                        ><awg-edition-tka-label [id]="textcritics.id" labelType="evaluation" />:</span
                     >
-
-                    @if (UTILS.isEmptyArray(selectedTextcritics.evaluations)) {
-                        <span>&nbsp;---</span>
-                    }
+                    <span>---</span>
                 </p>
-                @if (showEvaluation && !UTILS.isEmptyArray(selectedTextcritics.evaluations)) {
-                    <awg-edition-tka-evaluations [evaluations]="selectedTextcritics.evaluations" />
-                }
+            }
+        </div>
+    </div>
+    @if (showTkA()) {
+        <div class="card awg-edition-svg-sheet-footer-textcritics">
+            <div class="card-body">
+                <p class="smallcaps"><awg-edition-tka-label [id]="textcritics.id" labelType="commentary" />:</p>
+                <awg-edition-tka-table
+                    [displayedCommentary]="selectedTextcriticalCommentary()"
+                    [id]="textcritics.id"
+                    [isRowtable]="textcritics.rowtable ?? false" />
             </div>
         </div>
-        @if (showTkA) {
-            <div class="card awg-edition-svg-sheet-footer-textcritics">
-                <div class="card-body">
-                    <p class="smallcaps">
-                        <awg-edition-tka-label [id]="selectedTextcritics.id" [labelType]="'commentary'" />:
-                    </p>
-                    <awg-edition-tka-table
-                        [displayedCommentary]="selectedTextcriticalCommentary"
-                        [id]="selectedTextcritics.id"
-                        [isRowtable]="selectedTextcritics.rowtable ?? false" />
-                </div>
-            </div>
-        }
     }
 </div>

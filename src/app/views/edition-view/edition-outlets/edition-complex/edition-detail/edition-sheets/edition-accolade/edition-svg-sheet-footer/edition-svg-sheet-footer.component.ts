@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
+import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '../../../edition-tka/edition-tka-label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
 
 /**
  * The EditionSvgSheetFooter component.
@@ -17,69 +18,27 @@ import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/mod
     templateUrl: './edition-svg-sheet-footer.component.html',
     styleUrls: ['./edition-svg-sheet-footer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [EditionTkaEvaluationsComponent, EditionTkaLabelComponent, EditionTkaTableComponent],
 })
 export class EditionSvgSheetFooterComponent {
     /**
-     * Input variable: selectedTextcritics.
+     * Readonly input signal: selectedTextcritics.
      *
-     * It keeps the selected textcritics of a selected svg sheet.
+     * It holds the selected textcritics of a selected svg sheet.
      */
-    @Input()
-    selectedTextcritics: Textcritics | undefined;
+    readonly selectedTextcritics = input.required<Textcritics>();
 
     /**
-     * Input variable: selectedTextcriticalCommentary.
+     * Readonly input signal: selectedTextcriticalCommentary.
      *
-     * It keeps the selected textcritical commentary.
+     * It holds the selected textcritical commentary.
      */
-    @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
+    readonly selectedTextcriticalCommentary = input<TextcriticalCommentary | undefined>(undefined);
 
     /**
-     * Input variable: showTkA.
+     * Readonly input signal: showTkA.
      *
-     * If the textcritics shall be displayed.
+     * It holds a boolean flag if the textcritics shall be displayed.
      */
-    @Input()
-    showTkA = false;
-
-    /**
-     * Protected readonly variable: UTILS.
-     *
-     * It keeps the reference to the {@link UTILS} methods.
-     */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Public variable: faChevronRight.
-     *
-     * It instantiates fontawesome's faChevronRight icon.
-     */
-    faChevronRight = faChevronRight;
-
-    /**
-     * Public variable: faChevronDown.
-     *
-     * It instantiates fontawesome's faChevronDown icon.
-     */
-    faChevronDown = faChevronDown;
-
-    /**
-     * Public variable: showEvaluation.
-     *
-     * It keeps a boolean flag if the evaluation shall be displayed.
-     */
-    showEvaluation = false;
-
-    /**
-     * Public method: toggleEvaluation.
-     *
-     * It toogles the boolean switch for displaying the evaluation.
-     *
-     * @returns {void} Toggles the boolean flag.
-     */
-    toggleEvaluation(): void {
-        this.showEvaluation = !this.showEvaluation;
-    }
+    readonly showTkA = input<boolean>(false);
 }
