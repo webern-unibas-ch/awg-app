@@ -154,10 +154,7 @@ export class EditionFoliosViewerSvgComponent {
         event.preventDefault();
 
         if (contentSegment.selectable) {
-            this._navigationService.navigateToSvgSheet({
-                complexId: contentSegment.complexId,
-                sheetId: contentSegment.sheetId,
-            });
+            this._navigationService.navigateToSvgSheet(contentSegment.sheetIds);
         } else {
             this._modalService.openTextModal(contentSegment.linkTo);
         }

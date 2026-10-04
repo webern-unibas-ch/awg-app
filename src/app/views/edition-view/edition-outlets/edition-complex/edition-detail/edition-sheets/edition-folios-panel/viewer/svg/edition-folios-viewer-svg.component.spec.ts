@@ -54,7 +54,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         D3_SELECTION.select(getRootGroupEl())
             .selectAll<SVGGElement, FolioSvgContentSegment>('g.content-segment-group.active')
             .data()
-            .map(contentSegment => contentSegment.sheetId);
+            .map(contentSegment => contentSegment.sheetIds.sheetId);
     const getSelectionNode = (spy: Spy, callIndex: number): Element | null =>
         (spy.mock.calls[callIndex][0] as D3Selection).node() as Element | null;
     const setInputs = (folio: Folio, sheetId: EditionSvgSheetId): void => {
@@ -340,8 +340,8 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                     component.onFolioSelect(expectedEvent);
 
                     expectSpyCall(navigateToSvgSheetSpy, 1, {
-                        complexId: expectedContentSegment.complexId,
-                        sheetId: expectedContentSegment.sheetId,
+                        complexId: expectedContentSegment.sheetIds.complexId,
+                        sheetId: expectedContentSegment.sheetIds.sheetId,
                     });
                     expectSpyCall(openTextModalSpy, 0);
                 });

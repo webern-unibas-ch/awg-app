@@ -186,7 +186,7 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the content segments.
      */
     private _drawContentSegments(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        const numberOfSystems = folioSvgData.systems.systemsLines.length || this._defaultNumberOfSystems;
+        const numberOfSystems = folioSvgData.systems.lines.length || this._defaultNumberOfSystems;
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
         const strokeWidth = this._contentSegmentStrokeWidth * (this._defaultNumberOfSystems / numberOfSystems);
 
@@ -197,12 +197,12 @@ export class EditionFolioDrawingService {
             })
                 .classed('selectable', contentSegment.selectable)
                 .datum(contentSegment);
-            this._appendSvgElementWithAttrs(segmentGroup, 'title', {}).text(contentSegment.segmentLabel);
+            this._appendSvgElementWithAttrs(segmentGroup, 'title', {}).text(contentSegment.label);
 
             const segmentLink = this._appendSvgElementWithAttrs(segmentGroup, 'a', { class: 'content-segment-link' });
             this._appendSvgElementWithAttrs(segmentLink, 'polygon', {
                 class: 'content-segment-shape',
-                points: contentSegment.segmentVertices,
+                points: contentSegment.vertices,
                 'stroke-width': strokeWidth,
             });
 
@@ -221,7 +221,7 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the content segment label.
      */
     private _drawContentSegmentLabel(segmentLink: D3Selection, contentSegment: FolioSvgContentSegment): void {
-        const { centeredXPosition: x, centeredYPosition: y } = contentSegment;
+        const { x, y } = contentSegment.center;
 
         const label = this._appendSvgElementWithAttrs(segmentLink, 'text', {
             class: 'content-segment-label',
@@ -231,7 +231,7 @@ export class EditionFolioDrawingService {
             'text-anchor': 'middle',
         });
 
-        contentSegment.segmentLabelArray.forEach((labelLine, index) => {
+        contentSegment.labelLines.forEach((labelLine, index) => {
             if (labelLine === '') {
                 return;
             }
@@ -241,7 +241,7 @@ export class EditionFolioDrawingService {
             this._appendSvgElementWithAttrs(label, 'tspan', lineAttributes).text(labelLine);
         });
 
-        if (contentSegment.segmentReversed) {
+        if (contentSegment.reversed) {
             label.attr('transform', `rotate(${this._reversedRotationAngle}, ${x}, ${y})`);
         }
     }
@@ -257,13 +257,13 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the sheet.
      */
     private _drawSheet(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        const { folioId, sheetRectangle, trademarkRectangle } = folioSvgData.sheet;
+        const { folioId, rectangle, trademarkRectangle } = folioSvgData.sheet;
 
         this._appendSvgElementWithAttrs(sheetGroup, 'title', { class: 'sheet-group-title' }).text(`Bl. ${folioId}`);
-        this._appendRect(sheetGroup, sheetRectangle, 'sheet-rectangle');
+        this._appendRect(sheetGroup, rectangle, 'sheet-rectangle');
 
         if (trademarkRectangle) {
-            this._drawTrademark(sheetGroup, trademarkRectangle, folioSvgData.systems.systemsReversed);
+            this._drawTrademark(sheetGroup, trademarkRectangle, folioSvgData.systems.reversed);
         }
     }
 
@@ -279,11 +279,11 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the systems.
      */
     private _drawSystems(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        const { systemsLines, systemsLabelPositions, systemsReversed } = folioSvgData.systems;
+        const { lines, labelPositions, reversed } = folioSvgData.systems;
 
-        systemsLines.forEach((systemLines: FolioCalculationLine[], systemIndex: number) => {
-            const labelIndex = systemsReversed ? systemsLines.length - systemIndex : systemIndex + 1;
-            const labelPosition = systemsLabelPositions[systemIndex];
+        lines.forEach((systemLines: FolioCalculationLine[], systemIndex: number) => {
+            const labelIndex = reversed ? lines.length - systemIndex : systemIndex + 1;
+            const labelPosition = labelPositions[systemIndex];
 
             const systemsGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', { class: 'systems-group' });
             const systemLineGroup = this._appendSvgElementWithAttrs(systemsGroup, 'g', { class: 'system-line-group' });

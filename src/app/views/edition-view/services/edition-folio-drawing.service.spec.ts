@@ -173,7 +173,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
                 expectRectAttrs(
                     rootGroup.select('g.sheet-group > rect') as unknown as D3Selection,
-                    expectedFolioSvgData.sheet.sheetRectangle,
+                    expectedFolioSvgData.sheet.rectangle,
                     'sheet-rectangle'
                 );
             });
@@ -211,7 +211,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 '... should draw the trademark rectangle for the trademark position `%s`',
                 position => {
                     const svgData = createSvgData({ ...expectedDefaultFolio, trademarkPosition: position });
-                    const upperLeftCorner = getExpectedTrademarkUpperLeftCorner(position, svgData.sheet.sheetRectangle);
+                    const upperLeftCorner = getExpectedTrademarkUpperLeftCorner(position, svgData.sheet.rectangle);
                     const expectedRectangle = new FolioCalculationRectangle(
                         upperLeftCorner,
                         new FolioCalculationPoint(
@@ -257,7 +257,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
         describe('... systems', () => {
             it('... should draw one systems group with one system line group per system', () => {
-                const systemCount = expectedFolioSvgData.systems.systemsLines.length;
+                const systemCount = expectedFolioSvgData.systems.lines.length;
 
                 const rootGroup = render(expectedFolioSvgData);
 
@@ -266,34 +266,34 @@ describe('EditionFolioDrawingService (DONE)', () => {
             });
 
             it('... should draw the system labels numbered from top to bottom', () => {
-                const { systemsLines, systemsLabelPositions } = expectedFolioSvgData.systems;
+                const { lines, labelPositions } = expectedFolioSvgData.systems;
 
                 const rootGroup = render(expectedFolioSvgData);
                 const labels = rootGroup.selectAll<SVGTextElement, unknown>('g.systems-group > text.system-label');
 
                 expectToEqual(
                     labels.nodes().map(node => node.textContent),
-                    systemsLines.map((_line, index) => String(index + 1))
+                    lines.map((_line, index) => String(index + 1))
                 );
-                expectToBe(labels.attr('x'), String(systemsLabelPositions[0].x));
-                expectToBe(labels.attr('y'), String(systemsLabelPositions[0].y));
+                expectToBe(labels.attr('x'), String(labelPositions[0].x));
+                expectToBe(labels.attr('y'), String(labelPositions[0].y));
             });
 
             it('... should draw the system labels numbered from bottom to top if the systems are reversed', () => {
                 const svgData = createSvgData(expectedReversedFolio);
-                const systemCount = svgData.systems.systemsLines.length;
+                const systemCount = svgData.systems.lines.length;
 
                 const rootGroup = render(svgData);
                 const labels = rootGroup.selectAll<SVGTextElement, unknown>('text.system-label');
 
                 expectToEqual(
                     labels.nodes().map(node => node.textContent),
-                    svgData.systems.systemsLines.map((_line, index) => String(systemCount - index))
+                    svgData.systems.lines.map((_line, index) => String(systemCount - index))
                 );
             });
 
             it('... should draw the lines of each system', () => {
-                const firstSystemLines = expectedFolioSvgData.systems.systemsLines[0];
+                const firstSystemLines = expectedFolioSvgData.systems.lines[0];
 
                 const rootGroup = render(expectedFolioSvgData);
                 const lines = rootGroup.select('g.system-line-group').selectAll('line.system-line');
@@ -352,7 +352,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should draw the segment label as title of each content segment group', () => {
                 segmentGroups.each((contentSegment, index, nodes) => {
-                    expectToBe(nodes[index].querySelector(':scope > title')?.textContent, contentSegment.segmentLabel);
+                    expectToBe(nodes[index].querySelector(':scope > title')?.textContent, contentSegment.label);
                 });
             });
 
@@ -362,7 +362,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                     const polygon = nodes[index].querySelector(':scope > a.content-segment-link > polygon');
 
                     expectToBe(polygon?.getAttribute('class'), 'content-segment-shape');
-                    expectToBe(polygon?.getAttribute('points'), contentSegment.segmentVertices);
+                    expectToBe(polygon?.getAttribute('points'), contentSegment.vertices);
                     expectToBe(polygon?.getAttribute('stroke-width'), '2');
                 });
             });
@@ -379,11 +379,11 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 segmentGroups.each((contentSegment, index, nodes) => {
                     const text = nodes[index].querySelector(':scope > a.content-segment-link > text');
                     const tspans = Array.from(text?.querySelectorAll('tspan') ?? []);
-                    const expectedLines = contentSegment.segmentLabelArray.filter(line => line !== '');
+                    const expectedLines = contentSegment.labelLines.filter(line => line !== '');
 
                     expectToBe(text?.getAttribute('class'), 'content-segment-label');
-                    expectToBe(text?.getAttribute('x'), String(contentSegment.centeredXPosition));
-                    expectToBe(text?.getAttribute('y'), String(contentSegment.centeredYPosition));
+                    expectToBe(text?.getAttribute('x'), String(contentSegment.center.x));
+                    expectToBe(text?.getAttribute('y'), String(contentSegment.center.y));
                     expectToBe(text?.getAttribute('text-anchor'), 'middle');
                     expectToEqual(
                         tspans.map(tspan => tspan.textContent),
@@ -397,7 +397,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
 
             it('... should rotate the segment labels of reversed segments', () => {
                 const svgData = createSvgData(expectedReversedFolio);
-                const reversedSegment = svgData.contentSegments.find(segment => segment.segmentReversed);
+                const reversedSegment = svgData.contentSegments.find(segment => segment.reversed);
 
                 const altRootGroup = render(svgData);
                 const label = altRootGroup.select('text.content-segment-label');
@@ -405,7 +405,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 expect(reversedSegment).toBeDefined();
                 expectToBe(
                     label.attr('transform'),
-                    `rotate(180, ${reversedSegment?.centeredXPosition}, ${reversedSegment?.centeredYPosition})`
+                    `rotate(180, ${reversedSegment?.center.x}, ${reversedSegment?.center.y})`
                 );
             });
         });

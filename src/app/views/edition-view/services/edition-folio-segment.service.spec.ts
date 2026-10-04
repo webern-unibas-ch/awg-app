@@ -112,7 +112,7 @@ describe('EditionFolioSegmentService (DONE)', () => {
             rootGroup
                 .selectAll<SVGGElement, FolioSvgContentSegment>('g.content-segment-group.active')
                 .data()
-                .map(contentSegment => contentSegment.sheetId);
+                .map(contentSegment => contentSegment.sheetIds.sheetId);
 
         beforeEach(() => {
             rootGroup = render(expectedFolioSvgData);
@@ -123,7 +123,7 @@ describe('EditionFolioSegmentService (DONE)', () => {
         });
 
         it('... should set the class `active` on the content segment group with the given id', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
+            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetIds.sheetId;
 
             folioSegmentService.updateActiveContentSegment(rootGroup, expectedSegmentId);
 
@@ -131,8 +131,11 @@ describe('EditionFolioSegmentService (DONE)', () => {
         });
 
         it('... should remove the class `active` from the previously active content segment group', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
-            folioSegmentService.updateActiveContentSegment(rootGroup, expectedFolioSvgData.contentSegments[0].sheetId);
+            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetIds.sheetId;
+            folioSegmentService.updateActiveContentSegment(
+                rootGroup,
+                expectedFolioSvgData.contentSegments[0].sheetIds.sheetId
+            );
 
             folioSegmentService.updateActiveContentSegment(rootGroup, expectedSegmentId);
 

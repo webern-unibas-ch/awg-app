@@ -57,6 +57,6 @@ export class EditionFolioSegmentService {
     updateActiveContentSegment(svgSelection: D3Selection, segmentId: string): void {
         svgSelection
             .selectAll<SVGGElement, FolioSvgContentSegment>(`g.${FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS}`)
-            .classed('active', contentSegment => contentSegment?.sheetId === segmentId);
+            .classed('active', contentSegment => contentSegment?.sheetIds.sheetId === segmentId);
     }
 }
