@@ -192,6 +192,24 @@ export class FolioService {
     }
 
     /**
+     * Public method: renderFolio.
+     *
+     * It renders a given folio svg item into a given svg selection:
+     * it clears the svg, adds the viewbox and draws the folio.
+     *
+     * @param {D3Selection} svgSelection The given svg selection.
+     * @param {FolioSvgItem} folioSvgItem The given folio svg item.
+     * @returns {void} Renders the folio into the svg selection.
+     */
+    renderFolio(svgSelection: D3Selection, folioSvgItem: FolioSvgItem): void {
+        // Clear the svg elements before redrawing
+        svgSelection.selectAll('*').remove();
+
+        this.addViewBoxToSvgCanvas(svgSelection, folioSvgItem.viewBox);
+        this.addFolioToSvgCanvas(svgSelection, folioSvgItem.svgData);
+    }
+
+    /**
      * Public method: addViewBoxToSvgCanvas.
      *
      * It adds the SVG viewbox attributes to the SVG canvas.

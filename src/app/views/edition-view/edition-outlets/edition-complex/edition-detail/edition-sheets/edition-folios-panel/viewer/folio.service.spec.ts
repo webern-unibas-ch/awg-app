@@ -22,6 +22,7 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
+import { FolioSvgItem } from '@awg-views/edition-view/models/folio-svg-data.model';
 
 import { FolioService } from './folio.service';
 
@@ -327,6 +328,55 @@ describe('FolioService (DONE)', () => {
                 svgData: folioService.getFolioSvgData(expectedFolioSettingsWithDimensions, expectedDefaultFolio),
                 viewBox: expectedViewBox,
             });
+        });
+    });
+
+    describe('#renderFolio', () => {
+        let expectedSvgSelection: D3Selection;
+        let expectedFolioSvgItem: FolioSvgItem;
+
+        beforeEach(() => {
+            expectedSvgSelection = D3_SELECTION.create('svg');
+            expectedFolioSvgItem = { svgData: expectedFolioSvgData, viewBox: new ViewBox(100, 200) };
+        });
+
+        afterEach(() => {
+            expectedSvgSelection.remove();
+        });
+
+        it('... should have a method `renderFolio`', () => {
+            expect(folioService.renderFolio).toBeDefined();
+        });
+
+        it('... should remove the existing content of the svg selection', () => {
+            expectedSvgSelection.append('rect').attr('class', 'previous-content');
+
+            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+
+            expectToBe(expectedSvgSelection.selectAll('rect.previous-content').size(), 0);
+        });
+
+        it('... should trigger `addViewBoxToSvgCanvas` with the viewbox of the given item', () => {
+            const addViewBoxToSvgCanvasSpy = vi.spyOn(folioService, 'addViewBoxToSvgCanvas');
+
+            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+
+            expectSpyCall(addViewBoxToSvgCanvasSpy, 1, [expectedSvgSelection, expectedFolioSvgItem.viewBox]);
+        });
+
+        it('... should trigger `addFolioToSvgCanvas` with the svg data of the given item', () => {
+            const addFolioToSvgCanvasSpy = vi.spyOn(folioService, 'addFolioToSvgCanvas');
+
+            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+
+            expectSpyCall(addFolioToSvgCanvasSpy, 1, [expectedSvgSelection, expectedFolioSvgItem.svgData]);
+        });
+
+        it('... should draw exactly one sheet group when rendering twice', () => {
+            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+
+            expectToBe(expectedSvgSelection.selectAll('g.sheet-group').size(), 1);
         });
     });
 

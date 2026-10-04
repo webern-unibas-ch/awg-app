@@ -161,7 +161,7 @@ export class EditionFoliosViewerComponent {
     /**
      * Private method: _renderFolios.
      *
-     * It renders the given folio svg items into the given svg selections
+     * It renders the given folio svg items into the given svg selections (via the FolioService)
      * and marks the content segment of the selected svg sheet as active.
      *
      * @param {FolioSvgItem[]} items The given folio svg items.
@@ -171,17 +171,14 @@ export class EditionFoliosViewerComponent {
     private _renderFolios(items: FolioSvgItem[], svgSelections: D3Selection[]): void {
         svgSelections.forEach((svgSelection, index) => {
             const item = items[index];
-            if (!item) {
-                return;
+            if (item) {
+                this._folioService.renderFolio(svgSelection, item);
             }
-
-            // Clear the svg elements before redrawing
-            svgSelection.selectAll('*').remove();
-
-            this._folioService.addViewBoxToSvgCanvas(svgSelection, item.viewBox);
-            this._folioService.addFolioToSvgCanvas(svgSelection, item.svgData);
         });
 
+        // Mark the active segment again: rendering clears the svgs (incl. the `active` class).
+        // So the segment effect does not rerun for a new convolute with an unchanged sheet
+        // (also keeps the result independent of the order of both effects).
         this._updateActiveSegment(svgSelections, this.selectedSegmentId());
     }
 

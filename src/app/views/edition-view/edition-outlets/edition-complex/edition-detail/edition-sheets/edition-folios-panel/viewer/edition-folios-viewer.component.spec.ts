@@ -36,11 +36,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     let mockModalService: Partial<ModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let addFolioToSvgCanvasSpy: Spy;
-    let addViewBoxToSvgCanvasSpy: Spy;
     let getContentSegmentSpy: Spy;
     let updateActiveContentSegmentSpy: Spy;
     let getFolioSvgItemSpy: Spy;
+    let renderFolioSpy: Spy;
     let navigateToSvgSheetSpy: Spy;
     let openTextModalSpy: Spy;
 
@@ -57,7 +56,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         Array.from<Element>(compDe.nativeElement.querySelectorAll('g.content-segment-group.active')).map(groupEl =>
             groupEl.getAttribute('contentSegmentId')
         );
-    const getSvgCanvasNode = (spy: Spy, callIndex: number): Element | null =>
+    const getSvgSelectionNode = (spy: Spy, callIndex: number): Element | null =>
         (spy.mock.calls[callIndex][0] as D3Selection).node() as Element | null;
     const createSvgSheet = (id: string, partial: string): EditionSvgSheet => ({
         ...structuredClone(mockEditionData.mockSvgSheet_Sk1),
@@ -90,11 +89,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         folioService = TestBed.inject(FolioService);
 
         // Service spies (calling through to the FolioService to draw the folios)
-        addFolioToSvgCanvasSpy = vi.spyOn(folioService, 'addFolioToSvgCanvas');
-        addViewBoxToSvgCanvasSpy = vi.spyOn(folioService, 'addViewBoxToSvgCanvas');
         getContentSegmentSpy = vi.spyOn(folioService, 'getContentSegment');
         updateActiveContentSegmentSpy = vi.spyOn(folioService, 'updateActiveContentSegment');
         getFolioSvgItemSpy = vi.spyOn(folioService, 'getFolioSvgItem');
+        renderFolioSpy = vi.spyOn(folioService, 'renderFolio');
         navigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
         openTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
@@ -159,7 +157,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         });
 
         it('... should not have rendered any folio yet', () => {
-            expectSpyCall(addFolioToSvgCanvasSpy, 0);
+            expectSpyCall(renderFolioSpy, 0);
         });
     });
 
@@ -209,23 +207,16 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 expectToEqual(getFolioSvgItemSpy.mock.calls[1][0], expectedConvolute.folios[1]);
             });
 
-            it('... should add the viewbox to the svg element of each folio', () => {
+            it('... should render the folio svg item into the svg element of each folio via the FolioService', () => {
                 const svgEls = getSvgEls();
 
-                expectSpyCall(addViewBoxToSvgCanvasSpy, 2);
+                expectSpyCall(renderFolioSpy, 2);
                 svgEls.forEach((svgEl, index) => {
-                    expectToBe(getSvgCanvasNode(addViewBoxToSvgCanvasSpy, index), svgEl);
-                    expectToEqual(addViewBoxToSvgCanvasSpy.mock.calls[index][1], expectedViewBoxes[index]);
-                });
-            });
-
-            it('... should add the folio to the svg element of each folio', () => {
-                const svgEls = getSvgEls();
-
-                expectSpyCall(addFolioToSvgCanvasSpy, 2);
-                svgEls.forEach((svgEl, index) => {
-                    expectToBe(getSvgCanvasNode(addFolioToSvgCanvasSpy, index), svgEl);
-                    expectToEqual(addFolioToSvgCanvasSpy.mock.calls[index][1], expectedFolioSvgData[index]);
+                    expectToBe(getSvgSelectionNode(renderFolioSpy, index), svgEl);
+                    expectToEqual(renderFolioSpy.mock.calls[index][1], {
+                        svgData: expectedFolioSvgData[index],
+                        viewBox: expectedViewBoxes[index],
+                    });
                 });
             });
 
@@ -248,14 +239,14 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 fixture.componentRef.setInput('selectedConvolute', structuredClone(expectedConvolute));
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(addFolioToSvgCanvasSpy, 4);
+                expectSpyCall(renderFolioSpy, 4);
             });
 
             it('... should not render again without a convolute change', async () => {
                 fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(addFolioToSvgCanvasSpy, 2);
+                expectSpyCall(renderFolioSpy, 2);
             });
         });
 
@@ -269,7 +260,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 const svgEls = getSvgEls();
                 expectSpyCall(updateActiveContentSegmentSpy, 2);
                 svgEls.forEach((svgEl, index) => {
-                    expectToBe(getSvgCanvasNode(updateActiveContentSegmentSpy, index), svgEl);
+                    expectToBe(getSvgSelectionNode(updateActiveContentSegmentSpy, index), svgEl);
                     expectToBe(updateActiveContentSegmentSpy.mock.calls[index][1], 'M212_Sk3');
                 });
             });
