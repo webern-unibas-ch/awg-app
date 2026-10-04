@@ -40,7 +40,6 @@ export {
     FolioCalculationPoint,
     FolioCalculationRectangle,
 } from './folio-calculation.model';
-export { FolioSettings } from './folio-settings.model';
 export { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
 export { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
 export { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';

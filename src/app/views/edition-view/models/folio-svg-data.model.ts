@@ -10,6 +10,14 @@ import {
 import { ViewBox } from './view-box.model';
 
 /**
+ * Constant: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS.
+ *
+ * It keeps the css class of the content segment groups of the rendered folio svgs
+ * (drawn by the EditionFolioDrawingService, resolved by the EditionFolioSegmentService).
+ */
+export const FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS = 'content-segment-group';
+
+/**
  * The FolioSvgSheet class.
  *
  * It is used in the context of the edition folio convolutes
@@ -190,6 +198,11 @@ export class FolioSvgData {
     contentSegments: FolioSvgContentSegment[];
 
     /**
+     * The view box of the svg of a folio.
+     */
+    viewBox: ViewBox;
+
+    /**
      * Constructor of the FolioSvgData class.
      *
      * It initializes the class with values from the folio calculation.
@@ -200,23 +213,6 @@ export class FolioSvgData {
         this.sheet = new FolioSvgSheet(calculation.SHEET);
         this.systems = new FolioSvgSystems(calculation.SYSTEMS);
         this.contentSegments = calculation.CONTENT_SEGMENTS.map(segment => new FolioSvgContentSegment(segment));
+        this.viewBox = calculation.VIEW_BOX;
     }
-}
-
-/**
- * The FolioSvgItem interface.
- *
- * It is used in the context of the edition folio convolutes
- * to store the data needed to render the svg of a single folio.
- */
-export interface FolioSvgItem {
-    /**
-     * The calculated svg data of the folio.
-     */
-    svgData: FolioSvgData;
-
-    /**
-     * The viewbox of the folio svg.
-     */
-    viewBox: ViewBox;
 }

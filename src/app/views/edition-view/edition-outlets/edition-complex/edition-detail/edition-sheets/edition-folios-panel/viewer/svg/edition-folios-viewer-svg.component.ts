@@ -17,11 +17,11 @@ import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioSvgItem } from '@awg-views/edition-view/models/folio-svg-data.model';
+import { FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
+import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
+import { EditionFolioSegmentService } from '@awg-views/edition-view/services/edition-folio-segment.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
-
-import { FolioService } from '../folio.service';
 
 /**
  * The EditionFoliosViewerSvg component.
@@ -39,11 +39,18 @@ import { FolioService } from '../folio.service';
 })
 export class EditionFoliosViewerSvgComponent {
     /**
-     * Private readonly injection variable: _folioService.
+     * Private readonly injection variable: _folioDrawingService.
      *
-     * It keeps the instance of the injected FolioService.
+     * It keeps the instance of the injected EditionFolioDrawingService.
      */
-    private readonly _folioService = inject(FolioService);
+    private readonly _folioDrawingService = inject(EditionFolioDrawingService);
+
+    /**
+     * Private readonly injection variable: _folioSegmentService.
+     *
+     * It keeps the instance of the injected EditionFolioSegmentService.
+     */
+    private readonly _folioSegmentService = inject(EditionFolioSegmentService);
 
     /**
      * Private readonly injection variable: _modalService.
@@ -81,11 +88,11 @@ export class EditionFoliosViewerSvgComponent {
     readonly svgRootGroup = viewChild.required<ElementRef<SVGGElement>>('svgRootGroup');
 
     /**
-     * Readonly computed signal: folioSvgItem.
+     * Readonly computed signal: folioSvgData.
      *
-     * It holds the svg data and the viewbox of the folio.
+     * It holds the svg data (incl. the viewbox) of the folio.
      */
-    readonly folioSvgItem = computed<FolioSvgItem>(() => this._folioService.getFolioSvgItem(this.folio()));
+    readonly folioSvgData = computed<FolioSvgData>(() => this._folioDrawingService.getFolioSvgData(this.folio()));
 
     /**
      * Readonly computed signal: selectedSegmentId.
@@ -116,15 +123,15 @@ export class EditionFoliosViewerSvgComponent {
      */
     constructor() {
         afterRenderEffect(() => {
-            const item = this.folioSvgItem();
+            const svgData = this.folioSvgData();
             const rootGroupSelection = this._svgRootGroupSelection();
-            untracked(() => this._renderFolio(rootGroupSelection, item));
+            untracked(() => this._renderFolio(rootGroupSelection, svgData));
         });
 
         afterRenderEffect(() => {
             const segmentId = this.selectedSegmentId();
             const rootGroupSelection = this._svgRootGroupSelection();
-            untracked(() => this._folioService.updateActiveContentSegment(rootGroupSelection, segmentId));
+            untracked(() => this._folioSegmentService.updateActiveContentSegment(rootGroupSelection, segmentId));
         });
     }
 
@@ -139,7 +146,7 @@ export class EditionFoliosViewerSvgComponent {
      * @returns {void} Handles the selection.
      */
     onFolioSelect(event: Event): void {
-        const contentSegment = this._folioService.getContentSegment(event.target);
+        const contentSegment = this._folioSegmentService.getContentSegment(event.target);
         if (!contentSegment) {
             return;
         }
@@ -159,19 +166,19 @@ export class EditionFoliosViewerSvgComponent {
     /**
      * Private method: _renderFolio.
      *
-     * It renders the given folio svg item into the given svg root group selection
+     * It renders the given folio svg data into the given svg root group selection
      * and marks the content segment of the selected svg sheet as active.
      *
      * @param {D3Selection} rootGroupSelection The given d3 selection of the svg root group.
-     * @param {FolioSvgItem} item The given folio svg item.
+     * @param {FolioSvgData} svgData The given folio svg data.
      * @returns {void} Renders the folio.
      */
-    private _renderFolio(rootGroupSelection: D3Selection, item: FolioSvgItem): void {
-        this._folioService.renderFolio(rootGroupSelection, item.svgData);
+    private _renderFolio(rootGroupSelection: D3Selection, svgData: FolioSvgData): void {
+        this._folioDrawingService.renderFolio(rootGroupSelection, svgData);
 
         // Mark the active segment again: rendering clears the root group (incl. the `active` class).
         // The segment effect does not rerun for a new folio with an unchanged sheet
         // (this also keeps the result independent of the order of both effects).
-        this._folioService.updateActiveContentSegment(rootGroupSelection, this.selectedSegmentId());
+        this._folioSegmentService.updateActiveContentSegment(rootGroupSelection, this.selectedSegmentId());
     }
 }

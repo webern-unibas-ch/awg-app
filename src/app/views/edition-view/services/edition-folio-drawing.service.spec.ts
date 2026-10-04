@@ -13,16 +13,16 @@ import {
     FolioCalculation,
     FolioCalculationPoint,
     FolioCalculationRectangle,
+    FolioSettings,
 } from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSettings } from '@awg-views/edition-view/models/folio-settings.model';
 import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 
-import { FolioService } from './folio.service';
+import { EditionFolioDrawingService } from './edition-folio-drawing.service';
 
-describe('FolioService (DONE)', () => {
-    let folioService: FolioService;
+describe('EditionFolioDrawingService (DONE)', () => {
+    let folioDrawingService: EditionFolioDrawingService;
 
     let expectedDefaultFolio: Folio;
     let expectedReversedFolio: Folio;
@@ -39,7 +39,7 @@ describe('FolioService (DONE)', () => {
      */
     const render = (svgData: FolioSvgData): D3Selection => {
         const rootGroup = D3_SELECTION.create('svg').append('g') as unknown as D3Selection;
-        folioService.renderFolio(rootGroup, svgData);
+        folioDrawingService.renderFolio(rootGroup, svgData);
         return rootGroup;
     };
 
@@ -60,10 +60,10 @@ describe('FolioService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [FolioService],
+            providers: [EditionFolioDrawingService],
         });
 
-        folioService = TestBed.inject(FolioService);
+        folioDrawingService = TestBed.inject(EditionFolioDrawingService);
 
         vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
 
@@ -86,20 +86,20 @@ describe('FolioService (DONE)', () => {
     });
 
     it('... should inject', () => {
-        expect(folioService).toBeTruthy();
+        expect(folioDrawingService).toBeTruthy();
     });
 
     describe('default values', () => {
         it('... should have `_folioSettings`', () => {
-            expectToEqual(folioService['_folioSettings'], expectedFolioSettings);
+            expectToEqual(folioDrawingService['_folioSettings'], expectedFolioSettings);
         });
 
         it('... should have `_contentSegmentOffsetCorrection`', () => {
-            expectToBe(folioService['_contentSegmentOffsetCorrection'], expectedContentSegmentOffsetCorrection);
+            expectToBe(folioDrawingService['_contentSegmentOffsetCorrection'], expectedContentSegmentOffsetCorrection);
         });
     });
 
-    describe('#getFolioSvgItem', () => {
+    describe('#getFolioSvgData', () => {
         let expectedFolioSettingsWithDimensions: FolioSettings;
 
         beforeEach(() => {
@@ -110,20 +110,20 @@ describe('FolioService (DONE)', () => {
             };
         });
 
-        it('... should have a method `getFolioSvgItem`', () => {
-            expect(folioService.getFolioSvgItem).toBeDefined();
+        it('... should have a method `getFolioSvgData`', () => {
+            expect(folioDrawingService.getFolioSvgData).toBeDefined();
         });
 
         it('... should calculate the svg data with the folio settings for the dimensions of the given folio', () => {
-            const result = folioService.getFolioSvgItem(expectedDefaultFolio);
+            const result = folioDrawingService.getFolioSvgData(expectedDefaultFolio);
 
-            expectToEqual(result.svgData, createSvgData(expectedDefaultFolio, expectedFolioSettingsWithDimensions));
+            expectToEqual(result, createSvgData(expectedDefaultFolio, expectedFolioSettingsWithDimensions));
         });
 
         it('... should calculate the viewbox for the dimensions of the given folio', () => {
             const { factor, formatX, formatY, initialOffsetX, initialOffsetY } = expectedFolioSettingsWithDimensions;
 
-            const result = folioService.getFolioSvgItem(expectedDefaultFolio);
+            const result = folioDrawingService.getFolioSvgData(expectedDefaultFolio);
 
             expectToEqual(
                 result.viewBox,
@@ -134,7 +134,7 @@ describe('FolioService (DONE)', () => {
 
     describe('#renderFolio', () => {
         it('... should have a method `renderFolio`', () => {
-            expect(folioService.renderFolio).toBeDefined();
+            expect(folioDrawingService.renderFolio).toBeDefined();
         });
 
         describe('... root group', () => {
@@ -143,7 +143,7 @@ describe('FolioService (DONE)', () => {
                 const rootGroup = svg.append('g').attr('class', 'root-group') as unknown as D3Selection;
                 rootGroup.append('rect').attr('class', 'previous-content');
 
-                folioService.renderFolio(rootGroup, expectedFolioSvgData);
+                folioDrawingService.renderFolio(rootGroup, expectedFolioSvgData);
 
                 expectToBe(rootGroup.selectAll('rect.previous-content').size(), 0);
                 expectToBe(svg.selectAll('g.root-group').size(), 1);
@@ -152,7 +152,7 @@ describe('FolioService (DONE)', () => {
             it('... should draw exactly one sheet group into the root group when rendering twice', () => {
                 const rootGroup = render(expectedFolioSvgData);
 
-                folioService.renderFolio(rootGroup, expectedFolioSvgData);
+                folioDrawingService.renderFolio(rootGroup, expectedFolioSvgData);
 
                 expectToBe(rootGroup.selectAll(':scope > g.sheet-group').size(), 1);
             });
@@ -408,122 +408,6 @@ describe('FolioService (DONE)', () => {
                     `rotate(180, ${reversedSegment?.centeredXPosition}, ${reversedSegment?.centeredYPosition})`
                 );
             });
-        });
-    });
-
-    describe('#getContentSegment', () => {
-        let rootGroup: D3Selection;
-        let contentSegmentGroup: Element;
-
-        beforeEach(() => {
-            rootGroup = render(expectedFolioSvgData);
-            contentSegmentGroup = rootGroup.select('g.content-segment-group').node() as Element;
-        });
-
-        it('... should have a method `getContentSegment`', () => {
-            expect(folioService.getContentSegment).toBeDefined();
-        });
-
-        describe('... should return the content segment of the hit content segment group if the target is', () => {
-            it('... the content segment group', () => {
-                expectToEqual(
-                    folioService.getContentSegment(contentSegmentGroup),
-                    expectedFolioSvgData.contentSegments[0]
-                );
-            });
-
-            it('... the polygon of the content segment link', () => {
-                const polygon = contentSegmentGroup.querySelector('a.content-segment-link polygon');
-
-                expectToEqual(folioService.getContentSegment(polygon), expectedFolioSvgData.contentSegments[0]);
-            });
-
-            it('... the label text of the content segment link', () => {
-                const text = contentSegmentGroup.querySelector('a.content-segment-link text');
-
-                expectToEqual(folioService.getContentSegment(text), expectedFolioSvgData.contentSegments[0]);
-            });
-        });
-
-        describe('... should return undefined if the target is', () => {
-            it('... outside of a content segment group', () => {
-                const sheetGroup = rootGroup.select('g.sheet-group').node() as Element;
-
-                expect(folioService.getContentSegment(sheetGroup)).toBeUndefined();
-            });
-
-            it('... not an element', () => {
-                expect(folioService.getContentSegment(new EventTarget())).toBeUndefined();
-            });
-
-            it('... null', () => {
-                expect(folioService.getContentSegment(null)).toBeUndefined();
-            });
-        });
-    });
-
-    describe('#updateActiveContentSegment', () => {
-        let rootGroup: D3Selection;
-
-        const getActiveSegmentIds = (): string[] =>
-            rootGroup
-                .selectAll<SVGGElement, FolioSvgContentSegment>('g.content-segment-group.active')
-                .data()
-                .map(contentSegment => contentSegment.sheetId);
-
-        beforeEach(() => {
-            rootGroup = render(expectedFolioSvgData);
-        });
-
-        it('... should have a method `updateActiveContentSegment`', () => {
-            expect(folioService.updateActiveContentSegment).toBeDefined();
-        });
-
-        it('... should set the class `active` on the content segment group with the given id', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
-
-            folioService.updateActiveContentSegment(rootGroup, expectedSegmentId);
-
-            expectToEqual(getActiveSegmentIds(), [expectedSegmentId]);
-        });
-
-        it('... should remove the class `active` from the previously active content segment group', () => {
-            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
-            folioService.updateActiveContentSegment(rootGroup, expectedFolioSvgData.contentSegments[0].sheetId);
-
-            folioService.updateActiveContentSegment(rootGroup, expectedSegmentId);
-
-            expectToEqual(getActiveSegmentIds(), [expectedSegmentId]);
-        });
-
-        it('... should not set the class `active` on any content segment group for an unknown id', () => {
-            folioService.updateActiveContentSegment(rootGroup, 'unknown');
-
-            expectToEqual(getActiveSegmentIds(), []);
-        });
-    });
-
-    describe('#_calculateViewBoxDimension', () => {
-        it('... should have a method `_calculateViewBoxDimension`', () => {
-            expect(folioService['_calculateViewBoxDimension']).toBeDefined();
-        });
-
-        it('... should calculate the viewbox width for dimension X', () => {
-            const { factor, formatX, initialOffsetX } = expectedFolioSettings;
-
-            expectToBe(
-                folioService['_calculateViewBoxDimension'](expectedFolioSettings, 'X'),
-                (formatX + 2 * initialOffsetX) * factor
-            );
-        });
-
-        it('... should calculate the viewbox height for dimension Y', () => {
-            const { factor, formatY, initialOffsetY } = expectedFolioSettings;
-
-            expectToBe(
-                folioService['_calculateViewBoxDimension'](expectedFolioSettings, 'Y'),
-                (formatY + 2 * initialOffsetY) * factor
-            );
         });
     });
 });

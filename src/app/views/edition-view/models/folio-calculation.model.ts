@@ -1,5 +1,39 @@
-import { FolioSettings } from './folio-settings.model';
 import { Folio, FolioContent, FolioSegment } from './folio.model';
+import { ViewBox } from './view-box.model';
+
+/**
+ * The FolioSettings interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the basic settings (format, zoom factor, offsets)
+ * for the calculation of a folio.
+ */
+export interface FolioSettings {
+    /**
+     * The zoom factor to be applied.
+     */
+    factor: number;
+
+    /**
+     * The x value (width) of the folio format.
+     */
+    formatX: number;
+
+    /**
+     * The y value (height) of the folio format.
+     */
+    formatY: number;
+
+    /**
+     * The initial offset (x-position) to be applied.
+     */
+    initialOffsetX: number;
+
+    /**
+     * The initial offset (y-position) to be applied.
+     */
+    initialOffsetY: number;
+}
 
 /**
  * Utility function: round.
@@ -316,7 +350,7 @@ export class FolioCalculationContentSegmentVertices {
 
         if (!systemLines || systemLines.length === 0) {
             throw new Error(
-                `[FolioService] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
+                `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
             );
         }
 
@@ -1068,6 +1102,12 @@ export class FolioCalculation {
     public readonly CONTENT_SEGMENTS: FolioCalculationContentSegment[];
 
     /**
+     * The calculated view box of the svg of a folio
+     * (folio format plus initial offsets on both sides, zoomed by the factor).
+     */
+    public readonly VIEW_BOX: ViewBox;
+
+    /**
      * Constructor of the FolioCalculation class.
      *
      * It initializes the class with values from folio settings, folio data and segment offset correction.
@@ -1087,6 +1127,10 @@ export class FolioCalculation {
         this.CONTENT_SEGMENTS = folioData.content.map(
             (content: FolioContent) =>
                 new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)
+        );
+        this.VIEW_BOX = new ViewBox(
+            (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor,
+            (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor
         );
     }
 }

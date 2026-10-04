@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import * as D3_SELECTION from 'd3-selection';
-
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationRectangle,
+    FolioSettings,
 } from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSettings } from '@awg-views/edition-view/models/folio-settings.model';
 import {
+    FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
     FolioSvgContentSegment,
     FolioSvgData,
-    FolioSvgItem,
 } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
-import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 
 /**
  * Constant: TRADEMARK_SYMBOL_PATH.
@@ -34,25 +31,19 @@ const TRADEMARK_SYMBOL_PATH =
     'L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15';
 
 /**
- * The Folio service.
+ * The EditionFolioDrawing service.
  *
- * It prepares the svg data of the edition folios,
- * renders them into a given svg root group
- * and handles the content segments of the rendered folios.
+ * It prepares the svg data of the edition folios
+ * and draws them into a given svg root group.
+ * The interaction with the drawn content segments is handled
+ * by the {@link EditionFolioSegmentService}.
  *
  * Provided in: `root`.
  */
 @Injectable({
     providedIn: 'root',
 })
-export class FolioService {
-    /**
-     * Private readonly variable: _contentSegmentGroupClass.
-     *
-     * It keeps the css class of the content segment groups.
-     */
-    private readonly _contentSegmentGroupClass = 'content-segment-group';
-
+export class EditionFolioDrawingService {
     /**
      * Private readonly variable: _contentSegmentOffsetCorrection.
      *
@@ -97,51 +88,23 @@ export class FolioService {
     private readonly _reversedRotationAngle = 180;
 
     /**
-     * Public method: getFolioSvgItem.
+     * Public method: getFolioSvgData.
      *
-     * It calculates and provides the folio svg data and the viewbox
-     * to render the svg of a given folio (based on its dimensions).
+     * It calculates the svg data (sheet, systems, content segments and viewbox)
+     * to render the svg of a given folio, based on its dimensions.
      *
      * @param {Folio} folio The given folio.
-     * @returns {FolioSvgItem} The calculated folio svg data and viewbox.
+     * @returns {FolioSvgData} The calculated folio svg data.
      */
-    getFolioSvgItem(folio: Folio): FolioSvgItem {
+    getFolioSvgData(folio: Folio): FolioSvgData {
         const folioSettings: FolioSettings = {
             ...this._folioSettings,
             formatX: +folio.dimensions.width,
             formatY: +folio.dimensions.height,
         };
+        const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
 
-        const viewBoxWidth = this._calculateViewBoxDimension(folioSettings, 'X');
-        const viewBoxHeight = this._calculateViewBoxDimension(folioSettings, 'Y');
-
-        return {
-            svgData: this._getFolioSvgData(folioSettings, folio),
-            viewBox: new ViewBox(viewBoxWidth, viewBoxHeight),
-        };
-    }
-
-    /**
-     * Public method: getContentSegment.
-     *
-     * It resolves the content segment hit by a given event target
-     * (bound to its content segment group).
-     *
-     * @param {EventTarget | null} target The given event target.
-     *
-     * @returns {FolioSvgContentSegment | undefined} The hit content segment, or undefined.
-     */
-    getContentSegment(target: EventTarget | null): FolioSvgContentSegment | undefined {
-        if (!(target instanceof Element)) {
-            return undefined;
-        }
-
-        const contentSegmentGroup = target.closest(`g.${this._contentSegmentGroupClass}`);
-        if (!contentSegmentGroup) {
-            return undefined;
-        }
-
-        return D3_SELECTION.select(contentSegmentGroup).datum() as FolioSvgContentSegment | undefined;
+        return new FolioSvgData(calculation);
     }
 
     /**
@@ -164,22 +127,6 @@ export class FolioService {
         this._drawSheet(sheetGroup, folioSvgData);
         this._drawSystems(sheetGroup, folioSvgData);
         this._drawContentSegments(sheetGroup, folioSvgData);
-    }
-
-    /**
-     * Public method: updateActiveContentSegment.
-     *
-     * It toggles the css class `active` on the content segment groups of a given svg selection
-     * according to a given content segment id (sheet id including the partial, if any).
-     *
-     * @param {D3Selection} svgSelection The given svg selection.
-     * @param {string} segmentId The given content segment id.
-     * @returns {void} Toggles the css class on the content segment groups.
-     */
-    updateActiveContentSegment(svgSelection: D3Selection, segmentId: string): void {
-        svgSelection
-            .selectAll<SVGGElement, FolioSvgContentSegment>(`g.${this._contentSegmentGroupClass}`)
-            .classed('active', contentSegment => contentSegment?.sheetId === segmentId);
     }
 
     /**
@@ -228,24 +175,6 @@ export class FolioService {
     }
 
     /**
-     * Private method: _calculateViewBoxDimension.
-     *
-     * It calculates the width and height for the viewBox string
-     * based on the given folio settings.
-     *
-     * @param {FolioSettings} folioSettings The given folio settings.
-     * @param {string} dimension The given dimension.
-     *
-     * @returns {number} The calculated dimension.
-     */
-    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: 'X' | 'Y'): number {
-        const format = dimension === 'X' ? folioSettings.formatX : folioSettings.formatY;
-        const offset = dimension === 'X' ? folioSettings.initialOffsetX : folioSettings.initialOffsetY;
-
-        return (format + 2 * offset) * folioSettings.factor;
-    }
-
-    /**
      * Private method: _drawContentSegments.
      *
      * It draws the content segments of the given folio svg data into a given sheet group:
@@ -264,7 +193,7 @@ export class FolioService {
         folioSvgData.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
             // Group with the content segment bound as datum (resolved by getContentSegment for delegated clicks)
             const segmentGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', {
-                class: this._contentSegmentGroupClass,
+                class: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
             })
                 .classed('selectable', contentSegment.selectable)
                 .datum(contentSegment);
@@ -416,20 +345,5 @@ export class FolioService {
         });
 
         this._appendSvgElementWithAttrs(trademarkGroup, 'title', { class: 'trademark-title' }).text('Firmenzeichen');
-    }
-
-    /**
-     * Private method: _getFolioSvgData.
-     *
-     * It calculates the folio svg data of a given folio with the given folio settings.
-     *
-     * @param {FolioSettings} folioSettings The given folio settings.
-     * @param {Folio} folio The given folio.
-     * @returns {FolioSvgData} The calculated folio svg data.
-     */
-    private _getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
-        const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
-
-        return new FolioSvgData(calculation);
     }
 }

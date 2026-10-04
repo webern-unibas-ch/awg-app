@@ -13,14 +13,14 @@ import { mockEditionData } from '@testing/mock-data';
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioCalculation } from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSettings } from '@awg-views/edition-view/models/folio-settings.model';
+import { FolioCalculation, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
 import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
+import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
+import { EditionFolioSegmentService } from '@awg-views/edition-view/services/edition-folio-segment.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { FolioService } from '../folio.service';
 import { EditionFoliosViewerSvgComponent } from './edition-folios-viewer-svg.component';
 
 describe('EditionFoliosViewerSvgComponent (DONE)', () => {
@@ -28,12 +28,13 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionFoliosViewerSvgComponent>;
     let compDe: DebugElement;
 
-    let folioService: FolioService;
+    let folioDrawingService: EditionFolioDrawingService;
+    let folioSegmentService: EditionFolioSegmentService;
     let mockModalService: Partial<ModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let getContentSegmentSpy: Spy;
-    let getFolioSvgItemSpy: Spy;
+    let getFolioSvgDataSpy: Spy;
     let navigateToSvgSheetSpy: Spy;
     let openTextModalSpy: Spy;
     let renderFolioSpy: Spy;
@@ -79,13 +80,14 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         }).compileComponents();
 
         // Inject services
-        folioService = TestBed.inject(FolioService);
+        folioDrawingService = TestBed.inject(EditionFolioDrawingService);
+        folioSegmentService = TestBed.inject(EditionFolioSegmentService);
 
-        // Service spies (calling through to the FolioService to draw the folio)
-        getContentSegmentSpy = vi.spyOn(folioService, 'getContentSegment');
-        getFolioSvgItemSpy = vi.spyOn(folioService, 'getFolioSvgItem');
-        renderFolioSpy = vi.spyOn(folioService, 'renderFolio');
-        updateActiveContentSegmentSpy = vi.spyOn(folioService, 'updateActiveContentSegment');
+        // Service spies (calling through to the folio services to draw the folio)
+        getContentSegmentSpy = vi.spyOn(folioSegmentService, 'getContentSegment');
+        getFolioSvgDataSpy = vi.spyOn(folioDrawingService, 'getFolioSvgData');
+        renderFolioSpy = vi.spyOn(folioDrawingService, 'renderFolio');
+        updateActiveContentSegmentSpy = vi.spyOn(folioSegmentService, 'updateActiveContentSegment');
         navigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
         openTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
@@ -153,9 +155,10 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             expectToEqual(component.selectedSheetId(), expectedSheetId);
         });
 
-        it('... should have computed signal `folioSvgItem` to hold the svg data and viewbox of the folio', () => {
-            expectSpyCall(getFolioSvgItemSpy, 1, expectedFolio);
-            expectToEqual(component.folioSvgItem(), { svgData: expectedFolioSvgData, viewBox: expectedViewBox });
+        it('... should have computed signal `folioSvgData` to hold the svg data (incl. viewbox) of the folio', () => {
+            expectSpyCall(getFolioSvgDataSpy, 1, expectedFolio);
+            expectToEqual(component.folioSvgData(), expectedFolioSvgData);
+            expectToEqual(component.folioSvgData().viewBox, expectedViewBox);
         });
 
         it('... should have computed signal `selectedSegmentId` to hold the id of the selected svg sheet', () => {
@@ -181,7 +184,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         });
 
         describe('... rendering', () => {
-            it('... should render the svg data into the root group via the FolioService', () => {
+            it('... should render the svg data into the root group via the EditionFolioDrawingService', () => {
                 expectSpyCall(renderFolioSpy, 1);
                 expectToBe(getSelectionNode(renderFolioSpy, 0), getRootGroupEl());
                 expectToEqual(renderFolioSpy.mock.calls[0][1], expectedFolioSvgData);
@@ -211,7 +214,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         });
 
         describe('... active content segment', () => {
-            it('... should update the active content segment of the root group via the FolioService', async () => {
+            it('... should update the active content segment of the root group via the EditionFolioSegmentService', async () => {
                 updateActiveContentSegmentSpy.mockClear();
 
                 fixture.componentRef.setInput('selectedSheetId', expectedSheetIdWithPartial);
@@ -323,7 +326,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                     expect(component.onFolioSelect).toBeDefined();
                 });
 
-                it('... should resolve the content segment of the event target via the FolioService', () => {
+                it('... should resolve the content segment of the event target via the EditionFolioSegmentService', () => {
                     getContentSegmentSpy.mockReturnValue(undefined);
 
                     component.onFolioSelect(expectedEvent);
