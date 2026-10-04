@@ -7,7 +7,7 @@ import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-tog
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
@@ -56,25 +56,12 @@ export class EditionSheetsPanelComponent {
     readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
 
     /**
-     * Readonly input signal: selectedTextcriticalCommentary.
+     * Readonly input signal: displayedTextcritics.
      *
-     * It holds the selected textcritical commentary.
+     * It holds the textcritics of the selected svg sheet
+     * with the commentary filtered for the selected tkk overlays.
      */
-    readonly selectedTextcriticalCommentary = input.required<TextcriticalCommentary | undefined>();
-
-    /**
-     * Readonly input signal: selectedTextcritics.
-     *
-     * It holds the selected textcritics of the selected svg sheet.
-     */
-    readonly selectedTextcritics = input.required<Textcritics | undefined>();
-
-    /**
-     * Readonly input signal: showTkA.
-     *
-     * It holds a boolean flag whether the textcritical commentary shall be displayed.
-     */
-    readonly showTkA = input.required<boolean>();
+    readonly displayedTextcritics = input.required<Textcritics | undefined>();
 
     /**
      * Readonly output signal: browseSheetRequest.

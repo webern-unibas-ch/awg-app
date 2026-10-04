@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
 import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '../../../edition-tka/edition-tka-label/edition-tka-label.component';
@@ -22,23 +22,18 @@ import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table
 })
 export class EditionSheetFooterComponent {
     /**
-     * Readonly input signal: selectedTextcritics.
+     * Readonly input signal: displayedTextcritics.
      *
-     * It holds the selected textcritics of a selected svg sheet.
+     * It holds the textcritics of the selected svg sheet
+     * with the commentary filtered for the selected tkk overlays.
      */
-    readonly selectedTextcritics = input.required<Textcritics>();
+    readonly displayedTextcritics = input.required<Textcritics>();
 
     /**
-     * Readonly input signal: selectedTextcriticalCommentary.
+     * Readonly computed signal: showTkA.
      *
-     * It holds the selected textcritical commentary.
+     * It holds a boolean flag whether the textcritical commentary shall be displayed
+     * (i.e., whether the displayed commentary contains comments).
      */
-    readonly selectedTextcriticalCommentary = input<TextcriticalCommentary | undefined>(undefined);
-
-    /**
-     * Readonly input signal: showTkA.
-     *
-     * It holds a boolean flag if the textcritics shall be displayed.
-     */
-    readonly showTkA = input<boolean>(false);
+    readonly showTkA = computed<boolean>(() => (this.displayedTextcritics().commentary?.comments?.length ?? 0) > 0);
 }

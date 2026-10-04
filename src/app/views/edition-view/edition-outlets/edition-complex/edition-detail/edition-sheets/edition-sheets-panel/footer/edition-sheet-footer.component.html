@@ -1,4 +1,4 @@
-@let textcritics = selectedTextcritics();
+@let textcritics = displayedTextcritics();
 <div class="awg-edition-sheet-footer mt-4">
     <div class="card awg-edition-sheet-footer-evaluation">
         <div class="card-body">
@@ -24,7 +24,7 @@
             <div class="card-body">
                 <p class="smallcaps"><awg-edition-tka-label [id]="textcritics.id" labelType="commentary" />:</p>
                 <awg-edition-tka-table
-                    [displayedCommentary]="selectedTextcriticalCommentary()"
+                    [displayedCommentary]="textcritics.commentary"
                     [id]="textcritics.id"
                     [isRowtable]="textcritics.rowtable ?? false" />
             </div>

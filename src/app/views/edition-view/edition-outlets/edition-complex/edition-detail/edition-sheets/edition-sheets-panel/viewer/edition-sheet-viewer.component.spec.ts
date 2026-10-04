@@ -135,8 +135,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
+            // Simulate the parent setting the input properties
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+
+            // Trigger initial data binding
             fixture.detectChanges();
+
             // Wait for the rendering of the child
             await getSheetSvgCmp()['_renderQueue'];
             await detectChangesOnPush(fixture);
