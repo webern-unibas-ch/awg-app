@@ -194,39 +194,18 @@ export class FolioService {
     /**
      * Public method: renderFolio.
      *
-     * It renders a given folio svg item into a given svg selection:
-     * it clears the svg, adds the viewbox and draws the folio.
+     * It renders the given folio svg data into a given svg root group selection:
+     * it clears the content of the root group and draws the folio.
      *
-     * @param {D3Selection} svgSelection The given svg selection.
-     * @param {FolioSvgItem} folioSvgItem The given folio svg item.
-     * @returns {void} Renders the folio into the svg selection.
+     * @param {D3Selection} svgRootGroupSelection The given svg root group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
+     * @returns {void} Renders the folio into the svg root group selection.
      */
-    renderFolio(svgSelection: D3Selection, folioSvgItem: FolioSvgItem): void {
-        // Clear the svg elements before redrawing
-        svgSelection.selectAll('*').remove();
+    renderFolio(svgRootGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
+        // Clear the content of the root group before redrawing
+        svgRootGroupSelection.selectAll('*').remove();
 
-        this.addViewBoxToSvgCanvas(svgSelection, folioSvgItem.viewBox);
-        this.addFolioToSvgCanvas(svgSelection, folioSvgItem.svgData);
-    }
-
-    /**
-     * Public method: addViewBoxToSvgCanvas.
-     *
-     * It adds the SVG viewbox attributes to the SVG canvas.
-     *
-     * @param {D3Selection} svgCanvas The given SVG canvas selection.
-     * @param {ViewBox} vb The given ViewBox object.
-     * @returns {void} Adds the SVG viewbox attributes to the SVG canvas selection.
-     */
-    addViewBoxToSvgCanvas(svgCanvas: D3Selection, vb: ViewBox): void {
-        svgCanvas
-            .attr('viewBox', vb.viewBox)
-            .attr('width', vb.svgWidth)
-            .attr('height', vb.svgHeight)
-            .attr('version', '1.1')
-            .attr('xmlns', 'https://www.w3.org/2000/svg')
-            .attr('xlink', 'https://www.w3.org/1999/xlink')
-            .attr('preserveAspectRatio', 'xMinYMin meet');
+        this.addFolioToSvgCanvas(svgRootGroupSelection, folioSvgData);
     }
 
     /**

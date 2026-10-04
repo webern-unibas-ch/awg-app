@@ -1,5 +1,7 @@
 import { Directive, inject, input } from '@angular/core';
 
+import { ClickDirective } from '@awg-shared/click/click.directive';
+
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -7,17 +9,16 @@ import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-vi
  *
  * It turns an anchor of a sheet facet item into an accessible link
  * that marks its active state and navigates to the given svg sheet
- * on click or enter key.
+ * on click or enter key (via the {@link ClickDirective}).
  */
 @Directive({
     selector: 'a[awgEditionSheetFacetItemLink]',
+    hostDirectives: [ClickDirective],
     host: {
         role: 'link',
         tabindex: '0',
         '[class.active]': 'isActive()',
         '[class.text-muted]': '!isActive()',
-        '(click)': 'select()',
-        '(keyup.enter)': 'select()',
     },
 })
 export class EditionSheetFacetItemLinkDirective {
@@ -42,6 +43,15 @@ export class EditionSheetFacetItemLinkDirective {
      * @default false
      */
     readonly isActive = input<boolean>(false);
+
+    /**
+     * Constructor of the EditionSheetFacetItemLinkDirective.
+     *
+     * It selects the linked svg sheet on an accessible click (click or enter key) of the anchor.
+     */
+    constructor() {
+        inject(ClickDirective).awgClick.subscribe(() => this.select());
+    }
 
     /**
      * Public method: select.

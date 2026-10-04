@@ -1,0 +1,13 @@
+@let viewBox = folioSvgItem().viewBox;
+
+<span class="text-muted">[{{ folio().folioId }}]</span>
+<svg
+    class="awg-edition-folios-viewer-svg"
+    tabindex="-1"
+    preserveAspectRatio="xMinYMin meet"
+    [attr.viewBox]="viewBox.viewBox"
+    [attr.width]="viewBox.svgWidth"
+    [attr.height]="viewBox.svgHeight"
+    (awgClick)="onFolioSelect($event)">
+    <g #svgRootGroup class="awg-edition-folios-viewer-svg-root-group" />
+</svg>

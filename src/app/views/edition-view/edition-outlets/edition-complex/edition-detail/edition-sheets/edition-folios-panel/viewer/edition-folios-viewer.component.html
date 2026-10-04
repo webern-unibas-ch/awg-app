@@ -1,20 +1,15 @@
-<!-- embedded svg: Edition Folios Viewer -->
-@let items = folioSvgItems();
-@if (items.length > 0) {
-    @let colSize = 12 / items.length;
+<!-- Edition Folios Viewer -->
+@let folioList = folios();
+@if (folioList.length > 0) {
+    @let colSize = 12 / folioList.length;
 
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
-            @for (item of items; track item.svgData.sheet.folioId) {
-                <div class="col-sm-6 col-lg-{{ colSize }} svgCol">
-                    <span class="text-muted">[{{ item.svgData.sheet.folioId }}]</span>
-                    <svg
-                        #folioSvg
-                        tabindex="-1"
-                        (click)="onFolioSelect($event)"
-                        (keydown.enter)="onFolioSelect($event)"
-                        (keydown.space)="onFolioSelect($event)"></svg>
-                </div>
+            @for (folio of folioList; track folio.folioId) {
+                <awg-edition-folios-viewer-svg
+                    class="col-sm-6 col-lg-{{ colSize }} svgCol"
+                    [folio]="folio"
+                    [selectedSheetId]="selectedSheetId()" />
             }
         </div>
     </div>

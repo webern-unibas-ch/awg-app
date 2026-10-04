@@ -22,7 +22,6 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
-import { FolioSvgItem } from '@awg-views/edition-view/models/folio-svg-data.model';
 
 import { FolioService } from './folio.service';
 
@@ -333,11 +332,11 @@ describe('FolioService (DONE)', () => {
 
     describe('#renderFolio', () => {
         let expectedSvgSelection: D3Selection;
-        let expectedFolioSvgItem: FolioSvgItem;
+        let expectedRootGroupSelection: D3Selection;
 
         beforeEach(() => {
             expectedSvgSelection = D3_SELECTION.create('svg');
-            expectedFolioSvgItem = { svgData: expectedFolioSvgData, viewBox: new ViewBox(100, 200) };
+            expectedRootGroupSelection = expectedSvgSelection.append('g').attr('class', 'root-group');
         });
 
         afterEach(() => {
@@ -348,98 +347,33 @@ describe('FolioService (DONE)', () => {
             expect(folioService.renderFolio).toBeDefined();
         });
 
-        it('... should remove the existing content of the svg selection', () => {
-            expectedSvgSelection.append('rect').attr('class', 'previous-content');
+        it('... should remove the existing content of the root group selection', () => {
+            expectedRootGroupSelection.append('rect').attr('class', 'previous-content');
 
-            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+            folioService.renderFolio(expectedRootGroupSelection, expectedFolioSvgData);
 
-            expectToBe(expectedSvgSelection.selectAll('rect.previous-content').size(), 0);
+            expectToBe(expectedRootGroupSelection.selectAll('rect.previous-content').size(), 0);
         });
 
-        it('... should trigger `addViewBoxToSvgCanvas` with the viewbox of the given item', () => {
-            const addViewBoxToSvgCanvasSpy = vi.spyOn(folioService, 'addViewBoxToSvgCanvas');
+        it('... should keep the root group itself', () => {
+            folioService.renderFolio(expectedRootGroupSelection, expectedFolioSvgData);
 
-            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
-
-            expectSpyCall(addViewBoxToSvgCanvasSpy, 1, [expectedSvgSelection, expectedFolioSvgItem.viewBox]);
+            expectToBe(expectedSvgSelection.selectAll('g.root-group').size(), 1);
         });
 
-        it('... should trigger `addFolioToSvgCanvas` with the svg data of the given item', () => {
+        it('... should trigger `addFolioToSvgCanvas` with the root group selection and the given svg data', () => {
             const addFolioToSvgCanvasSpy = vi.spyOn(folioService, 'addFolioToSvgCanvas');
 
-            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+            folioService.renderFolio(expectedRootGroupSelection, expectedFolioSvgData);
 
-            expectSpyCall(addFolioToSvgCanvasSpy, 1, [expectedSvgSelection, expectedFolioSvgItem.svgData]);
+            expectSpyCall(addFolioToSvgCanvasSpy, 1, [expectedRootGroupSelection, expectedFolioSvgData]);
         });
 
-        it('... should draw exactly one sheet group when rendering twice', () => {
-            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
-            folioService.renderFolio(expectedSvgSelection, expectedFolioSvgItem);
+        it('... should draw exactly one sheet group into the root group when rendering twice', () => {
+            folioService.renderFolio(expectedRootGroupSelection, expectedFolioSvgData);
+            folioService.renderFolio(expectedRootGroupSelection, expectedFolioSvgData);
 
-            expectToBe(expectedSvgSelection.selectAll('g.sheet-group').size(), 1);
-        });
-    });
-
-    describe('#addViewBoxToSvgCanvas', () => {
-        it('... should have a method `addViewBoxToSvgCanvas`', () => {
-            expect(folioService.addViewBoxToSvgCanvas).toBeDefined();
-        });
-
-        describe('... when called', () => {
-            let expectedSvgCanvas: D3Selection;
-            let expectedViewBox: ViewBox;
-
-            beforeEach(() => {
-                expectedSvgCanvas = D3_SELECTION.create('svg');
-                expectedViewBox = new ViewBox(100, 100);
-
-                folioService.addViewBoxToSvgCanvas(expectedSvgCanvas, expectedViewBox);
-            });
-
-            it('... should set the `viewBox` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('viewBox'), expectedViewBox.viewBox);
-            });
-
-            it('... should set the `width` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('width'), expectedViewBox.svgWidth);
-            });
-
-            it('... should set the `height` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('height'), expectedViewBox.svgHeight);
-            });
-
-            it('... should set the `version` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('version'), '1.1');
-            });
-
-            it('... should set the `xmlns` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('xmlns'), 'https://www.w3.org/2000/svg');
-            });
-
-            it('... should set the `xlink` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('xlink'), 'https://www.w3.org/1999/xlink');
-            });
-
-            it('... should set the `preserveAspectRatio` attribute of the svg canvas', () => {
-                expectToEqual(expectedSvgCanvas.attr('preserveAspectRatio'), 'xMinYMin meet');
-            });
-
-            it('... should only have specified attributes', () => {
-                const expectedAttributes = [
-                    'viewBox',
-                    'width',
-                    'height',
-                    'version',
-                    'xmlns',
-                    'xlink',
-                    'preserveAspectRatio',
-                ];
-                const actualAttributesList = (expectedSvgCanvas.node() as Element).attributes;
-                const actualAttributes = Array.from(actualAttributesList).map(attr => attr.name);
-
-                expectToBe(actualAttributesList.length, expectedAttributes.length);
-                expectToEqual(actualAttributes, expectedAttributes);
-            });
+            expectToBe(expectedRootGroupSelection.selectAll('g.sheet-group').size(), 1);
         });
     });
 
