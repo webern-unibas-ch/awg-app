@@ -4,6 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import * as D3_SELECTION from 'd3-selection';
+
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
@@ -47,10 +49,11 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-folios-viewer-svg', 1, 1)[0].nativeElement;
     const getRootGroupEl = (): SVGGElement =>
         getAndExpectDebugElementByCss(compDe, 'g.awg-edition-folios-viewer-svg-root-group', 1, 1)[0].nativeElement;
-    const getActiveSegmentIds = (): (string | null)[] =>
-        Array.from<Element>(getRootGroupEl().querySelectorAll('g.content-segment-group.active')).map(groupEl =>
-            groupEl.getAttribute('contentSegmentId')
-        );
+    const getActiveSegmentIds = (): string[] =>
+        D3_SELECTION.select(getRootGroupEl())
+            .selectAll<SVGGElement, FolioSvgContentSegment>('g.content-segment-group.active')
+            .data()
+            .map(contentSegment => contentSegment.sheetId);
     const getSelectionNode = (spy: Spy, callIndex: number): Element | null =>
         (spy.mock.calls[callIndex][0] as D3Selection).node() as Element | null;
     const setInputs = (folio: Folio, sheetId: EditionSvgSheetId): void => {
