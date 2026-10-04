@@ -3,26 +3,31 @@
 :host {
     display: block;
     height: 100%;
-    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* Rgba converted HEX #cccccc */
     border: 1px solid $border-grey;
     border-radius: 5px;
 }
 
-/* svg sheet overlays (injected at runtime, so not covered by view encapsulation) */
+/* Svg sheet overlays (injected at runtime, so not covered by view encapsulation) */
 :host ::ng-deep {
     .awg-edition-sheet-viewer-svg {
-        // Only the box path (first child), not the label glyphs;
-        // !important is needed to override the inline fill style of the svg files
+        // Only the box path, not the label glyphs: the first path of the group
+        // (nested in up to two inner groups in some svg files).
+        // Note: `!important` is needed to override the inline fill style of the svg files.
         g.link-box {
+            $box-path: '> path:first-child, > g:first-child > path:first-child, > g:first-child > g:first-child > path:first-child';
+
             cursor: pointer;
 
-            > path:first-child {
+            #{$box-path} {
                 fill: #dddddd !important;
             }
 
-            &:hover > path:first-child,
-            &:focus-visible > path:first-child {
-                fill: #eeeeee !important;
+            &:hover,
+            &:focus-visible {
+                #{$box-path} {
+                    fill: #eeeeee !important;
+                }
             }
         }
 
