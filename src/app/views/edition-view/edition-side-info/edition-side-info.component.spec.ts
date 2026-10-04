@@ -5,7 +5,7 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -99,9 +99,8 @@ describe('EditionSideInfoComponent (DONE)', () => {
             providers: [provideRouter([])],
         }).compileComponents();
 
-        // Disable animation for NgbAccordion to avoid timing issues in tests
-        const accordionConfig = TestBed.inject(NgbAccordionConfig);
-        accordionConfig.animation = false;
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {

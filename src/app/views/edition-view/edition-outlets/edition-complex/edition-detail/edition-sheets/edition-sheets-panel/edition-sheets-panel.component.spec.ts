@@ -1,9 +1,10 @@
-import { DebugElement, inject, isSignal, NgModule, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
+
 import * as D3_SELECTION from 'd3-selection';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -55,25 +56,6 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedDisplayedTextcritics: Textcritics;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
-    const getItemBodyDe = (): DebugElement =>
-        getAndExpectDebugElementByCss(compDe, 'div.accordion-item div.accordion-body', 1, 1)[0];
-    const getItemHeaderDe = (): DebugElement =>
-        getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1)[0];
-    const getContainerClassList = (container: 'facet' | 'viewer'): DOMTokenList =>
-        getAndExpectDebugElementByCss(compDe, `div.awg-edition-sheet-${container}-container`, 1, 1)[0].nativeElement
-            .classList;
-
     beforeAll(() => {
         // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
         if (typeof SVGSVGElement !== 'undefined') {
@@ -97,7 +79,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
         mockModalService = { openTextModal: vi.fn() };
 
         await TestBed.configureTestingModule({
-            imports: [EditionSheetsPanelComponent, NgbConfigModule],
+            imports: [EditionSheetsPanelComponent],
             providers: [
                 { provide: FullscreenService, useValue: { isFullscreen: isFullscreenMockSignal.asReadonly() } },
                 { provide: ModalService, useValue: mockModalService },
@@ -125,6 +107,9 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 },
             ],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
@@ -181,6 +166,11 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
+        const getItemBodyDes = (): DebugElement[] =>
+            getAndExpectDebugElementByCss(compDe, 'div.accordion-item div.accordion-body', 1, 1);
+        const getItemHeaderDes = (): DebugElement[] =>
+            getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1);
+
         beforeEach(async () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
@@ -232,7 +222,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         1,
                         1
                     );
-                    getItemHeaderDe();
+                    getItemHeaderDes();
 
                     const itemBodyEl: HTMLDivElement = getAndExpectDebugElementByCss(
                         itemDes[0],
@@ -246,7 +236,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
                 it('... should contain the header button with the title', () => {
                     const btnEl: HTMLButtonElement = getAndExpectDebugElementByCss(
-                        getItemHeaderDe(),
+                        getItemHeaderDes()[0],
                         'div.accordion-button > button.btn',
                         1,
                         1
@@ -256,7 +246,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 });
 
                 it('... should contain the ButtonUsageHintsComponent and the FullscreenToggleComponent in div.ms-auto', () => {
-                    const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDe(), 'div.ms-auto', 1, 1);
+                    const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDes()[0], 'div.ms-auto', 1, 1);
 
                     getAndExpectDebugElementByDirective(msAutoDes[0], ButtonUsageHintsComponent, 1, 1);
                     getAndExpectDebugElementByDirective(msAutoDes[0], FullscreenToggleComponent, 1, 1);
@@ -281,8 +271,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     isFullscreenMockSignal.set(true);
                     await detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByDirective(getItemHeaderDe(), ButtonUsageHintsComponent, 0, 0);
-                    getAndExpectDebugElementByDirective(getItemHeaderDe(), FullscreenToggleComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], ButtonUsageHintsComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], FullscreenToggleComponent, 1, 1);
                 });
 
                 it('... should pass down the accordion reference to the FullscreenToggleComponent', () => {
@@ -308,8 +298,23 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         fixture.componentRef.setInput('isSheetFacetMinimized', isMinimized);
                         await detectChangesOnPush(fixture);
 
-                        const facetClasses = [...getContainerClassList('facet')].filter(c => c.startsWith('col'));
-                        const viewerClasses = [...getContainerClassList('viewer')].filter(c => c.startsWith('col'));
+                        const facetContainerDes = getAndExpectDebugElementByCss(
+                            getItemBodyDes()[0],
+                            `div.awg-edition-sheet-facet-container`,
+                            1,
+                            1
+                        );
+                        const viewerContainerDes = getAndExpectDebugElementByCss(
+                            getItemBodyDes()[0],
+                            `div.awg-edition-sheet-viewer-container`,
+                            1,
+                            1
+                        );
+                        const facetContainerEl = facetContainerDes[0].nativeElement;
+                        const viewerContainerEl = viewerContainerDes[0].nativeElement;
+
+                        const facetClasses = [...facetContainerEl.classList].filter(c => c.startsWith('col'));
+                        const viewerClasses = [...viewerContainerEl.classList].filter(c => c.startsWith('col'));
 
                         expectToEqual(facetClasses, facet);
                         expectToEqual(viewerClasses, viewer);
@@ -319,7 +324,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 describe('... EditionSheetFacetComponent', () => {
                     it('... should contain one EditionSheetFacetComponent in the facet container', () => {
                         const facetContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDe(),
+                            getItemBodyDes()[0],
                             'div.awg-edition-sheet-facet-container',
                             1,
                             1
@@ -344,15 +349,23 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         facetCmp.isMinimized.set(true);
                         await detectChangesOnPush(fixture);
 
+                        const facetContainerDes = getAndExpectDebugElementByCss(
+                            getItemBodyDes()[0],
+                            `div.awg-edition-sheet-viewer-container`,
+                            1,
+                            1
+                        );
+                        const facetContainerEl = facetContainerDes[0].nativeElement;
+
+                        expectToContain(facetContainerEl.classList, 'col');
                         expectToBe(component.isSheetFacetMinimized(), true);
-                        expectToContain(getContainerClassList('facet'), 'col-auto');
                     });
                 });
 
                 describe('... EditionSheetViewerComponent', () => {
                     it('... should contain one EditionSheetViewerComponent in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDe(),
+                            getItemBodyDes()[0],
                             'div.awg-edition-sheet-viewer-container',
                             1,
                             1
@@ -365,7 +378,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         fixture.componentRef.setInput('selectedSvgSheet', undefined);
                         await detectChangesOnPush(fixture);
 
-                        getAndExpectDebugElementByDirective(getItemBodyDe(), EditionSheetViewerComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(getItemBodyDes()[0], EditionSheetViewerComponent, 0, 0);
                     });
 
                     it('... should pass down `selectedSvgSheet` to EditionSheetViewerComponent', () => {
@@ -430,7 +443,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 describe('... EditionSheetFooterComponent', () => {
                     it('... should contain one EditionSheetFooterComponent in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
-                            getItemBodyDe(),
+                            getItemBodyDes()[0],
                             'div.awg-edition-sheet-viewer-container',
                             1,
                             1
@@ -456,7 +469,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                             );
                             await detectChangesOnPush(fixture);
 
-                            getAndExpectDebugElementByDirective(getItemBodyDe(), EditionSheetFooterComponent, 0, 0);
+                            getAndExpectDebugElementByDirective(getItemBodyDes()[0], EditionSheetFooterComponent, 0, 0);
                         }
                     );
 
