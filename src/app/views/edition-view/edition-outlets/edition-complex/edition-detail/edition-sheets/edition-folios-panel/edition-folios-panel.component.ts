@@ -23,20 +23,20 @@ interface IFolioLegend {
 }
 
 /**
- * The EditionConvolute component.
+ * The EditionFoliosPanel component.
  *
- * It contains the edition convolute section
+ * It contains the folios panel (convolute overview)
  * of the edition view of the app
- * with the {@link EditionFolioComponent}.
+ * with the {@link EditionFoliosViewerComponent}.
  */
 @Component({
-    selector: 'awg-edition-convolute',
-    templateUrl: './edition-convolute.component.html',
-    styleUrls: ['./edition-convolute.component.scss'],
+    selector: 'awg-edition-folios-panel',
+    templateUrl: './edition-folios-panel.component.html',
+    styleUrls: ['./edition-folios-panel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionConvoluteComponent {
+export class EditionFoliosPanelComponent {
     /**
      * Public variable: selectedConvolute.
      *

@@ -23,20 +23,20 @@ import { FolioService } from './folio.service';
 import * as D3_SELECTION from 'd3-selection';
 
 /**
- * The EditionFolioViewer component.
+ * The EditionFoliosViewer component.
  *
- * It contains the folio section
+ * It contains the viewer of the folios panel
  * of the edition view of the app
- * and displays the convolute folios.
+ * and displays all folios of the selected convolute.
  */
 @Component({
-    selector: 'awg-edition-folio-viewer',
-    templateUrl: './edition-folio-viewer.component.html',
-    styleUrls: ['./edition-folio-viewer.component.scss'],
+    selector: 'awg-edition-folios-viewer',
+    templateUrl: './edition-folios-viewer.component.html',
+    styleUrls: ['./edition-folios-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
+export class EditionFoliosViewerComponent implements OnChanges, AfterViewChecked {
     /**
      * Private readonly injection variable: _folioService.
      *

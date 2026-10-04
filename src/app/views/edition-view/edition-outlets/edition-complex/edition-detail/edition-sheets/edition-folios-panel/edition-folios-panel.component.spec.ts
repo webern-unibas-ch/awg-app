@@ -20,7 +20,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { EditionConvoluteComponent } from './edition-convolute.component';
+import { EditionFoliosPanelComponent } from './edition-folios-panel.component';
 
 interface IFolioLegend {
     colorClass: string;
@@ -28,20 +28,20 @@ interface IFolioLegend {
 }
 
 @Component({
-    selector: 'awg-edition-folio-viewer',
+    selector: 'awg-edition-folios-viewer',
     template: '',
     standalone: false,
 })
-class EditionFolioViewerStubComponent {
+class EditionFoliosViewerStubComponent {
     @Input()
     selectedConvolute: FolioConvolute | undefined;
     @Input()
     selectedSvgSheet: EditionSvgSheet | undefined;
 }
 
-describe('EditionConvoluteComponent (DONE)', () => {
-    let component: EditionConvoluteComponent;
-    let fixture: ComponentFixture<EditionConvoluteComponent>;
+describe('EditionFoliosPanelComponent (DONE)', () => {
+    let component: EditionFoliosPanelComponent;
+    let fixture: ComponentFixture<EditionFoliosPanelComponent>;
     let compDe: DebugElement;
 
     let linkDes: DebugElement[];
@@ -67,7 +67,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbAccordionModule, NgbDropdownModule, NgbConfigModule],
-            declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
+            declarations: [EditionFoliosPanelComponent, EditionFoliosViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     });
 
@@ -94,7 +94,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
         ];
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionConvoluteComponent);
+        fixture = TestBed.createComponent(EditionFoliosPanelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -163,13 +163,18 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 const itemDes = getAndExpectDebugElementByCss(
                     accordionDes[0],
-                    'div#awg-convolute-view.accordion-item',
+                    'div#awg-edition-folios-view.accordion-item',
                     1,
                     1
                 );
-                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view > div.accordion-header', 1, 1);
+                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-edition-folios-view > div.accordion-header', 1, 1);
 
-                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div#awg-convolute-view-collapse', 1, 1);
+                const itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    'div#awg-edition-folios-view-collapse',
+                    1,
+                    1
+                );
                 const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                 expectToContain(itemBodyEl.classList, 'show');
@@ -180,7 +185,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 const itemHeaderDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    'div#awg-convolute-view > div.accordion-header',
+                    'div#awg-edition-folios-view > div.accordion-header',
                     1,
                     1
                 );
@@ -191,38 +196,38 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expectToBe(itemHeaderEl.textContent.trim(), expectedTitle);
             });
 
-            it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
+            it('... should contain two divs and one EditionFoliosViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                 const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-label', 1, 1);
-                getAndExpectDebugElementByDirective(bodyDes[0], EditionFolioViewerStubComponent, 1, 1);
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-legend', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-edition-folios-panel-label', 1, 1);
+                getAndExpectDebugElementByDirective(bodyDes[0], EditionFoliosViewerStubComponent, 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-edition-folios-panel-legend', 1, 1);
             });
 
-            it('... should pass down `selectedConvolute` to the EditionFolioViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+            it('... should pass down `selectedConvolute` to the EditionFoliosViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerStubComponent, 1, 1);
                 const folioCmp = folioDes[0].injector.get(
-                    EditionFolioViewerStubComponent
-                ) as EditionFolioViewerStubComponent;
+                    EditionFoliosViewerStubComponent
+                ) as EditionFoliosViewerStubComponent;
 
                 expectToEqual(folioCmp.selectedConvolute, expectedSelectedConvolute);
             });
 
-            it('... should pass down `selectedSvgSheet` to the EditionFolioViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+            it('... should pass down `selectedSvgSheet` to the EditionFoliosViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerStubComponent, 1, 1);
                 const folioCmp = folioDes[0].injector.get(
-                    EditionFolioViewerStubComponent
-                ) as EditionFolioViewerStubComponent;
+                    EditionFoliosViewerStubComponent
+                ) as EditionFoliosViewerStubComponent;
 
                 expectToEqual(folioCmp.selectedSvgSheet, expectedSvgSheet);
             });
 
-            it('... should contain one link with convolute label in the convolute label div', () => {
+            it('... should contain one link with convolute label in the label div', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                 const divDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    'div.accordion-body > div.awg-convolute-label',
+                    'div.accordion-body > div.awg-edition-folios-panel-label',
                     1,
                     1
                 );
@@ -237,7 +242,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                 const legendDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    'div.accordion-body > div.awg-convolute-legend',
+                    'div.accordion-body > div.awg-edition-folios-panel-legend',
                     1,
                     1
                 );
@@ -255,7 +260,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
                 const legendDes = getAndExpectDebugElementByCss(
                     itemDes[0],
-                    'div.accordion-body > div.awg-convolute-legend',
+                    'div.accordion-body > div.awg-edition-folios-panel-legend',
                     1,
                     1
                 );

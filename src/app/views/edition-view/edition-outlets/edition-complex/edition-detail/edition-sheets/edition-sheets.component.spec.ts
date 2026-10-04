@@ -72,11 +72,11 @@ class EditionSheetsPanelStubComponent {
 }
 
 @Component({
-    selector: 'awg-edition-convolute',
+    selector: 'awg-edition-folios-panel',
     template: '',
     standalone: false,
 })
-class EditionConvoluteStubComponent {
+class EditionFoliosPanelStubComponent {
     @Input()
     selectedConvolute: FolioConvolute | undefined;
     @Input()
@@ -157,7 +157,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionSheetsPanelStubComponent],
+            declarations: [EditionSheetsComponent, EditionFoliosPanelStubComponent, EditionSheetsPanelStubComponent],
             providers: [
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -294,8 +294,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 0, 0);
             });
 
-            it('... should contain no ConvoluteComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+            it('... should contain no EditionFoliosPanelComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 0, 0);
             });
         });
     });
@@ -563,53 +563,53 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... ConvoluteComponent (stubbed)', () => {
-                    it('... should contain no ConvoluteComponent (stubbed) if no convolute is provided', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 0, 0);
+                describe('... EditionFoliosPanelComponent (stubbed)', () => {
+                    it('... should contain no EditionFoliosPanelComponent (stubbed) if no convolute is provided', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 0, 0);
                     });
 
-                    it('... should contain one ConvoluteComponent (stubbed) if convolute is provided', async () => {
+                    it('... should contain one EditionFoliosPanelComponent (stubbed) if convolute is provided', async () => {
                         component.selectedConvolute = expectedConvolute;
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
-                        getAndExpectDebugElementByDirective(compDe, EditionConvoluteStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 1, 1);
                     });
 
-                    it('... should pass down `selectedConvolute` to the EditionConvoluteComponent', async () => {
+                    it('... should pass down `selectedConvolute` to the EditionFoliosPanelComponent', async () => {
                         component.selectedConvolute = expectedConvolute;
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
-                        const convoluteDes = getAndExpectDebugElementByDirective(
+                        const foliosPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionConvoluteStubComponent,
+                            EditionFoliosPanelStubComponent,
                             1,
                             1
                         );
-                        const convoluteCmp = convoluteDes[0].injector.get(
-                            EditionConvoluteStubComponent
-                        ) as EditionConvoluteStubComponent;
+                        const foliosPanelCmp = foliosPanelDes[0].injector.get(
+                            EditionFoliosPanelStubComponent
+                        ) as EditionFoliosPanelStubComponent;
 
-                        expectToEqual(convoluteCmp.selectedConvolute, expectedConvolute);
+                        expectToEqual(foliosPanelCmp.selectedConvolute, expectedConvolute);
                     });
 
-                    it('... should pass down `selectedSvgSheet` to the EditionConvoluteComponent', async () => {
+                    it('... should pass down `selectedSvgSheet` to the EditionFoliosPanelComponent', async () => {
                         component.selectedConvolute = expectedConvolute;
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
-                        const convoluteDes = getAndExpectDebugElementByDirective(
+                        const foliosPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionConvoluteStubComponent,
+                            EditionFoliosPanelStubComponent,
                             1,
                             1
                         );
-                        const convoluteCmp = convoluteDes[0].injector.get(
-                            EditionConvoluteStubComponent
-                        ) as EditionConvoluteStubComponent;
+                        const foliosPanelCmp = foliosPanelDes[0].injector.get(
+                            EditionFoliosPanelStubComponent
+                        ) as EditionFoliosPanelStubComponent;
 
-                        expectToEqual(convoluteCmp.selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(foliosPanelCmp.selectedSvgSheet, expectedSvgSheet);
                     });
                 });
             });

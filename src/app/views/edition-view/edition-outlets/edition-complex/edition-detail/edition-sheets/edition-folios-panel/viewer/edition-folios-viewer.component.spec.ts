@@ -27,12 +27,12 @@ import {
     ViewBox,
 } from '@awg-views/edition-view/models';
 
-import { EditionFolioViewerComponent } from './edition-folio-viewer.component';
+import { EditionFoliosViewerComponent } from './edition-folios-viewer.component';
 import { FolioService } from './folio.service';
 
-describe('EditionFolioViewerComponent (DONE)', () => {
-    let component: EditionFolioViewerComponent;
-    let fixture: ComponentFixture<EditionFolioViewerComponent>;
+describe('EditionFoliosViewerComponent (DONE)', () => {
+    let component: EditionFoliosViewerComponent;
+    let fixture: ComponentFixture<EditionFoliosViewerComponent>;
     let compDe: DebugElement;
 
     let mockDocument: Document;
@@ -65,7 +65,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            declarations: [EditionFolioViewerComponent],
+            declarations: [EditionFoliosViewerComponent],
             providers: [{ provide: FolioService, useValue: mockFolioService }],
         }).compileComponents();
     });
@@ -110,7 +110,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
         });
 
         // Create component fixture
-        fixture = TestBed.createComponent(EditionFolioViewerComponent);
+        fixture = TestBed.createComponent(EditionFoliosViewerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
