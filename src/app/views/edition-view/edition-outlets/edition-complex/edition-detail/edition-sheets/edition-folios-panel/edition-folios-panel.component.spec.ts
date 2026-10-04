@@ -1,13 +1,13 @@
-import { Component, DebugElement, inject, Input, NgModule } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faSquare, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectToBe,
     expectToContain,
@@ -16,82 +16,64 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
+import { ModalService } from '@awg-shared/modal/modal.service';
+
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionFoliosPanelComponent } from './edition-folios-panel.component';
-
-interface IFolioLegend {
-    colorClass: string;
-    label: string;
-}
-
-@Component({
-    selector: 'awg-edition-folios-viewer',
-    template: '',
-    standalone: false,
-})
-class EditionFoliosViewerStubComponent {
-    @Input()
-    selectedConvolute: FolioConvolute | undefined;
-    @Input()
-    selectedSvgSheet: EditionSvgSheet | undefined;
-}
+import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
+import { EditionFoliosViewerComponent } from './viewer/edition-folios-viewer.component';
 
 describe('EditionFoliosPanelComponent (DONE)', () => {
     let component: EditionFoliosPanelComponent;
     let fixture: ComponentFixture<EditionFoliosPanelComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks: RouterLinkStubDirective[];
+    let router: Router;
+    let mockModalService: Partial<ModalService>;
+    let mockNavigationService: Partial<EditionNavigationService>;
 
-    let expectedSelectedConvolute: FolioConvolute;
+    let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedFolioLegends: IFolioLegend[];
     let expectedFragment: string;
-    let expectedSquareIcon: IconDefinition;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
+    const getItemDe = (): DebugElement =>
+        getAndExpectDebugElementByCss(compDe, 'div#awg-edition-folios-view.accordion-item', 1, 1)[0];
+    const getBodyDe = (): DebugElement => getAndExpectDebugElementByCss(getItemDe(), 'div.accordion-body', 1, 1)[0];
 
     beforeEach(async () => {
+        // Mocked services for the real EditionFoliosViewerSvgComponent
+        mockModalService = {
+            openTextModal: vi.fn(),
+        };
+        mockNavigationService = {
+            navigateToSvgSheet: vi.fn(),
+        };
+
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbAccordionModule, NgbDropdownModule, NgbConfigModule],
-            declarations: [EditionFoliosPanelComponent, EditionFoliosViewerStubComponent, RouterLinkStubDirective],
+            imports: [EditionFoliosPanelComponent],
+            providers: [
+                provideRouter([]),
+                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionNavigationService, useValue: mockNavigationService },
+            ],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
-        // Test data
-        expectedSelectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedFragment = `source_${expectedSelectedConvolute.convoluteId}`;
-        expectedSquareIcon = faSquare;
+        // Inject services
+        router = TestBed.inject(Router);
 
-        expectedFolioLegends = [
-            {
-                colorClass: 'olivedrab',
-                label: 'aktuell ausgewählt',
-            },
-            {
-                colorClass: 'orange',
-                label: 'auswählbar',
-            },
-            {
-                colorClass: 'grey',
-                label: '(momentan noch) nicht auswählbar',
-            },
-        ];
+        // Test data
+        expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
+        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedFragment = `source_${expectedConvolute.convoluteId}`;
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionFoliosPanelComponent);
@@ -99,25 +81,25 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         compDe = fixture.debugElement;
     });
 
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
+
     it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have selectedConvolute', () => {
-            expect(component.selectedConvolute).toBeUndefined();
+        it('... should throw due to missing required input signal `selectedConvolute`', () => {
+            expectToBe(isSignal(component.selectedConvolute), true);
+
+            expect(() => component.selectedConvolute()).toThrow();
         });
 
-        it('... should not have selectedSvgSheet', () => {
-            expect(component.selectedSvgSheet).toBeUndefined();
-        });
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
 
-        it('... should have faSquare icon', () => {
-            expectToEqual(component.faSquare, expectedSquareIcon);
-        });
-
-        it('... should have folioLegends', () => {
-            expectToEqual(component.folioLegends, expectedFolioLegends);
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -125,163 +107,114 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
-            it('... should contain one div.accordion-item with header and non-collapsible body yet in div.accordion', () => {
+            it('... should contain one div.accordion-item with header and collapse in div.accordion', () => {
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-
                 const itemDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+
                 getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-header', 1, 1);
+                getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
+            });
 
-                const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-collapse', 1, 1);
-                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+            it('... should contain the header title in the header button', () => {
+                const buttonDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-header button', 1, 1);
 
-                expectToContain(itemBodyEl.classList, 'accordion-collapse');
+                expectToBe(buttonDes[0].nativeElement.textContent.trim(), 'Konvolutübersicht');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Simulate the parent setting the input properties
-            component.selectedConvolute = structuredClone(expectedSelectedConvolute);
-            component.selectedSvgSheet = structuredClone(expectedSvgSheet);
+            fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
             // Trigger initial data binding
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
         });
 
-        it('... should have `selectedConvolute` input', () => {
-            expectToEqual(component.selectedConvolute, expectedSelectedConvolute);
+        it('... should have input signal `selectedConvolute` to hold the provided convolute', () => {
+            expectToEqual(component.selectedConvolute(), expectedConvolute);
         });
 
-        it('... should have `selectedSvgSheet` input', () => {
-            expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        });
+
+        it('... should have computed signal `reportFragment` to hold the source fragment of the selected convolute', () => {
+            expectToBe(component.reportFragment(), expectedFragment);
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
-
-                const itemDes = getAndExpectDebugElementByCss(
-                    accordionDes[0],
-                    'div#awg-edition-folios-view.accordion-item',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(itemDes[0], 'div#awg-edition-folios-view > div.accordion-header', 1, 1);
-
-                const itemBodyDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
+            it('... should open the body of div#awg-edition-folios-view', () => {
+                const collapseDes = getAndExpectDebugElementByCss(
+                    getItemDe(),
                     'div#awg-edition-folios-view-collapse',
                     1,
                     1
                 );
-                const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
-                expectToContain(itemBodyEl.classList, 'show');
+                expectToContain(collapseDes[0].nativeElement.classList, 'show');
             });
 
-            it('... should contain header title for the item (div.accordion-header)', () => {
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+            describe('... label', () => {
+                it('... should contain one link with the convolute label in div.awg-edition-folios-panel-label', () => {
+                    const labelDes = getAndExpectDebugElementByCss(
+                        getBodyDe(),
+                        'div.awg-edition-folios-panel-label',
+                        1,
+                        1
+                    );
+                    const linkDes = getAndExpectDebugElementByCss(labelDes[0], 'a', 1, 1);
 
-                const itemHeaderDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
-                    'div#awg-edition-folios-view > div.accordion-header',
-                    1,
-                    1
-                );
-                const itemHeaderEl: HTMLDivElement = itemHeaderDes[0].nativeElement;
-
-                const expectedTitle = 'Konvolutübersicht';
-
-                expectToBe(itemHeaderEl.textContent.trim(), expectedTitle);
-            });
-
-            it('... should contain two divs and one EditionFoliosViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
-
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-edition-folios-panel-label', 1, 1);
-                getAndExpectDebugElementByDirective(bodyDes[0], EditionFoliosViewerStubComponent, 1, 1);
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-edition-folios-panel-legend', 1, 1);
-            });
-
-            it('... should pass down `selectedConvolute` to the EditionFoliosViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(
-                    EditionFoliosViewerStubComponent
-                ) as EditionFoliosViewerStubComponent;
-
-                expectToEqual(folioCmp.selectedConvolute, expectedSelectedConvolute);
-            });
-
-            it('... should pass down `selectedSvgSheet` to the EditionFoliosViewerComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(
-                    EditionFoliosViewerStubComponent
-                ) as EditionFoliosViewerStubComponent;
-
-                expectToEqual(folioCmp.selectedSvgSheet, expectedSvgSheet);
-            });
-
-            it('... should contain one link with convolute label in the label div', () => {
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                const divDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
-                    'div.accordion-body > div.awg-edition-folios-panel-label',
-                    1,
-                    1
-                );
-
-                const aDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                expectToBe(aEl.textContent, expectedSelectedConvolute.convoluteLabel);
-            });
-
-            it('... should contain three legend labels in the folio legend div', () => {
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                const legendDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
-                    'div.accordion-body > div.awg-edition-folios-panel-legend',
-                    1,
-                    1
-                );
-                const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
-
-                spanDes.forEach((spanDe, index) => {
-                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
-
-                    expectToBe(spanEl.className, expectedFolioLegends[index].colorClass);
-                    expectToBe(spanEl.textContent.trim(), expectedFolioLegends[index].label);
+                    expectToBe(linkDes[0].nativeElement.textContent.trim(), expectedConvolute.convoluteLabel);
                 });
             });
 
-            it('... should display square icon with the legend labels', () => {
-                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
-                const legendDes = getAndExpectDebugElementByCss(
-                    itemDes[0],
-                    'div.accordion-body > div.awg-edition-folios-panel-legend',
-                    1,
-                    1
-                );
-                const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
+            describe('... EditionFoliosViewerComponent', () => {
+                it('... should contain one EditionFoliosViewerComponent in the body', () => {
+                    getAndExpectDebugElementByDirective(getBodyDe(), EditionFoliosViewerComponent, 1, 1);
+                });
 
-                spanDes.forEach(spanDe => {
-                    const faIconDes = getAndExpectDebugElementByCss(spanDe, 'fa-icon', 1, 1);
-                    const faIconIns = faIconDes[0].componentInstance.icon;
+                it('... should pass down `selectedConvolute` and `selectedSvgSheet` to EditionFoliosViewerComponent', () => {
+                    const viewerDes = getAndExpectDebugElementByDirective(
+                        getBodyDe(),
+                        EditionFoliosViewerComponent,
+                        1,
+                        1
+                    );
+                    const viewerCmp = viewerDes[0].injector.get(EditionFoliosViewerComponent);
 
-                    expectToBe(faIconIns(), expectedSquareIcon);
+                    expectToEqual(viewerCmp.selectedConvolute(), expectedConvolute);
+                    expectToEqual(viewerCmp.selectedSvgSheet(), expectedSvgSheet);
+                });
+            });
+
+            describe('... EditionFoliosLegendComponent', () => {
+                it('... should contain one EditionFoliosLegendComponent with class `col-12` in the body', () => {
+                    const legendDes = getAndExpectDebugElementByDirective(
+                        getBodyDe(),
+                        EditionFoliosLegendComponent,
+                        1,
+                        1
+                    );
+
+                    expectToContain(legendDes[0].nativeElement.classList, 'col-12');
                 });
             });
         });
 
         describe('[routerLink]', () => {
-            beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
+            let expectedRouterLink: string;
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            beforeEach(() => {
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 1, 1);
+
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
+
+                expectedRouterLink = `/report#${expectedFragment}`;
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -289,34 +222,28 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                expectToEqual(routerLinks[0].linkParams, ['../report']);
+                const urlTreeString = routerLinks[0].urlTree?.toString() ?? '';
+
+                expectToBe(urlTreeString, expectedRouterLink);
             });
 
             it('... can get correct fragment from template', () => {
-                expectToEqual(routerLinks[0].fragment, expectedFragment);
+                expectToBe(routerLinks[0].fragment, expectedFragment);
             });
 
-            it('... can click report link in template', async () => {
-                const reportLinkDe = linkDes[0];
-                const reportLink = routerLinks[0];
+            it('... can click all links in template', async () => {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
 
-                expectToBe(reportLink.navigatedTo, null);
+                const linkDe = linkDes[0];
 
-                await clickAndAwaitChanges(reportLinkDe, fixture);
+                await clickAndAwaitChanges(linkDe, fixture);
 
-                expectToEqual(reportLink.navigatedTo, ['../report']);
-            });
+                expect(navigateSpy).toHaveBeenCalled();
+                const actualUrl = navigateSpy.mock.calls[0][0].toString();
 
-            it('... should navigate to report page with fragment when report link is clicked', async () => {
-                const reportLinkDe = linkDes[0];
-                const reportLink = routerLinks[0];
+                expectToBe(actualUrl, expectedRouterLink);
 
-                expectToBe(reportLink.navigatedTo, null);
-
-                await clickAndAwaitChanges(reportLinkDe, fixture);
-
-                expectToEqual(reportLink.navigatedTo, ['../report']);
-                expectToEqual(reportLink.navigatedToFragment, expectedFragment);
+                navigateSpy.mockRestore();
             });
         });
     });

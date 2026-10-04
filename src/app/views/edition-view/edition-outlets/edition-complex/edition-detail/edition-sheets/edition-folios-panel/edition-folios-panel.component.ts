@@ -1,82 +1,49 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
-import { faSquare } from '@fortawesome/free-solid-svg-icons';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 
-/**
- * The IFolioLegend interface.
- *
- * It represents the interface for a folio legend
- * of an edition convolute folio.
- */
-interface IFolioLegend {
-    /**
-     * The color class of the folio legend.
-     */
-    colorClass: string;
-
-    /**
-     * The label of the folio legend.
-     */
-    label: string;
-}
+import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
+import { EditionFoliosViewerComponent } from './viewer/edition-folios-viewer.component';
 
 /**
  * The EditionFoliosPanel component.
  *
  * It contains the folios panel (convolute overview)
  * of the edition view of the app
- * with the {@link EditionFoliosViewerComponent}.
+ * with the {@link EditionFoliosViewerComponent}
+ * and the {@link EditionFoliosLegendComponent}.
  */
 @Component({
     selector: 'awg-edition-folios-panel',
     templateUrl: './edition-folios-panel.component.html',
     styleUrls: ['./edition-folios-panel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [EditionFoliosLegendComponent, EditionFoliosViewerComponent, NgbAccordionModule, RouterLink],
 })
 export class EditionFoliosPanelComponent {
     /**
-     * Public variable: selectedConvolute.
+     * Readonly input signal: selectedConvolute.
      *
-     * It keeps the selected convolute.
+     * It holds the selected convolute.
      */
-    @Input()
-    selectedConvolute: FolioConvolute | undefined;
+    readonly selectedConvolute = input.required<FolioConvolute>();
 
     /**
-     * Public variable: selectedSvgSheet.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It holds the selected svg sheet.
      */
-    @Input()
-    selectedSvgSheet: EditionSvgSheet | undefined;
+    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * Public variable: faSquare.
+     * Readonly computed signal: reportFragment.
      *
-     * It instantiates fontawesome's faSquare icon.
+     * It holds the fragment of the source description
+     * of the selected convolute in the critical report.
      */
-    faSquare = faSquare;
-
-    /**
-     * Public variable: folioLegends.
-     *
-     * It keeps the legend for the folios.
-     */
-    folioLegends: IFolioLegend[] = [
-        {
-            colorClass: 'olivedrab',
-            label: 'aktuell ausgewählt',
-        },
-        {
-            colorClass: 'orange',
-            label: 'auswählbar',
-        },
-        {
-            colorClass: 'grey',
-            label: '(momentan noch) nicht auswählbar',
-        },
-    ];
+    readonly reportFragment = computed<string>(() => `source_${this.selectedConvolute().convoluteId}`);
 }

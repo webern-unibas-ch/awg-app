@@ -6,33 +6,22 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    @if (selectedConvolute; as convolute) {
-                        @let fragmentId = 'source_' + convolute.convoluteId;
-                        @let label = convolute.convoluteLabel;
+                    <!-- folios label -->
+                    <div class="awg-edition-folios-panel-label">
+                        <p>
+                            <a [routerLink]="['../report']" [fragment]="reportFragment()">{{
+                                selectedConvolute().convoluteLabel
+                            }}</a>
+                        </p>
+                    </div>
 
-                        <!-- convolute label -->
-                        <div class="awg-edition-folios-panel-label">
-                            <p>
-                                <a [routerLink]="['../report']" [fragment]="fragmentId">{{ label }}</a>
-                            </p>
-                        </div>
+                    <!-- folios viewer -->
+                    <awg-edition-folios-viewer
+                        [selectedConvolute]="selectedConvolute()"
+                        [selectedSvgSheet]="selectedSvgSheet()" />
 
-                        <!-- viewer for convolute folios -->
-                        @if (selectedSvgSheet; as sheet) {
-                            <awg-edition-folios-viewer [selectedConvolute]="convolute" [selectedSvgSheet]="sheet" />
-                        }
-
-                        <!-- convolute legend -->
-                        <div class="awg-edition-folios-panel-legend col-12">
-                            Legende:&nbsp;
-                            @for (legend of folioLegends; track legend.colorClass) {
-                                <span [class]="legend.colorClass">
-                                    <fa-icon [icon]="faSquare" />
-                                    {{ legend.label }}
-                                </span>
-                            }
-                        </div>
-                    }
+                    <!-- folios legend -->
+                    <awg-edition-folios-legend class="col-12" />
                 </ng-template>
             </div>
         </div>
