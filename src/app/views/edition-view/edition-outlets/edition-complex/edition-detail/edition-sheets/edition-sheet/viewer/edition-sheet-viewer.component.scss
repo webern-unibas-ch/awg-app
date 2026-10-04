@@ -1,5 +1,3 @@
-@import '/src/assets/themes/scss/shared';
-
 .awg-edition-sheet-viewer {
     // Positioning context for the absolutely positioned nav buttons
     position: relative;
@@ -8,36 +6,5 @@
     .awg-edition-sheet-viewer-icon-bar {
         position: relative;
         width: 100%;
-    }
-
-    .awg-edition-sheet-viewer-svg-container {
-        height: 100%;
-        box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
-        border: 1px solid $border-grey;
-        border-radius: 5px;
-    }
-}
-
-/* svg sheet overlays (injected at runtime, so not covered by view encapsulation) */
-:host ::ng-deep {
-    .awg-edition-sheet-viewer-svg {
-        // Only the box path (first child), not the label glyphs;
-        // !important is needed to override the inline fill style of the svg files
-        g.link-box {
-            cursor: pointer;
-
-            > path:first-child {
-                fill: #dddddd !important;
-            }
-
-            &:hover > path:first-child,
-            &:focus-visible > path:first-child {
-                fill: #eeeeee !important;
-            }
-        }
-
-        rect.tkk-overlay-group-box {
-            cursor: pointer;
-        }
     }
 }

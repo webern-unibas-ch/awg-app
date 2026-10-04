@@ -4,39 +4,18 @@
             class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
             [zoomConfig]="zoomConfig"
             [(zoomValue)]="zoomValue"
-            (resetRequest)="svgZoom.reset()" />
+            (resetRequest)="sheetSvg.resetZoom()" />
     </div>
-    <div class="awg-edition-sheet-viewer-svg-container px-2r">
-        <svg
-            #svg
-            #svgZoom="awgSvgZoom"
-            class="awg-edition-sheet-viewer-svg"
-            awgSvgZoom
-            [zoomConfig]="zoomConfig"
-            [zoomTarget]="svgRootGroup"
-            [(zoomValue)]="zoomValue"
-            tabindex="-1"
-            (click)="onSheetSelect($event)"
-            (keydown.enter)="onSheetSelect($event)"
-            (keydown.space)="onSheetSelect($event)"
-            (pointerover)="onSheetHighlight($event)"
-            (focusin)="onSheetHighlight($event)"
-            (pointerleave)="hoveredTkkDataId.set(undefined)"
-            (focusout)="hoveredTkkDataId.set(undefined)">
-            <g #svgRootGroup class="awg-edition-sheet-viewer-svg-root-group" />
-        </svg>
 
-        <awg-license />
-
-        @if (hasAvailableTkkOverlays() || suppliedClasses().length > 0) {
-            <awg-edition-sheet-viewer-additions-panel
-                [sheetId]="selectedSvgSheet().id"
-                [suppliedClasses]="suppliedClasses()"
-                [hasTkkOverlays]="hasAvailableTkkOverlays()"
-                (visibilityChange)="onAdditionVisibilityChange($event)" />
-        }
-    </div>
+    <awg-edition-sheet-viewer-svg
+        #sheetSvg
+        class="awg-edition-sheet-viewer-svg-container px-2r"
+        [selectedSvgSheet]="selectedSvgSheet()"
+        [zoomConfig]="zoomConfig"
+        [(zoomValue)]="zoomValue"
+        (selectLinkBoxRequest)="selectLinkBoxRequest.emit($event)"
+        (selectOverlaysRequest)="selectOverlaysRequest.emit($event)" />
 
     <!-- Next and previous buttons -->
-    <awg-edition-sheet-viewer-nav (browseRequest)="browseSvgSheetRequest.emit($event)" />
+    <awg-edition-sheet-viewer-nav (browseRequest)="browseRequest.emit($event)" />
 </div>

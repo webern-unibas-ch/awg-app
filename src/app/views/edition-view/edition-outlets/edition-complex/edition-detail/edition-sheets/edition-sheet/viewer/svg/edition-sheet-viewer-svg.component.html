@@ -1,0 +1,28 @@
+<svg
+    #svg
+    #svgZoom="awgSvgZoom"
+    class="awg-edition-sheet-viewer-svg"
+    awgSvgZoom
+    [zoomConfig]="zoomConfig()"
+    [zoomTarget]="svgRootGroup"
+    [(zoomValue)]="zoomValue"
+    tabindex="-1"
+    (click)="onSheetSelect($event)"
+    (keydown.enter)="onSheetSelect($event)"
+    (keydown.space)="onSheetSelect($event)"
+    (pointerover)="onSheetHighlight($event)"
+    (focusin)="onSheetHighlight($event)"
+    (pointerleave)="hoveredTkkDataId.set(undefined)"
+    (focusout)="hoveredTkkDataId.set(undefined)">
+    <g #svgRootGroup class="awg-edition-sheet-viewer-svg-root-group" />
+</svg>
+
+<awg-license />
+
+@if (hasAvailableTkkOverlays() || suppliedClasses().length > 0) {
+    <awg-edition-sheet-viewer-additions-panel
+        [sheetId]="selectedSvgSheet().id"
+        [suppliedClasses]="suppliedClasses()"
+        [hasTkkOverlays]="hasAvailableTkkOverlays()"
+        (visibilityChange)="onAdditionVisibilityChange($event)" />
+}

@@ -31,7 +31,7 @@
                             @if (selectedSvgSheet) {
                                 <awg-edition-sheet-viewer
                                     [selectedSvgSheet]="selectedSvgSheet"
-                                    (browseSvgSheetRequest)="browseSvgSheet($event)"
+                                    (browseRequest)="browseSvgSheet($event)"
                                     (selectLinkBoxRequest)="selectLinkBox($event)"
                                     (selectOverlaysRequest)="selectOverlays($event)" />
                             }

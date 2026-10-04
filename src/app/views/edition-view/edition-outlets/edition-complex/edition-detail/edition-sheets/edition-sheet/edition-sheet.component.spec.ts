@@ -72,7 +72,7 @@ class EditionSheetViewerStubComponent {
     @Input()
     selectedSvgSheet?: EditionSvgSheet;
     @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    browseRequest: EventEmitter<number> = new EventEmitter();
     @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -673,14 +673,14 @@ describe('EditionSheetComponent (DONE)', () => {
                     expect(component.browseSvgSheet).toBeDefined();
                 });
 
-                it('... should trigger on browseSvgSheetRequest event from EditionSheetViewerComponent', () => {
+                it('... should trigger on browseRequest event from EditionSheetViewerComponent', () => {
                     const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetViewerStubComponent, 1, 1);
                     const sheetCmp = sheetDes[0].injector.get(
                         EditionSheetViewerStubComponent
                     ) as EditionSheetViewerStubComponent;
                     const expectedDirection = 1;
 
-                    sheetCmp.browseSvgSheetRequest.emit(expectedDirection);
+                    sheetCmp.browseRequest.emit(expectedDirection);
 
                     expectSpyCall(browseSvgSheetSpy, 1, expectedDirection);
                 });
