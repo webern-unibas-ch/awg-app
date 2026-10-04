@@ -176,7 +176,7 @@ describe('EditionSheetComponent (DONE)', () => {
 
         const overlayType = EditionSvgOverlayTypes.tkk;
         const id = 'tkk-1';
-        const overlay = new EditionSvgOverlay(overlayType, id, id, true);
+        const overlay = new EditionSvgOverlay(overlayType, id, id);
         expectedOverlays = [overlay];
         expectedLinkBoxId = 'link-box-1';
         expectedShowTkA = true;
@@ -763,7 +763,7 @@ describe('EditionSheetComponent (DONE)', () => {
                     expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
 
                     // Trigger other overlays
-                    const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2', true)];
+                    const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2')];
                     component.selectOverlays(otherOverlays);
 
                     expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);

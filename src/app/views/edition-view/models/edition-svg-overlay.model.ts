@@ -64,25 +64,18 @@ export class EditionSvgOverlay {
     type: EditionSvgOverlayTypes;
 
     /**
-     * A boolean value indicating whether the overlay is selected.
-     */
-    isSelected?: boolean;
-
-    /**
      * Constructor of the EditionSvgOverlay class.
      *
      * It initializes the class with values from the EditionSvgOverlayTypes, data id, and actual id.
+     * (The selection state of overlays is kept by the consuming component, not by the overlay itself.)
      *
      * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
      * @param {string} actualId The actual id of the SVG element (unique per element, if present).
      * @param {string} dataId The data id of the overlay (e.g., data-tkk-id value).
-     * @param {boolean} [isSelected] The given boolean value indicating whether the overlay is selected.
-     *
      */
-    constructor(typeValue: EditionSvgOverlayTypes, actualId: string, dataId: string, isSelected?: boolean) {
+    constructor(typeValue: EditionSvgOverlayTypes, actualId: string, dataId: string) {
         this.id = actualId;
         this.dataId = dataId;
         this.type = typeValue;
-        this.isSelected = isSelected || false;
     }
 }

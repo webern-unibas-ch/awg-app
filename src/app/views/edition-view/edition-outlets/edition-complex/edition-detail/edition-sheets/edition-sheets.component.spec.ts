@@ -793,9 +793,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
                     const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
-                    const expectedOverlays = [
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                    ];
+                    const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
 
                     sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
@@ -806,7 +804,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     for (const comment of expectedSelectedTextcriticalCommentary.comments) {
                         for (const blockComment of comment.blockComments) {
                             const id = blockComment.svgGroupId ?? '';
-                            const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
+                            const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id)];
                             const expectedCommentary = {
                                 preamble: expectedSelectedTextcriticalCommentary.preamble,
                                 comments: [
@@ -832,9 +830,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... should set `showTkA` to false if', () => {
                     it('... selectedTextcritics or commentary is missing', () => {
                         component.selectedTextcritics = undefined;
-                        const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                        ];
+                        const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
 
                         component.onOverlaySelect(expectedOverlays);
 
@@ -844,9 +840,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     it('... the filtered commentary contains no comments', () => {
                         component.selectedTextcritics = expectedSelectedTextcritics;
-                        const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                        ];
+                        const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
                         const emptyCommentary = {
                             preamble: 'Test Preamble',
                             comments: [],

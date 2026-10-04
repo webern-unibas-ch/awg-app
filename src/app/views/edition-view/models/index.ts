@@ -28,8 +28,8 @@ export {
 export { EditionSvgLinkBox } from './edition-svg-link-box.model';
 export {
     EditionSvgOverlay,
-    EditionSvgOverlayActionTypes,
-    EditionSvgOverlayState,
+    EditionSvgOverlayColorState,
+    EditionSvgOverlayTarget,
     EditionSvgOverlayTypes,
 } from './edition-svg-overlay.model';
 export { EditionSvgSheet, EditionSvgSheetsList } from './edition-svg-sheets.model';

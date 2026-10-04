@@ -309,7 +309,7 @@ describe('EditionSheetsService (DONE)', () => {
                 expectedResult.preamble = 'This is a preamble.';
                 expectedResult.comments = [];
                 const notMatchingOverlays = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId'),
                 ];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
@@ -326,7 +326,7 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     const id = blockComment.svgGroupId ?? '';
-                    expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true));
+                    expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id));
                 });
             });
             const expectedResult = expectedTextcriticalCommentary;
@@ -343,7 +343,7 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     const id = blockComment.svgGroupId ?? '';
-                    expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
+                    expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id)];
 
                     const expectedResult = {
                         preamble: expectedTextcriticalCommentary.preamble,
@@ -380,7 +380,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectedOverlays = selectedBlockComments.map(blockComment => {
                 const id = blockComment.svgGroupId ?? '';
-                return new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true);
+                return new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id);
             });
 
             const expectedResult = {
