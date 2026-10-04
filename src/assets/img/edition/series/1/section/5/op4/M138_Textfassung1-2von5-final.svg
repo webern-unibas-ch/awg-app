@@ -747,8 +747,11 @@
     <path id="path673" d="M1749 3464.34c660 263 2775-52 3058-455l-2-2c-283 386-2399 701-3055 454l-1 3" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.08 0 0 -.08 0 1122.667)"/>
     <path id="path674" d="M8632 3269.34c212 88 670-3 787-156l-3-2c-118 136-576 227-782 155l-2 3" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.08 0 0 -.08 0 1122.667)"/>
     <path id="path675" d="M8889 1475.34c-32-328 403-354 533-257l-2 3c-119-83-555-57-528 254h-3" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.08 0 0 -.08 0 1122.667)"/>
-    <g id="awg-tkk-m138_tf1-028" class="tkk">
+    <g id="awg-tkk-m138_tf1-028" class="tkk" data-tkk-id="awg-tkk-m138_tf1-028">
       <path id="path369" d="M667.2 696.24c17.68 8.64 68.88 8.64 86.56 0" style="fill:none;stroke:#000;stroke-width:1.04;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:2.08,2.08;stroke-dashoffset:0;stroke-opacity:1"/>
+    </g>
+    <g id="awg-tkk-m138_tf1-028b" class="tkk" data-tkk-id="awg-tkk-m138_tf1-028">
+      <path id="path676" d="M62.4 1063.36c3.44 3.68 14.56 3.68 18 0" style="fill:none;stroke:#000;stroke-width:1.04;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:2.08,2.08;stroke-dashoffset:0;stroke-opacity:1"/>
     </g>
     <path id="path514" d="M83.84 1054.8v18.24" style="fill:none;stroke:#000;stroke-width:.88;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"/>
     <path id="path515" d="M81.68 1051.12h12.48" style="fill:none;stroke:#000;stroke-width:1.04;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"/>
@@ -777,7 +780,6 @@
     <path id="path604" d="M146.4 1023.12v52.48" style="fill:none;stroke:#000;stroke-width:.78;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"/>
     <path id="path605" d="M146.4 1075.6h-3.12" style="fill:none;stroke:#000;stroke-width:.78;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"/>
     <path id="path668" d="M111.28 1059.2c4.48 4.72 13.04 4.72 17.44 0l-.16-.16c-4.24 3.28-12.8 3.28-17.04 0z" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:.08"/>
-    <path id="path676" d="M62.4 1063.36c3.44 3.68 14.56 3.68 18 0" style="fill:none;stroke:#000;stroke-width:1.04;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:2.08,2.08;stroke-dashoffset:0;stroke-opacity:1"/>
     <path id="path677" d="M780 581.34c173-97 654-68 819 49l-1 3c-165-101-646-130-816-49l-2-3" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.08 0 0 -.08 0 1122.667)"/>
     <path id="path164-9" d="M57.884 710.898c2.08 3.92 24.16-.08 26.24-4l-.24-.08c-1.84 2.4-23.92 6.4-25.76 4l-.24.08" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000;stroke-width:.08;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"/>
     <g id="awg-tkk-m138_tf1-022" class="tkk" transform="translate(-337.941 98.48)">
