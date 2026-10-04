@@ -28,14 +28,13 @@ import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 import {
     createD3TestLinkBoxGroups,
-    createD3TestRootGroup,
     createD3TestSuppliedClassesGroups,
-    createD3TestSvg,
     createD3TestTkkGroups,
 } from '@testing/svg-drawing-helper';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
-import { SliderZoomComponent } from '@awg-shared/slider-zoom/slider-zoom.component';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
+import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import {
     D3Selection,
     EditionSvgLinkBox,
@@ -101,12 +100,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let emitSelectOverlaysRequestSpy: Spy;
     let getContainerDimensionsSpy: Spy;
     let onAdditionVisibilityChangeSpy: Spy;
-    let onZoomChangeSpy: Spy;
     let renderSheetSpy: Spy;
-    let rescaleZoomSpy: Spy;
-    let resetZoomSpy: Spy;
-    let resetZoomTranslationSpy: Spy;
-    let zoomHandlerSpy: Spy;
 
     let serviceClearSvgOverlaysSpy: Spy;
     let serviceCreateSvgOverlaysSpy: Spy;
@@ -115,7 +109,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let serviceToggleSuppliedClassOpacitySpy: Spy;
     let serviceToggleTkkOverlayHighlightsSpy: Spy;
 
-    let expectedSliderConfig: SliderConfig;
+    let expectedZoomConfig: ZoomConfig;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
@@ -178,7 +172,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, SliderZoomComponent],
+            imports: [FontAwesomeTestingModule, SliderZoomComponent, SvgZoomDirective],
             declarations: [
                 EditionSheetViewerComponent,
                 EditionSheetViewerNavStubComponent,
@@ -200,7 +194,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
-        expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01);
+        expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
 
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
@@ -227,17 +221,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         emitSelectLinkBoxRequestSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
         emitSelectOverlaysRequestSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
         onAdditionVisibilityChangeSpy = vi.spyOn(component, 'onAdditionVisibilityChange');
-        onZoomChangeSpy = vi.spyOn(component, 'onZoomChange');
         renderSheetSpy = vi.spyOn(component, 'renderSheet');
-        resetZoomSpy = vi.spyOn(component, 'resetZoom');
 
         // Spies on private functions
         clearSvgSpy = vi.spyOn(component, '_clearSvg' as any);
         createSvgSpy = vi.spyOn(component, '_createSvg' as any);
         getContainerDimensionsSpy = vi.spyOn(component, '_getContainerDimensions' as any);
-        rescaleZoomSpy = vi.spyOn(component, '_rescaleZoom' as any);
-        resetZoomTranslationSpy = vi.spyOn(component, '_resetZoomTranslation' as any);
-        zoomHandlerSpy = vi.spyOn(component, '_zoomHandler' as any);
 
         // Spies for service methods
         serviceClearSvgOverlaysSpy = vi.spyOn(mockEditionSvgOverlayService, 'clearSvgOverlays');
@@ -279,15 +268,15 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         });
 
         it('... should have signal `zoomValue` to hold the initial zoom value', () => {
-            expectToBe(component.zoomValue(), expectedSliderConfig.initial);
+            expectToBe(component.zoomValue(), expectedZoomConfig.initial);
         });
 
         it('... should have `hasAvailableTkkOverlays` set to false', () => {
             expectToBe(component.hasAvailableTkkOverlays, false);
         });
 
-        it('... should have `sliderConfig`', () => {
-            expectToEqual(component.sliderConfig, expectedSliderConfig);
+        it('... should have `zoomConfig`', () => {
+            expectToEqual(component.zoomConfig, expectedZoomConfig);
         });
 
         it('... should have empty `suppliedClasses`', () => {
@@ -394,19 +383,65 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divIconBarDes[0], SliderZoomComponent, 1, 1);
                 });
 
-                it('... should pass down `config` and `value` to the SliderZoomComponent', async () => {
+                it('... should pass down `zoomConfig` and `zoomValue` to the SliderZoomComponent', async () => {
                     component.zoomValue.set(2.5);
                     await detectChangesOnPush(fixture);
 
                     const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
                     const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
 
-                    expectToEqual(sliderZoomCmp.config(), expectedSliderConfig);
-                    expectToBe(sliderZoomCmp.value(), 2.5);
+                    expectToEqual(sliderZoomCmp.zoomConfig(), expectedZoomConfig);
+                    expectToBe(sliderZoomCmp.zoomValue(), 2.5);
+                });
+
+                it('... should sync a value change of the SliderZoomComponent to `zoomValue` and the SvgZoomDirective', async () => {
+                    const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
+                    const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
+
+                    rangeEl.value = '7.5';
+                    rangeEl.dispatchEvent(new Event('input'));
+                    await detectChangesOnPush(fixture);
+
+                    expectToBe(component.zoomValue(), 7.5);
+                    expectToBe(component.svgZoom?.zoomValue(), 7.5);
+                });
+
+                it('... should reset the zoom via the SvgZoomDirective on reset request of the SliderZoomComponent', async () => {
+                    const resetSpy = vi.spyOn(component.svgZoom as SvgZoomDirective, 'reset');
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
+
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+
+                    expectSpyCall(resetSpy, 1);
                 });
             });
 
             describe('awg-edition-svg-sheet-container', () => {
+                it('... should apply the SvgZoomDirective to svg#awg-edition-svg-sheet', () => {
+                    const svgDes = getAndExpectDebugElementByCss(compDe, 'svg#awg-edition-svg-sheet', 1, 1);
+                    const svgZoomDir = svgDes[0].injector.get(SvgZoomDirective, null);
+
+                    expect(svgZoomDir).toBeTruthy();
+                    expectToBe(component.svgZoom, svgZoomDir);
+                });
+
+                it('... should pass down `zoomConfig`, `zoomTarget` and `zoomValue` to the SvgZoomDirective', async () => {
+                    component.zoomValue.set(2.5);
+                    await detectChangesOnPush(fixture);
+
+                    const rootGroupDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'g#awg-edition-svg-sheet-root-group',
+                        1,
+                        1
+                    );
+                    const svgZoomDir = component.svgZoom as SvgZoomDirective;
+
+                    expectToEqual(svgZoomDir.zoomConfig(), expectedZoomConfig);
+                    expectToBe(svgZoomDir.zoomTarget(), rootGroupDes[0].nativeElement);
+                    expectToBe(svgZoomDir.zoomValue(), 2.5);
+                });
+
                 it('... should contain one svg#awg-edition-svg-sheet element with a g element', () => {
                     const svgSheetContainerDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -730,43 +765,8 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
         });
 
-        describe('#onZoomChange()', () => {
-            it('... should have a method `onZoomChange`', () => {
-                expect(component.onZoomChange).toBeDefined();
-            });
-
-            it('... should trigger on value change of the SliderZoomComponent', () => {
-                expectSpyCall(onZoomChangeSpy, 1);
-
-                const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
-                const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
-                const expectedZoom = 7.5;
-
-                rangeEl.value = expectedZoom.toString();
-                rangeEl.dispatchEvent(new Event('input'));
-
-                expectSpyCall(onZoomChangeSpy, 2, expectedZoom);
-            });
-
-            it.each([0, 5, 1])('... should set `zoomValue` to the given zoom value %s', expectedZoom => {
-                component.onZoomChange(expectedZoom);
-
-                expectToBe(component.zoomValue(), expectedZoom);
-            });
-
-            it('... should trigger `_rescaleZoom` function', () => {
-                expectSpyCall(rescaleZoomSpy, 1);
-
-                const expectedZoom = 5;
-                component.onZoomChange(expectedZoom);
-
-                expectSpyCall(rescaleZoomSpy, 2);
-            });
-        });
-
         describe('#renderSheet()', () => {
             beforeEach(() => {
-                resetZoomSpy.mockImplementation(() => {});
                 vi.spyOn(component, '_createSvgOverlays' as any).mockImplementation(() => {});
             });
 
@@ -888,49 +888,13 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
                 expectSpyCall(createSvgSpy, 2);
             });
-        });
 
-        describe('#resetZoom()', () => {
-            it('... should have a method `resetZoom`', () => {
-                expect(component.resetZoom).toBeDefined();
-            });
+            it('... should reset the zoom via the SvgZoomDirective after creating the svg', async () => {
+                const resetSpy = vi.spyOn(component.svgZoom as SvgZoomDirective, 'reset');
 
-            it('... should trigger on reset request of the SliderZoomComponent', async () => {
-                expectSpyCall(resetZoomSpy, 1);
+                component.renderSheet();
 
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
-
-                await clickAndAwaitChanges(btnDes[0], fixture);
-
-                expectSpyCall(resetZoomSpy, 2);
-            });
-
-            it('... should do nothing if svgSheetSelection is not set', () => {
-                expectSpyCall(onZoomChangeSpy, 1);
-                expectSpyCall(resetZoomTranslationSpy, 1);
-
-                component.svgSheetSelection = undefined;
-
-                component.resetZoom();
-
-                expectSpyCall(onZoomChangeSpy, 1);
-                expectSpyCall(resetZoomTranslationSpy, 1);
-            });
-
-            it('... should trigger `onZoomChange` function with initial value of sliderConfig', () => {
-                expectSpyCall(onZoomChangeSpy, 1);
-
-                component.resetZoom();
-
-                expectSpyCall(onZoomChangeSpy, 2, expectedSliderConfig.initial);
-            });
-
-            it('... should trigger `_resetZoomTranslation` function', () => {
-                expectSpyCall(resetZoomTranslationSpy, 1);
-
-                component.resetZoom();
-
-                expectSpyCall(resetZoomTranslationSpy, 2);
+                await vi.waitFor(() => expectSpyCall(resetSpy, 1));
             });
         });
 
@@ -1067,13 +1031,6 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
                 // Probably called once first with onResize
                 expectSpyCall(getContainerDimensionsSpy, 2, component.svgSheetContainerRef);
-            });
-
-            it('... should trigger `_zoomHandler` with correct arguments', async () => {
-                await component['_createSvg']();
-
-                // Probably called once first with onResize
-                expectSpyCall(zoomHandlerSpy, 2, [mockRootGroupSelection, mockSvgSelection]);
             });
         });
 
@@ -1238,161 +1195,6 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 component['_onTkkOverlaySelect'](selectedOverlays);
 
                 expectSpyCall(emitSelectOverlaysRequestSpy, 1, [selectedOverlays]);
-            });
-        });
-
-        describe('#_rescaleZoom()', () => {
-            let scaleToSpy: Spy;
-
-            beforeEach(() => {
-                const svg = createD3TestSvg(mockDocument);
-                const rootGroup = createD3TestRootGroup(svg);
-                component['_zoomHandler'](rootGroup, svg);
-
-                if (!component['_zoomBehaviour']) {
-                    expect.fail('Expected component._zoomBehaviour to be defined');
-                }
-
-                scaleToSpy = vi.spyOn(component['_zoomBehaviour'], 'scaleTo');
-            });
-
-            it('... should have a method `_rescaleZoom`', () => {
-                expect(component['_rescaleZoom']).toBeDefined();
-            });
-
-            it('... should trigger from call to `onZoomChange()`', () => {
-                expectSpyCall(rescaleZoomSpy, 1);
-
-                const newSliderValue = 5;
-
-                component.onZoomChange(newSliderValue);
-
-                expectSpyCall(rescaleZoomSpy, 2);
-            });
-
-            describe('... should do nothing if', () => {
-                it('... `_zoomBehaviour` is not set', () => {
-                    component['_zoomBehaviour'] = undefined;
-
-                    component['_rescaleZoom']();
-
-                    expectSpyCall(scaleToSpy, 0);
-                });
-
-                it('... `svgSheetSelection` is not set', () => {
-                    component.svgSheetSelection = undefined;
-
-                    component['_rescaleZoom']();
-
-                    expectSpyCall(scaleToSpy, 0);
-                });
-
-                it('... `zoomValue` is zero', () => {
-                    component.zoomValue.set(0);
-
-                    component['_rescaleZoom']();
-
-                    expectSpyCall(scaleToSpy, 0);
-                });
-            });
-
-            it('... should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `zoomValue` are given', () => {
-                expect(component.svgSheetSelection).toBeTruthy();
-                expect(component.zoomValue()).toBeTruthy();
-
-                component['_rescaleZoom']();
-
-                expectSpyCall(scaleToSpy, 1, [expectedSvgSheetSelection, component.zoomValue()]);
-            });
-        });
-
-        describe('#_resetZoomTranslation()', () => {
-            it('... should have a method `_resetZoomTranslation`', () => {
-                expect(component['_resetZoomTranslation']).toBeDefined();
-            });
-
-            it('... should trigger from call to `resetZoom()`', () => {
-                expectSpyCall(resetZoomTranslationSpy, 1);
-
-                component.resetZoom();
-
-                expectSpyCall(resetZoomTranslationSpy, 2);
-            });
-
-            describe('... should do nothing if', () => {
-                it('... svgSheetRootGroupSelection is not set', () => {
-                    component.svgSheetRootGroupSelection = undefined;
-
-                    expect(() => {
-                        component['_resetZoomTranslation']();
-                    }).not.toThrow();
-                });
-
-                it('... svgSheetSelection is not set', () => {
-                    component.svgSheetSelection = undefined;
-
-                    const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection as any, 'attr');
-
-                    component['_resetZoomTranslation']();
-
-                    expectSpyCall(attrSpy, 0);
-                });
-            });
-
-            it('... should set a transform attribute to the `svgSheetRootGroupSelection`', () => {
-                const svg = createD3TestSvg(mockDocument);
-                component.svgSheetRootGroupSelection = createD3TestRootGroup(svg);
-
-                const attrSpy = vi.spyOn(component.svgSheetRootGroupSelection, 'attr');
-
-                component['_resetZoomTranslation']();
-
-                // SvgSheetGroup was overwritten
-                expect(component.svgSheetRootGroupSelection).not.toEqual(expectedSvgSheetRootGroupSelection);
-
-                expectSpyCall(attrSpy, 1, 'transform');
-                expectToBe(component.svgSheetRootGroupSelection.attr('transform'), 'translate(0,0)');
-            });
-        });
-
-        describe('#_zoomHandler()', () => {
-            it('... should have a method `_zoomHandler`', () => {
-                expect(component['_zoomHandler']).toBeDefined();
-            });
-
-            it('... should create zoom behaviour and apply it to svg', () => {
-                const zoomContext = { attr: vi.fn() };
-                const svg = { call: vi.fn() };
-
-                component['_zoomHandler'](zoomContext as any, svg as any);
-
-                expect(component['_zoomBehaviour']).toBeDefined();
-                expectSpyCall(svg.call as any, 1, [component['_zoomBehaviour']]);
-            });
-
-            it('... should update transform and `zoomValue` (rounded to the step size) on zoom', () => {
-                const zoomContext = { attr: vi.fn() };
-                const svg = { call: vi.fn() };
-
-                component['_zoomHandler'](zoomContext as any, svg as any);
-
-                if (!component['_zoomBehaviour']) {
-                    expect.fail('Expected component._zoomBehaviour to be defined');
-                }
-
-                const zoomed = component['_zoomBehaviour'].on('zoom');
-
-                if (!zoomed) {
-                    expect.fail('Expected a zoom event handler to be registered');
-                }
-
-                const mockEvent = {
-                    transform: { k: 2.345 },
-                };
-                zoomed(mockEvent, undefined);
-
-                expectSpyCall(zoomContext.attr as any, 1, ['transform', mockEvent.transform]);
-                expectToBe(component.zoomValue(), 2.35);
             });
         });
     });

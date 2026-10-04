@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, input, model, output } from '@angul
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
+import { ZoomConfig } from './zoom.model';
 
 /**
  * The SliderZoom component.
@@ -20,19 +20,19 @@ import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
 })
 export class SliderZoomComponent {
     /**
-     * Readonly input signal: config.
+     * Readonly input signal: zoomConfig.
      *
      * It holds the configuration (initial, min, max, step size) of the slider.
      */
-    readonly config = input.required<SliderConfig>();
+    readonly zoomConfig = input.required<ZoomConfig>();
 
     /**
-     * Model signal: value.
+     * Model signal: zoomValue.
      *
      * It holds the current zoom factor of the slider.
-     * Changes by the user are emitted via `valueChange`.
+     * Changes by the user are emitted via `zoomValueChange`.
      */
-    readonly value = model.required<number>();
+    readonly zoomValue = model.required<number>();
 
     /**
      * Readonly output signal: resetRequest.

@@ -15,8 +15,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
-import { SliderZoomComponent } from '@awg-shared/slider-zoom/slider-zoom.component';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { GraphVisualizerService } from '../services/graph-visualizer.service';
@@ -31,7 +31,7 @@ describe('ForceGraphComponent', () => {
     let onReCenterSpy: Spy;
     let onZoomChangeSpy: Spy;
 
-    let expectedSliderConfig: SliderConfig;
+    let expectedZoomConfig: ZoomConfig;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -47,7 +47,7 @@ describe('ForceGraphComponent', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSliderConfig = new SliderConfig(1, 0.1, 3, 0.01);
+        expectedZoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
 
         // Spies
         onReCenterSpy = vi.spyOn(component, 'onReCenter');
@@ -59,12 +59,12 @@ describe('ForceGraphComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `sliderConfig`', () => {
-            expectToEqual(component.sliderConfig, expectedSliderConfig);
+        it('... should have `zoomConfig`', () => {
+            expectToEqual(component.zoomConfig, expectedZoomConfig);
         });
 
         it('... should have signal `zoomValue` to hold the initial zoom value', () => {
-            expectToBe(component.zoomValue(), expectedSliderConfig.initial);
+            expectToBe(component.zoomValue(), expectedZoomConfig.initial);
         });
 
         describe('VIEW', () => {
@@ -84,12 +84,12 @@ describe('ForceGraphComponent', () => {
 
         describe('VIEW', () => {
             describe('... SliderZoomComponent', () => {
-                it('... should pass down `config` and `value` to the SliderZoomComponent', () => {
+                it('... should pass down `zoomConfig` and `zoomValue` to the SliderZoomComponent', () => {
                     const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
                     const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
 
-                    expectToEqual(sliderZoomCmp.config(), expectedSliderConfig);
-                    expectToBe(sliderZoomCmp.value(), expectedSliderConfig.initial);
+                    expectToEqual(sliderZoomCmp.zoomConfig(), expectedZoomConfig);
+                    expectToBe(sliderZoomCmp.zoomValue(), expectedZoomConfig.initial);
                 });
 
                 it('... should trigger `onZoomChange` on value change of the SliderZoomComponent', () => {

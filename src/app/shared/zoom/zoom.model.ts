@@ -1,9 +1,9 @@
 /**
- * The SliderConfig class.
+ * The ZoomConfig class.
  *
- * It is used to configure the slider.
+ * It is used to configure the zoom slider and the svg zoom (initial, min, max, step size).
  */
-export class SliderConfig {
+export class ZoomConfig {
     /**
      * The initial value of the slider.
      */
@@ -25,7 +25,7 @@ export class SliderConfig {
     stepSize: number;
 
     /**
-     * Constructor of the SliderConfig class.
+     * Constructor of the ZoomConfig class.
      *
      * @param {number} initial The initial value of the slider.
      * @param {number} min The minimum value of the slider.

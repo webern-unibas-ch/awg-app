@@ -10,7 +10,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
+import { ZoomConfig } from './zoom.model';
 
 import { SliderZoomComponent } from './slider-zoom.component';
 
@@ -19,10 +19,10 @@ describe('SliderZoomComponent (DONE)', () => {
     let fixture: ComponentFixture<SliderZoomComponent>;
     let compDe: DebugElement;
 
-    let valueChangeSpy: Mock<(value: number) => void>;
+    let zoomValueChangeSpy: Mock<(zoomValue: number) => void>;
     let resetRequestSpy: Mock<() => void>;
 
-    let expectedConfig: SliderConfig;
+    let expectedZoomConfig: ZoomConfig;
 
     const getContainerDes = () =>
         getAndExpectDebugElementByCss(compDe, 'div.input-group.input-group-sm.awg-slider-zoom-container', 1, 1);
@@ -45,12 +45,12 @@ describe('SliderZoomComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedConfig = new SliderConfig(1, 0.1, 10, 0.01);
+        expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
 
         // Spies
-        valueChangeSpy = vi.fn();
+        zoomValueChangeSpy = vi.fn();
         resetRequestSpy = vi.fn();
-        component.value.subscribe(valueChangeSpy);
+        component.zoomValue.subscribe(zoomValueChangeSpy);
         component.resetRequest.subscribe(resetRequestSpy);
     });
 
@@ -63,16 +63,16 @@ describe('SliderZoomComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `config`', () => {
-            expectToBe(isSignal(component.config), true);
+        it('... should throw due to missing required input signal `zoomConfig`', () => {
+            expectToBe(isSignal(component.zoomConfig), true);
 
-            expect(() => component.config()).toThrow();
+            expect(() => component.zoomConfig()).toThrow();
         });
 
-        it('... should throw due to missing required model signal `value`', () => {
-            expectToBe(isSignal(component.value), true);
+        it('... should throw due to missing required model signal `zoomValue`', () => {
+            expectToBe(isSignal(component.zoomValue), true);
 
-            expect(() => component.value()).toThrow();
+            expect(() => component.zoomValue()).toThrow();
         });
 
         it('... should have `faCompressArrowsAlt` icon', () => {
@@ -99,19 +99,19 @@ describe('SliderZoomComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            fixture.componentRef.setInput('config', expectedConfig);
-            fixture.componentRef.setInput('value', 1);
+            fixture.componentRef.setInput('zoomConfig', expectedZoomConfig);
+            fixture.componentRef.setInput('zoomValue', 1);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have input signal `config` to hold the provided config', () => {
-            expectToEqual(component.config(), expectedConfig);
+        it('... should have input signal `zoomConfig` to hold the provided config', () => {
+            expectToEqual(component.zoomConfig(), expectedZoomConfig);
         });
 
-        it('... should have model signal `value` to hold the provided value', () => {
-            expectToBe(component.value(), 1);
+        it('... should have model signal `zoomValue` to hold the provided zoom value', () => {
+            expectToBe(component.zoomValue(), 1);
         });
 
         describe('VIEW', () => {
@@ -119,7 +119,7 @@ describe('SliderZoomComponent (DONE)', () => {
                 expectToBe(getLabelEl().textContent, '1x');
             });
 
-            it('... should set min, max, step and value of the range input from the config and value', () => {
+            it('... should set min, max, step and value of the range input from the zoom config and value', () => {
                 const rangeEl = getRangeEl();
 
                 expectToBe(rangeEl.min, '0.1');
@@ -136,26 +136,26 @@ describe('SliderZoomComponent (DONE)', () => {
                 expectToBe(getLabelEl().getAttribute('aria-hidden'), 'true');
             });
 
-            it('... should update label and range input for a value provided by the parent without emitting `valueChange`', async () => {
-                fixture.componentRef.setInput('value', 2.5);
+            it('... should update label and range input for a value provided by the parent without emitting `zoomValueChange`', async () => {
+                fixture.componentRef.setInput('zoomValue', 2.5);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(getLabelEl().textContent, '2.5x');
                 expectToBe(getRangeEl().value, '2.5');
                 expectToBe(getRangeEl().getAttribute('aria-valuetext'), '2.5x');
-                expectSpyCall(valueChangeSpy, 0);
+                expectSpyCall(zoomValueChangeSpy, 0);
             });
 
-            describe('... model `value`', () => {
-                it('... should emit `valueChange` with the new number on input of the range', async () => {
+            describe('... model `zoomValue`', () => {
+                it('... should emit `zoomValueChange` with the new number on input of the range', async () => {
                     const rangeEl = getRangeEl();
 
                     rangeEl.value = '3.25';
                     rangeEl.dispatchEvent(new Event('input'));
                     await detectChangesOnPush(fixture);
 
-                    expectSpyCall(valueChangeSpy, 1, 3.25);
-                    expectToBe(component.value(), 3.25);
+                    expectSpyCall(zoomValueChangeSpy, 1, 3.25);
+                    expectToBe(component.zoomValue(), 3.25);
                     expectToBe(getLabelEl().textContent, '3.25x');
                 });
             });

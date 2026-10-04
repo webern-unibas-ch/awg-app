@@ -22,8 +22,8 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
-import { roundToStepPrecision } from '@awg-shared/slider-zoom/slider-zoom.utils';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { roundToStepPrecision } from '@awg-shared/zoom/zoom.utils';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 import {
     D3DragBehaviour,
@@ -113,18 +113,18 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     limit = 50;
 
     /**
-     * Public variable: sliderConfig.
+     * Public variable: zoomConfig.
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 3, 0.01);
+    zoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
 
     /**
      * Readonly signal: zoomValue.
      *
      * It holds the current zoom factor of the graph (shown by the zoom slider).
      */
-    readonly zoomValue = signal<number>(this.sliderConfig.initial);
+    readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
      * Private variable: _labelMap.
@@ -293,7 +293,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         if (!this._zoomBehaviour || !this._svg || !(this._divWidth && this._divHeight)) {
             return;
         }
-        this.onZoomChange(this.sliderConfig.initial);
+        this.onZoomChange(this.zoomConfig.initial);
         this._zoomBehaviour.translateTo(this._svg, this._divWidth / 2, this._divHeight / 2);
     }
 
@@ -713,13 +713,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             zoomContext.attr('transform', currentTransform);
 
             // Update zoom value (shown by the zoom slider)
-            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.sliderConfig.stepSize));
+            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.zoomConfig.stepSize));
         };
 
         // Create zoom behaviour
-        this._zoomBehaviour = D3_ZOOM.zoom()
-            .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
-            .on('zoom', zoomed);
+        this._zoomBehaviour = D3_ZOOM.zoom().scaleExtent([this.zoomConfig.min, this.zoomConfig.max]).on('zoom', zoomed);
 
         // Apply zoom behaviour
         svg.call(this._zoomBehaviour);

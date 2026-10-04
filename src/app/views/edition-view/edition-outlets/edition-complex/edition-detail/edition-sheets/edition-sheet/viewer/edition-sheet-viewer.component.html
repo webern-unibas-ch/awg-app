@@ -3,13 +3,19 @@
         <div class="awg-edition-sheet-viewer-icon-bar">
             <awg-slider-zoom
                 class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
-                [config]="sliderConfig"
-                [value]="zoomValue()"
-                (valueChange)="onZoomChange($event)"
-                (resetRequest)="resetZoom()" />
+                [zoomConfig]="zoomConfig"
+                [(zoomValue)]="zoomValue"
+                (resetRequest)="svgZoom.reset()" />
         </div>
         <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
-            <svg #svgSheetElement id="awg-edition-svg-sheet">
+            <svg
+                #svgSheetElement
+                #svgZoom="awgSvgZoom"
+                id="awg-edition-svg-sheet"
+                awgSvgZoom
+                [zoomConfig]="zoomConfig"
+                [zoomTarget]="svgSheetRootGroup"
+                [(zoomValue)]="zoomValue">
                 <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
             </svg>
 

@@ -7,9 +7,9 @@
         <!-- Slider -->
         <awg-slider-zoom
             class="awg-force-graph-slider-zoom float-start mb-3"
-            [config]="sliderConfig"
-            [value]="zoomValue()"
-            (valueChange)="onZoomChange($event)"
+            [zoomConfig]="zoomConfig"
+            [zoomValue]="zoomValue()"
+            (zoomValueChange)="onZoomChange($event)"
             (resetRequest)="onReCenter()" />
 
         <!-- Limit -->

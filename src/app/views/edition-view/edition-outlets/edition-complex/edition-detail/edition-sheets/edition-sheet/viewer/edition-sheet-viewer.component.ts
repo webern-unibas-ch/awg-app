@@ -19,18 +19,15 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config.model';
-import { roundToStepPrecision } from '@awg-shared/slider-zoom/slider-zoom.utils';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import {
     D3Selection,
-    D3ZoomBehaviour,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
 } from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
-
-import * as D3_ZOOM from 'd3-zoom';
 
 import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/edition-sheet-viewer-additions-panel.model';
 
@@ -92,6 +89,13 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     @ViewChild('svgSheetRootGroup') svgSheetRootGroupRef: ElementRef<SVGGElement> | undefined;
 
     /**
+     * ViewChild variable: svgZoom.
+     *
+     * It keeps the reference to the svg zoom directive of the svg sheet.
+     */
+    @ViewChild(SvgZoomDirective) svgZoom: SvgZoomDirective | undefined;
+
+    /**
      * Input variable: selectedSvgSheet.
      *
      * It keeps the selected svg sheet.
@@ -130,18 +134,18 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     hasAvailableTkkOverlays = false;
 
     /**
-     * Public variable: sliderConfig.
+     * Public variable: zoomConfig.
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 10, 0.01);
+    zoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
 
     /**
      * Readonly signal: zoomValue.
      *
      * It holds the current zoom factor of the svg sheet (shown by the zoom slider).
      */
-    readonly zoomValue = signal<number>(this.sliderConfig.initial);
+    readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
      * Public variable: suppliedClasses.
@@ -191,13 +195,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * It keeps a boolean flag whether the sheet has been rendered.
      */
     private _isRendered = false;
-
-    /**
-     * Private variable: _zoomBehaviour.
-     *
-     * It keeps the D3 zoom behaviour.
-     */
-    private _zoomBehaviour: D3ZoomBehaviour | undefined;
 
     /**
      * Private readonly variable: _destroyed$.
@@ -314,22 +311,9 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     }
 
     /**
-     * Public method: onZoomChange.
-     *
-     * It sets the zoom value to a given scale step.
-     *
-     * @param {number} newZoomValue The new zoom value.
-     * @returns {void} Sets the new zoom value and calls for rescale.
-     */
-    onZoomChange(newZoomValue: number): void {
-        this.zoomValue.set(newZoomValue);
-        this._rescaleZoom();
-    }
-
-    /**
      * Public method: renderSheet.
      *
-     * It renders the SVG sheet with zoom handler and overlays.
+     * It renders the SVG sheet with overlays and resets the zoom.
      *
      * @returns {void} Renders the SVG sheet.
      */
@@ -344,28 +328,11 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
         }
 
         this._createSvg().then(() => {
-            this.resetZoom();
+            this.svgZoom?.reset();
             this._createSvgOverlays();
             this._getSuppliedClasses();
             this._cdr.detectChanges();
         });
-    }
-
-    /**
-     * Public method: resetZoom.
-     *
-     * It sets the slider zoom back to its initial state,
-     * removing scale factor and transitions.
-     *
-     * @returns {void} Sets the initial zoom translation and scale factor.
-     */
-    resetZoom(): void {
-        if (!this.svgSheetSelection) {
-            return;
-        }
-
-        this.onZoomChange(this.sliderConfig.initial);
-        this._resetZoomTranslation();
     }
 
     /**
@@ -384,7 +351,7 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     /**
      * Private method: _createSvg.
      *
-     * It creates the D3 SVG sheet selections and sets their dimensions and the zoom handler.
+     * It creates the D3 SVG sheet selections and sets their dimensions.
      *
      * @returns {Promise<void>} Creates the D3 SVG sheet selections and returns a promise.
      */
@@ -410,9 +377,6 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
         this.svgSheetRootGroupSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root-group');
 
         this._getContainerDimensions(this.svgSheetContainerRef);
-
-        // ==================== ZOOM ====================
-        this._zoomHandler(this.svgSheetRootGroupSelection, this.svgSheetSelection);
     }
 
     /**
@@ -494,63 +458,5 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      */
     private _onTkkOverlaySelect(overlays: EditionSvgOverlay[]): void {
         this.selectOverlaysRequest.emit(overlays);
-    }
-
-    /**
-     * Private method: _rescaleZoom.
-     *
-     * It rescales the current zoom with a given slider value.
-     *
-     * @returns {void} Sets the zoom for the rescale.
-     */
-    private _rescaleZoom(): void {
-        if (!this._zoomBehaviour || !this.svgSheetSelection || !this.zoomValue()) {
-            return;
-        }
-        this._zoomBehaviour.scaleTo(this.svgSheetSelection, this.zoomValue());
-    }
-
-    /**
-     * Private method: _resetZoomTranslation.
-     *
-     * It resets the current zoom translation to the to the origin of the SVG canvas (0,0).
-     *
-     * @returns {void} Resets the zoom translation.
-     */
-    private _resetZoomTranslation(): void {
-        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection) {
-            return;
-        }
-        this.svgSheetRootGroupSelection.attr('transform', 'translate(0,0)');
-    }
-
-    /**
-     * Private method: _zoomHandler.
-     *
-     * It binds a pan and zoom behaviour to an svg element.
-     *
-     * @param {D3Selection} zoomContext The given context that shall be zoomable.
-     * @param {D3Selection} svg The given svg container.
-     * @returns {void} Sets the zoom behaviour.
-     */
-    private _zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
-        // Perform the zooming
-        const zoomed = (event: any): void => {
-            const currentTransform = event.transform;
-
-            // Update d3 zoom context
-            zoomContext.attr('transform', currentTransform);
-
-            // Update zoom value (shown by the zoom slider)
-            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.sliderConfig.stepSize));
-        };
-
-        // Create zoom behaviour
-        this._zoomBehaviour = D3_ZOOM.zoom()
-            .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
-            .on('zoom', zoomed);
-
-        // Apply zoom behaviour
-        svg.call(this._zoomBehaviour);
     }
 }

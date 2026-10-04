@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 
 import { expectToBe } from '@testing/expect-helper';
 
-import { roundToStepPrecision } from './slider-zoom.utils';
+import { roundToStepPrecision } from './zoom.utils';
 
 describe('roundToStepPrecision (DONE)', () => {
     describe.each([
