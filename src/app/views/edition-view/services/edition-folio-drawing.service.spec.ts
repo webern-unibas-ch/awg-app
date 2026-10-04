@@ -223,8 +223,8 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 expectToBe(rootGroup.selectAll('g.systems-group > g.system-line-group').size(), systemCount);
             });
 
-            it('... should draw the system labels numbered from top to bottom', () => {
-                const { lines, labelPositions } = expectedFolioSvgData.systems;
+            it('... should draw the system labels numbered from top to bottom with the calculated font size', () => {
+                const { lines, labelFontSize, labelPositions } = expectedFolioSvgData.systems;
 
                 const rootGroup = render(expectedFolioSvgData);
                 const labels = rootGroup.selectAll<SVGTextElement, unknown>('g.systems-group > text.system-label');
@@ -235,6 +235,8 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 );
                 expectToBe(labels.attr('x'), String(labelPositions[0].x));
                 expectToBe(labels.attr('y'), String(labelPositions[0].y));
+                expectToBe(labels.attr('text-anchor'), 'end');
+                expectToBe(labels.attr('font-size'), String(labelFontSize));
             });
 
             it('... should draw the system labels numbered from bottom to top if the systems are reversed', () => {

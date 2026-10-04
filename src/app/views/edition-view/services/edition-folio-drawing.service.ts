@@ -271,7 +271,7 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the systems.
      */
     private _drawSystems(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        const { lines, labelPositions, reversed } = folioSvgData.systems;
+        const { lines, labelFontSize, labelPositions, reversed } = folioSvgData.systems;
 
         lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) => {
             const labelIndex = reversed ? lines.length - systemIndex : systemIndex + 1;
@@ -284,7 +284,8 @@ export class EditionFolioDrawingService {
                 class: 'system-label',
                 x: labelPosition.x,
                 y: labelPosition.y,
-                'dominant-baseline': 'hanging',
+                'font-size': labelFontSize,
+                'text-anchor': 'end',
             }).text(labelIndex);
 
             systemLines.forEach(line => {

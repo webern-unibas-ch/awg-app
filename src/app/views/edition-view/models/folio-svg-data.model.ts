@@ -95,7 +95,13 @@ export interface FolioSvgSheet {
  */
 export interface FolioSvgSystems {
     /**
-     * The positions of the system labels.
+     * The font size of the system labels (limited by the space per system).
+     */
+    readonly labelFontSize: number;
+
+    /**
+     * The positions of the system labels (right end of their baseline,
+     * so that the digits are vertically centered at the middle line of each system).
      */
     readonly labelPositions: FolioSvgPoint[];
 

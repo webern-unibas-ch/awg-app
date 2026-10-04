@@ -89,22 +89,53 @@ describe('FolioCalculation (DONE)', () => {
 
                 expectToEqual(
                     systems.lines[0],
-                    [43.5, 45.75, 48, 50.25, 52.5].map(y => ({ start: { x: 71.75, y }, end: { x: 372.12, y } }))
+                    [43.5, 45.11, 46.72, 48.33, 49.93].map(y => ({ start: { x: 57.07, y }, end: { x: 372.12, y } }))
+                );
+            });
+
+            it('... should limit the staff lines to 60 % of the space per system if the space is small', () => {
+                // 18 systems on 193 px: 10.72 px per system, default staff of 9 px would take 84 %
+                const [firstSystem, secondSystem] = calculate(expectedFolio).systems.lines;
+
+                const spacePerSystem = secondSystem[0].start.y - firstSystem[0].start.y;
+                const staffHeight = firstSystem[4].start.y - firstSystem[0].start.y;
+
+                expect(staffHeight / spacePerSystem).toBeCloseTo(0.6, 2);
+            });
+
+            it('... should keep the default line space if the space per system is large enough', () => {
+                // 9 systems on 193 px: 21.44 px per system, default staff of 9 px takes 42 %
+                const [firstSystem] = calculate({ ...expectedFolio, systems: '9' }).systems.lines;
+
+                expectToEqual(
+                    firstSystem.map(line => line.start.y),
+                    [43.5, 45.75, 48, 50.25, 52.5]
                 );
             });
 
             it('... should calculate the last staff line of the last system', () => {
                 const { systems } = calculate(expectedFolio);
 
-                expectToEqual(systems.lines[17][4], { start: { x: 71.75, y: 234.78 }, end: { x: 372.12, y: 234.78 } });
+                expectToEqual(systems.lines[17][4], { start: { x: 57.07, y: 232.21 }, end: { x: 372.12, y: 232.21 } });
             });
 
-            it('... should calculate one label position per system', () => {
+            it('... should calculate one label position per system before the systems at its middle line', () => {
                 const { systems } = calculate(expectedFolio);
 
+                // Right end: 57.07 - 0.6 * 8.58; baseline: middle line + 0.35 * 8.58
                 expectToBe(systems.labelPositions.length, 18);
-                expectToEqual(systems.labelPositions[0], { x: 31.7, y: 41.5 });
-                expectToEqual(systems.labelPositions[1], { x: 31.7, y: 52.22 });
+                expectToEqual(systems.labelPositions[0], { x: 51.92, y: 49.72 });
+                expectToEqual(systems.labelPositions[1], { x: 51.92, y: 60.44 });
+            });
+
+            it('... should limit the label font size to 80 % of the space per system if the space is small', () => {
+                // 10.72 px per system * 0.8
+                expectToBe(calculate(expectedFolio).systems.labelFontSize, 8.58);
+            });
+
+            it('... should keep the maximum label font size if the space per system is large enough', () => {
+                // 21.44 px per system * 0.8 > 16
+                expectToBe(calculate({ ...expectedFolio, systems: '9' }).systems.labelFontSize, 16);
             });
 
             it('... should set the reversed flag of the systems', () => {
@@ -168,11 +199,11 @@ describe('FolioCalculation (DONE)', () => {
                 expectToEqual(
                     contentSegments.map(contentSegment => contentSegment.vertices),
                     [
-                        '73.75 50.22 370.12 50.22 370.12 88.67 73.75 88.67 73.75 50.22',
+                        '59.07 52.93 370.12 52.93 370.12 83.39 59.07 83.39 59.07 52.93',
                         // Above the systems (-20)
-                        '73.75 62.39 370.12 62.39 370.12 100.83 73.75 100.83 73.75 62.39',
+                        '59.07 65.1 370.12 65.1 370.12 95.55 59.07 95.55 59.07 65.1',
                         // Below the systems (+20)
-                        '73.75 102.39 370.12 102.39 370.12 140.83 73.75 140.83 73.75 102.39',
+                        '59.07 105.1 370.12 105.1 370.12 135.55 59.07 135.55 59.07 105.1',
                     ]
                 );
             });
@@ -182,20 +213,30 @@ describe('FolioCalculation (DONE)', () => {
                     withContent({ segmentSplit: 2, segments: [{ position: 2, startSystem: 2, endSystem: 4 }] })
                 ).contentSegments;
 
-                expectToBe(contentSegment.vertices, '223.94 50.22 370.13 50.22 370.13 88.67 223.94 88.67 223.94 50.22');
+                expectToBe(contentSegment.vertices, '216.6 52.93 370.13 52.93 370.13 83.39 216.6 83.39 216.6 52.93');
             });
 
-            it('... should adjust the offset correction of the vertices to the number of systems', () => {
+            it('... should adjust the horizontal offset correction of the vertices to the number of systems', () => {
+                // 9 systems: offset correction 4 * 18 / 9 = 8, so 4 px inset on both sides
                 const [contentSegment] = calculate({ ...expectedFolio, systems: '9' }).contentSegments;
 
-                expectToBe(contentSegment.vertices, '75.75 56.94 368.12 56.94 368.12 124.83 75.75 124.83 75.75 56.94');
+                expectToBe(contentSegment.vertices, '61.07 61.21 368.12 61.21 368.12 120.56 61.07 120.56 61.07 61.21');
+            });
+
+            it('... should limit the vertical padding of the vertices to 30 % of the gap between the systems', () => {
+                // Gap of 4.29 px between the systems: padding 1.29 px instead of 4 px above the first line
+                const { systems, contentSegments } = calculate(expectedFolio);
+                const firstLineOfSecondSystem = systems.lines[1][0].start.y;
+                const segmentTop = Number(contentSegments[0].vertices.split(' ')[1]);
+
+                expect(firstLineOfSecondSystem - segmentTop).toBeCloseTo(1.29, 2);
             });
 
             it('... should calculate the center shifted up for a label with addendum', () => {
                 const [contentSegment] = calculate(expectedFolio).contentSegments;
 
-                // Vertical middle of 50.22 and 88.67 minus 5
-                expectToEqual(contentSegment.center, { x: 221.935, y: 64.445 });
+                // Vertical middle of 52.93 and 83.39 minus 5
+                expectToEqual(contentSegment.center, { x: 214.595, y: 63.16 });
             });
 
             it('... should calculate the vertices and the center of reversed segments in reversed systems', () => {
@@ -203,10 +244,10 @@ describe('FolioCalculation (DONE)', () => {
 
                 expectToBe(
                     contentSegment.vertices,
-                    '73.75 189.61 370.12 189.61 370.12 228.06 73.75 228.06 73.75 189.61'
+                    '59.07 192.32 370.12 192.32 370.12 222.78 59.07 222.78 59.07 192.32'
                 );
                 // Without addendum, so no shift
-                expectToEqual(contentSegment.center, { x: 221.935, y: 208.835 });
+                expectToEqual(contentSegment.center, { x: 214.595, y: 207.55 });
             });
 
             it('... should calculate the center shifted down for a reversed label with addendum', () => {
@@ -214,7 +255,7 @@ describe('FolioCalculation (DONE)', () => {
                     withContent({ reversed: true, sigleAddendum: 'T. 1' })
                 ).contentSegments;
 
-                expectToEqual(contentSegment.center, { x: 221.935, y: 74.445 });
+                expectToEqual(contentSegment.center, { x: 214.595, y: 73.16 });
             });
 
             it.each<[string, Partial<FolioContent>]>([
