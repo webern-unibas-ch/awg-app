@@ -163,6 +163,9 @@
                         <li>
                             <a href="#round" title="src/app/views/edition-view/models/folio-calculation.model.ts" ><b>round</b>&nbsp;&nbsp;&nbsp;(src/.../folio-calculation.model.ts)</a>
                         </li>
+                        <li>
+                            <a href="#roundToStepPrecision" title="src/app/shared/zoom/zoom.utils.ts" ><b>roundToStepPrecision</b>&nbsp;&nbsp;&nbsp;(src/.../zoom.utils.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -974,6 +977,95 @@ see: ://<a href="http://www.jacklmoore.com/notes/rounding-in-javascript/%7B@link
                         </div>
                             <div class="io-description">
                                 <p>The rounded number.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/app/shared/zoom/zoom.utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roundToStepPrecision"></a>
+                    <span class="name">
+                        <span ><b>roundToStepPrecision</b></span>
+                        <a href="#roundToStepPrecision"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>roundToStepPrecision(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, stepSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Function: roundToStepPrecision.</p>
+<p>It rounds a given value to the same number of decimal places as the given step size.
+Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/13635455</a></p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given value to round.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>stepSize</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given step size (e.g., of an input range).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded value.</p>
 
                             </div>
                 </td>

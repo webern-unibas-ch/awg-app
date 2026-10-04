@@ -1,0 +1,2089 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EditionSheetViewerSvgComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The EditionSheetViewerSvg component.</p>
+<p>It contains the svg of a single svg sheet
+of the edition view of the app
+and renders that svg sheet with its overlays, zoom and editorial additions.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-edition-sheet-viewer-svg</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/EditionSheetViewerAdditionsPanelComponent.html" target="_self" >EditionSheetViewerAdditionsPanelComponent</a></code>
+                                <code><a href="../components/LicenseComponent.html" target="_self" >LicenseComponent</a></code>
+                                <code><a href="../directives/SvgZoomDirective.html" target="_self" >SvgZoomDirective</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edition-sheet-viewer-svg.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edition-sheet-viewer-svg.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_renderQueue" >_renderQueue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_svgDrawingService" >_svgDrawingService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_svgOverlayService" >_svgOverlayService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_svgRootGroupSelection" >_svgRootGroupSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedTkkOverlays" >selectedTkkOverlays</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#suppliedClasses" >suppliedClasses</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#svg" >svg</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#svgOverlaysState" >svgOverlaysState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#svgRootGroup" >svgRootGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#svgZoom" >svgZoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_clearSheet" >_clearSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_queueRendering" >_queueRendering</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#_renderSheet" >_renderSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_updateTkkOverlaysSelection" >_updateTkkOverlaysSelection</a>
+                            </li>
+                            <li>
+                                <a href="#onAdditionVisibilityChange" >onAdditionVisibilityChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSheetHighlight" >onSheetHighlight</a>
+                            </li>
+                            <li>
+                                <a href="#onSheetSelect" >onSheetSelect</a>
+                            </li>
+                            <li>
+                                <a href="#resetZoom" >resetZoom</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selectedSvgSheet" >selectedSvgSheet</a>
+                            </li>
+                            <li>
+                                <a href="#zoomConfig" >zoomConfig</a>
+                            </li>
+                            <li>
+                                <a href="#zoomValue" >zoomValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selectLinkBoxRequest" >selectLinkBoxRequest</a>
+                            </li>
+                            <li>
+                                <a href="#selectTkkOverlaysRequest" >selectTkkOverlaysRequest</a>
+                            </li>
+                            <li>
+                                <a href="#zoomValue" >zoomValue</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:160</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSheetViewerSvgComponent.</p>
+<p>It renders the selected svg sheet after the view is rendered
+and whenever the selected svg sheet changes,
+and it updates the tkk overlays according to their state.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSvgSheet"></a>
+                        <b>selectedSvgSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: selectedSvgSheet.</p>
+<p>It holds the selected svg sheet.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zoomConfig"></a>
+                        <b>zoomConfig</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/ZoomConfig.html" target="_self" >ZoomConfig</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:77</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: zoomConfig.</p>
+<p>It holds the configuration of the svg zoom.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zoomValue"></a>
+                        <b>zoomValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:84</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model signal: zoomValue.</p>
+<p>It holds the current zoom factor of the svg sheet (two-way bound).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectLinkBoxRequest"></a>
+                        <b>selectLinkBoxRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:91</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly output signal: selectLinkBoxRequest.</p>
+<p>It emits the id of a selected link box.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectTkkOverlaysRequest"></a>
+                        <b>selectTkkOverlaysRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgOverlayTkk.html" target="_self" >EditionSvgOverlayTkk[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:98</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly output signal: selectTkkOverlaysRequest.</p>
+<p>It emits the selected tkk overlays.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zoomValue"></a>
+                        <b>zoomValue</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:84</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Model signal: zoomValue.</p>
+<p>It holds the current zoom factor of the svg sheet (two-way bound).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_clearSheet"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_clearSheet</b></span>
+                        <a href="#_clearSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_clearSheet()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _clearSheet.</p>
+<p>It removes the content of the previously rendered svg sheet
+and resets the overlay state and the supplied classes.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the svg sheet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_queueRendering"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_queueRendering</b></span>
+                        <a href="#_queueRendering"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_queueRendering(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="277"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:277</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _queueRendering.</p>
+<p>It queues the rendering of a given svg sheet after the previous rendering.
+The rendering is skipped if the sheet is no longer selected by then.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheet</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given svg sheet.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Queues the rendering.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_renderSheet"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>_renderSheet</b></span>
+                        <a href="#_renderSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_renderSheet(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _renderSheet.</p>
+<p>It renders a given svg sheet with its overlays and supplied classes, and resets the zoom.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheet</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given svg sheet.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Renders the svg sheet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_updateTkkOverlaysSelection"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_updateTkkOverlaysSelection</b></span>
+                        <a href="#_updateTkkOverlaysSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_updateTkkOverlaysSelection(transition: (state: <a href="../interfaces/EditionSvgOverlaysState.html">EditionSvgOverlaysState</a>) => void)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="329"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:329</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _updateTkkOverlaysSelection.</p>
+<p>It updates the state of the tkk overlays with the given state transition
+and emits the selected tkk overlays if the selection has changed.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>transition</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given state transition.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Updates the state of the tkk overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAdditionVisibilityChange"></a>
+                    <span class="name">
+                        <span ><b>onAdditionVisibilityChange</b></span>
+                        <a href="#onAdditionVisibilityChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAdditionVisibilityChange(: <a href="../interfaces/EditionSheetViewerAdditionsPanelChange.html" target="_self">EditionSheetViewerAdditionsPanelChange</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="190"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:190</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onAdditionVisibilityChange.</p>
+<p>It sets the visibility of an editorial addition of the svg sheet as requested by the additions panel:
+the tkk key sets the highlighting of the tkk overlays (hiding them also clears their selection),
+any other key sets the opacity of the supplied class with that name.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSheetViewerAdditionsPanelChange.html" target="_self" >EditionSheetViewerAdditionsPanelChange</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the visibility of the editorial addition.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSheetHighlight"></a>
+                    <span class="name">
+                        <span ><b>onSheetHighlight</b></span>
+                        <a href="#onSheetHighlight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSheetHighlight(target: EventTarget | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onSheetHighlight.</p>
+<p>It sets the highlighted (hovered or focused) tkk overlay
+from the target of a pointerover or focusin on the svg sheet (delegated from the svg element),
+or resets it for no target (pointerleave or focusout).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>target</td>
+                                            <td>
+                                                        <code>EventTarget | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given event target, or null.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the highlighted tkk overlay.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSheetSelect"></a>
+                    <span class="name">
+                        <span ><b>onSheetSelect</b></span>
+                        <a href="#onSheetSelect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSheetSelect(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onSheetSelect.</p>
+<p>It handles a click or an Enter/Space keydown on the svg sheet (delegated from the svg element):
+selecting a link box emits its id, selecting a tkk overlay toggles its selection
+and emits the selected tkk overlays.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given click or keydown event.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Handles the selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetZoom"></a>
+                    <span class="name">
+                        <span ><b>resetZoom</b></span>
+                        <a href="#resetZoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetZoom()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: resetZoom.</p>
+<p>It resets the zoom of the svg sheet via the svg zoom directive.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Resets the zoom.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_renderQueue"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_renderQueue</b></span>
+                        <a href="#_renderQueue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Promise&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Promise.resolve()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private variable: _renderQueue.</p>
+<p>It keeps the promise chain of the sheet renderings
+(renderings never overlap, outdated sheets are skipped).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_svgDrawingService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_svgDrawingService</b></span>
+                        <a href="#_svgDrawingService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionSvgDrawingService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _svgDrawingService.</p>
+<p>It keeps the instance of the injected EditionSvgDrawingService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_svgOverlayService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_svgOverlayService</b></span>
+                        <a href="#_svgOverlayService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionSvgOverlayService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _svgOverlayService.</p>
+<p>It keeps the instance of the injected EditionSvgOverlayService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_svgRootGroupSelection"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_svgRootGroupSelection</b></span>
+                        <a href="#_svgRootGroupSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;D3Selection&gt;(
+        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:158</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly computed signal: _svgRootGroupSelection.</p>
+<p>It holds the d3 selection of the svg root group (the element is stable across renderings).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTkkOverlays"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedTkkOverlays</b></span>
+                        <a href="#selectedTkkOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;EditionSvgOverlayTkk[]&gt;(() &#x3D;&gt;
+        this._svgOverlayService.getSelectedTkkOverlays(this.svgOverlaysState())
+    )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: selectedTkkOverlays.</p>
+<p>It holds the selected tkk overlays (including all parts of multi-part overlays).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="suppliedClasses"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>suppliedClasses</b></span>
+                        <a href="#suppliedClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;string[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: suppliedClasses.</p>
+<p>It holds the names of the supplied classes of the svg sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svg"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>svg</b></span>
+                        <a href="#svg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild.required&lt;ElementRef&lt;SVGSVGElement&gt;&gt;(&#x27;svg&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly view child signal: svg.</p>
+<p>It holds the reference to the svg element of the sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgOverlaysState"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>svgOverlaysState</b></span>
+                        <a href="#svgOverlaysState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;EditionSvgOverlaysState&gt;(this._svgOverlayService.createSvgOverlaysState())</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: svgOverlaysState.</p>
+<p>It holds the state of the svg overlays of the rendered svg sheet
+(available tkk overlays, selection, hover and highlighting).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgRootGroup"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>svgRootGroup</b></span>
+                        <a href="#svgRootGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild.required&lt;ElementRef&lt;SVGGElement&gt;&gt;(&#x27;svgRootGroup&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly view child signal: svgRootGroup.</p>
+<p>It holds the reference to the root group of the svg sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgZoom"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>svgZoom</b></span>
+                        <a href="#svgZoom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild.required(SvgZoomDirective)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/viewer/svg/edition-sheet-viewer-svg.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly view child signal: svgZoom.</p>
+<p>It holds the svg zoom directive of the svg sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    afterRenderEffect,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    effect,
+    ElementRef,
+    inject,
+    input,
+    model,
+    output,
+    signal,
+    untracked,
+    viewChild,
+} from &#x27;@angular/core&#x27;;
+
+import * as D3_SELECTION from &#x27;d3-selection&#x27;;
+
+import { LicenseComponent } from &#x27;@awg-shared/license/license.component&#x27;;
+import { SvgZoomDirective } from &#x27;@awg-shared/zoom/svg-zoom.directive&#x27;;
+import { ZoomConfig } from &#x27;@awg-shared/zoom/zoom.model&#x27;;
+
+import { D3Selection } from &#x27;@awg-views/edition-view/models/d3-selection.model&#x27;;
+import {
+    EditionSvgOverlaysState,
+    EditionSvgOverlayTkk,
+    EditionSvgOverlayTypes,
+} from &#x27;@awg-views/edition-view/models/edition-svg-overlay.model&#x27;;
+import { EditionSvgSheet } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
+import { EditionSvgDrawingService } from &#x27;@awg-views/edition-view/services/edition-svg-drawing.service&#x27;;
+import { EditionSvgOverlayService } from &#x27;@awg-views/edition-view/services/edition-svg-overlay.service&#x27;;
+
+import { EditionSheetViewerAdditionsPanelComponent } from &#x27;../additions-panel/edition-sheet-viewer-additions-panel.component&#x27;;
+import { EditionSheetViewerAdditionsPanelChange } from &#x27;../additions-panel/edition-sheet-viewer-additions-panel.model&#x27;;
+
+/**
+ * The EditionSheetViewerSvg component.
+ *
+ * It contains the svg of a single svg sheet
+ * of the edition view of the app
+ * and renders that svg sheet with its overlays, zoom and editorial additions.
+ */
+@Component({
+    selector: &#x27;awg-edition-sheet-viewer-svg&#x27;,
+    templateUrl: &#x27;./edition-sheet-viewer-svg.component.html&#x27;,
+    styleUrls: [&#x27;./edition-sheet-viewer-svg.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
+})
+export class EditionSheetViewerSvgComponent {
+    /**
+     * Private readonly injection variable: _svgDrawingService.
+     *
+     * It keeps the instance of the injected EditionSvgDrawingService.
+     */
+    private readonly _svgDrawingService &#x3D; inject(EditionSvgDrawingService);
+
+    /**
+     * Private readonly injection variable: _svgOverlayService.
+     *
+     * It keeps the instance of the injected EditionSvgOverlayService.
+     */
+    private readonly _svgOverlayService &#x3D; inject(EditionSvgOverlayService);
+
+    /**
+     * Readonly input signal: selectedSvgSheet.
+     *
+     * It holds the selected svg sheet.
+     */
+    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheet&gt;();
+
+    /**
+     * Readonly input signal: zoomConfig.
+     *
+     * It holds the configuration of the svg zoom.
+     */
+    readonly zoomConfig &#x3D; input.required&lt;ZoomConfig&gt;();
+
+    /**
+     * Model signal: zoomValue.
+     *
+     * It holds the current zoom factor of the svg sheet (two-way bound).
+     */
+    readonly zoomValue &#x3D; model.required&lt;number&gt;();
+
+    /**
+     * Readonly output signal: selectLinkBoxRequest.
+     *
+     * It emits the id of a selected link box.
+     */
+    readonly selectLinkBoxRequest &#x3D; output&lt;string&gt;();
+
+    /**
+     * Readonly output signal: selectTkkOverlaysRequest.
+     *
+     * It emits the selected tkk overlays.
+     */
+    readonly selectTkkOverlaysRequest &#x3D; output&lt;EditionSvgOverlayTkk[]&gt;();
+
+    /**
+     * Readonly view child signal: svg.
+     *
+     * It holds the reference to the svg element of the sheet.
+     */
+    readonly svg &#x3D; viewChild.required&lt;ElementRef&lt;SVGSVGElement&gt;&gt;(&#x27;svg&#x27;);
+
+    /**
+     * Readonly view child signal: svgRootGroup.
+     *
+     * It holds the reference to the root group of the svg sheet.
+     */
+    readonly svgRootGroup &#x3D; viewChild.required&lt;ElementRef&lt;SVGGElement&gt;&gt;(&#x27;svgRootGroup&#x27;);
+
+    /**
+     * Readonly view child signal: svgZoom.
+     *
+     * It holds the svg zoom directive of the svg sheet.
+     */
+    readonly svgZoom &#x3D; viewChild.required(SvgZoomDirective);
+
+    /**
+     * Readonly signal: svgOverlaysState.
+     *
+     * It holds the state of the svg overlays of the rendered svg sheet
+     * (available tkk overlays, selection, hover and highlighting).
+     */
+    readonly svgOverlaysState &#x3D; signal&lt;EditionSvgOverlaysState&gt;(this._svgOverlayService.createSvgOverlaysState());
+
+    /**
+     * Readonly computed signal: selectedTkkOverlays.
+     *
+     * It holds the selected tkk overlays (including all parts of multi-part overlays).
+     */
+    readonly selectedTkkOverlays &#x3D; computed&lt;EditionSvgOverlayTkk[]&gt;(() &#x3D;&gt;
+        this._svgOverlayService.getSelectedTkkOverlays(this.svgOverlaysState())
+    );
+
+    /**
+     * Readonly signal: suppliedClasses.
+     *
+     * It holds the names of the supplied classes of the svg sheet.
+     */
+    readonly suppliedClasses &#x3D; signal&lt;string[]&gt;([]);
+
+    /**
+     * Private variable: _renderQueue.
+     *
+     * It keeps the promise chain of the sheet renderings
+     * (renderings never overlap, outdated sheets are skipped).
+     */
+    private _renderQueue: Promise&lt;void&gt; &#x3D; Promise.resolve();
+
+    /**
+     * Private readonly computed signal: _svgRootGroupSelection.
+     *
+     * It holds the d3 selection of the svg root group (the element is stable across renderings).
+     */
+    private readonly _svgRootGroupSelection &#x3D; computed&lt;D3Selection&gt;(
+        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    );
+
+    /**
+     * Constructor of the EditionSheetViewerSvgComponent.
+     *
+     * It renders the selected svg sheet after the view is rendered
+     * and whenever the selected svg sheet changes,
+     * and it updates the tkk overlays according to their state.
+     */
+    constructor() {
+        afterRenderEffect(() &#x3D;&gt; {
+            const sheet &#x3D; this.selectedSvgSheet();
+            untracked(() &#x3D;&gt; this._queueRendering(sheet));
+        });
+
+        effect(() &#x3D;&gt; {
+            this._svgOverlayService.updateTkkOverlays(this._svgRootGroupSelection(), this.svgOverlaysState());
+        });
+    }
+
+    /**
+     * Public method: onAdditionVisibilityChange.
+     *
+     * It sets the visibility of an editorial addition of the svg sheet as requested by the additions panel:
+     * the tkk key sets the highlighting of the tkk overlays (hiding them also clears their selection),
+     * any other key sets the opacity of the supplied class with that name.
+     *
+     * @param {EditionSheetViewerAdditionsPanelChange} change The given addition key and its requested visibility.
+     * @returns {void} Sets the visibility of the editorial addition.
+     */
+    onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
+        if (key &#x3D;&#x3D;&#x3D; EditionSvgOverlayTypes.tkk) {
+            this._updateTkkOverlaysSelection(state &#x3D;&gt;
+                this._svgOverlayService.setTkkOverlaysHighlight(state, isVisible)
+            );
+        } else {
+            this._svgDrawingService.toggleSuppliedClassOpacity(this._svgRootGroupSelection(), key, isVisible);
+        }
+    }
+
+    /**
+     * Public method: onSheetSelect.
+     *
+     * It handles a click or an Enter/Space keydown on the svg sheet (delegated from the svg element):
+     * selecting a link box emits its id, selecting a tkk overlay toggles its selection
+     * and emits the selected tkk overlays.
+     *
+     * @param {Event} event The given click or keydown event.
+     * @returns {void} Handles the selection.
+     */
+    onSheetSelect(event: Event): void {
+        const overlay &#x3D; this._svgOverlayService.getSvgOverlay(event.target);
+        if (!overlay) {
+            return;
+        }
+        // Prevent default actions of the keys (e.g., scrolling on Space)
+        event.preventDefault();
+
+        if (overlay.type &#x3D;&#x3D;&#x3D; EditionSvgOverlayTypes.linkBox) {
+            this.selectLinkBoxRequest.emit(overlay.id);
+            return;
+        }
+
+        this._updateTkkOverlaysSelection(state &#x3D;&gt;
+            this._svgOverlayService.toggleTkkOverlaySelection(state, overlay.dataId)
+        );
+    }
+
+    /**
+     * Public method: onSheetHighlight.
+     *
+     * It sets the highlighted (hovered or focused) tkk overlay
+     * from the target of a pointerover or focusin on the svg sheet (delegated from the svg element),
+     * or resets it for no target (pointerleave or focusout).
+     *
+     * @param {EventTarget | null} target The given event target, or null.
+     * @returns {void} Sets the highlighted tkk overlay.
+     */
+    onSheetHighlight(target: EventTarget | null): void {
+        const dataId &#x3D; this._svgOverlayService.getTkkDataId(target);
+        this.svgOverlaysState.update(state &#x3D;&gt; this._svgOverlayService.setTkkOverlayHover(state, dataId));
+    }
+
+    /**
+     * Public method: resetZoom.
+     *
+     * It resets the zoom of the svg sheet via the svg zoom directive.
+     *
+     * @returns {void} Resets the zoom.
+     */
+    resetZoom(): void {
+        this.svgZoom().reset();
+    }
+
+    /**
+     * Private method: _clearSheet.
+     *
+     * It removes the content of the previously rendered svg sheet
+     * and resets the overlay state and the supplied classes.
+     *
+     * @returns {void} Clears the svg sheet.
+     */
+    private _clearSheet(): void {
+        this._svgRootGroupSelection().selectAll(&#x27;*&#x27;).remove();
+        this.svgOverlaysState.set(this._svgOverlayService.createSvgOverlaysState());
+        this.suppliedClasses.set([]);
+    }
+
+    /**
+     * Private method: _queueRendering.
+     *
+     * It queues the rendering of a given svg sheet after the previous rendering.
+     * The rendering is skipped if the sheet is no longer selected by then.
+     *
+     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @returns {void} Queues the rendering.
+     */
+    private _queueRendering(sheet: EditionSvgSheet): void {
+        this._renderQueue &#x3D; this._renderQueue
+            .then(() &#x3D;&gt; (sheet &#x3D;&#x3D;&#x3D; this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
+            .catch(error &#x3D;&gt; console.error(&#x27;[EditionSheetViewerSvg] Failed to render svg sheet&#x27;, error));
+    }
+
+    /**
+     * Private method: _renderSheet.
+     *
+     * It renders a given svg sheet with its overlays and supplied classes, and resets the zoom.
+     *
+     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @returns {Promise&lt;void&gt;} Renders the svg sheet.
+     */
+    private async _renderSheet(sheet: EditionSvgSheet): Promise&lt;void&gt; {
+        this._clearSheet();
+
+        const svgFilePath &#x3D; sheet.content?.[0]?.svg;
+        if (!svgFilePath) {
+            return;
+        }
+
+        const svgSelection &#x3D; await this._svgDrawingService.createSvg(
+            svgFilePath,
+            this.svg().nativeElement,
+            this.svgRootGroup().nativeElement
+        );
+        if (!svgSelection) {
+            console.warn(&#x27;[EditionSheetViewerSvg] Failed to create svg sheet selection&#x27;);
+            return;
+        }
+
+        this.svgZoom().reset();
+
+        const rootGroupSelection &#x3D; this._svgRootGroupSelection();
+        this.svgOverlaysState.set(
+            this._svgOverlayService.createSvgOverlaysState(
+                this._svgOverlayService.createSvgOverlays(rootGroupSelection)
+            )
+        );
+        this.suppliedClasses.set(this._svgDrawingService.getSuppliedClasses(rootGroupSelection));
+    }
+
+    /**
+     * Private method: _updateTkkOverlaysSelection.
+     *
+     * It updates the state of the tkk overlays with the given state transition
+     * and emits the selected tkk overlays if the selection has changed.
+     *
+     * @param {(state: EditionSvgOverlaysState) &#x3D;&gt; EditionSvgOverlaysState} transition The given state transition.
+     * @returns {void} Updates the state of the tkk overlays.
+     */
+    private _updateTkkOverlaysSelection(transition: (state: EditionSvgOverlaysState) &#x3D;&gt; EditionSvgOverlaysState): void {
+        const previousSelectedDataIds &#x3D; this.svgOverlaysState().selectedDataIds;
+        this.svgOverlaysState.update(transition);
+        if (this.svgOverlaysState().selectedDataIds !&#x3D;&#x3D; previousSelectedDataIds) {
+            this.selectTkkOverlaysRequest.emit(this.selectedTkkOverlays());
+        }
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;svg
+    #svg
+    #svgZoom&#x3D;&quot;awgSvgZoom&quot;
+    class&#x3D;&quot;awg-edition-sheet-viewer-svg&quot;
+    awgSvgZoom
+    [zoomConfig]&#x3D;&quot;zoomConfig()&quot;
+    [zoomTarget]&#x3D;&quot;svgRootGroup&quot;
+    [(zoomValue)]&#x3D;&quot;zoomValue&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    (click)&#x3D;&quot;onSheetSelect($event)&quot;
+    (keydown.enter)&#x3D;&quot;onSheetSelect($event)&quot;
+    (keydown.space)&#x3D;&quot;onSheetSelect($event)&quot;
+    (pointerover)&#x3D;&quot;onSheetHighlight($event.target)&quot;
+    (focusin)&#x3D;&quot;onSheetHighlight($event.target)&quot;
+    (pointerleave)&#x3D;&quot;onSheetHighlight(null)&quot;
+    (focusout)&#x3D;&quot;onSheetHighlight(null)&quot;&gt;
+    &lt;g #svgRootGroup class&#x3D;&quot;awg-edition-sheet-viewer-svg-root-group&quot; /&gt;
+&lt;/svg&gt;
+
+&lt;awg-license /&gt;
+
+@let hasTkkOverlays &#x3D; svgOverlaysState().tkkOverlays.length &gt; 0;
+@let hasSuppliedClasses &#x3D; suppliedClasses().length &gt; 0;
+@let hasAdditions &#x3D; hasTkkOverlays || hasSuppliedClasses;
+@if (hasAdditions) {
+    &lt;awg-edition-sheet-viewer-additions-panel
+        [sheetId]&#x3D;&quot;selectedSvgSheet().id&quot;
+        [suppliedClasses]&#x3D;&quot;suppliedClasses()&quot;
+        [hasTkkOverlays]&#x3D;&quot;hasTkkOverlays&quot;
+        (visibilityChange)&#x3D;&quot;onAdditionVisibilityChange($event)&quot; /&gt;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./edition-sheet-viewer-svg.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+
+:host {
+    display: block;
+    height: 100%;
+    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+    border: 1px solid $border-grey;
+    border-radius: 5px;
+}
+
+/* svg sheet overlays (injected at runtime, so not covered by view encapsulation) */
+:host ::ng-deep {
+    .awg-edition-sheet-viewer-svg {
+        // Only the box path (first child), not the label glyphs;
+        // !important is needed to override the inline fill style of the svg files
+        g.link-box {
+            cursor: pointer;
+
+            &gt; path:first-child {
+                fill: #dddddd !important;
+            }
+
+            &amp;:hover &gt; path:first-child,
+            &amp;:focus-visible &gt; path:first-child {
+                fill: #eeeeee !important;
+            }
+        }
+
+        rect.tkk-overlay-group-box {
+            cursor: pointer;
+        }
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><svg    #svg    #svgZoom="awgSvgZoom"    class="awg-edition-sheet-viewer-svg"    awgSvgZoom    [zoomConfig]="zoomConfig()"    [zoomTarget]="svgRootGroup"    [(zoomValue)]="zoomValue"    tabindex="-1"    (click)="onSheetSelect($event)"    (keydown.enter)="onSheetSelect($event)"    (keydown.space)="onSheetSelect($event)"    (pointerover)="onSheetHighlight($event.target)"    (focusin)="onSheetHighlight($event.target)"    (pointerleave)="onSheetHighlight(null)"    (focusout)="onSheetHighlight(null)">    <g #svgRootGroup class="awg-edition-sheet-viewer-svg-root-group" /></svg><awg-license />@let hasTkkOverlays = svgOverlaysState().tkkOverlays.length > 0;@let hasSuppliedClasses = suppliedClasses().length > 0;@let hasAdditions = hasTkkOverlays || hasSuppliedClasses;@if (hasAdditions) {    <awg-edition-sheet-viewer-additions-panel        [sheetId]="selectedSvgSheet().id"        [suppliedClasses]="suppliedClasses()"        [hasTkkOverlays]="hasTkkOverlays"        (visibilityChange)="onAdditionVisibilityChange($event)" />}</div>'
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'EditionSheetFacetItemLinkDirective', 'selector': 'a[awgEditionSheetFacetItemLink]'},{'name': 'EditionSheetFacetScrollDirective', 'selector': '[awgEditionSheetFacetScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'SvgZoomDirective', 'selector': 'svg[awgSvgZoom]'}];
+    var ACTUAL_COMPONENT = {'name': 'EditionSheetViewerSvgComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionSheetViewerSvgComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

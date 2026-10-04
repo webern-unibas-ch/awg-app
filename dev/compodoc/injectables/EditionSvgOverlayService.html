@@ -143,7 +143,9 @@
             </p>
             <p class="comment">
                 <p>The EditionSvgOverlay service.</p>
-<p>It handles the creation and handling of the SVG overlays for the edition view.</p>
+<p>It draws the SVG overlays for the edition view (tkk overlay boxes)
+and provides stateless helpers for their interaction (target resolution, state transitions, colors).
+The state itself and the events are held and handled by the consuming component.</p>
 <p>Provided in: <code>root</code>.</p>
 
             </p>
@@ -162,6 +164,11 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_linkBoxLabel" >_linkBoxLabel</a>
+                            </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
@@ -184,25 +191,18 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_tkkOverlaysState" >_tkkOverlaysState</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_tkkOverlayBoxClass" >_tkkOverlayBoxClass</a>
                             </li>
                             <li>
-                                <a href="#linkBoxOverlayFillColor" >linkBoxOverlayFillColor</a>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_tkkOverlayColors" >_tkkOverlayColors</a>
                             </li>
                             <li>
-                                <a href="#linkBoxOverlayHoverFillColor" >linkBoxOverlayHoverFillColor</a>
-                            </li>
-                            <li>
-                                <a href="#tkkOverlayFillColor" >tkkOverlayFillColor</a>
-                            </li>
-                            <li>
-                                <a href="#tkkOverlayHoverFillColor" >tkkOverlayHoverFillColor</a>
-                            </li>
-                            <li>
-                                <a href="#tkkOverlaySelectionFillColor" >tkkOverlaySelectionFillColor</a>
-                            </li>
-                            <li>
-                                <a href="#tkkOverlayTransparentFillColor" >tkkOverlayTransparentFillColor</a>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_tkkOverlayLabel" >_tkkOverlayLabel</a>
                             </li>
                         </ul>
                     </td>
@@ -218,43 +218,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_createLinkBoxOverlay" >_createLinkBoxOverlay</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_createLinkBoxOverlayHandlers" >_createLinkBoxOverlayHandlers</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_createOverlaysByType" >_createOverlaysByType</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_createTkkOverlay" >_createTkkOverlay</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#_createTkkOverlayGroup" >_createTkkOverlayGroup</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_createTkkOverlayHandlers" >_createTkkOverlayHandlers</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#_getOverlayGroupRectSelection" >_getOverlayGroupRectSelection</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_getOverlaysAndSelection" >_getOverlaysAndSelection</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_getOverlaysById" >_getOverlaysById</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_getSelectedOverlays" >_getSelectedOverlays</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -265,17 +233,31 @@
                                 <a href="#_getTkkOverlayColor" >_getTkkOverlayColor</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_updateTkkOverlayColor" >_updateTkkOverlayColor</a>
-                            </li>
-                            <li>
-                                <a href="#clearSvgOverlays" >clearSvgOverlays</a>
-                            </li>
-                            <li>
                                 <a href="#createSvgOverlays" >createSvgOverlays</a>
                             </li>
                             <li>
-                                <a href="#toggleTkkOverlayHighlights" >toggleTkkOverlayHighlights</a>
+                                <a href="#createSvgOverlaysState" >createSvgOverlaysState</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectedTkkOverlays" >getSelectedTkkOverlays</a>
+                            </li>
+                            <li>
+                                <a href="#getSvgOverlay" >getSvgOverlay</a>
+                            </li>
+                            <li>
+                                <a href="#getTkkDataId" >getTkkDataId</a>
+                            </li>
+                            <li>
+                                <a href="#setTkkOverlayHover" >setTkkOverlayHover</a>
+                            </li>
+                            <li>
+                                <a href="#setTkkOverlaysHighlight" >setTkkOverlaysHighlight</a>
+                            </li>
+                            <li>
+                                <a href="#toggleTkkOverlaySelection" >toggleTkkOverlaySelection</a>
+                            </li>
+                            <li>
+                                <a href="#updateTkkOverlays" >updateTkkOverlays</a>
                             </li>
                         </ul>
                     </td>
@@ -285,20 +267,6 @@
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#hasAvailableTkkOverlays" >hasAvailableTkkOverlays</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -309,494 +277,6 @@
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_createLinkBoxOverlay"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_createLinkBoxOverlay</b></span>
-                        <a href="#_createLinkBoxOverlay"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createLinkBoxOverlay(svgRootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, group: SVGGElement, onSelectFn: (id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="246"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:246</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _createLinkBoxOverlay.</p>
-<p>It creates the D3 SVG overlay for the given link box group.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">                         which receives the id of the clicked link box group.</code></pre></div></div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>svgRootGroupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>group</td>
-                                            <td>
-                                                        <code>SVGGElement</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given link box group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>onSelectFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given callback function for the click event of the link box overlay,
-which receives the id of the clicked link box group.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Creates the D3 SVG link box overlay.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_createLinkBoxOverlayHandlers"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_createLinkBoxOverlayHandlers</b></span>
-                        <a href="#_createLinkBoxOverlayHandlers"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createLinkBoxOverlayHandlers(groupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, pathSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, groupId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, onSelectFn: (id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="280"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:280</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _createLinkBoxOverlayHandlers.</p>
-<p>Attaches event handlers for link box overlays.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>groupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The D3 selection of the link box group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>pathSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The D3 selection of the path element.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>groupId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The id of the link box group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>onSelectFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The callback for click events.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_createOverlaysByType"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_createOverlaysByType</b></span>
-                        <a href="#_createOverlaysByType"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createOverlaysByType(overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlaysState: <a href="../interfaces/EditionSvgOverlayState.html" target="_self">EditionSvgOverlayState</a>, onTkkOverlaySelectFn: (selectedOverlays: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay[]</a>) => void, createOverlayFn: (group: SVGGElement, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="213"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:213</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _createOverlaysByType.</p>
-<p>It creates the D3 SVG overlays for the given overlayType.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The type of the overlay to create.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>rootGroupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlaysState</td>
-                                            <td>
-                                                            <code><a href="../interfaces/EditionSvgOverlayState.html" target="_self" >EditionSvgOverlayState</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The state object for the overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>onTkkOverlaySelectFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The callback function for the click event of the tkk overlay.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>createOverlayFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The function to create the overlay.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Creates the D3 SVG link box overlays.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_createTkkOverlay"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_createTkkOverlay</b></span>
-                        <a href="#_createTkkOverlay"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlay(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, availableOverlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>, group: SVGGElement)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="312"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:312</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _createTkkOverlay.</p>
-<p>It creates the D3 SVG overlay for the given tkk group.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>rootGroupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>availableOverlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given list of available overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>group</td>
-                                            <td>
-                                                        <code>SVGGElement</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given tkk group.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Creates the D3 SVG tkk overlay.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -812,15 +292,15 @@ which receives the id of the clicked link box group.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlayGroup(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dim: DOMRect)</code>
+                    <code>_createTkkOverlayGroup(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, dim: DOMRect)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="343"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:343</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:302</a></div>
                         </td>
                     </tr>
 
@@ -828,8 +308,7 @@ which receives the id of the clicked link box group.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _createTkkOverlayGroup.</p>
-<p>It creates an overlay group with an overlay box (rect) for the given tkk group
-and returns the D3 selection of the created overlay group.</p>
+<p>It creates an overlay group with an overlay box (rect) for the given tkk group.</p>
 </div>
 
                             <div class="io-description">
@@ -848,7 +327,7 @@ and returns the D3 selection of the created overlay group.</p>
                                         <tr>
                                                 <td>svgRootGroup</td>
                                             <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
                                             </td>
 
                                             <td>
@@ -897,148 +376,12 @@ and returns the D3 selection of the created overlay group.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The selection of the overlay group, or undefined.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_createTkkOverlayHandlers"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_createTkkOverlayHandlers</b></span>
-                        <a href="#_createTkkOverlayHandlers"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlayHandlers(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlaysState: <a href="../interfaces/EditionSvgOverlayState.html" target="_self">EditionSvgOverlayState</a>, onTkkOverlaySelectFn: (selectedOverlays: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay[]</a>) => void, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="390"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:390</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _createTkkOverlayHandlers.</p>
-<p>Creates event handlers for each unique dataId in tkk overlays.</p>
-<b>Example :</b><div><pre class="line-numbers"><code class="language-none">                                   which receives the list of selected tkk overlays.</code></pre></div></div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Default value</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>rootGroupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                            </td>
-
-                                            <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlaysState</td>
-                                            <td>
-                                                            <code><a href="../interfaces/EditionSvgOverlayState.html" target="_self" >EditionSvgOverlayState</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                            </td>
-
-                                            <td>
-                                                    <p>The state object for the tkk overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>onTkkOverlaySelectFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                            </td>
-
-                                            <td>
-                                                    <p>The callback function for the click event of the tkk overlay,
-which receives the list of selected tkk overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-                                            <td>
-                                                    <code>EditionSvgOverlayTypes.tkk</code>
-                                            </td>
-
-                                            <td>
-                                                    <p>The overlay type (should be &#39;tkk&#39;).</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
-                                
+                                <p>Creates the overlay group.</p>
+
                             </div>
                 </td>
             </tr>
@@ -1059,15 +402,15 @@ which receives the list of selected tkk overlays.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getOverlayGroupRectSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_getOverlayGroupRectSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="443"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:443</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="336"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:336</a></div>
                         </td>
                     </tr>
 
@@ -1075,7 +418,7 @@ which receives the list of selected tkk overlays.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _getOverlayGroupRectSelection.</p>
-<p>It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.</p>
+<p>It selects the tkk overlay boxes (rect) of the elements identified by the given data id.</p>
 </div>
 
                             <div class="io-description">
@@ -1119,23 +462,7 @@ which receives the list of selected tkk overlays.</p>
 
 
                                             <td>
-                                                    <p>The given dataId.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given overlay type.</p>
+                                                    <p>The given data id.</p>
 
                                             </td>
                                         </tr>
@@ -1147,305 +474,7 @@ which receives the list of selected tkk overlays.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>The D3 selection of the found element.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_getOverlaysAndSelection"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_getOverlaysAndSelection</b></span>
-                        <a href="#_getOverlaysAndSelection"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getOverlaysAndSelection(svgRootGroup: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, availableOverlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="469"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:469</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _getOverlaysAndSelection.</p>
-<p>It gets the overlays and the D3 selection rectangle for the given data id and overlay type.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>svgRootGroup</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given D3 selection of the SVG root group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>availableOverlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given list of available overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>dataId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given data id.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given overlay type.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>[overlays, overlayGroupRectSelection] The overlays and the D3 selection rect.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_getOverlaysById"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_getOverlaysById</b></span>
-                        <a href="#_getOverlaysById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getOverlaysById(overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="491"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:491</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _getOverlaysById.</p>
-<p>It filters overlays from a list of overlays by a given data id.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>overlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given svg overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>dataId</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given data id.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The found overlays.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_getSelectedOverlays"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_getSelectedOverlays</b></span>
-                        <a href="#_getSelectedOverlays"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getSelectedOverlays(overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="507"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:507</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _getSelectedOverlays.</p>
-<p>It filters a given list of overlays by its selection status.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>overlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given svg overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The selected overlays.</p>
+                                <p>The D3 selection of the found overlay boxes.</p>
 
                             </div>
                 </td>
@@ -1474,8 +503,8 @@ which receives the list of selected tkk overlays.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="522"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:522</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="358"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:358</a></div>
                         </td>
                     </tr>
 
@@ -1547,15 +576,15 @@ otherwise uses group id (default).</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getTkkOverlayColor(overlay: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay</a>, overlayActionType: <a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self">EditionSvgOverlayActionTypes</a>)</code>
+                    <code>_getTkkOverlayColor(dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="536"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:536</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="372"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:372</a></div>
                         </td>
                     </tr>
 
@@ -1563,7 +592,7 @@ otherwise uses group id (default).</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _getTkkOverlayColor.</p>
-<p>It returns the color of the given tkk overlay.</p>
+<p>It returns the color of the tkk overlays with the given data id for the given state.</p>
 </div>
 
                             <div class="io-description">
@@ -1580,9 +609,9 @@ otherwise uses group id (default).</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>overlay</td>
+                                                <td>dataId</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -1591,14 +620,14 @@ otherwise uses group id (default).</p>
 
 
                                             <td>
-                                                    <p>The given overlay.</p>
+                                                    <p>The given data id.</p>
 
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>overlayActionType</td>
+                                                <td>state</td>
                                             <td>
-                                                            <code><a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self" >EditionSvgOverlayActionTypes</a></code>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
                                             </td>
 
                                             <td>
@@ -1607,7 +636,7 @@ otherwise uses group id (default).</p>
 
 
                                             <td>
-                                                    <p>The type of the overlay action (<code>fill</code> or <code>hover</code>).</p>
+                                                    <p>The given state of the svg overlays.</p>
 
                                             </td>
                                         </tr>
@@ -1619,161 +648,7 @@ otherwise uses group id (default).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>The color of the given tkk overlay.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_updateTkkOverlayColor"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_updateTkkOverlayColor</b></span>
-                        <a href="#_updateTkkOverlayColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_updateTkkOverlayColor(overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>, overlayGroupRectSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, overlayActionType: <a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self">EditionSvgOverlayActionTypes</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="561"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:561</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _updateTkkOverlayColor.</p>
-<p>It updates the color of the given tkk overlays.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>overlays</td>
-                                            <td>
-                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given overlays.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayGroupRectSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given overlay group rect selection.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayActionType</td>
-                                            <td>
-                                                            <code><a href="../miscellaneous/enumerations.html#EditionSvgOverlayActionTypes" target="_self" >EditionSvgOverlayActionTypes</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The type of the overlay action (<code>fill</code> or <code>hover</code>).</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Updates the color of the given tkk overlays.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clearSvgOverlays"></a>
-                    <span class="name">
-                        <span ><b>clearSvgOverlays</b></span>
-                        <a href="#clearSvgOverlays"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>clearSvgOverlays()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="120"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:120</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: clearSvgOverlays.</p>
-<p>It clears all SVG overlays.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Clears the SVG overlays.</p>
+                                <p>The color of the tkk overlays.</p>
 
                             </div>
                 </td>
@@ -1793,15 +668,15 @@ otherwise uses group id (default).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createSvgOverlays(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, onLinkBoxSelectFn: (id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void, onTkkOverlaySelectFn: (selected: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay[]</a>) => void)</code>
+<code>createSvgOverlays(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:99</a></div>
                         </td>
                     </tr>
 
@@ -1809,7 +684,677 @@ otherwise uses group id (default).</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: createSvgOverlays.</p>
-<p>It creates the D3 SVG overlays for the textcritical comments and link boxes.</p>
+<p>It draws the overlay boxes for the tkk groups of the given SVG root group,
+makes tkk overlay boxes and link boxes keyboard accessible (focusable buttons/links),
+and returns the available tkk overlays.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rootGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given D3 selection of the SVG root group, or undefined.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlayTkk.html" target="_self" >EditionSvgOverlayTkk[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The available tkk overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSvgOverlaysState"></a>
+                    <span class="name">
+                        <span ><b>createSvgOverlaysState</b></span>
+                        <a href="#createSvgOverlaysState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createSvgOverlaysState(tkkOverlays: <a href="../interfaces/EditionSvgOverlayTkk.html" target="_self">EditionSvgOverlayTkk[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: createSvgOverlaysState.</p>
+<p>It returns the initial state of the svg overlays with the given tkk overlays
+(nothing selected or hovered, highlighted).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tkkOverlays</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSvgOverlayTkk.html" target="_self" >EditionSvgOverlayTkk[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>[]</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The given tkk overlays (default: none).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The initial state of the svg overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectedTkkOverlays"></a>
+                    <span class="name">
+                        <span ><b>getSelectedTkkOverlays</b></span>
+                        <a href="#getSelectedTkkOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSelectedTkkOverlays(state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getSelectedTkkOverlays.</p>
+<p>It returns all selected tkk overlays of the given state
+(including all parts of multi-part overlays) in their original order.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given state of the svg overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlayTkk.html" target="_self" >EditionSvgOverlayTkk[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selected tkk overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSvgOverlay"></a>
+                    <span class="name">
+                        <span ><b>getSvgOverlay</b></span>
+                        <a href="#getSvgOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSvgOverlay(target: EventTarget | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getSvgOverlay.</p>
+<p>It resolves the svg overlay (tkk overlay or link box overlay) hit by a given event target.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>target</td>
+                                            <td>
+                                                        <code>EventTarget | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given event target.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#EditionSvgOverlay" target="_self" >EditionSvgOverlay | undefined</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The hit svg overlay, or undefined.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTkkDataId"></a>
+                    <span class="name">
+                        <span ><b>getTkkDataId</b></span>
+                        <a href="#getTkkDataId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTkkDataId(target: EventTarget | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getTkkDataId.</p>
+<p>It returns the data id of the tkk overlay hit by a given event target, if any.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>target</td>
+                                            <td>
+                                                        <code>EventTarget | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given event target.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The data id of the hit tkk overlay, or undefined.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTkkOverlayHover"></a>
+                    <span class="name">
+                        <span ><b>setTkkOverlayHover</b></span>
+                        <a href="#setTkkOverlayHover"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTkkOverlayHover(state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>, dataId: string | undefined)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="217"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:217</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: setTkkOverlayHover.</p>
+<p>It returns the given state with the given data id as hovered tkk overlay
+(the same state if it is already hovered).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given state of the svg overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>dataId</td>
+                                            <td>
+                                                        <code>string | undefined</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given data id of the hovered tkk overlay, or undefined.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The updated state of the svg overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTkkOverlaysHighlight"></a>
+                    <span class="name">
+                        <span ><b>setTkkOverlaysHighlight</b></span>
+                        <a href="#setTkkOverlaysHighlight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTkkOverlaysHighlight(state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>, isHighlighted: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: setTkkOverlaysHighlight.</p>
+<p>It returns the given state with the given highlighting of the tkk overlays
+(the same state if unchanged). Hiding the tkk overlays also clears their selection.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given state of the svg overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>isHighlighted</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given flag whether the tkk overlays are highlighted.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The updated state of the svg overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleTkkOverlaySelection"></a>
+                    <span class="name">
+                        <span ><b>toggleTkkOverlaySelection</b></span>
+                        <a href="#toggleTkkOverlaySelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleTkkOverlaySelection(state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>, dataId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="252"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:252</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: toggleTkkOverlaySelection.</p>
+<p>It returns the given state with the selection of the tkk overlay(s) with the given data id toggled
+(added or removed).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given state of the svg overlays.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>dataId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given data id to toggle.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The updated state of the svg overlays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateTkkOverlays"></a>
+                    <span class="name">
+                        <span ><b>updateTkkOverlays</b></span>
+                        <a href="#updateTkkOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateTkkOverlays(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, state: <a href="../interfaces/EditionSvgOverlaysState.html" target="_self">EditionSvgOverlaysState</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="273"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:273</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateTkkOverlays.</p>
+<p>It updates the tkk overlay boxes according to the given state:
+it colors them (transparent if not highlighted, otherwise selected before hovered before default),
+sets their pressed state (aria-pressed) according to the selection,
+and disables not highlighted overlay boxes for pointer and keyboard interaction.</p>
 </div>
 
                             <div class="io-description">
@@ -1842,9 +1387,9 @@ otherwise uses group id (default).</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>onLinkBoxSelectFn</td>
+                                                <td>state</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                                            <code><a href="../interfaces/EditionSvgOverlaysState.html" target="_self" >EditionSvgOverlaysState</a></code>
                                             </td>
 
                                             <td>
@@ -1853,23 +1398,7 @@ otherwise uses group id (default).</p>
 
 
                                             <td>
-                                                    <p>The callback function for the click event of the link box overlay, which receives the id of the clicked link box group.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>onTkkOverlaySelectFn</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The callback function for the click event of the tkk overlay, which receives the list of selected tkk overlays.</p>
+                                                    <p>The given state of the svg overlays.</p>
 
                                             </td>
                                         </tr>
@@ -1881,115 +1410,8 @@ otherwise uses group id (default).</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Creates the D3 SVG sheet overlays.</p>
+                                <p>Updates the tkk overlay boxes.</p>
 
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="toggleTkkOverlayHighlights"></a>
-                    <span class="name">
-                        <span ><b>toggleTkkOverlayHighlights</b></span>
-                        <a href="#toggleTkkOverlayHighlights"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>toggleTkkOverlayHighlights(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection | undefined</a>, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, highlight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="174"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:174</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: toggleTkkOverlayHighlights.</p>
-<p>Toggles highlight on or off for all tkk overlays in the given root group selection.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>rootGroupSelection</td>
-                                            <td>
-                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection | undefined</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The D3 selection of the SVG root group, or undefined.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>overlayType</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The overlay type (should be &#39;tkk&#39;).</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>highlight</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>Whether to highlight (true) or remove highlight (false).</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
                             </div>
                 </td>
             </tr>
@@ -2001,6 +1423,46 @@ otherwise uses group id (default).</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_linkBoxLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_linkBoxLabel</b></span>
+                        <a href="#_linkBoxLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Verknüpfte Skizze öffnen&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _linkBoxLabel.</p>
+<p>It keeps the accessible label of the link boxes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -2027,7 +1489,7 @@ otherwise uses group id (default).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -2067,7 +1529,7 @@ otherwise uses group id (default).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:95</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -2107,7 +1569,7 @@ otherwise uses group id (default).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -2147,7 +1609,7 @@ otherwise uses group id (default).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -2165,38 +1627,81 @@ otherwise uses group id (default).</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_tkkOverlaysState"></a>
+                    <a name="_tkkOverlayBoxClass"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_tkkOverlaysState</b></span>
-                        <a href="#_tkkOverlaysState"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_tkkOverlayBoxClass</b></span>
+                        <a href="#_tkkOverlayBoxClass"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgOverlayState.html" target="_self" >EditionSvgOverlayState</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${EditionSvgOverlayTypes.tkk}-overlay-group-box&#x60;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:72</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _tkkOverlayBoxClass.</p>
+<p>It keeps the class name of the tkk overlay boxes (rect).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_tkkOverlayColors"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_tkkOverlayColors</b></span>
+                        <a href="#_tkkOverlayColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-        available: [],
-        selected: [],
-    }</code>
+        fill: &#x27;tomato&#x27;,
+        hover: &#x27;orange&#x27;,
+        selected: &#x27;green&#x27;,
+        transparent: &#x27;transparent&#x27;,
+    } as const</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:39</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _tkkOverlaysState.</p>
-<p>It keeps the state of the tkk overlays for the svg sheet.</p>
+                    <div class="io-description"><p>Private readonly variable: _tkkOverlayColors.</p>
+<p>It keeps the fill colors of the tkk overlay boxes per state.</p>
 </div>
                 </td>
             </tr>
@@ -2207,10 +1712,12 @@ otherwise uses group id (default).</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="linkBoxOverlayFillColor"></a>
+                    <a name="_tkkOverlayLabel"></a>
                     <span class="name">
-                        <span ><b>linkBoxOverlayFillColor</b></span>
-                        <a href="#linkBoxOverlayFillColor"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_tkkOverlayLabel</b></span>
+                        <a href="#_tkkOverlayLabel"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -2222,209 +1729,19 @@ otherwise uses group id (default).</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;#dddddd&#x27;</code>
+                        <i>Default value : </i><code>&#x27;Textkritische Anmerkungen anzeigen&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:79</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: linkBoxOverlayFillColor.</p>
-<p>It keeps the fill color for link boxes.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="linkBoxOverlayHoverFillColor"></a>
-                    <span class="name">
-                        <span ><b>linkBoxOverlayHoverFillColor</b></span>
-                        <a href="#linkBoxOverlayHoverFillColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;#eeeeee&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:36</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: linkBoxOverlayHoverFillColor.</p>
-<p>It keeps the fill color for hovered link boxes.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tkkOverlayFillColor"></a>
-                    <span class="name">
-                        <span ><b>tkkOverlayFillColor</b></span>
-                        <a href="#tkkOverlayFillColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;tomato&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:43</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tkkOverlayFillColor.</p>
-<p>It keeps the fill color for tkk overlays.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tkkOverlayHoverFillColor"></a>
-                    <span class="name">
-                        <span ><b>tkkOverlayHoverFillColor</b></span>
-                        <a href="#tkkOverlayHoverFillColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;orange&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:50</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tkkOverlayHoverFillColor.</p>
-<p>It keeps the fill color for hovered tkk overlays.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tkkOverlaySelectionFillColor"></a>
-                    <span class="name">
-                        <span ><b>tkkOverlaySelectionFillColor</b></span>
-                        <a href="#tkkOverlaySelectionFillColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;green&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:64</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tkkOverlaySelectionFillColor.</p>
-<p>It keeps the fill color for selected tkk overlays.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="tkkOverlayTransparentFillColor"></a>
-                    <span class="name">
-                        <span ><b>tkkOverlayTransparentFillColor</b></span>
-                        <a href="#tkkOverlayTransparentFillColor"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;transparent&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:57</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tkkOverlayTransparentFillColor.</p>
-<p>It keeps the fill color for transparent tkk overlays.</p>
+                    <div class="io-description"><p>Private readonly variable: _tkkOverlayLabel.</p>
+<p>It keeps the accessible label of the tkk overlay boxes.</p>
 </div>
                 </td>
             </tr>
@@ -2433,45 +1750,6 @@ otherwise uses group id (default).</p>
     </table>
 </section>
 
-            <section data-compodoc="block-accessors">
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="hasAvailableTkkOverlays"></a>
-                        <span class="name"><b>hasAvailableTkkOverlays</b><a href="#hasAvailableTkkOverlays"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>hasAvailableTkkOverlays()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/views/edition-view/services/edition-svg-overlay.service.ts:109</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Getter variable: hasAvailableTkkOverlays.</p>
-<p>Returns true if there are available TKK overlays.</p>
-</div>
-
-                                <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
-</section>
     </div>
 
 
@@ -2481,17 +1759,20 @@ otherwise uses group id (default).</p>
 import {
     D3Selection,
     EditionSvgOverlay,
-    EditionSvgOverlayActionTypes,
-    EditionSvgOverlayState,
+    EditionSvgOverlaysState,
+    EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
 } from &#x27;@awg-views/edition-view/models&#x27;;
+import { DATA_TKK_ID } from &#x27;@awg-views/edition-view/models/edition-svg-overlay.model&#x27;;
 
 import { EditionSvgDrawingService } from &#x27;./edition-svg-drawing.service&#x27;;
 
 /**
  * The EditionSvgOverlay service.
  *
- * It handles the creation and handling of the SVG overlays for the edition view.
+ * It draws the SVG overlays for the edition view (tkk overlay boxes)
+ * and provides stateless helpers for their interaction (target resolution, state transitions, colors).
+ * The state itself and the events are held and handled by the consuming component.
  *
  * Provided in: &#x60;root&#x60;.
  */
@@ -2500,56 +1781,23 @@ import { EditionSvgDrawingService } from &#x27;./edition-svg-drawing.service&#x2
 })
 export class EditionSvgOverlayService {
     /**
-     * Public variable: linkBoxOverlayFillColor.
+     * Private readonly injection variable: _svgDrawingService.
      *
-     * It keeps the fill color for link boxes.
+     * It keeps the instance of the injected EditionSvgDrawingService.
      */
-    linkBoxOverlayFillColor &#x3D; &#x27;#dddddd&#x27;;
+    private readonly _svgDrawingService &#x3D; inject(EditionSvgDrawingService);
 
     /**
-     * Public variable: linkBoxOverlayHoverFillColor.
+     * Private readonly variable: _tkkOverlayColors.
      *
-     * It keeps the fill color for hovered link boxes.
+     * It keeps the fill colors of the tkk overlay boxes per state.
      */
-    linkBoxOverlayHoverFillColor &#x3D; &#x27;#eeeeee&#x27;;
-
-    /**
-     * Public variable: tkkOverlayFillColor.
-     *
-     * It keeps the fill color for tkk overlays.
-     */
-    tkkOverlayFillColor &#x3D; &#x27;tomato&#x27;;
-
-    /**
-     * Public variable: tkkOverlayHoverFillColor.
-     *
-     * It keeps the fill color for hovered tkk overlays.
-     */
-    tkkOverlayHoverFillColor &#x3D; &#x27;orange&#x27;;
-
-    /**
-     * Public variable: tkkOverlayTransparentFillColor.
-     *
-     * It keeps the fill color for transparent tkk overlays.
-     */
-    tkkOverlayTransparentFillColor &#x3D; &#x27;transparent&#x27;;
-
-    /**
-     * Public variable: tkkOverlaySelectionFillColor.
-     *
-     * It keeps the fill color for selected tkk overlays.
-     */
-    tkkOverlaySelectionFillColor &#x3D; &#x27;green&#x27;;
-
-    /**
-     * Private variable: _tkkOverlaysState.
-     *
-     * It keeps the state of the tkk overlays for the svg sheet.
-     */
-    private _tkkOverlaysState: EditionSvgOverlayState &#x3D; {
-        available: [],
-        selected: [],
-    };
+    private readonly _tkkOverlayColors &#x3D; {
+        fill: &#x27;tomato&#x27;,
+        hover: &#x27;orange&#x27;,
+        selected: &#x27;green&#x27;,
+        transparent: &#x27;transparent&#x27;,
+    } as const;
 
     /**
      * Private readonly variable: _overlayBoxesOpacity.
@@ -2573,417 +1821,283 @@ export class EditionSvgOverlayService {
     private readonly _overlayBoxCornerRadius &#x3D; 1;
 
     /**
-     * Private readonly injection variable: _svgDrawingService.
+     * Private readonly variable: _tkkOverlayBoxClass.
      *
-     * It keeps the instance of the injected EditionSvgDrawingService.
+     * It keeps the class name of the tkk overlay boxes (rect).
      */
-    private readonly _svgDrawingService &#x3D; inject(EditionSvgDrawingService);
+    private readonly _tkkOverlayBoxClass &#x3D; &#x60;${EditionSvgOverlayTypes.tkk}-overlay-group-box&#x60;;
 
     /**
-     * Getter variable: hasAvailableTkkOverlays.
+     * Private readonly variable: _tkkOverlayLabel.
      *
-     * Returns true if there are available TKK overlays.
+     * It keeps the accessible label of the tkk overlay boxes.
      */
-    get hasAvailableTkkOverlays(): boolean {
-        return !!this._tkkOverlaysState.available.length;
-    }
+    private readonly _tkkOverlayLabel &#x3D; &#x27;Textkritische Anmerkungen anzeigen&#x27;;
 
     /**
-     * Public method: clearSvgOverlays.
+     * Private readonly variable: _linkBoxLabel.
      *
-     * It clears all SVG overlays.
-     *
-     * @returns {void} Clears the SVG overlays.
+     * It keeps the accessible label of the link boxes.
      */
-    clearSvgOverlays(): void {
-        this._tkkOverlaysState &#x3D; { available: [], selected: [] };
-    }
+    private readonly _linkBoxLabel &#x3D; &#x27;Verknüpfte Skizze öffnen&#x27;;
 
     /**
      * Public method: createSvgOverlays.
      *
-     * It creates the D3 SVG overlays for the textcritical comments and link boxes.
+     * It draws the overlay boxes for the tkk groups of the given SVG root group,
+     * makes tkk overlay boxes and link boxes keyboard accessible (focusable buttons/links),
+     * and returns the available tkk overlays.
      *
      * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
-     * @param {Function} onLinkBoxSelectFn The callback function for the click event of the link box overlay, which receives the id of the clicked link box group.
-     * @param {Function} onTkkOverlaySelectFn The callback function for the click event of the tkk overlay, which receives the list of selected tkk overlays.
      *
-     * @returns {void} Creates the D3 SVG sheet overlays.
+     * @returns {EditionSvgOverlayTkk[]} The available tkk overlays.
      */
-    createSvgOverlays(
-        rootGroupSelection: D3Selection | undefined,
-        onLinkBoxSelectFn: (id: string) &#x3D;&gt; void,
-        onTkkOverlaySelectFn: (selected: EditionSvgOverlay[]) &#x3D;&gt; void
-    ): void {
+    createSvgOverlays(rootGroupSelection: D3Selection | undefined): EditionSvgOverlayTkk[] {
         if (!rootGroupSelection) {
-            return;
+            return [];
         }
 
-        // Create link box overlays
-        this._createOverlaysByType(
-            EditionSvgOverlayTypes.linkBox,
-            rootGroupSelection,
-            this._tkkOverlaysState,
-            () &#x3D;&gt; {},
-            group &#x3D;&gt; this._createLinkBoxOverlay(rootGroupSelection, group, onLinkBoxSelectFn)
-        );
+        this._svgDrawingService
+            .getGroupsBySelector(rootGroupSelection, EditionSvgOverlayTypes.linkBox)
+            ?.attr(&#x27;tabindex&#x27;, 0)
+            .attr(&#x27;role&#x27;, &#x27;link&#x27;)
+            .attr(&#x27;aria-label&#x27;, this._linkBoxLabel);
 
-        // Create tkk overlays
-        this._createOverlaysByType(
-            EditionSvgOverlayTypes.tkk,
-            rootGroupSelection,
-            this._tkkOverlaysState,
-            onTkkOverlaySelectFn,
-            group &#x3D;&gt; this._createTkkOverlay(rootGroupSelection, this._tkkOverlaysState.available, group)
-        );
-    }
-
-    /**
-     * Public method: toggleTkkOverlayHighlights.
-     *
-     * Toggles highlight on or off for all tkk overlays in the given root group selection.
-     *
-     * @param {D3Selection| undefined} rootGroupSelection The D3 selection of the SVG root group, or undefined.
-     * @param {string} overlayType The overlay type (should be &#x27;tkk&#x27;).
-     * @param {boolean} highlight Whether to highlight (true) or remove highlight (false).
-     *
-     * @returns {void}
-     */
-    toggleTkkOverlayHighlights(
-        rootGroupSelection: D3Selection | undefined,
-        overlayType: string,
-        highlight: boolean
-    ): void {
-        if (!rootGroupSelection) {
-            return;
-        }
-        const overlayGroups &#x3D; this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
-        if (!overlayGroups) {
-            return;
+        const tkkGroups &#x3D; this._svgDrawingService.getGroupsBySelector(rootGroupSelection, EditionSvgOverlayTypes.tkk);
+        if (!tkkGroups) {
+            return [];
         }
 
-        overlayGroups.nodes().forEach(overlayGroup &#x3D;&gt; {
-            const dataId &#x3D; this._getSvgGroupDataId(overlayGroup as SVGGElement);
-            const [overlays, overlayGroupRectSelection] &#x3D; this._getOverlaysAndSelection(
-                rootGroupSelection,
-                this._tkkOverlaysState.available,
-                dataId,
-                overlayType
-            );
-            const color &#x3D; highlight ? EditionSvgOverlayActionTypes.fill : EditionSvgOverlayActionTypes.transparent;
-            this._updateTkkOverlayColor(overlays, overlayGroupRectSelection, color);
-        });
-    }
+        const overlaysById &#x3D; new Map&lt;string, EditionSvgOverlayTkk&gt;();
+        tkkGroups.nodes().forEach(node &#x3D;&gt; {
+            const group &#x3D; node as SVGGElement;
+            const actualId &#x3D; group.id;
+            const dataId &#x3D; this._getSvgGroupDataId(group);
+            if (!actualId || !dataId) {
+                return;
+            }
 
-    /**
-     * Private method: _createOverlaysByType.
-     *
-     * It creates the D3 SVG overlays for the given overlayType.
-     *
-     * @param {string} overlayType The type of the overlay to create.
-     * @param {D3Selection} rootGroupSelection The given D3 selection of the SVG root group.
-     * @param {EditionSvgOverlayState} overlaysState The state object for the overlays.
-     * @param {Function} onTkkOverlaySelectFn The callback function for the click event of the tkk overlay.
-     * @param {Function} createOverlayFn The function to create the overlay.
-     *
-     * @returns {void} Creates the D3 SVG link box overlays.
-     */
-    private _createOverlaysByType(
-        overlayType: string,
-        rootGroupSelection: D3Selection,
-        overlaysState: EditionSvgOverlayState,
-        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) &#x3D;&gt; void,
-        createOverlayFn: (group: SVGGElement, type: string) &#x3D;&gt; void
-    ): void {
-        const overlayGroups &#x3D; this._svgDrawingService.getGroupsBySelector(rootGroupSelection, overlayType);
-        if (!overlayGroups) {
-            return;
-        }
-
-        overlayGroups.nodes().forEach(overlayGroup &#x3D;&gt; {
-            createOverlayFn(overlayGroup as SVGGElement, overlayType);
+            if (!overlaysById.has(actualId)) {
+                overlaysById.set(actualId, { type: EditionSvgOverlayTypes.tkk, id: actualId, dataId });
+            }
+            this._createTkkOverlayGroup(rootGroupSelection, actualId, group.getBBox());
         });
 
-        if (overlayType &#x3D;&#x3D;&#x3D; EditionSvgOverlayTypes.tkk) {
-            this._createTkkOverlayHandlers(rootGroupSelection, overlaysState, onTkkOverlaySelectFn, overlayType);
-        }
+        return [...overlaysById.values()];
     }
 
     /**
-     * Private method: _createLinkBoxOverlay.
+     * Public method: getSvgOverlay.
      *
-     * It creates the D3 SVG overlay for the given link box group.
+     * It resolves the svg overlay (tkk overlay or link box overlay) hit by a given event target.
      *
-     * @param {D3Selection} svgRootGroupSelection The given D3 selection of the SVG root group.
-     * @param {SVGGElement} group The given link box group.
-     * @param {function} onSelectFn The given callback function for the click event of the link box overlay,
-     *                              which receives the id of the clicked link box group.
+     * @param {EventTarget | null} target The given event target.
      *
-     * @returns {void} Creates the D3 SVG link box overlay.
+     * @returns {EditionSvgOverlay | undefined} The hit svg overlay, or undefined.
      */
-    private _createLinkBoxOverlay(
-        svgRootGroupSelection: D3Selection,
-        group: SVGGElement,
-        onSelectFn: (id: string) &#x3D;&gt; void
-    ): void {
-        const linkBoxGroupId: string &#x3D; group.id;
-        const linkBoxGroupSelection &#x3D; this._svgDrawingService.getD3SelectionById(svgRootGroupSelection, linkBoxGroupId);
-        if (!linkBoxGroupSelection) {
+    getSvgOverlay(target: EventTarget | null): EditionSvgOverlay | undefined {
+        if (!(target instanceof Element)) {
+            return undefined;
+        }
+
+        const tkkGroup &#x3D; target.closest(&#x60;rect.${this._tkkOverlayBoxClass}&#x60;)?.closest(&#x60;g.${EditionSvgOverlayTypes.tkk}&#x60;);
+        if (tkkGroup) {
+            return {
+                type: EditionSvgOverlayTypes.tkk,
+                id: tkkGroup.id,
+                dataId: this._getSvgGroupDataId(tkkGroup as SVGGElement),
+            };
+        }
+
+        const linkBoxGroup &#x3D; target.closest(&#x60;g.${EditionSvgOverlayTypes.linkBox}&#x60;);
+        if (linkBoxGroup?.id) {
+            return { type: EditionSvgOverlayTypes.linkBox, id: linkBoxGroup.id };
+        }
+
+        return undefined;
+    }
+
+    /**
+     * Public method: getTkkDataId.
+     *
+     * It returns the data id of the tkk overlay hit by a given event target, if any.
+     *
+     * @param {EventTarget | null} target The given event target.
+     *
+     * @returns {string | undefined} The data id of the hit tkk overlay, or undefined.
+     */
+    getTkkDataId(target: EventTarget | null): string | undefined {
+        const overlay &#x3D; this.getSvgOverlay(target);
+        return overlay?.type &#x3D;&#x3D;&#x3D; EditionSvgOverlayTypes.tkk ? overlay.dataId : undefined;
+    }
+
+    /**
+     * Public method: createSvgOverlaysState.
+     *
+     * It returns the initial state of the svg overlays with the given tkk overlays
+     * (nothing selected or hovered, highlighted).
+     *
+     * @param {EditionSvgOverlayTkk[]} [tkkOverlays] The given tkk overlays (default: none).
+     *
+     * @returns {EditionSvgOverlaysState} The initial state of the svg overlays.
+     */
+    createSvgOverlaysState(tkkOverlays: EditionSvgOverlayTkk[] &#x3D; []): EditionSvgOverlaysState {
+        return { tkkOverlays, selectedDataIds: new Set(), hoveredDataId: undefined, isHighlighted: true };
+    }
+
+    /**
+     * Public method: getSelectedTkkOverlays.
+     *
+     * It returns all selected tkk overlays of the given state
+     * (including all parts of multi-part overlays) in their original order.
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     *
+     * @returns {EditionSvgOverlayTkk[]} The selected tkk overlays.
+     */
+    getSelectedTkkOverlays(state: EditionSvgOverlaysState): EditionSvgOverlayTkk[] {
+        return state.tkkOverlays.filter(overlay &#x3D;&gt; state.selectedDataIds.has(overlay.dataId));
+    }
+
+    /**
+     * Public method: setTkkOverlayHover.
+     *
+     * It returns the given state with the given data id as hovered tkk overlay
+     * (the same state if it is already hovered).
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     * @param {string | undefined} dataId The given data id of the hovered tkk overlay, or undefined.
+     *
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
+     */
+    setTkkOverlayHover(state: EditionSvgOverlaysState, dataId: string | undefined): EditionSvgOverlaysState {
+        return state.hoveredDataId &#x3D;&#x3D;&#x3D; dataId ? state : { ...state, hoveredDataId: dataId };
+    }
+
+    /**
+     * Public method: setTkkOverlaysHighlight.
+     *
+     * It returns the given state with the given highlighting of the tkk overlays
+     * (the same state if unchanged). Hiding the tkk overlays also clears their selection.
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     * @param {boolean} isHighlighted The given flag whether the tkk overlays are highlighted.
+     *
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
+     */
+    setTkkOverlaysHighlight(state: EditionSvgOverlaysState, isHighlighted: boolean): EditionSvgOverlaysState {
+        if (state.isHighlighted &#x3D;&#x3D;&#x3D; isHighlighted) {
+            return state;
+        }
+        const selectedDataIds &#x3D;
+            isHighlighted || !state.selectedDataIds.size ? state.selectedDataIds : new Set&lt;string&gt;();
+        return { ...state, isHighlighted, selectedDataIds };
+    }
+
+    /**
+     * Public method: toggleTkkOverlaySelection.
+     *
+     * It returns the given state with the selection of the tkk overlay(s) with the given data id toggled
+     * (added or removed).
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     * @param {string} dataId The given data id to toggle.
+     *
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
+     */
+    toggleTkkOverlaySelection(state: EditionSvgOverlaysState, dataId: string): EditionSvgOverlaysState {
+        const selectedDataIds &#x3D; new Set(state.selectedDataIds);
+        if (!selectedDataIds.delete(dataId)) {
+            selectedDataIds.add(dataId);
+        }
+        return { ...state, selectedDataIds };
+    }
+
+    /**
+     * Public method: updateTkkOverlays.
+     *
+     * It updates the tkk overlay boxes according to the given state:
+     * it colors them (transparent if not highlighted, otherwise selected before hovered before default),
+     * sets their pressed state (aria-pressed) according to the selection,
+     * and disables not highlighted overlay boxes for pointer and keyboard interaction.
+     *
+     * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     *
+     * @returns {void} Updates the tkk overlay boxes.
+     */
+    updateTkkOverlays(rootGroupSelection: D3Selection | undefined, state: EditionSvgOverlaysState): void {
+        if (!rootGroupSelection || !state.tkkOverlays.length) {
             return;
         }
 
-        const linkBoxGroupPathSelection: D3Selection &#x3D; linkBoxGroupSelection.select(&#x27;path&#x27;);
-        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.linkBoxOverlayFillColor);
-
-        this._createLinkBoxOverlayHandlers(
-            linkBoxGroupSelection,
-            linkBoxGroupPathSelection,
-            linkBoxGroupId,
-            onSelectFn
-        );
-    }
-
-    /**
-     * Private method: _createLinkBoxOverlayHandlers.
-     *
-     * Attaches event handlers for link box overlays.
-     *
-     * @param {D3Selection} groupSelection The D3 selection of the link box group.
-     * @param {D3Selection} pathSelection The D3 selection of the path element.
-     * @param {string} groupId The id of the link box group.
-     * @param {(id: string) &#x3D;&gt; void} onSelectFn The callback for click events.
-     *
-     * @returns {void}
-     */
-    private _createLinkBoxOverlayHandlers(
-        groupSelection: D3Selection,
-        pathSelection: D3Selection,
-        groupId: string,
-        onSelectFn: (id: string) &#x3D;&gt; void
-    ): void {
-        groupSelection
-            .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                const hoverColor &#x3D; this.linkBoxOverlayHoverFillColor;
-                this._svgDrawingService.fillD3SelectionWithColor(pathSelection, hoverColor);
-                groupSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
-            })
-            .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                const fillColor &#x3D; this.linkBoxOverlayFillColor;
-                this._svgDrawingService.fillD3SelectionWithColor(pathSelection, fillColor);
-            })
-            .on(&#x27;click&#x27;, () &#x3D;&gt; {
-                onSelectFn(groupId);
-            });
-    }
-
-    /**
-     * Private method: _createTkkOverlay.
-     *
-     * It creates the D3 SVG overlay for the given tkk group.
-     *
-     * @param {D3Selection} rootGroupSelection The given D3 selection of the SVG root group.
-     * @param {EditionSvgOverlay[]} availableOverlays The given list of available overlays.
-     * @param {SVGGElement} group The given tkk group.
-     *
-     * @returns {void} Creates the D3 SVG tkk overlay.
-     */
-    private _createTkkOverlay(
-        rootGroupSelection: D3Selection,
-        availableOverlays: EditionSvgOverlay[],
-        group: SVGGElement
-    ): void {
-        const actualId: string &#x3D; group.id;
-        const dataId: string &#x3D; this._getSvgGroupDataId(group);
-        if (!actualId || !dataId) {
-            return;
-        }
-        const dim: DOMRect &#x3D; group.getBBox();
-
-        if (!availableOverlays.some(o &#x3D;&gt; o.id &#x3D;&#x3D;&#x3D; actualId)) {
-            availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, actualId, dataId, false));
-        }
-
-        this._createTkkOverlayGroup(rootGroupSelection, actualId, dim);
+        const dataIds &#x3D; new Set(state.tkkOverlays.map(overlay &#x3D;&gt; overlay.dataId));
+        dataIds.forEach(dataId &#x3D;&gt; {
+            const rectSelection &#x3D; this._getOverlayGroupRectSelection(rootGroupSelection, dataId);
+            this._svgDrawingService.fillD3SelectionWithColor(rectSelection, this._getTkkOverlayColor(dataId, state));
+            rectSelection
+                .attr(&#x27;aria-pressed&#x27;, state.selectedDataIds.has(dataId))
+                // Hidden (not highlighted) overlay boxes are neither clickable nor focusable
+                .attr(&#x27;tabindex&#x27;, state.isHighlighted ? 0 : -1)
+                .attr(&#x27;aria-hidden&#x27;, state.isHighlighted ? null : true)
+                .attr(&#x27;pointer-events&#x27;, state.isHighlighted ? null : &#x27;none&#x27;);
+        });
     }
 
     /**
      * Private method: _createTkkOverlayGroup.
      *
-     * It creates an overlay group with an overlay box (rect) for the given tkk group
-     * and returns the D3 selection of the created overlay group.
+     * It creates an overlay group with an overlay box (rect) for the given tkk group.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
      * @param {string} id The given id.
      * @param {DOMRect} dim The given dimensions of the SVG element.
      *
-     * @returns {D3Selection | undefined} The selection of the overlay group, or undefined.
+     * @returns {void} Creates the overlay group.
      */
-    private _createTkkOverlayGroup(
-        svgRootGroup: D3Selection | undefined,
-        id: string,
-        dim: DOMRect
-    ): D3Selection | undefined {
-        if (!svgRootGroup || !id) {
-            return undefined;
-        }
-
-        const type &#x3D; EditionSvgOverlayTypes.tkk;
-        const overlayGroupClass &#x3D; &#x60;${type}-overlay-group&#x60;;
-        const overlayGroupBoxClass &#x3D; &#x60;${overlayGroupClass}-box&#x60;;
-
+    private _createTkkOverlayGroup(svgRootGroup: D3Selection, id: string, dim: DOMRect): void {
         const targetGroupSelection &#x3D; this._svgDrawingService.getD3SelectionById(svgRootGroup, id);
         if (!targetGroupSelection) {
-            return undefined;
+            return;
         }
 
-        targetGroupSelection.append(&#x27;g&#x27;).attr(&#x27;class&#x27;, &#x60;${overlayGroupClass}&#x60;);
-        const targetOverlayGroupSelection: D3Selection &#x3D; targetGroupSelection.select(&#x60;g.${overlayGroupClass}&#x60;);
-
-        // Create overlay box for target overlay group
-        return targetOverlayGroupSelection
+        targetGroupSelection
+            .append(&#x27;g&#x27;)
+            .attr(&#x27;class&#x27;, &#x60;${EditionSvgOverlayTypes.tkk}-overlay-group&#x60;)
             .append(&#x27;rect&#x27;)
             .attr(&#x27;width&#x27;, dim.width + this._overlayBoxAdditionalSpace * 2)
             .attr(&#x27;height&#x27;, dim.height + this._overlayBoxAdditionalSpace * 2)
             .attr(&#x27;x&#x27;, dim.x - this._overlayBoxAdditionalSpace)
             .attr(&#x27;y&#x27;, dim.y - this._overlayBoxAdditionalSpace)
             .attr(&#x27;rx&#x27;, this._overlayBoxCornerRadius)
-            .attr(&#x27;fill&#x27;, this.tkkOverlayFillColor)
+            .attr(&#x27;fill&#x27;, this._tkkOverlayColors.fill)
             .attr(&#x27;opacity&#x27;, this._overlayBoxesOpacity)
-            .attr(&#x27;class&#x27;, overlayGroupBoxClass);
-    }
-
-    /**
-     * Private method: _createTkkOverlayHandlers.
-     *
-     * Creates event handlers for each unique dataId in tkk overlays.
-     *
-     * @param {D3Selection} rootGroupSelection The given D3 selection of the SVG root group.
-     * @param {EditionSvgOverlayState} overlaysState The state object for the tkk overlays.
-     * @param {string} overlayType The overlay type (should be &#x27;tkk&#x27;).
-     * @param {Function} onTkkOverlaySelectFn The callback function for the click event of the tkk overlay,
-     *                                        which receives the list of selected tkk overlays.
-     *
-     * @returns {void}
-     */
-    private _createTkkOverlayHandlers(
-        rootGroupSelection: D3Selection,
-        overlaysState: EditionSvgOverlayState,
-        onTkkOverlaySelectFn: (selectedOverlays: EditionSvgOverlay[]) &#x3D;&gt; void,
-        overlayType: string &#x3D; EditionSvgOverlayTypes.tkk
-    ): void {
-        // Get all unique dataIds from overlays
-        const dataIds &#x3D; Array.from(new Set(overlaysState.available.map(o &#x3D;&gt; o.dataId)));
-        dataIds.forEach(dataId &#x3D;&gt; {
-            const [overlays, overlayGroupRectSelection] &#x3D; this._getOverlaysAndSelection(
-                rootGroupSelection,
-                overlaysState.available,
-                dataId,
-                overlayType
-            );
-            overlayGroupRectSelection
-                .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                    this._updateTkkOverlayColor(
-                        overlays,
-                        overlayGroupRectSelection,
-                        EditionSvgOverlayActionTypes.hover
-                    );
-                    overlayGroupRectSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
-                })
-                .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                    this._updateTkkOverlayColor(overlays, overlayGroupRectSelection, EditionSvgOverlayActionTypes.fill);
-                })
-                .on(&#x27;click&#x27;, () &#x3D;&gt; {
-                    if (overlays.length) {
-                        overlays.forEach(overlay &#x3D;&gt; (overlay.isSelected &#x3D; !overlay.isSelected));
-                    }
-                    this._updateTkkOverlayColor(
-                        overlays,
-                        overlayGroupRectSelection,
-                        EditionSvgOverlayActionTypes.hover
-                    );
-                    overlaysState.selected &#x3D; this._getSelectedOverlays(overlaysState.available);
-                    onTkkOverlaySelectFn(overlaysState.selected);
-                });
-        });
+            .attr(&#x27;class&#x27;, this._tkkOverlayBoxClass)
+            .attr(&#x27;tabindex&#x27;, 0)
+            .attr(&#x27;role&#x27;, &#x27;button&#x27;)
+            .attr(&#x27;aria-pressed&#x27;, false)
+            .attr(&#x27;aria-label&#x27;, this._tkkOverlayLabel);
     }
 
     /**
      * Private method: _getOverlayGroupRectSelection.
      *
-     * It selects an overlay group box (rect) with a given type from an element identified by the given dataId in the given svgRootGroup.
+     * It selects the tkk overlay boxes (rect) of the elements identified by the given data id.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {string} dataId The given dataId.
-     * @param {string} overlayType The given overlay type.
+     * @param {string} dataId The given data id.
      *
-     * @returns {D3Selection} The D3 selection of the found element.
+     * @returns {D3Selection} The D3 selection of the found overlay boxes.
      */
-    private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string, overlayType: string): D3Selection {
-        if (!dataId || !overlayType) {
-            return svgRootGroup.selectAll(null);
-        }
-        // Get D3 selection of target group
-        const targetGroupSelection &#x3D; this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId);
+    private _getOverlayGroupRectSelection(svgRootGroup: D3Selection, dataId: string): D3Selection {
+        const targetGroupSelection &#x3D; dataId
+            ? this._svgDrawingService.getD3SelectionByDataId(svgRootGroup, dataId)
+            : undefined;
         if (!targetGroupSelection) {
             return svgRootGroup.selectAll(null);
         }
 
-        // Get D3 selection of overlay group box
-        return targetGroupSelection.selectAll(&#x60;rect.${overlayType}-overlay-group-box&#x60;);
-    }
-
-    /**
-     * Private method: _getOverlaysAndSelection.
-     *
-     * It gets the overlays and the D3 selection rectangle for the given data id and overlay type.
-     *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     * @param {EditionSvgOverlay[]} availableOverlays The given list of available overlays.
-     * @param {string} dataId The given data id.
-     * @param {string} overlayType The given overlay type.
-     *
-     * @returns {[EditionSvgOverlay[], D3Selection]} [overlays, overlayGroupRectSelection] The overlays and the D3 selection rect.
-     */
-    private _getOverlaysAndSelection(
-        svgRootGroup: D3Selection,
-        availableOverlays: EditionSvgOverlay[],
-        dataId: string,
-        overlayType: string
-    ): [EditionSvgOverlay[], D3Selection] {
-        const overlays &#x3D; this._getOverlaysById(availableOverlays, dataId);
-        const overlayGroupRectSelection &#x3D; this._getOverlayGroupRectSelection(svgRootGroup, dataId, overlayType);
-
-        return [overlays, overlayGroupRectSelection];
-    }
-
-    /**
-     * Private method: _getOverlaysById.
-     *
-     * It filters overlays from a list of overlays by a given data id.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @param {string} dataId The given data id.
-     *
-     * @returns {EditionSvgOverlay[] } The found overlays.
-     */
-    private _getOverlaysById(overlays: EditionSvgOverlay[], dataId: string): EditionSvgOverlay[] {
-        if (!Array.isArray(overlays)) {
-            return [];
-        }
-        return overlays.filter((overlay: EditionSvgOverlay) &#x3D;&gt; overlay.dataId &#x3D;&#x3D;&#x3D; dataId);
-    }
-
-    /**
-     * Private method: _getSelectedOverlays.
-     *
-     * It filters a given list of overlays by its selection status.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     *
-     * @returns {EditionSvgOverlay[] } The selected overlays.
-     */
-    private _getSelectedOverlays(overlays: EditionSvgOverlay[]): EditionSvgOverlay[] {
-        return overlays.filter(overlay &#x3D;&gt; overlay.isSelected);
+        return targetGroupSelection.selectAll(&#x60;rect.${this._tkkOverlayBoxClass}&#x60;);
     }
 
     /**
@@ -2998,69 +2112,30 @@ export class EditionSvgOverlayService {
      * @returns {string} The resolved data id.
      */
     private _getSvgGroupDataId(group: SVGGElement): string {
-        return group.getAttribute(EditionSvgOverlayTypes.dataTkkId) || group.id;
+        return group.getAttribute(DATA_TKK_ID) || group.id;
     }
 
     /**
      * Private method: _getTkkOverlayColor.
      *
-     * It returns the color of the given tkk overlay.
+     * It returns the color of the tkk overlays with the given data id for the given state.
      *
-     * @param {EditionSvgOverlay} overlay The given overlay.
-     * @param {string} overlayActionType The type of the overlay action (&#x60;fill&#x60; or &#x60;hover&#x60;).
+     * @param {string} dataId The given data id.
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      *
-     * @returns {string} The color of the given tkk overlay.
+     * @returns {string} The color of the tkk overlays.
      */
-    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
-        if (overlayActionType &#x3D;&#x3D;&#x3D; EditionSvgOverlayActionTypes.transparent) {
-            return this.tkkOverlayTransparentFillColor;
+    private _getTkkOverlayColor(dataId: string, state: EditionSvgOverlaysState): string {
+        if (!state.isHighlighted) {
+            return this._tkkOverlayColors.transparent;
         }
-
-        if (overlay.isSelected) {
-            return this.tkkOverlaySelectionFillColor;
+        if (state.selectedDataIds.has(dataId)) {
+            return this._tkkOverlayColors.selected;
         }
-
-        return overlayActionType &#x3D;&#x3D;&#x3D; EditionSvgOverlayActionTypes.hover
-            ? this.tkkOverlayHoverFillColor
-            : this.tkkOverlayFillColor;
-    }
-
-    /**
-     * Private method: _updateTkkOverlayColor.
-     *
-     * It updates the color of the given tkk overlays.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given overlays.
-     * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
-     * @param {string} overlayActionType The type of the overlay action (&#x60;fill&#x60; or &#x60;hover&#x60;).
-     *
-     * @returns {void} Updates the color of the given tkk overlays.
-     */
-    private _updateTkkOverlayColor(
-        overlays: EditionSvgOverlay[],
-        overlayGroupRectSelection: D3Selection,
-        overlayActionType: EditionSvgOverlayActionTypes
-    ): void {
-        if (!overlays.length) {
-            return;
+        if (state.hoveredDataId &#x3D;&#x3D;&#x3D; dataId) {
+            return this._tkkOverlayColors.hover;
         }
-
-        // Compute the color for each overlay
-        const colors &#x3D; overlays.map(overlay &#x3D;&gt; this._getTkkOverlayColor(overlay, overlayActionType));
-
-        // Overlays for the same group should not have different colors
-        const uniqueColors &#x3D; Array.from(new Set(colors));
-        if (uniqueColors.length &gt; 1) {
-            // eslint-disable-next-line no-console
-            console.warn(
-                &#x27;[EditionSvgOverlayService] Multiple overlays for the same group have different colors:&#x27;,
-                uniqueColors,
-                overlays
-            );
-        }
-        const finalColor &#x3D; uniqueColors[0];
-
-        this._svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, finalColor);
+        return this._tkkOverlayColors.fill;
     }
 }
 </code></pre>

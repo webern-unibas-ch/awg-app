@@ -374,6 +374,25 @@ in a svg sheet json file.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionTypeKey } from &#x27;./edition-type.model&#x27;;
 
 /**
+ * The EditionSvgSheetId interface.
+ *
+ * It is used in the context of the edition view
+ * to store the id and the (optional) partial
+ * of a (selected) svg sheet separately.
+ */
+export interface EditionSvgSheetId {
+    /**
+     * The sheet&#x27;s id (string).
+     */
+    id: string | undefined;
+
+    /**
+     * The sheet&#x27;s content partial id (string).
+     */
+    partial: string | undefined;
+}
+
+/**
  * The EditionSvgSheetContent interface.
  *
  * It is used in the context of the edition view

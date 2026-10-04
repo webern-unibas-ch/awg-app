@@ -1,0 +1,1104 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content directive">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >EditionSheetFacetScrollDirective</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The EditionSheetFacetScroll directive.</p>
+<p>It keeps the active facet item visible inside a scrollable
+facet list by adjusting the scroll position of the list
+(without scrolling the page) whenever the trigger changes.
+It also provides the range of the currently visible facet items.</p>
+
+            </p>
+
+
+
+
+        <section data-compodoc="block-metadata">
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover metadata">
+                <tbody>
+
+                    <tr>
+                        <td class="col-md-3">Selector</td>
+                        <td class="col-md-9"><code>[awgEditionSheetFacetScroll]</code></td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-3">exportAs</td>
+                        <td class="col-md-9"><code>awgEditionSheetFacetScroll</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_elementRef" >_elementRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#visibleRange" >visibleRange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getScrollTopForVisibleChild" >_getScrollTopForVisibleChild</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getVisibleRange" >_getVisibleRange</a>
+                            </li>
+                            <li>
+                                <a href="#scrollActiveItemIntoView" >scrollActiveItemIntoView</a>
+                            </li>
+                            <li>
+                                <a href="#updateVisibleRange" >updateVisibleRange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeSelector" >activeSelector</a>
+                            </li>
+                            <li>
+                                <a href="#itemSelector" >itemSelector</a>
+                            </li>
+                            <li>
+                                <a href="#trigger" >trigger</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:65</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSheetFacetScrollDirective.</p>
+<p>It registers an effect to scroll the active facet item
+into the visible area of the list after each relevant render
+and to update the visible range afterwards.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="activeSelector"></a>
+                        <b>activeSelector</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>        &#x27;.awg-edition-sheet-facet-item-link.active, .awg-edition-sheet-facet-item-link-dropdown-toggle.active&#x27;    </code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: activeSelector.</p>
+<p>It holds the css selector of the active facet item inside the list.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="itemSelector"></a>
+                        <b>itemSelector</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;awg-edition-sheet-facet-item&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:54</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: itemSelector.</p>
+<p>It holds the css selector of the facet items inside the list
+that are counted for the visible range.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="trigger"></a>
+                        <b>trigger</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ alias: &#x27;awgEditionSheetFacetScroll&#x27; }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:35</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: trigger.</p>
+<p>It holds the value that triggers a new scroll check when it changes
+(e.g. the selected sheet id and the open state of the facet group).</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getScrollTopForVisibleChild"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getScrollTopForVisibleChild</b></span>
+                        <a href="#_getScrollTopForVisibleChild"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getScrollTopForVisibleChild(scrollTop: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, viewportHeight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, childTop: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, childHeight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _getScrollTopForVisibleChild.</p>
+<p>It calculates the scroll position of the list
+that makes the given child fully visible.
+The scroll position only changes if the child is (partly) outside the visible area.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>scrollTop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current scroll position of the list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>viewportHeight</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The visible height of the list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>childTop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The top position of the child relative to the content of the list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>childHeight</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The height of the child.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The scroll position that makes the child visible.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getVisibleRange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getVisibleRange</b></span>
+                        <a href="#_getVisibleRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getVisibleRange(listTop: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, viewportHeight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, itemRects: DOMRect[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _getVisibleRange.</p>
+<p>It calculates the (1-based) positions of the first and last item
+that are at least partly inside the visible area of the list.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>listTop</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The top position of the visible area of the list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>viewportHeight</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The visible height of the list.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>itemRects</td>
+                                            <td>
+                                                        <code>DOMRect[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The bounding rects of the items.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionSheetFacetVisibleRange.html" target="_self" >EditionSheetFacetVisibleRange | null</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The visible range, or null if no item is visible.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollActiveItemIntoView"></a>
+                    <span class="name">
+                        <span ><b>scrollActiveItemIntoView</b></span>
+                        <a href="#scrollActiveItemIntoView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollActiveItemIntoView()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: scrollActiveItemIntoView.</p>
+<p>It adjusts the scroll position of the host list
+so that the active facet item is fully visible.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the scroll position of the host list.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateVisibleRange"></a>
+                    <span class="name">
+                        <span ><b>updateVisibleRange</b></span>
+                        <a href="#updateVisibleRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateVisibleRange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: updateVisibleRange.</p>
+<p>It updates the <a href="visibleRange">visibleRange</a> with the range of the
+(at least partly) visible facet items of the host list.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the visible range.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_elementRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_elementRef</b></span>
+                        <a href="#_elementRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:27</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _elementRef.</p>
+<p>It keeps the reference to the host element (the scrollable list).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visibleRange"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>visibleRange</b></span>
+                        <a href="#visibleRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;EditionSheetFacetVisibleRange | null&gt;(null, {
+        equal: (a, b) &#x3D;&gt; a?.first &#x3D;&#x3D;&#x3D; b?.first &amp;&amp; a?.last &#x3D;&#x3D;&#x3D; b?.last,
+    })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/scroll/edition-sheet-facet-scroll.directive.ts:63</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: visibleRange.</p>
+<p>It holds the range of the (at least partly) visible facet items,
+or null if the list does not scroll or contains no items.
+Equal ranges do not notify (avoids change detection on every scroll event).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { afterRenderEffect, Directive, ElementRef, inject, input, signal } from &#x27;@angular/core&#x27;;
+
+import { EditionSheetFacetVisibleRange } from &#x27;../edition-sheet-facet.model&#x27;;
+
+/**
+ * The EditionSheetFacetScroll directive.
+ *
+ * It keeps the active facet item visible inside a scrollable
+ * facet list by adjusting the scroll position of the list
+ * (without scrolling the page) whenever the trigger changes.
+ * It also provides the range of the currently visible facet items.
+ */
+@Directive({
+    selector: &#x27;[awgEditionSheetFacetScroll]&#x27;,
+    exportAs: &#x27;awgEditionSheetFacetScroll&#x27;,
+    host: {
+        &#x27;(scroll)&#x27;: &#x27;updateVisibleRange()&#x27;,
+        &#x27;(window:resize)&#x27;: &#x27;updateVisibleRange()&#x27;,
+    },
+})
+export class EditionSheetFacetScrollDirective {
+    /**
+     * Private readonly injection variable: _elementRef.
+     *
+     * It keeps the reference to the host element (the scrollable list).
+     */
+    private readonly _elementRef &#x3D; inject&lt;ElementRef&lt;HTMLElement&gt;&gt;(ElementRef);
+
+    /**
+     * Readonly input signal: trigger.
+     *
+     * It holds the value that triggers a new scroll check when it changes
+     * (e.g. the selected sheet id and the open state of the facet group).
+     */
+    readonly trigger &#x3D; input.required&lt;unknown&gt;({ alias: &#x27;awgEditionSheetFacetScroll&#x27; });
+
+    /**
+     * Readonly input signal: activeSelector.
+     *
+     * It holds the css selector of the active facet item inside the list.
+     * @default the active facet item link or dropdown toggle
+     */
+    readonly activeSelector &#x3D; input&lt;string&gt;(
+        &#x27;.awg-edition-sheet-facet-item-link.active, .awg-edition-sheet-facet-item-link-dropdown-toggle.active&#x27;
+    );
+
+    /**
+     * Readonly input signal: itemSelector.
+     *
+     * It holds the css selector of the facet items inside the list
+     * that are counted for the visible range.
+     * @default the facet item components
+     */
+    readonly itemSelector &#x3D; input&lt;string&gt;(&#x27;awg-edition-sheet-facet-item&#x27;);
+
+    /**
+     * Readonly signal: visibleRange.
+     *
+     * It holds the range of the (at least partly) visible facet items,
+     * or null if the list does not scroll or contains no items.
+     * Equal ranges do not notify (avoids change detection on every scroll event).
+     */
+    readonly visibleRange &#x3D; signal&lt;EditionSheetFacetVisibleRange | null&gt;(null, {
+        equal: (a, b) &#x3D;&gt; a?.first &#x3D;&#x3D;&#x3D; b?.first &amp;&amp; a?.last &#x3D;&#x3D;&#x3D; b?.last,
+    });
+
+    /**
+     * Constructor of the EditionSheetFacetScrollDirective.
+     *
+     * It registers an effect to scroll the active facet item
+     * into the visible area of the list after each relevant render
+     * and to update the visible range afterwards.
+     */
+    constructor() {
+        afterRenderEffect(() &#x3D;&gt; {
+            this.trigger();
+            this.scrollActiveItemIntoView();
+            this.updateVisibleRange();
+        });
+    }
+
+    /**
+     * Public method: updateVisibleRange.
+     *
+     * It updates the {@link visibleRange} with the range of the
+     * (at least partly) visible facet items of the host list.
+     *
+     * @returns {void} Sets the visible range.
+     */
+    updateVisibleRange(): void {
+        const listEl &#x3D; this._elementRef.nativeElement;
+        const itemEls &#x3D; Array.from(listEl.querySelectorAll&lt;HTMLElement&gt;(this.itemSelector()));
+
+        if (!itemEls.length || listEl.scrollHeight &lt;&#x3D; listEl.clientHeight) {
+            this.visibleRange.set(null);
+            return;
+        }
+
+        const listRect &#x3D; listEl.getBoundingClientRect();
+        const itemRects &#x3D; itemEls.map(itemEl &#x3D;&gt; itemEl.getBoundingClientRect());
+
+        this.visibleRange.set(this._getVisibleRange(listRect.top, listEl.clientHeight, itemRects));
+    }
+
+    /**
+     * Public method: scrollActiveItemIntoView.
+     *
+     * It adjusts the scroll position of the host list
+     * so that the active facet item is fully visible.
+     *
+     * @returns {void} Sets the scroll position of the host list.
+     */
+    scrollActiveItemIntoView(): void {
+        const listEl &#x3D; this._elementRef.nativeElement;
+        const activeEl &#x3D; listEl.querySelector&lt;HTMLElement&gt;(this.activeSelector());
+
+        if (!activeEl) {
+            return;
+        }
+
+        const listRect &#x3D; listEl.getBoundingClientRect();
+        const activeRect &#x3D; activeEl.getBoundingClientRect();
+        const activeTop &#x3D; activeRect.top - listRect.top + listEl.scrollTop;
+
+        listEl.scrollTop &#x3D; this._getScrollTopForVisibleChild(
+            listEl.scrollTop,
+            listEl.clientHeight,
+            activeTop,
+            activeRect.height
+        );
+    }
+
+    /**
+     * Private method: _getScrollTopForVisibleChild.
+     *
+     * It calculates the scroll position of the list
+     * that makes the given child fully visible.
+     * The scroll position only changes if the child is (partly) outside the visible area.
+     *
+     * @param {number} scrollTop The current scroll position of the list.
+     * @param {number} viewportHeight The visible height of the list.
+     * @param {number} childTop The top position of the child relative to the content of the list.
+     * @param {number} childHeight The height of the child.
+     * @returns {number} The scroll position that makes the child visible.
+     */
+    private _getScrollTopForVisibleChild(
+        scrollTop: number,
+        viewportHeight: number,
+        childTop: number,
+        childHeight: number
+    ): number {
+        if (childTop &lt; scrollTop) {
+            return childTop;
+        }
+
+        const childBottom &#x3D; childTop + childHeight;
+        if (childBottom &gt; scrollTop + viewportHeight) {
+            return childBottom - viewportHeight;
+        }
+
+        return scrollTop;
+    }
+
+    /**
+     * Private method: _getVisibleRange.
+     *
+     * It calculates the (1-based) positions of the first and last item
+     * that are at least partly inside the visible area of the list.
+     *
+     * @param {number} listTop The top position of the visible area of the list.
+     * @param {number} viewportHeight The visible height of the list.
+     * @param {DOMRect[]} itemRects The bounding rects of the items.
+     * @returns {EditionSheetFacetVisibleRange | null} The visible range, or null if no item is visible.
+     */
+    private _getVisibleRange(
+        listTop: number,
+        viewportHeight: number,
+        itemRects: DOMRect[]
+    ): EditionSheetFacetVisibleRange | null {
+        const listBottom &#x3D; listTop + viewportHeight;
+        const visibleIndexes &#x3D; itemRects
+            .map((rect, index) &#x3D;&gt; (rect.top + rect.height &gt; listTop &amp;&amp; rect.top &lt; listBottom ? index : -1))
+            .filter(index &#x3D;&gt; index &gt;&#x3D; 0);
+
+        if (!visibleIndexes.length) {
+            return null;
+        }
+
+        return { first: visibleIndexes[0] + 1, last: visibleIndexes[visibleIndexes.length - 1] + 1 };
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'directive';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionSheetFacetScrollDirective.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
