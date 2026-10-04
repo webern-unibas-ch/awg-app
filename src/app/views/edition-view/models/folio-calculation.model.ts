@@ -36,6 +36,45 @@ export interface FolioSettings {
 }
 
 /**
+ * Constant: FOLIO_DEFAULT_NUMBER_OF_SYSTEMS.
+ *
+ * It keeps the default number of systems of a folio
+ * (reference for the content segment offset correction and stroke width).
+ */
+export const FOLIO_DEFAULT_NUMBER_OF_SYSTEMS = 18;
+
+/**
+ * Constants for the calculation of the systems.
+ */
+const SYSTEM_NUMBER_OF_LINES = 5;
+const SYSTEM_LINE_SPACE_FACTOR = 1.5;
+const SYSTEMS_HORIZONTAL_MARGIN_FACTOR = 1 / 6;
+const SYSTEMS_VERTICAL_MARGIN_FACTOR = 0.05;
+const SYSTEMS_VERTICAL_MARGIN_OFFSET = 25;
+const SYSTEMS_LABEL_X_OFFSET_FACTOR = 0.6;
+const SYSTEMS_LABEL_Y_OFFSET_FACTOR = 3;
+
+/**
+ * Constants for the calculation of the trademark.
+ */
+const TRADEMARK_WIDTH = 20;
+const TRADEMARK_HEIGHT = 30;
+const TRADEMARK_MARGIN = 10;
+
+/**
+ * Constants for the calculation of the content segments.
+ */
+const CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET = 20;
+const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET = 5;
+
+/**
+ * Type: ValidFolioContent.
+ *
+ * A folio content with its segments (checked by {@link isValidFolioContent}).
+ */
+type ValidFolioContent = FolioContent & { segments: FolioSegment[] };
+
+/**
  * Utility function: round.
  *
  * It rounds a given number to a given number of decimal places.
@@ -57,9 +96,7 @@ function round(value: number, decimals: number): number {
  * The FolioCalculationPoint class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate the values of a point on the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to store the values of a point on the folio svg.
  */
 export class FolioCalculationPoint {
     /**
@@ -90,9 +127,7 @@ export class FolioCalculationPoint {
  * The FolioCalculationLine class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate the values of a line on the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to store the values of a line on the folio svg.
  */
 export class FolioCalculationLine {
     /**
@@ -123,9 +158,7 @@ export class FolioCalculationLine {
  * The FolioCalculationRectangle class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate the values of a rectangle on the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to store the values of a rectangle on the folio svg.
  */
 export class FolioCalculationRectangle {
     /**
@@ -153,438 +186,150 @@ export class FolioCalculationRectangle {
 }
 
 /**
- * The FolioCalculationContentSegmentCenteredPositions class.
+ * Function: isValidFolioContent.
  *
- * It is used in the context of the edition folio convolutes
- * to calculate the centered positions of a content segment on the folio canvas.
+ * It checks if a given folio content can be calculated:
+ * it needs exactly one segment, a segment split not smaller than its segments,
+ * and a folio with systems. Invalid contents are logged.
  *
- * Not exposed, only called internally from {@link FolioCalculation}.
+ * @param {FolioContent} content The given folio content.
+ * @param {FolioCalculationSystems} systems The given calculated systems.
+ * @returns {boolean} The result of the check.
  */
-class FolioCalculationContentSegmentCenteredPositions {
-    /**
-     * The centered X position of the content segment.
-     */
-    public readonly CENTERED_X_POSITION: number;
-
-    /**
-     * The centered Y position of the content segment.
-     */
-    public readonly CENTERED_Y_POSITION: number;
-
-    /**
-     * Constructor of the FolioCalculationContentSegmentCenteredPositions class.
-     *
-     * It initializes the class with values
-     * from the segment vertices, the segment label offset and the reversed flag.
-     *
-     * @param {FolioCalculationContentSegmentVertices} segmentVertices The given segment vertices.
-     * @param {number} segmentLabelOffset The given segment label offset.
-     * @param {boolean} reversed The given reversed flag.
-     */
-    constructor(
-        segmentVertices: FolioCalculationContentSegmentVertices,
-        segmentLabelOffset: number,
-        reversed: boolean
-    ) {
-        const { UPPER_LEFT_VERTEX, LOWER_RIGHT_VERTEX } = segmentVertices;
-
-        this.CENTERED_X_POSITION = (UPPER_LEFT_VERTEX.x + LOWER_RIGHT_VERTEX.x) / 2;
-        const offsetCorrection = reversed ? -segmentLabelOffset : segmentLabelOffset;
-        this.CENTERED_Y_POSITION = (UPPER_LEFT_VERTEX.y + LOWER_RIGHT_VERTEX.y) / 2 - offsetCorrection;
+function isValidFolioContent(content: FolioContent, systems: FolioCalculationSystems): content is ValidFolioContent {
+    if (content.segments?.length !== 1) {
+        console.error('[FolioCalculation] Content needs exactly one segment', content);
+        return false;
     }
+    if (content.segments.length > (content.segmentSplit ?? 1)) {
+        console.error('[FolioCalculation] Segments array is bigger than segmentSplit', content);
+        return false;
+    }
+    if (systems.NUMBER_OF_SYSTEMS === 0) {
+        console.error('[FolioCalculation] No systems in folio', content);
+        return false;
+    }
+    return true;
 }
 
 /**
- * The FolioCalculationContentSegmentCenteredPositions class.
+ * Function: calculateTrademarkRectangle.
  *
- * It is used in the context of the edition folio convolutes
- * to calculate the centered positions of the content segments on the folio canvas.
+ * It calculates the rectangle of the trademark based on the given position string.
+ *
+ * @param {FolioCalculationRectangle} sheetRectangle The given rectangle of the sheet.
+ * @param {string} position The given trademark position string.
+ * @returns {FolioCalculationRectangle} The calculated rectangle of the trademark.
  */
-class FolioCalculationContentSegmentLabel {
-    /**
-     * The label for the content segment.
-     */
-    public readonly SEGMENT_LABEL: string;
+function calculateTrademarkRectangle(
+    sheetRectangle: FolioCalculationRectangle,
+    position: string
+): FolioCalculationRectangle {
+    const { UPPER_LEFT_CORNER: upperLeft, LOWER_RIGHT_CORNER: lowerRight } = sheetRectangle;
+    const left = upperLeft.x + TRADEMARK_MARGIN;
+    const right = lowerRight.x - TRADEMARK_MARGIN - TRADEMARK_WIDTH;
+    const top = upperLeft.y + TRADEMARK_MARGIN;
+    const bottom = lowerRight.y - TRADEMARK_MARGIN - TRADEMARK_HEIGHT;
 
-    /**
-     * The array of label strings for the content segment.
-     */
-    public readonly SEGMENT_LABEL_ARRAY: string[];
-
-    /**
-     * The label offset for the content segment.
-     */
-    public readonly SEGMENT_LABEL_OFFSET: number;
-
-    /**
-     * Constructor of the FolioCalculationContentSegmentLabelAndOffset class.
-     *
-     * It initializes the class with values
-     * from the sigle and sigle addendum of the content segment.
-     *
-     * @param {string} sigle The given sigle of the content segment.
-     * @param {string | null} sigleAddendum The given sigle addendum of the content segment.
-     */
-    constructor(sigle: string, sigleAddendum: string | null) {
-        this.SEGMENT_LABEL_ARRAY = [sigle, sigleAddendum ? ` ${sigleAddendum}` : ''];
-        this.SEGMENT_LABEL = this.SEGMENT_LABEL_ARRAY.join(' ');
-        this.SEGMENT_LABEL_OFFSET = sigleAddendum ? 5 : 0;
+    let x1 = 0;
+    let y1 = 0;
+    switch (position) {
+        case 'unten links':
+            [x1, y1] = [left, bottom];
+            break;
+        case 'unten rechts':
+            [x1, y1] = [right, bottom];
+            break;
+        case 'oben links':
+            [x1, y1] = [left, top];
+            break;
+        case 'oben rechts':
+            [x1, y1] = [right, top];
+            break;
     }
+
+    return new FolioCalculationRectangle(
+        new FolioCalculationPoint(x1, y1),
+        new FolioCalculationPoint(x1 + TRADEMARK_WIDTH, y1 + TRADEMARK_HEIGHT)
+    );
 }
 
 /**
- * The FolioCalculationContentSegmentVertices class.
+ * Function: calculateContentSegmentX.
  *
- * It is used in the context of the edition folio convolutes
- * to calculate the values of a content segment's vertices on the folio canvas.
+ * It calculates the x value of the start or end vertices of a content segment.
  *
- * Not exposed, only called internally from {@link FolioCalculation}.
+ * @param {FolioSegment} segment The given segment of the folio content.
+ * @param {FolioCalculationSystems} systems The given calculated systems.
+ * @param {number} segmentSplit The given segment split.
+ * @param {number} offsetCorrection The given (adjusted) offset correction.
+ * @param {boolean} isStart The given flag if the x value is for the start.
+ * @returns {number} The calculated x value.
  */
-export class FolioCalculationContentSegmentVertices {
-    /**
-     * The upper left vertex of a content segment.
-     */
-    public readonly UPPER_LEFT_VERTEX: FolioCalculationPoint;
+function calculateContentSegmentX(
+    segment: FolioSegment,
+    systems: FolioCalculationSystems,
+    segmentSplit: number,
+    offsetCorrection: number,
+    isStart: boolean
+): number {
+    const width = round(systems.SYSTEMS_WIDTH / segmentSplit, 2);
+    const splitIndex = segment.position && segment.position <= segmentSplit ? segment.position - 1 : 0;
 
-    /**
-     * The upper right vertex of a content segment.
-     */
-    public readonly UPPER_RIGHT_VERTEX: FolioCalculationPoint;
+    const xValue = systems.START_X + splitIndex * width + offsetCorrection / 2;
+    const correction = isStart ? 0 : width - offsetCorrection;
 
-    /**
-     * The lower right vertex of a content segment.
-     */
-    public readonly LOWER_RIGHT_VERTEX: FolioCalculationPoint;
-
-    /**
-     * The lower left vertex of a content segment.
-     */
-    public readonly LOWER_LEFT_VERTEX: FolioCalculationPoint;
-
-    /**
-     * The vertices of a content segment as a string.
-     */
-    public readonly VERTICES_AS_STRING: string;
-
-    /**
-     * Constructor of the FolioCalculationContentSegmentVertices class.
-     *
-     * It initializes the class with four points
-     * for upper and lower left and upper and lower right vertices.
-     *
-     * @param {FolioSegment} segment The given segment of the folio content.
-     * @param {FolioCalculationSystems} _systems The given calculated systems.
-     * @param {number} _segmentSplit The given segment split.
-     * @param {number} _segmentOffsetCorrection The given segment offset correction.
-     */
-    constructor(
-        segment: FolioSegment,
-        private readonly _systems: FolioCalculationSystems,
-        private readonly _segmentSplit: number,
-        private readonly _segmentOffsetCorrection: number
-    ) {
-        const { startX, startY, endX, endY } = this._calculateVertices(segment);
-
-        this.UPPER_LEFT_VERTEX = new FolioCalculationPoint(startX, startY);
-        this.UPPER_RIGHT_VERTEX = new FolioCalculationPoint(endX, startY);
-        this.LOWER_RIGHT_VERTEX = new FolioCalculationPoint(endX, endY);
-        this.LOWER_LEFT_VERTEX = new FolioCalculationPoint(startX, endY);
-        this.VERTICES_AS_STRING = this._getSegmentVerticesAsString();
-    }
-
-    /**
-     * Private method: _calculateVertices.
-     *
-     * It calculates the vertices of a content segment.
-     *
-     * @param {FolioSegment} segment The given segment of the folio content.
-     * @returns {FolioCalculationPoint} The calculated vertices of a content segment.
-     */
-    private _calculateVertices(segment: FolioSegment): { startX: number; startY: number; endX: number; endY: number } {
-        const startX = this._calculateX(segment, true);
-        const endX = this._calculateX(segment, false);
-        const startY = this._calculateY(segment, true);
-        const endY = this._calculateY(segment, false);
-
-        return { startX, startY, endX, endY };
-    }
-
-    /**
-     * Private method: _calculateX.
-     *
-     * It calculates the x value of the content segment vertices.
-     *
-     * @param {FolioSegment} segment The given segment of the folio content.
-     * @param {boolean} isStart The given flag if the x value is for the start.
-     * @returns {number} The calculated the content segment vertices.
-     */
-    private _calculateX(segment: FolioSegment, isStart: boolean): number {
-        const width = round(this._systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this._segmentSplit, 2);
-
-        const systemIndex = segment.position && segment.position <= this._segmentSplit ? segment.position - 1 : 0;
-        const baseX = this._systems.SYSTEMS_DIMENSIONS.START_X;
-        const offset = this._segmentOffsetCorrection / 2;
-
-        const xValue = baseX + systemIndex * width + offset;
-        const correction = isStart ? 0 : width - this._segmentOffsetCorrection;
-
-        return round(xValue + correction, 2);
-    }
-
-    /**
-     * Private method: _calculateY.
-     *
-     * It calculates the y value of the content segment vertices.
-     *
-     * @param {FolioSegment} segment The given segment of the folio content.
-     * @param {boolean} isStart The given flag if the y value is for the start.
-     * @returns {number} The calculated y value of the content segment vertices.
-     */
-    private _calculateY(segment: FolioSegment, isStart: boolean): number {
-        let systemIndex = isStart ? segment.startSystem - 1 : segment.endSystem - 1;
-        // Reverse order of the system index if the systems are reversed
-        if (this._systems.SYSTEMS_REVERSED) {
-            systemIndex = this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS.length - 1 - systemIndex;
-        }
-        const systemLines = this._systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
-
-        if (!systemLines || systemLines.length === 0) {
-            throw new Error(
-                `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
-            );
-        }
-
-        let offset: number;
-        switch (segment.relativeToSystem) {
-            case 'below':
-                offset = 20;
-                break;
-            case 'above':
-                offset = -20;
-                break;
-            default:
-                offset = 0;
-        }
-
-        let yValue = 0;
-        if (isStart) {
-            const firstLine = systemLines[0];
-            if (firstLine) {
-                yValue = firstLine.START_POINT.y;
-            }
-        } else {
-            const lastLine = systemLines.at(-1);
-            if (lastLine) {
-                yValue = lastLine.END_POINT.y;
-            }
-        }
-        const correction = this._segmentOffsetCorrection * (isStart ? -1 : 1) + offset;
-
-        return round(yValue + correction, 2);
-    }
-
-    /**
-     * Private method: getSegmentVerticesAsString.
-     *
-     * It returns the vertices of a content segment as a string.
-     *
-     * @returns {string} The vertices of a content segment as a string.
-     */
-    private _getSegmentVerticesAsString(): string {
-        const vertices = [
-            this.UPPER_LEFT_VERTEX,
-            this.UPPER_RIGHT_VERTEX,
-            this.LOWER_RIGHT_VERTEX,
-            this.LOWER_LEFT_VERTEX,
-            this.UPPER_LEFT_VERTEX,
-        ];
-
-        return vertices.map(vertex => `${vertex.x} ${vertex.y}`).join(' ');
-    }
+    return round(xValue + correction, 2);
 }
 
 /**
- * The FolioCalculationContentSegment class.
+ * Function: calculateContentSegmentY.
  *
- * It is used in the context of the edition folio convolutes
- * to calculate the values of a content segment on the folio canvas.
+ * It calculates the y value of the start or end vertices of a content segment.
  *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * @param {FolioSegment} segment The given segment of the folio content.
+ * @param {FolioCalculationSystems} systems The given calculated systems.
+ * @param {number} offsetCorrection The given (adjusted) offset correction.
+ * @param {boolean} isStart The given flag if the y value is for the start.
+ * @returns {number} The calculated y value.
  */
-export class FolioCalculationContentSegment {
-    /**
-     * The centered X position of the content segment.
-     */
-    centeredXPosition = 0;
-
-    /**
-     * The centered y position of the content segment.
-     */
-    centeredYPosition = 0;
-
-    /**
-     * The label for the id of the edition complex of the content segment.
-     */
-    complexId = '';
-
-    /**
-     * The link to a convolute description in the critical report.
-     */
-    linkTo = '';
-
-    /**
-     * The boolean flag if the content segment is reversed.
-     */
-    reversed = false;
-
-    /**
-     * The segment of a content segment.
-     */
-    segment!: FolioSegment;
-
-    /**
-     * The segment split of the content segment.
-     */
-    segmentSplit: number;
-
-    /**
-     * The array of label strings for the content segment.
-     */
-    segmentLabelArray: string[] = [];
-
-    /**
-     * The label for the content segment.
-     */
-    segmentLabel = '';
-
-    /**
-     * The boolean flag if the content segment can be selected.
-     */
-    selectable = false;
-
-    /**
-     * The label for the id of the content segment.
-     */
-    sheetId = '';
-
-    /**
-     * The label for the sigle of the content segment.
-     */
-    sigle = '';
-
-    /**
-     * The label for the sigle addendum of the content segment.
-     */
-    sigleAddendum = '';
-
-    /**
-     * The vertices of a content segment.
-     */
-    vertices!: FolioCalculationContentSegmentVertices;
-
-    /**
-     * Constructor of the FolioCalculationContentSegment class.
-     *
-     * It initializes the class with values from the content segment,
-     * the calculated systems and the segment offset correction.
-     *
-     * @param {FolioContent} content The given content segment.
-     * @param {FolioCalculationSystems} _systems The given calculated systems.
-     * @param {number} _segmentOffsetCorrection The given segment offset correction.
-     */
-    constructor(
-        content: FolioContent,
-        private readonly _systems: FolioCalculationSystems,
-        private readonly _segmentOffsetCorrection: number
-    ) {
-        this.segmentSplit = content.segmentSplit ?? 1;
-
-        this._getContentSegments(content);
+function calculateContentSegmentY(
+    segment: FolioSegment,
+    systems: FolioCalculationSystems,
+    offsetCorrection: number,
+    isStart: boolean
+): number {
+    let systemIndex = (isStart ? segment.startSystem : segment.endSystem) - 1;
+    // Reverse order of the system index if the systems are reversed
+    if (systems.SYSTEMS_REVERSED) {
+        systemIndex = systems.SYSTEMS_LINES.length - 1 - systemIndex;
     }
+    const systemLines = systems.SYSTEMS_LINES[systemIndex];
 
-    /**
-     * Private method: _getContentSegments.
-     *
-     * It gets the segments of a given folio content.
-     *
-     * @param {FolioContent} content The given folio content.
-     * @returns {void} Gets the segments of a given folio content.
-     */
-    private _getContentSegments(content: FolioContent): void {
-        if (!content.segments) {
-            console.error('No segments array in content', content);
-            return;
-        }
-        if (content.segments.length > this.segmentSplit) {
-            console.error('Segments array is bigger than segmentSplit');
-            return;
-        }
-        if (this._systems.NUMBER_OF_SYSTEMS === 0) {
-            console.error('No systems in folio');
-            return;
-        }
-        content.segments.forEach((segment: FolioSegment) => {
-            this._setProperties(content, segment);
-        });
-    }
-
-    /**
-     * Private method: setProperties.
-     *
-     * It sets the properties of a content segment.
-     *
-     * @param {FolioContent} content The given folio content.
-     * @param {FolioSegment} segment The given segment of the folio content.
-     * @returns {void} Sets the properties of a content segment.
-     */
-    private _setProperties(content: FolioContent, segment: FolioSegment): void {
-        const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
-
-        this.segment = segment;
-
-        const label = new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
-
-        // Dynamically adjust the segmentOffsetCorrection based on the number of systems (reference: 18 systems)
-        const defaultNumberOfSystems = 18;
-        const adjustedOffsetCorrection =
-            this._segmentOffsetCorrection * (defaultNumberOfSystems / this._systems.NUMBER_OF_SYSTEMS);
-
-        this.vertices = new FolioCalculationContentSegmentVertices(
-            segment,
-            this._systems,
-            this.segmentSplit,
-            adjustedOffsetCorrection
+    if (!systemLines || systemLines.length === 0) {
+        throw new Error(
+            `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
         );
-
-        const centeredPositions = new FolioCalculationContentSegmentCenteredPositions(
-            this.vertices,
-            label.SEGMENT_LABEL_OFFSET,
-            reversed
-        );
-
-        Object.assign(this, {
-            complexId,
-            sheetId,
-            sigle,
-            sigleAddendum,
-            selectable: selectable,
-            reversed: reversed,
-            linkTo: linkTo,
-            segmentLabelArray: label.SEGMENT_LABEL_ARRAY,
-            segmentLabel: label.SEGMENT_LABEL,
-            centeredXPosition: centeredPositions.CENTERED_X_POSITION,
-            centeredYPosition: centeredPositions.CENTERED_Y_POSITION,
-        });
     }
+
+    let relativeOffset = 0;
+    if (segment.relativeToSystem === 'below') {
+        relativeOffset = CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET;
+    } else if (segment.relativeToSystem === 'above') {
+        relativeOffset = -CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET;
+    }
+
+    const yValue = isStart ? systemLines[0].START_POINT.y : systemLines[systemLines.length - 1].END_POINT.y;
+    const correction = offsetCorrection * (isStart ? -1 : 1) + relativeOffset;
+
+    return round(yValue + correction, 2);
 }
 
 /**
  * The FolioCalculationSheet class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate the values of a sheet on the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to calculate the values of the sheet of a folio.
  */
 export class FolioCalculationSheet {
     /**
@@ -615,11 +360,11 @@ export class FolioCalculationSheet {
     /**
      * Constructor of the FolioCalculationSheet class.
      *
-     * It initializes the class with values from folio settings, the folio id and zoom factor.
+     * It initializes the class with values from folio settings, the folio id and the trademark position.
      *
      * @param {FolioSettings} folioSettings The given folio settings.
      * @param {string} folioId The given folio id.
-     * @param {string} trademarkPosition The optional given trademark position.
+     * @param {string} [trademarkPosition] The optional given trademark position.
      */
     constructor(
         { initialOffsetX, initialOffsetY, formatX, formatY, factor }: FolioSettings,
@@ -629,343 +374,13 @@ export class FolioCalculationSheet {
         this.FOLIO_ID = folioId;
         this.SHEET_WIDTH = formatX * factor;
         this.SHEET_HEIGHT = formatY * factor;
-        const sheetUpperLeftCorner = new FolioCalculationPoint(initialOffsetX, initialOffsetY);
-        const sheetLowerRightCorner = new FolioCalculationPoint(this.SHEET_WIDTH, this.SHEET_HEIGHT);
-        this.SHEET_RECTANGLE = new FolioCalculationRectangle(sheetUpperLeftCorner, sheetLowerRightCorner);
-        this.TRADEMARK_RECTANGLE = this._calculateTrademarkRectangle(trademarkPosition);
-    }
-
-    /**
-     * Private method: _calculateTrademarkRectangle.
-     *
-     * It calculates the rectanble of the trademark based on the given position string.
-     *
-     * @param {string | undefined} position The given trademark position string, or undefined.
-     * @returns {FolioCalculationRectangle | undefined} The calculated rectangle of the trademark, or undefined.
-     */
-    private _calculateTrademarkRectangle(position: string | undefined): FolioCalculationRectangle | undefined {
-        if (!position) {
-            return undefined;
-        }
-
-        const trademarkRectangleWidth = 20;
-        const trademarkRectangleHeight = 30;
-        const marginOffset = 10;
-
-        let x1: number, y1: number;
-
-        switch (position) {
-            case 'unten links':
-                x1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + marginOffset;
-                y1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.y - marginOffset - trademarkRectangleHeight;
-
-                break;
-            case 'unten rechts':
-                x1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.x - marginOffset - trademarkRectangleWidth;
-                y1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.y - marginOffset - trademarkRectangleHeight;
-
-                break;
-            case 'oben links':
-                x1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + marginOffset;
-                y1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + marginOffset;
-
-                break;
-            case 'oben rechts':
-                x1 = this.SHEET_RECTANGLE.LOWER_RIGHT_CORNER.x - marginOffset - trademarkRectangleWidth;
-                y1 = this.SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + marginOffset;
-
-                break;
-            default:
-                x1 = 0;
-                y1 = 0;
-        }
-
-        const x2: number = x1 + trademarkRectangleWidth;
-        const y2: number = y1 + trademarkRectangleHeight;
-
-        return new FolioCalculationRectangle(new FolioCalculationPoint(x1, y1), new FolioCalculationPoint(x2, y2));
-    }
-}
-
-/**
- * The FolioCalculationSystemsMargins class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the margins of the systems on the folio canvas.
- */
-class FolioCalculationSystemsMargins {
-    /**
-     * The horizontal margin factor of the systems.
-     */
-    private static readonly HORIZONTAL_MARGIN_FACTOR = 1 / 6;
-
-    /**
-     * The vertical margin factor of the systems.
-     */
-    private static readonly VERTICAL_MARGIN_FACTOR = 0.05;
-
-    /**
-     * The vertical margin offset of the systems.
-     */
-    private static readonly VERTICAL_MARGIN_OFFSET = 25;
-
-    /**
-     * The horizontal margins of the systems.
-     */
-    public readonly HORIZONTAL_MARGINS: number;
-
-    /**
-     * The left margin of the systems.
-     */
-    public readonly LEFT_MARGIN: number;
-
-    /**
-     * The lower margin of the systems.
-     */
-    public readonly LOWER_MARGIN: number;
-
-    /**
-     * The right margin of the systems.
-     */
-    public readonly RIGHT_MARGIN: number;
-
-    /**
-     * The upper margin of the systems.
-     */
-    public readonly UPPER_MARGIN: number;
-
-    /**
-     * The vertical margins of the systems.
-     */
-    public readonly VERTICAL_MARGINS: number;
-
-    /**
-     * Constructor of the FolioCalculationSystemsMargins class.
-     *
-     * It initializes the class with values
-     * from the sheet and the number of systems.
-     *
-     * @param {FolioCalculationSheet} _sheet The given calculated folio sheet.
-     */
-    constructor(private readonly _sheet: FolioCalculationSheet) {
-        this.UPPER_MARGIN = this._calculateSheetMargin(
-            this._sheet.SHEET_HEIGHT,
-            FolioCalculationSystemsMargins.VERTICAL_MARGIN_FACTOR
+        this.SHEET_RECTANGLE = new FolioCalculationRectangle(
+            new FolioCalculationPoint(initialOffsetX, initialOffsetY),
+            new FolioCalculationPoint(this.SHEET_WIDTH, this.SHEET_HEIGHT)
         );
-        this.UPPER_MARGIN += FolioCalculationSystemsMargins.VERTICAL_MARGIN_OFFSET;
-        this.LOWER_MARGIN = this.UPPER_MARGIN;
-
-        this.LEFT_MARGIN = this._calculateSheetMargin(
-            this._sheet.SHEET_WIDTH,
-            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR
-        );
-        this.RIGHT_MARGIN = this._calculateSheetMargin(
-            this._sheet.SHEET_WIDTH,
-            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR / 2
-        );
-
-        this.HORIZONTAL_MARGINS = this.LEFT_MARGIN + this.RIGHT_MARGIN;
-        this.VERTICAL_MARGINS = this.UPPER_MARGIN + this.LOWER_MARGIN;
-    }
-
-    /**
-     * Private method: _calculateSheetWidthMargin.
-     *
-     * It calculates the width margin of the systems of a folio.
-     *
-     * @param {number} dimension The given dimension for the margin calculation.
-     * @param {number} factor The given factor for the margin calculation.
-     * @returns {number} The calculated width margin of the systems.
-     */
-    private _calculateSheetMargin(dimension: number, factor: number): number {
-        return round(dimension * factor, 2);
-    }
-}
-
-/**
- * The FolioCalculationSystemsDimensions class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the dimensions of the systems on the folio canvas.
- */
-class FolioCalculationSystemsDimensions {
-    /**
-     * The end position (x-value) of the systems.
-     */
-    public readonly END_X: number;
-
-    /**
-     * The end position (y-value) of the systems.
-     */
-    public readonly END_Y: number;
-
-    /**
-     * The start position (x-value) of the systems.
-     */
-    public readonly START_X: number;
-
-    /**
-     * The start position (y-value) of the systems.
-     */
-    public readonly START_Y: number;
-
-    /**
-     * The width of the systems.
-     */
-    public readonly SYSTEMS_WIDTH: number;
-
-    /**
-     * The height of the systems.
-     */
-    public readonly SYSTEMS_HEIGHT: number;
-
-    /**
-     * Constructor of the FolioCalculationSystemsDimensions class.
-     *
-     * It initializes the class with values
-     * from the sheet and the calculated margins.
-     *
-     * @param {FolioCalculationSheet} _sheet The given calculated folio sheet.
-     * @param {FolioCalculationSystemsMargins} _systemsMargins The given calculated systems margins.
-     */
-    constructor(
-        private readonly _sheet: FolioCalculationSheet,
-        private readonly _systemsMargins: FolioCalculationSystemsMargins
-    ) {
-        const { SHEET_WIDTH, SHEET_HEIGHT, SHEET_RECTANGLE } = this._sheet;
-        const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } = this._systemsMargins;
-
-        this.SYSTEMS_WIDTH = SHEET_WIDTH - HORIZONTAL_MARGINS;
-        this.SYSTEMS_HEIGHT = SHEET_HEIGHT - VERTICAL_MARGINS;
-
-        this.START_X = SHEET_RECTANGLE.UPPER_LEFT_CORNER.x + LEFT_MARGIN;
-        this.START_Y = SHEET_RECTANGLE.UPPER_LEFT_CORNER.y + UPPER_MARGIN;
-
-        this.END_X = this.START_X + this.SYSTEMS_WIDTH;
-        this.END_Y = this.START_Y + this.SYSTEMS_HEIGHT;
-    }
-}
-
-/**
- * The FolioCalculationSystemsLines class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the lines of the systems on the folio canvas.
- */
-class FolioCalculationSystemsLines {
-    /**
-     * The array of line arrays of the systems.
-     */
-    public readonly SYSTEMS_ARRAYS: FolioCalculationLine[][];
-
-    /**
-     * Constructor of the FolioCalculationSystemsLines class.
-     *
-     * It initializes the class with values
-     * from the yArray and the calculated dimensions.
-     *
-     * @param {number[][]} _yArray The given y-value array for the systems.
-     * @param {FolioCalculationSystemsDimensions} _systemsDimensions The given calculated systems dimensions.
-     */
-    constructor(
-        private readonly _yArray: number[][],
-        private readonly _systemsDimensions: FolioCalculationSystemsDimensions
-    ) {
-        this.SYSTEMS_ARRAYS = this._calculateSystemsArrays();
-    }
-
-    /**
-     * Private method: calculateSystemsArrays.
-     *
-     * It calculates the systems arrays.
-     *
-     * @returns {FolioCalculationLine[][]} The calculated systems arrays.
-     */
-    private _calculateSystemsArrays(): FolioCalculationLine[][] {
-        return this._yArray.map(lineArray => lineArray.map(this._calculateSystemLine));
-    }
-
-    /**
-     * Private readonly arrow function: _calculateSystemLine.
-     *
-     * It calculates a single line of a system of a folio.
-     *
-     * @param {number} line The given line number.
-     * @returns {FolioCalculationLine} The calculated line of a system.
-     */
-    private readonly _calculateSystemLine = (line: number): FolioCalculationLine => {
-        const { START_X, END_X } = this._systemsDimensions;
-        return new FolioCalculationLine(
-            new FolioCalculationPoint(START_X, line),
-            new FolioCalculationPoint(END_X, line)
-        );
-    };
-}
-
-/**
- * The FolioCalculationSystemsLabels class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the labels of the systems on the folio canvas.
- */
-class FolioCalculationSystemsLabels {
-    /**
-     * The label x start factor.
-     */
-    private static readonly LABEL_START_X_OFFSET_FACTOR = 0.6;
-
-    /**
-     * The label y offset correction factor.
-     */
-    private static readonly LABEL_START_Y_OFFSET_FACTOR = 3;
-
-    /**
-     * The line label array of the systems.
-     */
-    public readonly SYSTEMS_LABELS_ARRAY: FolioCalculationPoint[];
-
-    /**
-     * Constructor of the FolioCalculationSystemsLabels class.
-     *
-     * It initializes the class with values
-     * from the yArray, the calculated margins and dimensions and the zoom factor.
-     *
-     * @param {number[][]} _yArray The given y-value array for the systems.
-     * @param {FolioCalculationSystemsMargins} _systemsMargins The given calculated systems margins.
-     * @param {FolioCalculationSystemsDimensions} _systemsDimensions The given calculated systems dimensions.
-     * @param {number} _zoomFactor The given zoom factor.
-     */
-    constructor(
-        private readonly _yArray: number[][],
-        private readonly _systemsMargins: FolioCalculationSystemsMargins,
-        private readonly _systemsDimensions: FolioCalculationSystemsDimensions,
-        private readonly _zoomFactor: number
-    ) {
-        this.SYSTEMS_LABELS_ARRAY = this._calculateSystemsLabelArray();
-    }
-
-    /**
-     * Private method: _calculateSystemsLabelArray.
-     *
-     * It calculates the label array of the systems.
-     *
-     * @returns {FolioCalculationPoint[]} The calculated label array of the systems.
-     */
-    private _calculateSystemsLabelArray(): FolioCalculationPoint[] {
-        const labelStartX = round(
-            this._systemsDimensions.START_X -
-                this._systemsMargins.LEFT_MARGIN * FolioCalculationSystemsLabels.LABEL_START_X_OFFSET_FACTOR,
-            2
-        );
-        const labelStartYOffset = round(
-            FolioCalculationSystemsLabels.LABEL_START_Y_OFFSET_FACTOR / this._zoomFactor,
-            2
-        );
-
-        return this._yArray.map(lineArray => {
-            const labelStartY = lineArray[0] - labelStartYOffset;
-            return new FolioCalculationPoint(labelStartX, labelStartY);
-        });
+        this.TRADEMARK_RECTANGLE = trademarkPosition
+            ? calculateTrademarkRectangle(this.SHEET_RECTANGLE, trademarkPosition)
+            : undefined;
     }
 }
 
@@ -973,107 +388,202 @@ class FolioCalculationSystemsLabels {
  * The FolioCalculationSystems class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate the values of the systems on the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to calculate the values of the systems of a folio.
  */
 export class FolioCalculationSystems {
-    /**
-     * The line space factor of the systems.
-     */
-    public lineSpaceFactor = 1.5;
-
     /**
      * The number of systems.
      */
     public readonly NUMBER_OF_SYSTEMS: number;
 
     /**
-     * The flag if the systems are reversed
+     * The flag if the systems are reversed.
      */
     public readonly SYSTEMS_REVERSED: boolean;
 
     /**
-     * The labels of the systems.
+     * The start position (x-value) of the systems.
      */
-    public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
+    public readonly START_X: number;
 
     /**
-     * The lines of the systems.
+     * The width of the systems.
      */
-    public readonly SYSTEMS_LINES: FolioCalculationSystemsLines;
+    public readonly SYSTEMS_WIDTH: number;
 
     /**
-     * The calculated margins of the systems.
+     * The lines of the systems (per system an array of its staff lines).
      */
-    public readonly SYSTEMS_MARGINS: FolioCalculationSystemsMargins;
+    public readonly SYSTEMS_LINES: FolioCalculationLine[][];
 
     /**
-     * The calculated dimensions of the systems.
+     * The positions of the system labels.
      */
-    public readonly SYSTEMS_DIMENSIONS: FolioCalculationSystemsDimensions;
-
-    /**
-     * The zoom factor.
-     */
-    public readonly ZOOM_FACTOR: number;
+    public readonly SYSTEMS_LABEL_POSITIONS: FolioCalculationPoint[];
 
     /**
      * Constructor of the FolioCalculationSystems class.
      *
      * It initializes the class with values
-     * from the calculated folio sheet, the systems string and the zoom factor.
+     * from the calculated folio sheet, the zoom factor and the systems string.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
      * @param {number} factor The given zoom factor.
      * @param {string} systems The given systems string.
-     * @param {boolean} systemsReversed The given reversed flag.
+     * @param {boolean} [systemsReversed] The optional given reversed flag.
      */
     constructor(sheet: FolioCalculationSheet, factor: number, systems: string, systemsReversed: boolean = false) {
         this.NUMBER_OF_SYSTEMS = systems ? Number.parseInt(systems, 10) : 0;
         this.SYSTEMS_REVERSED = systemsReversed;
-        this.ZOOM_FACTOR = factor;
 
-        this.SYSTEMS_MARGINS = new FolioCalculationSystemsMargins(sheet);
-        this.SYSTEMS_DIMENSIONS = new FolioCalculationSystemsDimensions(sheet, this.SYSTEMS_MARGINS);
+        // Margins of the systems area on the sheet
+        const upperMargin =
+            round(sheet.SHEET_HEIGHT * SYSTEMS_VERTICAL_MARGIN_FACTOR, 2) + SYSTEMS_VERTICAL_MARGIN_OFFSET;
+        const leftMargin = round(sheet.SHEET_WIDTH * SYSTEMS_HORIZONTAL_MARGIN_FACTOR, 2);
+        const rightMargin = round(sheet.SHEET_WIDTH * (SYSTEMS_HORIZONTAL_MARGIN_FACTOR / 2), 2);
 
-        const Y_ARRAY = this._calculateSystemYArray();
-        this.SYSTEMS_LINES = new FolioCalculationSystemsLines(Y_ARRAY, this.SYSTEMS_DIMENSIONS);
-        this.SYSTEMS_LABELS = new FolioCalculationSystemsLabels(
-            Y_ARRAY,
-            this.SYSTEMS_MARGINS,
-            this.SYSTEMS_DIMENSIONS,
-            this.ZOOM_FACTOR
+        // Dimensions of the systems area
+        const { x: sheetX, y: sheetY } = sheet.SHEET_RECTANGLE.UPPER_LEFT_CORNER;
+        this.SYSTEMS_WIDTH = sheet.SHEET_WIDTH - (leftMargin + rightMargin);
+        this.START_X = sheetX + leftMargin;
+        const endX = this.START_X + this.SYSTEMS_WIDTH;
+        const startY = sheetY + upperMargin;
+        const systemsHeight = sheet.SHEET_HEIGHT - (upperMargin + upperMargin);
+
+        // Y values of the staff lines per system
+        const spacePerSystem = systemsHeight / this.NUMBER_OF_SYSTEMS;
+        const yArray = Array.from({ length: this.NUMBER_OF_SYSTEMS }, (_, systemIndex) => {
+            const yStart = round(startY + systemIndex * spacePerSystem, 2);
+            return Array.from(
+                { length: SYSTEM_NUMBER_OF_LINES },
+                (__, lineIndex) => yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
+            );
+        });
+
+        this.SYSTEMS_LINES = yArray.map(lineArray =>
+            lineArray.map(
+                y =>
+                    new FolioCalculationLine(
+                        new FolioCalculationPoint(this.START_X, y),
+                        new FolioCalculationPoint(endX, y)
+                    )
+            )
+        );
+
+        const labelX = round(this.START_X - leftMargin * SYSTEMS_LABEL_X_OFFSET_FACTOR, 2);
+        const labelYOffset = round(SYSTEMS_LABEL_Y_OFFSET_FACTOR / factor, 2);
+        this.SYSTEMS_LABEL_POSITIONS = yArray.map(
+            lineArray => new FolioCalculationPoint(labelX, lineArray[0] - labelYOffset)
         );
     }
+}
+
+/**
+ * The FolioCalculationContentSegment class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content segment of a folio.
+ * The given content is expected to be valid (see {@link isValidFolioContent}).
+ */
+export class FolioCalculationContentSegment {
+    /**
+     * The id of the edition complex of the content segment.
+     */
+    public readonly complexId: string;
 
     /**
-     * Private method: _calculateSystemYArray.
-     *
-     * It calculates the array of start positions of the systems of a folio.
-     *
-     * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
+     * The id of the svg sheet of the content segment.
      */
-    private _calculateSystemYArray(): number[][] {
-        const spacePerSystem = this.SYSTEMS_DIMENSIONS.SYSTEMS_HEIGHT / this.NUMBER_OF_SYSTEMS;
-        const array = Array.from({ length: this.NUMBER_OF_SYSTEMS }, (_, i) => {
-            const yStartValue = round(this.SYSTEMS_DIMENSIONS.START_Y + i * spacePerSystem, 2);
-            return this._calculateSystemLineArray(yStartValue);
-        });
-        return array;
-    }
+    public readonly sheetId: string;
 
     /**
-     * Private method: _calculateSystemLineArray.
-     *
-     * It calculates the start position of the 5 lines per system of a folio.
-     *
-     * @param {number} y The Y start value of the first line of a system.
-     * @returns {number[]} The start position array (Y values) of a system.
+     * The key of the text that is shown in a modal
+     * if the content segment cannot be selected.
      */
-    private _calculateSystemLineArray(y: number): number[] {
-        const NUMBER_OF_LINES = 5;
-        return Array.from({ length: NUMBER_OF_LINES }, (_, i) => y + i * this.lineSpaceFactor * this.ZOOM_FACTOR);
+    public readonly linkTo: string;
+
+    /**
+     * The boolean flag if the content segment can be selected.
+     */
+    public readonly selectable: boolean;
+
+    /**
+     * The boolean flag if the content segment is reversed.
+     */
+    public readonly reversed: boolean;
+
+    /**
+     * The label of the content segment.
+     */
+    public readonly segmentLabel: string;
+
+    /**
+     * The lines of the label of the content segment (sigle and addendum).
+     */
+    public readonly segmentLabelArray: string[];
+
+    /**
+     * The vertices of the content segment polygon (as svg points string).
+     */
+    public readonly vertices: string;
+
+    /**
+     * The centered x position of the content segment.
+     */
+    public readonly centeredXPosition: number;
+
+    /**
+     * The centered y position of the content segment.
+     */
+    public readonly centeredYPosition: number;
+
+    /**
+     * Constructor of the FolioCalculationContentSegment class.
+     *
+     * It initializes the class with values from the folio content,
+     * the calculated systems and the segment offset correction.
+     *
+     * @param {ValidFolioContent} content The given (valid) folio content.
+     * @param {FolioCalculationSystems} systems The given calculated systems.
+     * @param {number} segmentOffsetCorrection The given segment offset correction.
+     */
+    constructor(content: ValidFolioContent, systems: FolioCalculationSystems, segmentOffsetCorrection: number) {
+        const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
+
+        this.complexId = complexId;
+        this.sheetId = sheetId;
+        this.linkTo = linkTo;
+        this.selectable = selectable;
+        this.reversed = reversed;
+
+        this.segmentLabelArray = [sigle, sigleAddendum ? ` ${sigleAddendum}` : ''];
+        this.segmentLabel = sigleAddendum ? `${sigle} ${sigleAddendum}` : sigle;
+
+        // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
+        const offsetCorrection =
+            segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.NUMBER_OF_SYSTEMS);
+        const segmentSplit = content.segmentSplit ?? 1;
+        const segment = content.segments[0];
+
+        const startX = calculateContentSegmentX(segment, systems, segmentSplit, offsetCorrection, true);
+        const endX = calculateContentSegmentX(segment, systems, segmentSplit, offsetCorrection, false);
+        const startY = calculateContentSegmentY(segment, systems, offsetCorrection, true);
+        const endY = calculateContentSegmentY(segment, systems, offsetCorrection, false);
+
+        // Closed polygon: upper left, upper right, lower right, lower left, upper left
+        this.vertices = [
+            [startX, startY],
+            [endX, startY],
+            [endX, endY],
+            [startX, endY],
+            [startX, startY],
+        ]
+            .map(([x, y]) => `${x} ${y}`)
+            .join(' ');
+
+        const labelOffset = sigleAddendum ? CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET : 0;
+        this.centeredXPosition = (startX + endX) / 2;
+        this.centeredYPosition = (startY + endY) / 2 - (reversed ? -labelOffset : labelOffset);
     }
 }
 
@@ -1081,9 +591,7 @@ export class FolioCalculationSystems {
  * The FolioCalculation class.
  *
  * It is used in the context of the edition folio convolutes
- * to calculate all the values needed for the folio canvas.
- *
- * Exposed to be used throughout {@link EditionSheetsModule}.
+ * to calculate all the values needed for the folio svg.
  */
 export class FolioCalculation {
     /**
@@ -1097,7 +605,7 @@ export class FolioCalculation {
     public readonly SYSTEMS: FolioCalculationSystems;
 
     /**
-     * The calculated values for content segments of a folio.
+     * The calculated values for the (valid) content segments of a folio.
      */
     public readonly CONTENT_SEGMENTS: FolioCalculationContentSegment[];
 
@@ -1124,10 +632,9 @@ export class FolioCalculation {
             folioData.systems,
             folioData.reversed
         );
-        this.CONTENT_SEGMENTS = folioData.content.map(
-            (content: FolioContent) =>
-                new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)
-        );
+        this.CONTENT_SEGMENTS = folioData.content
+            .filter(content => isValidFolioContent(content, this.SYSTEMS))
+            .map(content => new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection));
         this.VIEW_BOX = new ViewBox(
             (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor,
             (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor

@@ -85,8 +85,8 @@ export class FolioSvgSystems {
      * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
-        this.labelPositions = calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
-        this.lines = calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
+        this.labelPositions = calculatedSystems.SYSTEMS_LABEL_POSITIONS;
+        this.lines = calculatedSystems.SYSTEMS_LINES;
         this.reversed = calculatedSystems.SYSTEMS_REVERSED;
     }
 }
@@ -156,7 +156,7 @@ export class FolioSvgContentSegment {
         this.label = calculatedContentSegment.segmentLabel;
         this.labelLines = calculatedContentSegment.segmentLabelArray;
         this.reversed = calculatedContentSegment.reversed;
-        this.vertices = calculatedContentSegment.vertices?.VERTICES_AS_STRING;
+        this.vertices = calculatedContentSegment.vertices;
         this.center = new FolioCalculationPoint(
             calculatedContentSegment.centeredXPosition,
             calculatedContentSegment.centeredYPosition

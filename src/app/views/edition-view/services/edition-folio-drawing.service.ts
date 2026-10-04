@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
+    FOLIO_DEFAULT_NUMBER_OF_SYSTEMS,
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationRectangle,
@@ -58,14 +59,6 @@ export class EditionFolioDrawingService {
      * It keeps the stroke width for the content segments.
      */
     private readonly _contentSegmentStrokeWidth = 2;
-
-    /**
-     * Private readonly variable: _defaultNumberOfSystems.
-     *
-     * It keeps the default number of systems
-     * (reference for the stroke width of the content segments).
-     */
-    private readonly _defaultNumberOfSystems = 18;
 
     /**
      * Private readonly variable: _folioSettings.
@@ -186,9 +179,9 @@ export class EditionFolioDrawingService {
      * @returns {void} Draws the content segments.
      */
     private _drawContentSegments(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        const numberOfSystems = folioSvgData.systems.lines.length || this._defaultNumberOfSystems;
+        const numberOfSystems = folioSvgData.systems.lines.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
-        const strokeWidth = this._contentSegmentStrokeWidth * (this._defaultNumberOfSystems / numberOfSystems);
+        const strokeWidth = this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
 
         folioSvgData.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
             // Group with the content segment bound as datum (resolved by getContentSegment for delegated clicks)

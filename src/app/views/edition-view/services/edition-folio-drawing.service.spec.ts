@@ -310,7 +310,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 const rootGroup = render(createSvgData({ ...expectedReversedFolio, systems: '' }));
 
                 expectToBe(rootGroup.selectAll('g.systems-group').size(), 0);
-                expectToBe(mockConsole.get(0), 'No systems in folio');
+                expectToBe(mockConsole.get(0), '[FolioCalculation] No systems in folio');
             });
         });
 
