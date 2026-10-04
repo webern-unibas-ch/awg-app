@@ -1,0 +1,57 @@
+/* folio svg (drawn at runtime by d3, so not covered by view encapsulation) */
+:host ::ng-deep {
+    .awg-edition-folios-viewer-svg {
+        // Sheet and trademark
+        .sheet-rectangle,
+        .trademark-rectangle {
+            fill: white;
+            stroke: #a3a3a3;
+            stroke-width: 1;
+        }
+
+        .trademark-symbol {
+            fill: grey;
+            stroke: grey;
+            stroke-width: 2;
+        }
+
+        // Systems
+        .system-label {
+            fill: #a3a3a3;
+        }
+
+        .system-line {
+            stroke: #a3a3a3;
+            stroke-width: 0.7;
+        }
+
+        // Content segments (the stroke width of the shapes is set by the FolioService)
+        .content-segment-group {
+            fill: grey;
+            stroke: grey;
+
+            &.selectable {
+                fill: orange;
+                stroke: orange;
+            }
+
+            &.active,
+            &.active .content-segment-shape {
+                stroke: olivedrab;
+            }
+
+            &.active .content-segment-label {
+                fill: olivedrab;
+            }
+        }
+
+        .content-segment-shape {
+            fill: #eeeeee;
+        }
+
+        .content-segment-label {
+            font-family: 'Source Sans Pro', source-sans-pro, sans-serif;
+            font-size: 11px;
+        }
+    }
+}

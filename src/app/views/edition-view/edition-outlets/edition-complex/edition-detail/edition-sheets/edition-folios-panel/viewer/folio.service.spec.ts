@@ -43,7 +43,11 @@ describe('FolioService (DONE)', () => {
         return rootGroup;
     };
 
-    const expectRectAttrs = (rectSelection: D3Selection, rectangle: FolioCalculationRectangle): void => {
+    const expectRectAttrs = (
+        rectSelection: D3Selection,
+        rectangle: FolioCalculationRectangle,
+        expectedClass: string
+    ): void => {
         const { x: x1, y: y1 } = rectangle.UPPER_LEFT_CORNER;
         const { x: x2, y: y2 } = rectangle.LOWER_RIGHT_CORNER;
 
@@ -51,9 +55,7 @@ describe('FolioService (DONE)', () => {
         expectToBe(rectSelection.attr('y'), String(y1));
         expectToBe(rectSelection.attr('width'), String(x2 - x1));
         expectToBe(rectSelection.attr('height'), String(y2 - y1));
-        expectToBe(rectSelection.attr('fill'), 'white');
-        expectToBe(rectSelection.attr('stroke'), '#a3a3a3');
-        expectToBe(rectSelection.attr('stroke-width'), '1');
+        expectToBe(rectSelection.attr('class'), expectedClass);
     };
 
     beforeEach(() => {
@@ -171,7 +173,8 @@ describe('FolioService (DONE)', () => {
 
                 expectRectAttrs(
                     rootGroup.select('g.sheet-group > rect') as unknown as D3Selection,
-                    expectedFolioSvgData.sheet.sheetRectangle
+                    expectedFolioSvgData.sheet.sheetRectangle,
+                    'sheet-rectangle'
                 );
             });
         });
@@ -222,7 +225,7 @@ describe('FolioService (DONE)', () => {
                         'g.trademark-group > rect.trademark-rectangle'
                     ) as unknown as D3Selection;
 
-                    expectRectAttrs(trademarkRect, expectedRectangle);
+                    expectRectAttrs(trademarkRect, expectedRectangle, 'trademark-rectangle');
                 }
             );
 
@@ -231,9 +234,6 @@ describe('FolioService (DONE)', () => {
                 const symbol = rootGroup.select('g.trademark-group > path.trademark-symbol');
 
                 expectToBe(symbol.attr('d').startsWith('M 10 39 Q 12 36 14 39'), true);
-                expectToBe(symbol.attr('fill'), 'grey');
-                expectToBe(symbol.attr('stroke'), 'grey');
-                expectToBe(symbol.attr('stroke-width'), '2');
                 expectToBe(symbol.attr('transform').includes('scale(0.5)'), true);
                 expectToBe(symbol.attr('transform').includes('rotate('), false);
                 expectToBe(rootGroup.select('g.trademark-group > title.trademark-title').text(), 'Firmenzeichen');
@@ -277,7 +277,6 @@ describe('FolioService (DONE)', () => {
                 );
                 expectToBe(labels.attr('x'), String(systemsLabelPositions[0].x));
                 expectToBe(labels.attr('y'), String(systemsLabelPositions[0].y));
-                expectToBe(labels.attr('fill'), '#a3a3a3');
             });
 
             it('... should draw the system labels numbered from bottom to top if the systems are reversed', () => {
@@ -305,8 +304,6 @@ describe('FolioService (DONE)', () => {
                 expectToBe(firstLine.attr('y1'), String(firstSystemLines[0].START_POINT.y));
                 expectToBe(firstLine.attr('x2'), String(firstSystemLines[0].END_POINT.x));
                 expectToBe(firstLine.attr('y2'), String(firstSystemLines[0].END_POINT.y));
-                expectToBe(firstLine.attr('stroke'), '#a3a3a3');
-                expectToBe(firstLine.attr('stroke-width'), '0.7');
             });
 
             it('... should not draw any system and log an error for a folio without systems', () => {
@@ -336,13 +333,21 @@ describe('FolioService (DONE)', () => {
                 expectToEqual(segmentGroups.data(), expectedFolioSvgData.contentSegments);
             });
 
-            it('... should color the content segment groups by their selectability', () => {
-                segmentGroups.each((contentSegment, index, nodes) => {
-                    const expectedColor = contentSegment.selectable ? 'orange' : 'grey';
+            it('... should set the class `selectable` only on the groups of selectable content segments', () => {
+                const folio = structuredClone(expectedDefaultFolio);
+                folio.content[1].selectable = false;
 
-                    expectToBe(nodes[index].getAttribute('stroke'), expectedColor);
-                    expectToBe(nodes[index].getAttribute('fill'), expectedColor);
+                const altSegmentGroups = render(createSvgData(folio)).selectAll<SVGGElement, FolioSvgContentSegment>(
+                    'g.content-segment-group'
+                );
+
+                altSegmentGroups.each((contentSegment, index, nodes) => {
+                    expectToBe(nodes[index].classList.contains('selectable'), contentSegment.selectable);
                 });
+                expectToEqual(
+                    altSegmentGroups.data().map(contentSegment => contentSegment.selectable),
+                    [true, false, true]
+                );
             });
 
             it('... should draw the segment label as title of each content segment group', () => {
@@ -358,7 +363,6 @@ describe('FolioService (DONE)', () => {
 
                     expectToBe(polygon?.getAttribute('class'), 'content-segment-shape');
                     expectToBe(polygon?.getAttribute('points'), contentSegment.segmentVertices);
-                    expectToBe(polygon?.getAttribute('fill'), '#eeeeee');
                     expectToBe(polygon?.getAttribute('stroke-width'), '2');
                 });
             });

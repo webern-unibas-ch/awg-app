@@ -47,48 +47,6 @@ const TRADEMARK_SYMBOL_PATH =
 })
 export class FolioService {
     /**
-     * Private readonly variable: _bgColor.
-     *
-     * It keeps the background color for the folio.
-     */
-    private readonly _bgColor = '#a3a3a3';
-
-    /**
-     * Private readonly variable: _disabledColor.
-     *
-     * It keeps the disabled color for the folios.
-     */
-    private readonly _disabledColor = 'grey';
-
-    /**
-     * Private readonly variable: _fgColor.
-     *
-     * It keeps the foreground color for the folios.
-     */
-    private readonly _fgColor = 'orange';
-
-    /**
-     * Private readonly variable: _contentSegmentFillColor.
-     *
-     * It keeps the fill color for the content segments.
-     */
-    private readonly _contentSegmentFillColor = '#eeeeee';
-
-    /**
-     * Private readonly variable: _contentSegmentFontFamily.
-     *
-     * It keeps the font family for the content segments.
-     */
-    private readonly _contentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
-
-    /**
-     * Private readonly variable: _contentSegmentFontSize.
-     *
-     * It keeps the font size for the content segments.
-     */
-    private readonly _contentSegmentFontSize = '11px';
-
-    /**
      * Private readonly variable: _contentSegmentGroupClass.
      *
      * It keeps the css class of the content segment groups.
@@ -137,27 +95,6 @@ export class FolioService {
      * It keeps the rotation angle for a reversed item.
      */
     private readonly _reversedRotationAngle = 180;
-
-    /**
-     * Private readonly variable: _sheetFillColor.
-     *
-     * It keeps the fill color for the sheets.
-     */
-    private readonly _sheetFillColor = 'white';
-
-    /**
-     * Private readonly variable: _sheetStrokeWidth.
-     *
-     * It keeps the stroke width for the sheets.
-     */
-    private readonly _sheetStrokeWidth = 1;
-
-    /**
-     * Private readonly variable: _systemsLineStrokeWidth.
-     *
-     * It keeps the stroke width for the systems.
-     */
-    private readonly _systemsLineStrokeWidth = 0.7;
 
     /**
      * Public method: getFolioSvgItem.
@@ -252,22 +189,19 @@ export class FolioService {
      *
      * @param {D3Selection} parent The given parent selection.
      * @param {FolioCalculationRectangle} rectangle The given calculated rectangle.
-     * @param {string} [cssClass] The optional css class of the rect.
+     * @param {string} cssClass The css class of the rect.
      * @returns {D3Selection} The appended rect selection.
      */
-    private _appendRect(parent: D3Selection, rectangle: FolioCalculationRectangle, cssClass?: string): D3Selection {
+    private _appendRect(parent: D3Selection, rectangle: FolioCalculationRectangle, cssClass: string): D3Selection {
         const { x: x1, y: y1 } = rectangle.UPPER_LEFT_CORNER;
         const { x: x2, y: y2 } = rectangle.LOWER_RIGHT_CORNER;
 
         return this._appendSvgElementWithAttrs(parent, 'rect', {
-            ...(cssClass ? { class: cssClass } : {}),
+            class: cssClass,
             x: x1,
             y: y1,
             width: x2 - x1,
             height: y2 - y1,
-            fill: this._sheetFillColor,
-            stroke: this._bgColor,
-            'stroke-width': this._sheetStrokeWidth,
         });
     }
 
@@ -328,21 +262,18 @@ export class FolioService {
         const strokeWidth = this._contentSegmentStrokeWidth * (this._defaultNumberOfSystems / numberOfSystems);
 
         folioSvgData.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
-            const color = contentSegment.selectable ? this._fgColor : this._disabledColor;
-
             // Group with the content segment bound as datum (resolved by getContentSegment for delegated clicks)
             const segmentGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', {
                 class: this._contentSegmentGroupClass,
-                stroke: color,
-                fill: color,
-            }).datum(contentSegment);
+            })
+                .classed('selectable', contentSegment.selectable)
+                .datum(contentSegment);
             this._appendSvgElementWithAttrs(segmentGroup, 'title', {}).text(contentSegment.segmentLabel);
 
             const segmentLink = this._appendSvgElementWithAttrs(segmentGroup, 'a', { class: 'content-segment-link' });
             this._appendSvgElementWithAttrs(segmentLink, 'polygon', {
                 class: 'content-segment-shape',
                 points: contentSegment.segmentVertices,
-                fill: this._contentSegmentFillColor,
                 'stroke-width': strokeWidth,
             });
 
@@ -367,10 +298,9 @@ export class FolioService {
             class: 'content-segment-label',
             x,
             y,
-            'font-family': this._contentSegmentFontFamily,
             'dominant-baseline': 'middle',
             'text-anchor': 'middle',
-        }).style('font-size', this._contentSegmentFontSize);
+        });
 
         contentSegment.segmentLabelArray.forEach((labelLine, index) => {
             if (labelLine === '') {
@@ -401,7 +331,7 @@ export class FolioService {
         const { folioId, sheetRectangle, trademarkRectangle } = folioSvgData.sheet;
 
         this._appendSvgElementWithAttrs(sheetGroup, 'title', { class: 'sheet-group-title' }).text(`Bl. ${folioId}`);
-        this._appendRect(sheetGroup, sheetRectangle);
+        this._appendRect(sheetGroup, sheetRectangle, 'sheet-rectangle');
 
         if (trademarkRectangle) {
             this._drawTrademark(sheetGroup, trademarkRectangle, folioSvgData.systems.systemsReversed);
@@ -433,7 +363,6 @@ export class FolioService {
                 class: 'system-label',
                 x: labelPosition.x,
                 y: labelPosition.y,
-                fill: this._bgColor,
                 'dominant-baseline': 'hanging',
             }).text(labelIndex);
 
@@ -444,8 +373,6 @@ export class FolioService {
                     y1: line.START_POINT.y,
                     x2: line.END_POINT.x,
                     y2: line.END_POINT.y,
-                    stroke: this._bgColor,
-                    'stroke-width': this._systemsLineStrokeWidth,
                 });
             });
         });
@@ -485,10 +412,7 @@ export class FolioService {
         this._appendSvgElementWithAttrs(trademarkGroup, 'path', {
             class: 'trademark-symbol',
             d: TRADEMARK_SYMBOL_PATH,
-            fill: this._disabledColor,
-            stroke: this._disabledColor,
             transform,
-            'stroke-width': this._contentSegmentStrokeWidth,
         });
 
         this._appendSvgElementWithAttrs(trademarkGroup, 'title', { class: 'trademark-title' }).text('Firmenzeichen');
