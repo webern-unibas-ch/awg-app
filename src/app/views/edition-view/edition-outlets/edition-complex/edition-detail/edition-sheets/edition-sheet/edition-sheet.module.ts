@@ -4,7 +4,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
-import { EditionSheetViewerModule } from './viewer/edition-sheet-viewer.module';
+import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.component';
 
 import { EditionSheetComponent } from './edition-sheet.component';
 
@@ -13,7 +13,7 @@ import { EditionSheetComponent } from './edition-sheet.component';
  *
  * It embeds the edition sheet components
  * as well as the {@link EditionSheetFacetComponent},
- * {@link EditionSheetFooterComponent}, {@link EditionSheetViewerModule}
+ * {@link EditionSheetFooterComponent}, {@link EditionSheetViewerComponent}
  * and {@link SharedModule}.
  */
 @NgModule({
@@ -22,7 +22,7 @@ import { EditionSheetComponent } from './edition-sheet.component';
         ButtonUsageHintsComponent,
         EditionSheetFacetComponent,
         EditionSheetFooterComponent,
-        EditionSheetViewerModule,
+        EditionSheetViewerComponent,
     ],
     declarations: [EditionSheetComponent],
     exports: [EditionSheetComponent],

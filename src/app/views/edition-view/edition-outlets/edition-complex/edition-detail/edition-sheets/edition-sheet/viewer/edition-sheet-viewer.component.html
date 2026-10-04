@@ -1,36 +1,34 @@
-@if (selectedSvgSheet) {
-    <div class="awg-edition-sheet-viewer">
-        <div class="awg-edition-sheet-viewer-icon-bar">
-            <awg-slider-zoom
-                class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
-                [zoomConfig]="zoomConfig"
-                [(zoomValue)]="zoomValue"
-                (resetRequest)="svgZoom.reset()" />
-        </div>
-        <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
-            <svg
-                #svgSheetElement
-                #svgZoom="awgSvgZoom"
-                id="awg-edition-svg-sheet"
-                awgSvgZoom
-                [zoomConfig]="zoomConfig"
-                [zoomTarget]="svgSheetRootGroup"
-                [(zoomValue)]="zoomValue">
-                <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
-            </svg>
-
-            <awg-license />
-
-            @if (hasAvailableTkkOverlays || suppliedClasses.length > 0) {
-                <awg-edition-sheet-viewer-additions-panel
-                    [sheetId]="selectedSvgSheet.id"
-                    [suppliedClasses]="suppliedClasses"
-                    [hasTkkOverlays]="hasAvailableTkkOverlays"
-                    (visibilityChange)="onAdditionVisibilityChange($event)" />
-            }
-        </div>
-
-        <!-- Next and previous buttons -->
-        <awg-edition-sheet-viewer-nav (browseRequest)="browseSvgSheet($event)" />
+<div class="awg-edition-sheet-viewer">
+    <div class="awg-edition-sheet-viewer-icon-bar">
+        <awg-slider-zoom
+            class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
+            [zoomConfig]="zoomConfig"
+            [(zoomValue)]="zoomValue"
+            (resetRequest)="svgZoom.reset()" />
     </div>
-}
+    <div class="awg-edition-svg-sheet-container px-2r">
+        <svg
+            #svgSheetElement
+            #svgZoom="awgSvgZoom"
+            id="awg-edition-svg-sheet"
+            awgSvgZoom
+            [zoomConfig]="zoomConfig"
+            [zoomTarget]="svgSheetRootGroup"
+            [(zoomValue)]="zoomValue">
+            <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group" />
+        </svg>
+
+        <awg-license />
+
+        @if (hasAvailableTkkOverlays() || suppliedClasses().length > 0) {
+            <awg-edition-sheet-viewer-additions-panel
+                [sheetId]="selectedSvgSheet().id"
+                [suppliedClasses]="suppliedClasses()"
+                [hasTkkOverlays]="hasAvailableTkkOverlays()"
+                (visibilityChange)="onAdditionVisibilityChange($event)" />
+        }
+    </div>
+
+    <!-- Next and previous buttons -->
+    <awg-edition-sheet-viewer-nav (browseRequest)="browseSvgSheetRequest.emit($event)" />
+</div>

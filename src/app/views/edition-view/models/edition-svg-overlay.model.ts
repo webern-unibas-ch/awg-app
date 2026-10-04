@@ -11,32 +11,34 @@ export enum EditionSvgOverlayTypes {
 }
 
 /**
- * The EditionSvgOverlayActionTypes enumeration.
+ * The EditionSvgOverlayTarget type.
  *
- * It stores the possible svg overlay action types.
+ * It describes the svg overlay hit by a pointer event:
+ * a tkk overlay (identified by its data id) or a link box (identified by its group id).
  */
-export enum EditionSvgOverlayActionTypes {
-    hover = 'hover',
-    fill = 'fill',
-    transparent = 'transparent',
-}
+export type EditionSvgOverlayTarget =
+    { type: EditionSvgOverlayTypes.tkk; dataId: string } | { type: EditionSvgOverlayTypes.linkBox; id: string };
 
 /**
- * The EditionSvgOverlayState interface.
+ * The EditionSvgOverlayColorState interface.
  *
- * It stores the state of the svg overlays,
- * including the available and selected overlays.
+ * It describes the state the colors of the tkk overlays are derived from.
  */
-export interface EditionSvgOverlayState {
+export interface EditionSvgOverlayColorState {
     /**
-     * An array of available svg overlays.
+     * The data ids of the selected tkk overlays.
      */
-    available: EditionSvgOverlay[];
+    selectedDataIds: ReadonlySet<string>;
 
     /**
-     * An array of selected svg overlays.
+     * The data id of the hovered tkk overlay, if any.
      */
-    selected: EditionSvgOverlay[];
+    hoveredDataId: string | undefined;
+
+    /**
+     * A boolean flag whether the tkk overlays are highlighted (i.e., visible).
+     */
+    isHighlighted: boolean;
 }
 
 /**

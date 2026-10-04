@@ -1,26 +1,22 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
+    effect,
     ElementRef,
-    EventEmitter,
-    HostListener,
     inject,
-    Input,
-    OnChanges,
-    OnDestroy,
-    Output,
+    input,
+    output,
     signal,
-    SimpleChanges,
-    ViewChild,
+    untracked,
+    viewChild,
 } from '@angular/core';
 
-import { Subject } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import * as D3_SELECTION from 'd3-selection';
 
-import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { LicenseComponent } from '@awg-shared/license/license.component';
+import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import {
     D3Selection,
     EditionSvgOverlay,
@@ -29,7 +25,9 @@ import {
 } from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
 
+import { EditionSheetViewerAdditionsPanelComponent } from './additions-panel/edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/edition-sheet-viewer-additions-panel.model';
+import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 
 /**
  * The EditionSheetViewer component.
@@ -43,16 +41,15 @@ import { EditionSheetViewerAdditionsPanelChange } from './additions-panel/editio
     templateUrl: './edition-sheet-viewer.component.html',
     styleUrls: ['./edition-sheet-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        EditionSheetViewerAdditionsPanelComponent,
+        EditionSheetViewerNavComponent,
+        LicenseComponent,
+        SliderZoomComponent,
+        SvgZoomDirective,
+    ],
 })
-export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterViewInit {
-    /**
-     * Private readonly injection variable: _cdr.
-     *
-     * It keeps the instance of the injected Angular ChangeDetectorRef.
-     */
-    private readonly _cdr = inject(ChangeDetectorRef);
-
+export class EditionSheetViewerComponent {
     /**
      * Private readonly injection variable: _svgDrawingService.
      *
@@ -68,77 +65,74 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     private readonly _svgOverlayService = inject(EditionSvgOverlayService);
 
     /**
-     * ViewChild variable: svgSheetContainerRef.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It keeps the reference to the svg sheet container.
+     * It holds the selected svg sheet.
      */
-    @ViewChild('svgSheetContainer') svgSheetContainerRef: ElementRef<HTMLDivElement> | undefined;
+    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * ViewChild variable: svgElementRef.
+     * Readonly output signal: browseSvgSheetRequest.
      *
-     * It keeps the reference to the svg element.
+     * It emits the direction (-1 for previous, 1 for next) to browse the svg sheets.
      */
-    @ViewChild('svgSheetElement') svgSheetElementRef: ElementRef<SVGSVGElement> | undefined;
+    readonly browseSvgSheetRequest = output<1 | -1>();
 
     /**
-     * ViewChild variable: svgRootGroupRef.
+     * Readonly output signal: selectLinkBoxRequest.
      *
-     * It keeps the reference to the svg root group.
+     * It emits the id of a selected link box.
      */
-    @ViewChild('svgSheetRootGroup') svgSheetRootGroupRef: ElementRef<SVGGElement> | undefined;
+    readonly selectLinkBoxRequest = output<string>();
 
     /**
-     * ViewChild variable: svgZoom.
+     * Readonly output signal: selectOverlaysRequest.
      *
-     * It keeps the reference to the svg zoom directive of the svg sheet.
+     * It emits the selected svg overlays.
      */
-    @ViewChild(SvgZoomDirective) svgZoom: SvgZoomDirective | undefined;
+    readonly selectOverlaysRequest = output<EditionSvgOverlay[]>();
 
     /**
-     * Input variable: selectedSvgSheet.
+     * Readonly view child signal: svgSheetElement.
      *
-     * It keeps the selected svg sheet.
+     * It holds the reference to the svg element of the sheet.
      */
-    @Input() selectedSvgSheet?: EditionSvgSheet;
+    readonly svgSheetElement = viewChild.required<ElementRef<SVGSVGElement>>('svgSheetElement');
 
     /**
-     * Output variable: browseSvgSheetRequest.
+     * Readonly view child signal: svgSheetRootGroup.
      *
-     * It keeps an event emitter for the next or pevious index of an svg sheet.
+     * It holds the reference to the root group of the svg sheet.
      */
-    @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    readonly svgSheetRootGroup = viewChild.required<ElementRef<SVGGElement>>('svgSheetRootGroup');
 
     /**
-     * Output variable: selectLinkBoxRequest.
+     * Readonly view child signal: svgZoom.
      *
-     * It keeps an event emitter for the selected link box.
+     * It holds the svg zoom directive of the svg sheet.
      */
-    @Output()
-    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
+    readonly svgZoom = viewChild.required(SvgZoomDirective);
 
     /**
-     * Output variable: selectOverlaysRequest.
+     * Readonly signal: hasAvailableTkkOverlays.
      *
-     * It keeps an event emitter for the selected svg overlays.
+     * It holds a boolean flag whether there are available tkk overlays.
      */
-    @Output()
-    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+    readonly hasAvailableTkkOverlays = signal<boolean>(false);
 
     /**
-     * Public variable: hasAvailableTkkOverlays.
+     * Readonly signal: suppliedClasses.
      *
-     * It keeps a boolean flag whether there are available tkk overlays.
+     * It holds the names of the supplied classes of the svg sheet.
      */
-    hasAvailableTkkOverlays = false;
+    readonly suppliedClasses = signal<string[]>([]);
 
     /**
-     * Public variable: zoomConfig.
+     * Readonly variable: zoomConfig.
      *
-     * It keeps the default values for the zoom slider input.
+     * It keeps the configuration of the zoom (slider and svg zoom).
      */
-    zoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
+    readonly zoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
 
     /**
      * Readonly signal: zoomValue.
@@ -148,140 +142,36 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
     readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
-     * Public variable: suppliedClasses.
+     * Private variable: _renderQueue.
      *
-     * It keeps the names of the supplied classes of the svg sheet.
+     * It keeps the promise chain of the sheet renderings
+     * (renderings never overlap, outdated sheets are skipped).
      */
-    suppliedClasses: string[] = [];
+    private _renderQueue: Promise<void> = Promise.resolve();
 
     /**
-     * Public variable: svgSheetFilePath.
+     * Private variable: _svgSheetRootGroupSelection.
      *
-     * It keeps the file path of the svg file.
+     * It keeps the d3 selection of the svg sheet root group of the rendered sheet.
      */
-    svgSheetFilePath = '';
+    private _svgSheetRootGroupSelection: D3Selection | undefined;
 
     /**
-     * Public variable: svgSheetSelection.
+     * Constructor of the EditionSheetViewerComponent.
      *
-     * It keeps the d3 selection of the svg sheet.
+     * It renders the selected svg sheet initially
+     * and whenever the selected svg sheet changes.
+     *
+     * Note: A regular effect (instead of afterRenderEffect) is used on purpose:
+     * it runs inside the Angular zone, so the d3 event listeners registered
+     * during rendering (e.g., clicks on tkk overlays) trigger change detection.
+     * The rendering itself is queued asynchronously, i.e., after the view is created.
      */
-    svgSheetSelection: D3Selection | undefined;
-
-    /**
-     * Public variable: svgSheetRootGroupSelection.
-     *
-     * It keeps the d3 selection of the svg sheet root group.
-     */
-    svgSheetRootGroupSelection: D3Selection | undefined;
-
-    /**
-     * Private variable: _divWidth.
-     *
-     * It keeps the width of the container div.
-     */
-    private _divWidth = 0;
-
-    /**
-     * Private variable: _divHeight.
-     *
-     * It keeps the height of the container div.
-     */
-    private _divHeight = 0;
-
-    /**
-     * Private variable: _isRendered.
-     *
-     * It keeps a boolean flag whether the sheet has been rendered.
-     */
-    private _isRendered = false;
-
-    /**
-     * Private readonly variable: _destroyed$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * Private readonly variable: _resize$.
-     *
-     * It keeps a subject for a resize event.
-     */
-    private readonly _resize$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * HostListener: onResize.
-     *
-     * It redraws the graph when the window is resized.
-     */
-    @HostListener('window:resize') onResize() {
-        // Guard against resize before view is rendered
-        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection || !this.svgSheetContainerRef) {
-            return;
-        }
-
-        // Calculate new width & height
-        this._getContainerDimensions(this.svgSheetContainerRef);
-
-        // Fire resize event
-        this._resize$.next(true);
-    }
-
-    /**
-     * Angular life cycle hook: ngOnChanges.
-     *
-     * It checks for changes of the given input.
-     *
-     * @param {SimpleChanges} changes The changes of the input.
-     */
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['selectedSvgSheet'] && this._isRendered) {
-            this.renderSheet();
-        }
-    }
-
-    /**
-     * Angular life cycle hook: ngAfterViewInit.
-     *
-     * It calls the containing methods
-     * after initializing the view.
-     */
-    ngAfterViewInit(): void {
-        // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe(() => {
-            this.renderSheet();
+    constructor() {
+        effect(() => {
+            const sheet = this.selectedSvgSheet();
+            untracked(() => this._queueRendering(sheet));
         });
-
-        this.renderSheet();
-        this._isRendered = true;
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
-
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
-    }
-
-    /**
-     * Public method: browseSvgSheet.
-     *
-     * It emits a given direction to the {@link browseSvgSheetRequest}
-     * to browse to the previous or next sheet of the selected svg sheet.
-     *
-     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
-     * @returns {void} Emits the direction.
-     */
-    browseSvgSheet(direction: 1 | -1): void {
-        this.browseSvgSheetRequest.emit(direction);
     }
 
     /**
@@ -295,168 +185,80 @@ export class EditionSheetViewerComponent implements OnChanges, OnDestroy, AfterV
      * @returns {void} Sets the visibility of the editorial addition.
      */
     onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
-        if (!this.svgSheetRootGroupSelection) {
+        if (!this._svgSheetRootGroupSelection) {
             return;
         }
 
         if (key === EditionSvgOverlayTypes.tkk) {
-            this._svgOverlayService.toggleTkkOverlayHighlights(
-                this.svgSheetRootGroupSelection,
-                EditionSvgOverlayTypes.tkk,
-                isVisible
-            );
+            this._svgOverlayService.toggleTkkOverlayHighlights(this._svgSheetRootGroupSelection, key, isVisible);
         } else {
-            this._svgDrawingService.toggleSuppliedClassOpacity(this.svgSheetRootGroupSelection, key, isVisible);
+            this._svgDrawingService.toggleSuppliedClassOpacity(this._svgSheetRootGroupSelection, key, isVisible);
         }
     }
 
     /**
-     * Public method: renderSheet.
+     * Private method: _queueRendering.
      *
-     * It renders the SVG sheet with overlays and resets the zoom.
+     * It queues the rendering of a given svg sheet after the previous rendering.
+     * The rendering is skipped if the sheet is no longer selected by then.
      *
-     * @returns {void} Renders the SVG sheet.
+     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @returns {void} Queues the rendering.
      */
-    renderSheet(): void {
-        // Clear previous svg and overlays before rendering new sheet
-        this._clearSvg();
+    private _queueRendering(sheet: EditionSvgSheet): void {
+        this._renderQueue = this._renderQueue
+            .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
+            .catch(error => console.error('[EditionSheetViewer] Failed to render svg sheet', error));
+    }
+
+    /**
+     * Private method: _renderSheet.
+     *
+     * It renders a given svg sheet with its overlays and supplied classes, and resets the zoom.
+     *
+     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @returns {Promise<void>} Renders the svg sheet.
+     */
+    private async _renderSheet(sheet: EditionSvgSheet): Promise<void> {
+        const rootGroupEl = this.svgSheetRootGroup().nativeElement;
+
+        // Clear previous sheet and overlays
+        D3_SELECTION.select(rootGroupEl).selectAll('*').remove();
         this._svgOverlayService.clearSvgOverlays();
+        this._svgSheetRootGroupSelection = undefined;
+        this.hasAvailableTkkOverlays.set(false);
+        this.suppliedClasses.set([]);
 
-        this.svgSheetFilePath = this.selectedSvgSheet?.content?.[0].svg || '';
-        if (!this.svgSheetFilePath) {
+        const svgFilePath = sheet.content?.[0]?.svg;
+        if (!svgFilePath) {
             return;
         }
 
-        this._createSvg().then(() => {
-            this.svgZoom?.reset();
-            this._createSvgOverlays();
-            this._getSuppliedClasses();
-            this._cdr.detectChanges();
-        });
-    }
-
-    /**
-     * Private method: _clearSvg.
-     *
-     * It removes everything from the D3 SVG sheet selections.
-     *
-     * @returns {void} Cleans the D3 SVG sheet selections.
-     */
-    private _clearSvg(): void {
-        // Clear svg by removing all child nodes from D3 svg sheet selections
-        this.svgSheetRootGroupSelection?.selectAll('*').remove();
-        this.svgSheetSelection?.selectAll('*').remove();
-    }
-
-    /**
-     * Private method: _createSvg.
-     *
-     * It creates the D3 SVG sheet selections and sets their dimensions.
-     *
-     * @returns {Promise<void>} Creates the D3 SVG sheet selections and returns a promise.
-     */
-    private async _createSvg(): Promise<void> {
-        if (!this.svgSheetContainerRef) {
-            console.warn('[EditionSheetViewer] Missing svg sheet container ref');
-            return;
-        }
-
-        // Create a D3 selection object of the svg template element via svgDrawingService
-        this.svgSheetSelection = await this._svgDrawingService.createSvg(
-            this.svgSheetFilePath,
-            this.svgSheetElementRef?.nativeElement,
-            this.svgSheetRootGroupRef?.nativeElement
+        const svgSheetSelection = await this._svgDrawingService.createSvg(
+            svgFilePath,
+            this.svgSheetElement().nativeElement,
+            rootGroupEl
         );
-
-        if (!this.svgSheetSelection) {
+        if (!svgSheetSelection) {
             console.warn('[EditionSheetViewer] Failed to create svg sheet selection');
             return;
         }
 
-        // Create a D3 selection object of the svg root group of the svg template element
-        this.svgSheetRootGroupSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root-group');
+        const rootGroupSelection = D3_SELECTION.select(rootGroupEl) as unknown as D3Selection;
+        this._svgSheetRootGroupSelection = rootGroupSelection;
 
-        this._getContainerDimensions(this.svgSheetContainerRef);
-    }
-
-    /**
-     * Private method: _createSvgOverlays.
-     *
-     * It creates the D3 SVG overlays for the textcritical comments and link boxes.
-     *
-     * @returns {void} Creates the D3 SVG sheet overlays.
-     */
-    private _createSvgOverlays(): void {
-        if (!this.svgSheetRootGroupSelection) {
-            return;
-        }
+        this.svgZoom().reset();
 
         this._svgOverlayService.createSvgOverlays(
-            this.svgSheetRootGroupSelection,
-            id => this._onLinkBoxSelect(id),
-            overlays => this._onTkkOverlaySelect(overlays)
+            rootGroupSelection,
+            linkBoxId => {
+                if (linkBoxId) {
+                    this.selectLinkBoxRequest.emit(linkBoxId);
+                }
+            },
+            overlays => this.selectOverlaysRequest.emit(overlays)
         );
-        this.hasAvailableTkkOverlays = this._svgOverlayService.hasAvailableTkkOverlays;
-    }
-
-    /**
-     * Private method: _getContainerDimensions.
-     *
-     * It sets the width and height of the given container div with its provided value
-     * or the dimensions (width and height) of the given container.
-     *
-     * @param {ElementRef<HTMLElement>} containerEl The given container element.
-     *
-     * @returns {void} Sets width and height of the container div.
-     */
-    private _getContainerDimensions(containerEl: ElementRef<HTMLElement>): void {
-        const dimensions = this._svgDrawingService.getContainerDimensions(containerEl);
-
-        this._divWidth = this._divWidth || dimensions.width;
-        this._divHeight = this._divHeight || dimensions.height;
-    }
-
-    /**
-     * Private method: _getSuppliedClasses.
-     *
-     * It gets the supplied classes from the svg sheet root group selection.
-     *
-     * @returns {void} Gets the supplied classes.
-     */
-    private _getSuppliedClasses(): void {
-        if (!this.svgSheetRootGroupSelection) {
-            return;
-        }
-
-        this.suppliedClasses = this._svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
-    }
-
-    /**
-     * Private method: _onLinkBoxSelect.
-     *
-     * It emits the given link box id
-     * to the {@link selectLinkBoxRequest}.
-     *
-     * @param {string} linkBoxId The given link box id.
-     * @returns {void} Emits the id.
-     */
-    private _onLinkBoxSelect(linkBoxId: string): void {
-        if (!linkBoxId) {
-            return;
-        }
-        this.selectLinkBoxRequest.emit(linkBoxId);
-    }
-
-    /**
-     * Private method: _onTkkOverlaySelect.
-     *
-     * It emits the given svg overlays
-     * to the {@link selectOverlaysRequest}.
-     *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {void} Emits the overlays.
-     */
-    private _onTkkOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectOverlaysRequest.emit(overlays);
+        this.hasAvailableTkkOverlays.set(this._svgOverlayService.hasAvailableTkkOverlays);
+        this.suppliedClasses.set(this._svgDrawingService.getSuppliedClasses(rootGroupSelection));
     }
 }
