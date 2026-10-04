@@ -1,0 +1,10 @@
+<div class="form-check form-switch">
+    <input
+        #checkbox
+        class="form-check-input"
+        type="checkbox"
+        [id]="inputId()"
+        [checked]="checked()"
+        (change)="checkedChange.emit(checkbox.checked)" />
+    <label class="form-check-label" [for]="inputId()"><ng-content /></label>
+</div>

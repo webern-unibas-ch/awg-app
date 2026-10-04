@@ -4,7 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { faCircleInfo, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { NgbAlert, NgbAlertConfig } from '@ng-bootstrap/ng-bootstrap/alert';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap/alert';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import {
     expectToBe,
@@ -29,9 +30,8 @@ describe('AlertInfoComponent (DONE)', () => {
             imports: [AlertInfoComponent],
         }).compileComponents();
 
-        // Disable animation for NgbAlert to avoid timing issues in tests
-        const alertConfig = TestBed.inject(NgbAlertConfig);
-        alertConfig.animation = false;
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {

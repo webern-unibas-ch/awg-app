@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { GraphVisualizerModule } from './graph-visualizer';
@@ -13,7 +14,7 @@ import { EditionGraphRoutingModule, routedEditionGraphComponents } from './editi
  * as well as the {@link GraphVisualizerModule}.
  */
 @NgModule({
-    imports: [SharedModule, GraphVisualizerModule, EditionGraphRoutingModule],
+    imports: [SharedModule, ButtonUsageHintsComponent, GraphVisualizerModule, EditionGraphRoutingModule],
     declarations: [routedEditionGraphComponents],
 })
 export class EditionGraphModule {}

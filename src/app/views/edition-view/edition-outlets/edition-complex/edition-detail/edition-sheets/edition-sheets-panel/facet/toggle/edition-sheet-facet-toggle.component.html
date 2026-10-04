@@ -1,0 +1,8 @@
+<button
+    type="button"
+    class="btn btn-sm border rounded m-2"
+    [title]="toggleLabel()"
+    [attr.aria-label]="toggleLabel()"
+    (click)="toggle()">
+    <fa-icon [icon]="toggleIcon()" />
+</button>

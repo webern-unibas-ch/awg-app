@@ -14,6 +14,7 @@ import {
     OnDestroy,
     OnInit,
     Output,
+    signal,
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
@@ -21,9 +22,8 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
-import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { SliderConfig } from '@awg-shared/shared-models';
+import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+import { roundToStepPrecision } from '@awg-shared/zoom/zoom.utils';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 import {
     D3DragBehaviour,
@@ -99,27 +99,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     @ViewChild('graphContainer', { static: true }) graphContainer!: ElementRef<HTMLDivElement>;
 
     /**
-     * ViewChild variable: sliderInput.
-     *
-     * It keeps the reference to the input range slider.
-     */
-    @ViewChild('sliderInput', { static: true }) sliderInput!: ElementRef<HTMLInputElement>;
-
-    /**
-     * ViewChild variable: sliderInputLabel.
-     *
-     * It keeps the reference to the input sliderInputLabel.
-     */
-    @ViewChild('sliderInputLabel', { static: true }) sliderInputLabel!: ElementRef<HTMLSpanElement>;
-
-    /**
-     * Public variable: faCompressArrowsAlt.
-     *
-     * It instantiates fontawesome's faCompressArrowsAlt icon.
-     */
-    faCompressArrowsAlt = faCompressArrowsAlt;
-
-    /**
      * Public variable: limitValues.
      *
      * It keeps the array of possible limit values.
@@ -134,11 +113,18 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     limit = 50;
 
     /**
-     * Public variable: sliderConfig.
+     * Public variable: zoomConfig.
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 3, 0.01, 1);
+    zoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
+
+    /**
+     * Readonly signal: zoomValue.
+     *
+     * It holds the current zoom factor of the graph (shown by the zoom slider).
+     */
+    readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
      * Private variable: _labelMap.
@@ -307,21 +293,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         if (!this._zoomBehaviour || !this._svg || !(this._divWidth && this._divHeight)) {
             return;
         }
-        this.onZoomChange(this.sliderConfig.initial);
+        this.onZoomChange(this.zoomConfig.initial);
         this._zoomBehaviour.translateTo(this._svg, this._divWidth / 2, this._divHeight / 2);
     }
 
     /**
      * Public method: onZoomChange.
      *
-     * It sets the slider value to a given scalestep .
+     * It sets the zoom value to a given scale step.
      *
-     * @param {number} newSliderValue The new slider value.
+     * @param {number} newZoomValue The new zoom value.
      *
-     * @returns {void} Sets the new slider value and calls for rescale.
+     * @returns {void} Sets the new zoom value and calls for rescale.
      */
-    onZoomChange(newSliderValue: number): void {
-        this.sliderConfig.value = newSliderValue;
+    onZoomChange(newZoomValue: number): void {
+        this.zoomValue.set(newZoomValue);
         this._reScaleZoom();
     }
 
@@ -618,10 +604,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Sets the zoom for the rescale.
      */
     private _reScaleZoom(): void {
-        if (!this._zoomBehaviour || !this._svg || !this.sliderConfig.value) {
+        if (!this._zoomBehaviour || !this._svg || !this.zoomValue()) {
             return;
         }
-        this._zoomBehaviour.scaleTo(this._svg, this.sliderConfig.value);
+        this._zoomBehaviour.scaleTo(this._svg, this.zoomValue());
     }
 
     /**
@@ -722,22 +708,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         // Perform the zooming
         const zoomed = (event: any): void => {
             const currentTransform = event.transform;
-            const roundedTransformValue = this._roundToNearestScaleStep(currentTransform.k);
 
             // Update d3 zoom context
             zoomContext.attr('transform', currentTransform);
 
-            // Update view
-            this.sliderInput.nativeElement.value = roundedTransformValue.toString();
-            // Needed because d3 listener does not update ngModel
-            this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
-            this.sliderConfig.value = roundedTransformValue;
+            // Update zoom value (shown by the zoom slider)
+            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.zoomConfig.stepSize));
         };
 
         // Create zoom behaviour
-        this._zoomBehaviour = D3_ZOOM.zoom()
-            .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
-            .on('zoom', zoomed);
+        this._zoomBehaviour = D3_ZOOM.zoom().scaleExtent([this.zoomConfig.min, this.zoomConfig.max]).on('zoom', zoomed);
 
         // Apply zoom behaviour
         svg.call(this._zoomBehaviour);
@@ -798,38 +778,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             defaultRadius = defaultRadius + 1;
         }
         return defaultRadius;
-    }
-
-    /**
-     * Private method: _roundToNearestScaleStep.
-     *
-     * It rounds a given value to the nearest value on an input range scale.
-     * Cf. https://stackoverflow.com/a/13635455
-     *
-     * @param {number} value The given value to round.
-     *
-     * @returns {number} The rounded value.
-     */
-    private _roundToNearestScaleStep(value: number): number {
-        const steps = this.sliderConfig.stepSize;
-
-        // Count decimals of a given value
-        // Cf. https://stackoverflow.com/a/17369245
-        const countDecimals = (countValue: number): number => {
-            // Return zero if value cannot be rounded
-            if (Math.floor(countValue) === countValue) {
-                return 0;
-            }
-            // Convert the number to a string, split at the . and return the last part of the array, or 0 if the last part of the array is undefined (which will occur if there was no decimal point)
-            return countValue.toString().split('.')[1].length || 0;
-        };
-
-        // Avoid Math.round error
-        // Cf. https://www.jacklmoore.com/notes/rounding-in-javascript/
-        const round = (roundValue: number, decimalPlaces: number): number =>
-            Number(Math.round(Number(roundValue + 'e' + decimalPlaces)) + 'e-' + decimalPlaces);
-
-        return round(value, countDecimals(steps));
     }
 
     /**

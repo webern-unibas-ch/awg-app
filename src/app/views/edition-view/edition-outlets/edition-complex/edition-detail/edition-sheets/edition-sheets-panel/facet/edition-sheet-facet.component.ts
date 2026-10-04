@@ -1,0 +1,69 @@
+import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+
+import {
+    EditionSvgSheet,
+    EditionSvgSheetId,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EDITION_TYPE_KEYS } from '@awg-views/edition-view/models/edition-type.model';
+
+import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
+import { EditionSheetFacetToggleComponent } from './toggle/edition-sheet-facet-toggle.component';
+
+/**
+ * The EditionSheetFacet component.
+ *
+ * It contains the sheet facet section
+ * of the edition view of the app
+ * and lets the user select an SVG sheet.
+ */
+@Component({
+    selector: 'awg-edition-sheet-facet',
+    templateUrl: './edition-sheet-facet.component.html',
+    styleUrls: ['./edition-sheet-facet.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [EditionSheetFacetGroupComponent, EditionSheetFacetToggleComponent],
+})
+export class EditionSheetFacetComponent {
+    /**
+     * Readonly input signal: svgSheetsData.
+     *
+     * It holds the svg sheets data.
+     */
+    readonly svgSheetsData = input.required<EditionSvgSheetsList | null>();
+
+    /**
+     * Readonly input signal: selectedSvgSheet.
+     *
+     * It holds the selected svg sheet.
+     */
+    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
+
+    /**
+     * Readonly model signal: isMinimized.
+     *
+     * It holds the toggle state of the sheet facet.
+     * @default false
+     */
+    readonly isMinimized = model<boolean>(false);
+
+    /**
+     * Readonly variable: EDITION_TYPE_KEYS.
+     *
+     * It keeps the available keys for the edition types.
+     */
+    readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
+
+    /**
+     * Readonly computed signal: selectedSheetId.
+     *
+     * It computes the id and the (optional) partial of the selected svg sheet.
+     * The content of a selected svg sheet with partials is reduced
+     * to the selected partial by the EditionSheetsService.
+     */
+    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
+        const selectedSvgSheet = this.selectedSvgSheet();
+
+        return { id: selectedSvgSheet?.id, partial: selectedSvgSheet?.content?.[0]?.partial };
+    });
+}

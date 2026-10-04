@@ -1,0 +1,33 @@
+@let textcritics = displayedTextcritics();
+<div class="awg-edition-sheet-footer mt-4">
+    <div class="card awg-edition-sheet-footer-evaluation">
+        <div class="card-body">
+            @if (textcritics.evaluations.length) {
+                <details class="awg-edition-sheet-footer-evaluation-details">
+                    <summary class="smallcaps">
+                        <awg-edition-tka-label [id]="textcritics.id" labelType="evaluation" />:
+                    </summary>
+                    <awg-edition-tka-evaluations [evaluations]="textcritics.evaluations" />
+                </details>
+            } @else {
+                <p>
+                    <span class="smallcaps"
+                        ><awg-edition-tka-label [id]="textcritics.id" labelType="evaluation" />:</span
+                    >
+                    <span>---</span>
+                </p>
+            }
+        </div>
+    </div>
+    @if (showTkA()) {
+        <div class="card awg-edition-sheet-footer-textcritics">
+            <div class="card-body">
+                <p class="smallcaps"><awg-edition-tka-label [id]="textcritics.id" labelType="commentary" />:</p>
+                <awg-edition-tka-table
+                    [displayedCommentary]="textcritics.commentary"
+                    [id]="textcritics.id"
+                    [isRowtable]="textcritics.rowtable ?? false" />
+            </div>
+        </div>
+    }
+</div>

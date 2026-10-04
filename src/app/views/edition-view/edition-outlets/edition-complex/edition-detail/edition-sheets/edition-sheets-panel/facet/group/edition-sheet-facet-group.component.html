@@ -1,0 +1,40 @@
+@let sheets = svgSheets();
+@let label = facetGroupLabel();
+@let isWorkEditions = editionTypeKey() === 'workEditions';
+
+@if (sheets.length) {
+    <details
+        #groupDetails
+        class="awg-edition-sheet-facet-group-details"
+        [open]="isOpen()"
+        (toggle)="isOpen.set(groupDetails.open)">
+        <summary class="card-title h6">
+            {{ label }} <span class="badge bg-secondary">{{ sheets.length }}</span>
+        </summary>
+        @if (isWorkEditions) {
+            <awg-edition-disclaimer-workeditions />
+        }
+        <div
+            #facetScroll="awgEditionSheetFacetScroll"
+            class="awg-edition-sheet-facet-group-list"
+            [awgEditionSheetFacetScroll]="[selectedSheetId(), isOpen()]">
+            @for (svgSheet of sheets; track svgSheet.id) {
+                <awg-edition-sheet-facet-item [svgSheet]="svgSheet" [selectedSheetId]="selectedSheetId()" />
+            }
+        </div>
+        @if (facetScroll.visibleRange(); as range) {
+            <p class="awg-edition-sheet-facet-group-range small text-muted text-end mb-0">
+                {{ range.first }}–{{ range.last }} von {{ sheets.length }}
+            </p>
+        }
+    </details>
+} @else {
+    <h6 class="card-title">
+        {{ label }}:
+        @if (isWorkEditions) {
+            <awg-edition-disclaimer-workeditions />
+        } @else {
+            <span>---</span>
+        }
+    </h6>
+}

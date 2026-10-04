@@ -5,7 +5,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { faCalendarXmark, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap/popover';
 
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -24,9 +25,8 @@ describe('EditionDisclaimerWorkeditionsComponent', () => {
             imports: [EditionDisclaimerWorkeditionsComponent, NgbPopoverModule],
         }).compileComponents();
 
-        // Disable animation for NgbPopover to avoid timing issues in tests
-        const popoverConfig = TestBed.inject(NgbPopoverConfig);
-        popoverConfig.animation = false;
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
@@ -54,7 +54,7 @@ describe('EditionDisclaimerWorkeditionsComponent', () => {
             expectToEqual(component.faCalendarXmark, expectedFaCalendarXmark);
         });
 
-        it('... should have correct NgbPopoverConfig', () => {
+        it('... should have correct `config`', () => {
             expectToBe(component.config.placement, 'top');
             expectToBe(component.config.container, 'body');
             expectToBe(component.config.triggers, 'mouseenter:mouseleave');
@@ -92,7 +92,7 @@ describe('EditionDisclaimerWorkeditionsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain a fa-icon with Xmark in text-danger span', () => {
+            it('... should contain a fa-icon with CalendarXmark in text-danger span', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span', 1, 1);
 
                 const faIconDes = getAndExpectDebugElementByCss(spanDes[0], 'fa-icon', 1, 1);

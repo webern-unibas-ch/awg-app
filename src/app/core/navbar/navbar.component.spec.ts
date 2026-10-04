@@ -5,7 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { NgbCollapseConfig } from '@ng-bootstrap/ng-bootstrap/collapse';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { LogoStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent } from '@testing/component-stubs';
@@ -69,9 +69,8 @@ describe('NavbarComponent (DONE)', () => {
             })
             .compileComponents();
 
-        // Disable animation for NgbCollapse to avoid timing issues in tests
-        const collapseConfig = TestBed.inject(NgbCollapseConfig);
-        collapseConfig.animation = false;
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {

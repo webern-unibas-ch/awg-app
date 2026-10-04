@@ -6,10 +6,10 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper/mock-console';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import {
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
+    EditionSvgOverlayTkk,
     EditionSvgSheet,
     EditionSvgSheetsList,
     FolioConvolute,
@@ -23,7 +23,7 @@ describe('EditionSheetsService (DONE)', () => {
     let editionSheetsService: EditionSheetsService;
 
     let expectedFolioConvolutes: FolioConvolute[];
-    let expectedOverlays: EditionSvgOverlay[];
+    let expectedOverlays: EditionSvgOverlayTkk[];
     let expectedSelectedSheet: EditionSvgSheet;
     let expectedSheets: EditionSvgSheetsList['sheets'];
     let expectedTextcriticalCommentary: TextcriticalCommentary;
@@ -308,9 +308,7 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedResult = new TextcriticalCommentary();
                 expectedResult.preamble = 'This is a preamble.';
                 expectedResult.comments = [];
-                const notMatchingOverlays = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'notExistingId', 'notExistingId', true),
-                ];
+                const notMatchingOverlays = [createTestTkkOverlay('notExistingId')];
 
                 const result = editionSheetsService.filterTextcriticalCommentaryForOverlays(
                     expectedTextcriticalCommentary,
@@ -326,7 +324,7 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     const id = blockComment.svgGroupId ?? '';
-                    expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true));
+                    expectedOverlays.push(createTestTkkOverlay(id));
                 });
             });
             const expectedResult = expectedTextcriticalCommentary;
@@ -343,7 +341,7 @@ describe('EditionSheetsService (DONE)', () => {
             expectedTextcriticalCommentary.comments.forEach(comment => {
                 comment.blockComments.forEach(blockComment => {
                     const id = blockComment.svgGroupId ?? '';
-                    expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
+                    expectedOverlays = [createTestTkkOverlay(id)];
 
                     const expectedResult = {
                         preamble: expectedTextcriticalCommentary.preamble,
@@ -380,7 +378,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectedOverlays = selectedBlockComments.map(blockComment => {
                 const id = blockComment.svgGroupId ?? '';
-                return new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true);
+                return createTestTkkOverlay(id);
             });
 
             const expectedResult = {

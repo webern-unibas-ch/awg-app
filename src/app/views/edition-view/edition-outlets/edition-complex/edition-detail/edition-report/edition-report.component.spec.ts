@@ -1,9 +1,9 @@
-import { DebugElement, inject as inject_1, isSignal, NgModule, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
@@ -56,17 +56,6 @@ describe('EditionReportComponent', () => {
     let expectedComplex: EditionComplex;
     let expectedComplexId: string;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject_1(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         // Mock services
         expectedDefaultViewDataContent = {
@@ -78,7 +67,7 @@ describe('EditionReportComponent', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [EditionReportComponent, NgbConfigModule],
+            imports: [EditionReportComponent],
             providers: [
                 { provide: EditionViewService, useValue: { reportViewData: mockViewDataSignal.asReadonly() } },
                 {
@@ -88,6 +77,9 @@ describe('EditionReportComponent', () => {
                 { provide: ModalService, useValue: { open: vi.fn() } },
             ],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {

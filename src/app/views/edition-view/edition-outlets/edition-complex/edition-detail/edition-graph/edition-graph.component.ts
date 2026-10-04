@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
-import { ModalService } from '@awg-shared/modal/modal.service';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
@@ -22,13 +21,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     standalone: false,
 })
 export class EditionGraphComponent {
-    /**
-     * Private readonly injection variable: _modalService
-     *
-     * It keeps the instance of the injected ModalService.
-     */
-    private readonly _modalService = inject(ModalService);
-
     /**
      * Readonly signal: isFullscreen.
      *
@@ -81,20 +73,5 @@ export class EditionGraphComponent {
         }
 
         return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
-    }
-
-    /**
-     * Public method: openModal.
-     *
-     * It opens a text modal snippet via the {@link ModalService} for a given id.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Opens the text modal.
-     */
-    openModal(id: string): void {
-        if (!id) {
-            return;
-        }
-        this._modalService.openTextModal(id);
     }
 }

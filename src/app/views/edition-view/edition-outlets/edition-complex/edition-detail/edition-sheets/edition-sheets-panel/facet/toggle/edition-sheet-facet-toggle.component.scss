@@ -1,0 +1,5 @@
+// Stretch the button to the full width of the facet card (like a direct child of .card)
+:host {
+    display: flex;
+    flex-direction: column;
+}

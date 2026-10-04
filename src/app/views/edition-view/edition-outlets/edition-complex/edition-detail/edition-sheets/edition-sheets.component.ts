@@ -5,11 +5,10 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import {
-    EditionSvgOverlay,
+    EditionSvgOverlayTkk,
     EditionSvgSheet,
     EditionSvgSheetsList,
     FolioConvolute,
-    TextcriticalCommentary,
     Textcritics,
 } from '@awg-views/edition-view/models';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -82,11 +81,12 @@ export class EditionSheetsComponent {
     selectedSvgSheet: EditionSvgSheet | undefined;
 
     /**
-     * Public variable: selectedTextcriticalCommentary.
+     * Public variable: displayedTextcritics.
      *
-     * It keeps the selected textcritical commentary.
+     * It keeps the textcritics of the selected SVG sheet
+     * with the commentary filtered for the selected tkk overlays.
      */
-    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
+    displayedTextcritics: Textcritics | undefined;
 
     /**
      * Public variable: selectedTextcritics.
@@ -94,13 +94,6 @@ export class EditionSheetsComponent {
      * It keeps the textcritics of the selected SVG sheet.
      */
     selectedTextcritics: Textcritics | undefined;
-
-    /**
-     * Public variable: showTka.
-     *
-     * If the textcritics shall be displayed.
-     */
-    showTkA = false;
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -195,21 +188,28 @@ export class EditionSheetsComponent {
     /**
      * Public method: onOverlaySelect.
      *
-     * It finds the corresponding textcritical comments for a list of selected overlays.
+     * It sets the displayed textcritics: the textcritics of the selected SVG sheet
+     * with the commentary filtered for the given selected tkk overlays
+     * (a missing or empty commentary stays as it is).
      *
-     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
-     * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
+     * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
+     * @returns {void} Sets the displayedTextcritics variable.
      */
-    onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalCommentary = this.selectedTextcritics?.commentary
-            ? this._editionSheetsService.filterTextcriticalCommentaryForOverlays(
-                  this.selectedTextcritics.commentary,
-                  overlays
-              )
-            : undefined;
+    onOverlaySelect(overlays: EditionSvgOverlayTkk[]): void {
+        const textcritics = this.selectedTextcritics;
+        if (!textcritics) {
+            this.displayedTextcritics = undefined;
+            return;
+        }
 
-        const comments = this.selectedTextcriticalCommentary?.comments ?? [];
-        this.showTkA = comments.length > 0;
+        const commentary = textcritics.commentary;
+        this.displayedTextcritics = {
+            ...textcritics,
+            commentary:
+                commentary && !UTILS.isEmptyObject(commentary)
+                    ? this._editionSheetsService.filterTextcriticalCommentaryForOverlays(commentary, overlays)
+                    : commentary,
+        };
     }
 
     /**
@@ -226,18 +226,6 @@ export class EditionSheetsComponent {
             return;
         }
         this._navigationService.navigateToSvgSheet(sheetIds);
-    }
-
-    /**
-     * Public method: onToggleSheetFacet.
-     *
-     * It sets/updates the sheet facet state and the isSheetFacetMinimized flag.
-     *
-     * @param {boolean} isMinimized A boolean indicating the minimized state of the sheet facet.
-     * @returns {void} Sets/updates the sheet facet state and the isSheetFacetMinimized flag.
-     */
-    onToggleSheetFacet(isMinimized: boolean): void {
-        this.isSheetFacetMinimized = isMinimized;
     }
 
     /**
@@ -329,8 +317,5 @@ export class EditionSheetsComponent {
 
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);
-
-        const commentary = this.selectedTextcritics?.commentary;
-        this.selectedTextcriticalCommentary = commentary && !UTILS.isEmptyObject(commentary) ? commentary : undefined;
     }
 }

@@ -1,6 +1,25 @@
 import { EditionTypeKey } from './edition-type.model';
 
 /**
+ * The EditionSvgSheetId interface.
+ *
+ * It is used in the context of the edition view
+ * to store the id and the (optional) partial
+ * of a (selected) svg sheet separately.
+ */
+export interface EditionSvgSheetId {
+    /**
+     * The sheet's id (string).
+     */
+    id: string | undefined;
+
+    /**
+     * The sheet's content partial id (string).
+     */
+    partial: string | undefined;
+}
+
+/**
  * The EditionSvgSheetContent interface.
  *
  * It is used in the context of the edition view

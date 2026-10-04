@@ -18,11 +18,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import {
     EditionComplex,
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
+    EditionSvgOverlayTkk,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalCommentary,
@@ -48,31 +48,27 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 
 // Mock components
 @Component({
-    selector: 'awg-edition-accolade',
+    selector: 'awg-edition-sheets-panel',
     template: '',
     standalone: false,
 })
-class EditionAccoladeStubComponent {
+class EditionSheetsPanelStubComponent {
     @Input()
     isSheetFacetMinimized = false;
+    @Output()
+    isSheetFacetMinimizedChange: EventEmitter<boolean> = new EventEmitter();
     @Input()
     svgSheetsData: EditionSvgSheetsList | null = null;
     @Input()
     selectedSvgSheet: EditionSvgSheet | undefined;
     @Input()
-    selectedTextcriticalCommentary: TextcriticalCommentary | undefined;
-    @Input()
-    selectedTextcritics: Textcritics | undefined;
-    @Input()
-    showTkA = false;
+    displayedTextcritics: Textcritics | undefined;
     @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    browseSheetRequest: EventEmitter<1 | -1> = new EventEmitter();
     @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
-    @Output()
-    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
+    selectTkkOverlaysRequest: EventEmitter<EditionSvgOverlayTkk[]> = new EventEmitter();
 }
 
 @Component({
@@ -111,7 +107,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let onOverlaySelectSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
     let selectSvgSheetSpy: Spy;
-    let onToggleSheetFacetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'sheets'>>;
@@ -126,7 +121,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedTextcriticsListData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
-    let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
     let expectedComplexId: string;
     let expectedNextComplexId: string;
     let expectedSheetId: string;
@@ -163,7 +157,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionAccoladeStubComponent],
+            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionSheetsPanelStubComponent],
             providers: [
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -201,7 +195,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
         expectedSelectedTextcritics = expectedTextcriticsListData.textcritics[0];
-        expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
         // Serive spies
         editionSheetsServiceFindTextcriticsSpy = vi.spyOn(mockEditionSheetsService, 'findTextcritics');
@@ -230,7 +223,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         onLinkBoxSelectSpy = vi.spyOn(component, 'onLinkBoxSelect');
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
-        onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
         selectSvgSheetSpy = vi.spyOn(component, '_selectSvgSheet' as any);
     });
 
@@ -255,16 +247,12 @@ describe('EditionSheetsComponent (DONE)', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('... should not have `selectedTextcriticalCommentary`', () => {
-            expect(component.selectedTextcriticalCommentary).toBeUndefined();
+        it('... should not have `displayedTextcritics`', () => {
+            expect(component.displayedTextcritics).toBeUndefined();
         });
 
         it('... should not have `selectedTextcritics`', () => {
             expect(component.selectedTextcritics).toBeUndefined();
-        });
-
-        it('... should have `showTkA` = false', () => {
-            expectToBe(component.showTkA, false);
         });
 
         it('... should have signal `selectedEditionComplex` to hold null', () => {
@@ -302,8 +290,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
 
-            it('... should contain no AccoladeComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 0, 0);
+            it('... should contain no EditionSheetsPanelComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 0, 0);
             });
 
             it('... should contain no ConvoluteComponent (stubbed)', () => {
@@ -486,106 +474,92 @@ describe('EditionSheetsComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 1, 1);
                 });
 
-                describe('... AccoladeComponent (stubbed)', () => {
-                    it('... should contain one AccoladeComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                describe('... EditionSheetsPanelComponent (stubbed)', () => {
+                    it('... should contain one EditionSheetsPanelComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
                     });
 
-                    it('... should pass down `isSheetFacetMinimized` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down `isSheetFacetMinimized` to the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionAccoladeStubComponent,
+                            EditionSheetsPanelStubComponent,
                             1,
                             1
                         );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
-                        expectToEqual(accoladeCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
+                        expectToEqual(sheetCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
                     });
 
-                    it('... should pass down `svgSheetsData` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
+                    it('... should update `isSheetFacetMinimized` on isSheetFacetMinimizedChange of the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionAccoladeStubComponent,
+                            EditionSheetsPanelStubComponent,
                             1,
                             1
                         );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
-                        expectToEqual(accoladeCmp.svgSheetsData, expectedSvgSheetsData);
+                        sheetCmp.isSheetFacetMinimizedChange.emit(true);
+
+                        expectToBe(component.isSheetFacetMinimized, true);
+
+                        sheetCmp.isSheetFacetMinimizedChange.emit(false);
+
+                        expectToBe(component.isSheetFacetMinimized, false);
                     });
 
-                    it('... should pass down `selectedSvgSheet` to the EditionAccoladeComponent', async () => {
+                    it('... should pass down `svgSheetsData` to the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
+
+                        expectToEqual(sheetCmp.svgSheetsData, expectedSvgSheetsData);
+                    });
+
+                    it('... should pass down `selectedSvgSheet` to the EditionSheetsPanelComponent', async () => {
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
                         await detectChangesOnPush(fixture);
-                        const accoladeDes = getAndExpectDebugElementByDirective(
+                        const sheetDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionAccoladeStubComponent,
+                            EditionSheetsPanelStubComponent,
                             1,
                             1
                         );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
-                        expectToEqual(accoladeCmp.selectedSvgSheet, expectedSvgSheet);
+                        expectToEqual(sheetCmp.selectedSvgSheet, expectedSvgSheet);
                     });
 
-                    it('... should pass down `selectedTextcritics` to the EditionAccoladeComponent', async () => {
-                        component.selectedTextcritics = expectedSelectedTextcritics;
+                    it('... should pass down `displayedTextcritics` to the EditionSheetsPanelComponent', async () => {
+                        component.displayedTextcritics = expectedSelectedTextcritics;
                         await detectChangesOnPush(fixture);
 
-                        const accoladeDes = getAndExpectDebugElementByDirective(
+                        const sheetDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionAccoladeStubComponent,
+                            EditionSheetsPanelStubComponent,
                             1,
                             1
                         );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
-                        expectToEqual(accoladeCmp.selectedTextcritics, expectedSelectedTextcritics);
-                    });
-
-                    it('... should pass down `selectedTextcriticalCommentary` to the EditionAccoladeComponent', async () => {
-                        component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
-                        await detectChangesOnPush(fixture);
-
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
-
-                        expectToEqual(
-                            accoladeCmp.selectedTextcriticalCommentary,
-                            expectedSelectedTextcriticalCommentary
-                        );
-                    });
-
-                    it('... should pass down `showTkA` to the EditionAccoladeComponent', () => {
-                        const accoladeDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            EditionAccoladeStubComponent,
-                            1,
-                            1
-                        );
-                        const accoladeCmp = accoladeDes[0].injector.get(
-                            EditionAccoladeStubComponent
-                        ) as EditionAccoladeStubComponent;
-
-                        expectToEqual(accoladeCmp.showTkA, false);
+                        expectToEqual(sheetCmp.displayedTextcritics, expectedSelectedTextcritics);
                     });
                 });
 
@@ -647,14 +621,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onBrowseSvgSheet).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                it('... should trigger on event from EditionSheetsPanelComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
                     const expectedDirection = 1;
-                    accoladeCmp.browseSvgSheetRequest.emit(expectedDirection);
+                    sheetCmp.browseSheetRequest.emit(expectedDirection);
 
                     expectSpyCall(onBrowseSvgSheetSpy, 1, [expectedDirection]);
                 });
@@ -726,14 +700,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onLinkBoxSelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                it('... should trigger on event from EditionSheetsPanelComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
                     const expectedLinkBoxId = 'link-box-1';
-                    accoladeCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+                    sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
 
                     expectSpyCall(onLinkBoxSelectSpy, 1, [expectedLinkBoxId]);
                 });
@@ -823,37 +797,31 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onOverlaySelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionAccoladeComponent', async () => {
+                it('... should trigger on event from EditionSheetsPanelComponent', async () => {
                     component.selectedTextcritics = expectedSelectedTextcritics;
                     await detectChangesOnPush(fixture);
 
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
-                    const expectedOverlays = [
-                        new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                    ];
+                    const expectedOverlays = [createTestTkkOverlay('g1114')];
 
-                    accoladeCmp.selectOverlaysRequest.emit(expectedOverlays);
+                    sheetCmp.selectTkkOverlaysRequest.emit(expectedOverlays);
 
                     expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
                 });
 
-                it('... should correctly filter textcritical commentary and set `showTka` to true', () => {
-                    for (const comment of expectedSelectedTextcriticalCommentary.comments) {
+                it('... should set `displayedTextcritics` with the commentary filtered for the given overlays', () => {
+                    const commentary = expectedSelectedTextcritics.commentary;
+
+                    for (const comment of commentary.comments) {
                         for (const blockComment of comment.blockComments) {
-                            const id = blockComment.svgGroupId ?? '';
-                            const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id, true)];
+                            const expectedOverlays = [createTestTkkOverlay(blockComment.svgGroupId ?? '')];
                             const expectedCommentary = {
-                                preamble: expectedSelectedTextcriticalCommentary.preamble,
-                                comments: [
-                                    {
-                                        ...comment,
-                                        blockComments: [blockComment],
-                                    },
-                                ],
+                                preamble: commentary.preamble,
+                                comments: [{ ...comment, blockComments: [blockComment] }],
                             };
                             editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(
                                 expectedCommentary
@@ -862,42 +830,47 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                             component.onOverlaySelect(expectedOverlays);
 
-                            expectToEqual(component.selectedTextcriticalCommentary, expectedCommentary);
-                            expectToBe(component.showTkA, true);
+                            expect(
+                                editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy
+                            ).toHaveBeenLastCalledWith(commentary, expectedOverlays);
+                            expectToEqual(component.displayedTextcritics, {
+                                ...expectedSelectedTextcritics,
+                                commentary: expectedCommentary,
+                            });
                         }
                     }
                 });
 
-                describe('... should set `showTkA` to false if', () => {
-                    it('... selectedTextcritics or commentary is missing', () => {
-                        component.selectedTextcritics = undefined;
-                        const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                        ];
+                it('... should not change `selectedTextcritics`', () => {
+                    component.selectedTextcritics = expectedSelectedTextcritics;
+                    const expectedCommentary = structuredClone(expectedSelectedTextcritics.commentary);
 
-                        component.onOverlaySelect(expectedOverlays);
+                    component.onOverlaySelect([createTestTkkOverlay('g1114')]);
 
-                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
-                        expectToBe(component.showTkA, false);
-                    });
+                    expectToEqual(component.selectedTextcritics.commentary, expectedCommentary);
+                });
 
-                    it('... the filtered commentary contains no comments', () => {
-                        component.selectedTextcritics = expectedSelectedTextcritics;
-                        const expectedOverlays = [
-                            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114', true),
-                        ];
-                        const emptyCommentary = {
-                            preamble: 'Test Preamble',
-                            comments: [],
-                        };
+                it('... should set `displayedTextcritics` to undefined without `selectedTextcritics`', () => {
+                    component.selectedTextcritics = undefined;
 
-                        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(emptyCommentary);
+                    component.onOverlaySelect([createTestTkkOverlay('g1114')]);
 
-                        component.onOverlaySelect(expectedOverlays);
+                    expect(component.displayedTextcritics).toBeUndefined();
+                });
 
-                        expectToEqual(component.selectedTextcriticalCommentary, emptyCommentary);
-                        expectToBe(component.showTkA, false);
-                    });
+                it.each([
+                    ['a missing', undefined],
+                    ['an empty', {}],
+                ])('... should keep %s commentary unfiltered', (_label, commentary) => {
+                    component.selectedTextcritics = {
+                        ...expectedSelectedTextcritics,
+                        commentary: commentary as any,
+                    };
+
+                    component.onOverlaySelect([createTestTkkOverlay('g1114')]);
+
+                    expectSpyCall(editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy, 0);
+                    expect(component.displayedTextcritics?.commentary).toEqual(commentary);
                 });
             });
 
@@ -952,36 +925,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
-                });
-            });
-
-            describe('#onToggleSheetFacet()', () => {
-                it('... should have a method `onToggleSheetFacet`', () => {
-                    expect(component.onToggleSheetFacet).toBeDefined();
-                });
-
-                it('... should trigger on event from EditionAccoladeComponent', () => {
-                    const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
-                    const accoladeCmp = accoladeDes[0].injector.get(
-                        EditionAccoladeStubComponent
-                    ) as EditionAccoladeStubComponent;
-
-                    expectedIsSheetFacetMinimized = true;
-                    accoladeCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
-
-                    expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
-                });
-
-                it('... should toggle `isSheetFacetMinimized` variable', () => {
-                    expectToBe(component.isSheetFacetMinimized, false);
-
-                    component.onToggleSheetFacet(true);
-
-                    expectToBe(component.isSheetFacetMinimized, true);
-
-                    component.onToggleSheetFacet(false);
-
-                    expectToBe(component.isSheetFacetMinimized, false);
                 });
             });
 
@@ -1380,13 +1323,22 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectSpyCall(onOverlaySelectSpy, 1, []);
                     });
 
-                    it('... should set correct `selectedTextcriticalCommentary`', () => {
+                    it('... should set `displayedTextcritics` with the commentary filtered for no overlays', () => {
+                        const expectedEmptyCommentary = { preamble: '', comments: [] };
+                        editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy.mockReturnValue(
+                            expectedEmptyCommentary
+                        );
+
                         component['_selectSvgSheet'](expectedSvgSheet.id);
 
-                        expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
-                        expectToEqual(component.selectedConvolute, expectedConvolute);
-                        expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
-                        expectToEqual(component.selectedTextcriticalCommentary, expectedSelectedTextcritics.commentary);
+                        expectSpyCall(editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy, 1, [
+                            expectedSelectedTextcritics.commentary,
+                            [],
+                        ]);
+                        expectToEqual(component.displayedTextcritics, {
+                            ...expectedSelectedTextcritics,
+                            commentary: expectedEmptyCommentary,
+                        });
                     });
                 });
 
@@ -1409,37 +1361,25 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expect(component.selectedSvgSheet).toBeUndefined();
                         expect(component.selectedConvolute).toBeUndefined();
                         expect(component.selectedTextcritics).toBeUndefined();
-                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                        expect(component.displayedTextcritics).toBeUndefined();
                         expectSpyCall(onOverlaySelectSpy, 1, []);
                     });
 
-                    it('... should set `selectedTextcriticalCommentary` to undefined if textcritics has no commentary', () => {
+                    it.each([
+                        ['no', undefined],
+                        ['an empty', {}],
+                    ])('... should set `displayedTextcritics` with %s commentary unfiltered', (_label, commentary) => {
                         editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
                         editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
-
-                        const textcriticsWithoutCommentary = { ...structuredClone(expectedSelectedTextcritics) } as any;
-                        delete textcriticsWithoutCommentary.commentary;
-                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithoutCommentary);
-
-                        component['_selectSvgSheet'](expectedSvgSheet.id);
-
-                        expectToEqual(component.selectedTextcritics, textcriticsWithoutCommentary);
-                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
-                    });
-
-                    it('... should set `selectedTextcriticalCommentary` to undefined if commentary is an empty object', () => {
-                        editionSheetsServiceSelectSvgSheetByIdSpy.mockReturnValue(expectedSvgSheet);
-                        editionSheetsServiceSelectConvoluteSpy.mockReturnValue(expectedConvolute);
-
-                        const textcriticsWithEmptyCommentary = {
+                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue({
                             ...expectedSelectedTextcritics,
-                            commentary: {} as any,
-                        };
-                        editionSheetsServiceFindTextcriticsSpy.mockReturnValue(textcriticsWithEmptyCommentary);
+                            commentary: commentary as any,
+                        });
 
                         component['_selectSvgSheet'](expectedSvgSheet.id);
 
-                        expect(component.selectedTextcriticalCommentary).toBeUndefined();
+                        expectSpyCall(editionSheetsServiceFilterTextcriticalCommentaryForOverlaysSpy, 0);
+                        expect(component.displayedTextcritics?.commentary).toEqual(commentary);
                     });
                 });
             });
