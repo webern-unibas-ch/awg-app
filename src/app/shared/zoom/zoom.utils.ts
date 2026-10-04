@@ -1,5 +1,5 @@
 /**
- * Function: roundToStepPrecision.
+ * Utility method: roundToStepPrecision.
  *
  * It rounds a given value to the same number of decimal places as the given step size.
  * Cf. https://stackoverflow.com/a/13635455

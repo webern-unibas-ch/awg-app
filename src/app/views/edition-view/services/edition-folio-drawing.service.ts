@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
+    calculateFolioSvgData,
     FOLIO_DEFAULT_NUMBER_OF_SYSTEMS,
-    FolioCalculation,
-    FolioCalculationLine,
-    FolioCalculationRectangle,
     FolioSettings,
 } from '@awg-views/edition-view/models/folio-calculation.model';
 import {
     FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
     FolioSvgContentSegment,
     FolioSvgData,
+    FolioSvgLine,
+    FolioSvgRectangle,
 } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 
@@ -95,9 +95,8 @@ export class EditionFolioDrawingService {
             formatX: +folio.dimensions.width,
             formatY: +folio.dimensions.height,
         };
-        const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
 
-        return new FolioSvgData(calculation);
+        return calculateFolioSvgData(folioSettings, folio, this._contentSegmentOffsetCorrection);
     }
 
     /**
@@ -128,13 +127,13 @@ export class EditionFolioDrawingService {
      * It appends a rect element for a given calculated rectangle to a given parent selection.
      *
      * @param {D3Selection} parent The given parent selection.
-     * @param {FolioCalculationRectangle} rectangle The given calculated rectangle.
+     * @param {FolioSvgRectangle} rectangle The given calculated rectangle.
      * @param {string} cssClass The css class of the rect.
      * @returns {D3Selection} The appended rect selection.
      */
-    private _appendRect(parent: D3Selection, rectangle: FolioCalculationRectangle, cssClass: string): D3Selection {
-        const { x: x1, y: y1 } = rectangle.UPPER_LEFT_CORNER;
-        const { x: x2, y: y2 } = rectangle.LOWER_RIGHT_CORNER;
+    private _appendRect(parent: D3Selection, rectangle: FolioSvgRectangle, cssClass: string): D3Selection {
+        const { x: x1, y: y1 } = rectangle.upperLeft;
+        const { x: x2, y: y2 } = rectangle.lowerRight;
 
         return this._appendSvgElementWithAttrs(parent, 'rect', {
             class: cssClass,
@@ -183,7 +182,7 @@ export class EditionFolioDrawingService {
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
         const strokeWidth = this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
 
-        folioSvgData.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
+        folioSvgData.contentSegments.forEach((contentSegment: FolioSvgContentSegment) => {
             // Group with the content segment bound as datum (resolved by getContentSegment for delegated clicks)
             const segmentGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', {
                 class: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
@@ -274,7 +273,7 @@ export class EditionFolioDrawingService {
     private _drawSystems(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         const { lines, labelPositions, reversed } = folioSvgData.systems;
 
-        lines.forEach((systemLines: FolioCalculationLine[], systemIndex: number) => {
+        lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) => {
             const labelIndex = reversed ? lines.length - systemIndex : systemIndex + 1;
             const labelPosition = labelPositions[systemIndex];
 
@@ -291,10 +290,10 @@ export class EditionFolioDrawingService {
             systemLines.forEach(line => {
                 this._appendSvgElementWithAttrs(systemLineGroup, 'line', {
                     class: 'system-line',
-                    x1: line.START_POINT.x,
-                    y1: line.START_POINT.y,
-                    x2: line.END_POINT.x,
-                    y2: line.END_POINT.y,
+                    x1: line.start.x,
+                    y1: line.start.y,
+                    x2: line.end.x,
+                    y2: line.end.y,
                 });
             });
         });
@@ -308,21 +307,21 @@ export class EditionFolioDrawingService {
      * (rotated by 180 degrees if the systems are reversed) and a title.
      *
      * @param {D3Selection} sheetGroup The given sheet group selection.
-     * @param {FolioCalculationRectangle} trademarkRectangle The given calculated trademark rectangle.
+     * @param {FolioSvgRectangle} trademarkRectangle The given calculated trademark rectangle.
      * @param {boolean} systemsReversed The given flag if the systems are reversed.
      * @returns {void} Draws the trademark.
      */
     private _drawTrademark(
         sheetGroup: D3Selection,
-        trademarkRectangle: FolioCalculationRectangle,
+        trademarkRectangle: FolioSvgRectangle,
         systemsReversed: boolean
     ): void {
         const trademarkGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', { class: 'trademark-group' });
 
         this._appendRect(trademarkGroup, trademarkRectangle, 'trademark-rectangle');
 
-        const { x: x1, y: y1 } = trademarkRectangle.UPPER_LEFT_CORNER;
-        const { x: x2, y: y2 } = trademarkRectangle.LOWER_RIGHT_CORNER;
+        const { x: x1, y: y1 } = trademarkRectangle.upperLeft;
+        const { x: x2, y: y2 } = trademarkRectangle.lowerRight;
         const centerX = (x1 + x2) / 2;
         const centerY = (y1 + y2) / 2;
 

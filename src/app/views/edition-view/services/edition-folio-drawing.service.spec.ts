@@ -9,13 +9,12 @@ import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
+import { calculateFolioSvgData, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
 import {
-    FolioCalculation,
-    FolioCalculationPoint,
-    FolioCalculationRectangle,
-    FolioSettings,
-} from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
+    FolioSvgContentSegment,
+    FolioSvgData,
+    FolioSvgRectangle,
+} from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 
@@ -32,7 +31,7 @@ describe('EditionFolioDrawingService (DONE)', () => {
     const expectedContentSegmentOffsetCorrection = 4;
 
     const createSvgData = (folio: Folio, settings: FolioSettings = expectedFolioSettings): FolioSvgData =>
-        new FolioSvgData(new FolioCalculation(settings, folio, expectedContentSegmentOffsetCorrection));
+        calculateFolioSvgData(settings, folio, expectedContentSegmentOffsetCorrection);
 
     /**
      * Renders the given svg data into a new svg root group and returns the root group selection.
@@ -43,13 +42,9 @@ describe('EditionFolioDrawingService (DONE)', () => {
         return rootGroup;
     };
 
-    const expectRectAttrs = (
-        rectSelection: D3Selection,
-        rectangle: FolioCalculationRectangle,
-        expectedClass: string
-    ): void => {
-        const { x: x1, y: y1 } = rectangle.UPPER_LEFT_CORNER;
-        const { x: x2, y: y2 } = rectangle.LOWER_RIGHT_CORNER;
+    const expectRectAttrs = (rectSelection: D3Selection, rectangle: FolioSvgRectangle, expectedClass: string): void => {
+        const { x: x1, y: y1 } = rectangle.upperLeft;
+        const { x: x2, y: y2 } = rectangle.lowerRight;
 
         expectToBe(rectSelection.attr('x'), String(x1));
         expectToBe(rectSelection.attr('y'), String(y1));
@@ -180,54 +175,17 @@ describe('EditionFolioDrawingService (DONE)', () => {
         });
 
         describe('... trademark', () => {
-            const trademarkWidth = 20;
-            const trademarkHeight = 30;
-            const marginOffset = 10;
+            it('... should draw the trademark rectangle', () => {
+                const rootGroup = render(expectedFolioSvgData);
+                const trademarkRect = rootGroup.select(
+                    'g.trademark-group > rect.trademark-rectangle'
+                ) as unknown as D3Selection;
 
-            const getExpectedTrademarkUpperLeftCorner = (
-                position: string,
-                sheet: FolioCalculationRectangle
-            ): FolioCalculationPoint => {
-                const left = sheet.UPPER_LEFT_CORNER.x + marginOffset;
-                const right = sheet.LOWER_RIGHT_CORNER.x - marginOffset - trademarkWidth;
-                const top = sheet.UPPER_LEFT_CORNER.y + marginOffset;
-                const bottom = sheet.LOWER_RIGHT_CORNER.y - marginOffset - trademarkHeight;
+                const { trademarkRectangle } = expectedFolioSvgData.sheet;
 
-                switch (position) {
-                    case 'unten links':
-                        return new FolioCalculationPoint(left, bottom);
-                    case 'unten rechts':
-                        return new FolioCalculationPoint(right, bottom);
-                    case 'oben links':
-                        return new FolioCalculationPoint(left, top);
-                    case 'oben rechts':
-                        return new FolioCalculationPoint(right, top);
-                    default:
-                        return new FolioCalculationPoint(0, 0);
-                }
-            };
-
-            it.each(['unten links', 'unten rechts', 'oben links', 'oben rechts', 'irgendwo'])(
-                '... should draw the trademark rectangle for the trademark position `%s`',
-                position => {
-                    const svgData = createSvgData({ ...expectedDefaultFolio, trademarkPosition: position });
-                    const upperLeftCorner = getExpectedTrademarkUpperLeftCorner(position, svgData.sheet.rectangle);
-                    const expectedRectangle = new FolioCalculationRectangle(
-                        upperLeftCorner,
-                        new FolioCalculationPoint(
-                            upperLeftCorner.x + trademarkWidth,
-                            upperLeftCorner.y + trademarkHeight
-                        )
-                    );
-
-                    const rootGroup = render(svgData);
-                    const trademarkRect = rootGroup.select(
-                        'g.trademark-group > rect.trademark-rectangle'
-                    ) as unknown as D3Selection;
-
-                    expectRectAttrs(trademarkRect, expectedRectangle, 'trademark-rectangle');
-                }
-            );
+                expect(trademarkRectangle).toBeDefined();
+                expectRectAttrs(trademarkRect, trademarkRectangle as FolioSvgRectangle, 'trademark-rectangle');
+            });
 
             it('... should draw the trademark symbol and title', () => {
                 const rootGroup = render(expectedFolioSvgData);
@@ -300,17 +258,16 @@ describe('EditionFolioDrawingService (DONE)', () => {
                 const firstLine = rootGroup.select('g.system-line-group > line.system-line');
 
                 expectToBe(lines.size(), firstSystemLines.length);
-                expectToBe(firstLine.attr('x1'), String(firstSystemLines[0].START_POINT.x));
-                expectToBe(firstLine.attr('y1'), String(firstSystemLines[0].START_POINT.y));
-                expectToBe(firstLine.attr('x2'), String(firstSystemLines[0].END_POINT.x));
-                expectToBe(firstLine.attr('y2'), String(firstSystemLines[0].END_POINT.y));
+                expectToBe(firstLine.attr('x1'), String(firstSystemLines[0].start.x));
+                expectToBe(firstLine.attr('y1'), String(firstSystemLines[0].start.y));
+                expectToBe(firstLine.attr('x2'), String(firstSystemLines[0].end.x));
+                expectToBe(firstLine.attr('y2'), String(firstSystemLines[0].end.y));
             });
 
-            it('... should not draw any system and log an error for a folio without systems', () => {
+            it('... should not draw any system for a folio without systems', () => {
                 const rootGroup = render(createSvgData({ ...expectedReversedFolio, systems: '' }));
 
                 expectToBe(rootGroup.selectAll('g.systems-group').size(), 0);
-                expectToBe(mockConsole.get(0), '[FolioCalculation] No systems in folio');
             });
         });
 

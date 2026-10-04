@@ -1,12 +1,3 @@
-import {
-    FolioCalculation,
-    FolioCalculationContentSegment,
-    FolioCalculationLine,
-    FolioCalculationPoint,
-    FolioCalculationRectangle,
-    FolioCalculationSheet,
-    FolioCalculationSystems,
-} from './folio-calculation.model';
 import type { SheetClickEvent } from '../services/edition-navigation.service';
 
 import { ViewBox } from './view-box.model';
@@ -20,12 +11,66 @@ import { ViewBox } from './view-box.model';
 export const FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS = 'content-segment-group';
 
 /**
- * The FolioSvgSheet class.
+ * The FolioSvgPoint interface.
  *
  * It is used in the context of the edition folio convolutes
- * to store and expose the svg data for the sheet of a folio.
+ * to store a point (in px) on the folio svg.
  */
-export class FolioSvgSheet {
+export interface FolioSvgPoint {
+    /**
+     * The x value (in px) of the point.
+     */
+    readonly x: number;
+
+    /**
+     * The y value (in px) of the point.
+     */
+    readonly y: number;
+}
+
+/**
+ * The FolioSvgLine interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store a line on the folio svg.
+ */
+export interface FolioSvgLine {
+    /**
+     * The starting point of the line.
+     */
+    readonly start: FolioSvgPoint;
+
+    /**
+     * The ending point of the line.
+     */
+    readonly end: FolioSvgPoint;
+}
+
+/**
+ * The FolioSvgRectangle interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store a rectangle on the folio svg.
+ */
+export interface FolioSvgRectangle {
+    /**
+     * The upper left corner of the rectangle.
+     */
+    readonly upperLeft: FolioSvgPoint;
+
+    /**
+     * The lower right corner of the rectangle.
+     */
+    readonly lowerRight: FolioSvgPoint;
+}
+
+/**
+ * The FolioSvgSheet interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for the sheet of a folio.
+ */
+export interface FolioSvgSheet {
     /**
      * The id of the folio.
      */
@@ -34,70 +79,44 @@ export class FolioSvgSheet {
     /**
      * The rectangle of the sheet.
      */
-    readonly rectangle: FolioCalculationRectangle;
+    readonly rectangle: FolioSvgRectangle;
 
     /**
      * The optional rectangle of the trademark on the sheet.
      */
-    readonly trademarkRectangle?: FolioCalculationRectangle;
-
-    /**
-     * Constructor of the FolioSvgSheet class.
-     *
-     * It initializes the class with values from the folio sheet calculation.
-     *
-     * @param {FolioCalculationSheet} calculatedSheet The given calculated folio sheet.
-     */
-    constructor(calculatedSheet: FolioCalculationSheet) {
-        this.folioId = calculatedSheet.FOLIO_ID;
-        this.rectangle = calculatedSheet.SHEET_RECTANGLE;
-        this.trademarkRectangle = calculatedSheet.TRADEMARK_RECTANGLE;
-    }
+    readonly trademarkRectangle?: FolioSvgRectangle;
 }
 
 /**
- * The FolioSvgSystems class.
+ * The FolioSvgSystems interface.
  *
  * It is used in the context of the edition folio convolutes
- * to store and expose the svg data for the systems of a folio.
+ * to store the svg data for the systems of a folio.
  */
-export class FolioSvgSystems {
+export interface FolioSvgSystems {
     /**
      * The positions of the system labels.
      */
-    readonly labelPositions: FolioCalculationPoint[];
+    readonly labelPositions: FolioSvgPoint[];
 
     /**
      * The lines of the systems (per system an array of its staff lines).
      */
-    readonly lines: FolioCalculationLine[][];
+    readonly lines: FolioSvgLine[][];
 
     /**
      * The boolean flag if the systems are reversed.
      */
     readonly reversed: boolean;
-
-    /**
-     * Constructor of the FolioSvgSystems class.
-     *
-     * It initializes the class with values from the folio system calculation.
-     *
-     * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
-     */
-    constructor(calculatedSystems: FolioCalculationSystems) {
-        this.labelPositions = calculatedSystems.SYSTEMS_LABEL_POSITIONS;
-        this.lines = calculatedSystems.SYSTEMS_LINES;
-        this.reversed = calculatedSystems.SYSTEMS_REVERSED;
-    }
 }
 
 /**
- * The FolioSvgContentSegment class.
+ * The FolioSvgContentSegment interface.
  *
  * It is used in the context of the edition folio convolutes
- * to store and expose the svg data for a content segment of a folio.
+ * to store the svg data for a content segment of a folio.
  */
-export class FolioSvgContentSegment {
+export interface FolioSvgContentSegment {
     /**
      * The ids (complex id and sheet id incl. partial) of the svg sheet of the content segment.
      */
@@ -135,42 +154,24 @@ export class FolioSvgContentSegment {
     readonly vertices: string;
 
     /**
-     * The center point of the content segment.
+     * The center point of the content segment label.
      */
-    readonly center: FolioCalculationPoint;
-
-    /**
-     * Constructor of the FolioSvgContentSegment class.
-     *
-     * It initializes the class with values from the folio content segment calculation.
-     *
-     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated folio content segment.
-     */
-    constructor(calculatedContentSegment: FolioCalculationContentSegment) {
-        this.sheetIds = {
-            complexId: calculatedContentSegment.complexId,
-            sheetId: calculatedContentSegment.sheetId,
-        };
-        this.linkTo = calculatedContentSegment.linkTo;
-        this.selectable = calculatedContentSegment.selectable;
-        this.label = calculatedContentSegment.segmentLabel;
-        this.labelLines = calculatedContentSegment.segmentLabelArray;
-        this.reversed = calculatedContentSegment.reversed;
-        this.vertices = calculatedContentSegment.vertices;
-        this.center = new FolioCalculationPoint(
-            calculatedContentSegment.centeredXPosition,
-            calculatedContentSegment.centeredYPosition
-        );
-    }
+    readonly center: FolioSvgPoint;
 }
 
 /**
- * The FolioSvgData class.
+ * The FolioSvgData interface.
  *
  * It is used in the context of the edition folio convolutes
- * to store and expose the svg data (sheet, systems, content segments and view box) for a folio.
+ * to store the svg data (sheet, systems, content segments and view box) for a folio,
+ * as calculated by `calculateFolioSvgData` (see folio-calculation.model).
  */
-export class FolioSvgData {
+export interface FolioSvgData {
+    /**
+     * The view box of the svg of the folio.
+     */
+    readonly viewBox: ViewBox;
+
     /**
      * The sheet of the folio.
      */
@@ -185,23 +186,4 @@ export class FolioSvgData {
      * The content segments of the folio.
      */
     readonly contentSegments: FolioSvgContentSegment[];
-
-    /**
-     * The view box of the svg of the folio.
-     */
-    readonly viewBox: ViewBox;
-
-    /**
-     * Constructor of the FolioSvgData class.
-     *
-     * It initializes the class with values from the folio calculation.
-     *
-     * @param {FolioCalculation} calculation The given folio calculation.
-     */
-    constructor(calculation: FolioCalculation) {
-        this.sheet = new FolioSvgSheet(calculation.SHEET);
-        this.systems = new FolioSvgSystems(calculation.SYSTEMS);
-        this.contentSegments = calculation.CONTENT_SEGMENTS.map(segment => new FolioSvgContentSegment(segment));
-        this.viewBox = calculation.VIEW_BOX;
-    }
 }

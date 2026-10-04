@@ -13,7 +13,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioCalculation, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
+import { calculateFolioSvgData, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
 import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
@@ -103,7 +103,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             initialOffsetX: 5,
             initialOffsetY: 5,
         };
-        expectedFolioSvgData = new FolioSvgData(new FolioCalculation(expectedFolioSettings, expectedFolio, 4));
+        expectedFolioSvgData = calculateFolioSvgData(expectedFolioSettings, expectedFolio, 4);
         expectedViewBox = new ViewBox(
             (expectedFolioSettings.formatX + 2 * expectedFolioSettings.initialOffsetX) * expectedFolioSettings.factor,
             (expectedFolioSettings.formatY + 2 * expectedFolioSettings.initialOffsetY) * expectedFolioSettings.factor
