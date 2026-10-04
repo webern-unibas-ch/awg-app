@@ -759,55 +759,33 @@ describe('GraphVisualizerService', () => {
             expectToBe(result.quads.length, 0);
         });
 
-        describe('... should throw an error and trigger `_handleError`', () => {
-            it('... for missing dots', async () => {
-                const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/> @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
-                    'Expected declaration to end with a dot on line 1.'
-                );
-
-                expectSpyCall(handleErrorSpy, 1, [
-                    expect.any(Object),
-                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
-                ]);
-            });
-
-            it('... for missing @', async () => {
-                const triplesWithSyntaxError =
-                    'prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
-                    'Expected entity but got . on line 1.'
-                );
-
-                expectSpyCall(handleErrorSpy, 1, [
-                    expect.any(Object),
-                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
-                ]);
-            });
-
-            it('... for missing prefix marker', async () => {
-                const triplesWithSyntaxError =
-                    '@prefix ex: <http://example.org/>. ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
-
-                await expect(graphVisualizerService.parseTripleString(triplesWithSyntaxError)).rejects.toThrow(
-                    'Undefined prefix "ex2:" on line 1.'
-                );
-
-                expectSpyCall(handleErrorSpy, 1, [
-                    expect.any(Object),
-                    '[GraphVisualizerService] An unknown error occurred while parsing the triples.',
-                ]);
-            });
-
-            it('... if the parsing process fails', async () => {
-                const invalidTriples = 'not a valid triple';
-
-                await expect(graphVisualizerService.parseTripleString(invalidTriples)).rejects.toThrow();
-
-                expect(handleErrorSpy).toHaveBeenCalledTimes(1);
+        describe('... should throw an error and trigger `_handleError` for', () => {
+            it.each([
+                {
+                    desc: 'missing dots',
+                    triples:
+                        '@prefix ex: <http://example.org/> @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.',
+                    expectedError: 'Expected declaration to end with a dot on line 1.',
+                },
+                {
+                    desc: 'missing @',
+                    triples:
+                        'prefix ex: <http://example.org/>. @prefix ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.',
+                    expectedError: 'Expected entity but got . on line 1.',
+                },
+                {
+                    desc: 'missing prefix marker',
+                    triples:
+                        '@prefix ex: <http://example.org/>. ex2: <http://example2.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.',
+                    expectedError: 'Undefined prefix "ex2:" on line 1.',
+                },
+                {
+                    desc: 'general parsing failure',
+                    triples: 'not a valid triple',
+                    expectedError: 'Unexpected "not" on line 1.',
+                },
+            ])('... $desc', async ({ triples, expectedError }) => {
+                await expect(graphVisualizerService.parseTripleString(triples)).rejects.toThrow(expectedError);
 
                 expectSpyCall(handleErrorSpy, 1, [
                     expect.any(Object),

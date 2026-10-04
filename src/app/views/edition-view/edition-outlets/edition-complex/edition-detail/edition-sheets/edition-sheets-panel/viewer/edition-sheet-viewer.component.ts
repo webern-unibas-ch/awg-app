@@ -32,11 +32,11 @@ export class EditionSheetViewerComponent {
     readonly selectedSvgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * Readonly output signal: browseRequest.
+     * Readonly output signal: browseSheetRequest.
      *
      * It emits the direction (-1 for previous, 1 for next) to browse the svg sheets.
      */
-    readonly browseRequest = output<1 | -1>();
+    readonly browseSheetRequest = output<1 | -1>();
 
     /**
      * Readonly output signal: selectLinkBoxRequest.

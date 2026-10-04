@@ -39,7 +39,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let mockSvgDrawingService: Partial<Record<keyof EditionSvgDrawingService, Mock>>;
     let mockSvgOverlayService: Partial<Record<keyof EditionSvgOverlayService, Mock>>;
 
-    let browseRequestSpy: Mock<(direction: 1 | -1) => void>;
+    let browseSheetRequestSpy: Mock<(direction: 1 | -1) => void>;
     let selectLinkBoxRequestSpy: Mock<(id: string) => void>;
     let selectTkkOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlayTkk[]) => void>;
 
@@ -101,10 +101,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
 
         // Spies
-        browseRequestSpy = vi.fn();
+        browseSheetRequestSpy = vi.fn();
         selectLinkBoxRequestSpy = vi.fn();
         selectTkkOverlaysRequestSpy = vi.fn();
-        component.browseRequest.subscribe(browseRequestSpy);
+        component.browseSheetRequest.subscribe(browseSheetRequestSpy);
         component.selectLinkBoxRequest.subscribe(selectLinkBoxRequestSpy);
         component.selectTkkOverlaysRequest.subscribe(selectTkkOverlaysRequestSpy);
     });
@@ -235,7 +235,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
             describe('... EditionSheetViewerNavComponent', () => {
                 it.each([-1, 1] as const)(
-                    '... should emit `browseRequest` with %s on browse request of the nav',
+                    '... should emit `browseSheetRequest` with %s on browse sheet request of the nav',
                     direction => {
                         const navDes = getAndExpectDebugElementByDirective(
                             compDe,
@@ -244,9 +244,9 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                             1
                         );
 
-                        navDes[0].injector.get(EditionSheetViewerNavComponent).browseRequest.emit(direction);
+                        navDes[0].injector.get(EditionSheetViewerNavComponent).browseSheetRequest.emit(direction);
 
-                        expectSpyCall(browseRequestSpy, 1, direction);
+                        expectSpyCall(browseSheetRequestSpy, 1, direction);
                     }
                 );
             });

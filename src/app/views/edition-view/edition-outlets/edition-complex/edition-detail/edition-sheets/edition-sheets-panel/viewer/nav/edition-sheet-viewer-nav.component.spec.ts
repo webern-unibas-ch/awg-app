@@ -13,7 +13,7 @@ describe('EditionSheetViewerNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSheetViewerNavComponent>;
     let compDe: DebugElement;
 
-    let browseRequestSpy: Mock<(direction: 1 | -1) => void>;
+    let browseSheetRequestSpy: Mock<(direction: 1 | -1) => void>;
 
     const getNavDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-viewer-nav', 1, 1);
     const getButtonDes = (direction: 'prev' | 'next') =>
@@ -31,8 +31,8 @@ describe('EditionSheetViewerNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Spies
-        browseRequestSpy = vi.fn<(direction: 1 | -1) => void>();
-        component.browseRequest.subscribe(browseRequestSpy);
+        browseSheetRequestSpy = vi.fn<(direction: 1 | -1) => void>();
+        component.browseSheetRequest.subscribe(browseSheetRequestSpy);
     });
 
     afterEach(() => {
@@ -78,7 +78,7 @@ describe('EditionSheetViewerNavComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            describe('... output `browseRequest`', () => {
+            describe('... output `browseSheetRequest`', () => {
                 it.each([
                     { direction: 'prev' as const, expectedDirection: -1 },
                     { direction: 'next' as const, expectedDirection: 1 },
@@ -87,7 +87,7 @@ describe('EditionSheetViewerNavComponent (DONE)', () => {
                     async ({ direction, expectedDirection }) => {
                         await clickAndAwaitChanges(getButtonDes(direction)[0], fixture);
 
-                        expectSpyCall(browseRequestSpy, 1, expectedDirection);
+                        expectSpyCall(browseSheetRequestSpy, 1, expectedDirection);
                     }
                 );
 
@@ -97,7 +97,7 @@ describe('EditionSheetViewerNavComponent (DONE)', () => {
                     buttonEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
                     buttonEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Tab', bubbles: true }));
 
-                    expectSpyCall(browseRequestSpy, 0);
+                    expectSpyCall(browseSheetRequestSpy, 0);
                 });
             });
         });

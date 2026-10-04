@@ -48,13 +48,15 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 
 // Mock components
 @Component({
-    selector: 'awg-edition-sheet',
+    selector: 'awg-edition-sheets-panel',
     template: '',
     standalone: false,
 })
-class EditionSheetStubComponent {
+class EditionSheetsPanelStubComponent {
     @Input()
     isSheetFacetMinimized = false;
+    @Output()
+    isSheetFacetMinimizedChange: EventEmitter<boolean> = new EventEmitter();
     @Input()
     svgSheetsData: EditionSvgSheetsList | null = null;
     @Input()
@@ -66,13 +68,11 @@ class EditionSheetStubComponent {
     @Input()
     showTkA = false;
     @Output()
-    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    browseSheetRequest: EventEmitter<1 | -1> = new EventEmitter();
     @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectTkkOverlaysRequest: EventEmitter<EditionSvgOverlayTkk[]> = new EventEmitter();
-    @Output()
-    toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
 
 @Component({
@@ -111,7 +111,6 @@ describe('EditionSheetsComponent (DONE)', () => {
     let onOverlaySelectSpy: Spy;
     let onSvgSheetSelectSpy: Spy;
     let selectSvgSheetSpy: Spy;
-    let onToggleSheetFacetSpy: Spy;
     let serviceNavigateToSvgSheetSpy: Spy;
 
     let mockViewDataSignal: WritableSignal<EditionViewData<'sheets'>>;
@@ -163,7 +162,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
         await TestBed.configureTestingModule({
             imports: [AlertErrorStubComponent, TwelveToneSpinnerStubComponent],
-            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionSheetStubComponent],
+            declarations: [EditionSheetsComponent, EditionConvoluteStubComponent, EditionSheetsPanelStubComponent],
             providers: [
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionSheetsService, useValue: mockEditionSheetsService },
@@ -230,7 +229,6 @@ describe('EditionSheetsComponent (DONE)', () => {
         onLinkBoxSelectSpy = vi.spyOn(component, 'onLinkBoxSelect');
         onOverlaySelectSpy = vi.spyOn(component, 'onOverlaySelect');
         onSvgSheetSelectSpy = vi.spyOn(component, 'onSvgSheetSelect');
-        onToggleSheetFacetSpy = vi.spyOn(component, 'onToggleSheetFacet');
         selectSvgSheetSpy = vi.spyOn(component, '_selectSvgSheet' as any);
     });
 
@@ -302,8 +300,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
             });
 
-            it('... should contain no EditionSheetComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 0, 0);
+            it('... should contain no EditionSheetsPanelComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 0, 0);
             });
 
             it('... should contain no ConvoluteComponent (stubbed)', () => {
@@ -486,71 +484,121 @@ describe('EditionSheetsComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 1, 1);
                 });
 
-                describe('... EditionSheetComponent (stubbed)', () => {
-                    it('... should contain one EditionSheetComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                describe('... EditionSheetsPanelComponent (stubbed)', () => {
+                    it('... should contain one EditionSheetsPanelComponent (stubbed)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
                     });
 
-                    it('... should pass down `isSheetFacetMinimized` to the EditionSheetComponent', () => {
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    it('... should pass down `isSheetFacetMinimized` to the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.isSheetFacetMinimized, expectedIsSheetFacetMinimized);
                     });
 
-                    it('... should pass down `svgSheetsData` to the EditionSheetComponent', () => {
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    it('... should update `isSheetFacetMinimized` on isSheetFacetMinimizedChange of the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
+
+                        sheetCmp.isSheetFacetMinimizedChange.emit(true);
+
+                        expectToBe(component.isSheetFacetMinimized, true);
+
+                        sheetCmp.isSheetFacetMinimizedChange.emit(false);
+
+                        expectToBe(component.isSheetFacetMinimized, false);
+                    });
+
+                    it('... should pass down `svgSheetsData` to the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
+                        const sheetCmp = sheetDes[0].injector.get(
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.svgSheetsData, expectedSvgSheetsData);
                     });
 
-                    it('... should pass down `selectedSvgSheet` to the EditionSheetComponent', async () => {
+                    it('... should pass down `selectedSvgSheet` to the EditionSheetsPanelComponent', async () => {
                         component.selectedSvgSheet = expectedSvgSheet;
                         await detectChangesOnPush(fixture);
 
                         await detectChangesOnPush(fixture);
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.selectedSvgSheet, expectedSvgSheet);
                     });
 
-                    it('... should pass down `selectedTextcritics` to the EditionSheetComponent', async () => {
+                    it('... should pass down `selectedTextcritics` to the EditionSheetsPanelComponent', async () => {
                         component.selectedTextcritics = expectedSelectedTextcritics;
                         await detectChangesOnPush(fixture);
 
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.selectedTextcritics, expectedSelectedTextcritics);
                     });
 
-                    it('... should pass down `selectedTextcriticalCommentary` to the EditionSheetComponent', async () => {
+                    it('... should pass down `selectedTextcriticalCommentary` to the EditionSheetsPanelComponent', async () => {
                         component.selectedTextcriticalCommentary = expectedSelectedTextcriticalCommentary;
                         await detectChangesOnPush(fixture);
 
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.selectedTextcriticalCommentary, expectedSelectedTextcriticalCommentary);
                     });
 
-                    it('... should pass down `showTkA` to the EditionSheetComponent', () => {
-                        const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
+                    it('... should pass down `showTkA` to the EditionSheetsPanelComponent', () => {
+                        const sheetDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSheetsPanelStubComponent,
+                            1,
+                            1
+                        );
                         const sheetCmp = sheetDes[0].injector.get(
-                            EditionSheetStubComponent
-                        ) as EditionSheetStubComponent;
+                            EditionSheetsPanelStubComponent
+                        ) as EditionSheetsPanelStubComponent;
 
                         expectToEqual(sheetCmp.showTkA, false);
                     });
@@ -614,12 +662,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onBrowseSvgSheet).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
+                it('... should trigger on event from EditionSheetsPanelComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
                     const expectedDirection = 1;
-                    sheetCmp.browseSvgSheetRequest.emit(expectedDirection);
+                    sheetCmp.browseSheetRequest.emit(expectedDirection);
 
                     expectSpyCall(onBrowseSvgSheetSpy, 1, [expectedDirection]);
                 });
@@ -691,9 +741,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onLinkBoxSelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
+                it('... should trigger on event from EditionSheetsPanelComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
                     const expectedLinkBoxId = 'link-box-1';
                     sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
@@ -786,12 +838,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                     expect(component.onOverlaySelect).toBeDefined();
                 });
 
-                it('... should trigger on event from EditionSheetComponent', async () => {
+                it('... should trigger on event from EditionSheetsPanelComponent', async () => {
                     component.selectedTextcritics = expectedSelectedTextcritics;
                     await detectChangesOnPush(fixture);
 
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(
+                        EditionSheetsPanelStubComponent
+                    ) as EditionSheetsPanelStubComponent;
 
                     const expectedOverlays = [createTestTkkOverlay('g1114')];
 
@@ -907,34 +961,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                     component.onSvgSheetSelect(expectedNextSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 2, expectedNextSheetIds);
-                });
-            });
-
-            describe('#onToggleSheetFacet()', () => {
-                it('... should have a method `onToggleSheetFacet`', () => {
-                    expect(component.onToggleSheetFacet).toBeDefined();
-                });
-
-                it('... should trigger on event from EditionSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
-
-                    expectedIsSheetFacetMinimized = true;
-                    sheetCmp.toggleSheetFacetRequest.emit(expectedIsSheetFacetMinimized);
-
-                    expectSpyCall(onToggleSheetFacetSpy, 1, [expectedIsSheetFacetMinimized]);
-                });
-
-                it('... should toggle `isSheetFacetMinimized` variable', () => {
-                    expectToBe(component.isSheetFacetMinimized, false);
-
-                    component.onToggleSheetFacet(true);
-
-                    expectToBe(component.isSheetFacetMinimized, true);
-
-                    component.onToggleSheetFacet(false);
-
-                    expectToBe(component.isSheetFacetMinimized, false);
                 });
             });
 

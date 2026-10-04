@@ -13,9 +13,9 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 })
 export class EditionSheetViewerNavComponent {
     /**
-     * Readonly output signal: browseRequest.
+     * Readonly output signal: browseSheetRequest.
      *
      * It emits the direction to browse to the previous (-1) or next (1) svg sheet.
      */
-    readonly browseRequest = output<1 | -1>();
+    readonly browseSheetRequest = output<1 | -1>();
 }

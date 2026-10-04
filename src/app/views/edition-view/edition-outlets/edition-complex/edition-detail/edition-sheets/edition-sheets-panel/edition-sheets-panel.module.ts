@@ -6,12 +6,12 @@ import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.componen
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
 import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.component';
 
-import { EditionSheetComponent } from './edition-sheet.component';
+import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 
 /**
- * The EditionSheet module.
+ * The EditionSheetsPanel module.
  *
- * It embeds the edition sheet components
+ * It embeds the {@link EditionSheetsPanelComponent}
  * as well as the {@link EditionSheetFacetComponent},
  * {@link EditionSheetFooterComponent}, {@link EditionSheetViewerComponent}
  * and {@link SharedModule}.
@@ -24,7 +24,7 @@ import { EditionSheetComponent } from './edition-sheet.component';
         EditionSheetFooterComponent,
         EditionSheetViewerComponent,
     ],
-    declarations: [EditionSheetComponent],
-    exports: [EditionSheetComponent],
+    declarations: [EditionSheetsPanelComponent],
+    exports: [EditionSheetsPanelComponent],
 })
-export class EditionSheetModule {}
+export class EditionSheetsPanelModule {}

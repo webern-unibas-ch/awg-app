@@ -7,18 +7,17 @@
             <awg-twelve-tone-spinner />
         } @else {
             <div class="awg-edition-sheets-view">
-                <!-- sheet view -->
-                <awg-edition-sheet
-                    [isSheetFacetMinimized]="isSheetFacetMinimized"
+                <!-- sheets panel -->
+                <awg-edition-sheets-panel
+                    [(isSheetFacetMinimized)]="isSheetFacetMinimized"
                     [svgSheetsData]="view.data.svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet"
                     [selectedTextcritics]="selectedTextcritics"
                     [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
                     [showTkA]="showTkA"
-                    (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
+                    (browseSheetRequest)="onBrowseSvgSheet($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
-                    (selectTkkOverlaysRequest)="onOverlaySelect($event)"
-                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)" />
+                    (selectTkkOverlaysRequest)="onOverlaySelect($event)" />
 
                 <!-- convolute view -->
                 @if (selectedConvolute && selectedSvgSheet) {

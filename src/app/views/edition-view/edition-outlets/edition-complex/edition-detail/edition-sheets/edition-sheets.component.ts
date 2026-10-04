@@ -229,18 +229,6 @@ export class EditionSheetsComponent {
     }
 
     /**
-     * Public method: onToggleSheetFacet.
-     *
-     * It sets/updates the sheet facet state and the isSheetFacetMinimized flag.
-     *
-     * @param {boolean} isMinimized A boolean indicating the minimized state of the sheet facet.
-     * @returns {void} Sets/updates the sheet facet state and the isSheetFacetMinimized flag.
-     */
-    onToggleSheetFacet(isMinimized: boolean): void {
-        this.isSheetFacetMinimized = isMinimized;
-    }
-
-    /**
      * Private method: _getDefaultSheetId.
      *
      * It returns the id of the first sheet of the svgSheetsData as default.
