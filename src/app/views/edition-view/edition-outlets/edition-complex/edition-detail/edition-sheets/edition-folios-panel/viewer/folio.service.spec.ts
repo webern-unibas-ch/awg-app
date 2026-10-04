@@ -9,7 +9,6 @@ import { expectSpyCall, expectToBe, expectToContain, expectToEqual, expectToNotC
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     D3Selection,
     Folio,
@@ -23,18 +22,11 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { FolioService } from './folio.service';
 
 describe('FolioService (DONE)', () => {
     let folioService: FolioService;
-
-    let mockModalService: Partial<ModalService>;
-    let mockNavigationService: Partial<EditionNavigationService>;
-
-    let serviceNavigateToSvgSheetSpy: Spy;
-    let serviceOpenTextModalSpy: Spy;
 
     let addFolioSheetToSvgCanvasSpy: Spy;
     let addFolioSystemsToSvgCanvasSpy: Spy;
@@ -85,30 +77,14 @@ describe('FolioService (DONE)', () => {
     let expectedSystemsLineStrokeWidth: number;
 
     beforeEach(() => {
-        // Mock services
-        mockModalService = {
-            openTextModal: vi.fn(),
-        };
-
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         TestBed.configureTestingModule({
-            providers: [
-                FolioService,
-                { provide: ModalService, useValue: mockModalService },
-                { provide: EditionNavigationService, useValue: mockNavigationService },
-            ],
+            providers: [FolioService],
         });
 
         // Inject services
         folioService = TestBed.inject(FolioService);
 
         // Service spies
-        serviceNavigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
-        serviceOpenTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
-
         addFolioSheetToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioSheetToSvgCanvas' as any);
         addFolioSystemsToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioSystemsToSvgCanvas' as any);
         addFolioContentSegmentsToSvgCanvasSpy = vi.spyOn(folioService, '_addFolioContentSegmentsToSvgCanvas' as any);
@@ -402,6 +378,66 @@ describe('FolioService (DONE)', () => {
 
             it('... should trigger `_addFolioContentSegmentsToSvgCanvas` method with correct parameters', () => {
                 expectSpyCall(addFolioContentSegmentsToSvgCanvasSpy, 1, [expectedSvgSheetGroup, expectedFolioSvgData]);
+            });
+        });
+    });
+
+    describe('#getContentSegment', () => {
+        let expectedSvgCanvas: D3Selection;
+        let expectedContentSegmentGroup: Element;
+
+        beforeEach(() => {
+            expectedSvgCanvas = D3_SELECTION.create('svg');
+            folioService.addFolioToSvgCanvas(expectedSvgCanvas, expectedFolioSvgData);
+
+            expectedContentSegmentGroup = expectedSvgCanvas.select('g.content-segment-group').node() as Element;
+        });
+
+        afterEach(() => {
+            expectedSvgCanvas.remove();
+        });
+
+        it('... should have a method `getContentSegment`', () => {
+            expect(folioService.getContentSegment).toBeDefined();
+        });
+
+        describe('... should return the content segment of the hit content segment group if the target is', () => {
+            it('... the content segment group', () => {
+                const contentSegment = folioService.getContentSegment(expectedContentSegmentGroup);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
+            });
+
+            it('... the polygon of the content segment link', () => {
+                const polygon = expectedContentSegmentGroup.querySelector('a.content-segment-link polygon');
+
+                const contentSegment = folioService.getContentSegment(polygon);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
+            });
+
+            it('... the label text of the content segment link', () => {
+                const text = expectedContentSegmentGroup.querySelector('a.content-segment-link text');
+
+                const contentSegment = folioService.getContentSegment(text);
+
+                expectToEqual(contentSegment, expectedFolioSvgData.contentSegments[0]);
+            });
+        });
+
+        describe('... should return undefined if the target is', () => {
+            it('... outside of a content segment group', () => {
+                const sheetGroup = expectedSvgCanvas.select('g.sheet-group').node() as Element;
+
+                expect(folioService.getContentSegment(sheetGroup)).toBeUndefined();
+            });
+
+            it('... not an element', () => {
+                expect(folioService.getContentSegment(new EventTarget())).toBeUndefined();
+            });
+
+            it('... null', () => {
+                expect(folioService.getContentSegment(null)).toBeUndefined();
             });
         });
     });
@@ -1494,27 +1530,10 @@ describe('FolioService (DONE)', () => {
                 expectSpyCall(appendContentSegmentGroupTitleSpy, 1, [contentSegmentGroup, expectedContentSegment]);
             });
 
-            it('... should trigger trigger NavigationService with the correct ids when the content segment is selectable and clicked', () => {
+            it('... should bind the content segment as datum to the content segment group', () => {
                 const contentSegmentGroup: D3Selection = expectedSvgSheetGroup.select('g.content-segment-group');
-                expectedContentSegment.selectable = true;
 
-                // Dispatch a click event manually
-                (contentSegmentGroup.node() as Element).dispatchEvent(new Event('click'));
-
-                expectSpyCall(serviceNavigateToSvgSheetSpy, 1, {
-                    complexId: expectedContentSegment.complexId,
-                    sheetId: expectedContentSegment.sheetId,
-                });
-            });
-
-            it('... should trigger ModalService with the correct id when the content segment is not selectable and clicked', () => {
-                const contentSegmentGroup: D3Selection = expectedSvgSheetGroup.select('g.content-segment-group');
-                expectedContentSegment.selectable = false;
-
-                // Dispatch a click event manually
-                (contentSegmentGroup.node() as Element).dispatchEvent(new Event('click'));
-
-                expectSpyCall(serviceOpenTextModalSpy, 1, expectedContentSegment.linkTo);
+                expectToEqual(contentSegmentGroup.datum(), expectedContentSegment);
             });
         });
     });

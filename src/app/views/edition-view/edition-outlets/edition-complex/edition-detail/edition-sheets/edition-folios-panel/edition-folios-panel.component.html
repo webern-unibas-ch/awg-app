@@ -18,9 +18,9 @@
                         </div>
 
                         <!-- viewer for convolute folios -->
-                        <awg-edition-folios-viewer
-                            [selectedConvolute]="convolute"
-                            [selectedSvgSheet]="selectedSvgSheet" />
+                        @if (selectedSvgSheet; as sheet) {
+                            <awg-edition-folios-viewer [selectedConvolute]="convolute" [selectedSvgSheet]="sheet" />
+                        }
 
                         <!-- convolute legend -->
                         <div class="awg-edition-folios-panel-legend col-12">

@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
+import * as D3_SELECTION from 'd3-selection';
 
 import {
     D3Selection,
@@ -14,7 +14,6 @@ import {
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The Folio service.
@@ -28,20 +27,6 @@ import { EditionNavigationService } from '@awg-views/edition-view/services/editi
     providedIn: 'root',
 })
 export class FolioService {
-    /**
-     * Private readonly injection variable: _modalService
-     *
-     * It keeps the instance of the injected ModalService.
-     */
-    private readonly _modalService = inject(ModalService);
-
-    /**
-     * Private readonly injection variable: _navigationService
-     *
-     * It keeps the instance of the injected EditionNavigationService.
-     */
-    private readonly _navigationService = inject(EditionNavigationService);
-
     /**
      * Private readonly variable: _bgColor.
      *
@@ -83,6 +68,13 @@ export class FolioService {
      * It keeps the font size for the content segments.
      */
     private readonly _contentSegmentFontSize = '11px';
+
+    /**
+     * Private readonly variable: _contentSegmentGroupClass.
+     *
+     * It keeps the css class of the content segment groups.
+     */
+    private readonly _contentSegmentGroupClass = 'content-segment-group';
 
     /**
      * Private readonly variable: _contentSegmentOffsetCorrection.
@@ -194,6 +186,29 @@ export class FolioService {
 
         // Draw content segments.
         this._addFolioContentSegmentsToSvgCanvas(svgSheetGroup, folioSvgData);
+    }
+
+    /**
+     * Public method: getContentSegment.
+     *
+     * It resolves the content segment hit by a given event target
+     * (bound to its content segment group).
+     *
+     * @param {EventTarget | null} target The given event target.
+     *
+     * @returns {FolioSvgContentSegment | undefined} The hit content segment, or undefined.
+     */
+    getContentSegment(target: EventTarget | null): FolioSvgContentSegment | undefined {
+        if (!(target instanceof Element)) {
+            return undefined;
+        }
+
+        const contentSegmentGroup = target.closest(`g.${this._contentSegmentGroupClass}`);
+        if (!contentSegmentGroup) {
+            return undefined;
+        }
+
+        return D3_SELECTION.select(contentSegmentGroup).datum() as FolioSvgContentSegment | undefined;
     }
 
     /**
@@ -316,18 +331,11 @@ export class FolioService {
         // Draw content segment group element.
         const contentSegmentGroup = this._appendContentSegmentGroupElement(svgSheetGroup, contentSegment);
 
+        // Bind content segment to the group (resolved by getContentSegment for delegated clicks)
+        contentSegmentGroup.datum(contentSegment);
+
         // Apply title when hovering content segment.
         this._appendContentSegmentGroupTitle(contentSegmentGroup, contentSegment);
-
-        // Add click event handler
-        contentSegmentGroup.on('click', () =>
-            contentSegment.selectable
-                ? this._navigationService.navigateToSvgSheet({
-                      complexId: contentSegment.complexId,
-                      sheetId: contentSegment.sheetId,
-                  })
-                : this._modalService.openTextModal(contentSegment.linkTo)
-        );
 
         return contentSegmentGroup;
     }
@@ -348,7 +356,7 @@ export class FolioService {
         return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
             contentSegmentGroupId: contentSegment.segmentLabel,
             contentSegmentId: contentSegment.sheetId,
-            class: 'content-segment-group',
+            class: this._contentSegmentGroupClass,
             stroke: contentSegment.selectable ? this._fgColor : this._disabledColor,
             fill: contentSegment.selectable ? this._fgColor : this._disabledColor,
         });

@@ -1,26 +1,44 @@
 import {
-    AfterViewChecked,
+    afterRenderEffect,
     ChangeDetectionStrategy,
     Component,
+    computed,
+    ElementRef,
     inject,
-    Input,
-    OnChanges,
-    SimpleChanges,
+    input,
+    untracked,
+    viewChildren,
 } from '@angular/core';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-import {
-    D3Selection,
-    EditionSvgSheet,
-    Folio,
-    FolioConvolute,
-    FolioSettings,
-    FolioSvgData,
-    ViewBox,
-} from '@awg-views/edition-view/models';
+import * as D3_SELECTION from 'd3-selection';
+
+import { ModalService } from '@awg-shared/modal/modal.service';
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { FolioSettings } from '@awg-views/edition-view/models/folio-settings.model';
+import { FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
+import { Folio, FolioConvolute } from '@awg-views/edition-view/models/folio.model';
+import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+
 import { FolioService } from './folio.service';
 
-import * as D3_SELECTION from 'd3-selection';
+/**
+ * The FolioSvgItem interface.
+ *
+ * It represents the data needed to render the svg of a single folio.
+ */
+interface FolioSvgItem {
+    /**
+     * The calculated svg data of the folio.
+     */
+    svgData: FolioSvgData;
+
+    /**
+     * The viewbox of the folio svg.
+     */
+    viewBox: ViewBox;
+}
 
 /**
  * The EditionFoliosViewer component.
@@ -34,9 +52,8 @@ import * as D3_SELECTION from 'd3-selection';
     templateUrl: './edition-folios-viewer.component.html',
     styleUrls: ['./edition-folios-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
-export class EditionFoliosViewerComponent implements OnChanges, AfterViewChecked {
+export class EditionFoliosViewerComponent {
     /**
      * Private readonly injection variable: _folioService.
      *
@@ -45,55 +62,83 @@ export class EditionFoliosViewerComponent implements OnChanges, AfterViewChecked
     private readonly _folioService = inject(FolioService);
 
     /**
-     * Input variable: selectedConvolute.
+     * Private readonly injection variable: _modalService.
      *
-     * It keeps the selected convolute.
+     * It keeps the instance of the injected ModalService.
      */
-    @Input()
-    selectedConvolute: FolioConvolute | undefined;
+    private readonly _modalService = inject(ModalService);
 
     /**
-     * Public variable: selectedSvgSheet.
+     * Private readonly injection variable: _navigationService.
      *
-     * It keeps the selected SVG sheet.
+     * It keeps the instance of the injected EditionNavigationService.
      */
-    @Input()
-    selectedSvgSheet: EditionSvgSheet | undefined;
+    private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Protected readonly variable: UTILS.
+     * Readonly input signal: selectedConvolute.
      *
-     * It keeps the reference to the {@link UTILS} methods.
+     * It holds the selected convolute.
      */
-    protected readonly UTILS = UTILS;
+    readonly selectedConvolute = input.required<FolioConvolute>();
 
     /**
-     * Public variable: canvasArray.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It keeps the array with a SVG canvas per folio.
+     * It holds the selected svg sheet.
      */
-    canvasArray: D3Selection[] = [];
+    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * Public variable: folioSvgDataArray.
+     * Readonly view children signal: folioSvgs.
      *
-     * It keeps the array with the SVG data
-     * needed to draw the SVG canvas of the folios.
+     * It holds the references to the svg elements of the folios.
      */
-    folioSvgDataArray: FolioSvgData[] = [];
+    readonly folioSvgs = viewChildren<ElementRef<SVGSVGElement>>('folioSvg');
 
     /**
-     * Public variable: viewBoxArray.
+     * Readonly computed signal: folioSvgItems.
      *
-     * It keeps the array with the
-     * viewbox data for the folios.
+     * It holds the svg data and the viewbox for each folio of the selected convolute.
      */
-    viewBoxArray: ViewBox[] = [];
+    readonly folioSvgItems = computed<FolioSvgItem[]>(() => {
+        const folios = this.selectedConvolute().folios ?? [];
+
+        return folios.map((folio: Folio) => {
+            const folioSettings: FolioSettings = {
+                ...this._folioSettings,
+                formatX: +folio.dimensions.width,
+                formatY: +folio.dimensions.height,
+                numberOfFolios: folios.length,
+            };
+
+            const viewBoxWidth = this._calculateViewBoxDimension(folioSettings, 'X');
+            const viewBoxHeight = this._calculateViewBoxDimension(folioSettings, 'Y');
+
+            return {
+                svgData: this._folioService.getFolioSvgData(folioSettings, folio),
+                viewBox: new ViewBox(viewBoxWidth, viewBoxHeight),
+            };
+        });
+    });
+
+    /**
+     * Readonly computed signal: selectedSegmentId.
+     *
+     * It holds the content segment id of the selected svg sheet
+     * (sheet id including the partial, if any).
+     */
+    readonly selectedSegmentId = computed<string>(() => {
+        const sheet = this.selectedSvgSheet();
+        const partial = sheet.content?.[0]?.partial ?? '';
+
+        return `${sheet.id}${partial}`;
+    });
 
     /**
      * Private readonly variable: _folioSettings.
      *
-     * It keeps the format settings for the folio.
+     * It keeps the default format settings for the folios.
      */
     private readonly _folioSettings: FolioSettings = {
         factor: 1.5,
@@ -105,143 +150,51 @@ export class EditionFoliosViewerComponent implements OnChanges, AfterViewChecked
     };
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Constructor of the EditionFoliosViewerComponent.
      *
-     * It checks for changes of the given input.
+     * It renders the folio svgs after the view is rendered and whenever the folios change,
+     * and it marks the content segment of the selected svg sheet as active.
      */
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['selectedConvolute']) {
-            this.prepareFolioSvgOutput();
-        }
-    }
-
-    /**
-     * Angular life cycle hook: ngAfterViewChecked.
-     *
-     * It calls the containing methods
-     * after the view was checked.
-     */
-    ngAfterViewChecked() {
-        // Start to create SVG canvas only after view, inputs and calculation are available
-        this.createSVGCanvas();
-    }
-
-    /**
-     * Public method: createSVGCanvas.
-     *
-     * It provides the folio viewbox and folioSVG data
-     * to the SVG canvas.
-     *
-     * @returns {void} Creates the SVG canvas.
-     */
-    createSVGCanvas(): void {
-        // Empty canvasArray
-        this.canvasArray = [];
-
-        const currentSheet = this.selectedSvgSheet;
-
-        // Check if data arrays have the same length
-        if (this.viewBoxArray.length !== this.folioSvgDataArray.length || !currentSheet) {
-            return;
-        }
-
-        // Apply data to render the SVG image with d3.js
-        this.folioSvgDataArray.forEach((folioSvgData: FolioSvgData, folioIndex: number) => {
-            // Init canvas
-            const svgId = `#folio-${currentSheet.id}-${folioSvgData.sheet.folioId}`;
-
-            const svgCanvas: D3Selection = this._d3Select(svgId);
-
-            if (svgCanvas.empty()) {
-                return;
-            }
-
-            // Clear the SVG elements before redrawing
-            svgCanvas.selectAll('*').remove();
-
-            // SVG viewBox
-            this._folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
-
-            // SVG content
-            this._folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData);
-
-            this.canvasArray.push(svgCanvas);
+    constructor() {
+        afterRenderEffect(() => {
+            const items = this.folioSvgItems();
+            const svgs = this.folioSvgs();
+            untracked(() => this._renderFolios(items, svgs));
         });
 
-        // Toggle active class
-        this.toggleActiveClass();
-    }
-
-    /**
-     * Public method: isSelectedSvgSheet.
-     *
-     * It compares a given id with the id
-     * of the latest selected SVG sheet.
-     *
-     * @param {string} id The given sheet id.
-     * @returns {boolean} The boolean value of the comparison result.
-     */
-    isSelectedSvgSheet(id: string): boolean {
-        const partial = this.selectedSvgSheet?.content[0]?.partial || '';
-        return id === `${this.selectedSvgSheet?.id}${partial}`;
-    }
-
-    /**
-     * Public method: prepareFolioSvgOutput.
-     *
-     * It prepares the viewbox and SVG data for all folios
-     * to render the folio SVG canvas.
-     *
-     * @returns {void} Sets the vbArray and folioSvgData.
-     */
-    prepareFolioSvgOutput(): void {
-        // Reset folioSvgDataArray and viewBoxArray
-        this.folioSvgDataArray = [];
-        this.viewBoxArray = [];
-
-        // If selectedConvolute or folios are undefined, return early
-        if (!this.selectedConvolute?.folios.length) {
-            return;
-        }
-
-        const folios = this.selectedConvolute.folios;
-
-        // Loop over folios of selected convolute
-        this.folioSvgDataArray = folios.map((folio: Folio) => {
-            // Create folio settings for each folio
-            const folioSettings = {
-                ...this._folioSettings,
-                formatX: +folio.dimensions.width,
-                formatY: +folio.dimensions.height,
-                numberOfFolios: folios.length,
-            };
-
-            // Prepare viewbox settings by calculating the width and height for the viewBox string
-            const viewBoxWidth = this._calculateViewBoxDimension(folioSettings, 'X');
-            const viewBoxHeight = this._calculateViewBoxDimension(folioSettings, 'Y');
-
-            this.viewBoxArray.push(new ViewBox(viewBoxWidth, viewBoxHeight));
-
-            // Populate folioSvgData with calculated SVG data
-            return this._folioService.getFolioSvgData(folioSettings, folio);
+        afterRenderEffect(() => {
+            const segmentId = this.selectedSegmentId();
+            const svgs = this.folioSvgs();
+            untracked(() => this._updateActiveSegment(svgs, segmentId));
         });
     }
 
     /**
-     * Public method: toggleActiveClass.
+     * Public method: onFolioSelect.
      *
-     * It toggles css class 'active' on a selected sheet
-     * (canvas content-segment-group).
+     * It handles a click or an Enter/Space keydown on a folio svg (delegated from the svg element):
+     * selecting a selectable content segment navigates to its svg sheet,
+     * selecting any other content segment opens its text modal.
      *
-     * @returns {void} Toggles the css class.
+     * @param {Event} event The given click or keydown event.
+     * @returns {void} Handles the selection.
      */
-    toggleActiveClass(): void {
-        this.canvasArray.forEach(canvas => {
-            canvas.selectAll('.content-segment-group').classed('active', (d, i, nodes) => {
-                const contentSegmentId = D3_SELECTION.select(nodes[i]).attr('contentSegmentId');
-                return this.isSelectedSvgSheet(contentSegmentId);
+    onFolioSelect(event: Event): void {
+        const contentSegment = this._folioService.getContentSegment(event.target);
+        if (!contentSegment) {
+            return;
+        }
+        // Prevent default actions of the keys (e.g., scrolling on Space)
+        event.preventDefault();
+
+        if (contentSegment.selectable) {
+            this._navigationService.navigateToSvgSheet({
+                complexId: contentSegment.complexId,
+                sheetId: contentSegment.sheetId,
             });
-        });
+        } else {
+            this._modalService.openTextModal(contentSegment.linkTo);
+        }
     }
 
     /**
@@ -263,15 +216,49 @@ export class EditionFoliosViewerComponent implements OnChanges, AfterViewChecked
     }
 
     /**
-     * Private method: _d3Select.
+     * Private method: _renderFolios.
      *
-     * It returns the D3 selection of a given selector.
+     * It renders the given folio svg items into the given svg elements
+     * and marks the content segment of the selected svg sheet as active.
      *
-     * @param {string} selector The given selector.
-     *
-     * @returns {D3Selection} The D3 selection of the selector.
+     * @param {FolioSvgItem[]} items The given folio svg items.
+     * @param {readonly ElementRef<SVGSVGElement>[]} svgs The given svg element references.
+     * @returns {void} Renders the folios.
      */
-    private _d3Select(selector: string): D3Selection {
-        return D3_SELECTION.select(selector);
+    private _renderFolios(items: FolioSvgItem[], svgs: readonly ElementRef<SVGSVGElement>[]): void {
+        svgs.forEach((svg, index) => {
+            const item = items[index];
+            if (!item) {
+                return;
+            }
+
+            const svgCanvas = D3_SELECTION.select(svg.nativeElement) as unknown as D3Selection;
+
+            // Clear the svg elements before redrawing
+            svgCanvas.selectAll('*').remove();
+
+            this._folioService.addViewBoxToSvgCanvas(svgCanvas, item.viewBox);
+            this._folioService.addFolioToSvgCanvas(svgCanvas, item.svgData);
+        });
+
+        this._updateActiveSegment(svgs, this.selectedSegmentId());
+    }
+
+    /**
+     * Private method: _updateActiveSegment.
+     *
+     * It toggles the css class `active` on the content segment groups of the given svg elements
+     * according to the given content segment id.
+     *
+     * @param {readonly ElementRef<SVGSVGElement>[]} svgs The given svg element references.
+     * @param {string} segmentId The given content segment id.
+     * @returns {void} Toggles the css class.
+     */
+    private _updateActiveSegment(svgs: readonly ElementRef<SVGSVGElement>[], segmentId: string): void {
+        svgs.forEach(svg => {
+            D3_SELECTION.select(svg.nativeElement)
+                .selectAll<SVGGElement, unknown>('.content-segment-group')
+                .classed('active', (_d, i, nodes) => nodes[i].getAttribute('contentSegmentId') === segmentId);
+        });
     }
 }

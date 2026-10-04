@@ -1,17 +1,19 @@
-<!-- embedded svg: Edition Folio Viewer -->
-@if (folioSvgDataArray && !UTILS.isEmptyArray(folioSvgDataArray)) {
-    @let colSize = 12 / folioSvgDataArray.length;
-    @let sheetId = selectedSvgSheet?.id ?? '';
+<!-- embedded svg: Edition Folios Viewer -->
+@let items = folioSvgItems();
+@if (items.length > 0) {
+    @let colSize = 12 / items.length;
 
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
-            @for (folioSvgData of folioSvgDataArray; track folioSvgData.sheet?.folioId) {
-                @let folioId = folioSvgData.sheet.folioId;
-                @let svgId = `folio-${sheetId}-${folioId}`;
-
+            @for (item of items; track item.svgData.sheet.folioId) {
                 <div class="col-sm-6 col-lg-{{ colSize }} svgCol">
-                    <span class="text-muted">[{{ folioId }}]</span>
-                    <svg [id]="svgId"></svg>
+                    <span class="text-muted">[{{ item.svgData.sheet.folioId }}]</span>
+                    <svg
+                        #folioSvg
+                        tabindex="-1"
+                        (click)="onFolioSelect($event)"
+                        (keydown.enter)="onFolioSelect($event)"
+                        (keydown.space)="onFolioSelect($event)"></svg>
                 </div>
             }
         </div>
