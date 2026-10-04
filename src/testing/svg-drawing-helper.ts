@@ -1,4 +1,9 @@
-import { D3Selection, EditionSvgLinkBox, EditionSvgOverlay } from '@awg-views/edition-view/models';
+import {
+    D3Selection,
+    EditionSvgLinkBox,
+    EditionSvgOverlayTkk,
+    EditionSvgOverlayTypes,
+} from '@awg-views/edition-view/models';
 
 import * as D3_SELECTION from 'd3-selection';
 
@@ -33,16 +38,30 @@ export function createD3TestRootGroup(svg: D3Selection): D3Selection {
 }
 
 /**
+ * Test helper function: createTestTkkOverlay.
+ *
+ * It creates a tkk overlay with the given id and data id.
+ *
+ * @param {string} id The id of the tkk group.
+ * @param {string} [dataId] The data id of the tkk overlay (default: the id).
+ *
+ * @returns {EditionSvgOverlayTkk} The tkk overlay.
+ */
+export function createTestTkkOverlay(id: string, dataId: string = id): EditionSvgOverlayTkk {
+    return { type: EditionSvgOverlayTypes.tkk, id, dataId };
+}
+
+/**
  * Test helper function: createD3TestTkkGroups.
  *
  * It creates a svg group element for each given overlay with D3 library.
  *
  * @param {D3Selection} svgRootGroup The D3 selection of the root group element to append the overlay groups to.
- * @param {EditionSvgOverlay[]} overlays The array of overlays to create groups for.
+ * @param {EditionSvgOverlayTkk[]} overlays The array of overlays to create groups for.
  *
  * @returns {D3Selection} The D3 selection of the root group element with the appended overlay groups.
  */
-export function createD3TestTkkGroups(svgRootGroup: D3Selection, overlays: EditionSvgOverlay[]): D3Selection {
+export function createD3TestTkkGroups(svgRootGroup: D3Selection, overlays: EditionSvgOverlayTkk[]): D3Selection {
     overlays.forEach(overlay => {
         svgRootGroup.append('g').attr('class', 'tkk').attr('id', overlay.id);
     });

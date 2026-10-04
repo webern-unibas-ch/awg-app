@@ -20,14 +20,15 @@ import { LicenseComponent } from '@awg-shared/license/license.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
-    D3Selection,
-    EditionSvgOverlay,
-    EditionSvgOverlayColorState,
+    EditionSvgOverlaysState,
+    EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
-    EditionSvgSheet,
-} from '@awg-views/edition-view/models';
-import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
+} from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
+import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
 import { EditionSheetViewerAdditionsPanelComponent } from '../additions-panel/edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/edition-sheet-viewer-additions-panel.model';
@@ -90,11 +91,11 @@ export class EditionSheetViewerSvgComponent {
     readonly selectLinkBoxRequest = output<string>();
 
     /**
-     * Readonly output signal: selectOverlaysRequest.
+     * Readonly output signal: selectTkkOverlaysRequest.
      *
-     * It emits the selected svg overlays.
+     * It emits the selected tkk overlays.
      */
-    readonly selectOverlaysRequest = output<EditionSvgOverlay[]>();
+    readonly selectTkkOverlaysRequest = output<EditionSvgOverlayTkk[]>();
 
     /**
      * Readonly view child signal: svg.
@@ -118,59 +119,21 @@ export class EditionSheetViewerSvgComponent {
     readonly svgZoom = viewChild.required(SvgZoomDirective);
 
     /**
-     * Readonly signal: tkkOverlays.
+     * Readonly signal: svgOverlaysState.
      *
-     * It holds the available tkk overlays of the rendered svg sheet.
+     * It holds the state of the svg overlays of the rendered svg sheet
+     * (available tkk overlays, selection, hover and highlighting).
      */
-    readonly tkkOverlays = signal<EditionSvgOverlay[]>([]);
-
-    /**
-     * Readonly signal: selectedTkkDataIds.
-     *
-     * It holds the data ids of the selected tkk overlays.
-     */
-    readonly selectedTkkDataIds = signal<ReadonlySet<string>>(new Set());
-
-    /**
-     * Readonly signal: hoveredTkkDataId.
-     *
-     * It holds the data id of the hovered tkk overlay, if any.
-     */
-    readonly hoveredTkkDataId = signal<string | undefined>(undefined);
-
-    /**
-     * Readonly signal: isTkkHighlighted.
-     *
-     * It holds a boolean flag whether the tkk overlays are highlighted (set by the additions panel).
-     */
-    readonly isTkkHighlighted = signal<boolean>(true);
-
-    /**
-     * Readonly computed signal: hasAvailableTkkOverlays.
-     *
-     * It holds a boolean flag whether there are available tkk overlays.
-     */
-    readonly hasAvailableTkkOverlays = computed<boolean>(() => this.tkkOverlays().length > 0);
+    readonly svgOverlaysState = signal<EditionSvgOverlaysState>(this._svgOverlayService.createSvgOverlaysState());
 
     /**
      * Readonly computed signal: selectedTkkOverlays.
      *
      * It holds the selected tkk overlays (including all parts of multi-part overlays).
      */
-    readonly selectedTkkOverlays = computed<EditionSvgOverlay[]>(() =>
-        this._svgOverlayService.getTkkOverlaysByDataIds(this.tkkOverlays(), this.selectedTkkDataIds())
+    readonly selectedTkkOverlays = computed<EditionSvgOverlayTkk[]>(() =>
+        this._svgOverlayService.getSelectedTkkOverlays(this.svgOverlaysState())
     );
-
-    /**
-     * Readonly computed signal: tkkOverlayColorState.
-     *
-     * It holds the state the colors of the tkk overlays are derived from.
-     */
-    readonly tkkOverlayColorState = computed<EditionSvgOverlayColorState>(() => ({
-        selectedDataIds: this.selectedTkkDataIds(),
-        hoveredDataId: this.hoveredTkkDataId(),
-        isHighlighted: this.isTkkHighlighted(),
-    }));
 
     /**
      * Readonly signal: suppliedClasses.
@@ -201,7 +164,7 @@ export class EditionSheetViewerSvgComponent {
      *
      * It renders the selected svg sheet after the view is rendered
      * and whenever the selected svg sheet changes,
-     * and it colors the tkk overlays according to their state.
+     * and it updates the tkk overlays according to their state.
      */
     constructor() {
         afterRenderEffect(() => {
@@ -210,11 +173,7 @@ export class EditionSheetViewerSvgComponent {
         });
 
         effect(() => {
-            const overlays = this.tkkOverlays();
-            const colorState = this.tkkOverlayColorState();
-            if (overlays.length) {
-                this._svgOverlayService.updateTkkOverlayColors(this._svgRootGroupSelection(), overlays, colorState);
-            }
+            this._svgOverlayService.updateTkkOverlays(this._svgRootGroupSelection(), this.svgOverlaysState());
         });
     }
 
@@ -230,12 +189,9 @@ export class EditionSheetViewerSvgComponent {
      */
     onAdditionVisibilityChange({ key, isVisible }: EditionSheetViewerAdditionsPanelChange): void {
         if (key === EditionSvgOverlayTypes.tkk) {
-            this.isTkkHighlighted.set(isVisible);
-            if (!isVisible && this.selectedTkkDataIds().size) {
-                // Hiding the tkk overlays also deselects them (and closes the related commentary)
-                this.selectedTkkDataIds.set(new Set());
-                this.selectOverlaysRequest.emit([]);
-            }
+            this._updateTkkOverlaysSelection(state =>
+                this._svgOverlayService.setTkkOverlaysHighlight(state, isVisible)
+            );
         } else {
             this._svgDrawingService.toggleSuppliedClassOpacity(this._svgRootGroupSelection(), key, isVisible);
         }
@@ -252,48 +208,36 @@ export class EditionSheetViewerSvgComponent {
      * @returns {void} Handles the selection.
      */
     onSheetSelect(event: Event): void {
-        const target = this._svgOverlayService.getSvgOverlayTarget(event.target);
-        if (!target) {
+        const overlay = this._svgOverlayService.getSvgOverlay(event.target);
+        if (!overlay) {
             return;
         }
         // Prevent default actions of the keys (e.g., scrolling on Space)
         event.preventDefault();
 
-        if (target.type === EditionSvgOverlayTypes.linkBox) {
-            this.selectLinkBoxRequest.emit(target.id);
+        if (overlay.type === EditionSvgOverlayTypes.linkBox) {
+            this.selectLinkBoxRequest.emit(overlay.id);
             return;
         }
 
-        this.selectedTkkDataIds.update(dataIds => this._svgOverlayService.toggleTkkSelection(dataIds, target.dataId));
-        this.selectOverlaysRequest.emit(this.selectedTkkOverlays());
+        this._updateTkkOverlaysSelection(state =>
+            this._svgOverlayService.toggleTkkOverlaySelection(state, overlay.dataId)
+        );
     }
 
     /**
      * Public method: onSheetHighlight.
      *
      * It sets the highlighted (hovered or focused) tkk overlay
-     * from a pointerover or focusin on the svg sheet (delegated from the svg element).
+     * from the target of a pointerover or focusin on the svg sheet (delegated from the svg element),
+     * or resets it for no target (pointerleave or focusout).
      *
-     * @param {Event} event The given pointerover or focusin event.
+     * @param {EventTarget | null} target The given event target, or null.
      * @returns {void} Sets the highlighted tkk overlay.
      */
-    onSheetHighlight(event: Event): void {
-        this.hoveredTkkDataId.set(this._svgOverlayService.getTkkDataId(event.target));
-    }
-
-    /**
-     * Private method: _queueRendering.
-     *
-     * It queues the rendering of a given svg sheet after the previous rendering.
-     * The rendering is skipped if the sheet is no longer selected by then.
-     *
-     * @param {EditionSvgSheet} sheet The given svg sheet.
-     * @returns {void} Queues the rendering.
-     */
-    private _queueRendering(sheet: EditionSvgSheet): void {
-        this._renderQueue = this._renderQueue
-            .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
-            .catch(error => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
+    onSheetHighlight(target: EventTarget | null): void {
+        const dataId = this._svgOverlayService.getTkkDataId(target);
+        this.svgOverlaysState.update(state => this._svgOverlayService.setTkkOverlayHover(state, dataId));
     }
 
     /**
@@ -317,11 +261,23 @@ export class EditionSheetViewerSvgComponent {
      */
     private _clearSheet(): void {
         this._svgRootGroupSelection().selectAll('*').remove();
-        this.tkkOverlays.set([]);
-        this.selectedTkkDataIds.set(new Set());
-        this.hoveredTkkDataId.set(undefined);
-        this.isTkkHighlighted.set(true);
+        this.svgOverlaysState.set(this._svgOverlayService.createSvgOverlaysState());
         this.suppliedClasses.set([]);
+    }
+
+    /**
+     * Private method: _queueRendering.
+     *
+     * It queues the rendering of a given svg sheet after the previous rendering.
+     * The rendering is skipped if the sheet is no longer selected by then.
+     *
+     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @returns {void} Queues the rendering.
+     */
+    private _queueRendering(sheet: EditionSvgSheet): void {
+        this._renderQueue = this._renderQueue
+            .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
+            .catch(error => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
     }
 
     /**
@@ -353,7 +309,28 @@ export class EditionSheetViewerSvgComponent {
         this.svgZoom().reset();
 
         const rootGroupSelection = this._svgRootGroupSelection();
-        this.tkkOverlays.set(this._svgOverlayService.createSvgOverlays(rootGroupSelection));
+        this.svgOverlaysState.set(
+            this._svgOverlayService.createSvgOverlaysState(
+                this._svgOverlayService.createSvgOverlays(rootGroupSelection)
+            )
+        );
         this.suppliedClasses.set(this._svgDrawingService.getSuppliedClasses(rootGroupSelection));
+    }
+
+    /**
+     * Private method: _updateTkkOverlaysSelection.
+     *
+     * It updates the state of the tkk overlays with the given state transition
+     * and emits the selected tkk overlays if the selection has changed.
+     *
+     * @param {(state: EditionSvgOverlaysState) => EditionSvgOverlaysState} transition The given state transition.
+     * @returns {void} Updates the state of the tkk overlays.
+     */
+    private _updateTkkOverlaysSelection(transition: (state: EditionSvgOverlaysState) => EditionSvgOverlaysState): void {
+        const previousSelectedDataIds = this.svgOverlaysState().selectedDataIds;
+        this.svgOverlaysState.update(transition);
+        if (this.svgOverlaysState().selectedDataIds !== previousSelectedDataIds) {
+            this.selectTkkOverlaysRequest.emit(this.selectedTkkOverlays());
+        }
     }
 }

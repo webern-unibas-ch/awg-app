@@ -1,30 +1,81 @@
 /**
+ * The DATA_TKK_ID constant.
+ *
+ * It keeps the name of the data attribute that links the parts of a multi-part tkk overlay.
+ */
+export const DATA_TKK_ID = 'data-tkk-id';
+
+/**
  * The EditionSvgOverlayTypes enumeration.
  *
- * It stores the possible svg overlay type selectors and related
- * attribute-name constants (e.g., data attributes used to identify overlays).
+ * It stores the possible types of svg overlays
+ * (identical to the class names of their svg groups).
  */
 export enum EditionSvgOverlayTypes {
-    dataTkkId = 'data-tkk-id',
     linkBox = 'link-box',
     tkk = 'tkk',
 }
 
 /**
- * The EditionSvgOverlayTarget type.
+ * The EditionSvgOverlayLinkBox interface.
  *
- * It describes the svg overlay hit by a pointer event:
- * a tkk overlay (identified by its data id) or a link box (identified by its group id).
+ * It describes a link box overlay of an svg sheet
+ * (a link box drawn in the svg sheet itself).
  */
-export type EditionSvgOverlayTarget =
-    { type: EditionSvgOverlayTypes.tkk; dataId: string } | { type: EditionSvgOverlayTypes.linkBox; id: string };
+export interface EditionSvgOverlayLinkBox {
+    /**
+     * The type of the svg overlay.
+     */
+    type: EditionSvgOverlayTypes.linkBox;
+
+    /**
+     * The id of the link box group (refers to the `svgGroupId` of the link boxes).
+     */
+    id: string;
+}
 
 /**
- * The EditionSvgOverlayColorState interface.
+ * The EditionSvgOverlayTkk interface.
  *
- * It describes the state the colors of the tkk overlays are derived from.
+ * It describes a tkk overlay of an svg sheet
+ * (an overlay box drawn over a tkk group of the svg sheet).
  */
-export interface EditionSvgOverlayColorState {
+export interface EditionSvgOverlayTkk {
+    /**
+     * The type of the svg overlay.
+     */
+    type: EditionSvgOverlayTypes.tkk;
+
+    /**
+     * The id of the tkk group (refers to the `svgGroupId` of the textcritical comments).
+     */
+    id: string;
+
+    /**
+     * The data id of the tkk overlay (shared by all parts of a multi-part tkk overlay).
+     */
+    dataId: string;
+}
+
+/**
+ * The EditionSvgOverlay type.
+ *
+ * It describes an svg overlay of an svg sheet: a tkk overlay or a link box overlay.
+ */
+export type EditionSvgOverlay = EditionSvgOverlayTkk | EditionSvgOverlayLinkBox;
+
+/**
+ * The EditionSvgOverlaysState interface.
+ *
+ * It describes the state of the svg overlays of a rendered svg sheet
+ * (available tkk overlays, selection, hover and highlighting; link boxes have no state).
+ */
+export interface EditionSvgOverlaysState {
+    /**
+     * The available tkk overlays of the rendered svg sheet.
+     */
+    tkkOverlays: EditionSvgOverlayTkk[];
+
     /**
      * The data ids of the selected tkk overlays.
      */
@@ -36,46 +87,7 @@ export interface EditionSvgOverlayColorState {
     hoveredDataId: string | undefined;
 
     /**
-     * A boolean flag whether the tkk overlays are highlighted (i.e., visible).
+     * A boolean flag whether the tkk overlays are highlighted (i.e., visible; set by the additions panel).
      */
     isHighlighted: boolean;
-}
-
-/**
- * The EditionSvgOverlay class.
- *
- * It is used in the context of the edition view
- * to store the data of a svg overlay.
- */
-export class EditionSvgOverlay {
-    /**
-     * The actual id of the SVG element (unique per element, if present).
-     */
-    id: string;
-
-    /**
-     * The data id of an svg overlay (e.g., data-tkk-id value).
-     */
-    dataId: string;
-
-    /**
-     * The type of an svg overlay (EditionSvgOverlayTypes).
-     */
-    type: EditionSvgOverlayTypes;
-
-    /**
-     * Constructor of the EditionSvgOverlay class.
-     *
-     * It initializes the class with values from the EditionSvgOverlayTypes, data id, and actual id.
-     * (The selection state of overlays is kept by the consuming component, not by the overlay itself.)
-     *
-     * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
-     * @param {string} actualId The actual id of the SVG element (unique per element, if present).
-     * @param {string} dataId The data id of the overlay (e.g., data-tkk-id value).
-     */
-    constructor(typeValue: EditionSvgOverlayTypes, actualId: string, dataId: string) {
-        this.id = actualId;
-        this.dataId = dataId;
-        this.type = typeValue;
-    }
 }

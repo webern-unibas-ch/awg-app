@@ -18,11 +18,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import {
     EditionComplex,
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
+    EditionSvgOverlayTkk,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalCommentary,
@@ -70,7 +70,7 @@ class EditionSheetStubComponent {
     @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+    selectTkkOverlaysRequest: EventEmitter<EditionSvgOverlayTkk[]> = new EventEmitter();
     @Output()
     toggleSheetFacetRequest: EventEmitter<boolean> = new EventEmitter();
 }
@@ -793,9 +793,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                     const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetStubComponent, 1, 1);
                     const sheetCmp = sheetDes[0].injector.get(EditionSheetStubComponent) as EditionSheetStubComponent;
 
-                    const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
+                    const expectedOverlays = [createTestTkkOverlay('g1114')];
 
-                    sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
+                    sheetCmp.selectTkkOverlaysRequest.emit(expectedOverlays);
 
                     expectSpyCall(onOverlaySelectSpy, 1, [expectedOverlays]);
                 });
@@ -804,7 +804,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     for (const comment of expectedSelectedTextcriticalCommentary.comments) {
                         for (const blockComment of comment.blockComments) {
                             const id = blockComment.svgGroupId ?? '';
-                            const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, id, id)];
+                            const expectedOverlays = [createTestTkkOverlay(id)];
                             const expectedCommentary = {
                                 preamble: expectedSelectedTextcriticalCommentary.preamble,
                                 comments: [
@@ -830,7 +830,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 describe('... should set `showTkA` to false if', () => {
                     it('... selectedTextcritics or commentary is missing', () => {
                         component.selectedTextcritics = undefined;
-                        const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
+                        const expectedOverlays = [createTestTkkOverlay('g1114')];
 
                         component.onOverlaySelect(expectedOverlays);
 
@@ -840,7 +840,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     it('... the filtered commentary contains no comments', () => {
                         component.selectedTextcritics = expectedSelectedTextcritics;
-                        const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'g1114', 'g1114')];
+                        const expectedOverlays = [createTestTkkOverlay('g1114')];
                         const emptyCommentary = {
                             preamble: 'Test Preamble',
                             comments: [],

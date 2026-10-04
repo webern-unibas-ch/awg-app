@@ -3,10 +3,11 @@ import { inject, Injectable } from '@angular/core';
 import {
     D3Selection,
     EditionSvgOverlay,
-    EditionSvgOverlayColorState,
-    EditionSvgOverlayTarget,
+    EditionSvgOverlaysState,
+    EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models';
+import { DATA_TKK_ID } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
@@ -14,8 +15,8 @@ import { EditionSvgDrawingService } from './edition-svg-drawing.service';
  * The EditionSvgOverlay service.
  *
  * It draws the SVG overlays for the edition view (tkk overlay boxes)
- * and provides stateless helpers for their interaction (target resolution, colors).
- * The interaction itself (events, selection state) is handled by the consuming component.
+ * and provides stateless helpers for their interaction (target resolution, state transitions, colors).
+ * The state itself and the events are held and handled by the consuming component.
  *
  * Provided in: `root`.
  */
@@ -93,9 +94,9 @@ export class EditionSvgOverlayService {
      *
      * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
      *
-     * @returns {EditionSvgOverlay[]} The available tkk overlays.
+     * @returns {EditionSvgOverlayTkk[]} The available tkk overlays.
      */
-    createSvgOverlays(rootGroupSelection: D3Selection | undefined): EditionSvgOverlay[] {
+    createSvgOverlays(rootGroupSelection: D3Selection | undefined): EditionSvgOverlayTkk[] {
         if (!rootGroupSelection) {
             return [];
         }
@@ -111,7 +112,7 @@ export class EditionSvgOverlayService {
             return [];
         }
 
-        const overlaysById = new Map<string, EditionSvgOverlay>();
+        const overlaysById = new Map<string, EditionSvgOverlayTkk>();
         tkkGroups.nodes().forEach(node => {
             const group = node as SVGGElement;
             const actualId = group.id;
@@ -121,7 +122,7 @@ export class EditionSvgOverlayService {
             }
 
             if (!overlaysById.has(actualId)) {
-                overlaysById.set(actualId, new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, actualId, dataId));
+                overlaysById.set(actualId, { type: EditionSvgOverlayTypes.tkk, id: actualId, dataId });
             }
             this._createTkkOverlayGroup(rootGroupSelection, actualId, group.getBBox());
         });
@@ -130,22 +131,26 @@ export class EditionSvgOverlayService {
     }
 
     /**
-     * Public method: getSvgOverlayTarget.
+     * Public method: getSvgOverlay.
      *
-     * It resolves the svg overlay (tkk overlay or link box) hit by a given event target.
+     * It resolves the svg overlay (tkk overlay or link box overlay) hit by a given event target.
      *
      * @param {EventTarget | null} target The given event target.
      *
-     * @returns {EditionSvgOverlayTarget | undefined} The hit svg overlay, or undefined.
+     * @returns {EditionSvgOverlay | undefined} The hit svg overlay, or undefined.
      */
-    getSvgOverlayTarget(target: EventTarget | null): EditionSvgOverlayTarget | undefined {
+    getSvgOverlay(target: EventTarget | null): EditionSvgOverlay | undefined {
         if (!(target instanceof Element)) {
             return undefined;
         }
 
         const tkkGroup = target.closest(`rect.${this._tkkOverlayBoxClass}`)?.closest(`g.${EditionSvgOverlayTypes.tkk}`);
         if (tkkGroup) {
-            return { type: EditionSvgOverlayTypes.tkk, dataId: this._getSvgGroupDataId(tkkGroup as SVGGElement) };
+            return {
+                type: EditionSvgOverlayTypes.tkk,
+                id: tkkGroup.id,
+                dataId: this._getSvgGroupDataId(tkkGroup as SVGGElement),
+            };
         }
 
         const linkBoxGroup = target.closest(`g.${EditionSvgOverlayTypes.linkBox}`);
@@ -166,79 +171,120 @@ export class EditionSvgOverlayService {
      * @returns {string | undefined} The data id of the hit tkk overlay, or undefined.
      */
     getTkkDataId(target: EventTarget | null): string | undefined {
-        const overlayTarget = this.getSvgOverlayTarget(target);
-        return overlayTarget?.type === EditionSvgOverlayTypes.tkk ? overlayTarget.dataId : undefined;
+        const overlay = this.getSvgOverlay(target);
+        return overlay?.type === EditionSvgOverlayTypes.tkk ? overlay.dataId : undefined;
     }
 
     /**
-     * Public method: getTkkOverlaysByDataIds.
+     * Public method: createSvgOverlaysState.
      *
-     * It returns all tkk overlays (including all parts of multi-part overlays) with one of the given data ids,
-     * in their original order.
+     * It returns the initial state of the svg overlays with the given tkk overlays
+     * (nothing selected or hovered, highlighted).
      *
-     * @param {EditionSvgOverlay[]} overlays The given tkk overlays.
-     * @param {ReadonlySet<string>} dataIds The given data ids.
+     * @param {EditionSvgOverlayTkk[]} [tkkOverlays] The given tkk overlays (default: none).
      *
-     * @returns {EditionSvgOverlay[]} The tkk overlays with one of the given data ids.
+     * @returns {EditionSvgOverlaysState} The initial state of the svg overlays.
      */
-    getTkkOverlaysByDataIds(overlays: EditionSvgOverlay[], dataIds: ReadonlySet<string>): EditionSvgOverlay[] {
-        return overlays.filter(overlay => dataIds.has(overlay.dataId));
+    createSvgOverlaysState(tkkOverlays: EditionSvgOverlayTkk[] = []): EditionSvgOverlaysState {
+        return { tkkOverlays, selectedDataIds: new Set(), hoveredDataId: undefined, isHighlighted: true };
     }
 
     /**
-     * Public method: toggleTkkSelection.
+     * Public method: getSelectedTkkOverlays.
      *
-     * It returns a new set of selected data ids with the given data id toggled (added or removed).
+     * It returns all selected tkk overlays of the given state
+     * (including all parts of multi-part overlays) in their original order.
      *
-     * @param {ReadonlySet<string>} selectedDataIds The given set of selected data ids.
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     *
+     * @returns {EditionSvgOverlayTkk[]} The selected tkk overlays.
+     */
+    getSelectedTkkOverlays(state: EditionSvgOverlaysState): EditionSvgOverlayTkk[] {
+        return state.tkkOverlays.filter(overlay => state.selectedDataIds.has(overlay.dataId));
+    }
+
+    /**
+     * Public method: setTkkOverlayHover.
+     *
+     * It returns the given state with the given data id as hovered tkk overlay
+     * (the same state if it is already hovered).
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     * @param {string | undefined} dataId The given data id of the hovered tkk overlay, or undefined.
+     *
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
+     */
+    setTkkOverlayHover(state: EditionSvgOverlaysState, dataId: string | undefined): EditionSvgOverlaysState {
+        return state.hoveredDataId === dataId ? state : { ...state, hoveredDataId: dataId };
+    }
+
+    /**
+     * Public method: setTkkOverlaysHighlight.
+     *
+     * It returns the given state with the given highlighting of the tkk overlays
+     * (the same state if unchanged). Hiding the tkk overlays also clears their selection.
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
+     * @param {boolean} isHighlighted The given flag whether the tkk overlays are highlighted.
+     *
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
+     */
+    setTkkOverlaysHighlight(state: EditionSvgOverlaysState, isHighlighted: boolean): EditionSvgOverlaysState {
+        if (state.isHighlighted === isHighlighted) {
+            return state;
+        }
+        const selectedDataIds =
+            isHighlighted || !state.selectedDataIds.size ? state.selectedDataIds : new Set<string>();
+        return { ...state, isHighlighted, selectedDataIds };
+    }
+
+    /**
+     * Public method: toggleTkkOverlaySelection.
+     *
+     * It returns the given state with the selection of the tkk overlay(s) with the given data id toggled
+     * (added or removed).
+     *
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      * @param {string} dataId The given data id to toggle.
      *
-     * @returns {ReadonlySet<string>} The new set of selected data ids.
+     * @returns {EditionSvgOverlaysState} The updated state of the svg overlays.
      */
-    toggleTkkSelection(selectedDataIds: ReadonlySet<string>, dataId: string): ReadonlySet<string> {
-        const updated = new Set(selectedDataIds);
-        if (!updated.delete(dataId)) {
-            updated.add(dataId);
+    toggleTkkOverlaySelection(state: EditionSvgOverlaysState, dataId: string): EditionSvgOverlaysState {
+        const selectedDataIds = new Set(state.selectedDataIds);
+        if (!selectedDataIds.delete(dataId)) {
+            selectedDataIds.add(dataId);
         }
-        return updated;
+        return { ...state, selectedDataIds };
     }
 
     /**
-     * Public method: updateTkkOverlayColors.
+     * Public method: updateTkkOverlays.
      *
-     * It colors the tkk overlay boxes of the given overlays according to the given state
-     * (transparent if not highlighted, otherwise selected before hovered before default)
-     * and sets their pressed state (aria-pressed) according to the selection.
-     * Not highlighted overlay boxes are additionally disabled for pointer and keyboard interaction.
+     * It updates the tkk overlay boxes according to the given state:
+     * it colors them (transparent if not highlighted, otherwise selected before hovered before default),
+     * sets their pressed state (aria-pressed) according to the selection,
+     * and disables not highlighted overlay boxes for pointer and keyboard interaction.
      *
      * @param {D3Selection | undefined} rootGroupSelection The given D3 selection of the SVG root group, or undefined.
-     * @param {EditionSvgOverlay[]} overlays The given tkk overlays.
-     * @param {EditionSvgOverlayColorState} colorState The given color state.
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      *
-     * @returns {void} Colors the tkk overlay boxes.
+     * @returns {void} Updates the tkk overlay boxes.
      */
-    updateTkkOverlayColors(
-        rootGroupSelection: D3Selection | undefined,
-        overlays: EditionSvgOverlay[],
-        colorState: EditionSvgOverlayColorState
-    ): void {
-        if (!rootGroupSelection) {
+    updateTkkOverlays(rootGroupSelection: D3Selection | undefined, state: EditionSvgOverlaysState): void {
+        if (!rootGroupSelection || !state.tkkOverlays.length) {
             return;
         }
 
-        const dataIds = new Set(overlays.map(overlay => overlay.dataId));
+        const dataIds = new Set(state.tkkOverlays.map(overlay => overlay.dataId));
         dataIds.forEach(dataId => {
             const rectSelection = this._getOverlayGroupRectSelection(rootGroupSelection, dataId);
-            this._svgDrawingService.fillD3SelectionWithColor(
-                rectSelection,
-                this._getTkkOverlayColor(dataId, colorState)
-            );
+            this._svgDrawingService.fillD3SelectionWithColor(rectSelection, this._getTkkOverlayColor(dataId, state));
             rectSelection
-                .attr('aria-pressed', colorState.selectedDataIds.has(dataId))
+                .attr('aria-pressed', state.selectedDataIds.has(dataId))
                 // Hidden (not highlighted) overlay boxes are neither clickable nor focusable
-                .attr('tabindex', colorState.isHighlighted ? 0 : -1)
-                .attr('aria-hidden', colorState.isHighlighted ? null : true)
-                .attr('pointer-events', colorState.isHighlighted ? null : 'none');
+                .attr('tabindex', state.isHighlighted ? 0 : -1)
+                .attr('aria-hidden', state.isHighlighted ? null : true)
+                .attr('pointer-events', state.isHighlighted ? null : 'none');
         });
     }
 
@@ -310,7 +356,7 @@ export class EditionSvgOverlayService {
      * @returns {string} The resolved data id.
      */
     private _getSvgGroupDataId(group: SVGGElement): string {
-        return group.getAttribute(EditionSvgOverlayTypes.dataTkkId) || group.id;
+        return group.getAttribute(DATA_TKK_ID) || group.id;
     }
 
     /**
@@ -319,18 +365,18 @@ export class EditionSvgOverlayService {
      * It returns the color of the tkk overlays with the given data id for the given state.
      *
      * @param {string} dataId The given data id.
-     * @param {EditionSvgOverlayColorState} colorState The given color state.
+     * @param {EditionSvgOverlaysState} state The given state of the svg overlays.
      *
      * @returns {string} The color of the tkk overlays.
      */
-    private _getTkkOverlayColor(dataId: string, colorState: EditionSvgOverlayColorState): string {
-        if (!colorState.isHighlighted) {
+    private _getTkkOverlayColor(dataId: string, state: EditionSvgOverlaysState): string {
+        if (!state.isHighlighted) {
             return this._tkkOverlayColors.transparent;
         }
-        if (colorState.selectedDataIds.has(dataId)) {
+        if (state.selectedDataIds.has(dataId)) {
             return this._tkkOverlayColors.selected;
         }
-        if (colorState.hoveredDataId === dataId) {
+        if (state.hoveredDataId === dataId) {
             return this._tkkOverlayColors.hover;
         }
         return this._tkkOverlayColors.fill;

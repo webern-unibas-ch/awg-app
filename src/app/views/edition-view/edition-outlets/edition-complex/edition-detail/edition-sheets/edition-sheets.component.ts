@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import {
-    EditionSvgOverlay,
+    EditionSvgOverlayTkk,
     EditionSvgSheet,
     EditionSvgSheetsList,
     FolioConvolute,
@@ -197,10 +197,10 @@ export class EditionSheetsComponent {
      *
      * It finds the corresponding textcritical comments for a list of selected overlays.
      *
-     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
+     * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
-    onOverlaySelect(overlays: EditionSvgOverlay[]): void {
+    onOverlaySelect(overlays: EditionSvgOverlayTkk[]): void {
         this.selectedTextcriticalCommentary = this.selectedTextcritics?.commentary
             ? this._editionSheetsService.filterTextcriticalCommentaryForOverlays(
                   this.selectedTextcritics.commentary,

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { EditionSvgOverlay, FolioConvolute, TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models';
+import {
+    EditionSvgOverlayTkk,
+    FolioConvolute,
+    TextcriticalCommentary,
+    Textcritics,
+} from '@awg-views/edition-view/models';
 import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
 
@@ -102,12 +107,12 @@ export class EditionSheetsService {
      * It filters the textcritical commentary for the selected svg overlays.
      *
      * @param {TextcriticalCommentary[]} commentary The given textcritical commentary.
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
      * @returns {TextcriticalCommentary} The filtered textcritical commentary.
      */
     filterTextcriticalCommentaryForOverlays(
         commentary: TextcriticalCommentary,
-        overlays: EditionSvgOverlay[]
+        overlays: EditionSvgOverlayTkk[]
     ): TextcriticalCommentary {
         const filteredComments = commentary.comments
             .map(block => {

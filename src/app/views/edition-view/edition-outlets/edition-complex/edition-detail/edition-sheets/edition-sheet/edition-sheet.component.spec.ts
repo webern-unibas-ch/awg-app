@@ -30,14 +30,14 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import {
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
+    EditionSvgOverlayTkk,
     EditionSvgSheet,
     EditionSvgSheetsList,
     TextcriticalCommentary,
@@ -76,7 +76,7 @@ class EditionSheetViewerStubComponent {
     @Output()
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+    selectTkkOverlaysRequest: EventEmitter<EditionSvgOverlayTkk[]> = new EventEmitter();
 }
 
 @Component({
@@ -108,12 +108,12 @@ describe('EditionSheetComponent (DONE)', () => {
     let selectLinkBoxSpy: Spy;
     let selectLinkBoxRequestEmitSpy: Spy;
     let selectOverlaysSpy: Spy;
-    let selectOverlaysRequestEmitSpy: Spy;
+    let selectTkkOverlaysRequestEmitSpy: Spy;
     let toggleSheetFacetSpy: Spy;
     let toggleSheetFacetRequestEmitSpy: Spy;
 
     let expectedSvgSheetsData: EditionSvgSheetsList;
-    let expectedOverlays: EditionSvgOverlay[];
+    let expectedOverlays: EditionSvgOverlayTkk[];
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcriticalCommentary: TextcriticalCommentary;
@@ -174,9 +174,8 @@ describe('EditionSheetComponent (DONE)', () => {
         expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
         expectedSelectedTextcriticalCommentary = expectedSelectedTextcritics.commentary;
 
-        const overlayType = EditionSvgOverlayTypes.tkk;
         const id = 'tkk-1';
-        const overlay = new EditionSvgOverlay(overlayType, id, id);
+        const overlay = createTestTkkOverlay(id);
         expectedOverlays = [overlay];
         expectedLinkBoxId = 'link-box-1';
         expectedShowTkA = true;
@@ -193,7 +192,7 @@ describe('EditionSheetComponent (DONE)', () => {
         selectLinkBoxSpy = vi.spyOn(component, 'selectLinkBox');
         selectLinkBoxRequestEmitSpy = vi.spyOn(component.selectLinkBoxRequest, 'emit');
         selectOverlaysSpy = vi.spyOn(component, 'selectOverlays');
-        selectOverlaysRequestEmitSpy = vi.spyOn(component.selectOverlaysRequest, 'emit');
+        selectTkkOverlaysRequestEmitSpy = vi.spyOn(component.selectTkkOverlaysRequest, 'emit');
         toggleSheetFacetSpy = vi.spyOn(component, 'toggleSheetFacet');
         toggleSheetFacetRequestEmitSpy = vi.spyOn(component.toggleSheetFacetRequest, 'emit');
     });
@@ -740,13 +739,13 @@ describe('EditionSheetComponent (DONE)', () => {
                     expect(component.selectOverlays).toBeDefined();
                 });
 
-                it('... should trigger on selectOverlaysRequest event from EditionSheetViewerComponent', () => {
+                it('... should trigger on selectTkkOverlaysRequest event from EditionSheetViewerComponent', () => {
                     const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetViewerStubComponent, 1, 1);
                     const sheetCmp = sheetDes[0].injector.get(
                         EditionSheetViewerStubComponent
                     ) as EditionSheetViewerStubComponent;
 
-                    sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
+                    sheetCmp.selectTkkOverlaysRequest.emit(expectedOverlays);
 
                     expectSpyCall(selectOverlaysSpy, 1, [expectedOverlays]);
                 });
@@ -754,19 +753,19 @@ describe('EditionSheetComponent (DONE)', () => {
                 it('... should emit overlay of provided type and id', () => {
                     component.selectOverlays(expectedOverlays);
 
-                    expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
+                    expectSpyCall(selectTkkOverlaysRequestEmitSpy, 1, [expectedOverlays]);
                 });
 
                 it('... should emit correct overlay of provided type and id', () => {
                     component.selectOverlays(expectedOverlays);
 
-                    expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
+                    expectSpyCall(selectTkkOverlaysRequestEmitSpy, 1, [expectedOverlays]);
 
                     // Trigger other overlays
-                    const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2')];
+                    const otherOverlays = [createTestTkkOverlay('tkk-2')];
                     component.selectOverlays(otherOverlays);
 
-                    expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
+                    expectSpyCall(selectTkkOverlaysRequestEmitSpy, 2, [otherOverlays]);
                 });
             });
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output
 
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import {
-    EditionSvgOverlay,
+    EditionSvgOverlayTkk,
     EditionSvgSheet,
     EditionSvgSheetsList,
     TextcriticalCommentary,
@@ -88,12 +88,12 @@ export class EditionSheetComponent {
     selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: selectOverlaysRequest.
+     * Output variable: selectTkkOverlaysRequest.
      *
      * It keeps an event emitter for the selected svg overlays.
      */
     @Output()
-    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+    selectTkkOverlaysRequest: EventEmitter<EditionSvgOverlayTkk[]> = new EventEmitter();
 
     /**
      * Output variable: toggleSheetFacetRequest.
@@ -145,13 +145,13 @@ export class EditionSheetComponent {
      * Public method: selectOverlays.
      *
      * It emits the selected svg overlays
-     * to the {@link selectOverlaysRequest}.
+     * to the {@link selectTkkOverlaysRequest}.
      *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
      * @returns {void} Emits the overlays.
      */
-    selectOverlays(overlays: EditionSvgOverlay[]): void {
-        this.selectOverlaysRequest.emit(overlays);
+    selectOverlays(overlays: EditionSvgOverlayTkk[]): void {
+        this.selectTkkOverlaysRequest.emit(overlays);
     }
 
     /**

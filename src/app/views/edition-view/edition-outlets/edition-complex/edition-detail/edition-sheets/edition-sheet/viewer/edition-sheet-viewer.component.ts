@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, input, output, signal } from '@angu
 
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
-import { EditionSvgOverlay, EditionSvgSheet } from '@awg-views/edition-view/models';
+
+import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
@@ -44,11 +46,11 @@ export class EditionSheetViewerComponent {
     readonly selectLinkBoxRequest = output<string>();
 
     /**
-     * Readonly output signal: selectOverlaysRequest.
+     * Readonly output signal: selectTkkOverlaysRequest.
      *
-     * It emits the selected svg overlays.
+     * It emits the selected tkk overlays.
      */
-    readonly selectOverlaysRequest = output<EditionSvgOverlay[]>();
+    readonly selectTkkOverlaysRequest = output<EditionSvgOverlayTkk[]>();
 
     /**
      * Readonly variable: zoomConfig.

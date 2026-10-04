@@ -14,14 +14,10 @@ import {
     createD3TestSuppliedClassesGroups,
     createD3TestSvg,
     createD3TestTkkGroups,
+    createTestTkkOverlay,
 } from '@testing/svg-drawing-helper';
 
-import {
-    D3Selection,
-    EditionSvgLinkBox,
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
-} from '@awg-views/edition-view/models';
+import { D3Selection, EditionSvgLinkBox, EditionSvgOverlayTkk } from '@awg-views/edition-view/models';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
@@ -35,7 +31,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
     let expectedSvg: D3Selection;
     let expectedSvgRootGroup: D3Selection;
-    let expectedOverlays: EditionSvgOverlay[];
+    let expectedOverlays: EditionSvgOverlayTkk[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
     let expectedSuppliedClassNames: string[];
     let expectedSuppliedClasses: string[];
@@ -50,10 +46,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
         service = TestBed.inject(EditionSvgDrawingService);
 
         // Test data
-        expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1'),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2', 'tkk-2'),
-        ];
+        expectedOverlays = [createTestTkkOverlay('tkk-1'), createTestTkkOverlay('tkk-2')];
 
         expectedLinkBoxes = [
             {

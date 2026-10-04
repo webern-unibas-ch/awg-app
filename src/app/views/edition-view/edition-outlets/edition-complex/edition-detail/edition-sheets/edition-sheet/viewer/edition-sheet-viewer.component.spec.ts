@@ -14,16 +14,20 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionData } from '@testing/mock-data';
+import { mockEditionData } from '@testing/mock-data/mockEditionData';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
-import { EditionSvgOverlay, EditionSvgOverlayTypes, EditionSvgSheet } from '@awg-views/edition-view/models';
-import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
 
+import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
+import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
+
+import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
-import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 
 type CreateSvgFn = EditionSvgDrawingService['createSvg'];
 
@@ -37,7 +41,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     let browseRequestSpy: Mock<(direction: 1 | -1) => void>;
     let selectLinkBoxRequestSpy: Mock<(id: string) => void>;
-    let selectOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlay[]) => void>;
+    let selectTkkOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlayTkk[]) => void>;
 
     let expectedZoomConfig: ZoomConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -72,8 +76,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         };
         mockSvgOverlayService = {
             createSvgOverlays: vi.fn(() => []),
-            getSvgOverlayTarget: vi.fn(() => undefined),
-            updateTkkOverlayColors: vi.fn(),
+            getSvgOverlay: vi.fn(() => undefined),
+            updateTkkOverlays: vi.fn(),
+            createSvgOverlaysState: vi.fn(EditionSvgOverlayService.prototype.createSvgOverlaysState),
+            getSelectedTkkOverlays: vi.fn(EditionSvgOverlayService.prototype.getSelectedTkkOverlays),
         };
 
         await TestBed.configureTestingModule({
@@ -97,10 +103,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
         // Spies
         browseRequestSpy = vi.fn();
         selectLinkBoxRequestSpy = vi.fn();
-        selectOverlaysRequestSpy = vi.fn();
+        selectTkkOverlaysRequestSpy = vi.fn();
         component.browseRequest.subscribe(browseRequestSpy);
         component.selectLinkBoxRequest.subscribe(selectLinkBoxRequestSpy);
-        component.selectOverlaysRequest.subscribe(selectOverlaysRequestSpy);
+        component.selectTkkOverlaysRequest.subscribe(selectTkkOverlaysRequestSpy);
     });
 
     afterEach(() => {
@@ -218,12 +224,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     expectSpyCall(selectLinkBoxRequestSpy, 1, 'link-box-1');
                 });
 
-                it('... should emit `selectOverlaysRequest` on overlays request of the sheet svg', () => {
-                    const expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1')];
+                it('... should emit `selectTkkOverlaysRequest` on tkk overlays request of the sheet svg', () => {
+                    const expectedOverlays = [createTestTkkOverlay('tkk-1')];
 
-                    getSheetSvgCmp().selectOverlaysRequest.emit(expectedOverlays);
+                    getSheetSvgCmp().selectTkkOverlaysRequest.emit(expectedOverlays);
 
-                    expectSpyCall(selectOverlaysRequestSpy, 1, [expectedOverlays]);
+                    expectSpyCall(selectTkkOverlaysRequestSpy, 1, [expectedOverlays]);
                 });
             });
 

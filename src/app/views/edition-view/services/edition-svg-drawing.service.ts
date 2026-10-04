@@ -1,6 +1,7 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { D3Selection, EditionSvgOverlayTypes, ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, ViewBox } from '@awg-views/edition-view/models';
+import { DATA_TKK_ID } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
 import * as D3_FETCH from 'd3-fetch';
 import * as D3_SELECTION from 'd3-selection';
@@ -136,7 +137,7 @@ export class EditionSvgDrawingService {
     getD3SelectionByDataId(
         svgRootGroup: D3Selection | undefined,
         dataId: string,
-        attr: string = EditionSvgOverlayTypes.dataTkkId
+        attr: string = DATA_TKK_ID
     ): D3Selection | undefined {
         if (!svgRootGroup) {
             return undefined;

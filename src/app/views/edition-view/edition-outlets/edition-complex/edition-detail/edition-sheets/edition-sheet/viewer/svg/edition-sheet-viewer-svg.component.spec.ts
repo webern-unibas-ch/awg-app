@@ -14,20 +14,24 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { mockEditionData } from '@testing/mock-data';
+import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { mockConsole } from '@testing/mock-helper';
+import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import { LicenseComponent } from '@awg-shared/license/license.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
-    D3Selection,
     EditionSvgOverlay,
-    EditionSvgOverlayTarget,
+    EditionSvgOverlaysState,
+    EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
-    EditionSvgSheet,
-} from '@awg-views/edition-view/models';
-import { EditionSvgDrawingService, EditionSvgOverlayService } from '@awg-views/edition-view/services';
+} from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
+import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
 import { EditionSheetViewerAdditionsPanelComponent } from '../additions-panel/edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerSvgComponent } from './edition-sheet-viewer-svg.component';
@@ -46,22 +50,25 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     };
     let mockSvgOverlayService: {
         createSvgOverlays: Mock<EditionSvgOverlayService['createSvgOverlays']>;
-        getSvgOverlayTarget: Mock<EditionSvgOverlayService['getSvgOverlayTarget']>;
-        updateTkkOverlayColors: Mock<EditionSvgOverlayService['updateTkkOverlayColors']>;
-        toggleTkkSelection: Mock<EditionSvgOverlayService['toggleTkkSelection']>;
-        getTkkOverlaysByDataIds: Mock<EditionSvgOverlayService['getTkkOverlaysByDataIds']>;
+        createSvgOverlaysState: Mock<EditionSvgOverlayService['createSvgOverlaysState']>;
+        getSvgOverlay: Mock<EditionSvgOverlayService['getSvgOverlay']>;
+        getSelectedTkkOverlays: Mock<EditionSvgOverlayService['getSelectedTkkOverlays']>;
         getTkkDataId: Mock<EditionSvgOverlayService['getTkkDataId']>;
+        setTkkOverlayHover: Mock<EditionSvgOverlayService['setTkkOverlayHover']>;
+        setTkkOverlaysHighlight: Mock<EditionSvgOverlayService['setTkkOverlaysHighlight']>;
+        toggleTkkOverlaySelection: Mock<EditionSvgOverlayService['toggleTkkOverlaySelection']>;
+        updateTkkOverlays: Mock<EditionSvgOverlayService['updateTkkOverlays']>;
     };
 
     let selectLinkBoxRequestSpy: Mock<(id: string) => void>;
-    let selectOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlay[]) => void>;
+    let selectTkkOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlayTkk[]) => void>;
     let consoleWarnSpy: Spy;
 
     let expectedZoomConfig: ZoomConfig;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSuppliedClasses: string[];
-    let expectedTkkOverlays: EditionSvgOverlay[];
+    let expectedTkkOverlays: EditionSvgOverlayTkk[];
 
     const getRootGroupEl = (): SVGGElement =>
         getAndExpectDebugElementByCss(compDe, 'g.awg-edition-sheet-viewer-svg-root-group', 1, 1)[0].nativeElement;
@@ -89,10 +96,13 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     };
     const clickEvent = () => new MouseEvent('click', { bubbles: true, cancelable: true });
     const keydownEvent = (key: string) => new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
-    const mockOverlayTarget = (target: EditionSvgOverlayTarget | undefined): void => {
-        mockSvgOverlayService.getSvgOverlayTarget.mockReturnValue(target);
+    const mockOverlay = (overlay: EditionSvgOverlay | undefined): void => {
+        mockSvgOverlayService.getSvgOverlay.mockReturnValue(overlay);
     };
-    const tkkTarget = (dataId: string): EditionSvgOverlayTarget => ({ type: EditionSvgOverlayTypes.tkk, dataId });
+    const tkkOverlay = (dataId: string): EditionSvgOverlay => createTestTkkOverlay(dataId);
+    const patchTkkState = (partial: Partial<EditionSvgOverlaysState>): void => {
+        component.svgOverlaysState.update(state => ({ ...state, ...partial }));
+    };
 
     beforeAll(() => {
         // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
@@ -124,11 +134,15 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
         };
         mockSvgOverlayService = {
             createSvgOverlays: vi.fn(() => expectedTkkOverlays),
-            getSvgOverlayTarget: vi.fn(() => undefined),
-            updateTkkOverlayColors: vi.fn(),
-            // Stateless helpers: use the real implementations (getTkkDataId delegates to the mocked getSvgOverlayTarget)
-            toggleTkkSelection: vi.fn(EditionSvgOverlayService.prototype.toggleTkkSelection),
-            getTkkOverlaysByDataIds: vi.fn(EditionSvgOverlayService.prototype.getTkkOverlaysByDataIds),
+            getSvgOverlay: vi.fn(() => undefined),
+            updateTkkOverlays: vi.fn(),
+            // Pure state transitions and helpers: use the real implementations
+            // (getTkkDataId delegates to the mocked getSvgOverlay)
+            createSvgOverlaysState: vi.fn(EditionSvgOverlayService.prototype.createSvgOverlaysState),
+            getSelectedTkkOverlays: vi.fn(EditionSvgOverlayService.prototype.getSelectedTkkOverlays),
+            setTkkOverlayHover: vi.fn(EditionSvgOverlayService.prototype.setTkkOverlayHover),
+            setTkkOverlaysHighlight: vi.fn(EditionSvgOverlayService.prototype.setTkkOverlaysHighlight),
+            toggleTkkOverlaySelection: vi.fn(EditionSvgOverlayService.prototype.toggleTkkOverlaySelection),
             getTkkDataId: vi.fn(EditionSvgOverlayService.prototype.getTkkDataId),
         };
 
@@ -142,26 +156,27 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSheetViewerSvgComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
         expectedSuppliedClasses = ['class-1', 'class-2'];
         expectedTkkOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-1', 'tkk-1'),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2a', 'tkk-2'),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2b', 'tkk-2'),
+            createTestTkkOverlay('tkk-1'),
+            createTestTkkOverlay('tkk-2a', 'tkk-2'),
+            createTestTkkOverlay('tkk-2b', 'tkk-2'),
         ];
+
+        // Create component fixture
+        fixture = TestBed.createComponent(EditionSheetViewerSvgComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
 
         // Spies
         selectLinkBoxRequestSpy = vi.fn();
-        selectOverlaysRequestSpy = vi.fn();
+        selectTkkOverlaysRequestSpy = vi.fn();
         component.selectLinkBoxRequest.subscribe(selectLinkBoxRequestSpy);
-        component.selectOverlaysRequest.subscribe(selectOverlaysRequestSpy);
+        component.selectTkkOverlaysRequest.subscribe(selectTkkOverlaysRequestSpy);
         consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(mockConsole.log);
     });
 
@@ -193,24 +208,17 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
             expect(() => component.zoomValue()).toThrow();
         });
 
-        it('... should have signal `tkkOverlays` to hold an empty array', () => {
-            expectToEqual(component.tkkOverlays(), []);
+        it('... should have signal `svgOverlaysState` to hold the initial state', () => {
+            expectToEqual(component.svgOverlaysState(), {
+                tkkOverlays: [],
+                selectedDataIds: new Set<string>(),
+                hoveredDataId: undefined,
+                isHighlighted: true,
+            });
         });
 
-        it('... should have signal `selectedTkkDataIds` to hold an empty set', () => {
-            expectToEqual(component.selectedTkkDataIds(), new Set<string>());
-        });
-
-        it('... should have signal `hoveredTkkDataId` to hold `undefined`', () => {
-            expect(component.hoveredTkkDataId()).toBeUndefined();
-        });
-
-        it('... should have signal `isTkkHighlighted` to hold `true`', () => {
-            expectToBe(component.isTkkHighlighted(), true);
-        });
-
-        it('... should have computed signal `hasAvailableTkkOverlays` to hold `false`', () => {
-            expectToBe(component.hasAvailableTkkOverlays(), false);
+        it('... should have computed signal `selectedTkkOverlays` to hold an empty array', () => {
+            expectToEqual(component.selectedTkkOverlays(), []);
         });
 
         it('... should have signal `suppliedClasses` to hold an empty array', () => {
@@ -251,15 +259,16 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
         describe('... rendering', () => {
             it('... should reset the overlay state on a sheet change', async () => {
-                component.selectedTkkDataIds.set(new Set(['tkk-1']));
-                component.hoveredTkkDataId.set('tkk-1');
-                component.isTkkHighlighted.set(false);
+                patchTkkState({ selectedDataIds: new Set(['tkk-1']), hoveredDataId: 'tkk-1', isHighlighted: false });
 
                 await setSheetAndRender(expectedNextSvgSheet);
 
-                expectToEqual(component.selectedTkkDataIds(), new Set<string>());
-                expect(component.hoveredTkkDataId()).toBeUndefined();
-                expectToBe(component.isTkkHighlighted(), true);
+                expectToEqual(component.svgOverlaysState(), {
+                    tkkOverlays: expectedTkkOverlays,
+                    selectedDataIds: new Set<string>(),
+                    hoveredDataId: undefined,
+                    isHighlighted: true,
+                });
             });
 
             it('... should create the svg with the sheet path, svg element and root group', () => {
@@ -277,9 +286,8 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 expectToBe((rootGroupSelection as D3Selection).node(), getRootGroupEl());
             });
 
-            it('... should set `tkkOverlays` (and thus `hasAvailableTkkOverlays`) and `suppliedClasses` from the services', () => {
-                expectToEqual(component.tkkOverlays(), expectedTkkOverlays);
-                expectToBe(component.hasAvailableTkkOverlays(), true);
+            it('... should set the overlays of `svgOverlaysState` and `suppliedClasses` from the services', () => {
+                expectToEqual(component.svgOverlaysState().tkkOverlays, expectedTkkOverlays);
                 expectToEqual(component.suppliedClasses(), expectedSuppliedClasses);
             });
 
@@ -323,8 +331,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 await setSheetAndRender(sheetWithoutPath);
 
                 expectSpyCall(mockSvgDrawingService.createSvg, 1);
-                expectToEqual(component.tkkOverlays(), []);
-                expectToBe(component.hasAvailableTkkOverlays(), false);
+                expectToEqual(component.svgOverlaysState().tkkOverlays, []);
                 expectToEqual(component.suppliedClasses(), []);
             });
 
@@ -396,64 +403,39 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
             });
         });
 
-        describe('... tkk overlay selection and color state', () => {
+        describe('... tkk overlays state', () => {
             it('... should have computed signal `selectedTkkOverlays` to hold all overlays of the selected data ids', () => {
-                component.selectedTkkDataIds.set(new Set<string>(['tkk-2']));
+                patchTkkState({ selectedDataIds: new Set<string>(['tkk-2']) });
 
                 expectToEqual(component.selectedTkkOverlays(), [expectedTkkOverlays[1], expectedTkkOverlays[2]]);
-                expectSpyCall(mockSvgOverlayService.getTkkOverlaysByDataIds, 1, [
-                    expectedTkkOverlays,
-                    new Set<string>(['tkk-2']),
-                ]);
+                expectSpyCall(mockSvgOverlayService.getSelectedTkkOverlays, 1, component.svgOverlaysState());
             });
 
-            it('... should have computed signal `tkkOverlayColorState` to hold the current color state', () => {
-                component.selectedTkkDataIds.set(new Set<string>(['tkk-1']));
-                component.hoveredTkkDataId.set('tkk-2');
-                component.isTkkHighlighted.set(false);
-
-                expectToEqual(component.tkkOverlayColorState(), {
-                    selectedDataIds: new Set<string>(['tkk-1']),
-                    hoveredDataId: 'tkk-2',
-                    isHighlighted: false,
-                });
-            });
-        });
-
-        describe('... tkk overlay colors', () => {
-            it('... should color the tkk overlays with the initial state after rendering', () => {
-                const [rootGroupSelection, overlays, state] =
-                    mockSvgOverlayService.updateTkkOverlayColors.mock.lastCall ?? [];
+            it('... should update the tkk overlays with the initial state after rendering', () => {
+                const [rootGroupSelection, state] = mockSvgOverlayService.updateTkkOverlays.mock.lastCall ?? [];
 
                 expectToBe((rootGroupSelection as D3Selection).node(), getRootGroupEl());
-                expectToEqual(overlays, expectedTkkOverlays);
                 expectToEqual(state, {
+                    tkkOverlays: expectedTkkOverlays,
                     selectedDataIds: new Set<string>(),
                     hoveredDataId: undefined,
                     isHighlighted: true,
                 });
             });
 
-            it('... should recolor the tkk overlays when the state changes', async () => {
-                component.selectedTkkDataIds.set(new Set(['tkk-2']));
-                component.hoveredTkkDataId.set('tkk-1');
-                component.isTkkHighlighted.set(false);
+            it('... should update the tkk overlays when the state changes', async () => {
+                patchTkkState({ selectedDataIds: new Set(['tkk-2']), hoveredDataId: 'tkk-1', isHighlighted: false });
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(mockSvgOverlayService.updateTkkOverlayColors.mock.lastCall?.[2], {
-                    selectedDataIds: new Set(['tkk-2']),
-                    hoveredDataId: 'tkk-1',
-                    isHighlighted: false,
-                });
+                expectToBe(mockSvgOverlayService.updateTkkOverlays.mock.lastCall?.[1], component.svgOverlaysState());
             });
 
-            it('... should not color anything without tkk overlays', async () => {
-                mockSvgOverlayService.updateTkkOverlayColors.mockClear();
-                component.tkkOverlays.set([]);
-                component.isTkkHighlighted.set(false);
+            it('... should not update the tkk overlays for an unchanged state', async () => {
+                mockSvgOverlayService.updateTkkOverlays.mockClear();
+                component.onSheetHighlight(null);
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(mockSvgOverlayService.updateTkkOverlayColors, 0);
+                expectSpyCall(mockSvgOverlayService.updateTkkOverlays, 0);
             });
         });
 
@@ -485,74 +467,71 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
                 describe('... svg interaction (delegated listeners)', () => {
                     it('... should emit `selectLinkBoxRequest` on click on a link box', async () => {
-                        mockOverlayTarget({ type: EditionSvgOverlayTypes.linkBox, id: 'link-box-1' });
+                        mockOverlay({ type: EditionSvgOverlayTypes.linkBox, id: 'link-box-1' });
 
                         await dispatchOnSvg(clickEvent());
 
                         expectSpyCall(selectLinkBoxRequestSpy, 1, 'link-box-1');
-                        expectSpyCall(selectOverlaysRequestSpy, 0);
+                        expectSpyCall(selectTkkOverlaysRequestSpy, 0);
                     });
 
                     it('... should select a tkk overlay (all parts with its data id) on click and emit the selection', async () => {
-                        mockOverlayTarget(tkkTarget('tkk-2'));
+                        mockOverlay(tkkOverlay('tkk-2'));
 
                         await dispatchOnSvg(clickEvent());
 
-                        expectToEqual(component.selectedTkkDataIds(), new Set(['tkk-2']));
-                        expectSpyCall(selectOverlaysRequestSpy, 1, [
-                            [
-                                new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2a', 'tkk-2'),
-                                new EditionSvgOverlay(EditionSvgOverlayTypes.tkk, 'tkk-2b', 'tkk-2'),
-                            ],
+                        expectToEqual(component.svgOverlaysState().selectedDataIds, new Set(['tkk-2']));
+                        expectSpyCall(selectTkkOverlaysRequestSpy, 1, [
+                            [createTestTkkOverlay('tkk-2a', 'tkk-2'), createTestTkkOverlay('tkk-2b', 'tkk-2')],
                         ]);
                     });
 
                     it('... should keep previously selected tkk overlays selected', async () => {
-                        mockOverlayTarget(tkkTarget('tkk-1'));
+                        mockOverlay(tkkOverlay('tkk-1'));
                         await dispatchOnSvg(clickEvent());
-                        mockOverlayTarget(tkkTarget('tkk-2'));
+                        mockOverlay(tkkOverlay('tkk-2'));
                         await dispatchOnSvg(clickEvent());
 
-                        expectToEqual(component.selectedTkkDataIds(), new Set(['tkk-1', 'tkk-2']));
-                        expectToBe(selectOverlaysRequestSpy.mock.lastCall?.[0].length, 3);
+                        expectToEqual(component.svgOverlaysState().selectedDataIds, new Set(['tkk-1', 'tkk-2']));
+                        expectToBe(selectTkkOverlaysRequestSpy.mock.lastCall?.[0].length, 3);
                     });
 
                     it('... should deselect a selected tkk overlay on a second click and emit the remaining selection', async () => {
-                        mockOverlayTarget(tkkTarget('tkk-1'));
+                        mockOverlay(tkkOverlay('tkk-1'));
 
                         await dispatchOnSvg(clickEvent());
                         await dispatchOnSvg(clickEvent());
 
-                        expectToEqual(component.selectedTkkDataIds(), new Set<string>());
-                        expectSpyCall(selectOverlaysRequestSpy, 2, [[]]);
+                        expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>());
+                        expectSpyCall(selectTkkOverlaysRequestSpy, 2, [[]]);
                     });
 
                     it('... should do nothing on click outside of overlays (and not prevent the default)', async () => {
-                        mockOverlayTarget(undefined);
+                        mockOverlay(undefined);
 
                         const event = await dispatchOnSvg(clickEvent());
 
                         expectSpyCall(selectLinkBoxRequestSpy, 0);
-                        expectSpyCall(selectOverlaysRequestSpy, 0);
-                        expectToEqual(component.selectedTkkDataIds(), new Set<string>());
+                        expectSpyCall(selectTkkOverlaysRequestSpy, 0);
+                        expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>());
                         expectToBe(event.defaultPrevented, false);
                     });
 
                     it.each(['Enter', ' '])(
                         '... should select a tkk overlay on keydown of "%s" and prevent the default (e.g. scrolling)',
                         async key => {
-                            mockOverlayTarget(tkkTarget('tkk-1'));
+                            mockOverlay(tkkOverlay('tkk-1'));
 
                             const event = await dispatchOnSvg(keydownEvent(key));
 
-                            expectToEqual(component.selectedTkkDataIds(), new Set<string>(['tkk-1']));
-                            expectSpyCall(selectOverlaysRequestSpy, 1);
+                            expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>(['tkk-1']));
+                            expectSpyCall(selectTkkOverlaysRequestSpy, 1);
                             expectToBe(event.defaultPrevented, true);
                         }
                     );
 
                     it('... should emit `selectLinkBoxRequest` on keydown of Enter on a link box', async () => {
-                        mockOverlayTarget({ type: EditionSvgOverlayTypes.linkBox, id: 'link-box-1' });
+                        mockOverlay({ type: EditionSvgOverlayTypes.linkBox, id: 'link-box-1' });
 
                         await dispatchOnSvg(keydownEvent('Enter'));
 
@@ -560,48 +539,48 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                     });
 
                     it('... should not select anything on keydown of other keys (e.g. Tab)', async () => {
-                        mockOverlayTarget(tkkTarget('tkk-1'));
+                        mockOverlay(tkkOverlay('tkk-1'));
 
                         await dispatchOnSvg(keydownEvent('Tab'));
 
-                        expectSpyCall(selectOverlaysRequestSpy, 0);
-                        expectToEqual(component.selectedTkkDataIds(), new Set<string>());
+                        expectSpyCall(selectTkkOverlaysRequestSpy, 0);
+                        expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>());
                     });
 
                     it.each([
-                        { label: 'a tkk overlay', target: tkkTarget('tkk-2'), expected: 'tkk-2' },
+                        { label: 'a tkk overlay', target: tkkOverlay('tkk-2'), expected: 'tkk-2' },
                         {
                             label: 'a link box',
                             target: {
                                 type: EditionSvgOverlayTypes.linkBox,
                                 id: 'link-box-1',
-                            } as EditionSvgOverlayTarget,
+                            } as EditionSvgOverlay,
                             expected: undefined,
                         },
                         { label: 'no overlay', target: undefined, expected: undefined },
                     ])(
-                        '... should set `hoveredTkkDataId` on pointerover and focusin of $label',
+                        '... should set the hovered data id of `svgOverlaysState` on pointerover and focusin of $label',
                         async ({ target, expected }) => {
-                            mockOverlayTarget(target);
+                            mockOverlay(target);
 
                             for (const type of ['pointerover', 'focusin']) {
-                                component.hoveredTkkDataId.set('tkk-1');
+                                patchTkkState({ hoveredDataId: 'tkk-1' });
 
                                 await dispatchOnSvg(new Event(type, { bubbles: true }));
 
-                                expect(component.hoveredTkkDataId()).toBe(expected);
+                                expect(component.svgOverlaysState().hoveredDataId).toBe(expected);
                             }
                         }
                     );
 
                     it.each(['pointerleave', 'focusout'])(
-                        '... should reset `hoveredTkkDataId` on %s of the svg',
+                        '... should reset the hovered data id of `svgOverlaysState` on %s of the svg',
                         async type => {
-                            component.hoveredTkkDataId.set('tkk-1');
+                            patchTkkState({ hoveredDataId: 'tkk-1' });
 
                             await dispatchOnSvg(new Event(type));
 
-                            expect(component.hoveredTkkDataId()).toBeUndefined();
+                            expect(component.svgOverlaysState().hoveredDataId).toBeUndefined();
                         }
                     );
 
@@ -624,7 +603,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                     '... should contain $expected panel(s) for supplied classes $suppliedClasses and tkk overlays $hasTkk',
                     async ({ suppliedClasses, hasTkk, expected }) => {
                         component.suppliedClasses.set(suppliedClasses);
-                        component.tkkOverlays.set(hasTkk ? expectedTkkOverlays : []);
+                        patchTkkState({ tkkOverlays: hasTkk ? expectedTkkOverlays : [] });
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByDirective(
@@ -670,20 +649,6 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
-            describe('#resetZoom()', () => {
-                it('... should have a method `resetZoom`', () => {
-                    expect(component.resetZoom).toBeDefined();
-                });
-
-                it('... should reset the zoom via the SvgZoomDirective', () => {
-                    const resetSpy = vi.spyOn(component.svgZoom(), 'reset');
-
-                    component.resetZoom();
-
-                    expectSpyCall(resetSpy, 1);
-                });
-            });
-
             describe('#onAdditionVisibilityChange()', () => {
                 it('... should have a method `onAdditionVisibilityChange`', () => {
                     expect(component.onAdditionVisibilityChange).toBeDefined();
@@ -700,42 +665,42 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                         expectToBe((rootGroupSelection as D3Selection).node(), getRootGroupEl());
                         expectToBe(key, 'class-1');
                         expectToBe(visible, isVisible);
-                        expectToBe(component.isTkkHighlighted(), true);
+                        expectToBe(component.svgOverlaysState().isHighlighted, true);
                     }
                 );
 
                 it.each([false, true])(
-                    '... should set `isTkkHighlighted` for the tkk key (isVisible: %s)',
+                    '... should set the highlighting of `svgOverlaysState` for the tkk key (isVisible: %s)',
                     isVisible => {
                         component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible });
 
-                        expectToBe(component.isTkkHighlighted(), isVisible);
+                        expectToBe(component.svgOverlaysState().isHighlighted, isVisible);
                         expectSpyCall(mockSvgDrawingService.toggleSuppliedClassOpacity, 0);
                     }
                 );
 
                 it('... should clear the tkk selection and emit an empty selection when hiding the tkk overlays', () => {
-                    component.selectedTkkDataIds.set(new Set<string>(['tkk-1']));
+                    patchTkkState({ selectedDataIds: new Set<string>(['tkk-1']) });
 
                     component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible: false });
 
-                    expectToEqual(component.selectedTkkDataIds(), new Set<string>());
-                    expectSpyCall(selectOverlaysRequestSpy, 1, [[]]);
+                    expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>());
+                    expectSpyCall(selectTkkOverlaysRequestSpy, 1, [[]]);
                 });
 
                 it('... should not emit when hiding the tkk overlays without a selection', () => {
                     component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible: false });
 
-                    expectSpyCall(selectOverlaysRequestSpy, 0);
+                    expectSpyCall(selectTkkOverlaysRequestSpy, 0);
                 });
 
                 it('... should keep the tkk selection when showing the tkk overlays', () => {
-                    component.selectedTkkDataIds.set(new Set<string>(['tkk-1']));
+                    patchTkkState({ selectedDataIds: new Set<string>(['tkk-1']) });
 
                     component.onAdditionVisibilityChange({ key: EditionSvgOverlayTypes.tkk, isVisible: true });
 
-                    expectToEqual(component.selectedTkkDataIds(), new Set<string>(['tkk-1']));
-                    expectSpyCall(selectOverlaysRequestSpy, 0);
+                    expectToEqual(component.svgOverlaysState().selectedDataIds, new Set<string>(['tkk-1']));
+                    expectSpyCall(selectTkkOverlaysRequestSpy, 0);
                 });
             });
 
@@ -745,11 +710,14 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 });
 
                 it('... should toggle the selection of a tkk overlay via the svg overlay service', () => {
-                    mockOverlayTarget(tkkTarget('tkk-1'));
+                    mockOverlay(tkkOverlay('tkk-1'));
 
                     component.onSheetSelect(new MouseEvent('click'));
 
-                    expectSpyCall(mockSvgOverlayService.toggleTkkSelection, 1, [new Set<string>(), 'tkk-1']);
+                    expectSpyCall(mockSvgOverlayService.toggleTkkOverlaySelection, 1, [
+                        expect.objectContaining({ selectedDataIds: new Set<string>() }),
+                        'tkk-1',
+                    ]);
                 });
 
                 it('... should resolve the target of the given event via the svg overlay service', () => {
@@ -757,7 +725,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
                     component.onSheetSelect(event);
 
-                    expectSpyCall(mockSvgOverlayService.getSvgOverlayTarget, 1, event.target);
+                    expectSpyCall(mockSvgOverlayService.getSvgOverlay, 1, event.target);
                 });
             });
 
@@ -766,12 +734,32 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                     expect(component.onSheetHighlight).toBeDefined();
                 });
 
-                it('... should resolve the tkk data id of the given event via the svg overlay service', () => {
-                    const event = new Event('pointerover');
+                it('... should set the hover of the tkk overlay with the data id of the given target via the svg overlay service', () => {
+                    const target = getSvgEl();
+                    mockSvgOverlayService.getTkkDataId.mockReturnValueOnce('tkk-1');
 
-                    component.onSheetHighlight(event);
+                    component.onSheetHighlight(target);
 
-                    expectSpyCall(mockSvgOverlayService.getTkkDataId, 1, event.target);
+                    expectSpyCall(mockSvgOverlayService.getTkkDataId, 1, target);
+                    expectSpyCall(mockSvgOverlayService.setTkkOverlayHover, 1, [
+                        expect.objectContaining({ hoveredDataId: undefined }),
+                        'tkk-1',
+                    ]);
+                    expectToBe(component.svgOverlaysState().hoveredDataId, 'tkk-1');
+                });
+            });
+
+            describe('#resetZoom()', () => {
+                it('... should have a method `resetZoom`', () => {
+                    expect(component.resetZoom).toBeDefined();
+                });
+
+                it('... should reset the zoom via the SvgZoomDirective', () => {
+                    const resetSpy = vi.spyOn(component.svgZoom(), 'reset');
+
+                    component.resetZoom();
+
+                    expectSpyCall(resetSpy, 1);
                 });
             });
         });
