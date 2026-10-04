@@ -7,6 +7,7 @@ import {
     FolioCalculationSheet,
     FolioCalculationSystems,
 } from './folio-calculation.model';
+import { ViewBox } from './view-box.model';
 
 /**
  * The FolioSvgSheet class.
@@ -200,4 +201,22 @@ export class FolioSvgData {
         this.systems = new FolioSvgSystems(calculation.SYSTEMS);
         this.contentSegments = calculation.CONTENT_SEGMENTS.map(segment => new FolioSvgContentSegment(segment));
     }
+}
+
+/**
+ * The FolioSvgItem interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the data needed to render the svg of a single folio.
+ */
+export interface FolioSvgItem {
+    /**
+     * The calculated svg data of the folio.
+     */
+    svgData: FolioSvgData;
+
+    /**
+     * The viewbox of the folio svg.
+     */
+    viewBox: ViewBox;
 }

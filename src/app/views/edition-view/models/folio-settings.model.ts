@@ -28,9 +28,4 @@ export interface FolioSettings {
      * The initial offset (y-position) to be applied.
      */
     initialOffsetY: number;
-
-    /**
-     * The number of folios.
-     */
-    numberOfFolios: number;
 }

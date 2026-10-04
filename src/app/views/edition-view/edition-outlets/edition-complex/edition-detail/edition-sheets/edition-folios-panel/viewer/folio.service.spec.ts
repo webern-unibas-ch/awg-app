@@ -126,7 +126,6 @@ describe('FolioService (DONE)', () => {
             formatY: 270,
             initialOffsetX: 5,
             initialOffsetY: 5,
-            numberOfFolios: 0,
         };
         expectedTradeMarkSymbolPath = `M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15`;
 
@@ -223,6 +222,10 @@ describe('FolioService (DONE)', () => {
             expectToBe(folioService['_defaultNumberOfSystems'], expectedDefaultNumberOfSystems);
         });
 
+        it('... should have `_folioSettings`', () => {
+            expectToEqual(folioService['_folioSettings'], expectedFolioSettings);
+        });
+
         it('... should have `_reversedRotationAngle`', () => {
             expectToBe(folioService['_reversedRotationAngle'], expectedReversedRotationAngle);
         });
@@ -276,6 +279,54 @@ describe('FolioService (DONE)', () => {
             const result = folioService.getFolioSvgData(expectedFolioSettings, expectedDefaultFolio);
 
             expectToEqual(result, expectedFolioSvgDataWithoutOffset);
+        });
+    });
+
+    describe('#getFolioSvgItem', () => {
+        let expectedFolioSettingsWithDimensions: FolioSettings;
+
+        beforeEach(() => {
+            expectedFolioSettingsWithDimensions = {
+                ...expectedFolioSettings,
+                formatX: +expectedDefaultFolio.dimensions.width,
+                formatY: +expectedDefaultFolio.dimensions.height,
+            };
+        });
+
+        it('... should have a method `getFolioSvgItem`', () => {
+            expect(folioService.getFolioSvgItem).toBeDefined();
+        });
+
+        it('... should trigger `getFolioSvgData` with the folio settings for the dimensions of the given folio', () => {
+            const getFolioSvgDataSpy = vi.spyOn(folioService, 'getFolioSvgData');
+
+            folioService.getFolioSvgItem(expectedDefaultFolio);
+
+            expectSpyCall(getFolioSvgDataSpy, 1, [expectedFolioSettingsWithDimensions, expectedDefaultFolio]);
+        });
+
+        it('... should trigger `_calculateViewBoxDimension` for both dimensions', () => {
+            const calculateViewBoxDimensionSpy = vi.spyOn(folioService as any, '_calculateViewBoxDimension');
+
+            folioService.getFolioSvgItem(expectedDefaultFolio);
+
+            expectSpyCall(calculateViewBoxDimensionSpy, 2, [expectedFolioSettingsWithDimensions, 'Y']);
+            expectToEqual(calculateViewBoxDimensionSpy.mock.calls[0], [expectedFolioSettingsWithDimensions, 'X']);
+        });
+
+        it('... should return the folio svg data and viewbox for the given folio', () => {
+            const { factor, formatX, formatY, initialOffsetX, initialOffsetY } = expectedFolioSettingsWithDimensions;
+            const expectedViewBox = new ViewBox(
+                (formatX + 2 * initialOffsetX) * factor,
+                (formatY + 2 * initialOffsetY) * factor
+            );
+
+            const result = folioService.getFolioSvgItem(expectedDefaultFolio);
+
+            expectToEqual(result, {
+                svgData: folioService.getFolioSvgData(expectedFolioSettingsWithDimensions, expectedDefaultFolio),
+                viewBox: expectedViewBox,
+            });
         });
     });
 
@@ -439,6 +490,51 @@ describe('FolioService (DONE)', () => {
             it('... null', () => {
                 expect(folioService.getContentSegment(null)).toBeUndefined();
             });
+        });
+    });
+
+    describe('#updateActiveContentSegment', () => {
+        let expectedSvgCanvas: D3Selection;
+
+        const getActiveSegmentIds = (): (string | null)[] =>
+            (expectedSvgCanvas.selectAll('g.content-segment-group.active').nodes() as Element[]).map(groupEl =>
+                groupEl.getAttribute('contentSegmentId')
+            );
+
+        beforeEach(() => {
+            expectedSvgCanvas = D3_SELECTION.create('svg');
+            folioService.addFolioToSvgCanvas(expectedSvgCanvas, expectedFolioSvgData);
+        });
+
+        afterEach(() => {
+            expectedSvgCanvas.remove();
+        });
+
+        it('... should have a method `updateActiveContentSegment`', () => {
+            expect(folioService.updateActiveContentSegment).toBeDefined();
+        });
+
+        it('... should set the class `active` on the content segment group with the given id', () => {
+            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
+
+            folioService.updateActiveContentSegment(expectedSvgCanvas, expectedSegmentId);
+
+            expectToEqual(getActiveSegmentIds(), [expectedSegmentId]);
+        });
+
+        it('... should remove the class `active` from the previously active content segment group', () => {
+            const expectedSegmentId = expectedFolioSvgData.contentSegments[1].sheetId;
+            folioService.updateActiveContentSegment(expectedSvgCanvas, expectedFolioSvgData.contentSegments[0].sheetId);
+
+            folioService.updateActiveContentSegment(expectedSvgCanvas, expectedSegmentId);
+
+            expectToEqual(getActiveSegmentIds(), [expectedSegmentId]);
+        });
+
+        it('... should not set the class `active` on any content segment group for an unknown id', () => {
+            folioService.updateActiveContentSegment(expectedSvgCanvas, 'unknown');
+
+            expectToEqual(getActiveSegmentIds(), []);
         });
     });
 
@@ -2996,6 +3092,28 @@ describe('FolioService (DONE)', () => {
 
                 expectToEqual(actualAttributes, expectedAttributes);
             });
+        });
+    });
+
+    describe('#_calculateViewBoxDimension', () => {
+        it('... should have a method `_calculateViewBoxDimension`', () => {
+            expect(folioService['_calculateViewBoxDimension']).toBeDefined();
+        });
+
+        it('... should calculate the viewbox width for dimension X', () => {
+            const { factor, formatX, initialOffsetX } = expectedFolioSettings;
+
+            const result = folioService['_calculateViewBoxDimension'](expectedFolioSettings, 'X');
+
+            expectToBe(result, (formatX + 2 * initialOffsetX) * factor);
+        });
+
+        it('... should calculate the viewbox height for dimension Y', () => {
+            const { factor, formatY, initialOffsetY } = expectedFolioSettings;
+
+            const result = folioService['_calculateViewBoxDimension'](expectedFolioSettings, 'Y');
+
+            expectToBe(result, (formatY + 2 * initialOffsetY) * factor);
         });
     });
 });

@@ -2,18 +2,21 @@ import { Injectable } from '@angular/core';
 
 import * as D3_SELECTION from 'd3-selection';
 
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
-    D3Selection,
-    Folio,
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioCalculationRectangle,
-    FolioSettings,
+} from '@awg-views/edition-view/models/folio-calculation.model';
+import { FolioSettings } from '@awg-views/edition-view/models/folio-settings.model';
+import {
     FolioSvgContentSegment,
     FolioSvgData,
-    ViewBox,
-} from '@awg-views/edition-view/models';
+    FolioSvgItem,
+} from '@awg-views/edition-view/models/folio-svg-data.model';
+import { Folio } from '@awg-views/edition-view/models/folio.model';
+import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 
 /**
  * The Folio service.
@@ -77,6 +80,14 @@ export class FolioService {
     private readonly _contentSegmentGroupClass = 'content-segment-group';
 
     /**
+     * Private readonly variable: _contentSegmentIdAttribute.
+     *
+     * It keeps the name of the attribute holding the content segment id
+     * (sheet id including the partial, if any) of the content segment groups.
+     */
+    private readonly _contentSegmentIdAttribute = 'contentSegmentId';
+
+    /**
      * Private readonly variable: _contentSegmentOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
@@ -97,6 +108,19 @@ export class FolioService {
      * It keeps the default number of systems.
      */
     private readonly _defaultNumberOfSystems = 18;
+
+    /**
+     * Private readonly variable: _folioSettings.
+     *
+     * It keeps the default format settings for the folios.
+     */
+    private readonly _folioSettings: FolioSettings = {
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+    };
 
     /**
      * Private readonly variable: _reversedRotationAngle.
@@ -137,11 +161,34 @@ export class FolioService {
      * @returns {FolioSvgData} The calculated folio SVG data.
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
-        // Calculate values for SVG
         const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
 
-        // Get SVG data from calculation
         return new FolioSvgData(calculation);
+    }
+
+    /**
+     * Public method: getFolioSvgItem.
+     *
+     * It calculates and provides the folio SVG data and the viewbox
+     * to render the SVG of a given folio (based on its dimensions).
+     *
+     * @param {Folio} folio The given folio.
+     * @returns {FolioSvgItem} The calculated folio SVG data and viewbox.
+     */
+    getFolioSvgItem(folio: Folio): FolioSvgItem {
+        const folioSettings: FolioSettings = {
+            ...this._folioSettings,
+            formatX: +folio.dimensions.width,
+            formatY: +folio.dimensions.height,
+        };
+
+        const viewBoxWidth = this._calculateViewBoxDimension(folioSettings, 'X');
+        const viewBoxHeight = this._calculateViewBoxDimension(folioSettings, 'Y');
+
+        return {
+            svgData: this.getFolioSvgData(folioSettings, folio),
+            viewBox: new ViewBox(viewBoxWidth, viewBoxHeight),
+        };
     }
 
     /**
@@ -209,6 +256,22 @@ export class FolioService {
         }
 
         return D3_SELECTION.select(contentSegmentGroup).datum() as FolioSvgContentSegment | undefined;
+    }
+
+    /**
+     * Public method: updateActiveContentSegment.
+     *
+     * It toggles the css class `active` on the content segment groups of a given svg canvas
+     * according to a given content segment id.
+     *
+     * @param {D3Selection} svgCanvas The given SVG canvas selection.
+     * @param {string} segmentId The given content segment id.
+     * @returns {void} Toggles the css class on the content segment groups.
+     */
+    updateActiveContentSegment(svgCanvas: D3Selection, segmentId: string): void {
+        svgCanvas
+            .selectAll<SVGGElement, unknown>(`g.${this._contentSegmentGroupClass}`)
+            .classed('active', (_d, i, nodes) => nodes[i].getAttribute(this._contentSegmentIdAttribute) === segmentId);
     }
 
     /**
@@ -355,7 +418,7 @@ export class FolioService {
     ): D3Selection {
         return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
             contentSegmentGroupId: contentSegment.segmentLabel,
-            contentSegmentId: contentSegment.sheetId,
+            [this._contentSegmentIdAttribute]: contentSegment.sheetId,
             class: this._contentSegmentGroupClass,
             stroke: contentSegment.selectable ? this._fgColor : this._disabledColor,
             fill: contentSegment.selectable ? this._fgColor : this._disabledColor,
@@ -742,5 +805,23 @@ export class FolioService {
             selection.attr(key, attributes[key]);
         });
         return selection;
+    }
+
+    /**
+     * Private method: _calculateViewBoxDimension.
+     *
+     * It calculates the width and height for the viewBox string
+     * based on the given folio settings.
+     *
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {string} dimension The given dimension.
+     *
+     * @returns {number} The calculated dimension.
+     */
+    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: 'X' | 'Y'): number {
+        const format = dimension === 'X' ? folioSettings.formatX : folioSettings.formatY;
+        const offset = dimension === 'X' ? folioSettings.initialOffsetX : folioSettings.initialOffsetY;
+
+        return (format + 2 * offset) * folioSettings.factor;
     }
 }

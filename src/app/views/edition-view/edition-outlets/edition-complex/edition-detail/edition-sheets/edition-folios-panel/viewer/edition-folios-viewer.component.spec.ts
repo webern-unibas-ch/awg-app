@@ -39,7 +39,8 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     let addFolioToSvgCanvasSpy: Spy;
     let addViewBoxToSvgCanvasSpy: Spy;
     let getContentSegmentSpy: Spy;
-    let getFolioSvgDataSpy: Spy;
+    let updateActiveContentSegmentSpy: Spy;
+    let getFolioSvgItemSpy: Spy;
     let navigateToSvgSheetSpy: Spy;
     let openTextModalSpy: Spy;
 
@@ -92,7 +93,8 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         addFolioToSvgCanvasSpy = vi.spyOn(folioService, 'addFolioToSvgCanvas');
         addViewBoxToSvgCanvasSpy = vi.spyOn(folioService, 'addViewBoxToSvgCanvas');
         getContentSegmentSpy = vi.spyOn(folioService, 'getContentSegment');
-        getFolioSvgDataSpy = vi.spyOn(folioService, 'getFolioSvgData');
+        updateActiveContentSegmentSpy = vi.spyOn(folioService, 'updateActiveContentSegment');
+        getFolioSvgItemSpy = vi.spyOn(folioService, 'getFolioSvgItem');
         navigateToSvgSheetSpy = vi.spyOn(mockNavigationService, 'navigateToSvgSheet');
         openTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
 
@@ -111,7 +113,6 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
             formatY: 270,
             initialOffsetX: 5,
             initialOffsetY: 5,
-            numberOfFolios: 0,
         };
         expectedFolioSvgData = [];
         expectedViewBoxes = [];
@@ -120,7 +121,6 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 ...expectedFolioSettings,
                 formatX: +folio.dimensions.width,
                 formatY: +folio.dimensions.height,
-                numberOfFolios: expectedConvolute.folios.length,
             };
             expectedFolioSvgData.push(new FolioSvgData(new FolioCalculation(folioSettings, folio, 4)));
             expectedViewBoxes.push(
@@ -203,10 +203,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         });
 
         describe('... rendering', () => {
-            it('... should get the folio svg data from the FolioService for each folio', () => {
-                expectSpyCall(getFolioSvgDataSpy, 2);
-                expectToEqual(getFolioSvgDataSpy.mock.calls[0][1], expectedConvolute.folios[0]);
-                expectToEqual(getFolioSvgDataSpy.mock.calls[1][1], expectedConvolute.folios[1]);
+            it('... should get the folio svg item from the FolioService for each folio', () => {
+                expectSpyCall(getFolioSvgItemSpy, 2);
+                expectToEqual(getFolioSvgItemSpy.mock.calls[0][0], expectedConvolute.folios[0]);
+                expectToEqual(getFolioSvgItemSpy.mock.calls[1][0], expectedConvolute.folios[1]);
             });
 
             it('... should add the viewbox to the svg element of each folio', () => {
@@ -260,6 +260,20 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         });
 
         describe('... active content segment', () => {
+            it('... should update the active content segment of each folio svg via the FolioService', async () => {
+                updateActiveContentSegmentSpy.mockClear();
+
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
+                await detectChangesOnPush(fixture);
+
+                const svgEls = getSvgEls();
+                expectSpyCall(updateActiveContentSegmentSpy, 2);
+                svgEls.forEach((svgEl, index) => {
+                    expectToBe(getSvgCanvasNode(updateActiveContentSegmentSpy, index), svgEl);
+                    expectToBe(updateActiveContentSegmentSpy.mock.calls[index][1], 'M212_Sk3');
+                });
+            });
+
             it('... should mark the content segments of the selected svg sheet as active in each folio', () => {
                 expectToEqual(getActiveSegmentIds(), ['M212_Sk1', 'M212_Sk1']);
             });
