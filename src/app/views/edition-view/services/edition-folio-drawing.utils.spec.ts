@@ -157,7 +157,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 const { contentSegments } = calculate(expectedFolio);
 
                 expectToEqual(
-                    contentSegments.map(contentSegment => contentSegment.sheetIds),
+                    contentSegments.map(contentSegment => contentSegment.sheetTarget),
                     expectedFolio.content.map(({ complexId, sheetId }) => ({ complexId, sheetId }))
                 );
             });

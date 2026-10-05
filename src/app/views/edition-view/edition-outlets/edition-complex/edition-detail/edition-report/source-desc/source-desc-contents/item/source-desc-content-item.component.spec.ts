@@ -19,8 +19,9 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentItemComponent } from './source-desc-content-item.component';
 
@@ -109,20 +110,20 @@ describe('SourceDescContentItemComponent', () => {
             expectToEqual(component.content(), expectedContent);
         });
 
-        describe('#sheetIds', () => {
+        describe('#sheetTarget', () => {
             it('... should be a computed signal', () => {
-                expectToBe(isSignal(component.sheetIds), true);
+                expectToBe(isSignal(component.sheetTarget), true);
             });
 
             it('... should hold the complexId and sheetId of itemLinkTo', () => {
-                expectToEqual(component.sheetIds(), { complexId: expectedComplexId, sheetId: expectedSheetId });
+                expectToEqual(component.sheetTarget(), { complexId: expectedComplexId, sheetId: expectedSheetId });
             });
 
             it('... should hold empty ids if itemLinkTo is undefined', async () => {
                 fixture.componentRef.setInput('content', { ...expectedContent, itemLinkTo: undefined });
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.sheetIds(), { complexId: '', sheetId: '' });
+                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: '' });
             });
         });
 
@@ -376,14 +377,14 @@ describe('SourceDescContentItemComponent', () => {
                 });
 
                 it('... should do nothing if no sheetId is provided', () => {
-                    const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
+                    const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -391,7 +392,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetClickEvent = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedNextSheetId,
                     };
@@ -401,7 +402,7 @@ describe('SourceDescContentItemComponent', () => {
                 });
 
                 it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -409,7 +410,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetClickEvent = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedNextComplexId,
                         sheetId: expectedNextSheetId,
                     };

@@ -17,9 +17,9 @@
         <div
             #facetScroll="awgEditionSheetFacetScroll"
             class="awg-edition-sheet-facet-group-list"
-            [awgEditionSheetFacetScroll]="[selectedSheetId(), isOpen()]">
+            [awgEditionSheetFacetScroll]="[selectedSvgSheet(), isOpen()]">
             @for (svgSheet of sheets; track svgSheet.id) {
-                <awg-edition-sheet-facet-item [svgSheet]="svgSheet" [selectedSheetId]="selectedSheetId()" />
+                <awg-edition-sheet-facet-item [svgSheet]="svgSheet" [selectedSvgSheet]="selectedSvgSheet()" />
             }
         </div>
         @if (facetScroll.visibleRange(); as range) {

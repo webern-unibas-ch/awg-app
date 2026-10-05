@@ -1,20 +1,25 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
-    EditionSvgOverlayTkk,
-    EditionSvgSheet,
-    EditionSvgSheetsList,
-    FolioConvolute,
-    Textcritics,
-} from '@awg-views/edition-view/models';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
-import { EditionSheetsService } from '@awg-views/edition-view/services/edition-sheets.service';
+    EditionSvgSheetContext,
+    EditionSvgSheetSelection,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
+import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+
+import { EditionFoliosPanelComponent } from './edition-folios-panel/edition-folios-panel.component';
+import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-sheets-panel.component';
+import { EDITION_SHEETS_UTILS } from './edition-sheets.utils';
 
 /**
  * The EditionSheets component.
@@ -26,16 +31,15 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
     styleUrls: ['./edition-sheets.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        AlertErrorComponent,
+        EditionFoliosPanelComponent,
+        EditionSheetsPanelComponent,
+        TwelveToneSpinnerComponent,
+    ],
 })
 export class EditionSheetsComponent {
-    /**
-     * Private readonly injection variable: _editionSheetsService.
-     *
-     * It keeps the instance of the injected EditionSheetsService.
-     */
-    private readonly _editionSheetsService = inject(EditionSheetsService);
-
     /**
      * Private readonly injection variable: _navigationService
      *
@@ -60,40 +64,11 @@ export class EditionSheetsComponent {
     });
 
     /**
-     * Public variable: isSheetFacetMinimized.
+     * Private readonly computed signal: _sheetIdFromRoute.
      *
-     * It keeps the toggle state of the sheet facet.
+     * It holds the full sheet id given by the query param `id` (or an empty string).
      */
-    isSheetFacetMinimized = false;
-
-    /**
-     * Public variable: selectedConvolute.
-     *
-     * It keeps the selected convolute.
-     */
-    selectedConvolute: FolioConvolute | undefined;
-
-    /**
-     * Public variable: selectedSvgSheet.
-     *
-     * It keeps the selected SVG sheet.
-     */
-    selectedSvgSheet: EditionSvgSheet | undefined;
-
-    /**
-     * Public variable: displayedTextcritics.
-     *
-     * It keeps the textcritics of the selected SVG sheet
-     * with the commentary filtered for the selected tkk overlays.
-     */
-    displayedTextcritics: Textcritics | undefined;
-
-    /**
-     * Public variable: selectedTextcritics.
-     *
-     * It keeps the textcritics of the selected SVG sheet.
-     */
-    selectedTextcritics: Textcritics | undefined;
+    private readonly _sheetIdFromRoute = computed<string>(() => this._queryParams().get('id') ?? '');
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -110,6 +85,13 @@ export class EditionSheetsComponent {
     readonly viewData = inject(EditionViewService).sheetsViewData;
 
     /**
+     * Private readonly computed signal: _viewDataContent.
+     *
+     * It holds the content (svg sheets, folio convolutes and textcritics) of the sheets view data.
+     */
+    private readonly _viewDataContent = computed(() => this.viewData()?.data);
+
+    /**
      * Readonly signal: isFirstPageLoad.
      *
      * It holds the information if the page is loaded for the first time.
@@ -117,51 +99,142 @@ export class EditionSheetsComponent {
     readonly isFirstPageLoad = signal<boolean>(true);
 
     /**
+     * Readonly signal: isSheetFacetMinimized.
+     *
+     * It holds the toggle state of the sheet facet.
+     */
+    readonly isSheetFacetMinimized = signal<boolean>(false);
+
+    /**
+     * Private readonly computed signal: _selectedSheetContext.
+     *
+     * It holds the svg sheet (with its edition type) selected by the sheet id of the route.
+     * It is the single source of all other signals concerning the selected svg sheet.
+     * It keeps its reference as long as the same content of the same sheet is selected.
+     */
+    private readonly _selectedSheetContext = computed<EditionSvgSheetContext | undefined>(
+        () => {
+            const sheets = this._viewDataContent()?.svgSheetsData?.sheets;
+
+            return sheets ? EDITION_SHEETS_UTILS.findSvgSheet(sheets, this._sheetIdFromRoute()) : undefined;
+        },
+        {
+            equal: (a, b) =>
+                a?.selection.fullId === b?.selection.fullId && a?.selection.content === b?.selection.content,
+        }
+    );
+
+    /**
+     * Readonly computed signal: selectedSvgSheet.
+     *
+     * It holds the svg sheet selected by the sheet id of the route
+     * (id, full id and selected content).
+     */
+    readonly selectedSvgSheet = computed<EditionSvgSheetSelection | undefined>(
+        () => this._selectedSheetContext()?.selection
+    );
+
+    /**
+     * Readonly computed signal: selectedConvolute.
+     *
+     * It holds the folio convolute of the selected svg sheet.
+     */
+    readonly selectedConvolute = computed<FolioConvolute | undefined>(() => {
+        const context = this._selectedSheetContext();
+        const convolutes = this._viewDataContent()?.folioConvoluteData?.convolutes;
+
+        return context && convolutes
+            ? EDITION_SHEETS_UTILS.findConvolute(convolutes, context.selection, context.editionType)
+            : undefined;
+    });
+
+    /**
+     * Readonly computed signal: selectedTextcritics.
+     *
+     * It holds the textcritics of the selected svg sheet
+     * with the commentary filtered for the selected tkk overlays
+     * (a missing or empty commentary stays as it is).
+     */
+    readonly selectedTextcritics = computed<Textcritics | undefined>(() => {
+        const selection = this.selectedSvgSheet();
+        const textcriticsList = this._viewDataContent()?.textcriticsData?.textcritics;
+        const textcritics =
+            selection && textcriticsList
+                ? EDITION_SHEETS_UTILS.findTextcritics(textcriticsList, selection.id)
+                : undefined;
+
+        return textcritics
+            ? {
+                  ...textcritics,
+                  commentary: EDITION_SHEETS_UTILS.filterCommentaryForOverlays(
+                      textcritics.commentary,
+                      this.selectedTkkOverlays()
+                  ),
+              }
+            : undefined;
+    });
+
+    /**
+     * Readonly linked signal: selectedTkkOverlays.
+     *
+     * It holds the selected tkk overlays of the selected svg sheet.
+     * It is reset to an empty array whenever the selected svg sheet changes.
+     */
+    readonly selectedTkkOverlays = linkedSignal<EditionSvgSheetSelection | undefined, EditionSvgOverlayTkk[]>({
+        source: this.selectedSvgSheet,
+        computation: () => [],
+    });
+
+    /**
      * Constructor of the EditionSheetsComponent.
      *
-     * It sets up an effect to handle query parameters and select the corresponding SVG sheet.
+     * It sets up an effect to navigate to the default svg sheet
+     * if no sheet id is given by the route.
      */
     constructor() {
         effect(() => {
-            const queryParams = this._queryParams();
-            const svgSheetsData = this.viewData()?.data?.svgSheetsData;
+            const sheets = this._viewDataContent()?.svgSheetsData?.sheets;
             const complex = this.selectedEditionComplex();
 
-            if (!complex || !svgSheetsData?.sheets) {
+            if (!complex || !sheets) {
                 return;
             }
 
-            this._handleQueryParams(queryParams, svgSheetsData);
+            if (!this._sheetIdFromRoute()) {
+                const defaultSheetId = EDITION_SHEETS_UTILS.getDefaultSheetId(sheets);
+                this._selectSvgSheet({ complexId: '', sheetId: defaultSheetId });
+            }
+
+            this.isFirstPageLoad.set(false);
         });
     }
 
     /**
      *
-     * Public method: onBrowseSvgSheet.
+     * Public method: onSheetBrowse.
      *
      * It evaluates the id of the previous or next SVG sheet
-     * based on the given direction and calls it with onSvgSheetSelect.
+     * of the same edition type based on the given direction
+     * and selects it with _selectSvgSheet.
      *
-     * @param {number} direction - A number indicating the direction of browsing. -1 for previous and 1 for next.
-     * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
+     * @param {1 | -1} direction The given direction: -1 for previous and 1 for next.
+     * @returns {void} Evaluates the sheet id to be selected with _selectSvgSheet.
      */
-    onBrowseSvgSheet(direction: number): void {
-        const sheets = this.viewData()?.data?.svgSheetsData?.sheets;
-        const selectedSheet = this.selectedSvgSheet;
+    onSheetBrowse(direction: 1 | -1): void {
+        const context = this._selectedSheetContext();
+        const sheets = this._viewDataContent()?.svgSheetsData?.sheets;
 
-        if (!sheets || !selectedSheet) {
+        if (!context || !sheets) {
             return;
         }
 
-        const editionType = this._editionSheetsService.getCurrentEditionType(selectedSheet, sheets);
-        if (!editionType) {
-            return;
-        }
+        const nextSheetId = EDITION_SHEETS_UTILS.getNextSheetId(
+            sheets[context.editionType],
+            context.selection.fullId,
+            direction
+        );
 
-        const editionTypeSheets = sheets[editionType];
-        const nextSheetId = this._editionSheetsService.getNextSheetId(direction, selectedSheet, editionTypeSheets);
-
-        this.onSvgSheetSelect({ complexId: '', sheetId: nextSheetId });
+        this._selectSvgSheet({ complexId: '', sheetId: nextSheetId });
     }
 
     /**
@@ -173,149 +246,39 @@ export class EditionSheetsComponent {
      * @returns {void} Finds and selects the target SVG sheet of a link box.
      */
     onLinkBoxSelect(linkBoxId: string): void {
-        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
-            return;
-        }
+        const linkTo = this.selectedTextcritics()?.linkBoxes?.find(linkBox => linkBox.svgGroupId === linkBoxId)?.linkTo;
 
-        const selectedLinkBox = this.selectedTextcritics.linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
-
-        if (selectedLinkBox) {
-            const linkedSheetIds = selectedLinkBox.linkTo;
-            this.onSvgSheetSelect(linkedSheetIds);
+        if (linkTo) {
+            this._selectSvgSheet(linkTo);
         }
     }
 
     /**
      * Public method: onOverlaySelect.
      *
-     * It sets the displayed textcritics: the textcritics of the selected SVG sheet
-     * with the commentary filtered for the given selected tkk overlays
-     * (a missing or empty commentary stays as it is).
+     * It sets the selected tkk overlays
+     * (that filter the commentary of the displayed textcritics).
      *
      * @param {EditionSvgOverlayTkk[]} overlays The given tkk overlays.
-     * @returns {void} Sets the displayedTextcritics variable.
+     * @returns {void} Sets the selectedTkkOverlays signal.
      */
     onOverlaySelect(overlays: EditionSvgOverlayTkk[]): void {
-        const textcritics = this.selectedTextcritics;
-        if (!textcritics) {
-            this.displayedTextcritics = undefined;
-            return;
-        }
-
-        const commentary = textcritics.commentary;
-        this.displayedTextcritics = {
-            ...textcritics,
-            commentary:
-                commentary && !UTILS.isEmptyObject(commentary)
-                    ? this._editionSheetsService.filterTextcriticalCommentaryForOverlays(commentary, overlays)
-                    : commentary,
-        };
-    }
-
-    /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It delegates the navigation for the given complex and SVG sheet IDs
-     * directly to the {@link EditionNavigationService}.
-     *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
-     * @returns {void} Navigates to the selected SVG sheet.
-     */
-    onSvgSheetSelect(sheetIds: SheetClickEvent): void {
-        if (!sheetIds.sheetId) {
-            return;
-        }
-        this._navigationService.navigateToSvgSheet(sheetIds);
-    }
-
-    /**
-     * Private method: _getDefaultSheetId.
-     *
-     * It returns the id of the first sheet of the svgSheetsData as default.
-     *
-     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.     *
-     * @returns {string} The default sheet id.
-     */
-    private _getDefaultSheetId(svgSheetsData: EditionSvgSheetsList): string {
-        const sheets = svgSheetsData.sheets;
-        const defaultSheet = sheets.textEditions[0] || sheets.sketchEditions[0];
-
-        if (!defaultSheet) {
-            return '';
-        }
-
-        const defaultSheetContentPartial = defaultSheet.content?.[0]?.partial ?? '';
-
-        return defaultSheet.id + defaultSheetContentPartial;
-    }
-
-    /**
-     * Private method: _handleQueryParams.
-     *
-     * It handles the query params and selects the corresponding SVG sheet.
-     *
-     * @param {ParamMap} queryParams The given query paramMap of the activated route.
-     * @param {EditionSvgSheetsList} svgSheetsData The given svgSheetsData.
-     * @returns {void} Handles the query params and selects the corresponding SVG sheet.
-     */
-    private _handleQueryParams(queryParams: ParamMap, svgSheetsData: EditionSvgSheetsList): void {
-        const sheetIdFromQueryParams = queryParams?.get('id');
-
-        if (sheetIdFromQueryParams && svgSheetsData) {
-            this._selectSvgSheet(sheetIdFromQueryParams);
-        } else {
-            const fallbackSheetId = this._getDefaultSheetId(svgSheetsData);
-
-            // Reset selectedSvgSheet if no fallback sheet is provided
-            if (fallbackSheetId === '') {
-                this.selectedSvgSheet = undefined;
-            }
-
-            // Navigate once more to the fallback sheet
-            this.onSvgSheetSelect({
-                complexId: '',
-                sheetId: fallbackSheetId,
-            });
-        }
-
-        if (this.isFirstPageLoad()) {
-            this.isFirstPageLoad.set(false);
-        }
+        this.selectedTkkOverlays.set(overlays);
     }
 
     /**
      * Private method: _selectSvgSheet.
      *
-     * It selects an SVG sheet by the given query params.
+     * It delegates the navigation to the given sheet navigation target
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {string} sheetId The given sheet id.
-     *
-     * @returns {void} Selects the SVG sheet.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
+     * @returns {void} Navigates to the selected SVG sheet.
      */
-    private _selectSvgSheet(sheetId: string): void {
-        if (!sheetId) {
+    private _selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
+        if (!sheetTarget.sheetId) {
             return;
         }
-        const data = this.viewData()?.data;
-        const sheets = data?.svgSheetsData?.sheets;
-        const convolutes = data?.folioConvoluteData?.convolutes;
-        const textcritics = data?.textcriticsData?.textcritics;
-
-        if (!sheets || !convolutes || !textcritics) {
-            return;
-        }
-
-        const currentSheet = this._editionSheetsService.selectSvgSheetById(sheets, sheetId);
-        this.selectedSvgSheet = currentSheet;
-
-        this.selectedConvolute = currentSheet
-            ? this._editionSheetsService.selectConvolute(convolutes, sheets, currentSheet)
-            : undefined;
-        this.selectedTextcritics = currentSheet
-            ? this._editionSheetsService.findTextcritics(textcritics, currentSheet)
-            : undefined;
-
-        // Clear overlay selections and textcritical comments
-        this.onOverlaySelect([]);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

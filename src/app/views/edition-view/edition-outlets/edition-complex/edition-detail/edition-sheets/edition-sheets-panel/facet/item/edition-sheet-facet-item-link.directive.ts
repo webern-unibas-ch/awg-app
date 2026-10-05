@@ -2,7 +2,8 @@ import { Directive, inject, input } from '@angular/core';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
 
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The EditionSheetFacetItemLink directive.
@@ -30,11 +31,11 @@ export class EditionSheetFacetItemLinkDirective {
     private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Readonly input signal: sheetIds.
+     * Readonly input signal: sheetTarget.
      *
-     * It holds the sheet ids (incl. partial) to navigate to.
+     * It holds the sheet navigation target (incl. partial).
      */
-    readonly sheetIds = input.required<SheetClickEvent>({ alias: 'awgEditionSheetFacetItemLink' });
+    readonly sheetTarget = input.required<EditionNavigationSheetTarget>({ alias: 'awgEditionSheetFacetItemLink' });
 
     /**
      * Readonly input signal: isActive.
@@ -56,17 +57,17 @@ export class EditionSheetFacetItemLinkDirective {
     /**
      * Public method: select.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
      * @returns {void} Navigates to the linked SVG sheet.
      */
     select(): void {
-        const sheetIds = this.sheetIds();
+        const sheetTarget = this.sheetTarget();
 
-        if (!sheetIds.sheetId) {
+        if (!sheetTarget.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

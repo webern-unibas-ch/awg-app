@@ -62,8 +62,10 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSheetViewerAdditionsPanelComponent, EditionTkaLabelComponent],
-        }).compileComponents();
+            imports: [EditionSheetViewerAdditionsPanelComponent],
+        })
+            .overrideComponent(EditionTkaLabelComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -325,11 +327,11 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                     }
                 );
 
-                it('... should contain EditionTkaLabelComponent as label for the tkk key', () => {
+                it('... should contain EditionTkaLabelComponent (hollow) as label for the tkk key', () => {
                     getAndExpectDebugElementByDirective(getLabelDe(expectedTkkKey), EditionTkaLabelComponent, 1, 1);
                 });
 
-                it('... should pass down `sheetId` and `labelType` to EditionTkaLabelComponent', () => {
+                it('... should pass down `sheetId` and `labelType` to EditionTkaLabelComponent (hollow)', () => {
                     const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelComponent, 1, 1);
                     const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 

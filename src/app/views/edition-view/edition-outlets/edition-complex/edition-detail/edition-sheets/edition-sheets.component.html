@@ -11,17 +11,15 @@
                 <awg-edition-sheets-panel
                     [(isSheetFacetMinimized)]="isSheetFacetMinimized"
                     [svgSheetsData]="view.data.svgSheetsData"
-                    [selectedSvgSheet]="selectedSvgSheet"
-                    [displayedTextcritics]="displayedTextcritics"
-                    (browseSheetRequest)="onBrowseSvgSheet($event)"
+                    [selectedSvgSheet]="selectedSvgSheet()"
+                    [selectedTextcritics]="selectedTextcritics()"
+                    (browseSheetRequest)="onSheetBrowse($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectTkkOverlaysRequest)="onOverlaySelect($event)" />
 
                 <!-- folios panel -->
-                @if (selectedConvolute && selectedSvgSheet) {
-                    <awg-edition-folios-panel
-                        [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet" />
+                @if (selectedConvolute(); as convolute) {
+                    <awg-edition-folios-panel [selectedConvolute]="convolute" [selectedSvgSheet]="selectedSvgSheet()" />
                 }
             </div>
         }

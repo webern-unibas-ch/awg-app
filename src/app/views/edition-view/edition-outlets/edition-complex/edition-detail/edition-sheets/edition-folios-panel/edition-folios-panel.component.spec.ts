@@ -17,11 +17,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
-
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionFoliosPanelComponent } from './edition-folios-panel.component';
 import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
@@ -33,11 +30,9 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let router: Router;
-    let mockModalService: Partial<ModalService>;
-    let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedConvolute: FolioConvolute;
-    let expectedSvgSheet: EditionSvgSheet;
+    let expectedSelection: EditionSvgSheetSelection;
     let expectedFragment: string;
 
     const getItemDe = (): DebugElement =>
@@ -45,22 +40,13 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     const getBodyDe = (): DebugElement => getAndExpectDebugElementByCss(getItemDe(), 'div.accordion-body', 1, 1)[0];
 
     beforeEach(async () => {
-        // Mocked services for the real EditionFoliosViewerSvgComponent
-        mockModalService = {
-            openTextModal: vi.fn(),
-        };
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [EditionFoliosPanelComponent],
-            providers: [
-                provideRouter([]),
-                { provide: ModalService, useValue: mockModalService },
-                { provide: EditionNavigationService, useValue: mockNavigationService },
-            ],
-        }).compileComponents();
+            providers: [provideRouter([])],
+        })
+            .overrideComponent(EditionFoliosLegendComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionFoliosViewerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -72,7 +58,11 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
         // Test data
         expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSelection = {
+            id: mockEditionData.mockSvgSheet_Sk1.id,
+            fullId: mockEditionData.mockSvgSheet_Sk1.id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
         expectedFragment = `source_${expectedConvolute.convoluteId}`;
 
         // Create component fixture
@@ -114,12 +104,6 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expect(() => component.folios()).toThrow();
         });
 
-        it('... should throw when accessing computed signal `selectedSheetId` due to missing input', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
-
-            expect(() => component.selectedSheetId()).toThrow();
-        });
-
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -145,7 +129,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
@@ -155,8 +139,8 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expectToEqual(component.selectedConvolute(), expectedConvolute);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
         it('... should have computed signal `folios` to hold the folios of the selected convolute', () => {
@@ -175,21 +159,6 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
         it('... should have computed signal `reportFragment` to hold the source fragment of the selected convolute', () => {
             expectToBe(component.reportFragment(), expectedFragment);
-        });
-
-        it('... should have computed signal `selectedSheetId` to hold the id of the selected svg sheet', () => {
-            expectToEqual(component.selectedSheetId(), {
-                id: expectedSvgSheet.id,
-                partial: expectedSvgSheet.content[0].partial,
-            });
-        });
-
-        it('... should have recomputed signal `selectedSheetId` to hold the id and the partial of the selected svg sheet', async () => {
-            const expectedSvgSheetWithPartial = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.selectedSheetId(), { id: expectedSvgSheetWithPartial.id, partial: 'a' });
         });
 
         describe('VIEW', () => {
@@ -218,12 +187,12 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                 });
             });
 
-            describe('... EditionFoliosViewerComponent', () => {
-                it('... should contain one EditionFoliosViewerComponent in the body', () => {
+            describe('... EditionFoliosViewerComponent (hollow)', () => {
+                it('... should contain one EditionFoliosViewerComponent (hollow) in the body', () => {
                     getAndExpectDebugElementByDirective(getBodyDe(), EditionFoliosViewerComponent, 1, 1);
                 });
 
-                it('... should pass down `folios` and `selectedSheetId` to EditionFoliosViewerComponent', () => {
+                it('... should pass down `folios` and `selectedSvgSheet` to EditionFoliosViewerComponent (hollow)', () => {
                     const viewerDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosViewerComponent,
@@ -233,12 +202,12 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     const viewerCmp = viewerDes[0].injector.get(EditionFoliosViewerComponent);
 
                     expectToEqual(viewerCmp.folios(), expectedConvolute.folios);
-                    expectToEqual(viewerCmp.selectedSheetId(), component.selectedSheetId());
+                    expectToEqual(viewerCmp.selectedSvgSheet(), expectedSelection);
                 });
             });
 
-            describe('... EditionFoliosLegendComponent', () => {
-                it('... should contain one EditionFoliosLegendComponent with class `col-12` in the body', () => {
+            describe('... EditionFoliosLegendComponent (hollow)', () => {
+                it('... should contain one EditionFoliosLegendComponent (hollow) with class `col-12` in the body', () => {
                     const legendDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosLegendComponent,

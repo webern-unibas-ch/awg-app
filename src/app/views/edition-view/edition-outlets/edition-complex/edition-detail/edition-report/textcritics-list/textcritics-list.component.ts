@@ -6,10 +6,11 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
-import { EditionDisclaimerWorkeditionsComponent } from '@awg-app/views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
@@ -61,16 +62,16 @@ export class TextcriticsListComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

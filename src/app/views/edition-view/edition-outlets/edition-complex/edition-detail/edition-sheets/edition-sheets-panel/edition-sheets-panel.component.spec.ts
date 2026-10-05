@@ -1,13 +1,10 @@
 import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
-import * as D3_SELECTION from 'd3-selection';
-
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -27,18 +24,18 @@ import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetSelection,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
-import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
-import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
 import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
 import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.component';
-
-type CreateSvgFn = EditionSvgDrawingService['createSvg'];
+import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 
 describe('EditionSheetsPanelComponent (DONE)', () => {
     let component: EditionSheetsPanelComponent;
@@ -46,7 +43,6 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let isFullscreenMockSignal: WritableSignal<boolean>;
-    let mockModalService: { openTextModal: Mock };
 
     let browseSheetRequestSpy: Mock<(direction: 1 | -1) => void>;
     let selectLinkBoxRequestSpy: Mock<(id: string) => void>;
@@ -54,59 +50,26 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
     let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedDisplayedTextcritics: Textcritics;
-
-    beforeAll(() => {
-        // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
-        if (typeof SVGSVGElement !== 'undefined') {
-            for (const key of ['width', 'height']) {
-                if (!(key in SVGSVGElement.prototype)) {
-                    Object.defineProperty(SVGSVGElement.prototype, key, {
-                        configurable: true,
-                        get() {
-                            return { baseVal: { value: 100 } };
-                        },
-                    });
-                }
-            }
-        }
-    });
+    let expectedSelection: EditionSvgSheetSelection;
+    let expectedSelectedTextcritics: Textcritics;
 
     beforeEach(async () => {
         // Unset fullscreen by default
         isFullscreenMockSignal = signal(false);
 
-        mockModalService = { openTextModal: vi.fn() };
-
         await TestBed.configureTestingModule({
             imports: [EditionSheetsPanelComponent],
             providers: [
                 { provide: FullscreenService, useValue: { isFullscreen: isFullscreenMockSignal.asReadonly() } },
-                { provide: ModalService, useValue: mockModalService },
-                // Mocked services for the real child components
-                { provide: EditionNavigationService, useValue: { navigateToSvgSheet: vi.fn() } },
-                {
-                    provide: EditionSvgDrawingService,
-                    useValue: {
-                        createSvg: vi.fn<CreateSvgFn>(
-                            async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any
-                        ),
-                        getSuppliedClasses: vi.fn(() => []),
-                        toggleSuppliedClassOpacity: vi.fn(),
-                    },
-                },
-                {
-                    provide: EditionSvgOverlayService,
-                    useValue: {
-                        createSvgOverlays: vi.fn(() => []),
-                        getSvgOverlay: vi.fn(() => undefined),
-                        updateTkkOverlays: vi.fn(),
-                        createSvgOverlaysState: vi.fn(EditionSvgOverlayService.prototype.createSvgOverlaysState),
-                        getSelectedTkkOverlays: vi.fn(EditionSvgOverlayService.prototype.getSelectedTkkOverlays),
-                    },
-                },
+                { provide: ModalService, useValue: { openTextModal: vi.fn() } },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonUsageHintsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetFacetComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetFooterComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetViewerComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(FullscreenToggleComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -115,6 +78,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(expectedSvgSheet, expectedSvgSheet.content[0]);
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -122,7 +86,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 sketchEditions: [expectedSvgSheet, structuredClone(mockEditionData.mockSvgSheet_Sk2)],
             },
         };
-        expectedDisplayedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetsPanelComponent);
@@ -151,7 +115,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             ['model', 'isSheetFacetMinimized'],
             ['input', 'svgSheetsData'],
             ['input', 'selectedSvgSheet'],
-            ['input', 'displayedTextcritics'],
+            ['input', 'selectedTextcritics'],
         ] as const)('... should throw due to missing required %s signal `%s`', (_kind, key) => {
             expectToBe(isSignal(component[key]), true);
 
@@ -175,13 +139,11 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
-            fixture.componentRef.setInput('displayedTextcritics', expectedDisplayedTextcritics);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
+            fixture.componentRef.setInput('selectedTextcritics', expectedSelectedTextcritics);
 
             // Trigger initial data binding
             fixture.detectChanges();
-            // Wait for the rendering of the svg sheet in the viewer
-            await fixture.whenStable();
         });
 
         it('... should have model signal `isSheetFacetMinimized` to hold the provided value', () => {
@@ -192,12 +154,12 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             expectToEqual(component.svgSheetsData(), expectedSvgSheetsData);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
-        it('... should have input signal `displayedTextcritics` to hold the provided textcritics', () => {
-            expectToEqual(component.displayedTextcritics(), expectedDisplayedTextcritics);
+        it('... should have input signal `selectedTextcritics` to hold the provided textcritics', () => {
+            expectToEqual(component.selectedTextcritics(), expectedSelectedTextcritics);
         });
 
         describe('VIEW', () => {
@@ -245,29 +207,21 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     expectToBe(btnEl.textContent.trim(), 'Edierte Notentexte');
                 });
 
-                it('... should contain the ButtonUsageHintsComponent and the FullscreenToggleComponent in div.ms-auto', () => {
+                it('... should contain the ButtonUsageHintsComponent (hollow) and the FullscreenToggleComponent (hollow) in div.ms-auto', () => {
                     const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDes()[0], 'div.ms-auto', 1, 1);
 
                     getAndExpectDebugElementByDirective(msAutoDes[0], ButtonUsageHintsComponent, 1, 1);
                     getAndExpectDebugElementByDirective(msAutoDes[0], FullscreenToggleComponent, 1, 1);
                 });
 
-                it('... should pass down `snippetKey` to the ButtonUsageHintsComponent', () => {
+                it('... should pass down `snippetKey` to the ButtonUsageHintsComponent (hollow)', () => {
                     const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonUsageHintsComponent, 1, 1);
                     const buttonCmp = buttonDes[0].injector.get(ButtonUsageHintsComponent);
 
                     expectToBe(buttonCmp.snippetKey(), 'HINT_EDITION_SHEETS');
                 });
 
-                it('... should open the sheet usage hints via ModalService on click on the ButtonUsageHintsComponent', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-button-usage-hints > button', 1, 1);
-
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(mockModalService.openTextModal, 1, 'HINT_EDITION_SHEETS');
-                });
-
-                it('... should contain only the FullscreenToggleComponent in fullscreen mode', async () => {
+                it('... should contain only the FullscreenToggleComponent (hollow) in fullscreen mode', async () => {
                     isFullscreenMockSignal.set(true);
                     await detectChangesOnPush(fixture);
 
@@ -275,7 +229,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(getItemHeaderDes()[0], FullscreenToggleComponent, 1, 1);
                 });
 
-                it('... should pass down the accordion reference to the FullscreenToggleComponent', () => {
+                it('... should pass down the accordion reference to the FullscreenToggleComponent (hollow)', () => {
                     const fsToggleDes = getAndExpectDebugElementByDirective(compDe, FullscreenToggleComponent, 1, 1);
                     const fsToggleCmp = fsToggleDes[0].injector.get(FullscreenToggleComponent);
                     const accDes = getAndExpectDebugElementByCss(compDe, '[ngbAccordion]', 1, 1);
@@ -321,8 +275,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     }
                 );
 
-                describe('... EditionSheetFacetComponent', () => {
-                    it('... should contain one EditionSheetFacetComponent in the facet container', () => {
+                describe('... EditionSheetFacetComponent (hollow)', () => {
+                    it('... should contain one EditionSheetFacetComponent (hollow) in the facet container', () => {
                         const facetContainerDes = getAndExpectDebugElementByCss(
                             getItemBodyDes()[0],
                             'div.awg-edition-sheet-facet-container',
@@ -333,16 +287,16 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(facetContainerDes[0], EditionSheetFacetComponent, 1, 1);
                     });
 
-                    it('... should pass down `svgSheetsData`, `selectedSvgSheet` and `isMinimized` to EditionSheetFacetComponent', () => {
+                    it('... should pass down `svgSheetsData`, `selectedSvgSheet` and `isMinimized` to EditionSheetFacetComponent (hollow)', () => {
                         const facetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetFacetComponent, 1, 1);
                         const facetCmp = facetDes[0].injector.get(EditionSheetFacetComponent);
 
                         expectToEqual(facetCmp.svgSheetsData(), expectedSvgSheetsData);
-                        expectToEqual(facetCmp.selectedSvgSheet(), expectedSvgSheet);
+                        expectToEqual(facetCmp.selectedSvgSheet(), expectedSelection);
                         expectToBe(facetCmp.isMinimized(), false);
                     });
 
-                    it('... should sync `isMinimized` of the EditionSheetFacetComponent to `isSheetFacetMinimized`', async () => {
+                    it('... should sync `isMinimized` of the EditionSheetFacetComponent (hollow) to `isSheetFacetMinimized`', async () => {
                         const facetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetFacetComponent, 1, 1);
                         const facetCmp = facetDes[0].injector.get(EditionSheetFacetComponent);
 
@@ -362,8 +316,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     });
                 });
 
-                describe('... EditionSheetViewerComponent', () => {
-                    it('... should contain one EditionSheetViewerComponent in the viewer container', () => {
+                describe('... EditionSheetViewerComponent (hollow)', () => {
+                    it('... should contain one EditionSheetViewerComponent (hollow) in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
                             getItemBodyDes()[0],
                             'div.awg-edition-sheet-viewer-container',
@@ -374,14 +328,14 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(viewerContainerDes[0], EditionSheetViewerComponent, 1, 1);
                     });
 
-                    it('... should not contain an EditionSheetViewerComponent without `selectedSvgSheet`', async () => {
+                    it('... should not contain an EditionSheetViewerComponent (hollow) without `selectedSvgSheet`', async () => {
                         fixture.componentRef.setInput('selectedSvgSheet', undefined);
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByDirective(getItemBodyDes()[0], EditionSheetViewerComponent, 0, 0);
                     });
 
-                    it('... should pass down `selectedSvgSheet` to EditionSheetViewerComponent', () => {
+                    it('... should pass down `selectedSvgSheet` to EditionSheetViewerComponent (hollow)', () => {
                         const viewerDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSheetViewerComponent,
@@ -390,7 +344,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         );
                         const viewerCmp = viewerDes[0].injector.get(EditionSheetViewerComponent);
 
-                        expectToEqual(viewerCmp.selectedSvgSheet(), expectedSvgSheet);
+                        expectToEqual(viewerCmp.selectedSvgSheet(), expectedSelection);
                     });
 
                     it.each([-1, 1] as const)(
@@ -440,8 +394,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     });
                 });
 
-                describe('... EditionSheetFooterComponent', () => {
-                    it('... should contain one EditionSheetFooterComponent in the viewer container', () => {
+                describe('... EditionSheetFooterComponent (hollow)', () => {
+                    it('... should contain one EditionSheetFooterComponent (hollow) in the viewer container', () => {
                         const viewerContainerDes = getAndExpectDebugElementByCss(
                             getItemBodyDes()[0],
                             'div.awg-edition-sheet-viewer-container',
@@ -454,18 +408,18 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
                     it.each([
                         ['no `selectedSvgSheet`', false, true],
-                        ['no `displayedTextcritics`', true, false],
+                        ['no `selectedTextcritics`', true, false],
                         ['neither', false, false],
                     ])(
-                        '... should not contain an EditionSheetFooterComponent for %s',
+                        '... should not contain an EditionSheetFooterComponent (hollow) for %s',
                         async (_label, hasSvgSheet, hasTextcritics) => {
                             fixture.componentRef.setInput(
                                 'selectedSvgSheet',
-                                hasSvgSheet ? expectedSvgSheet : undefined
+                                hasSvgSheet ? expectedSelection : undefined
                             );
                             fixture.componentRef.setInput(
-                                'displayedTextcritics',
-                                hasTextcritics ? expectedDisplayedTextcritics : undefined
+                                'selectedTextcritics',
+                                hasTextcritics ? expectedSelectedTextcritics : undefined
                             );
                             await detectChangesOnPush(fixture);
 
@@ -473,7 +427,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         }
                     );
 
-                    it('... should pass down `displayedTextcritics` to EditionSheetFooterComponent', () => {
+                    it('... should pass down `selectedTextcritics` to EditionSheetFooterComponent (hollow)', () => {
                         const footerDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSheetFooterComponent,
@@ -482,7 +436,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         );
                         const footerCmp = footerDes[0].injector.get(EditionSheetFooterComponent);
 
-                        expectToEqual(footerCmp.displayedTextcritics(), expectedDisplayedTextcritics);
+                        expectToEqual(footerCmp.selectedTextcritics(), expectedSelectedTextcritics);
                     });
                 });
             });

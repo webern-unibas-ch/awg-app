@@ -3,12 +3,10 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
+import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { Source } from '@awg-views/edition-view/models/source.model';
-import {
-    EditionNavigationService,
-    FragmentClickEvent,
-} from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceSiglumComponent } from '../source-siglum/source-siglum.component';
 
@@ -75,14 +73,14 @@ export class SourceListComponent {
      * It delegates the navigation for the given complex and report fragment IDs
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} reportIds The given report ids as FragmentClickEvent.
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the selected report fragment.
      */
-    private _navigateToReportFragment(reportIds: FragmentClickEvent): void {
-        if (!reportIds.fragmentId) {
+    private _navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
+        if (!reportTarget.fragmentId) {
             return;
         }
-        this._navigationService.navigateToReportFragment(reportIds);
+        this._navigationService.navigateToReportFragment(reportTarget);
     }
 
     /**

@@ -14,7 +14,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -30,7 +30,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedFolios: Folio[];
-    let expectedSheetId: EditionSvgSheetId;
+    let expectedSelection: EditionSvgSheetSelection;
 
     const getFolioSvgDes = (expectedCount: number): DebugElement[] =>
         getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerSvgComponent, expectedCount, expectedCount);
@@ -59,7 +59,11 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         // Test data
         const folio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
         expectedFolios = [folio, { ...structuredClone(folio), folioId: '2' }];
-        expectedSheetId = { id: mockEditionData.mockSvgSheet_Sk1.id, partial: undefined };
+        expectedSelection = {
+            id: mockEditionData.mockSvgSheet_Sk1.id,
+            fullId: mockEditionData.mockSvgSheet_Sk1.id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionFoliosViewerComponent);
@@ -82,10 +86,10 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
             expect(() => component.folios()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetId`', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
 
-            expect(() => component.selectedSheetId()).toThrow();
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         it('... should throw when accessing computed signal `colSize` due to missing input', () => {
@@ -99,7 +103,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('folios', expectedFolios);
-            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
@@ -109,8 +113,8 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
             expectToEqual(component.folios(), expectedFolios);
         });
 
-        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetId(), expectedSheetId);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
         it('... should have computed signal `colSize` to hold the column span for the folios in one row', () => {
@@ -179,12 +183,12 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down `folio` and `selectedSheetId` to each EditionFoliosViewerSvgComponent', () => {
+            it('... should pass down `folio` and `selectedSvgSheet` to each EditionFoliosViewerSvgComponent', () => {
                 getFolioSvgDes(2).forEach((folioSvgDe, index) => {
                     const folioSvgCmp = folioSvgDe.injector.get(EditionFoliosViewerSvgComponent);
 
                     expectToEqual(folioSvgCmp.folio(), expectedFolios[index]);
-                    expectToEqual(folioSvgCmp.selectedSheetId(), expectedSheetId);
+                    expectToEqual(folioSvgCmp.selectedSvgSheet(), expectedSelection);
                 });
             });
         });

@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, input, model } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 
 import {
-    EditionSvgSheet,
-    EditionSvgSheetId,
+    EditionSvgSheetSelection,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS } from '@awg-views/edition-view/models/edition-type.model';
@@ -35,9 +34,9 @@ export class EditionSheetFacetComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 
     /**
      * Readonly model signal: isMinimized.
@@ -53,17 +52,4 @@ export class EditionSheetFacetComponent {
      * It keeps the available keys for the edition types.
      */
     readonly EDITION_TYPE_KEYS = EDITION_TYPE_KEYS;
-
-    /**
-     * Readonly computed signal: selectedSheetId.
-     *
-     * It computes the id and the (optional) partial of the selected svg sheet.
-     * The content of a selected svg sheet with partials is reduced
-     * to the selected partial by the EditionSheetsService.
-     */
-    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
-        const selectedSvgSheet = this.selectedSvgSheet();
-
-        return { id: selectedSvgSheet?.id, partial: selectedSvgSheet?.content?.[0]?.partial };
-    });
 }

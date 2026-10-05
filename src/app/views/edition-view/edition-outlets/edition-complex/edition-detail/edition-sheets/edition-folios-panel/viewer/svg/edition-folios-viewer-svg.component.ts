@@ -16,7 +16,7 @@ import { ClickDirective } from '@awg-shared/click/click.directive';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
@@ -74,11 +74,11 @@ export class EditionFoliosViewerSvgComponent {
     readonly folio = input.required<Folio>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 
     /**
      * Readonly view child signal: svgRootGroup.
@@ -97,14 +97,10 @@ export class EditionFoliosViewerSvgComponent {
     /**
      * Readonly computed signal: selectedSegmentId.
      *
-     * It holds the content segment id of the selected svg sheet
-     * (sheet id including the partial, if any).
+     * It holds the content segment id of the selected svg sheet,
+     * i.e. its full id (incl. partial).
      */
-    readonly selectedSegmentId = computed<string>(() => {
-        const { id, partial } = this.selectedSheetId();
-
-        return `${id ?? ''}${partial ?? ''}`;
-    });
+    readonly selectedSegmentId = computed<string>(() => this.selectedSvgSheet()?.fullId ?? '');
 
     /**
      * Private readonly computed signal: _svgRootGroupSelection.
@@ -154,7 +150,7 @@ export class EditionFoliosViewerSvgComponent {
         event.preventDefault();
 
         if (contentSegment.selectable) {
-            this._navigationService.navigateToSvgSheet(contentSegment.sheetIds);
+            this._navigationService.navigateToSvgSheet(contentSegment.sheetTarget);
         } else {
             this._modalService.openTextModal(contentSegment.linkTo);
         }

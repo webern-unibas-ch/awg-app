@@ -6,7 +6,10 @@ import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheetSelection,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
@@ -51,17 +54,17 @@ export class EditionSheetsPanelComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 
     /**
-     * Readonly input signal: displayedTextcritics.
+     * Readonly input signal: selectedTextcritics.
      *
      * It holds the textcritics of the selected svg sheet
      * with the commentary filtered for the selected tkk overlays.
      */
-    readonly displayedTextcritics = input.required<Textcritics | undefined>();
+    readonly selectedTextcritics = input.required<Textcritics | undefined>();
 
     /**
      * Readonly output signal: browseSheetRequest.
