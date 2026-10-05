@@ -1,4 +1,4 @@
-### Angular Signals: Unit-Testing Wording Standard
+### Angular Signals: Unit-Testing Wording and Structure Standard
 
 Since signals represent **reactive states** rather than imperative variables or classic methods, test descriptions must always declare **what the signal holds in memory**, instead of what a method returns or that a value was updated.
 
@@ -49,9 +49,18 @@ Use the pattern: **`... to hold the expected [name] / [value]`**
 - **Recomputation:**
   ``it('... should have recomputed signal `fullscreenToggleBtn` when input changes')``
 
+### D. Linked Signals (Derived, but Writable States)
+
+Use the same patterns as for computed signals, but name the signal type **`linked signal`**:
+
+- ``it('... should have linked signal `selectedTkkOverlays` to hold an empty array')``
+- `it('... should hold an empty array again when the selected svg sheet changes')` (inside a `describe('... linked signal `selectedTkkOverlays`')`)
+
 ---
 
 ### 3. The Hierarchy: `BEFORE` vs. `AFTER` Data Binding
+
+Every component spec is split into a `BEFORE initial data binding` and an `AFTER initial data binding` block, **also for components without inputs**. The top-level `beforeEach` only creates the fixture; it never calls `fixture.detectChanges()`.
 
 ### Within the `BEFORE initial data binding` Block (Prior to `fixture.detectChanges()`)
 
@@ -60,7 +69,10 @@ Here, we exclusively verify existence, type safety (`isSignal`), and the **initi
 - **Optional Inputs** resolve to `undefined`:  
   ``it('... should have input signal `headerLabel` to hold undefined initially')``
 - **Required Inputs** must not be accessed yet and are expected to crash (`toThrow`):  
-  ``it('... should throw when accessing input signal `identifiers` due to missing input')``
+  ``it('... should throw due to missing required input signal `identifiers`')``
+- **Computed signals depending on required inputs** crash as well:  
+  ``it('... should throw when accessing computed signal `versionData` due to missing input')``
+- **Static view** (everything that renders without data binding, e.g. `@for` content not rendered yet) is tested here in a `VIEW` block.
 
 ### Within the `AFTER initial data binding` Block (After `fixture.detectChanges()`)
 
@@ -77,3 +89,56 @@ Here, we verify the state after test data has been supplied via `setInput`.
   `it('... should have computed signal `versionData` to hold null if awgAppGithubUrl is missing')`
 - **Avoid Redundant Array Assertions:** A single `expectToEqual(array, expectedArray)` (Deep Equal) validates content, structure, and length simultaneously. A separate `expectToBe(array.length, X)` is redundant and should be removed.
 - **Avoid Router State Mixing:** If a `beforeEach` initializes a specific route, do not navigate away and back within a single `it` block. Create separate, isolated `it` statements for different routing states instead (e.g., `... to hold false when route is not /edition`).
+
+---
+
+### 5. Spec Structure: `describe` Blocks
+
+- **Capitalized blocks only for `VIEW` and `METHODS`** (inside `BEFORE`/`AFTER initial data binding`). Do not add `INPUTS`, `OUTPUTS`, `SIGNALS`, `HOST` or similar capitalized blocks.
+- **Signal and input assertions** go directly into the `BEFORE`/`AFTER` blocks (or into lowercase sub-describes like `describe('... computed signal `selectedSvgSheet`')`).
+- **DOM interactions** (clicks, host bindings, outputs emitted on click) go into `VIEW`, e.g. `describe('... output `browseRequest`')` inside `VIEW`.
+- **Lowercase descriptive sub-describes** are fine anywhere: `describe('... with partials')`, `describe('... should do nothing if')`.
+- **Every method block starts with an existence test**, also for private methods:
+
+    ```ts
+    describe('#onSheetBrowse()', () => {
+        it('... should have a method `onSheetBrowse`', () => {
+            expect(component.onSheetBrowse).toBeDefined();
+        });
+        // ...
+    });
+
+    describe('#_selectSvgSheet()', () => {
+        it('... should have a method `_selectSvgSheet`', () => {
+            expect(component['_selectSvgSheet']).toBeDefined();
+        });
+        // ...
+    });
+    ```
+
+---
+
+### 6. Isolating Child Components: Hollow Children
+
+**Never call `TestBed.overrideComponent()` on the component under test.** Any override recompiles its template in JIT, so the AOT template (and its coverage) is no longer executed: the `.html` coverage drops to 0% (see [angular/angular-cli#30127](https://github.com/angular/angular-cli/issues/30127)). `vi.mock` is not an alternative either; the Angular unit-test builder does not support it.
+
+Instead, **hollow out the direct children**: keep their real classes, but empty their template and imports:
+
+```ts
+await TestBed.configureTestingModule({
+    imports: [EditionSheetsComponent],
+    providers: [
+        // only the direct injections of the hollow children
+        { provide: FullscreenService, useValue: { isFullscreen: signal(false).asReadonly() } },
+    ],
+})
+    .overrideComponent(EditionSheetsPanelComponent, { set: { template: '', imports: [] } })
+    .overrideComponent(EditionFoliosPanelComponent, { set: { template: '', imports: [] } })
+    .compileComponents();
+```
+
+- **The component under test stays untouched**, so its AOT template is covered.
+- **The children keep their real selectors, inputs and outputs.** Pass-down and output tests run against the real API (`debugElement.injector.get(EditionSheetsPanelComponent)`), so a renamed input breaks the test instead of silently drifting from a stub.
+- **No grandchildren are rendered**, so no extra services, D3 or SVG mocks are needed; only the direct injections of the hollow children have to be provided.
+- **Wording:** mark them as `(hollow)` instead of `(stubbed)` in test descriptions, e.g. `'... should contain one EditionSheetsPanelComponent (hollow)'`.
+- The hollow children's own coverage does not count in this spec; it comes from their own specs.
