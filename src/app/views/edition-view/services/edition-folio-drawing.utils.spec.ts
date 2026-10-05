@@ -144,6 +144,17 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 expectToBe(calculate(expectedReversedFolio).systems.reversed, true);
             });
 
+            it('... should calculate NaN values for invalid folio settings', () => {
+                const { systems } = calculateFolioSvgData(
+                    { ...expectedFolioSettings, formatX: Number.NaN },
+                    expectedFolio,
+                    expectedSegmentOffsetCorrection
+                );
+
+                expectToBe(systems.lines[0][0].start.x, Number.NaN);
+                expectToBe(systems.labelPositions[0].x, Number.NaN);
+            });
+
             it('... should not calculate any system for a folio without systems', () => {
                 const { systems } = calculate({ ...expectedFolio, systems: '' });
 
@@ -215,6 +226,34 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 ).contentSegments;
 
                 expectToBe(contentSegment.vertices, '216.6 52.93 370.13 52.93 370.13 83.39 216.6 83.39 216.6 52.93');
+            });
+
+            it.each<[string, number | undefined]>([
+                ['without position', undefined],
+                ['with a position bigger than the segment split', 3],
+            ])(
+                '... should calculate the vertices at the first position of a split segment %s',
+                (_description, position) => {
+                    const [contentSegment] = calculate(
+                        withContent({ segmentSplit: 2, segments: [{ position, startSystem: 2, endSystem: 4 }] })
+                    ).contentSegments;
+
+                    expectToBe(contentSegment.vertices, '59.07 52.93 212.6 52.93 212.6 83.39 59.07 83.39 59.07 52.93');
+                }
+            );
+
+            it('... should calculate the vertices of an unsplit segment without segment split', () => {
+                const [contentSegment] = calculate(withContent({ segmentSplit: undefined })).contentSegments;
+
+                expectToBe(contentSegment.vertices, '59.07 52.93 370.12 52.93 370.12 83.39 59.07 83.39 59.07 52.93');
+            });
+
+            it('... should throw for a segment outside the systems of the folio', () => {
+                const folio = withContent({ segments: [{ position: 1, startSystem: 19, endSystem: 19 }] });
+
+                expect(() => calculate(folio)).toThrow(
+                    '[FolioCalculation] Cannot calculate Y value: No system lines found for system 18.'
+                );
             });
 
             it('... should adjust the horizontal offset correction of the vertices to the number of systems', () => {
