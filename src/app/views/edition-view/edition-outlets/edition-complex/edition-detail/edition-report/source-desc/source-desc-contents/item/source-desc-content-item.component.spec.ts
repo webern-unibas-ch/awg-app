@@ -19,7 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -377,14 +377,14 @@ describe('SourceDescContentItemComponent', () => {
                 });
 
                 it('... should do nothing if no sheetId is provided', () => {
-                    const expectedSheetIds: SheetNavigationTarget = { complexId: 'op25', sheetId: '' };
+                    const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds: SheetNavigationTarget = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -392,7 +392,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetNavigationTarget = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedNextSheetId,
                     };
@@ -402,7 +402,7 @@ describe('SourceDescContentItemComponent', () => {
                 });
 
                 it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds: SheetNavigationTarget = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -410,7 +410,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetNavigationTarget = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedNextComplexId,
                         sheetId: expectedNextSheetId,
                     };

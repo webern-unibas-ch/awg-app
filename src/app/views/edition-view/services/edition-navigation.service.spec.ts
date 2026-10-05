@@ -9,7 +9,7 @@ import { expectSpyCall } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
 import { EditionComplex } from '../models/edition-complex.model';
-import { FragmentNavigationTarget, SheetNavigationTarget } from '../models/edition-navigation.model';
+import { EditionNavigationFragmentTarget, EditionNavigationSheetTarget } from '../models/edition-navigation.model';
 import { EditionSvgSheet } from '../models/edition-svg-sheets.model';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
@@ -81,7 +81,7 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()`', () => {
                 it('... with correct parameters', () => {
-                    const expectedIntroTarget: FragmentNavigationTarget = {
+                    const expectedIntroTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: expectedIntroFragment,
                     };
@@ -99,7 +99,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty fragment if fragmentId is empty string', () => {
-                    const expectedIntroTarget: FragmentNavigationTarget = {
+                    const expectedIntroTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: '',
                     };
@@ -117,7 +117,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty fragment if fragmentId is undefined', () => {
-                    const expectedIntroTarget: FragmentNavigationTarget = {
+                    const expectedIntroTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: undefined as any,
                     };
@@ -135,7 +135,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with undefined complexId if complexId is empty string', () => {
-                    const expectedIntroTarget: FragmentNavigationTarget = {
+                    const expectedIntroTarget: EditionNavigationFragmentTarget = {
                         complexId: '',
                         fragmentId: expectedIntroFragment,
                     };
@@ -157,7 +157,7 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()`', () => {
                 it('... with correct parameters', () => {
-                    const expectedReportTarget: FragmentNavigationTarget = {
+                    const expectedReportTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: expectedReportFragment,
                     };
@@ -175,7 +175,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty fragment if fragmentId is empty string', () => {
-                    const expectedReportTarget: FragmentNavigationTarget = {
+                    const expectedReportTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: '',
                     };
@@ -193,7 +193,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty fragment if fragmentId is undefined', () => {
-                    const expectedReportTarget: FragmentNavigationTarget = {
+                    const expectedReportTarget: EditionNavigationFragmentTarget = {
                         complexId: expectedComplexId,
                         fragmentId: undefined as any,
                     };
@@ -211,7 +211,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty complexId if complexId is empty string', () => {
-                    const expectedReportTarget: FragmentNavigationTarget = {
+                    const expectedReportTarget: EditionNavigationFragmentTarget = {
                         complexId: '',
                         fragmentId: expectedReportFragment,
                     };
@@ -233,7 +233,7 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()` ', () => {
                 it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                    const expectedSheetTarget: SheetNavigationTarget = {
+                    const expectedSheetTarget: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSvgSheet.id,
                     };
@@ -251,7 +251,10 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty query id if sheetId is empty string', () => {
-                    const expectedSheetTarget: SheetNavigationTarget = { complexId: expectedComplexId, sheetId: '' };
+                    const expectedSheetTarget: EditionNavigationSheetTarget = {
+                        complexId: expectedComplexId,
+                        sheetId: '',
+                    };
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
                     };
@@ -266,7 +269,7 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty query id if sheetId is undefined', () => {
-                    const expectedSheetTarget: SheetNavigationTarget = {
+                    const expectedSheetTarget: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: undefined as any,
                     };
@@ -284,7 +287,10 @@ describe('EditionNavigationService (DONE)', () => {
                 });
 
                 it('... with empty complexId if complexId is empty string', () => {
-                    const expectedSheetTarget: SheetNavigationTarget = { complexId: '', sheetId: expectedSvgSheet.id };
+                    const expectedSheetTarget: EditionNavigationSheetTarget = {
+                        complexId: '',
+                        sheetId: expectedSvgSheet.id,
+                    };
                     const expectedNavigationExtras = {
                         queryParams: { id: expectedSheetTarget.sheetId },
                     };

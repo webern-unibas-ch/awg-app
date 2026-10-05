@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -40,7 +40,7 @@ export class SourceDescContentItemComponent {
      *
      * It holds the sheet navigation target of the content item.
      */
-    readonly sheetTarget = computed<SheetNavigationTarget>(() => {
+    readonly sheetTarget = computed<EditionNavigationSheetTarget>(() => {
         const itemLinkTo = this.content().itemLinkTo;
         return {
             complexId: itemLinkTo?.complexId ?? '',
@@ -64,10 +64,10 @@ export class SourceDescContentItemComponent {
      * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetTarget: SheetNavigationTarget): void {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
         if (!sheetTarget?.sheetId) {
             return;
         }

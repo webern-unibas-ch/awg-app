@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { FragmentNavigationTarget, SheetNavigationTarget } from '../models/edition-navigation.model';
+import { EditionNavigationFragmentTarget, EditionNavigationSheetTarget } from '../models/edition-navigation.model';
 
 import { EditionStateService } from './edition-state.service';
 
@@ -34,10 +34,10 @@ export class EditionNavigationService {
      *
      * It navigates to the '/intro/' route with the given complexId and fragmentId.
      *
-     * @param {FragmentNavigationTarget} introTarget The given intro fragment navigation target.
+     * @param {EditionNavigationFragmentTarget} introTarget The given intro fragment navigation target.
      * @returns {void} Navigates to the edition intro fragment.
      */
-    navigateToIntroFragment(introTarget: FragmentNavigationTarget): void {
+    navigateToIntroFragment(introTarget: EditionNavigationFragmentTarget): void {
         const introRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
         const navigationExtras: NavigationExtras = {
             fragment: introTarget?.fragmentId ?? '',
@@ -50,10 +50,10 @@ export class EditionNavigationService {
      *
      * It navigates to the '/report/' route with the given complexId and fragmentId.
      *
-     * @param {FragmentNavigationTarget} reportTarget The given report fragment navigation target.
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the edition report fragment.
      */
-    navigateToReportFragment(reportTarget: FragmentNavigationTarget): void {
+    navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
         const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
             fragment: reportTarget?.fragmentId ?? '',
@@ -67,10 +67,10 @@ export class EditionNavigationService {
      * It navigates to the '/sheet/' route using the provided sheetId
      * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the edition sheets.
      */
-    navigateToSvgSheet(sheetTarget: SheetNavigationTarget): void {
+    navigateToSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
         const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetTarget?.sheetId ?? '' },

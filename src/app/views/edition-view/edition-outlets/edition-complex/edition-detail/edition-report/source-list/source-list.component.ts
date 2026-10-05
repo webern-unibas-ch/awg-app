@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
-import { FragmentNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { Source } from '@awg-views/edition-view/models/source.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -73,10 +73,10 @@ export class SourceListComponent {
      * It delegates the navigation for the given complex and report fragment IDs
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {FragmentNavigationTarget} reportTarget The given report fragment navigation target.
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the selected report fragment.
      */
-    private _navigateToReportFragment(reportTarget: FragmentNavigationTarget): void {
+    private _navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
         if (!reportTarget.fragmentId) {
             return;
         }

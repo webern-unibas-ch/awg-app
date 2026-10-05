@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import type { Options } from '@popperjs/core';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgSheet, EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 
 import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
@@ -101,5 +101,8 @@ export class EditionSheetFacetItemComponent {
      *
      * It computes the navigation target of the svg sheet of the facet item.
      */
-    readonly sheetTarget = computed<SheetNavigationTarget>(() => ({ complexId: '', sheetId: this.svgSheet().id }));
+    readonly sheetTarget = computed<EditionNavigationSheetTarget>(() => ({
+        complexId: '',
+        sheetId: this.svgSheet().id,
+    }));
 }

@@ -29,7 +29,7 @@ import {
     EditionViewData,
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
@@ -978,14 +978,14 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should do nothing if no sheetId is provided', () => {
-                    const expectedSheetIds: SheetNavigationTarget = { complexId: 'op25', sheetId: '' };
+                    const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
                     component.onSvgSheetSelect(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds: SheetNavigationTarget = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -993,7 +993,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetNavigationTarget = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedNextSheetId,
                     };
@@ -1003,7 +1003,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds: SheetNavigationTarget = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -1011,7 +1011,7 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetNavigationTarget = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedNextComplexId,
                         sheetId: expectedNextSheetId,
                     };

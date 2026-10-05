@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
@@ -292,10 +292,10 @@ export class EditionSheetsComponent {
      * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    onSvgSheetSelect(sheetTarget: SheetNavigationTarget): void {
+    onSvgSheetSelect(sheetTarget: EditionNavigationSheetTarget): void {
         if (!sheetTarget.sheetId) {
             return;
         }

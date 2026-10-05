@@ -2,7 +2,7 @@ import { Directive, inject, input } from '@angular/core';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -35,7 +35,7 @@ export class EditionSheetFacetItemLinkDirective {
      *
      * It holds the sheet navigation target (incl. partial).
      */
-    readonly sheetTarget = input.required<SheetNavigationTarget>({ alias: 'awgEditionSheetFacetItemLink' });
+    readonly sheetTarget = input.required<EditionNavigationSheetTarget>({ alias: 'awgEditionSheetFacetItemLink' });
 
     /**
      * Readonly input signal: isActive.

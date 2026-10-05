@@ -1,4 +1,4 @@
-import { SheetNavigationTarget } from './edition-navigation.model';
+import { EditionNavigationSheetTarget } from './edition-navigation.model';
 import { ViewBox } from './view-box.model';
 
 /**
@@ -159,7 +159,7 @@ export interface FolioSvgContentSegment {
     /**
      * The navigation target (complex id and sheet id incl. partial) of the svg sheet of the content segment.
      */
-    readonly sheetTarget: SheetNavigationTarget;
+    readonly sheetTarget: EditionNavigationSheetTarget;
 
     /**
      * The key of the text that is shown in a modal

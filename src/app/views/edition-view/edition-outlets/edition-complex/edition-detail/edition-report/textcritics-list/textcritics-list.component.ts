@@ -6,7 +6,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -65,10 +65,10 @@ export class TextcriticsListComponent {
      * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetTarget: SheetNavigationTarget): void {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
         if (!sheetTarget?.sheetId) {
             return;
         }

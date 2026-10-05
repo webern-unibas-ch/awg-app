@@ -16,7 +16,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
@@ -29,7 +29,7 @@ import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-l
     imports: [EditionSheetFacetItemLinkDirective],
 })
 class TestEditionSheetFacetItemLinkComponent {
-    sheetTarget = signal<SheetNavigationTarget>({ complexId: '', sheetId: 'test-1' });
+    sheetTarget = signal<EditionNavigationSheetTarget>({ complexId: '', sheetId: 'test-1' });
     isActive = signal(false);
 }
 
@@ -42,7 +42,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
     let serviceNavigateToSvgSheetSpy: Spy;
     let selectSpy: Spy;
 
-    let expectedSheetIds: SheetNavigationTarget;
+    let expectedSheetIds: EditionNavigationSheetTarget;
 
     const getLinkDes = () => getAndExpectDebugElementByCss(compDe, 'a.test-link', 1, 1);
     const getLinkEl = (): HTMLAnchorElement => getLinkDes()[0].nativeElement;
@@ -170,7 +170,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 });
 
                 it('... with partial', async () => {
-                    const expectedSheetIdsWithPartial: SheetNavigationTarget = {
+                    const expectedSheetIdsWithPartial: EditionNavigationSheetTarget = {
                         complexId: 'testComplex1',
                         sheetId: 'test-2a',
                     };

@@ -11,8 +11,8 @@ import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { ABBR_UTILS } from '@awg-shared/abbr/abbr.utils';
 import { ModalService } from '@awg-shared/modal/modal.service';
 import {
-    FragmentNavigationTarget,
-    SheetNavigationTarget,
+    EditionNavigationFragmentTarget,
+    EditionNavigationSheetTarget,
 } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -483,7 +483,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                 interface NavigationTestCase {
                     desc: string;
                     getAttributes: () => Record<string, string | undefined>;
-                    getExpectedArgs: () => string | FragmentNavigationTarget | SheetNavigationTarget;
+                    getExpectedArgs: () => string | EditionNavigationFragmentTarget | EditionNavigationSheetTarget;
                     getExpectedSpy: () => Spy;
                 }
                 const testCases: NavigationTestCase[] = [
@@ -503,14 +503,14 @@ describe('CompileHtmlDirective (DONE)', () => {
                             ({
                                 complexId: expectedComplexId,
                                 fragmentId: expectedIntroFragment,
-                            }) as FragmentNavigationTarget,
+                            }) as EditionNavigationFragmentTarget,
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
                         desc: 'intro fragment with empty complexId if data-complex-id is missing',
                         getAttributes: () => ({ 'data-intro-fragment-id': expectedIntroFragment }),
                         getExpectedArgs: () =>
-                            ({ complexId: '', fragmentId: expectedIntroFragment }) as FragmentNavigationTarget,
+                            ({ complexId: '', fragmentId: expectedIntroFragment }) as EditionNavigationFragmentTarget,
                         getExpectedSpy: () => serviceNavigateToIntroSpy,
                     },
                     {
@@ -520,7 +520,10 @@ describe('CompileHtmlDirective (DONE)', () => {
                             'data-sheet-id': expectedSvgSheetId,
                         }),
                         getExpectedArgs: () =>
-                            ({ complexId: expectedComplexId, sheetId: expectedSvgSheetId }) as SheetNavigationTarget,
+                            ({
+                                complexId: expectedComplexId,
+                                sheetId: expectedSvgSheetId,
+                            }) as EditionNavigationSheetTarget,
                         getExpectedSpy: () => serviceNavigateToSheetSpy,
                     },
                     {
@@ -533,7 +536,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                             ({
                                 complexId: expectedComplexId,
                                 fragmentId: expectedReportFragment,
-                            }) as FragmentNavigationTarget,
+                            }) as EditionNavigationFragmentTarget,
                         getExpectedSpy: () => serviceNavigateToReportSpy,
                     },
                 ];

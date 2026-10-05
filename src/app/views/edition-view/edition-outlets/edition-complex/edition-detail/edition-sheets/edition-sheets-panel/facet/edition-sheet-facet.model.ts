@@ -1,4 +1,4 @@
-import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 
 /**
  * The EditionSheetFacetPartialLink interface.
@@ -11,7 +11,7 @@ export interface EditionSheetFacetPartialLink {
     /**
      * The sheet navigation target (incl. partial).
      */
-    sheetTarget: SheetNavigationTarget;
+    sheetTarget: EditionNavigationSheetTarget;
 
     /**
      * The position label of the partial, i.e. the partial id
