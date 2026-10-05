@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { ClickDirective } from './click.directive';
 
@@ -113,36 +113,36 @@ describe('ClickDirective (DONE)', () => {
         it('... should emit the event on click', async () => {
             const event = await dispatch('div.test-div', new MouseEvent('click', { bubbles: true }));
 
-            expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+            expectSpyCall(hostComponent.onClick, 1, event);
         });
 
         it('... should emit the event on keydown of Enter', async () => {
             const event = await dispatch('div.test-div', keydown('Enter'));
 
-            expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+            expectSpyCall(hostComponent.onClick, 1, event);
         });
 
         it('... should emit the event on keydown of Space if enabled', async () => {
             const event = await dispatch('div.test-div', keydown(' '));
 
-            expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+            expectSpyCall(hostComponent.onClick, 1, event);
         });
 
         it('... should not emit on keydown of Space if disabled', async () => {
             await dispatch('div.test-div-no-space', keydown(' '));
 
-            expect(hostComponent.onClick).not.toHaveBeenCalled();
+            expectSpyCall(hostComponent.onClick, 0);
         });
 
         it('... should emit on keydown of Enter but not of Space for links by default', async () => {
             await dispatch('a.test-link', keydown(' '));
             await dispatch('span.test-role-link', keydown(' '));
 
-            expect(hostComponent.onClick).not.toHaveBeenCalled();
+            expectSpyCall(hostComponent.onClick, 0);
 
             const event = await dispatch('a.test-link', keydown('Enter'));
 
-            expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+            expectSpyCall(hostComponent.onClick, 1, event);
         });
 
         describe('... native activation (synthesized click)', () => {
@@ -151,22 +151,22 @@ describe('ClickDirective (DONE)', () => {
                 async key => {
                     await dispatch('button.test-button', keydown(key));
 
-                    expect(hostComponent.onClick).not.toHaveBeenCalled();
+                    expectSpyCall(hostComponent.onClick, 0);
 
                     const event = await dispatch('button.test-button', new MouseEvent('click', { bubbles: true }));
 
-                    expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+                    expectSpyCall(hostComponent.onClick, 1, event);
                 }
             );
 
             it('... should not emit on keydown of Enter for a link with href (only via its click)', async () => {
                 await dispatch('a.test-href-link', keydown('Enter'));
 
-                expect(hostComponent.onClick).not.toHaveBeenCalled();
+                expectSpyCall(hostComponent.onClick, 0);
 
                 const event = await dispatch('a.test-href-link', new MouseEvent('click', { bubbles: true }));
 
-                expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+                expectSpyCall(hostComponent.onClick, 1, event);
             });
 
             it.each(['Enter', ' '])(
@@ -174,7 +174,7 @@ describe('ClickDirective (DONE)', () => {
                 async key => {
                     await dispatch('button.test-nested-button', keydown(key));
 
-                    expect(hostComponent.onClick).not.toHaveBeenCalled();
+                    expectSpyCall(hostComponent.onClick, 0);
                 }
             );
 
@@ -183,7 +183,7 @@ describe('ClickDirective (DONE)', () => {
                 async key => {
                     const event = await dispatch('span.test-nested-span', keydown(key));
 
-                    expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+                    expectSpyCall(hostComponent.onClick, 1, event);
                 }
             );
 
@@ -192,14 +192,14 @@ describe('ClickDirective (DONE)', () => {
                 async key => {
                     await dispatch('span.test-nested-button-child', keydown(key));
 
-                    expect(hostComponent.onClick).not.toHaveBeenCalled();
+                    expectSpyCall(hostComponent.onClick, 0);
                 }
             );
 
             it('... should not emit on keydown of Enter for a target within a native host', async () => {
                 await dispatch('span.test-href-link-child', keydown('Enter'));
 
-                expect(hostComponent.onClick).not.toHaveBeenCalled();
+                expectSpyCall(hostComponent.onClick, 0);
             });
 
             it.each(['Enter', ' '])(
@@ -207,7 +207,7 @@ describe('ClickDirective (DONE)', () => {
                 async key => {
                     const event = await dispatch('span.test-inner-host', keydown(key));
 
-                    expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+                    expectSpyCall(hostComponent.onClick, 1, event);
                 }
             );
         });
@@ -215,7 +215,7 @@ describe('ClickDirective (DONE)', () => {
         it('... should not emit on keydown of other keys (e.g. Tab)', async () => {
             await dispatch('div.test-div', keydown('Tab'));
 
-            expect(hostComponent.onClick).not.toHaveBeenCalled();
+            expectSpyCall(hostComponent.onClick, 0);
         });
     });
 
@@ -238,7 +238,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onEnter(event);
 
-                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
+                expectSpyCall(emitSpy, 1, event);
             });
 
             it('... should not emit `awgClick` for a native target', () => {
@@ -247,7 +247,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onEnter(keydownOn('button.test-button', 'Enter'));
 
-                expect(emitSpy).not.toHaveBeenCalled();
+                expectSpyCall(emitSpy, 0);
             });
 
             it('... should not emit `awgClick` for a target within a native element inside the host', () => {
@@ -256,7 +256,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onEnter(keydownOn('span.test-nested-button-child', 'Enter'));
 
-                expect(emitSpy).not.toHaveBeenCalled();
+                expectSpyCall(emitSpy, 0);
             });
 
             it('... should emit `awgClick` for a target within a native element outside the host', () => {
@@ -266,7 +266,18 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onEnter(event);
 
-                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
+                expectSpyCall(emitSpy, 1, event);
+            });
+
+            it('... should emit `awgClick` for an event without element target', () => {
+                const directive = getDirective('div.test-div');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                // Not dispatched, so the target is null
+                const event = keydown('Enter');
+
+                directive.onEnter(event);
+
+                expectSpyCall(emitSpy, 1, event);
             });
         });
 
@@ -282,7 +293,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onSpace(event);
 
-                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
+                expectSpyCall(emitSpy, 1, event);
             });
 
             it('... should not emit `awgClick` if disabled', () => {
@@ -291,7 +302,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onSpace(keydownOn('div.test-div-no-space', ' '));
 
-                expect(emitSpy).not.toHaveBeenCalled();
+                expectSpyCall(emitSpy, 0);
             });
 
             it('... should not emit `awgClick` for a native target', () => {
@@ -300,7 +311,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onSpace(keydownOn('button.test-button', ' '));
 
-                expect(emitSpy).not.toHaveBeenCalled();
+                expectSpyCall(emitSpy, 0);
             });
 
             it('... should not emit `awgClick` for a target within a native element inside the host', () => {
@@ -309,7 +320,7 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onSpace(keydownOn('span.test-nested-button-child', ' '));
 
-                expect(emitSpy).not.toHaveBeenCalled();
+                expectSpyCall(emitSpy, 0);
             });
 
             it('... should emit `awgClick` for a target within a native element outside the host', () => {
@@ -319,7 +330,18 @@ describe('ClickDirective (DONE)', () => {
 
                 directive.onSpace(event);
 
-                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
+                expectSpyCall(emitSpy, 1, event);
+            });
+
+            it('... should emit `awgClick` for an event without element target if enabled', () => {
+                const directive = getDirective('div.test-div');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                // Not dispatched, so the target is null
+                const event = keydown(' ');
+
+                directive.onSpace(event);
+
+                expectSpyCall(emitSpy, 1, event);
             });
         });
     });
