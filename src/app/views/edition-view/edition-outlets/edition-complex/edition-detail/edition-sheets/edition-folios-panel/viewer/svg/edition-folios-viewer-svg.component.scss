@@ -25,10 +25,11 @@
             stroke-width: 0.7;
         }
 
-        // Content segments (the stroke width of the shapes is set by the FolioService)
+        // Content segments (the stroke width of the shapes is set by the EditionFolioDrawingService)
         .content-segment-group {
             fill: grey;
             stroke: grey;
+            cursor: pointer;
 
             &.selectable {
                 fill: orange;
@@ -42,6 +43,16 @@
 
             &.active .content-segment-label {
                 fill: olivedrab;
+            }
+
+            // Keyboard focus: dashed dark outline of the shape (outlines on svg groups are unreliable)
+            &:focus {
+                outline: none;
+            }
+
+            &:focus-visible .content-segment-shape {
+                stroke: #333333;
+                stroke-dasharray: 4 2;
             }
         }
 

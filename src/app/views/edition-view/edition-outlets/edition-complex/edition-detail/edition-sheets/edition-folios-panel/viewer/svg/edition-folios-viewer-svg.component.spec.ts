@@ -301,6 +301,39 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                     expectSpyCall(onFolioSelectSpy, 1, keydownEvent);
                 });
 
+                it.each(['Enter', ' '])(
+                    '... should navigate to the svg sheet on keydown of "%s" on a focused selectable content segment',
+                    async key => {
+                        const segmentGroupEl = getRootGroupEl().querySelector('g.content-segment-group') as SVGGElement;
+                        const keydownEvent = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+
+                        segmentGroupEl.focus();
+                        segmentGroupEl.dispatchEvent(keydownEvent);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(document.activeElement, segmentGroupEl);
+                        expectSpyCall(getContentSegmentSpy, 1, segmentGroupEl);
+                        expectSpyCall(navigateToSvgSheetSpy, 1, { complexId: 'op12', sheetId: 'M212_Sk1' });
+                        expectToBe(keydownEvent.defaultPrevented, true);
+                    }
+                );
+
+                it('... should open the text modal on keydown of "Enter" on a focused content segment that is not selectable', async () => {
+                    const folio = structuredClone(expectedFolio);
+                    folio.content[0].selectable = false;
+                    setInputs(folio, expectedSheetId);
+                    await detectChangesOnPush(fixture);
+
+                    const segmentGroupEl = getRootGroupEl().querySelector('g.content-segment-group') as SVGGElement;
+                    segmentGroupEl.dispatchEvent(
+                        new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true })
+                    );
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(openTextModalSpy, 1, 'OP12_SOURCE_NOT_AVAILABLE');
+                    expectSpyCall(navigateToSvgSheetSpy, 0);
+                });
+
                 it('... should not trigger `onFolioSelect` on keydown of other keys (e.g. Tab)', async () => {
                     const onFolioSelectSpy = vi.spyOn(component, 'onFolioSelect');
 

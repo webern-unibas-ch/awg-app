@@ -114,11 +114,13 @@ export class EditionFolioDrawingService {
         // Clear the content of the root group before redrawing
         svgRootGroupSelection.selectAll('*').remove();
 
-        const sheetGroup = this._appendSvgElementWithAttrs(svgRootGroupSelection, 'g', { class: 'sheet-group' });
+        const sheetGroupSelection = this._appendSvgElementWithAttrs(svgRootGroupSelection, 'g', {
+            class: 'sheet-group',
+        });
 
-        this._drawSheet(sheetGroup, folioSvgData);
-        this._drawSystems(sheetGroup, folioSvgData);
-        this._drawContentSegments(sheetGroup, folioSvgData);
+        this._drawSheet(sheetGroupSelection, folioSvgData);
+        this._drawSystems(sheetGroupSelection, folioSvgData);
+        this._drawContentSegments(sheetGroupSelection, folioSvgData);
     }
 
     /**
@@ -126,16 +128,16 @@ export class EditionFolioDrawingService {
      *
      * It appends a rect element for a given calculated rectangle to a given parent selection.
      *
-     * @param {D3Selection} parent The given parent selection.
+     * @param {D3Selection} parentSelection The given parent selection.
      * @param {FolioSvgRectangle} rectangle The given calculated rectangle.
      * @param {string} cssClass The css class of the rect.
      * @returns {D3Selection} The appended rect selection.
      */
-    private _appendRect(parent: D3Selection, rectangle: FolioSvgRectangle, cssClass: string): D3Selection {
+    private _appendRect(parentSelection: D3Selection, rectangle: FolioSvgRectangle, cssClass: string): D3Selection {
         const { x: x1, y: y1 } = rectangle.upperLeft;
         const { x: x2, y: y2 } = rectangle.lowerRight;
 
-        return this._appendSvgElementWithAttrs(parent, 'rect', {
+        return this._appendSvgElementWithAttrs(parentSelection, 'rect', {
             class: cssClass,
             x: x1,
             y: y1,
@@ -149,73 +151,80 @@ export class EditionFolioDrawingService {
      *
      * It appends an svg element of a given type with the given attributes to a given parent selection.
      *
-     * @param {D3Selection} parent The given parent selection.
+     * @param {D3Selection} parentSelection The given parent selection.
      * @param {string} type The given element type.
      * @param {Record<string, string | number>} attributes The given attributes.
      * @returns {D3Selection} The appended element selection.
      */
     private _appendSvgElementWithAttrs(
-        parent: D3Selection,
+        parentSelection: D3Selection,
         type: string,
         attributes: Record<string, string | number>
     ): D3Selection {
-        const selection = parent.append(type);
+        const elementSelection = parentSelection.append(type);
         Object.entries(attributes).forEach(([key, value]) => {
-            selection.attr(key, value);
+            elementSelection.attr(key, value);
         });
-        return selection;
+        return elementSelection;
     }
 
     /**
      * Private method: _drawContentSegments.
      *
      * It draws the content segments of the given folio svg data into a given sheet group:
-     * per content segment a group (with the content segment bound as datum and a title)
-     * containing a link with the segment polygon and the segment label.
+     * per content segment a focusable group (with the content segment bound as datum,
+     * link or button semantics and a title) containing a group with the segment polygon and the segment label.
      *
-     * @param {D3Selection} sheetGroup The given sheet group selection.
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
      * @returns {void} Draws the content segments.
      */
-    private _drawContentSegments(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+    private _drawContentSegments(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
         const numberOfSystems = folioSvgData.systems.lines.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
         // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
         const strokeWidth = this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
+        const { folioId } = folioSvgData.sheet;
 
         folioSvgData.contentSegments.forEach((contentSegment: FolioSvgContentSegment) => {
-            // Group with the content segment bound as datum (resolved by getContentSegment for delegated clicks)
-            const segmentGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', {
+            // Focusable group with the content segment bound as datum
+            // (resolved by getContentSegment for delegated clicks and Enter/Space keydowns)
+            const segmentGroupSelection = this._appendSvgElementWithAttrs(sheetGroupSelection, 'g', {
                 class: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
+                tabindex: 0,
+                role: contentSegment.selectable ? 'link' : 'button',
+                'aria-label': this._getContentSegmentAriaLabel(contentSegment, folioId),
             })
                 .classed('selectable', contentSegment.selectable)
                 .datum(contentSegment);
-            this._appendSvgElementWithAttrs(segmentGroup, 'title', {}).text(contentSegment.label);
+            this._appendSvgElementWithAttrs(segmentGroupSelection, 'title', {}).text(contentSegment.label);
 
-            const segmentLink = this._appendSvgElementWithAttrs(segmentGroup, 'a', { class: 'content-segment-link' });
-            this._appendSvgElementWithAttrs(segmentLink, 'polygon', {
+            const segmentSelection = this._appendSvgElementWithAttrs(segmentGroupSelection, 'g', {
+                class: 'content-segment',
+            });
+            this._appendSvgElementWithAttrs(segmentSelection, 'polygon', {
                 class: 'content-segment-shape',
                 points: contentSegment.vertices,
                 'stroke-width': strokeWidth,
             });
 
-            this._drawContentSegmentLabel(segmentLink, contentSegment);
+            this._drawContentSegmentLabel(segmentSelection, contentSegment);
         });
     }
 
     /**
      * Private method: _drawContentSegmentLabel.
      *
-     * It draws the (one- or two-line) label of a given content segment into a given link selection,
+     * It draws the (one- or two-line) label of a given content segment into a given content segment selection,
      * rotated by 180 degrees around its center if the segment is reversed.
      *
-     * @param {D3Selection} segmentLink The given content segment link selection.
+     * @param {D3Selection} segmentSelection The given content segment selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
      * @returns {void} Draws the content segment label.
      */
-    private _drawContentSegmentLabel(segmentLink: D3Selection, contentSegment: FolioSvgContentSegment): void {
+    private _drawContentSegmentLabel(segmentSelection: D3Selection, contentSegment: FolioSvgContentSegment): void {
         const { x, y } = contentSegment.center;
 
-        const label = this._appendSvgElementWithAttrs(segmentLink, 'text', {
+        const labelSelection = this._appendSvgElementWithAttrs(segmentSelection, 'text', {
             class: 'content-segment-label',
             x,
             y,
@@ -230,11 +239,11 @@ export class EditionFolioDrawingService {
             // Further lines start again at the center, shifted down by one line
             const lineAttributes: Record<string, string | number> =
                 index > 0 ? { x, y, dy: '1.2em', 'text-anchor': 'middle' } : {};
-            this._appendSvgElementWithAttrs(label, 'tspan', lineAttributes).text(labelLine);
+            this._appendSvgElementWithAttrs(labelSelection, 'tspan', lineAttributes).text(labelLine);
         });
 
         if (contentSegment.reversed) {
-            label.attr('transform', `rotate(${this._reversedRotationAngle}, ${x}, ${y})`);
+            labelSelection.attr('transform', `rotate(${this._reversedRotationAngle}, ${x}, ${y})`);
         }
     }
 
@@ -244,18 +253,20 @@ export class EditionFolioDrawingService {
      * It draws the sheet of the given folio svg data into a given sheet group:
      * the title, the sheet rectangle and (if given) the trademark.
      *
-     * @param {D3Selection} sheetGroup The given sheet group selection.
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
      * @returns {void} Draws the sheet.
      */
-    private _drawSheet(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+    private _drawSheet(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
         const { folioId, rectangle, trademarkRectangle } = folioSvgData.sheet;
 
-        this._appendSvgElementWithAttrs(sheetGroup, 'title', { class: 'sheet-group-title' }).text(`Bl. ${folioId}`);
-        this._appendRect(sheetGroup, rectangle, 'sheet-rectangle');
+        this._appendSvgElementWithAttrs(sheetGroupSelection, 'title', { class: 'sheet-group-title' }).text(
+            `Bl. ${folioId}`
+        );
+        this._appendRect(sheetGroupSelection, rectangle, 'sheet-rectangle');
 
         if (trademarkRectangle) {
-            this._drawTrademark(sheetGroup, trademarkRectangle, folioSvgData.systems.reversed);
+            this._drawTrademark(sheetGroupSelection, trademarkRectangle, folioSvgData.systems.reversed);
         }
     }
 
@@ -266,21 +277,25 @@ export class EditionFolioDrawingService {
      * per system a group with its label (numbered in reverse if the systems are reversed)
      * and a group with its lines.
      *
-     * @param {D3Selection} sheetGroup The given sheet group selection.
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
      * @returns {void} Draws the systems.
      */
-    private _drawSystems(sheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+    private _drawSystems(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
         const { lines, labelFontSize, labelPositions, reversed } = folioSvgData.systems;
 
         lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) => {
             const labelIndex = reversed ? lines.length - systemIndex : systemIndex + 1;
             const labelPosition = labelPositions[systemIndex];
 
-            const systemsGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', { class: 'systems-group' });
-            const systemLineGroup = this._appendSvgElementWithAttrs(systemsGroup, 'g', { class: 'system-line-group' });
+            const systemsGroupSelection = this._appendSvgElementWithAttrs(sheetGroupSelection, 'g', {
+                class: 'systems-group',
+            });
+            const systemLineGroupSelection = this._appendSvgElementWithAttrs(systemsGroupSelection, 'g', {
+                class: 'system-line-group',
+            });
 
-            this._appendSvgElementWithAttrs(systemsGroup, 'text', {
+            this._appendSvgElementWithAttrs(systemsGroupSelection, 'text', {
                 class: 'system-label',
                 x: labelPosition.x,
                 y: labelPosition.y,
@@ -289,7 +304,7 @@ export class EditionFolioDrawingService {
             }).text(labelIndex);
 
             systemLines.forEach(line => {
-                this._appendSvgElementWithAttrs(systemLineGroup, 'line', {
+                this._appendSvgElementWithAttrs(systemLineGroupSelection, 'line', {
                     class: 'system-line',
                     x1: line.start.x,
                     y1: line.start.y,
@@ -307,19 +322,21 @@ export class EditionFolioDrawingService {
      * a group with the trademark rectangle, the trademark symbol
      * (rotated by 180 degrees if the systems are reversed) and a title.
      *
-     * @param {D3Selection} sheetGroup The given sheet group selection.
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
      * @param {FolioSvgRectangle} trademarkRectangle The given calculated trademark rectangle.
      * @param {boolean} systemsReversed The given flag if the systems are reversed.
      * @returns {void} Draws the trademark.
      */
     private _drawTrademark(
-        sheetGroup: D3Selection,
+        sheetGroupSelection: D3Selection,
         trademarkRectangle: FolioSvgRectangle,
         systemsReversed: boolean
     ): void {
-        const trademarkGroup = this._appendSvgElementWithAttrs(sheetGroup, 'g', { class: 'trademark-group' });
+        const trademarkGroupSelection = this._appendSvgElementWithAttrs(sheetGroupSelection, 'g', {
+            class: 'trademark-group',
+        });
 
-        this._appendRect(trademarkGroup, trademarkRectangle, 'trademark-rectangle');
+        this._appendRect(trademarkGroupSelection, trademarkRectangle, 'trademark-rectangle');
 
         const { x: x1, y: y1 } = trademarkRectangle.upperLeft;
         const { x: x2, y: y2 } = trademarkRectangle.lowerRight;
@@ -331,12 +348,30 @@ export class EditionFolioDrawingService {
             transform += ` rotate(${this._reversedRotationAngle}, 20, 20)`;
         }
 
-        this._appendSvgElementWithAttrs(trademarkGroup, 'path', {
+        this._appendSvgElementWithAttrs(trademarkGroupSelection, 'path', {
             class: 'trademark-symbol',
             d: TRADEMARK_SYMBOL_PATH,
             transform,
         });
 
-        this._appendSvgElementWithAttrs(trademarkGroup, 'title', { class: 'trademark-title' }).text('Firmenzeichen');
+        this._appendSvgElementWithAttrs(trademarkGroupSelection, 'title', { class: 'trademark-title' }).text(
+            'Firmenzeichen'
+        );
+    }
+
+    /**
+     * Private method: _getContentSegmentAriaLabel.
+     *
+     * It builds the aria label of a given content segment on a given folio,
+     * naming the action triggered by the segment.
+     *
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @param {string} folioId The given folio id.
+     * @returns {string} The aria label of the content segment.
+     */
+    private _getContentSegmentAriaLabel(contentSegment: FolioSvgContentSegment, folioId: string): string {
+        const action = contentSegment.selectable ? 'öffnen' : 'Hinweis anzeigen';
+
+        return `${contentSegment.label} (Bl. ${folioId}): ${action}`;
     }
 }
