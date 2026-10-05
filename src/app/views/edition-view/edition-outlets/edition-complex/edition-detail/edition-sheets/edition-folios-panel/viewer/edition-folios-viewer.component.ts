@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { Folio, FolioConvolute } from '@awg-views/edition-view/models/folio.model';
+import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { Folio } from '@awg-views/edition-view/models/folio.model';
 
 import { EditionFoliosViewerSvgComponent } from './svg/edition-folios-viewer-svg.component';
 
@@ -26,7 +26,7 @@ const FOLIOS_PER_ROW_MAX_WRAPPED = 4;
  *
  * It contains the viewer of the folios panel
  * of the edition view of the app
- * and displays all folios of the selected convolute
+ * and displays the given folios in a grid
  * with the {@link EditionFoliosViewerSvgComponent}.
  */
 @Component({
@@ -38,25 +38,18 @@ const FOLIOS_PER_ROW_MAX_WRAPPED = 4;
 })
 export class EditionFoliosViewerComponent {
     /**
-     * Readonly input signal: selectedConvolute.
+     * Readonly input signal: folios.
      *
-     * It holds the selected convolute.
+     * It holds the folios to be displayed.
      */
-    readonly selectedConvolute = input.required<FolioConvolute>();
+    readonly folios = input.required<Folio[]>();
 
     /**
-     * Readonly input signal: selectedSvgSheet.
+     * Readonly input signal: selectedSheetId.
      *
-     * It holds the selected svg sheet.
+     * It holds the id and the (optional) partial of the selected svg sheet.
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
-
-    /**
-     * Readonly computed signal: folios.
-     *
-     * It holds the folios of the selected convolute.
-     */
-    readonly folios = computed<Folio[]>(() => this.selectedConvolute().folios ?? []);
+    readonly selectedSheetId = input.required<EditionSvgSheetId>();
 
     /**
      * Readonly computed signal: colSize.
@@ -71,18 +64,5 @@ export class EditionFoliosViewerComponent {
             FOLIOS_PER_ROW_OPTIONS.find(option => option >= numberOfFolios) ?? FOLIOS_PER_ROW_MAX_WRAPPED;
 
         return 12 / foliosPerRow;
-    });
-
-    /**
-     * Readonly computed signal: selectedSheetId.
-     *
-     * It holds the id and the (optional) partial of the selected svg sheet.
-     * The content of a selected svg sheet with partials is reduced
-     * to the selected partial by the EditionSheetsService.
-     */
-    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
-        const selectedSvgSheet = this.selectedSvgSheet();
-
-        return { id: selectedSvgSheet.id, partial: selectedSvgSheet.content?.[0]?.partial };
     });
 }

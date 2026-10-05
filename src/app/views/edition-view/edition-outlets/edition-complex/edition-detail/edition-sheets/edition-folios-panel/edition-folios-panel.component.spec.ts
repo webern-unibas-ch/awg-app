@@ -102,6 +102,24 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expect(() => component.selectedSvgSheet()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `reportFragment` due to missing input', () => {
+            expectToBe(isSignal(component.reportFragment), true);
+
+            expect(() => component.reportFragment()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `folios` due to missing input', () => {
+            expectToBe(isSignal(component.folios), true);
+
+            expect(() => component.folios()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `selectedSheetId` due to missing input', () => {
+            expectToBe(isSignal(component.selectedSheetId), true);
+
+            expect(() => component.selectedSheetId()).toThrow();
+        });
+
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
@@ -141,8 +159,37 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
         });
 
+        it('... should have computed signal `folios` to hold the folios of the selected convolute', () => {
+            expectToEqual(component.folios(), expectedConvolute.folios);
+        });
+
+        it('... should have recomputed signal `folios` to hold an empty array for a convolute without folios', async () => {
+            fixture.componentRef.setInput('selectedConvolute', {
+                ...expectedConvolute,
+                folios: undefined,
+            } as unknown as FolioConvolute);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.folios(), []);
+        });
+
         it('... should have computed signal `reportFragment` to hold the source fragment of the selected convolute', () => {
             expectToBe(component.reportFragment(), expectedFragment);
+        });
+
+        it('... should have computed signal `selectedSheetId` to hold the id of the selected svg sheet', () => {
+            expectToEqual(component.selectedSheetId(), {
+                id: expectedSvgSheet.id,
+                partial: expectedSvgSheet.content[0].partial,
+            });
+        });
+
+        it('... should have recomputed signal `selectedSheetId` to hold the id and the partial of the selected svg sheet', async () => {
+            const expectedSvgSheetWithPartial = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
+            await detectChangesOnPush(fixture);
+
+            expectToEqual(component.selectedSheetId(), { id: expectedSvgSheetWithPartial.id, partial: 'a' });
         });
 
         describe('VIEW', () => {
@@ -176,7 +223,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(getBodyDe(), EditionFoliosViewerComponent, 1, 1);
                 });
 
-                it('... should pass down `selectedConvolute` and `selectedSvgSheet` to EditionFoliosViewerComponent', () => {
+                it('... should pass down `folios` and `selectedSheetId` to EditionFoliosViewerComponent', () => {
                     const viewerDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosViewerComponent,
@@ -185,8 +232,8 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     );
                     const viewerCmp = viewerDes[0].injector.get(EditionFoliosViewerComponent);
 
-                    expectToEqual(viewerCmp.selectedConvolute(), expectedConvolute);
-                    expectToEqual(viewerCmp.selectedSvgSheet(), expectedSvgSheet);
+                    expectToEqual(viewerCmp.folios(), expectedConvolute.folios);
+                    expectToEqual(viewerCmp.selectedSheetId(), component.selectedSheetId());
                 });
             });
 

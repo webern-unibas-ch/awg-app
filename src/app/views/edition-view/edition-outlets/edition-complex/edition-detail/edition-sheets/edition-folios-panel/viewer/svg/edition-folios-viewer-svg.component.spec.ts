@@ -136,6 +136,18 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             expect(() => component.selectedSheetId()).toThrow();
         });
 
+        it('... should throw when accessing computed signal `folioSvgData` due to missing input', () => {
+            expectToBe(isSignal(component.folioSvgData), true);
+
+            expect(() => component.folioSvgData()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `selectedSegmentId` due to missing input', () => {
+            expectToBe(isSignal(component.selectedSegmentId), true);
+
+            expect(() => component.selectedSegmentId()).toThrow();
+        });
+
         it('... should not have rendered the folio yet', () => {
             expectSpyCall(renderFolioSpy, 0);
         });

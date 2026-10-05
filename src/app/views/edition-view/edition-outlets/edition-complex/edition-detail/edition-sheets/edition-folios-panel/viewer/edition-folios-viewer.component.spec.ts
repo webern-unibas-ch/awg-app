@@ -14,8 +14,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
+import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionFoliosViewerComponent } from './edition-folios-viewer.component';
@@ -29,11 +29,13 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     let mockModalService: Partial<ModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
-    let expectedConvolute: FolioConvolute;
-    let expectedSvgSheet: EditionSvgSheet;
+    let expectedFolios: Folio[];
+    let expectedSheetId: EditionSvgSheetId;
 
     const getFolioSvgDes = (expectedCount: number): DebugElement[] =>
         getAndExpectDebugElementByDirective(compDe, EditionFoliosViewerSvgComponent, expectedCount, expectedCount);
+    const createFolios = (numberOfFolios: number): Folio[] =>
+        Array.from({ length: numberOfFolios }, (_, index) => ({ ...expectedFolios[0], folioId: `${index + 1}` }));
 
     beforeEach(async () => {
         // Mocked services for the real EditionFoliosViewerSvgComponent
@@ -55,12 +57,9 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        const convolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-        expectedConvolute = {
-            ...convolute,
-            folios: [convolute.folios[0], { ...structuredClone(convolute.folios[0]), folioId: '2' }],
-        };
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        const folio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
+        expectedFolios = [folio, { ...structuredClone(folio), folioId: '2' }];
+        expectedSheetId = { id: mockEditionData.mockSvgSheet_Sk1.id, partial: undefined };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionFoliosViewerComponent);
@@ -77,49 +76,41 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `selectedConvolute`', () => {
-            expectToBe(isSignal(component.selectedConvolute), true);
+        it('... should throw due to missing required input signal `folios`', () => {
+            expectToBe(isSignal(component.folios), true);
 
-            expect(() => component.selectedConvolute()).toThrow();
+            expect(() => component.folios()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
-            expectToBe(isSignal(component.selectedSvgSheet), true);
+        it('... should throw due to missing required input signal `selectedSheetId`', () => {
+            expectToBe(isSignal(component.selectedSheetId), true);
 
-            expect(() => component.selectedSvgSheet()).toThrow();
+            expect(() => component.selectedSheetId()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `colSize` due to missing input', () => {
+            expectToBe(isSignal(component.colSize), true);
+
+            expect(() => component.colSize()).toThrow();
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
-            fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+            fixture.componentRef.setInput('folios', expectedFolios);
+            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
         });
 
-        it('... should have input signal `selectedConvolute` to hold the provided convolute', () => {
-            expectToEqual(component.selectedConvolute(), expectedConvolute);
+        it('... should have input signal `folios` to hold the provided folios', () => {
+            expectToEqual(component.folios(), expectedFolios);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
-        });
-
-        it('... should have computed signal `folios` to hold the folios of the selected convolute', () => {
-            expectToEqual(component.folios(), expectedConvolute.folios);
-        });
-
-        it('... should have computed signal `folios` to hold an empty array for a convolute without folios', async () => {
-            fixture.componentRef.setInput('selectedConvolute', {
-                ...expectedConvolute,
-                folios: undefined,
-            } as unknown as FolioConvolute);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.folios(), []);
+        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetId(), expectedSheetId);
         });
 
         it('... should have computed signal `colSize` to hold the column span for the folios in one row', () => {
@@ -140,37 +131,16 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         ])(
             '... should have computed signal `colSize` to hold a valid column span for %i folios (%i)',
             async (numberOfFolios, expectedColSize) => {
-                fixture.componentRef.setInput('selectedConvolute', {
-                    ...expectedConvolute,
-                    folios: Array.from({ length: numberOfFolios }, (_, index) => ({
-                        ...expectedConvolute.folios[0],
-                        folioId: `${index + 1}`,
-                    })),
-                });
+                fixture.componentRef.setInput('folios', createFolios(numberOfFolios));
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.colSize(), expectedColSize);
             }
         );
 
-        it('... should have computed signal `selectedSheetId` to hold the id of the selected svg sheet', () => {
-            expectToEqual(component.selectedSheetId(), {
-                id: expectedSvgSheet.id,
-                partial: expectedSvgSheet.content[0].partial,
-            });
-        });
-
-        it('... should have computed signal `selectedSheetId` to hold the id and the partial of the selected svg sheet', async () => {
-            const expectedSvgSheetWithPartial = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.selectedSheetId(), { id: expectedSvgSheetWithPartial.id, partial: 'a' });
-        });
-
         describe('VIEW', () => {
-            it('... should not contain div.svgGrid if the convolute has no folios', async () => {
-                fixture.componentRef.setInput('selectedConvolute', { ...expectedConvolute, folios: [] });
+            it('... should not contain div.svgGrid without folios', async () => {
+                fixture.componentRef.setInput('folios', []);
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.svgGrid', 0, 0);
@@ -194,23 +164,14 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
             });
 
             it('... should adjust the bootstrap grid class to the number of folios', async () => {
-                fixture.componentRef.setInput('selectedConvolute', {
-                    ...expectedConvolute,
-                    folios: [expectedConvolute.folios[0]],
-                });
+                fixture.componentRef.setInput('folios', [expectedFolios[0]]);
                 await detectChangesOnPush(fixture);
 
                 expectToContain(getFolioSvgDes(1)[0].nativeElement.classList, 'col-lg-12');
             });
 
             it('... should use a valid bootstrap grid class (rows of 4) for 8 folios', async () => {
-                fixture.componentRef.setInput('selectedConvolute', {
-                    ...expectedConvolute,
-                    folios: Array.from({ length: 8 }, (_, index) => ({
-                        ...expectedConvolute.folios[0],
-                        folioId: `${index + 1}`,
-                    })),
-                });
+                fixture.componentRef.setInput('folios', createFolios(8));
                 await detectChangesOnPush(fixture);
 
                 getFolioSvgDes(8).forEach(folioSvgDe => {
@@ -222,8 +183,8 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 getFolioSvgDes(2).forEach((folioSvgDe, index) => {
                     const folioSvgCmp = folioSvgDe.injector.get(EditionFoliosViewerSvgComponent);
 
-                    expectToEqual(folioSvgCmp.folio(), expectedConvolute.folios[index]);
-                    expectToEqual(folioSvgCmp.selectedSheetId(), component.selectedSheetId());
+                    expectToEqual(folioSvgCmp.folio(), expectedFolios[index]);
+                    expectToEqual(folioSvgCmp.selectedSheetId(), expectedSheetId);
                 });
             });
         });

@@ -16,9 +16,7 @@
                     </div>
 
                     <!-- folios viewer -->
-                    <awg-edition-folios-viewer
-                        [selectedConvolute]="selectedConvolute()"
-                        [selectedSvgSheet]="selectedSvgSheet()" />
+                    <awg-edition-folios-viewer [folios]="folios()" [selectedSheetId]="selectedSheetId()" />
 
                     <!-- folios legend -->
                     <awg-edition-folios-legend class="col-12" />
