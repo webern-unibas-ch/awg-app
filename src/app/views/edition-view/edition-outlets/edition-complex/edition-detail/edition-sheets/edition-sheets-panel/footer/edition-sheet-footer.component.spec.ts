@@ -306,7 +306,25 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
                     expectToEqual(tableCmp.displayedCommentary(), expectedSelectedTextcritics.commentary);
                     expectToBe(tableCmp.id(), expectedSelectedTextcritics.id);
-                    expectToBe(tableCmp.isRowtable(), expectedSelectedTextcritics.rowtable ?? false);
+                    expectToBe(tableCmp.isRowtable(), true);
+                });
+
+                it('... should pass down `isRowtable` as false to the EditionTkaTableComponent if `rowtable` is not given', async () => {
+                    fixture.componentRef.setInput('selectedTextcritics', {
+                        ...expectedSelectedTextcritics,
+                        rowtable: undefined,
+                    });
+                    await detectChangesOnPush(fixture);
+
+                    const tableDes = getAndExpectDebugElementByDirective(
+                        getCardBodyDes('textcritics')[0],
+                        EditionTkaTableComponent,
+                        1,
+                        1
+                    );
+                    const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
+
+                    expectToBe(tableCmp.isRowtable(), false);
                 });
             });
         });

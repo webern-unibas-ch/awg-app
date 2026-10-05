@@ -68,7 +68,7 @@ export class EditionSheetsComponent {
      *
      * It holds the full sheet id given by the query param `id` (or an empty string).
      */
-    private readonly _sheetIdFromRoute = computed<string>(() => this._queryParams()?.get('id') ?? '');
+    private readonly _sheetIdFromRoute = computed<string>(() => this._queryParams().get('id') ?? '');
 
     /**
      * Readonly signal: selectedEditionComplex.

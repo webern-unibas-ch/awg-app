@@ -235,7 +235,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render no content if `displayedCommentary` is undefined', () => {
+            it('... should render no content if `displayedCommentary` is not available', () => {
                 fixture.componentRef.setInput('displayedCommentary', undefined);
                 fixture.detectChanges();
 

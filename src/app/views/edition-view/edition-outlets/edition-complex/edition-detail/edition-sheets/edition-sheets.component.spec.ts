@@ -391,8 +391,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expect(component.selectedSvgSheet()).toBeUndefined();
             });
 
-            it('... should hold undefined without sheet id', () => {
-                setSheetIdInRoute('');
+            it.each([
+                ['an empty sheet id', { id: '' }],
+                ['a missing sheet id', {}],
+            ])('... should hold undefined with %s in the route', (_label, queryParams) => {
+                mockActivatedRoute.testQueryParamMap = queryParams;
 
                 expect(component.selectedSvgSheet()).toBeUndefined();
             });
@@ -523,9 +526,9 @@ describe('EditionSheetsComponent (DONE)', () => {
             });
 
             it.each([
-                ['a missing', undefined],
-                ['an empty', {}],
-            ])('... should hold %s commentary unfiltered', (_label, commentary) => {
+                ['a missing commentary', undefined],
+                ['an empty commentary', {}],
+            ])('... should hold %s unfiltered', (_label, commentary) => {
                 setSelectedTextcritics({ commentary: commentary as any });
                 component.onOverlaySelect([createTestTkkOverlay('g1114')]);
 
@@ -545,8 +548,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
             });
 
-            it('... should navigate to the default svg sheet if no sheet id is given by the route', () => {
-                setSheetIdInRoute('');
+            it.each([
+                ['an empty sheet id', { id: '' }],
+                ['a missing sheet id', {}],
+            ])('... should navigate to the default svg sheet with %s in the route', (_label, queryParams) => {
+                mockActivatedRoute.testQueryParamMap = queryParams;
                 fixture.detectChanges();
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, { complexId: '', sheetId: 'test-TF1a' });
