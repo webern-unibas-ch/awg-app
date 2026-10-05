@@ -43,7 +43,7 @@ export function toFullSheetId(id: string | undefined, partial?: string): string 
  * @returns {string[]} The full sheet ids of the svg sheet.
  */
 export function getFullSheetIds(sheet: EditionSvgSheet): string[] {
-    const fullIds = (sheet.content ?? []).map(content => toFullSheetId(sheet.id, content.partial));
+    const fullIds = sheet.content.map(content => toFullSheetId(sheet.id, content.partial));
 
     return fullIds.length > 0 ? [...new Set(fullIds)] : [sheet.id];
 }
@@ -95,8 +95,8 @@ export function findSvgSheet(
         for (const sheet of sheetArray) {
             const content =
                 sheet.id === fullId
-                    ? sheet.content?.[0]
-                    : sheet.content?.find(
+                    ? sheet.content[0]
+                    : sheet.content.find(
                           sheetContent =>
                               sheetContent.partial && toFullSheetId(sheet.id, sheetContent.partial) === fullId
                       );
