@@ -9,18 +9,6 @@ import { booleanAttribute, Directive, ElementRef, inject, input, output } from '
 const NATIVE_ACTIVATION_SELECTOR = 'button, a[href], area[href], input, select, textarea, summary';
 
 /**
- * Function: hasNativeActivation.
- *
- * It checks if a given event target is an element that the browser activates itself on the keyboard.
- *
- * @param {EventTarget | null} target The given event target.
- * @returns {boolean} The boolean value of the check result.
- */
-function hasNativeActivation(target: EventTarget | null): boolean {
-    return target instanceof Element && target.matches(NATIVE_ACTIVATION_SELECTOR);
-}
-
-/**
  * Function: isLinkElement.
  *
  * It checks if a given element is a link (`<a>` or `role="link"`).
@@ -43,7 +31,8 @@ function isLinkElement(element: Element): boolean {
  *
  * The keyboard is only emulated for targets that the browser does not activate itself
  * (e.g., `<div>`, `<a>` without `href` or svg groups). Native controls and links with `href`
- * (as host or as delegated target) emit only once through their synthesized click.
+ * (as host, as delegated target or as ancestor of the target within the host)
+ * emit only once through their synthesized click.
  */
 @Directive({
     selector: '[awgClick]',
@@ -55,12 +44,19 @@ function isLinkElement(element: Element): boolean {
 })
 export class ClickDirective {
     /**
+     * Private readonly injection variable: _hostElement.
+     *
+     * It keeps the host element of the directive.
+     */
+    private readonly _hostElement: Element = inject(ElementRef).nativeElement;
+
+    /**
      * Readonly input signal: clickOnSpace.
      *
      * It holds a boolean flag if the Space key emits a click.
      * @default true (false for links)
      */
-    readonly clickOnSpace = input(!isLinkElement(inject(ElementRef).nativeElement), { transform: booleanAttribute });
+    readonly clickOnSpace = input(!isLinkElement(this._hostElement), { transform: booleanAttribute });
 
     /**
      * Readonly output signal: awgClick.
@@ -79,7 +75,7 @@ export class ClickDirective {
      * @returns {void} Emits the click.
      */
     onEnter(event: Event): void {
-        if (!hasNativeActivation(event.target)) {
+        if (!this._hasNativeActivation(event.target)) {
             this.awgClick.emit(event);
         }
     }
@@ -94,8 +90,24 @@ export class ClickDirective {
      * @returns {void} Emits the click.
      */
     onSpace(event: Event): void {
-        if (this.clickOnSpace() && !hasNativeActivation(event.target)) {
+        if (this.clickOnSpace() && !this._hasNativeActivation(event.target)) {
             this.awgClick.emit(event);
         }
+    }
+
+    /**
+     * Private method: _hasNativeActivation.
+     *
+     * It checks if a given event target is, or lies within, an element that the browser activates itself
+     * on the keyboard. Only ancestors within the host element are considered.
+     *
+     * @param {EventTarget | null} target The given event target.
+     * @returns {boolean} The boolean value of the check result.
+     */
+    private _hasNativeActivation(target: EventTarget | null): boolean {
+        const nativeElement = target instanceof Element ? target.closest(NATIVE_ACTIVATION_SELECTOR) : null;
+
+        // `contains` includes the host element itself
+        return !!nativeElement && this._hostElement.contains(nativeElement);
     }
 }

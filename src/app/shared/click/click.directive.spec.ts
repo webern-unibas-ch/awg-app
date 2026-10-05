@@ -20,7 +20,16 @@ import { ClickDirective } from './click.directive';
         <div class="test-delegating-div" (awgClick)="onClick($event)">
             <button type="button" class="test-nested-button">Nested button</button>
             <span class="test-nested-span" tabindex="0">Nested span</span>
+            <button type="button" class="test-nested-button-with-child">
+                <span class="test-nested-button-child">Nested button child</span>
+            </button>
         </div>
+        <a class="test-href-link-with-child" href="#" (awgClick)="onClick($event)">
+            <span class="test-href-link-child">Href link child</span>
+        </a>
+        <a class="test-outer-href-link" href="#">
+            <span class="test-inner-host" tabindex="0" (awgClick)="onClick($event)">Inner host</span>
+        </a>
     `,
     imports: [ClickDirective],
 })
@@ -69,6 +78,8 @@ describe('ClickDirective (DONE)', () => {
         expect(getDirective('button.test-button')).toBeTruthy();
         expect(getDirective('a.test-href-link')).toBeTruthy();
         expect(getDirective('div.test-delegating-div')).toBeTruthy();
+        expect(getDirective('a.test-href-link-with-child')).toBeTruthy();
+        expect(getDirective('span.test-inner-host')).toBeTruthy();
     });
 
     describe('... input signal `clickOnSpace`', () => {
@@ -175,6 +186,30 @@ describe('ClickDirective (DONE)', () => {
                     expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
                 }
             );
+
+            it.each(['Enter', ' '])(
+                '... should not emit on keydown of "%s" for a target within a delegated native element',
+                async key => {
+                    await dispatch('span.test-nested-button-child', keydown(key));
+
+                    expect(hostComponent.onClick).not.toHaveBeenCalled();
+                }
+            );
+
+            it('... should not emit on keydown of Enter for a target within a native host', async () => {
+                await dispatch('span.test-href-link-child', keydown('Enter'));
+
+                expect(hostComponent.onClick).not.toHaveBeenCalled();
+            });
+
+            it.each(['Enter', ' '])(
+                '... should emit on keydown of "%s" for a non-native host within a native element outside the host',
+                async key => {
+                    const event = await dispatch('span.test-inner-host', keydown(key));
+
+                    expect(hostComponent.onClick).toHaveBeenCalledExactlyOnceWith(event);
+                }
+            );
         });
 
         it('... should not emit on keydown of other keys (e.g. Tab)', async () => {
@@ -214,6 +249,25 @@ describe('ClickDirective (DONE)', () => {
 
                 expect(emitSpy).not.toHaveBeenCalled();
             });
+
+            it('... should not emit `awgClick` for a target within a native element inside the host', () => {
+                const directive = getDirective('div.test-delegating-div');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+
+                directive.onEnter(keydownOn('span.test-nested-button-child', 'Enter'));
+
+                expect(emitSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should emit `awgClick` for a target within a native element outside the host', () => {
+                const directive = getDirective('span.test-inner-host');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                const event = keydownOn('span.test-inner-host', 'Enter');
+
+                directive.onEnter(event);
+
+                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
+            });
         });
 
         describe('#onSpace()', () => {
@@ -247,6 +301,25 @@ describe('ClickDirective (DONE)', () => {
                 directive.onSpace(keydownOn('button.test-button', ' '));
 
                 expect(emitSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should not emit `awgClick` for a target within a native element inside the host', () => {
+                const directive = getDirective('div.test-delegating-div');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+
+                directive.onSpace(keydownOn('span.test-nested-button-child', ' '));
+
+                expect(emitSpy).not.toHaveBeenCalled();
+            });
+
+            it('... should emit `awgClick` for a target within a native element outside the host', () => {
+                const directive = getDirective('span.test-inner-host');
+                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                const event = keydownOn('span.test-inner-host', ' ');
+
+                directive.onSpace(event);
+
+                expect(emitSpy).toHaveBeenCalledExactlyOnceWith(event);
             });
         });
     });
