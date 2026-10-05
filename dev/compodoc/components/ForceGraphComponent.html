@@ -3245,8 +3245,8 @@ It caches the label map extracted from the currentQueryResultTriples.</p>
 import { Subject } from &#x27;rxjs&#x27;;
 import { debounceTime, takeUntil } from &#x27;rxjs/operators&#x27;;
 
+import { roundToStepPrecision } from &#x27;@awg-shared/utils/number-utils&#x27;;
 import { ZoomConfig } from &#x27;@awg-shared/zoom/zoom.model&#x27;;
-import { roundToStepPrecision } from &#x27;@awg-shared/zoom/zoom.utils&#x27;;
 import { D3Selection, D3ZoomBehaviour } from &#x27;@awg-views/edition-view/models&#x27;;
 import {
     D3DragBehaviour,
