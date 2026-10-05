@@ -13,11 +13,15 @@ import { mockEditionData } from '@testing/mock-data';
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { calculateFolioSvgData, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
+import {
+    FolioSettings,
+    FolioSvgContentSegment,
+    FolioSvgData,
+} from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
+import { calculateFolioSvgData } from '@awg-views/edition-view/services/edition-folio-drawing.utils';
 import { EditionFolioSegmentService } from '@awg-views/edition-view/services/edition-folio-segment.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 

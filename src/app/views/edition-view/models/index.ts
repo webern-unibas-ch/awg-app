@@ -34,7 +34,6 @@ export {
     EditionSvgOverlayTypes,
 } from './edition-svg-overlay.model';
 export { EditionSvgSheet, EditionSvgSheetsList } from './edition-svg-sheets.model';
-export { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
 export { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
 export { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 export { Intro, IntroBlock, IntroList } from './intro.model';

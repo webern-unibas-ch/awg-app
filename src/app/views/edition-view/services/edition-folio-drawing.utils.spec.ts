@@ -4,12 +4,13 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { calculateFolioSvgData, FolioSettings } from './folio-calculation.model';
-import { FolioSvgRectangle } from './folio-svg-data.model';
-import { Folio, FolioContent } from './folio.model';
-import { ViewBox } from './view-box.model';
+import { FolioSettings, FolioSvgRectangle } from '../models/folio-svg-data.model';
+import { Folio, FolioContent } from '../models/folio.model';
+import { ViewBox } from '../models/view-box.model';
 
-describe('FolioCalculation (DONE)', () => {
+import { calculateFolioSvgData } from './edition-folio-drawing.utils';
+
+describe('EditionFolioDrawingUtils (DONE)', () => {
     let expectedFolio: Folio;
     let expectedReversedFolio: Folio;
     let expectedFolioSettings: FolioSettings;

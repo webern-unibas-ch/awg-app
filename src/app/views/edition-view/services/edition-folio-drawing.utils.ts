@@ -1,4 +1,11 @@
+/**
+ * Utilities of the EditionFolioDrawingService.
+ *
+ * They calculate the svg data (sheet, systems, content segments and view box) of a folio
+ * as pure functions (entry point: {@link calculateFolioSvgData}).
+ */
 import {
+    FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
     FolioSvgLine,
@@ -6,43 +13,9 @@ import {
     FolioSvgRectangle,
     FolioSvgSheet,
     FolioSvgSystems,
-} from './folio-svg-data.model';
-import { Folio, FolioContent, FolioSegment } from './folio.model';
-import { ViewBox } from './view-box.model';
-
-/**
- * The FolioSettings interface.
- *
- * It is used in the context of the edition folio convolutes
- * to store the basic settings (format, zoom factor, offsets)
- * for the calculation of a folio.
- */
-export interface FolioSettings {
-    /**
-     * The zoom factor to be applied.
-     */
-    factor: number;
-
-    /**
-     * The x value (width) of the folio format.
-     */
-    formatX: number;
-
-    /**
-     * The y value (height) of the folio format.
-     */
-    formatY: number;
-
-    /**
-     * The initial offset (x-position) to be applied.
-     */
-    initialOffsetX: number;
-
-    /**
-     * The initial offset (y-position) to be applied.
-     */
-    initialOffsetY: number;
-}
+} from '../models/folio-svg-data.model';
+import { Folio, FolioContent, FolioSegment } from '../models/folio.model';
+import { ViewBox } from '../models/view-box.model';
 
 /**
  * Constant: FOLIO_DEFAULT_NUMBER_OF_SYSTEMS.

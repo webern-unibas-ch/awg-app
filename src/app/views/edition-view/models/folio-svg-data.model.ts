@@ -11,6 +11,40 @@ import { ViewBox } from './view-box.model';
 export const FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS = 'content-segment-group';
 
 /**
+ * The FolioSettings interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the basic settings (format, zoom factor, offsets)
+ * for the calculation of a folio.
+ */
+export interface FolioSettings {
+    /**
+     * The zoom factor to be applied.
+     */
+    factor: number;
+
+    /**
+     * The x value (width) of the folio format.
+     */
+    formatX: number;
+
+    /**
+     * The y value (height) of the folio format.
+     */
+    formatY: number;
+
+    /**
+     * The initial offset (x-position) to be applied.
+     */
+    initialOffsetX: number;
+
+    /**
+     * The initial offset (y-position) to be applied.
+     */
+    initialOffsetY: number;
+}
+
+/**
  * The FolioSvgPoint interface.
  *
  * It is used in the context of the edition folio convolutes
@@ -170,7 +204,7 @@ export interface FolioSvgContentSegment {
  *
  * It is used in the context of the edition folio convolutes
  * to store the svg data (sheet, systems, content segments and view box) for a folio,
- * as calculated by `calculateFolioSvgData` (see folio-calculation.model).
+ * as calculated by `calculateFolioSvgData` (see EditionFolioDrawingService utils).
  */
 export interface FolioSvgData {
     /**

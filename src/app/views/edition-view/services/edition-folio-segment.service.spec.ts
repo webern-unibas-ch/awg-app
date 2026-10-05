@@ -8,10 +8,14 @@ import { expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { calculateFolioSvgData, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
-import { FolioSvgContentSegment, FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
+import {
+    FolioSettings,
+    FolioSvgContentSegment,
+    FolioSvgData,
+} from '@awg-views/edition-view/models/folio-svg-data.model';
 
 import { EditionFolioDrawingService } from './edition-folio-drawing.service';
+import { calculateFolioSvgData } from './edition-folio-drawing.utils';
 import { EditionFolioSegmentService } from './edition-folio-segment.service';
 
 describe('EditionFolioSegmentService (DONE)', () => {

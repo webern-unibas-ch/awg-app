@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
-    calculateFolioSvgData,
-    FOLIO_DEFAULT_NUMBER_OF_SYSTEMS,
-    FolioSettings,
-} from '@awg-views/edition-view/models/folio-calculation.model';
-import {
     FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
+    FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
     FolioSvgLine,
     FolioSvgRectangle,
 } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
+
+import { calculateFolioSvgData, FOLIO_DEFAULT_NUMBER_OF_SYSTEMS } from './edition-folio-drawing.utils';
 
 /**
  * Constant: TRADEMARK_SYMBOL_PATH.

@@ -9,8 +9,8 @@ import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { calculateFolioSvgData, FolioSettings } from '@awg-views/edition-view/models/folio-calculation.model';
 import {
+    FolioSettings,
     FolioSvgContentSegment,
     FolioSvgData,
     FolioSvgRectangle,
@@ -19,6 +19,7 @@ import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 
 import { EditionFolioDrawingService } from './edition-folio-drawing.service';
+import { calculateFolioSvgData } from './edition-folio-drawing.utils';
 
 describe('EditionFolioDrawingService (DONE)', () => {
     let folioDrawingService: EditionFolioDrawingService;
