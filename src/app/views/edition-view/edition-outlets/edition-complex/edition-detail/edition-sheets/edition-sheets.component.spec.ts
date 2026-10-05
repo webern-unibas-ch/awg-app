@@ -33,7 +33,7 @@ import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edi
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
-    EditionSvgSheetIds,
+    EditionSvgSheetSelection,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models/folio.model';
@@ -45,6 +45,7 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 import { EditionFoliosPanelComponent } from './edition-folios-panel/edition-folios-panel.component';
 import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-sheets-panel.component';
 import { EditionSheetsComponent } from './edition-sheets.component';
+import { EDITION_SHEETS_UTILS } from './edition-sheets.utils';
 
 // Mock components
 @Component({
@@ -54,8 +55,7 @@ import { EditionSheetsComponent } from './edition-sheets.component';
 class EditionSheetsPanelStubComponent {
     readonly isSheetFacetMinimized = model.required<boolean>();
     readonly svgSheetsData = input.required<EditionSvgSheetsList | null>();
-    readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
-    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
     readonly selectedTextcritics = input.required<Textcritics | undefined>();
     readonly browseSheetRequest = output<1 | -1>();
     readonly selectLinkBoxRequest = output<string>();
@@ -68,7 +68,7 @@ class EditionSheetsPanelStubComponent {
 })
 class EditionFoliosPanelStubComponent {
     readonly selectedConvolute = input.required<FolioConvolute>();
-    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 }
 
 describe('EditionSheetsComponent (DONE)', () => {
@@ -97,7 +97,8 @@ describe('EditionSheetsComponent (DONE)', () => {
     let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedSvgSheetWithPartial: EditionSvgSheet;
+    let expectedSelection: EditionSvgSheetSelection;
+    let expectedSelectionWithPartial: EditionSvgSheetSelection;
     let expectedTextcriticsListData: TextcriticsList;
     let expectedSelectedTextcritics: Textcritics;
     let expectedComplexId: string;
@@ -192,7 +193,11 @@ describe('EditionSheetsComponent (DONE)', () => {
         expectedNextSheetId = 'test-2a';
 
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedSvgSheetWithPartial = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
+        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(expectedSvgSheet, expectedSvgSheet.content[0]);
+        expectedSelectionWithPartial = EDITION_SHEETS_UTILS.toSvgSheetSelection(
+            mockEditionData.mockSvgSheet_Sk2,
+            mockEditionData.mockSvgSheet_Sk2.content[0]
+        );
         // Convolute A of the sketch edition test-1
         expectedConvolute = expectedFolioConvoluteData.convolutes[0];
         // Textcritics of the sketch edition test-1
@@ -258,12 +263,6 @@ describe('EditionSheetsComponent (DONE)', () => {
             expectToBe(isSignal(component.selectedTkkOverlays), true);
 
             expectToEqual(component.selectedTkkOverlays(), []);
-        });
-
-        it('... should have computed signal `selectedSheetIds` to hold an undefined id and full id', () => {
-            expectToBe(isSignal(component.selectedSheetIds), true);
-
-            expectToEqual(component.selectedSheetIds(), { id: undefined, fullId: undefined });
         });
 
         it('... should have computed signal `selectedConvolute` to hold undefined', () => {
@@ -348,14 +347,42 @@ describe('EditionSheetsComponent (DONE)', () => {
         });
 
         describe('... computed signal `selectedSvgSheet`', () => {
-            it('... should hold the svg sheet of the sheet id given by the route', () => {
-                expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+            it('... should hold the selection of the svg sheet given by the route', () => {
+                expectToEqual(component.selectedSvgSheet(), expectedSelection);
             });
 
-            it('... should hold the svg sheet reduced to the partial given by the route', () => {
+            it('... should hold the selection of the partial given by the route', () => {
                 setSheetIdInRoute('test-2a');
 
-                expectToEqual(component.selectedSvgSheet(), expectedSvgSheetWithPartial);
+                expectToEqual(component.selectedSvgSheet(), expectedSelectionWithPartial);
+            });
+
+            it('... should hold the selection of the first partial for a svg sheet with partials selected by its plain id', () => {
+                setSheetIdInRoute('test-2');
+
+                expectToEqual(component.selectedSvgSheet(), expectedSelectionWithPartial);
+            });
+
+            it('... should hold the selection of another partial given by the route', () => {
+                setSheetIdInRoute('test-2b');
+
+                expectToEqual(
+                    component.selectedSvgSheet(),
+                    EDITION_SHEETS_UTILS.toSvgSheetSelection(
+                        mockEditionData.mockSvgSheet_Sk2,
+                        mockEditionData.mockSvgSheet_Sk2.content[1]
+                    )
+                );
+            });
+
+            it('... should keep its reference if the view data is emitted again with the same data', () => {
+                const selection = component.selectedSvgSheet();
+                component.onOverlaySelect([createTestTkkOverlay('g1114')]);
+
+                mockViewDataSignal.set(createMockViewData({ ...expectedViewDataContent }));
+
+                expectToBe(component.selectedSvgSheet(), selection);
+                expectToEqual(component.selectedTkkOverlays(), [createTestTkkOverlay('g1114')]);
             });
 
             it('... should hold undefined for an unknown sheet id', () => {
@@ -374,33 +401,6 @@ describe('EditionSheetsComponent (DONE)', () => {
                 mockViewDataSignal.set(createMockViewData({ ...expectedViewDataContent, svgSheetsData: null }));
 
                 expect(component.selectedSvgSheet()).toBeUndefined();
-            });
-        });
-
-        describe('... computed signal `selectedSheetIds`', () => {
-            it('... should hold the id and the full id of the selected svg sheet', () => {
-                expectToEqual(component.selectedSheetIds(), {
-                    id: expectedSvgSheet.id,
-                    fullId: expectedSvgSheet.id,
-                });
-            });
-
-            it('... should have recomputed signal `selectedSheetIds` when a svg sheet with partial is selected', () => {
-                setSheetIdInRoute('test-2a');
-
-                expectToEqual(component.selectedSheetIds(), { id: expectedSvgSheetWithPartial.id, fullId: 'test-2a' });
-            });
-
-            it('... should hold the full id of the first partial for a svg sheet with partials selected by its plain id', () => {
-                setSheetIdInRoute('test-2');
-
-                expectToEqual(component.selectedSheetIds(), { id: 'test-2', fullId: 'test-2a' });
-            });
-
-            it('... should hold an undefined id and full id without selected svg sheet', () => {
-                setSheetIdInRoute('unknown-id');
-
-                expectToEqual(component.selectedSheetIds(), { id: undefined, fullId: undefined });
             });
         });
 
@@ -744,11 +744,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
 
                     it('... should pass down `selectedSvgSheet` to the EditionSheetsPanelComponent', () => {
-                        expectToEqual(sheetsPanelCmp.selectedSvgSheet(), expectedSvgSheet);
-                    });
-
-                    it('... should pass down `selectedSheetIds` to the EditionSheetsPanelComponent', () => {
-                        expectToEqual(sheetsPanelCmp.selectedSheetIds(), component.selectedSheetIds());
+                        expectToEqual(sheetsPanelCmp.selectedSvgSheet(), expectedSelection);
                     });
 
                     it('... should pass down `selectedTextcritics` to the EditionSheetsPanelComponent', () => {
@@ -759,7 +755,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         setSheetIdInRoute('test-2a');
                         await detectChangesOnPush(fixture);
 
-                        expectToEqual(sheetsPanelCmp.selectedSvgSheet(), expectedSvgSheetWithPartial);
+                        expectToEqual(sheetsPanelCmp.selectedSvgSheet(), expectedSelectionWithPartial);
                     });
                 });
 
@@ -780,7 +776,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         expectToEqual(foliosPanelCmp.selectedConvolute(), expectedConvolute);
                     });
 
-                    it('... should pass down `selectedSheetIds` to the EditionFoliosPanelComponent', () => {
+                    it('... should pass down `selectedSvgSheet` to the EditionFoliosPanelComponent', () => {
                         const foliosPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionFoliosPanelStubComponent,
@@ -789,7 +785,7 @@ describe('EditionSheetsComponent (DONE)', () => {
                         );
                         const foliosPanelCmp = foliosPanelDes[0].injector.get(EditionFoliosPanelStubComponent);
 
-                        expectToEqual(foliosPanelCmp.selectedSheetIds(), component.selectedSheetIds());
+                        expectToEqual(foliosPanelCmp.selectedSvgSheet(), expectedSelection);
                     });
 
                     it.each([

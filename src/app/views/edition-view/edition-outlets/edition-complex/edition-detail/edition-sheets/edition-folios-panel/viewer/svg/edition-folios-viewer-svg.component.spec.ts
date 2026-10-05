@@ -12,7 +12,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import {
     FolioSettings,
     FolioSvgContentSegment,
@@ -47,8 +47,8 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
     let expectedFolio: Folio;
     let expectedFolioSvgData: FolioSvgData;
     let expectedViewBox: ViewBox;
-    let expectedSheetId: EditionSvgSheetIds;
-    let expectedSheetIdWithPartial: EditionSvgSheetIds;
+    let expectedSelection: EditionSvgSheetSelection;
+    let expectedSelectionWithPartial: EditionSvgSheetSelection;
 
     const getSvgEl = (): SVGSVGElement =>
         getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-folios-viewer-svg', 1, 1)[0].nativeElement;
@@ -61,9 +61,9 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             .map(contentSegment => contentSegment.sheetTarget.sheetId);
     const getSelectionNode = (spy: Spy, callIndex: number): Element | null =>
         (spy.mock.calls[callIndex][0] as D3Selection).node() as Element | null;
-    const setInputs = (folio: Folio, sheetId: EditionSvgSheetIds): void => {
+    const setInputs = (folio: Folio, sheetId: EditionSvgSheetSelection): void => {
         fixture.componentRef.setInput('folio', folio);
-        fixture.componentRef.setInput('selectedSheetIds', sheetId);
+        fixture.componentRef.setInput('selectedSvgSheet', sheetId);
     };
 
     beforeEach(async () => {
@@ -97,8 +97,16 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
         // Test data
         expectedFolio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
-        expectedSheetId = { id: 'M212_Sk1', fullId: 'M212_Sk1' };
-        expectedSheetIdWithPartial = { id: 'M212_Sk', fullId: 'M212_Sk3' };
+        expectedSelection = {
+            id: 'M212_Sk1',
+            fullId: 'M212_Sk1',
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
+        expectedSelectionWithPartial = {
+            id: 'M212_Sk',
+            fullId: 'M212_Sk3',
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
 
         const expectedFolioSettings: FolioSettings = {
             factor: 1.5,
@@ -134,10 +142,10 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             expect(() => component.folio()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetIds`', () => {
-            expectToBe(isSignal(component.selectedSheetIds), true);
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
 
-            expect(() => component.selectedSheetIds()).toThrow();
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         it('... should throw when accessing computed signal `folioSvgData` due to missing input', () => {
@@ -159,7 +167,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            setInputs(expectedFolio, expectedSheetId);
+            setInputs(expectedFolio, expectedSelection);
             await detectChangesOnPush(fixture);
         });
 
@@ -167,8 +175,8 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             expectToEqual(component.folio(), expectedFolio);
         });
 
-        it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetIds(), expectedSheetId);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
         it('... should have computed signal `folioSvgData` to hold the svg data (incl. viewbox) of the folio', () => {
@@ -182,14 +190,14 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         });
 
         it('... should have computed signal `selectedSegmentId` to hold the full id (incl. partial) of the selected svg sheet', async () => {
-            fixture.componentRef.setInput('selectedSheetIds', expectedSheetIdWithPartial);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartial);
             await detectChangesOnPush(fixture);
 
             expectToBe(component.selectedSegmentId(), 'M212_Sk3');
         });
 
         it('... should have computed signal `selectedSegmentId` to hold an empty string for a sheet id without full id', async () => {
-            fixture.componentRef.setInput('selectedSheetIds', { id: undefined, fullId: undefined });
+            fixture.componentRef.setInput('selectedSvgSheet', undefined);
             await detectChangesOnPush(fixture);
 
             expectToBe(component.selectedSegmentId(), '');
@@ -222,7 +230,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             });
 
             it('... should not render again without a folio change', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetIdWithPartial);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartial);
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(renderFolioSpy, 1);
@@ -233,7 +241,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             it('... should update the active content segment of the root group via the EditionFolioSegmentService', async () => {
                 updateActiveContentSegmentSpy.mockClear();
 
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetIdWithPartial);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartial);
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(updateActiveContentSegmentSpy, 1);
@@ -246,14 +254,18 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             });
 
             it('... should mark the content segment of the selected svg sheet with partial as active', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetIdWithPartial);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartial);
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(getActiveSegmentIds(), ['M212_Sk3']);
             });
 
             it('... should not mark any content segment as active if the selected svg sheet is not on the folio', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', { id: 'M212_Sk4', fullId: 'M212_Sk4' });
+                fixture.componentRef.setInput('selectedSvgSheet', {
+                    id: 'M212_Sk4',
+                    fullId: 'M212_Sk4',
+                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
+                });
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(getActiveSegmentIds(), []);
@@ -337,7 +349,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
                 it('... should open the text modal on keydown of "Enter" on a focused content segment that is not selectable', async () => {
                     const folio = structuredClone(expectedFolio);
                     folio.content[0].selectable = false;
-                    setInputs(folio, expectedSheetId);
+                    setInputs(folio, expectedSelection);
                     await detectChangesOnPush(fixture);
 
                     const segmentGroupEl = getRootGroupEl().querySelector('g.content-segment-group') as SVGGElement;

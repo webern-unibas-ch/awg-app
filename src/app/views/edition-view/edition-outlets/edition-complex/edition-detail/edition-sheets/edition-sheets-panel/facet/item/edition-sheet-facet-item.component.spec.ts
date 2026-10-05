@@ -17,7 +17,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
-import { EditionSvgSheet, EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
@@ -33,10 +33,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
 
-    let expectedSheetId: EditionSvgSheetIds;
-    let expectedNextSheetId: EditionSvgSheetIds;
-    let expectedSheetIdWithPartialA: EditionSvgSheetIds;
-    let expectedOtherSheetIdWithPartialB: EditionSvgSheetIds;
+    let expectedSelection: EditionSvgSheetSelection;
+    let expectedNextSelection: EditionSvgSheetSelection;
+    let expectedSelectionWithPartialA: EditionSvgSheetSelection;
+    let expectedOtherSelectionWithPartialB: EditionSvgSheetSelection;
 
     const getDirectLinkDes = () => getAndExpectDebugElementByCss(compDe, 'a.awg-edition-sheet-facet-item-link', 1, 1);
     const getDropdownDes = () =>
@@ -69,15 +69,25 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedSheetId = { id: expectedSvgSheet.id, fullId: expectedSvgSheet.id };
-        expectedNextSheetId = { id: mockEditionData.mockSvgSheet_Sk4.id, fullId: mockEditionData.mockSvgSheet_Sk4.id };
-        expectedSheetIdWithPartialA = {
+        expectedSelection = {
+            id: expectedSvgSheet.id,
+            fullId: expectedSvgSheet.id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
+        expectedNextSelection = {
+            id: mockEditionData.mockSvgSheet_Sk4.id,
+            fullId: mockEditionData.mockSvgSheet_Sk4.id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
+        expectedSelectionWithPartialA = {
             id: expectedSvgSheetWithPartials.id,
             fullId: `${expectedSvgSheetWithPartials.id}a`,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
         };
-        expectedOtherSheetIdWithPartialB = {
+        expectedOtherSelectionWithPartialB = {
             id: mockEditionData.mockSvgSheet_Sk3b.id,
             fullId: `${mockEditionData.mockSvgSheet_Sk3b.id}b`,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
         };
 
         // Create component fixture
@@ -101,10 +111,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expect(() => component.svgSheet()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetIds`', () => {
-            expectToBe(isSignal(component.selectedSheetIds), true);
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
 
-            expect(() => component.selectedSheetIds()).toThrow();
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         it.each([
@@ -139,7 +149,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             beforeEach(() => {
                 // Simulate the parent setting the input properties
                 fixture.componentRef.setInput('svgSheet', expectedSvgSheet);
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -149,8 +159,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 expectToEqual(component.svgSheet(), expectedSvgSheet);
             });
 
-            it('... should have input signal `selectedSheetIds` to hold the provided sheet ids', () => {
-                expectToEqual(component.selectedSheetIds(), expectedSheetId);
+            it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+                expectToEqual(component.selectedSvgSheet(), expectedSelection);
             });
 
             it('... should have computed signal `isActive` to hold true', () => {
@@ -158,14 +168,14 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `isActive` when another svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', expectedNextSheetId);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedNextSelection);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
             });
 
             it('... should have recomputed signal `isActive` when no svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', { id: undefined, fullId: undefined });
+                fixture.componentRef.setInput('selectedSvgSheet', undefined);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
@@ -235,7 +245,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should pass down updated `isActive` to the directive if another svg sheet is selected', async () => {
-                        fixture.componentRef.setInput('selectedSheetIds', expectedNextSheetId);
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedNextSelection);
                         await detectChangesOnPush(fixture);
 
                         const linkDir = getLinkDirective(getDirectLinkDes()[0]);
@@ -251,7 +261,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should have `text-muted` class on the direct anchor if another svg sheet is selected', async () => {
-                        fixture.componentRef.setInput('selectedSheetIds', expectedNextSheetId);
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedNextSelection);
                         await detectChangesOnPush(fixture);
 
                         const aEl: HTMLAnchorElement = getDirectLinkDes()[0].nativeElement;
@@ -273,7 +283,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             beforeEach(() => {
                 // Simulate the parent setting the input properties
                 fixture.componentRef.setInput('svgSheet', expectedSvgSheetWithPartials);
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetIdWithPartialA);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartialA);
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -324,7 +334,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with no active link if another svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', expectedOtherSheetIdWithPartialB);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedOtherSelectionWithPartialB);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
@@ -335,7 +345,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with no active link if no svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', { id: undefined, fullId: undefined });
+                fixture.componentRef.setInput('selectedSvgSheet', undefined);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
@@ -346,9 +356,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with no active link if an unknown partial of the svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', {
+                fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}z`,
+                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
                 });
                 await detectChangesOnPush(fixture);
 
@@ -360,9 +371,10 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `sheetPartials` with only the link of the selected partial active', async () => {
-                fixture.componentRef.setInput('selectedSheetIds', {
+                fixture.componentRef.setInput('selectedSvgSheet', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
+                    content: mockEditionData.mockSvgSheet_Sk1.content[0],
                 });
                 await detectChangesOnPush(fixture);
 
@@ -415,7 +427,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 });
 
                 it('... should have `text-muted` class on the toggle anchor if another svg sheet is selected', async () => {
-                    fixture.componentRef.setInput('selectedSheetIds', expectedOtherSheetIdWithPartialB);
+                    fixture.componentRef.setInput('selectedSvgSheet', expectedOtherSelectionWithPartialB);
                     await detectChangesOnPush(fixture);
 
                     const toggleEl: HTMLAnchorElement = getDropdownToggleDes()[0].nativeElement;
@@ -495,7 +507,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
 
                     it('... should pass down updated `isActive` to the directives if another svg sheet is selected', async () => {
-                        fixture.componentRef.setInput('selectedSheetIds', expectedOtherSheetIdWithPartialB);
+                        fixture.componentRef.setInput('selectedSvgSheet', expectedOtherSelectionWithPartialB);
                         await detectChangesOnPush(fixture);
 
                         const linkDirs = getDropdownItemDes().map(itemDe => getLinkDirective(itemDe));
@@ -526,7 +538,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         describe('... with svg sheet without content', () => {
             beforeEach(() => {
                 fixture.componentRef.setInput('svgSheet', { ...expectedSvgSheet, content: [] });
-                fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
+                fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
                 fixture.detectChanges();
             });

@@ -9,7 +9,9 @@ import { UTILS } from '@awg-shared/utils/object-utils';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
+    EditionSvgSheetContent,
     EditionSvgSheetContext,
+    EditionSvgSheetSelection,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
@@ -47,16 +49,31 @@ export function getFullSheetIds(sheet: EditionSvgSheet): string[] {
 }
 
 /**
+ * Function: toSvgSheetSelection.
+ *
+ * It creates the selection of a given svg sheet with a given (selected) content.
+ *
+ * @param {EditionSvgSheet} sheet The given svg sheet.
+ * @param {EditionSvgSheetContent} content The given selected content (partial) of the svg sheet.
+ *
+ * @returns {EditionSvgSheetSelection} The selection of the svg sheet.
+ */
+export function toSvgSheetSelection(sheet: EditionSvgSheet, content: EditionSvgSheetContent): EditionSvgSheetSelection {
+    return { id: sheet.id, fullId: toFullSheetId(sheet.id, content.partial), content };
+}
+
+/**
  * Function: findSvgSheet.
  *
- * It finds an svg sheet and its edition type by a given full sheet id.
- * A full sheet id with partial reduces the content of the found sheet
- * to the selected partial; a plain sheet id keeps the whole content.
+ * It finds the selection of an svg sheet and its edition type by a given full sheet id.
+ * A full sheet id with partial selects the given partial;
+ * a plain sheet id selects the first content (partial) of the sheet.
+ * A sheet without content cannot be selected.
  *
  * @param {EditionSvgSheetsList['sheets']} sheets The given sheets object.
  * @param {string} fullId The given full sheet id.
  *
- * @returns {EditionSvgSheetContext | undefined} The found svg sheet and its edition type, or undefined.
+ * @returns {EditionSvgSheetContext | undefined} The selection of the found svg sheet and its edition type, or undefined.
  */
 export function findSvgSheet(
     sheets: EditionSvgSheetsList['sheets'],
@@ -76,15 +93,16 @@ export function findSvgSheet(
         }
 
         for (const sheet of sheetArray) {
-            if (sheet.id === fullId) {
-                return { sheet: { ...sheet }, editionType, fullId: getFullSheetIds(sheet)[0] };
-            }
+            const content =
+                sheet.id === fullId
+                    ? sheet.content?.[0]
+                    : sheet.content?.find(
+                          sheetContent =>
+                              sheetContent.partial && toFullSheetId(sheet.id, sheetContent.partial) === fullId
+                      );
 
-            const partialContent = sheet.content?.find(
-                content => content.partial && toFullSheetId(sheet.id, content.partial) === fullId
-            );
-            if (partialContent) {
-                return { sheet: { ...sheet, content: [partialContent] }, editionType, fullId };
+            if (content) {
+                return { selection: toSvgSheetSelection(sheet, content), editionType };
             }
         }
     }
@@ -135,40 +153,39 @@ export function getNextSheetId(sheetArray: EditionSvgSheet[], currentFullId: str
 /**
  * Function: findTextcritics.
  *
- * It finds the textcritics of a given svg sheet.
+ * It finds the textcritics of an svg sheet by a given sheet id.
  *
  * @param {Textcritics[]} textcritics The given textcritics array.
- * @param {EditionSvgSheet} sheet The given svg sheet.
+ * @param {string} sheetId The given sheet id.
  *
  * @returns {Textcritics | undefined} The found textcritics, or undefined.
  */
-export function findTextcritics(textcritics: Textcritics[], sheet: EditionSvgSheet): Textcritics | undefined {
-    return textcritics.find(textcritic => textcritic.id === sheet.id);
+export function findTextcritics(textcritics: Textcritics[], sheetId: string): Textcritics | undefined {
+    return textcritics.find(textcritic => textcritic.id === sheetId);
 }
 
 /**
  * Function: findConvolute.
  *
- * It finds the folio convolute of a given svg sheet.
+ * It finds the folio convolute of a given selected svg sheet.
  * Only sketch editions have a convolute.
  *
  * @param {FolioConvolute[]} convolutes The given folio convolutes.
- * @param {EditionSvgSheet} sheet The given svg sheet.
- * @param {EditionTypeKey} editionType The edition type of the given svg sheet.
+ * @param {EditionSvgSheetSelection} selection The given selected svg sheet.
+ * @param {EditionTypeKey} editionType The edition type of the given selected svg sheet.
  *
  * @returns {FolioConvolute | undefined} The found convolute, or undefined.
  */
 export function findConvolute(
     convolutes: FolioConvolute[],
-    sheet: EditionSvgSheet,
+    selection: EditionSvgSheetSelection,
     editionType: EditionTypeKey
 ): FolioConvolute | undefined {
     if (editionType !== 'sketchEditions') {
         return undefined;
     }
-    const convoluteId = sheet.content?.[0]?.convolute;
 
-    return convolutes.find(convolute => convolute.convoluteId === convoluteId);
+    return convolutes.find(convolute => convolute.convoluteId === selection.content.convolute);
 }
 
 /**
@@ -217,4 +234,5 @@ export const EDITION_SHEETS_UTILS = {
     getFullSheetIds,
     getNextSheetId,
     toFullSheetId,
+    toSvgSheetSelection,
 } as const;

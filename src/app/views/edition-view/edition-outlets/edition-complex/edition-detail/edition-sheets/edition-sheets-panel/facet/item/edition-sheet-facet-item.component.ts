@@ -4,7 +4,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import type { Options } from '@popperjs/core';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
-import { EditionSvgSheet, EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 
 import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
 import { EditionSheetFacetPartialLink } from '../edition-sheet-facet.model';
@@ -34,11 +34,11 @@ export class EditionSheetFacetItemComponent {
     readonly svgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * Readonly input signal: selectedSheetIds.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the id and the full id (incl. partial) of the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 
     /**
      * Readonly variable: dropdownPopperOptions.
@@ -68,7 +68,7 @@ export class EditionSheetFacetItemComponent {
      * It computes if the svg sheet of the facet item is selected
      * (regardless of a selected partial).
      */
-    readonly isActive = computed(() => this.svgSheet().id === this.selectedSheetIds().id);
+    readonly isActive = computed(() => this.svgSheet().id === this.selectedSvgSheet()?.id);
 
     /**
      * Readonly computed signal: sheetPartials.
@@ -82,7 +82,7 @@ export class EditionSheetFacetItemComponent {
             return [];
         }
 
-        const selectedFullId = this.selectedSheetIds().fullId;
+        const selectedFullId = this.selectedSvgSheet()?.fullId;
 
         return svgSheet.content.map((content, index) => {
             const indexLabel = `${index + 1}/${svgSheet.content.length}`;

@@ -29,7 +29,7 @@ import { ModalService } from '@awg-shared/modal/modal.service';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
-    EditionSvgSheetIds,
+    EditionSvgSheetSelection,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
@@ -41,6 +41,7 @@ import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
 import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.component';
+import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 
 type CreateSvgFn = EditionSvgDrawingService['createSvg'];
 
@@ -58,7 +59,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
     let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
-    let expectedSheetId: EditionSvgSheetIds;
+    let expectedSelection: EditionSvgSheetSelection;
     let expectedSelectedTextcritics: Textcritics;
 
     beforeAll(() => {
@@ -120,7 +121,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedSheetId = { id: expectedSvgSheet.id, fullId: expectedSvgSheet.id };
+        expectedSelection = EDITION_SHEETS_UTILS.toSvgSheetSelection(expectedSvgSheet, expectedSvgSheet.content[0]);
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -157,7 +158,6 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             ['model', 'isSheetFacetMinimized'],
             ['input', 'svgSheetsData'],
             ['input', 'selectedSvgSheet'],
-            ['input', 'selectedSheetIds'],
             ['input', 'selectedTextcritics'],
         ] as const)('... should throw due to missing required %s signal `%s`', (_kind, key) => {
             expectToBe(isSignal(component[key]), true);
@@ -182,8 +182,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
-            fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
             fixture.componentRef.setInput('selectedTextcritics', expectedSelectedTextcritics);
 
             // Trigger initial data binding
@@ -200,12 +199,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             expectToEqual(component.svgSheetsData(), expectedSvgSheetsData);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
-        });
-
-        it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetIds(), expectedSheetId);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
         it('... should have input signal `selectedTextcritics` to hold the provided textcritics', () => {
@@ -345,12 +340,12 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(facetContainerDes[0], EditionSheetFacetComponent, 1, 1);
                     });
 
-                    it('... should pass down `svgSheetsData`, `selectedSheetIds` and `isMinimized` to EditionSheetFacetComponent', () => {
+                    it('... should pass down `svgSheetsData`, `selectedSvgSheet` and `isMinimized` to EditionSheetFacetComponent', () => {
                         const facetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetFacetComponent, 1, 1);
                         const facetCmp = facetDes[0].injector.get(EditionSheetFacetComponent);
 
                         expectToEqual(facetCmp.svgSheetsData(), expectedSvgSheetsData);
-                        expectToEqual(facetCmp.selectedSheetIds(), expectedSheetId);
+                        expectToEqual(facetCmp.selectedSvgSheet(), expectedSelection);
                         expectToBe(facetCmp.isMinimized(), false);
                     });
 
@@ -402,7 +397,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         );
                         const viewerCmp = viewerDes[0].injector.get(EditionSheetViewerComponent);
 
-                        expectToEqual(viewerCmp.selectedSvgSheet(), expectedSvgSheet);
+                        expectToEqual(viewerCmp.selectedSvgSheet(), expectedSelection);
                     });
 
                     it.each([-1, 1] as const)(
@@ -473,7 +468,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         async (_label, hasSvgSheet, hasTextcritics) => {
                             fixture.componentRef.setInput(
                                 'selectedSvgSheet',
-                                hasSvgSheet ? expectedSvgSheet : undefined
+                                hasSvgSheet ? expectedSelection : undefined
                             );
                             fixture.componentRef.setInput(
                                 'selectedTextcritics',

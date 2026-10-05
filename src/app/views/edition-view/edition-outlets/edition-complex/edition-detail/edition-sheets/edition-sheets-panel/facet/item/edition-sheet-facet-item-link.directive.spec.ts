@@ -91,7 +91,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
         expect(getDirective()).toBeTruthy();
     });
 
-    it('... should have input signal `sheetTarget` to hold the provided sheet ids', () => {
+    it('... should have input signal `sheetTarget` to hold the provided sheet target', () => {
         expectToBe(isSignal(getDirective().sheetTarget), true);
 
         expectToEqual(getDirective().sheetTarget(), expectedSheetIds);
@@ -162,7 +162,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 expectSpyCall(selectSpy, 0);
             });
 
-            describe('... should navigate to the provided sheet ids', () => {
+            describe('... should navigate to the provided sheet target', () => {
                 it('... without partial', () => {
                     getDirective().select();
 

@@ -1,25 +1,6 @@
 import { EditionTypeKey } from './edition-type.model';
 
 /**
- * The EditionSvgSheetIds interface.
- *
- * It is used in the context of the edition view
- * to store the id and the full id (incl. partial)
- * of a (selected) svg sheet.
- */
-export interface EditionSvgSheetIds {
-    /**
-     * The sheet's id (string).
-     */
-    id: string | undefined;
-
-    /**
-     * The sheet's full id, i.e. the sheet id incl. the selected partial id, if any (string).
-     */
-    fullId: string | undefined;
-}
-
-/**
  * The EditionSvgSheetContent interface.
  *
  * It is used in the context of the edition view
@@ -91,26 +72,45 @@ export class EditionSvgSheetsList {
 }
 
 /**
+ * The EditionSvgSheetSelection interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet: its id,
+ * its full id (incl. the selected partial)
+ * and its selected content.
+ */
+export interface EditionSvgSheetSelection {
+    /**
+     * The sheet's id (string).
+     */
+    id: string;
+
+    /**
+     * The sheet's full id, i.e. the sheet id incl. the selected partial id, if any (string).
+     */
+    fullId: string;
+
+    /**
+     * The selected content (partial) of the sheet.
+     */
+    content: EditionSvgSheetContent;
+}
+
+/**
  * The EditionSvgSheetContext interface.
  *
  * It is used in the context of the edition view
- * to store a (selected) svg sheet
+ * to store a selected svg sheet
  * together with its edition type.
  */
 export interface EditionSvgSheetContext {
     /**
-     * The svg sheet (with its content reduced to the selected partial, if any).
+     * The selected svg sheet.
      */
-    sheet: EditionSvgSheet;
+    selection: EditionSvgSheetSelection;
 
     /**
-     * The edition type of the svg sheet.
+     * The edition type of the selected svg sheet.
      */
     editionType: EditionTypeKey;
-
-    /**
-     * The full id of the svg sheet, i.e. the sheet id incl. the selected partial id, if any.
-     * For a sheet with partials selected by its plain id, it is the full id of the first partial.
-     */
-    fullId: string;
 }

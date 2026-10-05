@@ -21,13 +21,14 @@ import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
+import { EDITION_SHEETS_UTILS } from '../../edition-sheets.utils';
 
 type CreateSvgFn = EditionSvgDrawingService['createSvg'];
 
@@ -44,7 +45,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let selectTkkOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlayTkk[]) => void>;
 
     let expectedZoomConfig: ZoomConfig;
-    let expectedSvgSheet: EditionSvgSheet;
+    let expectedSvgSheet: EditionSvgSheetSelection;
 
     const getSheetSvgDe = (): DebugElement =>
         getAndExpectDebugElementByDirective(compDe, EditionSheetViewerSvgComponent, 1, 1)[0];
@@ -98,7 +99,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
         // Test data
         expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSvgSheet = structuredClone(
+            EDITION_SHEETS_UTILS.toSvgSheetSelection(
+                mockEditionData.mockSvgSheet_Sk1,
+                mockEditionData.mockSvgSheet_Sk1.content[0]
+            )
+        );
 
         // Spies
         browseSheetRequestSpy = vi.fn();
@@ -146,7 +152,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             await detectChangesOnPush(fixture);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided sheet', () => {
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
         });
 

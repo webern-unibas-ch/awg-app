@@ -19,6 +19,7 @@ import {
     getFullSheetIds,
     getNextSheetId,
     toFullSheetId,
+    toSvgSheetSelection,
 } from './edition-sheets.utils';
 
 describe('EditionSheetsUtils (DONE)', () => {
@@ -82,6 +83,38 @@ describe('EditionSheetsUtils (DONE)', () => {
         });
     });
 
+    describe('#toSvgSheetSelection()', () => {
+        it('... should have a function `toSvgSheetSelection`', () => {
+            expect(toSvgSheetSelection).toBeDefined();
+        });
+
+        it('... should create the selection of a sheet without partials', () => {
+            const sheet = mockEditionData.mockSvgSheet_Sk1;
+
+            expectToEqual(toSvgSheetSelection(sheet, sheet.content[0]), {
+                id: 'test-1',
+                fullId: 'test-1',
+                content: sheet.content[0],
+            });
+        });
+
+        it('... should create the selection of a given partial of a sheet with partials', () => {
+            const sheet = mockEditionData.mockSvgSheet_Sk2;
+
+            expectToEqual(toSvgSheetSelection(sheet, sheet.content[1]), {
+                id: 'test-2',
+                fullId: 'test-2b',
+                content: sheet.content[1],
+            });
+        });
+
+        it('... should keep the reference of the given content', () => {
+            const sheet = mockEditionData.mockSvgSheet_Sk2;
+
+            expectToBe(toSvgSheetSelection(sheet, sheet.content[0]).content, sheet.content[0]);
+        });
+    });
+
     describe('#findSvgSheet()', () => {
         it('... should have a function `findSvgSheet`', () => {
             expect(findSvgSheet).toBeDefined();
@@ -99,44 +132,46 @@ describe('EditionSheetsUtils (DONE)', () => {
             it('... the given partial is not in the given sheet', () => {
                 expect(findSvgSheet(expectedSheets, 'test-2z')).toBeUndefined();
             });
+
+            it('... the found sheet has no content', () => {
+                const sheets = {
+                    ...expectedSheets,
+                    sketchEditions: [{ ...expectedSheets.sketchEditions[0], content: [] }],
+                };
+
+                expect(findSvgSheet(sheets, 'test-1')).toBeUndefined();
+            });
         });
 
-        describe('... should find the sheet and its edition type in', () => {
+        describe('... should find the selection of the sheet and its edition type in', () => {
             it.each([
                 ['workEditions', 'test-WE1'],
                 ['textEditions', 'test-TF1'],
                 ['sketchEditions', 'test-1'],
             ] as const)('... %s', (editionType, id) => {
-                const context = findSvgSheet(expectedSheets, id);
+                const sheet = expectedSheets[editionType].find(svgSheet => svgSheet.id === id);
+                if (!sheet) {
+                    expect.fail(`Expected sheet ${id} to be in ${editionType}`);
+                }
 
-                expectToBe(context?.editionType, editionType);
-                expectToEqual(
-                    context?.sheet,
-                    expectedSheets[editionType].find(sheet => sheet.id === id)
-                );
+                expectToEqual(findSvgSheet(expectedSheets, id), {
+                    selection: toSvgSheetSelection(sheet, sheet.content[0]),
+                    editionType,
+                });
             });
         });
 
-        it('... should reduce the content of a sheet with partials to the selected partial', () => {
-            const context = findSvgSheet(expectedSheets, 'test-2b');
-
-            expectToBe(context?.editionType, 'sketchEditions');
-            expectToEqual(context?.sheet, mockEditionData.mockSvgSheet_Sk2b);
-        });
-
-        it('... should keep the whole content of a sheet with partials for a plain sheet id', () => {
-            const context = findSvgSheet(expectedSheets, 'test-2');
-
-            expectToEqual(context?.sheet, mockEditionData.mockSvgSheet_Sk2);
-        });
-
-        describe('... should provide the full id of the found sheet', () => {
+        describe('... should select the content and full id of', () => {
             it.each([
-                ['without partials', 'test-1', 'test-1'],
-                ['with the selected partial', 'test-2b', 'test-2b'],
-                ['of the first partial for a plain sheet id', 'test-2', 'test-2a'],
-            ])('... %s', (_label, id, expectedFullId) => {
-                expectToBe(findSvgSheet(expectedSheets, id)?.fullId, expectedFullId);
+                ['a sheet without partials', 'test-1', 'test-1', 0],
+                ['the given partial of a sheet with partials', 'test-2b', 'test-2b', 1],
+                ['the first partial of a sheet with partials for a plain sheet id', 'test-2', 'test-2a', 0],
+            ])('... %s', (_label, id, expectedFullId, expectedContentIndex) => {
+                const selection = findSvgSheet(expectedSheets, id)?.selection;
+                const sheet = expectedSheets.sketchEditions.find(svgSheet => svgSheet.id === selection?.id);
+
+                expectToBe(selection?.fullId, expectedFullId);
+                expectToBe(selection?.content, sheet?.content[expectedContentIndex]);
             });
         });
 
@@ -268,21 +303,16 @@ describe('EditionSheetsUtils (DONE)', () => {
             expect(findTextcritics).toBeDefined();
         });
 
-        it('... should return the textcritics of the given sheet', () => {
-            expectToEqual(
-                findTextcritics(expectedTextcriticsArray, mockEditionData.mockSvgSheet_Sk1),
-                expectedTextcriticsArray[0]
-            );
+        it('... should return the textcritics of the given sheet id', () => {
+            expectToEqual(findTextcritics(expectedTextcriticsArray, 'test-1'), expectedTextcriticsArray[0]);
         });
 
-        it('... should return undefined if no textcritics are found for the given sheet', () => {
-            const sheet = { ...mockEditionData.mockSvgSheet_Sk1, id: 'unknown-id' };
-
-            expect(findTextcritics(expectedTextcriticsArray, sheet)).toBeUndefined();
+        it('... should return undefined if no textcritics are found for the given sheet id', () => {
+            expect(findTextcritics(expectedTextcriticsArray, 'unknown-id')).toBeUndefined();
         });
 
         it('... should return undefined for an empty textcritics array', () => {
-            expect(findTextcritics([], mockEditionData.mockSvgSheet_Sk1)).toBeUndefined();
+            expect(findTextcritics([], 'test-1')).toBeUndefined();
         });
     });
 
@@ -291,19 +321,27 @@ describe('EditionSheetsUtils (DONE)', () => {
             expect(findConvolute).toBeDefined();
         });
 
-        it('... should return the convolute of a sketch edition', () => {
+        const sk1Selection = () =>
+            toSvgSheetSelection(mockEditionData.mockSvgSheet_Sk1, mockEditionData.mockSvgSheet_Sk1.content[0]);
+
+        it('... should return the convolute of the selected content of a sketch edition', () => {
             expectToEqual(
-                findConvolute(expectedConvolutes, mockEditionData.mockSvgSheet_Sk1, 'sketchEditions'),
+                findConvolute(expectedConvolutes, sk1Selection(), 'sketchEditions'),
                 expectedConvolutes.find(convolute => convolute.convoluteId === 'A')
             );
         });
 
         it.each(['workEditions', 'textEditions'] as const)('... should return undefined for %s', editionType => {
-            expect(findConvolute(expectedConvolutes, mockEditionData.mockSvgSheet_TF1, editionType)).toBeUndefined();
+            const tf1Selection = toSvgSheetSelection(
+                mockEditionData.mockSvgSheet_TF1,
+                mockEditionData.mockSvgSheet_TF1.content[0]
+            );
+
+            expect(findConvolute(expectedConvolutes, tf1Selection, editionType)).toBeUndefined();
         });
 
         it('... should return undefined if the convolute of the sketch edition is not found', () => {
-            expect(findConvolute([], mockEditionData.mockSvgSheet_Sk1, 'sketchEditions')).toBeUndefined();
+            expect(findConvolute([], sk1Selection(), 'sketchEditions')).toBeUndefined();
         });
     });
 
