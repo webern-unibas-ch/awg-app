@@ -18,13 +18,13 @@
             >
         </a>
         <div ngbDropdownMenu [attr.aria-labelledby]="dropdownId()">
-            @for (partialLink of partialLinks(); track partialLink.sheetTarget.sheetId) {
+            @for (sheetPartial of sheetPartials(); track sheetPartial.sheetTarget.sheetId) {
                 <div>
                     <a
                         class="dropdown-item"
-                        [awgEditionSheetFacetItemLink]="partialLink.sheetTarget"
-                        [isActive]="partialLink.isActive"
-                        >{{ svgSheet().label }} <span class="text-muted">[{{ partialLink.positionLabel }}]</span></a
+                        [awgEditionSheetFacetItemLink]="sheetPartial.sheetTarget"
+                        [isActive]="sheetPartial.isActive"
+                        >{{ svgSheet().label }} <span class="text-muted">[{{ sheetPartial.positionLabel }}]</span></a
                     >
                 </div>
             }

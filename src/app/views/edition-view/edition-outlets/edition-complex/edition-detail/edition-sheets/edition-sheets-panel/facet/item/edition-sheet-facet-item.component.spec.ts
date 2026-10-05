@@ -3,8 +3,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
+    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -107,9 +109,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
         it.each([
             { name: 'isActive' as const },
-            { name: 'sheetTarget' as const },
             { name: 'dropdownId' as const },
-            { name: 'partialLinks' as const },
+            { name: 'sheetPartials' as const },
             { name: 'sheetTarget' as const },
         ])('... should throw when accessing computed signal `$name` due to missing inputs', ({ name }) => {
             const computedSignal = component[name];
@@ -148,7 +149,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 expectToEqual(component.svgSheet(), expectedSvgSheet);
             });
 
-            it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
+            it('... should have input signal `selectedSheetIds` to hold the provided sheet ids', () => {
                 expectToEqual(component.selectedSheetIds(), expectedSheetId);
             });
 
@@ -170,16 +171,33 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 expectToBe(component.isActive(), false);
             });
 
-            it('... should have computed signal `sheetTarget` to hold the expected sheet ids', () => {
+            it('... should have computed signal `sheetTarget` to hold the expected sheet target', () => {
                 expectToEqual(component.sheetTarget(), { complexId: '', sheetId: expectedSvgSheet.id });
+            });
+
+            it('... should have recomputed signal `sheetTarget` when another svg sheet is provided', async () => {
+                fixture.componentRef.setInput('svgSheet', mockEditionData.mockSvgSheet_Sk4);
+                await detectChangesOnPush(fixture);
+
+                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: mockEditionData.mockSvgSheet_Sk4.id });
             });
 
             it('... should have computed signal `dropdownId` to hold the expected id (unused without partials)', () => {
                 expectToBe(component.dropdownId(), 'awg-edition-sheet-facet-item-dropdown-' + expectedSvgSheet.id);
             });
 
-            it('... should have computed signal `partialLinks` to hold an empty array', () => {
-                expectToEqual(component.partialLinks(), []);
+            it('... should have recomputed signal `dropdownId` when another svg sheet is provided', async () => {
+                fixture.componentRef.setInput('svgSheet', mockEditionData.mockSvgSheet_Sk4);
+                await detectChangesOnPush(fixture);
+
+                expectToBe(
+                    component.dropdownId(),
+                    'awg-edition-sheet-facet-item-dropdown-' + mockEditionData.mockSvgSheet_Sk4.id
+                );
+            });
+
+            it('... should have computed signal `sheetPartials` to hold an empty array', () => {
+                expectToEqual(component.sheetPartials(), []);
             });
 
             describe('VIEW', () => {
@@ -224,6 +242,29 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                         expectToBe(linkDir?.isActive(), false);
                     });
+
+                    it('... should have `active` class on the direct anchor if the svg sheet is selected', () => {
+                        const aEl: HTMLAnchorElement = getDirectLinkDes()[0].nativeElement;
+
+                        expectToContain(aEl.classList, 'active');
+                        expectToNotContain(aEl.classList, 'text-muted');
+                    });
+
+                    it('... should have `text-muted` class on the direct anchor if another svg sheet is selected', async () => {
+                        fixture.componentRef.setInput('selectedSheetIds', expectedNextSheetId);
+                        await detectChangesOnPush(fixture);
+
+                        const aEl: HTMLAnchorElement = getDirectLinkDes()[0].nativeElement;
+
+                        expectToContain(aEl.classList, 'text-muted');
+                        expectToNotContain(aEl.classList, 'active');
+                    });
+
+                    it('... should navigate to `sheetTarget` on click of the direct anchor', async () => {
+                        await clickAndAwaitChanges(getDirectLinkDes()[0], fixture);
+
+                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 1, component.sheetTarget());
+                    });
                 });
             });
         });
@@ -249,8 +290,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 );
             });
 
-            it('... should have computed signal `partialLinks` to hold the expected links', () => {
-                expectToEqual(component.partialLinks(), [
+            it('... should have computed signal `sheetPartials` to hold the expected links', () => {
+                expectToEqual(component.sheetPartials(), [
                     {
                         sheetTarget: { complexId: '', sheetId: expectedSvgSheetWithPartials.id + 'a' },
                         positionLabel: 'a · 1/2',
@@ -264,7 +305,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 ]);
             });
 
-            it('... should have computed signal `partialLinks` to hold only the index in the position label if a partial id is missing', async () => {
+            it('... should have computed signal `sheetPartials` to hold only the index in the position label if a partial id is missing', async () => {
                 const svgSheetWithoutPartialIds = {
                     ...expectedSvgSheetWithPartials,
                     content: expectedSvgSheetWithPartials.content.map(content => ({ ...content, partial: undefined })),
@@ -273,27 +314,52 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(
-                    component.partialLinks().map(link => link.positionLabel),
+                    component.sheetPartials().map(link => link.positionLabel),
                     ['1/2', '2/2']
                 );
                 expectToEqual(
-                    component.partialLinks().map(link => link.sheetTarget.sheetId),
+                    component.sheetPartials().map(link => link.sheetTarget.sheetId),
                     [expectedSvgSheetWithPartials.id, expectedSvgSheetWithPartials.id]
                 );
             });
 
-            it('... should have recomputed signal `partialLinks` with no active link if another svg sheet is selected', async () => {
+            it('... should have recomputed signal `sheetPartials` with no active link if another svg sheet is selected', async () => {
                 fixture.componentRef.setInput('selectedSheetIds', expectedOtherSheetIdWithPartialB);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
                 expectToEqual(
-                    component.partialLinks().map(link => link.isActive),
+                    component.sheetPartials().map(link => link.isActive),
                     [false, false]
                 );
             });
 
-            it('... should have recomputed signal `partialLinks` with only the link of the selected partial active', async () => {
+            it('... should have recomputed signal `sheetPartials` with no active link if no svg sheet is selected', async () => {
+                fixture.componentRef.setInput('selectedSheetIds', { id: undefined, fullId: undefined });
+                await detectChangesOnPush(fixture);
+
+                expectToBe(component.isActive(), false);
+                expectToEqual(
+                    component.sheetPartials().map(link => link.isActive),
+                    [false, false]
+                );
+            });
+
+            it('... should have recomputed signal `sheetPartials` with no active link if an unknown partial of the svg sheet is selected', async () => {
+                fixture.componentRef.setInput('selectedSheetIds', {
+                    id: expectedSvgSheetWithPartials.id,
+                    fullId: `${expectedSvgSheetWithPartials.id}z`,
+                });
+                await detectChangesOnPush(fixture);
+
+                expectToBe(component.isActive(), true);
+                expectToEqual(
+                    component.sheetPartials().map(link => link.isActive),
+                    [false, false]
+                );
+            });
+
+            it('... should have recomputed signal `sheetPartials` with only the link of the selected partial active', async () => {
                 fixture.componentRef.setInput('selectedSheetIds', {
                     id: expectedSvgSheetWithPartials.id,
                     fullId: `${expectedSvgSheetWithPartials.id}b`,
@@ -302,7 +368,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                 expectToBe(component.isActive(), true);
                 expectToEqual(
-                    component.partialLinks().map(link => link.isActive),
+                    component.sheetPartials().map(link => link.isActive),
                     [false, true]
                 );
             });
@@ -376,6 +442,24 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                     });
                 });
 
+                it('... should display only the numbered position in item anchors if a partial id is missing', async () => {
+                    fixture.componentRef.setInput('svgSheet', {
+                        ...expectedSvgSheetWithPartials,
+                        content: expectedSvgSheetWithPartials.content.map(content => ({
+                            ...content,
+                            partial: undefined,
+                        })),
+                    });
+                    await detectChangesOnPush(fixture);
+
+                    const labels = getDropdownItemDes().map(itemDe => itemDe.nativeElement.textContent.trim());
+
+                    expectToEqual(labels, [
+                        `${expectedSvgSheetWithPartials.label} [1/2]`,
+                        `${expectedSvgSheetWithPartials.label} [2/2]`,
+                    ]);
+                });
+
                 describe('EditionSheetFacetItemLinkDirective', () => {
                     it('... should be applied to each item anchor', () => {
                         getDropdownItemDes().forEach(itemDe => {
@@ -420,6 +504,21 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
                         expectToEqual(isActiveValues, [false, false]);
                     });
+
+                    it('... should navigate to the `sheetTarget` of the partial on click of an item anchor', async () => {
+                        await clickAndAwaitChanges(getDropdownItemDes()[1], fixture);
+
+                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 1, {
+                            complexId: '',
+                            sheetId: expectedSvgSheetWithPartials.id + 'b',
+                        });
+                    });
+
+                    it('... should not navigate on click of the dropdown toggle anchor', async () => {
+                        await clickAndAwaitChanges(getDropdownToggleDes()[0], fixture);
+
+                        expectSpyCall(mockNavigationService.navigateToSvgSheet as any, 0);
+                    });
                 });
             });
         });
@@ -430,6 +529,18 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
 
                 fixture.detectChanges();
+            });
+
+            it('... should have computed signal `isActive` to hold true if the svg sheet is selected', () => {
+                expectToBe(component.isActive(), true);
+            });
+
+            it('... should have computed signal `sheetPartials` to hold an empty array', () => {
+                expectToEqual(component.sheetPartials(), []);
+            });
+
+            it('... should have computed signal `sheetTarget` to hold the expected sheet target', () => {
+                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: expectedSvgSheet.id });
             });
 
             describe('VIEW', () => {

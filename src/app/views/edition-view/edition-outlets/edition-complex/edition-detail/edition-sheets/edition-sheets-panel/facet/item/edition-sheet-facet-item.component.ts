@@ -71,11 +71,11 @@ export class EditionSheetFacetItemComponent {
     readonly isActive = computed(() => this.svgSheet().id === this.selectedSheetIds().id);
 
     /**
-     * Readonly computed signal: partialLinks.
+     * Readonly computed signal: sheetPartials.
      *
      * It computes the partial links (if present) of the svg sheet for the dropdown.
      */
-    readonly partialLinks = computed<EditionSheetFacetPartialLink[]>(() => {
+    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
         const svgSheet = this.svgSheet();
 
         if (svgSheet.content.length <= 1) {
