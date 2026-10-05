@@ -46,13 +46,12 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                EditionSheetFooterComponent,
-                EditionTkaEvaluationsComponent,
-                EditionTkaLabelComponent,
-                EditionTkaTableComponent,
-            ],
-        }).compileComponents();
+            imports: [EditionSheetFooterComponent],
+        })
+            .overrideComponent(EditionTkaEvaluationsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaLabelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaTableComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -151,7 +150,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         expectToBe(detailsEl.open, false);
                     });
 
-                    it('... should contain one summary.smallcaps with an EditionTkaLabelComponent', () => {
+                    it('... should contain one summary.smallcaps with an EditionTkaLabelComponent (hollow)', () => {
                         const summaryDes = getAndExpectDebugElementByCss(
                             getEvaluationDetailsDes()[0],
                             'summary.smallcaps',
@@ -162,7 +161,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(summaryDes[0], EditionTkaLabelComponent, 1, 1);
                     });
 
-                    it('... should pass down `id` and `labelType` to the EditionTkaLabelComponent in the summary', () => {
+                    it('... should pass down `id` and `labelType` to the EditionTkaLabelComponent (hollow) in the summary', () => {
                         const summaryDes = getAndExpectDebugElementByCss(getEvaluationDetailsDes()[0], 'summary', 1, 1);
                         const labelDes = getAndExpectDebugElementByDirective(
                             summaryDes[0],
@@ -176,7 +175,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 
-                    it('... should contain one EditionTkaEvaluationsComponent in the details element', () => {
+                    it('... should contain one EditionTkaEvaluationsComponent (hollow) in the details element', () => {
                         getAndExpectDebugElementByDirective(
                             getEvaluationDetailsDes()[0],
                             EditionTkaEvaluationsComponent,
@@ -185,7 +184,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should pass down `evaluations` to the EditionTkaEvaluationsComponent', () => {
+                    it('... should pass down `evaluations` to the EditionTkaEvaluationsComponent (hollow)', () => {
                         const evaluationsDes = getAndExpectDebugElementByDirective(
                             getEvaluationDetailsDes()[0],
                             EditionTkaEvaluationsComponent,
@@ -209,14 +208,14 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
                     });
 
-                    it('... should contain no details element and no EditionTkaEvaluationsComponent', () => {
+                    it('... should contain no details element and no EditionTkaEvaluationsComponent (hollow)', () => {
                         const bodyDe = getCardBodyDes('evaluation')[0];
 
                         getAndExpectDebugElementByCss(bodyDe, 'details', 0, 0);
                         getAndExpectDebugElementByDirective(bodyDe, EditionTkaEvaluationsComponent, 0, 0);
                     });
 
-                    it('... should contain one paragraph with a span.smallcaps holding the EditionTkaLabelComponent', () => {
+                    it('... should contain one paragraph with a span.smallcaps holding the EditionTkaLabelComponent (hollow)', () => {
                         const pDes = getAndExpectDebugElementByCss(
                             getCardBodyDes('evaluation')[0],
                             'div.card-body > p',
@@ -271,13 +270,13 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     getCardBodyDes('textcritics');
                 });
 
-                it('... should contain one p.smallcaps with an EditionTkaLabelComponent in the card-body', () => {
+                it('... should contain one p.smallcaps with an EditionTkaLabelComponent (hollow) in the card-body', () => {
                     const pDes = getAndExpectDebugElementByCss(getCardBodyDes('textcritics')[0], 'p.smallcaps', 1, 1);
 
                     getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
                 });
 
-                it('... should pass down `id` and `labelType` to the EditionTkaLabelComponent', () => {
+                it('... should pass down `id` and `labelType` to the EditionTkaLabelComponent (hollow)', () => {
                     const pDes = getAndExpectDebugElementByCss(getCardBodyDes('textcritics')[0], 'p.smallcaps', 1, 1);
                     const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
                     const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
@@ -286,7 +285,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     expectToBe(labelCmp.labelType(), 'commentary');
                 });
 
-                it('... should contain one EditionTkaTableComponent in the card-body', () => {
+                it('... should contain one EditionTkaTableComponent (hollow) in the card-body', () => {
                     getAndExpectDebugElementByDirective(
                         getCardBodyDes('textcritics')[0],
                         EditionTkaTableComponent,
@@ -295,7 +294,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     );
                 });
 
-                it('... should pass down `displayedCommentary`, `id` and `isRowtable` to the EditionTkaTableComponent', () => {
+                it('... should pass down `displayedCommentary`, `id` and `isRowtable` to the EditionTkaTableComponent (hollow)', () => {
                     const tableDes = getAndExpectDebugElementByDirective(
                         getCardBodyDes('textcritics')[0],
                         EditionTkaTableComponent,
@@ -309,7 +308,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     expectToBe(tableCmp.isRowtable(), true);
                 });
 
-                it('... should pass down `isRowtable` as false to the EditionTkaTableComponent if `rowtable` is not given', async () => {
+                it('... should pass down `isRowtable` as false to the EditionTkaTableComponent (hollow) if `rowtable` is not given', async () => {
                     fixture.componentRef.setInput('selectedTextcritics', {
                         ...expectedSelectedTextcritics,
                         rowtable: undefined,

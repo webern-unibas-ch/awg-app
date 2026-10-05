@@ -17,11 +17,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
-
 import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionFoliosPanelComponent } from './edition-folios-panel.component';
 import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
@@ -33,8 +30,6 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let router: Router;
-    let mockModalService: Partial<ModalService>;
-    let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedConvolute: FolioConvolute;
     let expectedSelection: EditionSvgSheetSelection;
@@ -45,22 +40,13 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     const getBodyDe = (): DebugElement => getAndExpectDebugElementByCss(getItemDe(), 'div.accordion-body', 1, 1)[0];
 
     beforeEach(async () => {
-        // Mocked services for the real EditionFoliosViewerSvgComponent
-        mockModalService = {
-            openTextModal: vi.fn(),
-        };
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [EditionFoliosPanelComponent],
-            providers: [
-                provideRouter([]),
-                { provide: ModalService, useValue: mockModalService },
-                { provide: EditionNavigationService, useValue: mockNavigationService },
-            ],
-        }).compileComponents();
+            providers: [provideRouter([])],
+        })
+            .overrideComponent(EditionFoliosLegendComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionFoliosViewerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -201,12 +187,12 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                 });
             });
 
-            describe('... EditionFoliosViewerComponent', () => {
-                it('... should contain one EditionFoliosViewerComponent in the body', () => {
+            describe('... EditionFoliosViewerComponent (hollow)', () => {
+                it('... should contain one EditionFoliosViewerComponent (hollow) in the body', () => {
                     getAndExpectDebugElementByDirective(getBodyDe(), EditionFoliosViewerComponent, 1, 1);
                 });
 
-                it('... should pass down `folios` and `selectedSvgSheet` to EditionFoliosViewerComponent', () => {
+                it('... should pass down `folios` and `selectedSvgSheet` to EditionFoliosViewerComponent (hollow)', () => {
                     const viewerDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosViewerComponent,
@@ -220,8 +206,8 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                 });
             });
 
-            describe('... EditionFoliosLegendComponent', () => {
-                it('... should contain one EditionFoliosLegendComponent with class `col-12` in the body', () => {
+            describe('... EditionFoliosLegendComponent (hollow)', () => {
+                it('... should contain one EditionFoliosLegendComponent (hollow) with class `col-12` in the body', () => {
                     const legendDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosLegendComponent,

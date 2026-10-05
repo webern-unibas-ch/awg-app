@@ -153,7 +153,10 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 { provide: EditionSvgDrawingService, useValue: mockSvgDrawingService },
                 { provide: EditionSvgOverlayService, useValue: mockSvgOverlayService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSheetViewerAdditionsPanelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(LicenseComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -601,11 +604,11 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one LicenseComponent', () => {
+            it('... should contain one LicenseComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, LicenseComponent, 1, 1);
             });
 
-            describe('... EditionSheetViewerAdditionsPanelComponent', () => {
+            describe('... EditionSheetViewerAdditionsPanelComponent (hollow)', () => {
                 it.each([
                     { suppliedClasses: ['class-1'], hasTkk: false, expected: 1 },
                     { suppliedClasses: [], hasTkk: true, expected: 1 },

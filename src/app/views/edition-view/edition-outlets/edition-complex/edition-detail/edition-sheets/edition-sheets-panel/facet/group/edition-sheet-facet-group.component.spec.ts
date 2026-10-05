@@ -15,7 +15,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_LABEL_MAP, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetItemComponent } from '../item/edition-sheet-facet-item.component';
 import { EditionSheetFacetScrollDirective } from '../scroll/edition-sheet-facet-scroll.directive';
@@ -25,8 +24,6 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
     let component: EditionSheetFacetGroupComponent;
     let fixture: ComponentFixture<EditionSheetFacetGroupComponent>;
     let compDe: DebugElement;
-
-    let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedEditionTypeKey: EditionTypeKey;
     let expectedFacetGroupLabel: string;
@@ -55,15 +52,12 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
     };
 
     beforeEach(async () => {
-        // Mock services (needed by EditionSheetFacetItemLinkDirective)
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [EditionSheetFacetGroupComponent],
-            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionDisclaimerWorkeditionsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetFacetItemComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -139,7 +133,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no details, no heading and no EditionSheetFacetItemComponent (yet)', () => {
+            it('... should contain no details, no heading and no EditionSheetFacetItemComponent (hollow) (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'details', 0, 0);
                 getAndExpectDebugElementByCss(compDe, 'h6', 0, 0);
                 getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
@@ -252,7 +246,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     expectToBe(badgeEl.textContent, expectedSvgSheets.length.toString());
                 });
 
-                it('... should contain an EditionDisclaimerWorkeditionsComponent outside the summary if editionTypeKey is `workEditions`', async () => {
+                it('... should contain an EditionDisclaimerWorkeditionsComponent (hollow) outside the summary if editionTypeKey is `workEditions`', async () => {
                     fixture.componentRef.setInput('editionTypeKey', 'workEditions');
                     await detectChangesOnPush(fixture);
 
@@ -270,7 +264,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain no EditionDisclaimerWorkeditionsComponent for other labels', () => {
+                it('... should contain no EditionDisclaimerWorkeditionsComponent (hollow) for other labels', () => {
                     getAndExpectDebugElementByDirective(
                         getDetailsDes()[0],
                         EditionDisclaimerWorkeditionsComponent,
@@ -279,11 +273,11 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain one EditionSheetFacetItemComponent per svg sheet in the group list', () => {
+                it('... should contain one EditionSheetFacetItemComponent (hollow) per svg sheet in the group list', () => {
                     getFacetItemCmps();
                 });
 
-                it('... should pass down `svgSheet` and `selectedSvgSheet` to each EditionSheetFacetItemComponent', () => {
+                it('... should pass down `svgSheet` and `selectedSvgSheet` to each EditionSheetFacetItemComponent (hollow)', () => {
                     getFacetItemCmps().forEach((cmp, index) => {
                         expectToEqual(cmp.svgSheet(), expectedSvgSheets[index]);
                         expectToEqual(cmp.selectedSvgSheet(), expectedSelection);
@@ -297,7 +291,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no details element and no EditionSheetFacetItemComponent', () => {
+                it('... should contain no details element and no EditionSheetFacetItemComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'details', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
                 });
@@ -308,7 +302,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     expectToBe(hEl.textContent.trim(), expectedFacetGroupLabel + ': ---');
                 });
 
-                it('... should contain an EditionDisclaimerWorkeditionsComponent if editionTypeKey is `workEditions`', async () => {
+                it('... should contain an EditionDisclaimerWorkeditionsComponent (hollow) if editionTypeKey is `workEditions`', async () => {
                     fixture.componentRef.setInput('editionTypeKey', 'workEditions');
                     await detectChangesOnPush(fixture);
 

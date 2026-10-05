@@ -1,11 +1,10 @@
-import { Component, DebugElement, input, isSignal, model, output, signal, WritableSignal } from '@angular/core';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -21,6 +20,7 @@ import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -30,7 +30,6 @@ import {
     EditionViewDataContent,
 } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
-import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
     EditionSvgSheetSelection,
@@ -46,30 +45,6 @@ import { EditionFoliosPanelComponent } from './edition-folios-panel/edition-foli
 import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-sheets-panel.component';
 import { EditionSheetsComponent } from './edition-sheets.component';
 import { EDITION_SHEETS_UTILS } from './edition-sheets.utils';
-
-// Mock components
-@Component({
-    selector: 'awg-edition-sheets-panel',
-    template: '',
-})
-class EditionSheetsPanelStubComponent {
-    readonly isSheetFacetMinimized = model.required<boolean>();
-    readonly svgSheetsData = input.required<EditionSvgSheetsList | null>();
-    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
-    readonly selectedTextcritics = input.required<Textcritics | undefined>();
-    readonly browseSheetRequest = output<1 | -1>();
-    readonly selectLinkBoxRequest = output<string>();
-    readonly selectTkkOverlaysRequest = output<EditionSvgOverlayTkk[]>();
-}
-
-@Component({
-    selector: 'awg-edition-folios-panel',
-    template: '',
-})
-class EditionFoliosPanelStubComponent {
-    readonly selectedConvolute = input.required<FolioConvolute>();
-    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
-}
 
 describe('EditionSheetsComponent (DONE)', () => {
     let component: EditionSheetsComponent;
@@ -150,30 +125,17 @@ describe('EditionSheetsComponent (DONE)', () => {
             providers: [
                 { provide: EditionNavigationService, useValue: mockNavigationService },
                 { provide: EditionViewService, useValue: { sheetsViewData: mockViewDataSignal.asReadonly() } },
+                { provide: FullscreenService, useValue: { isFullscreen: signal(false).asReadonly() } },
                 {
                     provide: ActivatedRoute,
                     useValue: mockActivatedRoute,
                 },
             ],
         })
-            .overrideComponent(EditionSheetsComponent, {
-                remove: {
-                    imports: [
-                        AlertErrorComponent,
-                        EditionFoliosPanelComponent,
-                        EditionSheetsPanelComponent,
-                        TwelveToneSpinnerComponent,
-                    ],
-                },
-                add: {
-                    imports: [
-                        AlertErrorStubComponent,
-                        EditionFoliosPanelStubComponent,
-                        EditionSheetsPanelStubComponent,
-                        TwelveToneSpinnerStubComponent,
-                    ],
-                },
-            })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionFoliosPanelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetsPanelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -282,24 +244,24 @@ describe('EditionSheetsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
-            it('... should contain no AlertErrorComponent (stubbed)', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
             });
 
-            it('... should contain no EditionSheetsPanelComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 0, 0);
+            it('... should contain no EditionSheetsPanelComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelComponent, 0, 0);
             });
 
-            it('... should contain no EditionFoliosPanelComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 0, 0);
+            it('... should contain no EditionFoliosPanelComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelComponent, 0, 0);
             });
         });
     });
@@ -595,8 +557,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-sheets-view', 0, 0);
             });
 
@@ -619,26 +581,24 @@ describe('EditionSheetsComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain sheets view or spinner, but one AlertErrorComponent (stubbed)', () => {
+                it('... should not contain sheets view or spinner, but one AlertErrorComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-sheets-view', 0, 0);
-                    getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
-                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(
-                        AlertErrorStubComponent
-                    ) as AlertErrorStubComponent;
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
             });
 
             describe('on loading', () => {
-                describe('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent (stubbed) if', () => {
+                describe('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent (hollow) if', () => {
                     it('... `isFirstPageLoad` holds true', async () => {
                         component.isFirstPageLoad.set(true);
                         // Unset sheetsData to avoid query param handling
@@ -659,9 +619,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     });
 
                     it('... `viewData.isLoading` holds true', async () => {
@@ -676,9 +636,9 @@ describe('EditionSheetsComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 0, 0);
-                        getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     });
 
                     it('... should have default spinnerText on TwelveToneSpinnerComponent', async () => {
@@ -694,13 +654,13 @@ describe('EditionSheetsComponent (DONE)', () => {
 
                         const spinnerDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            TwelveToneSpinnerStubComponent,
+                            TwelveToneSpinnerComponent,
                             1,
                             1
                         );
                         const spinnerCmp = spinnerDes[0].injector.get(
-                            TwelveToneSpinnerStubComponent
-                        ) as TwelveToneSpinnerStubComponent;
+                            TwelveToneSpinnerComponent
+                        ) as TwelveToneSpinnerComponent;
 
                         expectToBe(spinnerCmp.spinnerText(), 'loading');
                     });
@@ -708,27 +668,27 @@ describe('EditionSheetsComponent (DONE)', () => {
             });
 
             describe('on view data available', () => {
-                let sheetsPanelCmp: EditionSheetsPanelStubComponent;
+                let sheetsPanelCmp: EditionSheetsPanelComponent;
 
                 beforeEach(async () => {
                     await detectChangesOnPush(fixture);
 
                     const sheetsPanelDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionSheetsPanelStubComponent,
+                        EditionSheetsPanelComponent,
                         1,
                         1
                     );
-                    sheetsPanelCmp = sheetsPanelDes[0].injector.get(EditionSheetsPanelStubComponent);
+                    sheetsPanelCmp = sheetsPanelDes[0].injector.get(EditionSheetsPanelComponent);
                 });
 
                 it('... should contain one div.awg-edition-sheets-view', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheets-view', 1, 1);
                 });
 
-                describe('... EditionSheetsPanelComponent (stubbed)', () => {
-                    it('... should contain one EditionSheetsPanelComponent (stubbed)', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
+                describe('... EditionSheetsPanelComponent (hollow)', () => {
+                    it('... should contain one EditionSheetsPanelComponent (hollow)', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelComponent, 1, 1);
                     });
 
                     it('... should pass down `isSheetFacetMinimized` to the EditionSheetsPanelComponent', () => {
@@ -765,19 +725,19 @@ describe('EditionSheetsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... EditionFoliosPanelComponent (stubbed)', () => {
-                    it('... should contain one EditionFoliosPanelComponent (stubbed) for a sketch edition', () => {
-                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 1, 1);
+                describe('... EditionFoliosPanelComponent (hollow)', () => {
+                    it('... should contain one EditionFoliosPanelComponent (hollow) for a sketch edition', () => {
+                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelComponent, 1, 1);
                     });
 
                     it('... should pass down `selectedConvolute` to the EditionFoliosPanelComponent', () => {
                         const foliosPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionFoliosPanelStubComponent,
+                            EditionFoliosPanelComponent,
                             1,
                             1
                         );
-                        const foliosPanelCmp = foliosPanelDes[0].injector.get(EditionFoliosPanelStubComponent);
+                        const foliosPanelCmp = foliosPanelDes[0].injector.get(EditionFoliosPanelComponent);
 
                         expectToEqual(foliosPanelCmp.selectedConvolute(), expectedConvolute);
                     });
@@ -785,11 +745,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it('... should pass down `selectedSvgSheet` to the EditionFoliosPanelComponent', () => {
                         const foliosPanelDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionFoliosPanelStubComponent,
+                            EditionFoliosPanelComponent,
                             1,
                             1
                         );
-                        const foliosPanelCmp = foliosPanelDes[0].injector.get(EditionFoliosPanelStubComponent);
+                        const foliosPanelCmp = foliosPanelDes[0].injector.get(EditionFoliosPanelComponent);
 
                         expectToEqual(foliosPanelCmp.selectedSvgSheet(), expectedSelection);
                     });
@@ -797,11 +757,11 @@ describe('EditionSheetsComponent (DONE)', () => {
                     it.each([
                         ['a text edition', 'test-TF1a'],
                         ['an unknown sheet id', 'unknown-id'],
-                    ])('... should contain no EditionFoliosPanelComponent (stubbed) for %s', async (_label, id) => {
+                    ])('... should contain no EditionFoliosPanelComponent (hollow) for %s', async (_label, id) => {
                         setSheetIdInRoute(id);
                         await detectChangesOnPush(fixture);
 
-                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelStubComponent, 0, 0);
+                        getAndExpectDebugElementByDirective(compDe, EditionFoliosPanelComponent, 0, 0);
                     });
                 });
             });
@@ -818,8 +778,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should trigger on event from EditionSheetsPanelComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelStubComponent);
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelComponent);
 
                     const expectedDirection = 1;
                     sheetCmp.browseSheetRequest.emit(expectedDirection);
@@ -868,8 +828,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should trigger on event from EditionSheetsPanelComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelStubComponent);
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelComponent);
 
                     const expectedLinkBoxId = 'link-box-1';
                     sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
@@ -927,8 +887,8 @@ describe('EditionSheetsComponent (DONE)', () => {
                 });
 
                 it('... should trigger on event from EditionSheetsPanelComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelStubComponent, 1, 1);
-                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelStubComponent);
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetsPanelComponent, 1, 1);
+                    const sheetCmp = sheetDes[0].injector.get(EditionSheetsPanelComponent);
 
                     const expectedOverlays = [createTestTkkOverlay('g1114')];
 

@@ -5,7 +5,6 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -89,7 +88,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 { provide: EditionSvgDrawingService, useValue: mockSvgDrawingService },
                 { provide: EditionSvgOverlayService, useValue: mockSvgOverlayService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSheetViewerNavComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SliderZoomComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -171,7 +173,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
 
             describe('... icon bar', () => {
-                it('... should contain one SliderZoomComponent with `zoomConfig` and `zoomValue`', async () => {
+                it('... should contain one SliderZoomComponent (hollow) with `zoomConfig` and `zoomValue`', async () => {
                     component.zoomValue.set(2.5);
                     await detectChangesOnPush(fixture);
 
@@ -187,23 +189,21 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     expectToBe(sliderZoomCmp.zoomValue(), 2.5);
                 });
 
-                it('... should sync a value change of the SliderZoomComponent to `zoomValue` and the sheet svg', async () => {
-                    const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
-                    const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
+                it('... should sync a value change of the SliderZoomComponent (hollow) to `zoomValue` and the sheet svg', async () => {
+                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
 
-                    rangeEl.value = '7.5';
-                    rangeEl.dispatchEvent(new Event('input'));
+                    sliderZoomDes[0].injector.get(SliderZoomComponent).zoomValue.set(7.5);
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.zoomValue(), 7.5);
                     expectToBe(getSheetSvgCmp().zoomValue(), 7.5);
                 });
 
-                it('... should trigger `resetZoom` of the sheet svg on reset request of the SliderZoomComponent', async () => {
+                it('... should trigger `resetZoom` of the sheet svg on reset request of the SliderZoomComponent (hollow)', async () => {
                     const resetZoomSpy = vi.spyOn(getSheetSvgCmp(), 'resetZoom');
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
+                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
 
-                    await clickAndAwaitChanges(btnDes[0], fixture);
+                    sliderZoomDes[0].injector.get(SliderZoomComponent).resetRequest.emit();
 
                     expectSpyCall(resetZoomSpy, 1);
                 });
@@ -243,7 +243,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 });
             });
 
-            describe('... EditionSheetViewerNavComponent', () => {
+            describe('... EditionSheetViewerNavComponent (hollow)', () => {
                 it.each([-1, 1] as const)(
                     '... should emit `browseSheetRequest` with %s on browse sheet request of the nav',
                     direction => {
