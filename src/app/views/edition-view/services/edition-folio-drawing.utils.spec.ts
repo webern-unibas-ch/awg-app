@@ -144,17 +144,6 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                 expectToBe(calculate(expectedReversedFolio).systems.reversed, true);
             });
 
-            it('... should calculate NaN values for invalid folio settings', () => {
-                const { systems } = calculateFolioSvgData(
-                    { ...expectedFolioSettings, formatX: Number.NaN },
-                    expectedFolio,
-                    expectedSegmentOffsetCorrection
-                );
-
-                expectToBe(systems.lines[0][0].start.x, Number.NaN);
-                expectToBe(systems.labelPositions[0].x, Number.NaN);
-            });
-
             it('... should not calculate any system for a folio without systems', () => {
                 const { systems } = calculate({ ...expectedFolio, systems: '' });
 

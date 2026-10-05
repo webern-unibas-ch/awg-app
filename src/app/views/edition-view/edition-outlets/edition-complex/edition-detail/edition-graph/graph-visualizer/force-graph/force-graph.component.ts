@@ -22,8 +22,8 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
+import { roundToStepPrecision } from '@awg-shared/utils/number-utils';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
-import { roundToStepPrecision } from '@awg-shared/zoom/zoom.utils';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 import {
     D3DragBehaviour,
