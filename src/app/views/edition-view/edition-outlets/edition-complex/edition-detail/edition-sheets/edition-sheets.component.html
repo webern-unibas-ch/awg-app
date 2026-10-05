@@ -13,8 +13,8 @@
                     [svgSheetsData]="view.data.svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet()"
                     [selectedSheetIds]="selectedSheetIds()"
-                    [displayedTextcritics]="displayedTextcritics()"
-                    (browseSheetRequest)="onBrowseSvgSheet($event)"
+                    [selectedTextcritics]="selectedTextcritics()"
+                    (browseSheetRequest)="onSheetBrowse($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectTkkOverlaysRequest)="onOverlaySelect($event)" />
 

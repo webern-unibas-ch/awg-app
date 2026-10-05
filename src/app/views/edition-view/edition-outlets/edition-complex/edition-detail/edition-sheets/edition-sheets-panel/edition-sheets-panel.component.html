@@ -13,7 +13,7 @@
             <div ngbAccordionBody>
                 <ng-template>
                     @let sheet = selectedSvgSheet();
-                    @let textcritics = displayedTextcritics();
+                    @let textcritics = selectedTextcritics();
 
                     <div class="row">
                         <div
@@ -40,7 +40,7 @@
 
                             <!-- table for TkA -->
                             @if (sheet && textcritics) {
-                                <awg-edition-sheet-footer [displayedTextcritics]="textcritics" />
+                                <awg-edition-sheet-footer [selectedTextcritics]="textcritics" />
                             }
                         </div>
                     </div>

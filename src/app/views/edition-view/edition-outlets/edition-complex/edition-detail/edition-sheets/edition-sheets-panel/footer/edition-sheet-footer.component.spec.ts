@@ -25,7 +25,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSheetFooterComponent>;
     let compDe: DebugElement;
 
-    let expectedDisplayedTextcritics: Textcritics;
+    let expectedSelectedTextcritics: Textcritics;
 
     // Helper functions
     const getFooterDes = () => getAndExpectDebugElementByCss(compDe, 'div.awg-edition-sheet-footer', 1, 1);
@@ -57,7 +57,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedDisplayedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetFooterComponent);
@@ -70,10 +70,10 @@ describe('EditionSheetFooterComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `displayedTextcritics`', () => {
-            expectToBe(isSignal(component.displayedTextcritics), true);
+        it('... should throw due to missing required input signal `selectedTextcritics`', () => {
+            expectToBe(isSignal(component.selectedTextcritics), true);
 
-            expect(() => component.displayedTextcritics()).toThrow();
+            expect(() => component.selectedTextcritics()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -101,14 +101,14 @@ describe('EditionSheetFooterComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            fixture.componentRef.setInput('displayedTextcritics', expectedDisplayedTextcritics);
+            fixture.componentRef.setInput('selectedTextcritics', expectedSelectedTextcritics);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have input signal `displayedTextcritics` to hold the provided textcritics', () => {
-            expectToEqual(component.displayedTextcritics(), expectedDisplayedTextcritics);
+        it('... should have input signal `selectedTextcritics` to hold the provided textcritics', () => {
+            expectToEqual(component.selectedTextcritics(), expectedSelectedTextcritics);
         });
 
         describe('... computed signal `showTkA`', () => {
@@ -117,8 +117,8 @@ describe('EditionSheetFooterComponent (DONE)', () => {
             });
 
             it('... should hold false if the displayed commentary contains no comments', () => {
-                fixture.componentRef.setInput('displayedTextcritics', {
-                    ...expectedDisplayedTextcritics,
+                fixture.componentRef.setInput('selectedTextcritics', {
+                    ...expectedSelectedTextcritics,
                     commentary: { preamble: '', comments: [] },
                 });
 
@@ -126,8 +126,8 @@ describe('EditionSheetFooterComponent (DONE)', () => {
             });
 
             it('... should hold false for an empty commentary', () => {
-                fixture.componentRef.setInput('displayedTextcritics', {
-                    ...expectedDisplayedTextcritics,
+                fixture.componentRef.setInput('selectedTextcritics', {
+                    ...expectedSelectedTextcritics,
                     // Empty commentary objects occur in the data
                     commentary: {} as TextcriticalCommentary,
                 });
@@ -172,7 +172,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                         );
                         const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
 
-                        expectToBe(labelCmp.id(), expectedDisplayedTextcritics.id);
+                        expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
                         expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 
@@ -196,14 +196,14 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                             EditionTkaEvaluationsComponent
                         ) as EditionTkaEvaluationsComponent;
 
-                        expectToEqual(evaluationsCmp.evaluations(), expectedDisplayedTextcritics.evaluations);
+                        expectToEqual(evaluationsCmp.evaluations(), expectedSelectedTextcritics.evaluations);
                     });
                 });
 
                 describe('... without evaluations', () => {
                     beforeEach(async () => {
                         fixture.componentRef.setInput(
-                            'displayedTextcritics',
+                            'selectedTextcritics',
                             structuredClone(mockEditionData.mockTextcriticsListData.textcritics[1])
                         );
                         await detectChangesOnPush(fixture);
@@ -253,8 +253,8 @@ describe('EditionSheetFooterComponent (DONE)', () => {
 
             describe('textcritics card', () => {
                 it('... should contain no textcritics div.card if showTkA is false', async () => {
-                    fixture.componentRef.setInput('displayedTextcritics', {
-                        ...expectedDisplayedTextcritics,
+                    fixture.componentRef.setInput('selectedTextcritics', {
+                        ...expectedSelectedTextcritics,
                         commentary: { preamble: '', comments: [] },
                     });
                     await detectChangesOnPush(fixture);
@@ -282,7 +282,7 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     const labelDes = getAndExpectDebugElementByDirective(pDes[0], EditionTkaLabelComponent, 1, 1);
                     const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent) as EditionTkaLabelComponent;
 
-                    expectToBe(labelCmp.id(), expectedDisplayedTextcritics.id);
+                    expectToBe(labelCmp.id(), expectedSelectedTextcritics.id);
                     expectToBe(labelCmp.labelType(), 'commentary');
                 });
 
@@ -304,9 +304,9 @@ describe('EditionSheetFooterComponent (DONE)', () => {
                     );
                     const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
 
-                    expectToEqual(tableCmp.displayedCommentary(), expectedDisplayedTextcritics.commentary);
-                    expectToBe(tableCmp.id(), expectedDisplayedTextcritics.id);
-                    expectToBe(tableCmp.isRowtable(), expectedDisplayedTextcritics.rowtable ?? false);
+                    expectToEqual(tableCmp.displayedCommentary(), expectedSelectedTextcritics.commentary);
+                    expectToBe(tableCmp.id(), expectedSelectedTextcritics.id);
+                    expectToBe(tableCmp.isRowtable(), expectedSelectedTextcritics.rowtable ?? false);
                 });
             });
         });

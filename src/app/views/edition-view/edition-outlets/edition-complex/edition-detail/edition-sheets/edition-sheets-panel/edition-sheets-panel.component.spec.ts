@@ -59,7 +59,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSheetId: EditionSvgSheetIds;
-    let expectedDisplayedTextcritics: Textcritics;
+    let expectedSelectedTextcritics: Textcritics;
 
     beforeAll(() => {
         // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
@@ -128,7 +128,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 sketchEditions: [expectedSvgSheet, structuredClone(mockEditionData.mockSvgSheet_Sk2)],
             },
         };
-        expectedDisplayedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
+        expectedSelectedTextcritics = structuredClone(mockEditionData.mockTextcriticsListData.textcritics[0]);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetsPanelComponent);
@@ -158,7 +158,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             ['input', 'svgSheetsData'],
             ['input', 'selectedSvgSheet'],
             ['input', 'selectedSheetIds'],
-            ['input', 'displayedTextcritics'],
+            ['input', 'selectedTextcritics'],
         ] as const)('... should throw due to missing required %s signal `%s`', (_kind, key) => {
             expectToBe(isSignal(component[key]), true);
 
@@ -184,7 +184,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
             fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
-            fixture.componentRef.setInput('displayedTextcritics', expectedDisplayedTextcritics);
+            fixture.componentRef.setInput('selectedTextcritics', expectedSelectedTextcritics);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -208,8 +208,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             expectToEqual(component.selectedSheetIds(), expectedSheetId);
         });
 
-        it('... should have input signal `displayedTextcritics` to hold the provided textcritics', () => {
-            expectToEqual(component.displayedTextcritics(), expectedDisplayedTextcritics);
+        it('... should have input signal `selectedTextcritics` to hold the provided textcritics', () => {
+            expectToEqual(component.selectedTextcritics(), expectedSelectedTextcritics);
         });
 
         describe('VIEW', () => {
@@ -466,7 +466,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
                     it.each([
                         ['no `selectedSvgSheet`', false, true],
-                        ['no `displayedTextcritics`', true, false],
+                        ['no `selectedTextcritics`', true, false],
                         ['neither', false, false],
                     ])(
                         '... should not contain an EditionSheetFooterComponent for %s',
@@ -476,8 +476,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                                 hasSvgSheet ? expectedSvgSheet : undefined
                             );
                             fixture.componentRef.setInput(
-                                'displayedTextcritics',
-                                hasTextcritics ? expectedDisplayedTextcritics : undefined
+                                'selectedTextcritics',
+                                hasTextcritics ? expectedSelectedTextcritics : undefined
                             );
                             await detectChangesOnPush(fixture);
 
@@ -485,7 +485,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         }
                     );
 
-                    it('... should pass down `displayedTextcritics` to EditionSheetFooterComponent', () => {
+                    it('... should pass down `selectedTextcritics` to EditionSheetFooterComponent', () => {
                         const footerDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionSheetFooterComponent,
@@ -494,7 +494,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         );
                         const footerCmp = footerDes[0].injector.get(EditionSheetFooterComponent);
 
-                        expectToEqual(footerCmp.displayedTextcritics(), expectedDisplayedTextcritics);
+                        expectToEqual(footerCmp.selectedTextcritics(), expectedSelectedTextcritics);
                     });
                 });
             });

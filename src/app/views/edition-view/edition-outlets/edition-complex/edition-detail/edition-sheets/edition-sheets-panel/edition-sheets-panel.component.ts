@@ -67,12 +67,12 @@ export class EditionSheetsPanelComponent {
     readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
-     * Readonly input signal: displayedTextcritics.
+     * Readonly input signal: selectedTextcritics.
      *
      * It holds the textcritics of the selected svg sheet
      * with the commentary filtered for the selected tkk overlays.
      */
-    readonly displayedTextcritics = input.required<Textcritics | undefined>();
+    readonly selectedTextcritics = input.required<Textcritics | undefined>();
 
     /**
      * Readonly output signal: browseSheetRequest.
