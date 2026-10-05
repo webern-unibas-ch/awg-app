@@ -16,17 +16,20 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
 
 // Test host component
 @Component({
-    template: `<a class="test-link" [awgEditionSheetFacetItemLink]="sheetIds()" [isActive]="isActive()">Test link</a>`,
+    template: `<a class="test-link" [awgEditionSheetFacetItemLink]="sheetTarget()" [isActive]="isActive()"
+        >Test link</a
+    >`,
     imports: [EditionSheetFacetItemLinkDirective],
 })
 class TestEditionSheetFacetItemLinkComponent {
-    sheetIds = signal<SheetClickEvent>({ complexId: '', sheetId: 'test-1' });
+    sheetTarget = signal<EditionNavigationSheetTarget>({ complexId: '', sheetId: 'test-1' });
     isActive = signal(false);
 }
 
@@ -39,7 +42,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
     let serviceNavigateToSvgSheetSpy: Spy;
     let selectSpy: Spy;
 
-    let expectedSheetIds: SheetClickEvent;
+    let expectedSheetIds: EditionNavigationSheetTarget;
 
     const getLinkDes = () => getAndExpectDebugElementByCss(compDe, 'a.test-link', 1, 1);
     const getLinkEl = (): HTMLAnchorElement => getLinkDes()[0].nativeElement;
@@ -88,10 +91,10 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
         expect(getDirective()).toBeTruthy();
     });
 
-    it('... should have input signal `sheetIds` to hold the provided sheet ids', () => {
-        expectToBe(isSignal(getDirective().sheetIds), true);
+    it('... should have input signal `sheetTarget` to hold the provided sheet target', () => {
+        expectToBe(isSignal(getDirective().sheetTarget), true);
 
-        expectToEqual(getDirective().sheetIds(), expectedSheetIds);
+        expectToEqual(getDirective().sheetTarget(), expectedSheetIds);
     });
 
     it('... should have input signal `isActive` to hold the provided value', () => {
@@ -129,7 +132,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
             });
 
             it('... should do nothing if no sheetId is provided', async () => {
-                hostComponent.sheetIds.set({ complexId: 'op25', sheetId: '' });
+                hostComponent.sheetTarget.set({ complexId: 'op25', sheetId: '' });
                 await detectChangesOnPush(fixture);
 
                 getDirective().select();
@@ -159,7 +162,7 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 expectSpyCall(selectSpy, 0);
             });
 
-            describe('... should navigate to the provided sheet ids', () => {
+            describe('... should navigate to the provided sheet target', () => {
                 it('... without partial', () => {
                     getDirective().select();
 
@@ -167,11 +170,11 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 });
 
                 it('... with partial', async () => {
-                    const expectedSheetIdsWithPartial: SheetClickEvent = {
+                    const expectedSheetIdsWithPartial: EditionNavigationSheetTarget = {
                         complexId: 'testComplex1',
                         sheetId: 'test-2a',
                     };
-                    hostComponent.sheetIds.set(expectedSheetIdsWithPartial);
+                    hostComponent.sheetTarget.set(expectedSheetIdsWithPartial);
                     await detectChangesOnPush(fixture);
 
                     getDirective().select();

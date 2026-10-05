@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import type { Options } from '@popperjs/core';
 
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 
+import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
 import { EditionSheetFacetPartialLink } from '../edition-sheet-facet.model';
 
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
@@ -33,11 +34,11 @@ export class EditionSheetFacetItemComponent {
     readonly svgSheet = input.required<EditionSvgSheet>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection | undefined>();
 
     /**
      * Readonly variable: dropdownPopperOptions.
@@ -67,38 +68,41 @@ export class EditionSheetFacetItemComponent {
      * It computes if the svg sheet of the facet item is selected
      * (regardless of a selected partial).
      */
-    readonly isActive = computed(() => this.svgSheet().id === this.selectedSheetId().id);
+    readonly isActive = computed(() => this.svgSheet().id === this.selectedSvgSheet()?.id);
 
     /**
-     * Readonly computed signal: partialLinks.
+     * Readonly computed signal: sheetPartials.
      *
      * It computes the partial links (if present) of the svg sheet for the dropdown.
      */
-    readonly partialLinks = computed<EditionSheetFacetPartialLink[]>(() => {
+    readonly sheetPartials = computed<EditionSheetFacetPartialLink[]>(() => {
         const svgSheet = this.svgSheet();
 
         if (svgSheet.content.length <= 1) {
             return [];
         }
 
-        const isActive = this.isActive();
-        const selectedPartial = this.selectedSheetId().partial;
+        const selectedFullId = this.selectedSvgSheet()?.fullId;
 
         return svgSheet.content.map((content, index) => {
             const indexLabel = `${index + 1}/${svgSheet.content.length}`;
+            const sheetId = EDITION_SHEETS_UTILS.toFullSheetId(svgSheet.id, content.partial);
 
             return {
-                sheetIds: { complexId: '', sheetId: svgSheet.id + (content.partial ?? '') },
+                sheetTarget: { complexId: '', sheetId },
                 positionLabel: content.partial ? `${content.partial} · ${indexLabel}` : indexLabel,
-                isActive: isActive && (!content.partial || !selectedPartial || content.partial === selectedPartial),
+                isActive: sheetId === selectedFullId,
             };
         });
     });
 
     /**
-     * Readonly computed signal: sheetIds.
+     * Readonly computed signal: sheetTarget.
      *
-     * It computes the sheet ids to navigate to the svg sheet of the facet item.
+     * It computes the navigation target of the svg sheet of the facet item.
      */
-    readonly sheetIds = computed<SheetClickEvent>(() => ({ complexId: '', sheetId: this.svgSheet().id }));
+    readonly sheetTarget = computed<EditionNavigationSheetTarget>(() => ({
+        complexId: '',
+        sheetId: this.svgSheet().id,
+    }));
 }

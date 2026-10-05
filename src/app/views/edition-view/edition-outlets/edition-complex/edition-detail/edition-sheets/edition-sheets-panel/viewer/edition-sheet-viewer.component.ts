@@ -4,7 +4,7 @@ import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
@@ -27,9 +27,9 @@ export class EditionSheetViewerComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection>();
 
     /**
      * Readonly output signal: browseSheetRequest.

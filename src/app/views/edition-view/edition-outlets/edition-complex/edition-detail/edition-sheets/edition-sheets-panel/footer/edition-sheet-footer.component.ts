@@ -22,12 +22,12 @@ import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table
 })
 export class EditionSheetFooterComponent {
     /**
-     * Readonly input signal: displayedTextcritics.
+     * Readonly input signal: selectedTextcritics.
      *
      * It holds the textcritics of the selected svg sheet
      * with the commentary filtered for the selected tkk overlays.
      */
-    readonly displayedTextcritics = input.required<Textcritics>();
+    readonly selectedTextcritics = input.required<Textcritics>();
 
     /**
      * Readonly computed signal: showTkA.
@@ -35,5 +35,5 @@ export class EditionSheetFooterComponent {
      * It holds a boolean flag whether the textcritical commentary shall be displayed
      * (i.e., whether the displayed commentary contains comments).
      */
-    readonly showTkA = computed<boolean>(() => (this.displayedTextcritics().commentary?.comments?.length ?? 0) > 0);
+    readonly showTkA = computed<boolean>(() => (this.selectedTextcritics().commentary?.comments?.length ?? 0) > 0);
 }
