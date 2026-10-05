@@ -1,15 +1,12 @@
 <svg
     #svg
-    #svgZoom="awgSvgZoom"
     class="awg-edition-sheet-viewer-svg"
     awgSvgZoom
     [zoomConfig]="zoomConfig()"
     [zoomTarget]="svgRootGroup"
     [(zoomValue)]="zoomValue"
     tabindex="-1"
-    (click)="onSheetSelect($event)"
-    (keydown.enter)="onSheetSelect($event)"
-    (keydown.space)="onSheetSelect($event)"
+    (awgClick)="onSheetSelect($event)"
     (pointerover)="onSheetHighlight($event.target)"
     (focusin)="onSheetHighlight($event.target)"
     (pointerleave)="onSheetHighlight(null)"

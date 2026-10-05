@@ -16,6 +16,7 @@ import {
 
 import * as D3_SELECTION from 'd3-selection';
 
+import { ClickDirective } from '@awg-shared/click/click.directive';
 import { LicenseComponent } from '@awg-shared/license/license.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -45,7 +46,7 @@ import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/editi
     templateUrl: './edition-sheet-viewer-svg.component.html',
     styleUrls: ['./edition-sheet-viewer-svg.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
+    imports: [ClickDirective, EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
 })
 export class EditionSheetViewerSvgComponent {
     /**

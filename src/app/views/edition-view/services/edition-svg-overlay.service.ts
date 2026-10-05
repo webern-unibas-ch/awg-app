@@ -74,16 +74,16 @@ export class EditionSvgOverlayService {
     /**
      * Private readonly variable: _tkkOverlayLabel.
      *
-     * It keeps the accessible label of the tkk overlay boxes.
+     * It keeps the ARIA label of the tkk overlay boxes.
      */
-    private readonly _tkkOverlayLabel = 'Textkritische Anmerkungen anzeigen';
+    private readonly _tkkOverlayAriaLabel = 'Textkritische Anmerkungen anzeigen';
 
     /**
      * Private readonly variable: _linkBoxLabel.
      *
-     * It keeps the accessible label of the link boxes.
+     * It keeps the ARIA label of the link boxes.
      */
-    private readonly _linkBoxLabel = 'Verknüpfte Skizze öffnen';
+    private readonly _linkBoxAriaLabel = 'Verknüpfte Skizze öffnen';
 
     /**
      * Public method: createSvgOverlays.
@@ -105,7 +105,7 @@ export class EditionSvgOverlayService {
             .getGroupsBySelector(rootGroupSelection, EditionSvgOverlayTypes.linkBox)
             ?.attr('tabindex', 0)
             .attr('role', 'link')
-            .attr('aria-label', this._linkBoxLabel);
+            .attr('aria-label', this._linkBoxAriaLabel);
 
         const tkkGroups = this._svgDrawingService.getGroupsBySelector(rootGroupSelection, EditionSvgOverlayTypes.tkk);
         if (!tkkGroups) {
@@ -320,7 +320,7 @@ export class EditionSvgOverlayService {
             .attr('tabindex', 0)
             .attr('role', 'button')
             .attr('aria-pressed', false)
-            .attr('aria-label', this._tkkOverlayLabel);
+            .attr('aria-label', this._tkkOverlayAriaLabel);
     }
 
     /**

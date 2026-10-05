@@ -17,9 +17,9 @@
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
                     (selectTkkOverlaysRequest)="onOverlaySelect($event)" />
 
-                <!-- convolute view -->
+                <!-- folios panel -->
                 @if (selectedConvolute && selectedSvgSheet) {
-                    <awg-edition-convolute
+                    <awg-edition-folios-panel
                         [selectedConvolute]="selectedConvolute"
                         [selectedSvgSheet]="selectedSvgSheet" />
                 }

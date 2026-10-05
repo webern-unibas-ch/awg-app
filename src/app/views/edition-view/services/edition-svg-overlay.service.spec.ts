@@ -117,8 +117,8 @@ describe('EditionSvgOverlayService (DONE)', () => {
         ['_overlayBoxAdditionalSpace', 1.5],
         ['_overlayBoxCornerRadius', 1],
         ['_tkkOverlayBoxClass', 'tkk-overlay-group-box'],
-        ['_tkkOverlayLabel', 'Textkritische Anmerkungen anzeigen'],
-        ['_linkBoxLabel', 'Verknüpfte Skizze öffnen'],
+        ['_tkkOverlayAriaLabel', 'Textkritische Anmerkungen anzeigen'],
+        ['_linkBoxAriaLabel', 'Verknüpfte Skizze öffnen'],
     ])('... should have private `%s` = %s', (key, expected) => {
         expectToBe((service as any)[key], expected);
     });

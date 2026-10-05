@@ -145,11 +145,18 @@ describe('EditionSheetFacetItemLinkDirective (DONE)', () => {
                 });
 
                 it('... enter key on the anchor', async () => {
-                    getLinkEl().dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+                    getLinkEl().dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(selectSpy, 1);
                 });
+            });
+
+            it('... should not trigger on space key on the anchor (link semantics)', async () => {
+                getLinkEl().dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }));
+                await detectChangesOnPush(fixture);
+
+                expectSpyCall(selectSpy, 0);
             });
 
             describe('... should navigate to the provided sheet ids', () => {
