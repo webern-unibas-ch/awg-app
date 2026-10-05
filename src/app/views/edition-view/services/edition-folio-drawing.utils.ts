@@ -4,6 +4,8 @@
  * They calculate the svg data (sheet, systems, content segments and view box) of a folio
  * as pure functions (entry point: {@link calculateFolioSvgData}).
  */
+import { roundToDecimals } from '@awg-shared/utils/number-utils';
+
 import {
     FolioSettings,
     FolioSvgContentSegment,
@@ -79,24 +81,6 @@ interface SystemsCalculation {
     startX: number;
     width: number;
     gap: number;
-}
-
-/**
- * Utility method: round.
- *
- * It rounds a given number to a given number of decimal places.
- * JS in-built round-method is sometimes not correct,
- * see: {@link http://www.jacklmoore.com/notes/rounding-in-javascript/}.
- *
- * @param {number} value The given input value to be rounded.
- * @param {number} decimals The number of decimal places to round to.
- * @returns {number} The rounded number.
- */
-function round(value: number, decimals: number): number {
-    if (Number.isNaN(value)) {
-        return Number.NaN;
-    }
-    return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
 }
 
 /**
@@ -210,9 +194,10 @@ function calculateSystems(
     const sheetHeight = formatY * factor;
 
     // Margins of the systems area on the sheet
-    const upperMargin = round(sheetHeight * SYSTEMS_VERTICAL_MARGIN_FACTOR, 2) + SYSTEMS_VERTICAL_MARGIN_OFFSET;
-    const leftMargin = round(sheetWidth * SYSTEMS_LEFT_MARGIN_FACTOR, 2);
-    const rightMargin = round(sheetWidth * SYSTEMS_RIGHT_MARGIN_FACTOR, 2);
+    const upperMargin =
+        roundToDecimals(sheetHeight * SYSTEMS_VERTICAL_MARGIN_FACTOR, 2) + SYSTEMS_VERTICAL_MARGIN_OFFSET;
+    const leftMargin = roundToDecimals(sheetWidth * SYSTEMS_LEFT_MARGIN_FACTOR, 2);
+    const rightMargin = roundToDecimals(sheetWidth * SYSTEMS_RIGHT_MARGIN_FACTOR, 2);
 
     // Dimensions of the systems area
     const width = sheetWidth - (leftMargin + rightMargin);
@@ -229,18 +214,21 @@ function calculateSystems(
     const staffHeight =
         (isLineSpaceLimited ? maxLineSpace : SYSTEM_LINE_SPACE_FACTOR * factor) * (SYSTEM_NUMBER_OF_LINES - 1);
     const yArray = Array.from({ length: numberOfSystems }, (_, systemIndex) => {
-        const yStart = round(startY + systemIndex * spacePerSystem, 2);
+        const yStart = roundToDecimals(startY + systemIndex * spacePerSystem, 2);
         return Array.from({ length: SYSTEM_NUMBER_OF_LINES }, (__, lineIndex) =>
             isLineSpaceLimited
-                ? round(yStart + lineIndex * maxLineSpace, 2)
+                ? roundToDecimals(yStart + lineIndex * maxLineSpace, 2)
                 : yStart + lineIndex * SYSTEM_LINE_SPACE_FACTOR * factor
         );
     });
 
     // System labels: font size limited by the space per system, right-aligned before the systems,
     // With their digits vertically centered at the middle line
-    const labelFontSize = round(Math.min(SYSTEMS_LABEL_MAX_FONT_SIZE, spacePerSystem * SYSTEMS_LABEL_FONT_SHARE), 2);
-    const labelX = round(startX - labelFontSize * SYSTEMS_LABEL_GAP_FACTOR, 2);
+    const labelFontSize = roundToDecimals(
+        Math.min(SYSTEMS_LABEL_MAX_FONT_SIZE, spacePerSystem * SYSTEMS_LABEL_FONT_SHARE),
+        2
+    );
+    const labelX = roundToDecimals(startX - labelFontSize * SYSTEMS_LABEL_GAP_FACTOR, 2);
     const labelBaselineOffset = labelFontSize * SYSTEMS_LABEL_BASELINE_FACTOR;
     const middleLineIndex = Math.floor(SYSTEM_NUMBER_OF_LINES / 2);
 
@@ -249,7 +237,7 @@ function calculateSystems(
             labelFontSize,
             labelPositions: yArray.map(lineArray => ({
                 x: labelX,
-                y: round(lineArray[middleLineIndex] + labelBaselineOffset, 2),
+                y: roundToDecimals(lineArray[middleLineIndex] + labelBaselineOffset, 2),
             })),
             lines: yArray.map(lineArray =>
                 lineArray.map((y): FolioSvgLine => ({ start: { x: startX, y }, end: { x: endX, y } }))
@@ -281,13 +269,13 @@ function calculateContentSegmentX(
     offsetCorrection: number,
     isStart: boolean
 ): number {
-    const width = round(systemsWidth / segmentSplit, 2);
+    const width = roundToDecimals(systemsWidth / segmentSplit, 2);
     const splitIndex = segment.position && segment.position <= segmentSplit ? segment.position - 1 : 0;
 
     const xValue = startX + splitIndex * width + offsetCorrection / 2;
     const correction = isStart ? 0 : width - offsetCorrection;
 
-    return round(xValue + correction, 2);
+    return roundToDecimals(xValue + correction, 2);
 }
 
 /**
@@ -330,7 +318,7 @@ function calculateContentSegmentY(
     const yValue = isStart ? systemLines[0].start.y : systemLines[systemLines.length - 1].end.y;
     const correction = verticalPadding * (isStart ? -1 : 1) + relativeOffset;
 
-    return round(yValue + correction, 2);
+    return roundToDecimals(yValue + correction, 2);
 }
 
 /**

@@ -3,8 +3,9 @@ import { Directive, effect, ElementRef, inject, input, model } from '@angular/co
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
+import { roundToStepPrecision } from '@awg-shared/utils/number-utils';
+
 import { ZoomConfig } from './zoom.model';
-import { roundToStepPrecision } from './zoom.utils';
 
 /**
  * The SvgZoom directive.
