@@ -327,13 +327,6 @@ svg a.active rect {
     fill: OliveDrab;
     opacity: 0.2;
 }
-.content-segment-group.active,
-.content-segment-group.active > .content-segment-link > .content-segment-shape {
-    stroke: OliveDrab;
-}
-.content-segment-group.active > .content-segment-link > .content-segment-label {
-    fill: OliveDrab;
-}
 
 /****** TABLES & LISTS ******/
 .table thead tr th {

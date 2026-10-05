@@ -1,0 +1,1320 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  EditionFoliosViewerSvgComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The EditionFoliosViewerSvg component.</p>
+<p>It contains the svg of a single folio
+of the folios viewer of the edition view of the app
+and renders that folio with its content segments.</p>
+
+    </p>
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-edition-folios-viewer-svg</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../directives/ClickDirective.html" target="_self" >ClickDirective</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edition-folios-viewer-svg.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edition-folios-viewer-svg.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_folioDrawingService" >_folioDrawingService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_folioSegmentService" >_folioSegmentService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_modalService" >_modalService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_navigationService" >_navigationService</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_svgRootGroupSelection" >_svgRootGroupSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#folioSvgData" >folioSvgData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#selectedSegmentId" >selectedSegmentId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#svgRootGroup" >svgRootGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_renderFolio" >_renderFolio</a>
+                            </li>
+                            <li>
+                                <a href="#onFolioSelect" >onFolioSelect</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#folio" >folio</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSheetId" >selectedSheetId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:116</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionFoliosViewerSvgComponent.</p>
+<p>It renders the folio after the view is rendered and whenever the folio changes,
+and it marks the content segment of the selected svg sheet as active.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="folio"></a>
+                        <b>folio</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Folio.html" target="_self" >Folio</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:74</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: folio.</p>
+<p>It holds the folio to be rendered.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSheetId"></a>
+                        <b>selectedSheetId</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetId.html" target="_self" >EditionSvgSheetId</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:81</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly input signal: selectedSheetId.</p>
+<p>It holds the id and the (optional) partial of the selected svg sheet.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_renderFolio"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_renderFolio</b></span>
+                        <a href="#_renderFolio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_renderFolio(rootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, svgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _renderFolio.</p>
+<p>It renders the given folio svg data into the given svg root group selection
+and marks the content segment of the selected svg sheet as active.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rootGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given d3 selection of the svg root group.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>svgData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio svg data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Renders the folio.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFolioSelect"></a>
+                    <span class="name">
+                        <span ><b>onFolioSelect</b></span>
+                        <a href="#onFolioSelect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFolioSelect(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onFolioSelect.</p>
+<p>It handles a click or an Enter/Space keydown on the folio svg (delegated from the svg element):
+selecting a selectable content segment navigates to its svg sheet,
+selecting any other content segment opens its text modal.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given click or keydown event.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Handles the selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_folioDrawingService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_folioDrawingService</b></span>
+                        <a href="#_folioDrawingService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionFolioDrawingService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _folioDrawingService.</p>
+<p>It keeps the instance of the injected EditionFolioDrawingService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_folioSegmentService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_folioSegmentService</b></span>
+                        <a href="#_folioSegmentService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionFolioSegmentService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _folioSegmentService.</p>
+<p>It keeps the instance of the injected EditionFolioSegmentService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_modalService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_modalService</b></span>
+                        <a href="#_modalService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ModalService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _modalService.</p>
+<p>It keeps the instance of the injected ModalService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_navigationService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_navigationService</b></span>
+                        <a href="#_navigationService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionNavigationService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _navigationService.</p>
+<p>It keeps the instance of the injected EditionNavigationService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_svgRootGroupSelection"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_svgRootGroupSelection</b></span>
+                        <a href="#_svgRootGroupSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;D3Selection&gt;(
+        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly computed signal: _svgRootGroupSelection.</p>
+<p>It holds the d3 selection of the svg root group (the element is stable across renderings).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="folioSvgData"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>folioSvgData</b></span>
+                        <a href="#folioSvgData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;FolioSvgData&gt;(() &#x3D;&gt; this._folioDrawingService.getFolioSvgData(this.folio()))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: folioSvgData.</p>
+<p>It holds the svg data (incl. the viewbox) of the folio.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSegmentId"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>selectedSegmentId</b></span>
+                        <a href="#selectedSegmentId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; {
+        const { id, partial } &#x3D; this.selectedSheetId();
+
+        return &#x60;${id ?? &#x27;&#x27;}${partial ?? &#x27;&#x27;}&#x60;;
+    })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: selectedSegmentId.</p>
+<p>It holds the content segment id of the selected svg sheet
+(sheet id including the partial, if any).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgRootGroup"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>svgRootGroup</b></span>
+                        <a href="#svgRootGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewChild.required&lt;ElementRef&lt;SVGGElement&gt;&gt;(&#x27;svgRootGroup&#x27;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly view child signal: svgRootGroup.</p>
+<p>It holds the reference to the root group of the folio svg.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    afterRenderEffect,
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    ElementRef,
+    inject,
+    input,
+    untracked,
+    viewChild,
+} from &#x27;@angular/core&#x27;;
+
+import * as D3_SELECTION from &#x27;d3-selection&#x27;;
+
+import { ClickDirective } from &#x27;@awg-shared/click/click.directive&#x27;;
+import { ModalService } from &#x27;@awg-shared/modal/modal.service&#x27;;
+
+import { D3Selection } from &#x27;@awg-views/edition-view/models/d3-selection.model&#x27;;
+import { EditionSvgSheetId } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
+import { FolioSvgData } from &#x27;@awg-views/edition-view/models/folio-svg-data.model&#x27;;
+import { Folio } from &#x27;@awg-views/edition-view/models/folio.model&#x27;;
+import { EditionFolioDrawingService } from &#x27;@awg-views/edition-view/services/edition-folio-drawing.service&#x27;;
+import { EditionFolioSegmentService } from &#x27;@awg-views/edition-view/services/edition-folio-segment.service&#x27;;
+import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
+
+/**
+ * The EditionFoliosViewerSvg component.
+ *
+ * It contains the svg of a single folio
+ * of the folios viewer of the edition view of the app
+ * and renders that folio with its content segments.
+ */
+@Component({
+    selector: &#x27;awg-edition-folios-viewer-svg&#x27;,
+    templateUrl: &#x27;./edition-folios-viewer-svg.component.html&#x27;,
+    styleUrls: [&#x27;./edition-folios-viewer-svg.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ClickDirective],
+})
+export class EditionFoliosViewerSvgComponent {
+    /**
+     * Private readonly injection variable: _folioDrawingService.
+     *
+     * It keeps the instance of the injected EditionFolioDrawingService.
+     */
+    private readonly _folioDrawingService &#x3D; inject(EditionFolioDrawingService);
+
+    /**
+     * Private readonly injection variable: _folioSegmentService.
+     *
+     * It keeps the instance of the injected EditionFolioSegmentService.
+     */
+    private readonly _folioSegmentService &#x3D; inject(EditionFolioSegmentService);
+
+    /**
+     * Private readonly injection variable: _modalService.
+     *
+     * It keeps the instance of the injected ModalService.
+     */
+    private readonly _modalService &#x3D; inject(ModalService);
+
+    /**
+     * Private readonly injection variable: _navigationService.
+     *
+     * It keeps the instance of the injected EditionNavigationService.
+     */
+    private readonly _navigationService &#x3D; inject(EditionNavigationService);
+
+    /**
+     * Readonly input signal: folio.
+     *
+     * It holds the folio to be rendered.
+     */
+    readonly folio &#x3D; input.required&lt;Folio&gt;();
+
+    /**
+     * Readonly input signal: selectedSheetId.
+     *
+     * It holds the id and the (optional) partial of the selected svg sheet.
+     */
+    readonly selectedSheetId &#x3D; input.required&lt;EditionSvgSheetId&gt;();
+
+    /**
+     * Readonly view child signal: svgRootGroup.
+     *
+     * It holds the reference to the root group of the folio svg.
+     */
+    readonly svgRootGroup &#x3D; viewChild.required&lt;ElementRef&lt;SVGGElement&gt;&gt;(&#x27;svgRootGroup&#x27;);
+
+    /**
+     * Readonly computed signal: folioSvgData.
+     *
+     * It holds the svg data (incl. the viewbox) of the folio.
+     */
+    readonly folioSvgData &#x3D; computed&lt;FolioSvgData&gt;(() &#x3D;&gt; this._folioDrawingService.getFolioSvgData(this.folio()));
+
+    /**
+     * Readonly computed signal: selectedSegmentId.
+     *
+     * It holds the content segment id of the selected svg sheet
+     * (sheet id including the partial, if any).
+     */
+    readonly selectedSegmentId &#x3D; computed&lt;string&gt;(() &#x3D;&gt; {
+        const { id, partial } &#x3D; this.selectedSheetId();
+
+        return &#x60;${id ?? &#x27;&#x27;}${partial ?? &#x27;&#x27;}&#x60;;
+    });
+
+    /**
+     * Private readonly computed signal: _svgRootGroupSelection.
+     *
+     * It holds the d3 selection of the svg root group (the element is stable across renderings).
+     */
+    private readonly _svgRootGroupSelection &#x3D; computed&lt;D3Selection&gt;(
+        () &#x3D;&gt; D3_SELECTION.select(this.svgRootGroup().nativeElement) as unknown as D3Selection
+    );
+
+    /**
+     * Constructor of the EditionFoliosViewerSvgComponent.
+     *
+     * It renders the folio after the view is rendered and whenever the folio changes,
+     * and it marks the content segment of the selected svg sheet as active.
+     */
+    constructor() {
+        afterRenderEffect(() &#x3D;&gt; {
+            const svgData &#x3D; this.folioSvgData();
+            const rootGroupSelection &#x3D; this._svgRootGroupSelection();
+            untracked(() &#x3D;&gt; this._renderFolio(rootGroupSelection, svgData));
+        });
+
+        afterRenderEffect(() &#x3D;&gt; {
+            const segmentId &#x3D; this.selectedSegmentId();
+            const rootGroupSelection &#x3D; this._svgRootGroupSelection();
+            untracked(() &#x3D;&gt; this._folioSegmentService.updateActiveContentSegment(rootGroupSelection, segmentId));
+        });
+    }
+
+    /**
+     * Public method: onFolioSelect.
+     *
+     * It handles a click or an Enter/Space keydown on the folio svg (delegated from the svg element):
+     * selecting a selectable content segment navigates to its svg sheet,
+     * selecting any other content segment opens its text modal.
+     *
+     * @param {Event} event The given click or keydown event.
+     * @returns {void} Handles the selection.
+     */
+    onFolioSelect(event: Event): void {
+        const contentSegment &#x3D; this._folioSegmentService.getContentSegment(event.target);
+        if (!contentSegment) {
+            return;
+        }
+        // Prevent default actions of the keys (e.g., scrolling on Space)
+        event.preventDefault();
+
+        if (contentSegment.selectable) {
+            this._navigationService.navigateToSvgSheet(contentSegment.sheetIds);
+        } else {
+            this._modalService.openTextModal(contentSegment.linkTo);
+        }
+    }
+
+    /**
+     * Private method: _renderFolio.
+     *
+     * It renders the given folio svg data into the given svg root group selection
+     * and marks the content segment of the selected svg sheet as active.
+     *
+     * @param {D3Selection} rootGroupSelection The given d3 selection of the svg root group.
+     * @param {FolioSvgData} svgData The given folio svg data.
+     * @returns {void} Renders the folio.
+     */
+    private _renderFolio(rootGroupSelection: D3Selection, svgData: FolioSvgData): void {
+        this._folioDrawingService.renderFolio(rootGroupSelection, svgData);
+
+        // Mark the active segment again: rendering clears the root group (incl. the &#x60;active&#x60; class).
+        // The segment effect does not rerun for a new folio with an unchanged sheet
+        // (this also keeps the result independent of the order of both effects).
+        this._folioSegmentService.updateActiveContentSegment(rootGroupSelection, this.selectedSegmentId());
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@let viewBox &#x3D; folioSvgData().viewBox;
+
+&lt;span class&#x3D;&quot;text-muted&quot;&gt;[{{ folio().folioId }}]&lt;/span&gt;
+&lt;svg
+    class&#x3D;&quot;awg-edition-folios-viewer-svg&quot;
+    tabindex&#x3D;&quot;-1&quot;
+    preserveAspectRatio&#x3D;&quot;xMinYMin meet&quot;
+    [attr.viewBox]&#x3D;&quot;viewBox.viewBox&quot;
+    [attr.width]&#x3D;&quot;viewBox.svgWidth&quot;
+    [attr.height]&#x3D;&quot;viewBox.svgHeight&quot;
+    (awgClick)&#x3D;&quot;onFolioSelect($event)&quot;&gt;
+    &lt;g #svgRootGroup class&#x3D;&quot;awg-edition-folios-viewer-svg-root-group&quot; /&gt;
+&lt;/svg&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./edition-folios-viewer-svg.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* folio svg (drawn at runtime by d3, so not covered by view encapsulation) */
+:host ::ng-deep {
+    .awg-edition-folios-viewer-svg {
+        // Sheet and trademark
+        .sheet-rectangle,
+        .trademark-rectangle {
+            fill: white;
+            stroke: #a3a3a3;
+            stroke-width: 1;
+        }
+
+        .trademark-symbol {
+            fill: grey;
+            stroke: grey;
+            stroke-width: 2;
+        }
+
+        // Systems
+        .system-label {
+            fill: #a3a3a3;
+        }
+
+        .system-line {
+            stroke: #a3a3a3;
+            stroke-width: 0.7;
+        }
+
+        // Content segments (the stroke width of the shapes is set by the EditionFolioDrawingService)
+        .content-segment-group {
+            fill: grey;
+            stroke: grey;
+            cursor: pointer;
+
+            &amp;.selectable {
+                fill: orange;
+                stroke: orange;
+            }
+
+            &amp;.active,
+            &amp;.active .content-segment-shape {
+                stroke: olivedrab;
+            }
+
+            &amp;.active .content-segment-label {
+                fill: olivedrab;
+            }
+
+            // Keyboard focus: dashed dark outline of the shape (outlines on svg groups are unreliable)
+            &amp;:focus {
+                outline: none;
+            }
+
+            &amp;:focus-visible .content-segment-shape {
+                stroke: #333333;
+                stroke-dasharray: 4 2;
+            }
+        }
+
+        .content-segment-shape {
+            fill: #eeeeee;
+        }
+
+        .content-segment-label {
+            font-family: &#x27;Source Sans Pro&#x27;, source-sans-pro, sans-serif;
+            font-size: 11px;
+        }
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div>@let viewBox = folioSvgData().viewBox;<span class="text-muted">[{{ folio().folioId }}]</span><svg    class="awg-edition-folios-viewer-svg"    tabindex="-1"    preserveAspectRatio="xMinYMin meet"    [attr.viewBox]="viewBox.viewBox"    [attr.width]="viewBox.svgWidth"    [attr.height]="viewBox.svgHeight"    (awgClick)="onFolioSelect($event)">    <g #svgRootGroup class="awg-edition-folios-viewer-svg-root-group" /></svg></div>'
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ClickDirective', 'selector': '[awgClick]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'EditionSheetFacetItemLinkDirective', 'selector': 'a[awgEditionSheetFacetItemLink]'},{'name': 'EditionSheetFacetScrollDirective', 'selector': '[awgEditionSheetFacetScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'SvgZoomDirective', 'selector': 'svg[awgSvgZoom]'}];
+    var ACTUAL_COMPONENT = {'name': 'EditionFoliosViewerSvgComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionFoliosViewerSvgComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

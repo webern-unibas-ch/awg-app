@@ -1,0 +1,1877 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >EditionFolioDrawingService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/services/edition-folio-drawing.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The EditionFolioDrawing service.</p>
+<p>It prepares the svg data of the edition folios
+and draws them into a given svg root group.
+The interaction with the drawn content segments is handled
+by the <a href="../injectables/EditionFolioSegmentService.html">EditionFolioSegmentService</a>.</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_contentSegmentOffsetCorrection" >_contentSegmentOffsetCorrection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_contentSegmentStrokeWidth" >_contentSegmentStrokeWidth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_folioSettings" >_folioSettings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_reversedRotationAngle" >_reversedRotationAngle</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendRect" >_appendRect</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_appendSvgElementWithAttrs" >_appendSvgElementWithAttrs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawContentSegmentLabel" >_drawContentSegmentLabel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawContentSegments" >_drawContentSegments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawSheet" >_drawSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawSystems" >_drawSystems</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawTrademark" >_drawTrademark</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getContentSegmentAriaLabel" >_getContentSegmentAriaLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getFolioSvgData" >getFolioSvgData</a>
+                            </li>
+                            <li>
+                                <a href="#renderFolio" >renderFolio</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendRect"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendRect</b></span>
+                        <a href="#_appendRect"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendRect(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, rectangle: <a href="../interfaces/FolioSvgRectangle.html" target="_self">FolioSvgRectangle</a>, cssClass: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendRect.</p>
+<p>It appends a rect element for a given calculated rectangle to a given parent selection.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>rectangle</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgRectangle.html" target="_self" >FolioSvgRectangle</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated rectangle.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>cssClass</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The css class of the rect.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The appended rect selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_appendSvgElementWithAttrs"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_appendSvgElementWithAttrs</b></span>
+                        <a href="#_appendSvgElementWithAttrs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_appendSvgElementWithAttrs(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attributes: Record<string | string | number>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _appendSvgElementWithAttrs.</p>
+<p>It appends an svg element of a given type with the given attributes to a given parent selection.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given element type.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>attributes</td>
+                                            <td>
+                                                        <code>Record&lt;string | string | number&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given attributes.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The appended element selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawContentSegmentLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawContentSegmentLabel</b></span>
+                        <a href="#_drawContentSegmentLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawContentSegmentLabel(segmentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, contentSegment: <a href="../interfaces/FolioSvgContentSegment.html" target="_self">FolioSvgContentSegment</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawContentSegmentLabel.</p>
+<p>It draws the (one- or two-line) label of a given content segment into a given content segment selection,
+rotated by 180 degrees around its center if the segment is reversed.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>segmentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given content segment selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>contentSegment</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgContentSegment.html" target="_self" >FolioSvgContentSegment</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given content segment.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the content segment label.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawContentSegments"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawContentSegments</b></span>
+                        <a href="#_drawContentSegments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawContentSegments(sheetGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioSvgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="180"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:180</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawContentSegments.</p>
+<p>It draws the content segments of the given folio svg data into a given sheet group:
+per content segment a focusable group (with the content segment bound as datum,
+link or button semantics and a title) containing a group with the segment polygon and the segment label.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvgData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated folio svg data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the content segments.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawSheet"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawSheet</b></span>
+                        <a href="#_drawSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawSheet(sheetGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioSvgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:258</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawSheet.</p>
+<p>It draws the sheet of the given folio svg data into a given sheet group:
+the title, the sheet rectangle and (if given) the trademark.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvgData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated folio svg data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the sheet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawSystems"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawSystems</b></span>
+                        <a href="#_drawSystems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawSystems(sheetGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioSvgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawSystems.</p>
+<p>It draws the systems of the given folio svg data into a given sheet group:
+per system a group with its label (numbered in reverse if the systems are reversed)
+and a group with its lines.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvgData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated folio svg data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the systems.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawTrademark"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawTrademark</b></span>
+                        <a href="#_drawTrademark"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawTrademark(sheetGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, trademarkRectangle: <a href="../interfaces/FolioSvgRectangle.html" target="_self">FolioSvgRectangle</a>, systemsReversed: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="328"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:328</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawTrademark.</p>
+<p>It draws the trademark into a given sheet group:
+a group with the trademark rectangle, the trademark symbol
+(rotated by 180 degrees if the systems are reversed) and a title.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given sheet group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>trademarkRectangle</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgRectangle.html" target="_self" >FolioSvgRectangle</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated trademark rectangle.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>systemsReversed</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given flag if the systems are reversed.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Draws the trademark.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getContentSegmentAriaLabel"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getContentSegmentAriaLabel</b></span>
+                        <a href="#_getContentSegmentAriaLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getContentSegmentAriaLabel(contentSegment: <a href="../interfaces/FolioSvgContentSegment.html" target="_self">FolioSvgContentSegment</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="370"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:370</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _getContentSegmentAriaLabel.</p>
+<p>It builds the aria label of a given content segment on a given folio,
+naming the action triggered by the segment.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>contentSegment</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgContentSegment.html" target="_self" >FolioSvgContentSegment</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given content segment.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The aria label of the content segment.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFolioSvgData"></a>
+                    <span class="name">
+                        <span ><b>getFolioSvgData</b></span>
+                        <a href="#getFolioSvgData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFolioSvgData(folio: <a href="../interfaces/Folio.html" target="_self">Folio</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="90"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getFolioSvgData.</p>
+<p>It calculates the svg data (sheet, systems, content segments and viewbox)
+to render the svg of a given folio, based on its dimensions.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>folio</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Folio.html" target="_self" >Folio</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated folio svg data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderFolio"></a>
+                    <span class="name">
+                        <span ><b>renderFolio</b></span>
+                        <a href="#renderFolio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>renderFolio(svgRootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, folioSvgData: <a href="../interfaces/FolioSvgData.html" target="_self">FolioSvgData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: renderFolio.</p>
+<p>It renders the given folio svg data into a given svg root group selection:
+it clears the content of the root group and draws the sheet,
+the systems and the content segments of the folio.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgRootGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given svg root group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvgData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given calculated folio svg data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Renders the folio into the svg root group selection.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_contentSegmentOffsetCorrection"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_contentSegmentOffsetCorrection</b></span>
+                        <a href="#_contentSegmentOffsetCorrection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:52</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentOffsetCorrection.</p>
+<p>It corrects the offset (in px) to avoid
+border collision between rendered SVG content segments.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_contentSegmentStrokeWidth"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_contentSegmentStrokeWidth</b></span>
+                        <a href="#_contentSegmentStrokeWidth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>2</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:59</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _contentSegmentStrokeWidth.</p>
+<p>It keeps the stroke width for the content segments.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_folioSettings"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_folioSettings</b></span>
+                        <a href="#_folioSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/FolioSettings.html" target="_self" >FolioSettings</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _folioSettings.</p>
+<p>It keeps the default format settings for the folios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_reversedRotationAngle"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_reversedRotationAngle</b></span>
+                        <a href="#_reversedRotationAngle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>180</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.service.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly variable: _reversedRotationAngle.</p>
+<p>It keeps the rotation angle for a reversed item.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { D3Selection } from &#x27;@awg-views/edition-view/models/d3-selection.model&#x27;;
+import {
+    FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
+    FolioSettings,
+    FolioSvgContentSegment,
+    FolioSvgData,
+    FolioSvgLine,
+    FolioSvgRectangle,
+} from &#x27;@awg-views/edition-view/models/folio-svg-data.model&#x27;;
+import { Folio } from &#x27;@awg-views/edition-view/models/folio.model&#x27;;
+
+import { calculateFolioSvgData, FOLIO_DEFAULT_NUMBER_OF_SYSTEMS } from &#x27;./edition-folio-drawing.utils&#x27;;
+
+/**
+ * Constant: TRADEMARK_SYMBOL_PATH.
+ *
+ * It keeps the svg path of the trademark symbol of a folio.
+ */
+const TRADEMARK_SYMBOL_PATH &#x3D;
+    &#x27;M 10 39 Q 12 36 14 39 T 18 39 Q 20 36 22 39 T 26 39 Q 28 36 30 39 T 34 39 M 10 43 T 34 43 &#x27; +
+    &#x27;M 14 31 L 15 30 L 17 30 L 15 26 L 17 23 L 22 23 L 18 31 L 14 31 &#x27; +
+    &#x27;M 20 31 L 21 30 L 23 30 L 21 26 L 22 23 L 27 23 L 24 31 L 20 31 &#x27; +
+    &#x27;M 14 17 L 18 15 L 21 14 L 22 15 L 21 17 L 18 17 L 14 19 &#x27; +
+    &#x27;M 13 15 L 14 17 L 14 19 L 13 19 L 13 19 L 12 19 L 13 18 L 12 18 L 13 17 L 12 17 L 13 15 &#x27; +
+    &#x27;M 17 23 L 20 20 L 21 17 L 22 15 L 25 15 L 27 23 &#x27; +
+    &#x27;M 26 24 L 30 20 L 30 17 L 29 18 L 28 18 L 28 17 L 30 15 L 31 17 L 31 21 L 26 25 &#x27; +
+    &#x27;M 25 15 L 27 14 L 26 13 L 27 12 L 26 11 L 27 10 L 26 9 L 27 8 L 26 7 L 25 8 L 24 7 L 23 8 L 22 7 L 21 8 &#x27; +
+    &#x27;L 20 7 L 19 8 L 18 9 L 19 9 L 21 10 L 18 11 L 20 12 L 18 13 L 21 14 L 22 15&#x27;;
+
+/**
+ * The EditionFolioDrawing service.
+ *
+ * It prepares the svg data of the edition folios
+ * and draws them into a given svg root group.
+ * The interaction with the drawn content segments is handled
+ * by the {@link EditionFolioSegmentService}.
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class EditionFolioDrawingService {
+    /**
+     * Private readonly variable: _contentSegmentOffsetCorrection.
+     *
+     * It corrects the offset (in px) to avoid
+     * border collision between rendered SVG content segments.
+     */
+    private readonly _contentSegmentOffsetCorrection &#x3D; 4;
+
+    /**
+     * Private readonly variable: _contentSegmentStrokeWidth.
+     *
+     * It keeps the stroke width for the content segments.
+     */
+    private readonly _contentSegmentStrokeWidth &#x3D; 2;
+
+    /**
+     * Private readonly variable: _folioSettings.
+     *
+     * It keeps the default format settings for the folios.
+     */
+    private readonly _folioSettings: FolioSettings &#x3D; {
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+    };
+
+    /**
+     * Private readonly variable: _reversedRotationAngle.
+     *
+     * It keeps the rotation angle for a reversed item.
+     */
+    private readonly _reversedRotationAngle &#x3D; 180;
+
+    /**
+     * Public method: getFolioSvgData.
+     *
+     * It calculates the svg data (sheet, systems, content segments and viewbox)
+     * to render the svg of a given folio, based on its dimensions.
+     *
+     * @param {Folio} folio The given folio.
+     * @returns {FolioSvgData} The calculated folio svg data.
+     */
+    getFolioSvgData(folio: Folio): FolioSvgData {
+        const folioSettings: FolioSettings &#x3D; {
+            ...this._folioSettings,
+            formatX: +folio.dimensions.width,
+            formatY: +folio.dimensions.height,
+        };
+
+        return calculateFolioSvgData(folioSettings, folio, this._contentSegmentOffsetCorrection);
+    }
+
+    /**
+     * Public method: renderFolio.
+     *
+     * It renders the given folio svg data into a given svg root group selection:
+     * it clears the content of the root group and draws the sheet,
+     * the systems and the content segments of the folio.
+     *
+     * @param {D3Selection} svgRootGroupSelection The given svg root group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
+     * @returns {void} Renders the folio into the svg root group selection.
+     */
+    renderFolio(svgRootGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
+        // Clear the content of the root group before redrawing
+        svgRootGroupSelection.selectAll(&#x27;*&#x27;).remove();
+
+        const sheetGroupSelection &#x3D; this._appendSvgElementWithAttrs(svgRootGroupSelection, &#x27;g&#x27;, {
+            class: &#x27;sheet-group&#x27;,
+        });
+
+        this._drawSheet(sheetGroupSelection, folioSvgData);
+        this._drawSystems(sheetGroupSelection, folioSvgData);
+        this._drawContentSegments(sheetGroupSelection, folioSvgData);
+    }
+
+    /**
+     * Private method: _appendRect.
+     *
+     * It appends a rect element for a given calculated rectangle to a given parent selection.
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {FolioSvgRectangle} rectangle The given calculated rectangle.
+     * @param {string} cssClass The css class of the rect.
+     * @returns {D3Selection} The appended rect selection.
+     */
+    private _appendRect(parentSelection: D3Selection, rectangle: FolioSvgRectangle, cssClass: string): D3Selection {
+        const { x: x1, y: y1 } &#x3D; rectangle.upperLeft;
+        const { x: x2, y: y2 } &#x3D; rectangle.lowerRight;
+
+        return this._appendSvgElementWithAttrs(parentSelection, &#x27;rect&#x27;, {
+            class: cssClass,
+            x: x1,
+            y: y1,
+            width: x2 - x1,
+            height: y2 - y1,
+        });
+    }
+
+    /**
+     * Private method: _appendSvgElementWithAttrs.
+     *
+     * It appends an svg element of a given type with the given attributes to a given parent selection.
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {string} type The given element type.
+     * @param {Record&lt;string, string | number&gt;} attributes The given attributes.
+     * @returns {D3Selection} The appended element selection.
+     */
+    private _appendSvgElementWithAttrs(
+        parentSelection: D3Selection,
+        type: string,
+        attributes: Record&lt;string, string | number&gt;
+    ): D3Selection {
+        const elementSelection &#x3D; parentSelection.append(type);
+        Object.entries(attributes).forEach(([key, value]) &#x3D;&gt; {
+            elementSelection.attr(key, value);
+        });
+        return elementSelection;
+    }
+
+    /**
+     * Private method: _drawContentSegments.
+     *
+     * It draws the content segments of the given folio svg data into a given sheet group:
+     * per content segment a focusable group (with the content segment bound as datum,
+     * link or button semantics and a title) containing a group with the segment polygon and the segment label.
+     *
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
+     * @returns {void} Draws the content segments.
+     */
+    private _drawContentSegments(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
+        const numberOfSystems &#x3D; folioSvgData.systems.lines.length || FOLIO_DEFAULT_NUMBER_OF_SYSTEMS;
+        // Dynamically adjust the stroke width based on the number of systems (reference: 18 systems)
+        const strokeWidth &#x3D; this._contentSegmentStrokeWidth * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / numberOfSystems);
+        const { folioId } &#x3D; folioSvgData.sheet;
+
+        folioSvgData.contentSegments.forEach((contentSegment: FolioSvgContentSegment) &#x3D;&gt; {
+            // Focusable group with the content segment bound as datum
+            // (resolved by getContentSegment for delegated clicks and Enter/Space keydowns)
+            const segmentGroupSelection &#x3D; this._appendSvgElementWithAttrs(sheetGroupSelection, &#x27;g&#x27;, {
+                class: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
+                tabindex: 0,
+                role: contentSegment.selectable ? &#x27;link&#x27; : &#x27;button&#x27;,
+                &#x27;aria-label&#x27;: this._getContentSegmentAriaLabel(contentSegment, folioId),
+            })
+                .classed(&#x27;selectable&#x27;, contentSegment.selectable)
+                .datum(contentSegment);
+            this._appendSvgElementWithAttrs(segmentGroupSelection, &#x27;title&#x27;, {}).text(contentSegment.label);
+
+            const segmentSelection &#x3D; this._appendSvgElementWithAttrs(segmentGroupSelection, &#x27;g&#x27;, {
+                class: &#x27;content-segment&#x27;,
+            });
+            this._appendSvgElementWithAttrs(segmentSelection, &#x27;polygon&#x27;, {
+                class: &#x27;content-segment-shape&#x27;,
+                points: contentSegment.vertices,
+                &#x27;stroke-width&#x27;: strokeWidth,
+            });
+
+            this._drawContentSegmentLabel(segmentSelection, contentSegment);
+        });
+    }
+
+    /**
+     * Private method: _drawContentSegmentLabel.
+     *
+     * It draws the (one- or two-line) label of a given content segment into a given content segment selection,
+     * rotated by 180 degrees around its center if the segment is reversed.
+     *
+     * @param {D3Selection} segmentSelection The given content segment selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {void} Draws the content segment label.
+     */
+    private _drawContentSegmentLabel(segmentSelection: D3Selection, contentSegment: FolioSvgContentSegment): void {
+        const { x, y } &#x3D; contentSegment.center;
+
+        const labelSelection &#x3D; this._appendSvgElementWithAttrs(segmentSelection, &#x27;text&#x27;, {
+            class: &#x27;content-segment-label&#x27;,
+            x,
+            y,
+            &#x27;dominant-baseline&#x27;: &#x27;middle&#x27;,
+            &#x27;text-anchor&#x27;: &#x27;middle&#x27;,
+        });
+
+        contentSegment.labelLines.forEach((labelLine, index) &#x3D;&gt; {
+            if (labelLine &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+                return;
+            }
+            // Further lines start again at the center, shifted down by one line
+            const lineAttributes: Record&lt;string, string | number&gt; &#x3D;
+                index &gt; 0 ? { x, y, dy: &#x27;1.2em&#x27;, &#x27;text-anchor&#x27;: &#x27;middle&#x27; } : {};
+            this._appendSvgElementWithAttrs(labelSelection, &#x27;tspan&#x27;, lineAttributes).text(labelLine);
+        });
+
+        if (contentSegment.reversed) {
+            labelSelection.attr(&#x27;transform&#x27;, &#x60;rotate(${this._reversedRotationAngle}, ${x}, ${y})&#x60;);
+        }
+    }
+
+    /**
+     * Private method: _drawSheet.
+     *
+     * It draws the sheet of the given folio svg data into a given sheet group:
+     * the title, the sheet rectangle and (if given) the trademark.
+     *
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
+     * @returns {void} Draws the sheet.
+     */
+    private _drawSheet(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
+        const { folioId, rectangle, trademarkRectangle } &#x3D; folioSvgData.sheet;
+
+        this._appendSvgElementWithAttrs(sheetGroupSelection, &#x27;title&#x27;, { class: &#x27;sheet-group-title&#x27; }).text(
+            &#x60;Bl. ${folioId}&#x60;
+        );
+        this._appendRect(sheetGroupSelection, rectangle, &#x27;sheet-rectangle&#x27;);
+
+        if (trademarkRectangle) {
+            this._drawTrademark(sheetGroupSelection, trademarkRectangle, folioSvgData.systems.reversed);
+        }
+    }
+
+    /**
+     * Private method: _drawSystems.
+     *
+     * It draws the systems of the given folio svg data into a given sheet group:
+     * per system a group with its label (numbered in reverse if the systems are reversed)
+     * and a group with its lines.
+     *
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio svg data.
+     * @returns {void} Draws the systems.
+     */
+    private _drawSystems(sheetGroupSelection: D3Selection, folioSvgData: FolioSvgData): void {
+        const { lines, labelFontSize, labelPositions, reversed } &#x3D; folioSvgData.systems;
+
+        lines.forEach((systemLines: FolioSvgLine[], systemIndex: number) &#x3D;&gt; {
+            const labelIndex &#x3D; reversed ? lines.length - systemIndex : systemIndex + 1;
+            const labelPosition &#x3D; labelPositions[systemIndex];
+
+            const systemsGroupSelection &#x3D; this._appendSvgElementWithAttrs(sheetGroupSelection, &#x27;g&#x27;, {
+                class: &#x27;systems-group&#x27;,
+            });
+            const systemLineGroupSelection &#x3D; this._appendSvgElementWithAttrs(systemsGroupSelection, &#x27;g&#x27;, {
+                class: &#x27;system-line-group&#x27;,
+            });
+
+            this._appendSvgElementWithAttrs(systemsGroupSelection, &#x27;text&#x27;, {
+                class: &#x27;system-label&#x27;,
+                x: labelPosition.x,
+                y: labelPosition.y,
+                &#x27;font-size&#x27;: labelFontSize,
+                &#x27;text-anchor&#x27;: &#x27;end&#x27;,
+            }).text(labelIndex);
+
+            systemLines.forEach(line &#x3D;&gt; {
+                this._appendSvgElementWithAttrs(systemLineGroupSelection, &#x27;line&#x27;, {
+                    class: &#x27;system-line&#x27;,
+                    x1: line.start.x,
+                    y1: line.start.y,
+                    x2: line.end.x,
+                    y2: line.end.y,
+                });
+            });
+        });
+    }
+
+    /**
+     * Private method: _drawTrademark.
+     *
+     * It draws the trademark into a given sheet group:
+     * a group with the trademark rectangle, the trademark symbol
+     * (rotated by 180 degrees if the systems are reversed) and a title.
+     *
+     * @param {D3Selection} sheetGroupSelection The given sheet group selection.
+     * @param {FolioSvgRectangle} trademarkRectangle The given calculated trademark rectangle.
+     * @param {boolean} systemsReversed The given flag if the systems are reversed.
+     * @returns {void} Draws the trademark.
+     */
+    private _drawTrademark(
+        sheetGroupSelection: D3Selection,
+        trademarkRectangle: FolioSvgRectangle,
+        systemsReversed: boolean
+    ): void {
+        const trademarkGroupSelection &#x3D; this._appendSvgElementWithAttrs(sheetGroupSelection, &#x27;g&#x27;, {
+            class: &#x27;trademark-group&#x27;,
+        });
+
+        this._appendRect(trademarkGroupSelection, trademarkRectangle, &#x27;trademark-rectangle&#x27;);
+
+        const { x: x1, y: y1 } &#x3D; trademarkRectangle.upperLeft;
+        const { x: x2, y: y2 } &#x3D; trademarkRectangle.lowerRight;
+        const centerX &#x3D; (x1 + x2) / 2;
+        const centerY &#x3D; (y1 + y2) / 2;
+
+        let transform &#x3D; &#x60;translate(${centerX - 10}, ${centerY - 10}) scale(0.5)&#x60;;
+        if (systemsReversed) {
+            transform +&#x3D; &#x60; rotate(${this._reversedRotationAngle}, 20, 20)&#x60;;
+        }
+
+        this._appendSvgElementWithAttrs(trademarkGroupSelection, &#x27;path&#x27;, {
+            class: &#x27;trademark-symbol&#x27;,
+            d: TRADEMARK_SYMBOL_PATH,
+            transform,
+        });
+
+        this._appendSvgElementWithAttrs(trademarkGroupSelection, &#x27;title&#x27;, { class: &#x27;trademark-title&#x27; }).text(
+            &#x27;Firmenzeichen&#x27;
+        );
+    }
+
+    /**
+     * Private method: _getContentSegmentAriaLabel.
+     *
+     * It builds the aria label of a given content segment on a given folio,
+     * naming the action triggered by the segment.
+     *
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @param {string} folioId The given folio id.
+     * @returns {string} The aria label of the content segment.
+     */
+    private _getContentSegmentAriaLabel(contentSegment: FolioSvgContentSegment, folioId: string): string {
+        const action &#x3D; contentSegment.selectable ? &#x27;öffnen&#x27; : &#x27;Hinweis anzeigen&#x27;;
+
+        return &#x60;${contentSegment.label} (Bl. ${folioId}): ${action}&#x60;;
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionFolioDrawingService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

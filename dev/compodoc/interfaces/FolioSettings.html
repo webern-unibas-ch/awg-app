@@ -141,7 +141,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/models/folio-settings.model.ts</code>
+            <code>src/app/views/edition-view/models/folio-svg-data.model.ts</code>
         </p>
 
 
@@ -149,8 +149,10 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The folio settings interface.</p>
-<p>It is used to store the basic settings of the edition folios.</p>
+                <p>The FolioSettings interface.</p>
+<p>It is used in the context of the edition folio convolutes
+to store the basic settings (format, zoom factor, offsets)
+for the calculation of a folio.</p>
 
             </p>
 
@@ -195,12 +197,6 @@
                                         <a href="#initialOffsetY" 
 >
                                             initialOffsetY
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#numberOfFolios" 
->
-                                            numberOfFolios
                                         </a>
                                 </li>
                             </ul>
@@ -409,51 +405,31 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="numberOfFolios"></a>
-                                        <span class="name "><b>numberOfFolios</b>
-                                            <a href="#numberOfFolios">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>numberOfFolios:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The number of folios.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
             </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface FolioSettings {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { SheetClickEvent } from &#x27;../services/edition-navigation.service&#x27;;
+
+import { ViewBox } from &#x27;./view-box.model&#x27;;
+
+/**
+ * Constant: FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS.
+ *
+ * It keeps the css class of the content segment groups of the rendered folio svgs
+ * (drawn by the EditionFolioDrawingService, resolved by the EditionFolioSegmentService).
+ */
+export const FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS &#x3D; &#x27;content-segment-group&#x27;;
+
+/**
+ * The FolioSettings interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the basic settings (format, zoom factor, offsets)
+ * for the calculation of a folio.
+ */
+export interface FolioSettings {
     /**
      * The zoom factor to be applied.
      */
@@ -478,11 +454,190 @@
      * The initial offset (y-position) to be applied.
      */
     initialOffsetY: number;
+}
+
+/**
+ * The FolioSvgPoint interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store a point (in px) on the folio svg.
+ */
+export interface FolioSvgPoint {
+    /**
+     * The x value (in px) of the point.
+     */
+    readonly x: number;
 
     /**
-     * The number of folios.
+     * The y value (in px) of the point.
      */
-    numberOfFolios: number;
+    readonly y: number;
+}
+
+/**
+ * The FolioSvgLine interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store a line on the folio svg.
+ */
+export interface FolioSvgLine {
+    /**
+     * The starting point of the line.
+     */
+    readonly start: FolioSvgPoint;
+
+    /**
+     * The ending point of the line.
+     */
+    readonly end: FolioSvgPoint;
+}
+
+/**
+ * The FolioSvgRectangle interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store a rectangle on the folio svg.
+ */
+export interface FolioSvgRectangle {
+    /**
+     * The upper left corner of the rectangle.
+     */
+    readonly upperLeft: FolioSvgPoint;
+
+    /**
+     * The lower right corner of the rectangle.
+     */
+    readonly lowerRight: FolioSvgPoint;
+}
+
+/**
+ * The FolioSvgSheet interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for the sheet of a folio.
+ */
+export interface FolioSvgSheet {
+    /**
+     * The id of the folio.
+     */
+    readonly folioId: string;
+
+    /**
+     * The rectangle of the sheet.
+     */
+    readonly rectangle: FolioSvgRectangle;
+
+    /**
+     * The optional rectangle of the trademark on the sheet.
+     */
+    readonly trademarkRectangle?: FolioSvgRectangle;
+}
+
+/**
+ * The FolioSvgSystems interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for the systems of a folio.
+ */
+export interface FolioSvgSystems {
+    /**
+     * The font size of the system labels (limited by the space per system).
+     */
+    readonly labelFontSize: number;
+
+    /**
+     * The positions of the system labels (right end of their baseline,
+     * so that the digits are vertically centered at the middle line of each system).
+     */
+    readonly labelPositions: FolioSvgPoint[];
+
+    /**
+     * The lines of the systems (per system an array of its staff lines).
+     */
+    readonly lines: FolioSvgLine[][];
+
+    /**
+     * The boolean flag if the systems are reversed.
+     */
+    readonly reversed: boolean;
+}
+
+/**
+ * The FolioSvgContentSegment interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for a content segment of a folio.
+ */
+export interface FolioSvgContentSegment {
+    /**
+     * The ids (complex id and sheet id incl. partial) of the svg sheet of the content segment.
+     */
+    readonly sheetIds: SheetClickEvent;
+
+    /**
+     * The key of the text that is shown in a modal
+     * if the content segment cannot be selected.
+     */
+    readonly linkTo: string;
+
+    /**
+     * The boolean flag if the content segment can be selected.
+     */
+    readonly selectable: boolean;
+
+    /**
+     * The label of the content segment.
+     */
+    readonly label: string;
+
+    /**
+     * The lines of the label of the content segment (sigle and addendum).
+     */
+    readonly labelLines: string[];
+
+    /**
+     * The boolean flag if the content segment is reversed.
+     */
+    readonly reversed: boolean;
+
+    /**
+     * The vertices of the content segment polygon (as svg points string).
+     */
+    readonly vertices: string;
+
+    /**
+     * The center point of the content segment label.
+     */
+    readonly center: FolioSvgPoint;
+}
+
+/**
+ * The FolioSvgData interface.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data (sheet, systems, content segments and view box) for a folio,
+ * as calculated by &#x60;calculateFolioSvgData&#x60; (see EditionFolioDrawingService utils).
+ */
+export interface FolioSvgData {
+    /**
+     * The view box of the svg of the folio.
+     */
+    readonly viewBox: ViewBox;
+
+    /**
+     * The sheet of the folio.
+     */
+    readonly sheet: FolioSvgSheet;
+
+    /**
+     * The systems of the folio.
+     */
+    readonly systems: FolioSvgSystems;
+
+    /**
+     * The content segments of the folio.
+     */
+    readonly contentSegments: FolioSvgContentSegment[];
 }
 </code></pre>
     </div>

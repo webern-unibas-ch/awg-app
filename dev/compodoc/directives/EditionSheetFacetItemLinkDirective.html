@@ -144,7 +144,7 @@
                 <p>The EditionSheetFacetItemLink directive.</p>
 <p>It turns an anchor of a sheet facet item into an accessible link
 that marks its active state and navigates to the given svg sheet
-on click or enter key.</p>
+on click or enter key (via the <a href="../directives/ClickDirective.html">ClickDirective</a>).</p>
 
             </p>
 
@@ -162,6 +162,13 @@ on click or enter key.</p>
                     </tr>
 
 
+                    <tr>
+                        <td class="col-md-3">HostDirectives</td>
+                        <td class="col-md-9">
+                                        <code><a href="../directives/ClickDirective.html" target="_self" >ClickDirective</a></code>
+<br/>
+                        </td>
+                    </tr>
 
 
                 </tbody>
@@ -229,6 +236,31 @@ on click or enter key.</p>
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:45</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSheetFacetItemLinkDirective.</p>
+<p>It selects the linked svg sheet on an accessible click (click or enter key) of the anchor.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -253,7 +285,7 @@ on click or enter key.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:45</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -291,7 +323,7 @@ on click or enter key.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:37</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -332,8 +364,8 @@ on click or enter key.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="54"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:54</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -389,7 +421,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets-panel/facet/item/edition-sheet-facet-item-link.directive.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -412,6 +444,8 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, inject, input } from &#x27;@angular/core&#x27;;
 
+import { ClickDirective } from &#x27;@awg-shared/click/click.directive&#x27;;
+
 import { EditionNavigationService, SheetClickEvent } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
 
 /**
@@ -419,17 +453,16 @@ import { EditionNavigationService, SheetClickEvent } from &#x27;@awg-views/editi
  *
  * It turns an anchor of a sheet facet item into an accessible link
  * that marks its active state and navigates to the given svg sheet
- * on click or enter key.
+ * on click or enter key (via the {@link ClickDirective}).
  */
 @Directive({
     selector: &#x27;a[awgEditionSheetFacetItemLink]&#x27;,
+    hostDirectives: [ClickDirective],
     host: {
         role: &#x27;link&#x27;,
         tabindex: &#x27;0&#x27;,
         &#x27;[class.active]&#x27;: &#x27;isActive()&#x27;,
         &#x27;[class.text-muted]&#x27;: &#x27;!isActive()&#x27;,
-        &#x27;(click)&#x27;: &#x27;select()&#x27;,
-        &#x27;(keyup.enter)&#x27;: &#x27;select()&#x27;,
     },
 })
 export class EditionSheetFacetItemLinkDirective {
@@ -454,6 +487,15 @@ export class EditionSheetFacetItemLinkDirective {
      * @default false
      */
     readonly isActive &#x3D; input&lt;boolean&gt;(false);
+
+    /**
+     * Constructor of the EditionSheetFacetItemLinkDirective.
+     *
+     * It selects the linked svg sheet on an accessible click (click or enter key) of the anchor.
+     */
+    constructor() {
+        inject(ClickDirective).awgClick.subscribe(() &#x3D;&gt; this.select());
+    }
 
     /**
      * Public method: select.

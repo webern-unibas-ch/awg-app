@@ -120,40 +120,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionConvoluteModule.html" data-type="entity-link" >EditionConvoluteModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' : 'data-bs-target="#xs-components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' :
-                                            'id="xs-components-links-module-EditionConvoluteModule-db3858753027d8d3f0cb2b5da8f065809205d8d08a6dfa80e235975703f8bb01338254c29709cc60808a9afaff0877871fbc654128aa53d8ca4a97bd4a04c2cb"' }>
-                                            <li class="link">
-                                                <a href="components/EditionConvoluteComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionConvoluteComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionFolioViewerFolioModule.html" data-type="entity-link" >EditionFolioViewerFolioModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' : 'data-bs-target="#xs-components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' :
-                                            'id="xs-components-links-module-EditionFolioViewerFolioModule-91d1ae354eece29850e9e75dec632f5a63b12e888937af3749fb1ade9de5fe24e3c9239bb2411efbdac236a80f09de7d4fe0c23a5e0d61e634eb57b5034cf6f4"' }>
-                                            <li class="link">
-                                                <a href="components/EditionFolioViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionFolioViewerComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionGraphModule.html" data-type="entity-link" >EditionGraphModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -180,13 +146,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionSheetsModule.html" data-type="entity-link" >EditionSheetsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSheetsModule-cacbf85f59373400429d613e3c29bbb3940b958289fe5db537fb6b2442bf71e4e608b97533acabdce38eab08b524a8990d6c95024de67a46349eede46a649d17"' : 'data-bs-target="#xs-components-links-module-EditionSheetsModule-cacbf85f59373400429d613e3c29bbb3940b958289fe5db537fb6b2442bf71e4e608b97533acabdce38eab08b524a8990d6c95024de67a46349eede46a649d17"' }>
+                                            'data-bs-target="#components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' : 'data-bs-target="#xs-components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSheetsModule-cacbf85f59373400429d613e3c29bbb3940b958289fe5db537fb6b2442bf71e4e608b97533acabdce38eab08b524a8990d6c95024de67a46349eede46a649d17"' :
-                                            'id="xs-components-links-module-EditionSheetsModule-cacbf85f59373400429d613e3c29bbb3940b958289fe5db537fb6b2442bf71e4e608b97533acabdce38eab08b524a8990d6c95024de67a46349eede46a649d17"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' :
+                                            'id="xs-components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' }>
+                                            <li class="link">
+                                                <a href="components/EditionFoliosPanelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionFoliosPanelComponent</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="components/EditionSheetsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSheetsComponent</a>
                                             </li>
@@ -471,6 +440,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionDisclaimerWorkeditionsComponent.html" data-type="entity-link" >EditionDisclaimerWorkeditionsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosLegendComponent.html" data-type="entity-link" >EditionFoliosLegendComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosPanelComponent.html" data-type="entity-link" >EditionFoliosPanelComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosViewerComponent.html" data-type="entity-link" >EditionFoliosViewerComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionFoliosViewerSvgComponent.html" data-type="entity-link" >EditionFoliosViewerSvgComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionIntroComponent.html" data-type="entity-link" >EditionIntroComponent</a>
@@ -765,6 +746,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/AbbrDirective.html" data-type="entity-link" >AbbrDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/ClickDirective.html" data-type="entity-link" >ClickDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/CompileHtmlDirective.html" data-type="entity-link" >CompileHtmlDirective</a>
                                 </li>
                                 <li class="link">
@@ -835,64 +819,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionSvgSheetsList.html" data-type="entity-link" >EditionSvgSheetsList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculation.html" data-type="entity-link" >FolioCalculation</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegment.html" data-type="entity-link" >FolioCalculationContentSegment</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentCenteredPositions.html" data-type="entity-link" >FolioCalculationContentSegmentCenteredPositions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentLabel.html" data-type="entity-link" >FolioCalculationContentSegmentLabel</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationContentSegmentVertices.html" data-type="entity-link" >FolioCalculationContentSegmentVertices</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationLine.html" data-type="entity-link" >FolioCalculationLine</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationPoint.html" data-type="entity-link" >FolioCalculationPoint</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationRectangle.html" data-type="entity-link" >FolioCalculationRectangle</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSheet.html" data-type="entity-link" >FolioCalculationSheet</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystems.html" data-type="entity-link" >FolioCalculationSystems</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsDimensions.html" data-type="entity-link" >FolioCalculationSystemsDimensions</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsLabels.html" data-type="entity-link" >FolioCalculationSystemsLabels</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsLines.html" data-type="entity-link" >FolioCalculationSystemsLines</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioCalculationSystemsMargins.html" data-type="entity-link" >FolioCalculationSystemsMargins</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/FolioConvolute.html" data-type="entity-link" >FolioConvolute</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioConvoluteList.html" data-type="entity-link" >FolioConvoluteList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgContentSegment.html" data-type="entity-link" >FolioSvgContentSegment</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
                             </li>
                             <li class="link">
                                 <a href="classes/Graph.html" data-type="entity-link" >Graph</a>
@@ -1001,6 +931,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionDataService.html" data-type="entity-link" >EditionDataService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/EditionFolioDrawingService.html" data-type="entity-link" >EditionFolioDrawingService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/EditionFolioSegmentService.html" data-type="entity-link" >EditionFolioSegmentService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/EditionGlyphService.html" data-type="entity-link" >EditionGlyphService</a>
                                 </li>
                                 <li class="link">
@@ -1026,9 +962,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EditionViewService.html" data-type="entity-link" >EditionViewService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/FolioService.html" data-type="entity-link" >FolioService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
@@ -1173,10 +1106,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/FolioDimensions.html" data-type="entity-link" >FolioDimensions</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/FolioLegend.html" data-type="entity-link" >FolioLegend</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/FolioSegment.html" data-type="entity-link" >FolioSegment</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FolioSettings.html" data-type="entity-link" >FolioSettings</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgContentSegment.html" data-type="entity-link" >FolioSvgContentSegment</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgLine.html" data-type="entity-link" >FolioSvgLine</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgPoint.html" data-type="entity-link" >FolioSvgPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgRectangle.html" data-type="entity-link" >FolioSvgRectangle</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FragmentClickEvent.html" data-type="entity-link" >FragmentClickEvent</a>
@@ -1192,9 +1149,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/HomeViewCardInternalLink.html" data-type="entity-link" >HomeViewCardInternalLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IFolioLegend.html" data-type="entity-link" >IFolioLegend</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IMockAnalytics.html" data-type="entity-link" >IMockAnalytics</a>
@@ -1351,6 +1305,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SystemsCalculation.html" data-type="entity-link" >SystemsCalculation</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableOptions.html" data-type="entity-link" >TableOptions</a>
