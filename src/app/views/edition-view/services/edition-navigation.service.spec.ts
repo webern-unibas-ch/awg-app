@@ -9,12 +9,13 @@ import { expectSpyCall } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
 import { EditionComplex } from '../models/edition-complex.model';
+import { FragmentNavigationTarget, SheetNavigationTarget } from '../models/edition-navigation.model';
 import { EditionSvgSheet } from '../models/edition-svg-sheets.model';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
 import { EditionStateService } from './edition-state.service';
 
-import { EditionNavigationService, FragmentClickEvent, SheetClickEvent } from './edition-navigation.service';
+import { EditionNavigationService } from './edition-navigation.service';
 
 describe('EditionNavigationService (DONE)', () => {
     let service: EditionNavigationService;
@@ -80,40 +81,43 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()`', () => {
                 it('... with correct parameters', () => {
-                    const expectedIntroIds: FragmentClickEvent = {
+                    const expectedIntroTarget: FragmentNavigationTarget = {
                         complexId: expectedComplexId,
                         fragmentId: expectedIntroFragment,
                     };
                     const expectedNavigationExtras = {
-                        fragment: expectedIntroIds.fragmentId,
+                        fragment: expectedIntroTarget.fragmentId,
                     };
 
-                    service.navigateToIntroFragment(expectedIntroIds);
+                    service.navigateToIntroFragment(expectedIntroTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
+                        expectedIntroTarget.complexId,
                         expectedIntroRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty fragment if fragmentId is empty string', () => {
-                    const expectedIntroIds: FragmentClickEvent = { complexId: expectedComplexId, fragmentId: '' };
+                    const expectedIntroTarget: FragmentNavigationTarget = {
+                        complexId: expectedComplexId,
+                        fragmentId: '',
+                    };
                     const expectedNavigationExtras = {
                         fragment: '',
                     };
 
-                    service.navigateToIntroFragment(expectedIntroIds);
+                    service.navigateToIntroFragment(expectedIntroTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
+                        expectedIntroTarget.complexId,
                         expectedIntroRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty fragment if fragmentId is undefined', () => {
-                    const expectedIntroIds: FragmentClickEvent = {
+                    const expectedIntroTarget: FragmentNavigationTarget = {
                         complexId: expectedComplexId,
                         fragmentId: undefined as any,
                     };
@@ -121,25 +125,25 @@ describe('EditionNavigationService (DONE)', () => {
                         fragment: '',
                     };
 
-                    service.navigateToIntroFragment(expectedIntroIds);
+                    service.navigateToIntroFragment(expectedIntroTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedIntroIds.complexId,
+                        expectedIntroTarget.complexId,
                         expectedIntroRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with undefined complexId if complexId is empty string', () => {
-                    const expectedIntroIds: FragmentClickEvent = {
+                    const expectedIntroTarget: FragmentNavigationTarget = {
                         complexId: '',
                         fragmentId: expectedIntroFragment,
                     };
                     const expectedNavigationExtras = {
-                        fragment: expectedIntroIds.fragmentId,
+                        fragment: expectedIntroTarget.fragmentId,
                     };
 
-                    service.navigateToIntroFragment(expectedIntroIds);
+                    service.navigateToIntroFragment(expectedIntroTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedIntroRoute, expectedNavigationExtras]);
                 });
@@ -153,25 +157,25 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()`', () => {
                 it('... with correct parameters', () => {
-                    const expectedReportIds: FragmentClickEvent = {
+                    const expectedReportTarget: FragmentNavigationTarget = {
                         complexId: expectedComplexId,
                         fragmentId: expectedReportFragment,
                     };
                     const expectedNavigationExtras = {
-                        fragment: expectedReportIds.fragmentId,
+                        fragment: expectedReportTarget.fragmentId,
                     };
 
-                    service.navigateToReportFragment(expectedReportIds);
+                    service.navigateToReportFragment(expectedReportTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedReportIds.complexId,
+                        expectedReportTarget.complexId,
                         expectedReportRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty fragment if fragmentId is empty string', () => {
-                    const expectedReportIds: FragmentClickEvent = {
+                    const expectedReportTarget: FragmentNavigationTarget = {
                         complexId: expectedComplexId,
                         fragmentId: '',
                     };
@@ -179,17 +183,17 @@ describe('EditionNavigationService (DONE)', () => {
                         fragment: '',
                     };
 
-                    service.navigateToReportFragment(expectedReportIds);
+                    service.navigateToReportFragment(expectedReportTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedReportIds.complexId,
+                        expectedReportTarget.complexId,
                         expectedReportRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty fragment if fragmentId is undefined', () => {
-                    const expectedReportIds: FragmentClickEvent = {
+                    const expectedReportTarget: FragmentNavigationTarget = {
                         complexId: expectedComplexId,
                         fragmentId: undefined as any,
                     };
@@ -197,25 +201,25 @@ describe('EditionNavigationService (DONE)', () => {
                         fragment: '',
                     };
 
-                    service.navigateToReportFragment(expectedReportIds);
+                    service.navigateToReportFragment(expectedReportTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedReportIds.complexId,
+                        expectedReportTarget.complexId,
                         expectedReportRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty complexId if complexId is empty string', () => {
-                    const expectedReportIds: FragmentClickEvent = {
+                    const expectedReportTarget: FragmentNavigationTarget = {
                         complexId: '',
                         fragmentId: expectedReportFragment,
                     };
                     const expectedNavigationExtras = {
-                        fragment: expectedReportIds.fragmentId,
+                        fragment: expectedReportTarget.fragmentId,
                     };
 
-                    service.navigateToReportFragment(expectedReportIds);
+                    service.navigateToReportFragment(expectedReportTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedReportRoute, expectedNavigationExtras]);
                 });
@@ -229,40 +233,40 @@ describe('EditionNavigationService (DONE)', () => {
 
             describe('... should trigger `_navigateWithComplexId()` ', () => {
                 it('... should call `_navigateWithComplexId()` method with correct parameters', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetTarget: SheetNavigationTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSvgSheet.id,
                     };
                     const expectedNavigationExtras = {
-                        queryParams: { id: expectedSheetIds.sheetId },
+                        queryParams: { id: expectedSheetTarget.sheetId },
                     };
 
-                    service.navigateToSvgSheet(expectedSheetIds);
+                    service.navigateToSvgSheet(expectedSheetTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
+                        expectedSheetTarget.complexId,
                         expectedSheetRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty query id if sheetId is empty string', () => {
-                    const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: '' };
+                    const expectedSheetTarget: SheetNavigationTarget = { complexId: expectedComplexId, sheetId: '' };
                     const expectedNavigationExtras = {
                         queryParams: { id: '' },
                     };
 
-                    service.navigateToSvgSheet(expectedSheetIds);
+                    service.navigateToSvgSheet(expectedSheetTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
+                        expectedSheetTarget.complexId,
                         expectedSheetRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty query id if sheetId is undefined', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetTarget: SheetNavigationTarget = {
                         complexId: expectedComplexId,
                         sheetId: undefined as any,
                     };
@@ -270,22 +274,22 @@ describe('EditionNavigationService (DONE)', () => {
                         queryParams: { id: '' },
                     };
 
-                    service.navigateToSvgSheet(expectedSheetIds);
+                    service.navigateToSvgSheet(expectedSheetTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, [
-                        expectedSheetIds.complexId,
+                        expectedSheetTarget.complexId,
                         expectedSheetRoute,
                         expectedNavigationExtras,
                     ]);
                 });
 
                 it('... with empty complexId if complexId is empty string', () => {
-                    const expectedSheetIds: SheetClickEvent = { complexId: '', sheetId: expectedSvgSheet.id };
+                    const expectedSheetTarget: SheetNavigationTarget = { complexId: '', sheetId: expectedSvgSheet.id };
                     const expectedNavigationExtras = {
-                        queryParams: { id: expectedSheetIds.sheetId },
+                        queryParams: { id: expectedSheetTarget.sheetId },
                     };
 
-                    service.navigateToSvgSheet(expectedSheetIds);
+                    service.navigateToSvgSheet(expectedSheetTarget);
 
                     expectSpyCall(navigateWithComplexIdSpy, 1, ['', expectedSheetRoute, expectedNavigationExtras]);
                 });

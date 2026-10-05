@@ -22,8 +22,9 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
+import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
@@ -737,19 +738,22 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should do nothing if no sheetId is provided', () => {
-                const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
+                const expectedSheetIds: SheetNavigationTarget = { complexId: 'op25', sheetId: '' };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
             });
 
             it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetNavigationTarget = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedSheetId,
+                };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds: SheetClickEvent = {
+                const expectedNextSheetIds: SheetNavigationTarget = {
                     complexId: expectedComplexId,
                     sheetId: expectedNextSheetId,
                 };
@@ -759,12 +763,15 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                const expectedSheetIds: SheetClickEvent = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                const expectedSheetIds: SheetNavigationTarget = {
+                    complexId: expectedComplexId,
+                    sheetId: expectedSheetId,
+                };
                 component.selectSvgSheet(expectedSheetIds);
 
                 expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                const expectedNextSheetIds: SheetClickEvent = {
+                const expectedNextSheetIds: SheetNavigationTarget = {
                     complexId: expectedNextComplexId,
                     sheetId: expectedNextSheetId,
                 };

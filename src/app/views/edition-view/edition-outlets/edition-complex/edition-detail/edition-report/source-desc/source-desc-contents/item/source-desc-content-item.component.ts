@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
+import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
  * The SourceDescContentItem component.
@@ -35,11 +36,11 @@ export class SourceDescContentItemComponent {
     readonly content = input.required<SourceDescContent>();
 
     /**
-     * Readonly computed signal: sheetIds.
+     * Readonly computed signal: sheetTarget.
      *
-     * It holds the complex and sheet ids the content item links to.
+     * It holds the sheet navigation target of the content item.
      */
-    readonly sheetIds = computed<SheetClickEvent>(() => {
+    readonly sheetTarget = computed<SheetNavigationTarget>(() => {
         const itemLinkTo = this.content().itemLinkTo;
         return {
             complexId: itemLinkTo?.complexId ?? '',
@@ -53,23 +54,23 @@ export class SourceDescContentItemComponent {
      * It holds true if both the complex and the sheet id are given.
      */
     readonly isClickable = computed<boolean>(() => {
-        const { complexId, sheetId } = this.sheetIds();
+        const { complexId, sheetId } = this.sheetTarget();
         return !!(complexId && sheetId);
     });
 
     /**
      * Public method: selectSvgSheet.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: SheetNavigationTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

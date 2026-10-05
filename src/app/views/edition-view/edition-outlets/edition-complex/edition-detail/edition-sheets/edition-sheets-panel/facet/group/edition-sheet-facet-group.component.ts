@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input, linkedSignal } from '@angular/core';
 
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_LABEL_MAP, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
 
 import { EditionSheetFacetItemComponent } from '../item/edition-sheet-facet-item.component';
@@ -37,11 +37,11 @@ export class EditionSheetFacetGroupComponent {
     readonly svgSheets = input.required<EditionSvgSheet[]>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
      * Readonly computed signal: facetGroupLabel.
@@ -56,7 +56,7 @@ export class EditionSheetFacetGroupComponent {
      * It computes if the selected svg sheet belongs to the facet group.
      */
     readonly hasSelectedSheet = computed(() => {
-        const selectedId = this.selectedSheetId().id;
+        const selectedId = this.selectedSheetIds().id;
 
         return this.svgSheets().some(svgSheet => svgSheet.id === selectedId);
     });

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 
-import { EditionSvgSheetId, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetIds, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_KEYS } from '@awg-views/edition-view/models/edition-type.model';
 
 import { EditionSheetFacetGroupComponent } from './group/edition-sheet-facet-group.component';
@@ -29,11 +29,11 @@ export class EditionSheetFacetComponent {
     readonly svgSheetsData = input.required<EditionSvgSheetsList | null>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
      * Readonly model signal: isMinimized.

@@ -16,7 +16,7 @@ import { ClickDirective } from '@awg-shared/click/click.directive';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
@@ -74,11 +74,11 @@ export class EditionFoliosViewerSvgComponent {
     readonly folio = input.required<Folio>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
      * Readonly view child signal: svgRootGroup.
@@ -100,7 +100,7 @@ export class EditionFoliosViewerSvgComponent {
      * It holds the content segment id of the selected svg sheet,
      * i.e. its full id (incl. partial).
      */
-    readonly selectedSegmentId = computed<string>(() => this.selectedSheetId().fullId ?? '');
+    readonly selectedSegmentId = computed<string>(() => this.selectedSheetIds().fullId ?? '');
 
     /**
      * Private readonly computed signal: _svgRootGroupSelection.
@@ -150,7 +150,7 @@ export class EditionFoliosViewerSvgComponent {
         event.preventDefault();
 
         if (contentSegment.selectable) {
-            this._navigationService.navigateToSvgSheet(contentSegment.sheetIds);
+            this._navigationService.navigateToSvgSheet(contentSegment.sheetTarget);
         } else {
             this._modalService.openTextModal(contentSegment.linkTo);
         }

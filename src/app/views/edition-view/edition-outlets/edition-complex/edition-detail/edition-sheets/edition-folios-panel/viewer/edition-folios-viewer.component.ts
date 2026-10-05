@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 
 import { EditionFoliosViewerSvgComponent } from './svg/edition-folios-viewer-svg.component';
@@ -45,11 +45,11 @@ export class EditionFoliosViewerComponent {
     readonly folios = input.required<Folio[]>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
      * Readonly computed signal: colSize.

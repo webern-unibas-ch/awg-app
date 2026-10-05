@@ -15,7 +15,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import {
     EditionSvgSheet,
-    EditionSvgSheetId,
+    EditionSvgSheetIds,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -35,7 +35,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-    let expectedSheetId: EditionSvgSheetId;
+    let expectedSheetId: EditionSvgSheetIds;
 
     let isMinimizedChangeSpy: Mock<(value: boolean) => void>;
 
@@ -90,10 +90,10 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expect(() => component.svgSheetsData()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetId`', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
+        it('... should throw due to missing required input signal `selectedSheetIds`', () => {
+            expectToBe(isSignal(component.selectedSheetIds), true);
 
-            expect(() => component.selectedSheetId()).toThrow();
+            expect(() => component.selectedSheetIds()).toThrow();
         });
 
         it('... should have model signal `isMinimized` to hold the default value', () => {
@@ -118,7 +118,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
-            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
+            fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -128,8 +128,8 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expectToEqual(component.svgSheetsData(), expectedSvgSheetsData);
         });
 
-        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetId(), expectedSheetId);
+        it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetIds(), expectedSheetId);
         });
 
         describe('VIEW', () => {
@@ -189,9 +189,9 @@ describe('EditionSheetFacetComponent (DONE)', () => {
                     ]);
                 });
 
-                it('... should pass down `selectedSheetId` to each EditionSheetFacetGroupComponent', () => {
+                it('... should pass down `selectedSheetIds` to each EditionSheetFacetGroupComponent', () => {
                     getFacetGroupCmps().forEach(cmp => {
-                        expectToEqual(cmp.selectedSheetId(), expectedSheetId);
+                        expectToEqual(cmp.selectedSheetIds(), expectedSheetId);
                     });
                 });
             });

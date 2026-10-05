@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
+import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentFolioComponent } from '../folio/source-desc-content-folio.component';
 import { SourceDescContentSystemComponent } from '../system/source-desc-content-system.component';
@@ -52,16 +53,16 @@ export class SourceDescContentGridComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: SheetNavigationTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

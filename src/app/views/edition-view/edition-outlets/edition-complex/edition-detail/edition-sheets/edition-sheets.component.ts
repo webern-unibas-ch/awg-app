@@ -5,16 +5,17 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
+import { SheetNavigationTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
     EditionSvgSheetContext,
-    EditionSvgSheetId,
+    EditionSvgSheetIds,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -154,11 +155,11 @@ export class EditionSheetsComponent {
     });
 
     /**
-     * Readonly computed signal: selectedSheetId.
+     * Readonly computed signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
+    readonly selectedSheetIds = computed<EditionSvgSheetIds>(() => {
         const context = this._selectedSheetContext();
 
         return { id: context?.sheet.id, fullId: context?.fullId };
@@ -243,7 +244,7 @@ export class EditionSheetsComponent {
 
         const nextSheetId = EDITION_SHEETS_UTILS.getNextSheetId(
             sheets[editionType],
-            this.selectedSheetId().fullId ?? '',
+            this.selectedSheetIds().fullId ?? '',
             direction
         );
 
@@ -288,16 +289,16 @@ export class EditionSheetsComponent {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    onSvgSheetSelect(sheetIds: SheetClickEvent): void {
-        if (!sheetIds.sheetId) {
+    onSvgSheetSelect(sheetTarget: SheetNavigationTarget): void {
+        if (!sheetTarget.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

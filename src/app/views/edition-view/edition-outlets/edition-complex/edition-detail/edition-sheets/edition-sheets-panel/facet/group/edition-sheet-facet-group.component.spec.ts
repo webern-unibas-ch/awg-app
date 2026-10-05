@@ -13,7 +13,7 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_LABEL_MAP, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -31,9 +31,9 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
     let expectedEditionTypeKey: EditionTypeKey;
     let expectedFacetGroupLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
-    let expectedSheetId: EditionSvgSheetId;
-    let expectedNextSheetIdInGroup: EditionSvgSheetId;
-    let expectedSheetIdOutsideGroup: EditionSvgSheetId;
+    let expectedSheetId: EditionSvgSheetIds;
+    let expectedNextSheetIdInGroup: EditionSvgSheetIds;
+    let expectedSheetIdOutsideGroup: EditionSvgSheetIds;
 
     const getTitleDes = () => getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
     const getDetailsDes = () =>
@@ -49,8 +49,8 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expectedSvgSheets.length,
             expectedSvgSheets.length
         ).map(de => de.injector.get(EditionSheetFacetItemComponent) as EditionSheetFacetItemComponent);
-    const selectSheet = async (sheetId: EditionSvgSheetId) => {
-        fixture.componentRef.setInput('selectedSheetId', sheetId);
+    const selectSheet = async (sheetId: EditionSvgSheetIds) => {
+        fixture.componentRef.setInput('selectedSheetIds', sheetId);
         await detectChangesOnPush(fixture);
     };
 
@@ -102,10 +102,10 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expect(() => component.svgSheets()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetId`', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
+        it('... should throw due to missing required input signal `selectedSheetIds`', () => {
+            expectToBe(isSignal(component.selectedSheetIds), true);
 
-            expect(() => component.selectedSheetId()).toThrow();
+            expect(() => component.selectedSheetIds()).toThrow();
         });
 
         it('... should throw when accessing computed signal `facetGroupLabel` due to missing inputs', () => {
@@ -140,7 +140,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('editionTypeKey', expectedEditionTypeKey);
             fixture.componentRef.setInput('svgSheets', expectedSvgSheets);
-            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
+            fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -165,8 +165,8 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expectToEqual(component.svgSheets(), expectedSvgSheets);
         });
 
-        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetId(), expectedSheetId);
+        it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetIds(), expectedSheetId);
         });
 
         it('... should have computed signal `hasSelectedSheet` to hold true if the selected sheet is in the group', () => {
@@ -271,10 +271,10 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     getFacetItemCmps();
                 });
 
-                it('... should pass down `svgSheet` and `selectedSheetId` to each EditionSheetFacetItemComponent', () => {
+                it('... should pass down `svgSheet` and `selectedSheetIds` to each EditionSheetFacetItemComponent', () => {
                     getFacetItemCmps().forEach((cmp, index) => {
                         expectToEqual(cmp.svgSheet(), expectedSvgSheets[index]);
-                        expectToEqual(cmp.selectedSheetId(), expectedSheetId);
+                        expectToEqual(cmp.selectedSheetIds(), expectedSheetId);
                     });
                 });
             });

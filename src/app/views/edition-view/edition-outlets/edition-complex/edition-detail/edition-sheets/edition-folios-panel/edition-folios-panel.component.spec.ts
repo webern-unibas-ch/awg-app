@@ -19,7 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -37,7 +37,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedConvolute: FolioConvolute;
-    let expectedSheetId: EditionSvgSheetId;
+    let expectedSheetId: EditionSvgSheetIds;
     let expectedFragment: string;
 
     const getItemDe = (): DebugElement =>
@@ -99,10 +99,10 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expect(() => component.selectedConvolute()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetId`', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
+        it('... should throw due to missing required input signal `selectedSheetIds`', () => {
+            expectToBe(isSignal(component.selectedSheetIds), true);
 
-            expect(() => component.selectedSheetId()).toThrow();
+            expect(() => component.selectedSheetIds()).toThrow();
         });
 
         it('... should throw when accessing computed signal `reportFragment` due to missing input', () => {
@@ -142,7 +142,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
-            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
+            fixture.componentRef.setInput('selectedSheetIds', expectedSheetId);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
@@ -152,8 +152,8 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expectToEqual(component.selectedConvolute(), expectedConvolute);
         });
 
-        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetId(), expectedSheetId);
+        it('... should have input signal `selectedSheetIds` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetIds(), expectedSheetId);
         });
 
         it('... should have computed signal `folios` to hold the folios of the selected convolute', () => {
@@ -205,7 +205,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(getBodyDe(), EditionFoliosViewerComponent, 1, 1);
                 });
 
-                it('... should pass down `folios` and `selectedSheetId` to EditionFoliosViewerComponent', () => {
+                it('... should pass down `folios` and `selectedSheetIds` to EditionFoliosViewerComponent', () => {
                     const viewerDes = getAndExpectDebugElementByDirective(
                         getBodyDe(),
                         EditionFoliosViewerComponent,
@@ -215,7 +215,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     const viewerCmp = viewerDes[0].injector.get(EditionFoliosViewerComponent);
 
                     expectToEqual(viewerCmp.folios(), expectedConvolute.folios);
-                    expectToEqual(viewerCmp.selectedSheetId(), expectedSheetId);
+                    expectToEqual(viewerCmp.selectedSheetIds(), expectedSheetId);
                 });
             });
 

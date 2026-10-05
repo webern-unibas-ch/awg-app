@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetIds } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Folio, FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 
 import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
@@ -33,11 +33,11 @@ export class EditionFoliosPanelComponent {
     readonly selectedConvolute = input.required<FolioConvolute>();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSheetIds.
      *
      * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
-    readonly selectedSheetId = input.required<EditionSvgSheetId>();
+    readonly selectedSheetIds = input.required<EditionSvgSheetIds>();
 
     /**
      * Readonly computed signal: folios.

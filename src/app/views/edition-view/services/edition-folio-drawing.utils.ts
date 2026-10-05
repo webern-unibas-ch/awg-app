@@ -363,7 +363,7 @@ function calculateContentSegment(
     const labelOffset = sigleAddendum ? CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET : 0;
 
     return {
-        sheetIds: { complexId, sheetId },
+        sheetTarget: { complexId, sheetId },
         linkTo,
         selectable,
         label: sigleAddendum ? `${sigle} ${sigleAddendum}` : sigle,

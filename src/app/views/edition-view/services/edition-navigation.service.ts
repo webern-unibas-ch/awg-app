@@ -2,42 +2,9 @@ import { inject, Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
+import { FragmentNavigationTarget, SheetNavigationTarget } from '../models/edition-navigation.model';
 
 import { EditionStateService } from './edition-state.service';
-
-/**
- * The FragmentClickEvent interface.
- *
- * It defines the structure for the intro fragment click event.
- */
-export interface FragmentClickEvent {
-    /**
-     * The complex id of the click event.
-     */
-    complexId: string;
-
-    /**
-     * The intro fragment id of the click event.
-     */
-    fragmentId: string;
-}
-
-/**
- * The SheetClickEvent interface.
- *
- * It defines the structure for the SVG sheet click event.
- */
-export interface SheetClickEvent {
-    /**
-     * The complex id of the click event.
-     */
-    complexId: string;
-
-    /**
-     * The sheet id of the click event.
-     */
-    sheetId: string;
-}
 
 /**
  * The EditionNavigationService.
@@ -67,15 +34,15 @@ export class EditionNavigationService {
      *
      * It navigates to the '/intro/' route with the given complexId and fragmentId.
      *
-     * @param {FragmentClickEvent} introIds The given intro ids as { complexId: string, fragmentId: string }.
+     * @param {FragmentNavigationTarget} introTarget The given intro fragment navigation target.
      * @returns {void} Navigates to the edition intro fragment.
      */
-    navigateToIntroFragment(introIds: FragmentClickEvent): void {
+    navigateToIntroFragment(introTarget: FragmentNavigationTarget): void {
         const introRoute = EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route;
         const navigationExtras: NavigationExtras = {
-            fragment: introIds?.fragmentId ?? '',
+            fragment: introTarget?.fragmentId ?? '',
         };
-        this._navigateWithComplexId(introIds?.complexId, introRoute, navigationExtras);
+        this._navigateWithComplexId(introTarget?.complexId, introRoute, navigationExtras);
     }
 
     /**
@@ -83,15 +50,15 @@ export class EditionNavigationService {
      *
      * It navigates to the '/report/' route with the given complexId and fragmentId.
      *
-     * @param {FragmentClickEvent} reportIds The given report ids as { complexId: string, fragmentId: string }.
+     * @param {FragmentNavigationTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the edition report fragment.
      */
-    navigateToReportFragment(reportIds: FragmentClickEvent): void {
+    navigateToReportFragment(reportTarget: FragmentNavigationTarget): void {
         const reportRoute = EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route;
         const navigationExtras: NavigationExtras = {
-            fragment: reportIds?.fragmentId ?? '',
+            fragment: reportTarget?.fragmentId ?? '',
         };
-        this._navigateWithComplexId(reportIds?.complexId, reportRoute, navigationExtras);
+        this._navigateWithComplexId(reportTarget?.complexId, reportRoute, navigationExtras);
     }
 
     /**
@@ -100,17 +67,17 @@ export class EditionNavigationService {
      * It navigates to the '/sheet/' route using the provided sheetId
      * within the context of an edition complex identified by the provided complexId.
      *
-     * @param {SheetClickEvent} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @param {SheetNavigationTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the edition sheets.
      */
-    navigateToSvgSheet(sheetIds: SheetClickEvent): void {
+    navigateToSvgSheet(sheetTarget: SheetNavigationTarget): void {
         const sheetRoute = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route;
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetIds?.sheetId ?? '' },
+            queryParams: { id: sheetTarget?.sheetId ?? '' },
             // .queryParamsHandling: '',
         };
 
-        this._navigateWithComplexId(sheetIds?.complexId, sheetRoute, navigationExtras);
+        this._navigateWithComplexId(sheetTarget?.complexId, sheetRoute, navigationExtras);
     }
 
     /**
