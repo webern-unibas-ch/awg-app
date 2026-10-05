@@ -424,7 +424,7 @@ export class EditionFolioSegmentService {
     updateActiveContentSegment(svgSelection: D3Selection, segmentId: string): void {
         svgSelection
             .selectAll&lt;SVGGElement, FolioSvgContentSegment&gt;(&#x60;g.${FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS}&#x60;)
-            .classed(&#x27;active&#x27;, contentSegment &#x3D;&gt; contentSegment?.sheetIds.sheetId &#x3D;&#x3D;&#x3D; segmentId);
+            .classed(&#x27;active&#x27;, contentSegment &#x3D;&gt; contentSegment?.sheetTarget.sheetId &#x3D;&#x3D;&#x3D; segmentId);
     }
 }
 </code></pre>

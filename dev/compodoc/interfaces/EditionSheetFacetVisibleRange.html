@@ -275,7 +275,7 @@ in a scrollable facet group list.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SheetClickEvent } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionNavigationSheetTarget } from &#x27;@awg-views/edition-view/models/edition-navigation.model&#x27;;
 
 /**
  * The EditionSheetFacetPartialLink interface.
@@ -286,9 +286,9 @@ in a scrollable facet group list.</p>
  */
 export interface EditionSheetFacetPartialLink {
     /**
-     * The sheet ids (incl. partial) to navigate to.
+     * The sheet navigation target (incl. partial).
      */
-    sheetIds: SheetClickEvent;
+    sheetTarget: EditionNavigationSheetTarget;
 
     /**
      * The position label of the partial, i.e. the partial id

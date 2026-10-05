@@ -218,7 +218,7 @@ from a svg sheet json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheets.model.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheets.model.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -244,25 +244,6 @@ from a svg sheet json file.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionTypeKey } from &#x27;./edition-type.model&#x27;;
-
-/**
- * The EditionSvgSheetId interface.
- *
- * It is used in the context of the edition view
- * to store the id and the (optional) partial
- * of a (selected) svg sheet separately.
- */
-export interface EditionSvgSheetId {
-    /**
-     * The sheet&#x27;s id (string).
-     */
-    id: string | undefined;
-
-    /**
-     * The sheet&#x27;s content partial id (string).
-     */
-    partial: string | undefined;
-}
 
 /**
  * The EditionSvgSheetContent interface.
@@ -333,6 +314,50 @@ export class EditionSvgSheetsList {
         textEditions: [],
         sketchEditions: [],
     };
+}
+
+/**
+ * The EditionSvgSheetSelection interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet: its id,
+ * its full id (incl. the selected partial)
+ * and its selected content.
+ */
+export interface EditionSvgSheetSelection {
+    /**
+     * The sheet&#x27;s id (string).
+     */
+    id: string;
+
+    /**
+     * The sheet&#x27;s full id, i.e. the sheet id incl. the selected partial id, if any (string).
+     */
+    fullId: string;
+
+    /**
+     * The selected content (partial) of the sheet.
+     */
+    content: EditionSvgSheetContent;
+}
+
+/**
+ * The EditionSvgSheetContext interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet
+ * together with its edition type.
+ */
+export interface EditionSvgSheetContext {
+    /**
+     * The selected svg sheet.
+     */
+    selection: EditionSvgSheetSelection;
+
+    /**
+     * The edition type of the selected svg sheet.
+     */
+    editionType: EditionTypeKey;
 }
 </code></pre>
     </div>

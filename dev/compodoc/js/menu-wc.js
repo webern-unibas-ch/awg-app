@@ -143,32 +143,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link" >EditionGraphRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionSheetsModule.html" data-type="entity-link" >EditionSheetsModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' : 'data-bs-target="#xs-components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' :
-                                            'id="xs-components-links-module-EditionSheetsModule-ee9ea191db2cf4bb2640a90bf20bfc0678f9912876efaf289dfc486fb2d587e9bbd887e6f64c4877d262613e000a3c9d3d4137c03ac197da396d1865e613b7f2"' }>
-                                            <li class="link">
-                                                <a href="components/EditionFoliosPanelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionFoliosPanelComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSheetsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSheetsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionSheetsPanelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSheetsPanelComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionSheetsRoutingModule.html" data-type="entity-link" >EditionSheetsRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionViewModule.html" data-type="entity-link" >EditionViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -530,6 +504,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionSheetFooterComponent.html" data-type="entity-link" >EditionSheetFooterComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionSheetsComponent.html" data-type="entity-link" >EditionSheetsComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionSheetsPanelComponent.html" data-type="entity-link" >EditionSheetsPanelComponent</a>
@@ -946,9 +923,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionOutlineService.html" data-type="entity-link" >EditionOutlineService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/EditionSheetsService.html" data-type="entity-link" >EditionSheetsService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/EditionSnippetService.html" data-type="entity-link" >EditionSnippetService</a>
                                 </li>
                                 <li class="link">
@@ -1031,6 +1005,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionDataAssetsError.html" data-type="entity-link" >EditionDataAssetsError</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/EditionNavigationFragmentTarget.html" data-type="entity-link" >EditionNavigationFragmentTarget</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionNavigationSheetTarget.html" data-type="entity-link" >EditionNavigationSheetTarget</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/EditionOutlineComplexItem.html" data-type="entity-link" >EditionOutlineComplexItem</a>
                             </li>
                             <li class="link">
@@ -1085,7 +1065,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionSvgSheetContent.html" data-type="entity-link" >EditionSvgSheetContent</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionSvgSheetId.html" data-type="entity-link" >EditionSvgSheetId</a>
+                                <a href="interfaces/EditionSvgSheetContext.html" data-type="entity-link" >EditionSvgSheetContext</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/EditionSvgSheetSelection.html" data-type="entity-link" >EditionSvgSheetSelection</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData</a>
@@ -1134,9 +1117,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/FragmentClickEvent.html" data-type="entity-link" >FragmentClickEvent</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/FullscreenToggleConfig.html" data-type="entity-link" >FullscreenToggleConfig</a>
@@ -1239,9 +1219,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/Rowtables.html" data-type="entity-link" >Rowtables</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SheetClickEvent.html" data-type="entity-link" >SheetClickEvent</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>

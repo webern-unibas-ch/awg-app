@@ -295,7 +295,7 @@ and displays that svg sheet with a zoom slider and navigation buttons.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetSelection.html" target="_self" >EditionSvgSheetSelection</a></code>
 
                     </td>
                 </tr>
@@ -312,7 +312,7 @@ and displays that svg sheet with a zoom slider and navigation buttons.</p>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly input signal: selectedSvgSheet.</p>
-<p>It holds the selected svg sheet.</p>
+<p>It holds the selected svg sheet (id, full id and selected content).</p>
 </div>
                     </td>
                 </tr>
@@ -504,7 +504,7 @@ import { SliderZoomComponent } from &#x27;@awg-shared/zoom/slider-zoom.component
 import { ZoomConfig } from &#x27;@awg-shared/zoom/zoom.model&#x27;;
 
 import { EditionSvgOverlayTkk } from &#x27;@awg-views/edition-view/models/edition-svg-overlay.model&#x27;;
-import { EditionSvgSheet } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
+import { EditionSvgSheetSelection } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
 
 import { EditionSheetViewerNavComponent } from &#x27;./nav/edition-sheet-viewer-nav.component&#x27;;
 import { EditionSheetViewerSvgComponent } from &#x27;./svg/edition-sheet-viewer-svg.component&#x27;;
@@ -527,9 +527,9 @@ export class EditionSheetViewerComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheet&gt;();
+    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheetSelection&gt;();
 
     /**
      * Readonly output signal: browseSheetRequest.

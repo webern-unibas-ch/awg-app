@@ -306,7 +306,7 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:53</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -340,15 +340,15 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSvgSheet(sheetIds: <a href="../interfaces/SheetClickEvent.html" target="_self">SheetClickEvent</a>)</code>
+<code>selectSvgSheet(sheetTarget: <a href="../interfaces/EditionNavigationSheetTarget.html" target="_self">EditionNavigationSheetTarget</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -356,7 +356,7 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: selectSvgSheet.</p>
-<p>It delegates the navigation for the given complex and SVG sheet IDs
+<p>It delegates the navigation to the given sheet navigation target
 directly to the <a href="../injectables/EditionNavigationService.html">EditionNavigationService</a>.</p>
 </div>
 
@@ -374,9 +374,9 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>sheetIds</td>
+                                                <td>sheetTarget</td>
                                             <td>
-                                                            <code><a href="../interfaces/SheetClickEvent.html" target="_self" >SheetClickEvent</a></code>
+                                                            <code><a href="../interfaces/EditionNavigationSheetTarget.html" target="_self" >EditionNavigationSheetTarget</a></code>
                                             </td>
 
                                             <td>
@@ -385,7 +385,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
 
                                             <td>
-                                                    <p>The given sheet ids as SheetClickEvent.</p>
+                                                    <p>The given sheet navigation target.</p>
 
                                             </td>
                                         </tr>
@@ -436,7 +436,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:45</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -476,7 +476,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/textcritics-list/textcritics-list.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -504,10 +504,11 @@ import { NgbAccordionModule } from &#x27;@ng-bootstrap/ng-bootstrap/accordion&#x
 import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
 import { EDITION_UTILS } from &#x27;@awg-shared/utils/edition-utils&#x27;;
 
+import { EditionNavigationSheetTarget } from &#x27;@awg-views/edition-view/models/edition-navigation.model&#x27;;
 import { TextcriticsList } from &#x27;@awg-views/edition-view/models/textcritics.model&#x27;;
-import { EditionNavigationService, SheetClickEvent } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
+import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
 
-import { EditionDisclaimerWorkeditionsComponent } from &#x27;@awg-app/views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component&#x27;;
+import { EditionDisclaimerWorkeditionsComponent } from &#x27;@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component&#x27;;
 import { EditionTkaEvaluationsComponent } from &#x27;../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component&#x27;;
 import { EditionTkaLabelComponent } from &#x27;../../edition-tka/edition-tka-label/edition-tka-label.component&#x27;;
 import { EditionTkaTableComponent } from &#x27;../../edition-tka/edition-tka-table/edition-tka-table.component&#x27;;
@@ -559,17 +560,17 @@ export class TextcriticsListComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }
 </code></pre>

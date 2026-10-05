@@ -301,7 +301,7 @@ of the critical report of the edition view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:44</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -335,15 +335,15 @@ of the critical report of the edition view of the app.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSvgSheet(sheetIds: <a href="../interfaces/SheetClickEvent.html" target="_self">SheetClickEvent</a>)</code>
+<code>selectSvgSheet(sheetTarget: <a href="../interfaces/EditionNavigationSheetTarget.html" target="_self">EditionNavigationSheetTarget</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -351,7 +351,7 @@ of the critical report of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: selectSvgSheet.</p>
-<p>It delegates the navigation for the given complex and SVG sheet IDs
+<p>It delegates the navigation to the given sheet navigation target
 directly to the <a href="../injectables/EditionNavigationService.html">EditionNavigationService</a>.</p>
 </div>
 
@@ -369,9 +369,9 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>sheetIds</td>
+                                                <td>sheetTarget</td>
                                             <td>
-                                                            <code><a href="../interfaces/SheetClickEvent.html" target="_self" >SheetClickEvent</a></code>
+                                                            <code><a href="../interfaces/EditionNavigationSheetTarget.html" target="_self" >EditionNavigationSheetTarget</a></code>
                                             </td>
 
                                             <td>
@@ -380,7 +380,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
 
                                             <td>
-                                                    <p>The given sheet ids as SheetClickEvent.</p>
+                                                    <p>The given sheet navigation target.</p>
 
                                             </td>
                                         </tr>
@@ -431,7 +431,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -470,7 +470,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-desc/source-desc-contents/grid/source-desc-content-grid.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -495,8 +495,9 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
 import { ConditionalLinkComponent } from &#x27;@awg-shared/conditional-link/conditional-link.component&#x27;;
 
+import { EditionNavigationSheetTarget } from &#x27;@awg-views/edition-view/models/edition-navigation.model&#x27;;
 import { SourceDescContent } from &#x27;@awg-views/edition-view/models/source-desc.model&#x27;;
-import { EditionNavigationService, SheetClickEvent } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
+import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
 
 import { SourceDescContentFolioComponent } from &#x27;../folio/source-desc-content-folio.component&#x27;;
 import { SourceDescContentSystemComponent } from &#x27;../system/source-desc-content-system.component&#x27;;
@@ -544,17 +545,17 @@ export class SourceDescContentGridComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It delegates the navigation for the given complex and SVG sheet IDs
+     * It delegates the navigation to the given sheet navigation target
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as SheetClickEvent.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
      * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: SheetClickEvent): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this._navigationService.navigateToSvgSheet(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }
 </code></pre>

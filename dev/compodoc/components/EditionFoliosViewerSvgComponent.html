@@ -297,7 +297,7 @@ and renders that folio with its content segments.</p>
                                 <a href="#folio" >folio</a>
                             </li>
                             <li>
-                                <a href="#selectedSheetId" >selectedSheetId</a>
+                                <a href="#selectedSvgSheet" >selectedSvgSheet</a>
                             </li>
                         </ul>
                     </td>
@@ -321,7 +321,7 @@ and renders that folio with its content segments.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:116</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:112</a></div>
                             </td>
                         </tr>
 
@@ -376,13 +376,13 @@ and it marks the content segment of the selected svg sheet as active.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="selectedSheetId"></a>
-                        <b>selectedSheetId</b>
+                        <a name="selectedSvgSheet"></a>
+                        <b>selectedSvgSheet</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetId.html" target="_self" >EditionSvgSheetId</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetSelection.html" target="_self" >EditionSvgSheetSelection | undefined</a></code>
 
                     </td>
                 </tr>
@@ -398,8 +398,8 @@ and it marks the content segment of the selected svg sheet as active.</p>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly input signal: selectedSheetId.</p>
-<p>It holds the id and the (optional) partial of the selected svg sheet.</p>
+                        <div class="io-description"><p>Readonly input signal: selectedSvgSheet.</p>
+<p>It holds the selected svg sheet (id, full id and selected content).</p>
 </div>
                     </td>
                 </tr>
@@ -436,8 +436,8 @@ and it marks the content segment of the selected svg sheet as active.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="173"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:173</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:169</a></div>
                         </td>
                     </tr>
 
@@ -529,8 +529,8 @@ and marks the content segment of the selected svg sheet as active.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="148"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:148</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:144</a></div>
                         </td>
                     </tr>
 
@@ -781,7 +781,7 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:114</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-folios-panel/viewer/svg/edition-folios-viewer-svg.component.ts:110</a></div>
                         </td>
                     </tr>
 
@@ -854,11 +854,7 @@ selecting any other content segment opens its text modal.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; {
-        const { id, partial } &#x3D; this.selectedSheetId();
-
-        return &#x60;${id ?? &#x27;&#x27;}${partial ?? &#x27;&#x27;}&#x60;;
-    })</code>
+                        <i>Default value : </i><code>computed&lt;string&gt;(() &#x3D;&gt; this.selectedSvgSheet()?.fullId ?? &#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
@@ -870,8 +866,8 @@ selecting any other content segment opens its text modal.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Readonly computed signal: selectedSegmentId.</p>
-<p>It holds the content segment id of the selected svg sheet
-(sheet id including the partial, if any).</p>
+<p>It holds the content segment id of the selected svg sheet,
+i.e. its full id (incl. partial).</p>
 </div>
                 </td>
             </tr>
@@ -941,7 +937,7 @@ import { ClickDirective } from &#x27;@awg-shared/click/click.directive&#x27;;
 import { ModalService } from &#x27;@awg-shared/modal/modal.service&#x27;;
 
 import { D3Selection } from &#x27;@awg-views/edition-view/models/d3-selection.model&#x27;;
-import { EditionSvgSheetId } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
+import { EditionSvgSheetSelection } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
 import { FolioSvgData } from &#x27;@awg-views/edition-view/models/folio-svg-data.model&#x27;;
 import { Folio } from &#x27;@awg-views/edition-view/models/folio.model&#x27;;
 import { EditionFolioDrawingService } from &#x27;@awg-views/edition-view/services/edition-folio-drawing.service&#x27;;
@@ -999,11 +995,11 @@ export class EditionFoliosViewerSvgComponent {
     readonly folio &#x3D; input.required&lt;Folio&gt;();
 
     /**
-     * Readonly input signal: selectedSheetId.
+     * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSheetId &#x3D; input.required&lt;EditionSvgSheetId&gt;();
+    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheetSelection | undefined&gt;();
 
     /**
      * Readonly view child signal: svgRootGroup.
@@ -1022,14 +1018,10 @@ export class EditionFoliosViewerSvgComponent {
     /**
      * Readonly computed signal: selectedSegmentId.
      *
-     * It holds the content segment id of the selected svg sheet
-     * (sheet id including the partial, if any).
+     * It holds the content segment id of the selected svg sheet,
+     * i.e. its full id (incl. partial).
      */
-    readonly selectedSegmentId &#x3D; computed&lt;string&gt;(() &#x3D;&gt; {
-        const { id, partial } &#x3D; this.selectedSheetId();
-
-        return &#x60;${id ?? &#x27;&#x27;}${partial ?? &#x27;&#x27;}&#x60;;
-    });
+    readonly selectedSegmentId &#x3D; computed&lt;string&gt;(() &#x3D;&gt; this.selectedSvgSheet()?.fullId ?? &#x27;&#x27;);
 
     /**
      * Private readonly computed signal: _svgRootGroupSelection.
@@ -1079,7 +1071,7 @@ export class EditionFoliosViewerSvgComponent {
         event.preventDefault();
 
         if (contentSegment.selectable) {
-            this._navigationService.navigateToSvgSheet(contentSegment.sheetIds);
+            this._navigationService.navigateToSvgSheet(contentSegment.sheetTarget);
         } else {
             this._modalService.openTextModal(contentSegment.linkTo);
         }

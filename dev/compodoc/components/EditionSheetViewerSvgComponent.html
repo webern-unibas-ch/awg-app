@@ -404,7 +404,7 @@ and it updates the tkk overlays according to their state.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                        <i>Type : </i>        <code><a href="../interfaces/EditionSvgSheetSelection.html" target="_self" >EditionSvgSheetSelection</a></code>
 
                     </td>
                 </tr>
@@ -421,7 +421,7 @@ and it updates the tkk overlays according to their state.</p>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly input signal: selectedSvgSheet.</p>
-<p>It holds the selected svg sheet.</p>
+<p>It holds the selected svg sheet (id, full id and selected content).</p>
 </div>
                     </td>
                 </tr>
@@ -650,7 +650,7 @@ and resets the overlay state and the supplied classes.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_queueRendering(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>)</code>
+                    <code>_queueRendering(sheet: <a href="../interfaces/EditionSvgSheetSelection.html" target="_self">EditionSvgSheetSelection</a>)</code>
                 </td>
             </tr>
 
@@ -686,7 +686,7 @@ The rendering is skipped if the sheet is no longer selected by then.</p>
                                         <tr>
                                                 <td>sheet</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                                            <code><a href="../interfaces/EditionSvgSheetSelection.html" target="_self" >EditionSvgSheetSelection</a></code>
                                             </td>
 
                                             <td>
@@ -695,7 +695,7 @@ The rendering is skipped if the sheet is no longer selected by then.</p>
 
 
                                             <td>
-                                                    <p>The given svg sheet.</p>
+                                                    <p>The given selected svg sheet.</p>
 
                                             </td>
                                         </tr>
@@ -730,7 +730,7 @@ The rendering is skipped if the sheet is no longer selected by then.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_renderSheet(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>)</code>
+                    <code>_renderSheet(sheet: <a href="../interfaces/EditionSvgSheetSelection.html" target="_self">EditionSvgSheetSelection</a>)</code>
                 </td>
             </tr>
 
@@ -765,7 +765,7 @@ The rendering is skipped if the sheet is no longer selected by then.</p>
                                         <tr>
                                                 <td>sheet</td>
                                             <td>
-                                                            <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                                            <code><a href="../interfaces/EditionSvgSheetSelection.html" target="_self" >EditionSvgSheetSelection</a></code>
                                             </td>
 
                                             <td>
@@ -774,7 +774,7 @@ The rendering is skipped if the sheet is no longer selected by then.</p>
 
 
                                             <td>
-                                                    <p>The given svg sheet.</p>
+                                                    <p>The given selected svg sheet.</p>
 
                                             </td>
                                         </tr>
@@ -1584,7 +1584,7 @@ import {
     EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
 } from &#x27;@awg-views/edition-view/models/edition-svg-overlay.model&#x27;;
-import { EditionSvgSheet } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
+import { EditionSvgSheetSelection } from &#x27;@awg-views/edition-view/models/edition-svg-sheets.model&#x27;;
 import { EditionSvgDrawingService } from &#x27;@awg-views/edition-view/services/edition-svg-drawing.service&#x27;;
 import { EditionSvgOverlayService } from &#x27;@awg-views/edition-view/services/edition-svg-overlay.service&#x27;;
 
@@ -1623,9 +1623,9 @@ export class EditionSheetViewerSvgComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheet&gt;();
+    readonly selectedSvgSheet &#x3D; input.required&lt;EditionSvgSheetSelection&gt;();
 
     /**
      * Readonly input signal: zoomConfig.
@@ -1829,10 +1829,10 @@ export class EditionSheetViewerSvgComponent {
      * It queues the rendering of a given svg sheet after the previous rendering.
      * The rendering is skipped if the sheet is no longer selected by then.
      *
-     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @param {EditionSvgSheetSelection} sheet The given selected svg sheet.
      * @returns {void} Queues the rendering.
      */
-    private _queueRendering(sheet: EditionSvgSheet): void {
+    private _queueRendering(sheet: EditionSvgSheetSelection): void {
         this._renderQueue &#x3D; this._renderQueue
             .then(() &#x3D;&gt; (sheet &#x3D;&#x3D;&#x3D; this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
             .catch(error &#x3D;&gt; console.error(&#x27;[EditionSheetViewerSvg] Failed to render svg sheet&#x27;, error));
@@ -1843,13 +1843,13 @@ export class EditionSheetViewerSvgComponent {
      *
      * It renders a given svg sheet with its overlays and supplied classes, and resets the zoom.
      *
-     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @param {EditionSvgSheetSelection} sheet The given selected svg sheet.
      * @returns {Promise&lt;void&gt;} Renders the svg sheet.
      */
-    private async _renderSheet(sheet: EditionSvgSheet): Promise&lt;void&gt; {
+    private async _renderSheet(sheet: EditionSvgSheetSelection): Promise&lt;void&gt; {
         this._clearSheet();
 
-        const svgFilePath &#x3D; sheet.content?.[0]?.svg;
+        const svgFilePath &#x3D; sheet.content.svg;
         if (!svgFilePath) {
             return;
         }

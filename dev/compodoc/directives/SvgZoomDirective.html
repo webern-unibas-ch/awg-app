@@ -650,7 +650,7 @@ and sets the rounded zoom factor.</p>
 import * as D3_SELECTION from &#x27;d3-selection&#x27;;
 import * as D3_ZOOM from &#x27;d3-zoom&#x27;;
 
-import { roundToStepPrecision } from &#x27;@awg-shared/utils/number-utils&#x27;;
+import { NUMBER_UTILS } from &#x27;@awg-shared/utils/number-utils&#x27;;
 
 import { ZoomConfig } from &#x27;./zoom.model&#x27;;
 
@@ -722,7 +722,7 @@ export class SvgZoomDirective {
         // Apply scale changes from outside (e.g., a slider); values set by d3 itself are already in sync
         effect(() &#x3D;&gt; {
             const scale &#x3D; this.zoomValue();
-            const currentScale &#x3D; roundToStepPrecision(
+            const currentScale &#x3D; NUMBER_UTILS.roundToStepPrecision(
                 D3_ZOOM.zoomTransform(this._svg.node() as SVGSVGElement).k,
                 this.zoomConfig().stepSize
             );
@@ -755,7 +755,7 @@ export class SvgZoomDirective {
      */
     private _onZoom(transform: D3_ZOOM.ZoomTransform): void {
         D3_SELECTION.select(this.zoomTarget()).attr(&#x27;transform&#x27;, transform.toString());
-        this.zoomValue.set(roundToStepPrecision(transform.k, this.zoomConfig().stepSize));
+        this.zoomValue.set(NUMBER_UTILS.roundToStepPrecision(transform.k, this.zoomConfig().stepSize));
     }
 }
 </code></pre>

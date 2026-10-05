@@ -410,8 +410,7 @@ for the calculation of a folio.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { SheetClickEvent } from &#x27;../services/edition-navigation.service&#x27;;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionNavigationSheetTarget } from &#x27;./edition-navigation.model&#x27;;
 import { ViewBox } from &#x27;./view-box.model&#x27;;
 
 /**
@@ -570,9 +569,9 @@ export interface FolioSvgSystems {
  */
 export interface FolioSvgContentSegment {
     /**
-     * The ids (complex id and sheet id incl. partial) of the svg sheet of the content segment.
+     * The navigation target (complex id and sheet id incl. partial) of the svg sheet of the content segment.
      */
-    readonly sheetIds: SheetClickEvent;
+    readonly sheetTarget: EditionNavigationSheetTarget;
 
     /**
      * The key of the text that is shown in a modal

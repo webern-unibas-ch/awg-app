@@ -309,7 +309,7 @@ of the edition view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:49</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:47</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -345,15 +345,15 @@ of the edition view of the app.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_navigateToReportFragment(reportIds: <a href="../interfaces/FragmentClickEvent.html" target="_self">FragmentClickEvent</a>)</code>
+                    <code>_navigateToReportFragment(reportTarget: <a href="../interfaces/EditionNavigationFragmentTarget.html" target="_self">EditionNavigationFragmentTarget</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -379,9 +379,9 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>reportIds</td>
+                                                <td>reportTarget</td>
                                             <td>
-                                                            <code><a href="../interfaces/FragmentClickEvent.html" target="_self" >FragmentClickEvent</a></code>
+                                                            <code><a href="../interfaces/EditionNavigationFragmentTarget.html" target="_self" >EditionNavigationFragmentTarget</a></code>
                                             </td>
 
                                             <td>
@@ -390,7 +390,7 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
 
                                             <td>
-                                                    <p>The given report ids as FragmentClickEvent.</p>
+                                                    <p>The given report fragment navigation target.</p>
 
                                             </td>
                                         </tr>
@@ -431,8 +431,8 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="96"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:96</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -507,8 +507,8 @@ directly to the <a href="../injectables/EditionNavigationService.html">EditionNa
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -596,7 +596,7 @@ on a source click event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -636,7 +636,7 @@ on a source click event.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/source-list/source-list.component.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -661,12 +661,10 @@ on a source click event.</p>
 import { CompileHtmlDirective } from &#x27;@awg-shared/compile-html/compile-html.directive&#x27;;
 import { ModalService } from &#x27;@awg-shared/modal/modal.service&#x27;;
 
+import { EditionNavigationFragmentTarget } from &#x27;@awg-views/edition-view/models/edition-navigation.model&#x27;;
 import { SourceList } from &#x27;@awg-views/edition-view/models/source-list.model&#x27;;
 import { Source } from &#x27;@awg-views/edition-view/models/source.model&#x27;;
-import {
-    EditionNavigationService,
-    FragmentClickEvent,
-} from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
+import { EditionNavigationService } from &#x27;@awg-views/edition-view/services/edition-navigation.service&#x27;;
 
 import { SourceSiglumComponent } from &#x27;../source-siglum/source-siglum.component&#x27;;
 
@@ -733,14 +731,14 @@ export class SourceListComponent {
      * It delegates the navigation for the given complex and report fragment IDs
      * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} reportIds The given report ids as FragmentClickEvent.
+     * @param {EditionNavigationFragmentTarget} reportTarget The given report fragment navigation target.
      * @returns {void} Navigates to the selected report fragment.
      */
-    private _navigateToReportFragment(reportIds: FragmentClickEvent): void {
-        if (!reportIds.fragmentId) {
+    private _navigateToReportFragment(reportTarget: EditionNavigationFragmentTarget): void {
+        if (!reportTarget.fragmentId) {
             return;
         }
-        this._navigationService.navigateToReportFragment(reportIds);
+        this._navigationService.navigateToReportFragment(reportTarget);
     }
 
     /**
