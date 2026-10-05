@@ -47,7 +47,7 @@ export class EditionFoliosViewerComponent {
     /**
      * Readonly input signal: selectedSheetId.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
     readonly selectedSheetId = input.required<EditionSvgSheetId>();
 

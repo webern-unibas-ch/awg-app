@@ -59,7 +59,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
         // Test data
         const folio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
         expectedFolios = [folio, { ...structuredClone(folio), folioId: '2' }];
-        expectedSheetId = { id: mockEditionData.mockSvgSheet_Sk1.id, partial: undefined };
+        expectedSheetId = { id: mockEditionData.mockSvgSheet_Sk1.id, fullId: mockEditionData.mockSvgSheet_Sk1.id };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionFoliosViewerComponent);

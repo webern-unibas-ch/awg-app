@@ -74,7 +74,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
         expectedSheetId = {
             id: mockEditionData.mockSvgSheet_Sk1.id,
-            partial: mockEditionData.mockSvgSheet_Sk1.content[0].partial,
+            fullId: mockEditionData.mockSvgSheet_Sk1.id,
         };
         expectedFragment = `source_${expectedConvolute.convoluteId}`;
 

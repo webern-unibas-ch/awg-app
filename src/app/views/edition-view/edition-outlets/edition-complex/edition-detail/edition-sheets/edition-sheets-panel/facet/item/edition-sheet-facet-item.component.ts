@@ -6,6 +6,7 @@ import type { Options } from '@popperjs/core';
 import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
 
+import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
 import { EditionSheetFacetPartialLink } from '../edition-sheet-facet.model';
 
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
@@ -35,7 +36,7 @@ export class EditionSheetFacetItemComponent {
     /**
      * Readonly input signal: selectedSheetId.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
     readonly selectedSheetId = input.required<EditionSvgSheetId>();
 
@@ -81,16 +82,16 @@ export class EditionSheetFacetItemComponent {
             return [];
         }
 
-        const isActive = this.isActive();
-        const selectedPartial = this.selectedSheetId().partial;
+        const selectedFullId = this.selectedSheetId().fullId;
 
         return svgSheet.content.map((content, index) => {
             const indexLabel = `${index + 1}/${svgSheet.content.length}`;
+            const sheetId = EDITION_SHEETS_UTILS.toFullSheetId(svgSheet.id, content.partial);
 
             return {
-                sheetIds: { complexId: '', sheetId: svgSheet.id + (content.partial ?? '') },
+                sheetIds: { complexId: '', sheetId },
                 positionLabel: content.partial ? `${content.partial} · ${indexLabel}` : indexLabel,
-                isActive: isActive && (!content.partial || !selectedPartial || content.partial === selectedPartial),
+                isActive: sheetId === selectedFullId,
             };
         });
     });

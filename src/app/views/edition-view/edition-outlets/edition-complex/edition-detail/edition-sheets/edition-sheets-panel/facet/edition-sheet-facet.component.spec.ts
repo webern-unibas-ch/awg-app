@@ -56,7 +56,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
-        expectedSheetId = { id: expectedSvgSheet.id, partial: expectedSvgSheet.content[0].partial };
+        expectedSheetId = { id: expectedSvgSheet.id, fullId: expectedSvgSheet.id };
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],

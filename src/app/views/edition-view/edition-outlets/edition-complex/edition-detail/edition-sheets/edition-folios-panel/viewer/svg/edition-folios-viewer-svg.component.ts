@@ -76,7 +76,7 @@ export class EditionFoliosViewerSvgComponent {
     /**
      * Readonly input signal: selectedSheetId.
      *
-     * It holds the id and the (optional) partial of the selected svg sheet.
+     * It holds the id and the full id (incl. partial) of the selected svg sheet.
      */
     readonly selectedSheetId = input.required<EditionSvgSheetId>();
 
@@ -97,14 +97,10 @@ export class EditionFoliosViewerSvgComponent {
     /**
      * Readonly computed signal: selectedSegmentId.
      *
-     * It holds the content segment id of the selected svg sheet
-     * (sheet id including the partial, if any).
+     * It holds the content segment id of the selected svg sheet,
+     * i.e. its full id (incl. partial).
      */
-    readonly selectedSegmentId = computed<string>(() => {
-        const { id, partial } = this.selectedSheetId();
-
-        return `${id ?? ''}${partial ?? ''}`;
-    });
+    readonly selectedSegmentId = computed<string>(() => this.selectedSheetId().fullId ?? '');
 
     /**
      * Private readonly computed signal: _svgRootGroupSelection.

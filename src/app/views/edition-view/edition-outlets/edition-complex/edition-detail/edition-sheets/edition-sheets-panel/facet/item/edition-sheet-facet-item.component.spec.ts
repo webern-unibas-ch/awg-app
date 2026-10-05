@@ -67,10 +67,16 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
 
-        expectedSheetId = { id: expectedSvgSheet.id, partial: undefined };
-        expectedNextSheetId = { id: mockEditionData.mockSvgSheet_Sk4.id, partial: undefined };
-        expectedSheetIdWithPartialA = { id: expectedSvgSheetWithPartials.id, partial: 'a' };
-        expectedOtherSheetIdWithPartialB = { id: mockEditionData.mockSvgSheet_Sk3b.id, partial: 'b' };
+        expectedSheetId = { id: expectedSvgSheet.id, fullId: expectedSvgSheet.id };
+        expectedNextSheetId = { id: mockEditionData.mockSvgSheet_Sk4.id, fullId: mockEditionData.mockSvgSheet_Sk4.id };
+        expectedSheetIdWithPartialA = {
+            id: expectedSvgSheetWithPartials.id,
+            fullId: `${expectedSvgSheetWithPartials.id}a`,
+        };
+        expectedOtherSheetIdWithPartialB = {
+            id: mockEditionData.mockSvgSheet_Sk3b.id,
+            fullId: `${mockEditionData.mockSvgSheet_Sk3b.id}b`,
+        };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetFacetItemComponent);
@@ -157,7 +163,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `isActive` when no svg sheet is selected', async () => {
-                fixture.componentRef.setInput('selectedSheetId', { id: undefined, partial: undefined });
+                fixture.componentRef.setInput('selectedSheetId', { id: undefined, fullId: undefined });
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.isActive(), false);
@@ -286,16 +292,17 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
                 );
             });
 
-            it('... should have recomputed signal `partialLinks` with all links active if the svg sheet is selected without partial', async () => {
+            it('... should have recomputed signal `partialLinks` with only the link of the selected partial active', async () => {
                 fixture.componentRef.setInput('selectedSheetId', {
                     id: expectedSvgSheetWithPartials.id,
-                    partial: undefined,
+                    fullId: `${expectedSvgSheetWithPartials.id}b`,
                 });
                 await detectChangesOnPush(fixture);
 
+                expectToBe(component.isActive(), true);
                 expectToEqual(
                     component.partialLinks().map(link => link.isActive),
-                    [true, true]
+                    [false, true]
                 );
             });
 

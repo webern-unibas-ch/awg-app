@@ -71,9 +71,9 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         expectedEditionTypeKey = 'sketchEditions';
         expectedFacetGroupLabel = EDITION_TYPE_LABEL_MAP[expectedEditionTypeKey];
         expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets['sketchEditions']);
-        expectedSheetId = { id: expectedSvgSheets[0].id, partial: undefined };
-        expectedNextSheetIdInGroup = { id: expectedSvgSheets[3].id, partial: undefined };
-        expectedSheetIdOutsideGroup = { id: 'not-in-group', partial: undefined };
+        expectedSheetId = { id: expectedSvgSheets[0].id, fullId: expectedSvgSheets[0].id };
+        expectedNextSheetIdInGroup = { id: expectedSvgSheets[3].id, fullId: expectedSvgSheets[3].id };
+        expectedSheetIdOutsideGroup = { id: 'not-in-group', fullId: 'not-in-group' };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetFacetGroupComponent);

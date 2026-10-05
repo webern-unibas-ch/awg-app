@@ -120,7 +120,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedSheetId = { id: expectedSvgSheet.id, partial: expectedSvgSheet.content[0].partial };
+        expectedSheetId = { id: expectedSvgSheet.id, fullId: expectedSvgSheet.id };
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],

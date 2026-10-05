@@ -97,8 +97,8 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
         // Test data
         expectedFolio = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0].folios[0]);
-        expectedSheetId = { id: 'M212_Sk1', partial: undefined };
-        expectedSheetIdWithPartial = { id: 'M212_Sk', partial: '3' };
+        expectedSheetId = { id: 'M212_Sk1', fullId: 'M212_Sk1' };
+        expectedSheetIdWithPartial = { id: 'M212_Sk', fullId: 'M212_Sk3' };
 
         const expectedFolioSettings: FolioSettings = {
             factor: 1.5,
@@ -177,19 +177,19 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             expectToEqual(component.folioSvgData().viewBox, expectedViewBox);
         });
 
-        it('... should have computed signal `selectedSegmentId` to hold the id of the selected svg sheet', () => {
+        it('... should have computed signal `selectedSegmentId` to hold the full id of the selected svg sheet', () => {
             expectToBe(component.selectedSegmentId(), 'M212_Sk1');
         });
 
-        it('... should have computed signal `selectedSegmentId` to hold the id including the partial of the selected svg sheet', async () => {
+        it('... should have computed signal `selectedSegmentId` to hold the full id (incl. partial) of the selected svg sheet', async () => {
             fixture.componentRef.setInput('selectedSheetId', expectedSheetIdWithPartial);
             await detectChangesOnPush(fixture);
 
             expectToBe(component.selectedSegmentId(), 'M212_Sk3');
         });
 
-        it('... should have computed signal `selectedSegmentId` to hold an empty string for a sheet id without id and partial', async () => {
-            fixture.componentRef.setInput('selectedSheetId', { id: undefined, partial: undefined });
+        it('... should have computed signal `selectedSegmentId` to hold an empty string for a sheet id without full id', async () => {
+            fixture.componentRef.setInput('selectedSheetId', { id: undefined, fullId: undefined });
             await detectChangesOnPush(fixture);
 
             expectToBe(component.selectedSegmentId(), '');
@@ -253,7 +253,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
             });
 
             it('... should not mark any content segment as active if the selected svg sheet is not on the folio', async () => {
-                fixture.componentRef.setInput('selectedSheetId', { id: 'M212_Sk4', partial: undefined });
+                fixture.componentRef.setInput('selectedSheetId', { id: 'M212_Sk4', fullId: 'M212_Sk4' });
                 await detectChangesOnPush(fixture);
 
                 expectToEqual(getActiveSegmentIds(), []);
