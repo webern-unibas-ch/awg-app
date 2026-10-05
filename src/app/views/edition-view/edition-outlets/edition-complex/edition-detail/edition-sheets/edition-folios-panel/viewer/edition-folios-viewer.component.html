@@ -1,13 +1,11 @@
 <!-- Edition Folios Viewer -->
 @let folioList = folios();
-@if (folioList.length > 0) {
-    @let colSize = 12 / folioList.length;
-
+@if (folioList.length) {
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
             @for (folio of folioList; track folio.folioId) {
                 <awg-edition-folios-viewer-svg
-                    class="col-sm-6 col-lg-{{ colSize }} svgCol"
+                    class="col-sm-6 col-lg-{{ colSize() }} svgCol"
                     [folio]="folio"
                     [selectedSheetId]="selectedSheetId()" />
             }

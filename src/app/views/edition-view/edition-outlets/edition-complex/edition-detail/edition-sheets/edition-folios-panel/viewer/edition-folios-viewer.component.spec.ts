@@ -92,7 +92,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simluate the parent setting the input properties
+            // Simulate the parent setting the input properties
             fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
@@ -121,6 +121,37 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
             expectToEqual(component.folios(), []);
         });
+
+        it('... should have computed signal `colSize` to hold the column span for the folios in one row', () => {
+            // 2 folios
+            expectToBe(component.colSize(), 6);
+        });
+
+        it.each([
+            [1, 12],
+            [3, 4],
+            [4, 3],
+            [5, 2],
+            [6, 2],
+            [7, 3],
+            [8, 3],
+            [10, 3],
+            [13, 3],
+        ])(
+            '... should have computed signal `colSize` to hold a valid column span for %i folios (%i)',
+            async (numberOfFolios, expectedColSize) => {
+                fixture.componentRef.setInput('selectedConvolute', {
+                    ...expectedConvolute,
+                    folios: Array.from({ length: numberOfFolios }, (_, index) => ({
+                        ...expectedConvolute.folios[0],
+                        folioId: `${index + 1}`,
+                    })),
+                });
+                await detectChangesOnPush(fixture);
+
+                expectToBe(component.colSize(), expectedColSize);
+            }
+        );
 
         it('... should have computed signal `selectedSheetId` to hold the id of the selected svg sheet', () => {
             expectToEqual(component.selectedSheetId(), {
@@ -170,6 +201,21 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expectToContain(getFolioSvgDes(1)[0].nativeElement.classList, 'col-lg-12');
+            });
+
+            it('... should use a valid bootstrap grid class (rows of 4) for 8 folios', async () => {
+                fixture.componentRef.setInput('selectedConvolute', {
+                    ...expectedConvolute,
+                    folios: Array.from({ length: 8 }, (_, index) => ({
+                        ...expectedConvolute.folios[0],
+                        folioId: `${index + 1}`,
+                    })),
+                });
+                await detectChangesOnPush(fixture);
+
+                getFolioSvgDes(8).forEach(folioSvgDe => {
+                    expectToContain(folioSvgDe.nativeElement.classList, 'col-lg-3');
+                });
             });
 
             it('... should pass down `folio` and `selectedSheetId` to each EditionFoliosViewerSvgComponent', () => {
