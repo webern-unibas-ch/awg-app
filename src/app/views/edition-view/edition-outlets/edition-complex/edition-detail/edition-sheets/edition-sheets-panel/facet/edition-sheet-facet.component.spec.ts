@@ -13,7 +13,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetId,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetComponent } from './edition-sheet-facet.component';
@@ -31,6 +35,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSheetId: EditionSvgSheetId;
 
     let isMinimizedChangeSpy: Mock<(value: boolean) => void>;
 
@@ -51,6 +56,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
         expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk4);
         expectedSvgSheetWithPartials = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSheetId = { id: expectedSvgSheet.id, partial: expectedSvgSheet.content[0].partial };
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -84,13 +90,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expect(() => component.svgSheetsData()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
-            expectToBe(isSignal(component.selectedSvgSheet), true);
-
-            expect(() => component.selectedSvgSheet()).toThrow();
-        });
-
-        it('... should throw when accessing computed signal `selectedSheetId` due to missing input', () => {
+        it('... should throw due to missing required input signal `selectedSheetId`', () => {
             expectToBe(isSignal(component.selectedSheetId), true);
 
             expect(() => component.selectedSheetId()).toThrow();
@@ -118,7 +118,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -128,29 +128,8 @@ describe('EditionSheetFacetComponent (DONE)', () => {
             expectToEqual(component.svgSheetsData(), expectedSvgSheetsData);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
-        });
-
-        it('... should have computed signal `selectedSheetId` to hold the expected sheet id', () => {
-            expectToEqual(component.selectedSheetId(), {
-                id: expectedSvgSheet.id,
-                partial: expectedSvgSheet.content[0].partial,
-            });
-        });
-
-        it('... should have recomputed signal `selectedSheetId` when a svg sheet with partial is selected', async () => {
-            fixture.componentRef.setInput('selectedSvgSheet', mockEditionData.mockSvgSheet_Sk2a);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.selectedSheetId(), { id: mockEditionData.mockSvgSheet_Sk2a.id, partial: 'a' });
-        });
-
-        it('... should have recomputed signal `selectedSheetId` to hold undefined id if no svg sheet is selected', async () => {
-            fixture.componentRef.setInput('selectedSvgSheet', undefined);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.selectedSheetId(), { id: undefined, partial: undefined });
+        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetId(), expectedSheetId);
         });
 
         describe('VIEW', () => {
@@ -212,7 +191,7 @@ describe('EditionSheetFacetComponent (DONE)', () => {
 
                 it('... should pass down `selectedSheetId` to each EditionSheetFacetGroupComponent', () => {
                     getFacetGroupCmps().forEach(cmp => {
-                        expectToEqual(cmp.selectedSheetId(), component.selectedSheetId());
+                        expectToEqual(cmp.selectedSheetId(), expectedSheetId);
                     });
                 });
             });

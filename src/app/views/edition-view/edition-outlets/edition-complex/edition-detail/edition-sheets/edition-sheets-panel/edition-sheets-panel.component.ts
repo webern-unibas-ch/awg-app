@@ -6,7 +6,11 @@ import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetId,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
@@ -54,6 +58,13 @@ export class EditionSheetsPanelComponent {
      * It holds the selected svg sheet.
      */
     readonly selectedSvgSheet = input.required<EditionSvgSheet | undefined>();
+
+    /**
+     * Readonly input signal: selectedSheetId.
+     *
+     * It holds the id and the (optional) partial of the selected svg sheet.
+     */
+    readonly selectedSheetId = input.required<EditionSvgSheetId>();
 
     /**
      * Readonly input signal: displayedTextcritics.

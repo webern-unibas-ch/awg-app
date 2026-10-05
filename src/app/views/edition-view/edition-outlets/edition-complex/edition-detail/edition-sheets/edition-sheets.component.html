@@ -12,6 +12,7 @@
                     [(isSheetFacetMinimized)]="isSheetFacetMinimized"
                     [svgSheetsData]="view.data.svgSheetsData"
                     [selectedSvgSheet]="selectedSvgSheet()"
+                    [selectedSheetId]="selectedSheetId()"
                     [displayedTextcritics]="displayedTextcritics()"
                     (browseSheetRequest)="onBrowseSvgSheet($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
@@ -19,9 +20,7 @@
 
                 <!-- folios panel -->
                 @if (selectedConvolute(); as convolute) {
-                    @if (selectedSvgSheet(); as svgSheet) {
-                        <awg-edition-folios-panel [selectedConvolute]="convolute" [selectedSvgSheet]="svgSheet" />
-                    }
+                    <awg-edition-folios-panel [selectedConvolute]="convolute" [selectedSheetId]="selectedSheetId()" />
                 }
             </div>
         }

@@ -7,7 +7,11 @@ import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twel
 import { UTILS } from '@awg-shared/utils/object-utils';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetId,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
@@ -108,6 +112,19 @@ export class EditionSheetsComponent {
      * It holds the selected tkk overlays of the selected SVG sheet.
      */
     readonly selectedTkkOverlays = signal<EditionSvgOverlayTkk[]>([]);
+
+    /**
+     * Readonly computed signal: selectedSheetId.
+     *
+     * It holds the id and the (optional) partial of the selected svg sheet.
+     * The content of a selected svg sheet with partials is reduced
+     * to the selected partial by the EditionSheetsService.
+     */
+    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
+        const selectedSvgSheet = this.selectedSvgSheet();
+
+        return { id: selectedSvgSheet?.id, partial: selectedSvgSheet?.content?.[0]?.partial };
+    });
 
     /**
      * Readonly computed signal: selectedConvolute.

@@ -27,7 +27,11 @@ import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetId,
+    EditionSvgSheetsList,
+} from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
@@ -54,6 +58,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
     let expectedSvgSheetsData: EditionSvgSheetsList;
     let expectedSvgSheet: EditionSvgSheet;
+    let expectedSheetId: EditionSvgSheetId;
     let expectedDisplayedTextcritics: Textcritics;
 
     beforeAll(() => {
@@ -115,6 +120,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSheetId = { id: expectedSvgSheet.id, partial: expectedSvgSheet.content[0].partial };
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -151,6 +157,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             ['model', 'isSheetFacetMinimized'],
             ['input', 'svgSheetsData'],
             ['input', 'selectedSvgSheet'],
+            ['input', 'selectedSheetId'],
             ['input', 'displayedTextcritics'],
         ] as const)('... should throw due to missing required %s signal `%s`', (_kind, key) => {
             expectToBe(isSignal(component[key]), true);
@@ -176,6 +183,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
             fixture.componentRef.setInput('displayedTextcritics', expectedDisplayedTextcritics);
 
             // Trigger initial data binding
@@ -194,6 +202,10 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
         it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        });
+
+        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetId(), expectedSheetId);
         });
 
         it('... should have input signal `displayedTextcritics` to hold the provided textcritics', () => {
@@ -333,12 +345,12 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(facetContainerDes[0], EditionSheetFacetComponent, 1, 1);
                     });
 
-                    it('... should pass down `svgSheetsData`, `selectedSvgSheet` and `isMinimized` to EditionSheetFacetComponent', () => {
+                    it('... should pass down `svgSheetsData`, `selectedSheetId` and `isMinimized` to EditionSheetFacetComponent', () => {
                         const facetDes = getAndExpectDebugElementByDirective(compDe, EditionSheetFacetComponent, 1, 1);
                         const facetCmp = facetDes[0].injector.get(EditionSheetFacetComponent);
 
                         expectToEqual(facetCmp.svgSheetsData(), expectedSvgSheetsData);
-                        expectToEqual(facetCmp.selectedSvgSheet(), expectedSvgSheet);
+                        expectToEqual(facetCmp.selectedSheetId(), expectedSheetId);
                         expectToBe(facetCmp.isMinimized(), false);
                     });
 

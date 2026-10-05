@@ -19,7 +19,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { ModalService } from '@awg-shared/modal/modal.service';
 
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -37,7 +37,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedConvolute: FolioConvolute;
-    let expectedSvgSheet: EditionSvgSheet;
+    let expectedSheetId: EditionSvgSheetId;
     let expectedFragment: string;
 
     const getItemDe = (): DebugElement =>
@@ -72,7 +72,10 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
         // Test data
         expectedConvolute = structuredClone(mockEditionData.mockFolioConvoluteData.convolutes[0]);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSheetId = {
+            id: mockEditionData.mockSvgSheet_Sk1.id,
+            partial: mockEditionData.mockSvgSheet_Sk1.content[0].partial,
+        };
         expectedFragment = `source_${expectedConvolute.convoluteId}`;
 
         // Create component fixture
@@ -96,10 +99,10 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expect(() => component.selectedConvolute()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
-            expectToBe(isSignal(component.selectedSvgSheet), true);
+        it('... should throw due to missing required input signal `selectedSheetId`', () => {
+            expectToBe(isSignal(component.selectedSheetId), true);
 
-            expect(() => component.selectedSvgSheet()).toThrow();
+            expect(() => component.selectedSheetId()).toThrow();
         });
 
         it('... should throw when accessing computed signal `reportFragment` due to missing input', () => {
@@ -112,12 +115,6 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expectToBe(isSignal(component.folios), true);
 
             expect(() => component.folios()).toThrow();
-        });
-
-        it('... should throw when accessing computed signal `selectedSheetId` due to missing input', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
-
-            expect(() => component.selectedSheetId()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -145,7 +142,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
         beforeEach(async () => {
             // Simulate the parent setting the input properties
             fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
+            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
 
             // Trigger initial data binding
             await detectChangesOnPush(fixture);
@@ -155,8 +152,8 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
             expectToEqual(component.selectedConvolute(), expectedConvolute);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet', () => {
-            expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
+        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
+            expectToEqual(component.selectedSheetId(), expectedSheetId);
         });
 
         it('... should have computed signal `folios` to hold the folios of the selected convolute', () => {
@@ -175,21 +172,6 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
         it('... should have computed signal `reportFragment` to hold the source fragment of the selected convolute', () => {
             expectToBe(component.reportFragment(), expectedFragment);
-        });
-
-        it('... should have computed signal `selectedSheetId` to hold the id of the selected svg sheet', () => {
-            expectToEqual(component.selectedSheetId(), {
-                id: expectedSvgSheet.id,
-                partial: expectedSvgSheet.content[0].partial,
-            });
-        });
-
-        it('... should have recomputed signal `selectedSheetId` to hold the id and the partial of the selected svg sheet', async () => {
-            const expectedSvgSheetWithPartial = structuredClone(mockEditionData.mockSvgSheet_Sk2a);
-            fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheetWithPartial);
-            await detectChangesOnPush(fixture);
-
-            expectToEqual(component.selectedSheetId(), { id: expectedSvgSheetWithPartial.id, partial: 'a' });
         });
 
         describe('VIEW', () => {
@@ -233,7 +215,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
                     const viewerCmp = viewerDes[0].injector.get(EditionFoliosViewerComponent);
 
                     expectToEqual(viewerCmp.folios(), expectedConvolute.folios);
-                    expectToEqual(viewerCmp.selectedSheetId(), component.selectedSheetId());
+                    expectToEqual(viewerCmp.selectedSheetId(), expectedSheetId);
                 });
             });
 

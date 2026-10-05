@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Folio, FolioConvolute } from '@awg-views/edition-view/models/folio.model';
 
 import { EditionFoliosLegendComponent } from './legend/edition-folios-legend.component';
@@ -33,11 +33,11 @@ export class EditionFoliosPanelComponent {
     readonly selectedConvolute = input.required<FolioConvolute>();
 
     /**
-     * Readonly input signal: selectedSvgSheet.
+     * Readonly input signal: selectedSheetId.
      *
-     * It holds the selected svg sheet.
+     * It holds the id and the (optional) partial of the selected svg sheet.
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
+    readonly selectedSheetId = input.required<EditionSvgSheetId>();
 
     /**
      * Readonly computed signal: folios.
@@ -53,15 +53,4 @@ export class EditionFoliosPanelComponent {
      * of the selected convolute in the critical report.
      */
     readonly reportFragment = computed<string>(() => `source_${this.selectedConvolute().convoluteId}`);
-
-    /**
-     * Readonly computed signal: selectedSheetId.
-     *
-     * It holds the id and the (optional) partial of the selected svg sheet.
-     */
-    readonly selectedSheetId = computed<EditionSvgSheetId>(() => {
-        const selectedSvgSheet = this.selectedSvgSheet();
-
-        return { id: selectedSvgSheet.id, partial: selectedSvgSheet.content?.[0]?.partial };
-    });
 }
