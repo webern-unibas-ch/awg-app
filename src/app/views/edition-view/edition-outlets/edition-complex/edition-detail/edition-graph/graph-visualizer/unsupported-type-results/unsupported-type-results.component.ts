@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { UpperCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 /**
  * The UnsupportedTypeResults component.
@@ -11,34 +14,21 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './unsupported-type-results.component.html',
     styleUrls: ['./unsupported-type-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [NgbAccordionModule, UpperCasePipe],
 })
 export class UnsupportedTypeResultsComponent {
     /**
-     * Input variable: queryType.
+     * Readonly input signal: queryType.
      *
-     * It keeps the type of the query.
+     * It holds the type of the query.
      */
-    @Input()
-    queryType = '';
+    readonly queryType = input<string>('');
 
     /**
-     * Input variable: isFullscreen.
+     * Readonly input signal: isFullscreen.
      *
-     * It keeps a boolean flag if fullscreenMode is set.
+     * It holds a boolean flag if fullscreenMode is set.
+     * If true, the accordion item is disabled.
      */
-    @Input()
-    isFullscreen = false;
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
-    }
+    readonly isFullscreen = input<boolean>(false);
 }

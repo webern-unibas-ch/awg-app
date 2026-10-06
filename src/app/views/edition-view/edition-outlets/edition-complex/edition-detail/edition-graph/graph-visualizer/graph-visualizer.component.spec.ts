@@ -23,6 +23,7 @@ import { D3SimulationNode, D3SimulationNodeType, QueryResult, QuerySelectResult,
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
+import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 
 // Mock components
 @Component({
@@ -106,18 +107,6 @@ class TriplesEditorStubComponent {
     updateTriplesRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({
-    selector: 'awg-unsupported-type-results',
-    template: '',
-    standalone: false,
-})
-class UnsupportedTypeResultsStubComponent {
-    @Input()
-    queryType = '';
-    @Input()
-    isFullscreen = false;
-}
-
 describe('GraphVisualizerComponent (DONE)', () => {
     let component: GraphVisualizerComponent;
     let fixture: ComponentFixture<GraphVisualizerComponent>;
@@ -169,10 +158,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 SelectResultsStubComponent,
                 ToastStubComponent,
                 TriplesEditorStubComponent,
-                UnsupportedTypeResultsStubComponent,
             ],
+            imports: [UnsupportedTypeResultsComponent],
             providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
-        }).compileComponents();
+        })
+            .overrideComponent(UnsupportedTypeResultsComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -413,13 +404,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', async () => {
+                it('... should contain one UnsupportedTypeResultsComponent (hollow) in third sub div (queryType === other)', async () => {
                     component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsComponent, 1, 1);
                 });
             });
 
@@ -476,13 +467,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', async () => {
+                it('... should contain one UnsupportedTypeResultsComponent (hollow) in second sub div (queryType === other)', async () => {
                     component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsComponent, 1, 1);
                 });
             });
 
@@ -666,7 +657,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('UnsupportedTypeResultsComponent', () => {
+            describe('UnsupportedTypeResultsComponent (hollow)', () => {
                 beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'other' as any;
@@ -676,46 +667,40 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should have `queryType` passed down from main component', () => {
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsStubComponent,
+                        UnsupportedTypeResultsComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
+                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
 
-                    expectToBe(resultsCmp.queryType, 'other');
+                    expectToBe(resultsCmp.queryType(), 'other');
                 });
 
-                it('... should pass down empty string to UnsupportedTypeResultsComponent if queryType is missing', async () => {
+                it('... should pass down empty string to UnsupportedTypeResultsComponent (hollow) if queryType is missing', async () => {
                     component.query.queryType = null;
                     await detectChangesOnPush(fixture);
 
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsStubComponent,
+                        UnsupportedTypeResultsComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
+                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
 
-                    expectToBe(resultsCmp.queryType, '');
+                    expectToBe(resultsCmp.queryType(), '');
                 });
 
                 it('... should have `isFullscreen` passed down from main component', () => {
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsStubComponent,
+                        UnsupportedTypeResultsComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
+                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
 
-                    expectToBe(resultsCmp.isFullscreen, false);
+                    expectToBe(resultsCmp.isFullscreen(), false);
                 });
             });
         });

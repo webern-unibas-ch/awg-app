@@ -1,21 +1,15 @@
-import { DebugElement, NgModule, inject } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
-
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import {
-    expectSpyCall,
-    expectToBe,
-    expectToContain,
-    expectToNotContain,
-    getAndExpectDebugElementByCss,
-} from '@testing/expect-helper';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
 describe('UnsupportedTypeResultsComponent (DONE)', () => {
@@ -26,41 +20,24 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     let expectedQueryType: string;
     let expectedIsFullscreen: boolean;
 
-    let isAccordionItemDisabledSpy: Spy;
-
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule],
-            declarations: [UnsupportedTypeResultsComponent],
+            imports: [NgbAccordionModule, UnsupportedTypeResultsComponent],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedQueryType = 'ask';
         expectedIsFullscreen = false;
 
-        // Spies
-        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
-    });
-
-    afterEach(() => {
-        vi.clearAllMocks();
+        // Create component fixture
+        fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     it('... should create', () => {
@@ -68,12 +45,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `queryType` input', () => {
-            expectToBe(component.queryType, '');
+        it('... should have input signal `queryType` to hold an empty string initially', () => {
+            expectToBe(isSignal(component.queryType), true);
+            expectToBe(component.queryType(), '');
         });
 
-        it('... should have default `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, false);
+        it('... should have input signal `isFullscreen` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreen), true);
+            expectToBe(component.isFullscreen(), false);
         });
 
         describe('VIEW', () => {
@@ -98,19 +77,15 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            component.queryType = expectedQueryType;
-            component.isFullscreen = expectedIsFullscreen;
+            fixture.componentRef.setInput('queryType', expectedQueryType);
+            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `queryType` input', () => {
-            expectToBe(component.queryType, expectedQueryType);
-        });
-
-        it('... should have `isFullScreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have input signal `queryType` to hold the provided query type', () => {
+            expectToBe(component.queryType(), expectedQueryType);
         });
 
         describe('VIEW', () => {
@@ -263,14 +238,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // DESCRIBE
                     let newQueryType = 'describe';
-                    component.queryType = newQueryType;
+                    fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
-                    component.queryType = newQueryType;
+                    fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
@@ -280,7 +255,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
                     // Set fullscreen flag to true
-                    component.isFullscreen = true;
+                    fixture.componentRef.setInput('isFullscreen', true);
                     await detectChangesOnPush(fixture);
                 });
 
@@ -421,38 +396,18 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     // DESCRIBE
                     let newQueryType = 'describe';
-                    component.queryType = newQueryType;
+                    fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                     // COUNT
                     newQueryType = 'count';
-                    component.queryType = newQueryType;
+                    fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
                 });
-            });
-        });
-
-        describe('#isAccordionItemDisabled()', () => {
-            it('... should have a method `isAccordionItemDisabled`', () => {
-                expect(component.isAccordionItemDisabled).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemDisabledSpy, 2);
-            });
-
-            it('... should return false if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemDisabled(), false);
-            });
-
-            it('... should return true if isFullscreen is true', () => {
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemDisabled(), true);
             });
         });
     });

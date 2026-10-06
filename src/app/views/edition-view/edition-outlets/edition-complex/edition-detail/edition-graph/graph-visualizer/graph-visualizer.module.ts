@@ -11,7 +11,7 @@ import { SparqlEditorComponent } from './sparql-editor';
 import { SparqlNoResultsComponent } from './sparql-no-results';
 import { SparqlTableComponent } from './sparql-table';
 import { TriplesEditorComponent } from './triples-editor';
-import { UnsupportedTypeResultsComponent } from './unsupported-type-results';
+import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 
 import { GraphVisualizerService } from './services';
 
@@ -24,7 +24,7 @@ import { PrefixPipe } from './prefix-pipe';
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, SparqlNoResultsComponent, SliderZoomComponent],
+    imports: [SharedModule, SliderZoomComponent, SparqlNoResultsComponent, UnsupportedTypeResultsComponent],
     declarations: [
         ConstructResultsComponent,
         ForceGraphComponent,
@@ -34,7 +34,6 @@ import { PrefixPipe } from './prefix-pipe';
         SparqlEditorComponent,
         SparqlTableComponent,
         TriplesEditorComponent,
-        UnsupportedTypeResultsComponent,
     ],
     exports: [GraphVisualizerComponent],
     providers: [GraphVisualizerService, PrefixPipe],
