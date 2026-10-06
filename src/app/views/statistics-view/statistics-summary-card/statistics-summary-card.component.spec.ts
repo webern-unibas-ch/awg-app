@@ -165,7 +165,7 @@ describe('StatisticsCardComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('title', expectedTitle);
             fixture.componentRef.setInput('value', expectedValue);
             fixture.componentRef.setInput('icon', expectedIcon);

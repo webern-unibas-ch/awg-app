@@ -49,7 +49,9 @@ describe('EditionOutlineComponent (DONE)', () => {
                     },
                 },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSeriesCardComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -134,7 +136,7 @@ describe('EditionOutlineComponent (DONE)', () => {
                 getGridColDes(expectedOutline.length);
             });
 
-            it('... should contain an EditionSeriesCardComponent in each div.col', () => {
+            it('... should contain an EditionSeriesCardComponent (hollow) in each div.col', () => {
                 const colDes = getGridColDes(expectedOutline.length);
 
                 colDes.forEach(colDe => {
@@ -142,7 +144,7 @@ describe('EditionOutlineComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down the correct series to each EditionSeriesCardComponent', () => {
+            it('... should pass down the correct series to each EditionSeriesCardComponent (hollow)', () => {
                 const colDes = getGridColDes(expectedOutline.length);
 
                 colDes.forEach((colDe, index) => {

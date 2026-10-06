@@ -99,7 +99,7 @@ describe('StatisticsBreakdownBadgeComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('breakdown', expectedBreakdown);
             fixture.componentRef.setInput('containerClasses', expectedContainerClasses);
             fixture.componentRef.setInput('showEmptyBadges', expectedShowEmptyBadges);

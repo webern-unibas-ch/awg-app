@@ -46,7 +46,11 @@ describe('SourceDescContentsComponent', () => {
                 SourceDescContentItemComponent,
             ],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonExpandAllComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescContentGridComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescContentItemComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -102,13 +106,13 @@ describe('SourceDescContentsComponent', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain one ButtonExpandAllComponent in the label paragraph', () => {
+            it('... should contain one ButtonExpandAllComponent (hollow) in the label paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-contents-label', 1, 1);
 
                 getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
             });
 
-            it('... should contain no contents details or SourceDescContentGridComponent (yet)', () => {
+            it('... should contain no contents details or SourceDescContentGridComponent (hollow) (yet)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-desc-contents', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'details.awg-source-desc-contents-details', 0, 0);
@@ -119,7 +123,7 @@ describe('SourceDescContentsComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('contents', expectedContents);
 
             // Trigger initial data binding
@@ -135,7 +139,7 @@ describe('SourceDescContentsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct isOpen state to the ButtonExpandAllComponent', () => {
+            it('... should pass down the correct isOpen state to the ButtonExpandAllComponent (hollow)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-contents-label', 1, 1);
                 const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
@@ -143,7 +147,7 @@ describe('SourceDescContentsComponent', () => {
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllContentDetails);
             });
 
-            it('... should update `contentsState` when the ButtonExpandAllComponent model changes', async () => {
+            it('... should update `contentsState` when the ButtonExpandAllComponent (hollow) model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
@@ -231,7 +235,7 @@ describe('SourceDescContentsComponent', () => {
                         });
                     });
 
-                    it('... should open or close all details via the ButtonExpandAllComponent', async () => {
+                    it('... should open or close all details via the ButtonExpandAllComponent (hollow)', async () => {
                         // Close all details
                         getButtonCmp().isOpen.set(false);
                         await detectChangesOnPush(fixture);
@@ -293,7 +297,7 @@ describe('SourceDescContentsComponent', () => {
                     });
                 });
 
-                it('... should contain one SourceDescContentItemComponent in each summary', () => {
+                it('... should contain one SourceDescContentItemComponent (hollow) in each summary', () => {
                     const summaryDes = getAndExpectDebugElementByCss(
                         compDe,
                         'details.awg-source-desc-content-details > summary.awg-source-desc-content-item-summary',
@@ -306,7 +310,7 @@ describe('SourceDescContentsComponent', () => {
                     });
                 });
 
-                it('... should pass down the content to each SourceDescContentItemComponent', () => {
+                it('... should pass down the content to each SourceDescContentItemComponent (hollow)', () => {
                     const itemDes = getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescContentItemComponent,
@@ -333,7 +337,7 @@ describe('SourceDescContentsComponent', () => {
                     expectedContentsWithFoliosLength = expectedContentsWithFolios.length;
                 });
 
-                it('... should render no SourceDescContentGridComponent if `folios` is not provided', async () => {
+                it('... should render no SourceDescContentGridComponent (hollow) if `folios` is not provided', async () => {
                     const contentsWithoutFolios = expectedContents.map(content => {
                         const contentWithoutFolios = { ...content };
                         delete contentWithoutFolios.folios;
@@ -346,7 +350,7 @@ describe('SourceDescContentsComponent', () => {
                     getAndExpectDebugElementByDirective(compDe, SourceDescContentGridComponent, 0, 0);
                 });
 
-                it('... should contain as many SourceDescContentGridComponents in description-contents div as given content items with folios', () => {
+                it('... should contain as many SourceDescContentGridComponents (hollow) in description-contents div as given content items with folios', () => {
                     getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescContentGridComponent,
@@ -355,7 +359,7 @@ describe('SourceDescContentsComponent', () => {
                     );
                 });
 
-                it('... should pass the content with folios to SourceDescContentGridComponent', () => {
+                it('... should pass the content with folios to SourceDescContentGridComponent (hollow)', () => {
                     const gridDes = getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescContentGridComponent,

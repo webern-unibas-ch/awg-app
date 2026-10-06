@@ -195,7 +195,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('seriesBreakdownData', expectedSeriesBreakdownData);
 
             // Trigger initial data binding

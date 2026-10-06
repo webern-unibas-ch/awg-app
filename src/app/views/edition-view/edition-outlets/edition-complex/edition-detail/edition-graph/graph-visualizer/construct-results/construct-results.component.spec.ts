@@ -145,7 +145,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             component.queryResult$ = expectedQueryResult$;
             component.defaultForceGraphHeight = expectedHeight;
             component.isFullscreen = expectedIsFullscreen;

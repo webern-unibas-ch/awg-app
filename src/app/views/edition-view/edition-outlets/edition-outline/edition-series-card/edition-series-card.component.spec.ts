@@ -28,7 +28,9 @@ describe('EditionSeriesCardComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionSeriesCardComponent, ButtonMoreComponent, RouterLink],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -61,7 +63,7 @@ describe('EditionSeriesCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('displayedSeries', structuredClone(expectedSeries));
 
             // Trigger initial data binding
@@ -160,11 +162,11 @@ describe('EditionSeriesCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should have a ButtonMoreComponent in div.card-footer', () => {
+            it('... should have a ButtonMoreComponent (hollow) in div.card-footer', () => {
                 getAndExpectDebugElementByDirective(getCardFooterDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent (hollow)', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getCardFooterDes()[0],
                     ButtonMoreComponent,

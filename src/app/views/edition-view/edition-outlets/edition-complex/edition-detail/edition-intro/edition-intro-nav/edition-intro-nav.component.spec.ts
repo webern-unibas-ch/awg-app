@@ -36,7 +36,9 @@ describe('EditionIntroNavComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionIntroNavComponent, LanguageSwitcherComponent],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(LanguageSwitcherComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -84,7 +86,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-nav', 0, 0);
             });
 
-            it('... should contain no LanguageSwitcherComponent', () => {
+            it('... should contain no LanguageSwitcherComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 0, 0);
             });
         });
@@ -92,7 +94,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('introBlockContent', expectedIntroBlockContent);
             fixture.componentRef.setInput('notesLabel', expectedNotesLabel);
             fixture.componentRef.setInput('selectedLanguage', expectedSelectedLanguage);
@@ -139,18 +141,18 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 getUlDes();
             });
 
-            it('... should contain one LanguageSwitcherComponent in ul.nav', () => {
+            it('... should contain one LanguageSwitcherComponent (hollow) in ul.nav', () => {
                 getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
             });
 
-            it('... should pass down `selectedLanguage` to LanguageSwitcherComponent', () => {
+            it('... should pass down `selectedLanguage` to LanguageSwitcherComponent (hollow)', () => {
                 const switcherDes = getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
                 const switcherCmp = switcherDes[0].injector.get(LanguageSwitcherComponent) as LanguageSwitcherComponent;
 
                 expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
             });
 
-            it('... should update `selectedLanguage` when LanguageSwitcherComponent emits a change', () => {
+            it('... should update `selectedLanguage` when LanguageSwitcherComponent (hollow) emits a change', () => {
                 const switcherDes = getAndExpectDebugElementByDirective(getUlDes()[0], LanguageSwitcherComponent, 1, 1);
 
                 expectToBe(component.selectedLanguage(), LanguageId.DE);
@@ -162,7 +164,7 @@ describe('EditionIntroNavComponent (DONE)', () => {
                 expectToBe(component.selectedLanguage(), LanguageId.EN);
             });
 
-            it('... should contain a horizontal line below LanguageSwitcherComponent in ul.nav', () => {
+            it('... should contain a horizontal line below LanguageSwitcherComponent (hollow) in ul.nav', () => {
                 getAndExpectDebugElementByCss(getUlDes()[0], 'hr.mt-0', 1, 1);
             });
 

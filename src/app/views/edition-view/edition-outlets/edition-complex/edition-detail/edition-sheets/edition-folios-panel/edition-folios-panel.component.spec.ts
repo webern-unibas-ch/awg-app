@@ -127,7 +127,7 @@ describe('EditionFoliosPanelComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('selectedConvolute', expectedConvolute);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 

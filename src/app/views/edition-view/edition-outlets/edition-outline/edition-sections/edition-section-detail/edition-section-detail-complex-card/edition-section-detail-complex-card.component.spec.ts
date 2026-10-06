@@ -37,7 +37,9 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionSectionDetailComplexCardComponent, ButtonMoreComponent, DatePipe, RouterLink],
             providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -71,7 +73,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('displayedComplexes', expectedComplexes);
 
             // Trigger initial data binding
@@ -293,14 +295,14 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should have a ButtonMoreComponent in text-end paragraph for each complex', () => {
+            it('... should have a ButtonMoreComponent (hollow) in text-end paragraph for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach(pDe => {
                     getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
                 });
             });
 
-            it('... should pass down the correct targetRoute to ButtonMoreComponent for each complex', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent (hollow) for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);
@@ -310,7 +312,7 @@ describe('EditionSectionDetailComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down the correct disabled state to ButtonMoreComponent for each complex', () => {
+            it('... should pass down the correct disabled state to ButtonMoreComponent (hollow) for each complex', () => {
                 const pDes = getCardFooterParagraphDes();
                 pDes.forEach((pDe, index) => {
                     const buttonMoreDes = getAndExpectDebugElementByDirective(pDe, ButtonMoreComponent, 1, 1);

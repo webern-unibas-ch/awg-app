@@ -142,3 +142,5 @@ await TestBed.configureTestingModule({
 - **No grandchildren are rendered**, so no extra services, D3 or SVG mocks are needed; only the direct injections of the hollow children have to be provided.
 - **Wording:** mark them as `(hollow)` instead of `(stubbed)` in test descriptions, e.g. `'... should contain one EditionSheetsPanelComponent (hollow)'`.
 - The hollow children's own coverage does not count in this spec; it comes from their own specs.
+- **Content projection:** children that project content of the component under test (e.g. `ConditionalLinkComponent`, `FormSwitchComponent`) are hollowed with `template: '<ng-content />'`. Assert the projected content on the child's host element and interactions via its API (`childCmp.clicked.emit()`, `childCmp.isClickable()`), not via its internal DOM.
+- **Exception:** children with required view queries that need heavy dependencies (e.g. `EditionSheetViewerSvgComponent` with `viewChild.required(SvgZoomDirective)`) stay real; mock their direct injections and comment why.

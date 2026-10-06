@@ -44,7 +44,13 @@ describe('EditionSectionDetailOverviewComponent', () => {
                 EditionSectionDetailPlaceholderComponent,
             ],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSectionDetailComplexCardComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSectionDetailCoverComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSectionDetailDisclaimerComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSectionDetailIntroCardComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSectionDetailPlaceholderComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -122,7 +128,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-section-detail-preamble', 1, 1);
                 });
 
-                it('... should contain one EditionSectionDetailIntroCardComponent', () => {
+                it('... should contain one EditionSectionDetailIntroCardComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-section-detail-preamble',
@@ -132,7 +138,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionSectionDetailIntroCardComponent, 1, 1);
                 });
 
-                it('... should pass down selectedSection to EditionSectionDetailIntroCardComponent', () => {
+                it('... should pass down selectedSection to EditionSectionDetailIntroCardComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-section-detail-preamble',
@@ -152,7 +158,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     expectToEqual(introCardCmp.selectedSection(), expectedSection);
                 });
 
-                it('... should contain one EditionSectionDetailCoverComponent', () => {
+                it('... should contain one EditionSectionDetailCoverComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-section-detail-preamble',
@@ -162,7 +168,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                     getAndExpectDebugElementByDirective(divDes[0], EditionSectionDetailCoverComponent, 1, 1);
                 });
 
-                it('... should pass down selectedSection to EditionSectionDetailCoverComponent', () => {
+                it('... should pass down selectedSection to EditionSectionDetailCoverComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-section-detail-preamble',
@@ -303,7 +309,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         expectToBe(hEl.textContent, expectedHeaderText);
                     });
 
-                    it('... should contain one EditionSectionDetailComplexCardComponent', () => {
+                    it('... should contain one EditionSectionDetailComplexCardComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-opus',
@@ -314,7 +320,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByDirective(divDes[0], EditionSectionDetailComplexCardComponent, 1, 1);
                     });
 
-                    it('... should pass down opus complexes to EditionSectionDetailComplexCardComponent', () => {
+                    it('... should pass down opus complexes to EditionSectionDetailComplexCardComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-opus',
@@ -378,7 +384,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         expectToBe(hEl.textContent, expectedHeaderText);
                     });
 
-                    it('... should contain one EditionSectionDetailComplexCardComponent', () => {
+                    it('... should contain one EditionSectionDetailComplexCardComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-mnr',
@@ -389,7 +395,7 @@ describe('EditionSectionDetailOverviewComponent', () => {
                         getAndExpectDebugElementByDirective(divDes[0], EditionSectionDetailComplexCardComponent, 1, 1);
                     });
 
-                    it('... should pass down mnr complexes to EditionSectionDetailComplexCardComponent', () => {
+                    it('... should pass down mnr complexes to EditionSectionDetailComplexCardComponent (hollow)', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-section-detail-mnr',

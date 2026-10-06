@@ -57,7 +57,9 @@ describe('SourceListComponent (DONE)', () => {
                 { provide: ModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceSiglumComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -104,7 +106,7 @@ describe('SourceListComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('sourceListData', structuredClone(expectedSourceListData));
 
             // Trigger initial data binding
@@ -195,7 +197,7 @@ describe('SourceListComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should contain one SourceSiglumComponent per source', () => {
+                    it('... should contain one SourceSiglumComponent (hollow) per source', () => {
                         const expectedSourcesLength = expectedSourceListData.sources.length;
 
                         getAndExpectDebugElementByDirective(
@@ -206,7 +208,7 @@ describe('SourceListComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should pass down the correct values to SourceSiglumComponent', () => {
+                    it('... should pass down the correct values to SourceSiglumComponent (hollow)', () => {
                         const sourceSiglumDes = getAndExpectDebugElementByDirective(
                             compDe,
                             SourceSiglumComponent,
@@ -379,7 +381,7 @@ describe('SourceListComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should contain one SourceSiglumComponent per text source', () => {
+                    it('... should contain one SourceSiglumComponent (hollow) per text source', () => {
                         const textSources = expectedSourceListData.textSources ?? [];
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
@@ -391,7 +393,7 @@ describe('SourceListComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should pass down the correct values to SourceSiglumComponent', () => {
+                    it('... should pass down the correct values to SourceSiglumComponent (hollow)', () => {
                         const textSources = expectedSourceListData.textSources ?? [];
                         const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
                         const sourceSiglumDes = getAndExpectDebugElementByDirective(
@@ -502,7 +504,7 @@ describe('SourceListComponent (DONE)', () => {
                 expect(component.onSourceClick).toBeDefined();
             });
 
-            it('... should trigger from `clicked` output from each SourceSiglumComponent', () => {
+            it('... should trigger when each SourceSiglumComponent (hollow) is clicked', () => {
                 const expectedSourcesLength = expectedSourceListData.sources.length;
                 const sourceSiglumDes = getAndExpectDebugElementByDirective(
                     compDe,

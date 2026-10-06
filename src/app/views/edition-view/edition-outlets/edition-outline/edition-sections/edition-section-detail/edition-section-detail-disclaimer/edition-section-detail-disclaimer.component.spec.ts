@@ -19,7 +19,9 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionSectionDetailDisclaimerComponent, AlertInfoComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertInfoComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -38,11 +40,11 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
-            it('... should contain one AlertInfoComponent (stubbed)', () => {
+            it('... should contain one AlertInfoComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
             });
 
-            it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
+            it('... should throw when accessing AlertInfoComponent (hollow) inputs (`infoMessage`) due to missing initial data binding', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent) as AlertInfoComponent;
 
@@ -58,7 +60,7 @@ describe('EditionSectionDetailDisclaimerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct values to AlertInfoComponent (`infoMessage`)', () => {
+            it('... should pass down the correct values to AlertInfoComponent (hollow) (`infoMessage`)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent) as AlertInfoComponent;
 

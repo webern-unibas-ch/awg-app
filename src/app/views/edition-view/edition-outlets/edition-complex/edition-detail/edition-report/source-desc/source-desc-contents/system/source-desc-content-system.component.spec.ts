@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -34,7 +33,9 @@ describe('SourceDescContentSystemComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [AbbrDirective, CompileHtmlDirective, ConditionalLinkComponent, SourceDescContentSystemComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -105,7 +106,7 @@ describe('SourceDescContentSystemComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('contentSystem', expectedContentSystem);
             fixture.componentRef.setInput('isLastItem', expectedIsLastItem);
 
@@ -345,12 +346,12 @@ describe('SourceDescContentSystemComponent', () => {
                 expectToBe(containerEl.textContent.trim().endsWith('.'), true);
             });
 
-            describe('... ConditionalLinkComponent', () => {
-                it('... should contain two ConditionalLinkComponents (measure and row)', () => {
+            describe('... ConditionalLinkComponent (hollow)', () => {
+                it('... should contain two ConditionalLinkComponents (hollow) (measure and row)', () => {
                     getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 2, 2);
                 });
 
-                it('... should pass down isClickable = true if linkTo is given', () => {
+                it('... should pass down `isClickable` = true to ConditionalLinkComponents (hollow) if linkTo is given', () => {
                     const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 2, 2);
 
                     linkDes.forEach(linkDe => {
@@ -359,7 +360,7 @@ describe('SourceDescContentSystemComponent', () => {
                     });
                 });
 
-                it('... should pass down isClickable = false if linkTo is not given', async () => {
+                it('... should pass down `isClickable` = false to ConditionalLinkComponents (hollow) if linkTo is not given', async () => {
                     fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, linkTo: undefined });
                     await detectChangesOnPush(fixture);
 
@@ -371,35 +372,27 @@ describe('SourceDescContentSystemComponent', () => {
                     });
                 });
 
-                it('... should emit `clicked` when the measure link is clicked', async () => {
+                it('... should emit `clicked` when the ConditionalLinkComponent (hollow) of the measure is clicked', () => {
                     const measureDes = getAndExpectDebugElementByCss(
                         compDe,
                         'span.awg-source-desc-content-grid-measure',
                         1,
                         1
                     );
-                    const anchorDes = getAndExpectDebugElementByCss(measureDes[0], 'a', 1, 1);
+                    const linkDes = getAndExpectDebugElementByDirective(measureDes[0], ConditionalLinkComponent, 1, 1);
 
-                    await clickAndAwaitChanges(anchorDes[0], fixture);
+                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
 
                     expectSpyCall(clickedEmitSpy, 1);
                 });
 
-                it('... should emit `clicked` when the row link is clicked', async () => {
+                it('... should emit `clicked` when the ConditionalLinkComponent (hollow) of the row is clicked', () => {
                     const rowDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-grid-row', 1, 1);
-                    const anchorDes = getAndExpectDebugElementByCss(rowDes[0], 'a', 1, 1);
+                    const linkDes = getAndExpectDebugElementByDirective(rowDes[0], ConditionalLinkComponent, 1, 1);
 
-                    await clickAndAwaitChanges(anchorDes[0], fixture);
+                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
 
                     expectSpyCall(clickedEmitSpy, 1);
-                });
-
-                it('... should not render links (and not emit) if linkTo is not given', async () => {
-                    fixture.componentRef.setInput('contentSystem', { ...expectedContentSystem, linkTo: undefined });
-                    await detectChangesOnPush(fixture);
-
-                    getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
-                    expectSpyCall(clickedEmitSpy, 0);
                 });
             });
         });

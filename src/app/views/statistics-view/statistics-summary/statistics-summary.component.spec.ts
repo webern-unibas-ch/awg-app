@@ -97,7 +97,7 @@ describe('StatisticsSummaryComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signal
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('summaryData', expectedSummaryData);
 
             // Trigger initial data binding

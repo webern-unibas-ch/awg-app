@@ -53,7 +53,11 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     useValue: { rowtablesViewData: mockViewDataSignal.asReadonly() },
                 },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -78,11 +82,11 @@ describe('EditionRowTablesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no AlertErrorComponent', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
             });
 
@@ -164,14 +168,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain rowtables view or spinner, but one AlertErrorComponent', () => {
+                it('... should not contain rowtables view or spinner, but one AlertErrorComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
-                it('... should pass down error object to AlertErrorComponent', () => {
+                it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
@@ -189,14 +193,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain rowtables view or alert, but one TwelveToneSpinnerComponent', () => {
+                it('... should not contain rowtables view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-rowtables-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
-                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
                         TwelveToneSpinnerComponent
@@ -274,7 +278,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain one ButtonMoreComponent in each div.card-footer', () => {
+                it('... should contain one ButtonMoreComponent (hollow) in each div.card-footer', () => {
                     const cardFooterDes = getCardFooterDes();
 
                     cardFooterDes.forEach(cardFooterDe => {
@@ -282,7 +286,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     });
                 });
 
-                it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
+                it('... should pass down the correct targetRoute to ButtonMoreComponent (hollow)', () => {
                     const cardFooterDes = getCardFooterDes();
 
                     cardFooterDes.forEach((cardFooterDe, index) => {
@@ -301,7 +305,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     });
                 });
 
-                it('... should pass down the correct queryParams to ButtonMoreComponent', () => {
+                it('... should pass down the correct queryParams to ButtonMoreComponent (hollow)', () => {
                     const cardFooterDes = getCardFooterDes();
 
                     cardFooterDes.forEach((cardFooterDe, index) => {
@@ -320,7 +324,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     });
                 });
 
-                it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
+                it('... should pass down the correct disabled state to ButtonMoreComponent (hollow)', () => {
                     const cardFooterDes = getCardFooterDes();
 
                     cardFooterDes.forEach((cardFooterDe, index) => {

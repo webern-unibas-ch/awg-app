@@ -1,7 +1,7 @@
 import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -16,7 +16,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { SourceDesc } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
@@ -32,7 +31,6 @@ describe('SourceDescItemComponent', () => {
     let compDe: DebugElement;
 
     let mockDocument: Document;
-    let mockNavigationService: Partial<EditionNavigationService>;
 
     let expectedSourceDescWithoutPhysDesc: SourceDesc;
     let expectedSourceDescWithAllEntries: SourceDesc;
@@ -59,14 +57,13 @@ describe('SourceDescItemComponent', () => {
     /**
      * Helper: expectSiglumParagraph.
      *
-     * It expects the given paragraph to be bold, to contain one SourceSiglumComponent
-     * with the given source and class prefix, and to display the expected text.
+     * It expects the given paragraph to be bold and to contain one SourceSiglumComponent (hollow)
+     * with the given source and class prefix.
      */
-    const expectSiglumParagraph = (pDe: DebugElement, source: SourceDesc, expectedText: string): void => {
+    const expectSiglumParagraph = (pDe: DebugElement, source: SourceDesc): void => {
         const pEl: HTMLParagraphElement = pDe.nativeElement;
 
         expectToContain(pEl.classList, 'bold');
-        expectToBe(pEl.textContent.trim(), expectedText);
 
         const siglumDes = getAndExpectDebugElementByDirective(pDe, SourceSiglumComponent, 1, 1);
         const siglumCmp = siglumDes[0].injector.get(SourceSiglumComponent);
@@ -77,11 +74,6 @@ describe('SourceDescItemComponent', () => {
     };
 
     beforeEach(async () => {
-        // Mock services
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [
                 AbbrDirective,
@@ -94,8 +86,14 @@ describe('SourceDescItemComponent', () => {
                 SourceDescWritingMaterialsComponent,
                 SourceSiglumComponent,
             ],
-            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceDescContentsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescCorrectionsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescDetailsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescWritingInstrumentsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescWritingMaterialsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceSiglumComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -146,7 +144,7 @@ describe('SourceDescItemComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithAllEntries);
 
             // Trigger initial data binding
@@ -254,12 +252,8 @@ describe('SourceDescItemComponent', () => {
                 });
 
                 describe('... the first paragraph', () => {
-                    it('... should display a siglum (bold) without an addendum', () => {
-                        expectSiglumParagraph(
-                            paragraphDes[0],
-                            expectedSourceDescWithoutPhysDesc,
-                            expectedSourceDescWithoutPhysDesc.siglum
-                        );
+                    it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum without an addendum', () => {
+                        expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithoutPhysDesc);
                     });
                 });
 
@@ -322,14 +316,8 @@ describe('SourceDescItemComponent', () => {
                     });
 
                     describe('... the first paragraph', () => {
-                        it('... should display a siglum (bold) with addendum', () => {
-                            const { siglum, siglumAddendum } = expectedSourceDescWithAllEntries;
-
-                            expectSiglumParagraph(
-                                paragraphDes[0],
-                                expectedSourceDescWithAllEntries,
-                                `${siglum}${siglumAddendum ?? ''}`
-                            );
+                        it('... should contain a SourceSiglumComponent (hollow) in bold for a siglum with addendum', () => {
+                            expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithAllEntries);
                         });
                     });
 
@@ -356,7 +344,7 @@ describe('SourceDescItemComponent', () => {
                 });
 
                 describe('... the physDesc', () => {
-                    it('... should contain 8 details components (stubbed) in physDesc div', () => {
+                    it('... should contain 8 SourceDescDetailsComponents (hollow) in physDesc div', () => {
                         getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescDetailsComponent, 8, 8);
                     });
 
@@ -415,12 +403,12 @@ describe('SourceDescItemComponent', () => {
                         });
                     });
 
-                    it('... should contain no SourceDescWritingMaterialsComponent if writing materials array is empty', () => {
+                    it('... should contain no SourceDescWritingMaterialsComponent (hollow) if writing materials array is empty', () => {
                         getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescWritingMaterialsComponent, 0, 0);
                     });
 
                     describe('... the writing instruments', () => {
-                        it('... should contain one SourceDescWritingInstrumentsComponent in physDesc div', () => {
+                        it('... should contain one SourceDescWritingInstrumentsComponent (hollow) in physDesc div', () => {
                             getAndExpectDebugElementByDirective(
                                 getPhysDescDe(),
                                 SourceDescWritingInstrumentsComponent,
@@ -429,7 +417,7 @@ describe('SourceDescItemComponent', () => {
                             );
                         });
 
-                        it('... should pass down the writingInstruments to SourceDescWritingInstrumentsComponent', () => {
+                        it('... should pass down the writingInstruments to SourceDescWritingInstrumentsComponent (hollow)', () => {
                             const instrumentsDes = getAndExpectDebugElementByDirective(
                                 getPhysDescDe(),
                                 SourceDescWritingInstrumentsComponent,
@@ -448,11 +436,11 @@ describe('SourceDescItemComponent', () => {
                     });
 
                     describe('... the contents', () => {
-                        it('... should contain SourceDescContentsComponent if contents array is not empty', () => {
+                        it('... should contain SourceDescContentsComponent (hollow) if contents array is not empty', () => {
                             getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescContentsComponent, 1, 1);
                         });
 
-                        it('... should pass down contents data to SourceDescContentsComponent', () => {
+                        it('... should pass down contents data to SourceDescContentsComponent (hollow)', () => {
                             const contentsDes = getAndExpectDebugElementByDirective(
                                 getPhysDescDe(),
                                 SourceDescContentsComponent,
@@ -464,7 +452,7 @@ describe('SourceDescItemComponent', () => {
                             expectToEqual(contentsCmp.contents(), expectedSourceDescWithAllEntries.physDesc.contents);
                         });
 
-                        it('... should contain no SourceDescContentsComponent if contents array is empty or undefined', async () => {
+                        it('... should contain no SourceDescContentsComponent (hollow) if contents array is empty or undefined', async () => {
                             fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithWritingMaterials);
                             await detectChangesOnPush(fixture);
 
@@ -473,11 +461,11 @@ describe('SourceDescItemComponent', () => {
                     });
 
                     describe('... the corrections', () => {
-                        it('... should contain SourceDescCorrectionsComponent if corrections array is not empty', () => {
+                        it('... should contain SourceDescCorrectionsComponent (hollow) if corrections array is not empty', () => {
                             getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescCorrectionsComponent, 1, 1);
                         });
 
-                        it('... should pass down corrections data to SourceDescCorrectionsComponent', () => {
+                        it('... should pass down corrections data to SourceDescCorrectionsComponent (hollow)', () => {
                             const correctionsDes = getAndExpectDebugElementByDirective(
                                 getPhysDescDe(),
                                 SourceDescCorrectionsComponent,
@@ -492,7 +480,7 @@ describe('SourceDescItemComponent', () => {
                             );
                         });
 
-                        it('... should contain no SourceDescCorrectionsComponent if corrections array is empty or undefined', async () => {
+                        it('... should contain no SourceDescCorrectionsComponent (hollow) if corrections array is empty or undefined', async () => {
                             fixture.componentRef.setInput('sourceDescData', expectedSourceDescWithWritingMaterials);
                             await detectChangesOnPush(fixture);
 
@@ -519,14 +507,8 @@ describe('SourceDescItemComponent', () => {
                     getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-desc-phys-desc', 1, 1);
                 });
 
-                it('... the first paragraph displaying a siglum (bold) with addendum and brackets (missing)', () => {
-                    const { siglum, siglumAddendum } = expectedSourceDescWithWritingMaterials;
-
-                    expectSiglumParagraph(
-                        paragraphDes[0],
-                        expectedSourceDescWithWritingMaterials,
-                        `[${siglum}${siglumAddendum ?? ''}]`
-                    );
+                it('... the first paragraph containing a SourceSiglumComponent (hollow) in bold for a missing siglum with addendum', () => {
+                    expectSiglumParagraph(paragraphDes[0], expectedSourceDescWithWritingMaterials);
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -547,7 +529,7 @@ describe('SourceDescItemComponent', () => {
                     expectToBe(pEl.textContent.trim(), expectedSourceDescWithWritingMaterials.location.trim());
                 });
 
-                it('... should contain one details component (stubbed) in physDesc div', () => {
+                it('... should contain one SourceDescDetailsComponent (hollow) in physDesc div', () => {
                     getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescDetailsComponent, 1, 1);
                 });
 
@@ -581,7 +563,7 @@ describe('SourceDescItemComponent', () => {
                 });
 
                 describe('... the writing materials', () => {
-                    it('... should contain one SourceDescWritingMaterialsComponent if writing materials array is not empty', () => {
+                    it('... should contain one SourceDescWritingMaterialsComponent (hollow) if writing materials array is not empty', () => {
                         getAndExpectDebugElementByDirective(getPhysDescDe(), SourceDescWritingMaterialsComponent, 1, 1);
                     });
 

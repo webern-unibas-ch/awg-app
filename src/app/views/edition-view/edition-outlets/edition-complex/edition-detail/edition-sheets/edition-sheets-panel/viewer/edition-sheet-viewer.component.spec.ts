@@ -24,10 +24,10 @@ import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
+import { EDITION_SHEETS_UTILS } from '../../edition-sheets.utils';
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
-import { EDITION_SHEETS_UTILS } from '../../edition-sheets.utils';
 
 type CreateSvgFn = EditionSvgDrawingService['createSvg'];
 
@@ -69,6 +69,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     beforeEach(async () => {
         // Mocked services for the real EditionSheetViewerSvgComponent
+        // (not hollow: its required view query on the SvgZoomDirective needs the d3-driven template)
         mockSvgDrawingService = {
             createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any),
             getSuppliedClasses: vi.fn(() => []),
@@ -143,7 +144,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
             // Trigger initial data binding

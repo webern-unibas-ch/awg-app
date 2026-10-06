@@ -76,7 +76,14 @@ describe('EditionReportComponent', () => {
                 },
                 { provide: ModalService, useValue: { open: vi.fn() } },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceEvaluationComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceListComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TextcriticsListComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -123,13 +130,13 @@ describe('EditionReportComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
-            it('... should contain no AlertErrorComponent', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
@@ -139,7 +146,7 @@ describe('EditionReportComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
 
-            it('... should contain no source list component yet', () => {
+            it('... should contain no SourceListComponent (hollow) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceListComponent, 0, 0);
             });
 
@@ -147,11 +154,11 @@ describe('EditionReportComponent', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 0, 0);
             });
 
-            it('... should contain no source evaluation component yet', () => {
+            it('... should contain no SourceEvaluationComponent (hollow) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceEvaluationComponent, 0, 0);
             });
 
-            it('... should contain no textcritics list component yet', () => {
+            it('... should contain no TextcriticsListComponent (hollow) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, TextcriticsListComponent, 0, 0);
             });
         });
@@ -216,14 +223,14 @@ describe('EditionReportComponent', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain report view or spinner, but one AlertErrorComponent', () => {
+                it('... should not contain report view or spinner, but one AlertErrorComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
-                it('... should pass down error object to AlertErrorComponent', () => {
+                it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
@@ -244,14 +251,14 @@ describe('EditionReportComponent', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent', () => {
+                it('... should not contain sheets view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-report-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
-                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
                         TwelveToneSpinnerComponent
@@ -339,11 +346,11 @@ describe('EditionReportComponent', () => {
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceList);
                     });
 
-                    it('... should contain one source list component', () => {
+                    it('... should contain one SourceListComponent (hollow)', () => {
                         getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
                     });
 
-                    it('... should pass down sourceListData to SourceListComponent', () => {
+                    it('... should pass down sourceListData to SourceListComponent (hollow)', () => {
                         const sourceListDes = getAndExpectDebugElementByDirective(divDes[0], SourceListComponent, 1, 1);
                         const sourceListCmp = sourceListDes[0].injector.get(SourceListComponent) as SourceListComponent;
 
@@ -375,7 +382,7 @@ describe('EditionReportComponent', () => {
                         getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 1, 1);
                     });
 
-                    it('... should pass down sourceDescListData to SourceDescComponent', () => {
+                    it('... should pass down sourceDescListData to SourceDescComponent (hollow)', () => {
                         const descriptionDes = getAndExpectDebugElementByDirective(compDe, SourceDescComponent, 1, 1);
                         const descriptionCmp = descriptionDes[0].injector.get(
                             SourceDescComponent
@@ -405,11 +412,11 @@ describe('EditionReportComponent', () => {
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceEvaluation);
                     });
 
-                    it('... should contain one source evaluation component', () => {
+                    it('... should contain one SourceEvaluationComponent (hollow)', () => {
                         getAndExpectDebugElementByDirective(compDe, SourceEvaluationComponent, 1, 1);
                     });
 
-                    it('... should pass down sourceEvaluationListData and complex to SourceEvaluationComponent', () => {
+                    it('... should pass down sourceEvaluationListData and complex to SourceEvaluationComponent (hollow)', () => {
                         const evaluationDes = getAndExpectDebugElementByDirective(
                             compDe,
                             SourceEvaluationComponent,
@@ -445,11 +452,11 @@ describe('EditionReportComponent', () => {
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.tka);
                     });
 
-                    it('... should contain one textcritics list component', () => {
+                    it('... should contain one TextcriticsListComponent (hollow)', () => {
                         getAndExpectDebugElementByDirective(compDe, TextcriticsListComponent, 1, 1);
                     });
 
-                    it('... should pass down textcriticsListData to TextcriticsListComponent', () => {
+                    it('... should pass down textcriticsListData to TextcriticsListComponent (hollow)', () => {
                         const textcriticsDes = getAndExpectDebugElementByDirective(
                             compDe,
                             TextcriticsListComponent,

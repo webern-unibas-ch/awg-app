@@ -31,7 +31,9 @@ describe('EditionSectionsComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionSectionsComponent],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSectionCardComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
