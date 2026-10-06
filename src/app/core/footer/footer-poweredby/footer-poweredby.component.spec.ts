@@ -154,6 +154,15 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `poweredByData` is not available', () => {
+                fixture.componentRef.setInput('pageMetaData', undefined);
+
+                fixture.detectChanges();
+
+                expectToBe(component.poweredByData(), null);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 0, 0);
+            });
+
             it('... should contain one div.awg-powered-by', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
             });

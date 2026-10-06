@@ -144,7 +144,23 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
                     });
                 });
 
-                it('... should toggle `showScrollButton` based on scrollY position of scroll event', () => {
+                it('... should set `showScrollButton` signal to false if no window is available', () => {
+                    vi.spyOn(mockDocument, 'defaultView', 'get').mockReturnValue(null);
+
+                    component['onWindowScroll']();
+
+                    expectToBe(component.showScrollButton(), false);
+                });
+
+                it('... should be called on scroll of the window', () => {
+                    const onWindowScrollSpy = vi.spyOn(component as any, 'onWindowScroll');
+
+                    mockWindow.dispatchEvent(new Event('scroll'));
+
+                    expectSpyCall(onWindowScrollSpy, 1);
+                });
+
+                it('... should reset `showScrollButton` on each call based on scrollY position', () => {
                     windowScrollYSpy.mockReturnValue(expectedScrollThreshold - 1);
 
                     component['onWindowScroll']();
@@ -168,6 +184,13 @@ describe('ButtonScrollToTopComponent (DONE)', () => {
                     component['scrollToTop']();
 
                     expectSpyCall(windowScrollToSpy, 1, { top: 0, behavior: 'smooth' });
+                });
+
+                it('... should not throw if no window is available', () => {
+                    vi.spyOn(mockDocument, 'defaultView', 'get').mockReturnValue(null);
+
+                    expect(() => component['scrollToTop']()).not.toThrow();
+                    expectSpyCall(windowScrollToSpy, 0);
                 });
 
                 it('... should request scrolling to top of page', () => {
