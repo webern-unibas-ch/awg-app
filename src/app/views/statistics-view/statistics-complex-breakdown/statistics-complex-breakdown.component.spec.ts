@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { StatisticsProgressBarStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -34,10 +33,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsComplexBreakdownComponent],
         })
-            .overrideComponent(StatisticsComplexBreakdownComponent, {
-                remove: { imports: [StatisticsProgressBarComponent] },
-                add: { imports: [StatisticsProgressBarStubComponent] },
-            })
+            .overrideComponent(StatisticsProgressBarComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -177,7 +173,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     const distCardBodyDes = getAndExpectDebugElementByCss(distCardDes[0], 'div.card-body', 1, 1);
 
                     getAndExpectDebugElementByCss(distCardBodyDes[0], 'div', 0, 0);
-                    getAndExpectDebugElementByDirective(distCardBodyDes[0], StatisticsProgressBarStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(distCardBodyDes[0], StatisticsProgressBarComponent, 0, 0);
                 });
             });
 
@@ -269,12 +265,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                     );
 
                     getAndExpectDebugElementByCss(activityCardBodyDes[0], 'div', 0, 0);
-                    getAndExpectDebugElementByDirective(
-                        activityCardBodyDes[0],
-                        StatisticsProgressBarStubComponent,
-                        0,
-                        0
-                    );
+                    getAndExpectDebugElementByDirective(activityCardBodyDes[0], StatisticsProgressBarComponent, 0, 0);
                 });
             });
         });
@@ -301,12 +292,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(
-                            distCardBodyDes[0],
-                            StatisticsProgressBarStubComponent,
-                            3,
-                            3
-                        );
+                        getAndExpectDebugElementByDirective(distCardBodyDes[0], StatisticsProgressBarComponent, 3, 3);
                     });
 
                     it('... should pass down corect inputs to progress bar components', () => {
@@ -318,13 +304,13 @@ describe('StatisticsComplexBreakdownComponent', () => {
                         );
                         const progressBarDes = getAndExpectDebugElementByDirective(
                             distCardBodyDes[0],
-                            StatisticsProgressBarStubComponent,
+                            StatisticsProgressBarComponent,
                             3,
                             3
                         );
 
                         progressBarDes.forEach((pbDe, index) => {
-                            const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
+                            const progressBarCmp = pbDe.injector.get(StatisticsProgressBarComponent);
 
                             const data = expectedComplexBreakdownData;
                             const item = expectedComplexBreakdownItems[index];
@@ -357,7 +343,7 @@ describe('StatisticsComplexBreakdownComponent', () => {
 
                         getAndExpectDebugElementByDirective(
                             activityCardBodyDes[0],
-                            StatisticsProgressBarStubComponent,
+                            StatisticsProgressBarComponent,
                             3,
                             3
                         );
@@ -372,13 +358,13 @@ describe('StatisticsComplexBreakdownComponent', () => {
                         );
                         const progressBarDes = getAndExpectDebugElementByDirective(
                             activityCardBodyDes[0],
-                            StatisticsProgressBarStubComponent,
+                            StatisticsProgressBarComponent,
                             3,
                             3
                         );
 
                         progressBarDes.forEach((pbDe, index) => {
-                            const progressBarCmp = pbDe.injector.get(StatisticsProgressBarStubComponent);
+                            const progressBarCmp = pbDe.injector.get(StatisticsProgressBarComponent);
 
                             const data = expectedComplexBreakdownData;
                             const item = expectedComplexBreakdownItems[index];

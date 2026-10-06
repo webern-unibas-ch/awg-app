@@ -8,7 +8,6 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { LogoStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent } from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectSpyCall,
@@ -63,10 +62,9 @@ describe('NavbarComponent (DONE)', () => {
                 ]),
             ],
         })
-            .overrideComponent(NavbarComponent, {
-                remove: { imports: [LogoComponent, NavbarDropdownLinkComponent, NavbarItemComponent] },
-                add: { imports: [LogoStubComponent, NavbarDropdownLinkStubComponent, NavbarItemStubComponent] },
-            })
+            .overrideComponent(LogoComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(NavbarDropdownLinkComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(NavbarItemComponent, { set: { template: '', imports: [] } })
             .compileComponents();
 
         // Disable ng-bootstrap animations
@@ -185,20 +183,20 @@ describe('NavbarComponent (DONE)', () => {
                 expectToContain(brandContainerEl2.classList, 'd-md-none');
             });
 
-            it('... should contain one logo components in each of the two navbar-brand-containers', () => {
+            it('... should contain one LogoComponent (hollow) in each of the two navbar-brand-containers', () => {
                 const navbarDes = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
                 const brandContainerDes = getAndExpectDebugElementByCss(navbarDes[0], '.navbar-brand-container', 2, 2);
 
                 brandContainerDes.forEach(brandContainerDe => {
-                    getAndExpectDebugElementByDirective(brandContainerDe, LogoStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(brandContainerDe, LogoComponent, 1, 1);
                 });
             });
 
-            it('... should throw due to missing required values for logo component', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
+            it('... should throw due to missing required values for LogoComponent (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 2, 2);
 
                 logoDes.forEach(logoDe => {
-                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+                    const logoCmp = logoDe.injector.get(LogoComponent);
 
                     // Expect the required inputs to throw if not provided
                     expect(() => logoCmp.logoData()).toThrow();
@@ -228,19 +226,19 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(ulDes[1], 'li.nav-item', 1, 1);
             });
 
-            it('... should contain one navbar item component in each of the nav-items', () => {
+            it('... should contain one NavbarItemComponent (hollow) in each of the nav-items', () => {
                 const navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
 
                 navItemDes.forEach(navItemDe => {
-                    getAndExpectDebugElementByDirective(navItemDe, NavbarItemStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(navItemDe, NavbarItemComponent, 1, 1);
                 });
             });
 
-            it('... should throw due to missing required values for navbar item component', () => {
-                const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);
+            it('... should throw due to missing required values for NavbarItemComponent (hollow)', () => {
+                const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemComponent, 4, 4);
 
                 navbarItemDes.forEach(navItemDe => {
-                    const navbarItemCmp = navItemDe.injector.get(NavbarItemStubComponent) as NavbarItemStubComponent;
+                    const navbarItemCmp = navItemDe.injector.get(NavbarItemComponent);
 
                     // Expect the required inputs to throw if not provided
                     expect(() => navbarItemCmp.item()).toThrow();
@@ -276,43 +274,39 @@ describe('NavbarComponent (DONE)', () => {
                 navItemDes = getAndExpectDebugElementByCss(compDe, 'li.nav-item', 4, 4);
             });
 
-            it('... should pass down logoData to logo components', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
+            it('... should pass down logoData to LogoComponents (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 2, 2);
 
                 logoDes.forEach(logoDe => {
-                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+                    const logoCmp = logoDe.injector.get(LogoComponent);
 
                     expectToEqual(logoCmp.logoData(), expectedLogosData['awg']);
                 });
             });
 
-            it('... should pass down expected linkClass to logo components', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 2, 2);
+            it('... should pass down expected linkClass to LogoComponents (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 2, 2);
 
                 logoDes.forEach(logoDe => {
-                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+                    const logoCmp = logoDe.injector.get(LogoComponent);
 
                     expectToBe(logoCmp.linkClass(), 'navbar-brand');
                 });
             });
 
             describe('... first nav-item link (home)', () => {
-                it('... should pass down home item to navbar item component', () => {
-                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);
-                    const navbarItemCmp = navbarItemDes[0].injector.get(
-                        NavbarItemStubComponent
-                    ) as NavbarItemStubComponent;
+                it('... should pass down home item to NavbarItemComponent (hollow)', () => {
+                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemComponent, 4, 4);
+                    const navbarItemCmp = navbarItemDes[0].injector.get(NavbarItemComponent);
 
                     expectToEqual(navbarItemCmp.item(), expectedNavbarItems.home);
                 });
             });
 
             describe('... second nav-item link (edition)', () => {
-                it('... should pass down edition item to navbar item component', () => {
-                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);
-                    const navbarItemCmp = navbarItemDes[1].injector.get(
-                        NavbarItemStubComponent
-                    ) as NavbarItemStubComponent;
+                it('... should pass down edition item to NavbarItemComponent (hollow)', () => {
+                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemComponent, 4, 4);
+                    const navbarItemCmp = navbarItemDes[1].injector.get(NavbarItemComponent);
 
                     expectToEqual(navbarItemCmp.item(), expectedNavbarItems.edition);
                 });
@@ -337,7 +331,7 @@ describe('NavbarComponent (DONE)', () => {
                     const dropdownDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
                     const dropdownLinkDes = getAndExpectDebugElementByDirective(
                         dropdownDes[0],
-                        NavbarDropdownLinkStubComponent,
+                        NavbarDropdownLinkComponent,
                         7,
                         7
                     );
@@ -352,7 +346,7 @@ describe('NavbarComponent (DONE)', () => {
                     const dropdownDes = getAndExpectDebugElementByCss(compDe, 'div.dropdown-menu', 1, 1);
                     const dropdownLinkDes = getAndExpectDebugElementByDirective(
                         dropdownDes[0],
-                        NavbarDropdownLinkStubComponent,
+                        NavbarDropdownLinkComponent,
                         7,
                         7
                     );
@@ -363,9 +357,7 @@ describe('NavbarComponent (DONE)', () => {
                     expectToBe(generalLinkDes.length, 3);
 
                     generalLinkDes.forEach((linkDe, index) => {
-                        const dropdownLinkCmp = linkDe.injector.get(
-                            NavbarDropdownLinkStubComponent
-                        ) as NavbarDropdownLinkStubComponent;
+                        const dropdownLinkCmp = linkDe.injector.get(NavbarDropdownLinkComponent);
                         const expectedLink = expectedGeneralEditionLinks[index];
 
                         expectToBe(dropdownLinkCmp.label(), expectedLink.label);
@@ -460,7 +452,7 @@ describe('NavbarComponent (DONE)', () => {
                     sectionsDes.forEach(sectionDe => {
                         getAndExpectDebugElementByDirective(
                             sectionDe,
-                            NavbarDropdownLinkStubComponent,
+                            NavbarDropdownLinkComponent,
                             expectedSectionEditionLinks.length,
                             expectedSectionEditionLinks.length
                         );
@@ -479,16 +471,14 @@ describe('NavbarComponent (DONE)', () => {
                         const section = expectedSections[sectionIndex];
                         const dropdownLinkDes = getAndExpectDebugElementByDirective(
                             sectionDe,
-                            NavbarDropdownLinkStubComponent,
+                            NavbarDropdownLinkComponent,
                             expectedSectionEditionLinks.length,
                             expectedSectionEditionLinks.length
                         );
 
                         expectedSectionEditionLinks.forEach((link, linkIndex) => {
                             const linkDe = dropdownLinkDes[linkIndex];
-                            const dropdownLinkCmp = linkDe.injector.get(
-                                NavbarDropdownLinkStubComponent
-                            ) as NavbarDropdownLinkStubComponent;
+                            const dropdownLinkCmp = linkDe.injector.get(NavbarDropdownLinkComponent);
 
                             const expectedRoute = [...section.labeledRoute.route, ...link.route];
 
@@ -500,22 +490,18 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             describe('... third nav-item link (structure)', () => {
-                it('... should pass down structure item to navbar item component', () => {
-                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);
-                    const navbarItemCmp = navbarItemDes[2].injector.get(
-                        NavbarItemStubComponent
-                    ) as NavbarItemStubComponent;
+                it('... should pass down structure item to NavbarItemComponent (hollow)', () => {
+                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemComponent, 4, 4);
+                    const navbarItemCmp = navbarItemDes[2].injector.get(NavbarItemComponent);
 
                     expectToEqual(navbarItemCmp.item(), expectedNavbarItems.structure);
                 });
             });
 
             describe('... fourth nav-item link (contact)', () => {
-                it('... should pass down contact item to navbar item component', () => {
-                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemStubComponent, 4, 4);
-                    const navbarItemCmp = navbarItemDes[3].injector.get(
-                        NavbarItemStubComponent
-                    ) as NavbarItemStubComponent;
+                it('... should pass down contact item to NavbarItemComponent (hollow)', () => {
+                    const navbarItemDes = getAndExpectDebugElementByDirective(compDe, NavbarItemComponent, 4, 4);
+                    const navbarItemCmp = navbarItemDes[3].injector.get(NavbarItemComponent);
 
                     expectToEqual(navbarItemCmp.item(), expectedNavbarItems.contact);
                 });

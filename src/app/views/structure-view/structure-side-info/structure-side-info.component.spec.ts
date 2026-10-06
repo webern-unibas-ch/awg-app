@@ -5,7 +5,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { MetaIdentifierBadgesStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -35,10 +34,7 @@ describe('StructureSideInfoComponent (DONE)', () => {
             imports: [StructureSideInfoComponent],
             providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
-            .overrideComponent(StructureSideInfoComponent, {
-                remove: { imports: [MetaIdentifierBadgesComponent] },
-                add: { imports: [MetaIdentifierBadgesStubComponent] },
-            })
+            .overrideComponent(MetaIdentifierBadgesComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -91,8 +87,8 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 0, 0);
             });
 
-            it('... should contain no `MetaIdentifierBadgesComponent` yet', () => {
-                getAndExpectDebugElementByDirective(compDe, MetaIdentifierBadgesStubComponent, 0, 0);
+            it('... should contain no MetaIdentifierBadgesComponent (hollow) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, MetaIdentifierBadgesComponent, 0, 0);
             });
 
             it('... should not render last modification date yet', () => {
@@ -132,22 +128,17 @@ describe('StructureSideInfoComponent (DONE)', () => {
                 expectToBe(authorLinkEl.innerHTML, expectedAuthor.name);
             });
 
-            it('... should contain one `MetaIdentifierBadgesComponent`', () => {
+            it('... should contain one MetaIdentifierBadgesComponent (hollow)', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
 
-                getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to MetaIdentifierBadgesComponent (`identifiers`)', () => {
+            it('... should pass down the correct values to MetaIdentifierBadgesComponent (hollow) (`identifiers`)', () => {
                 const expectedIdentifiers = expectedStructureMetaData.authors[0].identifiers;
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author', 1, 1);
-                const badgeDes = getAndExpectDebugElementByDirective(
-                    authorDes[0],
-                    MetaIdentifierBadgesStubComponent,
-                    1,
-                    1
-                );
-                const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesStubComponent);
+                const badgeDes = getAndExpectDebugElementByDirective(authorDes[0], MetaIdentifierBadgesComponent, 1, 1);
+                const badgeCmp = badgeDes[0].injector.get(MetaIdentifierBadgesComponent);
 
                 expectToEqual(badgeCmp.identifiers(), expectedIdentifiers);
             });

@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { faCheckCircle, faFolder, faList, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-import { StatisticsSummaryCardStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -31,10 +30,7 @@ describe('StatisticsSummaryComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsSummaryComponent],
         })
-            .overrideComponent(StatisticsSummaryComponent, {
-                remove: { imports: [StatisticsSummaryCardComponent] },
-                add: { imports: [StatisticsSummaryCardStubComponent] },
-            })
+            .overrideComponent(StatisticsSummaryCardComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -152,12 +148,12 @@ describe('StatisticsSummaryComponent', () => {
                 getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
             });
 
-            it('... should contain one card component (stubbed) in each col div', () => {
+            it('... should contain one card component (hollow) in each col div', () => {
                 const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const colDes = getAndExpectDebugElementByCss(cardsDes[0], 'div.col-md-3.mb-3', 4, 4);
 
                 colDes.forEach(colDe => {
-                    getAndExpectDebugElementByDirective(colDe, StatisticsSummaryCardStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(colDe, StatisticsSummaryCardComponent, 1, 1);
                 });
             });
 
@@ -165,13 +161,13 @@ describe('StatisticsSummaryComponent', () => {
                 const cardsDes = getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-summary', 1, 1);
                 const cardDes = getAndExpectDebugElementByDirective(
                     cardsDes[0],
-                    StatisticsSummaryCardStubComponent,
+                    StatisticsSummaryCardComponent,
                     expectedSummaryCards.length,
                     expectedSummaryCards.length
                 );
 
                 expectedSummaryCards.forEach((card, index) => {
-                    const cardCmp = cardDes[index].injector.get(StatisticsSummaryCardStubComponent);
+                    const cardCmp = cardDes[index].injector.get(StatisticsSummaryCardComponent);
 
                     expectToBe(cardCmp.title(), card.title);
                     expectToBe(cardCmp.value(), card.value);

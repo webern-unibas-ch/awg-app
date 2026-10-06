@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { ButtonScrollToTopStubComponent, HeadingStubComponent } from '@testing/component-stubs';
 import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
@@ -26,10 +25,8 @@ describe('StructureViewComponent (DONE)', () => {
             imports: [StructureViewComponent],
             declarations: [],
         })
-            .overrideComponent(StructureViewComponent, {
-                remove: { imports: [ButtonScrollToTopComponent, HeadingComponent] },
-                add: { imports: [ButtonScrollToTopStubComponent, HeadingStubComponent] },
-            })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(HeadingComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -68,22 +65,22 @@ describe('StructureViewComponent (DONE)', () => {
                 getStructureViewDes();
             });
 
-            it('... should contain one ScrollToTop component (stubbed) in `div.awg-structure-view`', () => {
-                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
-            it('... should contain one heading component (stubbed) in `div.awg-structure-view`', () => {
-                getAndExpectDebugElementByDirective(getStructureViewDes()[0], HeadingStubComponent, 1, 1);
+            it('... should contain one HeadingComponent (hollow) in `div.awg-structure-view`', () => {
+                getAndExpectDebugElementByDirective(getStructureViewDes()[0], HeadingComponent, 1, 1);
             });
 
-            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
+            it('... should throw when accessing HeadingComponent (hollow) inputs (`id` and `title`) due to missing initial data binding', () => {
                 const headingDes = getAndExpectDebugElementByDirective(
                     getStructureViewDes()[0],
-                    HeadingStubComponent,
+                    HeadingComponent,
                     1,
                     1
                 );
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expect(() => headingCmp.title()).toThrow();
                 expect(() => headingCmp.id()).toThrow();
@@ -118,10 +115,10 @@ describe('StructureViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct values to heading component (`id` and `title`)', () => {
+            it('... should pass down the correct values to HeadingComponent (hollow) (`id` and `title`)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-structure-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expectToBe(headingCmp.id(), expectedStructureViewId);
                 expectToBe(headingCmp.title(), expectedStructureViewTitle);

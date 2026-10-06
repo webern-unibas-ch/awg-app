@@ -5,13 +5,6 @@ import { afterEach, beforeEach, describe, expect, it, vi, type Mocked } from 'vi
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import {
-    ButtonScrollToTopStubComponent,
-    StatisticsComplexBreakdownStubComponent,
-    StatisticsOverallProgressStubComponent,
-    StatisticsSeriesBreakdownStubComponent,
-    StatisticsSummaryStubComponent,
-} from '@testing/component-stubs';
-import {
     expectSpyCall,
     expectToBe,
     expectToContain,
@@ -68,26 +61,11 @@ describe('StatisticsViewComponent', () => {
                 { provide: EditionOutlineService, useValue: { editionOutline: mockOutlineSignal.asReadonly() } },
             ],
         })
-            .overrideComponent(StatisticsViewComponent, {
-                remove: {
-                    imports: [
-                        ButtonScrollToTopComponent,
-                        StatisticsComplexBreakdownComponent,
-                        StatisticsOverallProgressComponent,
-                        StatisticsSeriesBreakdownComponent,
-                        StatisticsSummaryComponent,
-                    ],
-                },
-                add: {
-                    imports: [
-                        ButtonScrollToTopStubComponent,
-                        StatisticsComplexBreakdownStubComponent,
-                        StatisticsOverallProgressStubComponent,
-                        StatisticsSeriesBreakdownStubComponent,
-                        StatisticsSummaryStubComponent,
-                    ],
-                },
-            })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsComplexBreakdownComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsOverallProgressComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsSeriesBreakdownComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsSummaryComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -303,8 +281,8 @@ describe('StatisticsViewComponent', () => {
                 getStatisticsViewDes();
             });
 
-            it('... should contain one ScrollToTop component (stubbed) in `div.awg-statistics-view`', () => {
-                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-statistics-view`', () => {
+                getAndExpectDebugElementByDirective(getStatisticsViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
             it('... should contain a container and row div in outer div', () => {
@@ -354,88 +332,81 @@ describe('StatisticsViewComponent', () => {
                 );
             });
 
-            it('... should contain one statistics summary component (stubbed) in main element', () => {
-                getAndExpectDebugElementByDirective(
-                    getStatisticsViewMainDes()[0],
-                    StatisticsSummaryStubComponent,
-                    1,
-                    1
-                );
+            it('... should contain one StatisticsSummaryComponent (hollow) in main element', () => {
+                getAndExpectDebugElementByDirective(getStatisticsViewMainDes()[0], StatisticsSummaryComponent, 1, 1);
             });
 
-            it('... should pass down the correct summaryData to statistics summary component', () => {
+            it('... should pass down the correct summaryData to StatisticsSummaryComponent (hollow)', () => {
                 const summaryDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsSummaryStubComponent,
+                    StatisticsSummaryComponent,
                     1,
                     1
                 );
-                const summaryCmp = summaryDes[0].injector.get(StatisticsSummaryStubComponent);
+                const summaryCmp = summaryDes[0].injector.get(StatisticsSummaryComponent);
 
                 expectToEqual(summaryCmp.summaryData(), expectedSummaryData);
             });
 
-            it('... should contain one statistics overall progress component (stubbed) in main element', () => {
+            it('... should contain one StatisticsOverallProgressComponent (hollow) in main element', () => {
                 getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsOverallProgressStubComponent,
+                    StatisticsOverallProgressComponent,
                     1,
                     1
                 );
             });
 
-            it('... should pass down the correct overallProgressData to statistics overall progress component', () => {
+            it('... should pass down the correct overallProgressData to StatisticsOverallProgressComponent (hollow)', () => {
                 const overallProgressDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsOverallProgressStubComponent,
+                    StatisticsOverallProgressComponent,
                     1,
                     1
                 );
-                const overallProgressCmp = overallProgressDes[0].injector.get(StatisticsOverallProgressStubComponent);
+                const overallProgressCmp = overallProgressDes[0].injector.get(StatisticsOverallProgressComponent);
 
                 expectToEqual(overallProgressCmp.overallProgressData(), expectedOverallProgressData);
             });
 
-            it('... should contain one statistics complex breakdown component (stubbed) in main element', () => {
+            it('... should contain one StatisticsComplexBreakdownComponent (hollow) in main element', () => {
                 getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsComplexBreakdownStubComponent,
+                    StatisticsComplexBreakdownComponent,
                     1,
                     1
                 );
             });
 
-            it('... should pass down the correct complexBreakdownData to statistics complex breakdown component', () => {
+            it('... should pass down the correct complexBreakdownData to StatisticsComplexBreakdownComponent (hollow)', () => {
                 const complexBreakdownDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsComplexBreakdownStubComponent,
+                    StatisticsComplexBreakdownComponent,
                     1,
                     1
                 );
-                const complexBreakdownCmp = complexBreakdownDes[0].injector.get(
-                    StatisticsComplexBreakdownStubComponent
-                );
+                const complexBreakdownCmp = complexBreakdownDes[0].injector.get(StatisticsComplexBreakdownComponent);
 
                 expectToEqual(complexBreakdownCmp.complexBreakdownData(), expectedComplexBreakdownData);
             });
 
-            it('... should contain one statistics series breakdown component (stubbed) in main element', () => {
+            it('... should contain one StatisticsSeriesBreakdownComponent (hollow) in main element', () => {
                 getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsSeriesBreakdownStubComponent,
+                    StatisticsSeriesBreakdownComponent,
                     1,
                     1
                 );
             });
 
-            it('... should pass down the correct seriesBreakdownData to statistics series breakdown component', () => {
+            it('... should pass down the correct seriesBreakdownData to StatisticsSeriesBreakdownComponent (hollow)', () => {
                 const seriesBreakdownDes = getAndExpectDebugElementByDirective(
                     getStatisticsViewMainDes()[0],
-                    StatisticsSeriesBreakdownStubComponent,
+                    StatisticsSeriesBreakdownComponent,
                     1,
                     1
                 );
-                const seriesBreakdownCmp = seriesBreakdownDes[0].injector.get(StatisticsSeriesBreakdownStubComponent);
+                const seriesBreakdownCmp = seriesBreakdownDes[0].injector.get(StatisticsSeriesBreakdownComponent);
 
                 expectToEqual(seriesBreakdownCmp.seriesBreakdownData(), expectedStatisticsData.seriesBreakdown);
             });

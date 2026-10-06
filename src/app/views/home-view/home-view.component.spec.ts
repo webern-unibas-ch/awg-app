@@ -6,12 +6,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import {
-    AlertInfoStubComponent,
-    ButtonScrollToTopStubComponent,
-    HeadingStubComponent,
-    HomeViewCardStubComponent,
-} from '@testing/component-stubs';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
     expectToBe,
@@ -73,19 +67,10 @@ describe('HomeViewComponent (DONE)', () => {
             imports: [HomeViewComponent],
             providers: [provideRouter([])],
         })
-            .overrideComponent(HomeViewComponent, {
-                remove: {
-                    imports: [AlertInfoComponent, ButtonScrollToTopComponent, HeadingComponent, HomeViewCardComponent],
-                },
-                add: {
-                    imports: [
-                        AlertInfoStubComponent,
-                        ButtonScrollToTopStubComponent,
-                        HeadingStubComponent,
-                        HomeViewCardStubComponent,
-                    ],
-                },
-            })
+            .overrideComponent(AlertInfoComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(HeadingComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(HomeViewCardComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -195,17 +180,17 @@ describe('HomeViewComponent (DONE)', () => {
                 getHomeViewDes();
             });
 
-            it('... should contain one ScrollToTop component (stubbed) in `div.awg-home-view`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-home-view`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
-            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
+            it('... should contain one HeadingComponent (hollow) in `div.awg-home-view`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingComponent, 1, 1);
             });
 
-            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
-                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should throw when accessing HeadingComponent (hollow) inputs (`id` and `title`) due to missing initial data binding', () => {
+                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expect(() => headingCmp.title()).toThrow();
                 expect(() => headingCmp.id()).toThrow();
@@ -215,18 +200,18 @@ describe('HomeViewComponent (DONE)', () => {
                 getHomeViewContentDes();
             });
 
-            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoStubComponent, 1, 1);
+            it('... should contain an AlertInfoComponent (hollow) in `div.awg-home-view-content`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoComponent, 1, 1);
             });
 
-            it('... should throw when accessing AlertInfoComponent inputs (`infoMessage`) due to missing initial data binding', () => {
+            it('... should throw when accessing AlertInfoComponent (hollow) inputs (`infoMessage`) due to missing initial data binding', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(
                     getHomeViewContentDes()[0],
-                    AlertInfoStubComponent,
+                    AlertInfoComponent,
                     1,
                     1
                 );
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent);
 
                 expect(() => alertInfoCmp.infoMessage()).toThrow();
             });
@@ -235,9 +220,9 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-grid', 1, 1);
             });
 
-            it('... should not contain any HomeViewCardComponent in `div.awg-home-view-grid` yet', () => {
+            it('... should not contain any HomeViewCardComponent (hollow) in `div.awg-home-view-grid` yet', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-home-view-grid', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], HomeViewCardComponent, 0, 0);
             });
 
             it('... should contain one `div.awg-home-view-text` in `div.awg-home-view-content`', () => {
@@ -276,13 +261,13 @@ describe('HomeViewComponent (DONE)', () => {
             const getHomeViewGridDes = () =>
                 getAndExpectDebugElementByCss(getHomeViewContentDes()[0], 'div.awg-home-view-grid', 1, 1);
 
-            it('... should contain one `awg-heading` component in `div.awg-home-view`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
+            it('... should contain one HeadingComponent (hollow) in `div.awg-home-view`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to heading component (`id` and `title`)', () => {
-                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should pass down the correct values to HeadingComponent (hollow) (`id` and `title`)', () => {
+                const headingDes = getAndExpectDebugElementByDirective(getHomeViewDes()[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expectToBe(headingCmp.id(), expectedHomeViewId);
                 expectToBe(headingCmp.title(), expectedHomeViewTitle);
@@ -292,18 +277,18 @@ describe('HomeViewComponent (DONE)', () => {
                 getHomeViewContentDes();
             });
 
-            it('... should contain an AlertInfoComponent (stubbed) in `div.awg-home-view-content`', () => {
-                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoStubComponent, 1, 1);
+            it('... should contain an AlertInfoComponent (hollow) in `div.awg-home-view-content`', () => {
+                getAndExpectDebugElementByDirective(getHomeViewContentDes()[0], AlertInfoComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to AlertInfoComponent (`infoMessage `)', () => {
+            it('... should pass down the correct values to AlertInfoComponent (hollow) (`infoMessage `)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(
                     getHomeViewContentDes()[0],
-                    AlertInfoStubComponent,
+                    AlertInfoComponent,
                     1,
                     1
                 );
-                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoStubComponent) as AlertInfoStubComponent;
+                const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent);
 
                 expectToBe(alertInfoCmp.infoMessage(), expectedDisclaimerMessage);
             });
@@ -321,7 +306,7 @@ describe('HomeViewComponent (DONE)', () => {
                 );
             });
 
-            it('... should contain as many HomeViewCardComponents in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
+            it('... should contain as many HomeViewCardComponents (hollow) in `div.awg-home-view-grid > div.col` as entries in `homeViewCardData`', () => {
                 const colDes = getAndExpectDebugElementByCss(
                     getHomeViewGridDes()[0],
                     'div.col',
@@ -330,11 +315,11 @@ describe('HomeViewComponent (DONE)', () => {
                 );
 
                 colDes.forEach(colDe => {
-                    getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(colDe, HomeViewCardComponent, 1, 1);
                 });
             });
 
-            it('... should pass down `cardData` to HomeViewCardComponents', () => {
+            it('... should pass down `cardData` to HomeViewCardComponents (hollow)', () => {
                 const colDes = getAndExpectDebugElementByCss(
                     getHomeViewGridDes()[0],
                     'div.col',
@@ -343,8 +328,8 @@ describe('HomeViewComponent (DONE)', () => {
                 );
 
                 colDes.forEach((colDe, index) => {
-                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardStubComponent, 1, 1);
-                    const cardCmp = cardDes[0].injector.get(HomeViewCardStubComponent) as HomeViewCardStubComponent;
+                    const cardDes = getAndExpectDebugElementByDirective(colDe, HomeViewCardComponent, 1, 1);
+                    const cardCmp = cardDes[0].injector.get(HomeViewCardComponent);
 
                     expectToEqual(cardCmp.cardData(), expectedHomeViewCardData[index]);
                 });
@@ -410,7 +395,7 @@ describe('HomeViewComponent (DONE)', () => {
                     expectedRouterLinks.length
                 );
 
-                routerLinks = linkDes.map(de => de.injector.get(RouterLink) as RouterLink);
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {
