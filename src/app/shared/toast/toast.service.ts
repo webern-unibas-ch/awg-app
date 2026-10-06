@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable, signal, TemplateRef } from '@angular/core';
 
 /**
  * The ToastMessage class.
@@ -88,37 +88,42 @@ export class Toast {
 })
 export class ToastService {
     /**
-     * Public variable: toasts.
+     * Private readonly signal: _toasts.
      *
-     * It keeps the toast messages.
+     * It holds the toast messages.
      */
-    toasts: Toast[] = [];
+    private readonly _toasts = signal<Toast[]>([]);
+
+    /**
+     * Readonly signal: toasts.
+     *
+     * It holds the toast messages (readonly).
+     */
+    readonly toasts = this._toasts.asReadonly();
 
     /**
      * Public method: add.
      *
-     * It adds the toast with the message
-     * represented by the given header and body to the toast array.
+     * It adds the given toast to the toast array.
      *
-     * @param {Toast} toast The given toast template.
-     * @param {*} options The given toast options.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Adds the toast message to the toast array.
+     * @returns {void} Adds the toast to the toast array.
      */
     add(toast: Toast): void {
-        this.toasts.push(toast);
+        this._toasts.update(toasts => [...toasts, toast]);
     }
 
     /**
      * Public method: remove.
      *
-     * It deletes a given toast.
+     * It removes the given toast from the toast array.
      *
-     * @param { * } toast The given toast.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Deletes the toast message.
+     * @returns {void} Removes the toast from the toast array.
      */
     remove(toast: Toast): void {
-        this.toasts = this.toasts.filter(t => t !== toast);
+        this._toasts.update(toasts => toasts.filter(t => t !== toast));
     }
 }

@@ -16,6 +16,7 @@ import {
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
+import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
@@ -79,13 +80,6 @@ class SparqlEditorStubComponent {
     @Output()
     updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
 }
-
-@Component({
-    selector: 'awg-toast',
-    template: '',
-    standalone: false,
-})
-class ToastStubComponent {}
 
 @Component({
     selector: 'awg-triples-editor',
@@ -156,12 +150,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ConstructResultsStubComponent,
                 SparqlEditorStubComponent,
                 SelectResultsStubComponent,
-                ToastStubComponent,
                 TriplesEditorStubComponent,
             ],
-            imports: [UnsupportedTypeResultsComponent],
+            imports: [ToastComponent, UnsupportedTypeResultsComponent],
             providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
         })
+            .overrideComponent(ToastComponent, { set: { template: '', imports: [] } })
             .overrideComponent(UnsupportedTypeResultsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
@@ -352,6 +346,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one ToastComponent (hollow) after the main div', () => {
+                const toastDes = getAndExpectDebugElementByDirective(compDe, ToastComponent, 1, 1);
+                const toastEl: HTMLElement = toastDes[0].nativeElement;
+
+                expectToBe(toastEl.getAttribute('aria-live'), 'polite');
+                expectToBe(toastEl.getAttribute('aria-atomic'), 'true');
+            });
+
             describe('not in fullscreen mode', () => {
                 it('... should contain a main div with 2 child divs', () => {
                     const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer', 1, 1);
@@ -1177,9 +1179,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                         expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
+                        expectToEqual(toastService.toasts(), [expectedToast]);
                     });
 
                     it('... should set durationvValue = 3000 for the errortoast message if delay not given ', async () => {
@@ -1197,9 +1197,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                         expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
+                        expectToEqual(toastService.toasts(), [expectedToast]);
                     });
                 });
 
@@ -1230,9 +1228,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                         expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
+                        expectToEqual(toastService.toasts(), [expectedToast]);
                     });
 
                     it('... should set durationValue = 3000 for the info toast message if delay not given ', async () => {
@@ -1251,9 +1247,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                         expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
+                        expectToEqual(toastService.toasts(), [expectedToast]);
                     });
                 });
             });
