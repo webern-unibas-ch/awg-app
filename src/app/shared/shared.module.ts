@@ -8,13 +8,13 @@ import { RouterModule } from '@angular/router';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { CodeMirrorModule } from './codemirror/codemirror.module';
 
 //
 // Shared components
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { ButtonScrollToTopComponent } from './button-scroll-to-top/button-scroll-to-top.component';
+import { CodeMirrorComponent } from './codemirror/codemirror.component';
 import { FullscreenToggleComponent } from './fullscreen/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
@@ -51,7 +51,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         AlertErrorComponent,
-        CodeMirrorModule,
+        CodeMirrorComponent,
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
@@ -79,7 +79,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     exports: [
         CommonModule,
-        CodeMirrorModule,
+        CodeMirrorComponent,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,

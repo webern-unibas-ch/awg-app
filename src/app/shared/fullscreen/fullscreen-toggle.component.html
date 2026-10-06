@@ -1,8 +1,4 @@
-<button
-    type="button"
-    [title]="fullscreenToggleBtn().title"
-    class="btn btn-sm ms-2"
-    [class]="fullscreenToggleBtn().customClass"
-    (click)="fullscreenToggleBtn().action()">
-    <fa-icon [icon]="fullscreenToggleBtn().icon" />
+@let btn = fullscreenToggleBtn();
+<button type="button" [title]="btn.title" class="btn btn-sm ms-2" [class]="btn.customClass" (click)="btn.action()">
+    <fa-icon [icon]="btn.icon" />
 </button>

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 
-import { CmMode } from '@awg-shared/codemirror/codemirror.component';
+import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 
 /**

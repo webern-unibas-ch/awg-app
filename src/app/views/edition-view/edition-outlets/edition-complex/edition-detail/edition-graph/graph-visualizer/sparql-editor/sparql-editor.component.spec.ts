@@ -19,25 +19,14 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { CmMode } from '@awg-shared/codemirror/codemirror.component';
+import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
+import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 
 import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
-
-@Component({
-    selector: 'awg-codemirror',
-    template: '',
-    standalone: false,
-})
-class CodeMirrorStubComponent {
-    @Input({ required: true }) mode!: CmMode;
-    @Input() content = '';
-    @Output()
-    contentChange: EventEmitter<string> = new EventEmitter<string>();
-}
 
 @Component({
     selector: 'awg-view-handle-button-group',
@@ -95,9 +84,13 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, NgbDropdownModule],
-            declarations: [SparqlEditorComponent, CodeMirrorStubComponent, ViewHandleButtongGroupStubComponent],
-        }).compileComponents();
+            imports: [NgbAccordionModule, NgbConfigModule, NgbDropdownModule, CodeMirrorComponent],
+            declarations: [SparqlEditorComponent, ViewHandleButtongGroupStubComponent],
+        })
+            .overrideComponent(CodeMirrorComponent, {
+                set: { template: '<div #codemirrorhost></div>', imports: [] },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -651,8 +644,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
                     });
 
-                    it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
+                    it('... should contain CodeMirrorComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                     });
 
                     it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
@@ -1042,12 +1035,17 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
-                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
+                it('... should contain CodeMirrorComponent (hollow) in item body', () => {
+                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                 });
 
                 it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(
+                        bodyDes[0],
+                        'div.awg-graph-visualizer-sparql-query-handle-buttons',
+                        1,
+                        1
+                    );
 
                     const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
                     const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
@@ -1164,12 +1162,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.onEditorInputChange).toBeDefined();
             });
 
-            it('... should trigger on event from CodeMirrorComponent', () => {
-                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
+            it('... should trigger on event from CodeMirrorComponent (hollow)', () => {
+                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                 const changedQueryString = expectedConstructQuery2.queryString;
-                codeMirrorCmp.contentChange.emit(changedQueryString);
+                codeMirrorCmp.content.set(changedQueryString);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
             });
@@ -1211,26 +1209,22 @@ describe('SparqlEditorComponent (DONE)', () => {
 
             describe('... should emit provided query string on editor change', () => {
                 it('... if string is thruthy', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(
-                        CodeMirrorStubComponent
-                    ) as CodeMirrorStubComponent;
+                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                     const changedQueryString = expectedConstructQuery2.queryString;
-                    codeMirrorCmp.contentChange.emit(changedQueryString);
+                    codeMirrorCmp.content.set(changedQueryString);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
                     expectSpyCall(emitUpdateQueryStringRequestSpy, 1, changedQueryString);
                 });
 
                 it('... if string is empty', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(
-                        CodeMirrorStubComponent
-                    ) as CodeMirrorStubComponent;
+                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                     // Query is undefined
-                    codeMirrorCmp.contentChange.emit('');
+                    codeMirrorCmp.content.set('');
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                     expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');

@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output, inject } from '@angular/core';
+import { DebugElement, NgModule, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -19,23 +19,11 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { CmMode } from '@awg-shared/codemirror/codemirror.component';
+import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
+import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 
 import { TriplesEditorComponent } from './triples-editor.component';
-
-@Component({
-    selector: 'awg-codemirror',
-    template: '',
-    standalone: false,
-})
-class CodeMirrorStubComponent {
-    @Input({ required: true }) mode!: CmMode;
-    @Input()
-    content = '';
-    @Output()
-    contentChange: EventEmitter<string> = new EventEmitter<string>();
-}
 
 describe('TriplesEditorComponent (DONE)', () => {
     let component: TriplesEditorComponent;
@@ -69,9 +57,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule],
-            declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
-        }).compileComponents();
+            imports: [NgbAccordionModule, NgbConfigModule, CodeMirrorComponent],
+            declarations: [TriplesEditorComponent],
+        })
+            .overrideComponent(CodeMirrorComponent, {
+                set: { template: '<div #codemirrorhost></div>', imports: [] },
+            })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -341,8 +333,8 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToContain(itemBodyEl.classList, 'show');
                     });
 
-                    it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
+                    it('... should contain CodeMirrorComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                     });
 
                     it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
@@ -521,12 +513,17 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain CodeMirrorComponent (stubbed) in item body', () => {
-                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
+                it('... should contain CodeMirrorComponent (hollow) in item body', () => {
+                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                 });
 
                 it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(
+                        bodyDes[0],
+                        'div.awg-graph-visualizer-triples-handle-buttons',
+                        1,
+                        1
+                    );
 
                     const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
                     const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
@@ -596,12 +593,12 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.onEditorInputChange).toBeDefined();
             });
 
-            it('... should trigger on event from CodeMirrorComponent', () => {
-                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
+            it('... should trigger on event from CodeMirrorComponent (hollow)', () => {
+                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                 const changedTriples = 'example:Success example:is example:Testing';
-                codeMirrorCmp.contentChange.emit(changedTriples);
+                codeMirrorCmp.content.set(changedTriples);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
             });
@@ -643,25 +640,21 @@ describe('TriplesEditorComponent (DONE)', () => {
 
             describe('... should emit provided triples on editor change', () => {
                 it('... if string is truthy', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(
-                        CodeMirrorStubComponent
-                    ) as CodeMirrorStubComponent;
+                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
                     const changedTriples = 'example:Success example:is example:Testing';
-                    codeMirrorCmp.contentChange.emit(changedTriples);
+                    codeMirrorCmp.content.set(changedTriples);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
                     expectSpyCall(emitUpdateTriplesRequestSpy, 1, changedTriples);
                 });
 
                 it('... if string is empty', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(
-                        CodeMirrorStubComponent
-                    ) as CodeMirrorStubComponent;
+                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
+                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
-                    codeMirrorCmp.contentChange.emit('');
+                    codeMirrorCmp.content.set('');
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                     expectSpyCall(emitUpdateTriplesRequestSpy, 1, '');

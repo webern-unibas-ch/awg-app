@@ -12,7 +12,7 @@ import {
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
 
-import { CmMode } from '@awg-shared/codemirror/codemirror.component';
+import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';

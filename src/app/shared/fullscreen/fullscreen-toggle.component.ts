@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, HostListener, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,9 @@ import { FullscreenService } from './fullscreen.service';
     selector: 'awg-fullscreen-toggle',
     templateUrl: './fullscreen-toggle.component.html',
     styleUrls: ['./fullscreen-toggle.component.scss'],
+    host: {
+        '(document:fullscreenchange)': 'onFullscreenChange()',
+    },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FaIconComponent],
 })
@@ -57,15 +60,6 @@ export class FullscreenToggleComponent {
     });
 
     /**
-     * HostListener: document:fullscreenchange.
-     *
-     * It listens to changes in the document's fullscreen state.
-     */
-    @HostListener('document:fullscreenchange') onFullscreenChange(): void {
-        this._fullscreenService.updateState();
-    }
-
-    /**
      * Public method: closeFullscreen.
      *
      * It requests to exit fullscreen mode via the FullscreenService.
@@ -85,5 +79,17 @@ export class FullscreenToggleComponent {
      */
     openFullscreen(): void {
         this._fullscreenService.openFullscreen(this.fsElement());
+    }
+
+    /**
+     * Protected method: onFullscreenChange.
+     *
+     * It listens to changes in the document's fullscreen state
+     * and updates the state of the FullscreenService.
+     *
+     * @returns {void} Updates the fullscreen state.
+     */
+    protected onFullscreenChange(): void {
+        this._fullscreenService.updateState();
     }
 }
