@@ -4,8 +4,9 @@
     letter-spacing: 1.5px;
     border-top: 1px solid #000;
 
-    div {
+    .awg-router-link-btn {
         float: left;
+        color: inherit;
         cursor: pointer;
         margin-right: 45px;
         padding-top: 5px;
@@ -13,6 +14,7 @@
 
         &:hover {
             color: #666;
+            border-bottom: none;
         }
     }
 

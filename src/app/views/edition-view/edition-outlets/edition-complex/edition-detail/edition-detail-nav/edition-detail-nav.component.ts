@@ -1,11 +1,13 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
+import { RouterLinkButtonGroupComponent } from '@awg-shared/router-link-button-group/router-link-button-group.component';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
- * The EditionOverview component.
+ * The EditionDetailNav component.
  *
  * It contains the overview section
  * of the edition view of the app
@@ -16,7 +18,8 @@ import { EditionStateService } from '@awg-views/edition-view/services';
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
     styleUrls: ['./edition-detail-nav.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterLinkButtonGroupComponent, RouterOutlet],
 })
 export class EditionDetailNavComponent {
     /**
@@ -34,11 +37,11 @@ export class EditionDetailNavComponent {
     readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
 
     /**
-     * Readonly signal: editionRouterLinkButtons.
+     * Readonly computed signal: editionRouterLinkButtons.
      *
-     * It computes the router link buttons based on the selected edition complex.
+     * It holds the router link buttons based on the selected edition complex.
      */
-    readonly editionRouterLinkButtons = computed(() => {
+    readonly editionRouterLinkButtons = computed<RouterLinkButton[] | null>(() => {
         const complex = this.selectedEditionComplex();
 
         if (!complex) {

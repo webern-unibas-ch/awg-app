@@ -1,45 +1,45 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { QueryParamsHandling } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { QueryParamsHandling, RouterLink, RouterLinkActive } from '@angular/router';
+
+import { ClickDirective } from '@awg-shared/click/click.directive';
 
 import { RouterLinkButton } from './router-link-button.model';
 
 /**
  * The RouterLinkButtonGroup component.
  *
- * It contains grouped router link buttons
- * that are provided via the {@link SharedModule}.
+ * It contains grouped router link buttons.
  */
 @Component({
     selector: 'awg-router-link-button-group',
     templateUrl: './router-link-button-group.component.html',
     styleUrls: ['./router-link-button-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [ClickDirective, RouterLink, RouterLinkActive, UpperCasePipe],
 })
 export class RouterLinkButtonGroupComponent {
     /**
-     * Input variable: buttonArray.
+     * Readonly input signal: routerLinkButtons.
      *
-     * It keeps the array of router link buttons.
+     * It holds the array of router link buttons.
      */
-    @Input()
-    routerLinkButtons: RouterLinkButton[] = [];
+    readonly routerLinkButtons = input<RouterLinkButton[]>([]);
 
     /**
-     * Optional input variable: queryParamsHandling.
+     * Readonly input signal: queryParamsHandling.
      *
-     * It keeps a flag how to handle query params (preserve, merge or nothing '').
+     * It holds a flag how to handle query params (preserve, merge or nothing '').
      * Defaults to nothing ''.
      */
-    @Input() queryParamsHandling?: QueryParamsHandling = '';
+    readonly queryParamsHandling = input<QueryParamsHandling>('');
 
     /**
-     * Output variable: selectButtonRequest.
+     * Readonly output signal: selectButtonRequest.
      *
-     * It keeps an event emitter for the selected router link button.
+     * It emits the selected router link button.
      */
-    @Output()
-    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
+    readonly selectButtonRequest = output<RouterLinkButton>();
 
     /**
      * Public method: selectButton.
@@ -47,10 +47,8 @@ export class RouterLinkButtonGroupComponent {
      * It emits a selected router link button
      * to the {@link selectButtonRequest}.
      *
-     * @param {RouterLinkButton} routerLinkButton
-     * The given router link button.
-     * @returns {void}
-     * Emits the selected router link button.
+     * @param {RouterLinkButton} routerLinkButton The given router link button.
+     * @returns {void} Emits the selected router link button.
      */
     selectButton(routerLinkButton: RouterLinkButton): void {
         if (routerLinkButton.disabled) {
