@@ -173,6 +173,22 @@ describe('NavLinkGroupComponent (DONE)', () => {
                 });
             });
 
+            it('... should keep disabled links out of the tab order', () => {
+                const aDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'a.awg-nav-link',
+                    expectedNavLinks.length,
+                    expectedNavLinks.length
+                );
+
+                aDes.forEach((aDe, index) => {
+                    const aEl: HTMLAnchorElement = aDe.nativeElement;
+                    const isFocusable = aEl.hasAttribute('href') || aEl.hasAttribute('tabindex');
+
+                    expectToBe(isFocusable, !expectedNavLinks[index].disabled);
+                });
+            });
+
             it('... should render link labels', () => {
                 const aDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -280,15 +296,6 @@ describe('NavLinkGroupComponent (DONE)', () => {
                     expectSpyCall(emitSpy, 1, expectedNavLinks[0]);
                 });
 
-                it('... should trigger `selectNavLink` on Enter key of disabled links (no native activation)', () => {
-                    const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-nav-link', 3, 3);
-
-                    aDes[1].triggerEventHandler('keydown.enter', { target: aDes[1].nativeElement });
-
-                    expectSpyCall(selectNavLinkSpy, 1, expectedNavLinks[1]);
-                    expectSpyCall(emitSpy, 0);
-                });
-
                 it('... should not trigger `selectNavLink` on Enter key of enabled links (native activation)', () => {
                     const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-nav-link', 3, 3);
 
@@ -300,7 +307,7 @@ describe('NavLinkGroupComponent (DONE)', () => {
                 it('... should not trigger `selectNavLink` on Space key (links)', () => {
                     const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-nav-link', 3, 3);
 
-                    aDes[1].triggerEventHandler('keydown.space', { target: aDes[1].nativeElement });
+                    aDes[0].triggerEventHandler('keydown.space', { target: aDes[0].nativeElement });
 
                     expectSpyCall(selectNavLinkSpy, 0);
                 });

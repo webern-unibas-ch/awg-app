@@ -76,12 +76,12 @@ describe('EditionDetailNavComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
-            });
-
             it('... should contain no NavLinkGroupComponent yet', () => {
                 getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
+            });
+
+            it('... should contain one router outlet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
             });
         });
     });
@@ -112,6 +112,14 @@ describe('EditionDetailNavComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `editionDetailNavLinks` is not available', () => {
+                editionStateService.updateSelectedEditionComplex(null);
+                fixture.detectChanges();
+
+                expectToBe(component.editionDetailNavLinks(), null);
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
+            });
+
             it('... should contain one NavLinkGroupComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
             });

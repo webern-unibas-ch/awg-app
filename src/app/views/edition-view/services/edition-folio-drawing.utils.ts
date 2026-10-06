@@ -151,7 +151,7 @@ const CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET = 20;
  * Constant: CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET.
  *
  * It keeps the vertical offset of the label center
- * of content segments with a sigle addendum.
+ * of content segments with an addendum.
  */
 const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET = 5;
 
