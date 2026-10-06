@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange, inject } from '@angular/core';
+import { DebugElement, NgModule, SimpleChange, inject } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -22,25 +22,12 @@ import {
 import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
+import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 
 import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
-
-@Component({
-    selector: 'awg-view-handle-button-group',
-    template: '',
-    standalone: false,
-})
-class ViewHandleButtongGroupStubComponent {
-    @Input()
-    viewHandles: ViewHandle[] = [];
-    @Input({ required: true })
-    selectedViewType!: ViewHandleTypes;
-    @Output()
-    viewChangeRequest: EventEmitter<ViewHandleTypes> = new EventEmitter();
-}
 
 describe('SparqlEditorComponent (DONE)', () => {
     let component: SparqlEditorComponent;
@@ -84,9 +71,16 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, NgbDropdownModule, CodeMirrorComponent],
-            declarations: [SparqlEditorComponent, ViewHandleButtongGroupStubComponent],
+            imports: [
+                NgbAccordionModule,
+                NgbConfigModule,
+                NgbDropdownModule,
+                CodeMirrorComponent,
+                ViewHandleButtonGroupComponent,
+            ],
+            declarations: [SparqlEditorComponent],
         })
+            .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
@@ -334,7 +328,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
 
                     describe('View handle button group', () => {
-                        it('... should contain ViewHandleButtongGroupComponent (stubbed) in item header', () => {
+                        it('... should contain ViewHandleButtonGroupComponent (hollow) in item header', () => {
                             const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -342,32 +336,39 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 1
                             );
 
-                            getAndExpectDebugElementByDirective(
-                                itemHeaderDes[0],
-                                ViewHandleButtongGroupStubComponent,
-                                1,
-                                1
-                            );
+                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ViewHandleButtonGroupComponent, 1, 1);
                         });
 
-                        it('... should have selectedViewType===graph (according to querytype)', () => {
+                        it('... should pass down `selectedViewType` (graph according to querytype) to ViewHandleButtonGroupComponent (hollow)', () => {
                             const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
                                 1,
                                 1
                             );
-                            const viewHandleButtongGroupDes = getAndExpectDebugElementByDirective(
+                            const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
                                 itemHeaderDes[0],
-                                ViewHandleButtongGroupStubComponent,
+                                ViewHandleButtonGroupComponent,
                                 1,
                                 1
                             );
-                            const viewHandleButtongGroupCmp = viewHandleButtongGroupDes[0].injector.get(
-                                ViewHandleButtongGroupStubComponent
-                            ) as ViewHandleButtongGroupStubComponent;
+                            const viewHandleButtonGroupCmp =
+                                viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
 
-                            expectToBe(viewHandleButtongGroupCmp.selectedViewType, ViewHandleTypes.GRAPH);
+                            expectToBe(viewHandleButtonGroupCmp.selectedViewType(), ViewHandleTypes.GRAPH);
+                        });
+
+                        it('... should pass down `viewHandles` to ViewHandleButtonGroupComponent (hollow)', () => {
+                            const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
+                                compDe,
+                                ViewHandleButtonGroupComponent,
+                                1,
+                                1
+                            );
+                            const viewHandleButtonGroupCmp =
+                                viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
+
+                            expectToEqual(viewHandleButtonGroupCmp.viewHandles(), expectedViewHandles);
                         });
                     });
 
@@ -831,7 +832,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 describe('View handle button group', () => {
-                    it('... should contain no ViewHandleButtongGroupComponent (stubbed) in item header', () => {
+                    it('... should contain no ViewHandleButtonGroupComponent (hollow) in item header', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -839,12 +840,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(
-                            itemHeaderDes[0],
-                            ViewHandleButtongGroupStubComponent,
-                            0,
-                            0
-                        );
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ViewHandleButtonGroupComponent, 0, 0);
                     });
                 });
 
@@ -1349,18 +1345,17 @@ describe('SparqlEditorComponent (DONE)', () => {
                     1
                 );
 
-                // ViewHandleButtongGroupComponent debug elements
-                const viewHandleButtongGroupDes = getAndExpectDebugElementByDirective(
+                // ViewHandleButtonGroupComponent (hollow) debug elements
+                const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
                     itemHeaderDes[0],
-                    ViewHandleButtongGroupStubComponent,
+                    ViewHandleButtonGroupComponent,
                     1,
                     1
                 );
-                const viewHandleButtongGroupCmp = viewHandleButtongGroupDes[0].injector.get(
-                    ViewHandleButtongGroupStubComponent
-                ) as ViewHandleButtongGroupStubComponent;
+                const viewHandleButtonGroupCmp =
+                    viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
 
-                viewHandleButtongGroupCmp.viewChangeRequest.emit(ViewHandleTypes.GRAPH);
+                viewHandleButtonGroupCmp.viewChangeRequest.emit(ViewHandleTypes.GRAPH);
 
                 expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
             });

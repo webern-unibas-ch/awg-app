@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
 
@@ -207,6 +208,19 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
             });
 
+            it('... should emit the view type by click on a label', () => {
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
+
+                expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
+            });
+
             it('... should display a visually hidden `{type} view` text in the label elements', () => {
                 const spanDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -222,17 +236,20 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain as many icon elements in div.btn-group > label as viewHandles given', () => {
-                const iconDes = getAndExpectDebugElementByCss(
+            it('... should display the viewHandle icon in each label element', () => {
+                const labelDes = getAndExpectDebugElementByCss(
                     compDe,
-                    `${btnGroupSelector} > label > fa-icon`,
+                    `${btnGroupSelector} > label`,
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
-                expect(iconDes[0].children[0].classes['fa-diagram-project']).toBeTruthy();
-                expect(iconDes[1].children[0].classes['fa-table']).toBeTruthy();
-                expect(iconDes[2].children[0].classes['fa-grip']).toBeTruthy();
+                labelDes.forEach((labelDe, i) => {
+                    const faIconDes = getAndExpectDebugElementByDirective(labelDe, FaIconComponent, 1, 1);
+                    const faIconIns = faIconDes[0].injector.get(FaIconComponent);
+
+                    expectToEqual(faIconIns.icon(), expectedViewHandles[i].icon);
+                });
             });
 
             it('... should display tooltip with `{type} view` for each view handle', () => {
@@ -267,19 +284,6 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     getInputEls()[2].dispatchEvent(new Event('change'));
 
                     expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRID);
-                });
-
-                it('... should emit the view type by click on a label', () => {
-                    const labelDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        `${btnGroupSelector} > label`,
-                        expectedViewHandles.length,
-                        expectedViewHandles.length
-                    );
-
-                    (labelDes[1].nativeElement as HTMLLabelElement).click();
-
-                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
                 });
             });
         });

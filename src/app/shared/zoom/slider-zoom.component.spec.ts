@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -35,7 +34,7 @@ describe('SliderZoomComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, SliderZoomComponent],
+            imports: [SliderZoomComponent],
         }).compileComponents();
     });
 
