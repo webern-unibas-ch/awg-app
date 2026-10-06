@@ -171,13 +171,13 @@ const CONTENT_SEGMENT_MAX_GAP_SHARE = 0.3;
 type ValidFolioContent = FolioContent & { segments: FolioSegment[] };
 
 /**
- * Interface: SystemsCalculation.
+ * Interface: FolioSystemsLayout.
  *
  * The calculated systems of a folio together with
  * the horizontal dimensions of the systems area and the gap between two systems
  * (needed for the content segments).
  */
-interface SystemsCalculation {
+interface FolioSystemsLayout {
     /**
      * The calculated systems of the folio.
      */
@@ -298,13 +298,13 @@ function calculateSheet(
  * @param {FolioSettings} folioSettings The given folio settings.
  * @param {FolioSvgSheet} sheet The given calculated sheet.
  * @param {Folio} folio The given folio.
- * @returns {SystemsCalculation} The calculated systems with the horizontal dimensions of the systems area.
+ * @returns {FolioSystemsLayout} The calculated systems layout (systems, horizontal dimensions of the systems area and gap).
  */
 function calculateSystems(
     { formatX, formatY, factor }: FolioSettings,
     sheet: FolioSvgSheet,
     folio: Folio
-): SystemsCalculation {
+): FolioSystemsLayout {
     const numberOfSystems = folio.systems ? Number.parseInt(folio.systems, 10) : 0;
     const sheetWidth = formatX * factor;
     const sheetHeight = formatY * factor;
@@ -372,7 +372,7 @@ function calculateSystems(
  * It calculates the x value of the start or end vertices of a content segment.
  *
  * @param {FolioSegment} segment The given segment of the folio content.
- * @param {SystemsCalculation} systemsCalculation The given calculated systems.
+ * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentSplit The given segment split.
  * @param {number} offsetCorrection The given (adjusted) offset correction.
  * @param {boolean} isStart The given flag if the x value is for the start.
@@ -380,7 +380,7 @@ function calculateSystems(
  */
 function calculateContentSegmentX(
     segment: FolioSegment,
-    { startX, width: systemsWidth }: SystemsCalculation,
+    { startX, width: systemsWidth }: FolioSystemsLayout,
     segmentSplit: number,
     offsetCorrection: number,
     isStart: boolean
@@ -443,27 +443,27 @@ function calculateContentSegmentY(
  * It calculates a content segment (polygon vertices, label and its center) of a given valid folio content.
  *
  * @param {ValidFolioContent} content The given valid folio content.
- * @param {SystemsCalculation} systemsCalculation The given calculated systems.
+ * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentOffsetCorrection The given segment offset correction.
  * @returns {FolioSvgContentSegment} The calculated content segment.
  */
 function calculateContentSegment(
     content: ValidFolioContent,
-    systemsCalculation: SystemsCalculation,
+    folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
     const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
-    const { systems } = systemsCalculation;
+    const { systems } = folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
     const offsetCorrection = segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
     const segmentSplit = content.segmentSplit ?? 1;
     const segment = content.segments[0];
 
-    const startX = calculateContentSegmentX(segment, systemsCalculation, segmentSplit, offsetCorrection, true);
-    const endX = calculateContentSegmentX(segment, systemsCalculation, segmentSplit, offsetCorrection, false);
+    const startX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
+    const endX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
     // Limit the vertical padding by the gap between two systems, so that the segments keep apart
-    const verticalPadding = Math.min(offsetCorrection, systemsCalculation.gap * CONTENT_SEGMENT_MAX_GAP_SHARE);
+    const verticalPadding = Math.min(offsetCorrection, folioSystemsLayout.gap * CONTENT_SEGMENT_MAX_GAP_SHARE);
     const startY = calculateContentSegmentY(segment, systems, verticalPadding, true);
     const endY = calculateContentSegmentY(segment, systems, verticalPadding, false);
 
@@ -512,15 +512,15 @@ export function calculateFolioSvgData(
     const { factor, formatX, formatY, initialOffsetX, initialOffsetY } = folioSettings;
 
     const sheet = calculateSheet(folioSettings, folio);
-    const systemsCalculation = calculateSystems(folioSettings, sheet, folio);
-    const numberOfSystems = systemsCalculation.systems.lines.length;
+    const folioSystemsLayout = calculateSystems(folioSettings, sheet, folio);
+    const numberOfSystems = folioSystemsLayout.systems.lines.length;
 
     return {
         viewBox: new ViewBox((formatX + 2 * initialOffsetX) * factor, (formatY + 2 * initialOffsetY) * factor),
         sheet,
-        systems: systemsCalculation.systems,
+        systems: folioSystemsLayout.systems,
         contentSegments: folio.content
             .filter(content => isValidFolioContent(content, numberOfSystems))
-            .map(content => calculateContentSegment(content, systemsCalculation, segmentOffsetCorrection)),
+            .map(content => calculateContentSegment(content, folioSystemsLayout, segmentOffsetCorrection)),
     };
 }
