@@ -1,33 +1,15 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+
+import { TableComponent } from '@awg-shared/table/table.component';
 
 import { QuerySelectResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
-
-@Component({
-    selector: 'awg-table',
-    template: '',
-    standalone: false,
-})
-class TableStubComponent {
-    @Input()
-    tableTitle = '';
-    @Input()
-    headerInputData: string[] = [];
-    @Input()
-    rowInputData: any[] = [];
-    @Output()
-    clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
-}
 
 describe('SparqlTableComponent (DONE)', () => {
     let component: SparqlTableComponent;
@@ -42,9 +24,11 @@ describe('SparqlTableComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbPaginationModule],
-            declarations: [SparqlTableComponent, TableStubComponent],
-        }).compileComponents();
+            imports: [TableComponent],
+            declarations: [SparqlTableComponent],
+        })
+            .overrideComponent(TableComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -85,8 +69,8 @@ describe('SparqlTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should not display TableComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, TableStubComponent, 0, 0);
+            it('... should not display TableComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, TableComponent, 0, 0);
             });
         });
     });
@@ -105,29 +89,29 @@ describe('SparqlTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one TableComponent (stubbed) if results are available', () => {
-                getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
+            it('... should contain one TableComponent (hollow) if results are available', () => {
+                getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
             });
 
-            it('... should pass down `tableTitle` to table component', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+            it('... should pass down `tableTitle` to TableComponent (hollow)', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
-                expectToBe(tableCmp.tableTitle, expectedTableTitle);
+                expectToBe(tableCmp.tableTitle(), expectedTableTitle);
             });
 
-            it('... should pass down `headerInputData` to table component', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+            it('... should pass down `headerInputData` to TableComponent (hollow)', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
-                expectToEqual(tableCmp.headerInputData, expectedQueryResult.head.vars);
+                expectToEqual(tableCmp.headerInputData(), expectedQueryResult.head.vars);
             });
 
-            it('... should pass down `rowInputData` to table component', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+            it('... should pass down `rowInputData` to TableComponent (hollow)', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
-                expectToEqual(tableCmp.rowInputData, expectedQueryResult.body.bindings);
+                expectToEqual(tableCmp.rowInputData(), expectedQueryResult.body.bindings);
             });
         });
 
@@ -136,9 +120,9 @@ describe('SparqlTableComponent (DONE)', () => {
                 expect(component.onTableNodeClick).toBeDefined();
             });
 
-            it('... should trigger on clickedTableValueRequest event from TableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+            it('... should trigger on clickedTableValueRequest event from TableComponent (hollow)', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
                 const expectedUri = 'example:Test';
                 tableCmp.clickedTableValueRequest.emit(expectedUri);
@@ -147,19 +131,19 @@ describe('SparqlTableComponent (DONE)', () => {
             });
 
             it('... should not emit anything if no URI is provided', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
                 // Node is undefined
-                tableCmp.clickedTableValueRequest.emit(undefined);
+                tableCmp.clickedTableValueRequest.emit(undefined as unknown as string);
 
                 expectSpyCall(tableClickSpy, 1, undefined);
                 expectSpyCall(emitSpy, 0);
             });
 
             it('... should emit provided URI on click', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;
+                const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(TableComponent);
 
                 const expectedUri = 'example:Test';
                 tableCmp.clickedTableValueRequest.emit(expectedUri);

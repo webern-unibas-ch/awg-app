@@ -1,50 +1,37 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
+
+import { NgbPagination, NgbPaginationPages } from '@ng-bootstrap/ng-bootstrap/pagination';
 
 /**
  * The TablePagination component.
  *
- * It contains hte pagination panel of the configurable table
- * that is provided via the {@link SharedModule}.
+ * It contains the pagination panel of the {@link TableComponent}
+ * with an input field to select a page directly.
  */
 @Component({
     selector: 'awg-table-pagination',
     templateUrl: './table-pagination.component.html',
     styleUrls: ['./table-pagination.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [NgbPagination, NgbPaginationPages],
 })
 export class TablePaginationComponent {
     /**
-     * Input variable: collectionSize.
+     * Readonly input signal: collectionSize.
      *
-     * It keeps the collectionSize of the pagination.
+     * It holds the number of items to paginate.
+     * @default 0
      */
-    @Input()
-    collectionSize = 0;
+    readonly collectionSize = input<number>(0);
 
     /**
-     * Input variable: page.
+     * Readonly model signal: page.
      *
-     * It keeps the page of the pagination.
+     * It holds the current page of the pagination.
+     * Changes are emitted via `pageChange`.
+     * @default 1
      */
-    @Input()
-    page = 0;
-
-    /**
-     * Output variable: pageChange.
-     *
-     * It keeps an event emitter for a change of the page number.
-     */
-    @Output()
-    pageChange: EventEmitter<number> = new EventEmitter();
-
-    /**
-     * Output variable: pageChangeRequest.
-     *
-     * It keeps an event emitter for a change of the page number.
-     */
-    @Output()
-    pageChangeRequest: EventEmitter<number> = new EventEmitter();
+    readonly page = model<number>(1);
 
     /**
      * Readonly variable: FILTER_PAG_REGEX.
@@ -58,42 +45,41 @@ export class TablePaginationComponent {
      *
      * It replaces all non-number input values with empty string.
      *
-     * @param {HTMLInputElement} input The given input.
+     * @param {HTMLInputElement} inputEl The given input element.
      *
-     * @returns {void} Replaces the input.value.
+     * @returns {void} Replaces the value of the input element.
      */
-    replaceNonNumberInput(input: HTMLInputElement): void {
-        input.value = input.value.replace(this.FILTER_PAG_REGEX, '');
+    replaceNonNumberInput(inputEl: HTMLInputElement): void {
+        inputEl.value = inputEl.value.replace(this.FILTER_PAG_REGEX, '');
     }
 
     /**
      * Public method: onPageChange.
      *
-     * It emits an event when the user changes the page of the pagination.
+     * It sets the given page on the page model signal.
      *
      * @param {number} newPage The given page.
      *
-     * @returns {void} Emits the event.
+     * @returns {void} Sets the page.
      */
     onPageChange(newPage: number): void {
         if (!newPage) {
             return;
         }
-        this.pageChange.emit(newPage);
-        this.pageChangeRequest.emit(newPage);
+        this.page.set(newPage);
     }
 
     /**
      * Public method: selectPage.
      *
-     * It selects a given page.
+     * It selects the page from a given input value.
+     * Values that cannot be parsed fall back to page 1.
      *
-     * @param {string} page The given page.
+     * @param {string} page The given input value.
      *
      * @returns {void} Selects the page.
      */
     selectPage(page: string): void {
-        this.page = Number.parseInt(page, 10) || 1;
-        this.onPageChange(this.page);
+        this.onPageChange(Number.parseInt(page, 10) || 1);
     }
 }

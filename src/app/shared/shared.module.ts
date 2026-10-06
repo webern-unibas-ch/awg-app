@@ -23,7 +23,6 @@ import { LicenseComponent } from './license/license.component';
 import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
-import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
@@ -34,10 +33,6 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 import { AbbrDirective } from './abbr/abbr.directive';
 import { CompileHtmlDirective } from './compile-html/compile-html.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
-
-//
-// Shared pipes
-import { OrderByPipe } from './order-by-pipe/order-by.pipe';
 
 /**
  * The shared module.
@@ -64,6 +59,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LogoComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
+        TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
@@ -71,7 +67,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         CompileHtmlDirective,
         ExternalLinkDirective,
     ],
-    declarations: [JsonViewerComponent, TableComponent, TablePaginationComponent, OrderByPipe],
+    declarations: [JsonViewerComponent],
     exports: [
         CommonModule,
         CodeMirrorComponent,
@@ -99,7 +95,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AbbrDirective,
         ExternalLinkDirective,
         CompileHtmlDirective,
-        OrderByPipe,
     ],
 })
 export class SharedModule {}

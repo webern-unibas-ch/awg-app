@@ -1,7 +1,7 @@
 <ngb-pagination
     class="d-flex justify-content-center cols-xs-2"
-    [(page)]="page"
-    [collectionSize]="collectionSize"
+    [page]="page()"
+    [collectionSize]="collectionSize()"
     [boundaryLinks]="true"
     (pageChange)="onPageChange($event)">
     <ng-template ngbPaginationPages let-page let-pages="pages">
