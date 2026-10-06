@@ -152,6 +152,14 @@ describe('TablePaginationComponent (DONE)', () => {
                 });
             });
 
+            it('... should not render custom pages item if pages are empty', async () => {
+                fixture.componentRef.setInput('collectionSize', 0);
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'input#paginationInput', 0, 0);
+            });
+
             it('... should contain one li.ngb-custom-pages-item with label, input and span', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
 

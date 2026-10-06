@@ -19,7 +19,9 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { TableRows } from './models/table-rows.model';
+import { ClickDirective } from '@awg-shared/click/click.directive';
+
+import { TableRows } from './table.model';
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
 import { TableComponent } from './table.component';
 import { TABLE_DEFAULT_PAGE_SIZE, TABLE_PAGE_SIZE_OPTIONS } from './table.utils';
@@ -140,7 +142,8 @@ describe('TableComponent (DONE)', () => {
             expectToBe(component.sortIcon(), faSortDown);
         });
 
-        it('... should have computed signals `filteredRows`, `sortedRows` and `paginatedRows` to hold empty arrays', () => {
+        it('... should have computed signals `totalRows`, `filteredRows`, `sortedRows` and `paginatedRows` to hold empty arrays', () => {
+            expectToEqual(component.totalRows(), []);
             expectToEqual(component.filteredRows(), []);
             expectToEqual(component.sortedRows(), []);
             expectToEqual(component.paginatedRows(), []);
@@ -200,6 +203,10 @@ describe('TableComponent (DONE)', () => {
             expectToEqual(component.sortState(), { key: 'column1', reverse: false });
         });
 
+        it('... should have computed signal `totalRows` to hold all rows', () => {
+            expectToEqual(component.totalRows(), expectedRowInputData);
+        });
+
         it('... should have computed signal `filteredRows` to hold all rows', () => {
             expectToEqual(component.filteredRows(), expectedRowInputData);
         });
@@ -216,6 +223,17 @@ describe('TableComponent (DONE)', () => {
 
                 expectToEqual(component.filteredRows(), newRows);
                 getBodyRowDes(3);
+            });
+
+            it('... should have computed signals `totalRows` and `filteredRows` to hold an empty array if `rowInputData` is missing', async () => {
+                fixture.componentRef.setInput('rowInputData', null as unknown as TableRows[]);
+                await detectChangesOnPush(fixture);
+
+                expectToEqual(component.totalRows(), []);
+                expectToEqual(component.filteredRows(), []);
+                expectToEqual(component.paginatedRows(), []);
+                expectToBe(getTitleEl().textContent.includes('(0 von 0 Ergebnissen)'), true);
+                getBodyRowDes(0);
             });
 
             it('... should have reset linked signal `sortState` when `headerInputData` changes', async () => {
@@ -309,6 +327,29 @@ describe('TableComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'button#pageSizeDropdownMenuBottom', 1, 1);
                 });
 
+                it('... should render the top panel before and the bottom panel after the table', () => {
+                    const hostChildren = Array.from((compDe.nativeElement as HTMLElement).children);
+
+                    expectToEqual(
+                        hostChildren.map(el => el.className.split(' ')[0] || el.tagName.toLowerCase()),
+                        ['form-group', 'awg-pagination', 'table', 'awg-pagination']
+                    );
+                });
+
+                it('... should label each dropdown menu by the toggle of its own panel', () => {
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
+
+                    ['Top', 'Bottom'].forEach((position, i) => {
+                        getAndExpectDebugElementByCss(panelDes[i], `button#pageSizeDropdownMenu${position}`, 1, 1);
+                        const menuDes = getAndExpectDebugElementByCss(panelDes[i], 'div.dropdown-menu', 1, 1);
+
+                        expectToBe(
+                            menuDes[0].nativeElement.getAttribute('aria-labelledby'),
+                            `pageSizeDropdownMenu${position}`
+                        );
+                    });
+                });
+
                 it('... should display the page size in the dropdown toggle', () => {
                     const btnDes = getAndExpectDebugElementByCss(compDe, 'button.awg-pagesize-dropdown-button', 2, 2);
 
@@ -356,16 +397,16 @@ describe('TableComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(thDes[2], FaIconComponent, 0, 0);
                 });
 
-                it('... should trigger `onSort()` by click on a header cell', () => {
-                    (getHeaderCellDes()[1].nativeElement as HTMLTableCellElement).click();
-
-                    expectSpyCall(onSortSpy, 1, 'column2');
+                it('... should have `awgClick` on each header cell', () => {
+                    getHeaderCellDes().forEach(thDe => {
+                        expect(thDe.injector.get(ClickDirective)).toBeTruthy();
+                    });
                 });
 
-                it('... should trigger `onSort()` by keydown on a header cell', () => {
-                    getHeaderCellDes()[2].nativeElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+                it('... should trigger `onSort()` with the header label on `awgClick` of a header cell', () => {
+                    getHeaderCellDes()[1].injector.get(ClickDirective).awgClick.emit(new Event('click'));
 
-                    expectSpyCall(onSortSpy, 1, 'column3');
+                    expectSpyCall(onSortSpy, 1, 'column2');
                 });
             });
 
@@ -395,6 +436,21 @@ describe('TableComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(tdDes[2], 'a', 0, 0);
                 });
 
+                it('... should display an empty span cell if a row has no value for a column (unbound variable)', async () => {
+                    const rows = createRows(1);
+                    delete rows[0]['column3'];
+                    fixture.componentRef.setInput('rowInputData', rows);
+                    await detectChangesOnPush(fixture);
+
+                    const tdDes = getAndExpectDebugElementByCss(getBodyRowDes(1)[0], 'td', 3, 3);
+                    getAndExpectDebugElementByCss(tdDes[2], 'a', 0, 0);
+                    const highlightDes = getAndExpectDebugElementByDirective(tdDes[2], NgbHighlight, 1, 1);
+
+                    // Angular's safe navigation (`cell?.label`) resolves to null in templates
+                    expect(highlightDes[0].injector.get(NgbHighlight).result).toBeNull();
+                    expectToBe(tdDes[2].nativeElement.textContent.trim(), '');
+                });
+
                 it('... should display an icon badge in search cells if an icon is given', async () => {
                     const rows = createRows(1);
                     rows[0]['column2'].icon = 'assets/img/test.png';
@@ -417,26 +473,34 @@ describe('TableComponent (DONE)', () => {
                     expectToBe(highlightCmp.term, 'C1R01');
                 });
 
-                it('... should trigger `onTableValueClick()` by click on a uri link', () => {
+                it('... should have `awgClick` on each uri link', () => {
                     const aDes = getAndExpectDebugElementByCss(compDe, 'tbody a[role="link"]', 10, 10);
 
-                    (aDes[0].nativeElement as HTMLAnchorElement).click();
-
-                    expectSpyCall(onTableValueClickSpy, 1, 'value:c1r01');
+                    aDes.forEach(aDe => {
+                        expect(aDe.injector.get(ClickDirective)).toBeTruthy();
+                    });
                 });
 
-                it('... should trigger `onTableValueClick()` by keyup.enter on a uri link', () => {
+                it('... should trigger `onTableValueClick()` with the cell value on `awgClick` of a uri link', () => {
                     const aDes = getAndExpectDebugElementByCss(compDe, 'tbody a[role="link"]', 10, 10);
 
-                    aDes[1].nativeElement.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+                    aDes[1].injector.get(ClickDirective).awgClick.emit(new Event('click'));
 
                     expectSpyCall(onTableValueClickSpy, 1, 'value:c1r02');
                 });
 
-                it('... should trigger `onTableRowClick()` by click on a row', () => {
-                    (getBodyRowDes(10)[0].nativeElement as HTMLTableRowElement).click();
+                it('... should have `awgClick` on each row', () => {
+                    getBodyRowDes(10).forEach(rowDe => {
+                        expect(rowDe.injector.get(ClickDirective)).toBeTruthy();
+                    });
+                });
 
-                    expectSpyCall(onTableRowClickSpy, 1);
+                it('... should trigger `onTableRowClick()` with the event on `awgClick` of a row', () => {
+                    const event = new Event('click');
+
+                    getBodyRowDes(10)[0].injector.get(ClickDirective).awgClick.emit(event);
+
+                    expectSpyCall(onTableRowClickSpy, 1, event);
                 });
             });
         });

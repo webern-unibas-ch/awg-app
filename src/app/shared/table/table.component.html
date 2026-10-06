@@ -2,7 +2,7 @@
     <div class="col-sm-4">
         <p>
             {{ tableTitle() }}<br />
-            ({{ filteredRows().length }} von {{ rowInputData().length }} Ergebnissen)
+            ({{ filteredRows().length }} von {{ totalRows().length }} Ergebnissen)
         </p>
     </div>
     <div class="col-sm-6">
@@ -40,13 +40,13 @@
 </ng-template>
 
 <!-- top pagination -->
-<ng-container *ngTemplateOutlet="paginationPanel; context: { position: 'Top' }" />
+<ng-container [ngTemplateOutlet]="paginationPanel" [ngTemplateOutletContext]="{ position: 'Top' }" />
 
 <table aria-label="Table for SPARQL query results" class="table table-striped">
     <thead>
         <tr>
             @for (headerLabel of headerInputData(); track headerLabel) {
-                <th scope="col" (click)="onSort(headerLabel)" (keydown)="onSort(headerLabel)" tabindex="0">
+                <th scope="col" (awgClick)="onSort(headerLabel)" tabindex="0">
                     {{ headerLabel }}&nbsp;
                     @if (headerLabel === sortState().key) {
                         <fa-icon [icon]="sortIcon()" />
@@ -57,16 +57,12 @@
     </thead>
     <tbody>
         @for (row of paginatedRows(); track row) {
-            <tr (click)="onTableRowClick($event)" (keydown)="onTableRowClick($event)" tabindex="0">
+            <tr (awgClick)="onTableRowClick($event)" tabindex="0">
                 @for (headerLabel of headerInputData(); track headerLabel) {
                     @let cell = row[headerLabel];
                     <td>
                         @if (cell?.type === 'uri') {
-                            <a
-                                (click)="onTableValueClick(cell.value)"
-                                (keyup.enter)="onTableValueClick(cell.value)"
-                                role="link"
-                                tabindex="0">
+                            <a (awgClick)="onTableValueClick(cell.value)" role="link" tabindex="0">
                                 <ngb-highlight [result]="cell.label" [term]="searchFilter()" />
                             </a>
                         } @else if (cell?.type === 'search') {
@@ -89,4 +85,4 @@
 </table>
 
 <!-- bottom pagination -->
-<ng-container *ngTemplateOutlet="paginationPanel; context: { position: 'Bottom' }" />
+<ng-container [ngTemplateOutlet]="paginationPanel" [ngTemplateOutletContext]="{ position: 'Bottom' }" />

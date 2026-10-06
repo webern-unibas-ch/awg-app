@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { TableRows } from './models/table-rows.model';
+import { TableRows } from './table.model';
 import {
     compareTableValues,
     filterTableRows,

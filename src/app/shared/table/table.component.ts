@@ -6,8 +6,10 @@ import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import { NgbHighlight } from '@ng-bootstrap/ng-bootstrap/typeahead';
 
-import { TableRows } from './models/table-rows.model';
+import { ClickDirective } from '@awg-shared/click/click.directive';
+
 import { TablePaginationComponent } from './table-pagination/table-pagination.component';
+import { TableRows, TableSortState } from './table.model';
 import {
     filterTableRows,
     paginateTableRows,
@@ -15,23 +17,6 @@ import {
     TABLE_DEFAULT_PAGE_SIZE,
     TABLE_PAGE_SIZE_OPTIONS,
 } from './table.utils';
-
-/**
- * The TableSortState interface.
- *
- * It describes the sort state of the table.
- */
-interface TableSortState {
-    /**
-     * The key (header label) to sort by.
-     */
-    key: string;
-
-    /**
-     * The flag for reverse sort order.
-     */
-    reverse: boolean;
-}
 
 /**
  * The Table component.
@@ -44,7 +29,14 @@ interface TableSortState {
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FaIconComponent, NgbDropdownModule, NgbHighlight, NgTemplateOutlet, TablePaginationComponent],
+    imports: [
+        ClickDirective,
+        FaIconComponent,
+        NgbDropdownModule,
+        NgbHighlight,
+        NgTemplateOutlet,
+        TablePaginationComponent,
+    ],
 })
 export class TableComponent {
     /**
@@ -132,11 +124,19 @@ export class TableComponent {
     readonly sortIcon = computed(() => (this.sortState().reverse ? faSortUp : faSortDown));
 
     /**
+     * Readonly computed signal: totalRows.
+     *
+     * It holds all rows of the table,
+     * or an empty array if no rows are given.
+     */
+    readonly totalRows = computed(() => this.rowInputData() ?? []);
+
+    /**
      * Readonly computed signal: filteredRows.
      *
      * It holds the rows filtered by the search filter.
      */
-    readonly filteredRows = computed(() => filterTableRows(this.rowInputData() ?? [], this.searchFilter()));
+    readonly filteredRows = computed(() => filterTableRows(this.totalRows(), this.searchFilter()));
 
     /**
      * Readonly computed signal: sortedRows.

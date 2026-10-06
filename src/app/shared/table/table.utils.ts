@@ -1,4 +1,4 @@
-import { TableRows } from './models/table-rows.model';
+import { TableRows } from './table.model';
 
 /**
  * Array constant: TABLE_PAGE_SIZE_OPTIONS.
