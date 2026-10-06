@@ -191,6 +191,9 @@
                             <a href="#EDITION_CATALOGUE_TYPE_CONSTANTS" title="src/app/views/edition-view/edition-routes.constants.ts" ><b>EDITION_CATALOGUE_TYPE_CONSTANTS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-routes.constants.ts)</a>
                         </li>
                         <li>
+                            <a href="#EDITION_DETAIL_ROUTES" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts" ><b>EDITION_DETAIL_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../edition-detail-nav.component.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EDITION_GENERAL_LINKS" title="src/app/views/edition-view/edition-links.constants.ts" ><b>EDITION_GENERAL_LINKS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-links.constants.ts)</a>
                         </li>
                         <li>
@@ -492,6 +495,9 @@
                         </li>
                         <li>
                             <a href="#w" title="src/polyfills.ts" ><b>w</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts" ><b></b>&nbsp;&nbsp;&nbsp;(src/.../edition-detail-nav.component.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -818,7 +824,7 @@ ensure that longer abbreviations are matched first.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-290-ga60f9e1c2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-291-g854b86c6b&#x27;</code>
                     </td>
                 </tr>
 
@@ -1095,6 +1101,14 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET.</p>
+<p>It keeps the vertical offset of the label center
+of content segments with an addendum.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1123,7 +1137,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Maximum share of the gap between two systems taken by the vertical padding of the content segments.</p>
+                    <div class="io-description"><p>Constant: CONTENT_SEGMENT_MAX_GAP_SHARE.</p>
+<p>It keeps the maximum share of the gap between two systems
+taken by the vertical padding of the content segments.</p>
 </div>
                 </td>
             </tr>
@@ -1155,7 +1171,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Constants for the calculation of the content segments.</p>
+                    <div class="io-description"><p>Constant: CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET.</p>
+<p>It keeps the vertical offset of content segments
+that are placed above or below a system.</p>
 </div>
                 </td>
             </tr>
@@ -1219,6 +1237,14 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: SYSTEM_LINE_SPACE_FACTOR.</p>
+<p>It keeps the space between two staff lines,
+relative to the folio factor.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1247,7 +1273,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Maximum share of the space per system taken by the staff lines (the rest keeps the systems apart).</p>
+                    <div class="io-description"><p>Constant: SYSTEM_MAX_STAFF_SHARE.</p>
+<p>It keeps the maximum share of the space per system taken by the staff lines
+(the rest keeps the systems apart).</p>
 </div>
                 </td>
             </tr>
@@ -1279,7 +1307,8 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Constants for the calculation of the systems.</p>
+                    <div class="io-description"><p>Constant: SYSTEM_NUMBER_OF_LINES.</p>
+<p>It keeps the number of staff lines per system.</p>
 </div>
                 </td>
             </tr>
@@ -1311,7 +1340,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Half the height of the digits, relative to the label font size (to center the labels at the middle line).</p>
+                    <div class="io-description"><p>Constant: SYSTEMS_LABEL_BASELINE_FACTOR.</p>
+<p>It keeps half the height of the digits, relative to the label font size
+(to center the labels at the middle line).</p>
 </div>
                 </td>
             </tr>
@@ -1343,7 +1374,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Maximum share of the space per system taken by the font size of the system labels.</p>
+                    <div class="io-description"><p>Constant: SYSTEMS_LABEL_FONT_SHARE.</p>
+<p>It keeps the maximum share of the space per system
+taken by the font size of the system labels.</p>
 </div>
                 </td>
             </tr>
@@ -1375,7 +1408,9 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Gap between the (right-aligned) system labels and the systems, relative to the label font size.</p>
+                    <div class="io-description"><p>Constant: SYSTEMS_LABEL_GAP_FACTOR.</p>
+<p>It keeps the gap between the (right-aligned) system labels and the systems,
+relative to the label font size.</p>
 </div>
                 </td>
             </tr>
@@ -1407,7 +1442,8 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Maximum font size of the system labels.</p>
+                    <div class="io-description"><p>Constant: SYSTEMS_LABEL_MAX_FONT_SIZE.</p>
+<p>It keeps the maximum font size of the system labels.</p>
 </div>
                 </td>
             </tr>
@@ -1437,6 +1473,14 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: SYSTEMS_LEFT_MARGIN_FACTOR.</p>
+<p>It keeps the left margin of the systems area,
+relative to the sheet width.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1463,6 +1507,14 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: SYSTEMS_RIGHT_MARGIN_FACTOR.</p>
+<p>It keeps the right margin of the systems area,
+relative to the sheet width.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1489,6 +1541,14 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: SYSTEMS_VERTICAL_MARGIN_FACTOR.</p>
+<p>It keeps the upper and lower margin of the systems area,
+relative to the sheet height.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1515,6 +1575,13 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: SYSTEMS_VERTICAL_MARGIN_OFFSET.</p>
+<p>It keeps the fixed offset added to the upper and lower margin of the systems area.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1541,6 +1608,13 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: TRADEMARK_HEIGHT.</p>
+<p>It keeps the height of the trademark.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1567,6 +1641,13 @@ ensure that longer abbreviations are matched first.</p>
                     </td>
                 </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: TRADEMARK_MARGIN.</p>
+<p>It keeps the margin between the trademark and the sheet edges.</p>
+</div>
+                </td>
+            </tr>
 
         </tbody>
     </table>
@@ -1595,7 +1676,8 @@ ensure that longer abbreviations are matched first.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Constants for the calculation of the trademark.</p>
+                    <div class="io-description"><p>Constant: TRADEMARK_WIDTH.</p>
+<p>It keeps the width of the trademark.</p>
 </div>
                 </td>
             </tr>
@@ -2146,6 +2228,75 @@ to store route constants of the editions.</p>
                     <div class="io-description"><p>The EDITION_TYPE_CONSTANTS class.</p>
 <p>It is used in the context of the edition view
 to store the route constants of the edition types.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EDITION_DETAIL_ROUTES"></a>
+                    <span class="name">
+                        <span ><b>EDITION_DETAIL_ROUTES</b></span>
+                        <a href="#EDITION_DETAIL_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, EDITION_GRAPH]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constant: EDITION_DETAIL_ROUTES.</p>
+<p>It keeps the edition detail routes shown in the nav.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name=""></a>
+                    <span class="name">
+                        <span ><b></b></span>
+                        <a href="#"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>EDITION_ROUTE_CONSTANTS</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Constants: EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, EDITION_GRAPH.</p>
+<p>They keep the edition detail routes destructured from the <a href="../miscellaneous/variables.html#EDITION_ROUTE_CONSTANTS">EDITION_ROUTE_CONSTANTS</a>.</p>
 </div>
                 </td>
             </tr>
@@ -6929,14 +7080,14 @@ on the keyboard (by a synthesized click on Enter or Space).</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[EditionComplexComponent, EditionDetailNavComponent]</code>
+                        <i>Default value : </i><code>[EditionComplexComponent]</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/EditionViewModule.html">EditionViewModule</a>:
-<a href="../components/EditionComplexComponent.html">EditionComplexComponent</a>, <a href="../components/EditionDetailNavComponent.html">EditionDetailNavComponent</a>.</p>
+<a href="../components/EditionComplexComponent.html">EditionComplexComponent</a>.</p>
 </div>
                 </td>
             </tr>

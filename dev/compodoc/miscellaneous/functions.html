@@ -314,7 +314,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>calculateContentSegment(content: <a href="../miscellaneous/typealiases.html#ValidFolioContent" target="_self">ValidFolioContent</a>, systemsCalculation: <a href="../interfaces/SystemsCalculation.html" target="_self">SystemsCalculation</a>, segmentOffsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>calculateContentSegment(content: <a href="../miscellaneous/typealiases.html#ValidFolioContent" target="_self">ValidFolioContent</a>, folioSystemsLayout: <a href="../interfaces/FolioSystemsLayout.html" target="_self">FolioSystemsLayout</a>, segmentOffsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -357,9 +357,9 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>systemsCalculation</td>
+                                                <td>folioSystemsLayout</td>
                                             <td>
-                                                            <code><a href="../interfaces/SystemsCalculation.html" target="_self" >SystemsCalculation</a></code>
+                                                            <code><a href="../interfaces/FolioSystemsLayout.html" target="_self" >FolioSystemsLayout</a></code>
                                             </td>
 
                                             <td>
@@ -368,7 +368,7 @@
 
 
                                             <td>
-                                                    <p>The given calculated systems.</p>
+                                                    <p>The given calculated systems layout.</p>
 
                                             </td>
                                         </tr>
@@ -416,7 +416,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>calculateContentSegmentX(segment: <a href="../interfaces/FolioSegment.html" target="_self">FolioSegment</a>, __namedParameters: {startX: <a href="../interfaces/SystemsCalculation.html" target="_self">SystemsCalculation</a>, systemsWidth: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>}, segmentSplit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, isStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>calculateContentSegmentX(segment: <a href="../interfaces/FolioSegment.html" target="_self">FolioSegment</a>, __namedParameters: {startX: <a href="../interfaces/FolioSystemsLayout.html" target="_self">FolioSystemsLayout</a>, systemsWidth: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>}, segmentSplit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offsetCorrection: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, isStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
@@ -461,7 +461,7 @@
                                         <tr>
                                                 <td>startX</td>
                                             <td>
-                                                            <code><a href="../interfaces/SystemsCalculation.html" target="_self" >SystemsCalculation</a></code>
+                                                            <code><a href="../interfaces/FolioSystemsLayout.html" target="_self" >FolioSystemsLayout</a></code>
                                             </td>
 
                                             <td>
@@ -1048,11 +1048,11 @@ within the systems area of its sheet.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/SystemsCalculation.html" target="_self" >SystemsCalculation</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/FolioSystemsLayout.html" target="_self" >FolioSystemsLayout</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The calculated systems with the horizontal dimensions of the systems area.</p>
+                                <p>The calculated systems layout (systems, horizontal dimensions of the systems area and gap).</p>
 
                             </div>
                 </td>
@@ -2440,7 +2440,7 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >null | undefined | unknown</a></code>
+                            <b>Returns : </b>    <code>null | undefined | unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -2506,7 +2506,7 @@ from the <a href="../miscellaneous/variables.html#EDITION_TRADEMARKS_DATA">EDITI
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>null | undefined | Record&lt;string | never&gt;</code>
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html" target="_self" >null | undefined | Record&lt;string | never&gt;</a></code>
 
                         </div>
                             <div class="io-description">
