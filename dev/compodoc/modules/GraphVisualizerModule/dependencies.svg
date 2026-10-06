@@ -24,17 +24,17 @@
 <title>cluster_GraphVisualizerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 2311,-268 2311,-70 8,-70"/>
 </g>
+<g id="clust12" class="cluster">
+<title>cluster_GraphVisualizerModule_imports</title>
+<polygon fill="none" stroke="black" points="1829,-78 1829,-130 2303,-130 2303,-78 1829,-78"/>
+</g>
 <g id="clust15" class="cluster">
 <title>cluster_GraphVisualizerModule_providers</title>
-<polygon fill="none" stroke="black" points="2079,-78 2079,-130 2303,-130 2303,-78 2079,-78"/>
+<polygon fill="none" stroke="black" points="1597,-78 1597,-130 1821,-130 1821,-78 1597,-78"/>
 </g>
 <g id="clust13" class="cluster">
 <title>cluster_GraphVisualizerModule_exports</title>
 <polygon fill="none" stroke="black" points="1036,-208 1036,-260 1230,-260 1230,-208 1036,-208"/>
-</g>
-<g id="clust12" class="cluster">
-<title>cluster_GraphVisualizerModule_imports</title>
-<polygon fill="none" stroke="black" points="1597,-78 1597,-130 2071,-130 2071,-78 1597,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_GraphVisualizerModule_declarations</title>
@@ -169,50 +169,50 @@
 <!-- SharedModule -->
 <g id="node11" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="2063.42,-122 2060.42,-126 2039.42,-126 2036.42,-122 1964.58,-122 1964.58,-86 2063.42,-86 2063.42,-122"/>
-<text text-anchor="middle" x="2014" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="2295.42,-122 2292.42,-126 2271.42,-126 2268.42,-122 2196.58,-122 2196.58,-86 2295.42,-86 2295.42,-122"/>
+<text text-anchor="middle" x="2246" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;GraphVisualizerModule -->
 <g id="edge10" class="edge">
 <title>SharedModule&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M2014,-122.04C2014,-143.66 2014,-177 2014,-177 2014,-177 1219.26,-177 1219.26,-177"/>
-<polygon fill="black" stroke="black" points="1219.26,-173.5 1209.26,-177 1219.26,-180.5 1219.26,-173.5"/>
+<path fill="none" stroke="black" d="M2246,-122.09C2246,-145.13 2246,-182 2246,-182 2246,-182 1219.06,-182 1219.06,-182"/>
+<polygon fill="black" stroke="black" points="1219.06,-178.5 1209.06,-182 1219.06,-185.5 1219.06,-178.5"/>
 </g>
 <!-- SliderZoomComponent -->
 <g id="node12" class="node">
 <title>SliderZoomComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="1947.21,-122 1944.21,-126 1923.21,-126 1920.21,-122 1798.79,-122 1798.79,-86 1947.21,-86 1947.21,-122"/>
-<text text-anchor="middle" x="1873" y="-99.8" font-family="Times,serif" font-size="14.00">SliderZoomComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="2179.21,-122 2176.21,-126 2155.21,-126 2152.21,-122 2030.79,-122 2030.79,-86 2179.21,-86 2179.21,-122"/>
+<text text-anchor="middle" x="2105" y="-99.8" font-family="Times,serif" font-size="14.00">SliderZoomComponent</text>
 </g>
 <!-- SliderZoomComponent&#45;&gt;GraphVisualizerModule -->
 <g id="edge11" class="edge">
 <title>SliderZoomComponent&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M1873,-122.22C1873,-142.37 1873,-172 1873,-172 1873,-172 1219.06,-172 1219.06,-172"/>
-<polygon fill="black" stroke="black" points="1219.06,-168.5 1209.06,-172 1219.06,-175.5 1219.06,-168.5"/>
+<path fill="none" stroke="black" d="M2105,-122.04C2105,-143.66 2105,-177 2105,-177 2105,-177 1219.27,-177 1219.27,-177"/>
+<polygon fill="black" stroke="black" points="1219.27,-173.5 1209.27,-177 1219.27,-180.5 1219.27,-173.5"/>
 </g>
 <!-- SparqlNoResultsComponent -->
 <g id="node13" class="node">
 <title>SparqlNoResultsComponent</title>
-<polygon fill="#8dd3c7" stroke="black" points="1781.21,-122 1778.21,-126 1757.21,-126 1754.21,-122 1604.79,-122 1604.79,-86 1781.21,-86 1781.21,-122"/>
-<text text-anchor="middle" x="1693" y="-99.8" font-family="Times,serif" font-size="14.00">SparqlNoResultsComponent</text>
+<polygon fill="#8dd3c7" stroke="black" points="2013.21,-122 2010.21,-126 1989.21,-126 1986.21,-122 1836.79,-122 1836.79,-86 2013.21,-86 2013.21,-122"/>
+<text text-anchor="middle" x="1925" y="-99.8" font-family="Times,serif" font-size="14.00">SparqlNoResultsComponent</text>
 </g>
 <!-- SparqlNoResultsComponent&#45;&gt;GraphVisualizerModule -->
 <g id="edge12" class="edge">
 <title>SparqlNoResultsComponent&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M1693,-122.22C1693,-140.83 1693,-167 1693,-167 1693,-167 1219.11,-167 1219.11,-167"/>
-<polygon fill="black" stroke="black" points="1219.11,-163.5 1209.11,-167 1219.11,-170.5 1219.11,-163.5"/>
+<path fill="none" stroke="black" d="M1925,-122.22C1925,-142.37 1925,-172 1925,-172 1925,-172 1219.3,-172 1219.3,-172"/>
+<polygon fill="black" stroke="black" points="1219.3,-168.5 1209.3,-172 1219.3,-175.5 1219.3,-168.5"/>
 </g>
 <!-- GraphVisualizerService -->
 <g id="node15" class="node">
 <title>GraphVisualizerService</title>
-<ellipse fill="#fdb462" stroke="black" cx="2191" cy="-104" rx="103.61" ry="18"/>
-<text text-anchor="middle" x="2191" y="-99.8" font-family="Times,serif" font-size="14.00">GraphVisualizerService</text>
+<ellipse fill="#fdb462" stroke="black" cx="1709" cy="-104" rx="103.61" ry="18"/>
+<text text-anchor="middle" x="1709" y="-99.8" font-family="Times,serif" font-size="14.00">GraphVisualizerService</text>
 </g>
 <!-- GraphVisualizerService&#45;&gt;GraphVisualizerModule -->
 <g id="edge14" class="edge">
 <title>GraphVisualizerService&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M2191,-122.09C2191,-145.13 2191,-182 2191,-182 2191,-182 1219.09,-182 1219.09,-182"/>
-<polygon fill="black" stroke="black" points="1219.09,-178.5 1209.09,-182 1219.09,-185.5 1219.09,-178.5"/>
+<path fill="none" stroke="black" d="M1709,-122.22C1709,-140.83 1709,-167 1709,-167 1709,-167 1219.19,-167 1219.19,-167"/>
+<polygon fill="black" stroke="black" points="1219.19,-163.5 1209.19,-167 1219.19,-170.5 1219.19,-163.5"/>
 </g>
 </g>
 </svg>
