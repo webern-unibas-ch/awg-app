@@ -23,7 +23,6 @@ import { LicenseComponent } from './license/license.component';
 import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
-import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
@@ -72,7 +71,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     declarations: [
         JsonViewerComponent,
-        RouterLinkButtonGroupComponent,
         TableComponent,
         TablePaginationComponent,
         ToastComponent,
@@ -99,7 +97,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LogoComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
-        RouterLinkButtonGroupComponent,
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,

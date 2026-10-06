@@ -1,43 +1,28 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { QueryParamsHandling } from '@angular/router';
+import { provideRouter, RouterOutlet } from '@angular/router';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
+import { NavLinkGroupComponent } from '@awg-shared/nav-link-group/nav-link-group.component';
+import { NavLink } from '@awg-shared/nav-link-group/nav-link.model';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
 // Helper function
-function getExpectedRouterLinkButtons(complex: EditionComplex): RouterLinkButton[] {
+function getExpectedNavLinks(complex: EditionComplex): NavLink[] {
     return [
         EDITION_ROUTE_CONSTANTS.EDITION_INTRO,
         EDITION_ROUTE_CONSTANTS.EDITION_SHEETS,
         EDITION_ROUTE_CONSTANTS.EDITION_REPORT,
         EDITION_ROUTE_CONSTANTS.EDITION_GRAPH,
-    ].map(routerLink => new RouterLinkButton(complex.baseRoute, routerLink.route, routerLink.short, false));
-}
-
-// Mock components
-@Component({
-    selector: 'awg-router-link-button-group',
-    template: '',
-    standalone: false,
-})
-class RouterLinkButtonGroupStubComponent {
-    @Input()
-    routerLinkButtons: RouterLinkButton[] = [];
-    @Input()
-    queryParamsHandling?: QueryParamsHandling = '';
-    @Output()
-    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
+    ].map(routerLink => new NavLink(complex.baseRoute, routerLink.route, routerLink.short, false));
 }
 
 describe('EditionDetailNavComponent (DONE)', () => {
@@ -47,13 +32,16 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     let editionStateService: EditionStateService;
 
-    let expectedRouterLinkButtons: RouterLinkButton[];
+    let expectedNavLinks: NavLink[];
     let expectedComplex: EditionComplex;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-        }).compileComponents();
+            imports: [EditionDetailNavComponent],
+            providers: [provideRouter([])],
+        })
+            .overrideComponent(NavLinkGroupComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -62,7 +50,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
         // Test data
         expectedComplex = EditionStateHelper.getComplex('op12');
-        expectedRouterLinkButtons = getExpectedRouterLinkButtons(expectedComplex);
+        expectedNavLinks = getExpectedNavLinks(expectedComplex);
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionDetailNavComponent);
@@ -81,19 +69,19 @@ describe('EditionDetailNavComponent (DONE)', () => {
             expectToBe(component.selectedEditionComplex(), null);
         });
 
-        it('... should have computed signal `editionRouterLinkButtons` to hold null', () => {
-            expectToBe(isSignal(component.editionRouterLinkButtons), true);
+        it('... should have computed signal `editionDetailNavLinks` to hold null', () => {
+            expectToBe(isSignal(component.editionDetailNavLinks), true);
 
-            expectToBe(component.editionRouterLinkButtons(), null);
+            expectToBe(component.editionDetailNavLinks(), null);
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain no NavLinkGroupComponent yet', () => {
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
             });
 
-            it('... should contain no RouterLinkButtonGroupComponent yet', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 0, 0);
+            it('... should contain one router outlet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
             });
         });
     });
@@ -110,35 +98,55 @@ describe('EditionDetailNavComponent (DONE)', () => {
             expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
-        it('... should have computed signal `editionRouterLinkButtons` to hold the expected buttons', () => {
-            expectToEqual(component.editionRouterLinkButtons(), expectedRouterLinkButtons);
+        it('... should have computed signal `editionDetailNavLinks` to hold the expected nav links', () => {
+            expectToEqual(component.editionDetailNavLinks(), expectedNavLinks);
         });
 
-        it('... should have re-computed signal `editionRouterLinkButtons` when complex changes', () => {
+        it('... should have recomputed signal `editionDetailNavLinks` when complex changes', () => {
             const newComplex = EditionStateHelper.getComplex('op25');
-            const newExpectedButtons = getExpectedRouterLinkButtons(newComplex);
+            const newExpectedNavLinks = getExpectedNavLinks(newComplex);
 
             editionStateService.updateSelectedEditionComplex(newComplex);
 
-            expectToEqual(component.editionRouterLinkButtons(), newExpectedButtons);
+            expectToEqual(component.editionDetailNavLinks(), newExpectedNavLinks);
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should render no content if `editionDetailNavLinks` is not available', () => {
+                editionStateService.updateSelectedEditionComplex(null);
+                fixture.detectChanges();
+
+                expectToBe(component.editionDetailNavLinks(), null);
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
             });
 
-            it('... should contain one RouterLinkButtonGroupComponent', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+            it('... should contain one NavLinkGroupComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
             });
 
-            it('... should pass down editionRouterLinkButtons to RouterLinkButtonGroupComponent', () => {
-                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const btnCmp = btnDes[0].injector.get(
-                    RouterLinkButtonGroupStubComponent
-                ) as RouterLinkButtonGroupStubComponent;
+            it('... should pass down `editionDetailNavLinks` to NavLinkGroupComponent (hollow)', () => {
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
 
-                expectToEqual(btnCmp.routerLinkButtons, expectedRouterLinkButtons);
+                expectToEqual(navLinkGroupCmp.navLinks(), expectedNavLinks);
+            });
+
+            it('... should pass down the updated nav links to NavLinkGroupComponent (hollow) when complex changes', () => {
+                const newComplex = EditionStateHelper.getComplex('op25');
+                editionStateService.updateSelectedEditionComplex(newComplex);
+                fixture.detectChanges();
+
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
+
+                expectToEqual(navLinkGroupCmp.navLinks(), getExpectedNavLinks(newComplex));
+            });
+
+            it('... should keep default `queryParamsHandling` in NavLinkGroupComponent (hollow)', () => {
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
+
+                expectToBe(navLinkGroupCmp.queryParamsHandling(), '');
             });
         });
     });

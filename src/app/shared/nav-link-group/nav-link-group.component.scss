@@ -1,11 +1,12 @@
-.awg-router-link-btn-group {
+.awg-nav-link-group {
     font-family: 'Droid Sans', sans-serif;
     font-size: 12px;
     letter-spacing: 1.5px;
     border-top: 1px solid #000;
 
-    div {
+    .awg-nav-link {
         float: left;
+        color: inherit;
         cursor: pointer;
         margin-right: 45px;
         padding-top: 5px;
@@ -13,6 +14,7 @@
 
         &:hover {
             color: #666;
+            border-bottom: none;
         }
     }
 

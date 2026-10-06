@@ -1,55 +1,61 @@
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
+import { NavLinkGroupComponent } from '@awg-shared/nav-link-group/nav-link-group.component';
+import { NavLink } from '@awg-shared/nav-link-group/nav-link.model';
+
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
- * The EditionOverview component.
+ * Constants: EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, EDITION_GRAPH.
+ *
+ * They keep the edition detail routes destructured from the {@link EDITION_ROUTE_CONSTANTS}.
+ */
+const { EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, EDITION_GRAPH } = EDITION_ROUTE_CONSTANTS;
+
+/**
+ * Constant: EDITION_DETAIL_ROUTES.
+ *
+ * It keeps the edition detail routes shown in the nav.
+ */
+const EDITION_DETAIL_ROUTES = [EDITION_INTRO, EDITION_SHEETS, EDITION_REPORT, EDITION_GRAPH];
+
+/**
+ * The EditionDetailNav component.
  *
  * It contains the overview section
  * of the edition view of the app
- * with a {@link RouterLinkButtonGroupComponent} and
+ * with a {@link NavLinkGroupComponent} and
  * another router outlet for the edition routes.
  */
 @Component({
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
     styleUrls: ['./edition-detail-nav.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NavLinkGroupComponent, RouterOutlet],
 })
 export class EditionDetailNavComponent {
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
     /**
      * Readonly signal: selectedEditionComplex.
      *
      * It holds the state of the selected edition complex.
      */
-    readonly selectedEditionComplex = this._editionStateService.selectedEditionComplex;
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 
     /**
-     * Readonly signal: editionRouterLinkButtons.
+     * Readonly computed signal: editionDetailNavLinks.
      *
-     * It computes the router link buttons based on the selected edition complex.
+     * It holds the nav links based on the selected edition complex.
      */
-    readonly editionRouterLinkButtons = computed(() => {
+    readonly editionDetailNavLinks = computed<NavLink[] | null>(() => {
         const complex = this.selectedEditionComplex();
 
         if (!complex) {
             return null;
         }
 
-        const route = EDITION_ROUTE_CONSTANTS;
-        const routerLinks = [route.EDITION_INTRO, route.EDITION_SHEETS, route.EDITION_REPORT, route.EDITION_GRAPH];
-
-        return routerLinks.map(
-            routerLink => new RouterLinkButton(complex.baseRoute, routerLink.route, routerLink.short, false)
-        );
+        return EDITION_DETAIL_ROUTES.map(({ route, short }) => new NavLink(complex.baseRoute, route, short, false));
     });
 }

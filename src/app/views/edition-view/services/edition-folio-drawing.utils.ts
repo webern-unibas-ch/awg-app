@@ -27,39 +27,140 @@ import { ViewBox } from '../models/view-box.model';
  */
 export const FOLIO_DEFAULT_NUMBER_OF_SYSTEMS = 18;
 
+// Constants for the calculation of the systems
+
 /**
- * Constants for the calculation of the systems.
+ * Constant: SYSTEM_NUMBER_OF_LINES.
+ *
+ * It keeps the number of staff lines per system.
  */
 const SYSTEM_NUMBER_OF_LINES = 5;
+
+/**
+ * Constant: SYSTEM_LINE_SPACE_FACTOR.
+ *
+ * It keeps the space between two staff lines,
+ * relative to the folio factor.
+ */
 const SYSTEM_LINE_SPACE_FACTOR = 1.5;
-/** Maximum share of the space per system taken by the staff lines (the rest keeps the systems apart). */
+
+/**
+ * Constant: SYSTEM_MAX_STAFF_SHARE.
+ *
+ * It keeps the maximum share of the space per system taken by the staff lines
+ * (the rest keeps the systems apart).
+ */
 const SYSTEM_MAX_STAFF_SHARE = 0.6;
+
+/**
+ * Constant: SYSTEMS_LEFT_MARGIN_FACTOR.
+ *
+ * It keeps the left margin of the systems area,
+ * relative to the sheet width.
+ */
 const SYSTEMS_LEFT_MARGIN_FACTOR = 0.13;
+
+/**
+ * Constant: SYSTEMS_RIGHT_MARGIN_FACTOR.
+ *
+ * It keeps the right margin of the systems area,
+ * relative to the sheet width.
+ */
 const SYSTEMS_RIGHT_MARGIN_FACTOR = 1 / 12;
+
+/**
+ * Constant: SYSTEMS_VERTICAL_MARGIN_FACTOR.
+ *
+ * It keeps the upper and lower margin of the systems area,
+ * relative to the sheet height.
+ */
 const SYSTEMS_VERTICAL_MARGIN_FACTOR = 0.05;
+
+/**
+ * Constant: SYSTEMS_VERTICAL_MARGIN_OFFSET.
+ *
+ * It keeps the fixed offset added to the upper and lower margin of the systems area.
+ */
 const SYSTEMS_VERTICAL_MARGIN_OFFSET = 25;
-/** Maximum font size of the system labels. */
+
+/**
+ * Constant: SYSTEMS_LABEL_MAX_FONT_SIZE.
+ *
+ * It keeps the maximum font size of the system labels.
+ */
 const SYSTEMS_LABEL_MAX_FONT_SIZE = 16;
-/** Maximum share of the space per system taken by the font size of the system labels. */
+
+/**
+ * Constant: SYSTEMS_LABEL_FONT_SHARE.
+ *
+ * It keeps the maximum share of the space per system
+ * taken by the font size of the system labels.
+ */
 const SYSTEMS_LABEL_FONT_SHARE = 0.8;
-/** Gap between the (right-aligned) system labels and the systems, relative to the label font size. */
+
+/**
+ * Constant: SYSTEMS_LABEL_GAP_FACTOR.
+ *
+ * It keeps the gap between the (right-aligned) system labels and the systems,
+ * relative to the label font size.
+ */
 const SYSTEMS_LABEL_GAP_FACTOR = 0.6;
-/** Half the height of the digits, relative to the label font size (to center the labels at the middle line). */
+
+/**
+ * Constant: SYSTEMS_LABEL_BASELINE_FACTOR.
+ *
+ * It keeps half the height of the digits, relative to the label font size
+ * (to center the labels at the middle line).
+ */
 const SYSTEMS_LABEL_BASELINE_FACTOR = 0.35;
 
-/**
- * Constants for the calculation of the trademark.
- */
-const TRADEMARK_WIDTH = 20;
-const TRADEMARK_HEIGHT = 30;
-const TRADEMARK_MARGIN = 10;
+// Constants for the calculation of the trademark
 
 /**
- * Constants for the calculation of the content segments.
+ * Constant: TRADEMARK_WIDTH.
+ *
+ * It keeps the width of the trademark.
+ */
+const TRADEMARK_WIDTH = 20;
+
+/**
+ * Constant: TRADEMARK_HEIGHT.
+ *
+ * It keeps the height of the trademark.
+ */
+const TRADEMARK_HEIGHT = 30;
+
+/**
+ * Constant: TRADEMARK_MARGIN.
+ *
+ * It keeps the margin between the trademark and the sheet edges.
+ */
+const TRADEMARK_MARGIN = 10;
+
+// Constants for the calculation of the content segments
+
+/**
+ * Constant: CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET.
+ *
+ * It keeps the vertical offset of content segments
+ * that are placed above or below a system.
  */
 const CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET = 20;
+
+/**
+ * Constant: CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET.
+ *
+ * It keeps the vertical offset of the label center
+ * of content segments with an addendum.
+ */
 const CONTENT_SEGMENT_LABEL_ADDENDUM_OFFSET = 5;
-/** Maximum share of the gap between two systems taken by the vertical padding of the content segments. */
+
+/**
+ * Constant: CONTENT_SEGMENT_MAX_GAP_SHARE.
+ *
+ * It keeps the maximum share of the gap between two systems
+ * taken by the vertical padding of the content segments.
+ */
 const CONTENT_SEGMENT_MAX_GAP_SHARE = 0.3;
 
 /**
@@ -70,16 +171,31 @@ const CONTENT_SEGMENT_MAX_GAP_SHARE = 0.3;
 type ValidFolioContent = FolioContent & { segments: FolioSegment[] };
 
 /**
- * Interface: SystemsCalculation.
+ * Interface: FolioSystemsLayout.
  *
  * The calculated systems of a folio together with
  * the horizontal dimensions of the systems area and the gap between two systems
  * (needed for the content segments).
  */
-interface SystemsCalculation {
+interface FolioSystemsLayout {
+    /**
+     * The calculated systems of the folio.
+     */
     systems: FolioSvgSystems;
+
+    /**
+     * The x value of the start of the systems area.
+     */
     startX: number;
+
+    /**
+     * The width of the systems area.
+     */
     width: number;
+
+    /**
+     * The gap between two systems (space per system without the staff lines).
+     */
     gap: number;
 }
 
@@ -182,13 +298,13 @@ function calculateSheet(
  * @param {FolioSettings} folioSettings The given folio settings.
  * @param {FolioSvgSheet} sheet The given calculated sheet.
  * @param {Folio} folio The given folio.
- * @returns {SystemsCalculation} The calculated systems with the horizontal dimensions of the systems area.
+ * @returns {FolioSystemsLayout} The calculated systems layout (systems, horizontal dimensions of the systems area and gap).
  */
 function calculateSystems(
     { formatX, formatY, factor }: FolioSettings,
     sheet: FolioSvgSheet,
     folio: Folio
-): SystemsCalculation {
+): FolioSystemsLayout {
     const numberOfSystems = folio.systems ? Number.parseInt(folio.systems, 10) : 0;
     const sheetWidth = formatX * factor;
     const sheetHeight = formatY * factor;
@@ -256,7 +372,7 @@ function calculateSystems(
  * It calculates the x value of the start or end vertices of a content segment.
  *
  * @param {FolioSegment} segment The given segment of the folio content.
- * @param {SystemsCalculation} systemsCalculation The given calculated systems.
+ * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentSplit The given segment split.
  * @param {number} offsetCorrection The given (adjusted) offset correction.
  * @param {boolean} isStart The given flag if the x value is for the start.
@@ -264,7 +380,7 @@ function calculateSystems(
  */
 function calculateContentSegmentX(
     segment: FolioSegment,
-    { startX, width: systemsWidth }: SystemsCalculation,
+    { startX, width: systemsWidth }: FolioSystemsLayout,
     segmentSplit: number,
     offsetCorrection: number,
     isStart: boolean
@@ -327,27 +443,27 @@ function calculateContentSegmentY(
  * It calculates a content segment (polygon vertices, label and its center) of a given valid folio content.
  *
  * @param {ValidFolioContent} content The given valid folio content.
- * @param {SystemsCalculation} systemsCalculation The given calculated systems.
+ * @param {FolioSystemsLayout} folioSystemsLayout The given calculated systems layout.
  * @param {number} segmentOffsetCorrection The given segment offset correction.
  * @returns {FolioSvgContentSegment} The calculated content segment.
  */
 function calculateContentSegment(
     content: ValidFolioContent,
-    systemsCalculation: SystemsCalculation,
+    folioSystemsLayout: FolioSystemsLayout,
     segmentOffsetCorrection: number
 ): FolioSvgContentSegment {
     const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
-    const { systems } = systemsCalculation;
+    const { systems } = folioSystemsLayout;
 
     // Dynamically adjust the offset correction based on the number of systems (reference: 18 systems)
     const offsetCorrection = segmentOffsetCorrection * (FOLIO_DEFAULT_NUMBER_OF_SYSTEMS / systems.lines.length);
     const segmentSplit = content.segmentSplit ?? 1;
     const segment = content.segments[0];
 
-    const startX = calculateContentSegmentX(segment, systemsCalculation, segmentSplit, offsetCorrection, true);
-    const endX = calculateContentSegmentX(segment, systemsCalculation, segmentSplit, offsetCorrection, false);
+    const startX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, true);
+    const endX = calculateContentSegmentX(segment, folioSystemsLayout, segmentSplit, offsetCorrection, false);
     // Limit the vertical padding by the gap between two systems, so that the segments keep apart
-    const verticalPadding = Math.min(offsetCorrection, systemsCalculation.gap * CONTENT_SEGMENT_MAX_GAP_SHARE);
+    const verticalPadding = Math.min(offsetCorrection, folioSystemsLayout.gap * CONTENT_SEGMENT_MAX_GAP_SHARE);
     const startY = calculateContentSegmentY(segment, systems, verticalPadding, true);
     const endY = calculateContentSegmentY(segment, systems, verticalPadding, false);
 
@@ -396,15 +512,15 @@ export function calculateFolioSvgData(
     const { factor, formatX, formatY, initialOffsetX, initialOffsetY } = folioSettings;
 
     const sheet = calculateSheet(folioSettings, folio);
-    const systemsCalculation = calculateSystems(folioSettings, sheet, folio);
-    const numberOfSystems = systemsCalculation.systems.lines.length;
+    const folioSystemsLayout = calculateSystems(folioSettings, sheet, folio);
+    const numberOfSystems = folioSystemsLayout.systems.lines.length;
 
     return {
         viewBox: new ViewBox((formatX + 2 * initialOffsetX) * factor, (formatY + 2 * initialOffsetY) * factor),
         sheet,
-        systems: systemsCalculation.systems,
+        systems: folioSystemsLayout.systems,
         contentSegments: folio.content
             .filter(content => isValidFolioContent(content, numberOfSystems))
-            .map(content => calculateContentSegment(content, systemsCalculation, segmentOffsetCorrection)),
+            .map(content => calculateContentSegment(content, folioSystemsLayout, segmentOffsetCorrection)),
     };
 }
