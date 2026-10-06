@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { LogoStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -28,10 +27,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [SparqlNoResultsComponent],
         })
-            .overrideComponent(SparqlNoResultsComponent, {
-                remove: { imports: [LogoComponent] },
-                add: { imports: [LogoStubComponent] },
-            })
+            .overrideComponent(LogoComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -96,20 +92,20 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 expectToBe(aEl3.textContent, expectedLogosData['sparql'].href);
             });
 
-            it('... should contain one LogoComponent (stubbed) in 4th paragraph', () => {
-                getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoStubComponent, 1, 1);
+            it('... should contain one LogoComponent (hollow) in 4th paragraph', () => {
+                getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoComponent, 1, 1);
             });
 
-            it('... should have default linkClass on LogoComponent', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 1, 1);
-                const logoCmp = logoDes[0].injector.get(LogoStubComponent) as LogoStubComponent;
+            it('... should have default linkClass on LogoComponent (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 1, 1);
+                const logoCmp = logoDes[0].injector.get(LogoComponent);
 
                 expectToBe(logoCmp.linkClass(), 'awg-logo-link');
             });
 
-            it('... should pass down `logoData` to LogoComponent in 4th paragraph', () => {
-                const logoDes = getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoStubComponent, 1, 1);
-                const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
+            it('... should pass down `logoData` to LogoComponent (hollow) in 4th paragraph', () => {
+                const logoDes = getAndExpectDebugElementByDirective(getParagraphDes()[3], LogoComponent, 1, 1);
+                const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
 
                 expectToBe(logoCmps.length, 1);
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['sparql']);

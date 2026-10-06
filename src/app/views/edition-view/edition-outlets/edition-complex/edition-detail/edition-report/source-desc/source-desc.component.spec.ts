@@ -1,7 +1,7 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import {
     expectToBe,
@@ -13,7 +13,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescItemComponent } from './source-desc-item/source-desc-item.component';
 import { SourceDescComponent } from './source-desc.component';
@@ -23,20 +22,14 @@ describe('SourceDescComponent', () => {
     let fixture: ComponentFixture<SourceDescComponent>;
     let compDe: DebugElement;
 
-    let mockNavigationService: Partial<EditionNavigationService>;
-
     let expectedSourceDescListData: SourceDescList;
 
     beforeEach(async () => {
-        // Mock services
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [SourceDescComponent, SourceDescItemComponent],
-            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceDescItemComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -71,7 +64,7 @@ describe('SourceDescComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('sourceDescListData', expectedSourceDescListData);
 
             // Trigger initial data binding
@@ -117,13 +110,13 @@ describe('SourceDescComponent', () => {
                 });
             });
 
-            it('... should contain one SourceDescItemComponent in each description div', () => {
+            it('... should contain one SourceDescItemComponent (hollow) in each description div', () => {
                 sourceDescDes.forEach(divDe => {
                     getAndExpectDebugElementByDirective(divDe, SourceDescItemComponent, 1, 1);
                 });
             });
 
-            it('... should pass down the source description to each SourceDescItemComponent', () => {
+            it('... should pass down the source description to each SourceDescItemComponent (hollow)', () => {
                 sourceDescDes.forEach((divDe, index) => {
                     const itemDes = getAndExpectDebugElementByDirective(divDe, SourceDescItemComponent, 1, 1);
                     const itemCmp = itemDes[0].injector.get(SourceDescItemComponent);

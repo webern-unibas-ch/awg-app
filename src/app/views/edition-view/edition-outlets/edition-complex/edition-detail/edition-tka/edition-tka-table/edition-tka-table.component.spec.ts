@@ -139,7 +139,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('displayedCommentary', structuredClone(expectedCommentary));
             fixture.componentRef.setInput('id', expectedComplexId);
             fixture.componentRef.setInput('isRowtable', expectedIsRowTable);

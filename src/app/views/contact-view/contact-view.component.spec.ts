@@ -6,11 +6,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
-    ButtonScrollToTopStubComponent,
-    HeadingStubComponent,
-    MetaIdentifierBadgesStubComponent,
-} from '@testing/component-stubs';
-import {
     expectToBe,
     expectToContain,
     expectToEqual,
@@ -49,12 +44,9 @@ describe('ContactViewComponent (DONE)', () => {
             imports: [ContactViewComponent],
             providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
         })
-            .overrideComponent(ContactViewComponent, {
-                remove: { imports: [ButtonScrollToTopComponent, HeadingComponent, MetaIdentifierBadgesComponent] },
-                add: {
-                    imports: [ButtonScrollToTopStubComponent, HeadingStubComponent, MetaIdentifierBadgesStubComponent],
-                },
-            })
+            .overrideComponent(ButtonScrollToTopComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(HeadingComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(MetaIdentifierBadgesComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -120,22 +112,17 @@ describe('ContactViewComponent (DONE)', () => {
                 getContactViewDes();
             });
 
-            it('... should contain one ScrollToTop component (stubbed) in `div.awg-contact-view`', () => {
-                getAndExpectDebugElementByDirective(getContactViewDes()[0], ButtonScrollToTopStubComponent, 1, 1);
+            it('... should contain one ScrollToTop component (hollow) in `div.awg-contact-view`', () => {
+                getAndExpectDebugElementByDirective(getContactViewDes()[0], ButtonScrollToTopComponent, 1, 1);
             });
 
-            it('... should contain 3 heading components (stubbed) in `div.awg-contact-view`', () => {
-                getAndExpectDebugElementByDirective(getContactViewDes()[0], HeadingStubComponent, 3, 3);
+            it('... should contain 3 HeadingComponents (hollow) in `div.awg-contact-view`', () => {
+                getAndExpectDebugElementByDirective(getContactViewDes()[0], HeadingComponent, 3, 3);
             });
 
-            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
-                const headingDes = getAndExpectDebugElementByDirective(
-                    getContactViewDes()[0],
-                    HeadingStubComponent,
-                    3,
-                    3
-                );
-                const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
+            it('... should throw when accessing HeadingComponent (hollow) inputs (`id` and `title`) due to missing initial data binding', () => {
+                const headingDes = getAndExpectDebugElementByDirective(getContactViewDes()[0], HeadingComponent, 3, 3);
+                const headingCmps = headingDes.map(de => de.injector.get(HeadingComponent));
 
                 headingCmps.forEach(headingCmp => {
                     expect(() => headingCmp.title()).toThrow();
@@ -180,9 +167,9 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct values to heading components (`id` and `title`)', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
-                const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
+            it('... should pass down the correct values to HeadingComponents (hollow) (`id` and `title`)', () => {
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingComponent, 3, 3);
+                const headingCmps = headingDes.map(de => de.injector.get(HeadingComponent));
 
                 expectToBe(headingCmps[0].id(), expectedCitationId);
                 expectToBe(headingCmps[0].title(), expectedCitationTitle);
@@ -214,15 +201,15 @@ describe('ContactViewComponent (DONE)', () => {
                 expectToContain(dateEl1.textContent, pipedToday);
             });
 
-            it('... should pass down `identifiers` to MetaIdentifierBadgesComponent for each developer', () => {
+            it('... should pass down `identifiers` to MetaIdentifierBadgesComponent (hollow) for each developer', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
                 const badgeDes = getAndExpectDebugElementByDirective(
                     divDes[0],
-                    MetaIdentifierBadgesStubComponent,
+                    MetaIdentifierBadgesComponent,
                     expectedContactMetaData.developers.length,
                     expectedContactMetaData.developers.length
                 );
-                const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesStubComponent));
+                const badgeCmps = badgeDes.map(de => de.injector.get(MetaIdentifierBadgesComponent));
 
                 badgeCmps.forEach((badgeCmp, i) => {
                     expectToEqual(badgeCmp.identifiers(), expectedContactMetaData.developers[i].identifiers);

@@ -31,11 +31,11 @@ import {
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 
+import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
 import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.component';
-import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 
 describe('EditionSheetsPanelComponent (DONE)', () => {
     let component: EditionSheetsPanelComponent;
@@ -136,7 +136,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
             getAndExpectDebugElementByCss(compDe, 'div#awg-edition-sheet-view > div.accordion-header', 1, 1);
 
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('isSheetFacetMinimized', false);
             fixture.componentRef.setInput('svgSheetsData', expectedSvgSheetsData);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);

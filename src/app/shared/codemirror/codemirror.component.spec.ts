@@ -81,7 +81,7 @@ describe('CodemirrorComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             component.mode = sparql;
             component.content = 'SELECT * WHERE { ?s ?p ?o }';
 

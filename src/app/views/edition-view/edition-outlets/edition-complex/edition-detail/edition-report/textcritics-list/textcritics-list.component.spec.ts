@@ -65,7 +65,12 @@ describe('TextcriticsListComponent (DONE)', () => {
                 NgbAccordionModule,
             ],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionDisclaimerWorkeditionsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaEvaluationsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaLabelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaTableComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
 
         // Disable ng-bootstrap animations
         TestBed.inject(NgbConfig).animation = false;
@@ -118,7 +123,7 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('textcriticsListData', structuredClone(expectedTextcriticsListData));
 
             // Trigger initial data binding
@@ -500,7 +505,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
 
                 describe('...  if evaluations array is empty', () => {
-                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaEvaluationsComponent', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent (hollow), but no EditionTkaEvaluationsComponent (hollow)', () => {
                         const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -540,7 +545,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
 
                 describe('...  if evaluations array is not empty', () => {
-                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent and EditionTkaEvaluationsComponent', () => {
+                    it('... should contain item body with div, small caps paragraph, first EditionTkaLabelComponent (hollow) and EditionTkaEvaluationsComponent (hollow)', () => {
                         const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -557,7 +562,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(divDes[0], EditionTkaEvaluationsComponent, 1, 1);
                     });
 
-                    it('... should pass down the correct values to first EditionTkaLabelComponent', () => {
+                    it('... should pass down the correct values to first EditionTkaLabelComponent (hollow)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
@@ -575,7 +580,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToBe(labelCmp.labelType(), 'evaluation');
                     });
 
-                    it('... should pass down the correct values to EditionTkaEvaluationsComponent', () => {
+                    it('... should pass down the correct values to EditionTkaEvaluationsComponent (hollow)', () => {
                         const evaluationsDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionTkaEvaluationsComponent,
@@ -594,7 +599,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
 
                 describe('...  if commmentary is an empty object', () => {
-                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent, but no EditionTkaTableComponent', () => {
+                    it('... should contain item body with div, small caps paragraph, EditionTkaLabelComponent (hollow), but no EditionTkaTableComponent (hollow)', () => {
                         const textcritics = expectedTextcriticsListData.textcritics[1];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -634,7 +639,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                 });
 
                 describe('...  if commentary is not empty', () => {
-                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent and EditionTkaTableComponent', () => {
+                    it('... should contain item body with div, small caps paragraph, second EditionTkaLabelComponent (hollow) and EditionTkaTableComponent (hollow)', () => {
                         const textcritics = expectedTextcriticsListData.textcritics[0];
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -651,7 +656,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableComponent, 1, 1);
                     });
 
-                    it('... should pass down the correct values to second EditionTkaLabelComponent', () => {
+                    it('... should pass down the correct values to second EditionTkaLabelComponent (hollow)', () => {
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             `div#${expectedTextcriticsListData.textcritics[0].id} > div.accordion-collapse > div.accordion-body`,
@@ -669,7 +674,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToBe(labelCmp.labelType(), 'commentary');
                     });
 
-                    it('... should pass down the correct values to EditionTkaTableComponent', () => {
+                    it('... should pass down the correct values to EditionTkaTableComponent (hollow)', () => {
                         const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableComponent, 1, 1);
                         const tableCmp = tableDes[0].injector.get(EditionTkaTableComponent) as EditionTkaTableComponent;
 
@@ -681,7 +686,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                         expectToEqual(tableCmp.isRowtable(), expectedTextcriticsListData.textcritics[0].rowtable);
                     });
 
-                    it('... should pass down false to EditionTkaTableComponent if rowtable is undefined', async () => {
+                    it('... should pass down false to EditionTkaTableComponent (hollow) if rowtable is undefined', async () => {
                         const textcriticsListDataWithNoRowtable = structuredClone(expectedTextcriticsListData);
                         textcriticsListDataWithNoRowtable.textcritics[0].rowtable = undefined;
 

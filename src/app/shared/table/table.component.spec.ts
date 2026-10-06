@@ -228,7 +228,7 @@ describe('TableComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             component.tableTitle = 'Table title';
             component.headerInputData = expectedHeaderInputData;
             component.rowInputData = expectedRowInputData;

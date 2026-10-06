@@ -5,7 +5,6 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { HeadingStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -36,10 +35,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             imports: [PageNotFoundViewComponent],
             providers: [provideRouter([])],
         })
-            .overrideComponent(PageNotFoundViewComponent, {
-                remove: { imports: [HeadingComponent] },
-                add: { imports: [HeadingStubComponent] },
-            })
+            .overrideComponent(HeadingComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -80,15 +76,15 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
             });
 
-            it('... should contain one `awg-heading` component in `div.awg-page-not-found-view`', () => {
+            it('... should contain one HeadingComponent (hollow) in `div.awg-page-not-found-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
             });
 
-            it('... should throw when accessing heading component inputs (`id` and `title`) due to missing initial data binding', () => {
+            it('... should throw when accessing HeadingComponent (hollow) inputs (`id` and `title`) due to missing initial data binding', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expect(() => headingCmp.title()).toThrow();
                 expect(() => headingCmp.id()).toThrow();
@@ -176,15 +172,15 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one `awg-heading` component in `div.awg-page-not-found-view`', () => {
+            it('... should contain one HeadingComponent (hollow) in `div.awg-page-not-found-view`', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to heading component (`id` and `title`)', () => {
+            it('... should pass down the correct values to HeadingComponent (hollow) (`id` and `title`)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-view', 1, 1);
-                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingDes = getAndExpectDebugElementByDirective(divDes[0], HeadingComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingComponent);
 
                 expectToBe(headingCmp.id(), expectedPageNotFoundViewId);
                 expectToBe(headingCmp.title(), expectedPageNotFoundViewTitle);

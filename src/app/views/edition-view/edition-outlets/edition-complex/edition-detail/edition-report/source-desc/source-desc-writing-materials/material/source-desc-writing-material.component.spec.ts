@@ -35,7 +35,10 @@ describe('SourceDescWritingMaterialComponent', () => {
                 SourceDescWritingTrademarkComponent,
                 SourceDescWritingWatermarkComponent,
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceDescWritingTrademarkComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescWritingWatermarkComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -96,7 +99,7 @@ describe('SourceDescWritingMaterialComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('material', expectedMaterial);
 
             // Trigger initial data binding
@@ -223,11 +226,11 @@ describe('SourceDescWritingMaterialComponent', () => {
             });
 
             describe('... trademark', () => {
-                it('... should contain one SourceDescWritingTrademarkComponent', () => {
+                it('... should contain one SourceDescWritingTrademarkComponent (hollow)', () => {
                     getAndExpectDebugElementByDirective(compDe, SourceDescWritingTrademarkComponent, 1, 1);
                 });
 
-                it('... should pass down the trademark to SourceDescWritingTrademarkComponent', () => {
+                it('... should pass down the trademark to SourceDescWritingTrademarkComponent (hollow)', () => {
                     const trademarkDes = getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescWritingTrademarkComponent,
@@ -241,11 +244,11 @@ describe('SourceDescWritingMaterialComponent', () => {
             });
 
             describe('... watermark', () => {
-                it('... should contain one SourceDescWritingWatermarkComponent', () => {
+                it('... should contain one SourceDescWritingWatermarkComponent (hollow)', () => {
                     getAndExpectDebugElementByDirective(compDe, SourceDescWritingWatermarkComponent, 1, 1);
                 });
 
-                it('... should pass down the watermark to SourceDescWritingWatermarkComponent', () => {
+                it('... should pass down the watermark to SourceDescWritingWatermarkComponent (hollow)', () => {
                     const watermarkDes = getAndExpectDebugElementByDirective(
                         compDe,
                         SourceDescWritingWatermarkComponent,

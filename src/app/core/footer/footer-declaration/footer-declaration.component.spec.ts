@@ -181,7 +181,19 @@ describe('FooterDeclarationComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render  version desc info in second paragraph', () => {
+            it('... should render no version content if `versionData` is not available', () => {
+                fixture.componentRef.setInput('pageMetaData', { ...expectedPageMetaData, awgAppVersion: '' });
+
+                fixture.detectChanges();
+
+                const versionDescDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-desc', 1, 1);
+
+                getAndExpectDebugElementByCss(versionDescDes[0], 'a', 0, 0);
+                getAndExpectDebugElementByCss(versionDescDes[0], '#awg-version', 0, 0);
+                getAndExpectDebugElementByCss(versionDescDes[0], '#awg-version-date', 0, 0);
+            });
+
+            it('... should render version desc info in second paragraph', () => {
                 const expectedVersion = expectedPageMetaData.awgAppVersion;
                 const datePipe = new DatePipe('de-DE');
                 const expectedVersionDate = datePipe.transform(

@@ -52,7 +52,9 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 { provide: ModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionFoliosViewerSvgComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -101,7 +103,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('folios', expectedFolios);
             fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
@@ -157,7 +159,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(gridDes[0], 'div.svgRow', 1, 1);
             });
 
-            it('... should contain one EditionFoliosViewerSvgComponent with bootstrap grid classes per folio', () => {
+            it('... should contain one EditionFoliosViewerSvgComponent (hollow) with bootstrap grid classes per folio', () => {
                 getFolioSvgDes(2).forEach(folioSvgDe => {
                     const classList = folioSvgDe.nativeElement.classList;
 
@@ -183,7 +185,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down `folio` and `selectedSvgSheet` to each EditionFoliosViewerSvgComponent', () => {
+            it('... should pass down `folio` and `selectedSvgSheet` to each EditionFoliosViewerSvgComponent (hollow)', () => {
                 getFolioSvgDes(2).forEach((folioSvgDe, index) => {
                     const folioSvgCmp = folioSvgDe.injector.get(EditionFoliosViewerSvgComponent);
 

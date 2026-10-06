@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { StatisticsProgressBarStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToContain,
@@ -28,10 +27,7 @@ describe('StatisticsOverallProgressComponent', () => {
         await TestBed.configureTestingModule({
             imports: [StatisticsOverallProgressComponent],
         })
-            .overrideComponent(StatisticsOverallProgressComponent, {
-                remove: { imports: [StatisticsProgressBarComponent] },
-                add: { imports: [StatisticsProgressBarStubComponent] },
-            })
+            .overrideComponent(StatisticsProgressBarComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -116,21 +112,21 @@ describe('StatisticsOverallProgressComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-statistics-overall-progress > div.card-body', 1, 1);
             });
 
-            it('... should contain one progress bar component (stubbed) in card body', () => {
+            it('... should contain one progress bar component (hollow) in card body', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
 
-                getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(cardBodyDes[0], StatisticsProgressBarComponent, 1, 1);
             });
 
             it('... should pass down the correct values (incl. progress rate) to progress bar component', () => {
                 const cardBodyDes = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 const progressBarDes = getAndExpectDebugElementByDirective(
                     cardBodyDes[0],
-                    StatisticsProgressBarStubComponent,
+                    StatisticsProgressBarComponent,
                     1,
                     1
                 );
-                const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
+                const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarComponent);
 
                 expectToEqual(progressBarCmp.config(), {
                     mode: 'percentage',

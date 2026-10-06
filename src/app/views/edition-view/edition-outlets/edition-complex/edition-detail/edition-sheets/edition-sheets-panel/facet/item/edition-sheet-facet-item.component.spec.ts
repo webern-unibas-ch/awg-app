@@ -147,7 +147,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         describe('... with svg sheet without partials', () => {
             beforeEach(() => {
-                // Simulate the parent setting the input properties
+                // Set the initial values for the signal inputs
                 fixture.componentRef.setInput('svgSheet', expectedSvgSheet);
                 fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
@@ -281,7 +281,7 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
 
         describe('... with svg sheet with partials', () => {
             beforeEach(() => {
-                // Simulate the parent setting the input properties
+                // Set the initial values for the signal inputs
                 fixture.componentRef.setInput('svgSheet', expectedSvgSheetWithPartials);
                 fixture.componentRef.setInput('selectedSvgSheet', expectedSelectionWithPartialA);
 

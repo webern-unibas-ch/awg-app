@@ -106,6 +106,18 @@ describe('NavbarItemComponent (DONE)', () => {
             vi.restoreAllMocks();
         });
 
+        describe('VIEW', () => {
+            it('... should render no nav link if `item` is not available', () => {
+                hostComponent.testItem = null as any;
+
+                hostFixture.detectChanges();
+
+                compDe = hostFixture.debugElement.query(By.directive(NavbarItemComponent));
+
+                getAndExpectDebugElementByCss(compDe, 'a.nav-link', 0, 0);
+            });
+        });
+
         const allNavbarItems = Object.values(NAVBAR_ITEMS);
         const dropdownStates = [false, true];
 

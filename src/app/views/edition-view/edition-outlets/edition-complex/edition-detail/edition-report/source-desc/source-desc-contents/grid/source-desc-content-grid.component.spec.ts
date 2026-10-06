@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -65,7 +64,11 @@ describe('SourceDescContentGridComponent', () => {
                 SourceDescContentGridComponent,
             ],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .overrideComponent(SourceDescContentFolioComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SourceDescContentSystemComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -127,7 +130,7 @@ describe('SourceDescContentGridComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('content', expectedContent);
 
             // Trigger initial data binding
@@ -275,7 +278,7 @@ describe('SourceDescContentGridComponent', () => {
             });
 
             describe('... folio label', () => {
-                it('... should contain one SourceDescContentFolioComponent in each folio cell', () => {
+                it('... should contain one SourceDescContentFolioComponent (hollow) in each folio cell', () => {
                     const folioDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-desc-content-grid-folio',
@@ -305,7 +308,7 @@ describe('SourceDescContentGridComponent', () => {
                     });
                 });
 
-                it('... should wrap each folio label in a ConditionalLinkComponent', () => {
+                it('... should wrap each folio label in a ConditionalLinkComponent (hollow)', () => {
                     const folioDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-desc-content-grid-folio',
@@ -440,7 +443,7 @@ describe('SourceDescContentGridComponent', () => {
                     });
                 });
 
-                it('... should contain one SourceDescContentSystemComponent per system in a system group', () => {
+                it('... should contain one SourceDescContentSystemComponent (hollow) per system in a system group', () => {
                     const groupDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-desc-content-grid-system-group',
@@ -453,7 +456,7 @@ describe('SourceDescContentGridComponent', () => {
                     });
                 });
 
-                it('... should contain two SourceDescContentSystemComponents per system group if two systems are given', async () => {
+                it('... should contain two SourceDescContentSystemComponents (hollow) per system group if two systems are given', async () => {
                     fixture.componentRef.setInput('content', expectedContentWithTwoSystems);
                     await detectChangesOnPush(fixture);
 
@@ -469,7 +472,7 @@ describe('SourceDescContentGridComponent', () => {
                     });
                 });
 
-                it('... should pass down the correct contentSystem to each SourceDescContentSystemComponent', () => {
+                it('... should pass down the correct contentSystem to each SourceDescContentSystemComponent (hollow)', () => {
                     const expectedSystems = expectedFolios.flatMap(folio => (folio.systemGroups ?? []).flat());
 
                     const systemDes = getAndExpectDebugElementByDirective(
@@ -527,20 +530,46 @@ describe('SourceDescContentGridComponent', () => {
                     expect(component.selectSvgSheet).toBeDefined();
                 });
 
-                describe('... should trigger on click', () => {
+                const getFolioLinkCmp = (index: number): ConditionalLinkComponent => {
+                    const folioDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-desc-content-grid-folio',
+                        expectedFolios.length,
+                        expectedFolios.length
+                    );
+                    const linkDes = getAndExpectDebugElementByDirective(
+                        folioDes[index],
+                        ConditionalLinkComponent,
+                        1,
+                        1
+                    );
+                    return linkDes[0].injector.get(ConditionalLinkComponent);
+                };
+
+                const getSystemCmp = (index: number): SourceDescContentSystemComponent => {
+                    const systemDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        SourceDescContentSystemComponent,
+                        7,
+                        7
+                    );
+                    return systemDes[index].injector.get(SourceDescContentSystemComponent);
+                };
+
+                describe('... should trigger when the ConditionalLinkComponent (hollow) of the folio is clicked', () => {
                     it.each([
                         {
-                            desc: 'on folio link',
+                            desc: 'as is',
                             getContent: () => expectedContent,
                             getExpectedComplexId: () => expectedComplexId,
                         },
                         {
-                            desc: 'on folio link with empty complexId if itemLinkTo is empty',
+                            desc: 'with empty complexId if itemLinkTo is empty',
                             getContent: () => expectedContentWithTwoSystems,
                             getExpectedComplexId: () => '',
                         },
                         {
-                            desc: 'on folio link with empty complexId if itemLinkTo is undefined',
+                            desc: 'with empty complexId if itemLinkTo is undefined',
                             getContent: () => ({ ...expectedContent, itemLinkTo: undefined }),
                             getExpectedComplexId: () => '',
                         },
@@ -557,9 +586,14 @@ describe('SourceDescContentGridComponent', () => {
                             folioCount,
                             folioCount
                         );
-                        const anchorDes = getAndExpectDebugElementByCss(folioDes[0], 'a', 1, 1);
+                        const linkDes = getAndExpectDebugElementByDirective(
+                            folioDes[0],
+                            ConditionalLinkComponent,
+                            1,
+                            1
+                        );
 
-                        await clickAndAwaitChanges(anchorDes[0], fixture);
+                        linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
 
                         expectSpyCall(selectSvgSheetSpy, 1, {
                             complexId: getExpectedComplexId(),
@@ -567,14 +601,29 @@ describe('SourceDescContentGridComponent', () => {
                         });
                     });
 
+                    it('... with empty sheetId and no navigation if folioLinkTo is undefined', async () => {
+                        fixture.componentRef.setInput('content', {
+                            ...expectedContent,
+                            folios: expectedFolios.map(folio => ({ ...folio, folioLinkTo: undefined })),
+                        });
+                        await detectChangesOnPush(fixture);
+
+                        getFolioLinkCmp(0).clicked.emit();
+
+                        expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: '' });
+                        expectSpyCall(serviceNavigateToSvgSheetSpy, 0);
+                    });
+                });
+
+                describe('... should trigger when a SourceDescContentSystemComponent (hollow) is clicked', () => {
                     it.each([
                         {
-                            desc: 'on system link',
+                            desc: 'as is',
                             getContent: () => expectedContent,
                             getExpectedComplexId: () => expectedComplexId,
                         },
                         {
-                            desc: 'on system link with empty complexId if itemLinkTo is undefined',
+                            desc: 'with empty complexId if itemLinkTo is undefined',
                             getContent: () => ({ ...expectedContent, itemLinkTo: undefined }),
                             getExpectedComplexId: () => '',
                         },
@@ -582,15 +631,7 @@ describe('SourceDescContentGridComponent', () => {
                         fixture.componentRef.setInput('content', getContent());
                         await detectChangesOnPush(fixture);
 
-                        const systemDes = getAndExpectDebugElementByDirective(
-                            compDe,
-                            SourceDescContentSystemComponent,
-                            7,
-                            7
-                        );
-                        const anchorDes = getAndExpectDebugElementByCss(systemDes[0], 'a', 1, 1);
-
-                        await clickAndAwaitChanges(anchorDes[0], fixture);
+                        getSystemCmp(0).clicked.emit();
 
                         expectSpyCall(selectSvgSheetSpy, 1, {
                             complexId: getExpectedComplexId(),
@@ -598,86 +639,48 @@ describe('SourceDescContentGridComponent', () => {
                         });
                     });
 
-                    describe('... on `clicked` output', () => {
-                        const getFolioLinkCmp = (index: number): ConditionalLinkComponent => {
-                            const folioDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div.awg-source-desc-content-grid-folio',
-                                expectedFolios.length,
-                                expectedFolios.length
-                            );
-                            const linkDes = getAndExpectDebugElementByDirective(
-                                folioDes[index],
-                                ConditionalLinkComponent,
-                                1,
-                                1
-                            );
-                            return linkDes[0].injector.get(ConditionalLinkComponent);
-                        };
+                    it.each([
+                        {
+                            desc: 'and navigate to its sheet',
+                            getContent: () => expectedContent,
+                            systemIndex: 1,
+                            expectedClickSheetId: 'test_id_2',
+                            expectedNavigationCalls: 1,
+                        },
+                        {
+                            desc: 'with empty sheetId and no navigation if linkTo is undefined',
+                            getContent: (): SourceDescContent => ({
+                                ...expectedContent,
+                                folios: expectedFolios.map((folio, folioIndex) => ({
+                                    ...folio,
+                                    systemGroups: folio.systemGroups?.map((systemGroup, groupIndex) =>
+                                        systemGroup.map((system, systemIndex) =>
+                                            folioIndex === 0 && groupIndex === 0 && systemIndex === 0
+                                                ? { ...system, linkTo: undefined }
+                                                : system
+                                        )
+                                    ),
+                                })),
+                            }),
+                            systemIndex: 0,
+                            expectedClickSheetId: '',
+                            expectedNavigationCalls: 0,
+                        },
+                    ])(
+                        `... $desc`,
+                        async ({ getContent, systemIndex, expectedClickSheetId, expectedNavigationCalls }) => {
+                            fixture.componentRef.setInput('content', getContent());
+                            await detectChangesOnPush(fixture);
 
-                        const getSystemCmp = (index: number): SourceDescContentSystemComponent => {
-                            const systemDes = getAndExpectDebugElementByDirective(
-                                compDe,
-                                SourceDescContentSystemComponent,
-                                7,
-                                7
-                            );
-                            return systemDes[index].injector.get(SourceDescContentSystemComponent);
-                        };
+                            getSystemCmp(systemIndex).clicked.emit();
 
-                        it.each([
-                            {
-                                desc: 'of SourceDescContentSystemComponent',
-                                getContent: () => expectedContent,
-                                getTargetCmp: () => getSystemCmp(1),
-                                expectedClickSheetId: 'test_id_2',
-                                expectedNavigationCalls: 1,
-                            },
-                            {
-                                desc: 'of SourceDescContentSystemComponent with empty sheetId if linkTo is undefined',
-                                getContent: (): SourceDescContent => ({
-                                    ...expectedContent,
-                                    folios: expectedFolios.map((folio, folioIndex) => ({
-                                        ...folio,
-                                        systemGroups: folio.systemGroups?.map((systemGroup, groupIndex) =>
-                                            systemGroup.map((system, systemIndex) =>
-                                                folioIndex === 0 && groupIndex === 0 && systemIndex === 0
-                                                    ? { ...system, linkTo: undefined }
-                                                    : system
-                                            )
-                                        ),
-                                    })),
-                                }),
-                                getTargetCmp: () => getSystemCmp(0),
-                                expectedClickSheetId: '',
-                                expectedNavigationCalls: 0,
-                            },
-                            {
-                                desc: 'of folio ConditionalLinkComponent with empty sheetId if folioLinkTo is undefined',
-                                getContent: (): SourceDescContent => ({
-                                    ...expectedContent,
-                                    folios: expectedFolios.map(folio => ({ ...folio, folioLinkTo: undefined })),
-                                }),
-                                getTargetCmp: () => getFolioLinkCmp(0),
-                                expectedClickSheetId: '',
-                                expectedNavigationCalls: 0,
-                            },
-                        ])(
-                            `... $desc`,
-                            async ({ getContent, getTargetCmp, expectedClickSheetId, expectedNavigationCalls }) => {
-                                fixture.componentRef.setInput('content', getContent());
-                                await detectChangesOnPush(fixture);
-
-                                getTargetCmp().clicked.emit();
-
-                                expectSpyCall(selectSvgSheetSpy, 1, {
-                                    complexId: expectedComplexId,
-                                    sheetId: expectedClickSheetId,
-                                });
-                                expectSpyCall(serviceNavigateToSvgSheetSpy, expectedNavigationCalls);
-                            }
-                        );
-                    });
+                            expectSpyCall(selectSvgSheetSpy, 1, {
+                                complexId: expectedComplexId,
+                                sheetId: expectedClickSheetId,
+                            });
+                            expectSpyCall(serviceNavigateToSvgSheetSpy, expectedNavigationCalls);
+                        }
+                    );
                 });
 
                 it('... should do nothing if no sheetId is provided', () => {

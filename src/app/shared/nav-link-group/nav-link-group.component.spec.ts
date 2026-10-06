@@ -115,7 +115,7 @@ describe('NavLinkGroupComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('navLinks', expectedNavLinks);
             fixture.componentRef.setInput('queryParamsHandling', expectedQueryParamsHandling);
 

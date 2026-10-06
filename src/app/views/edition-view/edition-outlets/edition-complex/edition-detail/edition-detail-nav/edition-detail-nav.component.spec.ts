@@ -76,7 +76,7 @@ describe('EditionDetailNavComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no NavLinkGroupComponent yet', () => {
+            it('... should contain no NavLinkGroupComponent (hollow) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
             });
 

@@ -4,7 +4,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { ContactAddressStubComponent, ContactMapStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -41,10 +40,8 @@ describe('ContactSideInfoComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [ContactSideInfoComponent],
         })
-            .overrideComponent(ContactSideInfoComponent, {
-                remove: { imports: [ContactAddressComponent, ContactMapComponent] },
-                add: { imports: [ContactAddressStubComponent, ContactMapStubComponent] },
-            })
+            .overrideComponent(ContactAddressComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ContactMapComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -111,27 +108,25 @@ describe('ContactSideInfoComponent (DONE)', () => {
                 expectToBe(hEl.textContent, '');
             });
 
-            it('... should contain one address component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
+            it('... should contain one address component (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
             });
 
             it('... should throw when accessing address component inputs (`pageMetaData` and `contactMetaData`) due to missing initial data binding', () => {
-                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
-                const addressCmp = addressDes[0].injector.get(
-                    ContactAddressStubComponent
-                ) as ContactAddressStubComponent;
+                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
+                const addressCmp = addressDes[0].injector.get(ContactAddressComponent);
 
                 expect(() => addressCmp.pageMetaData()).toThrow();
                 expect(() => addressCmp.contactMetaData()).toThrow();
             });
 
-            it('... should contain one map component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ContactMapStubComponent, 1, 1);
+            it('... should contain one map component (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
             });
 
             it('... should throw due to missing required values for map component (`embedUrl` and `linkUrl`)', () => {
-                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapStubComponent, 1, 1);
-                const mapCmp = mapDes[0].injector.get(ContactMapStubComponent) as ContactMapStubComponent;
+                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
+                const mapCmp = mapDes[0].injector.get(ContactMapComponent);
 
                 // Expect the required inputs to throw if not provided
                 expect(() => mapCmp.embedUrl()).toThrow();
@@ -155,18 +150,16 @@ describe('ContactSideInfoComponent (DONE)', () => {
             });
 
             it('... should pass down updated values to address component (`pageMetaData` and `contactMetaData`)', () => {
-                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressStubComponent, 1, 1);
-                const addressCmp = addressDes[0].injector.get(
-                    ContactAddressStubComponent
-                ) as ContactAddressStubComponent;
+                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
+                const addressCmp = addressDes[0].injector.get(ContactAddressComponent);
 
                 expectToEqual(addressCmp.pageMetaData(), expectedPageMetaData);
                 expectToEqual(addressCmp.contactMetaData(), expectedContactMetaData);
             });
 
             it('... should pass down updated values to map component (`embedUrl` and `linkUrl`)', () => {
-                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapStubComponent, 1, 1);
-                const mapCmp = mapDes[0].injector.get(ContactMapStubComponent) as ContactMapStubComponent;
+                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
+                const mapCmp = mapDes[0].injector.get(ContactMapComponent);
 
                 expect(() => mapCmp.embedUrl()).not.toThrow();
                 expect(() => mapCmp.linkUrl()).not.toThrow();

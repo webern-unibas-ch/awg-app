@@ -22,7 +22,9 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EditionSectionDetailPlaceholderComponent, AlertInfoComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertInfoComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -50,7 +52,7 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no AlertInfoComponent yet', () => {
+            it('... should contain no AlertInfoComponent (hollow) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 0, 0);
             });
         });
@@ -77,11 +79,11 @@ describe('EditionSectionDetailPlaceholderComponent', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 0, 0);
             });
 
-            it('... should contain an AlertInfoComponent', () => {
+            it('... should contain an AlertInfoComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to AlertInfoComponent (`infoMessage `)', () => {
+            it('... should pass down the correct values to AlertInfoComponent (hollow) (`infoMessage `)', () => {
                 const alertInfoDes = getAndExpectDebugElementByDirective(compDe, AlertInfoComponent, 1, 1);
                 const alertInfoCmp = alertInfoDes[0].injector.get(AlertInfoComponent) as AlertInfoComponent;
 
