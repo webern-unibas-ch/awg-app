@@ -8,6 +8,7 @@ import {
     ElementRef,
     EventEmitter,
     HostListener,
+    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -27,34 +28,12 @@ import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 
 import { GraphData, GraphNode } from '../../../models/graph-data.model';
 import { GRAPH_DATA_UTILS } from '../../../utils/graph-data.utils';
-import { SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
+import { FORCE_GRAPH_ARROW_MARKER_ID, ForceGraphDrawingService } from './force-graph-drawing.service';
+import { ForceSimulation } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 
-import * as D3_DRAG from 'd3-drag';
-import * as D3_FORCE from 'd3-force';
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
-
-/**
- * The ForceSimulation type.
- *
- * It represents the D3 force simulation of the graph.
- */
-type ForceSimulation = D3_FORCE.Simulation<SimNode, SimLink>;
-
-/**
- * Object constant with a set of forces.
- *
- * It provides the default values for the D3 simulation's forces.
- *
- * Available force values: `LINK_DISTANCE`, `COLLISION_STRENGTH`, `CHARGE_STRENGTH`.
- */
-const FORCES = {
-    LINK_DISTANCE: 10, // Default 30
-    COLLISION_STRENGTH: 1, // 0–1; Default: 0.7
-    COLLISION_RADIUS: 30,
-    CHARGE_STRENGTH: -10, //  Default -30
-};
 
 /**
  * The ForceGraphComponent component.
@@ -68,6 +47,13 @@ const FORCES = {
     standalone: false,
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
+    /**
+     * Private readonly injection variable: _forceGraphDrawingService.
+     *
+     * It keeps the instance of the injected ForceGraphDrawingService.
+     */
+    private readonly _forceGraphDrawingService = inject(ForceGraphDrawingService);
+
     /**
      * Input variable: graphData.
      *
@@ -139,6 +125,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private _zoomGroup: D3Selection | undefined;
 
     /**
+     * Private variable: _rootGroup.
+     *
+     * It keeps the D3 selection of the (centered) root group of the graph.
+     */
+    private _rootGroup: D3Selection | undefined;
+
+    /**
      * Private variable: _zoomBehaviour.
      *
      * It keeps the D3 zoom behaviour.
@@ -151,13 +144,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * It keeps the D3 force simulation.
      */
     private _forceSimulation: ForceSimulation | undefined;
-
-    /**
-     * Private variable: _simulationData.
-     *
-     * It keeps the data for the D3 force simulation.
-     */
-    private _simulationData: SimulationData | undefined;
 
     /**
      * Private variable: _divWidth.
@@ -284,21 +270,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Public method: log.
-     *
-     * It logs a message to the console.
-     *
-     * @param {string} messageString The given message string.
-     * @param {string} messageValue The given message value.
-     *
-     * @returns {void} Logs a message to the console.
-     */
-    log(messageString: string, messageValue: any): void {
-        const value = typeof messageValue === 'object' ? structuredClone(messageValue) : messageValue;
-        console.info(messageString, value);
-    }
-
-    /**
      * Angular life cycle hook: ngOnDestroy.
      *
      * It calls the containing methods
@@ -310,6 +281,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Now let's also complete the subject itself
         this._destroyed$.complete();
+
+        this._forceSimulation?.stop();
     }
 
     /**
@@ -336,8 +309,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Cleans the svg container.
      */
     private _cleanSVG(): void {
-        // Remove everything below the SVG element
-        D3_SELECTION.selectAll('svg.force-graph > *').remove();
+        // Remove everything below the own SVG element
+        this._svg?.selectAll('*').remove();
     }
 
     /**
@@ -383,96 +356,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add Encompassing Group for Zoom =====================
         this._zoomGroup = this._svg.append('g').attr('class', 'zoom-container');
-    }
-    /**
-     * Private method: _attachData.
-     *
-     * It attaches the (limited) graph data to the simulation which is then set up.
-     *
-     * @returns {void} Attaches the data and sets up the simulation.
-     */
-    private _attachData(): void {
-        if (!this.graphData) {
-            return;
-        }
-        const limitedGraphData = GRAPH_DATA_UTILS.limitGraphData(this.graphData, this.limit);
-        this._simulationData = FORCE_GRAPH_UTILS.toSimulationData(limitedGraphData);
-        this._setupForceSimulation();
-        this._updateSVG();
-    }
-
-    /**
-     * Private method: _setupForceSimulation.
-     *
-     * It sets up the force simulation.
-     *
-     * @returns {void} Sets up the simulation.
-     */
-    private _setupForceSimulation(): void {
-        if (!this._simulationData) {
-            return;
-        }
-
-        // Set up the simulation
-        this._forceSimulation = D3_FORCE.forceSimulation();
-
-        // Create forces
-        // The charge uses the radius of the drawn node reduced by 1 (as before)
-        const chargeForce = D3_FORCE.forceManyBody<SimNode>().strength(
-            (d: SimNode) => (d.r - 1) * FORCES.CHARGE_STRENGTH
-        );
-
-        const centerForce = D3_FORCE.forceCenter(this._divWidth / 2, this._divHeight / 2);
-
-        const collideForce = D3_FORCE.forceCollide()
-            .strength(FORCES.COLLISION_STRENGTH)
-            .radius(FORCES.COLLISION_RADIUS)
-            .iterations(2);
-
-        // Create a custom link force with id accessor to use named sources and targets
-        const linkForce = D3_FORCE.forceLink<SimNode, SimLink>()
-            .links(this._simulationData.links)
-            .id((d: SimNode) => d.id)
-            .distance(FORCES.LINK_DISTANCE);
-
-        // Add forces
-        // Add a charge to each node, a centering and collision force
-        this._forceSimulation
-            .force('charge_force', chargeForce)
-            .force('center_force', centerForce)
-            .force('collide_force', collideForce);
-
-        // Add nodes to the simulation
-        this._forceSimulation.nodes(this._simulationData.nodes);
-
-        // Add links to the simulation
-        this._forceSimulation.force('links', linkForce);
-
-        // Restart simulation
-        this._forceSimulation.alpha(1).restart();
-    }
-
-    /**
-     * Private method: _updateSVG.
-     *
-     * It populates the svg container with all subjects
-     * necessary for the force simulation.
-     *
-     * @returns {void} Updates the svg container.
-     */
-    private _updateSVG(): void {
-        if (!this._svg || !this._zoomGroup || !this._simulationData || !this._forceSimulation) {
-            return;
-        }
 
         // ==================== Add Marker ====================
         this._zoomGroup
             .append('svg:defs')
-            .selectAll('marker')
-            .data(['end'])
-            .enter()
             .append('svg:marker')
-            .attr('id', String)
+            .attr('id', FORCE_GRAPH_ARROW_MARKER_ID)
             .attr('viewBox', '0 -5 10 10')
             .attr('refX', 30)
             .attr('refY', 0)
@@ -482,68 +371,33 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .append('svg:polyline')
             .attr('points', '0,-5 10,0 0,5');
 
-        // ==================== Add Links ====================
-        const links: D3Selection = this._zoomGroup
+        // ==================== Add Root Group (simulation is centered around the origin) =====================
+        this._rootGroup = this._zoomGroup
             .append('g')
-            .attr('class', 'links')
-            .selectAll('.link')
-            .data(this._simulationData.edges)
-            .enter()
-            .append('path')
-            .attr('marker-end', 'url(#end)')
-            .attr('class', 'link');
+            .attr('transform', `translate(${this._divWidth / 2},${this._divHeight / 2})`);
+    }
 
-        // ==================== Add Link Names =====================
-        const linkTexts: D3Selection = this._zoomGroup
-            .append('g')
-            .attr('class', 'link-texts')
-            .selectAll('.link-text')
-            .data(this._simulationData.edges)
-            .enter()
-            .append('text')
-            .attr('class', 'link-text')
-            .text((d: SimEdge) => d.edge.label);
+    /**
+     * Private method: _attachData.
+     *
+     * It attaches the (limited) graph data to the simulation which is then set up.
+     *
+     * @returns {void} Attaches the data and sets up the simulation.
+     */
+    private _attachData(): void {
+        if (!this.graphData || !this._svg || !this._zoomGroup || !this._rootGroup) {
+            return;
+        }
+        const limitedGraphData = GRAPH_DATA_UTILS.limitGraphData(this.graphData, this.limit);
+        const simulationData = FORCE_GRAPH_UTILS.toSimulationData(limitedGraphData);
 
-        // The middle nodes of the edges are part of the simulation, but not drawn
-        const graphSimNodes = this._simulationData.nodes.filter((d: SimNode) => !!d.graphNode);
+        this._forceSimulation?.stop();
+        this._forceSimulation = this._forceGraphDrawingService.renderGraph(this._rootGroup, simulationData);
 
-        // ==================== Add Node Names =====================
-        const nodeTexts: D3Selection = this._zoomGroup
-            .append('g')
-            .attr('class', 'node-texts')
-            .selectAll('.node-text')
-            .data(graphSimNodes)
-            .enter()
-            .append('text')
-            .attr('class', 'node-text')
-            .text((d: SimNode) => d.graphNode?.shortName ?? '');
-
-        // ==================== Add Nodes =====================
-        const nodes: D3Selection = this._zoomGroup
-            .append('g')
-            .attr('class', 'nodes')
-            .selectAll('.node')
-            .data(graphSimNodes)
-            .enter()
-            .append('circle')
-            .attr('class', (d: SimNode) => FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode?.kind ?? 'resource'))
-            .attr('id', (d: SimNode) => d.graphNode?.label ?? d.id)
-            .attr('r', (d: SimNode) => d.r)
-            .on('click', (event: any, d): void => {
-                this._clickedOnNode(event, d);
-            });
-
-        // ==================== FORCES ====================
-        this._forceSimulation.on('tick', () => {
-            // Update node and link positions each tick of the simulation
-            this._updateNodePositions(nodes);
-            this._updateNodeTextPositions(nodeTexts);
-            this._updateLinkPositions(links);
-            this._updateLinkTextPositions(linkTexts);
+        // ==================== CLICK ====================
+        this._svg.on('click', (event: MouseEvent): void => {
+            this._clickedOnNode(event);
         });
-
-        // ==================== DRAG ====================
-        this._dragHandler(nodes, this._forceSimulation);
 
         // ==================== ZOOM ====================
         this._zoomHandler(this._zoomGroup, this._svg);
@@ -566,66 +420,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Private method: _clickedOnNode.
      *
-     * It emits a node the user clicked on.
+     * It emits the graph node the user clicked on (delegated from the svg element).
      *
-     * @param {any} event The given D3 event listener.
-     * @param {SimNode} d The given simulation node.
+     * @param {MouseEvent} event The given click event.
      *
      * @returns {void} Emits the graph node.
      */
-    private _clickedOnNode(event: any, d: SimNode): void {
-        if (event.defaultPrevented || !d.graphNode) {
+    private _clickedOnNode(event: MouseEvent): void {
+        const graphNode = this._forceGraphDrawingService.getGraphNode(event.target);
+        if (event.defaultPrevented || !graphNode) {
             return;
         } // Dragged
 
-        this.clickedNodeRequest.emit(d.graphNode);
-    }
-
-    /**
-     * Private method: _dragHandler.
-     *
-     * It binds a draggable behaviour to a given dragContext (e.g. the nodes).
-     *
-     * @param {D3Selection} dragContext The given context that shall be draggable.
-     * @param {ForceSimulation} simulation The given force simulation.
-     *
-     * @returns {void} Sets the drag behaviour.
-     */
-    private _dragHandler(dragContext: D3Selection, simulation: ForceSimulation): void {
-        // Drag functions
-        const dragStart = (event: any, d: SimNode): void => {
-            /** Preventing propagation of dragstart to parent elements */
-            event.sourceEvent.stopPropagation();
-
-            if (!event.active) {
-                simulation.alphaTarget(0.3).restart();
-            }
-            d.fx = d.x;
-            d.fy = d.y;
-        };
-
-        // Make sure you can't drag the circle outside the box
-        const dragged = (event: any, d: SimNode): void => {
-            d.fx = event.x;
-            d.fy = event.y;
-        };
-
-        const dragEnd = (event: any, d: SimNode): void => {
-            if (!event.active) {
-                simulation.alphaTarget(0);
-            }
-            d.fx = null;
-            d.fy = null;
-        };
-
-        // Create drag behaviour
-        const dragBehaviour = D3_DRAG.drag<any, SimNode>()
-            .on('start', dragStart)
-            .on('drag', dragged)
-            .on('end', dragEnd);
-
-        // Apply drag behaviour
-        dragContext.call(dragBehaviour);
+        this.clickedNodeRequest.emit(graphNode);
     }
 
     /**
@@ -671,64 +478,5 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             return { width: 0, height: 0 };
         }
         return { width: container.nativeElement.clientWidth, height: container.nativeElement.clientHeight };
-    }
-
-    /**
-     * Private method: _updateNodePositions.
-     *
-     * It updates the positions of the nodes
-     * on a force simulation's tick.
-     *
-     * @param {D3Selection} nodes The given nodes selection.
-     *
-     * @returns {void} Updates the position.
-     */
-    private _updateNodePositions(nodes: D3Selection): void {
-        nodes.attr('cx', (d: SimNode) => d.x ?? 0).attr('cy', (d: SimNode) => d.y ?? 0);
-    }
-
-    /**
-     * Private method: _updateNodeTextPositions.
-     *
-     * It updates the positions of the nodeTexts
-     * on a force simulation's tick.
-     *
-     * @param {D3Selection} nodeTexts The given nodeTexts selection.
-     *
-     * @returns {void} Updates the position.
-     */
-    private _updateNodeTextPositions(nodeTexts: D3Selection): void {
-        nodeTexts.attr('x', (d: SimNode) => (d.x ?? 0) + 12).attr('y', (d: SimNode) => (d.y ?? 0) + 3);
-    }
-
-    /**
-     * Private method: _updateLinkPositions.
-     *
-     * It updates the positions of the links
-     * on a force simulation's tick.
-     * Cf. https://stackoverflow.com/questions/16358905/d3-force-layout-graph-self-linking-node
-     *
-     * @param {D3Selection} links The given links selection.
-     *
-     * @returns {void} Updates the position.
-     */
-    private _updateLinkPositions(links: D3Selection): void {
-        links.attr('d', (d: SimEdge) => FORCE_GRAPH_UTILS.linkPath(d));
-    }
-
-    /**
-     * Private method: _updateLinkTextPositions.
-     *
-     * It updates the positions of the link texts
-     * on a force simulation's tick.
-     *
-     * @param {D3Selection} linkTexts The given linkTexts selection.
-     *
-     * @returns {void} Updates the position.
-     */
-    private _updateLinkTextPositions(linkTexts: D3Selection): void {
-        linkTexts
-            .attr('x', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).x)
-            .attr('y', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).y);
     }
 }

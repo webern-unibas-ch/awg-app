@@ -1,4 +1,4 @@
-import type { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
+import type { Simulation, SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
 
 import { GraphEdge, GraphNode } from '../../../models/graph-data.model';
 
@@ -34,6 +34,13 @@ export interface SimNode extends SimulationNodeDatum {
  * (from the source to the middle node or from the middle node to the target of an edge).
  */
 export type SimLink = SimulationLinkDatum<SimNode>;
+
+/**
+ * The ForceSimulation type.
+ *
+ * It represents the D3 force simulation of a graph.
+ */
+export type ForceSimulation = Simulation<SimNode, SimLink>;
 
 /**
  * The SimEdge interface.

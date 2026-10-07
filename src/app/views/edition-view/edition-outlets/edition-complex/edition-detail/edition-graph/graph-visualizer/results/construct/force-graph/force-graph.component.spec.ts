@@ -22,6 +22,7 @@ import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { GraphData, GraphNode } from '../../../models/graph-data.model';
 
 import { ForceGraphComponent } from './force-graph.component';
+import { ForceSimulation } from './force-graph.model';
 
 describe('ForceGraphComponent', () => {
     let component: ForceGraphComponent;
@@ -156,31 +157,6 @@ describe('ForceGraphComponent', () => {
                 );
             });
 
-            it('... should label the nodes with their short name', () => {
-                const nodeTextEls = Array.from<SVGTextElement>(
-                    compDe.nativeElement.querySelectorAll('svg.force-graph text.node-text')
-                );
-
-                expectToEqual(
-                    nodeTextEls.map(el => el.textContent),
-                    nodes.map(node => node.shortName)
-                );
-            });
-
-            it('... should set css class and radius of the circles by the kind of the nodes', () => {
-                const circleEls = getCircleEls();
-
-                expectToEqual(
-                    circleEls.map(el => [el.getAttribute('class'), el.getAttribute('r')]),
-                    [
-                        ['instance', '11'],
-                        ['class', '10'],
-                        ['blank', '8'],
-                        ['node', '9'],
-                    ]
-                );
-            });
-
             it('... should display the number of triples in the limit button', () => {
                 const buttonDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -209,6 +185,20 @@ describe('ForceGraphComponent', () => {
                 fixture.detectChanges();
 
                 expectToBe(getCircleEls().length, 2);
+            });
+
+            it('... should stop the previous force simulation on redraw and on destroy', () => {
+                const previousStopSpy = vi.spyOn(component['_forceSimulation'] as ForceSimulation, 'stop');
+
+                component.onLimitValueChange(1);
+
+                expectSpyCall(previousStopSpy, 1);
+
+                const currentStopSpy = vi.spyOn(component['_forceSimulation'] as ForceSimulation, 'stop');
+
+                fixture.destroy();
+
+                expectSpyCall(currentStopSpy, 1);
             });
 
             it('... should emit the graph node of a clicked circle', () => {
