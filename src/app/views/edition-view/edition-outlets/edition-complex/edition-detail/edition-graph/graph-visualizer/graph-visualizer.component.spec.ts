@@ -78,8 +78,7 @@ class SelectResultsStubComponent {
 class SparqlEditorStubComponent {
     @Input()
     queryList: GraphSparqlQuery[] = [];
-    @Input()
-    query: GraphSparqlQuery = new GraphSparqlQuery();
+    readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
     @Input()
     isFullscreen = false;
     @Output()
@@ -88,8 +87,6 @@ class SparqlEditorStubComponent {
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
     resetQueryRequest: EventEmitter<GraphSparqlQuery> = new EventEmitter();
-    @Output()
-    updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({
@@ -531,19 +528,22 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
 
                     expectToEqual(editorCmp.queryList, expectedGraphRDFData.queryList);
-                    expectToEqual(editorCmp.query, expectedGraphRDFData.queryList[0]);
+                    expectToEqual(editorCmp.query(), expectedGraphRDFData.queryList[0]);
                 });
 
-                it('... should update `query.string` with updateQueryStringRequest event', () => {
+                it('... should update `query` with two-way bound query from SparqlEditorComponent', () => {
                     const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
                     const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
 
-                    // Set changed query string
-                    const changedQueryString =
-                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
-                    editorCmp.updateQueryStringRequest.emit(changedQueryString);
+                    // Set changed query
+                    const changedQuery: GraphSparqlQuery = {
+                        ...expectedGraphRDFData.queryList[0],
+                        queryString:
+                            'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
+                    };
+                    editorCmp.query.set(changedQuery);
 
-                    expectToBe(component.query.queryString, changedQueryString);
+                    expectToEqual(component.query, changedQuery);
                 });
 
                 it('... should re-trigger `resetQuery()` with resetQueryRequest event', () => {

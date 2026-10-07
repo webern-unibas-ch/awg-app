@@ -1,11 +1,13 @@
-import { DebugElement, NgModule, SimpleChange, inject } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
-import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
+import { NgbAccordionItem } from '@ng-bootstrap/ng-bootstrap/accordion';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -20,12 +22,10 @@ import {
 } from '@testing/expect-helper';
 
 import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
-import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-
-import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
@@ -39,57 +39,34 @@ describe('SparqlEditorComponent (DONE)', () => {
     let expectedConstructQuery1: GraphSparqlQuery;
     let expectedConstructQuery2: GraphSparqlQuery;
     let expectedSelectQuery1: GraphSparqlQuery;
-    let expectedSelectQuery2: GraphSparqlQuery;
     let expectedQueryList: GraphSparqlQuery[];
-    let expectedCmSparqlMode: CmMode;
     let expectedIsFullscreen: boolean;
     let expectedViewHandles: ViewHandle[];
 
-    let isExampleQueriesEnabledSpy: Spy;
-    let onEditorInputChangeSpy: Spy;
+    let clearQuerySpy: Spy;
+    let onQueryStringChangeSpy: Spy;
     let onViewChangeSpy: Spy;
     let performQuerySpy: Spy;
-    let isAccordionItemDisabledSpy: Spy;
-    let isAccordionItemCollapsedSpy: Spy;
     let resetQuerySpy: Spy;
-    let setViewTypeSpy: Spy;
     let switchQueryTypeSpy: Spy;
     let emitErrorMessageRequestSpy: Spy;
     let emitPerformQueryRequestSpy: Spy;
-    let emitResestQueryRequestSpy: Spy;
-    let emitUpdateQueryStringRequestSpy: Spy;
-
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
+    let emitResetQueryRequestSpy: Spy;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [
-                NgbAccordionModule,
-                NgbConfigModule,
-                NgbDropdownModule,
-                CodeMirrorComponent,
-                EditorActionButtonsComponent,
-                ExampleQueriesComponent,
-                ViewHandleButtonGroupComponent,
-            ],
-            declarations: [SparqlEditorComponent],
+            imports: [SparqlEditorComponent],
         })
-            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(ExampleQueriesComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
+            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ExampleQueriesComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
@@ -99,54 +76,39 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         // Test data
         expectedIsFullscreen = false;
-        expectedCmSparqlMode = sparql;
 
-        expectedConstructQuery1 = new GraphSparqlQuery();
-        expectedConstructQuery1.queryType = 'construct';
-        expectedConstructQuery1.queryLabel = 'Test Query 3';
-        expectedConstructQuery1.queryString = 'CONSTRUCT WHERE { ?test ?has ?success }';
-
-        expectedConstructQuery2 = new GraphSparqlQuery();
-        expectedConstructQuery2.queryType = 'construct';
-        expectedConstructQuery2.queryLabel = 'Test Query 4';
-        expectedConstructQuery2.queryString = 'CONSTRUCT WHERE { ?success a ?test }';
-
-        expectedSelectQuery1 = new GraphSparqlQuery();
-        expectedSelectQuery1.queryType = 'select';
-        expectedSelectQuery1.queryLabel = 'Test Query 1';
-        expectedSelectQuery1.queryString = 'SELECT * WHERE { ?test ?has ?success }';
-
-        expectedSelectQuery2 = new GraphSparqlQuery();
-        expectedSelectQuery2.queryType = 'select';
-        expectedSelectQuery2.queryLabel = 'Test Query 2';
-        expectedSelectQuery2.queryString = 'SELECT * WHERE { ?success a ?test }';
-
-        expectedQueryList = [
-            expectedConstructQuery1,
-            expectedConstructQuery2,
-            expectedSelectQuery1,
-            expectedSelectQuery2,
-        ];
+        expectedConstructQuery1 = {
+            queryType: 'construct',
+            queryLabel: 'Test Query 1',
+            queryString: 'CONSTRUCT\nWHERE { ?test ?has ?success }',
+        };
+        expectedConstructQuery2 = {
+            queryType: 'construct',
+            queryLabel: 'Test Query 2',
+            queryString: 'CONSTRUCT\nWHERE { ?success a ?test }',
+        };
+        expectedSelectQuery1 = {
+            queryType: 'select',
+            queryLabel: 'Test Query 3',
+            queryString: 'SELECT ?test ?success\nWHERE { ?test ?has ?success }',
+        };
+        expectedQueryList = [expectedConstructQuery1, expectedConstructQuery2, expectedSelectQuery1];
 
         expectedViewHandles = [
-            new ViewHandle('Graph view', ViewHandleTypes.GRAPH, component.faDiagramProject),
-            new ViewHandle('Table view', ViewHandleTypes.TABLE, component.faTable),
+            new ViewHandle('Graph view', ViewHandleTypes.GRAPH, faDiagramProject),
+            new ViewHandle('Table view', ViewHandleTypes.TABLE, faTable),
         ];
 
         // Spies
-        isExampleQueriesEnabledSpy = vi.spyOn(component, 'isExampleQueriesEnabled');
-        onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
+        clearQuerySpy = vi.spyOn(component, 'clearQuery');
+        onQueryStringChangeSpy = vi.spyOn(component, 'onQueryStringChange');
         onViewChangeSpy = vi.spyOn(component, 'onViewChange');
         performQuerySpy = vi.spyOn(component, 'performQuery');
-        isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
-        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
         resetQuerySpy = vi.spyOn(component, 'resetQuery');
-        setViewTypeSpy = vi.spyOn(component, 'setViewType');
         switchQueryTypeSpy = vi.spyOn(component, 'switchQueryType');
         emitErrorMessageRequestSpy = vi.spyOn(component.errorMessageRequest, 'emit');
         emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
-        emitResestQueryRequestSpy = vi.spyOn(component.resetQueryRequest, 'emit');
-        emitUpdateQueryStringRequestSpy = vi.spyOn(component.updateQueryStringRequest, 'emit');
+        emitResetQueryRequestSpy = vi.spyOn(component.resetQueryRequest, 'emit');
     });
 
     afterEach(() => {
@@ -158,28 +120,35 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `queryList` input', () => {
-            expectToEqual(component.queryList, []);
+        it('... should have input signal `queryList` to hold an empty list initially', () => {
+            expectToBe(isSignal(component.queryList), true);
+            expectToEqual(component.queryList(), []);
         });
 
-        it('... should have default `query` input', () => {
-            expectToEqual(component.query, new GraphSparqlQuery());
+        it('... should have model signal `query` to hold an empty query initially', () => {
+            expectToBe(isSignal(component.query), true);
+            expectToEqual(component.query(), new GraphSparqlQuery());
         });
 
-        it('... should have default `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, false);
+        it('... should have input signal `isFullscreen` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreen), true);
+            expectToBe(component.isFullscreen(), false);
         });
 
-        it('... should have cmSparqlMode', () => {
-            expectToEqual(component.cmSparqlMode, expectedCmSparqlMode);
+        it('... should have `cmSparqlMode` to hold the sparql mode', () => {
+            expectToEqual(component.cmSparqlMode, sparql);
         });
 
-        it('... should have selectedViewType', () => {
-            expectToEqual(component.selectedViewType, ViewHandleTypes.GRAPH);
-        });
-
-        it('... should have viewHandles', () => {
+        it('... should have `viewHandles` to hold the graph and table view handles', () => {
             expectToEqual(component.viewHandles, expectedViewHandles);
+        });
+
+        it('... should have computed signal `selectedViewType` to hold the graph view initially', () => {
+            expectToBe(component.selectedViewType(), ViewHandleTypes.GRAPH);
+        });
+
+        it('... should have computed signal `isExampleQueriesEnabled` to hold false initially', () => {
+            expectToBe(component.isExampleQueriesEnabled(), false);
         });
 
         describe('VIEW', () => {
@@ -204,24 +173,58 @@ describe('SparqlEditorComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            component.query = expectedConstructQuery1;
-            component.queryList = expectedQueryList;
-            component.isFullscreen = expectedIsFullscreen;
+            fixture.componentRef.setInput('queryList', expectedQueryList);
+            fixture.componentRef.setInput('query', expectedConstructQuery1);
+            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `queryList` input', () => {
-            expectToEqual(component.queryList, expectedQueryList);
+        it('... should have input signal `queryList` to hold the provided query list', () => {
+            expectToEqual(component.queryList(), expectedQueryList);
         });
 
-        it('... should have `query` input', () => {
-            expectToEqual(component.query, expectedConstructQuery1);
+        it('... should have model signal `query` to hold the provided query', () => {
+            expectToEqual(component.query(), expectedConstructQuery1);
         });
 
-        it('... should have `isFullScreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have input signal `isFullscreen` to hold the provided fullscreen flag', () => {
+            expectToBe(component.isFullscreen(), expectedIsFullscreen);
+        });
+
+        describe('... computed signal `selectedViewType`', () => {
+            it('... should hold the graph view for a construct query', () => {
+                expectToBe(component.selectedViewType(), ViewHandleTypes.GRAPH);
+            });
+
+            it('... should hold the table view for a select query', () => {
+                fixture.componentRef.setInput('query', expectedSelectQuery1);
+
+                expectToBe(component.selectedViewType(), ViewHandleTypes.TABLE);
+            });
+        });
+
+        describe('... computed signal `isExampleQueriesEnabled`', () => {
+            it('... should hold true if queryList is given and query has type, label and string', () => {
+                expectToBe(component.isExampleQueriesEnabled(), true);
+            });
+
+            describe('... should hold false if', () => {
+                it.each([
+                    { desc: 'query.queryType is null', query: { queryType: null }, list: undefined },
+                    { desc: 'query.queryLabel is an empty string', query: { queryLabel: '' }, list: undefined },
+                    { desc: 'query.queryString is an empty string', query: { queryString: '' }, list: undefined },
+                    { desc: 'queryList is empty', query: {}, list: [] },
+                ])('... $desc', ({ query, list }) => {
+                    fixture.componentRef.setInput('query', { ...expectedConstructQuery1, ...query });
+                    if (list) {
+                        fixture.componentRef.setInput('queryList', list);
+                    }
+
+                    expectToBe(component.isExampleQueriesEnabled(), false);
+                });
+            });
         });
 
         describe('VIEW', () => {
@@ -258,16 +261,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
 
                     it('... should display item header button', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
                         const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'button#awg-graph-visualizer-sparql-query-toggle',
+                            compDe,
+                            'div#awg-graph-visualizer-sparql-query > div.accordion-header > button#awg-graph-visualizer-sparql-query-toggle',
                             1,
                             1
                         );
@@ -276,16 +272,32 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(btnEl.textContent, 'SPARQL');
                     });
 
-                    it('... should toggle item body on click', async () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                    it('... should have an enabled accordion item', () => {
+                        const itemDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            'div#awg-graph-visualizer-sparql-query.accordion-item',
                             1,
                             1
                         );
 
+                        expectToBe(itemDes[0].injector.get(NgbAccordionItem).disabled, false);
+                    });
+
+                    it('... should have auto height on item body', () => {
+                        const itemBodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            1,
+                            1
+                        );
+                        const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                        expectToBe(itemBodyEl.style.height, 'auto');
+                    });
+
+                    it('... should toggle item body on click', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
+                            compDe,
                             'button#awg-graph-visualizer-sparql-query-toggle',
                             1,
                             1
@@ -305,7 +317,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
-                        // Item is open
+                        // Item body is open
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
@@ -331,103 +343,83 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
-                    describe('View handle button group', () => {
-                        it('... should contain ViewHandleButtonGroupComponent (hollow) in item header', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
+                    it('... should contain ViewHandleButtonGroupComponent (hollow) in item header', () => {
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            1,
+                            1
+                        );
 
-                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ViewHandleButtonGroupComponent, 1, 1);
-                        });
-
-                        it('... should pass down `selectedViewType` (graph according to querytype) to ViewHandleButtonGroupComponent (hollow)', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
-                            const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
-                                itemHeaderDes[0],
-                                ViewHandleButtonGroupComponent,
-                                1,
-                                1
-                            );
-                            const viewHandleButtonGroupCmp =
-                                viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
-
-                            expectToBe(viewHandleButtonGroupCmp.selectedViewType(), ViewHandleTypes.GRAPH);
-                        });
-
-                        it('... should pass down `viewHandles` to ViewHandleButtonGroupComponent (hollow)', () => {
-                            const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
-                                compDe,
-                                ViewHandleButtonGroupComponent,
-                                1,
-                                1
-                            );
-                            const viewHandleButtonGroupCmp =
-                                viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
-
-                            expectToEqual(viewHandleButtonGroupCmp.viewHandles(), expectedViewHandles);
-                        });
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ViewHandleButtonGroupComponent, 1, 1);
                     });
 
-                    describe('Example queries', () => {
-                        it('... should contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = true', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
+                    it('... should pass down `viewHandles` and `selectedViewType` to ViewHandleButtonGroupComponent (hollow)', () => {
+                        const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            ViewHandleButtonGroupComponent,
+                            1,
+                            1
+                        );
+                        const viewHandleButtonGroupCmp =
+                            viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
 
-                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
-                        });
+                        expectToEqual(viewHandleButtonGroupCmp.viewHandles(), expectedViewHandles);
+                        expectToBe(viewHandleButtonGroupCmp.selectedViewType(), ViewHandleTypes.GRAPH);
+                    });
 
-                        it('... should not contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = false', async () => {
-                            isExampleQueriesEnabledSpy.mockReturnValue(false);
-                            await detectChangesOnPush(fixture);
+                    it('... should pass down a changed `selectedViewType` to ViewHandleButtonGroupComponent (hollow)', async () => {
+                        fixture.componentRef.setInput('query', expectedSelectQuery1);
+                        await detectChangesOnPush(fixture);
 
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
+                        const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            ViewHandleButtonGroupComponent,
+                            1,
+                            1
+                        );
+                        const viewHandleButtonGroupCmp =
+                            viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
 
-                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 0, 0);
-                        });
+                        expectToBe(viewHandleButtonGroupCmp.selectedViewType(), ViewHandleTypes.TABLE);
+                    });
 
-                        it('... should pass down `queryList` and `activeQuery` to ExampleQueriesComponent (hollow)', () => {
-                            const exampleQueriesDes = getAndExpectDebugElementByDirective(
-                                compDe,
-                                ExampleQueriesComponent,
-                                1,
-                                1
-                            );
-                            const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
+                    it('... should contain ExampleQueriesComponent (hollow) in item header if example queries are enabled', () => {
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            1,
+                            1
+                        );
 
-                            expectToEqual(exampleQueriesCmp.queryList(), expectedQueryList);
-                            expectToEqual(exampleQueriesCmp.activeQuery(), expectedConstructQuery1);
-                        });
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
+                    });
 
-                        it('... should trigger `resetQuery()` on querySelectRequest event from ExampleQueriesComponent (hollow)', () => {
-                            const exampleQueriesDes = getAndExpectDebugElementByDirective(
-                                compDe,
-                                ExampleQueriesComponent,
-                                1,
-                                1
-                            );
-                            const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
+                    it('... should not contain ExampleQueriesComponent (hollow) in item header if example queries are not enabled', async () => {
+                        fixture.componentRef.setInput('queryList', []);
+                        await detectChangesOnPush(fixture);
 
-                            exampleQueriesCmp.querySelectRequest.emit(expectedSelectQuery1);
+                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            1,
+                            1
+                        );
 
-                            expectSpyCall(resetQuerySpy, 1, expectedSelectQuery1);
-                        });
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 0, 0);
+                    });
+
+                    it('... should pass down `queryList` and `activeQuery` to ExampleQueriesComponent (hollow)', () => {
+                        const exampleQueriesDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            ExampleQueriesComponent,
+                            1,
+                            1
+                        );
+                        const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
+
+                        expectToEqual(exampleQueriesCmp.queryList(), expectedQueryList);
+                        expectToEqual(exampleQueriesCmp.activeQuery(), expectedConstructQuery1);
                     });
                 });
 
@@ -443,81 +435,46 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1
                         );
 
-                        // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
-                        // Item body is open
-                        const collapseDes = getAndExpectDebugElementByCss(
+                        bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
                             1,
                             1
                         );
-                        const collapseEl: HTMLDivElement = collapseDes[0].nativeElement;
-
-                        expectToContain(collapseEl.classList, 'show');
-
-                        // Item body
-                        bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
-                    });
-
-                    it('... should toggle item body on click', async () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'button#awg-graph-visualizer-sparql-query-toggle',
-                            1,
-                            1
-                        );
-
-                        // Item body is open
-                        let itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
-
-                        expectToContain(itemBodyEl.classList, 'show');
-
-                        // Click header button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        // Item is closed
-                        itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        itemBodyEl = itemBodyDes[0].nativeElement;
-
-                        expectToNotContain(itemBodyEl.classList, 'show');
-
-                        // Click header button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        // Item body is open again
-                        itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        itemBodyEl = itemBodyDes[0].nativeElement;
-
-                        expectToContain(itemBodyEl.classList, 'show');
                     });
 
                     it('... should contain CodeMirrorComponent (hollow) in item body', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
+                    });
+
+                    it('... should pass down `mode` and `content` to CodeMirrorComponent (hollow)', () => {
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            CodeMirrorComponent,
+                            1,
+                            1
+                        );
+                        const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+
+                        expectToEqual(codeMirrorCmp.mode(), sparql);
+                        expectToBe(codeMirrorCmp.content(), expectedConstructQuery1.queryString);
+                    });
+
+                    it('... should pass down the query string of a changed query to CodeMirrorComponent (hollow)', async () => {
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            CodeMirrorComponent,
+                            1,
+                            1
+                        );
+                        const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+
+                        fixture.componentRef.setInput('query', expectedConstructQuery2);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(codeMirrorCmp.content(), expectedConstructQuery2.queryString);
                     });
 
                     it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
@@ -527,30 +484,8 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
 
             describe('in fullscreen mode', () => {
-                let bodyDes: DebugElement[];
-
                 beforeEach(async () => {
-                    // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
-
-                    // Click header button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    // Item body
-                    bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
-
-                    // Set fullscreen mode
-                    component.isFullscreen = true;
+                    fixture.componentRef.setInput('isFullscreen', true);
                     await detectChangesOnPush(fixture);
                 });
 
@@ -570,35 +505,81 @@ describe('SparqlEditorComponent (DONE)', () => {
                         1
                     );
 
-                    // Body open (div.accordion-body)
-                    getAndExpectDebugElementByCss(
+                    const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
                         1,
                         1
                     );
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should display item header button', () => {
-                    const itemHeaderDes = getAndExpectDebugElementByCss(
+                it('... should have a disabled accordion item', () => {
+                    const itemDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                        'div#awg-graph-visualizer-sparql-query.accordion-item',
                         1,
                         1
                     );
 
+                    expectToBe(itemDes[0].injector.get(NgbAccordionItem).disabled, true);
+                });
+
+                it('... should have 50vh height on item body', () => {
+                    const itemBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                    expectToBe(itemBodyEl.style.height, '50vh');
+                });
+
+                it('... should not toggle item body on click', async () => {
                     const btnDes = getAndExpectDebugElementByCss(
-                        itemHeaderDes[0],
+                        compDe,
                         'button#awg-graph-visualizer-sparql-query-toggle',
                         1,
                         1
                     );
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
-                    expectToBe(btnEl.textContent, 'SPARQL');
+                    // Item body is open
+                    let itemBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        1,
+                        1,
+                        'open'
+                    );
+                    let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
+
+                    // Click header button
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+
+                    // Item body does not close
+                    itemBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        1,
+                        1,
+                        'open'
+                    );
+                    itemBodyEl = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should not toggle item body on click', async () => {
+                it('... should not contain ViewHandleButtonGroupComponent (hollow) in item header', () => {
+                    getAndExpectDebugElementByDirective(compDe, ViewHandleButtonGroupComponent, 0, 0);
+                });
+
+                it('... should contain ExampleQueriesComponent (hollow) in item header', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -606,517 +587,313 @@ describe('SparqlEditorComponent (DONE)', () => {
                         1
                     );
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        itemHeaderDes[0],
-                        'div.accordion-button > button#awg-graph-visualizer-sparql-query-toggle',
+                    getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
+                });
+
+                it('... should contain CodeMirrorComponent (hollow) and EditorActionButtonsComponent (hollow) in item body', () => {
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
                         1,
                         1
                     );
 
-                    // Item body does not close
-                    getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
-                        1,
-                        1,
-                        'open'
-                    );
-
-                    // Click header button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    // Item is open again
-                    getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
-                        1,
-                        1,
-                        'open'
-                    );
-                });
-
-                describe('View handle button group', () => {
-                    it('... should contain no ViewHandleButtonGroupComponent (hollow) in item header', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ViewHandleButtonGroupComponent, 0, 0);
-                    });
-                });
-
-                describe('Example queries', () => {
-                    it('... should contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = true', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
-                    });
-
-                    it('... should not contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = false', async () => {
-                        isExampleQueriesEnabledSpy.mockReturnValue(false);
-                        await detectChangesOnPush(fixture);
-
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 0, 0);
-                    });
-                });
-
-                it('... should contain CodeMirrorComponent (hollow) in item body', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
-                });
-
-                it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                 });
             });
         });
 
-        describe('#isExampleQueriesEnabled()', () => {
-            it('... should have a method `isExampleQueriesEnabled`', () => {
-                expect(component.isExampleQueriesEnabled).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#clearQuery()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-sparql-query-toggle',
+                        1,
+                        1
+                    );
 
-            it('... should return true if queryList is given and query is a valid query (has queryType, queryLabel, queryString)', () => {
-                expectToBe(component.isExampleQueriesEnabled(), true);
-            });
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
 
-            describe('... should return false if', () => {
-                it.each([
-                    {
-                        desc: 'query.queryType is null',
-                        query: { ...expectedConstructQuery1, queryType: null },
-                        list: [expectedConstructQuery1],
-                    },
-                    {
-                        desc: 'query.queryLabel is an empty string',
-                        query: { ...expectedConstructQuery1, queryLabel: '' },
-                        list: [expectedConstructQuery1],
-                    },
-                    {
-                        desc: 'query.queryString is an empty string',
-                        query: { ...expectedConstructQuery1, queryString: '' },
-                        list: [expectedConstructQuery1],
-                    },
-                    {
-                        desc: 'queryList is empty',
-                        query: { ...expectedConstructQuery1 },
-                        list: [],
-                    },
-                    {
-                        desc: 'query fields are blank and queryList is empty',
-                        query: { queryType: null, queryLabel: '', queryString: '' } as GraphSparqlQuery,
-                        list: [],
-                    },
-                ])('... $desc', async ({ query, list }) => {
-                    component.query = query;
-                    component.queryList = list;
+                it('... should have a method `clearQuery`', () => {
+                    expect(component.clearQuery).toBeDefined();
+                });
 
-                    await detectChangesOnPush(fixture);
+                it('... should trigger on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                    expectToBe(component.isExampleQueriesEnabled(), false);
+                    actionButtonsCmp.clearRequest.emit();
+
+                    expectSpyCall(clearQuerySpy, 1);
+                });
+
+                it('... should set the query string of `query` to an empty string', () => {
+                    component.clearQuery();
+
+                    expectSpyCall(onQueryStringChangeSpy, 1, '');
+                    expectToEqual(component.query(), { ...expectedConstructQuery1, queryString: '' });
                 });
             });
-        });
 
-        describe('#onEditorInputChange()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',
-                    1,
-                    1
-                );
+            describe('#onQueryStringChange()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-sparql-query-toggle',
+                        1,
+                        1
+                    );
 
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
-            });
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
 
-            it('... should have a method `onEditorInputChange`', () => {
-                expect(component.onEditorInputChange).toBeDefined();
-            });
+                it('... should have a method `onQueryStringChange`', () => {
+                    expect(component.onQueryStringChange).toBeDefined();
+                });
 
-            it('... should trigger on event from CodeMirrorComponent (hollow)', () => {
-                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
-                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
-
-                const changedQueryString = expectedConstructQuery2.queryString;
-                codeMirrorCmp.content.set(changedQueryString);
-
-                expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
-            });
-
-            it('... should trigger with empty string on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
-
-                actionButtonsCmp.clearRequest.emit();
-
-                expectSpyCall(onEditorInputChangeSpy, 1, '');
-                expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');
-            });
-
-            describe('... should emit provided query string on editor change', () => {
-                it('... if string is thruthy', () => {
+                it('... should trigger on content change of CodeMirrorComponent (hollow)', () => {
                     const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
                     const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
 
-                    const changedQueryString = expectedConstructQuery2.queryString;
-                    codeMirrorCmp.content.set(changedQueryString);
+                    codeMirrorCmp.content.set(expectedConstructQuery2.queryString);
 
-                    expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
-                    expectSpyCall(emitUpdateQueryStringRequestSpy, 1, changedQueryString);
+                    expectSpyCall(onQueryStringChangeSpy, 1, expectedConstructQuery2.queryString);
                 });
 
-                it('... if string is empty', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+                it('... should set `query` to a new query with the given query string', () => {
+                    component.onQueryStringChange(expectedConstructQuery2.queryString);
 
-                    // Query is undefined
-                    codeMirrorCmp.content.set('');
-
-                    expectSpyCall(onEditorInputChangeSpy, 1, '');
-                    expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');
-                });
-            });
-        });
-
-        describe('#onViewChange()', () => {
-            it('... should have a method `onViewChange`', () => {
-                expect(component.onViewChange).toBeDefined();
-            });
-
-            it('... should trigger on event from view handle button group', () => {
-                // Header debug elements
-                const itemHeaderDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                    1,
-                    1
-                );
-
-                // ViewHandleButtonGroupComponent (hollow) debug elements
-                const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
-                    itemHeaderDes[0],
-                    ViewHandleButtonGroupComponent,
-                    1,
-                    1
-                );
-                const viewHandleButtonGroupCmp =
-                    viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
-
-                viewHandleButtonGroupCmp.viewChangeRequest.emit(ViewHandleTypes.GRAPH);
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
-            });
-
-            it('... should trigger switchQueryType(), onEditorInputChange() with queryString and performQuery()', () => {
-                component.onViewChange(ViewHandleTypes.GRAPH);
-
-                expectSpyCall(switchQueryTypeSpy, 1, ViewHandleTypes.GRAPH);
-                expectSpyCall(onEditorInputChangeSpy, 1, expectedConstructQuery1.queryString);
-                expectSpyCall(performQuerySpy, 1);
-            });
-        });
-
-        describe('#performQuery()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',
-                    1,
-                    1
-                );
-
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
-            });
-
-            it('... should have a method `performQuery`', () => {
-                expect(component.performQuery).toBeDefined();
-            });
-
-            it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
-
-                actionButtonsCmp.queryRequest.emit();
-
-                expectSpyCall(performQuerySpy, 1);
-            });
-
-            describe('... should emit', () => {
-                it('`performQueryRequest` if querystring is given', () => {
-                    component.performQuery();
-
-                    expectSpyCall(emitPerformQueryRequestSpy, 1);
-                    expectSpyCall(emitErrorMessageRequestSpy, 0);
+                    expect(component.query()).not.toBe(expectedConstructQuery1);
+                    expectToEqual(component.query(), {
+                        ...expectedConstructQuery1,
+                        queryString: expectedConstructQuery2.queryString,
+                    });
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
-                    const expectedErrorMessage = new ToastMessage('Empty query', 'Please enter a SPARQL query.');
+                it('... should not mutate the provided query', () => {
+                    const originalQueryString = expectedConstructQuery1.queryString;
 
-                    component.query.queryString = '';
-                    component.performQuery();
+                    component.onQueryStringChange(expectedConstructQuery2.queryString);
 
-                    expectSpyCall(emitPerformQueryRequestSpy, 0);
-                    expectSpyCall(emitErrorMessageRequestSpy, 1, expectedErrorMessage);
+                    expectToBe(expectedConstructQuery1.queryString, originalQueryString);
                 });
             });
-        });
 
-        describe('#resetQuery()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-sparql-query > div.accordion-header > button.btn-link',
-                    1,
-                    1
-                );
-
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
-            });
-
-            it('... should have a method `resetQuery`', () => {
-                expect(component.resetQuery).toBeDefined();
-            });
-
-            it('... should trigger with the current query on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
-
-                actionButtonsCmp.resetRequest.emit();
-
-                expectSpyCall(resetQuerySpy, 1, component.query);
-            });
-
-            it('... should emit resetQueryRequest with the given query', () => {
-                component.resetQuery(component.query);
-
-                expectSpyCall(emitResestQueryRequestSpy, 1, component.query);
-            });
-        });
-
-        describe('#setViewType()', () => {
-            it('... should have a method `setViewType`', () => {
-                expect(component.setViewType).toBeDefined();
-            });
-
-            it('... should trigger on init', () => {
-                expectSpyCall(setViewTypeSpy, 1);
-            });
-
-            it('... should trigger on changes of query', () => {
-                expectSpyCall(setViewTypeSpy, 1);
-
-                // Directly trigger ngOnChanges
-                component.ngOnChanges({
-                    query: new SimpleChange(component.query, expectedSelectQuery1, false),
+            describe('#onViewChange()', () => {
+                it('... should have a method `onViewChange`', () => {
+                    expect(component.onViewChange).toBeDefined();
                 });
 
-                expectSpyCall(setViewTypeSpy, 2);
-            });
+                it('... should trigger on viewChangeRequest event from ViewHandleButtonGroupComponent (hollow)', () => {
+                    const viewHandleButtonGroupDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        ViewHandleButtonGroupComponent,
+                        1,
+                        1
+                    );
+                    const viewHandleButtonGroupCmp =
+                        viewHandleButtonGroupDes[0].injector.get(ViewHandleButtonGroupComponent);
 
-            it('... should only trigger on changes of query if not first change', () => {
-                expectSpyCall(setViewTypeSpy, 1);
+                    viewHandleButtonGroupCmp.viewChangeRequest.emit(ViewHandleTypes.TABLE);
 
-                // Directly trigger ngOnChanges
-                component.ngOnChanges({
-                    query: new SimpleChange(component.query, expectedSelectQuery1, true),
+                    expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
                 });
 
-                expectSpyCall(setViewTypeSpy, 1);
+                it('... should set `query` to the switched query and trigger `performQuery()`', () => {
+                    component.onViewChange(ViewHandleTypes.TABLE);
+
+                    expectSpyCall(switchQueryTypeSpy, 1, [expectedConstructQuery1, ViewHandleTypes.TABLE]);
+                    expectToEqual(component.query(), {
+                        ...expectedConstructQuery1,
+                        queryType: 'select',
+                        queryString: 'SELECT *\nWHERE { ?test ?has ?success }',
+                    });
+                    expectSpyCall(performQuerySpy, 1);
+                });
             });
 
-            it('... should return ViewHandleTypes.TABLE if querytype is `select`', () => {
-                component.query = expectedSelectQuery1;
-                component.setViewType();
+            describe('#performQuery()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-sparql-query-toggle',
+                        1,
+                        1
+                    );
 
-                expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
 
-                component.query = expectedSelectQuery2;
-                component.setViewType();
+                it('... should have a method `performQuery`', () => {
+                    expect(component.performQuery).toBeDefined();
+                });
 
-                expectToBe(component.selectedViewType, ViewHandleTypes.TABLE);
+                it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+
+                    actionButtonsCmp.queryRequest.emit();
+
+                    expectSpyCall(performQuerySpy, 1);
+                });
+
+                describe('... should emit', () => {
+                    it('`performQueryRequest` if a query string is given', () => {
+                        component.performQuery();
+
+                        expectSpyCall(emitPerformQueryRequestSpy, 1);
+                        expectSpyCall(emitErrorMessageRequestSpy, 0);
+                    });
+
+                    it('`errorMessageRequest` with errorMessage if no query string is given', () => {
+                        const expectedErrorMessage = new ToastMessage('Empty query', 'Please enter a SPARQL query.');
+
+                        component.clearQuery();
+                        component.performQuery();
+
+                        expectSpyCall(emitPerformQueryRequestSpy, 0);
+                        expectSpyCall(emitErrorMessageRequestSpy, 1, expectedErrorMessage);
+                    });
+                });
             });
 
-            describe('... should return ViewHandleTypes.GRAPH for any queryType other than `select`', () => {
+            describe('#resetQuery()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-sparql-query-toggle',
+                        1,
+                        1
+                    );
+
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
+
+                it('... should have a method `resetQuery`', () => {
+                    expect(component.resetQuery).toBeDefined();
+                });
+
+                it('... should trigger with the current query on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+
+                    actionButtonsCmp.resetRequest.emit();
+
+                    expectSpyCall(resetQuerySpy, 1, expectedConstructQuery1);
+                });
+
+                it('... should trigger with the selected query on querySelectRequest event from ExampleQueriesComponent (hollow)', () => {
+                    const exampleQueriesDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        ExampleQueriesComponent,
+                        1,
+                        1
+                    );
+                    const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
+
+                    exampleQueriesCmp.querySelectRequest.emit(expectedSelectQuery1);
+
+                    expectSpyCall(resetQuerySpy, 1, expectedSelectQuery1);
+                });
+
+                it('... should emit resetQueryRequest with the given query', () => {
+                    component.resetQuery(expectedConstructQuery2);
+
+                    expectSpyCall(emitResetQueryRequestSpy, 1, expectedConstructQuery2);
+                });
+            });
+
+            describe('#switchQueryType()', () => {
+                it('... should have a method `switchQueryType`', () => {
+                    expect(component.switchQueryType).toBeDefined();
+                });
+
+                it('... should switch a construct query to a select query for the table view', () => {
+                    expectToEqual(component.switchQueryType(expectedConstructQuery1, ViewHandleTypes.TABLE), {
+                        ...expectedConstructQuery1,
+                        queryType: 'select',
+                        queryString: 'SELECT *\nWHERE { ?test ?has ?success }',
+                    });
+                });
+
+                it('... should switch a select query to a construct query for the graph view', () => {
+                    expectToEqual(component.switchQueryType(expectedSelectQuery1, ViewHandleTypes.GRAPH), {
+                        ...expectedSelectQuery1,
+                        queryType: 'construct',
+                        queryString: 'CONSTRUCT\nWHERE { ?test ?has ?success }',
+                    });
+                });
+
+                it('... should not mutate the given query', () => {
+                    const query = { ...expectedConstructQuery1 };
+
+                    component.switchQueryType(query, ViewHandleTypes.TABLE);
+
+                    expectToEqual(query, expectedConstructQuery1);
+                });
+
                 it.each([
-                    { desc: 'construct ', getQuery: () => expectedConstructQuery1 },
                     {
-                        desc: 'ask',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'ask' as GraphSparqlQueryType }),
+                        desc: 'a construct query for the graph view',
+                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'CONSTRUCT\nWHERE {}' },
+                        viewType: ViewHandleTypes.GRAPH,
                     },
                     {
-                        desc: 'count',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'count' as GraphSparqlQueryType }),
+                        desc: 'a select query for the table view',
+                        query: { queryType: 'select', queryLabel: 'Q', queryString: 'SELECT *\nWHERE {}' },
+                        viewType: ViewHandleTypes.TABLE,
                     },
                     {
-                        desc: 'describe',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'describe' as GraphSparqlQueryType }),
+                        desc: 'a construct query without `CONSTRUCT` for the table view',
+                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'ASK WHERE {}' },
+                        viewType: ViewHandleTypes.TABLE,
                     },
                     {
-                        desc: 'update',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'udpate' as GraphSparqlQueryType }),
+                        desc: 'a select query without `SELECT` for the graph view',
+                        query: { queryType: 'select', queryLabel: 'Q', queryString: 'ASK WHERE {}' },
+                        viewType: ViewHandleTypes.GRAPH,
                     },
                     {
-                        desc: 'null',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: null as GraphSparqlQueryType }),
+                        desc: 'any query for the grid view',
+                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'CONSTRUCT\nWHERE {}' },
+                        viewType: ViewHandleTypes.GRID,
                     },
-                    {
-                        desc: 'unknown',
-                        getQuery: () => ({ ...expectedConstructQuery1, queryType: 'completely_unknown' }) as any,
-                    },
-                ])('... with queryType = $desc`', ({ getQuery }) => {
-                    component.query = getQuery();
-
-                    component.setViewType();
-
-                    expectToBe(component.selectedViewType, ViewHandleTypes.GRAPH);
-                });
-            });
-        });
-
-        describe('#switchQueryType()', () => {
-            it('... should have a method `switchQueryType`', () => {
-                expect(component.switchQueryType).toBeDefined();
-            });
-
-            it('... should switch querytype and string to `select` if requested view is `table`', () => {
-                component.query.queryType = expectedConstructQuery1.queryType;
-                component.query.queryString = expectedConstructQuery1.queryString;
-
-                component.switchQueryType(ViewHandleTypes.TABLE);
-
-                expectToBe(component.query.queryType, expectedSelectQuery1.queryType);
-                expectToBe(component.query.queryString, expectedSelectQuery1.queryString);
-            });
-
-            it('... should not switch to `select` if requested view is `table` but queryString has no `CONSTRUCT`', () => {
-                component.query.queryType = 'construct';
-                component.query.queryString = 'ASK WHERE { ?test ?has ?success }';
-
-                component.switchQueryType(ViewHandleTypes.TABLE);
-
-                expectToBe(component.query.queryType, 'construct');
-                expectToBe(component.query.queryString, 'ASK WHERE { ?test ?has ?success }');
-            });
-
-            it('... should switch querytype and string to `construct` if requested view is `graph`', () => {
-                // Switch to TABLE view
-                component.switchQueryType(ViewHandleTypes.TABLE);
-
-                component.query.queryType = expectedSelectQuery1.queryType;
-                component.query.queryString = expectedSelectQuery1.queryString;
-
-                // Switch back to GRAPH view
-                component.switchQueryType(ViewHandleTypes.GRAPH);
-
-                expectToBe(component.query.queryType, expectedConstructQuery1.queryType);
-                expectToBe(component.query.queryString, expectedConstructQuery1.queryString);
-            });
-
-            it('... should not switch to `construct` if requested view is `graph` but queryString has no `SELECT`', () => {
-                component.query.queryType = 'select';
-                component.query.queryString = 'ASK WHERE { ?test ?has ?success }';
-
-                component.switchQueryType(ViewHandleTypes.GRAPH);
-
-                expectToBe(component.query.queryType, 'select');
-                expectToBe(component.query.queryString, 'ASK WHERE { ?test ?has ?success }');
-            });
-
-            it('... should do nothing if requested view is `grid`', () => {
-                component.query.queryType = expectedConstructQuery1.queryType;
-                component.query.queryString = expectedConstructQuery1.queryString;
-
-                component.switchQueryType(ViewHandleTypes.GRID);
-
-                expectToBe(component.query.queryType, expectedConstructQuery1.queryType);
-                expectToBe(component.query.queryString, expectedConstructQuery1.queryString);
-            });
-
-            it('... should throw error if requested view is not `table`, `graph` or `grid`', () => {
-                component.query.queryType = expectedConstructQuery1.queryType;
-                component.query.queryString = expectedConstructQuery1.queryString;
-
-                expect(() => component.switchQueryType(undefined as any)).toThrow(
-                    `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: undefined.`
+                ] as { desc: string; query: GraphSparqlQuery; viewType: ViewHandleTypes }[])(
+                    '... should keep $desc unchanged',
+                    ({ query, viewType }) => {
+                        expectToBe(component.switchQueryType(query, viewType), query);
+                    }
                 );
-            });
-        });
 
-        describe('#isAccordionItemCollapsed()', () => {
-            it('... should have a method `isAccordionItemCollapsed`', () => {
-                expect(component.isAccordionItemCollapsed).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemCollapsedSpy, 1);
-            });
-
-            it('... should return true if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemCollapsed(), true);
-            });
-
-            it('... should return false if isFullscreen is true', () => {
-                // Set fullscreen flag to true
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemCollapsed(), false);
-            });
-        });
-
-        describe('#isAccordionItemDisabled()', () => {
-            it('... should have a method `isAccordionItemDisabled`', () => {
-                expect(component.isAccordionItemDisabled).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemDisabledSpy, 1);
-            });
-
-            it('... should return false if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemDisabled(), false);
-            });
-
-            it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemDisabled(), true);
+                it('... should throw an error if the requested view is not `table`, `graph` or `grid`', () => {
+                    expect(() =>
+                        component.switchQueryType(expectedConstructQuery1, undefined as unknown as ViewHandleTypes)
+                    ).toThrow(
+                        `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: undefined.`
+                    );
+                });
             });
         });
     });

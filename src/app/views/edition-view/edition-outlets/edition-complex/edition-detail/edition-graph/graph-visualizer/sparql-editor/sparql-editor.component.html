@@ -1,42 +1,38 @@
 <div ngbAccordion>
-    <div
-        ngbAccordionItem="awg-graph-visualizer-sparql-query"
-        [collapsed]="isAccordionItemCollapsed()"
-        [disabled]="isAccordionItemDisabled()">
+    <div ngbAccordionItem="awg-graph-visualizer-sparql-query" [collapsed]="!isFullscreen()" [disabled]="isFullscreen()">
         <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link m-0 p-0">SPARQL</button>
             <!-- View Handle -->
-            @if (!isFullscreen) {
+            @if (!isFullscreen()) {
                 <awg-view-handle-button-group
                     [viewHandles]="viewHandles"
-                    [selectedViewType]="selectedViewType"
+                    [selectedViewType]="selectedViewType()"
                     (viewChangeRequest)="onViewChange($event)" />
             }
 
             <!-- Example Query Handle -->
             @if (isExampleQueriesEnabled()) {
                 <awg-example-queries
-                    [queryList]="queryList"
-                    [activeQuery]="query"
+                    [queryList]="queryList()"
+                    [activeQuery]="query()"
                     (querySelectRequest)="resetQuery($event)" />
             }
         </div>
-        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
+        <div ngbAccordionCollapse [style.height]="isFullscreen() ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->
                     <awg-codemirror
-                        ngDefaultControl
                         [mode]="cmSparqlMode"
-                        [(content)]="query.queryString"
-                        (contentChange)="onEditorInputChange($event)" />
+                        [content]="query().queryString"
+                        (contentChange)="onQueryStringChange($event)" />
 
                     <!-- Action buttons -->
                     <awg-editor-action-buttons
                         class="mt-2"
                         (queryRequest)="performQuery()"
-                        (resetRequest)="resetQuery(query)"
-                        (clearRequest)="onEditorInputChange('')" />
+                        (resetRequest)="resetQuery(query())"
+                        (clearRequest)="clearQuery()" />
                 </ng-template>
             </div>
         </div>

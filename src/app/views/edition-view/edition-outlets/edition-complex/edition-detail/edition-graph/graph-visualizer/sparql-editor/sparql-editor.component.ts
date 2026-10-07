@@ -1,21 +1,19 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
 
+import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
+import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { GraphSparqlQuery } from '@awg-views/edition-view/models';
+import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+
+import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
+import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 
 /**
  * The SparqlEditor component.
@@ -28,227 +26,145 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models';
     templateUrl: './sparql-editor.component.html',
     styleUrls: ['./sparql-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        CodeMirrorComponent,
+        EditorActionButtonsComponent,
+        ExampleQueriesComponent,
+        NgbAccordionModule,
+        ViewHandleButtonGroupComponent,
+    ],
 })
-export class SparqlEditorComponent implements OnInit, OnChanges {
+export class SparqlEditorComponent {
     /**
-     * Input variable: queryList.
+     * Readonly input signal: queryList.
      *
-     * It keeps the list of precomposed SPARQL queries.
+     * It holds the list of precomposed SPARQL queries.
      */
-    @Input()
-    queryList: GraphSparqlQuery[] = [];
+    readonly queryList = input<GraphSparqlQuery[]>([]);
 
     /**
-     * Input variable: query.
+     * Model signal: query.
      *
-     * It keeps the input for the SPARQL query.
+     * It holds the SPARQL query (two-way bound with the editor).
      */
-    @Input()
-    query: GraphSparqlQuery = new GraphSparqlQuery();
+    readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
 
     /**
-     * Input variable: isFullscreen.
+     * Readonly input signal: isFullscreen.
      *
-     * It keeps a boolean flag if fullscreenMode is set.
+     * It holds a boolean flag if fullscreenMode is set.
+     * If true, the accordion item is open and disabled.
      */
-    @Input()
-    isFullscreen = false;
+    readonly isFullscreen = input<boolean>(false);
 
     /**
-     * Output variable: errorMessageRequest.
+     * Readonly output signal: errorMessageRequest.
      *
-     * It keeps an event emitter to update the query string after editor changes.
+     * It emits an error message to be displayed.
      */
-    @Output()
-    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
+    readonly errorMessageRequest = output<ToastMessage>();
 
     /**
-     * Output variable: performQueryRequest.
+     * Readonly output signal: performQueryRequest.
      *
-     * It keeps an event emitter to perform a query.
+     * It emits a request to perform a query.
      */
-    @Output()
-    performQueryRequest: EventEmitter<void> = new EventEmitter();
+    readonly performQueryRequest = output<void>();
 
     /**
-     * Output variable: resetQueryRequest.
+     * Readonly output signal: resetQueryRequest.
      *
-     * It keeps an event emitter to reset the queries to their initial state.
+     * It emits a request to reset a given query to its initial state.
      */
-    @Output()
-    resetQueryRequest: EventEmitter<GraphSparqlQuery> = new EventEmitter();
+    readonly resetQueryRequest = output<GraphSparqlQuery>();
 
     /**
-     * Output variable: updateQueryStringRequest.
-     *
-     * It keeps an event emitter to update the query string after editor changes.
-     */
-    @Output()
-    updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Public variable: cmSparqlMode.
+     * Readonly variable: cmSparqlMode.
      *
      * It keeps the Codemirror mode for the sparql panel.
      */
-    cmSparqlMode: CmMode = sparql;
+    readonly cmSparqlMode: CmMode = sparql;
 
     /**
-     * Public variable: faDiagramProject.
-     *
-     * It instantiates fontawesome's faDiagramProject icon.
-     */
-    faDiagramProject = faDiagramProject;
-
-    /**
-     * Public variable: faTable.
-     *
-     * It instantiates fontawesome's faTable icon.
-     */
-    faTable = faTable;
-
-    /**
-     * Public variable: selectedViewType.
-     *
-     * It keeps the selected view type.
-     */
-    selectedViewType: ViewHandleTypes = ViewHandleTypes.GRAPH;
-
-    /**
-     * Public variable: viewHandles.
+     * Readonly variable: viewHandles.
      *
      * It keeps the list of view handles.
      */
-    viewHandles: ViewHandle[] = [
+    readonly viewHandles: ViewHandle[] = [
         new ViewHandle('Graph view', ViewHandleTypes.GRAPH, faDiagramProject),
         new ViewHandle('Table view', ViewHandleTypes.TABLE, faTable),
     ];
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly computed signal: selectedViewType.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the view type according to the query type.
      */
-    ngOnInit() {
-        this.setViewType();
+    readonly selectedViewType = computed(() =>
+        this.query().queryType === 'select' ? ViewHandleTypes.TABLE : ViewHandleTypes.GRAPH
+    );
+
+    /**
+     * Readonly computed signal: isExampleQueriesEnabled.
+     *
+     * It holds a boolean flag if the query is a valid query (with type, label and string)
+     * and a query list is given.
+     */
+    readonly isExampleQueriesEnabled = computed(() => {
+        const query = this.query();
+        return !!(query.queryType && query.queryLabel && query.queryString && this.queryList().length);
+    });
+
+    /**
+     * Public method: clearQuery.
+     *
+     * It clears the query string.
+     *
+     * @returns {void} Sets the query string to an empty string.
+     */
+    clearQuery(): void {
+        this.onQueryStringChange('');
     }
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Public method: onQueryStringChange.
      *
-     * It checks for changes of the given input.
+     * It updates the query with a given query string.
      *
-     * @param {SimpleChanges} changes The changes of the input.
+     * @param {string} queryString The given query string.
+     *
+     * @returns {void} Updates the query.
      */
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['query'] && !changes['query'].isFirstChange()) {
-            this.setViewType();
-        }
-    }
-
-    /**
-     * Public method: setViewType.
-     *
-     * It sets the view type according to the query type.
-     *
-     * @returns {void} Sets the selected view type.
-     */
-    setViewType(): void {
-        this.selectedViewType = this.query.queryType === 'select' ? ViewHandleTypes.TABLE : ViewHandleTypes.GRAPH;
+    onQueryStringChange(queryString: string): void {
+        this.query.update(query => ({ ...query, queryString }));
     }
 
     /**
      * Public method: onViewChange.
      *
-     * It switches the query type according to the given view type and
-     * triggers onEditorInputChange and performQuery.
+     * It switches the query according to the given view type
+     * and performs the switched query.
      *
      * @param {ViewHandleTypes} viewType The given view type.
      *
      * @returns {void} Performs a new query with switched query type.
      */
     onViewChange(viewType: ViewHandleTypes): void {
-        this.switchQueryType(viewType);
-        this.onEditorInputChange(this.query.queryString);
+        this.query.set(this.switchQueryType(this.query(), viewType));
         this.performQuery();
-    }
-
-    /**
-     * Public method: switchQueryType.
-     *
-     * It switches the query type and string according to the given view type.
-     *
-     * @param {ViewHandleTypes} viewType The given view type.
-     *
-     * @returns {void} Switches the query type.
-     */
-    switchQueryType(viewType: ViewHandleTypes): void {
-        switch (viewType) {
-            case ViewHandleTypes.TABLE: {
-                if (this.query.queryType === 'construct' && this.query.queryString.includes('CONSTRUCT')) {
-                    this.query.queryString = this.query.queryString.replace('CONSTRUCT', 'SELECT *');
-                    this.query.queryType = 'select';
-                }
-                break;
-            }
-            case ViewHandleTypes.GRAPH: {
-                if (this.query.queryType === 'select' && this.query.queryString.includes('SELECT')) {
-                    this.query.queryString = this.query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n');
-                    this.query.queryType = 'construct';
-                }
-                break;
-            }
-            case ViewHandleTypes.GRID: {
-                // Do nothing
-                break;
-            }
-            default: {
-                // This branch should not be reached
-                const exhaustiveCheck: never = viewType;
-                throw new Error(
-                    `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
-                );
-            }
-        }
-    }
-
-    /**
-     * Public method: isExampleQueriesEnabled.
-     *
-     * It checks if query and queryList values are given.
-     *
-     * @returns {boolean} The boolean value of the check result.
-     */
-    isExampleQueriesEnabled(): boolean {
-        return !!(this.query.queryType && this.query.queryLabel && this.query.queryString && this.queryList.length);
-    }
-
-    /**
-     * Public method: onEditorInputChange.
-     *
-     * It emits the given query string
-     * to the {@link updateQueryStringRequest}.
-     *
-     * @param {string} queryString The given query string.
-     *
-     * @returns {void} Emits the query.
-     */
-    onEditorInputChange(queryString: string): void {
-        this.updateQueryStringRequest.emit(queryString);
     }
 
     /**
      * Public method: performQuery.
      *
-     * It emits a trigger to
-     * the {@link performQueryRequest}.
+     * It emits a trigger to the {@link performQueryRequest}
+     * if a query string is given, otherwise an error message
+     * to the {@link errorMessageRequest}.
      *
      * @returns {void} Triggers the request.
      */
     performQuery(): void {
-        if (this.query.queryString) {
+        if (this.query().queryString) {
             this.performQueryRequest.emit();
         } else {
             this.errorMessageRequest.emit(new ToastMessage('Empty query', 'Please enter a SPARQL query.'));
@@ -258,9 +174,9 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
     /**
      * Public method: resetQuery.
      *
-     * It emits a trigger to the {@link resetQueryRequest}.
+     * It emits a given query to the {@link resetQueryRequest}.
      *
-     * @param {GraphSparqlQuery} query The given triples.
+     * @param {GraphSparqlQuery} query The given query.
      *
      * @returns {void} Triggers the request.
      */
@@ -269,26 +185,48 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Public method: isAccordionItemCollapsed.
+     * Public method: switchQueryType.
      *
-     * It returns a boolean flag if the accordion item should be collapsed.
-     * It returns false if fullscreenMode is set, otherwise true.
+     * It switches the type and string of a given query according to a given view type.
      *
-     * @returns {boolean} The boolean value of the comparison.
+     * @param {GraphSparqlQuery} query The given query.
+     * @param {ViewHandleTypes} viewType The given view type.
+     *
+     * @returns {GraphSparqlQuery} The switched query (or the given query if nothing is to switch).
      */
-    isAccordionItemCollapsed(): boolean {
-        return !this.isFullscreen;
-    }
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
+    switchQueryType(query: GraphSparqlQuery, viewType: ViewHandleTypes): GraphSparqlQuery {
+        switch (viewType) {
+            case ViewHandleTypes.TABLE: {
+                if (query.queryType === 'construct' && query.queryString.includes('CONSTRUCT')) {
+                    return {
+                        ...query,
+                        queryString: query.queryString.replace('CONSTRUCT', 'SELECT *'),
+                        queryType: 'select',
+                    };
+                }
+                return query;
+            }
+            case ViewHandleTypes.GRAPH: {
+                if (query.queryType === 'select' && query.queryString.includes('SELECT')) {
+                    return {
+                        ...query,
+                        queryString: query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n'),
+                        queryType: 'construct',
+                    };
+                }
+                return query;
+            }
+            case ViewHandleTypes.GRID: {
+                // Do nothing
+                return query;
+            }
+            default: {
+                // This branch should not be reached
+                const exhaustiveCheck: never = viewType;
+                throw new Error(
+                    `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
+                );
+            }
+        }
     }
 }

@@ -18,12 +18,11 @@
                 <!-- awg-graph-sparql-editor -->
                 <awg-sparql-editor
                     [queryList]="queryList"
-                    [query]="query"
+                    [(query)]="query"
                     [isFullscreen]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
-                    (resetQueryRequest)="resetQuery($event)"
-                    (updateQueryStringRequest)="query.queryString = $event" />
+                    (resetQueryRequest)="resetQuery($event)" />
             </div>
         </div>
     </div>
