@@ -1,0 +1,206 @@
+import { GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+
+import { PrefixMap } from '../models/rdf.model';
+
+/**
+ * Object constant: DEFAULT_PREFIXES.
+ *
+ * It keeps the default prefixes of the graph visualizer.
+ */
+export const DEFAULT_PREFIXES: PrefixMap = Object.freeze({
+    awg: 'https://edition.anton-webern.ch/webern-onto#',
+    dbo: 'http://dbpedia.org/ontology/',
+    dbp: 'http://dbpedia.org/property/',
+    dbpedia: 'http://dbpedia.org/resource/',
+    dc: 'http://purl.org/dc/elements/1.1/',
+    dcterms: 'http://purl.org/dc/terms/',
+    foaf: 'http://xmlns.com/foaf/0.1/',
+    mo: 'http://purl.org/ontology/mo/',
+    owl: 'http://www.w3.org/2002/07/owl#',
+    prov: 'http://www.w3.org/ns/prov#',
+    rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+    rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
+    skos: 'http://www.w3.org/2004/02/skos/core#',
+    xsd: 'http://www.w3.org/2001/XMLSchema#',
+});
+
+/**
+ * Regex constant: NON_CODE_REGEX.
+ *
+ * It keeps a regex for the parts of a SPARQL query that are not code:
+ * IRIs, string literals and comments (matched left to right,
+ * so a `#` within an IRI or a string does not start a comment).
+ */
+const NON_CODE_REGEX = /<[^<>"{}|^`\\\s]*>|"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|#[^\n]*/g;
+
+/**
+ * Regex constant: PREFIX_DECLARATION_REGEX.
+ *
+ * It keeps a regex for the prefix declarations of a SPARQL query (`PREFIX awg: <…>`).
+ */
+const PREFIX_DECLARATION_REGEX = /PREFIX\s+([A-Za-z][\w.-]*)?:\s*<([^>]*)>/gi;
+
+/**
+ * Regex constant: QNAME_PREFIX_REGEX.
+ *
+ * It keeps a regex for the prefix of a prefixed name (`awg:` in `awg:Sketch`),
+ * not preceded by a word character or a variable sign.
+ */
+const QNAME_PREFIX_REGEX = /(?:^|[^\w?$.:-])([A-Za-z][\w-]*(?:\.[\w-]+)*):/g;
+
+/**
+ * Regex constant: QUERY_FORM_REGEX.
+ *
+ * It keeps a regex for the keywords of the SPARQL query forms and updates.
+ */
+const QUERY_FORM_REGEX = /\b(select|construct|ask|describe|insert|delete)\b/i;
+
+/**
+ * Private utils method: _stripNonCode.
+ *
+ * It replaces IRIs, string literals and comments of a given SPARQL query with spaces.
+ *
+ * @param {string} query The given SPARQL query.
+ * @returns {string} The query without IRIs, string literals and comments.
+ */
+function _stripNonCode(query: string): string {
+    return query.replaceAll(NON_CODE_REGEX, ' ');
+}
+
+/**
+ * Utils method: mergePrefixes.
+ *
+ * It merges the given prefix maps; later maps override earlier ones.
+ *
+ * @param {...(PrefixMap | null | undefined)} prefixMaps The given prefix maps.
+ * @returns {PrefixMap} The merged prefix map.
+ */
+export function mergePrefixes(...prefixMaps: (PrefixMap | null | undefined)[]): PrefixMap {
+    return Object.freeze(Object.assign({}, ...prefixMaps.filter(Boolean)));
+}
+
+/**
+ * Utils method: compactIri.
+ *
+ * It compacts a given IRI to a prefixed name (e.g. `awg:Sketch`)
+ * using the longest matching namespace of the given prefixes.
+ * IRIs without a matching namespace are returned unchanged.
+ *
+ * @param {string} iri The given IRI.
+ * @param {PrefixMap} prefixes The given prefixes.
+ * @returns {string} The compacted IRI.
+ */
+export function compactIri(iri: string, prefixes: PrefixMap): string {
+    let bestPrefix: string | undefined;
+    let bestNamespace = '';
+
+    for (const [prefix, namespace] of Object.entries(prefixes)) {
+        if (namespace && namespace.length > bestNamespace.length && iri.startsWith(namespace)) {
+            bestPrefix = prefix;
+            bestNamespace = namespace;
+        }
+    }
+
+    return bestPrefix === undefined ? iri : `${bestPrefix}:${iri.slice(bestNamespace.length)}`;
+}
+
+/**
+ * Utils method: expandQName.
+ *
+ * It expands a given prefixed name (e.g. `rdfs:label`) to a full IRI.
+ * Names with an unknown prefix (or full IRIs) are returned unchanged.
+ *
+ * @param {string} qname The given prefixed name.
+ * @param {PrefixMap} prefixes The given prefixes.
+ * @returns {string} The expanded IRI.
+ */
+export function expandQName(qname: string, prefixes: PrefixMap): string {
+    const colonIndex = qname.indexOf(':');
+    if (colonIndex === -1) {
+        return qname;
+    }
+
+    const prefix = qname.slice(0, colonIndex);
+    if (!Object.hasOwn(prefixes, prefix)) {
+        return qname;
+    }
+
+    return prefixes[prefix] + qname.slice(colonIndex + 1);
+}
+
+/**
+ * Utils method: extractSparqlPrefixes.
+ *
+ * It extracts the prefix declarations of a given SPARQL query.
+ *
+ * @param {string} query The given SPARQL query.
+ * @returns {PrefixMap} The declared prefixes.
+ */
+export function extractSparqlPrefixes(query: string): PrefixMap {
+    const prefixes: Record<string, string> = {};
+
+    for (const [, prefix = '', namespace] of query.matchAll(PREFIX_DECLARATION_REGEX)) {
+        prefixes[prefix] = namespace;
+    }
+
+    return Object.freeze(prefixes);
+}
+
+/**
+ * Utils method: findUsedPrefixes.
+ *
+ * It finds the prefixes of the prefixed names used in a given SPARQL query,
+ * ignoring prefix declarations, IRIs, string literals and comments.
+ *
+ * @param {string} query The given SPARQL query.
+ * @returns {string[]} The used prefixes (unique, in order of appearance).
+ */
+export function findUsedPrefixes(query: string): string[] {
+    const code = _stripNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
+    const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
+
+    return Array.from(new Set(prefixes));
+}
+
+/**
+ * Utils method: addMissingPrefixes.
+ *
+ * It prepends the declarations of all prefixes that are used,
+ * but not declared in a given SPARQL query, if they are known.
+ *
+ * @param {string} query The given SPARQL query.
+ * @param {PrefixMap} prefixes The known prefixes.
+ * @returns {{ query: string; unknownPrefixes: string[] }} The completed query and the used prefixes that are unknown.
+ */
+export function addMissingPrefixes(query: string, prefixes: PrefixMap): { query: string; unknownPrefixes: string[] } {
+    const declaredPrefixes = extractSparqlPrefixes(query);
+    const missingPrefixes = findUsedPrefixes(query).filter(prefix => !Object.hasOwn(declaredPrefixes, prefix));
+
+    const knownPrefixes = missingPrefixes.filter(prefix => Object.hasOwn(prefixes, prefix));
+    const unknownPrefixes = missingPrefixes.filter(prefix => !Object.hasOwn(prefixes, prefix));
+
+    const declarations = knownPrefixes.map(prefix => `PREFIX ${prefix}: <${prefixes[prefix]}>\n`).join('');
+
+    return { query: declarations + query, unknownPrefixes };
+}
+
+/**
+ * Utils method: getQueryType.
+ *
+ * It gets the type of a given SPARQL query from its first query form keyword,
+ * ignoring prefix declarations, IRIs, string literals and comments.
+ * INSERT and DELETE are mapped to `update`.
+ *
+ * @param {string} query The given SPARQL query.
+ * @returns {GraphSparqlQueryType} The type of the query, or null if none was found.
+ */
+export function getQueryType(query: string): GraphSparqlQueryType {
+    const match = QUERY_FORM_REGEX.exec(_stripNonCode(query));
+    if (!match) {
+        return null;
+    }
+
+    const keyword = match[1].toLowerCase();
+
+    return (keyword === 'insert' || keyword === 'delete' ? 'update' : keyword) as GraphSparqlQueryType;
+}

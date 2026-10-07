@@ -3925,7 +3925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rdfjs/types@npm:*":
+"@rdfjs/types@npm:*, @rdfjs/types@npm:^2.0.1":
   version: 2.0.1
   resolution: "@rdfjs/types@npm:2.0.1"
   dependencies:
@@ -5680,6 +5680,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": "npm:^7.3.1"
     "@ng-bootstrap/ng-bootstrap": "npm:^20.0.0"
     "@popperjs/core": "npm:^2.11.8"
+    "@rdfjs/types": "npm:^2.0.1"
     "@types/d3": "npm:^7.4.3"
     "@types/n3": "npm:^1.26.4"
     "@types/node": "npm:^26.6.4"
