@@ -2,15 +2,18 @@
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import { ChangeDetectionStrategy, Component, inject, input, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input, Input, OnInit } from '@angular/core';
 
 import { EMPTY, Observable, from as observableFrom } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { D3SimulationNode, QueryResult } from './models';
+import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
-import { GraphVisualizerService } from './services';
+import { GraphNode } from './models/graph-data.model';
+import { SparqlResult } from './models/sparql-result.model';
+import { SparqlQueryService } from './services/sparql-query.service';
+import { DEFAULT_PREFIXES } from './utils/prefix.utils';
+import { SPARQL_UTILS } from './utils/sparql.utils';
 
 /**
  * The GraphVisualizer component.
@@ -65,9 +68,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of QueryResult.
+     * It keeps the result of the query as an observable.
      */
-    queryResult$: Observable<QueryResult> = EMPTY;
+    queryResult$: Observable<SparqlResult> = EMPTY;
 
     /**
      * Public variable: queryTime.
@@ -84,11 +87,18 @@ export class GraphVisualizerComponent implements OnInit {
     triples = '';
 
     /**
-     * Private readonly injection variable: _graphVisualizerService.
+     * Private readonly injection variable: _changeDetectorRef.
      *
-     * It keeps the instance of the injected GraphVisualizerService.
+     * It keeps the instance of the injected ChangeDetectorRef.
      */
-    private readonly _graphVisualizerService = inject(GraphVisualizerService);
+    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
+
+    /**
+     * Private readonly injection variable: _sparqlQueryService.
+     *
+     * It keeps the instance of the injected SparqlQueryService.
+     */
+    private readonly _sparqlQueryService = inject(SparqlQueryService);
 
     /**
      * Private readonly injection variable: _toastService.
@@ -156,19 +166,12 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        // If no namespace is defined in the query, get it from the turtle file
-        this.query.queryString = this._graphVisualizerService.checkNamespacesInQuery(
-            this.query.queryString,
-            this.triples
-        );
+        // Get the query type synchronously, because the template chooses the result view by it
+        this.query.queryType = SPARQL_UTILS.getQueryType(this.query.queryString);
 
-        // Get the query type
-        this.query.queryType = this._graphVisualizerService.getQuerytype(this.query.queryString);
-
-        // Perform only construct queries for now
+        // Perform only construct and select queries for now
         if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
-            // Query local store
-            const result = this._queryLocalStore(this.query.queryType, this.query.queryString, this.triples);
+            const result = this._runQuery(this.query.queryType, this.query.queryString, this.triples);
             this.queryResult$ = observableFrom(result);
         } else {
             this.queryResult$ = EMPTY;
@@ -182,15 +185,15 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphNodeClick(node: D3SimulationNode): void {
+    onGraphNodeClick(node: GraphNode): void {
         if (!node) {
             return;
         }
 
         this.showToastMessage(
             new ToastMessage(
-                node.id,
-                `GraphVisualizerComponent# graphClick on node ${node.id}\n\n Label: ${node.label}`,
+                node.shortName,
+                `GraphVisualizerComponent# graphClick on node ${node.shortName}\n\n Label: ${node.label}`,
                 5000
             ),
             'info'
@@ -249,29 +252,36 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Private method: _queryLocalStore
+     * Private method: _runQuery
      *
-     * It performs a query against the local rdfstore.
+     * It runs a query via the SparqlQueryService and updates the performed query
+     * (completed with missing prefix declarations) and the query time.
+     * On errors, it shows a toast message and returns an empty result of the given query type.
      *
-     * @param {string} queryType The given query type.
+     * @param {GraphSparqlQueryType} queryType The given query type.
      * @param {string} queryString The given queryString.
-     * @param {string} triples THe given triples.
-     * @returns {Promise<QueryResult>} The result of the query.
+     * @param {string} triples The given triples.
+     * @returns {Promise<SparqlResult>} The result of the query.
      */
-    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<QueryResult> {
+    private async _runQuery(
+        queryType: GraphSparqlQueryType,
+        queryString: string,
+        triples: string
+    ): Promise<SparqlResult> {
         // Capture start time of query
-        const t1 = Date.now();
+        const startTime = performance.now();
 
-        let result: QueryResult;
+        let result: SparqlResult;
 
-        // Perform query with client based rdfstore
         try {
-            result = await this._graphVisualizerService.doQuery(queryType, queryString, triples);
+            const run = await this._sparqlQueryService.run(queryString, triples);
 
-            // Capture query time
-            this.queryTime = Date.now() - t1;
+            // Show the performed query (a new object, so that the OnPush editor updates)
+            this.query = { ...this.query, queryString: run.query };
+            this.queryTime = run.durationMs;
+            result = run.result;
         } catch (err) {
-            console.error('#queryLocalstore got error:', err);
+            console.error('#runQuery got error:', err);
 
             if (err instanceof Error) {
                 if (err.message.includes('undefined')) {
@@ -288,11 +298,33 @@ export class GraphVisualizerComponent implements OnInit {
             this.showToastMessage(new ToastMessage(errorTitle, errorMessage, 5000), 'error');
 
             // Capture query time
-            this.queryTime = Date.now() - t1;
+            this.queryTime = performance.now() - startTime;
 
-            result = [];
+            result = this._emptyResult(queryType);
         }
+
+        this._changeDetectorRef.markForCheck();
+
         return result;
+    }
+
+    /**
+     * Private method: _emptyResult
+     *
+     * It creates an empty result of a given query type.
+     *
+     * @param {GraphSparqlQueryType} queryType The given query type.
+     * @returns {SparqlResult} The empty result.
+     */
+    private _emptyResult(queryType: GraphSparqlQueryType): SparqlResult {
+        switch (queryType) {
+            case 'construct':
+                return { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES };
+            case 'select':
+                return { kind: 'select', variables: [], bindings: [], prefixes: DEFAULT_PREFIXES };
+            default:
+                return { kind: 'unsupported', queryType };
+        }
     }
 
     /**

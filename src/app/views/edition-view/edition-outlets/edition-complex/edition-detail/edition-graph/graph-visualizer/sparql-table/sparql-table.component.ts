@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, EventEmitter, input, Output } from '@angular/core';
 
-import { QuerySelectResult } from '../models';
+import { SparqlSelectResult } from '../models/sparql-result.model';
+import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
 
 /**
  * The SparqlTable component.
@@ -21,7 +22,7 @@ export class SparqlTableComponent {
      *
      * It holds the result of the query.
      */
-    readonly queryResult = input.required<QuerySelectResult>();
+    readonly queryResult = input.required<SparqlSelectResult>();
 
     /**
      * Output variable: clickedTableRequest.
@@ -30,6 +31,13 @@ export class SparqlTableComponent {
      */
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Readonly computed signal: tableRows.
+     *
+     * It holds the rows of the table, converted from the bindings of the query result.
+     */
+    readonly tableRows = computed(() => SPARQL_TABLE_UTILS.toTableRows(this.queryResult()));
 
     /**
      * Public method: onTableNodeClick.

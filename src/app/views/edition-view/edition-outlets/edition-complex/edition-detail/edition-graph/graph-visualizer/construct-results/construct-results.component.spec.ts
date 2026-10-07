@@ -4,9 +4,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, Observable, of as observableOf } from 'rxjs';
+import { EMPTY, lastValueFrom, Observable, of as observableOf } from 'rxjs';
 
+import type { Quad } from '@rdfjs/types';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DataFactory } from 'n3';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
@@ -20,9 +22,28 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
+import { GraphData, GraphNode } from '../models/graph-data.model';
+import { SparqlConstructResult, SparqlResult } from '../models/sparql-result.model';
+import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
+import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
 
 import { ConstructResultsComponent } from './construct-results.component';
+
+const { namedNode, quad } = DataFactory;
+
+/**
+ * Helper function: createConstructResult.
+ *
+ * It creates a construct result with one quad per given subject (`awg:<subject> awg:has awg:Success`).
+ */
+const createConstructResult = (subjects: string[]): SparqlConstructResult => {
+    const awg = (localName: string) => namedNode(`${DEFAULT_PREFIXES['awg']}${localName}`);
+    return {
+        kind: 'construct',
+        quads: subjects.map(subject => quad(awg(subject), awg('has'), awg('Success')) as Quad),
+        prefixes: DEFAULT_PREFIXES,
+    };
+};
 
 // Mock components
 @Component({
@@ -32,11 +53,11 @@ import { ConstructResultsComponent } from './construct-results.component';
 })
 class ForceGraphStubComponent {
     @Input()
-    currentQueryResultTriples: Triple[] = [];
+    graphData?: GraphData;
     @Input()
     height = 0;
     @Output()
-    clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
+    clickedNodeRequest: EventEmitter<GraphNode> = new EventEmitter<GraphNode>();
 }
 
 @Component({
@@ -52,13 +73,14 @@ describe('ConstructResultsComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedHeight: number;
-    let expectedQueryResult: Triple[];
-    let expectedQueryResult$: Observable<Triple[]>;
+    let expectedQueryResult: SparqlConstructResult;
+    let expectedQueryResult$: Observable<SparqlResult>;
+    let expectedGraphData: GraphData;
     let expectedIsFullscreen: boolean;
 
     let emitClickedNodeRequestSpy: Spy;
     let isAccordionItemDisabledSpy: Spy;
-    let isValidConstructQueryResultSpy: Spy;
+    let isValidGraphDataSpy: Spy;
     let nodeClickSpy: Spy;
 
     // Global NgbConfigModule
@@ -87,19 +109,14 @@ describe('ConstructResultsComponent (DONE)', () => {
         // Test data
         expectedHeight = 500;
         expectedIsFullscreen = false;
-        expectedQueryResult = [
-            {
-                subject: 'example:Test',
-                predicate: 'example:has',
-                object: 'example:Success',
-            },
-        ];
+        expectedQueryResult = createConstructResult(['Test']);
         expectedQueryResult$ = observableOf(expectedQueryResult);
+        expectedGraphData = GRAPH_DATA_UTILS.toGraphData(expectedQueryResult.quads, expectedQueryResult.prefixes);
 
         // Spies
         emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
         isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
-        isValidConstructQueryResultSpy = vi.spyOn(component, 'isValidConstructQueryResult');
+        isValidGraphDataSpy = vi.spyOn(component, 'isValidGraphData');
         nodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
     });
 
@@ -114,6 +131,10 @@ describe('ConstructResultsComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should have default `queryResult` input', () => {
             expectToEqual(component.queryResult$, EMPTY);
+        });
+
+        it('... should have default `graphData$`', () => {
+            expectToEqual(component.graphData$, EMPTY);
         });
 
         it('... should have default `defaultForceGraphHeight` input', () => {
@@ -156,6 +177,22 @@ describe('ConstructResultsComponent (DONE)', () => {
 
         it('... should have `queryResult` input', () => {
             expectToEqual(component.queryResult$, expectedQueryResult$);
+        });
+
+        describe('... graphData$', () => {
+            it('... should hold the graph data of a construct result', async () => {
+                await expect(lastValueFrom(component.graphData$)).resolves.toEqual(expectedGraphData);
+            });
+
+            it('... should hold empty graph data for other results', async () => {
+                component.queryResult$ = observableOf<SparqlResult>({ kind: 'unsupported', queryType: 'ask' });
+
+                await expect(lastValueFrom(component.graphData$)).resolves.toEqual({
+                    nodes: [],
+                    edges: [],
+                    tripleCount: 0,
+                });
+            });
         });
 
         it('... should have `defaultForceGraphHeight` input', () => {
@@ -276,10 +313,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... isValidConstructQueryResult returns false', async () => {
-                        isValidConstructQueryResultSpy.mockReturnValue(false);
+                    it('... isValidGraphData returns false', async () => {
+                        isValidGraphDataSpy.mockReturnValue(false);
 
-                        component.queryResult$ = observableOf([] as Triple[]);
+                        component.queryResult$ = observableOf(createConstructResult([]));
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -310,7 +347,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.currentQueryResultTriples, expectedQueryResult);
+                    expectToEqual(forceGraphCmp.graphData, expectedGraphData);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });
@@ -422,10 +459,10 @@ describe('ConstructResultsComponent (DONE)', () => {
                 });
 
                 describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... isValidConstructQueryResult returns false', async () => {
-                        isValidConstructQueryResultSpy.mockReturnValue(false);
+                    it('... isValidGraphData returns false', async () => {
+                        isValidGraphDataSpy.mockReturnValue(false);
 
-                        component.queryResult$ = observableOf([] as Triple[]);
+                        component.queryResult$ = observableOf(createConstructResult([]));
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -458,7 +495,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.currentQueryResultTriples, expectedQueryResult);
+                    expectToEqual(forceGraphCmp.graphData, expectedGraphData);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });
@@ -484,88 +521,40 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#isValidConstructQueryResult()', () => {
-            it('... should have a method `isValidConstructQueryResult`', () => {
-                expect(component.isValidConstructQueryResult).toBeDefined();
+        describe('#isValidGraphData()', () => {
+            it('... should have a method `isValidGraphData`', () => {
+                expect(component.isValidGraphData).toBeDefined();
             });
 
             it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isValidConstructQueryResultSpy, 3, [expectedQueryResult]);
+                expectSpyCall(isValidGraphDataSpy, 3, [expectedGraphData]);
             });
 
             it('... should be triggered by change of queryResult', async () => {
-                expectSpyCall(isValidConstructQueryResultSpy, 3, [expectedQueryResult]);
+                expectSpyCall(isValidGraphDataSpy, 3, [expectedGraphData]);
 
-                const anotherQueryResult = [
-                    {
-                        subject: 'example:AnotherTest',
-                        predicate: 'example:has',
-                        object: 'example:AnotherSuccess',
-                    },
-                ];
+                const anotherQueryResult = createConstructResult(['AnotherTest']);
                 component.queryResult$ = observableOf(anotherQueryResult);
                 await detectChangesOnPush(fixture);
 
-                expectSpyCall(isValidConstructQueryResultSpy, 4, [anotherQueryResult]);
+                expectSpyCall(isValidGraphDataSpy, 4, [
+                    GRAPH_DATA_UTILS.toGraphData(anotherQueryResult.quads, anotherQueryResult.prefixes),
+                ]);
             });
 
-            describe('... should return false if', () => {
-                it.each([
-                    {
-                        desc: 'queryResult is empty array',
-                        query: [] as Triple[],
-                    },
-                    {
-                        desc: 'subject is an empty string',
-                        query: [{ subject: '', predicate: 'example:has', object: 'example:Success' }],
-                    },
-                    {
-                        desc: 'predicate is an empty string',
-                        query: [{ subject: 'example:Test', predicate: '', object: 'example:Success' }],
-                    },
-                    {
-                        desc: 'object is an empty string',
-                        query: [{ subject: 'example:Test', predicate: 'example:has', object: '' }],
-                    },
-                    {
-                        desc: 'all fields are empty strings',
-                        query: [{ subject: '', predicate: '', object: '' }],
-                    },
-                ])('... $desc', async ({ query }) => {
-                    isValidConstructQueryResultSpy.mockClear();
-
-                    component.queryResult$ = observableOf(query);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isValidConstructQueryResultSpy, 1, [query]);
-                    expectToBe(component.isValidConstructQueryResult(query), false);
+            describe('... should be false if', () => {
+                it.each<{ desc: string; graphData: GraphData | null | undefined }>([
+                    { desc: 'graphData is undefined', graphData: undefined },
+                    { desc: 'graphData is null', graphData: null },
+                    { desc: 'graphData has no edges', graphData: { nodes: [], edges: [], tripleCount: 0 } },
+                ])('... $desc', ({ graphData }) => {
+                    expectToBe(component.isValidGraphData(graphData), false);
                 });
             });
 
-            describe('... should return true if', () => {
-                it.each([
-                    {
-                        desc: 'queryResult is valid',
-                        query: [{ subject: 'example:Test', predicate: 'example:has', object: 'example:Success' }],
-                    },
-                    {
-                        desc: 'queryResult changes to another valid result',
-                        query: [
-                            {
-                                subject: 'example:AnotherTest',
-                                predicate: 'example:has',
-                                object: 'example:AnotherSuccess',
-                            },
-                        ],
-                    },
-                ])('... $desc', async ({ query }) => {
-                    isValidConstructQueryResultSpy.mockClear();
-
-                    component.queryResult$ = observableOf(query);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(isValidConstructQueryResultSpy, 1, [query]);
-                    expectToBe(component.isValidConstructQueryResult(query), true);
+            describe('... should be true if', () => {
+                it('... graphData has edges', () => {
+                    expectToBe(component.isValidGraphData(expectedGraphData), true);
                 });
             });
         });
@@ -579,7 +568,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
-                const node: D3SimulationNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
+                const node: GraphNode = { id: 'Test', shortName: 'awg:Test', label: 'Test', kind: 'resource' };
                 forceGraphCmp.clickedNodeRequest.emit(node);
 
                 expectSpyCall(nodeClickSpy, 1, node);
@@ -590,7 +579,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
                 // Node is undefined
-                forceGraphCmp.clickedNodeRequest.emit(undefined);
+                forceGraphCmp.clickedNodeRequest.emit(undefined as unknown as GraphNode);
 
                 expectSpyCall(nodeClickSpy, 1, undefined);
                 expectSpyCall(emitClickedNodeRequestSpy, 0);
@@ -600,7 +589,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
-                const node: D3SimulationNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
+                const node: GraphNode = { id: 'Test', shortName: 'awg:Test', label: 'Test', kind: 'resource' };
                 forceGraphCmp.clickedNodeRequest.emit(node);
 
                 expectSpyCall(nodeClickSpy, 1, node);

@@ -4,12 +4,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
+import { DataFactory } from 'n3';
+
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { TableComponent } from '@awg-shared/table/table.component';
 
-import { QuerySelectResult } from '../models';
+import { SparqlSelectResult } from '../models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
 import { SparqlTableComponent } from './sparql-table.component';
+import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
+
+const { literal, namedNode } = DataFactory;
 
 describe('SparqlTableComponent (DONE)', () => {
     let component: SparqlTableComponent;
@@ -19,7 +25,7 @@ describe('SparqlTableComponent (DONE)', () => {
     let tableClickSpy: Spy;
     let emitSpy: Spy;
 
-    let expectedQueryResult: QuerySelectResult;
+    let expectedQueryResult: SparqlSelectResult;
     let expectedTableTitle: string;
 
     beforeEach(async () => {
@@ -37,14 +43,12 @@ describe('SparqlTableComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        const varKeys = ['test', 'success'];
-        const b = [
-            {
-                test: { type: 'test type', value: 'test value' },
-                success: { type: 'success type', value: 'sucess value' },
-            },
-        ];
-        expectedQueryResult = { head: { vars: varKeys }, body: { bindings: b } };
+        expectedQueryResult = {
+            kind: 'select',
+            variables: ['test', 'success'],
+            bindings: [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }],
+            prefixes: DEFAULT_PREFIXES,
+        };
 
         expectedTableTitle = 'SELECT Anfrage';
 
@@ -88,6 +92,18 @@ describe('SparqlTableComponent (DONE)', () => {
             expectToEqual(component.queryResult(), expectedQueryResult);
         });
 
+        it('... should have computed signal `tableRows` to hold the table rows of the result', () => {
+            expectToBe(isSignal(component.tableRows), true);
+            expectToEqual(component.tableRows(), SPARQL_TABLE_UTILS.toTableRows(expectedQueryResult));
+        });
+
+        it('... should have recomputed signal `tableRows` when the result changes', async () => {
+            const otherResult: SparqlSelectResult = { ...expectedQueryResult, bindings: [] };
+            fixture.componentRef.setInput('queryResult', otherResult);
+
+            expectToEqual(component.tableRows(), []);
+        });
+
         describe('VIEW', () => {
             it('... should contain one TableComponent (hollow) if results are available', () => {
                 getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
@@ -104,14 +120,20 @@ describe('SparqlTableComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableComponent);
 
-                expectToEqual(tableCmp.headerInputData(), expectedQueryResult.head.vars);
+                expectToEqual(tableCmp.headerInputData(), expectedQueryResult.variables);
             });
 
             it('... should pass down `rowInputData` to TableComponent (hollow)', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableComponent);
 
-                expectToEqual(tableCmp.rowInputData(), expectedQueryResult.body.bindings);
+                expectToBe(tableCmp.rowInputData(), component.tableRows());
+                expectToEqual(tableCmp.rowInputData(), [
+                    {
+                        test: { type: 'uri', value: `${DEFAULT_PREFIXES['awg']}test`, label: 'awg:test' },
+                        success: { type: 'literal', value: 'success value', label: 'success value' },
+                    },
+                ]);
             });
         });
 

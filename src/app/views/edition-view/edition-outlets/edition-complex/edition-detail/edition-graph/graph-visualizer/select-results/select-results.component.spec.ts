@@ -7,6 +7,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DataFactory } from 'n3';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
@@ -20,8 +21,23 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { QuerySelectResult } from '../models';
+import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
 import { SelectResultsComponent } from './select-results.component';
+
+const { literal, namedNode } = DataFactory;
+
+/**
+ * Helper function: createSelectResult.
+ *
+ * It creates a select result with the given variables and bindings.
+ */
+const createSelectResult = (variables: string[], bindings: SparqlSelectResult['bindings']): SparqlSelectResult => ({
+    kind: 'select',
+    variables,
+    bindings,
+    prefixes: DEFAULT_PREFIXES,
+});
 
 // Mock components
 @Component({
@@ -37,7 +53,7 @@ class SparqlNoResultsStubComponent {}
     standalone: false,
 })
 class SparqlTableStubComponent {
-    readonly queryResult = input.required<QuerySelectResult>();
+    readonly queryResult = input.required<SparqlSelectResult>();
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -47,8 +63,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: QuerySelectResult | string;
-    let expectedQueryResult$: Observable<QuerySelectResult | string>;
+    let expectedQueryResult: SparqlSelectResult;
+    let expectedQueryResult$: Observable<SparqlResult>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
@@ -81,14 +97,10 @@ describe('SelectResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        const varKeys = ['test', 'success'];
-        const b = [
-            {
-                test: { type: 'test type', value: 'test value' },
-                success: { type: 'success type', value: 'sucess value' },
-            },
-        ];
-        expectedQueryResult = { head: { vars: varKeys }, body: { bindings: b } };
+        expectedQueryResult = createSelectResult(
+            ['test', 'success'],
+            [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }]
+        );
         expectedQueryResult$ = observableOf(expectedQueryResult);
         expectedQueryTime = 5000;
         expectedIsFullscreen = false;
@@ -276,7 +288,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     });
 
                     it('... queryResult$ is undefined', async () => {
-                        component.queryResult$ = observableOf(undefined);
+                        component.queryResult$ = observableOf(undefined as unknown as SparqlResult);
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -294,10 +306,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     it('... isValidSelectQueryResult returns false', async () => {
                         isValidSelectQueryResultSpy.mockReturnValue(false);
 
-                        component.queryResult$ = observableOf({
-                            head: { vars: [] as string[] },
-                            body: { bindings: [] },
-                        });
+                        component.queryResult$ = observableOf(createSelectResult([], []));
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -436,7 +445,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     });
 
                     it('... queryResult$ is undefined', async () => {
-                        component.queryResult$ = observableOf(undefined);
+                        component.queryResult$ = observableOf(undefined as unknown as SparqlResult);
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -454,10 +463,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     it('... isValidSelectQueryResult returns false', async () => {
                         isValidSelectQueryResultSpy.mockReturnValue(false);
 
-                        component.queryResult$ = observableOf({
-                            head: { vars: [] as string[] },
-                            body: { bindings: [] },
-                        });
+                        component.queryResult$ = observableOf(createSelectResult([], []));
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -527,10 +533,10 @@ describe('SelectResultsComponent (DONE)', () => {
                 expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
 
                 // Mock another queryResult
-                const queryResult = {
-                    head: { vars: ['AnotherTestHeader'] },
-                    body: { bindings: [{ testKey: 'AnotherTestValue' }] },
-                };
+                const queryResult = createSelectResult(
+                    ['anotherTestHeader'],
+                    [{ anotherTestHeader: literal('AnotherTestValue') }]
+                );
                 component.queryResult$ = observableOf(queryResult);
 
                 await detectChangesOnPush(fixture);
@@ -538,34 +544,34 @@ describe('SelectResultsComponent (DONE)', () => {
                 expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);
             });
 
-            describe('... should return false if', () => {
-                it.each([
+            describe('... should be false if', () => {
+                it.each<{ desc: string; query: SparqlResult | undefined }>([
                     {
                         desc: 'queryResult is undefined',
                         query: undefined,
                     },
                     {
-                        desc: 'queryResult is an empty string',
-                        query: '',
+                        desc: 'queryResult is a construct result',
+                        query: { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES },
                     },
                     {
-                        desc: 'queryResult is a string message',
-                        query: 'Query returned no results',
+                        desc: 'queryResult is an unsupported result',
+                        query: { kind: 'unsupported', queryType: 'ask' },
                     },
                     {
-                        desc: 'queryResult.head.vars is empty array',
-                        query: { head: { vars: [] as string[] }, body: { bindings: [{ testKey: 'TestValue' }] } },
+                        desc: 'queryResult has no variables',
+                        query: createSelectResult([], [{ testHeader: literal('TestValue') }]),
                     },
                     {
-                        desc: 'queryResult.body.bindings is empty array',
-                        query: { head: { vars: ['TestHeader'] }, body: { bindings: [] } },
+                        desc: 'queryResult has no bindings',
+                        query: createSelectResult(['testHeader'], []),
                     },
                     {
-                        desc: 'queryResult.head.vars & queryResult.body.bindings are empty arrays',
-                        query: { head: { vars: [] as string[] }, body: { bindings: [] } },
+                        desc: 'queryResult has neither variables nor bindings',
+                        query: createSelectResult([], []),
                     },
                 ])('... $desc', async ({ query }) => {
-                    component.queryResult$ = observableOf<QuerySelectResult | string | undefined>(query);
+                    component.queryResult$ = observableOf(query as SparqlResult);
                     await detectChangesOnPush(fixture);
 
                     // Clear the spy call count
@@ -578,21 +584,18 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
             });
 
-            describe('... should return true if', () => {
+            describe('... should be true if', () => {
                 it.each([
                     {
                         desc: 'queryResult is valid',
-                        query: {
-                            head: { vars: ['TestHeader'] },
-                            body: { bindings: [{ testKey: 'TestValue' }] },
-                        },
+                        query: createSelectResult(['testHeader'], [{ testHeader: literal('TestValue') }]),
                     },
                     {
                         desc: 'queryResult changes to another valid result',
-                        query: {
-                            head: { vars: ['AnotherTestHeader'] },
-                            body: { bindings: [{ testKey: 'AnotherTestValue' }] },
-                        },
+                        query: createSelectResult(
+                            ['anotherTestHeader'],
+                            [{ anotherTestHeader: literal('AnotherTestValue') }]
+                        ),
                     },
                 ])('... $desc', async ({ query }) => {
                     component.queryResult$ = observableOf(query);

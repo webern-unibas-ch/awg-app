@@ -1,9 +1,17 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-import { D3SimulationNode, Triple } from '../models';
+import { GraphData, GraphNode } from '../models/graph-data.model';
+import { SparqlResult } from '../models/sparql-result.model';
+import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
+
+/**
+ * Object constant: EMPTY_GRAPH_DATA.
+ *
+ * It keeps the graph data of a result without triples.
+ */
+const EMPTY_GRAPH_DATA: GraphData = Object.freeze({ nodes: [], edges: [], tripleCount: 0 });
 
 /**
  * The ConstructResults component.
@@ -19,14 +27,6 @@ import { D3SimulationNode, Triple } from '../models';
     standalone: false,
 })
 export class ConstructResultsComponent {
-    /**
-     * Input variable: queryResult$.
-     *
-     * It keeps the result of the query as an observable of triples.
-     */
-    @Input()
-    queryResult$: Observable<Triple[]> = EMPTY;
-
     /**
      * Input variable: defaultForceGraphHeight.
      *
@@ -49,7 +49,40 @@ export class ConstructResultsComponent {
      * It keeps an event emitter for a click on a graph node.
      */
     @Output()
-    clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
+    clickedNodeRequest: EventEmitter<GraphNode> = new EventEmitter();
+
+    /**
+     * Public variable: graphData$.
+     *
+     * It keeps the graph data of the query result as an observable.
+     */
+    graphData$: Observable<GraphData> = EMPTY;
+
+    /**
+     * Private variable: _queryResult$.
+     *
+     * It keeps the result of the query as an observable.
+     */
+    private _queryResult$: Observable<SparqlResult> = EMPTY;
+
+    /**
+     * Getter for the query result observable.
+     */
+    get queryResult$(): Observable<SparqlResult> {
+        return this._queryResult$;
+    }
+
+    /**
+     * Input setter: queryResult$.
+     *
+     * It sets the result of the query as an observable
+     * and derives the graph data from it (once per result, not per change detection).
+     */
+    @Input()
+    set queryResult$(queryResult$: Observable<SparqlResult>) {
+        this._queryResult$ = queryResult$;
+        this.graphData$ = queryResult$.pipe(map(queryResult => this._toGraphData(queryResult)));
+    }
 
     /**
      * Public method: isAccordionItemDisabled.
@@ -64,22 +97,15 @@ export class ConstructResultsComponent {
     }
 
     /**
-     * Public method: isValidConstructQueryResult.
+     * Public method: isValidGraphData.
      *
-     * It checks if a given construct result triple is valid.
+     * It checks if the given graph data has edges to display.
      *
-     * @param {Triple[] | null | undefined} constructQueryResult The given construct query result.
-     * @returns {boolean} True if it is a valid, filled, and complete array.
+     * @param {GraphData | null | undefined} graphData The given graph data.
+     * @returns {boolean} True if the graph data has edges.
      */
-    isValidConstructQueryResult(constructQueryResult: Triple[] | null | undefined): constructQueryResult is Triple[] {
-        if (UTILS.isEmptyArray(constructQueryResult)) {
-            return false;
-        }
-        if (constructQueryResult.some(triple => !triple.subject || !triple.predicate || !triple.object)) {
-            return false;
-        }
-
-        return true;
+    isValidGraphData(graphData: GraphData | null | undefined): graphData is GraphData {
+        return !!graphData && graphData.edges.length > 0;
     }
 
     /**
@@ -88,14 +114,30 @@ export class ConstructResultsComponent {
      * It emits a trigger to
      * the {@link clickedNodeRequest}.
      *
-     * @param {D3SimulationNode} node The given graph node.
+     * @param {GraphNode} node The given graph node.
      *
      * @returns {void} Triggers the request.
      */
-    onGraphNodeClick(node: D3SimulationNode): void {
+    onGraphNodeClick(node: GraphNode): void {
         if (!node) {
             return;
         }
         this.clickedNodeRequest.emit(node);
+    }
+
+    /**
+     * Private method: _toGraphData.
+     *
+     * It converts a given query result into graph data
+     * (empty graph data for results that are no construct results).
+     *
+     * @param {SparqlResult} queryResult The given query result.
+     * @returns {GraphData} The graph data.
+     */
+    private _toGraphData(queryResult: SparqlResult): GraphData {
+        if (queryResult.kind !== 'construct') {
+            return EMPTY_GRAPH_DATA;
+        }
+        return GRAPH_DATA_UTILS.toGraphData(queryResult.quads, queryResult.prefixes);
     }
 }

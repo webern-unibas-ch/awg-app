@@ -9,14 +9,14 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    @if (queryResult$ | async; as queryResult) {
-                        @if (!isValidConstructQueryResult(queryResult)) {
+                    @if (graphData$ | async; as graphData) {
+                        @if (!isValidGraphData(graphData)) {
                             <awg-sparql-no-results />
                         } @else {
                             <!-- Force graph visualization -->
                             <awg-force-graph
                                 class="full-width"
-                                [currentQueryResultTriples]="queryResult"
+                                [graphData]="graphData"
                                 [height]="defaultForceGraphHeight"
                                 (clickedNodeRequest)="onGraphNodeClick($event)" />
                         }

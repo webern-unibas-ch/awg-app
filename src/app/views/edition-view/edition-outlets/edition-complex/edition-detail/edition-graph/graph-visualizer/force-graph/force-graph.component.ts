@@ -8,7 +8,6 @@ import {
     ElementRef,
     EventEmitter,
     HostListener,
-    inject,
     Input,
     OnChanges,
     OnDestroy,
@@ -25,24 +24,23 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { NUMBER_UTILS } from '@awg-shared/utils/number-utils';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
-import {
-    D3DragBehaviour,
-    D3Simulation,
-    D3SimulationData,
-    D3SimulationLink,
-    D3SimulationNode,
-    D3SimulationNodeTriple,
-    D3SimulationNodeType,
-    PrefixForm,
-    Triple,
-} from '../models';
-import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
-import { GraphVisualizerService } from '../services/graph-visualizer.service';
+
+import { GraphData, GraphNode } from '../models/graph-data.model';
+import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
+import { SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
+import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 
 import * as D3_DRAG from 'd3-drag';
 import * as D3_FORCE from 'd3-force';
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
+
+/**
+ * The ForceSimulation type.
+ *
+ * It represents the D3 force simulation of the graph.
+ */
+type ForceSimulation = D3_FORCE.Simulation<SimNode, SimLink>;
 
 /**
  * Object constant with a set of forces.
@@ -71,11 +69,11 @@ const FORCES = {
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
-     * Input variable: currentQueryResultTriples.
+     * Input variable: graphData.
      *
-     * It keeps the triples of the query result.
+     * It keeps the graph data of the query result.
      */
-    @Input() currentQueryResultTriples?: Triple[];
+    @Input() graphData?: GraphData;
 
     /**
      * Input variable: height.
@@ -87,9 +85,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Output variable: clickedNodeRequest.
      *
-     * It keeps an event emitter for the node IRI a user clicked on.
+     * It keeps an event emitter for the graph node a user clicked on.
      */
-    @Output() clickedNodeRequest = new EventEmitter<D3SimulationNode>();
+    @Output() clickedNodeRequest = new EventEmitter<GraphNode>();
 
     /**
      * ViewChild variable: graphContainer.
@@ -127,12 +125,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
-     * Private variable: _labelMap.
-     * It caches the label map extracted from the currentQueryResultTriples.
-     */
-    private _labelMap: Map<string, string> = new Map();
-
-    /**
      * Private variable: _svg.
      *
      * It keeps the D3 svg selection.
@@ -158,14 +150,14 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the D3 force simulation.
      */
-    private _forceSimulation: D3Simulation | undefined;
+    private _forceSimulation: ForceSimulation | undefined;
 
     /**
      * Private variable: _simulationData.
      *
      * It keeps the data for the D3 force simulation.
      */
-    private _simulationData: D3SimulationData | undefined;
+    private _simulationData: SimulationData | undefined;
 
     /**
      * Private variable: _divWidth.
@@ -196,27 +188,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private readonly _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Private readonly injection variable: _graphVisualizerService.
-     *
-     * It keeps the instance of the injected GraphVisualizerService.
-     */
-    private readonly _graphVisualizerService = inject(GraphVisualizerService);
-
-    /**
-     * Private readonly injection variable: _prefixPipe.
-     *
-     * It keeps the instance of the injected PrefixPipe.
-     */
-    private readonly _prefixPipe = inject(PrefixPipe);
-
-    /**
      * HostListener: onResize.
      *
      * It redraws the graph when the window is resized.
      */
     @HostListener('window:resize') onResize() {
         // Guard against resize before view is rendered
-        if (!this.graphContainer || !this.currentQueryResultTriples) {
+        if (!this.graphContainer || !this.graphData) {
             return;
         }
 
@@ -242,10 +220,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             },
         });
 
-        // Ensure label extraction happens on initialization
-        if (this.currentQueryResultTriples) {
-            this._labelMap = this._graphVisualizerService.extractLabelsFromTriples(this.currentQueryResultTriples);
-        }
         this._redraw();
     }
 
@@ -257,11 +231,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @param {SimpleChanges} changes The changes of the input.
      */
     ngOnChanges(changes: SimpleChanges) {
-        const { queryResultTriples } = changes;
+        const { graphData } = changes;
 
-        if (queryResultTriples?.currentValue && !queryResultTriples.isFirstChange()) {
-            this.currentQueryResultTriples = queryResultTriples.currentValue;
-            this._labelMap = this._graphVisualizerService.extractLabelsFromTriples(this.currentQueryResultTriples);
+        if (graphData?.currentValue && !graphData.isFirstChange()) {
             this._redraw();
         }
     }
@@ -348,7 +320,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Redraws the graph.
      */
     private _redraw(): void {
-        if (this.currentQueryResultTriples) {
+        if (this.graphData) {
             this._cleanSVG();
             this._createSVG();
             this._attachData();
@@ -415,13 +387,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Private method: _attachData.
      *
-     * It attaches the RDF data to the simulation which is then set up.
+     * It attaches the (limited) graph data to the simulation which is then set up.
      *
      * @returns {void} Attaches the data and sets up the simulation.
      */
     private _attachData(): void {
-        const triples: Triple[] = this._graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
-        this._simulationData = this._triplesToD3GraphData(triples, this._labelMap);
+        if (!this.graphData) {
+            return;
+        }
+        const limitedGraphData = GRAPH_DATA_UTILS.limitGraphData(this.graphData, this.limit);
+        this._simulationData = FORCE_GRAPH_UTILS.toSimulationData(limitedGraphData);
         this._setupForceSimulation();
         this._updateSVG();
     }
@@ -442,8 +417,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this._forceSimulation = D3_FORCE.forceSimulation();
 
         // Create forces
-        const chargeForce = D3_FORCE.forceManyBody<D3SimulationNode>().strength(
-            (d: D3SimulationNode) => this._nodeRadius(d) * FORCES.CHARGE_STRENGTH
+        // The charge uses the radius of the drawn node reduced by 1 (as before)
+        const chargeForce = D3_FORCE.forceManyBody<SimNode>().strength(
+            (d: SimNode) => (d.r - 1) * FORCES.CHARGE_STRENGTH
         );
 
         const centerForce = D3_FORCE.forceCenter(this._divWidth / 2, this._divHeight / 2);
@@ -454,9 +430,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        const linkForce = D3_FORCE.forceLink<D3SimulationNode, D3SimulationLink>()
+        const linkForce = D3_FORCE.forceLink<SimNode, SimLink>()
             .links(this._simulationData.links)
-            .id((d: D3SimulationNode) => d.id)
+            .id((d: SimNode) => d.id)
             .distance(FORCES.LINK_DISTANCE);
 
         // Add forces
@@ -511,7 +487,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .append('g')
             .attr('class', 'links')
             .selectAll('.link')
-            .data(this._simulationData.nodeTriples)
+            .data(this._simulationData.edges)
             .enter()
             .append('path')
             .attr('marker-end', 'url(#end)')
@@ -522,60 +498,37 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .append('g')
             .attr('class', 'link-texts')
             .selectAll('.link-text')
-            .data(this._simulationData.nodeTriples)
+            .data(this._simulationData.edges)
             .enter()
             .append('text')
             .attr('class', 'link-text')
-            .text((d: D3SimulationNodeTriple) => d.nodePredicate.label);
+            .text((d: SimEdge) => d.edge.label);
+
+        // The middle nodes of the edges are part of the simulation, but not drawn
+        const graphSimNodes = this._simulationData.nodes.filter((d: SimNode) => !!d.graphNode);
 
         // ==================== Add Node Names =====================
         const nodeTexts: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'node-texts')
             .selectAll('.node-text')
-            .data(this._filterNodesByType(this._simulationData.nodes, D3SimulationNodeType.node))
+            .data(graphSimNodes)
             .enter()
             .append('text')
             .attr('class', 'node-text')
-            .text((d: D3SimulationNode) => d.id);
+            .text((d: SimNode) => d.graphNode?.shortName ?? '');
 
         // ==================== Add Nodes =====================
         const nodes: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'nodes')
             .selectAll('.node')
-            .data(this._filterNodesByType(this._simulationData.nodes, D3SimulationNodeType.node))
+            .data(graphSimNodes)
             .enter()
             .append('circle')
-            // .attr("class", "node")
-            .attr('class', (d: D3SimulationNode) => {
-                if (d.owlClass) {
-                    return 'class';
-                    // }else if(d.instSpace){ //MB
-                    // Return "instance-space" //MB
-                    // }else if(d.instSpaceType){ //MB
-                    // Return "instance-spaceType"	//MB
-                } else if (d.label.includes('_:')) {
-                    return 'blank';
-                } else if (d.instance || d.label.includes('inst:')) {
-                    return 'instance';
-                } else {
-                    return 'node';
-                }
-            })
-            .attr('id', (d: D3SimulationNode) => d.label)
-            .attr('r', (d: D3SimulationNode) => {
-                // MB if(d.instance || d.instSpace || d.instSpaceType){
-                if (d.label.includes('_:')) {
-                    return 8;
-                } else if (d.instance || d.label.includes('inst:')) {
-                    return 11;
-                } else if (d.owlClass || d.label.includes('inst:')) {
-                    return 10;
-                } else {
-                    return 9;
-                }
-            })
+            .attr('class', (d: SimNode) => FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode?.kind ?? 'resource'))
+            .attr('id', (d: SimNode) => d.graphNode?.label ?? d.id)
+            .attr('r', (d: SimNode) => d.r)
             .on('click', (event: any, d): void => {
                 this._clickedOnNode(event, d);
             });
@@ -611,40 +564,21 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _checkForRdfType.
-     *
-     * It checks if a given predicate node
-     * contains a short or longform of "rdf:type".
-     *
-     * @param {D3SimulationNode} predicateNode The given node of the RDF predicate.
-     *
-     * @returns {boolean} The result of the check.
-     */
-    private _checkForRdfType(predicateNode: D3SimulationNode): boolean {
-        return (
-            // Rdf:type
-            predicateNode.label === 'a' ||
-            predicateNode.label === 'rdf:type' ||
-            predicateNode.label === this._prefixPipe.transform('rdf:type', PrefixForm.LONG)
-        );
-    }
-
-    /**
      * Private method: _clickedOnNode.
      *
      * It emits a node the user clicked on.
      *
      * @param {any} event The given D3 event listener.
-     * @param {D3SimulationNode} d The given node.
+     * @param {SimNode} d The given simulation node.
      *
-     * @returns {void} Emits the node.
+     * @returns {void} Emits the graph node.
      */
-    private _clickedOnNode(event: any, d: D3SimulationNode): void {
-        if (event.defaultPrevented) {
+    private _clickedOnNode(event: any, d: SimNode): void {
+        if (event.defaultPrevented || !d.graphNode) {
             return;
         } // Dragged
 
-        this.clickedNodeRequest.emit(d);
+        this.clickedNodeRequest.emit(d.graphNode);
     }
 
     /**
@@ -653,13 +587,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * It binds a draggable behaviour to a given dragContext (e.g. the nodes).
      *
      * @param {D3Selection} dragContext The given context that shall be draggable.
-     * @param {D3Simulation} simulation The given force simulation.
+     * @param {ForceSimulation} simulation The given force simulation.
      *
      * @returns {void} Sets the drag behaviour.
      */
-    private _dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
+    private _dragHandler(dragContext: D3Selection, simulation: ForceSimulation): void {
         // Drag functions
-        const dragStart = (event: any, d: D3SimulationNode): void => {
+        const dragStart = (event: any, d: SimNode): void => {
             /** Preventing propagation of dragstart to parent elements */
             event.sourceEvent.stopPropagation();
 
@@ -671,12 +605,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Make sure you can't drag the circle outside the box
-        const dragged = (event: any, d: D3SimulationNode): void => {
+        const dragged = (event: any, d: SimNode): void => {
             d.fx = event.x;
             d.fy = event.y;
         };
 
-        const dragEnd = (event: any, d: D3SimulationNode): void => {
+        const dragEnd = (event: any, d: SimNode): void => {
             if (!event.active) {
                 simulation.alphaTarget(0);
             }
@@ -685,7 +619,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag<any, any, D3SimulationNode>()
+        const dragBehaviour = D3_DRAG.drag<any, SimNode>()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);
@@ -724,20 +658,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _filterNodesByType.
-     *
-     * It filters an array of simulations nodes by a given type.
-     *
-     * @param {D3SimulationNode[]} nodes The given nodes array.
-     * @param {D3SimulationNodeType} type The given node type.
-     *
-     * @returns {D3SimulationNode} The filtered node.
-     */
-    private _filterNodesByType(nodes: D3SimulationNode[], type: D3SimulationNodeType): D3SimulationNode[] {
-        return nodes.filter(node => node.type === type);
-    }
-
-    /**
      * Private method: _getContainerDimensions.
      *
      * It returns the dimensions (clientWidth & clientHeight) of a given container.
@@ -754,123 +674,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _nodeRadius.
-     *
-     * It returns the radius of a given node depending on the kind of node.
-     *
-     * @param {D3SimulationNode} node The given node.
-     *
-     * @returns {number} The radius of the node.
-     */
-    private _nodeRadius(node: D3SimulationNode): number {
-        if (!node) {
-            return 0;
-        }
-
-        let defaultRadius = 8;
-
-        // MB if(d.instance || d.instSpace || d.instSpaceType){
-        if (node.label.includes('_:')) {
-            defaultRadius = defaultRadius - 1;
-        } else if (node.instance || node.label.includes('inst:')) {
-            defaultRadius = defaultRadius + 2;
-        } else if (node.owlClass || node.label.includes('inst:')) {
-            defaultRadius = defaultRadius + 1;
-        }
-        return defaultRadius;
-    }
-
-    /**
-     * Private method: _triplesToD3GraphData.
-     *
-     * It calculates the D3 simulation data from an array of triples.
-     *
-     * @param {Triple[]} triples The given triple array.
-     * @param {Map<string, string>} labelMap The label map extracted from the full triple set.
-     *
-     * @returns {D3SimulationData} The D3 graph data.
-     */
-    private _triplesToD3GraphData(triples: Triple[], labelMap: Map<string, string>): D3SimulationData {
-        const graphData: D3SimulationData = new D3SimulationData();
-
-        if (!triples) {
-            return graphData;
-        }
-
-        const nodeMap = new Map<string, D3SimulationNode>();
-
-        // Initial Graph from triples
-        triples.forEach((triple: Triple) => {
-            const subjId = this._prefixPipe.transform(triple.subject, PrefixForm.SHORT);
-            const predId = this._prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
-            let objId = this._prefixPipe.transform(triple.object, PrefixForm.SHORT);
-
-            // Check if object is number & round decimal numbers to 2 decimals
-            const objAsNumber = Number(objId);
-            if (!Number.isNaN(objAsNumber)) {
-                objId = objAsNumber % 1 === 0 ? String(objAsNumber) : objAsNumber.toFixed(2);
-            }
-
-            // Create new predicate node for each triple (predicates should NOT be deduplicated)
-            const predNode: D3SimulationNode = new D3SimulationNode(predId, D3SimulationNodeType.link);
-            predNode.label = labelMap.get(predId) || predId;
-            graphData.nodes.push(predNode);
-
-            // Get or create subject and object nodes (deduplicated)
-            const subjNode = this._getOrCreateNode(subjId, nodeMap, labelMap, graphData);
-            const objNode = this._getOrCreateNode(objId, nodeMap, labelMap, graphData);
-
-            // Check if predicate is "rdf:type"
-            // Then subjNode is an instance and objNode is a Class
-            if (subjNode.instance === false) {
-                subjNode.instance = this._checkForRdfType(predNode);
-            }
-            if (objNode.owlClass === false) {
-                objNode.owlClass = this._checkForRdfType(predNode);
-            }
-
-            graphData.links.push(new D3SimulationLink(subjNode, predNode), new D3SimulationLink(predNode, objNode));
-            graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
-        });
-
-        return graphData;
-    }
-
-    /**
-     * Private method: _getOrCreateNode.
-     *
-     * It gets an existing node from the nodeMap or creates a new one if it doesn't exist.
-     *
-     * @param {string} nodeId The node identifier.
-     * @param {Map<string, D3SimulationNode>} nodeMap The map of existing nodes.
-     * @param {Map<string, string>} labelMap The map of labels.
-     * @param {D3SimulationData} graphData The graph data to add the node to.
-     *
-     * @returns {D3SimulationNode} The existing or newly created node.
-     */
-    private _getOrCreateNode(
-        nodeId: string,
-        nodeMap: Map<string, D3SimulationNode>,
-        labelMap: Map<string, string>,
-        graphData: D3SimulationData
-    ): D3SimulationNode {
-        let node = nodeMap.get(nodeId);
-        if (node == null) {
-            node = new D3SimulationNode(nodeId, D3SimulationNodeType.node);
-
-            // Set label from labelMap if available, otherwise use nodeId
-            node.label = labelMap.get(nodeId) || nodeId;
-
-            // Store node in map for future reference
-            nodeMap.set(nodeId, node);
-
-            // Add new node to graph data
-            graphData.nodes.push(node);
-        }
-        return node;
-    }
-
-    /**
      * Private method: _updateNodePositions.
      *
      * It updates the positions of the nodes
@@ -881,22 +684,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the position.
      */
     private _updateNodePositions(nodes: D3Selection): void {
-        nodes.attr('cx', (d: D3SimulationNode) => d.x ?? 0).attr('cy', (d: D3SimulationNode) => d.y ?? 0);
-
-        /*
-        // constrains the nodes to be within a box
-        nodes
-            .attr(
-                'cx',
-                (d: D3SimulationNode) =>
-                    (d.x = Math.max(this._nodeRadius(d), Math.min(this._divWidth - this._nodeRadius(d), d.x)))
-            )
-            .attr(
-                'cy',
-                (d: D3SimulationNode) =>
-                    (d.y = Math.max(this._nodeRadius(d), Math.min(this._divHeight - this._nodeRadius(d), d.y)))
-            );
-         */
+        nodes.attr('cx', (d: SimNode) => d.x ?? 0).attr('cy', (d: SimNode) => d.y ?? 0);
     }
 
     /**
@@ -910,9 +698,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the position.
      */
     private _updateNodeTextPositions(nodeTexts: D3Selection): void {
-        nodeTexts
-            .attr('x', (d: D3SimulationNode) => (d.x ?? 0) + 12)
-            .attr('y', (d: D3SimulationNode) => (d.y ?? 0) + 3);
+        nodeTexts.attr('x', (d: SimNode) => (d.x ?? 0) + 12).attr('y', (d: SimNode) => (d.y ?? 0) + 3);
     }
 
     /**
@@ -927,44 +713,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Updates the position.
      */
     private _updateLinkPositions(links: D3Selection): void {
-        links.attr('d', (d: D3SimulationNodeTriple) => {
-            const x1 = d.nodeSubject.x ?? 0;
-            const y1 = d.nodeSubject.y ?? 0;
-            let x2 = d.nodeObject.x ?? 0;
-            let y2 = d.nodeObject.y ?? 0;
-            const dr = 0;
-
-            // Defaults for normal edge.
-            let drx = dr;
-            let dry = dr;
-            let xRotation = 0; // Degrees
-            let largeArc = 0; // 1 or 0
-            const sweep = 1; // 1 or 0
-
-            // Self edge.
-            if (x1 === x2 && y1 === y2) {
-                // Fiddle with this angle to get loop oriented.
-                xRotation = -45;
-
-                // Needs to be 1.
-                largeArc = 1;
-
-                // Change sweep to change orientation of loop
-                // Sweep = 0;
-
-                // Make drx and dry different to get an ellipse instead of a circle.
-                drx = 30;
-                dry = 20;
-
-                /* For whatever reason the arc collapses to a point if the beginning
-                 * and ending points of the arc are the same, so kludge it.
-                 */
-                x2 = x2 + 1;
-                y2 = y2 + 1;
-            }
-
-            return `M${x1},${y1}A${drx},${dry} ${xRotation},${largeArc},${sweep} ${x2},${y2}`;
-        });
+        links.attr('d', (d: SimEdge) => FORCE_GRAPH_UTILS.linkPath(d));
     }
 
     /**
@@ -979,35 +728,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
-            .attr('x', (d: D3SimulationNodeTriple) => {
-                const sX = d.nodeSubject.x ?? 0;
-                const pX = d.nodePredicate.x ?? 0;
-                const oX = d.nodeObject.x ?? 0;
-
-                const sY = d.nodeSubject.y ?? 0;
-                const oY = d.nodeObject.y ?? 0;
-
-                const centerX = (sX + pX + oX) / 3;
-
-                if (sX === oX && sY === oY) {
-                    return 20 + centerX;
-                }
-                return 10 + centerX;
-            })
-            .attr('y', (d: D3SimulationNodeTriple) => {
-                const sX = d.nodeSubject.x ?? 0;
-                const oX = d.nodeObject.x ?? 0;
-
-                const sY = d.nodeSubject.y ?? 0;
-                const pY = d.nodePredicate.y ?? 0;
-                const oY = d.nodeObject.y ?? 0;
-
-                const centerY = (sY + pY + oY) / 3;
-
-                if (sX === oX && sY === oY) {
-                    return -40 + centerY;
-                }
-                return 4 + centerY;
-            });
+            .attr('x', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).x)
+            .attr('y', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).y);
     }
 }

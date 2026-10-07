@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { EMPTY, Observable } from 'rxjs';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-import { QuerySelectResult } from '../models/query-result.model';
+import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
 
 /**
  * The SelectResults component.
@@ -25,7 +24,7 @@ export class SelectResultsComponent {
      * It keeps the query result as an observable.
      */
     @Input()
-    queryResult$: Observable<QuerySelectResult | string | undefined> = EMPTY;
+    queryResult$: Observable<SparqlResult> = EMPTY;
 
     /**
      * Input variable: queryTime.
@@ -66,22 +65,13 @@ export class SelectResultsComponent {
     /**
      * Public method: isValidSelectQueryResult.
      *
-     * It checks if a given select query result is valid.
+     * It checks if a given query result is a select result with variables and bindings.
      *
-     * @param {QuerySelectResult} selectQueryResult The given select query result.
-     * @returns {boolean} True if it is a valid, filled object.
+     * @param {SparqlResult | null | undefined} queryResult The given query result.
+     * @returns {boolean} True if it is a filled select result.
      */
-    isValidSelectQueryResult(
-        selectQueryResult: QuerySelectResult | string | null | undefined
-    ): selectQueryResult is QuerySelectResult {
-        if (!selectQueryResult || typeof selectQueryResult === 'string') {
-            return false;
-        }
-        if (UTILS.isEmptyArray(selectQueryResult.head.vars) || UTILS.isEmptyArray(selectQueryResult.body.bindings)) {
-            return false;
-        }
-
-        return true;
+    isValidSelectQueryResult(queryResult: SparqlResult | null | undefined): queryResult is SparqlSelectResult {
+        return queryResult?.kind === 'select' && queryResult.variables.length > 0 && queryResult.bindings.length > 0;
     }
 
     /**

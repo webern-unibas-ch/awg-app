@@ -53,7 +53,7 @@ export class TableComponent {
      * It holds the header labels of the table.
      * @default []
      */
-    readonly headerInputData = input<string[]>([]);
+    readonly headerInputData = input<readonly string[]>([]);
 
     /**
      * Readonly input signal: rowInputData.

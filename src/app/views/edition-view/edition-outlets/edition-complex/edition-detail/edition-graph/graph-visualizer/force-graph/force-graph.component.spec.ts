@@ -7,6 +7,7 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -18,8 +19,7 @@ import {
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 
-import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
-import { GraphVisualizerService } from '../services/graph-visualizer.service';
+import { GraphData, GraphNode } from '../models/graph-data.model';
 
 import { ForceGraphComponent } from './force-graph.component';
 
@@ -36,8 +36,7 @@ describe('ForceGraphComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, SliderZoomComponent],
-            declarations: [ForceGraphComponent, PrefixPipe],
-            providers: [GraphVisualizerService, PrefixPipe],
+            declarations: [ForceGraphComponent],
         }).compileComponents();
     });
 
@@ -109,6 +108,115 @@ describe('ForceGraphComponent', () => {
 
                     expectSpyCall(onReCenterSpy, 1);
                 });
+            });
+        });
+
+        describe('... with graph data', () => {
+            const nodes: GraphNode[] = [
+                { id: 'a', shortName: 'awg:a', label: 'A', kind: 'instance' },
+                { id: 'b', shortName: 'awg:B', label: 'awg:B', kind: 'class' },
+                { id: '_:c', shortName: '_:c', label: '_:c', kind: 'blank' },
+                { id: '"x"', shortName: 'x', label: 'x', kind: 'literal' },
+            ];
+            const graphData: GraphData = {
+                nodes,
+                edges: [
+                    { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
+                    { id: 'e1', source: 'a', target: '_:c', label: 'awg:has' },
+                    { id: 'e2', source: '_:c', target: '"x"', label: 'awg:value' },
+                ],
+                tripleCount: 3,
+            };
+
+            const getCircleEls = (): SVGCircleElement[] =>
+                Array.from(compDe.nativeElement.querySelectorAll('svg.force-graph circle'));
+
+            beforeEach(() => {
+                // The d3 zoom rescaling reads svg.width.baseVal, which jsdom does not implement
+                vi.spyOn(component as any, '_reScaleZoom').mockImplementation(() => undefined);
+
+                fixture.componentRef.setInput('graphData', graphData);
+                component.ngOnInit();
+                fixture.detectChanges();
+            });
+
+            it('... should draw one circle per graph node (without the middle nodes of the edges)', () => {
+                expectToBe(getCircleEls().length, nodes.length);
+            });
+
+            it('... should draw one link and one link text per edge', () => {
+                const linkTextEls = Array.from<SVGTextElement>(
+                    compDe.nativeElement.querySelectorAll('svg.force-graph text.link-text')
+                );
+
+                expectToBe(compDe.nativeElement.querySelectorAll('svg.force-graph path.link').length, 3);
+                expectToEqual(
+                    linkTextEls.map(el => el.textContent),
+                    ['rdf:type', 'awg:has', 'awg:value']
+                );
+            });
+
+            it('... should label the nodes with their short name', () => {
+                const nodeTextEls = Array.from<SVGTextElement>(
+                    compDe.nativeElement.querySelectorAll('svg.force-graph text.node-text')
+                );
+
+                expectToEqual(
+                    nodeTextEls.map(el => el.textContent),
+                    nodes.map(node => node.shortName)
+                );
+            });
+
+            it('... should set css class and radius of the circles by the kind of the nodes', () => {
+                const circleEls = getCircleEls();
+
+                expectToEqual(
+                    circleEls.map(el => [el.getAttribute('class'), el.getAttribute('r')]),
+                    [
+                        ['instance', '11'],
+                        ['class', '10'],
+                        ['blank', '8'],
+                        ['node', '9'],
+                    ]
+                );
+            });
+
+            it('... should display the number of triples in the limit button', () => {
+                const buttonDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-force-graph-node-limit-container button[disabled]',
+                    1,
+                    1
+                );
+
+                expectToBe(buttonDes[0].nativeElement.textContent.trim(), '3 Triples');
+            });
+
+            it('... should draw only the limited edges and their nodes after a limit change', async () => {
+                component.onLimitValueChange(1);
+                await detectChangesOnPush(fixture);
+
+                expectToBe(getCircleEls().length, 2);
+                expectToBe(compDe.nativeElement.querySelectorAll('svg.force-graph path.link').length, 1);
+            });
+
+            it('... should redraw on changes of the graph data', () => {
+                fixture.componentRef.setInput('graphData', {
+                    nodes: nodes.slice(0, 2),
+                    edges: graphData.edges.slice(0, 1),
+                    tripleCount: 1,
+                });
+                fixture.detectChanges();
+
+                expectToBe(getCircleEls().length, 2);
+            });
+
+            it('... should emit the graph node of a clicked circle', () => {
+                const emitSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
+
+                getCircleEls()[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+                expectSpyCall(emitSpy, 1, nodes[0]);
             });
         });
 
