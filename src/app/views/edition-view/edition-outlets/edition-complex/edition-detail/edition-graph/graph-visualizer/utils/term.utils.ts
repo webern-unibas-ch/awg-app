@@ -150,7 +150,7 @@ export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
  * @param {RdfTerm} term The given term.
  * @returns {boolean} The result of the check.
  */
-export function isIntegerLiteral(term: RdfTerm): term is Literal {
+export function isIntegerLiteral(term: RdfTerm): boolean {
     return term.termType === 'Literal' && XSD_INTEGER_TYPES.has(term.datatype.value);
 }
 
