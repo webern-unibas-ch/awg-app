@@ -240,27 +240,6 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Public method: onQueryListChange.
-     *
-     * It is called when another sample query is requested.
-     *
-     * @param {GraphSparqlQuery} query The given sample query.
-     *
-     * @returns {void} Performs the given query.
-     */
-    onQueryListChange(query: GraphSparqlQuery): void {
-        // Find the given query in the queryList or take its first item or the given query as fallback
-        const foundQuery =
-            this.queryList.find(
-                (q: GraphSparqlQuery) => query.queryLabel === q.queryLabel && query.queryType === q.queryType
-            ) ??
-            this.queryList[0] ??
-            query;
-
-        this.resetQuery(foundQuery);
-    }
-
-    /**
      * Public method: performQuery.
      *
      * It emits a trigger to

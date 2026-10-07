@@ -28,6 +28,7 @@ import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-grou
 import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
+import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 import { SparqlEditorComponent } from './sparql-editor.component';
 
 describe('SparqlEditorComponent (DONE)', () => {
@@ -46,7 +47,6 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     let isExampleQueriesEnabledSpy: Spy;
     let onEditorInputChangeSpy: Spy;
-    let onQueryListChangeSpy: Spy;
     let onViewChangeSpy: Spy;
     let performQuerySpy: Spy;
     let isAccordionItemDisabledSpy: Spy;
@@ -78,11 +78,13 @@ describe('SparqlEditorComponent (DONE)', () => {
                 NgbDropdownModule,
                 CodeMirrorComponent,
                 EditorActionButtonsComponent,
+                ExampleQueriesComponent,
                 ViewHandleButtonGroupComponent,
             ],
             declarations: [SparqlEditorComponent],
         })
             .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ExampleQueriesComponent, { set: { template: '', imports: [] } })
             .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
@@ -134,7 +136,6 @@ describe('SparqlEditorComponent (DONE)', () => {
         // Spies
         isExampleQueriesEnabledSpy = vi.spyOn(component, 'isExampleQueriesEnabled');
         onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
-        onQueryListChangeSpy = vi.spyOn(component, 'onQueryListChange');
         onViewChangeSpy = vi.spyOn(component, 'onViewChange');
         performQuerySpy = vi.spyOn(component, 'performQuery');
         isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
@@ -375,12 +376,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                         });
                     });
 
-                    describe('Example query button group', () => {
-                        it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', async () => {
-                            isExampleQueriesEnabledSpy.mockReturnValue(true);
-
-                            await detectChangesOnPush(fixture);
-
+                    describe('Example queries', () => {
+                        it('... should contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = true', () => {
                             const itemHeaderDes = getAndExpectDebugElementByCss(
                                 compDe,
                                 'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -388,17 +385,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 1
                             );
 
-                            getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group',
-                                1,
-                                1
-                            );
+                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
                         });
 
-                        it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', async () => {
+                        it('... should not contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = false', async () => {
                             isExampleQueriesEnabledSpy.mockReturnValue(false);
-
                             await detectChangesOnPush(fixture);
 
                             const itemHeaderDes = getAndExpectDebugElementByCss(
@@ -408,157 +399,34 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 1
                             );
 
-                            // Item header div.awg-example-query-btn-group
-                            getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group',
-                                0,
-                                0
-                            );
+                            getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 0, 0);
                         });
 
-                        it('... should display a disabled button label in example query btn-group', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
+                        it('... should pass down `queryList` and `activeQuery` to ExampleQueriesComponent (hollow)', () => {
+                            const exampleQueriesDes = getAndExpectDebugElementByDirective(
                                 compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                                ExampleQueriesComponent,
                                 1,
                                 1
                             );
+                            const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
 
-                            const btnDes = getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group > button.btn',
-                                2,
-                                2
-                            );
-                            const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                            expect(btnEl.disabled).toBeTruthy();
-                            expectToBe(btnEl.getAttribute('aria-disabled'), 'true');
-                            expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
+                            expectToEqual(exampleQueriesCmp.queryList(), expectedQueryList);
+                            expectToEqual(exampleQueriesCmp.activeQuery(), expectedConstructQuery1);
                         });
 
-                        it('... should contain one dropdown toggle button in example query btn-group', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
+                        it('... should trigger `resetQuery()` on querySelectRequest event from ExampleQueriesComponent (hollow)', () => {
+                            const exampleQueriesDes = getAndExpectDebugElementByDirective(
                                 compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                                ExampleQueriesComponent,
                                 1,
                                 1
                             );
+                            const exampleQueriesCmp = exampleQueriesDes[0].injector.get(ExampleQueriesComponent);
 
-                            const btnDes = getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group > button.btn',
-                                2,
-                                2
-                            );
-                            const btnEl: HTMLButtonElement = btnDes[1].nativeElement;
+                            exampleQueriesCmp.querySelectRequest.emit(expectedSelectQuery1);
 
-                            expectToContain(btnEl.classList, 'dropdown-toggle-split');
-                            expectToBe(btnEl.getAttribute('aria-label'), 'Toggle dropdown');
-                        });
-
-                        it('... should contain one dropdown menu div with dropdown item links in example query btn-group dropdown', () => {
-                            const itemHeaderDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                                1,
-                                1
-                            );
-
-                            const menuDes = getAndExpectDebugElementByCss(
-                                itemHeaderDes[0],
-                                'div.accordion-header > div.awg-example-query-btn-group > div.dropdown-menu',
-                                1,
-                                1
-                            );
-
-                            getAndExpectDebugElementByCss(
-                                menuDes[0],
-                                'a.dropdown-item',
-                                expectedQueryList.length,
-                                expectedQueryList.length
-                            );
-                        });
-
-                        it('... should display label on dropdown item links in example query btn-group', () => {
-                            const menuDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div.accordion-header > div.awg-example-query-btn-group > div.dropdown-menu',
-                                1,
-                                1
-                            );
-
-                            const aDes = getAndExpectDebugElementByCss(
-                                menuDes[0],
-                                'div.dropdown-menu > a.dropdown-item',
-                                expectedQueryList.length,
-                                expectedQueryList.length
-                            );
-
-                            expectToBe(aDes.length, expectedQueryList.length);
-
-                            aDes.forEach((aDe: DebugElement, index: number) => {
-                                const aEl: HTMLAnchorElement = aDe.nativeElement;
-
-                                expectToBe(aEl.textContent, expectedQueryList[index].queryLabel);
-                            });
-                        });
-
-                        it('... should disable current query in dropdown item links', async () => {
-                            const aDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div.dropdown-menu > a.dropdown-item',
-                                expectedQueryList.length,
-                                expectedQueryList.length
-                            );
-
-                            expectToBe(aDes.length, expectedQueryList.length);
-
-                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                            const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                            expectToContain(aEl0.classList, 'disabled');
-                            expectToNotContain(aEl1.classList, 'disabled');
-
-                            component.query = expectedConstructQuery2;
-                            await detectChangesOnPush(fixture);
-
-                            expectToNotContain(aEl0.classList, 'disabled');
-                            expectToContain(aEl1.classList, 'disabled');
-                        });
-
-                        it('... should trigger `onQueryListChange()` by click on dropdown item links', async () => {
-                            const aDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'div.dropdown-menu > a.dropdown-item',
-                                expectedQueryList.length,
-                                expectedQueryList.length
-                            );
-
-                            expectToBe(aDes.length, expectedQueryList.length);
-
-                            const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                            const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                            expectToNotContain(aEl1.classList, 'disabled');
-
-                            // Click on second item (first disabled)
-                            await clickAndAwaitChanges(aDes[1], fixture);
-
-                            // Spy call with second query
-                            expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
-
-                            component.query = expectedConstructQuery2;
-                            await detectChangesOnPush(fixture);
-
-                            expectToNotContain(aEl0.classList, 'disabled');
-
-                            // Click on first item (second disabled)
-                            await clickAndAwaitChanges(aDes[0], fixture);
-
-                            // Spy call with first query
-                            expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
+                            expectSpyCall(resetQuerySpy, 1, expectedSelectQuery1);
                         });
                     });
                 });
@@ -780,12 +648,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                     });
                 });
 
-                describe('Example query button group', () => {
-                    it('... should contain an example query btn-group in item header if isExampleQueriesEnabled = true', async () => {
-                        isExampleQueriesEnabledSpy.mockReturnValue(true);
-
-                        await detectChangesOnPush(fixture);
-
+                describe('Example queries', () => {
+                    it('... should contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = true', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-sparql-query > div.accordion-header',
@@ -793,18 +657,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1
                         );
 
-                        // Item header div.btn-group
-                        getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group',
-                            1,
-                            1
-                        );
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
                     });
 
-                    it('... should not contain an example query btn-group in item header if isExampleQueriesEnabled = false', async () => {
+                    it('... should not contain ExampleQueriesComponent (hollow) in item header if isExampleQueriesEnabled = false', async () => {
                         isExampleQueriesEnabledSpy.mockReturnValue(false);
-
                         await detectChangesOnPush(fixture);
 
                         const itemHeaderDes = getAndExpectDebugElementByCss(
@@ -814,156 +671,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                             1
                         );
 
-                        getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group',
-                            0,
-                            0
-                        );
-                    });
-
-                    it('... should display a disabled button label in example query btn-group', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group > button.btn',
-                            2,
-                            2
-                        );
-                        const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                        expect(btnEl.disabled).toBeTruthy();
-                        expectToBe(btnEl.getAttribute('aria-disabled'), 'true');
-                        expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
-                    });
-
-                    it('... should contain one dropdown toggle button in example query btn-group', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group > button.btn',
-                            2,
-                            2
-                        );
-                        const btnEl: HTMLButtonElement = btnDes[1].nativeElement;
-
-                        expectToContain(btnEl.classList, 'dropdown-toggle-split');
-                        expectToBe(btnEl.getAttribute('aria-label'), 'Toggle dropdown');
-                    });
-
-                    it('... should contain example dropdown menu div with dropdown items in example query btn-group', () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const menuDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'div.accordion-button > div.awg-example-query-btn-group > div.dropdown-menu',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByCss(
-                            menuDes[0],
-                            'a.dropdown-item',
-                            expectedQueryList.length,
-                            expectedQueryList.length
-                        );
-                    });
-
-                    it('... should display label on dropdown item links in example query btn-group', () => {
-                        const menuDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.accordion-button > div.awg-example-query-btn-group > div.dropdown-menu',
-                            1,
-                            1
-                        );
-
-                        const aDes = getAndExpectDebugElementByCss(
-                            menuDes[0],
-                            'div.dropdown-menu > a.dropdown-item',
-                            expectedQueryList.length,
-                            expectedQueryList.length
-                        );
-
-                        expectToBe(aDes.length, expectedQueryList.length);
-
-                        aDes.forEach((aDe: DebugElement, index: number) => {
-                            const aEl: HTMLAnchorElement = aDe.nativeElement;
-
-                            expectToBe(aEl.textContent, expectedQueryList[index].queryLabel);
-                        });
-                    });
-
-                    it('... should disable current query in dropdown item links in example query btn-group', async () => {
-                        const aDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.dropdown-menu > a.dropdown-item',
-                            expectedQueryList.length,
-                            expectedQueryList.length
-                        );
-
-                        expectToBe(aDes.length, expectedQueryList.length);
-
-                        const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                        const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                        expectToContain(aEl0.classList, 'disabled');
-                        expectToNotContain(aEl1.classList, 'disabled');
-
-                        component.query = expectedConstructQuery2;
-                        await detectChangesOnPush(fixture);
-
-                        expectToNotContain(aEl0.classList, 'disabled');
-                        expectToContain(aEl1.classList, 'disabled');
-                    });
-
-                    it('... should trigger `onQueryListChange()` by click on dropdown item links', async () => {
-                        const aDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.dropdown-menu > a.dropdown-item',
-                            expectedQueryList.length,
-                            expectedQueryList.length
-                        );
-
-                        expectToBe(aDes.length, expectedQueryList.length);
-
-                        const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-                        const aEl1: HTMLAnchorElement = aDes[1].nativeElement;
-
-                        expectToNotContain(aEl1.classList, 'disabled');
-
-                        // Click on second item (first disabled)
-                        await clickAndAwaitChanges(aDes[1], fixture);
-
-                        // Spy call with second query
-                        expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
-
-                        component.query = expectedConstructQuery2;
-                        await detectChangesOnPush(fixture);
-
-                        expectToNotContain(aEl0.classList, 'disabled');
-
-                        // Click on first item (second disabled)
-                        await clickAndAwaitChanges(aDes[0], fixture);
-
-                        // Spy call with first query
-                        expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
+                        getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 0, 0);
                     });
                 });
 
@@ -1088,109 +796,6 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                     expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');
-                });
-            });
-        });
-
-        describe('#onQueryListChange()', () => {
-            it('... should have a method `onQueryListChange()`', () => {
-                expect(component.onQueryListChange).toBeDefined();
-            });
-
-            it('... should trigger from click on dropdown item links', async () => {
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.dropdown-menu > a.dropdown-item',
-                    expectedQueryList.length,
-                    expectedQueryList.length
-                );
-                const aEl0: HTMLAnchorElement = aDes[0].nativeElement;
-
-                // Click on second item (first disabled)
-                await clickAndAwaitChanges(aDes[1], fixture);
-
-                // Spy call with second query
-                expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
-
-                component.query = expectedConstructQuery2;
-                await detectChangesOnPush(fixture);
-
-                expectToNotContain(aEl0.classList, 'disabled');
-
-                // Click on first item (second disabled)
-                await clickAndAwaitChanges(aDes[0], fixture);
-
-                // Spy call with first query
-                expectSpyCall(onQueryListChangeSpy, 2, expectedConstructQuery1);
-            });
-
-            it('... should trigger resetQuery on queryList change', async () => {
-                const aDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.dropdown-menu > a.dropdown-item',
-                    expectedQueryList.length,
-                    expectedQueryList.length
-                );
-
-                // Click on second item (first disabled)
-                await clickAndAwaitChanges(aDes[1], fixture);
-
-                expectSpyCall(onQueryListChangeSpy, 1, expectedConstructQuery2);
-                expectSpyCall(resetQuerySpy, 1, expectedConstructQuery2);
-            });
-
-            describe('... should handle query changes correctly', () => {
-                it.each([
-                    {
-                        desc: 'find and select the first construct query',
-                        setup: () => {},
-                        getInputQuery: () => expectedConstructQuery1,
-                        expectedReset: expectedConstructQuery1,
-                    },
-                    {
-                        desc: 'find and select the second construct query',
-                        setup: () => {},
-                        getInputQuery: () => expectedConstructQuery2,
-                        expectedReset: expectedConstructQuery2,
-                    },
-                    {
-                        desc: 'fall back to the first query in queryList if query is unknown',
-                        setup: () => {},
-                        getInputQuery: () =>
-                            ({
-                                queryLabel: 'Other Test Query',
-                                queryType: 'select',
-                                queryString: 'SELECT * WHERE { ?other rdfs:label ?query }',
-                            }) as GraphSparqlQuery,
-                        expectedReset: expectedConstructQuery1,
-                    },
-                    {
-                        desc: 'fall back to the given query itself if queryList is empty',
-                        setup: () => {
-                            component.queryList = [];
-                        },
-                        getInputQuery: () =>
-                            ({
-                                queryLabel: 'Fallback Test',
-                                queryType: 'select',
-                                queryString: 'SELECT * WHERE { ?s ?p ?o }',
-                            }) as GraphSparqlQuery,
-                        expectedReset: {
-                            queryLabel: 'Fallback Test',
-                            queryType: 'select',
-                            queryString: 'SELECT * WHERE { ?s ?p ?o }',
-                        } as GraphSparqlQuery,
-                    },
-                ])('... should $desc', async ({ setup, getInputQuery, expectedReset }) => {
-                    setup();
-
-                    const query = getInputQuery();
-                    component.onQueryListChange(query);
-
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(onQueryListChangeSpy, 1, query);
-                    expectSpyCall(resetQuerySpy, 1, expectedReset);
                 });
             });
         });

@@ -8,6 +8,7 @@ import { EditorActionButtonsComponent } from './editor-action-buttons/editor-act
 import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 import { SelectResultsComponent } from './select-results/select-results.component';
+import { ExampleQueriesComponent } from './sparql-editor/example-queries/example-queries.component';
 import { SparqlEditorComponent } from './sparql-editor/sparql-editor.component';
 import { SparqlNoResultsComponent } from './sparql-no-results/sparql-no-results.component';
 import { SparqlTableComponent } from './sparql-table/sparql-table.component';
@@ -23,6 +24,7 @@ import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsu
 @NgModule({
     imports: [
         EditorActionButtonsComponent,
+        ExampleQueriesComponent,
         SharedModule,
         SliderZoomComponent,
         SelectResultsComponent,
