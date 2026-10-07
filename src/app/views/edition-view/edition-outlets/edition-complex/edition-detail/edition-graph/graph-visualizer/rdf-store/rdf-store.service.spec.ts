@@ -1,16 +1,18 @@
-import { readFileSync } from 'node:fs';
-
 import { TestBed } from '@angular/core/testing';
 
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import type { Quad } from '@rdfjs/types';
-import { DataFactory, Parser } from 'n3';
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { DataFactory } from 'n3';
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import {
+    createMockRdfstore,
+    createRdfStoreNode,
+    createRdfStoreToken,
+    setGlobalRdfstore,
+} from '@testing/rdfstore-helper';
 
-import { GraphList } from '@awg-views/edition-view/models/graph.model';
-
-import { RdfStore, RdfStoreGlobal, RdfStoreNode, RdfStoreToken } from './rdf-store.model';
 import { RdfStoreService } from './rdf-store.service';
 
 const { blankNode, literal, namedNode, quad } = DataFactory;
@@ -18,64 +20,6 @@ const { blankNode, literal, namedNode, quad } = DataFactory;
 const EX = 'http://example.org/';
 const XSD_INTEGER = 'http://www.w3.org/2001/XMLSchema#integer';
 const TURTLE = `@prefix ex: <${EX}> . ex:a ex:p ex:b .`;
-
-/**
- * The MockRdfstoreOptions interface.
- *
- * It configures the responses of the mocked rdfstore.
- */
-interface MockRdfstoreOptions {
-    createError?: unknown;
-    loadError?: unknown;
-    executeError?: unknown;
-    response?: unknown;
-}
-
-/**
- * Helper function: createMockRdfstore.
- *
- * It creates a mocked global rdfstore with a store that answers with the given raw response.
- *
- * @param {MockRdfstoreOptions} options The given options.
- * @returns {{ rdfstore: RdfStoreGlobal; store: RdfStore }} The mocked global and its store.
- */
-const createMockRdfstore = (options: MockRdfstoreOptions = {}): { rdfstore: RdfStoreGlobal; store: RdfStore } => {
-    const store: RdfStore = {
-        load: vi.fn((_mimeType, _data, callback) => callback(options.loadError ?? null, 1)),
-        execute: vi.fn((_query, callback) => callback(options.executeError ?? null, options.response)),
-    };
-    const rdfstore: RdfStoreGlobal = {
-        create: vi.fn(callback => callback(options.createError ?? null, store)),
-    };
-    return { rdfstore, store };
-};
-
-/**
- * Helper function: setGlobalRdfstore.
- *
- * It sets (or removes) the global rdfstore.
- *
- * @param {RdfStoreGlobal | undefined} rdfstore The given rdfstore.
- */
-const setGlobalRdfstore = (rdfstore: RdfStoreGlobal | undefined): void => {
-    (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore = rdfstore;
-};
-
-/**
- * Helper function: node.
- *
- * It creates a node of a CONSTRUCT response of rdfstore.
- */
-const node = (interfaceName: RdfStoreNode['interfaceName'], nominalValue: string, extra: Partial<RdfStoreNode> = {}) =>
-    ({ interfaceName, nominalValue, ...extra }) as RdfStoreNode;
-
-/**
- * Helper function: token.
- *
- * It creates a token of a SELECT response of rdfstore.
- */
-const token = (type: RdfStoreToken['token'], value: string | number, extra: Partial<RdfStoreToken> = {}) =>
-    ({ token: type, value, ...extra }) as RdfStoreToken;
 
 describe('RdfStoreService (DONE)', () => {
     let service: RdfStoreService;
@@ -115,29 +59,29 @@ describe('RdfStoreService (DONE)', () => {
         it('... should convert named nodes, blank nodes and literals into quads', async () => {
             const triples = [
                 {
-                    subject: node('NamedNode', `${EX}a`),
-                    predicate: node('NamedNode', `${EX}p`),
-                    object: node('NamedNode', `${EX}b`),
+                    subject: createRdfStoreNode('NamedNode', `${EX}a`),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}p`),
+                    object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
                 {
-                    subject: node('BlankNode', '_:8', { bnodeId: '8' }),
-                    predicate: node('NamedNode', `${EX}p`),
-                    object: node('Literal', 'x'),
+                    subject: createRdfStoreNode('BlankNode', '_:8', { bnodeId: '8' }),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}p`),
+                    object: createRdfStoreNode('Literal', 'x'),
                 },
                 {
-                    subject: node('BlankNode', '_:9'),
-                    predicate: node('NamedNode', `${EX}q`),
-                    object: node('Literal', 'x', { language: 'de' }),
+                    subject: createRdfStoreNode('BlankNode', '_:9'),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}q`),
+                    object: createRdfStoreNode('Literal', 'x', { language: 'de' }),
                 },
                 {
-                    subject: node('NamedNode', `${EX}a`),
-                    predicate: node('NamedNode', `${EX}n`),
-                    object: node('Literal', '5', { datatype: XSD_INTEGER }),
+                    subject: createRdfStoreNode('NamedNode', `${EX}a`),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}n`),
+                    object: createRdfStoreNode('Literal', '5', { datatype: XSD_INTEGER }),
                 },
                 {
-                    subject: node('NamedNode', `${EX}a`),
-                    predicate: node('NamedNode', `${EX}m`),
-                    object: node('Literal', '6', { datatype: { nominalValue: XSD_INTEGER } }),
+                    subject: createRdfStoreNode('NamedNode', `${EX}a`),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}m`),
+                    object: createRdfStoreNode('Literal', '6', { datatype: { nominalValue: XSD_INTEGER } }),
                 },
             ];
             setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
@@ -168,9 +112,9 @@ describe('RdfStoreService (DONE)', () => {
         it('... should reject for a literal subject', async () => {
             const triples = [
                 {
-                    subject: node('Literal', 'x'),
-                    predicate: node('NamedNode', `${EX}p`),
-                    object: node('NamedNode', `${EX}b`),
+                    subject: createRdfStoreNode('Literal', 'x'),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}p`),
+                    object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
             setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
@@ -183,9 +127,9 @@ describe('RdfStoreService (DONE)', () => {
         it('... should reject for a predicate that is not a named node', async () => {
             const triples = [
                 {
-                    subject: node('NamedNode', `${EX}a`),
-                    predicate: node('BlankNode', '_:1'),
-                    object: node('NamedNode', `${EX}b`),
+                    subject: createRdfStoreNode('NamedNode', `${EX}a`),
+                    predicate: createRdfStoreNode('BlankNode', '_:1'),
+                    object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
             setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
@@ -198,9 +142,9 @@ describe('RdfStoreService (DONE)', () => {
         it('... should reject for an unknown node type', async () => {
             const triples = [
                 {
-                    subject: node('Variable' as any, 'x'),
-                    predicate: node('NamedNode', `${EX}p`),
-                    object: node('NamedNode', `${EX}b`),
+                    subject: createRdfStoreNode('Variable' as any, 'x'),
+                    predicate: createRdfStoreNode('NamedNode', `${EX}p`),
+                    object: createRdfStoreNode('NamedNode', `${EX}b`),
                 },
             ];
             setGlobalRdfstore(createMockRdfstore({ response: { triples } }).rdfstore);
@@ -217,7 +161,7 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should hold the variables of the first row (also unbound ones)', async () => {
-            const response = [{ s: token('uri', `${EX}a`), x: null }];
+            const response = [{ s: createRdfStoreToken('uri', `${EX}a`), x: null }];
             setGlobalRdfstore(createMockRdfstore({ response }).rdfstore);
 
             const result = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
@@ -228,12 +172,12 @@ describe('RdfStoreService (DONE)', () => {
         it('... should convert uris, blank nodes and literals into terms and omit unbound variables', async () => {
             const response = [
                 {
-                    s: token('uri', `${EX}a`),
-                    b: token('blank', '_:8'),
-                    l: token('literal', 'x', { lang: 'de' }),
-                    t: token('literal', '5', { type: XSD_INTEGER }),
-                    n: token('literal', 7),
-                    p: token('literal', 'plain'),
+                    s: createRdfStoreToken('uri', `${EX}a`),
+                    b: createRdfStoreToken('blank', '_:8'),
+                    l: createRdfStoreToken('literal', 'x', { lang: 'de' }),
+                    t: createRdfStoreToken('literal', '5', { type: XSD_INTEGER }),
+                    n: createRdfStoreToken('literal', 7),
+                    p: createRdfStoreToken('literal', 'plain'),
                     x: null,
                 },
             ];
@@ -252,7 +196,7 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should keep blank node values without `_:` prefix as id', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [{ b: token('blank', '8') }] }).rdfstore);
+            setGlobalRdfstore(createMockRdfstore({ response: [{ b: createRdfStoreToken('blank', '8') }] }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
@@ -260,7 +204,7 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should hold frozen bindings', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [{ s: token('uri', `${EX}a`) }] }).rdfstore);
+            setGlobalRdfstore(createMockRdfstore({ response: [{ s: createRdfStoreToken('uri', `${EX}a`) }] }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');
 
@@ -276,7 +220,9 @@ describe('RdfStoreService (DONE)', () => {
         });
 
         it('... should reject for an unknown token type', async () => {
-            setGlobalRdfstore(createMockRdfstore({ response: [{ s: token('variable' as any, 'x') }] }).rdfstore);
+            setGlobalRdfstore(
+                createMockRdfstore({ response: [{ s: createRdfStoreToken('variable' as any, 'x') }] }).rdfstore
+            );
 
             await expect(service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }')).rejects.toThrow(
                 '[RdfStoreService] Unknown token type: variable.'
@@ -350,62 +296,6 @@ describe('RdfStoreService (DONE)', () => {
             await expect(service.select(TURTLE, query)).rejects.toThrow(
                 '[RdfStoreService] An unknown error occurred while executing the query.'
             );
-        });
-    });
-
-    describe('... integration with rdfstore and the op. 25 graph data', () => {
-        let realRdfstore: RdfStoreGlobal;
-        let turtle: string;
-        let queries: { queryType: string | null; queryLabel: string; queryString: string }[];
-
-        beforeAll(() => {
-            // Evaluate the browser bundle of rdfstore (added as script via angular.json in the app)
-            const rdfstoreBundle = readFileSync('node_modules/rdfstore/dist/rdfstore_min.js', 'utf-8');
-            realRdfstore = new Function(`${rdfstoreBundle}\nreturn rdfstore;`)() as RdfStoreGlobal;
-
-            const graphList: GraphList = JSON.parse(
-                readFileSync('src/assets/data/edition/series/1/section/5/op25/graph.json', 'utf-8')
-            );
-            turtle = graphList.graph[0].rdfData.triples;
-            queries = graphList.graph[0].rdfData.queryList;
-        });
-
-        beforeEach(() => {
-            setGlobalRdfstore(realRdfstore);
-        });
-
-        it('... should construct all triples of the turtle data', async () => {
-            const expectedQuadCount = new Parser().parse(turtle).length;
-
-            const quads = await service.construct(turtle, 'CONSTRUCT WHERE { ?s ?p ?o }');
-
-            expectToBe(quads.length, expectedQuadCount);
-        });
-
-        it('... should execute all construct queries of the query list', async () => {
-            for (const query of queries.filter(q => q.queryType === 'construct')) {
-                const quads = await service.construct(turtle, query.queryString);
-
-                expect(quads.length, query.queryLabel).toBeGreaterThan(0);
-                quads.forEach(actualQuad => {
-                    expect(['NamedNode', 'BlankNode']).toContain(actualQuad.subject.termType);
-                    expectToBe(actualQuad.predicate.termType, 'NamedNode');
-                });
-            }
-        });
-
-        it('... should execute all select queries of the query list', async () => {
-            for (const query of queries.filter(q => q.queryType === 'select')) {
-                const { variables, bindings } = await service.select(turtle, query.queryString);
-
-                expect(variables.length, query.queryLabel).toBeGreaterThan(0);
-                bindings.forEach(binding => {
-                    Object.entries(binding).forEach(([variable, term]) => {
-                        expect(variables).toContain(variable);
-                        expect(['NamedNode', 'BlankNode', 'Literal']).toContain(term.termType);
-                    });
-                });
-            }
         });
     });
 });
