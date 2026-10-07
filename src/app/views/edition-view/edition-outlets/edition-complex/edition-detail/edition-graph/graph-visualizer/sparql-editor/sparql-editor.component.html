@@ -75,12 +75,12 @@
                         [(content)]="query.queryString"
                         (contentChange)="onEditorInputChange($event)" />
 
-                    <!-- Handle buttons -->
-                    <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
-                        <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
-                        <button class="btn btn-warning" (click)="resetQuery(query)">Reset</button>
-                        <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
-                    </div>
+                    <!-- Action buttons -->
+                    <awg-editor-action-buttons
+                        class="mt-2"
+                        (queryRequest)="performQuery()"
+                        (resetRequest)="resetQuery(query)"
+                        (clearRequest)="onEditorInputChange('')" />
                 </ng-template>
             </div>
         </div>

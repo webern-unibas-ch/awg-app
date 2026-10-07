@@ -27,6 +27,7 @@ import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-grou
 
 import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
+import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
 import { SparqlEditorComponent } from './sparql-editor.component';
 
 describe('SparqlEditorComponent (DONE)', () => {
@@ -76,10 +77,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                 NgbConfigModule,
                 NgbDropdownModule,
                 CodeMirrorComponent,
+                EditorActionButtonsComponent,
                 ViewHandleButtonGroupComponent,
             ],
             declarations: [SparqlEditorComponent],
         })
+            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
             .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
@@ -649,75 +652,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                     });
 
-                    it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                        const divDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-sparql-query-handle-buttons',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                        expectToBe(btnEl0.textContent, 'Query');
-                        expectToBe(btnEl1.textContent, 'Reset');
-                        expectToBe(btnEl2.textContent, 'Clear');
-                    });
-
-                    it('... should trigger `performQuery()` by click on Query button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                        expectToBe(btnEl0.textContent, 'Query');
-
-                        // Click query button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        expectSpyCall(performQuerySpy, 1);
-                        expectSpyCall(resetQuerySpy, 0);
-                    });
-
-                    it('... should trigger `resetQuery()` by click on Reset button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-
-                        expectToBe(btnEl1.textContent, 'Reset');
-
-                        // Click reset button
-                        await clickAndAwaitChanges(btnDes[1], fixture);
-
-                        expectSpyCall(performQuerySpy, 0);
-                        expectSpyCall(resetQuerySpy, 1);
-                    });
-
-                    it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                        expectToBe(btnEl2.textContent, 'Clear');
-
-                        // Click clear button
-                        await clickAndAwaitChanges(btnDes[2], fixture);
-
-                        expectSpyCall(onEditorInputChangeSpy, 1, '');
+                    it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                     });
                 });
             });
@@ -1035,60 +971,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                 });
 
-                it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        bodyDes[0],
-                        'div.awg-graph-visualizer-sparql-query-handle-buttons',
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-                    expectToBe(btnEl1.textContent, 'Reset');
-                    expectToBe(btnEl2.textContent, 'Clear');
-                });
-
-                it('... should trigger `performQuery()` by click on Query button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
-                    expectSpyCall(resetQuerySpy, 0);
-                });
-
-                it('... should trigger `resetTriples()` by click on Reset button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-
-                    expectToBe(btnEl1.textContent, 'Reset');
-
-                    // Click reset button
-                    await clickAndAwaitChanges(btnDes[1], fixture);
-
-                    expectSpyCall(performQuerySpy, 0);
-                    expectSpyCall(resetQuerySpy, 1);
-                });
-
-                it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                    expectToBe(btnEl2.textContent, 'Clear');
-
-                    // Click clear button
-                    await clickAndAwaitChanges(btnDes[2], fixture);
-
-                    expectSpyCall(onEditorInputChangeSpy, 1, '');
+                it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                 });
             });
         });
@@ -1168,39 +1052,19 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
             });
 
-            it('... should trigger with empty string from click on Clear button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger with empty string on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl2.textContent, 'Clear');
-
-                // Click clear button
-                await clickAndAwaitChanges(btnDes[2], fixture);
+                actionButtonsCmp.clearRequest.emit();
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
-            });
-
-            it('... should emit updateQueryStringRequest on click', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                    3,
-                    3
-                );
-                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                expectToBe(btnEl2.textContent, 'Clear');
-
-                // Click clear button
-                await clickAndAwaitChanges(btnDes[2], fixture);
-
-                expectSpyCall(onEditorInputChangeSpy, 1, '');
-                expectSpyCall(emitUpdateQueryStringRequestSpy, 1);
+                expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');
             });
 
             describe('... should emit provided query string on editor change', () => {
@@ -1387,63 +1251,34 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
-            it('... should trigger from click on Query button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl0.textContent, 'Query');
-
-                // Click query button
-                await clickAndAwaitChanges(btnDes[0], fixture);
+                actionButtonsCmp.queryRequest.emit();
 
                 expectSpyCall(performQuerySpy, 1);
             });
 
-            describe('... should emit on click:', () => {
-                it('`performQueryRequest` if querystring is given', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                        3,
-                        3
-                    );
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+            describe('... should emit', () => {
+                it('`performQueryRequest` if querystring is given', () => {
+                    component.performQuery();
 
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
                     expectSpyCall(emitErrorMessageRequestSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
+                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
                     const expectedErrorMessage = new ToastMessage('Empty query', 'Please enter a SPARQL query.');
 
                     component.query.queryString = '';
-                    await detectChangesOnPush(fixture);
+                    component.performQuery();
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                        3,
-                        3
-                    );
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
                     expectSpyCall(emitErrorMessageRequestSpy, 1, expectedErrorMessage);
                 });
@@ -1468,39 +1303,24 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expect(component.resetQuery).toBeDefined();
             });
 
-            it('... should trigger on click on Reset button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger with the current query on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl1.textContent, 'Reset');
+                actionButtonsCmp.resetRequest.emit();
 
-                // Click query button
-                await clickAndAwaitChanges(btnDes[1], fixture);
-
-                expectSpyCall(resetQuerySpy, 1);
+                expectSpyCall(resetQuerySpy, 1, component.query);
             });
 
-            it('... should emit request on click', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
-                    3,
-                    3
-                );
-                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+            it('... should emit resetQueryRequest with the given query', () => {
+                component.resetQuery(component.query);
 
-                expectToBe(btnEl1.textContent, 'Reset');
-
-                // Click reset button
-                await clickAndAwaitChanges(btnDes[1], fixture);
-
-                expectSpyCall(resetQuerySpy, 1);
-                expectSpyCall(emitResestQueryRequestSpy, 1);
+                expectSpyCall(emitResestQueryRequestSpy, 1, component.query);
             });
         });
 

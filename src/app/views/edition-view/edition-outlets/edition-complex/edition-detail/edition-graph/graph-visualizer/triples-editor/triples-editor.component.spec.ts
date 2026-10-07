@@ -8,7 +8,6 @@ import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -23,6 +22,7 @@ import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 
+import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
 import { TriplesEditorComponent } from './triples-editor.component';
 
 describe('TriplesEditorComponent (DONE)', () => {
@@ -57,12 +57,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, CodeMirrorComponent],
+            imports: [NgbAccordionModule, NgbConfigModule, CodeMirrorComponent, EditorActionButtonsComponent],
             declarations: [TriplesEditorComponent],
         })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
+            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -337,75 +338,8 @@ describe('TriplesEditorComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                     });
 
-                    it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                        const divDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-triples-handle-buttons',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                        expectToBe(btnEl0.textContent, 'Query');
-                        expectToBe(btnEl1.textContent, 'Reset');
-                        expectToBe(btnEl2.textContent, 'Clear');
-                    });
-
-                    it('... should trigger `performQuery()` by click on Query button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                        expectToBe(btnEl0.textContent, 'Query');
-
-                        // Click query button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        expectSpyCall(performQuerySpy, 1);
-                        expectSpyCall(resetTriplesSpy, 0);
-                    });
-
-                    it('... should trigger `resetTriples()` by click on Reset button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-
-                        expectToBe(btnEl1.textContent, 'Reset');
-
-                        // Click reset button
-                        await clickAndAwaitChanges(btnDes[1], fixture);
-
-                        expectSpyCall(performQuerySpy, 0);
-                        expectSpyCall(resetTriplesSpy, 1);
-                    });
-
-                    it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            bodyDes[0],
-                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                            3,
-                            3
-                        );
-                        const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                        expectToBe(btnEl2.textContent, 'Clear');
-
-                        // Click clear button
-                        await clickAndAwaitChanges(btnDes[2], fixture);
-
-                        expectSpyCall(onEditorInputChangeSpy, 1, '');
+                    it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                     });
                 });
             });
@@ -517,60 +451,8 @@ describe('TriplesEditorComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                 });
 
-                it('... should contain div with 3 buttons (Query, Reset, Clear) in item body', () => {
-                    const divDes = getAndExpectDebugElementByCss(
-                        bodyDes[0],
-                        'div.awg-graph-visualizer-triples-handle-buttons',
-                        1,
-                        1
-                    );
-
-                    const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-                    expectToBe(btnEl1.textContent, 'Reset');
-                    expectToBe(btnEl2.textContent, 'Clear');
-                });
-
-                it('... should trigger `performQuery()` by click on Query button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
-                    expectSpyCall(resetTriplesSpy, 0);
-                });
-
-                it('... should trigger `resetTriples()` by click on Reset button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
-
-                    expectToBe(btnEl1.textContent, 'Reset');
-
-                    // Click reset button
-                    await clickAndAwaitChanges(btnDes[1], fixture);
-
-                    expectSpyCall(performQuerySpy, 0);
-                    expectSpyCall(resetTriplesSpy, 1);
-                });
-
-                it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
-                    const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                    expectToBe(btnEl2.textContent, 'Clear');
-
-                    // Click clear button
-                    await clickAndAwaitChanges(btnDes[2], fixture);
-
-                    expectSpyCall(onEditorInputChangeSpy, 1, '');
+                it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                 });
             });
         });
@@ -603,39 +485,19 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
             });
 
-            it('... should trigger with empty string from click on Clear button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger with empty string on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl2.textContent, 'Clear');
-
-                // Click clear button
-                await clickAndAwaitChanges(btnDes[2], fixture);
+                actionButtonsCmp.clearRequest.emit();
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
-            });
-
-            it('... should emit updateTriplesRequest on click', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
-                );
-                const btnEl2: HTMLButtonElement = btnDes[2].nativeElement;
-
-                expectToBe(btnEl2.textContent, 'Clear');
-
-                // Click clear button
-                await clickAndAwaitChanges(btnDes[2], fixture);
-
-                expectSpyCall(onEditorInputChangeSpy, 1, '');
-                expectSpyCall(emitUpdateTriplesRequestSpy, 1);
+                expectSpyCall(emitUpdateTriplesRequestSpy, 1, '');
             });
 
             describe('... should emit provided triples on editor change', () => {
@@ -680,63 +542,34 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
-            it('... should trigger on click on Query button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl0.textContent, 'Query');
-
-                // Click query button
-                await clickAndAwaitChanges(btnDes[0], fixture);
+                actionButtonsCmp.queryRequest.emit();
 
                 expectSpyCall(performQuerySpy, 1);
             });
 
-            describe('... should emit on click', () => {
-                it('`performQueryRequest` if querystring is given', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                        3,
-                        3
-                    );
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
+            describe('... should emit', () => {
+                it('`performQueryRequest` if triples are given', () => {
+                    component.performQuery();
 
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
                     expectSpyCall(emitErrorMessageSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
+                it('`errorMessageRequest` with errorMessage if triples are not given', () => {
                     const expectedErrorMessage = new ToastMessage('Empty triples', 'Please enter triple content.');
 
                     component.triples = '';
-                    await detectChangesOnPush(fixture);
+                    component.performQuery();
 
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                        3,
-                        3
-                    );
-                    const btnEl0: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    expectToBe(btnEl0.textContent, 'Query');
-
-                    // Click query button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
                     expectSpyCall(emitErrorMessageSpy, 1, expectedErrorMessage);
                 });
@@ -761,38 +594,23 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.resetTriples).toBeDefined();
             });
 
-            it('... should trigger on click on Reset button', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
+            it('... should trigger on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                const actionButtonsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
+                    EditorActionButtonsComponent,
+                    1,
+                    1
                 );
-                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                expectToBe(btnEl1.textContent, 'Reset');
-
-                // Click reset button
-                await clickAndAwaitChanges(btnDes[1], fixture);
+                actionButtonsCmp.resetRequest.emit();
 
                 expectSpyCall(resetTriplesSpy, 1);
             });
 
-            it('... should emit request on click', async () => {
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
-                    3,
-                    3
-                );
-                const btnEl1: HTMLButtonElement = btnDes[1].nativeElement;
+            it('... should emit resetTriplesRequest', () => {
+                component.resetTriples();
 
-                expectToBe(btnEl1.textContent, 'Reset');
-
-                // Click reset button
-                await clickAndAwaitChanges(btnDes[1], fixture);
-
-                expectSpyCall(resetTriplesSpy, 1);
                 expectSpyCall(emitResetTriplesRequestSpy, 1);
             });
         });

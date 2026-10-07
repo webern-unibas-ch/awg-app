@@ -4,6 +4,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 
 import { ConstructResultsComponent } from './construct-results/construct-results.component';
+import { EditorActionButtonsComponent } from './editor-action-buttons/editor-action-buttons.component';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 import { SelectResultsComponent } from './select-results/select-results.component';
@@ -21,6 +22,7 @@ import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsu
  */
 @NgModule({
     imports: [
+        EditorActionButtonsComponent,
         SharedModule,
         SliderZoomComponent,
         SelectResultsComponent,
