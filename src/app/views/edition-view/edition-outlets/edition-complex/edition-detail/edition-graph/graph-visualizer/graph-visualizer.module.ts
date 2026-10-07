@@ -13,12 +13,10 @@ import { SparqlTableComponent } from './sparql-table';
 import { TriplesEditorComponent } from './triples-editor';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 
-import { PrefixPipe } from './prefix-pipe';
-
 /**
  * The GraphVisualizer module.
  *
- * It embeds the graph visualizer components and pipes
+ * It embeds the graph visualizer components
  * as well as the {@link SharedModule}.
  */
 @NgModule({
@@ -27,7 +25,6 @@ import { PrefixPipe } from './prefix-pipe';
         ConstructResultsComponent,
         ForceGraphComponent,
         GraphVisualizerComponent,
-        PrefixPipe,
         SelectResultsComponent,
         SparqlEditorComponent,
         SparqlTableComponent,
