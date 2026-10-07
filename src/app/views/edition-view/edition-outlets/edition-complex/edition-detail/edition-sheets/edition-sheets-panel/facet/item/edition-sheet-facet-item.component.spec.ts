@@ -17,6 +17,8 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
+import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
+
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
@@ -130,10 +132,8 @@ describe('EditionSheetFacetItemComponent (DONE)', () => {
             expect(() => computedSignal()).toThrow();
         });
 
-        it('... should have variable `dropdownPopperOptions` to set a fixed positioning strategy', () => {
-            const defaultOptions = { placement: 'bottom-start' as const, modifiers: [] };
-
-            expectToEqual(component.dropdownPopperOptions(defaultOptions), { ...defaultOptions, strategy: 'fixed' });
+        it('... should have variable `dropdownPopperOptions` to hold the fixed dropdown popper options of POPPER_UTILS', () => {
+            expectToBe(component.dropdownPopperOptions, POPPER_UTILS.fixedDropdownPopperOptions);
         });
 
         describe('VIEW', () => {

@@ -17,6 +17,8 @@ import {
 } from '@testing/expect-helper';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
+import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
+
 import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { ExampleQueriesComponent } from './example-queries.component';
@@ -97,10 +99,8 @@ describe('ExampleQueriesComponent (DONE)', () => {
             expect(component.activeQuery()).toBeUndefined();
         });
 
-        it('... should have variable `dropdownPopperOptions` to set a fixed positioning strategy', () => {
-            const defaultOptions = { placement: 'bottom-end' as const, modifiers: [] };
-
-            expectToEqual(component.dropdownPopperOptions(defaultOptions), { ...defaultOptions, strategy: 'fixed' });
+        it('... should have variable `dropdownPopperOptions` to hold the fixed dropdown popper options of POPPER_UTILS', () => {
+            expectToBe(component.dropdownPopperOptions, POPPER_UTILS.fixedDropdownPopperOptions);
         });
 
         describe('VIEW', () => {

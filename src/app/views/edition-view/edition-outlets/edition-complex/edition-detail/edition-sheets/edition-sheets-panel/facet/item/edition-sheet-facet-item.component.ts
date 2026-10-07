@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
-import type { Options } from '@popperjs/core';
+
+import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
@@ -43,17 +44,9 @@ export class EditionSheetFacetItemComponent {
     /**
      * Readonly variable: dropdownPopperOptions.
      *
-     * It positions the partials dropdown menu with a `fixed` strategy,
-     * so that it is neither clipped by the scrollable facet group list
-     * nor moved out of the (fullscreen) accordion like with `container="body"`.
-     *
-     * @param {Partial<Options>} options The default popper options.
-     * @returns {Partial<Options>} The popper options with a fixed positioning strategy.
+     * It keeps the popper options of the partials dropdown menu (fixed, height-limited to the viewport).
      */
-    readonly dropdownPopperOptions = (options: Partial<Options>): Partial<Options> => ({
-        ...options,
-        strategy: 'fixed',
-    });
+    readonly dropdownPopperOptions = POPPER_UTILS.fixedDropdownPopperOptions;
 
     /**
      * Readonly computed signal: dropdownId.

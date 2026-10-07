@@ -2,9 +2,10 @@ import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
-import type { Options } from '@popperjs/core';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
+import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
+
 import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
 /**
@@ -59,16 +60,9 @@ export class ExampleQueriesComponent {
     /**
      * Readonly variable: dropdownPopperOptions.
      *
-     * It positions the dropdown menu with a `fixed` strategy,
-     * so that it is not moved out of the (fullscreen) graph view like with `container="body"`.
-     *
-     * @param {Partial<Options>} options The default popper options.
-     * @returns {Partial<Options>} The popper options with a fixed positioning strategy.
+     * It keeps the popper options of the dropdown menu (fixed, height-limited to the viewport).
      */
-    readonly dropdownPopperOptions = (options: Partial<Options>): Partial<Options> => ({
-        ...options,
-        strategy: 'fixed',
-    });
+    readonly dropdownPopperOptions = POPPER_UTILS.fixedDropdownPopperOptions;
 
     /**
      * Public method: isActive.

@@ -10,6 +10,7 @@ import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
+
 import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
