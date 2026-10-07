@@ -27,13 +27,13 @@ import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-g
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
-import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
+import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
-import { SparqlEditorComponent } from './sparql-editor.component';
+import { GraphEditorSparqlComponent } from './graph-editor-sparql.component';
 
-describe('SparqlEditorComponent (DONE)', () => {
-    let component: SparqlEditorComponent;
-    let fixture: ComponentFixture<SparqlEditorComponent>;
+describe('GraphEditorSparqlComponent (DONE)', () => {
+    let component: GraphEditorSparqlComponent;
+    let fixture: ComponentFixture<GraphEditorSparqlComponent>;
     let compDe: DebugElement;
 
     let expectedConstructQuery1: GraphSparqlQuery;
@@ -55,12 +55,12 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SparqlEditorComponent],
+            imports: [GraphEditorSparqlComponent],
         })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
-            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphEditorActionButtonsComponent, { set: { template: '', imports: [] } })
             .overrideComponent(ExampleQueriesComponent, { set: { template: '', imports: [] } })
             .overrideComponent(ViewHandleButtonGroupComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -70,7 +70,7 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SparqlEditorComponent);
+        fixture = TestBed.createComponent(GraphEditorSparqlComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -235,13 +235,13 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         const itemDes = getAndExpectDebugElementByCss(
                             accordionDes[0],
-                            'div#awg-graph-visualizer-sparql-query.accordion-item',
+                            'div#awg-graph-editor-sparql.accordion-item',
                             1,
                             1
                         );
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDes[0],
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            'div#awg-graph-editor-sparql > div.accordion-header',
                             1,
                             1
                         );
@@ -251,7 +251,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         const itemBodyDes = getAndExpectDebugElementByCss(
                             itemDes[0],
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-editor-sparql > div.accordion-collapse',
                             1,
                             1
                         );
@@ -263,7 +263,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should display item header button', () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header > button#awg-graph-visualizer-sparql-query-toggle',
+                            'div#awg-graph-editor-sparql > div.accordion-header > button#awg-graph-editor-sparql-toggle',
                             1,
                             1
                         );
@@ -275,7 +275,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should have an enabled accordion item', () => {
                         const itemDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query.accordion-item',
+                            'div#awg-graph-editor-sparql.accordion-item',
                             1,
                             1
                         );
@@ -286,7 +286,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should have auto height on item body', () => {
                         const itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-editor-sparql > div.accordion-collapse',
                             1,
                             1
                         );
@@ -298,7 +298,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should toggle item body on click', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'button#awg-graph-visualizer-sparql-query-toggle',
+                            'button#awg-graph-editor-sparql-toggle',
                             1,
                             1
                         );
@@ -306,7 +306,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Item body is closed
                         let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-editor-sparql > div.accordion-collapse',
                             1,
                             1
                         );
@@ -320,7 +320,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Item body is open
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-editor-sparql > div.accordion-collapse',
                             1,
                             1
                         );
@@ -334,7 +334,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Item body is closed again
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                            'div#awg-graph-editor-sparql > div.accordion-collapse',
                             1,
                             1
                         );
@@ -346,7 +346,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should contain ViewHandleButtonGroupComponent (hollow) in item header', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            'div#awg-graph-editor-sparql > div.accordion-header',
                             1,
                             1
                         );
@@ -387,7 +387,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     it('... should contain ExampleQueriesComponent (hollow) in item header if example queries are enabled', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            'div#awg-graph-editor-sparql > div.accordion-header',
                             1,
                             1
                         );
@@ -401,7 +401,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                            'div#awg-graph-editor-sparql > div.accordion-header',
                             1,
                             1
                         );
@@ -430,7 +430,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         // Open item by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'button#awg-graph-visualizer-sparql-query-toggle',
+                            'button#awg-graph-editor-sparql-toggle',
                             1,
                             1
                         );
@@ -439,7 +439,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                         bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
+                            'div#awg-graph-editor-sparql-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -477,8 +477,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                         expectToBe(codeMirrorCmp.content(), expectedConstructQuery2.queryString);
                     });
 
-                    it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
+                    it('... should contain GraphEditorActionButtonsComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], GraphEditorActionButtonsComponent, 1, 1);
                     });
                 });
             });
@@ -494,20 +494,20 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-sparql-query.accordion-item',
+                        'div#awg-graph-editor-sparql.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                        'div#awg-graph-editor-sparql > div.accordion-header',
                         1,
                         1
                     );
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        'div#awg-graph-editor-sparql > div.accordion-collapse',
                         1,
                         1
                     );
@@ -519,7 +519,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 it('... should have a disabled accordion item', () => {
                     const itemDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query.accordion-item',
+                        'div#awg-graph-editor-sparql.accordion-item',
                         1,
                         1
                     );
@@ -530,7 +530,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 it('... should have 50vh height on item body', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        'div#awg-graph-editor-sparql > div.accordion-collapse',
                         1,
                         1
                     );
@@ -540,17 +540,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 it('... should not toggle item body on click', async () => {
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-graph-editor-sparql-toggle', 1, 1);
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        'div#awg-graph-editor-sparql > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -565,7 +560,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     // Item body does not close
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-collapse',
+                        'div#awg-graph-editor-sparql > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -582,7 +577,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 it('... should contain ExampleQueriesComponent (hollow) in item header', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query > div.accordion-header',
+                        'div#awg-graph-editor-sparql > div.accordion-header',
                         1,
                         1
                     );
@@ -590,16 +585,16 @@ describe('SparqlEditorComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(itemHeaderDes[0], ExampleQueriesComponent, 1, 1);
                 });
 
-                it('... should contain CodeMirrorComponent (hollow) and EditorActionButtonsComponent (hollow) in item body', () => {
+                it('... should contain CodeMirrorComponent (hollow) and GraphEditorActionButtonsComponent (hollow) in item body', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-sparql-query-collapse > div.accordion-body',
+                        'div#awg-graph-editor-sparql-collapse > div.accordion-body',
                         1,
                         1
                     );
 
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], GraphEditorActionButtonsComponent, 1, 1);
                 });
             });
         });
@@ -608,12 +603,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             describe('#clearQuery()', () => {
                 beforeEach(async () => {
                     // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-graph-editor-sparql-toggle', 1, 1);
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
                 });
@@ -622,14 +612,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(component.clearQuery).toBeDefined();
                 });
 
-                it('... should trigger on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger on clearRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.clearRequest.emit();
 
@@ -647,12 +637,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             describe('#onQueryStringChange()', () => {
                 beforeEach(async () => {
                     // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-graph-editor-sparql-toggle', 1, 1);
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
                 });
@@ -725,12 +710,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             describe('#performQuery()', () => {
                 beforeEach(async () => {
                     // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-graph-editor-sparql-toggle', 1, 1);
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
                 });
@@ -739,14 +719,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(component.performQuery).toBeDefined();
                 });
 
-                it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger on queryRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.queryRequest.emit();
 
@@ -776,12 +756,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             describe('#resetQuery()', () => {
                 beforeEach(async () => {
                     // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-sparql-query-toggle',
-                        1,
-                        1
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(compDe, 'button#awg-graph-editor-sparql-toggle', 1, 1);
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
                 });
@@ -790,14 +765,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(component.resetQuery).toBeDefined();
                 });
 
-                it('... should trigger with the current query on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger with the current query on resetRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.resetRequest.emit();
 

@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
 /**
- * The EditorActionButtons component.
+ * The GraphEditorActionButtons component.
  *
  * It contains the action buttons (Query, Reset, Clear)
  * of the editors of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-editor-action-buttons',
-    templateUrl: './editor-action-buttons.component.html',
-    styleUrls: ['./editor-action-buttons.component.scss'],
+    selector: 'awg-graph-editor-action-buttons',
+    templateUrl: './graph-editor-action-buttons.component.html',
+    styleUrls: ['./graph-editor-action-buttons.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [],
 })
-export class EditorActionButtonsComponent {
+export class GraphEditorActionButtonsComponent {
     /**
      * Readonly output signal: queryRequest.
      *

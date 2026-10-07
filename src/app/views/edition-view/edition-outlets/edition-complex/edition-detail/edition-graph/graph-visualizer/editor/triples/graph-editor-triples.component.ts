@@ -8,22 +8,22 @@ import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 
-import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
+import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 
 /**
- * The TriplesEditor component.
+ * The GraphEditorTriples component.
  *
  * It contains the editor for the RDF triples
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-triples-editor',
-    templateUrl: './triples-editor.component.html',
-    styleUrls: ['./triples-editor.component.scss'],
+    selector: 'awg-graph-editor-triples',
+    templateUrl: './graph-editor-triples.component.html',
+    styleUrls: ['./graph-editor-triples.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgbAccordionModule, CodeMirrorComponent, EditorActionButtonsComponent],
+    imports: [NgbAccordionModule, CodeMirrorComponent, GraphEditorActionButtonsComponent],
 })
-export class TriplesEditorComponent {
+export class GraphEditorTriplesComponent {
     /**
      * Model signal: triples.
      *

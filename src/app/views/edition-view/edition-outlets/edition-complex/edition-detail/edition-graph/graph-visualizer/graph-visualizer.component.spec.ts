@@ -71,11 +71,11 @@ class SelectResultsStubComponent {
 }
 
 @Component({
-    selector: 'awg-sparql-editor',
+    selector: 'awg-graph-editor-sparql',
     template: '',
     standalone: false,
 })
-class SparqlEditorStubComponent {
+class GraphEditorSparqlStubComponent {
     @Input()
     queryList: GraphSparqlQuery[] = [];
     readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
@@ -90,11 +90,11 @@ class SparqlEditorStubComponent {
 }
 
 @Component({
-    selector: 'awg-triples-editor',
+    selector: 'awg-graph-editor-triples',
     template: '',
     standalone: false,
 })
-class TriplesEditorStubComponent {
+class GraphEditorTriplesStubComponent {
     readonly triples = model<string>('');
     @Input()
     isFullscreenMode = false;
@@ -149,9 +149,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
             declarations: [
                 GraphVisualizerComponent,
                 ConstructResultsStubComponent,
-                SparqlEditorStubComponent,
+                GraphEditorSparqlStubComponent,
                 SelectResultsStubComponent,
-                TriplesEditorStubComponent,
+                GraphEditorTriplesStubComponent,
             ],
             imports: [ToastComponent, UnsupportedTypeResultsComponent],
             providers: [{ provide: SparqlQueryService, useValue: mockSparqlQueryService }, ToastService],
@@ -358,7 +358,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(divDes[0], 'div.row > div', 2, 2);
                 });
 
-                it('... should contain one TriplesEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorTriples component (stubbed) in first inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div.row > div',
@@ -366,10 +366,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], GraphEditorTriplesStubComponent, 1, 1);
                 });
 
-                it('... should contain one SparqlEditor component (stubbed) in second inner sub div', () => {
+                it('... should contain one GraphEditorSparql component (stubbed) in second inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div.row > div',
@@ -377,7 +377,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlStubComponent, 1, 1);
                 });
 
                 it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
@@ -421,7 +421,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(rowDes[0], 'div.awg-graph-visualizer > div', 2, 2);
                 });
 
-                it('... should contain one TriplesEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorTriples component (stubbed) in first inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div > div',
@@ -429,10 +429,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], GraphEditorTriplesStubComponent, 1, 1);
                 });
 
-                it('... should contain one SparqlEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorSparql component (stubbed) in first inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div > div',
@@ -440,7 +440,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlStubComponent, 1, 1);
                 });
 
                 it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
@@ -471,21 +471,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('TriplesEditorComponent', () => {
+            describe('GraphEditorTriplesComponent', () => {
                 it('... should have `triples` passed down from main component', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     expectToEqual(editorCmp.triples(), expectedGraphRDFData.triples);
                 });
 
-                it('... should update `triples` with two-way bound triples from TriplesEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                it('... should update `triples` with two-way bound triples from GraphEditorTriplesComponent', () => {
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     // Set changed triples
                     const changedTriples =
@@ -498,10 +508,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should re-trigger `resetTriples()` with resetTriplesRequest event', () => {
                     expectSpyCall(resetTriplesSpy, 1);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     editorCmp.resetTriplesRequest.emit();
 
@@ -511,10 +526,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should re-trigger `performQuery()` with performQueryRequest event', () => {
                     expectSpyCall(performQuerySpy, 1);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     editorCmp.performQueryRequest.emit();
 
@@ -522,18 +542,22 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('SparqlEditorComponent', () => {
+            describe('GraphEditorSparqlComponent', () => {
                 it('... should have `queryList` and `query` passed down from main component', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     expectToEqual(editorCmp.queryList, expectedGraphRDFData.queryList);
                     expectToEqual(editorCmp.query(), expectedGraphRDFData.queryList[0]);
                 });
 
-                it('... should update `query` with two-way bound query from SparqlEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                it('... should update `query` with two-way bound query from GraphEditorSparqlComponent', () => {
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     // Set changed query
                     const changedQuery: GraphSparqlQuery = {
@@ -549,8 +573,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should re-trigger `resetQuery()` with resetQueryRequest event', () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     // Set changed query
                     editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
@@ -561,8 +587,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should re-trigger `performQuery()` with performQueryRequest event', () => {
                     expectSpyCall(performQuerySpy, 1);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     editorCmp.performQueryRequest.emit();
 
@@ -707,13 +735,18 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.resetTriples).toBeDefined();
                 });
 
-                it('... should trigger on resetTriplesRequest event from TriplesEditorComponent', () => {
+                it('... should trigger on resetTriplesRequest event from GraphEditorTriplesComponent', () => {
                     expectSpyCall(resetTriplesSpy, 1, undefined);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     editorCmp.resetTriplesRequest.emit();
 
@@ -769,11 +802,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.resetQuery).toBeDefined();
                 });
 
-                it('... should trigger on resetQueryRequest event from SparqlEditorComponent', () => {
+                it('... should trigger on resetQueryRequest event from GraphEditorSparqlComponent', () => {
                     expectSpyCall(resetQuerySpy, 1, undefined);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     // Set changed query
                     editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
@@ -928,14 +963,19 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.performQuery).toBeDefined();
                 });
 
-                it('... should trigger on event from TriplesEditorComponent', () => {
+                it('... should trigger on event from GraphEditorTriplesComponent', () => {
                     // First time called on ngOnInit
                     expectSpyCall(performQuerySpy, 1, undefined);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     // Set changed query
                     editorCmp.performQueryRequest.emit();
@@ -943,12 +983,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(performQuerySpy, 2);
                 });
 
-                it('... should trigger on event from SparqlEditorComponent', () => {
+                it('... should trigger on event from GraphEditorSparqlComponent', () => {
                     // First time called on ngOnInit
                     expectSpyCall(performQuerySpy, 1, undefined);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     // Set changed query
                     editorCmp.performQueryRequest.emit();
@@ -1089,11 +1131,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.showToastMessage).toBeDefined();
                 });
 
-                it('... should trigger on event from TriplesEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                it('... should trigger on event from GraphEditorTriplesComponent', () => {
+                    const editorDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphEditorTriplesStubComponent,
+                        1,
+                        1
+                    );
                     const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                        GraphEditorTriplesStubComponent
+                    ) as GraphEditorTriplesStubComponent;
 
                     // Set changed query
                     editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
@@ -1101,9 +1148,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(showToastMessageSpy, 1);
                 });
 
-                it('... should trigger on event from SparqlEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                it('... should trigger on event from GraphEditorSparqlComponent', () => {
+                    const editorDes = getAndExpectDebugElementByDirective(compDe, GraphEditorSparqlStubComponent, 1, 1);
+                    const editorCmp = editorDes[0].injector.get(
+                        GraphEditorSparqlStubComponent
+                    ) as GraphEditorSparqlStubComponent;
 
                     // Set changed query
                     editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));

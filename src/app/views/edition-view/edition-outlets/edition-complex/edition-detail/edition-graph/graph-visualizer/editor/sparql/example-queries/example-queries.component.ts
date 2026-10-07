@@ -12,7 +12,7 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
  * The ExampleQueries component.
  *
  * It contains the dropdown with the example queries
- * of the {@link SparqlEditorComponent}.
+ * of the {@link GraphEditorSparqlComponent}.
  */
 @Component({
     selector: 'awg-example-queries',

@@ -23,12 +23,12 @@ import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 
-import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
-import { TriplesEditorComponent } from './triples-editor.component';
+import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
+import { GraphEditorTriplesComponent } from './graph-editor-triples.component';
 
-describe('TriplesEditorComponent (DONE)', () => {
-    let component: TriplesEditorComponent;
-    let fixture: ComponentFixture<TriplesEditorComponent>;
+describe('GraphEditorTriplesComponent (DONE)', () => {
+    let component: GraphEditorTriplesComponent;
+    let fixture: ComponentFixture<GraphEditorTriplesComponent>;
     let compDe: DebugElement;
 
     let expectedTriples: string;
@@ -44,12 +44,12 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [TriplesEditorComponent],
+            imports: [GraphEditorTriplesComponent],
         })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
-            .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphEditorActionButtonsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
 
         // Disable ng-bootstrap animations
@@ -57,7 +57,7 @@ describe('TriplesEditorComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TriplesEditorComponent);
+        fixture = TestBed.createComponent(GraphEditorTriplesComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -143,13 +143,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         const itemDes = getAndExpectDebugElementByCss(
                             accordionDes[0],
-                            'div#awg-graph-visualizer-triples.accordion-item',
+                            'div#awg-graph-editor-triples.accordion-item',
                             1,
                             1
                         );
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             itemDes[0],
-                            'div#awg-graph-visualizer-triples > div.accordion-header',
+                            'div#awg-graph-editor-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -159,7 +159,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         const itemBodyDes = getAndExpectDebugElementByCss(
                             itemDes[0],
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-editor-triples > div.accordion-collapse',
                             1,
                             1
                         );
@@ -171,7 +171,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     it('... should display enabled item header button', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-header',
+                            'div#awg-graph-editor-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -186,7 +186,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     it('... should have auto height on item body', () => {
                         const itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-editor-triples > div.accordion-collapse',
                             1,
                             1
                         );
@@ -198,7 +198,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     it('... should toggle item body on click', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'button#awg-graph-visualizer-triples-toggle',
+                            'button#awg-graph-editor-triples-toggle',
                             1,
                             1
                         );
@@ -206,7 +206,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Item body is closed
                         let itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-editor-triples > div.accordion-collapse',
                             1,
                             1
                         );
@@ -220,7 +220,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Item body is open
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-editor-triples > div.accordion-collapse',
                             1,
                             1
                         );
@@ -234,7 +234,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Item body is closed again
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-editor-triples > div.accordion-collapse',
                             1,
                             1
                         );
@@ -251,7 +251,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Open item by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'button#awg-graph-visualizer-triples-toggle',
+                            'button#awg-graph-editor-triples-toggle',
                             1,
                             1
                         );
@@ -260,7 +260,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                            'div#awg-graph-editor-triples-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -314,8 +314,8 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToBe(component.triples(), changedTriples);
                     });
 
-                    it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
-                        getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
+                    it('... should contain GraphEditorActionButtonsComponent (hollow) in item body', () => {
+                        getAndExpectDebugElementByDirective(bodyDes[0], GraphEditorActionButtonsComponent, 1, 1);
                     });
                 });
             });
@@ -331,20 +331,20 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-triples.accordion-item',
+                        'div#awg-graph-editor-triples.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-triples > div.accordion-header',
+                        'div#awg-graph-editor-triples > div.accordion-header',
                         1,
                         1
                     );
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                        'div#awg-graph-editor-triples > div.accordion-collapse',
                         1,
                         1
                     );
@@ -356,7 +356,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 it('... should display disabled item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-header',
+                        'div#awg-graph-editor-triples > div.accordion-header',
                         1,
                         1
                     );
@@ -371,7 +371,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 it('... should have 50vh height on item body', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                        'div#awg-graph-editor-triples > div.accordion-collapse',
                         1,
                         1
                     );
@@ -383,7 +383,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 it('... should not toggle item body on click', async () => {
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-header > button.accordion-button',
+                        'div#awg-graph-editor-triples > div.accordion-header > button.accordion-button',
                         1,
                         1
                     );
@@ -391,7 +391,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                        'div#awg-graph-editor-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -406,7 +406,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Item body does not close
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                        'div#awg-graph-editor-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -416,16 +416,16 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain CodeMirrorComponent (hollow) and EditorActionButtonsComponent (hollow) in item body', () => {
+                it('... should contain CodeMirrorComponent (hollow) and GraphEditorActionButtonsComponent (hollow) in item body', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-editor-triples-collapse > div.accordion-body',
                         1,
                         1
                     );
 
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], GraphEditorActionButtonsComponent, 1, 1);
                 });
             });
         });
@@ -436,7 +436,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'button#awg-graph-visualizer-triples-toggle',
+                        'button#awg-graph-editor-triples-toggle',
                         1,
                         1
                     );
@@ -448,14 +448,14 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expect(component.clearTriples).toBeDefined();
                 });
 
-                it('... should trigger on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger on clearRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.clearRequest.emit();
 
@@ -474,7 +474,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'button#awg-graph-visualizer-triples-toggle',
+                        'button#awg-graph-editor-triples-toggle',
                         1,
                         1
                     );
@@ -486,14 +486,14 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expect(component.performQuery).toBeDefined();
                 });
 
-                it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger on queryRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.queryRequest.emit();
 
@@ -525,7 +525,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Open item by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'button#awg-graph-visualizer-triples-toggle',
+                        'button#awg-graph-editor-triples-toggle',
                         1,
                         1
                     );
@@ -537,14 +537,14 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expect(component.resetTriples).toBeDefined();
                 });
 
-                it('... should trigger on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                it('... should trigger on resetRequest event from GraphEditorActionButtonsComponent (hollow)', () => {
                     const actionButtonsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditorActionButtonsComponent,
+                        GraphEditorActionButtonsComponent,
                         1,
                         1
                     );
-                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(GraphEditorActionButtonsComponent);
 
                     actionButtonsCmp.resetRequest.emit();
 

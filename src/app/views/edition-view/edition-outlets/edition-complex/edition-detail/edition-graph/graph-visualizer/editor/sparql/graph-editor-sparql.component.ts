@@ -13,29 +13,29 @@ import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-grou
 
 import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
-import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
+import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 
 /**
- * The SparqlEditor component.
+ * The GraphEditorSparql component.
  *
  * It contains the editor for the SPARQL queries
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-sparql-editor',
-    templateUrl: './sparql-editor.component.html',
-    styleUrls: ['./sparql-editor.component.scss'],
+    selector: 'awg-graph-editor-sparql',
+    templateUrl: './graph-editor-sparql.component.html',
+    styleUrls: ['./graph-editor-sparql.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         CodeMirrorComponent,
-        EditorActionButtonsComponent,
+        GraphEditorActionButtonsComponent,
         ExampleQueriesComponent,
         NgbAccordionModule,
         ViewHandleButtonGroupComponent,
     ],
 })
-export class SparqlEditorComponent {
+export class GraphEditorSparqlComponent {
     /**
      * Readonly input signal: queryList.
      *

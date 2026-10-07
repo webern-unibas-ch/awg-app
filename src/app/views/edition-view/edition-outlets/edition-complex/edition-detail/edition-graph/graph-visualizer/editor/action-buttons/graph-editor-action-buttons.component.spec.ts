@@ -7,11 +7,11 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { EditorActionButtonsComponent } from './editor-action-buttons.component';
+import { GraphEditorActionButtonsComponent } from './graph-editor-action-buttons.component';
 
-describe('EditorActionButtonsComponent (DONE)', () => {
-    let component: EditorActionButtonsComponent;
-    let fixture: ComponentFixture<EditorActionButtonsComponent>;
+describe('GraphEditorActionButtonsComponent (DONE)', () => {
+    let component: GraphEditorActionButtonsComponent;
+    let fixture: ComponentFixture<GraphEditorActionButtonsComponent>;
     let compDe: DebugElement;
 
     let emitQueryRequestSpy: Spy;
@@ -20,12 +20,12 @@ describe('EditorActionButtonsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditorActionButtonsComponent],
+            imports: [GraphEditorActionButtonsComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditorActionButtonsComponent);
+        fixture = TestBed.createComponent(GraphEditorActionButtonsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -57,13 +57,8 @@ describe('EditorActionButtonsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.awg-graph-visualizer-editor-action-buttons with 3 buttons', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-graph-visualizer-editor-action-buttons',
-                    1,
-                    1
-                );
+            it('... should contain one div.awg-graph-editor-action-buttons with 3 buttons', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-editor-action-buttons', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
             });
@@ -75,7 +70,7 @@ describe('EditorActionButtonsComponent (DONE)', () => {
             ])('... should display the $label button with class $cssClass', ({ index, label, cssClass }) => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-graph-visualizer-editor-action-buttons > button.btn',
+                    'div.awg-graph-editor-action-buttons > button.btn',
                     3,
                     3
                 );
@@ -94,12 +89,7 @@ describe('EditorActionButtonsComponent (DONE)', () => {
             // Trigger initial data binding
             fixture.detectChanges();
 
-            btnDes = getAndExpectDebugElementByCss(
-                compDe,
-                'div.awg-graph-visualizer-editor-action-buttons > button.btn',
-                3,
-                3
-            );
+            btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-editor-action-buttons > button.btn', 3, 3);
         });
 
         describe('VIEW', () => {
