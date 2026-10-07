@@ -92,6 +92,23 @@ export interface SimulationData {
 }
 
 /**
+ * The SvgSize interface.
+ *
+ * It represents the rendered size (in px) of the svg of the graph.
+ */
+export interface SvgSize {
+    /**
+     * The width of the svg.
+     */
+    readonly width: number;
+
+    /**
+     * The height of the svg.
+     */
+    readonly height: number;
+}
+
+/**
  * The Point interface.
  *
  * It represents a point in the coordinate system of the graph.

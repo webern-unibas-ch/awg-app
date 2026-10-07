@@ -1,80 +1,15 @@
-@import '/src/assets/themes/scss/shared';
-
-#awg-force-graph-container {
-    position: relative;
+.awg-force-graph-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     > .awg-force-graph-icon-bar {
-        position: relative;
+        flex: 0 0 auto;
         width: 100%;
     }
-}
 
-.awg-force-graph-panel-container {
-    position: inherit;
-    height: 100%;
-}
-
-/* Simulation nodes */
-:host ::ng-deep .node {
-    stroke: #fff;
-    fill: #ddd;
-    stroke-width: 1.5px;
-}
-:host ::ng-deep .blank {
-    stroke: #fff;
-    fill: #000 !important;
-    stroke-width: 1.5px;
-
-    &.instance {
-        stroke: #fff;
-        fill: #000;
-        stroke-width: 1.5px;
+    > .awg-force-graph-svg-container {
+        flex: 1 1 auto;
+        min-height: 0;
     }
-}
-:host ::ng-deep .class {
-    stroke: #fff;
-    fill: rgb(158, 0, 0);
-    stroke-width: 1.5px;
-}
-:host ::ng-deep .instance {
-    stroke: #fff;
-    fill: rgb(32, 178, 170);
-    stroke-width: 1.5px;
-}
-:host ::ng-deep .instance-space {
-    stroke: #fff;
-    fill: rgb(0, 191, 255);
-    stroke-width: 1.5px;
-}
-:host ::ng-deep .instance-spaceType {
-    stroke: #fff;
-    fill: rgb(0, 0, 139);
-    stroke-width: 1.5px;
-}
-
-:host ::ng-deep .link {
-    fill: none;
-    stroke: #999;
-    stroke-opacity: 0.6;
-    stroke-width: 1px;
-}
-
-:host ::ng-deep marker {
-    stroke: #999;
-    fill: rgba(124, 240, 10, 0);
-}
-
-:host ::ng-deep .node-text {
-    font:
-        15px 'Roboto',
-        sans-serif;
-    fill: black;
-}
-
-:host ::ng-deep .link-text {
-    font:
-        13px 'Roboto',
-        sans-serif;
-    fill: grey;
 }
