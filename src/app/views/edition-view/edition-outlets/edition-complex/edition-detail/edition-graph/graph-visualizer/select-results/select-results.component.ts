@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-import { EMPTY, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
+import { SparqlNoResultsComponent } from '../sparql-no-results/sparql-no-results.component';
+import { SparqlTableComponent } from '../sparql-table/sparql-table.component';
 
 /**
  * The SelectResults component.
@@ -15,52 +22,43 @@ import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model'
     templateUrl: './select-results.component.html',
     styleUrls: ['./select-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        AsyncPipe,
+        NgbAccordionModule,
+        SparqlNoResultsComponent,
+        SparqlTableComponent,
+        TwelveToneSpinnerComponent,
+    ],
 })
 export class SelectResultsComponent {
     /**
-     * Input variable: queryResult$.
+     * Readonly input signal: queryResult$.
      *
-     * It keeps the query result as an observable.
+     * It holds the query result as an observable.
      */
-    @Input()
-    queryResult$: Observable<SparqlResult> = EMPTY;
+    readonly queryResult$ = input.required<Observable<SparqlResult>>();
 
     /**
-     * Input variable: queryTime.
+     * Readonly input signal: queryTime.
      *
-     * It keeps the duration time of the query.
+     * It holds the duration time of the query.
      */
-    @Input()
-    queryTime = 0;
+    readonly queryTime = input<number>(0);
 
     /**
-     * Input variable: isFullscreen.
+     * Readonly input signal: isFullscreen.
      *
-     * It keeps a boolean flag if fullscreenMode is set.
+     * It holds a boolean flag if fullscreenMode is set.
+     * If true, the accordion item is disabled.
      */
-    @Input()
-    isFullscreen = false;
+    readonly isFullscreen = input<boolean>(false);
 
     /**
-     * Output variable: clickedTableRequest.
+     * Readonly output signal: clickedTableRequest.
      *
-     * It keeps an event emitter for a click on a table IRI.
+     * It emits the IRI of a table value the user clicked on.
      */
-    @Output()
-    clickedTableRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
-    }
+    readonly clickedTableRequest = output<string>();
 
     /**
      * Public method: isValidSelectQueryResult.

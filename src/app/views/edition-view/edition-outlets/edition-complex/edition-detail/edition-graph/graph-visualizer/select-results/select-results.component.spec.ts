@@ -1,16 +1,16 @@
-import { Component, DebugElement, EventEmitter, NgModule, Output, inject, input } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, Observable, lastValueFrom, of as observableOf } from 'rxjs';
+import { EMPTY, Observable, of as observableOf } from 'rxjs';
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 import { DataFactory } from 'n3';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -21,7 +21,11 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
 import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
+import { SparqlNoResultsComponent } from '../sparql-no-results/sparql-no-results.component';
+import { SparqlTableComponent } from '../sparql-table/sparql-table.component';
 import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
 import { SelectResultsComponent } from './select-results.component';
 
@@ -39,25 +43,6 @@ const createSelectResult = (variables: string[], bindings: SparqlSelectResult['b
     prefixes: DEFAULT_PREFIXES,
 });
 
-// Mock components
-@Component({
-    selector: 'awg-sparql-no-results',
-    template: '',
-    standalone: false,
-})
-class SparqlNoResultsStubComponent {}
-
-@Component({
-    selector: 'awg-sparql-table',
-    template: '',
-    standalone: false,
-})
-class SparqlTableStubComponent {
-    readonly queryResult = input.required<SparqlSelectResult>();
-    @Output()
-    clickedTableRequest: EventEmitter<string> = new EventEmitter();
-}
-
 describe('SelectResultsComponent (DONE)', () => {
     let component: SelectResultsComponent;
     let fixture: ComponentFixture<SelectResultsComponent>;
@@ -69,26 +54,20 @@ describe('SelectResultsComponent (DONE)', () => {
     let expectedIsFullscreen: boolean;
 
     let emitClickedTableRequestSpy: Spy;
-    let isAccordionItemDisabledSpy: Spy;
     let isValidSelectQueryResultSpy: Spy;
     let tableClickSpy: Spy;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, TwelveToneSpinnerStubComponent],
-            declarations: [SelectResultsComponent, SparqlNoResultsStubComponent, SparqlTableStubComponent],
-        }).compileComponents();
+            imports: [NgbAccordionModule, SelectResultsComponent],
+        })
+            .overrideComponent(SparqlNoResultsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SparqlTableComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
@@ -107,7 +86,6 @@ describe('SelectResultsComponent (DONE)', () => {
 
         // Spies
         emitClickedTableRequestSpy = vi.spyOn(component.clickedTableRequest, 'emit');
-        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
         isValidSelectQueryResultSpy = vi.spyOn(component, 'isValidSelectQueryResult');
         tableClickSpy = vi.spyOn(component, 'onTableNodeClick');
     });
@@ -121,16 +99,20 @@ describe('SelectResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `queryResult` input', () => {
-            expectToEqual(component.queryResult$, EMPTY);
+        it('... should throw due to missing required input signal `queryResult$`', () => {
+            expectToBe(isSignal(component.queryResult$), true);
+
+            expect(() => component.queryResult$()).toThrow();
         });
 
-        it('... should have default `queryTime` input', () => {
-            expectToBe(component.queryTime, 0);
+        it('... should have input signal `queryTime` to hold 0 initially', () => {
+            expectToBe(isSignal(component.queryTime), true);
+            expectToBe(component.queryTime(), 0);
         });
 
-        it('... should have default `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, false);
+        it('... should have input signal `isFullscreen` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreen), true);
+            expectToBe(component.isFullscreen(), false);
         });
 
         describe('VIEW', () => {
@@ -155,26 +137,24 @@ describe('SelectResultsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            component.queryResult$ = expectedQueryResult$;
-            component.queryTime = expectedQueryTime;
-            component.isFullscreen = expectedIsFullscreen;
+            fixture.componentRef.setInput('queryResult$', expectedQueryResult$);
+            fixture.componentRef.setInput('queryTime', expectedQueryTime);
+            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `queryResult` input', async () => {
-            expectToEqual(component.queryResult$, expectedQueryResult$);
-            await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-            await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedQueryResult);
+        it('... should have input signal `queryResult$` to hold the provided query result observable', () => {
+            expectToBe(component.queryResult$(), expectedQueryResult$);
         });
 
-        it('... should have `queryTime` input', () => {
-            expectToBe(component.queryTime, expectedQueryTime);
+        it('... should have input signal `queryTime` to hold the provided query time', () => {
+            expectToBe(component.queryTime(), expectedQueryTime);
         });
 
-        it('... should have `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have input signal `isFullscreen` to hold the provided fullscreen flag', () => {
+            expectToBe(component.isFullscreen(), expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -218,6 +198,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
+                    expectToBe(btnEl.disabled, false);
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
@@ -272,9 +253,9 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
+                describe('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading if ... ', () => {
                     it('... queryResult$ is EMPTY', async () => {
-                        component.queryResult$ = EMPTY;
+                        fixture.componentRef.setInput('queryResult$', EMPTY);
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -284,11 +265,14 @@ describe('SelectResultsComponent (DONE)', () => {
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerComponent, 1, 1);
                     });
 
                     it('... queryResult$ is undefined', async () => {
-                        component.queryResult$ = observableOf(undefined as unknown as SparqlResult);
+                        fixture.componentRef.setInput(
+                            'queryResult$',
+                            observableOf(undefined as unknown as SparqlResult)
+                        );
                         await detectChangesOnPush(fixture);
 
                         const bodyDes = getAndExpectDebugElementByCss(
@@ -298,29 +282,14 @@ describe('SelectResultsComponent (DONE)', () => {
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerComponent, 1, 1);
                     });
                 });
 
-                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... isValidSelectQueryResult returns false', async () => {
-                        isValidSelectQueryResultSpy.mockReturnValue(false);
+                it('... should contain SparqlNoResultsComponent (hollow) in item body if the query result is not valid', async () => {
+                    fixture.componentRef.setInput('queryResult$', observableOf(createSelectResult([], [])));
+                    await detectChangesOnPush(fixture);
 
-                        component.queryResult$ = observableOf(createSelectResult([], []));
-                        await detectChangesOnPush(fixture);
-
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-                });
-
-                it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -328,14 +297,25 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 0, 0);
                 });
 
-                it('... should pass down `queryResult` to sparqlTable component', () => {
-                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
-                    const sparqlTableCmp = sparqlTableDes[0].injector.get(
-                        SparqlTableStubComponent
-                    ) as SparqlTableStubComponent;
+                it('... should contain SparqlTableComponent (hollow) in item body if results are available', () => {
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                        1,
+                        1
+                    );
+
+                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsComponent, 0, 0);
+                });
+
+                it('... should pass down `queryResult` to SparqlTableComponent (hollow)', () => {
+                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableComponent, 1, 1);
+                    const sparqlTableCmp = sparqlTableDes[0].injector.get(SparqlTableComponent);
 
                     expectToEqual(sparqlTableCmp.queryResult(), expectedQueryResult);
                 });
@@ -343,8 +323,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    component.isFullscreen = true;
-
+                    fixture.componentRef.setInput('isFullscreen', true);
                     await detectChangesOnPush(fixture);
                 });
 
@@ -375,7 +354,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should display item header button', () => {
+                it('... should display disabled item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
@@ -386,6 +365,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
+                    expectToBe(btnEl.disabled, true);
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
@@ -398,9 +378,6 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
 
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
-
-                    expect(btnEl.disabled).toBeTruthy();
 
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
@@ -416,7 +393,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
-                    // Item body does not close again
+                    // Item body does not close
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
@@ -429,55 +406,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', async () => {
-                        component.queryResult$ = EMPTY;
-                        await detectChangesOnPush(fixture);
-
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-
-                    it('... queryResult$ is undefined', async () => {
-                        component.queryResult$ = observableOf(undefined as unknown as SparqlResult);
-                        await detectChangesOnPush(fixture);
-
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
-                    });
-                });
-
-                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
-                    it('... isValidSelectQueryResult returns false', async () => {
-                        isValidSelectQueryResultSpy.mockReturnValue(false);
-
-                        component.queryResult$ = observableOf(createSelectResult([], []));
-                        await detectChangesOnPush(fixture);
-
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
-                    });
-                });
-
-                it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
+                it('... should contain SparqlTableComponent (hollow) in item body if results are available', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -485,174 +414,95 @@ describe('SelectResultsComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableStubComponent, 1, 1);
-                });
-
-                it('... should pass down `queryResult` to sparqlTable component', () => {
-                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
-                    const sparqlTableCmp = sparqlTableDes[0].injector.get(
-                        SparqlTableStubComponent
-                    ) as SparqlTableStubComponent;
-
-                    expectToEqual(sparqlTableCmp.queryResult(), expectedQueryResult);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 1, 1);
                 });
             });
         });
 
-        describe('#isAccordionItemDisabled()', () => {
-            it('... should have a method `isAccordionItemDisabled`', () => {
-                expect(component.isAccordionItemDisabled).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#isValidSelectQueryResult()', () => {
+                it('... should have a method `isValidSelectQueryResult`', () => {
+                    expect(component.isValidSelectQueryResult).toBeDefined();
+                });
 
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemDisabledSpy, 2);
-            });
+                it('... should be triggered from ngbAccordionBody with the query result', () => {
+                    expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
+                });
 
-            it('... should return false if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemDisabled(), false);
-            });
-
-            it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemDisabled(), true);
-            });
-        });
-
-        describe('#isValidSelectQueryResult()', () => {
-            it('... should have a method `isValidSelectQueryResult`', () => {
-                expect(component.isValidSelectQueryResult).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionBody', () => {
-                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
-            });
-
-            it('... should be triggered by change of queryResult', async () => {
-                expectSpyCall(isValidSelectQueryResultSpy, 3, expectedQueryResult);
-
-                // Mock another queryResult
-                const queryResult = createSelectResult(
-                    ['anotherTestHeader'],
-                    [{ anotherTestHeader: literal('AnotherTestValue') }]
-                );
-                component.queryResult$ = observableOf(queryResult);
-
-                await detectChangesOnPush(fixture);
-
-                expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);
-            });
-
-            describe('... should be false if', () => {
-                it.each<{ desc: string; query: SparqlResult | undefined }>([
-                    {
-                        desc: 'queryResult is undefined',
-                        query: undefined,
-                    },
-                    {
-                        desc: 'queryResult is a construct result',
-                        query: { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES },
-                    },
-                    {
-                        desc: 'queryResult is an unsupported result',
-                        query: { kind: 'unsupported', queryType: 'ask' },
-                    },
-                    {
-                        desc: 'queryResult has no variables',
-                        query: createSelectResult([], [{ testHeader: literal('TestValue') }]),
-                    },
-                    {
-                        desc: 'queryResult has no bindings',
-                        query: createSelectResult(['testHeader'], []),
-                    },
-                    {
-                        desc: 'queryResult has neither variables nor bindings',
-                        query: createSelectResult([], []),
-                    },
-                ])('... $desc', async ({ query }) => {
-                    component.queryResult$ = observableOf(query as SparqlResult);
+                it('... should be triggered by change of the query result', async () => {
+                    const queryResult = createSelectResult(
+                        ['anotherTestHeader'],
+                        [{ anotherTestHeader: literal('AnotherTestValue') }]
+                    );
+                    fixture.componentRef.setInput('queryResult$', observableOf(queryResult));
                     await detectChangesOnPush(fixture);
 
-                    // Clear the spy call count
-                    isValidSelectQueryResultSpy.mockClear();
+                    expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);
+                });
 
-                    const result = component.isValidSelectQueryResult(query);
+                describe('... should be false if', () => {
+                    it.each<{ desc: string; query: SparqlResult | null | undefined }>([
+                        { desc: 'queryResult is undefined', query: undefined },
+                        { desc: 'queryResult is null', query: null },
+                        {
+                            desc: 'queryResult is a construct result',
+                            query: { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES },
+                        },
+                        {
+                            desc: 'queryResult is an unsupported result',
+                            query: { kind: 'unsupported', queryType: 'ask' },
+                        },
+                        {
+                            desc: 'queryResult has no variables',
+                            query: createSelectResult([], [{ testHeader: literal('TestValue') }]),
+                        },
+                        {
+                            desc: 'queryResult has no bindings',
+                            query: createSelectResult(['testHeader'], []),
+                        },
+                        {
+                            desc: 'queryResult has neither variables nor bindings',
+                            query: createSelectResult([], []),
+                        },
+                    ])('... $desc', ({ query }) => {
+                        expectToBe(component.isValidSelectQueryResult(query), false);
+                    });
+                });
 
-                    expectSpyCall(isValidSelectQueryResultSpy, 1, query);
-                    expectToBe(result, false);
+                describe('... should be true if', () => {
+                    it('... queryResult is a select result with variables and bindings', () => {
+                        expectToBe(component.isValidSelectQueryResult(expectedQueryResult), true);
+                    });
                 });
             });
 
-            describe('... should be true if', () => {
-                it.each([
-                    {
-                        desc: 'queryResult is valid',
-                        query: createSelectResult(['testHeader'], [{ testHeader: literal('TestValue') }]),
-                    },
-                    {
-                        desc: 'queryResult changes to another valid result',
-                        query: createSelectResult(
-                            ['anotherTestHeader'],
-                            [{ anotherTestHeader: literal('AnotherTestValue') }]
-                        ),
-                    },
-                ])('... $desc', async ({ query }) => {
-                    component.queryResult$ = observableOf(query);
-                    await detectChangesOnPush(fixture);
-
-                    // Clear the spy call count
-                    isValidSelectQueryResultSpy.mockClear();
-
-                    const result = component.isValidSelectQueryResult(query);
-
-                    expectSpyCall(isValidSelectQueryResultSpy, 1, query);
-                    expectToBe(result, true);
+            describe('#onTableNodeClick()', () => {
+                it('... should have a method `onTableNodeClick`', () => {
+                    expect(component.onTableNodeClick).toBeDefined();
                 });
-            });
-        });
 
-        describe('#onTableNodeClick()', () => {
-            it('... should have a method `onTableNodeClick`', () => {
-                expect(component.onTableNodeClick).toBeDefined();
-            });
+                it('... should trigger on clickedTableRequest event from SparqlTableComponent (hollow)', () => {
+                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableComponent, 1, 1);
+                    const sparqlTableCmp = sparqlTableDes[0].injector.get(SparqlTableComponent);
 
-            it('... should trigger on event from SparqlTableComponent', () => {
-                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
-                const sparqlTableCmp = sparqlTableDes[0].injector.get(
-                    SparqlTableStubComponent
-                ) as SparqlTableStubComponent;
+                    const expectedUri = 'example:Test';
+                    sparqlTableCmp.clickedTableRequest.emit(expectedUri);
 
-                const expectedUri = 'example:Test';
-                sparqlTableCmp.clickedTableRequest.emit(expectedUri);
+                    expectSpyCall(tableClickSpy, 1, expectedUri);
+                });
 
-                expectSpyCall(tableClickSpy, 1, expectedUri);
-            });
+                it('... should not emit anything if no URI is provided', () => {
+                    component.onTableNodeClick(undefined as unknown as string);
 
-            it('... should not emit anything if no URI is provided', () => {
-                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
-                const sparqlTableCmp = sparqlTableDes[0].injector.get(
-                    SparqlTableStubComponent
-                ) as SparqlTableStubComponent;
+                    expectSpyCall(emitClickedTableRequestSpy, 0);
+                });
 
-                // Node is undefined
-                sparqlTableCmp.clickedTableRequest.emit(undefined);
+                it('... should emit provided URI on click', () => {
+                    const expectedUri = 'example:Test';
+                    component.onTableNodeClick(expectedUri);
 
-                expectSpyCall(tableClickSpy, 1, undefined);
-                expectSpyCall(emitClickedTableRequestSpy, 0);
-            });
-
-            it('... should emit provided URI on click', () => {
-                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
-                const sparqlTableCmp = sparqlTableDes[0].injector.get(
-                    SparqlTableStubComponent
-                ) as SparqlTableStubComponent;
-
-                const expectedUri = 'example:Test';
-                sparqlTableCmp.clickedTableRequest.emit(expectedUri);
-
-                expectSpyCall(tableClickSpy, 1, expectedUri);
-                expectSpyCall(emitClickedTableRequestSpy, 1, expectedUri);
+                    expectSpyCall(emitClickedTableRequestSpy, 1, expectedUri);
+                });
             });
         });
     });
