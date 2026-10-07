@@ -9,36 +9,11 @@
 
         <!-- Limit -->
         @if (graphData; as graph) {
-            <div
-                class="btn-group awg-force-graph-node-limit-container float-end my-auto"
-                ngbDropdown
-                container="body"
-                role="group"
-                aria-label="Button group with nested dropdown for node limit">
-                <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                    @if (limit < graph.tripleCount) {
-                        <span>{{ limit }} von </span>
-                    }
-                    {{ graph.tripleCount }} Triples
-                </button>
-                <button
-                    class="btn btn-sm btn-info dropdown-toggle-split"
-                    ngbDropdownToggle
-                    [disabled]="graph.tripleCount === 0"
-                    aria-label="Toggle dropdown"></button>
-                <div class="dropdown-menu" ngbDropdownMenu>
-                    @for (limitValue of limitValues; track limitValue) {
-                        @if (graph.tripleCount > limitValue) {
-                            <button class="dropdown-item" (click)="onLimitValueChange(limitValue)">
-                                <span>{{ limitValue }}</span>
-                            </button>
-                        }
-                    }
-                    <button class="dropdown-item" (click)="onLimitValueChange(graph.tripleCount)">
-                        <span>Kein Limit</span>
-                    </button>
-                </div>
-            </div>
+            <awg-force-graph-limit
+                class="awg-force-graph-limit-container float-end my-auto"
+                [tripleCount]="graph.tripleCount"
+                [limit]="limit"
+                (limitChange)="onLimitValueChange($event)" />
         }
     </div>
 

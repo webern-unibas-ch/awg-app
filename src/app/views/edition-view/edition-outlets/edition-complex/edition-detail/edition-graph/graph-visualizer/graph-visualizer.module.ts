@@ -7,6 +7,7 @@ import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 import { ForceGraphComponent } from './results/construct/force-graph/force-graph.component';
+import { ForceGraphLimitComponent } from './results/construct/force-graph/limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './results/construct/force-graph/svg/force-graph-svg.component';
 import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
 import { GraphResultsEmptyComponent } from './results/empty/graph-results-empty.component';
@@ -21,6 +22,7 @@ import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-re
  */
 @NgModule({
     imports: [
+        ForceGraphLimitComponent,
         ForceGraphSvgComponent,
         GraphEditorSparqlComponent,
         GraphEditorTriplesComponent,

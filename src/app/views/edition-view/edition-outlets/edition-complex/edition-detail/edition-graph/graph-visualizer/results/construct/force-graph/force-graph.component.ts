@@ -53,13 +53,6 @@ export class ForceGraphComponent implements OnChanges {
     @ViewChild(ForceGraphSvgComponent) graphSvg?: ForceGraphSvgComponent;
 
     /**
-     * Public variable: limitValues.
-     *
-     * It keeps the array of possible limit values.
-     */
-    limitValues = [5, 10, 25, 50, 100, 250, 500, 1000];
-
-    /**
      * Public variable: limit.
      *
      * It keeps the default limit value for the display of query results.

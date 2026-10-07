@@ -22,6 +22,7 @@ import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { GraphData, GraphNode } from '../../../models/graph-data.model';
 import { ForceGraphDrawingService } from './force-graph-drawing.service';
 import { ForceSimulation } from './force-graph.model';
+import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 
 import { ForceGraphComponent } from './force-graph.component';
@@ -51,6 +52,10 @@ describe('ForceGraphComponent', () => {
         tripleCount: 3,
     };
 
+    const getGraphLimitCmp = (): ForceGraphLimitComponent =>
+        getAndExpectDebugElementByDirective(compDe, ForceGraphLimitComponent, 1, 1)[0].injector.get(
+            ForceGraphLimitComponent
+        );
     const getGraphSvgCmp = (): ForceGraphSvgComponent =>
         getAndExpectDebugElementByDirective(compDe, ForceGraphSvgComponent, 1, 1)[0].injector.get(
             ForceGraphSvgComponent
@@ -86,10 +91,12 @@ describe('ForceGraphComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, ForceGraphSvgComponent, SliderZoomComponent],
+            imports: [FontAwesomeTestingModule, ForceGraphLimitComponent, ForceGraphSvgComponent, SliderZoomComponent],
             declarations: [ForceGraphComponent],
             providers: [{ provide: ForceGraphDrawingService, useValue: mockForceGraphDrawingService }],
-        }).compileComponents();
+        })
+            .overrideComponent(ForceGraphLimitComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -220,16 +227,26 @@ describe('ForceGraphComponent', () => {
                 });
             });
 
-            describe('... limit', () => {
-                it('... should display the number of triples in the limit button', () => {
-                    const buttonDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-force-graph-node-limit-container button[disabled]',
-                        1,
-                        1
-                    );
+            describe('... ForceGraphLimitComponent (hollow)', () => {
+                it('... should contain one ForceGraphLimitComponent in div.awg-force-graph-icon-bar', () => {
+                    const iconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-icon-bar', 1, 1);
 
-                    expectToBe(buttonDes[0].nativeElement.textContent.trim(), '3 Triples');
+                    getAndExpectDebugElementByDirective(iconBarDes[0], ForceGraphLimitComponent, 1, 1);
+                });
+
+                it('... should pass down the triple count and `limit`', () => {
+                    const graphLimitCmp = getGraphLimitCmp();
+
+                    expectToBe(graphLimitCmp.tripleCount(), graphData.tripleCount);
+                    expectToBe(graphLimitCmp.limit(), 50);
+                });
+
+                it('... should trigger `onLimitValueChange` on a limit change of the ForceGraphLimitComponent', () => {
+                    const onLimitValueChangeSpy = vi.spyOn(component, 'onLimitValueChange');
+
+                    getGraphLimitCmp().limit.set(2);
+
+                    expectSpyCall(onLimitValueChangeSpy, 1, 2);
                 });
             });
         });
