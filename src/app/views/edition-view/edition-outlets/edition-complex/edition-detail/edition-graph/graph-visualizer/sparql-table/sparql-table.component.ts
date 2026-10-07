@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+
+import { TableComponent } from '@awg-shared/table/table.component';
 
 import { SparqlSelectResult } from '../models/sparql-result.model';
 import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
@@ -14,7 +16,7 @@ import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
     templateUrl: './sparql-table.component.html',
     styleUrls: ['./sparql-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [TableComponent],
 })
 export class SparqlTableComponent {
     /**
@@ -25,12 +27,11 @@ export class SparqlTableComponent {
     readonly queryResult = input.required<SparqlSelectResult>();
 
     /**
-     * Output variable: clickedTableRequest.
+     * Readonly output signal: clickedTableRequest.
      *
-     * It keeps an event emitter for a click on a table IRI.
+     * It emits the IRI of a table value the user clicked on.
      */
-    @Output()
-    clickedTableRequest: EventEmitter<string> = new EventEmitter();
+    readonly clickedTableRequest = output<string>();
 
     /**
      * Readonly computed signal: tableRows.

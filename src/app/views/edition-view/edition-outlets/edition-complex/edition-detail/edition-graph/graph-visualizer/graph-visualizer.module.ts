@@ -9,7 +9,7 @@ import { GraphVisualizerComponent } from './graph-visualizer.component';
 import { SelectResultsComponent } from './select-results';
 import { SparqlEditorComponent } from './sparql-editor';
 import { SparqlNoResultsComponent } from './sparql-no-results';
-import { SparqlTableComponent } from './sparql-table';
+import { SparqlTableComponent } from './sparql-table/sparql-table.component';
 import { TriplesEditorComponent } from './triples-editor';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 
@@ -20,14 +20,19 @@ import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsu
  * as well as the {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, SliderZoomComponent, SparqlNoResultsComponent, UnsupportedTypeResultsComponent],
+    imports: [
+        SharedModule,
+        SliderZoomComponent,
+        SparqlNoResultsComponent,
+        SparqlTableComponent,
+        UnsupportedTypeResultsComponent,
+    ],
     declarations: [
         ConstructResultsComponent,
         ForceGraphComponent,
         GraphVisualizerComponent,
         SelectResultsComponent,
         SparqlEditorComponent,
-        SparqlTableComponent,
         TriplesEditorComponent,
     ],
     exports: [GraphVisualizerComponent],
