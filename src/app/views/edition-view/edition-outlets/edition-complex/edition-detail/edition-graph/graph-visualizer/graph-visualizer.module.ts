@@ -28,15 +28,10 @@ import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsu
         SelectResultsComponent,
         SparqlNoResultsComponent,
         SparqlTableComponent,
+        TriplesEditorComponent,
         UnsupportedTypeResultsComponent,
     ],
-    declarations: [
-        ConstructResultsComponent,
-        ForceGraphComponent,
-        GraphVisualizerComponent,
-        SparqlEditorComponent,
-        TriplesEditorComponent,
-    ],
+    declarations: [ConstructResultsComponent, ForceGraphComponent, GraphVisualizerComponent, SparqlEditorComponent],
     exports: [GraphVisualizerComponent],
 })
 export class GraphVisualizerModule {}

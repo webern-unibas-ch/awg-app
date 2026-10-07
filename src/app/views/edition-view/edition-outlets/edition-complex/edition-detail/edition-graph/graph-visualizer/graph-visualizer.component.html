@@ -8,12 +8,11 @@
             <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 pe-lg-0'">
                 <!-- awg-graph-triples-editor -->
                 <awg-triples-editor
-                    [triples]="triples"
+                    [(triples)]="triples"
                     [isFullscreen]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
-                    (resetTriplesRequest)="resetTriples()"
-                    (updateTriplesRequest)="triples = $event" />
+                    (resetTriplesRequest)="resetTriples()" />
             </div>
             <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 ps-lg-0'">
                 <!-- awg-graph-sparql-editor -->

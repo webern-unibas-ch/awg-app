@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 
+import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component';
 import { CmMode } from '@awg-shared/codemirror/codemirror.utils';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
+
+import { EditorActionButtonsComponent } from '../editor-action-buttons/editor-action-buttons.component';
 
 /**
  * The TriplesEditor component.
@@ -16,88 +21,74 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
     templateUrl: './triples-editor.component.html',
     styleUrls: ['./triples-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [NgbAccordionModule, CodeMirrorComponent, EditorActionButtonsComponent],
 })
 export class TriplesEditorComponent {
     /**
-     * Input variable: triples.
+     * Model signal: triples.
      *
-     * It keeps the input string for the RDF triples.
+     * It holds the RDF triples (two-way bound with the editor).
      */
-    @Input()
-    triples = '';
+    readonly triples = model<string>('');
 
     /**
-     * Input variable: isFullscreen.
+     * Readonly input signal: isFullscreen.
      *
-     * It keeps a boolean flag if fullscreenMode is set.
+     * It holds a boolean flag if fullscreenMode is set.
+     * If true, the accordion item is open and disabled.
      */
-    @Input()
-    isFullscreen = false;
+    readonly isFullscreen = input<boolean>(false);
 
     /**
-     * Output variable: errorMessageRequest.
+     * Readonly output signal: errorMessageRequest.
      *
-     * It keeps an event emitter to update the query string after editor changes.
+     * It emits an error message to be displayed.
      */
-    @Output()
-    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
+    readonly errorMessageRequest = output<ToastMessage>();
 
     /**
-     * Output variable: performQueryRequest.
+     * Readonly output signal: performQueryRequest.
      *
-     * It keeps an event emitter to perform a query.
+     * It emits a request to perform a query.
      */
-    @Output()
-    performQueryRequest: EventEmitter<void> = new EventEmitter();
+    readonly performQueryRequest = output<void>();
 
     /**
-     * Output variable: resetTriplesRequest.
+     * Readonly output signal: resetTriplesRequest.
      *
-     * It keeps an event emitter to reset the triples to their initial state.
+     * It emits a request to reset the triples to their initial state.
      */
-    @Output()
-    resetTriplesRequest: EventEmitter<void> = new EventEmitter();
+    readonly resetTriplesRequest = output<void>();
 
     /**
-     * Output variable: updateTriplesRequest.
-     *
-     * It keeps an event emitter to update the triples after editor changes.
-     */
-    @Output()
-    updateTriplesRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Public variable: cmTurtleMode.
+     * Readonly variable: cmTurtleMode.
      *
      * It keeps the Codemirror mode for the turtle panel.
      */
-    cmTurtleMode: CmMode = turtle;
+    readonly cmTurtleMode: CmMode = turtle;
 
     /**
-     * Public method: onEditorInputChange.
+     * Public method: clearTriples.
      *
-     * It emits the given triples
-     * to the {@link updateTriplesRequest}.
+     * It clears the triples.
      *
-     * @param {string} triples The given triples.
-     *
-     * @returns {void} Emits the triples.
+     * @returns {void} Sets the triples to an empty string.
      */
-    onEditorInputChange(triples: string): void {
-        this.updateTriplesRequest.emit(triples);
+    clearTriples(): void {
+        this.triples.set('');
     }
 
     /**
      * Public method: performQuery.
      *
-     * It emits a trigger to
-     * the {@link performQueryRequest}.
+     * It emits a trigger to the {@link performQueryRequest}
+     * if triples are given, otherwise an error message
+     * to the {@link errorMessageRequest}.
      *
      * @returns {void} Triggers the request.
      */
     performQuery(): void {
-        if (this.triples) {
+        if (this.triples()) {
             this.performQueryRequest.emit();
         } else {
             this.errorMessageRequest.emit(new ToastMessage('Empty triples', 'Please enter triple content.'));
@@ -114,29 +105,5 @@ export class TriplesEditorComponent {
      */
     resetTriples(): void {
         this.resetTriplesRequest.emit();
-    }
-
-    /**
-     * Public method: isAccordionItemCollapsed.
-     *
-     * It returns a boolean flag if the accordion item should be collapsed.
-     * It returns false if fullscreenMode is set, otherwise true.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemCollapsed(): boolean {
-        return !this.isFullscreen;
-    }
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
     }
 }

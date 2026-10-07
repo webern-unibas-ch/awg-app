@@ -1,13 +1,14 @@
-import { DebugElement, NgModule, inject } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -34,37 +35,25 @@ describe('TriplesEditorComponent (DONE)', () => {
     let expectedCmTurtleMode: CmMode;
     let expectedIsFullscreen: boolean;
 
-    let onEditorInputChangeSpy: Spy;
+    let clearTriplesSpy: Spy;
     let performQuerySpy: Spy;
-    let isAccordionItemDisabledSpy: Spy;
-    let isAccordionItemCollapsedSpy: Spy;
     let resetTriplesSpy: Spy;
     let emitErrorMessageSpy: Spy;
     let emitPerformQueryRequestSpy: Spy;
     let emitResetTriplesRequestSpy: Spy;
-    let emitUpdateTriplesRequestSpy: Spy;
-
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, NgbConfigModule, CodeMirrorComponent, EditorActionButtonsComponent],
-            declarations: [TriplesEditorComponent],
+            imports: [TriplesEditorComponent],
         })
             .overrideComponent(CodeMirrorComponent, {
                 set: { template: '<div #codemirrorhost></div>', imports: [] },
             })
             .overrideComponent(EditorActionButtonsComponent, { set: { template: '', imports: [] } })
             .compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
@@ -75,19 +64,15 @@ describe('TriplesEditorComponent (DONE)', () => {
         // Test data
         expectedIsFullscreen = false;
         expectedCmTurtleMode = turtle;
-
         expectedTriples = 'example:Test example:has example:Success';
 
         // Spies
-        onEditorInputChangeSpy = vi.spyOn(component, 'onEditorInputChange');
+        clearTriplesSpy = vi.spyOn(component, 'clearTriples');
         performQuerySpy = vi.spyOn(component, 'performQuery');
-        isAccordionItemCollapsedSpy = vi.spyOn(component, 'isAccordionItemCollapsed');
-        isAccordionItemDisabledSpy = vi.spyOn(component, 'isAccordionItemDisabled');
         resetTriplesSpy = vi.spyOn(component, 'resetTriples');
         emitErrorMessageSpy = vi.spyOn(component.errorMessageRequest, 'emit');
         emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
         emitResetTriplesRequestSpy = vi.spyOn(component.resetTriplesRequest, 'emit');
-        emitUpdateTriplesRequestSpy = vi.spyOn(component.updateTriplesRequest, 'emit');
     });
 
     afterEach(() => {
@@ -99,15 +84,17 @@ describe('TriplesEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `triples` input', () => {
-            expectToBe(component.triples, '');
+        it('... should have model signal `triples` to hold an empty string initially', () => {
+            expectToBe(isSignal(component.triples), true);
+            expectToBe(component.triples(), '');
         });
 
-        it('... should have default `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, false);
+        it('... should have input signal `isFullscreen` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreen), true);
+            expectToBe(component.isFullscreen(), false);
         });
 
-        it('... should have cmTurtleMode', () => {
+        it('... should have `cmTurtleMode` to hold the turtle mode', () => {
             expectToEqual(component.cmTurtleMode, expectedCmTurtleMode);
         });
 
@@ -133,19 +120,19 @@ describe('TriplesEditorComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            component.triples = expectedTriples;
-            component.isFullscreen = expectedIsFullscreen;
+            fixture.componentRef.setInput('triples', expectedTriples);
+            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have `triples` input', () => {
-            expectToEqual(component.triples, expectedTriples);
+        it('... should have model signal `triples` to hold the provided triples', () => {
+            expectToBe(component.triples(), expectedTriples);
         });
 
-        it('... should have `isFullScreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have input signal `isFullscreen` to hold the provided fullscreen flag', () => {
+            expectToBe(component.isFullscreen(), expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -181,7 +168,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         expectToNotContain(itemBodyEl.classList, 'show');
                     });
 
-                    it('... should display item header button', () => {
+                    it('... should display enabled item header button', () => {
                         const itemHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-header',
@@ -192,19 +179,25 @@ describe('TriplesEditorComponent (DONE)', () => {
                         const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                         const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
+                        expectToBe(btnEl.disabled, false);
                         expectToBe(btnEl.textContent, 'RDF Triples');
                     });
 
-                    it('... should toggle item body on click', async () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
+                    it('... should have auto height on item body', () => {
+                        const itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-header',
+                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
                             1,
                             1
                         );
+                        const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
+                        expectToBe(itemBodyEl.style.height, 'auto');
+                    });
+
+                    it('... should toggle item body on click', async () => {
                         const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
+                            compDe,
                             'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
@@ -224,7 +217,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
-                        // Item is open
+                        // Item body is open
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
@@ -238,6 +231,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
+                        // Item body is closed again
                         itemBodyDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div#awg-graph-visualizer-triples > div.accordion-collapse',
@@ -262,80 +256,62 @@ describe('TriplesEditorComponent (DONE)', () => {
                             1
                         );
 
-                        // Click header button
                         await clickAndAwaitChanges(btnDes[0], fixture);
 
-                        // Item body is open
-                        const collapseDes = getAndExpectDebugElementByCss(
+                        bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                            'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
                             1,
                             1
                         );
-                        const collapseEl: HTMLDivElement = collapseDes[0].nativeElement;
-
-                        expectToContain(collapseEl.classList, 'show');
-
-                        bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
-                    });
-
-                    it('... should toggle item body on click', async () => {
-                        const itemHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-header',
-                            1,
-                            1
-                        );
-
-                        const btnDes = getAndExpectDebugElementByCss(
-                            itemHeaderDes[0],
-                            'button#awg-graph-visualizer-triples-toggle',
-                            1,
-                            1
-                        );
-
-                        // Item body is open
-                        let itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        let itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
-
-                        expectToContain(itemBodyEl.classList, 'show');
-
-                        // Click header button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        // Item is closed
-                        itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        itemBodyEl = itemBodyDes[0].nativeElement;
-
-                        expectToNotContain(itemBodyEl.classList, 'show');
-
-                        // Click header button
-                        await clickAndAwaitChanges(btnDes[0], fixture);
-
-                        // Item body is open again
-                        itemBodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.accordion-collapse',
-                            1,
-                            1
-                        );
-                        itemBodyEl = itemBodyDes[0].nativeElement;
-
-                        expectToContain(itemBodyEl.classList, 'show');
                     });
 
                     it('... should contain CodeMirrorComponent (hollow) in item body', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
+                    });
+
+                    it('... should pass down `mode` and `content` to CodeMirrorComponent (hollow)', () => {
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            CodeMirrorComponent,
+                            1,
+                            1
+                        );
+                        const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+
+                        expectToEqual(codeMirrorCmp.mode(), expectedCmTurtleMode);
+                        expectToBe(codeMirrorCmp.content(), expectedTriples);
+                    });
+
+                    it('... should pass down changed triples to CodeMirrorComponent (hollow)', async () => {
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            CodeMirrorComponent,
+                            1,
+                            1
+                        );
+                        const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+
+                        const changedTriples = 'example:Success example:is example:Testing';
+                        fixture.componentRef.setInput('triples', changedTriples);
+                        await detectChangesOnPush(fixture);
+
+                        expectToBe(codeMirrorCmp.content(), changedTriples);
+                    });
+
+                    it('... should update `triples` on content change of CodeMirrorComponent (hollow)', () => {
+                        const codeMirrorDes = getAndExpectDebugElementByDirective(
+                            bodyDes[0],
+                            CodeMirrorComponent,
+                            1,
+                            1
+                        );
+                        const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
+
+                        const changedTriples = 'example:Success example:is example:Testing';
+                        codeMirrorCmp.content.set(changedTriples);
+
+                        expectToBe(component.triples(), changedTriples);
                     });
 
                     it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
@@ -345,33 +321,12 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
 
             describe('in fullscreen mode', () => {
-                let bodyDes: DebugElement[];
-
                 beforeEach(async () => {
-                    // Open item by click on header button
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'button#awg-graph-visualizer-triples-toggle',
-                        1,
-                        1
-                    );
-
-                    // Click header button
-                    await clickAndAwaitChanges(btnDes[0], fixture);
-
-                    // Item body
-                    bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
-
-                    // Set fullscreen mode
-                    component.isFullscreen = true;
+                    fixture.componentRef.setInput('isFullscreen', true);
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... should contain one div.accordion with item (div.accordion-item) header and open body', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     const itemDes = getAndExpectDebugElementByCss(
@@ -387,15 +342,18 @@ describe('TriplesEditorComponent (DONE)', () => {
                         1
                     );
 
-                    getAndExpectDebugElementByCss(
+                    const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1
                     );
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should display item header button', () => {
+                it('... should display disabled item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-header',
@@ -406,20 +364,31 @@ describe('TriplesEditorComponent (DONE)', () => {
                     const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
+                    expectToBe(btnEl.disabled, true);
                     expectToBe(btnEl.textContent, 'RDF Triples');
                 });
 
-                it('... should not toggle item body on click', async () => {
-                    const itemHeaderDes = getAndExpectDebugElementByCss(
+                it('... should have 50vh height on item body', () => {
+                    const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.accordion-header',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
+
+                    expectToBe(itemBodyEl.style.height, '50vh');
+                });
+
+                it('... should not toggle item body on click', async () => {
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-triples > div.accordion-header > button.accordion-button',
                         1,
                         1
                     );
 
-                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
-
-                    // Item body does not close
+                    // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-collapse',
@@ -434,7 +403,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Click header button
                     await clickAndAwaitChanges(btnDes[0], fixture);
 
-                    // Item body does not close again
+                    // Item body does not close
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-triples > div.accordion-collapse',
@@ -447,211 +416,146 @@ describe('TriplesEditorComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain CodeMirrorComponent (hollow) in item body', () => {
-                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
-                });
+                it('... should contain CodeMirrorComponent (hollow) and EditorActionButtonsComponent (hollow) in item body', () => {
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        1,
+                        1
+                    );
 
-                it('... should contain EditorActionButtonsComponent (hollow) in item body', () => {
+                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorComponent, 1, 1);
                     getAndExpectDebugElementByDirective(bodyDes[0], EditorActionButtonsComponent, 1, 1);
                 });
             });
         });
 
-        describe('#onEditorInputChange()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button#awg-graph-visualizer-triples-toggle',
-                    1,
-                    1
-                );
+        describe('METHODS', () => {
+            describe('#clearTriples()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-triples-toggle',
+                        1,
+                        1
+                    );
 
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
-            });
-
-            it('... should have a method `onEditorInputChange`', () => {
-                expect(component.onEditorInputChange).toBeDefined();
-            });
-
-            it('... should trigger on event from CodeMirrorComponent (hollow)', () => {
-                const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
-                const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
-
-                const changedTriples = 'example:Success example:is example:Testing';
-                codeMirrorCmp.content.set(changedTriples);
-
-                expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
-            });
-
-            it('... should trigger with empty string on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
-
-                actionButtonsCmp.clearRequest.emit();
-
-                expectSpyCall(onEditorInputChangeSpy, 1, '');
-                expectSpyCall(emitUpdateTriplesRequestSpy, 1, '');
-            });
-
-            describe('... should emit provided triples on editor change', () => {
-                it('... if string is truthy', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
-
-                    const changedTriples = 'example:Success example:is example:Testing';
-                    codeMirrorCmp.content.set(changedTriples);
-
-                    expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
-                    expectSpyCall(emitUpdateTriplesRequestSpy, 1, changedTriples);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
                 });
 
-                it('... if string is empty', () => {
-                    const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorComponent, 1, 1);
-                    const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorComponent);
-
-                    codeMirrorCmp.content.set('');
-
-                    expectSpyCall(onEditorInputChangeSpy, 1, '');
-                    expectSpyCall(emitUpdateTriplesRequestSpy, 1, '');
-                });
-            });
-        });
-
-        describe('#performQuery()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button#awg-graph-visualizer-triples-toggle',
-                    1,
-                    1
-                );
-
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
-            });
-
-            it('... should have a method `performQuery`', () => {
-                expect(component.performQuery).toBeDefined();
-            });
-
-            it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
-
-                actionButtonsCmp.queryRequest.emit();
-
-                expectSpyCall(performQuerySpy, 1);
-            });
-
-            describe('... should emit', () => {
-                it('`performQueryRequest` if triples are given', () => {
-                    component.performQuery();
-
-                    expectSpyCall(emitPerformQueryRequestSpy, 1);
-                    expectSpyCall(emitErrorMessageSpy, 0);
+                it('... should have a method `clearTriples`', () => {
+                    expect(component.clearTriples).toBeDefined();
                 });
 
-                it('`errorMessageRequest` with errorMessage if triples are not given', () => {
-                    const expectedErrorMessage = new ToastMessage('Empty triples', 'Please enter triple content.');
+                it('... should trigger on clearRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-                    component.triples = '';
-                    component.performQuery();
+                    actionButtonsCmp.clearRequest.emit();
 
-                    expectSpyCall(emitPerformQueryRequestSpy, 0);
-                    expectSpyCall(emitErrorMessageSpy, 1, expectedErrorMessage);
+                    expectSpyCall(clearTriplesSpy, 1);
+                });
+
+                it('... should set `triples` to an empty string', () => {
+                    component.clearTriples();
+
+                    expectToBe(component.triples(), '');
                 });
             });
-        });
 
-        describe('#resetTriples()', () => {
-            beforeEach(async () => {
-                // Open item by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'button#awg-graph-visualizer-triples-toggle',
-                    1,
-                    1
-                );
+            describe('#performQuery()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-triples-toggle',
+                        1,
+                        1
+                    );
 
-                // Click header button
-                await clickAndAwaitChanges(btnDes[0], fixture);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
+
+                it('... should have a method `performQuery`', () => {
+                    expect(component.performQuery).toBeDefined();
+                });
+
+                it('... should trigger on queryRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+
+                    actionButtonsCmp.queryRequest.emit();
+
+                    expectSpyCall(performQuerySpy, 1);
+                });
+
+                describe('... should emit', () => {
+                    it('`performQueryRequest` if triples are given', () => {
+                        component.performQuery();
+
+                        expectSpyCall(emitPerformQueryRequestSpy, 1);
+                        expectSpyCall(emitErrorMessageSpy, 0);
+                    });
+
+                    it('`errorMessageRequest` with errorMessage if triples are not given', () => {
+                        const expectedErrorMessage = new ToastMessage('Empty triples', 'Please enter triple content.');
+
+                        component.triples.set('');
+                        component.performQuery();
+
+                        expectSpyCall(emitPerformQueryRequestSpy, 0);
+                        expectSpyCall(emitErrorMessageSpy, 1, expectedErrorMessage);
+                    });
+                });
             });
 
-            it('... should have a method `resetTriples`', () => {
-                expect(component.resetTriples).toBeDefined();
-            });
+            describe('#resetTriples()', () => {
+                beforeEach(async () => {
+                    // Open item by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'button#awg-graph-visualizer-triples-toggle',
+                        1,
+                        1
+                    );
 
-            it('... should trigger on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
-                const actionButtonsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditorActionButtonsComponent,
-                    1,
-                    1
-                );
-                const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
+                    await clickAndAwaitChanges(btnDes[0], fixture);
+                });
 
-                actionButtonsCmp.resetRequest.emit();
+                it('... should have a method `resetTriples`', () => {
+                    expect(component.resetTriples).toBeDefined();
+                });
 
-                expectSpyCall(resetTriplesSpy, 1);
-            });
+                it('... should trigger on resetRequest event from EditorActionButtonsComponent (hollow)', () => {
+                    const actionButtonsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditorActionButtonsComponent,
+                        1,
+                        1
+                    );
+                    const actionButtonsCmp = actionButtonsDes[0].injector.get(EditorActionButtonsComponent);
 
-            it('... should emit resetTriplesRequest', () => {
-                component.resetTriples();
+                    actionButtonsCmp.resetRequest.emit();
 
-                expectSpyCall(emitResetTriplesRequestSpy, 1);
-            });
-        });
+                    expectSpyCall(resetTriplesSpy, 1);
+                });
 
-        describe('#isAccordionItemCollapsed()', () => {
-            it('... should have a method `isAccordionItemCollapsed`', () => {
-                expect(component.isAccordionItemCollapsed).toBeDefined();
-            });
+                it('... should emit resetTriplesRequest', () => {
+                    component.resetTriples();
 
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemCollapsedSpy, 1);
-            });
-
-            it('... should return true if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemCollapsed(), true);
-            });
-
-            it('... should return false if isFullscreen is true', () => {
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemCollapsed(), false);
-            });
-        });
-
-        describe('#isAccordionItemDisabled()', () => {
-            it('... should have a method `isAccordionItemDisabled`', () => {
-                expect(component.isAccordionItemDisabled).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemDisabledSpy, 1);
-            });
-
-            it('... should return false if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemDisabled(), false);
-            });
-
-            it('... should return true if isFullscreen is true', () => {
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemDisabled(), true);
+                    expectSpyCall(emitResetTriplesRequestSpy, 1);
+                });
             });
         });
     });

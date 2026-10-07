@@ -1,27 +1,20 @@
 <div ngbAccordion>
-    <div
-        ngbAccordionItem="awg-graph-visualizer-triples"
-        [collapsed]="isAccordionItemCollapsed()"
-        [disabled]="isAccordionItemDisabled()">
+    <div ngbAccordionItem="awg-graph-visualizer-triples" [collapsed]="!isFullscreen()" [disabled]="isFullscreen()">
         <div ngbAccordionHeader>
             <button ngbAccordionButton class="p-3">RDF Triples</button>
         </div>
-        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
+        <div ngbAccordionCollapse [style.height]="isFullscreen() ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->
-                    <awg-codemirror
-                        ngDefaultControl
-                        [mode]="cmTurtleMode"
-                        [(content)]="triples"
-                        (contentChange)="onEditorInputChange($event)" />
+                    <awg-codemirror [mode]="cmTurtleMode" [(content)]="triples" />
 
                     <!-- Action buttons -->
                     <awg-editor-action-buttons
                         class="mt-2"
                         (queryRequest)="performQuery()"
                         (resetRequest)="resetTriples()"
-                        (clearRequest)="onEditorInputChange('')" />
+                        (clearRequest)="clearTriples()" />
                 </ng-template>
             </div>
         </div>

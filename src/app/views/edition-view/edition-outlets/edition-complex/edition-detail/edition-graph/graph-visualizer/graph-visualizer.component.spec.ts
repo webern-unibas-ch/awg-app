@@ -1,4 +1,4 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, isSignal, model, Output } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -98,8 +98,7 @@ class SparqlEditorStubComponent {
     standalone: false,
 })
 class TriplesEditorStubComponent {
-    @Input()
-    triples = '';
+    readonly triples = model<string>('');
     @Input()
     isFullscreen = false;
     @Output()
@@ -108,8 +107,6 @@ class TriplesEditorStubComponent {
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
     resetTriplesRequest: EventEmitter<void> = new EventEmitter();
-    @Output()
-    updateTriplesRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('GraphVisualizerComponent (DONE)', () => {
@@ -484,10 +481,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         TriplesEditorStubComponent
                     ) as TriplesEditorStubComponent;
 
-                    expectToEqual(editorCmp.triples, expectedGraphRDFData.triples);
+                    expectToEqual(editorCmp.triples(), expectedGraphRDFData.triples);
                 });
 
-                it('... should update `triples` with updateTriplesRequest event', () => {
+                it('... should update `triples` with two-way bound triples from TriplesEditorComponent', () => {
                     const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
                     const editorCmp = editorDes[0].injector.get(
                         TriplesEditorStubComponent
@@ -496,7 +493,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Set changed triples
                     const changedTriples =
                         '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
-                    editorCmp.updateTriplesRequest.emit(changedTriples);
+                    editorCmp.triples.set(changedTriples);
 
                     expectToEqual(component.triples, changedTriples);
                 });
