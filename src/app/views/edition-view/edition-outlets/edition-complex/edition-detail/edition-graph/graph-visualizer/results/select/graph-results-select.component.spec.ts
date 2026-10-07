@@ -23,11 +23,11 @@ import {
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
-import { SparqlNoResultsComponent } from '../sparql-no-results/sparql-no-results.component';
-import { SparqlTableComponent } from '../sparql-table/sparql-table.component';
-import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
-import { SelectResultsComponent } from './select-results.component';
+import { SparqlResult, SparqlSelectResult } from '../../models/sparql-result.model';
+import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
+import { SelectTableComponent } from './table/select-table.component';
+import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
+import { GraphResultsSelectComponent } from './graph-results-select.component';
 
 const { literal, namedNode } = DataFactory;
 
@@ -43,9 +43,9 @@ const createSelectResult = (variables: string[], bindings: SparqlSelectResult['b
     prefixes: DEFAULT_PREFIXES,
 });
 
-describe('SelectResultsComponent (DONE)', () => {
-    let component: SelectResultsComponent;
-    let fixture: ComponentFixture<SelectResultsComponent>;
+describe('GraphResultsSelectComponent (DONE)', () => {
+    let component: GraphResultsSelectComponent;
+    let fixture: ComponentFixture<GraphResultsSelectComponent>;
     let compDe: DebugElement;
 
     let expectedQueryResult: SparqlSelectResult;
@@ -59,10 +59,10 @@ describe('SelectResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, SelectResultsComponent],
+            imports: [NgbAccordionModule, GraphResultsSelectComponent],
         })
-            .overrideComponent(SparqlNoResultsComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(SparqlTableComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsEmptyComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SelectTableComponent, { set: { template: '', imports: [] } })
             .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
             .compileComponents();
 
@@ -71,7 +71,7 @@ describe('SelectResultsComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SelectResultsComponent);
+        fixture = TestBed.createComponent(GraphResultsSelectComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -164,13 +164,13 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-select-results.accordion-item',
+                        'div#awg-graph-results-select.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
@@ -178,7 +178,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Body open (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-select-results-collapse',
+                        'div#awg-graph-results-select-collapse',
                         1,
                         1
                     );
@@ -190,7 +190,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 it('... should display item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
@@ -205,7 +205,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
@@ -215,7 +215,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-collapse',
+                        'div#awg-graph-results-select > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -229,7 +229,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Item body is collapsed
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-collapse',
+                        'div#awg-graph-results-select > div.accordion-collapse',
                         1,
                         1,
                         'collapsed'
@@ -243,7 +243,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Item body is open again
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-collapse',
+                        'div#awg-graph-results-select > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -260,7 +260,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-select-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -277,7 +277,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-select-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -286,38 +286,38 @@ describe('SelectResultsComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain SparqlNoResultsComponent (hollow) in item body if the query result is not valid', async () => {
+                it('... should contain GraphResultsEmptyComponent (hollow) in item body if the query result is not valid', async () => {
                     fixture.componentRef.setInput('queryResult$', observableOf(createSelectResult([], [])));
                     await detectChangesOnPush(fixture);
 
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                        'div#awg-graph-results-select-collapse > div.accordion-body',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(bodyDes[0], GraphResultsEmptyComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SelectTableComponent, 0, 0);
                 });
 
-                it('... should contain SparqlTableComponent (hollow) in item body if results are available', () => {
+                it('... should contain SelectTableComponent (hollow) in item body if results are available', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                        'div#awg-graph-results-select-collapse > div.accordion-body',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 1, 1);
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SelectTableComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], GraphResultsEmptyComponent, 0, 0);
                 });
 
-                it('... should pass down `queryResult` to SparqlTableComponent (hollow)', () => {
-                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableComponent, 1, 1);
-                    const sparqlTableCmp = sparqlTableDes[0].injector.get(SparqlTableComponent);
+                it('... should pass down `queryResult` to SelectTableComponent (hollow)', () => {
+                    const selectTableDes = getAndExpectDebugElementByDirective(compDe, SelectTableComponent, 1, 1);
+                    const selectTableCmp = selectTableDes[0].injector.get(SelectTableComponent);
 
-                    expectToEqual(sparqlTableCmp.queryResult(), expectedQueryResult);
+                    expectToEqual(selectTableCmp.queryResult(), expectedQueryResult);
                 });
             });
 
@@ -332,20 +332,20 @@ describe('SelectResultsComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-select-results.accordion-item',
+                        'div#awg-graph-results-select.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-select-results-collapse',
+                        'div#awg-graph-results-select-collapse',
                         1,
                         1
                     );
@@ -357,7 +357,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 it('... should display disabled item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
@@ -372,7 +372,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-header',
+                        'div#awg-graph-results-select > div.accordion-header',
                         1,
                         1
                     );
@@ -382,7 +382,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-collapse',
+                        'div#awg-graph-results-select > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -396,7 +396,7 @@ describe('SelectResultsComponent (DONE)', () => {
                     // Item body does not close
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results > div.accordion-collapse',
+                        'div#awg-graph-results-select > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -406,15 +406,15 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain SparqlTableComponent (hollow) in item body if results are available', () => {
+                it('... should contain SelectTableComponent (hollow) in item body if results are available', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                        'div#awg-graph-results-select-collapse > div.accordion-body',
                         1,
                         1
                     );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], SelectTableComponent, 1, 1);
                 });
             });
         });
@@ -481,12 +481,12 @@ describe('SelectResultsComponent (DONE)', () => {
                     expect(component.onTableNodeClick).toBeDefined();
                 });
 
-                it('... should trigger on clickedTableRequest event from SparqlTableComponent (hollow)', () => {
-                    const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableComponent, 1, 1);
-                    const sparqlTableCmp = sparqlTableDes[0].injector.get(SparqlTableComponent);
+                it('... should trigger on clickedTableRequest event from SelectTableComponent (hollow)', () => {
+                    const selectTableDes = getAndExpectDebugElementByDirective(compDe, SelectTableComponent, 1, 1);
+                    const selectTableCmp = selectTableDes[0].injector.get(SelectTableComponent);
 
                     const expectedUri = 'example:Test';
-                    sparqlTableCmp.clickedTableRequest.emit(expectedUri);
+                    selectTableCmp.clickedTableRequest.emit(expectedUri);
 
                     expectSpyCall(tableClickSpy, 1, expectedUri);
                 });

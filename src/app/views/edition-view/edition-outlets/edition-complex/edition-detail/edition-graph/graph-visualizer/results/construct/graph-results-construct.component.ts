@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { EMPTY, map, Observable } from 'rxjs';
 
-import { GraphData, GraphNode } from '../models/graph-data.model';
-import { SparqlResult } from '../models/sparql-result.model';
-import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
+import { GraphData, GraphNode } from '../../models/graph-data.model';
+import { SparqlResult } from '../../models/sparql-result.model';
+import { GRAPH_DATA_UTILS } from '../../utils/graph-data.utils';
 
 /**
  * Object constant: EMPTY_GRAPH_DATA.
@@ -14,19 +14,19 @@ import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
 const EMPTY_GRAPH_DATA: GraphData = Object.freeze({ nodes: [], edges: [], tripleCount: 0 });
 
 /**
- * The ConstructResults component.
+ * The GraphResultsConstruct component.
  *
  * It contains the results for CONSTRUCT queries
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-construct-results',
-    templateUrl: './construct-results.component.html',
-    styleUrls: ['./construct-results.component.scss'],
+    selector: 'awg-graph-results-construct',
+    templateUrl: './graph-results-construct.component.html',
+    styleUrls: ['./graph-results-construct.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: false,
 })
-export class ConstructResultsComponent {
+export class GraphResultsConstructComponent {
     /**
      * Input variable: defaultForceGraphHeight.
      *

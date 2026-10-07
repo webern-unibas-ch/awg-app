@@ -3,9 +3,9 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { SparqlSelectResult } from '../models/sparql-result.model';
-import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
-import { SPARQL_TABLE_UTILS, toTableCell, toTableRows } from './sparql-table.utils';
+import { SparqlSelectResult } from '../../../models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '../../../utils/prefix.utils';
+import { SELECT_TABLE_UTILS, toTableCell, toTableRows } from './select-table.utils';
 
 const { blankNode, literal, namedNode } = DataFactory;
 
@@ -13,9 +13,9 @@ const AWG = DEFAULT_PREFIXES['awg'];
 const XSD = 'http://www.w3.org/2001/XMLSchema#';
 
 describe('sparql-table.utils', () => {
-    describe('SPARQL_TABLE_UTILS', () => {
+    describe('SELECT_TABLE_UTILS', () => {
         it('... should reference all sparql table utils methods', () => {
-            expectToEqual(SPARQL_TABLE_UTILS, { toTableCell, toTableRows });
+            expectToEqual(SELECT_TABLE_UTILS, { toTableCell, toTableRows });
         });
     });
 

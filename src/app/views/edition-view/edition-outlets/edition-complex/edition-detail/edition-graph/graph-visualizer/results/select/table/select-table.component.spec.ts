@@ -10,17 +10,17 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 
 import { TableComponent } from '@awg-shared/table/table.component';
 
-import { SparqlSelectResult } from '../models/sparql-result.model';
-import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
+import { SparqlSelectResult } from '../../../models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '../../../utils/prefix.utils';
 
-import { SparqlTableComponent } from './sparql-table.component';
-import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
+import { SelectTableComponent } from './select-table.component';
+import { SELECT_TABLE_UTILS } from './select-table.utils';
 
 const { literal, namedNode } = DataFactory;
 
-describe('SparqlTableComponent (DONE)', () => {
-    let component: SparqlTableComponent;
-    let fixture: ComponentFixture<SparqlTableComponent>;
+describe('SelectTableComponent (DONE)', () => {
+    let component: SelectTableComponent;
+    let fixture: ComponentFixture<SelectTableComponent>;
     let compDe: DebugElement;
 
     let tableClickSpy: Spy;
@@ -31,7 +31,7 @@ describe('SparqlTableComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SparqlTableComponent],
+            imports: [SelectTableComponent],
         })
             .overrideComponent(TableComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -49,7 +49,7 @@ describe('SparqlTableComponent (DONE)', () => {
         expectedTableTitle = 'SELECT Anfrage';
 
         // Create component fixture
-        fixture = TestBed.createComponent(SparqlTableComponent);
+        fixture = TestBed.createComponent(SelectTableComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -95,7 +95,7 @@ describe('SparqlTableComponent (DONE)', () => {
 
         it('... should have computed signal `tableRows` to hold the table rows of the result', () => {
             expectToBe(isSignal(component.tableRows), true);
-            expectToEqual(component.tableRows(), SPARQL_TABLE_UTILS.toTableRows(expectedQueryResult));
+            expectToEqual(component.tableRows(), SELECT_TABLE_UTILS.toTableRows(expectedQueryResult));
         });
 
         it('... should have recomputed signal `tableRows` to hold no rows for a result without bindings', () => {

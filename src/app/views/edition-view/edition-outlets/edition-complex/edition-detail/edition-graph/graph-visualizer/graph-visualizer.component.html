@@ -29,20 +29,20 @@
     <!-- Results -->
     <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
         @if (query.queryType === 'construct') {
-            <awg-construct-results
+            <awg-graph-results-construct
                 #queryConstructResultAcc
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                 [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
         } @else if (query.queryType === 'select') {
-            <awg-select-results
+            <awg-graph-results-select
                 [queryResult$]="queryResult$"
                 [queryTime]="queryTime"
                 [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />
         } @else {
-            <awg-unsupported-type-results [queryType]="query.queryType || ''" [isFullscreenMode]="isFullscreen" />
+            <awg-graph-results-unsupported [queryType]="query.queryType || ''" [isFullscreenMode]="isFullscreen" />
         }
     </div>
 </div>

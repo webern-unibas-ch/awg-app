@@ -1,9 +1,9 @@
 import { TableRows } from '@awg-shared/table/table.model';
 
-import { PrefixMap, RdfTerm } from '../models/rdf.model';
-import { SparqlSelectResult } from '../models/sparql-result.model';
-import { TERM_UTILS } from '../utils/term.utils';
-import { SparqlTableCell } from './sparql-table.model';
+import { PrefixMap, RdfTerm } from '../../../models/rdf.model';
+import { SparqlSelectResult } from '../../../models/sparql-result.model';
+import { TERM_UTILS } from '../../../utils/term.utils';
+import { SelectTableCell } from './select-table.model';
 
 /**
  * Utils method: toTableCell.
@@ -14,9 +14,9 @@ import { SparqlTableCell } from './sparql-table.model';
  *
  * @param {RdfTerm} term The given term.
  * @param {PrefixMap} prefixes The prefixes to compact IRIs.
- * @returns {SparqlTableCell} The table cell.
+ * @returns {SelectTableCell} The table cell.
  */
-export function toTableCell(term: RdfTerm, prefixes: PrefixMap): SparqlTableCell {
+export function toTableCell(term: RdfTerm, prefixes: PrefixMap): SelectTableCell {
     switch (term.termType) {
         case 'NamedNode':
             return { type: 'uri', value: term.value, label: TERM_UTILS.termShortName(term, prefixes) };
@@ -53,11 +53,11 @@ export function toTableRows(result: SparqlSelectResult): TableRows[] {
 }
 
 /**
- * Utils constants: SPARQL_TABLE_UTILS.
+ * Utils constants: SELECT_TABLE_UTILS.
  *
  * It keeps a namespace reference to the SPARQL table utils methods.
  */
-export const SPARQL_TABLE_UTILS = {
+export const SELECT_TABLE_UTILS = {
     toTableCell,
     toTableRows,
 } as const;

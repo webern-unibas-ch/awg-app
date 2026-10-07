@@ -10,11 +10,11 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToContain, expectToNotContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
+import { GraphResultsUnsupportedComponent } from './graph-results-unsupported.component';
 
-describe('UnsupportedTypeResultsComponent (DONE)', () => {
-    let component: UnsupportedTypeResultsComponent;
-    let fixture: ComponentFixture<UnsupportedTypeResultsComponent>;
+describe('GraphResultsUnsupportedComponent (DONE)', () => {
+    let component: GraphResultsUnsupportedComponent;
+    let fixture: ComponentFixture<GraphResultsUnsupportedComponent>;
     let compDe: DebugElement;
 
     let expectedQueryType: string;
@@ -22,7 +22,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, UnsupportedTypeResultsComponent],
+            imports: [NgbAccordionModule, GraphResultsUnsupportedComponent],
         }).compileComponents();
 
         // Disable ng-bootstrap animations
@@ -35,7 +35,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         expectedIsFullscreen = false;
 
         // Create component fixture
-        fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
+        fixture = TestBed.createComponent(GraphResultsUnsupportedComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });
@@ -95,13 +95,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
+                        'div#awg-graph-results-unsupported.accordion-item',
                         1,
                         1
                     );
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
@@ -111,7 +111,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -123,7 +123,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
@@ -137,21 +137,21 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
 
                     const btnDes = getAndExpectDebugElementByCss(
                         itemHeaderDes[0],
-                        'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
+                        'button#awg-graph-results-unsupported-toggle',
                         1,
                         1
                     );
 
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -165,7 +165,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -178,7 +178,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -190,7 +190,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should contain item body with two centered paragraphs', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -207,7 +207,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display messages in item body paragraphs', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -226,7 +226,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -264,13 +264,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
+                        'div#awg-graph-results-unsupported.accordion-item',
                         1,
                         1
                     );
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
@@ -280,7 +280,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -292,7 +292,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
@@ -306,14 +306,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        'div#awg-graph-results-unsupported > div.accordion-header',
                         1,
                         1
                     );
 
                     const btnDes = getAndExpectDebugElementByCss(
                         itemHeaderDes[0],
-                        'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
+                        'button#awg-graph-results-unsupported-toggle',
                         1,
                         1
                     );
@@ -321,7 +321,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // Item body does not closed
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -336,7 +336,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                     // Item is open
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -348,7 +348,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should contain item body with two centered paragraphs', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -365,7 +365,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display messages in item body paragraphs', () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );
@@ -384,7 +384,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 it('... should display correct queryType in first paragraph if input changes', async () => {
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        'div#awg-graph-results-unsupported > div.accordion-collapse',
                         1,
                         1
                     );

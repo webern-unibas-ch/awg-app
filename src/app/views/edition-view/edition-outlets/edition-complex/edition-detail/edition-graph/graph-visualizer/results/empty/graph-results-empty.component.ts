@@ -11,13 +11,13 @@ import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
  * did not return any result.
  */
 @Component({
-    selector: 'awg-sparql-no-results',
-    templateUrl: './sparql-no-results.component.html',
-    styleUrls: ['./sparql-no-results.component.scss'],
+    selector: 'awg-graph-results-empty',
+    templateUrl: './graph-results-empty.component.html',
+    styleUrls: ['./graph-results-empty.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent],
 })
-export class SparqlNoResultsComponent {
+export class GraphResultsEmptyComponent {
     /**
      * Readonly variable: logosData.
      *

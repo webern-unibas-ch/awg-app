@@ -14,18 +14,18 @@ import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
 import { Logos } from '@awg-shared/logos/logos.model';
 
-import { SparqlNoResultsComponent } from './sparql-no-results.component';
+import { GraphResultsEmptyComponent } from './graph-results-empty.component';
 
-describe('SparqlNoResultsComponent (DONE)', () => {
-    let component: SparqlNoResultsComponent;
-    let fixture: ComponentFixture<SparqlNoResultsComponent>;
+describe('GraphResultsEmptyComponent (DONE)', () => {
+    let component: GraphResultsEmptyComponent;
+    let fixture: ComponentFixture<GraphResultsEmptyComponent>;
     let compDe: DebugElement;
 
     let expectedLogosData: Logos;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SparqlNoResultsComponent],
+            imports: [GraphResultsEmptyComponent],
         })
             .overrideComponent(LogoComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -36,7 +36,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         expectedLogosData = LOGOS_DATA;
 
         // Create component fixture
-        fixture = TestBed.createComponent(SparqlNoResultsComponent);
+        fixture = TestBed.createComponent(GraphResultsEmptyComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
     });

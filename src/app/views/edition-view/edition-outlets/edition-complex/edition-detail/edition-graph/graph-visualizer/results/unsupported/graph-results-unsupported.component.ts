@@ -4,19 +4,19 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 /**
- * The UnsupportedTypeResults component.
+ * The GraphResultsUnsupported component.
  *
  * It contains the results unsupported type queries
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-unsupported-type-results',
-    templateUrl: './unsupported-type-results.component.html',
-    styleUrls: ['./unsupported-type-results.component.scss'],
+    selector: 'awg-graph-results-unsupported',
+    templateUrl: './graph-results-unsupported.component.html',
+    styleUrls: ['./graph-results-unsupported.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, UpperCasePipe],
 })
-export class UnsupportedTypeResultsComponent {
+export class GraphResultsUnsupportedComponent {
     /**
      * Readonly input signal: queryType.
      *

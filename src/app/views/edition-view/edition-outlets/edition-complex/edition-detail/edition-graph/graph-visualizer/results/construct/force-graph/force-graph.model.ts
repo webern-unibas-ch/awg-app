@@ -1,6 +1,6 @@
 import type { SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
 
-import { GraphEdge, GraphNode } from '../models/graph-data.model';
+import { GraphEdge, GraphNode } from '../../../models/graph-data.model';
 
 /**
  * The SimNode interface.

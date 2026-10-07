@@ -7,30 +7,30 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { SparqlResult, SparqlSelectResult } from '../models/sparql-result.model';
-import { SparqlNoResultsComponent } from '../sparql-no-results/sparql-no-results.component';
-import { SparqlTableComponent } from '../sparql-table/sparql-table.component';
+import { SparqlResult, SparqlSelectResult } from '../../models/sparql-result.model';
+import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
+import { SelectTableComponent } from './table/select-table.component';
 
 /**
- * The SelectResults component.
+ * The GraphResultsSelect component.
  *
  * It contains the results for SELECT queries
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-select-results',
-    templateUrl: './select-results.component.html',
-    styleUrls: ['./select-results.component.scss'],
+    selector: 'awg-graph-results-select',
+    templateUrl: './graph-results-select.component.html',
+    styleUrls: ['./graph-results-select.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         AsyncPipe,
         NgbAccordionModule,
-        SparqlNoResultsComponent,
-        SparqlTableComponent,
+        GraphResultsEmptyComponent,
+        SelectTableComponent,
         TwelveToneSpinnerComponent,
     ],
 })
-export class SelectResultsComponent {
+export class GraphResultsSelectComponent {
     /**
      * Readonly input signal: queryResult$.
      *

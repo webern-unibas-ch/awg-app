@@ -1,8 +1,5 @@
 <div ngbAccordion>
-    <div
-        ngbAccordionItem="awg-graph-visualizer-construct-results"
-        [collapsed]="false"
-        [disabled]="isAccordionItemDisabled()">
+    <div ngbAccordionItem="awg-graph-results-construct" [collapsed]="false" [disabled]="isAccordionItemDisabled()">
         <div ngbAccordionHeader>
             <button ngbAccordionButton class="p-3">Resultat</button>
         </div>
@@ -11,7 +8,7 @@
                 <ng-template>
                     @if (graphData$ | async; as graphData) {
                         @if (!isValidGraphData(graphData)) {
-                            <awg-sparql-no-results />
+                            <awg-graph-results-empty />
                         } @else {
                             <!-- Force graph visualization -->
                             <awg-force-graph

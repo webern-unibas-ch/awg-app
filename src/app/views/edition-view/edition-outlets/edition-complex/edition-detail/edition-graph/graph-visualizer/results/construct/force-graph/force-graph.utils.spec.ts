@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { GraphData, GraphEdge, GraphNode } from '../models/graph-data.model';
+import { GraphData, GraphEdge, GraphNode } from '../../../models/graph-data.model';
 import { SimEdge, SimNode } from './force-graph.model';
 import {
     FORCE_GRAPH_UTILS,

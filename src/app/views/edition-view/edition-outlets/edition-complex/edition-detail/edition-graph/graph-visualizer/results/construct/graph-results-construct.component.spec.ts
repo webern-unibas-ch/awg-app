@@ -22,12 +22,12 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { GraphData, GraphNode } from '../models/graph-data.model';
-import { SparqlConstructResult, SparqlResult } from '../models/sparql-result.model';
-import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
-import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
+import { GraphData, GraphNode } from '../../models/graph-data.model';
+import { SparqlConstructResult, SparqlResult } from '../../models/sparql-result.model';
+import { GRAPH_DATA_UTILS } from '../../utils/graph-data.utils';
+import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
 
-import { ConstructResultsComponent } from './construct-results.component';
+import { GraphResultsConstructComponent } from './graph-results-construct.component';
 
 const { namedNode, quad } = DataFactory;
 
@@ -61,15 +61,15 @@ class ForceGraphStubComponent {
 }
 
 @Component({
-    selector: 'awg-sparql-no-results',
+    selector: 'awg-graph-results-empty',
     template: '',
     standalone: false,
 })
-class SparqlNoResultsStubComponent {}
+class GraphResultsEmptyStubComponent {}
 
-describe('ConstructResultsComponent (DONE)', () => {
-    let component: ConstructResultsComponent;
-    let fixture: ComponentFixture<ConstructResultsComponent>;
+describe('GraphResultsConstructComponent (DONE)', () => {
+    let component: GraphResultsConstructComponent;
+    let fixture: ComponentFixture<GraphResultsConstructComponent>;
     let compDe: DebugElement;
 
     let expectedHeight: number;
@@ -97,12 +97,12 @@ describe('ConstructResultsComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [NgbAccordionModule, NgbConfigModule, TwelveToneSpinnerStubComponent],
-            declarations: [ConstructResultsComponent, ForceGraphStubComponent, SparqlNoResultsStubComponent],
+            declarations: [GraphResultsConstructComponent, ForceGraphStubComponent, GraphResultsEmptyStubComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ConstructResultsComponent);
+        fixture = TestBed.createComponent(GraphResultsConstructComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -209,13 +209,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-construct-results.accordion-item',
+                        'div#awg-graph-results-construct.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -223,7 +223,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Body open (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-construct-results-collapse',
+                        'div#awg-graph-results-construct-collapse',
                         1,
                         1
                     );
@@ -235,7 +235,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 it('... should display item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -249,7 +249,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 it('... should toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -258,7 +258,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-collapse',
+                        'div#awg-graph-results-construct > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -272,7 +272,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body is collapsed
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-collapse',
+                        'div#awg-graph-results-construct > div.accordion-collapse',
                         1,
                         1,
                         'collapsed'
@@ -286,7 +286,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body is open again
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-collapse',
+                        'div#awg-graph-results-construct > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -303,7 +303,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-construct-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -312,7 +312,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
+                describe('... should contain item body with GraphResultsEmptyStubComponent (stubbed) if ... ', () => {
                     it('... isValidGraphData returns false', async () => {
                         isValidGraphDataSpy.mockReturnValue(false);
 
@@ -321,19 +321,19 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-construct-collapse > div.accordion-body',
                             1,
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], GraphResultsEmptyStubComponent, 1, 1);
                     });
                 });
 
                 it('... should contain item body with ForceGraphComponent (stubbed) if results are available', () => {
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                        'div#awg-graph-results-construct-collapse > div.accordion-body',
                         1,
                         1
                     );
@@ -362,13 +362,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
                     const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
-                        'div#awg-graph-visualizer-construct-results.accordion-item',
+                        'div#awg-graph-results-construct.accordion-item',
                         1,
                         1
                     );
                     getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -376,7 +376,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Body open (div.accordion-collapse)
                     const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
-                        'div#awg-graph-visualizer-construct-results-collapse',
+                        'div#awg-graph-results-construct-collapse',
                         1,
                         1
                     );
@@ -388,7 +388,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 it('... should display item header button', () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -403,7 +403,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 it('... should not toggle item body on click', async () => {
                     const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-header',
+                        'div#awg-graph-results-construct > div.accordion-header',
                         1,
                         1
                     );
@@ -416,7 +416,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body is open
                     let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-collapse',
+                        'div#awg-graph-results-construct > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -430,7 +430,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body does not close again
                     itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results > div.accordion-collapse',
+                        'div#awg-graph-results-construct > div.accordion-collapse',
                         1,
                         1,
                         'open'
@@ -449,7 +449,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         // Item body
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-construct-collapse > div.accordion-body',
                             1,
                             1
                         );
@@ -458,7 +458,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
+                describe('... should contain item body with GraphResultsEmptyStubComponent (stubbed) if ... ', () => {
                     it('... isValidGraphData returns false', async () => {
                         isValidGraphDataSpy.mockReturnValue(false);
 
@@ -467,12 +467,12 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                         const bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                            'div#awg-graph-results-construct-collapse > div.accordion-body',
                             1,
                             1
                         );
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], GraphResultsEmptyStubComponent, 1, 1);
                     });
                 });
 
@@ -480,7 +480,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-construct-results-collapse > div.accordion-body',
+                        'div#awg-graph-results-construct-collapse > div.accordion-body',
                         1,
                         1
                     );

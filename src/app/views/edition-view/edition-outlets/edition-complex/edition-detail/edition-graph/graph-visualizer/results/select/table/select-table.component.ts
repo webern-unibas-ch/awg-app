@@ -2,23 +2,23 @@ import { ChangeDetectionStrategy, Component, computed, input, output } from '@an
 
 import { TableComponent } from '@awg-shared/table/table.component';
 
-import { SparqlSelectResult } from '../models/sparql-result.model';
-import { SPARQL_TABLE_UTILS } from './sparql-table.utils';
+import { SparqlSelectResult } from '../../../models/sparql-result.model';
+import { SELECT_TABLE_UTILS } from './select-table.utils';
 
 /**
- * The SparqlTable component.
+ * The SelectTable component.
  *
  * It contains the SPARQL table for SELECT queries
  * of the {@link GraphVisualizerComponent}.
  */
 @Component({
-    selector: 'awg-sparql-table',
-    templateUrl: './sparql-table.component.html',
-    styleUrls: ['./sparql-table.component.scss'],
+    selector: 'awg-select-table',
+    templateUrl: './select-table.component.html',
+    styleUrls: ['./select-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TableComponent],
 })
-export class SparqlTableComponent {
+export class SelectTableComponent {
     /**
      * Readonly input signal: queryResult.
      *
@@ -38,7 +38,7 @@ export class SparqlTableComponent {
      *
      * It holds the rows of the table, converted from the bindings of the query result.
      */
-    readonly tableRows = computed(() => SPARQL_TABLE_UTILS.toTableRows(this.queryResult()));
+    readonly tableRows = computed(() => SELECT_TABLE_UTILS.toTableRows(this.queryResult()));
 
     /**
      * Public method: onTableNodeClick.

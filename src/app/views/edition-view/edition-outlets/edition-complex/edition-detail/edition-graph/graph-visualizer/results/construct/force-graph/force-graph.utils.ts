@@ -1,4 +1,4 @@
-import { GraphData, GraphNodeKind } from '../models/graph-data.model';
+import { GraphData, GraphNodeKind } from '../../../models/graph-data.model';
 import { Point, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 
 /**

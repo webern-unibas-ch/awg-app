@@ -3,15 +3,14 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 
-import { ConstructResultsComponent } from './construct-results/construct-results.component';
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
-import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
-import { SelectResultsComponent } from './select-results/select-results.component';
-import { SparqlNoResultsComponent } from './sparql-no-results/sparql-no-results.component';
-import { SparqlTableComponent } from './sparql-table/sparql-table.component';
-import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
+import { ForceGraphComponent } from './results/construct/force-graph/force-graph.component';
+import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
+import { GraphResultsEmptyComponent } from './results/empty/graph-results-empty.component';
+import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
+import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 
 /**
  * The GraphVisualizer module.
@@ -23,14 +22,13 @@ import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsu
     imports: [
         GraphEditorSparqlComponent,
         GraphEditorTriplesComponent,
-        SelectResultsComponent,
+        GraphResultsEmptyComponent,
+        GraphResultsSelectComponent,
+        GraphResultsUnsupportedComponent,
         SharedModule,
         SliderZoomComponent,
-        SparqlNoResultsComponent,
-        SparqlTableComponent,
-        UnsupportedTypeResultsComponent,
     ],
-    declarations: [ConstructResultsComponent, ForceGraphComponent, GraphVisualizerComponent],
+    declarations: [ForceGraphComponent, GraphResultsConstructComponent, GraphVisualizerComponent],
     exports: [GraphVisualizerComponent],
 })
 export class GraphVisualizerModule {}

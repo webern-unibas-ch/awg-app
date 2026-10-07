@@ -7,9 +7,9 @@ import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore 
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
-import { RdfStoreGlobal } from '../rdf-store/rdf-store.model';
-import { SparqlQueryService } from '../services/sparql-query.service';
-import { toTableRows } from './sparql-table.utils';
+import { RdfStoreGlobal } from '../../../rdf-store/rdf-store.model';
+import { SparqlQueryService } from '../../../services/sparql-query.service';
+import { toTableRows } from './select-table.utils';
 
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
 

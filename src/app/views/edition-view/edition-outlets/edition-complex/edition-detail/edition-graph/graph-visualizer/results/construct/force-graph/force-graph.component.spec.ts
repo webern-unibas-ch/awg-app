@@ -19,7 +19,7 @@ import {
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 
-import { GraphData, GraphNode } from '../models/graph-data.model';
+import { GraphData, GraphNode } from '../../../models/graph-data.model';
 
 import { ForceGraphComponent } from './force-graph.component';
 

@@ -1,21 +1,21 @@
 /**
- * The SparqlTableCellType type.
+ * The SelectTableCellType type.
  *
  * It represents the type of a table cell,
  * named as in the SPARQL 1.1 Query Results JSON Format.
  */
-export type SparqlTableCellType = 'uri' | 'bnode' | 'literal';
+export type SelectTableCellType = 'uri' | 'bnode' | 'literal';
 
 /**
- * The SparqlTableCell interface.
+ * The SelectTableCell interface.
  *
  * It represents a cell of the SPARQL results table (a bound value of a variable).
  */
-export interface SparqlTableCell {
+export interface SelectTableCell {
     /**
      * The type of the cell.
      */
-    readonly type: SparqlTableCellType;
+    readonly type: SelectTableCellType;
 
     /**
      * The value of the cell (IRI, blank node id or literal value).

@@ -25,8 +25,8 @@ import { NUMBER_UTILS } from '@awg-shared/utils/number-utils';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 
-import { GraphData, GraphNode } from '../models/graph-data.model';
-import { GRAPH_DATA_UTILS } from '../utils/graph-data.utils';
+import { GraphData, GraphNode } from '../../../models/graph-data.model';
+import { GRAPH_DATA_UTILS } from '../../../utils/graph-data.utils';
 import { SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 

@@ -31,7 +31,7 @@ import { DEFAULT_PREFIXES } from './utils/prefix.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
-import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
+import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 
 const { literal, namedNode, quad } = DataFactory;
 
@@ -39,11 +39,11 @@ const EXAMPLE = 'https://example.com/onto#';
 
 // Mock components
 @Component({
-    selector: 'awg-construct-results',
+    selector: 'awg-graph-results-construct',
     template: '',
     standalone: false,
 })
-class ConstructResultsStubComponent {
+class GraphResultsConstructStubComponent {
     @Input()
     queryResult$: Observable<SparqlResult> = EMPTY;
     @Input()
@@ -55,11 +55,11 @@ class ConstructResultsStubComponent {
 }
 
 @Component({
-    selector: 'awg-select-results',
+    selector: 'awg-graph-results-select',
     template: '',
     standalone: false,
 })
-class SelectResultsStubComponent {
+class GraphResultsSelectStubComponent {
     @Input()
     queryResult$: Observable<SparqlResult> = EMPTY;
     @Input()
@@ -148,16 +148,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             declarations: [
                 GraphVisualizerComponent,
-                ConstructResultsStubComponent,
+                GraphResultsConstructStubComponent,
                 GraphEditorSparqlStubComponent,
-                SelectResultsStubComponent,
+                GraphResultsSelectStubComponent,
                 GraphEditorTriplesStubComponent,
             ],
-            imports: [ToastComponent, UnsupportedTypeResultsComponent],
+            imports: [ToastComponent, GraphResultsUnsupportedComponent],
             providers: [{ provide: SparqlQueryService, useValue: mockSparqlQueryService }, ToastService],
         })
             .overrideComponent(ToastComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(UnsupportedTypeResultsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsUnsupportedComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -380,31 +380,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlStubComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
+                it('... should contain one GraphResultsConstruct component (stubbed) in second child div (queryType === construct)', async () => {
                     component.query.queryType = 'construct';
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsConstructStubComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', async () => {
+                it('... should contain one GraphResultsSelect component (stubbed) in third sub div (queryType === select)', async () => {
                     component.query.queryType = 'select';
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsSelectStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResultsComponent (hollow) in third sub div (queryType === other)', async () => {
+                it('... should contain one GraphResultsUnsupportedComponent (hollow) in third sub div (queryType === other)', async () => {
                     component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsUnsupportedComponent, 1, 1);
                 });
             });
 
@@ -443,31 +443,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlStubComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
+                it('... should contain one GraphResultsConstruct component (stubbed) in second child div (queryType === construct)', async () => {
                     component.query.queryType = 'construct';
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsConstructStubComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', async () => {
+                it('... should contain one GraphResultsSelect component (stubbed) in second sub div (queryType === select)', async () => {
                     component.query.queryType = 'select';
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsSelectStubComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResultsComponent (hollow) in second sub div (queryType === other)', async () => {
+                it('... should contain one GraphResultsUnsupportedComponent (hollow) in second sub div (queryType === other)', async () => {
                     component.query.queryType = 'other' as any;
                     await detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsUnsupportedComponent, 1, 1);
                 });
             });
 
@@ -598,7 +598,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('ConstructResultsComponent', () => {
+            describe('GraphResultsConstructComponent', () => {
                 beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'construct';
@@ -606,10 +606,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
@@ -618,10 +623,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `defaultForceGraphHeight` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     expectToBe(resultsCmp.defaultForceGraphHeight, 500);
                 });
@@ -630,10 +640,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
                     const onGraphNodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     // Emit node
                     resultsCmp.clickedNodeRequest.emit(expectedNode);
@@ -642,7 +657,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('SelectResultsComponent', () => {
+            describe('GraphResultsSelectComponent', () => {
                 beforeEach(async () => {
                     // Set select query type
                     component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
@@ -654,10 +669,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsSelectStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                        GraphResultsSelectStubComponent
+                    ) as GraphResultsSelectStubComponent;
 
                     expect(resultsCmp.queryResult$).toBeDefined();
                     resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
@@ -668,10 +688,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsSelectStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                        GraphResultsSelectStubComponent
+                    ) as GraphResultsSelectStubComponent;
 
                     // Emit IRI
                     const expectedUri = 'example:Test';
@@ -681,7 +706,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
-            describe('UnsupportedTypeResultsComponent (hollow)', () => {
+            describe('GraphResultsUnsupportedComponent (hollow)', () => {
                 beforeEach(async () => {
                     // Set select mode
                     component.query.queryType = 'other' as any;
@@ -691,26 +716,26 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should have `queryType` passed down from main component', () => {
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsComponent,
+                        GraphResultsUnsupportedComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
+                    const resultsCmp = resultsDes[0].injector.get(GraphResultsUnsupportedComponent);
 
                     expectToBe(resultsCmp.queryType(), 'other');
                 });
 
-                it('... should pass down empty string to UnsupportedTypeResultsComponent (hollow) if queryType is missing', async () => {
+                it('... should pass down empty string to GraphResultsUnsupportedComponent (hollow) if queryType is missing', async () => {
                     component.query.queryType = null;
                     await detectChangesOnPush(fixture);
 
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsComponent,
+                        GraphResultsUnsupportedComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
+                    const resultsCmp = resultsDes[0].injector.get(GraphResultsUnsupportedComponent);
 
                     expectToBe(resultsCmp.queryType(), '');
                 });
@@ -718,11 +743,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should have `isFullscreenMode` passed down from main component', () => {
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        UnsupportedTypeResultsComponent,
+                        GraphResultsUnsupportedComponent,
                         1,
                         1
                     );
-                    const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
+                    const resultsCmp = resultsDes[0].injector.get(GraphResultsUnsupportedComponent);
 
                     expectToBe(resultsCmp.isFullscreenMode(), false);
                 });
@@ -1302,11 +1327,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.onGraphNodeClick).toBeDefined();
                 });
 
-                it('... should trigger on event from ConstructResultsComponent', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                it('... should trigger on event from GraphResultsConstructComponent', () => {
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     resultsCmp.clickedNodeRequest.emit(expectedNode);
 
@@ -1318,10 +1348,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(performQuerySpy, 1, undefined);
                     expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     // Emit undefined value
                     resultsCmp.clickedNodeRequest.emit(undefined as unknown as GraphNode);
@@ -1334,10 +1369,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should show the provided node in a ToastMessage', () => {
                     consoleSpy.mockClear();
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsConstructStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                        GraphResultsConstructStubComponent
+                    ) as GraphResultsConstructStubComponent;
 
                     resultsCmp.clickedNodeRequest.emit(expectedNode);
 
@@ -1371,11 +1411,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.onTableNodeClick).toBeDefined();
                 });
 
-                it('... should trigger on event from SelectResultsComponent', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
+                it('... should trigger on event from GraphResultsSelectComponent', () => {
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsSelectStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                        GraphResultsSelectStubComponent
+                    ) as GraphResultsSelectStubComponent;
 
                     const expectedUri = 'example:Test';
                     resultsCmp.clickedTableRequest.emit(expectedUri);
@@ -1388,10 +1433,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(performQuerySpy, 1, undefined);
                     expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsSelectStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                        GraphResultsSelectStubComponent
+                    ) as GraphResultsSelectStubComponent;
 
                     // Emit undefined value
                     resultsCmp.clickedTableRequest.emit('');
@@ -1404,10 +1454,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 it('... should log the provided URI to console', () => {
                     consoleSpy.mockClear();
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
+                    const resultsDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        GraphResultsSelectStubComponent,
+                        1,
+                        1
+                    );
                     const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                        GraphResultsSelectStubComponent
+                    ) as GraphResultsSelectStubComponent;
 
                     const expectedUri = 'example:Test';
                     resultsCmp.clickedTableRequest.emit(expectedUri);
