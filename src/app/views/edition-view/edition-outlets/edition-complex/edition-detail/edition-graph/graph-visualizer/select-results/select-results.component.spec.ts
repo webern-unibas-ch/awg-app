@@ -110,9 +110,9 @@ describe('SelectResultsComponent (DONE)', () => {
             expectToBe(component.queryTime(), 0);
         });
 
-        it('... should have input signal `isFullscreen` to hold false initially', () => {
-            expectToBe(isSignal(component.isFullscreen), true);
-            expectToBe(component.isFullscreen(), false);
+        it('... should have input signal `isFullscreenMode` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreenMode), true);
+            expectToBe(component.isFullscreenMode(), false);
         });
 
         describe('VIEW', () => {
@@ -139,7 +139,7 @@ describe('SelectResultsComponent (DONE)', () => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('queryResult$', expectedQueryResult$);
             fixture.componentRef.setInput('queryTime', expectedQueryTime);
-            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
+            fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -153,8 +153,8 @@ describe('SelectResultsComponent (DONE)', () => {
             expectToBe(component.queryTime(), expectedQueryTime);
         });
 
-        it('... should have input signal `isFullscreen` to hold the provided fullscreen flag', () => {
-            expectToBe(component.isFullscreen(), expectedIsFullscreen);
+        it('... should have input signal `isFullscreenMode` to hold the provided fullscreen flag', () => {
+            expectToBe(component.isFullscreenMode(), expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -323,7 +323,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    fixture.componentRef.setInput('isFullscreen', true);
+                    fixture.componentRef.setInput('isFullscreenMode', true);
                     await detectChangesOnPush(fixture);
                 });
 

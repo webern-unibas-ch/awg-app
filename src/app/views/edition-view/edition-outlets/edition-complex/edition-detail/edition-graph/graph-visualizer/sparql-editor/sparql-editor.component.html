@@ -1,9 +1,11 @@
+@let isFullscreen = isFullscreenMode();
+
 <div ngbAccordion>
-    <div ngbAccordionItem="awg-graph-visualizer-sparql-query" [collapsed]="!isFullscreen()" [disabled]="isFullscreen()">
+    <div ngbAccordionItem="awg-graph-visualizer-sparql-query" [collapsed]="!isFullscreen" [disabled]="isFullscreen">
         <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link m-0 p-0">SPARQL</button>
             <!-- View Handle -->
-            @if (!isFullscreen()) {
+            @if (!isFullscreen) {
                 <awg-view-handle-button-group
                     [viewHandles]="viewHandles"
                     [selectedViewType]="selectedViewType()"
@@ -18,7 +20,7 @@
                     (querySelectRequest)="resetQuery($event)" />
             }
         </div>
-        <div ngbAccordionCollapse [style.height]="isFullscreen() ? '50vh' : 'auto'">
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->

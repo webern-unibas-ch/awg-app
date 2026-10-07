@@ -89,9 +89,9 @@ describe('TriplesEditorComponent (DONE)', () => {
             expectToBe(component.triples(), '');
         });
 
-        it('... should have input signal `isFullscreen` to hold false initially', () => {
-            expectToBe(isSignal(component.isFullscreen), true);
-            expectToBe(component.isFullscreen(), false);
+        it('... should have input signal `isFullscreenMode` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreenMode), true);
+            expectToBe(component.isFullscreenMode(), false);
         });
 
         it('... should have `cmTurtleMode` to hold the turtle mode', () => {
@@ -121,7 +121,7 @@ describe('TriplesEditorComponent (DONE)', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('triples', expectedTriples);
-            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
+            fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -131,8 +131,8 @@ describe('TriplesEditorComponent (DONE)', () => {
             expectToBe(component.triples(), expectedTriples);
         });
 
-        it('... should have input signal `isFullscreen` to hold the provided fullscreen flag', () => {
-            expectToBe(component.isFullscreen(), expectedIsFullscreen);
+        it('... should have input signal `isFullscreenMode` to hold the provided fullscreen flag', () => {
+            expectToBe(component.isFullscreenMode(), expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -322,7 +322,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    fixture.componentRef.setInput('isFullscreen', true);
+                    fixture.componentRef.setInput('isFullscreenMode', true);
                     await detectChangesOnPush(fixture);
                 });
 

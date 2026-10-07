@@ -9,7 +9,7 @@
                 <!-- awg-graph-triples-editor -->
                 <awg-triples-editor
                     [(triples)]="triples"
-                    [isFullscreen]="isFullscreen"
+                    [isFullscreenMode]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
                     (resetTriplesRequest)="resetTriples()" />
@@ -19,7 +19,7 @@
                 <awg-sparql-editor
                     [queryList]="queryList"
                     [(query)]="query"
-                    [isFullscreen]="isFullscreen"
+                    [isFullscreenMode]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
                     (resetQueryRequest)="resetQuery($event)" />
@@ -33,16 +33,16 @@
                 #queryConstructResultAcc
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
-                [isFullscreen]="isFullscreen"
+                [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
         } @else if (query.queryType === 'select') {
             <awg-select-results
                 [queryResult$]="queryResult$"
                 [queryTime]="queryTime"
-                [isFullscreen]="isFullscreen"
+                [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />
         } @else {
-            <awg-unsupported-type-results [queryType]="query.queryType || ''" [isFullscreen]="isFullscreen" />
+            <awg-unsupported-type-results [queryType]="query.queryType || ''" [isFullscreenMode]="isFullscreen" />
         }
     </div>
 </div>

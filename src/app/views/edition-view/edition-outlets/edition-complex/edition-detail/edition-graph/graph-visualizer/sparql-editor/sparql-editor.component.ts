@@ -50,12 +50,12 @@ export class SparqlEditorComponent {
     readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
 
     /**
-     * Readonly input signal: isFullscreen.
+     * Readonly input signal: isFullscreenMode.
      *
      * It holds a boolean flag if fullscreenMode is set.
      * If true, the accordion item is open and disabled.
      */
-    readonly isFullscreen = input<boolean>(false);
+    readonly isFullscreenMode = input<boolean>(false);
 
     /**
      * Readonly output signal: errorMessageRequest.

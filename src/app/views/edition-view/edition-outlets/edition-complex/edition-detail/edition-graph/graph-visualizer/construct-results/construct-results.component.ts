@@ -36,12 +36,12 @@ export class ConstructResultsComponent {
     defaultForceGraphHeight = 0;
 
     /**
-     * Input variable: isFullscreen.
+     * Input variable: isFullscreenMode.
      *
      * It keeps a boolean flag if fullscreenMode is set.
      */
     @Input()
-    isFullscreen = false;
+    isFullscreenMode = false;
 
     /**
      * Output variable: clickedNodeRequest.
@@ -93,7 +93,7 @@ export class ConstructResultsComponent {
      * @returns {boolean} The boolean value of the comparison.
      */
     isAccordionItemDisabled(): boolean {
-        return this.isFullscreen;
+        return this.isFullscreenMode;
     }
 
     /**

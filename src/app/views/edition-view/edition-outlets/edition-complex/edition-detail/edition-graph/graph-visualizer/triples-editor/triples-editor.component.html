@@ -1,9 +1,11 @@
+@let isFullscreen = isFullscreenMode();
+
 <div ngbAccordion>
-    <div ngbAccordionItem="awg-graph-visualizer-triples" [collapsed]="!isFullscreen()" [disabled]="isFullscreen()">
+    <div ngbAccordionItem="awg-graph-visualizer-triples" [collapsed]="!isFullscreen" [disabled]="isFullscreen">
         <div ngbAccordionHeader>
             <button ngbAccordionButton class="p-3">RDF Triples</button>
         </div>
-        <div ngbAccordionCollapse [style.height]="isFullscreen() ? '50vh' : 'auto'">
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->

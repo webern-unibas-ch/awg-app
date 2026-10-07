@@ -141,8 +141,8 @@ describe('ConstructResultsComponent (DONE)', () => {
             expectToBe(component.defaultForceGraphHeight, 0);
         });
 
-        it('... should have default `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, false);
+        it('... should have default `isFullscreenMode` input', () => {
+            expectToBe(component.isFullscreenMode, false);
         });
 
         describe('VIEW', () => {
@@ -169,7 +169,7 @@ describe('ConstructResultsComponent (DONE)', () => {
             // Set the initial values for the signal inputs
             component.queryResult$ = expectedQueryResult$;
             component.defaultForceGraphHeight = expectedHeight;
-            component.isFullscreen = expectedIsFullscreen;
+            component.isFullscreenMode = expectedIsFullscreen;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -199,8 +199,8 @@ describe('ConstructResultsComponent (DONE)', () => {
             expectToBe(component.defaultForceGraphHeight, expectedHeight);
         });
 
-        it('... should have `isFullscreen` input', () => {
-            expectToBe(component.isFullscreen, expectedIsFullscreen);
+        it('... should have `isFullscreenMode` input', () => {
+            expectToBe(component.isFullscreenMode, expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -354,7 +354,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    component.isFullscreen = true;
+                    component.isFullscreenMode = true;
                     await detectChangesOnPush(fixture);
                 });
 
@@ -510,12 +510,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                 expectSpyCall(isAccordionItemDisabledSpy, 2);
             });
 
-            it('... should return false if isFullscreen is false', () => {
+            it('... should return false if isFullscreenMode is false', () => {
                 expectToBe(component.isAccordionItemDisabled(), false);
             });
 
-            it('... should return true if isFullscreen is true', () => {
-                component.isFullscreen = true;
+            it('... should return true if isFullscreenMode is true', () => {
+                component.isFullscreenMode = true;
 
                 expectToBe(component.isAccordionItemDisabled(), true);
             });

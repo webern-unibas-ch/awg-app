@@ -25,10 +25,10 @@ export class UnsupportedTypeResultsComponent {
     readonly queryType = input<string>('');
 
     /**
-     * Readonly input signal: isFullscreen.
+     * Readonly input signal: isFullscreenMode.
      *
      * It holds a boolean flag if fullscreenMode is set.
      * If true, the accordion item is disabled.
      */
-    readonly isFullscreen = input<boolean>(false);
+    readonly isFullscreenMode = input<boolean>(false);
 }

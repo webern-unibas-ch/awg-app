@@ -49,7 +49,7 @@ class ConstructResultsStubComponent {
     @Input()
     defaultForceGraphHeight = 0;
     @Input()
-    isFullscreen = false;
+    isFullscreenMode = false;
     @Output()
     clickedNodeRequest: EventEmitter<GraphNode> = new EventEmitter();
 }
@@ -65,7 +65,7 @@ class SelectResultsStubComponent {
     @Input()
     queryTime = 0;
     @Input()
-    isFullscreen = false;
+    isFullscreenMode = false;
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -80,7 +80,7 @@ class SparqlEditorStubComponent {
     queryList: GraphSparqlQuery[] = [];
     readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
     @Input()
-    isFullscreen = false;
+    isFullscreenMode = false;
     @Output()
     errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
     @Output()
@@ -97,7 +97,7 @@ class SparqlEditorStubComponent {
 class TriplesEditorStubComponent {
     readonly triples = model<string>('');
     @Input()
-    isFullscreen = false;
+    isFullscreenMode = false;
     @Output()
     errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
     @Output()
@@ -687,7 +687,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToBe(resultsCmp.queryType(), '');
                 });
 
-                it('... should have `isFullscreen` passed down from main component', () => {
+                it('... should have `isFullscreenMode` passed down from main component', () => {
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
                         UnsupportedTypeResultsComponent,
@@ -696,7 +696,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     );
                     const resultsCmp = resultsDes[0].injector.get(UnsupportedTypeResultsComponent);
 
-                    expectToBe(resultsCmp.isFullscreen(), false);
+                    expectToBe(resultsCmp.isFullscreenMode(), false);
                 });
             });
         });

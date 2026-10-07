@@ -50,9 +50,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             expectToBe(component.queryType(), '');
         });
 
-        it('... should have input signal `isFullscreen` to hold false initially', () => {
-            expectToBe(isSignal(component.isFullscreen), true);
-            expectToBe(component.isFullscreen(), false);
+        it('... should have input signal `isFullscreenMode` to hold false initially', () => {
+            expectToBe(isSignal(component.isFullscreenMode), true);
+            expectToBe(component.isFullscreenMode(), false);
         });
 
         describe('VIEW', () => {
@@ -78,7 +78,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('queryType', expectedQueryType);
-            fixture.componentRef.setInput('isFullscreen', expectedIsFullscreen);
+            fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -255,7 +255,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
                     // Set fullscreen flag to true
-                    fixture.componentRef.setInput('isFullscreen', true);
+                    fixture.componentRef.setInput('isFullscreenMode', true);
                     await detectChangesOnPush(fixture);
                 });
 

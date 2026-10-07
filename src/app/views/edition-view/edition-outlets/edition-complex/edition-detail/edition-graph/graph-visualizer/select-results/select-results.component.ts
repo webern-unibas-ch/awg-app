@@ -46,12 +46,12 @@ export class SelectResultsComponent {
     readonly queryTime = input<number>(0);
 
     /**
-     * Readonly input signal: isFullscreen.
+     * Readonly input signal: isFullscreenMode.
      *
      * It holds a boolean flag if fullscreenMode is set.
      * If true, the accordion item is disabled.
      */
-    readonly isFullscreen = input<boolean>(false);
+    readonly isFullscreenMode = input<boolean>(false);
 
     /**
      * Readonly output signal: clickedTableRequest.
