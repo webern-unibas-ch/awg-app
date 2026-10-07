@@ -1,10 +1,18 @@
 import { DataFactory } from 'n3';
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { DEFAULT_PREFIXES } from './prefix.utils';
-import { formatLiteralValue, isIntegerLiteral, RDF_TYPE, RDFS_LABEL, termKey, termShortName } from './term.utils';
+import {
+    formatLiteralValue,
+    isIntegerLiteral,
+    RDF_TYPE,
+    RDFS_LABEL,
+    TERM_UTILS,
+    termKey,
+    termShortName,
+} from './term.utils';
 
 const { blankNode, literal, namedNode } = DataFactory;
 
@@ -21,6 +29,12 @@ describe('term.utils', () => {
         it('... should have `RDFS_LABEL` as named node', () => {
             expectToBe(RDFS_LABEL.termType, 'NamedNode');
             expectToBe(RDFS_LABEL.value, 'http://www.w3.org/2000/01/rdf-schema#label');
+        });
+    });
+
+    describe('TERM_UTILS', () => {
+        it('... should reference all term utils methods', () => {
+            expectToEqual(TERM_UTILS, { formatLiteralValue, isIntegerLiteral, termKey, termShortName });
         });
     });
 

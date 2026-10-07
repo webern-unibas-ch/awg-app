@@ -85,6 +85,11 @@ export type SparqlResult = SparqlConstructResult | SparqlSelectResult | SparqlUn
  */
 export interface SparqlQueryRun {
     /**
+     * The performed query (completed with the declarations of missing prefixes).
+     */
+    readonly query: string;
+
+    /**
      * The result of the query.
      */
     readonly result: SparqlResult;

@@ -2,7 +2,7 @@ import type { Literal } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
 import { PrefixMap, RdfTerm } from '../models/rdf.model';
-import { compactIri } from './prefix.utils';
+import { PREFIX_UTILS } from './prefix.utils';
 
 /**
  * String constant: XSD.
@@ -134,7 +134,7 @@ export function termKey(term: RdfTerm): string {
 export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
     switch (term.termType) {
         case 'NamedNode':
-            return compactIri(term.value, prefixes);
+            return PREFIX_UTILS.compactIri(term.value, prefixes);
         case 'BlankNode':
             return `_:${term.value}`;
         case 'Literal':
@@ -153,3 +153,15 @@ export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
 export function isIntegerLiteral(term: RdfTerm): term is Literal {
     return term.termType === 'Literal' && XSD_INTEGER_TYPES.has(term.datatype.value);
 }
+
+/**
+ * Utils constants: TERM_UTILS.
+ *
+ * It keeps a namespace reference to the term utils methods.
+ */
+export const TERM_UTILS = {
+    formatLiteralValue,
+    isIntegerLiteral,
+    termKey,
+    termShortName,
+} as const;

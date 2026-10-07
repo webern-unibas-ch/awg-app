@@ -9,8 +9,8 @@ import {
     expandQName,
     extractSparqlPrefixes,
     findUsedPrefixes,
-    getQueryType,
     mergePrefixes,
+    PREFIX_UTILS,
 } from './prefix.utils';
 
 const AWG = 'https://edition.anton-webern.ch/webern-onto#';
@@ -27,6 +27,19 @@ describe('prefix.utils', () => {
 
         it('... should be frozen', () => {
             expectToBe(Object.isFrozen(DEFAULT_PREFIXES), true);
+        });
+    });
+
+    describe('PREFIX_UTILS', () => {
+        it('... should reference all prefix utils methods', () => {
+            expectToEqual(PREFIX_UTILS, {
+                addMissingPrefixes,
+                compactIri,
+                expandQName,
+                extractSparqlPrefixes,
+                findUsedPrefixes,
+                mergePrefixes,
+            });
         });
     });
 
@@ -202,43 +215,6 @@ describe('prefix.utils', () => {
                 addMissingPrefixes(query, { ex: 'http://example.org/' }).query,
                 `PREFIX ex: <http://example.org/>\n${query}`
             );
-        });
-    });
-
-    describe('#getQueryType()', () => {
-        it('... should have a method `getQueryType`', () => {
-            expect(getQueryType).toBeDefined();
-        });
-
-        it('... should hold the type of the query forms (case-insensitive)', () => {
-            expectToBe(getQueryType('SELECT * WHERE { ?s ?p ?o }'), 'select');
-            expectToBe(getQueryType('construct where { ?s ?p ?o }'), 'construct');
-            expectToBe(getQueryType('ASK { ?s ?p ?o }'), 'ask');
-            expectToBe(getQueryType('DESCRIBE <http://example.org/x>'), 'describe');
-        });
-
-        it('... should hold `update` for INSERT and DELETE', () => {
-            expectToBe(getQueryType('INSERT DATA { <http://a> <http://b> <http://c> }'), 'update');
-            expectToBe(getQueryType('DELETE WHERE { ?s ?p ?o }'), 'update');
-        });
-
-        it('... should hold the first query form keyword', () => {
-            expectToBe(getQueryType('SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }'), 'select');
-        });
-
-        it('... should ignore keywords in prefix IRIs, strings and comments', () => {
-            const query = [
-                '# select all sketches',
-                'PREFIX ex: <http://example.org/select/>',
-                'CONSTRUCT { ?s ?p "describe" } WHERE { ?s ?p ?o }',
-            ].join('\n');
-
-            expectToBe(getQueryType(query), 'construct');
-        });
-
-        it('... should hold null if no query form keyword is found', () => {
-            expectToBe(getQueryType('WHERE { ?s ?p ?o }'), null);
-            expectToBe(getQueryType(''), null);
         });
     });
 });

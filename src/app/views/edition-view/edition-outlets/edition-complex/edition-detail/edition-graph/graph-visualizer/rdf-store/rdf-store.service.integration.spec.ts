@@ -2,117 +2,152 @@ import { TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-import type { Literal } from '@rdfjs/types';
-import { Parser } from 'n3';
+import type { Literal, Quad, Term } from '@rdfjs/types';
+import { DataFactory, Parser } from 'n3';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
-import { createRealRdfstore, setGlobalRdfstore } from '@testing/rdfstore-helper';
-
-import { GraphList, GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore } from '@testing/rdfstore-helper';
 
 import { RdfStoreGlobal } from './rdf-store.model';
 import { RdfStoreService } from './rdf-store.service';
 
-import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
+const { literal, namedNode } = DataFactory;
 
+const EX = 'http://example.org/';
 const XSD_INTEGER = 'http://www.w3.org/2001/XMLSchema#integer';
 
-describe('RdfStoreService (integration with rdfstore and the op. 25 graph data)', () => {
-    let service: RdfStoreService;
+const PREFIXES = [
+    `PREFIX ex: <${EX}>`,
+    'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>',
+    'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>',
+].join('\n');
 
-    let realRdfstore: RdfStoreGlobal;
-    let turtle: string;
-    let queryList: GraphSparqlQuery[];
+/**
+ * Constant: TURTLE.
+ *
+ * It keeps a small turtle dataset with all term types the adapter has to convert:
+ * named nodes, a blank node, a language literal, an integer literal and a plain literal.
+ */
+const TURTLE = `
+@prefix ex: <${EX}> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-    beforeAll(() => {
-        realRdfstore = createRealRdfstore();
+ex:a a ex:Class ;
+    rdfs:label "A"@de ;
+    ex:count 5 ;
+    ex:knows _:b .
 
-        const graph = (graphDataOp25 as GraphList).graph[0];
-        turtle = graph.rdfData.triples;
-        queryList = graph.rdfData.queryList;
-    });
+_:b a ex:Class ;
+    ex:name "B" .
 
-    beforeEach(() => {
-        setGlobalRdfstore(realRdfstore);
+ex:c a ex:Other .
+`;
 
-        TestBed.configureTestingModule({});
-        service = TestBed.inject(RdfStoreService);
-    });
+/**
+ * Helper function: termKey.
+ *
+ * It creates a comparable key of a term; blank nodes are neutralized,
+ * because the n3 parser and rdfstore assign different blank node ids.
+ */
+const termKey = (term: Term): string =>
+    term.termType === 'BlankNode' ? '_:' : `${term.termType}|${JSON.stringify(term)}`;
 
-    afterEach(() => {
-        setGlobalRdfstore(undefined);
-    });
+/**
+ * Helper function: quadKeys.
+ *
+ * It creates the sorted comparable keys of the given quads.
+ */
+const quadKeys = (quads: readonly Quad[]): string[] =>
+    quads.map(quad => [quad.subject, quad.predicate, quad.object].map(termKey).join(' ')).sort();
 
-    it('... should have loaded the turtle data and the query list of op. 25', () => {
-        expect(turtle.length).toBeGreaterThan(0);
-        expect(queryList.length).toBeGreaterThan(0);
-    });
+describe(
+    'RdfStoreService (integration: contract with the rdfstore engine)',
+    { timeout: RDFSTORE_INTEGRATION_TIMEOUT_MS },
+    () => {
+        let service: RdfStoreService;
 
-    describe('#construct()', () => {
-        it('... should construct all triples of the turtle data', async () => {
-            const expectedQuadCount = new Parser().parse(turtle).length;
+        let realRdfstore: RdfStoreGlobal;
 
-            const quads = await service.construct(turtle, 'CONSTRUCT WHERE { ?s ?p ?o }');
-
-            expectToBe(quads.length, expectedQuadCount);
+        beforeAll(() => {
+            realRdfstore = createRealRdfstore();
         });
 
-        it('... should execute all construct queries of the query list', async () => {
-            for (const query of queryList.filter(q => q.queryType === 'construct')) {
-                const quads = await service.construct(turtle, query.queryString);
+        beforeEach(() => {
+            setGlobalRdfstore(realRdfstore);
 
-                expect(quads.length, query.queryLabel).toBeGreaterThan(0);
-                quads.forEach(quad => {
-                    expect(['NamedNode', 'BlankNode']).toContain(quad.subject.termType);
-                    expectToBe(quad.predicate.termType, 'NamedNode');
-                });
-            }
-        });
-    });
-
-    describe('#select()', () => {
-        it('... should execute all select queries of the query list', async () => {
-            for (const query of queryList.filter(q => q.queryType === 'select')) {
-                const { variables, bindings } = await service.select(turtle, query.queryString);
-
-                expect(variables.length, query.queryLabel).toBeGreaterThan(0);
-                bindings.forEach(binding => {
-                    Object.entries(binding).forEach(([variable, term]) => {
-                        expect(variables).toContain(variable);
-                        expect(['NamedNode', 'BlankNode', 'Literal']).toContain(term.termType);
-                    });
-                });
-            }
+            TestBed.configureTestingModule({});
+            service = TestBed.inject(RdfStoreService);
         });
 
-        it('... should count grouped results (COUNT with GROUP BY)', async () => {
-            const query = [
-                'SELECT ?resource_class (COUNT(?resource_class) AS ?count)',
-                'WHERE { ?resource a ?resource_class . }',
-                'GROUP BY ?resource_class',
-                'ORDER BY ?count',
-            ].join('\n');
+        afterEach(() => {
+            setGlobalRdfstore(undefined);
+        });
 
-            const { variables, bindings } = await service.select(turtle, query);
+        describe('#construct()', () => {
+            it('... should construct the same quads as parsed by n3 from the turtle data', async () => {
+                const expectedQuads = new Parser().parse(TURTLE);
 
-            expectToEqual(variables, ['resource_class', 'count']);
-            expect(bindings.length).toBeGreaterThan(0);
-            bindings.forEach(binding => {
-                expectToBe(binding['resource_class'].termType, 'NamedNode');
+                const quads = await service.construct(TURTLE, 'CONSTRUCT WHERE { ?s ?p ?o }');
 
-                const count = binding['count'] as Literal;
-                expectToBe(count.termType, 'Literal');
-                expectToBe(count.datatype.value, XSD_INTEGER);
-                expect(Number(count.value)).toBeGreaterThan(0);
+                expectToEqual(quadKeys(quads), quadKeys(expectedQuads));
+            });
+
+            it('... should keep the identity of a blank node across quads', async () => {
+                const query = `${PREFIXES}\nCONSTRUCT WHERE { ex:a ex:knows ?b . ?b ex:name ?n }`;
+
+                const quads = await service.construct(TURTLE, query);
+
+                const knowsQuad = quads.find(quad => quad.predicate.value === `${EX}knows`);
+                const nameQuad = quads.find(quad => quad.predicate.value === `${EX}name`);
+                expectToBe(knowsQuad?.object.termType, 'BlankNode');
+                expectToBe(knowsQuad?.object.equals(nameQuad?.subject ?? null), true);
             });
         });
 
-        it('... should reject COUNT without GROUP BY (not supported by rdfstore)', async () => {
-            const query = 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }';
+        describe('#select()', () => {
+            it('... should hold the variables and omit unbound variables (OPTIONAL)', async () => {
+                const query = `${PREFIXES}\nSELECT ?s ?label WHERE { ?s a ex:Class OPTIONAL { ?s rdfs:label ?label } }`;
 
-            await expect(service.select(turtle, query)).rejects.toThrow(
-                '[RdfStoreService] Unknown filter expression type'
-            );
+                const { variables, bindings } = await service.select(TURTLE, query);
+
+                expectToEqual(variables, ['s', 'label']);
+                expectToBe(bindings.length, 2);
+
+                const namedBinding = bindings.find(binding => binding['s'].termType === 'NamedNode');
+                const blankBinding = bindings.find(binding => binding['s'].termType === 'BlankNode');
+                expectToBe(namedBinding?.['s'].equals(namedNode(`${EX}a`)), true);
+                expectToBe(namedBinding?.['label'].equals(literal('A', 'de')), true);
+                expectToEqual(Object.keys(blankBinding ?? {}), ['s']);
+            });
+
+            it('... should convert typed and plain literals', async () => {
+                const query = `${PREFIXES}\nSELECT ?count ?name WHERE { ex:a ex:count ?count ; ex:knows ?b . ?b ex:name ?name }`;
+
+                const { bindings } = await service.select(TURTLE, query);
+
+                expectToBe(bindings[0]['count'].equals(literal('5', namedNode(XSD_INTEGER))), true);
+                expectToBe(bindings[0]['name'].equals(literal('B')), true);
+            });
+
+            it('... should count grouped results as integer literals (COUNT with GROUP BY)', async () => {
+                const query = `${PREFIXES}\nSELECT ?class (COUNT(?s) AS ?count) WHERE { ?s a ?class } GROUP BY ?class`;
+
+                const { variables, bindings } = await service.select(TURTLE, query);
+
+                expectToEqual(variables, ['class', 'count']);
+                const counts = Object.fromEntries(
+                    bindings.map(binding => [binding['class'].value, binding['count'] as Literal])
+                );
+                expectToBe(counts[`${EX}Class`].value, '2');
+                expectToBe(counts[`${EX}Other`].value, '1');
+                expectToBe(counts[`${EX}Class`].datatype.value, XSD_INTEGER);
+            });
+
+            it('... should reject COUNT without GROUP BY (not supported by rdfstore)', async () => {
+                await expect(service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }')).rejects.toThrow(
+                    '[RdfStoreService] Unknown filter expression type'
+                );
+            });
         });
-    });
-});
+    }
+);

@@ -5,6 +5,7 @@ import {
     createMockRdfstore,
     createRdfStoreNode,
     createRdfStoreToken,
+    RDFSTORE_INTEGRATION_TIMEOUT_MS,
     createRealRdfstore,
     setGlobalRdfstore,
 } from './rdfstore-helper';
@@ -65,6 +66,12 @@ describe('rdfstore-helper', () => {
             createRealRdfstore();
 
             expect((globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore).toBeUndefined();
+        });
+    });
+
+    describe('RDFSTORE_INTEGRATION_TIMEOUT_MS', () => {
+        it('... should hold a timeout of 60 seconds', () => {
+            expectToBe(RDFSTORE_INTEGRATION_TIMEOUT_MS, 60_000);
         });
     });
 

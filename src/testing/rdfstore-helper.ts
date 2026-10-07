@@ -12,6 +12,14 @@ import {
 } from '@awg-views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.model';
 
 /**
+ * Number constant: RDFSTORE_INTEGRATION_TIMEOUT_MS.
+ *
+ * It keeps the timeout for integration tests with the real rdfstore,
+ * which runs much slower in the browser runner than in jsdom.
+ */
+export const RDFSTORE_INTEGRATION_TIMEOUT_MS = 60_000;
+
+/**
  * The MockRdfstoreOptions interface.
  *
  * It configures the callbacks of a mocked rdfstore.

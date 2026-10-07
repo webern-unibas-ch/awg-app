@@ -1,6 +1,5 @@
-import { GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
-
 import { PrefixMap } from '../models/rdf.model';
+import { SPARQL_UTILS } from './sparql.utils';
 
 /**
  * Object constant: DEFAULT_PREFIXES.
@@ -25,15 +24,6 @@ export const DEFAULT_PREFIXES: PrefixMap = Object.freeze({
 });
 
 /**
- * Regex constant: NON_CODE_REGEX.
- *
- * It keeps a regex for the parts of a SPARQL query that are not code:
- * IRIs, string literals and comments (matched left to right,
- * so a `#` within an IRI or a string does not start a comment).
- */
-const NON_CODE_REGEX = /<[^<>"{}|^`\\\s]*>|"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|#[^\n]*/g;
-
-/**
  * Regex constant: PREFIX_DECLARATION_REGEX.
  *
  * It keeps a regex for the prefix declarations of a SPARQL query (`PREFIX awg: <…>`).
@@ -47,25 +37,6 @@ const PREFIX_DECLARATION_REGEX = /PREFIX\s+([A-Za-z][\w.-]*)?:\s*<([^>]*)>/gi;
  * not preceded by a word character or a variable sign.
  */
 const QNAME_PREFIX_REGEX = /(?:^|[^\w?$.:-])([A-Za-z][\w-]*(?:\.[\w-]+)*):/g;
-
-/**
- * Regex constant: QUERY_FORM_REGEX.
- *
- * It keeps a regex for the keywords of the SPARQL query forms and updates.
- */
-const QUERY_FORM_REGEX = /\b(select|construct|ask|describe|insert|delete)\b/i;
-
-/**
- * Private utils method: _stripNonCode.
- *
- * It replaces IRIs, string literals and comments of a given SPARQL query with spaces.
- *
- * @param {string} query The given SPARQL query.
- * @returns {string} The query without IRIs, string literals and comments.
- */
-function _stripNonCode(query: string): string {
-    return query.replaceAll(NON_CODE_REGEX, ' ');
-}
 
 /**
  * Utils method: mergePrefixes.
@@ -156,7 +127,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  * @returns {string[]} The used prefixes (unique, in order of appearance).
  */
 export function findUsedPrefixes(query: string): string[] {
-    const code = _stripNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
+    const code = SPARQL_UTILS.stripNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
     const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
 
     return Array.from(new Set(prefixes));
@@ -185,22 +156,15 @@ export function addMissingPrefixes(query: string, prefixes: PrefixMap): { query:
 }
 
 /**
- * Utils method: getQueryType.
+ * Utils constants: PREFIX_UTILS.
  *
- * It gets the type of a given SPARQL query from its first query form keyword,
- * ignoring prefix declarations, IRIs, string literals and comments.
- * INSERT and DELETE are mapped to `update`.
- *
- * @param {string} query The given SPARQL query.
- * @returns {GraphSparqlQueryType} The type of the query, or null if none was found.
+ * It keeps a namespace reference to the prefix utils methods.
  */
-export function getQueryType(query: string): GraphSparqlQueryType {
-    const match = QUERY_FORM_REGEX.exec(_stripNonCode(query));
-    if (!match) {
-        return null;
-    }
-
-    const keyword = match[1].toLowerCase();
-
-    return (keyword === 'insert' || keyword === 'delete' ? 'update' : keyword) as GraphSparqlQueryType;
-}
+export const PREFIX_UTILS = {
+    addMissingPrefixes,
+    compactIri,
+    expandQName,
+    extractSparqlPrefixes,
+    findUsedPrefixes,
+    mergePrefixes,
+} as const;
