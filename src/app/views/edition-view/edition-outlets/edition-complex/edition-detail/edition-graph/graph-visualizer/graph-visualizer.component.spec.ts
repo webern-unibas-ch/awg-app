@@ -1010,6 +1010,39 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         ]);
                     });
 
+                    it('... should neither log an error nor show a toast if the run has been aborted', async () => {
+                        const abortController = new AbortController();
+                        let reject!: (err: unknown) => void;
+                        serviceRunSpy.mockReturnValueOnce(new Promise<SparqlQueryRun>((_, rej) => (reject = rej)));
+
+                        const pendingRun = component['_runQuery'](expectedRequest, abortController.signal);
+                        abortController.abort();
+                        reject(new Error('stale error'));
+                        const run = await pendingRun;
+
+                        expectSpyCall(consoleSpy, 0);
+                        expectSpyCall(showToastMessageSpy, 0);
+                        expectToEqual(run.result, { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
+                    });
+
+                    it('... should not show an error toast of a stale run after a newer query succeeded', async () => {
+                        let reject!: (err: unknown) => void;
+                        serviceRunSpy.mockReturnValueOnce(new Promise<SparqlQueryRun>((_, rej) => (reject = rej)));
+
+                        // Start a run that is outdated by the next query request
+                        component.performQuery();
+                        TestBed.tick();
+                        component.query.set({ ...expectedRdfData.queryList[2] });
+                        component.performQuery();
+                        await fixture.whenStable();
+
+                        reject(new Error('stale error'));
+                        await fixture.whenStable();
+
+                        expectSpyCall(showToastMessageSpy, 0);
+                        expectToEqual(component.queryResult(), expectedSelectResult);
+                    });
+
                     it('... should have computed signal `queryResult` to hold the empty result', async () => {
                         serviceRunSpy.mockRejectedValue(new Error('error'));
 

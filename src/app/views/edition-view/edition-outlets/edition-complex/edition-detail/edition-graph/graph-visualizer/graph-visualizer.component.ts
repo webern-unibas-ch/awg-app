@@ -265,8 +265,9 @@ export class GraphVisualizerComponent {
     /**
      * Private method: _runQuery.
      *
-     * It runs a requested query and shows the completed query in the editor (unless cancelled).
-     * On errors, it shows a toast and returns an empty result.
+     * It runs a requested query and shows the completed query in the editor.
+     * On errors, it logs them, shows a toast and returns an empty result.
+     * Cancelled (superseded) runs have no side effects.
      *
      * @param {SparqlQueryRequest} request The given query request.
      * @param {AbortSignal} abortSignal The given abort signal of the run.
@@ -285,10 +286,12 @@ export class GraphVisualizerComponent {
 
             return queryRun;
         } catch (err) {
-            console.error('#runQuery got error:', err);
+            if (!abortSignal.aborted) {
+                console.error('#runQuery got error:', err);
 
-            const errorTitle = err instanceof Error ? err.name : 'Query Error';
-            this.showToastMessage(new ToastMessage(errorTitle, ERROR_UTILS.getErrorMessage(err), 5000), 'error');
+                const errorTitle = err instanceof Error ? err.name : 'Query Error';
+                this.showToastMessage(new ToastMessage(errorTitle, ERROR_UTILS.getErrorMessage(err), 5000), 'error');
+            }
 
             return {
                 query: request.queryString,
