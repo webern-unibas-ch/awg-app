@@ -117,6 +117,17 @@ describe('TermUtils (DONE)', () => {
                 expectToBe(formatLiteralValue('1e3'), '1000');
             });
 
+            it('... should keep the lexical value of integers beyond the safe-integer range', () => {
+                expectToBe(formatLiteralValue('9007199254740993'), '9007199254740993');
+                expectToBe(formatLiteralValue('-9007199254740993'), '-9007199254740993');
+                expectToBe(formatLiteralValue('1e21'), '1e21');
+            });
+
+            it('... should keep the lexical value of numbers that are not finite as JavaScript numbers', () => {
+                expectToBe(formatLiteralValue('1e400'), '1e400');
+                expectToBe(formatLiteralValue('-1e400'), '-1e400');
+            });
+
             it('... should keep non-numeric values (also empty and whitespace)', () => {
                 expectToBe(formatLiteralValue('Seitenzahl: 75'), 'Seitenzahl: 75');
                 expectToBe(formatLiteralValue(''), '');

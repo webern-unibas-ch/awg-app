@@ -63,7 +63,9 @@ function _literalKey(literal: Literal): string {
  * Utils method: formatLiteralValue.
  *
  * It formats a given literal value for display:
- * decimal numbers are rounded to two decimals, other values are kept.
+ * decimal numbers are rounded to two decimals, safe integers are normalized,
+ * other values are kept (also numbers that cannot be represented exactly,
+ * i.e. integers beyond the safe-integer range and non-finite numbers).
  *
  * @param {string} value The given literal value.
  * @returns {string} The formatted value.
@@ -74,6 +76,10 @@ export function formatLiteralValue(value: string): string {
     }
 
     const numberValue = Number(value);
+
+    if (!Number.isFinite(numberValue) || (Number.isInteger(numberValue) && !Number.isSafeInteger(numberValue))) {
+        return value;
+    }
 
     return Number.isInteger(numberValue) ? String(numberValue) : numberValue.toFixed(2);
 }
