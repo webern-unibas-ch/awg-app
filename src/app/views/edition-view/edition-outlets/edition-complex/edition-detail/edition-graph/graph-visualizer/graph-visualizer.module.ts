@@ -5,9 +5,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
-import { ForceGraphComponent } from './results/construct/force-graph/force-graph.component';
 import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
-import { GraphResultsEmptyComponent } from './results/empty/graph-results-empty.component';
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 
@@ -19,15 +17,14 @@ import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-re
  */
 @NgModule({
     imports: [
-        ForceGraphComponent,
         GraphEditorSparqlComponent,
         GraphEditorTriplesComponent,
-        GraphResultsEmptyComponent,
+        GraphResultsConstructComponent,
         GraphResultsSelectComponent,
         GraphResultsUnsupportedComponent,
         SharedModule,
     ],
-    declarations: [GraphResultsConstructComponent, GraphVisualizerComponent],
+    declarations: [GraphVisualizerComponent],
     exports: [GraphVisualizerComponent],
 })
 export class GraphVisualizerModule {}
