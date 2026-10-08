@@ -79,6 +79,28 @@ export interface SparqlUnsupportedResult {
 export type SparqlResult = SparqlConstructResult | SparqlSelectResult | SparqlUnsupportedResult;
 
 /**
+ * The SparqlQueryRequest interface.
+ *
+ * It represents a request to run a SPARQL query against given triples.
+ */
+export interface SparqlQueryRequest {
+    /**
+     * The type of the query.
+     */
+    readonly queryType: GraphSparqlQueryType;
+
+    /**
+     * The query string itself.
+     */
+    readonly queryString: string;
+
+    /**
+     * The triples to run the query against (as turtle string).
+     */
+    readonly triples: string;
+}
+
+/**
  * The SparqlQueryRun interface.
  *
  * It represents a performed SPARQL query with its result and duration.

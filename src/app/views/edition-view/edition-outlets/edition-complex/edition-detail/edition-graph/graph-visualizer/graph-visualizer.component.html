@@ -1,6 +1,7 @@
 <!-- Data: Triples, SPARQL query, result -->
 
 @let isFullscreen = isFullscreenMode();
+@let currentQuery = query();
 
 <div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
     <div [class]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
@@ -17,7 +18,7 @@
             <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 ps-lg-0'">
                 <!-- awg-graph-editor-sparql -->
                 <awg-graph-editor-sparql
-                    [queryList]="queryList"
+                    [queryList]="queryList()"
                     [(query)]="query"
                     [isFullscreenMode]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
@@ -28,21 +29,22 @@
     </div>
     <!-- Results -->
     <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
-        @if (query.queryType === 'construct') {
+        @if (currentQuery.queryType === 'construct') {
             <awg-graph-results-construct
-                #queryConstructResultAcc
-                [queryResult]="queryResult"
+                [queryResult]="queryResult()"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                 [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
-        } @else if (query.queryType === 'select') {
+        } @else if (currentQuery.queryType === 'select') {
             <awg-graph-results-select
-                [queryResult]="queryResult"
-                [queryTime]="queryTime"
+                [queryResult]="queryResult()"
+                [queryTime]="queryTime()"
                 [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />
         } @else {
-            <awg-graph-results-unsupported [queryType]="query.queryType || ''" [isFullscreenMode]="isFullscreen" />
+            <awg-graph-results-unsupported
+                [queryType]="currentQuery.queryType || ''"
+                [isFullscreenMode]="isFullscreen" />
         }
     </div>
 </div>

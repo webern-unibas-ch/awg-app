@@ -2,13 +2,19 @@
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal, resource } from '@angular/core';
 
+import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
+import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
+import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
 import { GraphNode } from './models/graph-data.model';
-import { SparqlResult } from './models/sparql-result.model';
+import { SparqlQueryRequest, SparqlQueryRun, SparqlResult } from './models/sparql-result.model';
+import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
+import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
+import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
 import { DEFAULT_PREFIXES } from './utils/prefix.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
@@ -24,82 +30,16 @@ import { SPARQL_UTILS } from './utils/sparql.utils';
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        GraphEditorSparqlComponent,
+        GraphEditorTriplesComponent,
+        GraphResultsConstructComponent,
+        GraphResultsSelectComponent,
+        GraphResultsUnsupportedComponent,
+        ToastComponent,
+    ],
 })
-export class GraphVisualizerComponent implements OnInit {
-    /**
-     * Input variable: graphRDFInputData.
-     *
-     * It keeps the input data for the RDF graph.
-     */
-    @Input()
-    graphRDFInputData: GraphRDFData = new GraphRDFData();
-
-    /**
-     * Readonly input signal: isFullscreenMode.
-     *
-     * It holds a boolean flag if fullscreenMode is active.
-     */
-    readonly isFullscreenMode = input<boolean>(false);
-
-    /**
-     * Public variable: defaultForceGraphHeight.
-     *
-     * It keeps the default height for the force graph.
-     */
-    defaultForceGraphHeight = 500;
-
-    /**
-     * Public variable: query.
-     *
-     * It keeps the input query string of the graph visualization.
-     */
-    query: GraphSparqlQuery = new GraphSparqlQuery();
-
-    /**
-     * Public variable: queryList.
-     *
-     * It keeps the input query list of the graph visualization.
-     */
-    queryList: GraphSparqlQuery[] = [];
-
-    /**
-     * Public variable: queryResult.
-     *
-     * It keeps the result of the query
-     * (undefined while the query is running).
-     */
-    queryResult: SparqlResult | undefined = undefined;
-
-    /**
-     * Public variable: queryTime.
-     *
-     * It keeps the duration time of the query.
-     */
-    queryTime = 0;
-
-    /**
-     * Public variable: triples.
-     *
-     * It keeps the input triple string of the graph visualization.
-     */
-    triples = '';
-
-    /**
-     * Private variable: _pendingResult.
-     *
-     * It keeps the result promise of the latest query run,
-     * so that a stale run does not overwrite the result of a newer one.
-     */
-    private _pendingResult: Promise<SparqlResult> | undefined;
-
-    /**
-     * Private readonly injection variable: _changeDetectorRef.
-     *
-     * It keeps the instance of the injected ChangeDetectorRef.
-     */
-    private readonly _changeDetectorRef = inject(ChangeDetectorRef);
-
+export class GraphVisualizerComponent {
     /**
      * Private readonly injection variable: _sparqlQueryService.
      *
@@ -115,52 +55,142 @@ export class GraphVisualizerComponent implements OnInit {
     private readonly _toastService = inject(ToastService);
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly input signal: graphRDFInputData.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the input data for the RDF graph.
      */
-    ngOnInit() {
-        // Set initial values
-        this.resetTriples();
-        this.resetQuery();
-    }
+    readonly graphRDFInputData = input.required<GraphRDFData>();
+
+    /**
+     * Readonly input signal: isFullscreenMode.
+     *
+     * It holds a boolean flag if fullscreenMode is active.
+     */
+    readonly isFullscreenMode = input<boolean>(false);
+
+    /**
+     * Readonly variable: defaultForceGraphHeight.
+     *
+     * It keeps the default height for the force graph.
+     */
+    readonly defaultForceGraphHeight = 500;
+
+    /**
+     * Readonly computed signal: queryList.
+     *
+     * It holds the query list from the RDF input data.
+     */
+    readonly queryList = computed(() => this.graphRDFInputData().queryList);
+
+    /**
+     * Readonly linked signal: triples.
+     *
+     * It holds the triples of the graph visualization
+     * (reset to the triples from the RDF input data whenever they change).
+     */
+    readonly triples = linkedSignal(() => this.graphRDFInputData().triples);
+
+    /**
+     * Readonly linked signal: query.
+     *
+     * It holds the query of the graph visualization
+     * (reset to the first query of the query list whenever it changes).
+     */
+    readonly query = linkedSignal<GraphSparqlQuery>(() => this._initialQuery(this.queryList()));
+
+    /**
+     * Readonly resource: queryRun.
+     *
+     * It holds the run of the latest requested query.
+     * Stale runs are cancelled when a new query is requested.
+     *
+     * Note: `resource` is still experimental in Angular.
+     */
+    readonly queryRun = resource<SparqlQueryRun, SparqlQueryRequest | undefined>({
+        params: () => this._runnableRequest(),
+        loader: ({ params, abortSignal }) => this._runQuery(params, abortSignal),
+    });
+
+    /**
+     * Readonly computed signal: queryResult.
+     *
+     * It holds the result of the latest query run
+     * (undefined while the query is running).
+     */
+    readonly queryResult = computed<SparqlResult | undefined>(() =>
+        this.queryRun.isLoading() ? undefined : this.queryRun.value()?.result
+    );
+
+    /**
+     * Readonly computed signal: queryTime.
+     *
+     * It holds the duration of the latest query run.
+     */
+    readonly queryTime = computed(() => this.queryRun.value()?.durationMs ?? 0);
+
+    /**
+     * Private readonly linked signal: _queryRequest.
+     *
+     * It holds the latest requested query
+     * (the initial query whenever the RDF input data changes).
+     * Edits of query or triples do not request a new query run;
+     * only {@link performQuery} does.
+     */
+    private readonly _queryRequest = linkedSignal<GraphRDFData, SparqlQueryRequest>({
+        source: this.graphRDFInputData,
+        computation: rdfData => this._toQueryRequest(this._initialQuery(rdfData.queryList), rdfData.triples),
+    });
+
+    /**
+     * Private readonly computed signal: _runnableRequest.
+     *
+     * It holds the latest requested query if it can be run
+     * (only construct and select queries for now), otherwise undefined.
+     */
+    private readonly _runnableRequest = computed<SparqlQueryRequest | undefined>(() => {
+        const request = this._queryRequest();
+        return request.queryType === 'construct' || request.queryType === 'select' ? request : undefined;
+    });
 
     /**
      * Public method: resetTriples.
      *
-     * It (re-)sets the initial value of the triples variable
+     * It resets the triples to the triples
      * from the RDF input data.
      *
-     * @returns {void} (Re-)Sets the initial triples.
+     * @returns {void} Resets the triples.
      */
     resetTriples(): void {
-        if (!this.graphRDFInputData.triples) {
+        const initialTriples = this.graphRDFInputData().triples;
+        if (!initialTriples) {
             return;
         }
-        this.triples = this.graphRDFInputData.triples;
+        this.triples.set(initialTriples);
     }
 
     /**
      * Public method: resetQuery.
      *
-     * It resets the initial value of a given query
-     * if it is known from the RDF input data.
+     * It resets a given query to its initial value
+     * if it is known from the query list (or to the first query of the list
+     * if no query is given), and performs it.
      *
-     * @param {GraphSparqlQuery} query The given sample query.
+     * @param {GraphSparqlQuery} [query] The given sample query.
      *
-     * @returns {void} Resets the initial query.
+     * @returns {void} Resets and performs the query.
      */
     resetQuery(query?: GraphSparqlQuery): void {
-        if (!this.graphRDFInputData.queryList.length) {
+        const queryList = this.queryList();
+        if (!queryList.length) {
             return;
         }
 
-        this.queryList = structuredClone(this.graphRDFInputData.queryList);
         const resetted = query
-            ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
-            : this.queryList[0];
-        this.query = { ...resetted };
+            ? queryList.find(
+                  listQuery => query.queryLabel === listQuery.queryLabel && query.queryType === listQuery.queryType
+              ) || query
+            : queryList[0];
+        this.query.set({ ...resetted });
 
         this.performQuery();
     }
@@ -168,32 +198,17 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public method: performQuery.
      *
-     * It performs a SPARQL query against the rdfstore.
+     * It requests a run of the current query against the current triples.
      *
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        // Get the query type synchronously, because the template chooses the result view by it
-        this.query.queryType = SPARQL_UTILS.getQueryType(this.query.queryString);
+        // Set the query type synchronously, because the template chooses the result view by it
+        const query = this._withQueryType(this.query());
+        this.query.set(query);
 
-        // Reset the result while the query is running
-        this.queryResult = undefined;
-
-        // Perform only construct and select queries for now
-        if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
-            const pendingResult = this._runQuery(this.query.queryType, this.query.queryString, this.triples);
-            this._pendingResult = pendingResult;
-
-            void pendingResult.then(result => {
-                if (this._pendingResult !== pendingResult) {
-                    return;
-                }
-                this.queryResult = result;
-                this._changeDetectorRef.markForCheck();
-            });
-        } else {
-            this._pendingResult = undefined;
-        }
+        // A new request object always triggers a new run, even for an unchanged query
+        this._queryRequest.set(this._toQueryRequest(query, this.triples()));
     }
 
     /**
@@ -272,32 +287,26 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Private method: _runQuery
      *
-     * It runs a query via the SparqlQueryService and updates the performed query
-     * (completed with missing prefix declarations) and the query time.
-     * On errors, it shows a toast message and returns an empty result of the given query type.
+     * It runs a requested query via the SparqlQueryService and shows the performed query
+     * (completed with missing prefix declarations) in the editor, unless the run has been cancelled.
+     * On errors, it shows a toast message and returns a run with an empty result of the requested query type.
      *
-     * @param {GraphSparqlQueryType} queryType The given query type.
-     * @param {string} queryString The given queryString.
-     * @param {string} triples The given triples.
-     * @returns {Promise<SparqlResult>} The result of the query.
+     * @param {SparqlQueryRequest} request The given query request.
+     * @param {AbortSignal} abortSignal The given abort signal of the run.
+     * @returns {Promise<SparqlQueryRun>} The run of the query.
      */
-    private async _runQuery(
-        queryType: GraphSparqlQueryType,
-        queryString: string,
-        triples: string
-    ): Promise<SparqlResult> {
+    private async _runQuery(request: SparqlQueryRequest, abortSignal: AbortSignal): Promise<SparqlQueryRun> {
         // Capture start time of query
         const startTime = performance.now();
 
-        let result: SparqlResult;
-
         try {
-            const run = await this._sparqlQueryService.run(queryString, triples);
+            const queryRun = await this._sparqlQueryService.run(request.queryString, request.triples);
 
-            // Show the performed query (a new object, so that the OnPush editor updates)
-            this.query = { ...this.query, queryString: run.query };
-            this.queryTime = run.durationMs;
-            result = run.result;
+            if (!abortSignal.aborted) {
+                this.query.update(currentQuery => ({ ...currentQuery, queryString: queryRun.query }));
+            }
+
+            return queryRun;
         } catch (err) {
             console.error('#runQuery got error:', err);
 
@@ -315,15 +324,12 @@ export class GraphVisualizerComponent implements OnInit {
 
             this.showToastMessage(new ToastMessage(errorTitle, errorMessage, 5000), 'error');
 
-            // Capture query time
-            this.queryTime = performance.now() - startTime;
-
-            result = this._emptyResult(queryType);
+            return {
+                query: request.queryString,
+                result: this._emptyResult(request.queryType),
+                durationMs: performance.now() - startTime,
+            };
         }
-
-        this._changeDetectorRef.markForCheck();
-
-        return result;
     }
 
     /**
@@ -380,5 +386,44 @@ export class GraphVisualizerComponent implements OnInit {
         }
 
         return 'Unknown error format';
+    }
+
+    /**
+     * Private method: _initialQuery.
+     *
+     * It gets the initial query (the first query of a given query list)
+     * with the query type derived from its query string.
+     *
+     * @param {GraphSparqlQuery[]} queryList The given query list.
+     * @returns {GraphSparqlQuery} The initial query.
+     */
+    private _initialQuery(queryList: GraphSparqlQuery[]): GraphSparqlQuery {
+        return this._withQueryType(queryList[0] ?? new GraphSparqlQuery());
+    }
+
+    /**
+     * Private method: _toQueryRequest.
+     *
+     * It creates a query request from a given query and given triples.
+     *
+     * @param {GraphSparqlQuery} query The given query.
+     * @param {string} triples The given triples.
+     * @returns {SparqlQueryRequest} The query request.
+     */
+    private _toQueryRequest(query: GraphSparqlQuery, triples: string): SparqlQueryRequest {
+        return { queryType: query.queryType, queryString: query.queryString, triples };
+    }
+
+    /**
+     * Private method: _withQueryType.
+     *
+     * It creates a copy of a given query
+     * with the query type derived from its query string.
+     *
+     * @param {GraphSparqlQuery} query The given query.
+     * @returns {GraphSparqlQuery} The query with its query type.
+     */
+    private _withQueryType(query: GraphSparqlQuery): GraphSparqlQuery {
+        return { ...query, queryType: SPARQL_UTILS.getQueryType(query.queryString) };
     }
 }
