@@ -10,11 +10,32 @@ import { GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 const NON_CODE_REGEX = /<[^<>"{}|^`\\\s]*>|"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|#[^\n]*/g;
 
 /**
+ * Set constant: UPDATE_KEYWORDS.
+ *
+ * It keeps the keywords of the SPARQL 1.1 update operations.
+ */
+const UPDATE_KEYWORDS: ReadonlySet<string> = new Set([
+    'insert',
+    'delete',
+    'load',
+    'clear',
+    'create',
+    'drop',
+    'copy',
+    'move',
+    'add',
+]);
+
+/**
  * Regex constant: QUERY_FORM_REGEX.
  *
- * It keeps a regex for the keywords of the SPARQL query forms and updates.
+ * It keeps a regex for the keywords of the SPARQL query forms and update operations,
+ * not being part of a (prefixed) name or a variable (e.g. `ex:load`, `?copy`, `PREFIX add:`).
  */
-const QUERY_FORM_REGEX = /\b(select|construct|ask|describe|insert|delete)\b/i;
+const QUERY_FORM_REGEX = new RegExp(
+    `(?<![\\w:?$.-])(select|construct|ask|describe|${[...UPDATE_KEYWORDS].join('|')})(?![\\w:-])`,
+    'i'
+);
 
 /**
  * Utils method: stripNonCode.
@@ -46,8 +67,9 @@ export function stripCommentsAndLiterals(query: string): string {
  * Utils method: getQueryType.
  *
  * It gets the type of a given SPARQL query from its first query form keyword,
- * ignoring prefix declarations, IRIs, string literals and comments.
- * INSERT and DELETE are mapped to `update`.
+ * ignoring prefix declarations, IRIs, string literals, comments, names and variables.
+ * The keywords of all update operations (INSERT, DELETE, LOAD, CLEAR, CREATE,
+ * DROP, COPY, MOVE, ADD) are mapped to `update`.
  *
  * @param {string} query The given SPARQL query.
  * @returns {GraphQueryType} The type of the query, or null if none was found.
@@ -60,7 +82,7 @@ export function getQueryType(query: string): GraphQueryType {
 
     const keyword = match[1].toLowerCase();
 
-    return (keyword === 'insert' || keyword === 'delete' ? 'update' : keyword) as GraphQueryType;
+    return (UPDATE_KEYWORDS.has(keyword) ? 'update' : keyword) as GraphQueryType;
 }
 
 /**

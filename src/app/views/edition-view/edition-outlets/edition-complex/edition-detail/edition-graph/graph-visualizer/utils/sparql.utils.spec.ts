@@ -79,9 +79,18 @@ describe('SparqlUtils (DONE)', () => {
                 expectToBe(getQueryType('DESCRIBE <http://example.org/x>'), 'describe');
             });
 
-            it('... should hold `update` for INSERT and DELETE', () => {
-                expectToBe(getQueryType('INSERT DATA { <http://a> <http://b> <http://c> }'), 'update');
-                expectToBe(getQueryType('DELETE WHERE { ?s ?p ?o }'), 'update');
+            it.each([
+                'INSERT DATA { <http://a> <http://b> <http://c> }',
+                'DELETE WHERE { ?s ?p ?o }',
+                'LOAD <http://example.org/data.ttl>',
+                'CLEAR ALL',
+                'CREATE GRAPH <http://example.org/g>',
+                'DROP SILENT GRAPH <http://example.org/g>',
+                'COPY DEFAULT TO <http://example.org/g>',
+                'MOVE <http://example.org/a> TO <http://example.org/b>',
+                'add default to graph <http://example.org/g>',
+            ])('... should hold `update` for the update operation `%s`', query => {
+                expectToBe(getQueryType(query), 'update');
             });
 
             it('... should hold the first query form keyword', () => {
@@ -96,6 +105,15 @@ describe('SparqlUtils (DONE)', () => {
                 ].join('\n');
 
                 expectToBe(getQueryType(query), 'construct');
+            });
+
+            it('... should ignore keywords in prefix declarations, prefixed names and variables', () => {
+                const query = [
+                    'PREFIX add: <http://example.org/add#>',
+                    'SELECT ?load ?copy WHERE { ?load ex:clear ?copy . ?s ex:my-drop ?o }',
+                ].join('\n');
+
+                expectToBe(getQueryType(query), 'select');
             });
 
             it('... should hold null if no query form keyword is found', () => {
