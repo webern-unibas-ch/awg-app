@@ -14,7 +14,7 @@ import { toTableRows } from './select-table.utils';
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
 
 describe(
-    'sparql-table.utils (integration with the op. 25 graph data)',
+    'SelectTableUtils (integration with the op. 25 graph data)',
     { timeout: RDFSTORE_INTEGRATION_TIMEOUT_MS },
     () => {
         let service: SparqlQueryService;

@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { ABBR_UTILS } from './abbr.utils';
+import { ABBR_UTILS, applyAbbreviations } from './abbr.utils';
 
 describe('AbbrUtils (DONE)', () => {
+    describe('ABBR_UTILS', () => {
+        it('... should reference all abbr utils methods', () => {
+            expectToEqual(ABBR_UTILS, { applyAbbreviations });
+        });
+    });
+
     describe('METHODS', () => {
         describe('#applyAbbreviations()', () => {
             it('... should have a method `applyAbbreviations`', () => {
