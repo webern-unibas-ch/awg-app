@@ -6,6 +6,14 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
 import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 
 /**
+ * Number variable: nextGroupId.
+ *
+ * It keeps the id of the next button group instance
+ * (to give each instance a unique radio group name and id prefix).
+ */
+let nextGroupId = 0;
+
+/**
  * The ViewHandleButtonGroup component.
  *
  * It contains a radio button group
@@ -19,6 +27,14 @@ import { ViewHandle, ViewHandleTypes } from './view-handle.model';
     imports: [FaIconComponent, NgbTooltip],
 })
 export class ViewHandleButtonGroupComponent {
+    /**
+     * Readonly variable: groupName.
+     *
+     * It keeps the unique name of the radio group of this instance,
+     * also used as prefix of the ids of its radio buttons.
+     */
+    readonly groupName = `awg-view-handle-${nextGroupId++}`;
+
     /**
      * Readonly input signal: viewHandles.
      *

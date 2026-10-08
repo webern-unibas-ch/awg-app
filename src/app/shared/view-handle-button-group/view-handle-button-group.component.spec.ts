@@ -71,6 +71,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             expectToEqual(component.viewHandles(), []);
         });
 
+        it('... should have `groupName` to hold a unique name per instance', () => {
+            const otherComponent = TestBed.createComponent(ViewHandleButtonGroupComponent).componentInstance;
+
+            expect(component.groupName).toMatch(/^awg-view-handle-\d+$/);
+            expect(otherComponent.groupName).toMatch(/^awg-view-handle-\d+$/);
+            expect(otherComponent.groupName).not.toBe(component.groupName);
+        });
+
         it('... should throw due to missing required input signal `selectedViewType`', () => {
             expectToBe(isSignal(component.selectedViewType), true);
 
@@ -147,9 +155,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
             });
 
-            it('... should group all radio elements by name `viewHandle`', () => {
+            it('... should group all radio elements by the unique `groupName`', () => {
                 getInputEls().forEach(inputEl => {
-                    expectToBe(inputEl.name, 'viewHandle');
+                    expectToBe(inputEl.name, component.groupName);
                 });
             });
 
@@ -159,9 +167,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 });
             });
 
-            it('... should set the id of the input elements to `{viewHandle.type}-view-button`', () => {
+            it('... should set the id of the input elements to `{groupName}-{viewHandle.type}-view-button`', () => {
                 getInputEls().forEach((inputEl, i) => {
-                    expectToBe(inputEl.id, `${expectedViewHandles[i].type}-view-button`);
+                    expectToBe(inputEl.id, `${component.groupName}-${expectedViewHandles[i].type}-view-button`);
                 });
             });
 
@@ -171,6 +179,24 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expectToBe(inputEls[0].checked, true);
                 expectToBe(inputEls[1].checked, false);
                 expectToBe(inputEls[2].checked, false);
+            });
+
+            it('... should not uncheck the radio elements of another instance', () => {
+                const otherFixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
+                otherFixture.componentRef.setInput('viewHandles', expectedViewHandles);
+                otherFixture.componentRef.setInput('selectedViewType', ViewHandleTypes.TABLE);
+                otherFixture.detectChanges();
+
+                const otherInputEls: HTMLInputElement[] = Array.from(
+                    otherFixture.nativeElement.querySelectorAll('input[type="radio"]')
+                );
+
+                // Both instances keep their own checked radio element
+                expectToBe(getInputEls()[0].checked, true);
+                expectToBe(otherInputEls[1].checked, true);
+                otherInputEls.forEach((inputEl, i) => {
+                    expect(inputEl.id).not.toBe(getInputEls()[i].id);
+                });
             });
 
             it('... should check the radio element of a changed selected view type', async () => {
@@ -195,7 +221,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
             });
 
-            it('... should set the `for` attribute of the label elements to `{viewHandle.type}-view-button`', () => {
+            it('... should set the `for` attribute of the label elements to `{groupName}-{viewHandle.type}-view-button`', () => {
                 const labelDes = getAndExpectDebugElementByCss(
                     compDe,
                     `${btnGroupSelector} > label`,
@@ -204,7 +230,10 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
 
                 labelDes.forEach((labelDe, i) => {
-                    expectToBe(labelDe.attributes['for'], `${expectedViewHandles[i].type}-view-button`);
+                    expectToBe(
+                        labelDe.attributes['for'],
+                        `${component.groupName}-${expectedViewHandles[i].type}-view-button`
+                    );
                 });
             });
 
