@@ -23,6 +23,7 @@ import { ResultGraphNode } from './models/result-graph.model';
 import { SparqlQueryRequest, SparqlQueryRun, SparqlResult } from './models/sparql-result.model';
 import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
+import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
 import { ERROR_UTILS } from './utils/error.utils';
@@ -45,6 +46,7 @@ import { SPARQL_UTILS } from './utils/sparql.utils';
         GraphEditorTriplesComponent,
         GraphResultsConstructComponent,
         GraphResultsSelectComponent,
+        GraphResultsStatusComponent,
         GraphResultsUnsupportedComponent,
         ToastComponent,
     ],

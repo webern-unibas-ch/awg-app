@@ -2,6 +2,8 @@
 
 @let isFullscreen = isFullscreenMode();
 @let currentQuery = query();
+@let isConstructQuery = currentQuery.queryType === 'construct';
+@let isSelectQuery = currentQuery.queryType === 'select';
 
 <div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
     <div [class]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
@@ -29,22 +31,25 @@
     </div>
     <!-- Results -->
     <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
-        @if (currentQuery.queryType === 'construct') {
+        @if (isConstructQuery) {
             <awg-graph-results-construct
                 [queryResult]="queryResult()"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                 [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
-        } @else if (currentQuery.queryType === 'select') {
+        } @else if (isSelectQuery) {
             <awg-graph-results-select
                 [queryResult]="queryResult()"
-                [queryTime]="queryTime()"
                 [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />
         } @else {
             <awg-graph-results-unsupported
                 [queryType]="currentQuery.queryType || ''"
                 [isFullscreenMode]="isFullscreen" />
+        }
+        @if (isConstructQuery || isSelectQuery) {
+            <!-- awg-graph-results-status -->
+            <awg-graph-results-status [queryResult]="queryResult()" [queryTime]="queryTime()" />
         }
     </div>
 </div>

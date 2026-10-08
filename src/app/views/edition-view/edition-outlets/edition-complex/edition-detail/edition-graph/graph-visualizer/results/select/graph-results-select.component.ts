@@ -31,13 +31,6 @@ export class GraphResultsSelectComponent {
     readonly queryResult = input<SparqlResult | undefined>();
 
     /**
-     * Readonly input signal: queryTime.
-     *
-     * It holds the duration time of the query.
-     */
-    readonly queryTime = input<number>(0);
-
-    /**
      * Readonly input signal: isFullscreenMode.
      *
      * It holds a boolean flag if fullscreenMode is set.

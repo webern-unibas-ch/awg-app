@@ -33,6 +33,7 @@ import {
 } from './models/sparql-result.model';
 import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
+import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
 import { ERROR_UTILS } from './utils/error.utils';
@@ -122,6 +123,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             .overrideComponent(GraphEditorTriplesComponent, { set: { template: '', imports: [] } })
             .overrideComponent(GraphResultsConstructComponent, { set: { template: '', imports: [] } })
             .overrideComponent(GraphResultsSelectComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsStatusComponent, { set: { template: '', imports: [] } })
             .overrideComponent(GraphResultsUnsupportedComponent, { set: { template: '', imports: [] } })
             .overrideComponent(ToastComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -430,6 +432,28 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     getAndExpectDebugElementByDirective(divDes[1], GraphResultsUnsupportedComponent, 1, 1);
                 });
+
+                it('... should contain one GraphResultsStatusComponent (hollow) in second child div (queryType === construct)', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 1, 1);
+                });
+
+                it('... should contain one GraphResultsStatusComponent (hollow) in second child div (queryType === select)', async () => {
+                    await setQueryType('select');
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 1, 1);
+                });
+
+                it('... should not contain a GraphResultsStatusComponent (hollow) in second child div (queryType === other)', async () => {
+                    await setQueryType('ask');
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 0, 0);
+                });
             });
 
             describe('in fullscreen mode', () => {
@@ -615,10 +639,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(getChildCmp(GraphResultsSelectComponent).queryResult(), expectedSelectResult);
                 });
 
-                it('... should have `queryTime` passed down from main component', () => {
-                    expectToBe(getChildCmp(GraphResultsSelectComponent).queryTime(), expectedDurationMs);
-                });
-
                 it('... should have `isFullscreenMode` passed down from main component', () => {
                     expectToBe(getChildCmp(GraphResultsSelectComponent).isFullscreenMode(), false);
                 });
@@ -630,6 +650,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getChildCmp(GraphResultsSelectComponent).clickedTableRequest.emit(expectedUri);
 
                     expectSpyCall(onTableNodeClickSpy, 1, expectedUri);
+                });
+            });
+
+            describe('GraphResultsStatusComponent (hollow)', () => {
+                it('... should have `queryResult` and `queryTime` passed down from main component', () => {
+                    const statusCmp = getChildCmp(GraphResultsStatusComponent);
+
+                    expectToEqual(statusCmp.queryResult(), expectedConstructResult);
+                    expectToBe(statusCmp.queryTime(), expectedDurationMs);
                 });
             });
 

@@ -47,7 +47,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedQueryResult: SparqlSelectResult;
-    let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
     let emitClickedTableRequestSpy: Spy;
@@ -77,7 +76,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
             ['test', 'success'],
             [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }]
         );
-        expectedQueryTime = 5000;
         expectedIsFullscreen = false;
 
         // Spies
@@ -98,11 +96,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
         it('... should have input signal `queryResult` to hold undefined initially', () => {
             expectToBe(isSignal(component.queryResult), true);
             expect(component.queryResult()).toBeUndefined();
-        });
-
-        it('... should have input signal `queryTime` to hold 0 initially', () => {
-            expectToBe(isSignal(component.queryTime), true);
-            expectToBe(component.queryTime(), 0);
         });
 
         it('... should have input signal `isFullscreenMode` to hold false initially', () => {
@@ -133,7 +126,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
             fixture.componentRef.setInput('queryResult', expectedQueryResult);
-            fixture.componentRef.setInput('queryTime', expectedQueryTime);
             fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
             // Trigger initial data binding
@@ -142,10 +134,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
 
         it('... should have input signal `queryResult` to hold the provided query result', () => {
             expectToBe(component.queryResult(), expectedQueryResult);
-        });
-
-        it('... should have input signal `queryTime` to hold the provided query time', () => {
-            expectToBe(component.queryTime(), expectedQueryTime);
         });
 
         it('... should have input signal `isFullscreenMode` to hold the provided fullscreen flag', () => {
