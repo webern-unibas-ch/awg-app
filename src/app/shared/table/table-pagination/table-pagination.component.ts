@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, input, model } from '@angular/core'
 
 import { NgbPagination, NgbPaginationPages } from '@ng-bootstrap/ng-bootstrap/pagination';
 
+import { TABLE_DEFAULT_PAGE_SIZE } from '../table.utils';
+
 /**
  * The TablePagination component.
  *
@@ -23,6 +25,14 @@ export class TablePaginationComponent {
      * @default 0
      */
     readonly collectionSize = input<number>(0);
+
+    /**
+     * Readonly input signal: pageSize.
+     *
+     * It holds the number of items per page.
+     * @default 10
+     */
+    readonly pageSize = input<number>(TABLE_DEFAULT_PAGE_SIZE);
 
     /**
      * Readonly model signal: page.

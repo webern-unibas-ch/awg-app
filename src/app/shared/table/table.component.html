@@ -20,7 +20,7 @@
 
 <ng-template #paginationPanel let-position="position">
     <div class="awg-pagination d-flex justify-content-between p-2">
-        <awg-table-pagination [collectionSize]="filteredRows().length" [(page)]="page" />
+        <awg-table-pagination [collectionSize]="filteredRows().length" [pageSize]="pageSize()" [(page)]="page" />
         <div ngbDropdown class="d-inline-block">
             <button
                 class="btn btn-default awg-pagesize-dropdown-button"

@@ -300,14 +300,26 @@ describe('TableComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(compDe, TablePaginationComponent, 2, 2);
                 });
 
-                it('... should pass down `collectionSize` and `page` to TablePaginationComponent (hollow)', () => {
+                it('... should pass down `collectionSize`, `pageSize` and `page` to TablePaginationComponent (hollow)', () => {
                     const paginationDes = getAndExpectDebugElementByDirective(compDe, TablePaginationComponent, 2, 2);
 
                     paginationDes.forEach(paginationDe => {
                         const paginationCmp = paginationDe.injector.get(TablePaginationComponent);
 
                         expectToBe(paginationCmp.collectionSize(), expectedRowInputData.length);
+                        expectToBe(paginationCmp.pageSize(), component.pageSize());
                         expectToBe(paginationCmp.page(), 1);
+                    });
+                });
+
+                it('... should pass down a changed `pageSize` to TablePaginationComponent (hollow)', async () => {
+                    component.onPageSizeChange(25);
+                    await detectChangesOnPush(fixture);
+
+                    const paginationDes = getAndExpectDebugElementByDirective(compDe, TablePaginationComponent, 2, 2);
+
+                    paginationDes.forEach(paginationDe => {
+                        expectToBe(paginationDe.injector.get(TablePaginationComponent).pageSize(), 25);
                     });
                 });
 

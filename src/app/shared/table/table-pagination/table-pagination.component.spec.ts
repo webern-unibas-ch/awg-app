@@ -18,6 +18,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { TABLE_DEFAULT_PAGE_SIZE } from '../table.utils';
 import { TablePaginationComponent } from './table-pagination.component';
 
 describe('TablePaginationComponent (DONE)', () => {
@@ -76,6 +77,11 @@ describe('TablePaginationComponent (DONE)', () => {
             expectToBe(component.collectionSize(), 0);
         });
 
+        it('... should have input signal `pageSize` to hold the default value', () => {
+            expectToBe(isSignal(component.pageSize), true);
+            expectToBe(component.pageSize(), TABLE_DEFAULT_PAGE_SIZE);
+        });
+
         it('... should have model signal `page` to hold the default value', () => {
             expectToBe(isSignal(component.page), true);
             expectToBe(component.page(), 1);
@@ -120,12 +126,13 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down `page` and `collectionSize` to NgbPagination', () => {
+            it('... should pass down `page`, `collectionSize` and `pageSize` to NgbPagination', () => {
                 const paginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
                 const paginationCmp = paginationDes[0].injector.get(NgbPagination);
 
                 expectToBe(paginationCmp.page, expectedPage);
                 expectToBe(paginationCmp.collectionSize, expectedCollectionSize);
+                expectToBe(paginationCmp.pageSize, TABLE_DEFAULT_PAGE_SIZE);
                 expectToBe(paginationCmp.boundaryLinks, true);
             });
 
@@ -188,7 +195,33 @@ describe('TablePaginationComponent (DONE)', () => {
             it('... should display `von {pages.length}` in span', () => {
                 const spanDes = getAndExpectDebugElementByCss(compDe, 'span#paginationDescription', 1, 1);
 
-                expectToBe(spanDes[0].nativeElement.textContent.trim(), `von ${expectedCollectionSize / 10}`);
+                expectToBe(
+                    spanDes[0].nativeElement.textContent.trim(),
+                    `von ${expectedCollectionSize / TABLE_DEFAULT_PAGE_SIZE}`
+                );
+            });
+
+            describe('... with a provided page size', () => {
+                beforeEach(async () => {
+                    fixture.componentRef.setInput('pageSize', 25);
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should have input signal `pageSize` to hold the provided page size', () => {
+                    expectToBe(component.pageSize(), 25);
+                });
+
+                it('... should pass down the provided `pageSize` to NgbPagination', () => {
+                    const paginationDes = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
+
+                    expectToBe(paginationDes[0].injector.get(NgbPagination).pageSize, 25);
+                });
+
+                it('... should display the number of pages for the provided page size in span', () => {
+                    const spanDes = getAndExpectDebugElementByCss(compDe, 'span#paginationDescription', 1, 1);
+
+                    expectToBe(spanDes[0].nativeElement.textContent.trim(), `von ${expectedCollectionSize / 25}`);
+                });
             });
 
             it('... should trigger `replaceNonNumberInput()` on input event', () => {

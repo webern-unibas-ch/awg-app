@@ -2,6 +2,7 @@
     class="d-flex justify-content-center cols-xs-2"
     [page]="page()"
     [collectionSize]="collectionSize()"
+    [pageSize]="pageSize()"
     [boundaryLinks]="true"
     (pageChange)="onPageChange($event)">
     <ng-template ngbPaginationPages let-page let-pages="pages">
