@@ -163,6 +163,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_toasts" >_toasts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#toasts" >toasts</a>
                             </li>
                         </ul>
@@ -182,6 +188,9 @@
                             </li>
                             <li>
                                 <a href="#remove" >remove</a>
+                            </li>
+                            <li>
+                                <a href="#showMessage" >showMessage</a>
                             </li>
                         </ul>
                     </td>
@@ -221,8 +230,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="108"
-                                    class="link-to-prism">src/app/shared/toast/toast.service.ts:108</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/shared/toast/toast.service.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -230,84 +239,7 @@
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: add.</p>
-<p>It adds the toast with the message
-represented by the given header and body to the toast array.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>toast</td>
-                                            <td>
-                                                            <code><a href="../classes/Toast.html" target="_self" >Toast</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given toast template.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Adds the toast message to the toast array.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="remove"></a>
-                    <span class="name">
-                        <span ><b>remove</b></span>
-                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>remove(toast: <a href="../classes/Toast.html" target="_self">Toast</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="121"
-                                    class="link-to-prism">src/app/shared/toast/toast.service.ts:121</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: remove.</p>
-<p>It deletes a given toast.</p>
+<p>It adds the given toast to the toast array.</p>
 </div>
 
                             <div class="io-description">
@@ -347,7 +279,182 @@ represented by the given header and body to the toast array.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Deletes the toast message.</p>
+                                <p>Adds the toast to the toast array.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="remove"></a>
+                    <span class="name">
+                        <span ><b>remove</b></span>
+                        <a href="#remove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>remove(toast: <a href="../classes/Toast.html" target="_self">Toast</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/shared/toast/toast.service.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: remove.</p>
+<p>It removes the given toast from the toast array.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>toast</td>
+                                            <td>
+                                                            <code><a href="../classes/Toast.html" target="_self" >Toast</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given toast.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Removes the toast from the toast array.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMessage"></a>
+                    <span class="name">
+                        <span ><b>showMessage</b></span>
+                        <a href="#showMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showMessage(toastMessage: <a href="../classes/ToastMessage.html" target="_self">ToastMessage</a>, type: "error" | "info")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="141"
+                                    class="link-to-prism">src/app/shared/toast/toast.service.ts:141</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: showMessage.</p>
+<p>It shows a given toast message with the specified type
+and logs it to the console.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>toastMessage</td>
+                                            <td>
+                                                            <code><a href="../classes/ToastMessage.html" target="_self" >ToastMessage</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    <p>The given toast message.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                        <code>&quot;error&quot; | &quot;info&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>&#x27;info&#x27;</code>
+                                            </td>
+
+                                            <td>
+                                                    <p>The optional type of message to display (default: &#39;info&#39;).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Shows the message.</p>
 
                             </div>
                 </td>
@@ -364,22 +471,24 @@ represented by the given header and body to the toast array.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="toasts"></a>
+                    <a name="_toasts"></a>
                     <span class="name">
-                        <span ><b>toasts</b></span>
-                        <a href="#toasts"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_toasts</b></span>
+                        <a href="#_toasts"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Toast.html" target="_self" >Toast[]</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[]</code>
+                        <i>Default value : </i><code>signal&lt;Toast[]&gt;([])</code>
                     </td>
                 </tr>
                     <tr>
@@ -390,8 +499,47 @@ represented by the given header and body to the toast array.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: toasts.</p>
-<p>It keeps the toast messages.</p>
+                    <div class="io-description"><p>Private readonly signal: _toasts.</p>
+<p>It holds the toast messages.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toasts"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>toasts</b></span>
+                        <a href="#toasts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._toasts.asReadonly()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/shared/toast/toast.service.ts:102</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly signal: toasts.</p>
+<p>It holds the toast messages (readonly).</p>
 </div>
                 </td>
             </tr>
@@ -404,7 +552,7 @@ represented by the given header and body to the toast array.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, TemplateRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal, TemplateRef } from &#x27;@angular/core&#x27;;
 
 /**
  * The ToastMessage class.
@@ -494,38 +642,73 @@ export class Toast {
 })
 export class ToastService {
     /**
-     * Public variable: toasts.
+     * Private readonly signal: _toasts.
      *
-     * It keeps the toast messages.
+     * It holds the toast messages.
      */
-    toasts: Toast[] &#x3D; [];
+    private readonly _toasts &#x3D; signal&lt;Toast[]&gt;([]);
+
+    /**
+     * Readonly signal: toasts.
+     *
+     * It holds the toast messages (readonly).
+     */
+    readonly toasts &#x3D; this._toasts.asReadonly();
 
     /**
      * Public method: add.
      *
-     * It adds the toast with the message
-     * represented by the given header and body to the toast array.
+     * It adds the given toast to the toast array.
      *
-     * @param {Toast} toast The given toast template.
-     * @param {*} options The given toast options.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Adds the toast message to the toast array.
+     * @returns {void} Adds the toast to the toast array.
      */
     add(toast: Toast): void {
-        this.toasts.push(toast);
+        this._toasts.update(toasts &#x3D;&gt; [...toasts, toast]);
     }
 
     /**
      * Public method: remove.
      *
-     * It deletes a given toast.
+     * It removes the given toast from the toast array.
      *
-     * @param { * } toast The given toast.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Deletes the toast message.
+     * @returns {void} Removes the toast from the toast array.
      */
     remove(toast: Toast): void {
-        this.toasts &#x3D; this.toasts.filter(t &#x3D;&gt; t !&#x3D;&#x3D; toast);
+        this._toasts.update(toasts &#x3D;&gt; toasts.filter(t &#x3D;&gt; t !&#x3D;&#x3D; toast));
+    }
+
+    /**
+     * Public method: showMessage.
+     *
+     * It shows a given toast message with the specified type
+     * and logs it to the console.
+     *
+     * @param {ToastMessage} toastMessage The given toast message.
+     * @param {&#x27;error&#x27; | &#x27;info&#x27;} [type] The optional type of message to display (default: &#x27;info&#x27;).
+     *
+     * @returns {void} Shows the message.
+     */
+    showMessage(toastMessage: ToastMessage, type: &#x27;error&#x27; | &#x27;info&#x27; &#x3D; &#x27;info&#x27;): void {
+        if (!toastMessage.message) {
+            return;
+        }
+
+        const toast &#x3D; new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: type &#x3D;&#x3D;&#x3D; &#x27;error&#x27; ? &#x27;bg-danger text-light&#x27; : &#x27;bg-info text-light&#x27;,
+            delay: toastMessage.duration,
+        });
+        this.add(toast);
+
+        if (type &#x3D;&#x3D;&#x3D; &#x27;error&#x27;) {
+            console.error(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
+        } else {
+            console.info(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
+        }
     }
 }
 </code></pre>

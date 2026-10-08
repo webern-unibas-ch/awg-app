@@ -1,0 +1,1861 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >RdfStoreService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The RdfStore service.</p>
+<p>It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
+executes SPARQL queries and converts the responses into RDF/JS terms.
+It is the only place that knows the rdfstore API and response formats.</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createStore" >_createStore</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_error" >_error</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#_execute" >_execute</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_literal" >_literal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_load" >_load</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_nodeToTerm" >_nodeToTerm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_query" >_query</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_stripBlankNodePrefix" >_stripBlankNodePrefix</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_toError" >_toError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_tokenToTerm" >_tokenToTerm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_toPredicate" >_toPredicate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_toSubject" >_toSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#construct" >construct</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#select" >select</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createStore"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_createStore</b></span>
+                        <a href="#_createStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createStore()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _createStore.</p>
+<p>It creates a new in-memory store.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/RdfStore.html" target="_self" >Promise&lt;RdfStore&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the store.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_error"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_error</b></span>
+                        <a href="#_error"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_error(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, cause?: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:283</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _error.</p>
+<p>It creates an Error with the given message, prefixed with the location of the service.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given message.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>cause</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The optional original error.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Error</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The error.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_execute"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>_execute</b></span>
+                        <a href="#_execute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_execute(turtle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:95</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _execute.</p>
+<p>It creates a new store, loads the turtle data and executes the query.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>turtle</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given turtle data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given query.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the raw response.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_literal"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_literal</b></span>
+                        <a href="#_literal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_literal(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, language?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, datatype?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _literal.</p>
+<p>It creates a literal with an optional language tag or datatype.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given value.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>language</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The optional language tag.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>datatype</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The optional datatype IRI.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The literal.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_load"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_load</b></span>
+                        <a href="#_load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_load(store: <a href="../interfaces/RdfStore.html" target="_self">RdfStore</a>, turtle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _load.</p>
+<p>It loads the given turtle data into the given store.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>store</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RdfStore.html" target="_self" >RdfStore</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given store.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>turtle</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given turtle data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the number of loaded triples.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_nodeToTerm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_nodeToTerm</b></span>
+                        <a href="#_nodeToTerm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_nodeToTerm(node: <a href="../interfaces/RdfStoreNode.html" target="_self">RdfStoreNode</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _nodeToTerm.</p>
+<p>It converts a node of a CONSTRUCT response into an RDF/JS term.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>node</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RdfStoreNode.html" target="_self" >RdfStoreNode</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given node.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The term.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_query"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_query</b></span>
+                        <a href="#_query"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_query(store: <a href="../interfaces/RdfStore.html" target="_self">RdfStore</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:157</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _query.</p>
+<p>It executes the given query against the given store.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>store</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RdfStore.html" target="_self" >RdfStore</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given store.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given query.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the raw response.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_stripBlankNodePrefix"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_stripBlankNodePrefix</b></span>
+                        <a href="#_stripBlankNodePrefix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_stripBlankNodePrefix(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="270"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:270</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _stripBlankNodePrefix.</p>
+<p>It removes the <code>_:</code> prefix of a blank node value.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given value.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The blank node id.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_toError"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_toError</b></span>
+                        <a href="#_toError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_toError(err: <a href="../miscellaneous/variables.html#w" target="_self">unknown</a>, fallbackMessage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="297"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:297</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _toError.</p>
+<p>It converts an unknown error of rdfstore into an Error with the location of the service.
+The original error is kept as <code>cause</code>.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>err</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given error.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fallbackMessage</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The message if the error has none.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Error</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The error.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_tokenToTerm"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_tokenToTerm</b></span>
+                        <a href="#_tokenToTerm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_tokenToTerm(token: <a href="../interfaces/RdfStoreToken.html" target="_self">RdfStoreToken</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _tokenToTerm.</p>
+<p>It converts a token of a SELECT response into an RDF/JS term.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>token</td>
+                                            <td>
+                                                            <code><a href="../interfaces/RdfStoreToken.html" target="_self" >RdfStoreToken</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given token.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The term.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_toPredicate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_toPredicate</b></span>
+                        <a href="#_toPredicate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_toPredicate(term: <a href="../miscellaneous/typealiases.html#RdfTerm" target="_self">RdfTerm</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _toPredicate.</p>
+<p>It narrows a term to a valid predicate (named node).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>term</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given term.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Quad_Predicate</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The predicate.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_toSubject"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_toSubject</b></span>
+                        <a href="#_toSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_toSubject(term: <a href="../miscellaneous/typealiases.html#RdfTerm" target="_self">RdfTerm</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _toSubject.</p>
+<p>It narrows a term to a valid subject (named node or blank node).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>term</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given term.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Quad_Subject</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The subject.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="construct"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>construct</b></span>
+                        <a href="#construct"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>construct(turtle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: construct.</p>
+<p>It executes a CONSTRUCT query against the given turtle data.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>turtle</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given turtle data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given CONSTRUCT query.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;Quad[]&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the constructed quads.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="select"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>select</b></span>
+                        <a href="#select"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>select(turtle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: select.</p>
+<p>It executes a SELECT query against the given turtle data.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>turtle</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given turtle data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>query</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given SELECT query.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;RdfStoreSelectResult&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>A promise of the variables and bindings.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import type { Quad, Quad_Object, Quad_Predicate, Quad_Subject } from &#x27;@rdfjs/types&#x27;;
+import { DataFactory } from &#x27;n3&#x27;;
+
+import { RdfTerm } from &#x27;../models/rdf.model&#x27;;
+import {
+    RdfStore,
+    RdfStoreConstructResponse,
+    RdfStoreGlobal,
+    RdfStoreNode,
+    RdfStoreSelectResponse,
+    RdfStoreSelectResult,
+    RdfStoreToken,
+} from &#x27;./rdf-store.model&#x27;;
+
+const { blankNode, literal, namedNode, quad } &#x3D; DataFactory;
+
+/**
+ * String constant: ERROR_LOCATION.
+ *
+ * It keeps the location prefix of all error messages of the service.
+ */
+const ERROR_LOCATION &#x3D; &#x27;[RdfStoreService]&#x27;;
+
+/**
+ * The RdfStore service.
+ *
+ * It is the adapter to the rdfstore engine: it loads turtle data into a new in-memory store,
+ * executes SPARQL queries and converts the responses into RDF/JS terms.
+ * It is the only place that knows the rdfstore API and response formats.
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class RdfStoreService {
+    /**
+     * Public method: construct.
+     *
+     * It executes a CONSTRUCT query against the given turtle data.
+     *
+     * @param {string} turtle The given turtle data.
+     * @param {string} query The given CONSTRUCT query.
+     * @returns {Promise&lt;Quad[]&gt;} A promise of the constructed quads.
+     */
+    async construct(turtle: string, query: string): Promise&lt;Quad[]&gt; {
+        const response &#x3D; await this._execute&lt;RdfStoreConstructResponse | null&gt;(turtle, query);
+
+        return (response?.triples ?? []).map(triple &#x3D;&gt;
+            quad(
+                this._toSubject(this._nodeToTerm(triple.subject)),
+                this._toPredicate(this._nodeToTerm(triple.predicate)),
+                this._nodeToTerm(triple.object) as Quad_Object
+            )
+        );
+    }
+
+    /**
+     * Public method: select.
+     *
+     * It executes a SELECT query against the given turtle data.
+     *
+     * @param {string} turtle The given turtle data.
+     * @param {string} query The given SELECT query.
+     * @returns {Promise&lt;RdfStoreSelectResult&gt;} A promise of the variables and bindings.
+     */
+    async select(turtle: string, query: string): Promise&lt;RdfStoreSelectResult&gt; {
+        const rows &#x3D; (await this._execute&lt;RdfStoreSelectResponse | null&gt;(turtle, query)) ?? [];
+
+        const variables &#x3D; rows.length ? Object.keys(rows[0]) : [];
+        const bindings &#x3D; rows.map(row &#x3D;&gt;
+            Object.freeze(
+                Object.fromEntries(
+                    Object.entries(row)
+                        .filter((entry): entry is [string, RdfStoreToken] &#x3D;&gt; entry[1] !&#x3D; null)
+                        .map(([variable, token]) &#x3D;&gt; [variable, this._tokenToTerm(token)])
+                )
+            )
+        );
+
+        return { variables, bindings };
+    }
+
+    /**
+     * Private method: _execute.
+     *
+     * It creates a new store, loads the turtle data and executes the query.
+     *
+     * @param {string} turtle The given turtle data.
+     * @param {string} query The given query.
+     * @returns {Promise&lt;T&gt;} A promise of the raw response.
+     */
+    private async _execute&lt;T&gt;(turtle: string, query: string): Promise&lt;T&gt; {
+        const store &#x3D; await this._createStore();
+        await this._load(store, turtle);
+
+        return this._query&lt;T&gt;(store, query);
+    }
+
+    /**
+     * Private method: _createStore.
+     *
+     * It creates a new in-memory store.
+     *
+     * @returns {Promise&lt;RdfStore&gt;} A promise of the store.
+     */
+    private _createStore(): Promise&lt;RdfStore&gt; {
+        const rdfstore &#x3D; (globalThis as { rdfstore?: RdfStoreGlobal }).rdfstore;
+
+        return new Promise((resolve, reject) &#x3D;&gt; {
+            if (!rdfstore?.create) {
+                reject(this._error(&#x27;rdfstore is not available in the current runtime.&#x27;));
+                return;
+            }
+            rdfstore.create((err, store) &#x3D;&gt; {
+                if (err) {
+                    reject(this._toError(err, &#x27;An unknown error occurred while creating the store.&#x27;));
+                    return;
+                }
+                resolve(store);
+            });
+        });
+    }
+
+    /**
+     * Private method: _load.
+     *
+     * It loads the given turtle data into the given store.
+     *
+     * @param {RdfStore} store The given store.
+     * @param {string} turtle The given turtle data.
+     * @returns {Promise&lt;number&gt;} A promise of the number of loaded triples.
+     */
+    private _load(store: RdfStore, turtle: string): Promise&lt;number&gt; {
+        return new Promise((resolve, reject) &#x3D;&gt; {
+            store.load(&#x27;text/turtle&#x27;, turtle, (err, size) &#x3D;&gt; {
+                if (err) {
+                    reject(this._toError(err, &#x27;An unknown error occurred while loading the triples.&#x27;));
+                    return;
+                }
+                resolve(size);
+            });
+        });
+    }
+
+    /**
+     * Private method: _query.
+     *
+     * It executes the given query against the given store.
+     *
+     * @param {RdfStore} store The given store.
+     * @param {string} query The given query.
+     * @returns {Promise&lt;T&gt;} A promise of the raw response.
+     */
+    private _query&lt;T&gt;(store: RdfStore, query: string): Promise&lt;T&gt; {
+        return new Promise((resolve, reject) &#x3D;&gt; {
+            store.execute(query, (err, result) &#x3D;&gt; {
+                if (err) {
+                    reject(this._toError(err, &#x27;An unknown error occurred while executing the query.&#x27;));
+                    return;
+                }
+                resolve(result as T);
+            });
+        });
+    }
+
+    /**
+     * Private method: _nodeToTerm.
+     *
+     * It converts a node of a CONSTRUCT response into an RDF/JS term.
+     *
+     * @param {RdfStoreNode} node The given node.
+     * @returns {RdfTerm} The term.
+     */
+    private _nodeToTerm(node: RdfStoreNode): RdfTerm {
+        switch (node.interfaceName) {
+            case &#x27;NamedNode&#x27;:
+                return namedNode(node.nominalValue);
+            case &#x27;BlankNode&#x27;:
+                return blankNode(String(node.bnodeId ?? this._stripBlankNodePrefix(node.nominalValue)));
+            case &#x27;Literal&#x27;: {
+                const datatype &#x3D; typeof node.datatype &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? node.datatype : node.datatype?.nominalValue;
+                return this._literal(node.nominalValue, node.language, datatype);
+            }
+            default:
+                throw this._error(&#x60;Unknown node type: ${String(node.interfaceName)}.&#x60;);
+        }
+    }
+
+    /**
+     * Private method: _tokenToTerm.
+     *
+     * It converts a token of a SELECT response into an RDF/JS term.
+     *
+     * @param {RdfStoreToken} token The given token.
+     * @returns {RdfTerm} The term.
+     */
+    private _tokenToTerm(token: RdfStoreToken): RdfTerm {
+        const value &#x3D; String(token.value);
+
+        switch (token.token) {
+            case &#x27;uri&#x27;:
+                return namedNode(value);
+            case &#x27;blank&#x27;:
+                return blankNode(this._stripBlankNodePrefix(value));
+            case &#x27;literal&#x27;:
+                return this._literal(value, token.lang, token.type);
+            default:
+                throw this._error(&#x60;Unknown token type: ${String(token.token)}.&#x60;);
+        }
+    }
+
+    /**
+     * Private method: _literal.
+     *
+     * It creates a literal with an optional language tag or datatype.
+     *
+     * @param {string} value The given value.
+     * @param {string} [language] The optional language tag.
+     * @param {string} [datatype] The optional datatype IRI.
+     * @returns {RdfTerm} The literal.
+     */
+    private _literal(value: string, language?: string, datatype?: string): RdfTerm {
+        if (language) {
+            return literal(value, language);
+        }
+        return datatype ? literal(value, namedNode(datatype)) : literal(value);
+    }
+
+    /**
+     * Private method: _toSubject.
+     *
+     * It narrows a term to a valid subject (named node or blank node).
+     *
+     * @param {RdfTerm} term The given term.
+     * @returns {Quad_Subject} The subject.
+     */
+    private _toSubject(term: RdfTerm): Quad_Subject {
+        if (term.termType &#x3D;&#x3D;&#x3D; &#x27;Literal&#x27;) {
+            throw this._error(&#x60;Invalid subject: literal &quot;${term.value}&quot;.&#x60;);
+        }
+        return term;
+    }
+
+    /**
+     * Private method: _toPredicate.
+     *
+     * It narrows a term to a valid predicate (named node).
+     *
+     * @param {RdfTerm} term The given term.
+     * @returns {Quad_Predicate} The predicate.
+     */
+    private _toPredicate(term: RdfTerm): Quad_Predicate {
+        if (term.termType !&#x3D;&#x3D; &#x27;NamedNode&#x27;) {
+            throw this._error(&#x60;Invalid predicate: ${term.termType} &quot;${term.value}&quot;.&#x60;);
+        }
+        return term;
+    }
+
+    /**
+     * Private method: _stripBlankNodePrefix.
+     *
+     * It removes the &#x60;_:&#x60; prefix of a blank node value.
+     *
+     * @param {string} value The given value.
+     * @returns {string} The blank node id.
+     */
+    private _stripBlankNodePrefix(value: string): string {
+        return value.startsWith(&#x27;_:&#x27;) ? value.slice(2) : value;
+    }
+
+    /**
+     * Private method: _error.
+     *
+     * It creates an Error with the given message, prefixed with the location of the service.
+     *
+     * @param {string} message The given message.
+     * @param {unknown} [cause] The optional original error.
+     * @returns {Error} The error.
+     */
+    private _error(message: string, cause?: unknown): Error {
+        return new Error(&#x60;${ERROR_LOCATION} ${message}&#x60;, cause &#x3D;&#x3D;&#x3D; undefined ? undefined : { cause });
+    }
+
+    /**
+     * Private method: _toError.
+     *
+     * It converts an unknown error of rdfstore into an Error with the location of the service.
+     * The original error is kept as &#x60;cause&#x60;.
+     *
+     * @param {unknown} err The given error.
+     * @param {string} fallbackMessage The message if the error has none.
+     * @returns {Error} The error.
+     */
+    private _toError(err: unknown, fallbackMessage: string): Error {
+        if (err instanceof Error) {
+            return this._error(err.message || fallbackMessage, err);
+        }
+        return this._error(typeof err &#x3D;&#x3D;&#x3D; &#x27;string&#x27; ? err : fallbackMessage, err);
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'RdfStoreService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

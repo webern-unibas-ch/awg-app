@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  QueryTypeConversion</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/graph-query.utils.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The QueryTypeConversion interface.</p>
+<p>It represents the conversion of a query of one type into another type.</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#convert" 
+>
+                                            convert
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#from" 
+>
+                                            from
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#to" 
+>
+                                            to
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="convert"></a>
+                                        <span class="name "><b>convert</b>
+                                            <a href="#convert">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>convert:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The function converting the query string (null if it cannot be converted).</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="from"></a>
+                                        <span class="name "><b>from</b>
+                                            <a href="#from">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>from:         <code><a href="../miscellaneous/typealiases.html#GraphQueryType" target="_self" >GraphQueryType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#GraphQueryType" target="_self" >GraphQueryType</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The query type to convert from.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="to"></a>
+                                        <span class="name "><b>to</b>
+                                            <a href="#to">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>to:         <code><a href="../miscellaneous/typealiases.html#GraphQueryType" target="_self" >GraphQueryType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#GraphQueryType" target="_self" >GraphQueryType</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The query type to convert to.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ViewHandleTypes } from &#x27;@awg-shared/view-handle-button-group/view-handle.model&#x27;;
+import { GraphQuery, GraphQueryType } from &#x27;@awg-views/edition-view/models/graph.model&#x27;;
+
+import { SparqlResult } from &#x27;../models/sparql-result.model&#x27;;
+import { DEFAULT_PREFIXES } from &#x27;./prefix.utils&#x27;;
+import { SPARQL_UTILS } from &#x27;./sparql.utils&#x27;;
+
+/**
+ * The QueryTypeConversion interface.
+ *
+ * It represents the conversion of a query of one type into another type.
+ */
+interface QueryTypeConversion {
+    /**
+     * The query type to convert from.
+     */
+    readonly from: GraphQueryType;
+
+    /**
+     * The query type to convert to.
+     */
+    readonly to: GraphQueryType;
+
+    /**
+     * The function converting the query string (null if it cannot be converted).
+     */
+    readonly convert: (queryString: string) &#x3D;&gt; string | null;
+}
+
+/**
+ * Object constant: VIEW_QUERY_TYPE_CONVERSIONS.
+ *
+ * It keeps the query type conversion of each view type (null if the view needs no conversion).
+ */
+const VIEW_QUERY_TYPE_CONVERSIONS: Readonly&lt;Record&lt;ViewHandleTypes, QueryTypeConversion | null&gt;&gt; &#x3D; {
+    [ViewHandleTypes.GRAPH]: { from: &#x27;select&#x27;, to: &#x27;construct&#x27;, convert: SPARQL_UTILS.toConstructQuery },
+    [ViewHandleTypes.GRID]: null,
+    [ViewHandleTypes.TABLE]: { from: &#x27;construct&#x27;, to: &#x27;select&#x27;, convert: SPARQL_UTILS.toSelectQuery },
+};
+
+/**
+ * Utils method: initialQuery.
+ *
+ * It gets a copy of the initial query (the first query of a given query list)
+ * with the query type derived from its query string.
+ *
+ * @param {GraphQuery[]} queryList The given query list.
+ * @returns {GraphQuery} The initial query.
+ */
+export function initialQuery(queryList: GraphQuery[]): GraphQuery {
+    const query &#x3D; queryList[0] ?? new GraphQuery();
+    return { ...query, queryType: SPARQL_UTILS.getQueryType(query.queryString) };
+}
+
+/**
+ * Utils method: findQuery.
+ *
+ * It finds the query of a given query list with the same label and type as a given query.
+ * If the given query is not in the list, it is returned as is;
+ * if no query is given, the first query of the list is returned.
+ *
+ * @param {GraphQuery[]} queryList The given query list.
+ * @param {GraphQuery} [query] The optional given query.
+ * @returns {GraphQuery} The found query.
+ */
+export function findQuery(queryList: GraphQuery[], query?: GraphQuery): GraphQuery {
+    if (!query) {
+        return queryList[0];
+    }
+
+    return (
+        queryList.find(
+            listQuery &#x3D;&gt; query.queryLabel &#x3D;&#x3D;&#x3D; listQuery.queryLabel &amp;&amp; query.queryType &#x3D;&#x3D;&#x3D; listQuery.queryType
+        ) ?? query
+    );
+}
+
+/**
+ * Utils method: isRunnableQueryType.
+ *
+ * It checks if queries of a given query type can be run
+ * (only construct and select queries for now).
+ *
+ * @param {GraphQueryType} queryType The given query type.
+ * @returns {boolean} The boolean value of the check result.
+ */
+export function isRunnableQueryType(queryType: GraphQueryType): boolean {
+    return queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27; || queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;;
+}
+
+/**
+ * Utils method: emptyResult.
+ *
+ * It creates an empty result of a given query type.
+ *
+ * @param {GraphQueryType} queryType The given query type.
+ * @returns {SparqlResult} The empty result.
+ */
+export function emptyResult(queryType: GraphQueryType): SparqlResult {
+    switch (queryType) {
+        case &#x27;construct&#x27;:
+            return { kind: &#x27;construct&#x27;, quads: [], prefixes: DEFAULT_PREFIXES };
+        case &#x27;select&#x27;:
+            return { kind: &#x27;select&#x27;, variables: [], bindings: [], prefixes: DEFAULT_PREFIXES };
+        default:
+            return { kind: &#x27;unsupported&#x27;, queryType };
+    }
+}
+
+/**
+ * Utils method: switchQueryType.
+ *
+ * It switches the type and string of a given query according to a given view type
+ * (a CONSTRUCT query to a SELECT query for the table view and vice versa for the graph view).
+ * Queries that need no or allow no conversion are returned unchanged.
+ *
+ * @param {GraphQuery} query The given query.
+ * @param {ViewHandleTypes} viewType The given view type.
+ * @returns {GraphQuery} The switched query (or the given query if nothing is to switch).
+ */
+export function switchQueryType(query: GraphQuery, viewType: ViewHandleTypes): GraphQuery {
+    const conversion &#x3D; VIEW_QUERY_TYPE_CONVERSIONS[viewType];
+    if (conversion?.from !&#x3D;&#x3D; query.queryType) {
+        return query;
+    }
+
+    const queryString &#x3D; conversion.convert(query.queryString);
+    return queryString ? { ...query, queryString, queryType: conversion.to } : query;
+}
+
+/**
+ * Utils constants: GRAPH_QUERY_UTILS.
+ *
+ * It keeps a namespace reference to the graph query utils methods.
+ */
+export const GRAPH_QUERY_UTILS &#x3D; {
+    emptyResult,
+    findQuery,
+    initialQuery,
+    isRunnableQueryType,
+    switchQueryType,
+} as const;
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'QueryTypeConversion.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

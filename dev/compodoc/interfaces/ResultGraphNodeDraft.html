@@ -1,0 +1,578 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  ResultGraphNodeDraft</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/result-graph.utils.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The ResultGraphNodeDraft interface.</p>
+<p>It represents a graph node while the graph is built
+(with flags that determine its kind at the end).</p>
+
+            </p>
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#isClass" 
+>
+                                            isClass
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#isInstance" 
+>
+                                            isInstance
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#term" 
+>
+                                            term
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="isClass"></a>
+                                        <span class="name "><b>isClass</b>
+                                            <a href="#isClass">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isClass:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="isInstance"></a>
+                                        <span class="name "><b>isInstance</b>
+                                            <a href="#isInstance">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>isInstance:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="term"></a>
+                                        <span class="name "><b>term</b>
+                                            <a href="#term">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>term:         <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#RdfTerm" target="_self" >RdfTerm</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { Quad } from &#x27;@rdfjs/types&#x27;;
+
+import { ResultGraph, ResultGraphEdge, ResultGraphNode, ResultNodeKind } from &#x27;../../models/result-graph.model&#x27;;
+import { PrefixMap, RdfTerm } from &#x27;../../models/rdf.model&#x27;;
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from &#x27;../../utils/term.utils&#x27;;
+
+/**
+ * The ResultGraphNodeDraft interface.
+ *
+ * It represents a graph node while the graph is built
+ * (with flags that determine its kind at the end).
+ */
+interface ResultGraphNodeDraft {
+    readonly term: RdfTerm;
+    readonly id: string;
+    isClass: boolean;
+    isInstance: boolean;
+}
+
+/**
+ * Private utils method: _toNodeKind.
+ *
+ * It determines the kind of a graph node from its draft.
+ *
+ * @param {ResultGraphNodeDraft} draft The given draft.
+ * @returns {ResultNodeKind} The kind of the node.
+ */
+function _toNodeKind(draft: ResultGraphNodeDraft): ResultNodeKind {
+    if (draft.isClass) {
+        return &#x27;class&#x27;;
+    }
+    if (draft.term.termType &#x3D;&#x3D;&#x3D; &#x27;BlankNode&#x27;) {
+        return &#x27;blank&#x27;;
+    }
+    if (draft.term.termType &#x3D;&#x3D;&#x3D; &#x27;Literal&#x27;) {
+        return &#x27;literal&#x27;;
+    }
+    return draft.isInstance ? &#x27;instance&#x27; : &#x27;resource&#x27;;
+}
+
+/**
+ * Utils method: extractLabels.
+ *
+ * It extracts the &#x60;rdfs:label&#x60; of the subjects of the given quads,
+ * keyed by the term key of the subject (the last label wins).
+ *
+ * @param {readonly Quad[]} quads The given quads.
+ * @returns {Map&lt;string, string&gt;} The labels by term key.
+ */
+export function extractLabels(quads: readonly Quad[]): Map&lt;string, string&gt; {
+    const labels &#x3D; new Map&lt;string, string&gt;();
+
+    quads.forEach(quad &#x3D;&gt; {
+        if (quad.predicate.equals(RDFS_LABEL) &amp;&amp; quad.object.termType &#x3D;&#x3D;&#x3D; &#x27;Literal&#x27;) {
+            labels.set(TERM_UTILS.termKey(quad.subject as RdfTerm), quad.object.value);
+        }
+    });
+
+    return labels;
+}
+
+/**
+ * Utils method: toResultGraph.
+ *
+ * It converts the given quads into the graph view model:
+ * - one node per distinct subject or object (by term key),
+ * - one edge per quad (from subject to object, labeled by the predicate),
+ * - the kind of a node from its term type and &#x60;rdf:type&#x60; statements
+ *   (precedence: class, blank, literal, instance, resource).
+ *
+ * @param {readonly Quad[]} quads The given quads.
+ * @param {PrefixMap} prefixes The prefixes to compact IRIs.
+ * @returns {ResultGraph} The graph data.
+ */
+export function toResultGraph(quads: readonly Quad[], prefixes: PrefixMap): ResultGraph {
+    const labels &#x3D; extractLabels(quads);
+    const drafts &#x3D; new Map&lt;string, ResultGraphNodeDraft&gt;();
+
+    const getOrCreateDraft &#x3D; (term: RdfTerm): ResultGraphNodeDraft &#x3D;&gt; {
+        const id &#x3D; TERM_UTILS.termKey(term);
+        let draft &#x3D; drafts.get(id);
+        if (!draft) {
+            draft &#x3D; { term, id, isClass: false, isInstance: false };
+            drafts.set(id, draft);
+        }
+        return draft;
+    };
+
+    const edges: ResultGraphEdge[] &#x3D; quads.map((quad, index) &#x3D;&gt; {
+        const subject &#x3D; getOrCreateDraft(quad.subject as RdfTerm);
+        const object &#x3D; getOrCreateDraft(quad.object as RdfTerm);
+
+        if (quad.predicate.equals(RDF_TYPE)) {
+            subject.isInstance &#x3D; true;
+            object.isClass &#x3D; true;
+        }
+
+        const predicate &#x3D; quad.predicate as RdfTerm;
+        const predicateKey &#x3D; TERM_UTILS.termKey(predicate);
+
+        return {
+            id: &#x60;e${index}&#x60;,
+            source: subject.id,
+            target: object.id,
+            label: labels.get(predicateKey) ?? TERM_UTILS.termShortName(predicate, prefixes),
+        };
+    });
+
+    const nodes: ResultGraphNode[] &#x3D; Array.from(drafts.values(), draft &#x3D;&gt; {
+        const shortName &#x3D; TERM_UTILS.termShortName(draft.term, prefixes);
+        return {
+            id: draft.id,
+            shortName,
+            label: labels.get(draft.id) ?? shortName,
+            kind: _toNodeKind(draft),
+        };
+    });
+
+    return { nodes, edges, tripleCount: quads.length };
+}
+
+/**
+ * Utils method: limitResultGraph.
+ *
+ * It limits the given graph data to its first edges
+ * and the nodes connected by them (in their original order).
+ * The triple count of the original graph is kept.
+ *
+ * @param {ResultGraph} graph The given graph data.
+ * @param {number} limit The maximum number of edges.
+ * @returns {ResultGraph} The limited graph data.
+ */
+export function limitResultGraph(graph: ResultGraph, limit: number): ResultGraph {
+    if (limit &gt;&#x3D; graph.edges.length) {
+        return graph;
+    }
+
+    const edges &#x3D; graph.edges.slice(0, Math.max(limit, 0));
+    const nodeIds &#x3D; new Set(edges.flatMap(edge &#x3D;&gt; [edge.source, edge.target]));
+    const nodes &#x3D; graph.nodes.filter(node &#x3D;&gt; nodeIds.has(node.id));
+
+    return { nodes, edges, tripleCount: graph.tripleCount };
+}
+
+/**
+ * Utils constants: RESULT_GRAPH_UTILS.
+ *
+ * It keeps a namespace reference to the graph data utils methods.
+ */
+export const RESULT_GRAPH_UTILS &#x3D; {
+    extractLabels,
+    limitResultGraph,
+    toResultGraph,
+} as const;
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'ResultGraphNodeDraft.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -148,8 +148,8 @@
     </p>
     <p class="comment">
         <p>The CodeMirror component.</p>
-<p>It contains a CodeMirror editor instance that is
-provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
+<p>It contains a CodeMirror editor instance
+with two-way binding of its content.</p>
 
     </p>
 
@@ -159,7 +159,6 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
     </p>
     <p class="comment">
                     <code><a href="../miscellaneous/variables.html#w" target="_self" >AfterViewInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
     </p>
 
 
@@ -231,10 +230,15 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_destroyRef" >_destroyRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#_editor" >_editor</a>
                             </li>
                             <li>
-                                    <span class="modifier"></span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#codemirrorhost" >codemirrorhost</a>
                             </li>
                         </ul>
@@ -250,17 +254,10 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_supportsRangeGeometry" >_supportsRangeGeometry</a>
-                            </li>
-                            <li>
                                 <a href="#init" >init</a>
                             </li>
                             <li>
                                 <a href="#ngAfterViewInit" >ngAfterViewInit</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnChanges" >ngOnChanges</a>
                             </li>
                             <li>
                                 <a href="#onContentChange" >onContentChange</a>
@@ -296,7 +293,7 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#contentChange" >contentChange</a>
+                                <a href="#content" >content</a>
                             </li>
                         </ul>
                     </td>
@@ -308,6 +305,32 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:81</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the CodeMirrorComponent.</p>
+<p>It syncs external content changes into the editor
+and destroys the editor view on component destroy.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
     <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
@@ -332,13 +355,14 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:72</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:67</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: content.</p>
-<p>It keeps the content of the codemirror editor.</p>
+                        <div class="io-description"><p>Readonly model signal: content.</p>
+<p>It holds the content of the codemirror editor.
+Changes from the editor are emitted via <code>contentChange</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -365,13 +389,13 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:58</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: mode.</p>
-<p>It keeps the mode of the codemirror editor.</p>
+                        <div class="io-description"><p>Readonly input signal: mode.</p>
+<p>It holds the mode of the codemirror editor.</p>
 </div>
                     </td>
                 </tr>
@@ -384,25 +408,26 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="contentChange"></a>
-                        <b>contentChange</b>
+                        <a name="content"></a>
+                        <b>content</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:79</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:67</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Output variable: contentChange.</p>
-<p>It keeps an event emitter to update the content after editor changes.</p>
+                        <div class="io-description"><p>Readonly model signal: content.</p>
+<p>It holds the content of the codemirror editor.
+Changes from the editor are emitted via <code>contentChange</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -416,53 +441,6 @@ provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_supportsRangeGeometry"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_supportsRangeGeometry</b></span>
-                        <a href="#_supportsRangeGeometry"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_supportsRangeGeometry()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="212"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:212</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _supportsRangeGeometry.</p>
-<p>It checks if the current DOM implementation supports range geometry APIs
-required by CodeMirror view measurement plugins.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>A boolean indicating support for range geometry APIs.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -483,8 +461,8 @@ required by CodeMirror view measurement plugins.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="183"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:183</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:126</a></div>
                         </td>
                     </tr>
 
@@ -559,8 +537,8 @@ required by CodeMirror view measurement plugins.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -568,89 +546,15 @@ required by CodeMirror view measurement plugins.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Angular life cycle hook: ngAfterViewInit.</p>
-<p>It calls the containing methods
-after initializing the view.</p>
+<p>It initializes the editor view after initializing the view.
+The editor is created in this hook (and not in an afterRender hook)
+so that its DOM listeners run inside the NgZone.</p>
 </div>
 
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnChanges"></a>
-                    <span class="name">
-                        <span ><b>ngOnChanges</b></span>
-                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="102"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:102</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnChanges.</p>
-<p>It checks for changes of the given input.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>changes</td>
-                                            <td>
-                                                            <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The changes of the input.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -675,8 +579,8 @@ after initializing the view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="200"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:200</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:143</a></div>
                         </td>
                     </tr>
 
@@ -684,8 +588,8 @@ after initializing the view.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onContentChange.</p>
-<p>It listens for a change of the content
-and emits it via the contentChange EventEmitter.</p>
+<p>It listens for a change of the editor content
+and sets it on the content model signal.</p>
 </div>
 
                             <div class="io-description">
@@ -725,7 +629,7 @@ and emits it via the contentChange EventEmitter.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Emits the changed content.</p>
+                                <p>Sets the changed content.</p>
 
                             </div>
                 </td>
@@ -738,6 +642,46 @@ and emits it via the contentChange EventEmitter.</p>
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_destroyRef</b></span>
+                        <a href="#_destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _destroyRef.</p>
+<p>It keeps the DestroyRef to clean up the editor view.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -758,7 +702,7 @@ and emits it via the contentChange EventEmitter.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -778,7 +722,7 @@ and emits it via the contentChange EventEmitter.</p>
                 <td class="col-md-4">
                     <a name="codemirrorhost"></a>
                     <span class="name">
-                            <span class="modifier"></span>
+                            <span class="modifier">Readonly</span>
                         <span ><b>codemirrorhost</b></span>
                         <a href="#codemirrorhost"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -786,29 +730,25 @@ and emits it via the contentChange EventEmitter.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>ElementRef&lt;HTMLDivElement&gt;</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ViewChild(&#x27;codemirrorhost&#x27;)<br />
-                        </code>
+                        <i>Default value : </i><code>viewChild.required&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(&#x27;codemirrorhost&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:86</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:74</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>ViewChild variable: codemirrorhost.</p>
-<p>It keeps the reference to the HTML template of the codemirror editor.</p>
+                    <div class="io-description"><p>Readonly view child signal: codemirrorhost.</p>
+<p>It holds the reference to the host element of the codemirror editor.</p>
 </div>
                 </td>
             </tr>
@@ -825,39 +765,26 @@ and emits it via the contentChange EventEmitter.</p>
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
+    DestroyRef,
+    effect,
     ElementRef,
-    EventEmitter,
-    Input,
-    OnChanges,
-    Output,
-    SimpleChanges,
-    ViewChild,
+    inject,
+    input,
+    model,
+    viewChild,
     ViewEncapsulation,
 } from &#x27;@angular/core&#x27;;
 
-import { StreamLanguage, StreamParser } from &#x27;@codemirror/language&#x27;;
-import { EditorState, Extension } from &#x27;@codemirror/state&#x27;;
-import { basicSetup, EditorView } from &#x27;codemirror&#x27;;
+import { EditorState } from &#x27;@codemirror/state&#x27;;
+import { EditorView } from &#x27;codemirror&#x27;;
 
-/**
- * The CmMode type.
- *
- * It represents the mode of a codemirror editor object.
- */
-export type CmMode &#x3D; StreamParser&lt;unknown&gt;;
-
-/**
- * The EditorStateConfig type.
- *
- * It represents the config object of a codemirror editor state.
- */
-type EditorStateConfig &#x3D; Parameters&lt;typeof EditorState.create&gt;[0];
+import { CmMode, createEditorState } from &#x27;./codemirror.utils&#x27;;
 
 /**
  * The CodeMirror component.
  *
- * It contains a CodeMirror editor instance that is
- * provided via the {@link SharedModule}.
+ * It contains a CodeMirror editor instance
+ * with two-way binding of its content.
  */
 @Component({
     selector: &#x27;awg-codemirror&#x27;,
@@ -865,36 +792,37 @@ type EditorStateConfig &#x3D; Parameters&lt;typeof EditorState.create&gt;[0];
     styleUrls: [&#x27;./codemirror.component.scss&#x27;],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
-export class CodeMirrorComponent implements AfterViewInit, OnChanges {
+export class CodeMirrorComponent implements AfterViewInit {
     /**
-     * Input variable: mode.
+     * Private readonly injection variable: _destroyRef.
      *
-     * It keeps the mode of the codemirror editor.
+     * It keeps the DestroyRef to clean up the editor view.
      */
-    @Input({ required: true }) mode!: CmMode;
+    private readonly _destroyRef &#x3D; inject(DestroyRef);
 
     /**
-     * Input variable: content.
+     * Readonly input signal: mode.
      *
-     * It keeps the content of the codemirror editor.
+     * It holds the mode of the codemirror editor.
      */
-    @Input() content &#x3D; &#x27;&#x27;;
+    readonly mode &#x3D; input.required&lt;CmMode&gt;();
 
     /**
-     * Output variable: contentChange.
+     * Readonly model signal: content.
      *
-     * It keeps an event emitter to update the content after editor changes.
+     * It holds the content of the codemirror editor.
+     * Changes from the editor are emitted via &#x60;contentChange&#x60;.
+     * @default &#x27;&#x27;
      */
-    @Output() contentChange: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+    readonly content &#x3D; model&lt;string&gt;(&#x27;&#x27;);
 
     /**
-     * ViewChild variable: codemirrorhost.
+     * Readonly view child signal: codemirrorhost.
      *
-     * It keeps the reference to the HTML template of the codemirror editor.
+     * It holds the reference to the host element of the codemirror editor.
      */
-    @ViewChild(&#x27;codemirrorhost&#x27;) codemirrorhost!: ElementRef&lt;HTMLDivElement&gt;;
+    readonly codemirrorhost &#x3D; viewChild.required&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(&#x27;codemirrorhost&#x27;);
 
     /**
      * Private variable: _editor.
@@ -904,82 +832,37 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     private _editor: EditorView | undefined;
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Constructor of the CodeMirrorComponent.
      *
-     * It checks for changes of the given input.
-     *
-     * @param {SimpleChanges} changes The changes of the input.
+     * It syncs external content changes into the editor
+     * and destroys the editor view on component destroy.
      */
-    ngOnChanges(changes: SimpleChanges): void {
-        if (
-            changes[&#x27;content&#x27;] &amp;&amp;
-            !changes[&#x27;content&#x27;].isFirstChange() &amp;&amp;
-            typeof changes[&#x27;content&#x27;].currentValue &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp;
-            this._editor &amp;&amp;
-            this.content !&#x3D;&#x3D; this._editor.state.doc.toString()
-        ) {
-            this._editor.dispatch({
-                changes: {
-                    from: 0,
-                    to: this._editor.state.doc.length,
-                    insert: this.content,
-                },
-            });
-        }
+    constructor() {
+        effect(() &#x3D;&gt; {
+            const content &#x3D; this.content();
+            if (this._editor &amp;&amp; content !&#x3D;&#x3D; this._editor.state.doc.toString()) {
+                this._editor.dispatch({
+                    changes: {
+                        from: 0,
+                        to: this._editor.state.doc.length,
+                        insert: content,
+                    },
+                });
+            }
+        });
+
+        this._destroyRef.onDestroy(() &#x3D;&gt; this._editor?.destroy());
     }
 
     /**
      * Angular life cycle hook: ngAfterViewInit.
      *
-     * It calls the containing methods
-     * after initializing the view.
+     * It initializes the editor view after initializing the view.
+     * The editor is created in this hook (and not in an afterRender hook)
+     * so that its DOM listeners run inside the NgZone.
      */
     ngAfterViewInit(): void {
-        const editorTheme &#x3D; EditorView.theme({
-            /* eslint-disable @typescript-eslint/naming-convention */
-            &#x27;&amp;&#x27;: {
-                fontSize: &#x27;small&#x27;,
-                minHeight: &#x27;300px&#x27;,
-            },
-            /* eslint-disable @typescript-eslint/naming-convention */
-            &#x27;.cm-gutters&#x27;: {
-                color: &#x27;#999&#x27;,
-            },
-            /* eslint-disable @typescript-eslint/naming-convention */
-            &#x27;.cm-scroller&#x27;: {
-                overflow: &#x27;auto&#x27;,
-                maxHeight: &#x27;300px&#x27;,
-            },
-        });
-        const editorThemeExtension: Extension[] &#x3D; [editorTheme];
-
-        const setupExtensions: Extension[] &#x3D; this._supportsRangeGeometry() ? [basicSetup] : [];
-
-        const ext: Extension[] &#x3D; [
-            ...setupExtensions,
-            EditorView.lineWrapping,
-
-            // Apply the custom editor theme
-            editorThemeExtension,
-
-            // Listen for editor content changes
-            EditorView.updateListener.of(view &#x3D;&gt; {
-                if (view.docChanged) {
-                    this.onContentChange(view.state.doc.toString());
-                }
-            }),
-
-            // Define the language mode
-            StreamLanguage.define(this.mode),
-        ];
-
-        const config: EditorStateConfig &#x3D; {
-            doc: this.content || &#x27;&#x27;,
-            extensions: ext,
-        };
-
-        const state &#x3D; EditorState.create(config);
-        this.init(state);
+        this.init(createEditorState(this.mode(), this.content(), content &#x3D;&gt; this.onContentChange(content)));
     }
 
     /**
@@ -994,40 +877,22 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     init(state: EditorState): void {
         this._editor &#x3D; new EditorView({
             state,
-            parent: this.codemirrorhost.nativeElement,
+            parent: this.codemirrorhost().nativeElement,
         });
     }
 
     /**
      * Public method: onContentChange.
      *
-     * It listens for a change of the content
-     * and emits it via the contentChange EventEmitter.
+     * It listens for a change of the editor content
+     * and sets it on the content model signal.
      *
      * @param {string} content The given content.
      *
-     * @returns {void} Emits the changed content.
+     * @returns {void} Sets the changed content.
      */
     onContentChange(content: string): void {
-        this.contentChange.emit(content);
-    }
-
-    /**
-     * Private method: _supportsRangeGeometry.
-     *
-     * It checks if the current DOM implementation supports range geometry APIs
-     * required by CodeMirror view measurement plugins.
-     *
-     * @returns {boolean} A boolean indicating support for range geometry APIs.
-     */
-    private _supportsRangeGeometry(): boolean {
-        if (typeof document &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || typeof document.createRange !&#x3D;&#x3D; &#x27;function&#x27;) {
-            return false;
-        }
-
-        const range &#x3D; document.createRange() as Partial&lt;Range&gt;;
-
-        return typeof range.getClientRects &#x3D;&#x3D;&#x3D; &#x27;function&#x27; &amp;&amp; typeof range.getBoundingClientRect &#x3D;&#x3D;&#x3D; &#x27;function&#x27;;
+        this.content.set(content);
     }
 }
 </code></pre>
@@ -1074,7 +939,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div #codemirrorhost class="codemirrorhost"></div></div>'
-    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'NavLinkGroupComponent', 'selector': 'awg-nav-link-group'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionGraphDescriptionComponent', 'selector': 'awg-edition-graph-description'},{'name': 'EditionGraphDynamicComponent', 'selector': 'awg-edition-graph-dynamic'},{'name': 'EditionGraphPlaceholderComponent', 'selector': 'awg-edition-graph-placeholder'},{'name': 'EditionGraphStaticComponent', 'selector': 'awg-edition-graph-static'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExampleQueriesComponent', 'selector': 'awg-example-queries'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphLimitComponent', 'selector': 'awg-force-graph-limit'},{'name': 'ForceGraphSvgComponent', 'selector': 'awg-force-graph-svg'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphEditorActionButtonsComponent', 'selector': 'awg-graph-editor-action-buttons'},{'name': 'GraphEditorSparqlComponent', 'selector': 'awg-graph-editor-sparql'},{'name': 'GraphEditorTriplesComponent', 'selector': 'awg-graph-editor-triples'},{'name': 'GraphResultsConstructComponent', 'selector': 'awg-graph-results-construct'},{'name': 'GraphResultsEmptyComponent', 'selector': 'awg-graph-results-empty'},{'name': 'GraphResultsSelectComponent', 'selector': 'awg-graph-results-select'},{'name': 'GraphResultsStatusComponent', 'selector': 'awg-graph-results-status'},{'name': 'GraphResultsUnsupportedComponent', 'selector': 'awg-graph-results-unsupported'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'NavLinkGroupComponent', 'selector': 'awg-nav-link-group'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'SelectTableComponent', 'selector': 'awg-select-table'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ClickDirective', 'selector': '[awgClick]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'EditionSheetFacetItemLinkDirective', 'selector': 'a[awgEditionSheetFacetItemLink]'},{'name': 'EditionSheetFacetScrollDirective', 'selector': '[awgEditionSheetFacetScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'SvgZoomDirective', 'selector': 'svg[awgSvgZoom]'}];
     var ACTUAL_COMPONENT = {'name': 'CodeMirrorComponent'};
 </script>

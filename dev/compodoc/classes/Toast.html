@@ -341,7 +341,7 @@ to be displayed with ngb-toast.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, TemplateRef } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal, TemplateRef } from &#x27;@angular/core&#x27;;
 
 /**
  * The ToastMessage class.
@@ -431,38 +431,73 @@ export class Toast {
 })
 export class ToastService {
     /**
-     * Public variable: toasts.
+     * Private readonly signal: _toasts.
      *
-     * It keeps the toast messages.
+     * It holds the toast messages.
      */
-    toasts: Toast[] &#x3D; [];
+    private readonly _toasts &#x3D; signal&lt;Toast[]&gt;([]);
+
+    /**
+     * Readonly signal: toasts.
+     *
+     * It holds the toast messages (readonly).
+     */
+    readonly toasts &#x3D; this._toasts.asReadonly();
 
     /**
      * Public method: add.
      *
-     * It adds the toast with the message
-     * represented by the given header and body to the toast array.
+     * It adds the given toast to the toast array.
      *
-     * @param {Toast} toast The given toast template.
-     * @param {*} options The given toast options.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Adds the toast message to the toast array.
+     * @returns {void} Adds the toast to the toast array.
      */
     add(toast: Toast): void {
-        this.toasts.push(toast);
+        this._toasts.update(toasts &#x3D;&gt; [...toasts, toast]);
     }
 
     /**
      * Public method: remove.
      *
-     * It deletes a given toast.
+     * It removes the given toast from the toast array.
      *
-     * @param { * } toast The given toast.
+     * @param {Toast} toast The given toast.
      *
-     * @returns {void} Deletes the toast message.
+     * @returns {void} Removes the toast from the toast array.
      */
     remove(toast: Toast): void {
-        this.toasts &#x3D; this.toasts.filter(t &#x3D;&gt; t !&#x3D;&#x3D; toast);
+        this._toasts.update(toasts &#x3D;&gt; toasts.filter(t &#x3D;&gt; t !&#x3D;&#x3D; toast));
+    }
+
+    /**
+     * Public method: showMessage.
+     *
+     * It shows a given toast message with the specified type
+     * and logs it to the console.
+     *
+     * @param {ToastMessage} toastMessage The given toast message.
+     * @param {&#x27;error&#x27; | &#x27;info&#x27;} [type] The optional type of message to display (default: &#x27;info&#x27;).
+     *
+     * @returns {void} Shows the message.
+     */
+    showMessage(toastMessage: ToastMessage, type: &#x27;error&#x27; | &#x27;info&#x27; &#x3D; &#x27;info&#x27;): void {
+        if (!toastMessage.message) {
+            return;
+        }
+
+        const toast &#x3D; new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: type &#x3D;&#x3D;&#x3D; &#x27;error&#x27; ? &#x27;bg-danger text-light&#x27; : &#x27;bg-info text-light&#x27;,
+            delay: toastMessage.duration,
+        });
+        this.add(toast);
+
+        if (type &#x3D;&#x3D;&#x3D; &#x27;error&#x27;) {
+            console.error(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
+        } else {
+            console.info(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
+        }
     }
 }
 </code></pre>

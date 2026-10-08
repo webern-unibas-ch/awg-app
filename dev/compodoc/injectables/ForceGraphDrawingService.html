@@ -1,0 +1,1279 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">awg-app documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ForceGraphDrawingService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The ForceGraphDrawing service.</p>
+<p>It draws the simulation data of a graph into a given svg root group
+and sets up the D3 force simulation (incl. dragging of the nodes) around the origin (0,0).
+The caller owns the returned simulation (e.g., stops it before redrawing).</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createDragBehaviour" >_createDragBehaviour</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createSimulation" >_createSimulation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawLinks" >_drawLinks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawLinkTexts" >_drawLinkTexts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodes" >_drawNodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_drawNodeTexts" >_drawNodeTexts</a>
+                            </li>
+                            <li>
+                                <a href="#getGraphNode" >getGraphNode</a>
+                            </li>
+                            <li>
+                                <a href="#renderGraph" >renderGraph</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createDragBehaviour"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_createDragBehaviour</b></span>
+                        <a href="#_createDragBehaviour"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createDragBehaviour(simulation: <a href="../miscellaneous/typealiases.html#ForceSimulation" target="_self">ForceSimulation</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _createDragBehaviour.</p>
+<p>It creates the drag behaviour for the drawn nodes:
+a dragged node is fixed at the pointer position and the simulation is reheated.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>simulation</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#ForceSimulation" target="_self" >ForceSimulation</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given force simulation.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/SimNode.html" target="_self" >D3_DRAG.DragBehavior&lt;any, SimNode, any&gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The drag behaviour.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createSimulation"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_createSimulation</b></span>
+                        <a href="#_createSimulation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createSimulation(simulationData: <a href="../interfaces/SimulationData.html" target="_self">SimulationData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _createSimulation.</p>
+<p>It creates and starts the force simulation of the given simulation data
+with a charge, a centering (to the origin), a collision and a link force.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>simulationData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimulationData.html" target="_self" >SimulationData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given simulation data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ForceSimulation" target="_self" >ForceSimulation</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The started force simulation.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawLinks"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawLinks</b></span>
+                        <a href="#_drawLinks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawLinks(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, edges: <a href="../interfaces/SimEdge.html" target="_self">SimEdge[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawLinks.</p>
+<p>It draws a path with an arrow marker for each of the given edges.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>edges</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimEdge.html" target="_self" >SimEdge[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given edges.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selection of the drawn links.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawLinkTexts"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawLinkTexts</b></span>
+                        <a href="#_drawLinkTexts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawLinkTexts(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, edges: <a href="../interfaces/SimEdge.html" target="_self">SimEdge[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawLinkTexts.</p>
+<p>It draws the label for each of the given edges.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>edges</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimEdge.html" target="_self" >SimEdge[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given edges.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selection of the drawn link texts.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodes</b></span>
+                        <a href="#_drawNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodes(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, graphSimNodes: <a href="../interfaces/SimNode.html" target="_self">GraphSimNode[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodes.</p>
+<p>It draws a circle for each of the given simulation nodes,
+with css class and radius by the kind of its graph node,
+and its label as accessible title (no tab stop).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>graphSimNodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimNode.html" target="_self" >GraphSimNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given simulation nodes of the graph nodes.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selection of the drawn nodes.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_drawNodeTexts"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_drawNodeTexts</b></span>
+                        <a href="#_drawNodeTexts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_drawNodeTexts(parentSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, graphSimNodes: <a href="../interfaces/SimNode.html" target="_self">GraphSimNode[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="259"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:259</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _drawNodeTexts.</p>
+<p>It draws the short name for each of the given simulation nodes.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parentSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given parent selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>graphSimNodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimNode.html" target="_self" >GraphSimNode[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given simulation nodes of the graph nodes.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selection of the drawn node texts.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGraphNode"></a>
+                    <span class="name">
+                        <span ><b>getGraphNode</b></span>
+                        <a href="#getGraphNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getGraphNode(target: EventTarget | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: getGraphNode.</p>
+<p>It gets the graph node of a given event target
+if the target is a drawn node (a circle within the nodes group).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>target</td>
+                                            <td>
+                                                        <code>EventTarget | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given event target.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/Graph.html" target="_self" >ResultGraphNode | undefined</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The graph node of the target, or undefined.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderGraph"></a>
+                    <span class="name">
+                        <span ><b>renderGraph</b></span>
+                        <a href="#renderGraph"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>renderGraph(svgRootGroupSelection: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, simulationData: <a href="../interfaces/SimulationData.html" target="_self">SimulationData</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph-drawing.service.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: renderGraph.</p>
+<p>It renders the given simulation data into a given svg root group selection.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>svgRootGroupSelection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given svg root group selection.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>simulationData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/SimulationData.html" target="_self" >SimulationData</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given simulation data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ForceSimulation" target="_self" >ForceSimulation</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The started force simulation.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import * as D3_DRAG from &#x27;d3-drag&#x27;;
+import * as D3_FORCE from &#x27;d3-force&#x27;;
+import * as D3_SELECTION from &#x27;d3-selection&#x27;;
+
+import { D3Selection } from &#x27;@awg-views/edition-view/models/d3-selection.model&#x27;;
+
+import { ResultGraphNode } from &#x27;../../../models/result-graph.model&#x27;;
+import { ForceSimulation, GraphSimNode, SimEdge, SimLink, SimNode, SimulationData } from &#x27;./force-graph.model&#x27;;
+import { FORCE_GRAPH_UTILS } from &#x27;./force-graph.utils&#x27;;
+
+/**
+ * Object constant with a set of forces.
+ *
+ * It provides the default values for the D3 simulation&#x27;s forces.
+ *
+ * Available force values: &#x60;LINK_DISTANCE&#x60;, &#x60;COLLISION_STRENGTH&#x60;, &#x60;COLLISION_RADIUS&#x60;, &#x60;CHARGE_STRENGTH&#x60;.
+ */
+const FORCES &#x3D; {
+    LINK_DISTANCE: 10, // Default 30
+    COLLISION_STRENGTH: 1, // 0–1; Default: 0.7
+    COLLISION_RADIUS: 30,
+    CHARGE_STRENGTH: -10, //  Default -30
+};
+
+/**
+ * Constant: FORCE_GRAPH_ARROW_MARKER_ID.
+ *
+ * It keeps the id of the svg marker drawn at the end of the links.
+ */
+export const FORCE_GRAPH_ARROW_MARKER_ID &#x3D; &#x27;awg-force-graph-arrow&#x27;;
+
+/**
+ * The ForceGraphDrawing service.
+ *
+ * It draws the simulation data of a graph into a given svg root group
+ * and sets up the D3 force simulation (incl. dragging of the nodes) around the origin (0,0).
+ * The caller owns the returned simulation (e.g., stops it before redrawing).
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class ForceGraphDrawingService {
+    /**
+     * Public method: renderGraph.
+     *
+     * It renders the given simulation data into a given svg root group selection.
+     *
+     * @param {D3Selection} svgRootGroupSelection The given svg root group selection.
+     * @param {SimulationData} simulationData The given simulation data.
+     * @returns {ForceSimulation} The started force simulation.
+     */
+    renderGraph(svgRootGroupSelection: D3Selection, simulationData: SimulationData): ForceSimulation {
+        // Clear the content of the root group before redrawing
+        svgRootGroupSelection.selectAll(&#x27;*&#x27;).remove();
+
+        const graphSimNodes &#x3D; simulationData.nodes.filter((d: SimNode): d is GraphSimNode &#x3D;&gt; !!d.graphNode);
+
+        const links &#x3D; this._drawLinks(svgRootGroupSelection, simulationData.edges);
+        const linkTexts &#x3D; this._drawLinkTexts(svgRootGroupSelection, simulationData.edges);
+        const nodeTexts &#x3D; this._drawNodeTexts(svgRootGroupSelection, graphSimNodes);
+        const nodes &#x3D; this._drawNodes(svgRootGroupSelection, graphSimNodes);
+
+        const simulation &#x3D; this._createSimulation(simulationData);
+
+        // Update node and link positions on each tick of the simulation
+        simulation.on(&#x27;tick&#x27;, () &#x3D;&gt; {
+            nodes.attr(&#x27;cx&#x27;, (d: SimNode) &#x3D;&gt; d.x ?? 0).attr(&#x27;cy&#x27;, (d: SimNode) &#x3D;&gt; d.y ?? 0);
+            nodeTexts.attr(&#x27;x&#x27;, (d: SimNode) &#x3D;&gt; (d.x ?? 0) + 12).attr(&#x27;y&#x27;, (d: SimNode) &#x3D;&gt; (d.y ?? 0) + 3);
+            links.attr(&#x27;d&#x27;, (d: SimEdge) &#x3D;&gt; FORCE_GRAPH_UTILS.linkPath(d));
+            linkTexts.each(function (d: SimEdge) {
+                // Compute the label position only once per edge
+                const { x, y } &#x3D; FORCE_GRAPH_UTILS.linkLabelPosition(d);
+                D3_SELECTION.select(this).attr(&#x27;x&#x27;, x).attr(&#x27;y&#x27;, y);
+            });
+        });
+
+        nodes.call(this._createDragBehaviour(simulation));
+
+        return simulation;
+    }
+
+    /**
+     * Public method: getGraphNode.
+     *
+     * It gets the graph node of a given event target
+     * if the target is a drawn node (a circle within the nodes group).
+     *
+     * @param {EventTarget | null} target The given event target.
+     * @returns {ResultGraphNode | undefined} The graph node of the target, or undefined.
+     */
+    getGraphNode(target: EventTarget | null): ResultGraphNode | undefined {
+        if (!(target instanceof Element) || !target.matches(&#x27;g.nodes &gt; circle&#x27;)) {
+            return undefined;
+        }
+        return D3_SELECTION.select&lt;Element, SimNode | undefined&gt;(target).datum()?.graphNode;
+    }
+
+    /**
+     * Private method: _createDragBehaviour.
+     *
+     * It creates the drag behaviour for the drawn nodes:
+     * a dragged node is fixed at the pointer position and the simulation is reheated.
+     *
+     * @param {ForceSimulation} simulation The given force simulation.
+     * @returns {D3_DRAG.DragBehavior&lt;any, SimNode, any&gt;} The drag behaviour.
+     */
+    private _createDragBehaviour(simulation: ForceSimulation): D3_DRAG.DragBehavior&lt;any, SimNode, any&gt; {
+        return D3_DRAG.drag&lt;any, SimNode&gt;()
+            .on(&#x27;start&#x27;, (event: any, d: SimNode) &#x3D;&gt; {
+                // Prevent the propagation of the drag start to the parent elements (e.g., panning of the svg)
+                event.sourceEvent.stopPropagation();
+
+                if (!event.active) {
+                    simulation.alphaTarget(0.3).restart();
+                }
+                d.fx &#x3D; d.x;
+                d.fy &#x3D; d.y;
+            })
+            .on(&#x27;drag&#x27;, (event: any, d: SimNode) &#x3D;&gt; {
+                d.fx &#x3D; event.x;
+                d.fy &#x3D; event.y;
+            })
+            .on(&#x27;end&#x27;, (event: any, d: SimNode) &#x3D;&gt; {
+                if (!event.active) {
+                    simulation.alphaTarget(0);
+                }
+                d.fx &#x3D; null;
+                d.fy &#x3D; null;
+            });
+    }
+
+    /**
+     * Private method: _createSimulation.
+     *
+     * It creates and starts the force simulation of the given simulation data
+     * with a charge, a centering (to the origin), a collision and a link force.
+     *
+     * @param {SimulationData} simulationData The given simulation data.
+     * @returns {ForceSimulation} The started force simulation.
+     */
+    private _createSimulation(simulationData: SimulationData): ForceSimulation {
+        // The charge uses the radius of the drawn node reduced by 1
+        const chargeForce &#x3D; D3_FORCE.forceManyBody&lt;SimNode&gt;().strength(
+            (d: SimNode) &#x3D;&gt; (d.r - 1) * FORCES.CHARGE_STRENGTH
+        );
+
+        const centerForce &#x3D; D3_FORCE.forceCenter&lt;SimNode&gt;(0, 0);
+
+        const collideForce &#x3D; D3_FORCE.forceCollide&lt;SimNode&gt;()
+            .strength(FORCES.COLLISION_STRENGTH)
+            .radius(FORCES.COLLISION_RADIUS)
+            .iterations(2);
+
+        // A link force with id accessor to use named sources and targets
+        const linkForce &#x3D; D3_FORCE.forceLink&lt;SimNode, SimLink&gt;()
+            .links(simulationData.links)
+            .id((d: SimNode) &#x3D;&gt; d.id)
+            .distance(FORCES.LINK_DISTANCE);
+
+        return D3_FORCE.forceSimulation&lt;SimNode, SimLink&gt;()
+            .force(&#x27;charge_force&#x27;, chargeForce)
+            .force(&#x27;center_force&#x27;, centerForce)
+            .force(&#x27;collide_force&#x27;, collideForce)
+            .nodes(simulationData.nodes)
+            .force(&#x27;links&#x27;, linkForce)
+            .alpha(1)
+            .restart();
+    }
+
+    /**
+     * Private method: _drawLinks.
+     *
+     * It draws a path with an arrow marker for each of the given edges.
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {SimEdge[]} edges The given edges.
+     * @returns {D3Selection} The selection of the drawn links.
+     */
+    private _drawLinks(parentSelection: D3Selection, edges: SimEdge[]): D3Selection {
+        return parentSelection
+            .append(&#x27;g&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;links&#x27;)
+            .selectAll(&#x27;.link&#x27;)
+            .data(edges)
+            .enter()
+            .append(&#x27;path&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;link&#x27;)
+            .attr(&#x27;marker-end&#x27;, &#x60;url(#${FORCE_GRAPH_ARROW_MARKER_ID})&#x60;);
+    }
+
+    /**
+     * Private method: _drawLinkTexts.
+     *
+     * It draws the label for each of the given edges.
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {SimEdge[]} edges The given edges.
+     * @returns {D3Selection} The selection of the drawn link texts.
+     */
+    private _drawLinkTexts(parentSelection: D3Selection, edges: SimEdge[]): D3Selection {
+        return parentSelection
+            .append(&#x27;g&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;link-texts&#x27;)
+            .selectAll(&#x27;.link-text&#x27;)
+            .data(edges)
+            .enter()
+            .append(&#x27;text&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;link-text&#x27;)
+            .text((d: SimEdge) &#x3D;&gt; d.edge.label);
+    }
+
+    /**
+     * Private method: _drawNodes.
+     *
+     * It draws a circle for each of the given simulation nodes,
+     * with css class and radius by the kind of its graph node,
+     * and its label as accessible title (no tab stop).
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {GraphSimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
+     * @returns {D3Selection} The selection of the drawn nodes.
+     */
+    private _drawNodes(parentSelection: D3Selection, graphSimNodes: GraphSimNode[]): D3Selection {
+        const nodes &#x3D; parentSelection
+            .append(&#x27;g&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;nodes&#x27;)
+            .selectAll(&#x27;.node&#x27;)
+            .data(graphSimNodes)
+            .enter()
+            .append(&#x27;circle&#x27;)
+            .attr(&#x27;class&#x27;, (d: GraphSimNode) &#x3D;&gt; FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode.kind))
+            .attr(&#x27;id&#x27;, (d: GraphSimNode) &#x3D;&gt; d.graphNode.label)
+            .attr(&#x27;r&#x27;, (d: GraphSimNode) &#x3D;&gt; d.r)
+            .attr(&#x27;role&#x27;, &#x27;img&#x27;);
+
+        nodes.append(&#x27;title&#x27;).text((d: GraphSimNode) &#x3D;&gt; d.graphNode.label);
+
+        return nodes;
+    }
+
+    /**
+     * Private method: _drawNodeTexts.
+     *
+     * It draws the short name for each of the given simulation nodes.
+     *
+     * @param {D3Selection} parentSelection The given parent selection.
+     * @param {GraphSimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
+     * @returns {D3Selection} The selection of the drawn node texts.
+     */
+    private _drawNodeTexts(parentSelection: D3Selection, graphSimNodes: GraphSimNode[]): D3Selection {
+        return parentSelection
+            .append(&#x27;g&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;node-texts&#x27;)
+            .selectAll(&#x27;.node-text&#x27;)
+            .data(graphSimNodes)
+            .enter()
+            .append(&#x27;text&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;node-text&#x27;)
+            .text((d: GraphSimNode) &#x3D;&gt; d.graphNode.shortName);
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ForceGraphDrawingService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

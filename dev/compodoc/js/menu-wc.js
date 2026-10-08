@@ -103,46 +103,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/CodeMirrorModule.html" data-type="entity-link" >CodeMirrorModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' : 'data-bs-target="#xs-components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' :
-                                            'id="xs-components-links-module-CodeMirrorModule-e980061e575128eb2ab90649a7d1904d0b17644951174981ead18669977172e0cdae663933cb3c2712df0ae24fba55b4260db0025e4043fb68a1a5131e3473d3"' }>
-                                            <li class="link">
-                                                <a href="components/CodeMirrorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CodeMirrorComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionGraphModule.html" data-type="entity-link" >EditionGraphModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionGraphModule-84f7b79f9aa24881850a7956fc9742ce239ca1a47f0efafb599a0aeccc360738337d0ae0c2959adcd16739f287e1e512dc445df89109350e9b2e80cc80a5a101"' : 'data-bs-target="#xs-components-links-module-EditionGraphModule-84f7b79f9aa24881850a7956fc9742ce239ca1a47f0efafb599a0aeccc360738337d0ae0c2959adcd16739f287e1e512dc445df89109350e9b2e80cc80a5a101"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionGraphModule-84f7b79f9aa24881850a7956fc9742ce239ca1a47f0efafb599a0aeccc360738337d0ae0c2959adcd16739f287e1e512dc445df89109350e9b2e80cc80a5a101"' :
-                                            'id="xs-components-links-module-EditionGraphModule-84f7b79f9aa24881850a7956fc9742ce239ca1a47f0efafb599a0aeccc360738337d0ae0c2959adcd16739f287e1e512dc445df89109350e9b2e80cc80a5a101"' }>
-                                            <li class="link">
-                                                <a href="components/ButtonUsageHintsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonUsageHintsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionGraphComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link" >EditionGraphRoutingModule</a>
-                            </li>
-                            <li class="link">
                                 <a href="modules/EditionViewModule.html" data-type="entity-link" >EditionViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
@@ -184,88 +144,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionViewRoutingModule.html" data-type="entity-link" >EditionViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/GraphVisualizerModule.html" data-type="entity-link" >GraphVisualizerModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' : 'data-bs-target="#xs-components-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' :
-                                            'id="xs-components-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                            <li class="link">
-                                                <a href="components/ConstructResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ConstructResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ForceGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ForceGraphComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/GraphVisualizerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SelectResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SelectResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SliderZoomComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SliderZoomComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlEditorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlNoResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlNoResultsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SparqlTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlTableComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TriplesEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TriplesEditorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/UnsupportedTypeResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UnsupportedTypeResultsComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' : 'data-bs-target="#xs-injectables-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' :
-                                        'id="xs-injectables-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                        <li class="link">
-                                            <a href="injectables/GraphVisualizerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerService</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#pipes-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' : 'data-bs-target="#xs-pipes-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                            <span class="icon ion-md-add"></span>
-                                            <span>Pipes</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' :
-                                            'id="xs-pipes-links-module-GraphVisualizerModule-7997e9273f52776c2352b8150281660d9ea39c2c16f48c384ef22f86cacf095d8db923d1f52098cd554eb651a845c3e74c24eb04862d92dbfd1c719e6e82c18d"' }>
-                                            <li class="link">
-                                                <a href="pipes/PrefixPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PrefixPipe</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
                                 <a href="modules/SharedModule.html" data-type="entity-link" >SharedModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' : 'data-bs-target="#xs-components-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
+                                            'data-bs-target="#components-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' : 'data-bs-target="#xs-components-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' :
-                                            'id="xs-components-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' :
+                                            'id="xs-components-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' }>
                                             <li class="link">
                                                 <a href="components/AlertErrorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AlertErrorComponent</a>
                                             </li>
@@ -303,9 +191,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                                 <a href="components/TableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TableComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/TablePaginationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TablePaginationComponent</a>
-                                            </li>
-                                            <li class="link">
                                                 <a href="components/ToastComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToastComponent</a>
                                             </li>
                                             <li class="link">
@@ -318,13 +203,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' : 'data-bs-target="#xs-directives-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
+                                        'data-bs-target="#directives-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' : 'data-bs-target="#xs-directives-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' :
-                                        'id="xs-directives-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' :
+                                        'id="xs-directives-links-module-SharedModule-df1bb7bc4d1dee6b1ba522bea610957efbdd6cce92a65ffa2987b7f94a876b5672855a099e2bdc089ec6a8681a9956efcacf7902e885c25f904b51154d68800f"' }>
                                         <li class="link">
                                             <a href="directives/AbbrDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AbbrDirective</a>
                                         </li>
@@ -336,20 +221,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                     </ul>
                                 </li>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#pipes-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' : 'data-bs-target="#xs-pipes-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
-                                            <span class="icon ion-md-add"></span>
-                                            <span>Pipes</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' :
-                                            'id="xs-pipes-links-module-SharedModule-58b8d09ffb31a145badada4caafd2610f439a77b09f3f0b03f82c2382ee2dff13fd7851c85bc5aee7eabdc2773643249511fa8650ecfb9fef0fb971509760858"' }>
-                                            <li class="link">
-                                                <a href="pipes/OrderByPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OrderByPipe</a>
-                                            </li>
-                                        </ul>
-                                    </li>
                             </li>
                             <li class="link">
                                 <a href="modules/SharedNgbootstrapModule.html" data-type="entity-link" >SharedNgbootstrapModule</a>
@@ -383,10 +254,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ButtonUsageHintsComponent.html" data-type="entity-link" >ButtonUsageHintsComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ConditionalLinkComponent.html" data-type="entity-link" >ConditionalLinkComponent</a>
+                                <a href="components/CodeMirrorComponent.html" data-type="entity-link" >CodeMirrorComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ConstructResultsComponent.html" data-type="entity-link" >ConstructResultsComponent</a>
+                                <a href="components/ConditionalLinkComponent.html" data-type="entity-link" >ConditionalLinkComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ContactAddressComponent.html" data-type="entity-link" >ContactAddressComponent</a>
@@ -423,6 +294,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionFoliosViewerSvgComponent.html" data-type="entity-link" >EditionFoliosViewerSvgComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphComponent.html" data-type="entity-link" >EditionGraphComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphDescriptionComponent.html" data-type="entity-link" >EditionGraphDescriptionComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphDynamicComponent.html" data-type="entity-link" >EditionGraphDynamicComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphPlaceholderComponent.html" data-type="entity-link" >EditionGraphPlaceholderComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/EditionGraphStaticComponent.html" data-type="entity-link" >EditionGraphStaticComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionIntroComponent.html" data-type="entity-link" >EditionIntroComponent</a>
@@ -536,6 +422,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionViewComponent.html" data-type="entity-link" >EditionViewComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ExampleQueriesComponent.html" data-type="entity-link" >ExampleQueriesComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FooterComponent.html" data-type="entity-link" >FooterComponent</a>
                             </li>
                             <li class="link">
@@ -551,10 +440,43 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ForceGraphComponent.html" data-type="entity-link" >ForceGraphComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/ForceGraphLimitComponent.html" data-type="entity-link" >ForceGraphLimitComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/ForceGraphSvgComponent.html" data-type="entity-link" >ForceGraphSvgComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/FormSwitchComponent.html" data-type="entity-link" >FormSwitchComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/FullscreenToggleComponent.html" data-type="entity-link" >FullscreenToggleComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphEditorActionButtonsComponent.html" data-type="entity-link" >GraphEditorActionButtonsComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphEditorSparqlComponent.html" data-type="entity-link" >GraphEditorSparqlComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphEditorTriplesComponent.html" data-type="entity-link" >GraphEditorTriplesComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsConstructComponent.html" data-type="entity-link" >GraphResultsConstructComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsEmptyComponent.html" data-type="entity-link" >GraphResultsEmptyComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsSelectComponent.html" data-type="entity-link" >GraphResultsSelectComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsStatusComponent.html" data-type="entity-link" >GraphResultsStatusComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphResultsUnsupportedComponent.html" data-type="entity-link" >GraphResultsUnsupportedComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/GraphVisualizerComponent.html" data-type="entity-link" >GraphVisualizerComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/HeadingComponent.html" data-type="entity-link" >HeadingComponent</a>
@@ -596,7 +518,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/PageNotFoundViewComponent.html" data-type="entity-link" >PageNotFoundViewComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SelectResultsComponent.html" data-type="entity-link" >SelectResultsComponent</a>
+                                <a href="components/SelectTableComponent.html" data-type="entity-link" >SelectTableComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SliderZoomComponent.html" data-type="entity-link" >SliderZoomComponent</a>
@@ -656,15 +578,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SourceSiglumComponent.html" data-type="entity-link" >SourceSiglumComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SparqlEditorComponent.html" data-type="entity-link" >SparqlEditorComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SparqlNoResultsComponent.html" data-type="entity-link" >SparqlNoResultsComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SparqlTableComponent.html" data-type="entity-link" >SparqlTableComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/StatisticsBreakdownBadgeComponent.html" data-type="entity-link" >StatisticsBreakdownBadgeComponent</a>
                             </li>
                             <li class="link">
@@ -695,19 +608,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/StructureViewComponent.html" data-type="entity-link" >StructureViewComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/TableComponent.html" data-type="entity-link" >TableComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/TablePaginationComponent.html" data-type="entity-link" >TablePaginationComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/TextcriticsListComponent.html" data-type="entity-link" >TextcriticsListComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/TriplesEditorComponent.html" data-type="entity-link" >TriplesEditorComponent</a>
+                                <a href="components/ToastComponent.html" data-type="entity-link" >ToastComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/TwelveToneSpinnerComponent.html" data-type="entity-link" >TwelveToneSpinnerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/UnsupportedTypeResultsComponent.html" data-type="entity-link" >UnsupportedTypeResultsComponent</a>
+                                <a href="components/ViewContainerComponent.html" data-type="entity-link" >ViewContainerComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/ViewContainerComponent.html" data-type="entity-link" >ViewContainerComponent</a>
+                                <a href="components/ViewHandleButtonGroupComponent.html" data-type="entity-link" >ViewHandleButtonGroupComponent</a>
                             </li>
                         </ul>
                     </li>
@@ -757,21 +676,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AppConfig.html" data-type="entity-link" >AppConfig</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3ForceSimulation.html" data-type="entity-link" >D3ForceSimulation</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationData.html" data-type="entity-link" >D3SimulationData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationLink.html" data-type="entity-link" >D3SimulationLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationNode.html" data-type="entity-link" >D3SimulationNode</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link" >D3SimulationNodeTriple</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
                             </li>
                             <li class="link">
@@ -808,10 +712,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GraphList.html" data-type="entity-link" >GraphList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphRDFData.html" data-type="entity-link" >GraphRDFData</a>
+                                <a href="classes/GraphQuery.html" data-type="entity-link" >GraphQuery</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphSparqlQuery.html" data-type="entity-link" >GraphSparqlQuery</a>
+                                <a href="classes/GraphRdfData.html" data-type="entity-link" >GraphRdfData</a>
                             </li>
                             <li class="link">
                                 <a href="classes/IntroList.html" data-type="entity-link" >IntroList</a>
@@ -821,9 +725,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/PrefaceList.html" data-type="entity-link" >PrefaceList</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/Prefix.html" data-type="entity-link" >Prefix</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RowtablesList.html" data-type="entity-link" >RowtablesList</a>
@@ -851,12 +752,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/StatisticsSeriesBreakdown.html" data-type="entity-link" >StatisticsSeriesBreakdown</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TableData.html" data-type="entity-link" >TableData</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/TablePaginatorOptions.html" data-type="entity-link" >TablePaginatorOptions</a>
                             </li>
                             <li class="link">
                                 <a href="classes/TextcriticalCommentary.html" data-type="entity-link" >TextcriticalCommentary</a>
@@ -894,9 +789,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
                                     <a href="injectables/AnalyticsService.html" data-type="entity-link" >AnalyticsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/D3Service.html" data-type="entity-link" >D3Service</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/EditionBreadcrumbService.html" data-type="entity-link" >EditionBreadcrumbService</a>
@@ -938,16 +830,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/EditionViewService.html" data-type="entity-link" >EditionViewService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
+                                    <a href="injectables/ForceGraphDrawingService.html" data-type="entity-link" >ForceGraphDrawingService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/GraphVisualizerService.html" data-type="entity-link" >GraphVisualizerService</a>
+                                    <a href="injectables/FullscreenService.html" data-type="entity-link" >FullscreenService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/LoadingService.html" data-type="entity-link" >LoadingService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/ModalService.html" data-type="entity-link" >ModalService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/RdfStoreService.html" data-type="entity-link" >RdfStoreService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SparqlQueryService.html" data-type="entity-link" >SparqlQueryService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/StatisticsService.html" data-type="entity-link" >StatisticsService</a>
@@ -966,19 +864,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/AbstractTriple.html" data-type="entity-link" >AbstractTriple</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/D3DragBehaviour.html" data-type="entity-link" >D3DragBehaviour</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/D3ForceSimulationOptions.html" data-type="entity-link" >D3ForceSimulationOptions</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/D3Selection.html" data-type="entity-link" >D3Selection</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/D3Simulation.html" data-type="entity-link" >D3Simulation</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/D3ZoomBehaviour.html" data-type="entity-link" >D3ZoomBehaviour</a>
@@ -1179,49 +1065,67 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/ModalData.html" data-type="entity-link" >ModalData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/NavbarItem.html" data-type="entity-link" >NavbarItem</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/NavbarItems.html" data-type="entity-link" >NavbarItems</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/Point.html" data-type="entity-link" >Point</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/Preface.html" data-type="entity-link" >Preface</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResult.html" data-type="entity-link" >QuerySelectResult</a>
+                                <a href="interfaces/QueryTypeConversion.html" data-type="entity-link" >QueryTypeConversion</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultBindings.html" data-type="entity-link" >QuerySelectResultBindings</a>
+                                <a href="interfaces/RdfStore.html" data-type="entity-link" >RdfStore</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultBody.html" data-type="entity-link" >QuerySelectResultBody</a>
+                                <a href="interfaces/RdfStoreConstructResponse.html" data-type="entity-link" >RdfStoreConstructResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QuerySelectResultHead.html" data-type="entity-link" >QuerySelectResultHead</a>
+                                <a href="interfaces/RdfStoreGlobal.html" data-type="entity-link" >RdfStoreGlobal</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponse.html" data-type="entity-link" >RDFStoreConstructResponse</a>
+                                <a href="interfaces/RdfStoreNode.html" data-type="entity-link" >RdfStoreNode</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponseTriple.html" data-type="entity-link" >RDFStoreConstructResponseTriple</a>
+                                <a href="interfaces/RdfStoreSelectResult.html" data-type="entity-link" >RdfStoreSelectResult</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreConstructResponseTripleSegment.html" data-type="entity-link" >RDFStoreConstructResponseTripleSegment</a>
+                                <a href="interfaces/RdfStoreToken.html" data-type="entity-link" >RdfStoreToken</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponse.html" data-type="entity-link" >RDFStoreSelectResponse</a>
+                                <a href="interfaces/RdfStoreTriple.html" data-type="entity-link" >RdfStoreTriple</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponseTriple.html" data-type="entity-link" >RDFStoreSelectResponseTriple</a>
+                                <a href="interfaces/ResultGraph.html" data-type="entity-link" >ResultGraph</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/RDFStoreSelectResponseTripleSegment.html" data-type="entity-link" >RDFStoreSelectResponseTripleSegment</a>
+                                <a href="interfaces/ResultGraphEdge.html" data-type="entity-link" >ResultGraphEdge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraphNode.html" data-type="entity-link" >ResultGraphNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/ResultGraphNodeDraft.html" data-type="entity-link" >ResultGraphNodeDraft</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Rowtables.html" data-type="entity-link" >Rowtables</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SelectTableCell.html" data-type="entity-link" >SelectTableCell</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SimEdge.html" data-type="entity-link" >SimEdge</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SimNode.html" data-type="entity-link" >SimNode</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SimulationData.html" data-type="entity-link" >SimulationData</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Source.html" data-type="entity-link" >Source</a>
@@ -1275,6 +1179,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/SourceEvaluation.html" data-type="entity-link" >SourceEvaluation</a>
                             </li>
                             <li class="link">
+                                <a href="interfaces/SparqlConstructResult.html" data-type="entity-link" >SparqlConstructResult</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlQueryRun.html" data-type="entity-link" >SparqlQueryRun</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlSelectResult.html" data-type="entity-link" >SparqlSelectResult</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/SparqlUnsupportedResult.html" data-type="entity-link" >SparqlUnsupportedResult</a>
+                            </li>
+                            <li class="link">
                                 <a href="interfaces/StatisticsBreakDownBadge.html" data-type="entity-link" >StatisticsBreakDownBadge</a>
                             </li>
                             <li class="link">
@@ -1287,10 +1203,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/StatisticsSummaryCardData.html" data-type="entity-link" >StatisticsSummaryCardData</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/TableOptions.html" data-type="entity-link" >TableOptions</a>
+                                <a href="interfaces/SvgSize.html" data-type="entity-link" >SvgSize</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TableRows.html" data-type="entity-link" >TableRows</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/TableSortState.html" data-type="entity-link" >TableSortState</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/TextcriticalComment.html" data-type="entity-link" >TextcriticalComment</a>
@@ -1305,23 +1224,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/TkaTableHeaderColumn.html" data-type="entity-link" >TkaTableHeaderColumn</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Triple.html" data-type="entity-link" >Triple</a>
+                                <a href="interfaces/TurtleParseResult.html" data-type="entity-link" >TurtleParseResult</a>
                             </li>
                         </ul>
                     </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#pipes-links"' :
-                                'data-bs-target="#xs-pipes-links"' }>
-                                <span class="icon ion-md-add"></span>
-                                <span>Pipes</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="pipes-links"' : 'id="xs-pipes-links"' }>
-                                <li class="link">
-                                    <a href="pipes/PrefixPipe.html" data-type="entity-link" >PrefixPipe</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#miscellaneous-links"'
                             : 'data-bs-target="#xs-miscellaneous-links"' }>

@@ -141,7 +141,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/table/models/table-rows.model.ts</code>
+            <code>src/app/shared/table/table.model.ts</code>
         </p>
 
 
@@ -169,7 +169,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/shared/table/models/table-rows.model.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/app/shared/table/table.model.ts:6</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -191,6 +191,23 @@
      * The key-value pair bindings of the table rows.
      */
     [key: string]: any;
+}
+
+/**
+ * The TableSortState interface.
+ *
+ * It represents the sort state of a table.
+ */
+export interface TableSortState {
+    /**
+     * The key (header label) to sort by.
+     */
+    key: string;
+
+    /**
+     * The flag for reverse sort order.
+     */
+    reverse: boolean;
 }
 </code></pre>
     </div>

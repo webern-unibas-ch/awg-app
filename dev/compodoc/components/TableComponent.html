@@ -148,18 +148,12 @@
     </p>
     <p class="comment">
         <p>The Table component.</p>
-<p>It contains a generic configurable table
-that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
+<p>It contains a generic table with search filter,
+sortable columns and pagination.</p>
 
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -188,6 +182,17 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
             </tr>
 
 
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../directives/ClickDirective.html" target="_self" >ClickDirective</a></code>
+                            <code>FaIconComponent</code>
+                                <code><a href="../miscellaneous/variables.html#w" target="_self" >NgbDropdownModule</a></code>
+                            <code>NgbHighlight</code>
+                                <code><a href="https://angular.io/api/common/NgTemplateOutlet" target="_blank" >NgTemplateOutlet</a></code>
+                                <code><a href="../components/TablePaginationComponent.html" target="_self" >TablePaginationComponent</a></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -225,22 +230,44 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#faSortDown" >faSortDown</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#filteredRows" >filteredRows</a>
                             </li>
                             <li>
-                                <a href="#faSortUp" >faSortUp</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#page" >page</a>
                             </li>
                             <li>
-                                <a href="#paginatorOptions" >paginatorOptions</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#pageSize" >pageSize</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#pageSizeOptions" >pageSizeOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#paginatedRows" >paginatedRows</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#searchFilter" >searchFilter</a>
                             </li>
                             <li>
-                                <a href="#tableData" >tableData</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sortedRows" >sortedRows</a>
                             </li>
                             <li>
-                                <a href="#tableOptions" >tableOptions</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sortIcon" >sortIcon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#sortState" >sortState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#totalRows" >totalRows</a>
                             </li>
                         </ul>
                     </td>
@@ -255,17 +282,10 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_paginateRows" >_paginateRows</a>
-                            </li>
-                            <li>
-                                <a href="#initTable" >initTable</a>
-                            </li>
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                            <li>
                                 <a href="#onPageSizeChange" >onPageSizeChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSearchFilterChange" >onSearchFilterChange</a>
                             </li>
                             <li>
                                 <a href="#onSort" >onSort</a>
@@ -338,7 +358,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>string[]</code>
+                        <i>Type : </i>    <code>readonly string[]</code>
 
                     </td>
                 </tr>
@@ -349,13 +369,13 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/table/table.component.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/shared/table/table.component.ts:56</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: headerInputData.</p>
-<p>It keeps the input data for the table header.</p>
+                        <div class="io-description"><p>Readonly input signal: headerInputData.</p>
+<p>It holds the header labels of the table.</p>
 </div>
                     </td>
                 </tr>
@@ -371,7 +391,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>any[]</code>
+                        <i>Type : </i>        <code><a href="../interfaces/TableRows.html" target="_self" >TableRows[]</a></code>
 
                     </td>
                 </tr>
@@ -382,13 +402,13 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/table/table.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/shared/table/table.component.ts:64</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: rowInputData.</p>
-<p>It keeps the input data for the table rows.</p>
+                        <div class="io-description"><p>Readonly input signal: rowInputData.</p>
+<p>It holds the rows of the table.</p>
 </div>
                     </td>
                 </tr>
@@ -415,13 +435,13 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/table/table.component.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/table/table.component.ts:48</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Input variable: tableTitle.</p>
-<p>It keeps the title for the table.</p>
+                        <div class="io-description"><p>Readonly input signal: tableTitle.</p>
+<p>It holds the title of the table.</p>
 </div>
                     </td>
                 </tr>
@@ -440,19 +460,19 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/shared/table/table.component.ts:62</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/shared/table/table.component.ts:78</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Output variable: clickedTableRowRequest.</p>
-<p>It keeps an event emitter for a click on a table row.</p>
+                        <div class="io-description"><p>Readonly output signal: clickedTableRowRequest.</p>
+<p>It emits the event of a clicked table row.</p>
 </div>
                     </td>
                 </tr>
@@ -468,19 +488,19 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/table/table.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/shared/table/table.component.ts:71</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Output variable: clickedTableValueRequest.</p>
-<p>It keeps an event emitter for a click on a table value.</p>
+                        <div class="io-description"><p>Readonly output signal: clickedTableValueRequest.</p>
+<p>It emits the value of a clicked table cell.</p>
 </div>
                     </td>
                 </tr>
@@ -498,169 +518,6 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_paginateRows"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_paginateRows</b></span>
-                        <a href="#_paginateRows"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_paginateRows(searchTerm: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="240"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:240</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _paginateRows.</p>
-<p>It filters by searchTerm and paginates the observable of total rows.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>searchTerm</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given searchTerm.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TableRows.html" target="_self" >Observable&lt;TableRows[]&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Returns an observable of the paginated rows.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="initTable"></a>
-                    <span class="name">
-                        <span ><b>initTable</b></span>
-                        <a href="#initTable"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>initTable()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="129"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:129</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Public method: initTable.</p>
-<p>It inits all the data needed for the table.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Inits the table data.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:118</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="onPageSizeChange"></a>
                     <span class="name">
                         <span ><b>onPageSizeChange</b></span>
@@ -670,15 +527,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onPageSizeChange(searchFilter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, selectedPageSizeOption?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>onPageSizeChange(pageSize: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="160"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:160</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/app/shared/table/table.component.ts:201</a></div>
                         </td>
                     </tr>
 
@@ -686,8 +543,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onPageSizeChange.</p>
-<p>It emits the new start position of the Paginator
-from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a>.</p>
+<p>It sets the given page size and resets the page.</p>
 </div>
 
                             <div class="io-description">
@@ -704,9 +560,9 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>searchFilter</td>
+                                                <td>pageSize</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                             </td>
 
                                             <td>
@@ -715,23 +571,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
 
                                             <td>
-                                                    <p>The given search filter.</p>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                                <td>selectedPageSizeOption</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                            </td>
-
-                                            <td>
-                                                    Yes
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The selected page size option.</p>
+                                                    <p>The given page size.</p>
 
                                             </td>
                                         </tr>
@@ -743,7 +583,83 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
                         </div>
                             <div class="io-description">
-                                <p>Emits the new start position.</p>
+                                <p>Sets the page size.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSearchFilterChange"></a>
+                    <span class="name">
+                        <span ><b>onSearchFilterChange</b></span>
+                        <a href="#onSearchFilterChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSearchFilterChange(term: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/shared/table/table.component.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: onSearchFilterChange.</p>
+<p>It sets the given search term and resets the page.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>term</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given search term.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search filter.</p>
 
                             </div>
                 </td>
@@ -770,8 +686,8 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="179"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:179</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/shared/table/table.component.ts:168</a></div>
                         </td>
                     </tr>
 
@@ -779,7 +695,8 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onSort.</p>
-<p>It sets the options to sort a table column by a given sort key (header label).</p>
+<p>It sorts the table by the given key (header label).
+Sorting by the current key again reverses the sort order.</p>
 </div>
 
                             <div class="io-description">
@@ -819,7 +736,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
                         </div>
                             <div class="io-description">
-                                <p>Sets the options.</p>
+                                <p>Sets the sort state.</p>
 
                             </div>
                 </td>
@@ -839,15 +756,15 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onTableRowClick(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>onTableRowClick(event: <a href="https://angular.io/api/router/Event" target="_blank">Event</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="224"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:224</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/shared/table/table.component.ts:231</a></div>
                         </td>
                     </tr>
 
@@ -855,7 +772,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onTableRowClick.</p>
-<p>It emits an event when the user clicks on a table row.</p>
+<p>It emits the event of a clicked table row.</p>
 </div>
 
                             <div class="io-description">
@@ -872,9 +789,9 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>e</td>
+                                                <td>event</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            <code><a href="https://angular.io/api/router/Event" target="_blank" >Event</a></code>
                                             </td>
 
                                             <td>
@@ -915,15 +832,15 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onTableValueClick(e: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>onTableValueClick(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="208"
-                                    class="link-to-prism">src/app/shared/table/table.component.ts:208</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/shared/table/table.component.ts:215</a></div>
                         </td>
                     </tr>
 
@@ -931,7 +848,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: onTableValueClick.</p>
-<p>It emits an event when the user clicks on a table value.</p>
+<p>It emits the value of a clicked table cell.</p>
 </div>
 
                             <div class="io-description">
@@ -948,9 +865,9 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>e</td>
+                                                <td>value</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -959,7 +876,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
 
                                             <td>
-                                                    <p>The given event.</p>
+                                                    <p>The given value.</p>
 
                                             </td>
                                         </tr>
@@ -971,7 +888,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
                         </div>
                             <div class="io-description">
-                                <p>Emits the event.</p>
+                                <p>Emits the value.</p>
 
                             </div>
                 </td>
@@ -988,10 +905,11 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="faSortDown"></a>
+                    <a name="filteredRows"></a>
                     <span class="name">
-                        <span ><b>faSortDown</b></span>
-                        <a href="#faSortDown"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>filteredRows</b></span>
+                        <a href="#filteredRows"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1003,19 +921,19 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>faSortDown</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; filterTableRows(this.totalRows(), this.searchFilter()))</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/shared/table/table.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/shared/table/table.component.ts:139</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faSortDown.</p>
-<p>It instantiates fontawesome&#39;s faSortDown icon.</p>
+                    <div class="io-description"><p>Readonly computed signal: filteredRows.</p>
+<p>It holds the rows filtered by the search filter.</p>
 </div>
                 </td>
             </tr>
@@ -1026,10 +944,11 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="faSortUp"></a>
+                    <a name="page"></a>
                     <span class="name">
-                        <span ><b>faSortUp</b></span>
-                        <a href="#faSortUp"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1041,19 +960,19 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>faSortUp</code>
+                        <i>Default value : </i><code>signal&lt;number&gt;(1)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/shared/table/table.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/shared/table/table.component.ts:99</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: faSortUp.</p>
-<p>It instantiates fontawesome&#39;s faSortUp icon.</p>
+                    <div class="io-description"><p>Readonly signal: page.</p>
+<p>It holds the current page of the pagination.</p>
 </div>
                 </td>
             </tr>
@@ -1064,34 +983,113 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="paginatorOptions"></a>
+                    <a name="pageSize"></a>
                     <span class="name">
-                        <span ><b>paginatorOptions</b></span>
-                        <a href="#paginatorOptions"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/TablePaginatorOptions.html" target="_self" >TablePaginatorOptions</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new TablePaginatorOptions(0, 0, [0], 0)</code>
+                        <i>Default value : </i><code>signal&lt;number&gt;(TABLE_DEFAULT_PAGE_SIZE)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/shared/table/table.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/shared/table/table.component.ts:106</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: paginatorOptions.</p>
-<p>It keeps the options of the Paginator.</p>
+                    <div class="io-description"><p>Readonly signal: pageSize.</p>
+<p>It holds the number of rows per page.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSizeOptions"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>pageSizeOptions</b></span>
+                        <a href="#pageSizeOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TABLE_PAGE_SIZE_OPTIONS</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/shared/table/table.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly variable: pageSizeOptions.</p>
+<p>It keeps the selectable page sizes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="paginatedRows"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>paginatedRows</b></span>
+                        <a href="#paginatedRows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; paginateTableRows(this.sortedRows(), this.page(), this.pageSize()))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/app/shared/table/table.component.ts:156</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: paginatedRows.</p>
+<p>It holds the sorted rows of the current page.</p>
 </div>
                 </td>
             </tr>
@@ -1104,6 +1102,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 <td class="col-md-4">
                     <a name="searchFilter"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                         <span ><b>searchFilter</b></span>
                         <a href="#searchFilter"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1111,25 +1110,25 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                        <i>Default value : </i><code>signal&lt;string&gt;(&#x27;&#x27;)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/shared/table/table.component.ts:90</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/shared/table/table.component.ts:92</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: searchFilter.</p>
-<p>It keeps the string value of the search filter.</p>
+                    <div class="io-description"><p>Readonly signal: searchFilter.</p>
+<p>It holds the search term to filter the rows.</p>
 </div>
                 </td>
             </tr>
@@ -1140,34 +1139,38 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="tableData"></a>
+                    <a name="sortedRows"></a>
                     <span class="name">
-                        <span ><b>tableData</b></span>
-                        <a href="#tableData"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sortedRows</b></span>
+                        <a href="#sortedRows"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/TableData.html" target="_self" >TableData</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new TableData([], [])</code>
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; {
+        const { key, reverse } &#x3D; this.sortState();
+        return sortTableRows(this.filteredRows(), key, reverse);
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/shared/table/table.component.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/shared/table/table.component.ts:146</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tableData.</p>
-<p>It keeps the data arrays of the table.</p>
+                    <div class="io-description"><p>Readonly computed signal: sortedRows.</p>
+<p>It holds the filtered rows sorted by the sort state.</p>
 </div>
                 </td>
             </tr>
@@ -1178,40 +1181,118 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="tableOptions"></a>
+                    <a name="sortIcon"></a>
                     <span class="name">
-                        <span ><b>tableOptions</b></span>
-                        <a href="#tableOptions"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sortIcon</b></span>
+                        <a href="#sortIcon"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/TableOptions.html" target="_self" >TableOptions</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>{
-        selectedKey: &#x27;&#x27;,
-        sortKey: &#x27;&#x27;,
-        sortIcon: this.faSortDown,
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; (this.sortState().reverse ? faSortUp : faSortDown))</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/shared/table/table.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: sortIcon.</p>
+<p>It holds the icon for the current sort order.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortState"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>sortState</b></span>
+                        <a href="#sortState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>linkedSignal&lt;TableSortState&gt;(() &#x3D;&gt; ({
+        key: this.headerInputData()[0] ?? &#x27;&#x27;,
         reverse: false,
-        isCaseInsensitive: false,
-    }</code>
+    }))</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/shared/table/table.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/shared/table/table.component.ts:114</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tableOptions.</p>
-<p>It keeps the options of the table.</p>
+                    <div class="io-description"><p>Readonly linked signal: sortState.</p>
+<p>It holds the sort state of the table.
+It is reset to the first header label when the header changes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalRows"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>totalRows</b></span>
+                        <a href="#totalRows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>computed(() &#x3D;&gt; this.rowInputData() ?? [])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/shared/table/table.component.ts:132</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly computed signal: totalRows.</p>
+<p>It holds all rows of the table,
+or an empty array if no rows are given.</p>
 </div>
                 </td>
             </tr>
@@ -1224,410 +1305,335 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgTemplateOutlet } from &#x27;@angular/common&#x27;;
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output, signal } from &#x27;@angular/core&#x27;;
 
-import { Observable } from &#x27;rxjs&#x27;;
-import { map } from &#x27;rxjs/operators&#x27;;
-
+import { FaIconComponent } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import { faSortDown, faSortUp } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
+import { NgbDropdownModule } from &#x27;@ng-bootstrap/ng-bootstrap/dropdown&#x27;;
+import { NgbHighlight } from &#x27;@ng-bootstrap/ng-bootstrap/typeahead&#x27;;
 
-import { TableData, TableOptions, TablePaginatorOptions, TableRows } from &#x27;./models&#x27;;
+import { ClickDirective } from &#x27;@awg-shared/click/click.directive&#x27;;
+
+import { TablePaginationComponent } from &#x27;./table-pagination/table-pagination.component&#x27;;
+import { TableRows, TableSortState } from &#x27;./table.model&#x27;;
+import {
+    filterTableRows,
+    paginateTableRows,
+    sortTableRows,
+    TABLE_DEFAULT_PAGE_SIZE,
+    TABLE_PAGE_SIZE_OPTIONS,
+} from &#x27;./table.utils&#x27;;
 
 /**
  * The Table component.
  *
- * It contains a generic configurable table
- * that is provided via the {@link SharedModule}.
+ * It contains a generic table with search filter,
+ * sortable columns and pagination.
  */
 @Component({
     selector: &#x27;awg-table&#x27;,
     templateUrl: &#x27;./table.component.html&#x27;,
     styleUrls: [&#x27;./table.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        ClickDirective,
+        FaIconComponent,
+        NgbDropdownModule,
+        NgbHighlight,
+        NgTemplateOutlet,
+        TablePaginationComponent,
+    ],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
     /**
-     * Input variable: tableTitle.
+     * Readonly input signal: tableTitle.
      *
-     * It keeps the title for the table.
+     * It holds the title of the table.
+     * @default &#x27;&#x27;
      */
-    @Input()
-    tableTitle &#x3D; &#x27;&#x27;;
+    readonly tableTitle &#x3D; input&lt;string&gt;(&#x27;&#x27;);
 
     /**
-     * Input variable: headerInputData.
+     * Readonly input signal: headerInputData.
      *
-     * It keeps the input data for the table header.
+     * It holds the header labels of the table.
+     * @default []
      */
-    @Input()
-    headerInputData: string[] &#x3D; [];
+    readonly headerInputData &#x3D; input&lt;readonly string[]&gt;([]);
 
     /**
-     * Input variable: rowInputData.
+     * Readonly input signal: rowInputData.
      *
-     * It keeps the input data for the table rows.
+     * It holds the rows of the table.
+     * @default []
      */
-    @Input()
-    rowInputData: any[] &#x3D; [];
+    readonly rowInputData &#x3D; input&lt;TableRows[]&gt;([]);
 
     /**
-     * Output variable: clickedTableValueRequest.
+     * Readonly output signal: clickedTableValueRequest.
      *
-     * It keeps an event emitter for a click on a table value.
+     * It emits the value of a clicked table cell.
      */
-    @Output()
-    clickedTableValueRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+    readonly clickedTableValueRequest &#x3D; output&lt;string&gt;();
 
     /**
-     * Output variable: clickedTableRowRequest.
+     * Readonly output signal: clickedTableRowRequest.
      *
-     * It keeps an event emitter for a click on a table row.
+     * It emits the event of a clicked table row.
      */
-    @Output()
-    clickedTableRowRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+    readonly clickedTableRowRequest &#x3D; output&lt;Event&gt;();
 
     /**
-     * Public variable: faSortUp.
+     * Readonly variable: pageSizeOptions.
      *
-     * It instantiates fontawesome&#x27;s faSortUp icon.
+     * It keeps the selectable page sizes.
      */
-    faSortUp &#x3D; faSortUp;
+    readonly pageSizeOptions &#x3D; TABLE_PAGE_SIZE_OPTIONS;
 
     /**
-     * Public variable: faSortDown.
+     * Readonly signal: searchFilter.
      *
-     * It instantiates fontawesome&#x27;s faSortDown icon.
+     * It holds the search term to filter the rows.
      */
-    faSortDown &#x3D; faSortDown;
+    readonly searchFilter &#x3D; signal&lt;string&gt;(&#x27;&#x27;);
 
     /**
-     * Public variable: paginatorOptions.
+     * Readonly signal: page.
      *
-     * It keeps the options of the Paginator.
+     * It holds the current page of the pagination.
      */
-    paginatorOptions: TablePaginatorOptions &#x3D; new TablePaginatorOptions(0, 0, [0], 0);
+    readonly page &#x3D; signal&lt;number&gt;(1);
 
     /**
-     * Public variable: searchFilter.
+     * Readonly signal: pageSize.
      *
-     * It keeps the string value of the search filter.
+     * It holds the number of rows per page.
      */
-    searchFilter &#x3D; &#x27;&#x27;;
+    readonly pageSize &#x3D; signal&lt;number&gt;(TABLE_DEFAULT_PAGE_SIZE);
 
     /**
-     * Public variable: tableData.
+     * Readonly linked signal: sortState.
      *
-     * It keeps the data arrays of the table.
+     * It holds the sort state of the table.
+     * It is reset to the first header label when the header changes.
      */
-    tableData: TableData &#x3D; new TableData([], []);
-
-    /**
-     * Public variable: tableOptions.
-     *
-     * It keeps the options of the table.
-     */
-    tableOptions: TableOptions &#x3D; {
-        selectedKey: &#x27;&#x27;,
-        sortKey: &#x27;&#x27;,
-        sortIcon: this.faSortDown,
+    readonly sortState &#x3D; linkedSignal&lt;TableSortState&gt;(() &#x3D;&gt; ({
+        key: this.headerInputData()[0] ?? &#x27;&#x27;,
         reverse: false,
-        isCaseInsensitive: false,
-    };
+    }));
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly computed signal: sortIcon.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the icon for the current sort order.
      */
-    ngOnInit(): void {
-        this.initTable();
-    }
+    readonly sortIcon &#x3D; computed(() &#x3D;&gt; (this.sortState().reverse ? faSortUp : faSortDown));
 
     /**
-     * Public method: initTable.
+     * Readonly computed signal: totalRows.
      *
-     * It inits all the data needed for the table.
-     *
-     * @returns {void} Inits the table data.
+     * It holds all rows of the table,
+     * or an empty array if no rows are given.
      */
-    initTable(): void {
-        if (this.headerInputData?.length &amp;&amp; this.rowInputData?.length) {
-            this.tableData &#x3D; new TableData(this.headerInputData, this.rowInputData);
-        } else {
-            this.tableData &#x3D; new TableData([], []);
-        }
-
-        this.paginatorOptions &#x3D; new TablePaginatorOptions(
-            1,
-            10,
-            [5, 10, 25, 50, 100, 200],
-            this.rowInputData.length || 0
-        );
-        this.searchFilter &#x3D; &#x27;&#x27;;
-
-        this.onSort(this.tableData.header[0]);
-
-        this.onPageSizeChange(this.searchFilter);
-    }
+    readonly totalRows &#x3D; computed(() &#x3D;&gt; this.rowInputData() ?? []);
 
     /**
-     * Public method: onPageSizeChange.
+     * Readonly computed signal: filteredRows.
      *
-     * It emits the new start position of the Paginator
-     * from a given page number to the {@link pageChangeRequest}.
-     *
-     * @param {string} searchFilter The given search filter.
-     * @param {number} selectedPageSizeOption The selected page size option.
-     *
-     * @returns {void} Emits the new start position.
+     * It holds the rows filtered by the search filter.
      */
-    onPageSizeChange(searchFilter: string, selectedPageSizeOption?: number): void {
-        if (!this.headerInputData.length || !this.rowInputData?.length) {
-            return;
-        }
-        if (selectedPageSizeOption) {
-            this.paginatorOptions.selectedPageSize &#x3D; selectedPageSizeOption;
-        }
-        this.tableData.paginatedRows$ &#x3D; this._paginateRows(searchFilter);
-    }
+    readonly filteredRows &#x3D; computed(() &#x3D;&gt; filterTableRows(this.totalRows(), this.searchFilter()));
+
+    /**
+     * Readonly computed signal: sortedRows.
+     *
+     * It holds the filtered rows sorted by the sort state.
+     */
+    readonly sortedRows &#x3D; computed(() &#x3D;&gt; {
+        const { key, reverse } &#x3D; this.sortState();
+        return sortTableRows(this.filteredRows(), key, reverse);
+    });
+
+    /**
+     * Readonly computed signal: paginatedRows.
+     *
+     * It holds the sorted rows of the current page.
+     */
+    readonly paginatedRows &#x3D; computed(() &#x3D;&gt; paginateTableRows(this.sortedRows(), this.page(), this.pageSize()));
 
     /**
      * Public method: onSort.
      *
-     * It sets the options to sort a table column by a given sort key (header label).
+     * It sorts the table by the given key (header label).
+     * Sorting by the current key again reverses the sort order.
      *
      * @param {string} key The given key to sort by.
      *
-     * @returns {void} Sets the options.
+     * @returns {void} Sets the sort state.
      */
     onSort(key: string): void {
         if (!key) {
             return;
         }
+        this.sortState.update(state &#x3D;&gt; ({
+            key,
+            reverse: state.key &#x3D;&#x3D;&#x3D; key ? !state.reverse : false,
+        }));
+    }
 
-        // Switch sort order when clicking on same key
-        if (this.tableOptions.selectedKey &#x3D;&#x3D;&#x3D; key) {
-            this.tableOptions.reverse &#x3D; !this.tableOptions.reverse;
-        }
+    /**
+     * Public method: onSearchFilterChange.
+     *
+     * It sets the given search term and resets the page.
+     *
+     * @param {string} term The given search term.
+     *
+     * @returns {void} Sets the search filter.
+     */
+    onSearchFilterChange(term: string): void {
+        this.searchFilter.set(term);
+        this.page.set(1);
+    }
 
-        // Set sort icon
-        this.tableOptions.sortIcon &#x3D; this.tableOptions.reverse ? this.faSortUp : this.faSortDown;
-
-        // Select new key
-        this.tableOptions.selectedKey &#x3D; key;
-
-        // Create sortKey for nested object
-        this.tableOptions.sortKey &#x3D; this.tableOptions.selectedKey.toString() + &#x27;.label&#x27;;
+    /**
+     * Public method: onPageSizeChange.
+     *
+     * It sets the given page size and resets the page.
+     *
+     * @param {number} pageSize The given page size.
+     *
+     * @returns {void} Sets the page size.
+     */
+    onPageSizeChange(pageSize: number): void {
+        this.pageSize.set(pageSize);
+        this.page.set(1);
     }
 
     /**
      * Public method: onTableValueClick.
      *
-     * It emits an event when the user clicks on a table value.
+     * It emits the value of a clicked table cell.
      *
-     * @param {any} e The given event.
+     * @param {string} value The given value.
      *
-     * @returns {void} Emits the event.
+     * @returns {void} Emits the value.
      */
-    onTableValueClick(e: any): void {
-        if (!e) {
+    onTableValueClick(value: string): void {
+        if (!value) {
             return;
         }
-        this.clickedTableValueRequest.emit(e);
+        this.clickedTableValueRequest.emit(value);
     }
 
     /**
      * Public method: onTableRowClick.
      *
-     * It emits an event when the user clicks on a table row.
+     * It emits the event of a clicked table row.
      *
-     * @param {any} e The given event.
+     * @param {Event} event The given event.
      *
      * @returns {void} Emits the event.
      */
-    onTableRowClick(e: any): void {
-        if (!e) {
+    onTableRowClick(event: Event): void {
+        if (!event) {
             return;
         }
-        this.clickedTableRowRequest.emit(e);
-    }
-
-    /**
-     * Private method: _paginateRows.
-     *
-     * It filters by searchTerm and paginates the observable of total rows.
-     *
-     * @param {string} searchTerm The given searchTerm.
-     *
-     * @returns {Observable&lt;TableRows[]&gt;} Returns an observable of the paginated rows.
-     */
-    private _paginateRows(searchTerm: string): Observable&lt;TableRows[]&gt; {
-        return this.tableData.totalRows$.pipe(
-            // Filter rows by searchTerm
-            map((rows: TableRows[]) &#x3D;&gt; {
-                const term &#x3D; searchTerm.toString().toLowerCase();
-                this.tableData.filteredRows &#x3D; rows.filter(row &#x3D;&gt;
-                    Object.values(row).some(rowEntry &#x3D;&gt; {
-                        if (rowEntry &#x3D;&#x3D;&#x3D; null || rowEntry &#x3D;&#x3D;&#x3D; undefined) {
-                            return false;
-                        }
-                        return rowEntry[&#x27;label&#x27;]?.toString().toLowerCase().includes(term);
-                    })
-                );
-                return this.tableData.filteredRows;
-            }),
-            // Paginate rows
-            map((rows: TableRows[]) &#x3D;&gt; {
-                const startRow &#x3D; (this.paginatorOptions.page - 1) * this.paginatorOptions.selectedPageSize;
-                const endRow &#x3D; startRow + this.paginatorOptions.selectedPageSize;
-                const range &#x3D; endRow - startRow;
-
-                if (rows.length &lt;&#x3D; range) {
-                    return rows;
-                } else {
-                    return rows.slice(startRow, endRow);
-                }
-            })
-        );
+        this.clickedTableRowRequest.emit(event);
     }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">@if (tableData.filteredRows &amp;&amp; tableData.totalRows$ | async; as totalRows) {
-    &lt;form&gt;
-        &lt;div class&#x3D;&quot;form-group form-inline ms-2&quot;&gt;
-            &lt;div class&#x3D;&quot;col-sm-4&quot;&gt;
-                &lt;p&gt;
-                    {{ tableTitle }}&lt;br /&gt;
-                    ({{ tableData.filteredRows.length }} von {{ totalRows?.length }} Ergebnissen)
-                &lt;/p&gt;
-            &lt;/div&gt;
-            &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
-                &lt;input
-                    id&#x3D;&quot;search&quot;
-                    class&#x3D;&quot;form-control&quot;
-                    type&#x3D;&quot;text&quot;
-                    name&#x3D;&quot;searchFilter&quot;
-                    [(ngModel)]&#x3D;&quot;searchFilter&quot;
-                    (ngModelChange)&#x3D;&quot;onPageSizeChange(searchFilter)&quot;
-                    placeholder&#x3D;&quot;Ergebnisse filtern...&quot;
-                    aria-label&#x3D;&quot;Filter results&quot; /&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/form&gt;
-}
-
-@if (tableData.filteredRows &amp;&amp; paginatorOptions) {
-    &lt;div class&#x3D;&quot;awg-pagination d-flex justify-content-between p-2&quot;&gt;
-        &lt;!-- top pagination --&gt;
-        &lt;awg-table-pagination
-            [collectionSize]&#x3D;&quot;tableData.filteredRows.length&quot;
-            [(page)]&#x3D;&quot;paginatorOptions.page&quot;
-            (pageChangeRequest)&#x3D;&quot;onPageSizeChange(searchFilter)&quot; /&gt;
-        &lt;div ngbDropdown class&#x3D;&quot;d-inline-block&quot;&gt;
-            &lt;button class&#x3D;&quot;btn btn-default awg-pagesize-dropdown-button&quot; id&#x3D;&quot;pageSizeDropdownMenuTop&quot; ngbDropdownToggle&gt;
-                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
-            &lt;/button&gt;
-            &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;pageSizeDropdownMenuTop&quot; ngbDropdownMenu&gt;
-                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {
-                    &lt;button
-                        ngbDropdownItem
-                        class&#x3D;&quot;dropdown-item&quot;
-                        (click)&#x3D;&quot;onPageSizeChange(searchFilter, pageSizeOption)&quot;&gt;
-                        {{ pageSizeOption }} Ergebnisse pro Seite
-                    &lt;/button&gt;
-                }
-            &lt;/div&gt;
-        &lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;form-group form-inline ms-2&quot;&gt;
+    &lt;div class&#x3D;&quot;col-sm-4&quot;&gt;
+        &lt;p&gt;
+            {{ tableTitle() }}&lt;br /&gt;
+            ({{ filteredRows().length }} von {{ totalRows().length }} Ergebnissen)
+        &lt;/p&gt;
     &lt;/div&gt;
-}
+    &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
+        &lt;input
+            id&#x3D;&quot;search&quot;
+            class&#x3D;&quot;form-control&quot;
+            type&#x3D;&quot;text&quot;
+            name&#x3D;&quot;searchFilter&quot;
+            [value]&#x3D;&quot;searchFilter()&quot;
+            (input)&#x3D;&quot;onSearchFilterChange($any($event.target).value)&quot;
+            placeholder&#x3D;&quot;Ergebnisse filtern...&quot;
+            aria-label&#x3D;&quot;Filter results&quot; /&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 
-@if (tableData.paginatedRows$ | async; as paginatedRows) {
-    &lt;table aria-label&#x3D;&quot;Table for SPARQL query results&quot; class&#x3D;&quot;table table-striped&quot;&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                @for (headerLabel of tableData.header; track headerLabel) {
-                    &lt;th scope&#x3D;&quot;col&quot; (click)&#x3D;&quot;onSort(headerLabel)&quot; (keydown)&#x3D;&quot;onSort(headerLabel)&quot; tabindex&#x3D;&quot;0&quot;&gt;
-                        {{ headerLabel }}&amp;nbsp;
-                        @if (headerLabel &#x3D;&#x3D;&#x3D; tableOptions.selectedKey) {
-                            &lt;fa-icon [icon]&#x3D;&quot;tableOptions.sortIcon&quot; /&gt;
-                        }
-                    &lt;/th&gt;
-                }
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            @for (
-                row of paginatedRows
-                    | orderBy: tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive;
-                track row
-            ) {
-                &lt;tr (click)&#x3D;&quot;onTableRowClick($event)&quot; (keydown)&#x3D;&quot;onTableRowClick($event)&quot; tabindex&#x3D;&quot;0&quot;&gt;
-                    @for (headerLabel of tableData.header; track headerLabel) {
-                        &lt;td&gt;
-                            @if (row[headerLabel].type &amp;&amp; row[headerLabel].type &#x3D;&#x3D;&#x3D; &#x27;uri&#x27;) {
-                                &lt;a
-                                    (click)&#x3D;&quot;onTableValueClick(row[headerLabel].value)&quot;
-                                    (keyup.enter)&#x3D;&quot;onTableValueClick(row[headerLabel].value)&quot;
-                                    role&#x3D;&quot;link&quot;
-                                    tabindex&#x3D;&quot;0&quot;&gt;
-                                    &lt;ngb-highlight [result]&#x3D;&quot;row[headerLabel].label&quot; [term]&#x3D;&quot;searchFilter&quot; /&gt;
-                                &lt;/a&gt;
-                            }
-                            @if (row[headerLabel].type &#x3D;&#x3D;&#x3D; &#x27;search&#x27;) {
-                                &lt;span&gt;
-                                    @if (row[headerLabel].icon) {
-                                        &lt;span class&#x3D;&quot;badge&quot;&gt;
-                                            &lt;img [attr.src]&#x3D;&quot;row[headerLabel]?.icon&quot; alt&#x3D;&quot;iconsrc&quot; /&gt;
-                                        &lt;/span&gt;
-                                    }
-                                    &lt;ngb-highlight [result]&#x3D;&quot;row[headerLabel].label&quot; [term]&#x3D;&quot;searchFilter&quot;
-                                /&gt;&lt;/span&gt;
-                            }
-                            @if (row[headerLabel].type !&#x3D;&#x3D; &#x27;uri&#x27; &amp;&amp; row[headerLabel].type !&#x3D;&#x3D; &#x27;search&#x27;) {
-                                &lt;span&gt; &lt;ngb-highlight [result]&#x3D;&quot;row[headerLabel].label&quot; [term]&#x3D;&quot;searchFilter&quot; /&gt;&lt;/span&gt;
-                            }
-                        &lt;/td&gt;
-                    }
-                &lt;/tr&gt;
-            }
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-} @else {
-    &lt;awg-twelve-tone-spinner /&gt;
-}
-
-@if (tableData.filteredRows) {
+&lt;ng-template #paginationPanel let-position&#x3D;&quot;position&quot;&gt;
     &lt;div class&#x3D;&quot;awg-pagination d-flex justify-content-between p-2&quot;&gt;
-        &lt;!-- bottom pagination --&gt;
-        &lt;awg-table-pagination
-            [collectionSize]&#x3D;&quot;tableData.filteredRows.length&quot;
-            [(page)]&#x3D;&quot;paginatorOptions.page&quot;
-            (pageChangeRequest)&#x3D;&quot;onPageSizeChange(searchFilter)&quot; /&gt;
+        &lt;awg-table-pagination [collectionSize]&#x3D;&quot;filteredRows().length&quot; [pageSize]&#x3D;&quot;pageSize()&quot; [(page)]&#x3D;&quot;page&quot; /&gt;
         &lt;div ngbDropdown class&#x3D;&quot;d-inline-block&quot;&gt;
             &lt;button
                 class&#x3D;&quot;btn btn-default awg-pagesize-dropdown-button&quot;
-                id&#x3D;&quot;pageSizeDropdownMenuBottom&quot;
+                [id]&#x3D;&quot;&#x27;pageSizeDropdownMenu&#x27; + position&quot;
                 ngbDropdownToggle&gt;
-                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
+                {{ pageSize() }} Ergebnisse pro Seite
             &lt;/button&gt;
-            &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;pageSizeDropdownMenuBottom&quot; ngbDropdownMenu&gt;
-                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {
-                    &lt;button
-                        ngbDropdownItem
-                        class&#x3D;&quot;dropdown-item&quot;
-                        (click)&#x3D;&quot;onPageSizeChange(searchFilter, pageSizeOption)&quot;&gt;
+            &lt;div class&#x3D;&quot;dropdown-menu&quot; [attr.aria-labelledby]&#x3D;&quot;&#x27;pageSizeDropdownMenu&#x27; + position&quot; ngbDropdownMenu&gt;
+                @for (pageSizeOption of pageSizeOptions; track pageSizeOption) {
+                    &lt;button ngbDropdownItem class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;onPageSizeChange(pageSizeOption)&quot;&gt;
                         {{ pageSizeOption }} Ergebnisse pro Seite
                     &lt;/button&gt;
                 }
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-}
+&lt;/ng-template&gt;
+
+&lt;!-- top pagination --&gt;
+&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;paginationPanel&quot; [ngTemplateOutletContext]&#x3D;&quot;{ position: &#x27;Top&#x27; }&quot; /&gt;
+
+&lt;table aria-label&#x3D;&quot;Table for SPARQL query results&quot; class&#x3D;&quot;table table-striped&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            @for (headerLabel of headerInputData(); track headerLabel) {
+                &lt;th scope&#x3D;&quot;col&quot; (awgClick)&#x3D;&quot;onSort(headerLabel)&quot; tabindex&#x3D;&quot;0&quot;&gt;
+                    {{ headerLabel }}&amp;nbsp;
+                    @if (headerLabel &#x3D;&#x3D;&#x3D; sortState().key) {
+                        &lt;fa-icon [icon]&#x3D;&quot;sortIcon()&quot; /&gt;
+                    }
+                &lt;/th&gt;
+            }
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        @for (row of paginatedRows(); track row) {
+            &lt;tr (awgClick)&#x3D;&quot;onTableRowClick($event)&quot; tabindex&#x3D;&quot;0&quot;&gt;
+                @for (headerLabel of headerInputData(); track headerLabel) {
+                    @let cell &#x3D; row[headerLabel];
+                    &lt;td&gt;
+                        @if (cell?.type &#x3D;&#x3D;&#x3D; &#x27;uri&#x27;) {
+                            &lt;a (awgClick)&#x3D;&quot;onTableValueClick(cell.value)&quot; role&#x3D;&quot;link&quot; tabindex&#x3D;&quot;0&quot;&gt;
+                                &lt;ngb-highlight [result]&#x3D;&quot;cell.label&quot; [term]&#x3D;&quot;searchFilter()&quot; /&gt;
+                            &lt;/a&gt;
+                        } @else if (cell?.type &#x3D;&#x3D;&#x3D; &#x27;search&#x27;) {
+                            &lt;span&gt;
+                                @if (cell.icon) {
+                                    &lt;span class&#x3D;&quot;badge&quot;&gt;
+                                        &lt;img [attr.src]&#x3D;&quot;cell.icon&quot; alt&#x3D;&quot;iconsrc&quot; /&gt;
+                                    &lt;/span&gt;
+                                }
+                                &lt;ngb-highlight [result]&#x3D;&quot;cell.label&quot; [term]&#x3D;&quot;searchFilter()&quot; /&gt;
+                            &lt;/span&gt;
+                        } @else {
+                            &lt;span&gt;&lt;ngb-highlight [result]&#x3D;&quot;cell?.label&quot; [term]&#x3D;&quot;searchFilter()&quot; /&gt;&lt;/span&gt;
+                        }
+                    &lt;/td&gt;
+                }
+            &lt;/tr&gt;
+        }
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- bottom pagination --&gt;
+&lt;ng-container [ngTemplateOutlet]&#x3D;&quot;paginationPanel&quot; [ngTemplateOutletContext]&#x3D;&quot;{ position: &#x27;Bottom&#x27; }&quot; /&gt;
 </code></pre>
     </div>
 
@@ -1666,8 +1672,8 @@ export class TableComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (tableData.filteredRows && tableData.totalRows$ | async; as totalRows) {    <form>        <div class="form-group form-inline ms-2">            <div class="col-sm-4">                <p>                    {{ tableTitle }}<br />                    ({{ tableData.filteredRows.length }} von {{ totalRows?.length }} Ergebnissen)                </p>            </div>            <div class="col-sm-6">                <input                    id="search"                    class="form-control"                    type="text"                    name="searchFilter"                    [(ngModel)]="searchFilter"                    (ngModelChange)="onPageSizeChange(searchFilter)"                    placeholder="Ergebnisse filtern..."                    aria-label="Filter results" />            </div>        </div>    </form>}@if (tableData.filteredRows && paginatorOptions) {    <div class="awg-pagination d-flex justify-content-between p-2">        <!-- top pagination -->        <awg-table-pagination            [collectionSize]="tableData.filteredRows.length"            [(page)]="paginatorOptions.page"            (pageChangeRequest)="onPageSizeChange(searchFilter)" />        <div ngbDropdown class="d-inline-block">            <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite            </button>            <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuTop" ngbDropdownMenu>                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {                    <button                        ngbDropdownItem                        class="dropdown-item"                        (click)="onPageSizeChange(searchFilter, pageSizeOption)">                        {{ pageSizeOption }} Ergebnisse pro Seite                    </button>                }            </div>        </div>    </div>}@if (tableData.paginatedRows$ | async; as paginatedRows) {    <table aria-label="Table for SPARQL query results" class="table table-striped">        <thead>            <tr>                @for (headerLabel of tableData.header; track headerLabel) {                    <th scope="col" (click)="onSort(headerLabel)" (keydown)="onSort(headerLabel)" tabindex="0">                        {{ headerLabel }}&nbsp;                        @if (headerLabel === tableOptions.selectedKey) {                            <fa-icon [icon]="tableOptions.sortIcon" />                        }                    </th>                }            </tr>        </thead>        <tbody>            @for (                row of paginatedRows                    | orderBy: tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive;                track row            ) {                <tr (click)="onTableRowClick($event)" (keydown)="onTableRowClick($event)" tabindex="0">                    @for (headerLabel of tableData.header; track headerLabel) {                        <td>                            @if (row[headerLabel].type && row[headerLabel].type === \'uri\') {                                <a                                    (click)="onTableValueClick(row[headerLabel].value)"                                    (keyup.enter)="onTableValueClick(row[headerLabel].value)"                                    role="link"                                    tabindex="0">                                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter" />                                </a>                            }                            @if (row[headerLabel].type === \'search\') {                                <span>                                    @if (row[headerLabel].icon) {                                        <span class="badge">                                            <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />                                        </span>                                    }                                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"                                /></span>                            }                            @if (row[headerLabel].type !== \'uri\' && row[headerLabel].type !== \'search\') {                                <span> <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter" /></span>                            }                        </td>                    }                </tr>            }        </tbody>    </table>} @else {    <awg-twelve-tone-spinner />}@if (tableData.filteredRows) {    <div class="awg-pagination d-flex justify-content-between p-2">        <!-- bottom pagination -->        <awg-table-pagination            [collectionSize]="tableData.filteredRows.length"            [(page)]="paginatorOptions.page"            (pageChangeRequest)="onPageSizeChange(searchFilter)" />        <div ngbDropdown class="d-inline-block">            <button                class="btn btn-default awg-pagesize-dropdown-button"                id="pageSizeDropdownMenuBottom"                ngbDropdownToggle>                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite            </button>            <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuBottom" ngbDropdownMenu>                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {                    <button                        ngbDropdownItem                        class="dropdown-item"                        (click)="onPageSizeChange(searchFilter, pageSizeOption)">                        {{ pageSizeOption }} Ergebnisse pro Seite                    </button>                }            </div>        </div>    </div>}</div>'
-    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'NavLinkGroupComponent', 'selector': 'awg-nav-link-group'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><div class="form-group form-inline ms-2">    <div class="col-sm-4">        <p>            {{ tableTitle() }}<br />            ({{ filteredRows().length }} von {{ totalRows().length }} Ergebnissen)        </p>    </div>    <div class="col-sm-6">        <input            id="search"            class="form-control"            type="text"            name="searchFilter"            [value]="searchFilter()"            (input)="onSearchFilterChange($any($event.target).value)"            placeholder="Ergebnisse filtern..."            aria-label="Filter results" />    </div></div><ng-template #paginationPanel let-position="position">    <div class="awg-pagination d-flex justify-content-between p-2">        <awg-table-pagination [collectionSize]="filteredRows().length" [pageSize]="pageSize()" [(page)]="page" />        <div ngbDropdown class="d-inline-block">            <button                class="btn btn-default awg-pagesize-dropdown-button"                [id]="\'pageSizeDropdownMenu\' + position"                ngbDropdownToggle>                {{ pageSize() }} Ergebnisse pro Seite            </button>            <div class="dropdown-menu" [attr.aria-labelledby]="\'pageSizeDropdownMenu\' + position" ngbDropdownMenu>                @for (pageSizeOption of pageSizeOptions; track pageSizeOption) {                    <button ngbDropdownItem class="dropdown-item" (click)="onPageSizeChange(pageSizeOption)">                        {{ pageSizeOption }} Ergebnisse pro Seite                    </button>                }            </div>        </div>    </div></ng-template><!-- top pagination --><ng-container [ngTemplateOutlet]="paginationPanel" [ngTemplateOutletContext]="{ position: \'Top\' }" /><table aria-label="Table for SPARQL query results" class="table table-striped">    <thead>        <tr>            @for (headerLabel of headerInputData(); track headerLabel) {                <th scope="col" (awgClick)="onSort(headerLabel)" tabindex="0">                    {{ headerLabel }}&nbsp;                    @if (headerLabel === sortState().key) {                        <fa-icon [icon]="sortIcon()" />                    }                </th>            }        </tr>    </thead>    <tbody>        @for (row of paginatedRows(); track row) {            <tr (awgClick)="onTableRowClick($event)" tabindex="0">                @for (headerLabel of headerInputData(); track headerLabel) {                    @let cell = row[headerLabel];                    <td>                        @if (cell?.type === \'uri\') {                            <a (awgClick)="onTableValueClick(cell.value)" role="link" tabindex="0">                                <ngb-highlight [result]="cell.label" [term]="searchFilter()" />                            </a>                        } @else if (cell?.type === \'search\') {                            <span>                                @if (cell.icon) {                                    <span class="badge">                                        <img [attr.src]="cell.icon" alt="iconsrc" />                                    </span>                                }                                <ngb-highlight [result]="cell.label" [term]="searchFilter()" />                            </span>                        } @else {                            <span><ngb-highlight [result]="cell?.label" [term]="searchFilter()" /></span>                        }                    </td>                }            </tr>        }    </tbody></table><!-- bottom pagination --><ng-container [ngTemplateOutlet]="paginationPanel" [ngTemplateOutletContext]="{ position: \'Bottom\' }" /></div>'
+    var COMPONENTS = [{'name': 'AlertErrorComponent', 'selector': 'awg-alert-error'},{'name': 'AlertInfoComponent', 'selector': 'awg-alert-info'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'ButtonExpandAllComponent', 'selector': 'awg-button-expand-all'},{'name': 'ButtonMoreComponent', 'selector': 'awg-button-more'},{'name': 'ButtonScrollToTopComponent', 'selector': 'awg-button-scroll-to-top'},{'name': 'ButtonUsageHintsComponent', 'selector': 'awg-button-usage-hints'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'ConditionalLinkComponent', 'selector': 'awg-conditional-link'},{'name': 'ContactAddressComponent', 'selector': 'awg-contact-address'},{'name': 'ContactMapComponent', 'selector': 'awg-contact-map'},{'name': 'ContactSideInfoComponent', 'selector': 'awg-contact-side-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'EditionBreadcrumbComponent', 'selector': 'awg-edition-breadcrumb'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionDisclaimerWorkeditionsComponent', 'selector': 'awg-edition-disclaimer-workeditions'},{'name': 'EditionFoliosLegendComponent', 'selector': 'awg-edition-folios-legend'},{'name': 'EditionFoliosPanelComponent', 'selector': 'awg-edition-folios-panel'},{'name': 'EditionFoliosViewerComponent', 'selector': 'awg-edition-folios-viewer'},{'name': 'EditionFoliosViewerSvgComponent', 'selector': 'awg-edition-folios-viewer-svg'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionGraphDescriptionComponent', 'selector': 'awg-edition-graph-description'},{'name': 'EditionGraphDynamicComponent', 'selector': 'awg-edition-graph-dynamic'},{'name': 'EditionGraphPlaceholderComponent', 'selector': 'awg-edition-graph-placeholder'},{'name': 'EditionGraphStaticComponent', 'selector': 'awg-edition-graph-static'},{'name': 'EditionIntroComponent', 'selector': 'awg-edition-intro'},{'name': 'EditionIntroContentComponent', 'selector': 'awg-edition-intro-content'},{'name': 'EditionIntroNavComponent', 'selector': 'awg-edition-intro-nav'},{'name': 'EditionIntroPartialDisclaimerComponent', 'selector': 'awg-edition-intro-partial-disclaimer'},{'name': 'EditionIntroPlaceholderComponent', 'selector': 'awg-edition-intro-placeholder'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionOutlineComponent', 'selector': 'awg-edition-outline'},{'name': 'EditionPrefaceComponent', 'selector': 'awg-edition-preface'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowtablesComponent', 'selector': 'awg-edition-rowtables'},{'name': 'EditionSectionCardComponent', 'selector': 'awg-edition-section-card'},{'name': 'EditionSectionDetailComplexCardComponent', 'selector': 'awg-edition-section-detail-complex-card'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionDetailCoverComponent', 'selector': 'awg-edition-section-detail-cover'},{'name': 'EditionSectionDetailDisclaimerComponent', 'selector': 'awg-edition-section-detail-disclaimer'},{'name': 'EditionSectionDetailIntroCardComponent', 'selector': 'awg-edition-section-detail-intro-card'},{'name': 'EditionSectionDetailOverviewComponent', 'selector': 'awg-edition-section-detail-overview'},{'name': 'EditionSectionDetailPlaceholderComponent', 'selector': 'awg-edition-section-detail-placeholder'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesCardComponent', 'selector': 'awg-edition-series-card'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetFacetComponent', 'selector': 'awg-edition-sheet-facet'},{'name': 'EditionSheetFacetGroupComponent', 'selector': 'awg-edition-sheet-facet-group'},{'name': 'EditionSheetFacetItemComponent', 'selector': 'awg-edition-sheet-facet-item'},{'name': 'EditionSheetFacetToggleComponent', 'selector': 'awg-edition-sheet-facet-toggle'},{'name': 'EditionSheetFooterComponent', 'selector': 'awg-edition-sheet-footer'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSheetsPanelComponent', 'selector': 'awg-edition-sheets-panel'},{'name': 'EditionSheetViewerAdditionsPanelComponent', 'selector': 'awg-edition-sheet-viewer-additions-panel'},{'name': 'EditionSheetViewerComponent', 'selector': 'awg-edition-sheet-viewer'},{'name': 'EditionSheetViewerNavComponent', 'selector': 'awg-edition-sheet-viewer-nav'},{'name': 'EditionSheetViewerSvgComponent', 'selector': 'awg-edition-sheet-viewer-svg'},{'name': 'EditionSideInfoComponent', 'selector': 'awg-edition-side-info'},{'name': 'EditionTkaEvaluationsComponent', 'selector': 'awg-edition-tka-evaluations'},{'name': 'EditionTkaLabelComponent', 'selector': 'awg-edition-tka-label'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExampleQueriesComponent', 'selector': 'awg-example-queries'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphLimitComponent', 'selector': 'awg-force-graph-limit'},{'name': 'ForceGraphSvgComponent', 'selector': 'awg-force-graph-svg'},{'name': 'FormSwitchComponent', 'selector': 'awg-form-switch'},{'name': 'FullscreenToggleComponent', 'selector': 'awg-fullscreen-toggle'},{'name': 'GraphEditorActionButtonsComponent', 'selector': 'awg-graph-editor-action-buttons'},{'name': 'GraphEditorSparqlComponent', 'selector': 'awg-graph-editor-sparql'},{'name': 'GraphEditorTriplesComponent', 'selector': 'awg-graph-editor-triples'},{'name': 'GraphResultsConstructComponent', 'selector': 'awg-graph-results-construct'},{'name': 'GraphResultsEmptyComponent', 'selector': 'awg-graph-results-empty'},{'name': 'GraphResultsSelectComponent', 'selector': 'awg-graph-results-select'},{'name': 'GraphResultsStatusComponent', 'selector': 'awg-graph-results-status'},{'name': 'GraphResultsUnsupportedComponent', 'selector': 'awg-graph-results-unsupported'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewCardComponent', 'selector': 'awg-home-view-card'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LanguageSwitcherComponent', 'selector': 'awg-language-switcher'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'LogoComponent', 'selector': 'awg-logo'},{'name': 'MetaIdentifierBadgesComponent', 'selector': 'awg-meta-identifier-badges'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'NavbarDropdownLinkComponent', 'selector': 'awg-navbar-dropdown-link'},{'name': 'NavbarItemComponent', 'selector': 'awg-navbar-item'},{'name': 'NavLinkGroupComponent', 'selector': 'awg-nav-link-group'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'SelectTableComponent', 'selector': 'awg-select-table'},{'name': 'SliderZoomComponent', 'selector': 'awg-slider-zoom'},{'name': 'SourceDescComponent', 'selector': 'awg-source-desc'},{'name': 'SourceDescContentFolioComponent', 'selector': 'awg-source-desc-content-folio'},{'name': 'SourceDescContentGridComponent', 'selector': 'awg-source-desc-content-grid'},{'name': 'SourceDescContentItemComponent', 'selector': 'awg-source-desc-content-item'},{'name': 'SourceDescContentsComponent', 'selector': 'awg-source-desc-contents'},{'name': 'SourceDescContentSystemComponent', 'selector': 'awg-source-desc-content-system'},{'name': 'SourceDescCorrectionsComponent', 'selector': 'awg-source-desc-corrections'},{'name': 'SourceDescDetailsComponent', 'selector': 'awg-source-desc-details'},{'name': 'SourceDescItemComponent', 'selector': 'awg-source-desc-item'},{'name': 'SourceDescWritingInstrumentsComponent', 'selector': 'awg-source-desc-writing-instruments'},{'name': 'SourceDescWritingMaterialComponent', 'selector': 'awg-source-desc-writing-material'},{'name': 'SourceDescWritingMaterialsComponent', 'selector': 'awg-source-desc-writing-materials'},{'name': 'SourceDescWritingTrademarkComponent', 'selector': 'awg-source-desc-writing-trademark'},{'name': 'SourceDescWritingWatermarkComponent', 'selector': 'awg-source-desc-writing-watermark'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceEvaluationPlaceholderComponent', 'selector': 'awg-source-evaluation-placeholder'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourceSiglumComponent', 'selector': 'awg-source-siglum'},{'name': 'StatisticsBreakdownBadgeComponent', 'selector': 'awg-statistics-breakdown-badge'},{'name': 'StatisticsComplexBreakdownComponent', 'selector': 'awg-statistics-complex-breakdown'},{'name': 'StatisticsOverallProgressComponent', 'selector': 'awg-statistics-overall-progress'},{'name': 'StatisticsProgressBarComponent', 'selector': 'awg-statistics-progress-bar'},{'name': 'StatisticsSeriesBreakdownComponent', 'selector': 'awg-statistics-series-breakdown'},{'name': 'StatisticsSummaryCardComponent', 'selector': 'awg-statistics-summary-card'},{'name': 'StatisticsSummaryComponent', 'selector': 'awg-statistics-summary'},{'name': 'StatisticsViewComponent', 'selector': 'awg-statistics-view'},{'name': 'StructureSideInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'AbbrDirective', 'selector': '[awgAbbr]'},{'name': 'ClickDirective', 'selector': '[awgClick]'},{'name': 'CompileHtmlDirective', 'selector': '[awgCompileHtml]'},{'name': 'EditionIntroScrollDirective', 'selector': '[awgEditionIntroScroll]'},{'name': 'EditionSheetFacetItemLinkDirective', 'selector': 'a[awgEditionSheetFacetItemLink]'},{'name': 'EditionSheetFacetScrollDirective', 'selector': '[awgEditionSheetFacetScroll]'},{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'SvgZoomDirective', 'selector': 'svg[awgSvgZoom]'}];
     var ACTUAL_COMPONENT = {'name': 'TableComponent'};
 </script>
