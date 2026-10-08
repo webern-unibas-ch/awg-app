@@ -1,7 +1,4 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-
-import { Observable } from 'rxjs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -22,21 +19,16 @@ import { SelectTableComponent } from './table/select-table.component';
     templateUrl: './graph-results-select.component.html',
     styleUrls: ['./graph-results-select.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        AsyncPipe,
-        NgbAccordionModule,
-        GraphResultsEmptyComponent,
-        SelectTableComponent,
-        TwelveToneSpinnerComponent,
-    ],
+    imports: [NgbAccordionModule, GraphResultsEmptyComponent, SelectTableComponent, TwelveToneSpinnerComponent],
 })
 export class GraphResultsSelectComponent {
     /**
-     * Readonly input signal: queryResult$.
+     * Readonly input signal: queryResult.
      *
-     * It holds the query result as an observable.
+     * It holds the result of the query
+     * (undefined while the query is running).
      */
-    readonly queryResult$ = input.required<Observable<SparqlResult>>();
+    readonly queryResult = input<SparqlResult | undefined>();
 
     /**
      * Readonly input signal: queryTime.

@@ -4,8 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, EmptyError, firstValueFrom, lastValueFrom, Observable, take } from 'rxjs';
-
 import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
@@ -45,7 +43,7 @@ const EXAMPLE = 'https://example.com/onto#';
 })
 class GraphResultsConstructStubComponent {
     @Input()
-    queryResult$: Observable<SparqlResult> = EMPTY;
+    queryResult: SparqlResult | undefined = undefined;
     @Input()
     defaultForceGraphHeight = 0;
     @Input()
@@ -61,7 +59,7 @@ class GraphResultsConstructStubComponent {
 })
 class GraphResultsSelectStubComponent {
     @Input()
-    queryResult$: Observable<SparqlResult> = EMPTY;
+    queryResult: SparqlResult | undefined = undefined;
     @Input()
     queryTime = 0;
     @Input()
@@ -129,6 +127,16 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let resetTriplesSpy: Spy;
     let showToastMessageSpy: Spy;
     let toastServiceAddSpy: Spy;
+
+    /**
+     * Helper function: getQueryResult.
+     *
+     * It awaits the pending query run and gets the resulting query result.
+     */
+    const getQueryResult = async (): Promise<SparqlResult | undefined> => {
+        await component['_pendingResult'];
+        return component.queryResult;
+    };
 
     beforeEach(async () => {
         // Mocked SparqlQueryService: it performs the query unchanged and resolves the expected result of its type
@@ -258,7 +266,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should have default `queryResult`', () => {
-            expectToEqual(component.queryResult$, EMPTY);
+            expect(component.queryResult).toBeUndefined();
         });
 
         it('... should have default `queryTime`', () => {
@@ -315,16 +323,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
         });
 
-        it('... should have `queryResult`', () => {
-            expect(component.queryResult$).toBeDefined();
-
-            component.queryResult$.pipe(take(1)).subscribe(result => {
-                expectToEqual(result, expectedConstructResult);
-            });
+        it('... should have `queryResult`', async () => {
+            expectToEqual(await getQueryResult(), expectedConstructResult);
         });
 
         it('... should have `queryTime` from the duration of the run', async () => {
-            await lastValueFrom(component.queryResult$);
+            await getQueryResult();
 
             expectToBe(component.queryTime, expectedDurationMs);
         });
@@ -605,7 +609,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should have `queryResult` passed down from main component', () => {
+                it('... should have `queryResult` passed down from main component', async () => {
+                    await getQueryResult();
+                    await detectChangesOnPush(fixture);
+
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
                         GraphResultsConstructStubComponent,
@@ -616,10 +623,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         GraphResultsConstructStubComponent
                     ) as GraphResultsConstructStubComponent;
 
-                    expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
-                        expectToEqual(result, expectedConstructResult);
-                    });
+                    expectToEqual(resultsCmp.queryResult, expectedConstructResult);
                 });
 
                 it('... should have `defaultForceGraphHeight` passed down from main component', () => {
@@ -668,7 +672,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should have `queryResult` passed down from main component', () => {
+                it('... should have `queryResult` passed down from main component', async () => {
+                    await getQueryResult();
+                    await detectChangesOnPush(fixture);
+
                     const resultsDes = getAndExpectDebugElementByDirective(
                         compDe,
                         GraphResultsSelectStubComponent,
@@ -679,10 +686,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         GraphResultsSelectStubComponent
                     ) as GraphResultsSelectStubComponent;
 
-                    expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
-                        expectToEqual(result, expectedSelectResult);
-                    });
+                    expectToEqual(resultsCmp.queryResult, expectedSelectResult);
                 });
 
                 it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
@@ -1041,7 +1045,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     // Perform query without prefixes
                     component.query = queryWithoutPrefixes;
                     component.performQuery();
-                    await lastValueFrom(component.queryResult$);
+                    await getQueryResult();
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 2, undefined);
@@ -1100,8 +1104,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.query.queryType, 'construct');
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
+                    expectToEqual(await getQueryResult(), expectedConstructResult);
                 });
 
                 it('... should get queryResult for select queries', async () => {
@@ -1114,11 +1117,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.query.queryType, 'select');
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
+                    expectToEqual(await getQueryResult(), expectedSelectResult);
                 });
 
-                it('... should set empty observable without running update queries', async () => {
+                it('... should set undefined queryResult without running update queries', async () => {
                     component.query.queryString = `PREFIX example: <${EXAMPLE}>\nINSERT DATA { example:a example:b example:c }`;
 
                     // Perform query
@@ -1127,10 +1129,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expectToBe(component.query.queryType, 'update');
                     expectSpyCall(serviceRunSpy, 1);
-                    await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
+                    expect(await getQueryResult()).toBeUndefined();
                 });
 
-                it('... should set empty observable without running queries of unknown type', async () => {
+                it('... should set undefined queryResult without running queries of unknown type', async () => {
                     component.query.queryString = 'WHERE { ?s ?p ?o }';
 
                     // Perform query
@@ -1139,7 +1141,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     expectToBe(component.query.queryType, null);
                     expectSpyCall(serviceRunSpy, 1);
-                    await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
+                    expect(await getQueryResult()).toBeUndefined();
                 });
             });
 
@@ -1503,7 +1505,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     await detectChangesOnPush(fixture);
 
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
+                    expectToEqual(await getQueryResult(), expectedConstructResult);
                 });
 
                 it('... should return the query result on success (select)', async () => {
@@ -1512,7 +1514,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     await detectChangesOnPush(fixture);
 
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
+                    expectToEqual(await getQueryResult(), expectedSelectResult);
                 });
 
                 it('... should set the performed query and the query time on success', async () => {
@@ -1537,7 +1539,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         component.performQuery();
                         await detectChangesOnPush(fixture);
 
-                        const queryResult = await firstValueFrom(component.queryResult$);
+                        const queryResult = await getQueryResult();
 
                         expectToEqual(queryResult, { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
                     });

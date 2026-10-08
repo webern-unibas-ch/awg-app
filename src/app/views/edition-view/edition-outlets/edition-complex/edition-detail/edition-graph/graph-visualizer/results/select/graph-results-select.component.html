@@ -6,7 +6,7 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    @if (queryResult$() | async; as queryResult) {
+                    @if (queryResult(); as queryResult) {
                         @if (isValidSelectQueryResult(queryResult)) {
                             <!-- SPARQL table visualization -->
                             <awg-select-table

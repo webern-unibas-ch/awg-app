@@ -4,8 +4,6 @@
  */
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, input, Input, OnInit } from '@angular/core';
 
-import { EMPTY, Observable, from as observableFrom } from 'rxjs';
-
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
 
@@ -66,11 +64,12 @@ export class GraphVisualizerComponent implements OnInit {
     queryList: GraphSparqlQuery[] = [];
 
     /**
-     * Public variable: queryResult$.
+     * Public variable: queryResult.
      *
-     * It keeps the result of the query as an observable.
+     * It keeps the result of the query
+     * (undefined while the query is running).
      */
-    queryResult$: Observable<SparqlResult> = EMPTY;
+    queryResult: SparqlResult | undefined = undefined;
 
     /**
      * Public variable: queryTime.
@@ -85,6 +84,14 @@ export class GraphVisualizerComponent implements OnInit {
      * It keeps the input triple string of the graph visualization.
      */
     triples = '';
+
+    /**
+     * Private variable: _pendingResult.
+     *
+     * It keeps the result promise of the latest query run,
+     * so that a stale run does not overwrite the result of a newer one.
+     */
+    private _pendingResult: Promise<SparqlResult> | undefined;
 
     /**
      * Private readonly injection variable: _changeDetectorRef.
@@ -169,12 +176,23 @@ export class GraphVisualizerComponent implements OnInit {
         // Get the query type synchronously, because the template chooses the result view by it
         this.query.queryType = SPARQL_UTILS.getQueryType(this.query.queryString);
 
+        // Reset the result while the query is running
+        this.queryResult = undefined;
+
         // Perform only construct and select queries for now
         if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
-            const result = this._runQuery(this.query.queryType, this.query.queryString, this.triples);
-            this.queryResult$ = observableFrom(result);
+            const pendingResult = this._runQuery(this.query.queryType, this.query.queryString, this.triples);
+            this._pendingResult = pendingResult;
+
+            void pendingResult.then(result => {
+                if (this._pendingResult !== pendingResult) {
+                    return;
+                }
+                this.queryResult = result;
+                this._changeDetectorRef.markForCheck();
+            });
         } else {
-            this.queryResult$ = EMPTY;
+            this._pendingResult = undefined;
         }
     }
 

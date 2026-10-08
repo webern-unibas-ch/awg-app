@@ -31,13 +31,13 @@
         @if (query.queryType === 'construct') {
             <awg-graph-results-construct
                 #queryConstructResultAcc
-                [queryResult$]="queryResult$"
+                [queryResult]="queryResult"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
                 [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
         } @else if (query.queryType === 'select') {
             <awg-graph-results-select
-                [queryResult$]="queryResult$"
+                [queryResult]="queryResult"
                 [queryTime]="queryTime"
                 [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />

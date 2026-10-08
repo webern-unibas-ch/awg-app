@@ -4,8 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, Observable, of as observableOf } from 'rxjs';
-
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
 import { DataFactory } from 'n3';
@@ -49,7 +47,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedQueryResult: SparqlSelectResult;
-    let expectedQueryResult$: Observable<SparqlResult>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
@@ -80,7 +77,6 @@ describe('GraphResultsSelectComponent (DONE)', () => {
             ['test', 'success'],
             [{ test: namedNode(`${DEFAULT_PREFIXES['awg']}test`), success: literal('success value') }]
         );
-        expectedQueryResult$ = observableOf(expectedQueryResult);
         expectedQueryTime = 5000;
         expectedIsFullscreen = false;
 
@@ -99,10 +95,9 @@ describe('GraphResultsSelectComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `queryResult$`', () => {
-            expectToBe(isSignal(component.queryResult$), true);
-
-            expect(() => component.queryResult$()).toThrow();
+        it('... should have input signal `queryResult` to hold undefined initially', () => {
+            expectToBe(isSignal(component.queryResult), true);
+            expect(component.queryResult()).toBeUndefined();
         });
 
         it('... should have input signal `queryTime` to hold 0 initially', () => {
@@ -137,7 +132,7 @@ describe('GraphResultsSelectComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            fixture.componentRef.setInput('queryResult$', expectedQueryResult$);
+            fixture.componentRef.setInput('queryResult', expectedQueryResult);
             fixture.componentRef.setInput('queryTime', expectedQueryTime);
             fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
@@ -145,8 +140,8 @@ describe('GraphResultsSelectComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have input signal `queryResult$` to hold the provided query result observable', () => {
-            expectToBe(component.queryResult$(), expectedQueryResult$);
+        it('... should have input signal `queryResult` to hold the provided query result', () => {
+            expectToBe(component.queryResult(), expectedQueryResult);
         });
 
         it('... should have input signal `queryTime` to hold the provided query time', () => {
@@ -253,41 +248,22 @@ describe('GraphResultsSelectComponent (DONE)', () => {
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                describe('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading if ... ', () => {
-                    it('... queryResult$ is EMPTY', async () => {
-                        fixture.componentRef.setInput('queryResult$', EMPTY);
-                        await detectChangesOnPush(fixture);
+                it('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading (queryResult is undefined)', async () => {
+                    fixture.componentRef.setInput('queryResult', undefined);
+                    await detectChangesOnPush(fixture);
 
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-results-select-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-results-select-collapse > div.accordion-body',
+                        1,
+                        1
+                    );
 
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerComponent, 1, 1);
-                    });
-
-                    it('... queryResult$ is undefined', async () => {
-                        fixture.componentRef.setInput(
-                            'queryResult$',
-                            observableOf(undefined as unknown as SparqlResult)
-                        );
-                        await detectChangesOnPush(fixture);
-
-                        const bodyDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-results-select-collapse > div.accordion-body',
-                            1,
-                            1
-                        );
-
-                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerComponent, 1, 1);
-                    });
+                    getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerComponent, 1, 1);
                 });
 
                 it('... should contain GraphResultsEmptyComponent (hollow) in item body if the query result is not valid', async () => {
-                    fixture.componentRef.setInput('queryResult$', observableOf(createSelectResult([], [])));
+                    fixture.componentRef.setInput('queryResult', createSelectResult([], []));
                     await detectChangesOnPush(fixture);
 
                     const bodyDes = getAndExpectDebugElementByCss(
@@ -434,7 +410,7 @@ describe('GraphResultsSelectComponent (DONE)', () => {
                         ['anotherTestHeader'],
                         [{ anotherTestHeader: literal('AnotherTestValue') }]
                     );
-                    fixture.componentRef.setInput('queryResult$', observableOf(queryResult));
+                    fixture.componentRef.setInput('queryResult', queryResult);
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(isValidSelectQueryResultSpy, 4, queryResult);

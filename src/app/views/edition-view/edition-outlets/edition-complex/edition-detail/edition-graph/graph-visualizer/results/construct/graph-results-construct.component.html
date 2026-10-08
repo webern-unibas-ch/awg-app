@@ -6,7 +6,7 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    @if (graphData$() | async; as graphData) {
+                    @if (graphData(); as graphData) {
                         @if (isValidGraphData(graphData)) {
                             <!-- Force graph visualization -->
                             <awg-force-graph

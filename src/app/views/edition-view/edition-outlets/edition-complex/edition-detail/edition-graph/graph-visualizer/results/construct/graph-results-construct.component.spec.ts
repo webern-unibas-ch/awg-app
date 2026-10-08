@@ -4,8 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, lastValueFrom, Observable, of as observableOf } from 'rxjs';
-
 import type { Quad } from '@rdfjs/types';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
@@ -56,7 +54,6 @@ describe('GraphResultsConstructComponent (DONE)', () => {
 
     let expectedHeight: number;
     let expectedQueryResult: SparqlConstructResult;
-    let expectedQueryResult$: Observable<SparqlResult>;
     let expectedGraphData: GraphData;
     let expectedIsFullscreen: boolean;
     let expectedNode: GraphNode;
@@ -107,7 +104,6 @@ describe('GraphResultsConstructComponent (DONE)', () => {
         expectedHeight = 500;
         expectedIsFullscreen = false;
         expectedQueryResult = createConstructResult(['Test']);
-        expectedQueryResult$ = observableOf(expectedQueryResult);
         expectedGraphData = GRAPH_DATA_UTILS.toGraphData(expectedQueryResult.quads, expectedQueryResult.prefixes);
         expectedNode = { id: 'Test', shortName: 'awg:Test', label: 'Test', kind: 'resource' };
 
@@ -126,10 +122,14 @@ describe('GraphResultsConstructComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `queryResult$`', () => {
-            expectToBe(isSignal(component.queryResult$), true);
+        it('... should have input signal `queryResult` to hold undefined initially', () => {
+            expectToBe(isSignal(component.queryResult), true);
+            expect(component.queryResult()).toBeUndefined();
+        });
 
-            expect(() => component.queryResult$()).toThrow();
+        it('... should have computed signal `graphData` to hold undefined initially', () => {
+            expectToBe(isSignal(component.graphData), true);
+            expect(component.graphData()).toBeUndefined();
         });
 
         it('... should have input signal `defaultForceGraphHeight` to hold 0 initially', () => {
@@ -164,7 +164,7 @@ describe('GraphResultsConstructComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            fixture.componentRef.setInput('queryResult$', expectedQueryResult$);
+            fixture.componentRef.setInput('queryResult', expectedQueryResult);
             fixture.componentRef.setInput('defaultForceGraphHeight', expectedHeight);
             fixture.componentRef.setInput('isFullscreenMode', expectedIsFullscreen);
 
@@ -172,8 +172,8 @@ describe('GraphResultsConstructComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have input signal `queryResult$` to hold the provided query result observable', () => {
-            expectToBe(component.queryResult$(), expectedQueryResult$);
+        it('... should have input signal `queryResult` to hold the provided query result', () => {
+            expectToBe(component.queryResult(), expectedQueryResult);
         });
 
         it('... should have input signal `defaultForceGraphHeight` to hold the provided height', () => {
@@ -184,26 +184,26 @@ describe('GraphResultsConstructComponent (DONE)', () => {
             expectToBe(component.isFullscreenMode(), expectedIsFullscreen);
         });
 
-        describe('... computed signal `graphData$`', () => {
-            it('... should hold the graph data of a construct result', async () => {
-                await expect(lastValueFrom(component.graphData$())).resolves.toEqual(expectedGraphData);
+        describe('... computed signal `graphData`', () => {
+            it('... should hold the graph data of a construct result', () => {
+                expectToEqual(component.graphData(), expectedGraphData);
             });
 
-            it('... should hold empty graph data for other results', async () => {
-                fixture.componentRef.setInput(
-                    'queryResult$',
-                    observableOf<SparqlResult>({ kind: 'unsupported', queryType: 'ask' })
-                );
+            it('... should hold empty graph data for other results', () => {
+                const unsupportedResult: SparqlResult = { kind: 'unsupported', queryType: 'ask' };
+                fixture.componentRef.setInput('queryResult', unsupportedResult);
 
-                await expect(lastValueFrom(component.graphData$())).resolves.toEqual({
-                    nodes: [],
-                    edges: [],
-                    tripleCount: 0,
-                });
+                expectToEqual(component.graphData(), { nodes: [], edges: [], tripleCount: 0 });
             });
 
-            it('... should hold the same observable for the same query result observable', () => {
-                expectToBe(component.graphData$(), component.graphData$());
+            it('... should hold undefined while the query is running (queryResult is undefined)', () => {
+                fixture.componentRef.setInput('queryResult', undefined);
+
+                expect(component.graphData()).toBeUndefined();
+            });
+
+            it('... should hold the same graph data for the same query result', () => {
+                expectToBe(component.graphData(), component.graphData());
             });
         });
 
@@ -246,8 +246,8 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                     expectToContain(getItemCollapseEl('open').classList, 'show');
                 });
 
-                it('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading (queryResult$ is EMPTY)', async () => {
-                    fixture.componentRef.setInput('queryResult$', EMPTY);
+                it('... should contain TwelveToneSpinnerComponent (hollow) in item body while loading (queryResult is undefined)', async () => {
+                    fixture.componentRef.setInput('queryResult', undefined);
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByDirective(getItemBodyDe(), TwelveToneSpinnerComponent, 1, 1);
@@ -255,7 +255,7 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                 });
 
                 it('... should contain GraphResultsEmptyComponent (hollow) in item body if the graph data is not valid', async () => {
-                    fixture.componentRef.setInput('queryResult$', observableOf(createConstructResult([])));
+                    fixture.componentRef.setInput('queryResult', createConstructResult([]));
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByDirective(getItemBodyDe(), GraphResultsEmptyComponent, 1, 1);

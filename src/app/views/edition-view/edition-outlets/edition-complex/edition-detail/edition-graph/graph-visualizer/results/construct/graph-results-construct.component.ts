@@ -1,7 +1,4 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-
-import { map, Observable } from 'rxjs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
@@ -31,21 +28,16 @@ const EMPTY_GRAPH_DATA: GraphData = Object.freeze({ nodes: [], edges: [], triple
     templateUrl: './graph-results-construct.component.html',
     styleUrls: ['./graph-results-construct.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        AsyncPipe,
-        NgbAccordionModule,
-        ForceGraphComponent,
-        GraphResultsEmptyComponent,
-        TwelveToneSpinnerComponent,
-    ],
+    imports: [NgbAccordionModule, ForceGraphComponent, GraphResultsEmptyComponent, TwelveToneSpinnerComponent],
 })
 export class GraphResultsConstructComponent {
     /**
-     * Readonly input signal: queryResult$.
+     * Readonly input signal: queryResult.
      *
-     * It holds the result of the query as an observable.
+     * It holds the result of the query
+     * (undefined while the query is running).
      */
-    readonly queryResult$ = input.required<Observable<SparqlResult>>();
+    readonly queryResult = input<SparqlResult | undefined>();
 
     /**
      * Readonly input signal: defaultForceGraphHeight.
@@ -69,14 +61,15 @@ export class GraphResultsConstructComponent {
     readonly clickedNodeRequest = output<GraphNode>();
 
     /**
-     * Readonly computed signal: graphData$.
+     * Readonly computed signal: graphData.
      *
-     * It holds the graph data of the query result as an observable
-     * (derived once per query result, not per change detection).
+     * It holds the graph data of the query result
+     * (undefined while the query is running).
      */
-    readonly graphData$ = computed<Observable<GraphData>>(() =>
-        this.queryResult$().pipe(map(queryResult => this._toGraphData(queryResult)))
-    );
+    readonly graphData = computed<GraphData | undefined>(() => {
+        const queryResultData = this.queryResult();
+        return queryResultData ? this._toGraphData(queryResultData) : undefined;
+    });
 
     /**
      * Public method: isValidGraphData.
