@@ -4,15 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { DEFAULT_PREFIXES } from './prefix.utils';
-import {
-    formatLiteralValue,
-    isIntegerLiteral,
-    RDF_TYPE,
-    RDFS_LABEL,
-    TERM_UTILS,
-    termKey,
-    termShortName,
-} from './term.utils';
+import { formatLiteralValue, RDF_TYPE, RDFS_LABEL, TERM_UTILS, termKey, termShortName } from './term.utils';
 
 const { blankNode, literal, namedNode } = DataFactory;
 
@@ -34,7 +26,7 @@ describe('TermUtils (DONE)', () => {
 
     describe('TERM_UTILS', () => {
         it('... should reference all term utils methods', () => {
-            expectToEqual(TERM_UTILS, { formatLiteralValue, isIntegerLiteral, termKey, termShortName });
+            expectToEqual(TERM_UTILS, { formatLiteralValue, termKey, termShortName });
         });
     });
 
@@ -102,25 +94,6 @@ describe('TermUtils (DONE)', () => {
 
             it('... should not compact IRIs within literal values', () => {
                 expectToBe(termShortName(literal(`${AWG}Sketch`), DEFAULT_PREFIXES), `${AWG}Sketch`);
-            });
-        });
-
-        describe('#isIntegerLiteral()', () => {
-            it('... should have a method `isIntegerLiteral`', () => {
-                expect(isIntegerLiteral).toBeDefined();
-            });
-
-            it('... should be true for literals with an integer datatype', () => {
-                expectToBe(isIntegerLiteral(literal('75', namedNode(`${XSD}integer`))), true);
-                expectToBe(isIntegerLiteral(literal('3', namedNode(`${XSD}nonNegativeInteger`))), true);
-                expectToBe(isIntegerLiteral(literal('3', namedNode(`${XSD}int`))), true);
-            });
-
-            it('... should be false for other literals and terms', () => {
-                expectToBe(isIntegerLiteral(literal('75')), false);
-                expectToBe(isIntegerLiteral(literal('7.5', namedNode(`${XSD}decimal`))), false);
-                expectToBe(isIntegerLiteral(namedNode(`${XSD}integer`)), false);
-                expectToBe(isIntegerLiteral(blankNode('b0')), false);
             });
         });
 

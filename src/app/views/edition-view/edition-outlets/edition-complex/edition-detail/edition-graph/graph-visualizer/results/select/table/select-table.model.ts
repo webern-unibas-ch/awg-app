@@ -24,7 +24,7 @@ export interface SelectTableCell {
 
     /**
      * The label of the cell to be displayed, searched and sorted
-     * (compacted IRI, `_:id`, number for integer literals, otherwise the literal value).
+     * (compacted IRI, `_:id` or the exact lexical value of a literal).
      */
-    readonly label: string | number;
+    readonly label: string;
 }

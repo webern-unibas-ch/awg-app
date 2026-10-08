@@ -61,7 +61,7 @@ describe(
                 expect(row['resource'].label).toMatch(/^awg:/);
                 expectToBe(row['class'].type, 'uri');
                 expectToBe(row['count'].type, 'literal');
-                expectToBe(typeof row['count'].label, 'number');
+                expect(row['count'].label).toMatch(/^\d+$/);
             });
         });
     }

@@ -19,29 +19,6 @@ const XSD = 'http://www.w3.org/2001/XMLSchema#';
 const XSD_STRING = `${XSD}string`;
 
 /**
- * Set constant: XSD_INTEGER_TYPES.
- *
- * It keeps the IRIs of the XML Schema integer datatypes.
- */
-const XSD_INTEGER_TYPES: ReadonlySet<string> = new Set(
-    [
-        'integer',
-        'nonNegativeInteger',
-        'positiveInteger',
-        'nonPositiveInteger',
-        'negativeInteger',
-        'long',
-        'int',
-        'short',
-        'byte',
-        'unsignedLong',
-        'unsignedInt',
-        'unsignedShort',
-        'unsignedByte',
-    ].map(type => XSD + type)
-);
-
-/**
  * Regex constant: NUMERIC_REGEX.
  *
  * It keeps a regex for decimal numbers (with optional sign and exponent).
@@ -143,25 +120,12 @@ export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
 }
 
 /**
- * Utils method: isIntegerLiteral.
- *
- * It checks if a given RDF term is a literal with an XML Schema integer datatype.
- *
- * @param {RdfTerm} term The given term.
- * @returns {boolean} The result of the check.
- */
-export function isIntegerLiteral(term: RdfTerm): boolean {
-    return term.termType === 'Literal' && XSD_INTEGER_TYPES.has(term.datatype.value);
-}
-
-/**
  * Utils constants: TERM_UTILS.
  *
  * It keeps a namespace reference to the term utils methods.
  */
 export const TERM_UTILS = {
     formatLiteralValue,
-    isIntegerLiteral,
     termKey,
     termShortName,
 } as const;

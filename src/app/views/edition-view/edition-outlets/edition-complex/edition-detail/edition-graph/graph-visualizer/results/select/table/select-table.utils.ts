@@ -9,8 +9,9 @@ import { SelectTableCell } from './select-table.model';
  * Utils method: toTableCell.
  *
  * It converts a given RDF term into a cell of the SPARQL results table:
- * IRIs and blank nodes are labeled by their short name, integer literals by their number
- * (to sort them numerically), other literals by their value.
+ * IRIs and blank nodes are labeled by their short name, literals by their exact lexical value
+ * (integers are not converted to numbers to keep values beyond the safe-integer range;
+ * the natural sort order of the table still sorts digit strings numerically).
  *
  * @param {RdfTerm} term The given term.
  * @param {PrefixMap} prefixes The prefixes to compact IRIs.
@@ -23,11 +24,7 @@ export function toTableCell(term: RdfTerm, prefixes: PrefixMap): SelectTableCell
         case 'BlankNode':
             return { type: 'bnode', value: term.value, label: TERM_UTILS.termShortName(term, prefixes) };
         case 'Literal':
-            return {
-                type: 'literal',
-                value: term.value,
-                label: TERM_UTILS.isIntegerLiteral(term) ? Number(term.value) : term.value,
-            };
+            return { type: 'literal', value: term.value, label: term.value };
     }
 }
 

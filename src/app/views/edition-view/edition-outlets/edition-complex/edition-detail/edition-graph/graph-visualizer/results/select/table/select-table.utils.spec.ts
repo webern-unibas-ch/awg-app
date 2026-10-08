@@ -49,12 +49,21 @@ describe('SelectTableUtils (DONE)', () => {
                 });
             });
 
-            it('... should hold a literal cell with the number as label for integer literals', () => {
+            it('... should hold a literal cell with the lexical value as label for integer literals', () => {
                 expectToEqual(toTableCell(literal('75', namedNode(`${XSD}integer`)), DEFAULT_PREFIXES), {
                     type: 'literal',
                     value: '75',
-                    label: 75,
+                    label: '75',
                 });
+            });
+
+            it('... should keep the exact lexical value of integer literals beyond the safe-integer range', () => {
+                const bigInteger = '9007199254740993';
+
+                expectToBe(
+                    toTableCell(literal(bigInteger, namedNode(`${XSD}integer`)), DEFAULT_PREFIXES).label,
+                    bigInteger
+                );
             });
 
             it('... should hold a literal cell with the unrounded value as label for other literals', () => {
@@ -95,11 +104,11 @@ describe('SelectTableUtils (DONE)', () => {
                     {
                         s: { type: 'uri', value: `${AWG}a`, label: 'awg:a' },
                         label: { type: 'literal', value: 'A', label: 'A' },
-                        page: { type: 'literal', value: '75', label: 75 },
+                        page: { type: 'literal', value: '75', label: '75' },
                     },
                     {
                         s: { type: 'bnode', value: 'b1', label: '_:b1' },
-                        page: { type: 'literal', value: '76', label: 76 },
+                        page: { type: 'literal', value: '76', label: '76' },
                     },
                 ]);
             });
