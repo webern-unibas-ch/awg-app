@@ -76,30 +76,6 @@ export function compactIri(iri: string, prefixes: PrefixMap): string {
 }
 
 /**
- * Utils method: expandQName.
- *
- * It expands a given prefixed name (e.g. `rdfs:label`) to a full IRI.
- * Names with an unknown prefix (or full IRIs) are returned unchanged.
- *
- * @param {string} qname The given prefixed name.
- * @param {PrefixMap} prefixes The given prefixes.
- * @returns {string} The expanded IRI.
- */
-export function expandQName(qname: string, prefixes: PrefixMap): string {
-    const colonIndex = qname.indexOf(':');
-    if (colonIndex === -1) {
-        return qname;
-    }
-
-    const prefix = qname.slice(0, colonIndex);
-    if (!Object.hasOwn(prefixes, prefix)) {
-        return qname;
-    }
-
-    return prefixes[prefix] + qname.slice(colonIndex + 1);
-}
-
-/**
  * Utils method: extractSparqlPrefixes.
  *
  * It extracts the prefix declarations of a given SPARQL query.
@@ -163,7 +139,6 @@ export function addMissingPrefixes(query: string, prefixes: PrefixMap): { query:
 export const PREFIX_UTILS = {
     addMissingPrefixes,
     compactIri,
-    expandQName,
     extractSparqlPrefixes,
     findUsedPrefixes,
     mergePrefixes,

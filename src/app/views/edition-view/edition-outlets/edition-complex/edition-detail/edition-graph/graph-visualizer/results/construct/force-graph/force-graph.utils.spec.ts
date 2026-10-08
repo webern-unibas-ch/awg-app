@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { GraphData, GraphEdge, GraphNode } from '../../../models/graph-data.model';
+import { ResultGraph, ResultGraphEdge, ResultGraphNode } from '../../../models/result-graph.model';
 import { SimEdge, SimNode } from './force-graph.model';
 import {
     FORCE_GRAPH_UTILS,
@@ -82,15 +82,15 @@ describe('force-graph.utils', () => {
     });
 
     describe('#toSimulationData()', () => {
-        const nodes: GraphNode[] = [
+        const nodes: ResultGraphNode[] = [
             { id: 'a', shortName: 'ex:a', label: 'A', kind: 'instance' },
             { id: 'b', shortName: 'ex:b', label: 'ex:b', kind: 'class' },
         ];
-        const edges: GraphEdge[] = [
+        const edges: ResultGraphEdge[] = [
             { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
             { id: 'e1', source: 'a', target: 'a', label: 'ex:self' },
         ];
-        const graph: GraphData = { nodes, edges, tripleCount: 2 };
+        const graph: ResultGraph = { nodes, edges, tripleCount: 2 };
 
         it('... should have a method `toSimulationData`', () => {
             expect(toSimulationData).toBeDefined();
@@ -138,7 +138,7 @@ describe('force-graph.utils', () => {
         });
 
         it('... should throw for an edge with an unknown node', () => {
-            const invalidGraph: GraphData = { ...graph, edges: [{ id: 'e0', source: 'a', target: 'x', label: 'p' }] };
+            const invalidGraph: ResultGraph = { ...graph, edges: [{ id: 'e0', source: 'a', target: 'x', label: 'p' }] };
 
             expect(() => toSimulationData(invalidGraph)).toThrow('[FORCE_GRAPH_UTILS] Unknown node of an edge: x.');
         });

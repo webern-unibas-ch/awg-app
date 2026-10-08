@@ -4,9 +4,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import type { Quad } from '@rdfjs/types';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
+import type { Quad } from '@rdfjs/types';
 import { DataFactory } from 'n3';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -22,12 +22,12 @@ import {
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { GraphData, GraphNode } from '../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../models/result-graph.model';
 import { SparqlConstructResult, SparqlResult } from '../../models/sparql-result.model';
-import { GRAPH_DATA_UTILS } from '../../utils/graph-data.utils';
 import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
 import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
+import { RESULT_GRAPH_UTILS } from './result-graph.utils';
 
 import { GraphResultsConstructComponent } from './graph-results-construct.component';
 
@@ -54,12 +54,12 @@ describe('GraphResultsConstructComponent (DONE)', () => {
 
     let expectedHeight: number;
     let expectedQueryResult: SparqlConstructResult;
-    let expectedGraphData: GraphData;
+    let expectedResultGraph: ResultGraph;
     let expectedIsFullscreen: boolean;
-    let expectedNode: GraphNode;
+    let expectedNode: ResultGraphNode;
 
     let emitClickedNodeRequestSpy: Spy;
-    let isValidGraphDataSpy: Spy;
+    let isValidResultGraphSpy: Spy;
     let nodeClickSpy: Spy;
 
     const getItemHeaderButtonDe = (): DebugElement =>
@@ -104,12 +104,12 @@ describe('GraphResultsConstructComponent (DONE)', () => {
         expectedHeight = 500;
         expectedIsFullscreen = false;
         expectedQueryResult = createConstructResult(['Test']);
-        expectedGraphData = GRAPH_DATA_UTILS.toGraphData(expectedQueryResult.quads, expectedQueryResult.prefixes);
+        expectedResultGraph = RESULT_GRAPH_UTILS.toResultGraph(expectedQueryResult.quads, expectedQueryResult.prefixes);
         expectedNode = { id: 'Test', shortName: 'awg:Test', label: 'Test', kind: 'resource' };
 
         // Spies
         emitClickedNodeRequestSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
-        isValidGraphDataSpy = vi.spyOn(component, 'isValidGraphData');
+        isValidResultGraphSpy = vi.spyOn(component, 'isValidResultGraph');
         nodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
     });
 
@@ -127,9 +127,9 @@ describe('GraphResultsConstructComponent (DONE)', () => {
             expect(component.queryResult()).toBeUndefined();
         });
 
-        it('... should have computed signal `graphData` to hold undefined initially', () => {
-            expectToBe(isSignal(component.graphData), true);
-            expect(component.graphData()).toBeUndefined();
+        it('... should have computed signal `resultGraph` to hold undefined initially', () => {
+            expectToBe(isSignal(component.resultGraph), true);
+            expect(component.resultGraph()).toBeUndefined();
         });
 
         it('... should have input signal `defaultForceGraphHeight` to hold 0 initially', () => {
@@ -184,26 +184,26 @@ describe('GraphResultsConstructComponent (DONE)', () => {
             expectToBe(component.isFullscreenMode(), expectedIsFullscreen);
         });
 
-        describe('... computed signal `graphData`', () => {
+        describe('... computed signal `resultGraph`', () => {
             it('... should hold the graph data of a construct result', () => {
-                expectToEqual(component.graphData(), expectedGraphData);
+                expectToEqual(component.resultGraph(), expectedResultGraph);
             });
 
             it('... should hold empty graph data for other results', () => {
                 const unsupportedResult: SparqlResult = { kind: 'unsupported', queryType: 'ask' };
                 fixture.componentRef.setInput('queryResult', unsupportedResult);
 
-                expectToEqual(component.graphData(), { nodes: [], edges: [], tripleCount: 0 });
+                expectToEqual(component.resultGraph(), { nodes: [], edges: [], tripleCount: 0 });
             });
 
             it('... should hold undefined while the query is running (queryResult is undefined)', () => {
                 fixture.componentRef.setInput('queryResult', undefined);
 
-                expect(component.graphData()).toBeUndefined();
+                expect(component.resultGraph()).toBeUndefined();
             });
 
             it('... should hold the same graph data for the same query result', () => {
-                expectToBe(component.graphData(), component.graphData());
+                expectToBe(component.resultGraph(), component.resultGraph());
             });
         });
 
@@ -270,7 +270,7 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                 it('... should pass down the graph data and `defaultForceGraphHeight` to ForceGraphComponent (hollow)', () => {
                     const forceGraphCmp = getForceGraphCmp();
 
-                    expectToEqual(forceGraphCmp.graphData(), expectedGraphData);
+                    expectToEqual(forceGraphCmp.resultGraph(), expectedResultGraph);
                     expectToBe(forceGraphCmp.height(), expectedHeight);
                 });
 
@@ -309,28 +309,28 @@ describe('GraphResultsConstructComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
-            describe('#isValidGraphData()', () => {
-                it('... should have a method `isValidGraphData`', () => {
-                    expect(component.isValidGraphData).toBeDefined();
+            describe('#isValidResultGraph()', () => {
+                it('... should have a method `isValidResultGraph`', () => {
+                    expect(component.isValidResultGraph).toBeDefined();
                 });
 
                 it('... should be triggered with the graph data from the template', () => {
-                    expect(isValidGraphDataSpy).toHaveBeenCalledWith(expectedGraphData);
+                    expect(isValidResultGraphSpy).toHaveBeenCalledWith(expectedResultGraph);
                 });
 
                 describe('... should be false if', () => {
-                    it.each<{ desc: string; graphData: GraphData | null | undefined }>([
-                        { desc: 'graphData is undefined', graphData: undefined },
-                        { desc: 'graphData is null', graphData: null },
-                        { desc: 'graphData has no edges', graphData: { nodes: [], edges: [], tripleCount: 0 } },
-                    ])('... $desc', ({ graphData }) => {
-                        expectToBe(component.isValidGraphData(graphData), false);
+                    it.each<{ desc: string; resultGraph: ResultGraph | null | undefined }>([
+                        { desc: 'resultGraph is undefined', resultGraph: undefined },
+                        { desc: 'resultGraph is null', resultGraph: null },
+                        { desc: 'resultGraph has no edges', resultGraph: { nodes: [], edges: [], tripleCount: 0 } },
+                    ])('... $desc', ({ resultGraph }) => {
+                        expectToBe(component.isValidResultGraph(resultGraph), false);
                     });
                 });
 
                 describe('... should be true if', () => {
-                    it('... graphData has edges', () => {
-                        expectToBe(component.isValidGraphData(expectedGraphData), true);
+                    it('... resultGraph has edges', () => {
+                        expectToBe(component.isValidResultGraph(expectedResultGraph), true);
                     });
                 });
             });
@@ -347,7 +347,7 @@ describe('GraphResultsConstructComponent (DONE)', () => {
                 });
 
                 it('... should not emit anything if no node is provided', () => {
-                    component.onGraphNodeClick(undefined as unknown as GraphNode);
+                    component.onGraphNodeClick(undefined as unknown as ResultGraphNode);
 
                     expectSpyCall(emitClickedNodeRequestSpy, 0);
                 });

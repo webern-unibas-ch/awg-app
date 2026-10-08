@@ -10,7 +10,7 @@
         <!-- Limit -->
         <awg-force-graph-limit
             class="awg-force-graph-limit-container float-end my-auto"
-            [tripleCount]="graphData().tripleCount"
+            [tripleCount]="resultGraph().tripleCount"
             [(limit)]="limit" />
     </div>
 
@@ -18,7 +18,7 @@
     <awg-force-graph-svg
         #graphSvg
         class="awg-force-graph-svg-container"
-        [graphData]="limitedGraphData()"
+        [resultGraph]="limitedResultGraph()"
         [zoomConfig]="zoomConfig"
         [(zoomValue)]="zoomValue"
         (clickedNodeRequest)="clickedNodeRequest.emit($event)" />

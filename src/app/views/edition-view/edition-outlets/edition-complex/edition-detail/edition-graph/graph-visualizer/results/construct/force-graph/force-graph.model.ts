@@ -1,6 +1,6 @@
 import type { Simulation, SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
 
-import { GraphEdge, GraphNode } from '../../../models/graph-data.model';
+import { ResultGraphEdge, ResultGraphNode } from '../../../models/result-graph.model';
 
 /**
  * The SimNode interface.
@@ -19,7 +19,7 @@ export interface SimNode extends SimulationNodeDatum {
     /**
      * The graph node (undefined for the middle node of an edge).
      */
-    readonly graphNode?: GraphNode;
+    readonly graphNode?: ResultGraphNode;
 
     /**
      * The radius of the drawn node; the charge force uses `r - 1`.
@@ -51,7 +51,7 @@ export interface SimEdge {
     /**
      * The graph edge.
      */
-    readonly edge: GraphEdge;
+    readonly edge: ResultGraphEdge;
 
     /**
      * The simulation node of the source.

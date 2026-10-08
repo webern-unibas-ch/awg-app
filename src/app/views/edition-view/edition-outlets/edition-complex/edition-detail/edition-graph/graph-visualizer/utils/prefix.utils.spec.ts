@@ -6,7 +6,6 @@ import {
     addMissingPrefixes,
     compactIri,
     DEFAULT_PREFIXES,
-    expandQName,
     extractSparqlPrefixes,
     findUsedPrefixes,
     mergePrefixes,
@@ -35,7 +34,6 @@ describe('prefix.utils', () => {
             expectToEqual(PREFIX_UTILS, {
                 addMissingPrefixes,
                 compactIri,
-                expandQName,
                 extractSparqlPrefixes,
                 findUsedPrefixes,
                 mergePrefixes,
@@ -95,30 +93,6 @@ describe('prefix.utils', () => {
 
         it('... should ignore empty namespaces', () => {
             expectToBe(compactIri('http://example.org/x', { empty: '' }), 'http://example.org/x');
-        });
-    });
-
-    describe('#expandQName()', () => {
-        it('... should have a method `expandQName`', () => {
-            expect(expandQName).toBeDefined();
-        });
-
-        it('... should expand a prefixed name with a known prefix', () => {
-            expectToBe(expandQName('rdfs:label', DEFAULT_PREFIXES), `${RDFS}label`);
-            expectToBe(expandQName('rdf:type', DEFAULT_PREFIXES), `${RDF}type`);
-        });
-
-        it('... should keep a prefixed name with an unknown prefix', () => {
-            expectToBe(expandQName('foo:bar', DEFAULT_PREFIXES), 'foo:bar');
-        });
-
-        it('... should keep full IRIs and names without colon', () => {
-            expectToBe(expandQName('http://example.org/x', DEFAULT_PREFIXES), 'http://example.org/x');
-            expectToBe(expandQName('label', DEFAULT_PREFIXES), 'label');
-        });
-
-        it('... should not match inherited object properties as prefixes', () => {
-            expectToBe(expandQName('constructor:x', DEFAULT_PREFIXES), 'constructor:x');
         });
     });
 

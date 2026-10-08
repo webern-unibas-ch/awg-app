@@ -6,12 +6,12 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    @if (graphData(); as graphData) {
-                        @if (isValidGraphData(graphData)) {
+                    @if (resultGraph(); as resultGraph) {
+                        @if (isValidResultGraph(resultGraph)) {
                             <!-- Force graph visualization -->
                             <awg-force-graph
                                 class="full-width"
-                                [graphData]="graphData"
+                                [resultGraph]="resultGraph"
                                 [height]="defaultForceGraphHeight()"
                                 (clickedNodeRequest)="onGraphNodeClick($event)" />
                         } @else {

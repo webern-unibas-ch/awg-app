@@ -6,21 +6,21 @@ import { expectToBe } from '@testing/expect-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
-import { GraphData } from '../models/graph-data.model';
-import { RdfTerm } from '../models/rdf.model';
-import { toGraphData } from './graph-data.utils';
-import { DEFAULT_PREFIXES } from './prefix.utils';
-import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from './term.utils';
+import { RdfTerm } from '../../models/rdf.model';
+import { ResultGraph } from '../../models/result-graph.model';
+import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '../../utils/term.utils';
+import { toResultGraph } from './result-graph.utils';
 
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
 
-describe('graph-data.utils (integration with the op. 25 graph data)', () => {
+describe('ResultGraphUtils (integration with the op. 25 graph data)', () => {
     let quads: Quad[];
-    let graph: GraphData;
+    let graph: ResultGraph;
 
     beforeAll(() => {
         quads = new Parser().parse((graphDataOp25 as GraphList).graph[0].rdfData.triples) as Quad[];
-        graph = toGraphData(quads, DEFAULT_PREFIXES);
+        graph = toResultGraph(quads, DEFAULT_PREFIXES);
     });
 
     it('... should hold one edge per triple', () => {

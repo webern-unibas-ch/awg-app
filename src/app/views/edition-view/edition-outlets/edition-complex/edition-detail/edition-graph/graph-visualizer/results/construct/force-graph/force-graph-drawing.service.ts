@@ -11,7 +11,7 @@ import * as D3_SELECTION from 'd3-selection';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { GraphNode } from '../../../models/graph-data.model';
+import { ResultGraphNode } from '../../../models/result-graph.model';
 import { ForceSimulation, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 
@@ -93,9 +93,9 @@ export class ForceGraphDrawingService {
      * if the target is a drawn node (a circle within the nodes group).
      *
      * @param {EventTarget | null} target The given event target.
-     * @returns {GraphNode | undefined} The graph node of the target, or undefined.
+     * @returns {ResultGraphNode | undefined} The graph node of the target, or undefined.
      */
-    getGraphNode(target: EventTarget | null): GraphNode | undefined {
+    getGraphNode(target: EventTarget | null): ResultGraphNode | undefined {
         if (!(target instanceof Element) || !target.matches('g.nodes > circle')) {
             return undefined;
         }

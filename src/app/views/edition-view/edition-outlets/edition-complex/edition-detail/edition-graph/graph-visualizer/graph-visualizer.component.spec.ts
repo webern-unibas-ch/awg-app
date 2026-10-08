@@ -24,7 +24,7 @@ import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.m
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
-import { GraphNode } from './models/graph-data.model';
+import { ResultGraphNode } from './models/result-graph.model';
 import {
     SparqlConstructResult,
     SparqlQueryRequest,
@@ -57,7 +57,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let expectedConstructResult: SparqlConstructResult;
     let expectedSelectResult: SparqlSelectResult;
     let expectedDurationMs: number;
-    let expectedNode: GraphNode;
+    let expectedNode: ResultGraphNode;
     let expectedChangedTriples: string;
 
     let consoleSpy: Spy;
@@ -835,7 +835,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should do nothing if no node is provided', () => {
-                    component.onGraphNodeClick(undefined as unknown as GraphNode);
+                    component.onGraphNodeClick(undefined as unknown as ResultGraphNode);
 
                     expectSpyCall(showToastMessageSpy, 0);
                 });

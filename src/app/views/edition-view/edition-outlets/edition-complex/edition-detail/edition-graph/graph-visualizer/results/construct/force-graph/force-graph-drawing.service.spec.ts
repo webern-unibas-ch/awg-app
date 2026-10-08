@@ -9,7 +9,7 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { GraphData, GraphNode } from '../../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../../models/result-graph.model';
 import { FORCE_GRAPH_ARROW_MARKER_ID, ForceGraphDrawingService } from './force-graph-drawing.service';
 import { ForceSimulation, SimLink, SimNode, SimulationData } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
@@ -20,13 +20,13 @@ describe('ForceGraphDrawingService (DONE)', () => {
     let rootGroupSelection: D3Selection;
     let simulation: ForceSimulation | undefined;
 
-    const expectedNodes: GraphNode[] = [
+    const expectedNodes: ResultGraphNode[] = [
         { id: 'a', shortName: 'awg:a', label: 'A', kind: 'instance' },
         { id: 'b', shortName: 'awg:B', label: 'awg:B', kind: 'class' },
         { id: '_:c', shortName: '_:c', label: '_:c', kind: 'blank' },
         { id: '"x"', shortName: 'x', label: 'x', kind: 'literal' },
     ];
-    const expectedGraphData: GraphData = {
+    const expectedResultGraph: ResultGraph = {
         nodes: expectedNodes,
         edges: [
             { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
@@ -58,7 +58,7 @@ describe('ForceGraphDrawingService (DONE)', () => {
 
         // Test data
         rootGroupSelection = D3_SELECTION.create('svg').append('g') as unknown as D3Selection;
-        expectedSimulationData = FORCE_GRAPH_UTILS.toSimulationData(expectedGraphData);
+        expectedSimulationData = FORCE_GRAPH_UTILS.toSimulationData(expectedResultGraph);
     });
 
     afterEach(() => {
@@ -113,7 +113,7 @@ describe('ForceGraphDrawingService (DONE)', () => {
 
                 const linkEls = getElements<SVGPathElement>('g.links > path.link');
 
-                expectToBe(linkEls.length, expectedGraphData.edges.length);
+                expectToBe(linkEls.length, expectedResultGraph.edges.length);
                 linkEls.forEach(el => {
                     expectToBe(el.getAttribute('marker-end'), `url(#${FORCE_GRAPH_ARROW_MARKER_ID})`);
                 });

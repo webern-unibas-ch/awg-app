@@ -4,10 +4,10 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { GraphData } from '../models/graph-data.model';
-import { extractLabels, GRAPH_DATA_UTILS, limitGraphData, toGraphData } from './graph-data.utils';
-import { DEFAULT_PREFIXES } from './prefix.utils';
-import { RDF_TYPE, RDFS_LABEL } from './term.utils';
+import { ResultGraph } from '../../models/result-graph.model';
+import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
+import { RDF_TYPE, RDFS_LABEL } from '../../utils/term.utils';
+import { extractLabels, limitResultGraph, RESULT_GRAPH_UTILS, toResultGraph } from './result-graph.utils';
 
 const { blankNode, literal, namedNode, quad } = DataFactory;
 
@@ -18,10 +18,10 @@ const awg = (localName: string) => namedNode(`${AWG}${localName}`);
 const q = (subject: Quad_Subject, predicate: Quad_Predicate, object: Quad_Object): Quad =>
     quad(subject, predicate, object) as Quad;
 
-describe('graph-data.utils', () => {
-    describe('GRAPH_DATA_UTILS', () => {
-        it('... should reference all graph data utils methods', () => {
-            expectToEqual(GRAPH_DATA_UTILS, { extractLabels, limitGraphData, toGraphData });
+describe('ResultGraphUtils (DONE)', () => {
+    describe('RESULT_GRAPH_UTILS', () => {
+        it('... should reference all result graph utils methods', () => {
+            expectToEqual(RESULT_GRAPH_UTILS, { extractLabels, limitResultGraph, toResultGraph });
         });
     });
 
@@ -60,13 +60,13 @@ describe('graph-data.utils', () => {
         });
     });
 
-    describe('#toGraphData()', () => {
-        it('... should have a method `toGraphData`', () => {
-            expect(toGraphData).toBeDefined();
+    describe('#toResultGraph()', () => {
+        it('... should have a method `toResultGraph`', () => {
+            expect(toResultGraph).toBeDefined();
         });
 
         it('... should hold one node per distinct subject and object and one edge per quad', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [q(awg('Sk1'), awg('precedes'), awg('Sk2')), q(awg('Sk2'), awg('precedes'), awg('Sk3'))],
                 DEFAULT_PREFIXES
             );
@@ -83,7 +83,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should hold the short name and the rdfs:label of a node', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [q(awg('Sk1'), RDFS_LABEL, literal('Skizze 1')), q(awg('Sk1'), awg('precedes'), awg('Sk2'))],
                 DEFAULT_PREFIXES
             );
@@ -95,7 +95,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should label an edge with the rdfs:label of its predicate, if given', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [q(awg('precedes'), RDFS_LABEL, literal('geht voraus')), q(awg('Sk1'), awg('precedes'), awg('Sk2'))],
                 DEFAULT_PREFIXES
             );
@@ -104,7 +104,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should mark the subject of rdf:type as instance and the object as class', () => {
-            const graph = toGraphData([q(awg('Sk1'), RDF_TYPE, awg('Sketch'))], DEFAULT_PREFIXES);
+            const graph = toResultGraph([q(awg('Sk1'), RDF_TYPE, awg('Sketch'))], DEFAULT_PREFIXES);
 
             expectToEqual(
                 graph.nodes.map(node => node.kind),
@@ -114,7 +114,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should hold blank nodes and literals with their kind and formatted short name', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [
                     q(blankNode('b0'), awg('page'), literal('3.14159', namedNode(`${XSD}decimal`))),
                     q(blankNode('b0'), RDF_TYPE, awg('Page')),
@@ -133,7 +133,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should give the class kind precedence over the instance kind', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [q(awg('Sketch'), RDF_TYPE, awg('Class')), q(awg('Sk1'), RDF_TYPE, awg('Sketch'))],
                 DEFAULT_PREFIXES
             );
@@ -142,7 +142,7 @@ describe('graph-data.utils', () => {
         });
 
         it('... should keep literals with the same value, but different datatypes apart', () => {
-            const graph = toGraphData(
+            const graph = toResultGraph(
                 [q(awg('a'), awg('p'), literal('5')), q(awg('a'), awg('q'), literal('5', namedNode(`${XSD}integer`)))],
                 DEFAULT_PREFIXES
             );
@@ -151,12 +151,12 @@ describe('graph-data.utils', () => {
         });
 
         it('... should hold an empty graph for no quads', () => {
-            expectToEqual(toGraphData([], DEFAULT_PREFIXES), { nodes: [], edges: [], tripleCount: 0 });
+            expectToEqual(toResultGraph([], DEFAULT_PREFIXES), { nodes: [], edges: [], tripleCount: 0 });
         });
     });
 
-    describe('#limitGraphData()', () => {
-        const graph: GraphData = toGraphData(
+    describe('#limitResultGraph()', () => {
+        const graph: ResultGraph = toResultGraph(
             [
                 q(awg('Sk1'), awg('precedes'), awg('Sk2')),
                 q(awg('Sk2'), awg('precedes'), awg('Sk3')),
@@ -165,12 +165,12 @@ describe('graph-data.utils', () => {
             DEFAULT_PREFIXES
         );
 
-        it('... should have a method `limitGraphData`', () => {
-            expect(limitGraphData).toBeDefined();
+        it('... should have a method `limitResultGraph`', () => {
+            expect(limitResultGraph).toBeDefined();
         });
 
         it('... should hold the first edges and only their nodes', () => {
-            const limited = limitGraphData(graph, 2);
+            const limited = limitResultGraph(graph, 2);
 
             expectToEqual(
                 limited.edges.map(edge => edge.id),
@@ -183,17 +183,17 @@ describe('graph-data.utils', () => {
         });
 
         it('... should keep the triple count of the original graph', () => {
-            expectToBe(limitGraphData(graph, 1).tripleCount, 3);
+            expectToBe(limitResultGraph(graph, 1).tripleCount, 3);
         });
 
         it('... should hold the original graph if the limit is not exceeded', () => {
-            expectToBe(limitGraphData(graph, 3), graph);
-            expectToBe(limitGraphData(graph, 100), graph);
+            expectToBe(limitResultGraph(graph, 3), graph);
+            expectToBe(limitResultGraph(graph, 100), graph);
         });
 
         it('... should hold no edges and nodes for a limit of 0 or less', () => {
-            expectToEqual(limitGraphData(graph, 0), { nodes: [], edges: [], tripleCount: 3 });
-            expectToEqual(limitGraphData(graph, -1), { nodes: [], edges: [], tripleCount: 3 });
+            expectToEqual(limitResultGraph(graph, 0), { nodes: [], edges: [], tripleCount: 3 });
+            expectToEqual(limitResultGraph(graph, -1), { nodes: [], edges: [], tripleCount: 3 });
         });
     });
 });

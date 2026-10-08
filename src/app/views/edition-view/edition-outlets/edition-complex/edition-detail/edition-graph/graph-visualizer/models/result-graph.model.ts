@@ -1,5 +1,5 @@
 /**
- * The GraphNodeKind type.
+ * The ResultNodeKind type.
  *
  * It represents the kind of a graph node, derived from the RDF terms:
  * - `class`: object of an `rdf:type` statement,
@@ -8,15 +8,15 @@
  * - `literal`: literal value,
  * - `resource`: any other IRI.
  */
-export type GraphNodeKind = 'resource' | 'class' | 'instance' | 'blank' | 'literal';
+export type ResultNodeKind = 'resource' | 'class' | 'instance' | 'blank' | 'literal';
 
 /**
- * The GraphNode interface.
+ * The ResultGraphNode interface.
  *
- * It represents a node of the graph view model,
+ * It represents a node of the result graph,
  * independent of the RDF source and the D3 rendering.
  */
-export interface GraphNode {
+export interface ResultGraphNode {
     /**
      * The unique key of the node (IRI, blank node or literal key).
      */
@@ -35,15 +35,15 @@ export interface GraphNode {
     /**
      * The kind of the node.
      */
-    readonly kind: GraphNodeKind;
+    readonly kind: ResultNodeKind;
 }
 
 /**
- * The GraphEdge interface.
+ * The ResultGraphEdge interface.
  *
- * It represents a directed edge (a statement) of the graph view model.
+ * It represents a directed edge (a statement) of the result graph.
  */
-export interface GraphEdge {
+export interface ResultGraphEdge {
     /**
      * The unique key of the edge.
      */
@@ -66,20 +66,21 @@ export interface GraphEdge {
 }
 
 /**
- * The GraphData interface.
+ * The ResultGraph interface.
  *
- * It represents the graph view model of a set of triples.
+ * It represents the node-link graph of the triples of a CONSTRUCT query result,
+ * used as view model for the force graph.
  */
-export interface GraphData {
+export interface ResultGraph {
     /**
      * The nodes of the graph.
      */
-    readonly nodes: readonly GraphNode[];
+    readonly nodes: readonly ResultGraphNode[];
 
     /**
      * The edges of the graph.
      */
-    readonly edges: readonly GraphEdge[];
+    readonly edges: readonly ResultGraphEdge[];
 
     /**
      * The total number of triples before applying a limit.

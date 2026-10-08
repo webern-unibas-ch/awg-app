@@ -17,7 +17,7 @@ import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { GraphData, GraphNode } from '../../../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../../../models/result-graph.model';
 import { FORCE_GRAPH_ARROW_MARKER_ID, ForceGraphDrawingService } from '../force-graph-drawing.service';
 import { ForceSimulation } from '../force-graph.model';
 import { FORCE_GRAPH_UTILS } from '../force-graph.utils';
@@ -35,13 +35,13 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     };
     let mockSimulations: { stop: Mock<() => void> }[];
 
-    let clickedNodeRequestSpy: Mock<(node: GraphNode) => void>;
+    let clickedNodeRequestSpy: Mock<(node: ResultGraphNode) => void>;
 
     let expectedZoomConfig: ZoomConfig;
-    let expectedGraphData: GraphData;
-    let expectedNextGraphData: GraphData;
+    let expectedResultGraph: ResultGraph;
+    let expectedNextResultGraph: ResultGraph;
 
-    const expectedNodes: GraphNode[] = [
+    const expectedNodes: ResultGraphNode[] = [
         { id: 'a', shortName: 'awg:a', label: 'A', kind: 'instance' },
         { id: 'b', shortName: 'awg:B', label: 'awg:B', kind: 'class' },
         { id: '_:c', shortName: '_:c', label: '_:c', kind: 'blank' },
@@ -56,8 +56,8 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     const getRootGroupEl = (): SVGGElement =>
         getAndExpectDebugElementByCss(compDe, 'g.awg-force-graph-svg-root-group', 1, 1)[0].nativeElement;
 
-    const setInputs = (graphData: GraphData): void => {
-        fixture.componentRef.setInput('graphData', graphData);
+    const setInputs = (resultGraph: ResultGraph): void => {
+        fixture.componentRef.setInput('resultGraph', resultGraph);
         fixture.componentRef.setInput('zoomConfig', expectedZoomConfig);
         fixture.componentRef.setInput('zoomValue', expectedZoomConfig.initial);
     };
@@ -91,7 +91,7 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     beforeEach(() => {
         // Test data
         expectedZoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
-        expectedGraphData = {
+        expectedResultGraph = {
             nodes: expectedNodes,
             edges: [
                 { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
@@ -99,9 +99,9 @@ describe('ForceGraphSvgComponent (DONE)', () => {
             ],
             tripleCount: 2,
         };
-        expectedNextGraphData = {
+        expectedNextResultGraph = {
             nodes: expectedNodes.slice(0, 2),
-            edges: expectedGraphData.edges.slice(0, 1),
+            edges: expectedResultGraph.edges.slice(0, 1),
             tripleCount: 1,
         };
 
@@ -124,10 +124,10 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `graphData`', () => {
-            expectToBe(isSignal(component.graphData), true);
+        it('... should throw due to missing required input signal `resultGraph`', () => {
+            expectToBe(isSignal(component.resultGraph), true);
 
-            expect(() => component.graphData()).toThrow();
+            expect(() => component.resultGraph()).toThrow();
         });
 
         it('... should throw due to missing required input signal `zoomConfig`', () => {
@@ -182,12 +182,12 @@ describe('ForceGraphSvgComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            setInputs(expectedGraphData);
+            setInputs(expectedResultGraph);
             await detectChangesOnPush(fixture);
         });
 
-        it('... should have input signal `graphData` to hold the provided graph data', () => {
-            expectToEqual(component.graphData(), expectedGraphData);
+        it('... should have input signal `resultGraph` to hold the provided graph data', () => {
+            expectToEqual(component.resultGraph(), expectedResultGraph);
         });
 
         it('... should have input signal `zoomConfig` to hold the provided zoom config', () => {
@@ -199,7 +199,7 @@ describe('ForceGraphSvgComponent (DONE)', () => {
         });
 
         it('... should have computed signal `simulationData` to hold the simulation data of the graph data', () => {
-            expectToEqual(component.simulationData(), FORCE_GRAPH_UTILS.toSimulationData(expectedGraphData));
+            expectToEqual(component.simulationData(), FORCE_GRAPH_UTILS.toSimulationData(expectedResultGraph));
         });
 
         it('... should have view child signals for svg element, root group and svg zoom', () => {
@@ -265,17 +265,17 @@ describe('ForceGraphSvgComponent (DONE)', () => {
             });
 
             it('... should render again on a graph data change', async () => {
-                fixture.componentRef.setInput('graphData', expectedNextGraphData);
+                fixture.componentRef.setInput('resultGraph', expectedNextResultGraph);
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(mockForceGraphDrawingService.renderGraph, 2);
 
                 const [, simulationData] = mockForceGraphDrawingService.renderGraph.mock.calls[1];
-                expectToEqual(simulationData, FORCE_GRAPH_UTILS.toSimulationData(expectedNextGraphData));
+                expectToEqual(simulationData, FORCE_GRAPH_UTILS.toSimulationData(expectedNextResultGraph));
             });
 
             it('... should stop the previous simulation on a graph data change', async () => {
-                fixture.componentRef.setInput('graphData', expectedNextGraphData);
+                fixture.componentRef.setInput('resultGraph', expectedNextResultGraph);
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(mockSimulations[0].stop, 1);

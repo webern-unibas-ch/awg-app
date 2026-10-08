@@ -1,16 +1,16 @@
 import type { Quad } from '@rdfjs/types';
 
-import { GraphData, GraphEdge, GraphNode, GraphNodeKind } from '../models/graph-data.model';
-import { PrefixMap, RdfTerm } from '../models/rdf.model';
-import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from './term.utils';
+import { ResultGraph, ResultGraphEdge, ResultGraphNode, ResultNodeKind } from '../../models/result-graph.model';
+import { PrefixMap, RdfTerm } from '../../models/rdf.model';
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '../../utils/term.utils';
 
 /**
- * The GraphNodeDraft interface.
+ * The ResultGraphNodeDraft interface.
  *
  * It represents a graph node while the graph is built
  * (with flags that determine its kind at the end).
  */
-interface GraphNodeDraft {
+interface ResultGraphNodeDraft {
     readonly term: RdfTerm;
     readonly id: string;
     isClass: boolean;
@@ -22,10 +22,10 @@ interface GraphNodeDraft {
  *
  * It determines the kind of a graph node from its draft.
  *
- * @param {GraphNodeDraft} draft The given draft.
- * @returns {GraphNodeKind} The kind of the node.
+ * @param {ResultGraphNodeDraft} draft The given draft.
+ * @returns {ResultNodeKind} The kind of the node.
  */
-function _toNodeKind(draft: GraphNodeDraft): GraphNodeKind {
+function _toNodeKind(draft: ResultGraphNodeDraft): ResultNodeKind {
     if (draft.isClass) {
         return 'class';
     }
@@ -60,7 +60,7 @@ export function extractLabels(quads: readonly Quad[]): Map<string, string> {
 }
 
 /**
- * Utils method: toGraphData.
+ * Utils method: toResultGraph.
  *
  * It converts the given quads into the graph view model:
  * - one node per distinct subject or object (by term key),
@@ -70,13 +70,13 @@ export function extractLabels(quads: readonly Quad[]): Map<string, string> {
  *
  * @param {readonly Quad[]} quads The given quads.
  * @param {PrefixMap} prefixes The prefixes to compact IRIs.
- * @returns {GraphData} The graph data.
+ * @returns {ResultGraph} The graph data.
  */
-export function toGraphData(quads: readonly Quad[], prefixes: PrefixMap): GraphData {
+export function toResultGraph(quads: readonly Quad[], prefixes: PrefixMap): ResultGraph {
     const labels = extractLabels(quads);
-    const drafts = new Map<string, GraphNodeDraft>();
+    const drafts = new Map<string, ResultGraphNodeDraft>();
 
-    const getOrCreateDraft = (term: RdfTerm): GraphNodeDraft => {
+    const getOrCreateDraft = (term: RdfTerm): ResultGraphNodeDraft => {
         const id = TERM_UTILS.termKey(term);
         let draft = drafts.get(id);
         if (!draft) {
@@ -86,7 +86,7 @@ export function toGraphData(quads: readonly Quad[], prefixes: PrefixMap): GraphD
         return draft;
     };
 
-    const edges: GraphEdge[] = quads.map((quad, index) => {
+    const edges: ResultGraphEdge[] = quads.map((quad, index) => {
         const subject = getOrCreateDraft(quad.subject as RdfTerm);
         const object = getOrCreateDraft(quad.object as RdfTerm);
 
@@ -106,7 +106,7 @@ export function toGraphData(quads: readonly Quad[], prefixes: PrefixMap): GraphD
         };
     });
 
-    const nodes: GraphNode[] = Array.from(drafts.values(), draft => {
+    const nodes: ResultGraphNode[] = Array.from(drafts.values(), draft => {
         const shortName = TERM_UTILS.termShortName(draft.term, prefixes);
         return {
             id: draft.id,
@@ -120,17 +120,17 @@ export function toGraphData(quads: readonly Quad[], prefixes: PrefixMap): GraphD
 }
 
 /**
- * Utils method: limitGraphData.
+ * Utils method: limitResultGraph.
  *
  * It limits the given graph data to its first edges
  * and the nodes connected by them (in their original order).
  * The triple count of the original graph is kept.
  *
- * @param {GraphData} graph The given graph data.
+ * @param {ResultGraph} graph The given graph data.
  * @param {number} limit The maximum number of edges.
- * @returns {GraphData} The limited graph data.
+ * @returns {ResultGraph} The limited graph data.
  */
-export function limitGraphData(graph: GraphData, limit: number): GraphData {
+export function limitResultGraph(graph: ResultGraph, limit: number): ResultGraph {
     if (limit >= graph.edges.length) {
         return graph;
     }
@@ -143,12 +143,12 @@ export function limitGraphData(graph: GraphData, limit: number): GraphData {
 }
 
 /**
- * Utils constants: GRAPH_DATA_UTILS.
+ * Utils constants: RESULT_GRAPH_UTILS.
  *
  * It keeps a namespace reference to the graph data utils methods.
  */
-export const GRAPH_DATA_UTILS = {
+export const RESULT_GRAPH_UTILS = {
     extractLabels,
-    limitGraphData,
-    toGraphData,
+    limitResultGraph,
+    toResultGraph,
 } as const;

@@ -8,8 +8,8 @@ import { ChangeDetectionStrategy, Component, computed, input, output, signal } f
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
-import { GraphData, GraphNode } from '../../../models/graph-data.model';
-import { GRAPH_DATA_UTILS } from '../../../utils/graph-data.utils';
+import { ResultGraph, ResultGraphNode } from '../../../models/result-graph.model';
+import { RESULT_GRAPH_UTILS } from '../result-graph.utils';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 
@@ -30,11 +30,11 @@ import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 })
 export class ForceGraphComponent {
     /**
-     * Readonly input signal: graphData.
+     * Readonly input signal: resultGraph.
      *
      * It holds the graph data of the query result.
      */
-    readonly graphData = input.required<GraphData>();
+    readonly resultGraph = input.required<ResultGraph>();
 
     /**
      * Readonly input signal: height.
@@ -48,7 +48,7 @@ export class ForceGraphComponent {
      *
      * It emits the graph node a user clicked on.
      */
-    readonly clickedNodeRequest = output<GraphNode>();
+    readonly clickedNodeRequest = output<ResultGraphNode>();
 
     /**
      * Readonly variable: zoomConfig.
@@ -72,11 +72,11 @@ export class ForceGraphComponent {
     readonly limit = signal<number>(50);
 
     /**
-     * Readonly computed signal: limitedGraphData.
+     * Readonly computed signal: limitedResultGraph.
      *
      * It holds the graph data limited to the current limit.
      */
-    readonly limitedGraphData = computed<GraphData>(() =>
-        GRAPH_DATA_UTILS.limitGraphData(this.graphData(), this.limit())
+    readonly limitedResultGraph = computed<ResultGraph>(() =>
+        RESULT_GRAPH_UTILS.limitResultGraph(this.resultGraph(), this.limit())
     );
 }

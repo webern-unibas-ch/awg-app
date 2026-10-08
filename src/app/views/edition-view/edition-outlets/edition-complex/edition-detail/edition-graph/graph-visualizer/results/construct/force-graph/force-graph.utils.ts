@@ -1,4 +1,4 @@
-import { GraphData, GraphNodeKind } from '../../../models/graph-data.model';
+import { ResultGraph, ResultNodeKind } from '../../../models/result-graph.model';
 import { Point, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 
 /**
@@ -6,7 +6,7 @@ import { Point, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.
  *
  * It keeps the radius of the drawn nodes per kind.
  */
-export const NODE_RADIUS: Readonly<Record<GraphNodeKind, number>> = Object.freeze({
+export const NODE_RADIUS: Readonly<Record<ResultNodeKind, number>> = Object.freeze({
     blank: 8,
     class: 10,
     instance: 11,
@@ -38,10 +38,10 @@ function _isSelfEdge(simEdge: SimEdge): boolean {
  *
  * It gets the radius of a drawn node of the given kind.
  *
- * @param {GraphNodeKind} kind The given kind.
+ * @param {ResultNodeKind} kind The given kind.
  * @returns {number} The radius.
  */
-export function nodeRadius(kind: GraphNodeKind): number {
+export function nodeRadius(kind: ResultNodeKind): number {
     return NODE_RADIUS[kind];
 }
 
@@ -51,10 +51,10 @@ export function nodeRadius(kind: GraphNodeKind): number {
  * It gets the css class of a drawn node of the given kind
  * (literals and other resources share the default class `node`).
  *
- * @param {GraphNodeKind} kind The given kind.
+ * @param {ResultNodeKind} kind The given kind.
  * @returns {NodeCssClass} The css class.
  */
-export function nodeCssClass(kind: GraphNodeKind): NodeCssClass {
+export function nodeCssClass(kind: ResultNodeKind): NodeCssClass {
     return kind === 'literal' || kind === 'resource' ? 'node' : kind;
 }
 
@@ -65,10 +65,10 @@ export function nodeCssClass(kind: GraphNodeKind): NodeCssClass {
  * a simulation node per graph node, an invisible middle node per edge
  * and two links per edge (source to middle node, middle node to target).
  *
- * @param {GraphData} graph The given graph data.
+ * @param {ResultGraph} graph The given graph data.
  * @returns {SimulationData} The simulation data.
  */
-export function toSimulationData(graph: GraphData): SimulationData {
+export function toSimulationData(graph: ResultGraph): SimulationData {
     const graphSimNodes = new Map<string, SimNode>(
         graph.nodes.map(node => [node.id, { id: node.id, graphNode: node, r: nodeRadius(node.kind) }])
     );

@@ -17,7 +17,7 @@ import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
-import { GraphData, GraphNode } from '../../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../../models/result-graph.model';
 import { ForceGraphDrawingService } from './force-graph-drawing.service';
 import { ForceSimulation } from './force-graph.model';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
@@ -30,18 +30,18 @@ describe('ForceGraphComponent (DONE)', () => {
     let fixture: ComponentFixture<ForceGraphComponent>;
     let compDe: DebugElement;
 
-    let clickedNodeRequestSpy: Mock<(node: GraphNode) => void>;
+    let clickedNodeRequestSpy: Mock<(node: ResultGraphNode) => void>;
 
     let expectedZoomConfig: ZoomConfig;
 
     const expectedHeight = 500;
-    const expectedNodes: GraphNode[] = [
+    const expectedNodes: ResultGraphNode[] = [
         { id: 'a', shortName: 'awg:a', label: 'A', kind: 'instance' },
         { id: 'b', shortName: 'awg:B', label: 'awg:B', kind: 'class' },
         { id: '_:c', shortName: '_:c', label: '_:c', kind: 'blank' },
         { id: '"x"', shortName: 'x', label: 'x', kind: 'literal' },
     ];
-    const expectedGraphData: GraphData = {
+    const expectedResultGraph: ResultGraph = {
         nodes: expectedNodes,
         edges: [
             { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
@@ -50,9 +50,9 @@ describe('ForceGraphComponent (DONE)', () => {
         ],
         tripleCount: 3,
     };
-    const expectedLimitedGraphData: GraphData = {
+    const expectedLimitedResultGraph: ResultGraph = {
         nodes: expectedNodes.slice(0, 2),
-        edges: expectedGraphData.edges.slice(0, 1),
+        edges: expectedResultGraph.edges.slice(0, 1),
         tripleCount: 3,
     };
 
@@ -104,10 +104,10 @@ describe('ForceGraphComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should throw due to missing required input signal `graphData`', () => {
-            expectToBe(isSignal(component.graphData), true);
+        it('... should throw due to missing required input signal `resultGraph`', () => {
+            expectToBe(isSignal(component.resultGraph), true);
 
-            expect(() => component.graphData()).toThrow();
+            expect(() => component.resultGraph()).toThrow();
         });
 
         it('... should have input signal `height` to hold the default height', () => {
@@ -145,27 +145,27 @@ describe('ForceGraphComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            fixture.componentRef.setInput('graphData', expectedGraphData);
+            fixture.componentRef.setInput('resultGraph', expectedResultGraph);
             fixture.componentRef.setInput('height', expectedHeight);
             fixture.detectChanges();
         });
 
-        it('... should have input signal `graphData` to hold the provided graph data', () => {
-            expectToEqual(component.graphData(), expectedGraphData);
+        it('... should have input signal `resultGraph` to hold the provided graph data', () => {
+            expectToEqual(component.resultGraph(), expectedResultGraph);
         });
 
         it('... should have input signal `height` to hold the provided height', () => {
             expectToBe(component.height(), expectedHeight);
         });
 
-        it('... should have computed signal `limitedGraphData` to hold the graph data (below the limit)', () => {
-            expectToBe(component.limitedGraphData(), expectedGraphData);
+        it('... should have computed signal `limitedResultGraph` to hold the graph data (below the limit)', () => {
+            expectToBe(component.limitedResultGraph(), expectedResultGraph);
         });
 
-        it('... should have computed signal `limitedGraphData` to hold the limited graph data', () => {
+        it('... should have computed signal `limitedResultGraph` to hold the limited graph data', () => {
             component.limit.set(1);
 
-            expectToEqual(component.limitedGraphData(), expectedLimitedGraphData);
+            expectToEqual(component.limitedResultGraph(), expectedLimitedResultGraph);
         });
 
         describe('VIEW', () => {
@@ -208,7 +208,7 @@ describe('ForceGraphComponent (DONE)', () => {
                 it('... should pass down the triple count and `limit`', () => {
                     const graphLimitCmp = getGraphLimitCmp();
 
-                    expectToBe(graphLimitCmp.tripleCount(), expectedGraphData.tripleCount);
+                    expectToBe(graphLimitCmp.tripleCount(), expectedResultGraph.tripleCount);
                     expectToBe(graphLimitCmp.limit(), 50);
                 });
 
@@ -220,10 +220,10 @@ describe('ForceGraphComponent (DONE)', () => {
             });
 
             describe('... ForceGraphSvgComponent (with mocked drawing)', () => {
-                it('... should pass down `limitedGraphData`, `zoomConfig` and `zoomValue`', () => {
+                it('... should pass down `limitedResultGraph`, `zoomConfig` and `zoomValue`', () => {
                     const graphSvgCmp = getGraphSvgCmp();
 
-                    expectToBe(graphSvgCmp.graphData(), expectedGraphData);
+                    expectToBe(graphSvgCmp.resultGraph(), expectedResultGraph);
                     expectToEqual(graphSvgCmp.zoomConfig(), expectedZoomConfig);
                     expectToBe(graphSvgCmp.zoomValue(), expectedZoomConfig.initial);
                 });
@@ -232,7 +232,7 @@ describe('ForceGraphComponent (DONE)', () => {
                     component.limit.set(1);
                     await detectChangesOnPush(fixture);
 
-                    expectToEqual(getGraphSvgCmp().graphData(), expectedLimitedGraphData);
+                    expectToEqual(getGraphSvgCmp().resultGraph(), expectedLimitedResultGraph);
                 });
 
                 it('... should sync `zoomValue` from the ForceGraphSvgComponent', async () => {

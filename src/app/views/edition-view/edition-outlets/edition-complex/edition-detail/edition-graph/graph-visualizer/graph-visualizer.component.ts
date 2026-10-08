@@ -10,7 +10,7 @@ import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.m
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
-import { GraphNode } from './models/graph-data.model';
+import { ResultGraphNode } from './models/result-graph.model';
 import { SparqlQueryRequest, SparqlQueryRun, SparqlResult } from './models/sparql-result.model';
 import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
@@ -213,7 +213,7 @@ export class GraphVisualizerComponent {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphNodeClick(node: GraphNode): void {
+    onGraphNodeClick(node: ResultGraphNode): void {
         if (!node) {
             return;
         }

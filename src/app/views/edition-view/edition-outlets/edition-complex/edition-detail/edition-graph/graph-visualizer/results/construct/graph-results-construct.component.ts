@@ -4,18 +4,18 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { GraphData, GraphNode } from '../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../models/result-graph.model';
 import { SparqlResult } from '../../models/sparql-result.model';
-import { GRAPH_DATA_UTILS } from '../../utils/graph-data.utils';
 import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
+import { RESULT_GRAPH_UTILS } from './result-graph.utils';
 
 /**
  * Object constant: EMPTY_GRAPH_DATA.
  *
  * It keeps the graph data of a result without triples.
  */
-const EMPTY_GRAPH_DATA: GraphData = Object.freeze({ nodes: [], edges: [], tripleCount: 0 });
+const EMPTY_GRAPH_DATA: ResultGraph = Object.freeze({ nodes: [], edges: [], tripleCount: 0 });
 
 /**
  * The GraphResultsConstruct component.
@@ -58,29 +58,29 @@ export class GraphResultsConstructComponent {
      *
      * It emits the graph node a user clicked on.
      */
-    readonly clickedNodeRequest = output<GraphNode>();
+    readonly clickedNodeRequest = output<ResultGraphNode>();
 
     /**
-     * Readonly computed signal: graphData.
+     * Readonly computed signal: resultGraph.
      *
      * It holds the graph data of the query result
      * (undefined while the query is running).
      */
-    readonly graphData = computed<GraphData | undefined>(() => {
+    readonly resultGraph = computed<ResultGraph | undefined>(() => {
         const queryResultData = this.queryResult();
-        return queryResultData ? this._toGraphData(queryResultData) : undefined;
+        return queryResultData ? this._toResultGraph(queryResultData) : undefined;
     });
 
     /**
-     * Public method: isValidGraphData.
+     * Public method: isValidResultGraph.
      *
      * It checks if the given graph data has edges to display.
      *
-     * @param {GraphData | null | undefined} graphData The given graph data.
+     * @param {ResultGraph | null | undefined} resultGraph The given graph data.
      * @returns {boolean} True if the graph data has edges.
      */
-    isValidGraphData(graphData: GraphData | null | undefined): graphData is GraphData {
-        return !!graphData && graphData.edges.length > 0;
+    isValidResultGraph(resultGraph: ResultGraph | null | undefined): resultGraph is ResultGraph {
+        return !!resultGraph && resultGraph.edges.length > 0;
     }
 
     /**
@@ -89,11 +89,11 @@ export class GraphResultsConstructComponent {
      * It emits a trigger to
      * the {@link clickedNodeRequest}.
      *
-     * @param {GraphNode} node The given graph node.
+     * @param {ResultGraphNode} node The given graph node.
      *
      * @returns {void} Triggers the request.
      */
-    onGraphNodeClick(node: GraphNode): void {
+    onGraphNodeClick(node: ResultGraphNode): void {
         if (!node) {
             return;
         }
@@ -101,18 +101,18 @@ export class GraphResultsConstructComponent {
     }
 
     /**
-     * Private method: _toGraphData.
+     * Private method: _toResultGraph.
      *
      * It converts a given query result into graph data
      * (empty graph data for results that are no construct results).
      *
      * @param {SparqlResult} queryResult The given query result.
-     * @returns {GraphData} The graph data.
+     * @returns {ResultGraph} The graph data.
      */
-    private _toGraphData(queryResult: SparqlResult): GraphData {
+    private _toResultGraph(queryResult: SparqlResult): ResultGraph {
         if (queryResult?.kind !== 'construct') {
             return EMPTY_GRAPH_DATA;
         }
-        return GRAPH_DATA_UTILS.toGraphData(queryResult.quads, queryResult.prefixes);
+        return RESULT_GRAPH_UTILS.toResultGraph(queryResult.quads, queryResult.prefixes);
     }
 }

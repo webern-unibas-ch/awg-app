@@ -22,7 +22,7 @@ import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { GraphData, GraphNode } from '../../../../models/graph-data.model';
+import { ResultGraph, ResultGraphNode } from '../../../../models/result-graph.model';
 import { FORCE_GRAPH_ARROW_MARKER_ID, ForceGraphDrawingService } from '../force-graph-drawing.service';
 import { ForceSimulation, SimulationData, SvgSize } from '../force-graph.model';
 import { FORCE_GRAPH_UTILS } from '../force-graph.utils';
@@ -61,11 +61,11 @@ export class ForceGraphSvgComponent {
     private readonly _forceGraphDrawingService = inject(ForceGraphDrawingService);
 
     /**
-     * Readonly input signal: graphData.
+     * Readonly input signal: resultGraph.
      *
      * It holds the (limited) graph data to be rendered.
      */
-    readonly graphData = input.required<GraphData>();
+    readonly resultGraph = input.required<ResultGraph>();
 
     /**
      * Readonly input signal: zoomConfig.
@@ -86,7 +86,7 @@ export class ForceGraphSvgComponent {
      *
      * It emits the graph node the user clicked on.
      */
-    readonly clickedNodeRequest = output<GraphNode>();
+    readonly clickedNodeRequest = output<ResultGraphNode>();
 
     /**
      * Readonly view child signal: svg.
@@ -139,7 +139,7 @@ export class ForceGraphSvgComponent {
      *
      * It holds the data of the force simulation of the graph data.
      */
-    readonly simulationData = computed<SimulationData>(() => FORCE_GRAPH_UTILS.toSimulationData(this.graphData()));
+    readonly simulationData = computed<SimulationData>(() => FORCE_GRAPH_UTILS.toSimulationData(this.resultGraph()));
 
     /**
      * Private variable: _simulation.
