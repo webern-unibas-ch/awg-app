@@ -19,6 +19,32 @@ const XSD = 'http://www.w3.org/2001/XMLSchema#';
 const XSD_STRING = `${XSD}string`;
 
 /**
+ * Set constant: XSD_NUMERIC_DATATYPES.
+ *
+ * It keeps the IRIs of the numeric XML Schema datatypes.
+ */
+const XSD_NUMERIC_DATATYPES: ReadonlySet<string> = new Set(
+    [
+        'byte',
+        'decimal',
+        'double',
+        'float',
+        'int',
+        'integer',
+        'long',
+        'negativeInteger',
+        'nonNegativeInteger',
+        'nonPositiveInteger',
+        'positiveInteger',
+        'short',
+        'unsignedByte',
+        'unsignedInt',
+        'unsignedLong',
+        'unsignedShort',
+    ].map(datatype => `${XSD}${datatype}`)
+);
+
+/**
  * Regex constant: NUMERIC_REGEX.
  *
  * It keeps a regex for decimal numbers (with optional sign and exponent).
@@ -60,18 +86,21 @@ function _literalKey(literal: Literal): string {
 }
 
 /**
- * Utils method: formatLiteralValue.
+ * Utils method: formatLiteral.
  *
- * It formats a given literal value for display:
- * decimal numbers are rounded to two decimals, safe integers are normalized,
- * other values are kept (also numbers that cannot be represented exactly,
- * i.e. integers beyond the safe-integer range and non-finite numbers).
+ * It formats the value of a given literal for display:
+ * values of numeric datatypes are formatted (decimal numbers are rounded
+ * to two decimals, safe integers are normalized), other values are kept
+ * (also strings that look like numbers, e.g. `"007"`, and numbers that cannot
+ * be represented exactly, i.e. integers beyond the safe-integer range and non-finite numbers).
  *
- * @param {string} value The given literal value.
+ * @param {Literal} literal The given literal.
  * @returns {string} The formatted value.
  */
-export function formatLiteralValue(value: string): string {
-    if (!NUMERIC_REGEX.test(value)) {
+export function formatLiteral(literal: Literal): string {
+    const { value } = literal;
+
+    if (!XSD_NUMERIC_DATATYPES.has(literal.datatype.value) || !NUMERIC_REGEX.test(value)) {
         return value;
     }
 
@@ -108,7 +137,7 @@ export function termKey(term: RdfTerm): string {
  * Utils method: termShortName.
  *
  * It creates the short display name of a given RDF term
- * (compacted IRI, `_:id` for blank nodes, formatted value for literals).
+ * (compacted IRI, `_:id` for blank nodes, formatted value for literals, see {@link formatLiteral}).
  *
  * @param {RdfTerm} term The given term.
  * @param {PrefixMap} prefixes The prefixes to compact IRIs.
@@ -121,7 +150,7 @@ export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
         case 'BlankNode':
             return `_:${term.value}`;
         case 'Literal':
-            return formatLiteralValue(term.value);
+            return formatLiteral(term);
     }
 }
 
@@ -131,7 +160,7 @@ export function termShortName(term: RdfTerm, prefixes: PrefixMap): string {
  * It keeps a namespace reference to the term utils methods.
  */
 export const TERM_UTILS = {
-    formatLiteralValue,
+    formatLiteral,
     termKey,
     termShortName,
 } as const;

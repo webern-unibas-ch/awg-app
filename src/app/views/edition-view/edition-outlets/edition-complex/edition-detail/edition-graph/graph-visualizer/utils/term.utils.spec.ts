@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { DEFAULT_PREFIXES } from './prefix.utils';
-import { formatLiteralValue, RDF_TYPE, RDFS_LABEL, TERM_UTILS, termKey, termShortName } from './term.utils';
+import { formatLiteral, RDF_TYPE, RDFS_LABEL, TERM_UTILS, termKey, termShortName } from './term.utils';
 
 const { blankNode, literal, namedNode } = DataFactory;
 
@@ -26,7 +26,7 @@ describe('TermUtils (DONE)', () => {
 
     describe('TERM_UTILS', () => {
         it('... should reference all term utils methods', () => {
-            expectToEqual(TERM_UTILS, { formatLiteralValue, termKey, termShortName });
+            expectToEqual(TERM_UTILS, { formatLiteral, termKey, termShortName });
         });
     });
 
@@ -90,6 +90,7 @@ describe('TermUtils (DONE)', () => {
             it('... should hold the formatted value for literals', () => {
                 expectToBe(termShortName(literal('Seitenzahl: 75'), DEFAULT_PREFIXES), 'Seitenzahl: 75');
                 expectToBe(termShortName(literal('3.14159', namedNode(`${XSD}decimal`)), DEFAULT_PREFIXES), '3.14');
+                expectToBe(termShortName(literal('3.14159'), DEFAULT_PREFIXES), '3.14159');
             });
 
             it('... should not compact IRIs within literal values', () => {
@@ -97,43 +98,67 @@ describe('TermUtils (DONE)', () => {
             });
         });
 
-        describe('#formatLiteralValue()', () => {
-            it('... should have a method `formatLiteralValue`', () => {
-                expect(formatLiteralValue).toBeDefined();
+        describe('#formatLiteral()', () => {
+            const integer = (value: string) => literal(value, namedNode(`${XSD}integer`));
+            const decimal = (value: string) => literal(value, namedNode(`${XSD}decimal`));
+            const double = (value: string) => literal(value, namedNode(`${XSD}double`));
+
+            it('... should have a method `formatLiteral`', () => {
+                expect(formatLiteral).toBeDefined();
             });
 
             it('... should keep integers', () => {
-                expectToBe(formatLiteralValue('75'), '75');
-                expectToBe(formatLiteralValue('-3'), '-3');
+                expectToBe(formatLiteral(integer('75')), '75');
+                expectToBe(formatLiteral(integer('-3')), '-3');
+            });
+
+            it('... should normalize integers', () => {
+                expectToBe(formatLiteral(integer('007')), '7');
+                expectToBe(formatLiteral(literal('42', namedNode(`${XSD}nonNegativeInteger`))), '42');
             });
 
             it('... should round decimal numbers to two decimals', () => {
-                expectToBe(formatLiteralValue('3.14159'), '3.14');
-                expectToBe(formatLiteralValue('.5'), '0.50');
+                expectToBe(formatLiteral(decimal('3.14159')), '3.14');
+                expectToBe(formatLiteral(decimal('.5')), '0.50');
+                expectToBe(formatLiteral(literal('1.125', namedNode(`${XSD}float`))), '1.13');
             });
 
             it('... should normalize integral decimal notations', () => {
-                expectToBe(formatLiteralValue('2.0'), '2');
-                expectToBe(formatLiteralValue('1e3'), '1000');
+                expectToBe(formatLiteral(decimal('2.0')), '2');
+                expectToBe(formatLiteral(double('1e3')), '1000');
             });
 
             it('... should keep the lexical value of integers beyond the safe-integer range', () => {
-                expectToBe(formatLiteralValue('9007199254740993'), '9007199254740993');
-                expectToBe(formatLiteralValue('-9007199254740993'), '-9007199254740993');
-                expectToBe(formatLiteralValue('1e21'), '1e21');
+                expectToBe(formatLiteral(integer('9007199254740993')), '9007199254740993');
+                expectToBe(formatLiteral(integer('-9007199254740993')), '-9007199254740993');
+                expectToBe(formatLiteral(double('1e21')), '1e21');
             });
 
             it('... should keep the lexical value of numbers that are not finite as JavaScript numbers', () => {
-                expectToBe(formatLiteralValue('1e400'), '1e400');
-                expectToBe(formatLiteralValue('-1e400'), '-1e400');
+                expectToBe(formatLiteral(double('1e400')), '1e400');
+                expectToBe(formatLiteral(double('-1e400')), '-1e400');
+                expectToBe(formatLiteral(double('INF')), 'INF');
+                expectToBe(formatLiteral(double('NaN')), 'NaN');
             });
 
-            it('... should keep non-numeric values (also empty and whitespace)', () => {
-                expectToBe(formatLiteralValue('Seitenzahl: 75'), 'Seitenzahl: 75');
-                expectToBe(formatLiteralValue(''), '');
-                expectToBe(formatLiteralValue(' '), ' ');
-                expectToBe(formatLiteralValue('0x1F'), '0x1F');
-                expectToBe(formatLiteralValue('19340716'), '19340716');
+            it('... should keep invalid lexical values of numeric datatypes', () => {
+                expectToBe(formatLiteral(integer('Seitenzahl: 75')), 'Seitenzahl: 75');
+                expectToBe(formatLiteral(integer('')), '');
+                expectToBe(formatLiteral(integer(' ')), ' ');
+                expectToBe(formatLiteral(integer('0x1F')), '0x1F');
+            });
+
+            it('... should keep values of plain literals that look like numbers', () => {
+                expectToBe(formatLiteral(literal('007')), '007');
+                expectToBe(formatLiteral(literal('1.125')), '1.125');
+                expectToBe(formatLiteral(literal('1e3')), '1e3');
+                expectToBe(formatLiteral(literal('19340716')), '19340716');
+            });
+
+            it('... should keep values of language literals and other datatypes that look like numbers', () => {
+                expectToBe(formatLiteral(literal('1.0', 'de')), '1.0');
+                expectToBe(formatLiteral(literal('1.0', namedNode(`${XSD}token`))), '1.0');
+                expectToBe(formatLiteral(literal('1934', namedNode(`${XSD}gYear`))), '1934');
             });
         });
     });
