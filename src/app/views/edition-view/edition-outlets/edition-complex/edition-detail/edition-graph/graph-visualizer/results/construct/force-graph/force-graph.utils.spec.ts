@@ -30,6 +30,21 @@ const createSimEdge = (
     target: { id: 't', r: 9, ...target } as SimNode,
 });
 
+/**
+ * Helper function: createSelfSimEdge.
+ *
+ * It creates a simulation edge from a node at the given position to itself.
+ */
+const createSelfSimEdge = (node: { x?: number; y?: number }, mid: { x?: number; y?: number }): SimEdge => {
+    const simNode = { id: 's', r: 9, ...node } as SimNode;
+    return {
+        edge: { id: 'e0', source: 's', target: 's', label: 'p' },
+        source: simNode,
+        mid: { id: 'e0#mid', r: 9, ...mid } as SimNode,
+        target: simNode,
+    };
+};
+
 describe('ForceGraphUtils (DONE)', () => {
     describe('FORCE_GRAPH_UTILS', () => {
         it('... should reference all force graph utils methods', () => {
@@ -168,9 +183,15 @@ describe('ForceGraphUtils (DONE)', () => {
             });
 
             it('... should hold a loop for a self edge', () => {
-                const simEdge = createSimEdge({ x: 10, y: 20 }, {}, { x: 10, y: 20 });
+                const simEdge = createSelfSimEdge({ x: 10, y: 20 }, {});
 
                 expectToBe(linkPath(simEdge), 'M10,20A30,20 -45,1,1 11,21');
+            });
+
+            it('... should hold a straight path for different nodes at the same position', () => {
+                const simEdge = createSimEdge({ x: 10, y: 20 }, {}, { x: 10, y: 20 });
+
+                expectToBe(linkPath(simEdge), 'M10,20A0,0 0,0,1 10,20');
             });
 
             it('... should use the origin for nodes without position', () => {
@@ -191,13 +212,20 @@ describe('ForceGraphUtils (DONE)', () => {
             });
 
             it('... should hold a position above the loop for a self edge', () => {
-                const simEdge = createSimEdge({ x: 10, y: 10 }, { x: 40, y: 40 }, { x: 10, y: 10 });
+                const simEdge = createSelfSimEdge({ x: 10, y: 10 }, { x: 40, y: 40 });
 
                 expectToEqual(linkLabelPosition(simEdge), { x: 40, y: -20 });
             });
 
+            it('... should hold a position shifted to the right for different nodes at the same position', () => {
+                const simEdge = createSimEdge({ x: 10, y: 10 }, { x: 40, y: 40 }, { x: 10, y: 10 });
+
+                expectToEqual(linkLabelPosition(simEdge), { x: 30, y: 24 });
+            });
+
             it('... should use the origin for nodes without position', () => {
-                expectToEqual(linkLabelPosition(createSimEdge({}, {}, {})), { x: 20, y: -40 });
+                expectToEqual(linkLabelPosition(createSimEdge({}, {}, {})), { x: 10, y: 4 });
+                expectToEqual(linkLabelPosition(createSelfSimEdge({}, {})), { x: 20, y: -40 });
             });
         });
     });

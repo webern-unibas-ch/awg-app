@@ -41,9 +41,6 @@ import { FORCE_GRAPH_UTILS } from '../force-graph.utils';
     styleUrls: ['./force-graph-svg.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [ClickDirective, SvgZoomDirective],
-    host: {
-        '(window:resize)': 'onResize()',
-    },
 })
 export class ForceGraphSvgComponent {
     /**
@@ -119,7 +116,7 @@ export class ForceGraphSvgComponent {
     /**
      * Readonly signal: svgSize.
      *
-     * It holds the rendered size of the svg (measured after rendering and on window resize).
+     * It holds the rendered size of the svg (measured after rendering and on every resize of the svg).
      */
     readonly svgSize = signal<SvgSize>({ width: 0, height: 0 });
 
@@ -171,13 +168,17 @@ export class ForceGraphSvgComponent {
     /**
      * Constructor of the ForceGraphSvgComponent.
      *
-     * It measures the svg after the first rendering, renders the graph
+     * It measures the svg after the first rendering and observes its resizes
+     * (e.g. on window resize or fullscreen toggle), renders the graph
      * whenever the simulation data changes and stops the simulation on destroy.
      * The rendering runs outside of the Angular zone, so the ticks of the
      * simulation and the dragging do not trigger change detection.
      */
     constructor() {
-        afterNextRender(() => this.onResize());
+        afterNextRender(() => {
+            this.onResize();
+            this._observeSvgSize();
+        });
 
         afterRenderEffect(() => {
             const simulationData = this.simulationData();
@@ -227,6 +228,21 @@ export class ForceGraphSvgComponent {
      */
     resetZoom(): void {
         this.svgZoom().reset();
+    }
+
+    /**
+     * Private method: _observeSvgSize.
+     *
+     * It observes the size of the svg element and measures it again on every resize
+     * (also when the svg grows or shrinks without a window resize, e.g. in fullscreen).
+     * The observer is disconnected on destroy.
+     *
+     * @returns {void} Observes the svg size.
+     */
+    private _observeSvgSize(): void {
+        const resizeObserver = new ResizeObserver(() => this.onResize());
+        resizeObserver.observe(this.svg().nativeElement);
+        this._destroyRef.onDestroy(() => resizeObserver.disconnect());
     }
 
     /**

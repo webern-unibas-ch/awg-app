@@ -24,13 +24,13 @@ export type NodeCssClass = 'blank' | 'class' | 'instance' | 'node';
 /**
  * Private utils method: _isSelfEdge.
  *
- * It checks if source and target of an edge are at the same position.
+ * It checks if source and target of an edge are the same simulation node.
  *
  * @param {SimEdge} simEdge The given edge with its simulation nodes.
  * @returns {boolean} The result of the check.
  */
 function _isSelfEdge(simEdge: SimEdge): boolean {
-    return (simEdge.source.x ?? 0) === (simEdge.target.x ?? 0) && (simEdge.source.y ?? 0) === (simEdge.target.y ?? 0);
+    return simEdge.source === simEdge.target;
 }
 
 /**
@@ -102,7 +102,7 @@ export function toSimulationData(graph: ResultGraph): SimulationData {
  * Utils method: linkPath.
  *
  * It creates the svg path of an edge from its source to its target.
- * A self edge (source and target at the same position) is drawn as a loop.
+ * A self edge (source and target are the same node) is drawn as a loop.
  *
  * @param {SimEdge} simEdge The given edge with its simulation nodes.
  * @returns {string} The svg path.

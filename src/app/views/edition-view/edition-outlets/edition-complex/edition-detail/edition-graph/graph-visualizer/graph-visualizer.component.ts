@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery, GraphRdfData } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -265,9 +265,8 @@ export class GraphVisualizerComponent {
     /**
      * Private method: _runQuery.
      *
-     * It runs a requested query and shows the completed query in the editor.
-     * On errors, it logs them, shows a toast and returns an empty result.
-     * Cancelled (superseded) runs have no side effects.
+     * It runs a requested query and shows the completed query in the editor (unless edited meanwhile).
+     * On errors, it logs, shows a toast and returns an empty result. Cancelled runs have no side effects.
      *
      * @param {SparqlQueryRequest} request The given query request.
      * @param {AbortSignal} abortSignal The given abort signal of the run.
@@ -280,7 +279,8 @@ export class GraphVisualizerComponent {
         try {
             const queryRun = await this._sparqlQueryService.run(request.queryString, request.triples);
 
-            if (!abortSignal.aborted) {
+            // Do not overwrite edits of the query made while the query was running
+            if (!abortSignal.aborted && this.query().queryString === request.queryString) {
                 this.query.update(currentQuery => ({ ...currentQuery, queryString: queryRun.query }));
             }
 

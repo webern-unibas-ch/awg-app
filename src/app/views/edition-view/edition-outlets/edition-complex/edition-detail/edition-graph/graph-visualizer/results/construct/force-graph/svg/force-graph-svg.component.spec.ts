@@ -11,7 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
+import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from '@testing/svg-drawing-helper';
 
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -36,6 +36,8 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     let mockSimulations: { stop: Mock<() => void> }[];
 
     let clickedNodeRequestSpy: Mock<(node: ResultGraphNode) => void>;
+
+    let mockResizeObservers: MockResizeObserver[];
 
     let expectedZoomConfig: ZoomConfig;
     let expectedResultGraph: ResultGraph;
@@ -72,6 +74,9 @@ describe('ForceGraphSvgComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
+        // Stub the ResizeObserver (missing in jsdom)
+        mockResizeObservers = stubResizeObserver();
+
         mockSimulations = [];
         mockForceGraphDrawingService = {
             renderGraph: vi.fn(() => {
@@ -117,6 +122,7 @@ describe('ForceGraphSvgComponent (DONE)', () => {
 
     afterEach(() => {
         vi.restoreAllMocks();
+        vi.unstubAllGlobals();
     });
 
     it('... should create', () => {
@@ -156,6 +162,10 @@ describe('ForceGraphSvgComponent (DONE)', () => {
 
         it('... should not have rendered a graph yet', () => {
             expectSpyCall(mockForceGraphDrawingService.renderGraph, 0);
+        });
+
+        it('... should not observe the svg size yet', () => {
+            expectToBe(mockResizeObservers.length, 0);
         });
 
         describe('VIEW', () => {
@@ -257,10 +267,10 @@ describe('ForceGraphSvgComponent (DONE)', () => {
                 expectSpyCall(onNodeSelectSpy, 1, event);
             });
 
-            it('... should trigger `onResize` on a window resize', () => {
+            it('... should trigger `onResize` on a resize of the svg', () => {
                 const onResizeSpy = vi.spyOn(component, 'onResize');
 
-                window.dispatchEvent(new Event('resize'));
+                mockResizeObservers[0].trigger();
 
                 expectSpyCall(onResizeSpy, 1);
             });
@@ -366,6 +376,32 @@ describe('ForceGraphSvgComponent (DONE)', () => {
 
                     expectToBe(component.centerTransform(), 'translate(400,200)');
                     expectToBe(getCenterGroupEl().getAttribute('transform'), 'translate(400,200)');
+                });
+            });
+
+            describe('#_observeSvgSize()', () => {
+                it('... should have a method `_observeSvgSize`', () => {
+                    expect(component['_observeSvgSize']).toBeDefined();
+                });
+
+                it('... should observe the size of the svg after the first rendering', () => {
+                    expectToBe(mockResizeObservers.length, 1);
+                    expectToEqual(mockResizeObservers[0].observedElements, [getSvgEl()]);
+                });
+
+                it('... should center the graph again on a resize of the svg (e.g. in fullscreen)', async () => {
+                    setSvgClientSize(1200, 1000);
+
+                    mockResizeObservers[0].trigger();
+                    await detectChangesOnPush(fixture);
+
+                    expectToBe(getCenterGroupEl().getAttribute('transform'), 'translate(600,500)');
+                });
+
+                it('... should disconnect the resize observer on destroy', () => {
+                    fixture.destroy();
+
+                    expectSpyCall(mockResizeObservers[0].disconnect, 1);
                 });
             });
 

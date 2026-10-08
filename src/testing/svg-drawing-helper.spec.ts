@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
-import { patchSvgSizeForD3Zoom } from './svg-drawing-helper';
+import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from './svg-drawing-helper';
 
 describe('svg-drawing-helper', () => {
     describe('#patchSvgSizeForD3Zoom()', () => {
@@ -109,6 +109,54 @@ describe('svg-drawing-helper', () => {
             svgSelection.call(zoomBehaviour.scaleTo, 2);
 
             expect(D3_ZOOM.zoomTransform(svgSelection.node() as SVGSVGElement).k).toBe(2);
+        });
+    });
+
+    describe('#stubResizeObserver()', () => {
+        afterEach(() => {
+            vi.unstubAllGlobals();
+        });
+
+        it('... should have a method `stubResizeObserver`', () => {
+            expect(stubResizeObserver).toBeDefined();
+        });
+
+        it('... should stub the global ResizeObserver with the MockResizeObserver', () => {
+            stubResizeObserver();
+
+            const observer = new ResizeObserver(vi.fn());
+
+            expect(observer).toBeInstanceOf(MockResizeObserver);
+        });
+
+        it('... should hold all created observers', () => {
+            const mockResizeObservers = stubResizeObserver();
+
+            const observer1 = new ResizeObserver(vi.fn());
+            const observer2 = new ResizeObserver(vi.fn());
+
+            expect(mockResizeObservers).toEqual([observer1, observer2]);
+            expect(mockResizeObservers[0]).toBe(observer1);
+        });
+
+        it('... should keep the observed elements', () => {
+            const mockResizeObservers = stubResizeObserver();
+            const element = document.createElement('div');
+
+            new ResizeObserver(vi.fn()).observe(element);
+
+            expect(mockResizeObservers[0].observedElements).toEqual([element]);
+            expect(mockResizeObservers[0].observe).toHaveBeenCalledWith(element);
+        });
+
+        it('... should call the callback on trigger', () => {
+            const mockResizeObservers = stubResizeObserver();
+            const callback = vi.fn();
+
+            new ResizeObserver(callback);
+            mockResizeObservers[0].trigger();
+
+            expect(callback).toHaveBeenCalledWith([], mockResizeObservers[0]);
         });
     });
 });

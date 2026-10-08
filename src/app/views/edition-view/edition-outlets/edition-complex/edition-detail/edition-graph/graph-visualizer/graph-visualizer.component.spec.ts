@@ -939,6 +939,19 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToBe(component.query(), query);
                 });
 
+                it('... should not set the performed query if the query has been edited while running', async () => {
+                    const deferredRun = createDeferredRun();
+                    serviceRunSpy.mockReturnValueOnce(deferredRun.promise);
+                    const editedQueryString = `${expectedRequest.queryString}\n# edited`;
+
+                    const pendingRun = component['_runQuery'](expectedRequest, new AbortController().signal);
+                    component.query.update(currentQuery => ({ ...currentQuery, queryString: editedQueryString }));
+                    deferredRun.resolve({ query: 'PREFIX performed', result: expectedConstructResult, durationMs: 1 });
+                    await pendingRun;
+
+                    expectToBe(component.query().queryString, editedQueryString);
+                });
+
                 it('... should not set the performed query of a stale run in the editor', async () => {
                     const deferredRun = createDeferredRun();
                     serviceRunSpy.mockReturnValueOnce(deferredRun.promise);

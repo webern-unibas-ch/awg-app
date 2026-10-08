@@ -1,7 +1,7 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -12,7 +12,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
+import { patchSvgSizeForD3Zoom, stubResizeObserver } from '@testing/svg-drawing-helper';
 
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -71,6 +71,9 @@ describe('ForceGraphComponent (DONE)', () => {
     });
 
     beforeEach(async () => {
+        // Stub the ResizeObserver of the ForceGraphSvgComponent (missing in jsdom)
+        stubResizeObserver();
+
         // The ForceGraphSvgComponent renders into its own template (no hollow child possible), so mock the drawing
         const mockForceGraphDrawingService = {
             renderGraph: vi.fn(() => ({ stop: vi.fn() }) as unknown as ForceSimulation),
@@ -97,6 +100,10 @@ describe('ForceGraphComponent (DONE)', () => {
         // Spies
         clickedNodeRequestSpy = vi.fn();
         component.clickedNodeRequest.subscribe(clickedNodeRequestSpy);
+    });
+
+    afterEach(() => {
+        vi.unstubAllGlobals();
     });
 
     it('... should create', () => {
