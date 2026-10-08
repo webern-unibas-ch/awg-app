@@ -2,68 +2,150 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { getQueryType, SPARQL_UTILS, stripCommentsAndLiterals, stripNonCode } from './sparql.utils';
+import { getQueryType, maskNonCode, SPARQL_UTILS, toConstructQuery, toSelectQuery } from './sparql.utils';
+
+/**
+ * Helper function: blank.
+ *
+ * It creates as many spaces as the given text has characters.
+ */
+const blank = (text: string): string => ' '.repeat(text.length);
 
 describe('SparqlUtils (DONE)', () => {
     describe('SPARQL_UTILS', () => {
         it('... should reference all sparql utils methods', () => {
-            expectToEqual(SPARQL_UTILS, { getQueryType, stripCommentsAndLiterals, stripNonCode });
+            expectToEqual(SPARQL_UTILS, { getQueryType, maskNonCode, toConstructQuery, toSelectQuery });
         });
     });
 
     describe('METHODS', () => {
-        describe('#stripNonCode()', () => {
-            it('... should have a method `stripNonCode`', () => {
-                expect(stripNonCode).toBeDefined();
+        describe('#maskNonCode()', () => {
+            it('... should have a method `maskNonCode`', () => {
+                expect(maskNonCode).toBeDefined();
             });
 
-            it('... should replace IRIs with a space', () => {
-                expectToBe(stripNonCode('?s <http://example.org/p> ?o'), '?s   ?o');
+            it('... should replace IRIs with the same number of spaces', () => {
+                const iri = '<http://example.org/p>';
+
+                expectToBe(maskNonCode(`?s ${iri} ?o`), `?s ${blank(iri)} ?o`);
             });
 
-            it('... should replace double- and single-quoted string literals with a space', () => {
-                expectToBe(stripNonCode(`?s rdfs:label "a:b" , 'c:d'`), '?s rdfs:label   ,  ');
+            it('... should keep IRIs if requested', () => {
+                expectToBe(
+                    maskNonCode('?s <http://example.org/p> ?o', { keepIris: true }),
+                    '?s <http://example.org/p> ?o'
+                );
+            });
+
+            it('... should replace double- and single-quoted string literals with the same number of spaces', () => {
+                expectToBe(
+                    maskNonCode(`?s rdfs:label "a:b" , 'c:d'`),
+                    `?s rdfs:label ${blank('"a:b"')} , ${blank("'c:d'")}`
+                );
             });
 
             it('... should treat escaped quotes as part of the string literal', () => {
-                expectToBe(stripNonCode(String.raw`"say \"x:y\"" ex:p`), '  ex:p');
+                const literal = String.raw`"say \"x:y\""`;
+
+                expectToBe(maskNonCode(`${literal} ex:p`), `${blank(literal)} ex:p`);
             });
 
-            it('... should replace comments up to the end of the line with a space', () => {
-                expectToBe(stripNonCode('?s ?p ?o # select dc:title\n?x'), '?s ?p ?o  \n?x');
+            it('... should replace comments up to the end of the line with the same number of spaces', () => {
+                const comment = '# select dc:title';
+
+                expectToBe(maskNonCode(`?s ?p ?o ${comment}\n?x`), `?s ?p ?o ${blank(comment)}\n?x`);
             });
 
             it('... should not start a comment with a `#` within an IRI or a string', () => {
-                expectToBe(stripNonCode('<http://example.org/onto#x> "#tag" ex:p'), '    ex:p');
+                const iri = '<http://example.org/onto#x>';
+
+                expectToBe(maskNonCode(`${iri} "#tag" ex:p`), `${blank(iri)} ${blank('"#tag"')} ex:p`);
+                expectToBe(maskNonCode(`${iri} "#tag" ex:p`, { keepIris: true }), `${iri} ${blank('"#tag"')} ex:p`);
             });
 
             it('... should keep code without IRIs, strings and comments', () => {
-                expectToBe(stripNonCode('SELECT ?s WHERE { ?s a awg:Sketch }'), 'SELECT ?s WHERE { ?s a awg:Sketch }');
+                expectToBe(maskNonCode('SELECT ?s WHERE { ?s a awg:Sketch }'), 'SELECT ?s WHERE { ?s a awg:Sketch }');
             });
         });
 
-        describe('#stripCommentsAndLiterals()', () => {
-            it('... should have a method `stripCommentsAndLiterals`', () => {
-                expect(stripCommentsAndLiterals).toBeDefined();
+        describe('#toSelectQuery()', () => {
+            it('... should have a method `toSelectQuery`', () => {
+                expect(toSelectQuery).toBeDefined();
             });
 
-            it('... should keep IRIs', () => {
-                expectToBe(stripCommentsAndLiterals('?s <http://example.org/p> ?o'), '?s <http://example.org/p> ?o');
+            it('... should convert the short form of a CONSTRUCT query', () => {
+                expectToBe(toSelectQuery('CONSTRUCT\nWHERE { ?s ?p ?o }'), 'SELECT *\nWHERE { ?s ?p ?o }');
             });
 
-            it('... should replace double- and single-quoted string literals with a space', () => {
-                expectToBe(stripCommentsAndLiterals(`?s rdfs:label "a:b" , 'c:d'`), '?s rdfs:label   ,  ');
+            it('... should convert a CONSTRUCT query case-insensitively', () => {
+                expectToBe(toSelectQuery('construct where { ?s ?p ?o }'), 'SELECT * where { ?s ?p ?o }');
             });
 
-            it('... should replace comments up to the end of the line with a space', () => {
-                expectToBe(stripCommentsAndLiterals('# PREFIX ex: <http://example.org/>\nSELECT ?s'), ' \nSELECT ?s');
+            it('... should drop an explicit construct template', () => {
+                expectToBe(toSelectQuery('CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }'), 'SELECT * WHERE { ?s ?p ?o }');
+                expectToBe(toSelectQuery('CONSTRUCT { ?s ?p ?o } { ?s ?p ?o }'), 'SELECT * { ?s ?p ?o }');
             });
 
-            it('... should not start a comment with a `#` within an IRI or a string', () => {
+            it('... should keep prefix declarations, IRIs, strings and comments', () => {
+                const query =
+                    'PREFIX ex: <http://example.org/construct/>\n# construct all\nCONSTRUCT WHERE { ?s ex:p "construct" }';
+
                 expectToBe(
-                    stripCommentsAndLiterals('<http://example.org/onto#x> "#tag" ex:p'),
-                    '<http://example.org/onto#x>   ex:p'
+                    toSelectQuery(query),
+                    'PREFIX ex: <http://example.org/construct/>\n# construct all\nSELECT * WHERE { ?s ex:p "construct" }'
                 );
+            });
+
+            it('... should hold null for queries that are no CONSTRUCT queries or have an unclosed template', () => {
+                expect(toSelectQuery('SELECT * WHERE { ?s ?p ?o }')).toBeNull();
+                expect(toSelectQuery('CONSTRUCT { ?s ?p ?o WHERE { ?s ?p ?o }')).toBeNull();
+            });
+        });
+
+        describe('#toConstructQuery()', () => {
+            it('... should have a method `toConstructQuery`', () => {
+                expect(toConstructQuery).toBeDefined();
+            });
+
+            it('... should convert a SELECT query into the short form of a CONSTRUCT query', () => {
+                expectToBe(toConstructQuery('SELECT *\nWHERE { ?s ?p ?o }'), 'CONSTRUCT\nWHERE { ?s ?p ?o }');
+                expectToBe(
+                    toConstructQuery('SELECT DISTINCT ?s ?o WHERE { ?s ?p ?o } ORDER BY ?s LIMIT 10'),
+                    'CONSTRUCT WHERE { ?s ?p ?o } ORDER BY ?s LIMIT 10'
+                );
+            });
+
+            it('... should convert a SELECT query case-insensitively', () => {
+                expectToBe(toConstructQuery('select * where { ?s ?p ?o }'), 'CONSTRUCT where { ?s ?p ?o }');
+            });
+
+            it('... should drop expressions of the projection and keep solution modifiers', () => {
+                expectToBe(
+                    toConstructQuery('SELECT ?c (COUNT(?c) AS ?n)\nWHERE { ?s a ?c } GROUP BY ?c ORDER BY ?n LIMIT 10'),
+                    'CONSTRUCT\nWHERE { ?s a ?c } GROUP BY ?c ORDER BY ?n LIMIT 10'
+                );
+            });
+
+            it('... should add the WHERE keyword if missing', () => {
+                expectToBe(toConstructQuery('SELECT *{ ?s ?p ?o }'), 'CONSTRUCT WHERE { ?s ?p ?o }');
+            });
+
+            it('... should keep a dataset clause', () => {
+                expectToBe(
+                    toConstructQuery('SELECT * FROM <http://example.org/g> WHERE { ?s ?p ?o }'),
+                    'CONSTRUCT FROM <http://example.org/g> WHERE { ?s ?p ?o }'
+                );
+            });
+
+            it.each([
+                { desc: 'no SELECT query', query: 'CONSTRUCT WHERE { ?s ?p ?o }' },
+                { desc: 'a query without pattern', query: 'SELECT *' },
+                { desc: 'FILTER', query: 'SELECT * WHERE { ?s ?p ?o FILTER(?o > 1) }' },
+                { desc: 'OPTIONAL', query: 'SELECT * WHERE { ?s ?p ?o OPTIONAL { ?o ?q ?r } }' },
+                { desc: 'a nested group', query: 'SELECT * WHERE { { ?s ?p ?o } }' },
+                { desc: 'a property path', query: 'SELECT * WHERE { ?s ex:a/ex:b ?o }' },
+            ])('... should hold null for $desc', ({ query }) => {
+                expect(toConstructQuery(query)).toBeNull();
             });
         });
 

@@ -87,7 +87,7 @@ export function compactIri(iri: string, prefixes: PrefixMap): string {
 export function extractSparqlPrefixes(query: string): PrefixMap {
     const prefixes: Record<string, string> = {};
 
-    const code = SPARQL_UTILS.stripCommentsAndLiterals(query);
+    const code = SPARQL_UTILS.maskNonCode(query, { keepIris: true });
 
     for (const [, prefix = '', namespace] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
         prefixes[prefix] = namespace;
@@ -106,7 +106,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  * @returns {string[]} The used prefixes (unique, in order of appearance).
  */
 export function findUsedPrefixes(query: string): string[] {
-    const code = SPARQL_UTILS.stripNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
+    const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
     const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
 
     return Array.from(new Set(prefixes));

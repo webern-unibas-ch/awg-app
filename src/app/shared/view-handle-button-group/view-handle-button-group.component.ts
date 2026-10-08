@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, output, viewChildren } from '@angular/core';
 
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
@@ -56,4 +56,32 @@ export class ViewHandleButtonGroupComponent {
      * It emits the view type that the user switched to.
      */
     readonly viewChangeRequest = output<ViewHandleTypes>();
+
+    /**
+     * Readonly view children signal: radioInputs.
+     *
+     * It holds the radio input elements of the view handles.
+     */
+    readonly radioInputs = viewChildren<ElementRef<HTMLInputElement>>('radioInput');
+
+    /**
+     * Public method: onViewChange.
+     *
+     * It emits a given view type to the {@link viewChangeRequest}
+     * and restores the checked radio button of the selected view type,
+     * so that a rejected change does not leave the clicked radio button checked
+     * (an accepted change updates the checked state via the input binding).
+     *
+     * @param {ViewHandleTypes} viewType The given view type.
+     *
+     * @returns {void} Emits the view type.
+     */
+    onViewChange(viewType: ViewHandleTypes): void {
+        this.viewChangeRequest.emit(viewType);
+
+        const selectedViewType = this.selectedViewType();
+        this.radioInputs().forEach(({ nativeElement }) => {
+            nativeElement.checked = nativeElement.value === selectedViewType;
+        });
+    }
 }

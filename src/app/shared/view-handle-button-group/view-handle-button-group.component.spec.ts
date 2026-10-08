@@ -138,6 +138,14 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
             expectToBe(component.selectedViewType(), expectedSelectedViewType);
         });
 
+        it('... should have view children signal `radioInputs` to hold the radio input elements', () => {
+            expectToBe(isSignal(component.radioInputs), true);
+            expectToEqual(
+                component.radioInputs().map(inputRef => inputRef.nativeElement),
+                getInputEls()
+            );
+        });
+
         describe('VIEW', () => {
             it('... should contain as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
@@ -313,6 +321,55 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     getInputEls()[2].dispatchEvent(new Event('change'));
 
                     expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRID);
+                });
+            });
+
+            it('... should keep the selected radio element checked if the view change is not accepted', async () => {
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                await detectChangesOnPush(fixture);
+
+                const inputEls = getInputEls();
+                expectToBe(inputEls[0].checked, true);
+                expectToBe(inputEls[1].checked, false);
+            });
+
+            it('... should check the radio element of the new view type if the view change is accepted', async () => {
+                viewChangeRequestSpy.mockImplementation((viewType: ViewHandleTypes) =>
+                    fixture.componentRef.setInput('selectedViewType', viewType)
+                );
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                await detectChangesOnPush(fixture);
+
+                const inputEls = getInputEls();
+                expectToBe(inputEls[0].checked, false);
+                expectToBe(inputEls[1].checked, true);
+            });
+        });
+
+        describe('METHODS', () => {
+            describe('#onViewChange()', () => {
+                it('... should have a method `onViewChange`', () => {
+                    expect(component.onViewChange).toBeDefined();
+                });
+
+                it('... should emit the given view type', () => {
+                    component.onViewChange(ViewHandleTypes.TABLE);
+
+                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
                 });
             });
         });

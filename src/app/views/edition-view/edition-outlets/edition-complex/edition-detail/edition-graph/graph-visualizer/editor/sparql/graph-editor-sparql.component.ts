@@ -13,6 +13,7 @@ import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-grou
 
 import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
+import { GRAPH_QUERY_UTILS } from '../../utils/graph-query.utils';
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 
@@ -151,7 +152,7 @@ export class GraphEditorSparqlComponent {
      * @returns {void} Performs a new query with switched query type.
      */
     onViewChange(viewType: ViewHandleTypes): void {
-        this.query.set(this.switchQueryType(this.query(), viewType));
+        this.query.set(GRAPH_QUERY_UTILS.switchQueryType(this.query(), viewType));
         this.performQuery();
     }
 
@@ -183,51 +184,5 @@ export class GraphEditorSparqlComponent {
      */
     resetQuery(query: GraphQuery): void {
         this.resetQueryRequest.emit(query);
-    }
-
-    /**
-     * Public method: switchQueryType.
-     *
-     * It switches the type and string of a given query according to a given view type.
-     *
-     * @param {GraphQuery} query The given query.
-     * @param {ViewHandleTypes} viewType The given view type.
-     *
-     * @returns {GraphQuery} The switched query (or the given query if nothing is to switch).
-     */
-    switchQueryType(query: GraphQuery, viewType: ViewHandleTypes): GraphQuery {
-        switch (viewType) {
-            case ViewHandleTypes.TABLE: {
-                if (query.queryType === 'construct' && query.queryString.includes('CONSTRUCT')) {
-                    return {
-                        ...query,
-                        queryString: query.queryString.replace('CONSTRUCT', 'SELECT *'),
-                        queryType: 'select',
-                    };
-                }
-                return query;
-            }
-            case ViewHandleTypes.GRAPH: {
-                if (query.queryType === 'select' && query.queryString.includes('SELECT')) {
-                    return {
-                        ...query,
-                        queryString: query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n'),
-                        queryType: 'construct',
-                    };
-                }
-                return query;
-            }
-            case ViewHandleTypes.GRID: {
-                // Do nothing
-                return query;
-            }
-            default: {
-                // This branch should not be reached
-                const exhaustiveCheck: never = viewType;
-                throw new Error(
-                    `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
-                );
-            }
-        }
     }
 }

@@ -27,6 +27,7 @@ import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-g
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
+import { GRAPH_QUERY_UTILS } from '../../utils/graph-query.utils';
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 import { GraphEditorSparqlComponent } from './graph-editor-sparql.component';
@@ -105,7 +106,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
         onViewChangeSpy = vi.spyOn(component, 'onViewChange');
         performQuerySpy = vi.spyOn(component, 'performQuery');
         resetQuerySpy = vi.spyOn(component, 'resetQuery');
-        switchQueryTypeSpy = vi.spyOn(component, 'switchQueryType');
+        switchQueryTypeSpy = vi.spyOn(GRAPH_QUERY_UTILS, 'switchQueryType');
         emitErrorMessageRequestSpy = vi.spyOn(component.errorMessageRequest, 'emit');
         emitPerformQueryRequestSpy = vi.spyOn(component.performQueryRequest, 'emit');
         emitResetQueryRequestSpy = vi.spyOn(component.resetQueryRequest, 'emit');
@@ -694,7 +695,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                     expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
                 });
 
-                it('... should set `query` to the switched query and trigger `performQuery()`', () => {
+                it('... should set `query` to the query switched by `GRAPH_QUERY_UTILS.switchQueryType` and trigger `performQuery()`', () => {
                     component.onViewChange(ViewHandleTypes.TABLE);
 
                     expectSpyCall(switchQueryTypeSpy, 1, [expectedConstructQuery1, ViewHandleTypes.TABLE]);
@@ -797,77 +798,6 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                     component.resetQuery(expectedConstructQuery2);
 
                     expectSpyCall(emitResetQueryRequestSpy, 1, expectedConstructQuery2);
-                });
-            });
-
-            describe('#switchQueryType()', () => {
-                it('... should have a method `switchQueryType`', () => {
-                    expect(component.switchQueryType).toBeDefined();
-                });
-
-                it('... should switch a construct query to a select query for the table view', () => {
-                    expectToEqual(component.switchQueryType(expectedConstructQuery1, ViewHandleTypes.TABLE), {
-                        ...expectedConstructQuery1,
-                        queryType: 'select',
-                        queryString: 'SELECT *\nWHERE { ?test ?has ?success }',
-                    });
-                });
-
-                it('... should switch a select query to a construct query for the graph view', () => {
-                    expectToEqual(component.switchQueryType(expectedSelectQuery1, ViewHandleTypes.GRAPH), {
-                        ...expectedSelectQuery1,
-                        queryType: 'construct',
-                        queryString: 'CONSTRUCT\nWHERE { ?test ?has ?success }',
-                    });
-                });
-
-                it('... should not mutate the given query', () => {
-                    const query = { ...expectedConstructQuery1 };
-
-                    component.switchQueryType(query, ViewHandleTypes.TABLE);
-
-                    expectToEqual(query, expectedConstructQuery1);
-                });
-
-                it.each([
-                    {
-                        desc: 'a construct query for the graph view',
-                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'CONSTRUCT\nWHERE {}' },
-                        viewType: ViewHandleTypes.GRAPH,
-                    },
-                    {
-                        desc: 'a select query for the table view',
-                        query: { queryType: 'select', queryLabel: 'Q', queryString: 'SELECT *\nWHERE {}' },
-                        viewType: ViewHandleTypes.TABLE,
-                    },
-                    {
-                        desc: 'a construct query without `CONSTRUCT` for the table view',
-                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'ASK WHERE {}' },
-                        viewType: ViewHandleTypes.TABLE,
-                    },
-                    {
-                        desc: 'a select query without `SELECT` for the graph view',
-                        query: { queryType: 'select', queryLabel: 'Q', queryString: 'ASK WHERE {}' },
-                        viewType: ViewHandleTypes.GRAPH,
-                    },
-                    {
-                        desc: 'any query for the grid view',
-                        query: { queryType: 'construct', queryLabel: 'Q', queryString: 'CONSTRUCT\nWHERE {}' },
-                        viewType: ViewHandleTypes.GRID,
-                    },
-                ] as { desc: string; query: GraphQuery; viewType: ViewHandleTypes }[])(
-                    '... should keep $desc unchanged',
-                    ({ query, viewType }) => {
-                        expectToBe(component.switchQueryType(query, viewType), query);
-                    }
-                );
-
-                it('... should throw an error if the requested view is not `table`, `graph` or `grid`', () => {
-                    expect(() =>
-                        component.switchQueryType(expectedConstructQuery1, undefined as unknown as ViewHandleTypes)
-                    ).toThrow(
-                        `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: undefined.`
-                    );
                 });
             });
         });

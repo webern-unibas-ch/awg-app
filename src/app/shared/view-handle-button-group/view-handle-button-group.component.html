@@ -3,13 +3,14 @@
     <div class="btn-group" role="group" aria-label="View handle button group">
         @for (viewHandle of viewHandles(); track viewHandle.type) {
             <input
+                #radioInput
                 type="radio"
                 class="btn-check"
                 [name]="groupName"
                 [id]="groupName + '-' + viewHandle.type + '-view-button'"
                 [value]="viewHandle.type"
                 [checked]="viewHandle.type === selectedViewType()"
-                (change)="viewChangeRequest.emit(viewHandle.type)"
+                (change)="onViewChange(viewHandle.type)"
                 autocomplete="off" />
             <label
                 class="btn btn-sm btn-outline-info"
