@@ -1,4 +1,4 @@
-import { SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 
 /**
  * The EditionSheetFacetPartialLink interface.
@@ -9,9 +9,9 @@ import { SheetClickEvent } from '@awg-views/edition-view/services/edition-naviga
  */
 export interface EditionSheetFacetPartialLink {
     /**
-     * The sheet ids (incl. partial) to navigate to.
+     * The sheet navigation target (incl. partial).
      */
-    sheetIds: SheetClickEvent;
+    sheetTarget: EditionNavigationSheetTarget;
 
     /**
      * The position label of the partial, i.e. the partial id

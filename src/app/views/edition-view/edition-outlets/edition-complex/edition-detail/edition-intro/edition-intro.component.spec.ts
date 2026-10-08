@@ -72,7 +72,14 @@ describe('IntroComponent (DONE)', () => {
                 provideRouter([]),
                 { provide: EditionViewService, useValue: { introViewData: mockViewDataSignal.asReadonly() } },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionIntroContentComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionIntroNavComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionIntroPartialDisclaimerComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionIntroPlaceholderComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -136,13 +143,13 @@ describe('IntroComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
-            it('... should contain no AlertErrorComponent', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                 getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
@@ -222,14 +229,14 @@ describe('IntroComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain intro view or spinner, but one AlertErrorComponent', () => {
+                it('... should not contain intro view or spinner, but one AlertErrorComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
-                it('... should pass down error object to AlertErrorComponent', () => {
+                it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
@@ -247,14 +254,14 @@ describe('IntroComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain intro view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
+                it('... should not contain intro view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
-                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
                         TwelveToneSpinnerComponent
@@ -306,12 +313,12 @@ describe('IntroComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
                     });
 
-                    it('... should contain one EditionIntroPlaceholderComponent', async () => {
+                    it('... should contain one EditionIntroPlaceholderComponent (hollow)', async () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                         getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderComponent, 1, 1);
                     });
 
-                    it('... should pass down `editionComplex` to EditionIntroPlaceholderComponent', async () => {
+                    it('... should pass down `editionComplex` to EditionIntroPlaceholderComponent (hollow)', async () => {
                         const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
                             compDe,
                             EditionIntroPlaceholderComponent,
@@ -340,7 +347,7 @@ describe('IntroComponent (DONE)', () => {
                             await detectChangesOnPush(fixture);
                         });
 
-                        it('... should contain one EditionIntroPartialDisclaimerComponent', () => {
+                        it('... should contain one EditionIntroPartialDisclaimerComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(
                                 divDes[0],
@@ -350,7 +357,7 @@ describe('IntroComponent (DONE)', () => {
                             );
                         });
 
-                        it('... should pass down `editionComplex` to EditionIntroPartialDisclaimerComponent', () => {
+                        it('... should pass down `editionComplex` to EditionIntroPartialDisclaimerComponent (hollow)', () => {
                             const editionIntroPartialDisclaimerDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroPartialDisclaimerComponent,
@@ -364,12 +371,12 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroPartialDisclaimerCmp.editionComplex(), expectedComplex);
                         });
 
-                        it('... should contain one EditionIntroContentComponent', () => {
+                        it('... should contain one EditionIntroContentComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentComponent, 1, 1);
                         });
 
-                        it('... should pass down filtered `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
+                        it('... should pass down filtered `introBlockContent` and `notesLabel` to EditionIntroContentComponent (hollow)', () => {
                             const editionIntroContentDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroContentComponent,
@@ -387,12 +394,12 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroContentCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                         });
 
-                        it('... should contain one EditionIntroNavComponent (stubbed)', () => {
+                        it('... should contain one EditionIntroNavComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavComponent, 1, 1);
                         });
 
-                        it('... should pass down filtered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent', () => {
+                        it('... should pass down filtered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent (hollow)', () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavComponent,
@@ -411,7 +418,7 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
 
-                        it('... should update `selectedLanguage` when EditionIntroNavComponent emits new value', async () => {
+                        it('... should update `selectedLanguage` when EditionIntroNavComponent (hollow) emits new value', async () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavComponent,
@@ -445,7 +452,7 @@ describe('IntroComponent (DONE)', () => {
                             await detectChangesOnPush(fixture);
                         });
 
-                        it('... should not contain an edition intro partial disclaimer component', () => {
+                        it('... should not contain an EditionIntroPartialDisclaimerComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(
                                 divDes[0],
@@ -455,12 +462,12 @@ describe('IntroComponent (DONE)', () => {
                             );
                         });
 
-                        it('... should contain one EditionIntroContentComponent', () => {
+                        it('... should contain one EditionIntroContentComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroContentComponent, 1, 1);
                         });
 
-                        it('... should pass down unfiltered `introBlockContent` and `notesLabel` to EditionIntroContentComponent', () => {
+                        it('... should pass down unfiltered `introBlockContent` and `notesLabel` to EditionIntroContentComponent (hollow)', () => {
                             const editionIntroContentDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroContentComponent,
@@ -478,12 +485,12 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroContentCmp.notesLabel(), expectedDefaultNotesSectionLabel);
                         });
 
-                        it('... should contain one EditionIntroNavComponent', () => {
+                        it('... should contain one EditionIntroNavComponent (hollow)', () => {
                             const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
                             getAndExpectDebugElementByDirective(divDes[0], EditionIntroNavComponent, 1, 1);
                         });
 
-                        it('... should pass down unfiltered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent', () => {
+                        it('... should pass down unfiltered `introBlockContent`, `notesLabel` and `selectedLanguage` to EditionIntroNavComponent (hollow)', () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavComponent,
@@ -502,7 +509,7 @@ describe('IntroComponent (DONE)', () => {
                             expectToEqual(editionIntroNavCmp.selectedLanguage(), expectedSelectedLanguage);
                         });
 
-                        it('... should update `selectedLanguage` when EditionIntroNavComponent emits new value', async () => {
+                        it('... should update `selectedLanguage` when EditionIntroNavComponent (hollow) emits new value', async () => {
                             const editionIntroNavDes = getAndExpectDebugElementByDirective(
                                 compDe,
                                 EditionIntroNavComponent,

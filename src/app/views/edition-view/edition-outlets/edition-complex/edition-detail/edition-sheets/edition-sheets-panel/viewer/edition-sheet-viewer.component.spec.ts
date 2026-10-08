@@ -5,7 +5,6 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -21,10 +20,11 @@ import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
+import { EDITION_SHEETS_UTILS } from '../../edition-sheets.utils';
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';
@@ -44,7 +44,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
     let selectTkkOverlaysRequestSpy: Mock<(overlays: EditionSvgOverlayTkk[]) => void>;
 
     let expectedZoomConfig: ZoomConfig;
-    let expectedSvgSheet: EditionSvgSheet;
+    let expectedSvgSheet: EditionSvgSheetSelection;
 
     const getSheetSvgDe = (): DebugElement =>
         getAndExpectDebugElementByDirective(compDe, EditionSheetViewerSvgComponent, 1, 1)[0];
@@ -69,6 +69,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     beforeEach(async () => {
         // Mocked services for the real EditionSheetViewerSvgComponent
+        // (not hollow: its required view query on the SvgZoomDirective needs the d3-driven template)
         mockSvgDrawingService = {
             createSvg: vi.fn<CreateSvgFn>(async (_path, svgEl) => D3_SELECTION.select(svgEl as SVGSVGElement) as any),
             getSuppliedClasses: vi.fn(() => []),
@@ -88,7 +89,10 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 { provide: EditionSvgDrawingService, useValue: mockSvgDrawingService },
                 { provide: EditionSvgOverlayService, useValue: mockSvgOverlayService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSheetViewerNavComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(SliderZoomComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -98,7 +102,12 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
         // Test data
         expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
+        expectedSvgSheet = structuredClone(
+            EDITION_SHEETS_UTILS.toSvgSheetSelection(
+                mockEditionData.mockSvgSheet_Sk1,
+                mockEditionData.mockSvgSheet_Sk1.content[0]
+            )
+        );
 
         // Spies
         browseSheetRequestSpy = vi.fn();
@@ -135,7 +144,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('selectedSvgSheet', expectedSvgSheet);
 
             // Trigger initial data binding
@@ -146,7 +155,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             await detectChangesOnPush(fixture);
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided sheet', () => {
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
         });
 
@@ -165,7 +174,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
             });
 
             describe('... icon bar', () => {
-                it('... should contain one SliderZoomComponent with `zoomConfig` and `zoomValue`', async () => {
+                it('... should contain one SliderZoomComponent (hollow) with `zoomConfig` and `zoomValue`', async () => {
                     component.zoomValue.set(2.5);
                     await detectChangesOnPush(fixture);
 
@@ -181,23 +190,21 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                     expectToBe(sliderZoomCmp.zoomValue(), 2.5);
                 });
 
-                it('... should sync a value change of the SliderZoomComponent to `zoomValue` and the sheet svg', async () => {
-                    const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
-                    const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
+                it('... should sync a value change of the SliderZoomComponent (hollow) to `zoomValue` and the sheet svg', async () => {
+                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
 
-                    rangeEl.value = '7.5';
-                    rangeEl.dispatchEvent(new Event('input'));
+                    sliderZoomDes[0].injector.get(SliderZoomComponent).zoomValue.set(7.5);
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.zoomValue(), 7.5);
                     expectToBe(getSheetSvgCmp().zoomValue(), 7.5);
                 });
 
-                it('... should trigger `resetZoom` of the sheet svg on reset request of the SliderZoomComponent', async () => {
+                it('... should trigger `resetZoom` of the sheet svg on reset request of the SliderZoomComponent (hollow)', async () => {
                     const resetZoomSpy = vi.spyOn(getSheetSvgCmp(), 'resetZoom');
-                    const btnDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
+                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
 
-                    await clickAndAwaitChanges(btnDes[0], fixture);
+                    sliderZoomDes[0].injector.get(SliderZoomComponent).resetRequest.emit();
 
                     expectSpyCall(resetZoomSpy, 1);
                 });
@@ -237,7 +244,7 @@ describe('EditionSheetViewerComponent (DONE)', () => {
                 });
             });
 
-            describe('... EditionSheetViewerNavComponent', () => {
+            describe('... EditionSheetViewerNavComponent (hollow)', () => {
                 it.each([-1, 1] as const)(
                     '... should emit `browseSheetRequest` with %s on browse sheet request of the nav',
                     direction => {

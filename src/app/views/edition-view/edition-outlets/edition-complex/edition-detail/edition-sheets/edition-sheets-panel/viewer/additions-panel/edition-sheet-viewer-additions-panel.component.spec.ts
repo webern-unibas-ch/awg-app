@@ -50,20 +50,32 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
 
     const getCardBodyDes = () => getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
     const getFormSwitchDes = (count: number) =>
-        getAndExpectDebugElementByCss(getCardBodyDes()[0], 'div.form-check.form-switch', count, count);
-    const getInputEl = (key: string): HTMLInputElement =>
-        getAndExpectDebugElementByCss(compDe, `input.form-check-input[id="awg-addition-${key}"]`, 1, 1)[0]
-            .nativeElement;
-    const getLabelDe = (key: string): DebugElement =>
-        getAndExpectDebugElementByCss(compDe, `label.form-check-label[for="awg-addition-${key}"]`, 1, 1)[0];
+        getAndExpectDebugElementByDirective(getCardBodyDes()[0], FormSwitchComponent, count, count);
+    const findFormSwitchDe = (key: string): DebugElement | undefined =>
+        getFormSwitchDes(component.additionsKeys().length + 1).find(
+            de => de.injector.get(FormSwitchComponent).inputId() === `awg-addition-${key}`
+        );
+    const getFormSwitchDe = (key: string): DebugElement => {
+        const formSwitchDe = findFormSwitchDe(key);
+        if (!formSwitchDe) {
+            throw new Error(`No FormSwitchComponent found for key ${key}`);
+        }
+        return formSwitchDe;
+    };
+    const getFormSwitchCmp = (key: string): FormSwitchComponent =>
+        getFormSwitchDe(key).injector.get(FormSwitchComponent);
+    const getLabelText = (key: string): string => getFormSwitchDe(key).nativeElement.textContent.trim();
 
     const setVisibility = (key: string, isVisible: boolean) =>
         component.visibility.update(visibility => new Map(visibility).set(key, isVisible));
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [EditionSheetViewerAdditionsPanelComponent, EditionTkaLabelComponent],
-        }).compileComponents();
+            imports: [EditionSheetViewerAdditionsPanelComponent],
+        })
+            .overrideComponent(EditionTkaLabelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(FormSwitchComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -151,9 +163,8 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                 expectToBe(spanEl.textContent, 'Editorische Ergänzungen');
             });
 
-            it('... should contain only one form-switch for all supplied classes yet', () => {
+            it('... should contain only one FormSwitchComponent (hollow) for all supplied classes yet', () => {
                 getFormSwitchDes(1);
-                getAndExpectDebugElementByDirective(compDe, FormSwitchComponent, 1, 1);
             });
         });
     });
@@ -222,7 +233,7 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should place each FormSwitchComponent in its own div.col of a responsive div.row', () => {
+            it('... should place each FormSwitchComponent (hollow) in its own div.col of a responsive div.row', () => {
                 const colDes = getAndExpectDebugElementByCss(
                     getCardBodyDes()[0],
                     'div.row.row-cols-1.row-cols-sm-2.row-cols-xl-3 > div.col',
@@ -233,11 +244,11 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                 colDes.forEach(colDe => getAndExpectDebugElementByDirective(colDe, FormSwitchComponent, 1, 1));
             });
 
-            it('... should contain one form-switch per additions key plus one for all', () => {
+            it('... should contain one FormSwitchComponent (hollow) per additions key plus one for all', () => {
                 getFormSwitchDes(expectedAdditionsKeys.length + 1);
             });
 
-            it('... should pass down `inputId` and `checked` to each FormSwitchComponent', async () => {
+            it('... should pass down `inputId` and `checked` to each FormSwitchComponent (hollow)', async () => {
                 setVisibility(expectedClass2, false);
                 await detectChangesOnPush(fixture);
 
@@ -260,48 +271,39 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                 );
             });
 
-            describe('... form-switch for all', () => {
-                it('... should contain a checked checkbox with label `Alle ausblenden`', () => {
-                    const inputEl = getInputEl('all');
-
-                    expectToBe(inputEl.type, 'checkbox');
-                    expectToBe(inputEl.checked, true);
-                    expectToBe(getLabelDe('all').nativeElement.textContent.trim(), 'Alle ausblenden');
+            describe('... FormSwitchComponent (hollow) for all', () => {
+                it('... should be checked with label `Alle ausblenden`', () => {
+                    expectToBe(getFormSwitchCmp('all').checked(), true);
+                    expectToBe(getLabelText('all'), 'Alle ausblenden');
                 });
 
-                it('... should contain an unchecked checkbox with label `Alle einblenden` if not all are visible', async () => {
+                it('... should be unchecked with label `Alle einblenden` if not all are visible', async () => {
                     setVisibility(expectedClass1, false);
                     await detectChangesOnPush(fixture);
 
-                    expectToBe(getInputEl('all').checked, false);
-                    expectToBe(getLabelDe('all').nativeElement.textContent.trim(), 'Alle einblenden');
+                    expectToBe(getFormSwitchCmp('all').checked(), false);
+                    expectToBe(getLabelText('all'), 'Alle einblenden');
                 });
 
-                it('... should trigger `toggleAll` on change', () => {
-                    getInputEl('all').dispatchEvent(new Event('change'));
+                it('... should trigger `toggleAll` when the FormSwitchComponent (hollow) changes', () => {
+                    getFormSwitchCmp('all').checkedChange.emit(false);
 
                     expectSpyCall(toggleAllSpy, 1);
                 });
             });
 
-            describe('... form-switches for switch keys', () => {
-                it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])(
-                    '... should contain a checked checkbox for `%s`',
-                    key => {
-                        const inputEl = getInputEl(key);
-
-                        expectToBe(inputEl.type, 'checkbox');
-                        expectToBe(inputEl.checked, true);
-                    }
-                );
+            describe('... FormSwitchComponents (hollow) for switch keys', () => {
+                it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])('... should be checked for `%s`', key => {
+                    expectToBe(getFormSwitchCmp(key).checked(), true);
+                });
 
                 it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])(
-                    '... should contain an unchecked checkbox for `%s` if hidden',
+                    '... should be unchecked for `%s` if hidden',
                     async key => {
                         setVisibility(key, false);
                         await detectChangesOnPush(fixture);
 
-                        expectToBe(getInputEl(key).checked, false);
+                        expectToBe(getFormSwitchCmp(key).checked(), false);
                     }
                 );
 
@@ -311,25 +313,28 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                         fixture.componentRef.setInput('suppliedClasses', [suppliedClass]);
                         await detectChangesOnPush(fixture);
 
-                        expectToBe(getLabelDe(suppliedClass).nativeElement.textContent.trim(), expectedLabel);
+                        expectToBe(getLabelText(suppliedClass), expectedLabel);
                     }
                 );
 
                 it.each(['class1', 'class2'])(
                     '... should display the class name `%s` as label without a known label',
                     key => {
-                        const labelDe = getLabelDe(key);
-
-                        expectToBe(labelDe.nativeElement.textContent.trim(), key);
-                        getAndExpectDebugElementByDirective(labelDe, EditionTkaLabelComponent, 0, 0);
+                        expectToBe(getLabelText(key), key);
+                        getAndExpectDebugElementByDirective(getFormSwitchDe(key), EditionTkaLabelComponent, 0, 0);
                     }
                 );
 
-                it('... should contain EditionTkaLabelComponent as label for the tkk key', () => {
-                    getAndExpectDebugElementByDirective(getLabelDe(expectedTkkKey), EditionTkaLabelComponent, 1, 1);
+                it('... should contain EditionTkaLabelComponent (hollow) as label for the tkk key', () => {
+                    getAndExpectDebugElementByDirective(
+                        getFormSwitchDe(expectedTkkKey),
+                        EditionTkaLabelComponent,
+                        1,
+                        1
+                    );
                 });
 
-                it('... should pass down `sheetId` and `labelType` to EditionTkaLabelComponent', () => {
+                it('... should pass down `sheetId` and `labelType` to EditionTkaLabelComponent (hollow)', () => {
                     const labelDes = getAndExpectDebugElementByDirective(compDe, EditionTkaLabelComponent, 1, 1);
                     const labelCmp = labelDes[0].injector.get(EditionTkaLabelComponent);
 
@@ -337,19 +342,19 @@ describe('EditionSheetViewerAdditionsPanelComponent (DONE)', () => {
                     expectToBe(labelCmp.labelType(), 'commentary');
                 });
 
-                it('... should not contain a form-switch for tkk without tkk overlays', async () => {
+                it('... should not contain a FormSwitchComponent (hollow) for tkk without tkk overlays', async () => {
                     fixture.componentRef.setInput('hasTkkOverlays', false);
                     await detectChangesOnPush(fixture);
 
                     getFormSwitchDes(expectedSuppliedClasses.length + 1);
-                    getAndExpectDebugElementByCss(compDe, `input[id="awg-addition-${expectedTkkKey}"]`, 0, 0);
+                    expect(findFormSwitchDe(expectedTkkKey)).toBeUndefined();
                     getAndExpectDebugElementByDirective(compDe, EditionTkaLabelComponent, 0, 0);
                 });
 
                 it.each(['class1', 'class2', EditionSvgOverlayTypes.tkk])(
-                    '... should trigger `toggle` with `%s` on change',
+                    '... should trigger `toggle` with `%s` when its FormSwitchComponent (hollow) changes',
                     key => {
-                        getInputEl(key).dispatchEvent(new Event('change'));
+                        getFormSwitchCmp(key).checkedChange.emit(false);
 
                         expectSpyCall(toggleSpy, 1, key);
                     }

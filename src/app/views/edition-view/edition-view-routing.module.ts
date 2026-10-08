@@ -74,8 +74,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                             {
                                 path: 'sheets',
                                 loadChildren: () =>
-                                    import('./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module').then(
-                                        m => m.EditionSheetsModule
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.routes').then(
+                                        m => m.EDITION_SHEETS_ROUTES
                                     ),
                             },
                             {
@@ -107,9 +107,9 @@ const EDITION_VIEW_ROUTES: Routes = [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionComplexComponent}, {@link EditionDetailNavComponent}.
+ * {@link EditionComplexComponent}.
  */
-export const routedEditionViewComponents = [EditionComplexComponent, EditionDetailNavComponent];
+export const routedEditionViewComponents = [EditionComplexComponent];
 
 /**
  * EditionView module routing.

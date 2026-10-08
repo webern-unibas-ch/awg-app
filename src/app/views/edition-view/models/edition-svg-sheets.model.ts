@@ -1,25 +1,6 @@
 import { EditionTypeKey } from './edition-type.model';
 
 /**
- * The EditionSvgSheetId interface.
- *
- * It is used in the context of the edition view
- * to store the id and the (optional) partial
- * of a (selected) svg sheet separately.
- */
-export interface EditionSvgSheetId {
-    /**
-     * The sheet's id (string).
-     */
-    id: string | undefined;
-
-    /**
-     * The sheet's content partial id (string).
-     */
-    partial: string | undefined;
-}
-
-/**
  * The EditionSvgSheetContent interface.
  *
  * It is used in the context of the edition view
@@ -88,4 +69,48 @@ export class EditionSvgSheetsList {
         textEditions: [],
         sketchEditions: [],
     };
+}
+
+/**
+ * The EditionSvgSheetSelection interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet: its id,
+ * its full id (incl. the selected partial)
+ * and its selected content.
+ */
+export interface EditionSvgSheetSelection {
+    /**
+     * The sheet's id (string).
+     */
+    id: string;
+
+    /**
+     * The sheet's full id, i.e. the sheet id incl. the selected partial id, if any (string).
+     */
+    fullId: string;
+
+    /**
+     * The selected content (partial) of the sheet.
+     */
+    content: EditionSvgSheetContent;
+}
+
+/**
+ * The EditionSvgSheetContext interface.
+ *
+ * It is used in the context of the edition view
+ * to store a selected svg sheet
+ * together with its edition type.
+ */
+export interface EditionSvgSheetContext {
+    /**
+     * The selected svg sheet.
+     */
+    selection: EditionSvgSheetSelection;
+
+    /**
+     * The edition type of the selected svg sheet.
+     */
+    editionType: EditionTypeKey;
 }

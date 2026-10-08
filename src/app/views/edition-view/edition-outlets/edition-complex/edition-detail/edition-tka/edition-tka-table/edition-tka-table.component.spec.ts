@@ -139,7 +139,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('displayedCommentary', structuredClone(expectedCommentary));
             fixture.componentRef.setInput('id', expectedComplexId);
             fixture.componentRef.setInput('isRowtable', expectedIsRowTable);
@@ -235,7 +235,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render no content if `displayedCommentary` is undefined', () => {
+            it('... should render no content if `displayedCommentary` is not available', () => {
                 fixture.componentRef.setInput('displayedCommentary', undefined);
                 fixture.detectChanges();
 

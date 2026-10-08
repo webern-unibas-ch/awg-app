@@ -22,8 +22,8 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
+import { NUMBER_UTILS } from '@awg-shared/utils/number-utils';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
-import { roundToStepPrecision } from '@awg-shared/zoom/zoom.utils';
 import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 import {
     D3DragBehaviour,
@@ -713,7 +713,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             zoomContext.attr('transform', currentTransform);
 
             // Update zoom value (shown by the zoom slider)
-            this.zoomValue.set(roundToStepPrecision(currentTransform.k, this.zoomConfig.stepSize));
+            this.zoomValue.set(NUMBER_UTILS.roundToStepPrecision(currentTransform.k, this.zoomConfig.stepSize));
         };
 
         // Create zoom behaviour

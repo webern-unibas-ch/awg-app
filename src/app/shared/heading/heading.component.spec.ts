@@ -72,7 +72,7 @@ describe('HeadingComponent (DONE)', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('id', expectedId);
             fixture.componentRef.setInput('title', expectedTitle);
 

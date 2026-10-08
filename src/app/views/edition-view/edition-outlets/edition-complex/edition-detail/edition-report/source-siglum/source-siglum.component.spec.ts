@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -31,7 +30,9 @@ describe('SourceSiglumComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [SourceSiglumComponent, ConditionalLinkComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -104,7 +105,7 @@ describe('SourceSiglumComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(async () => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('siglumData', structuredClone(expectedSourceData));
             fixture.componentRef.setInput('isClickable', true);
             fixture.componentRef.setInput('classPrefix', 'awg-source-list');
@@ -160,6 +161,10 @@ describe('SourceSiglumComponent', () => {
         describe('VIEW', () => {
             const getSiglumContainerDes = () =>
                 getAndExpectDebugElementByCss(compDe, 'span.awg-source-list-siglum-container', 1, 1);
+            const getConditionalLinkCmp = () =>
+                getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1)[0].injector.get(
+                    ConditionalLinkComponent
+                );
 
             it('... should render no content if siglumData is null', async () => {
                 fixture.componentRef.setInput('siglumData', null);
@@ -173,36 +178,31 @@ describe('SourceSiglumComponent', () => {
                 getSiglumContainerDes();
             });
 
-            it('... should contain one ConditionalLinkComponent', () => {
+            it('... should contain one ConditionalLinkComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
             });
 
-            it('... should pass down the correct values to ConditionalLinkComponent', () => {
-                const conditionalLinkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
-                const conditionalLinkCmp = conditionalLinkDes[0].componentInstance as ConditionalLinkComponent;
-
-                expectToEqual(conditionalLinkCmp.isClickable(), true);
+            it('... should pass down `isClickable` to ConditionalLinkComponent (hollow)', () => {
+                expectToBe(getConditionalLinkCmp().isClickable(), true);
             });
 
-            it('... should contain siglum link as link text', () => {
-                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+            it('... should contain siglum as content of ConditionalLinkComponent (hollow)', () => {
+                const linkDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'awg-conditional-link', 1, 1);
+                const linkEl: HTMLElement = linkDes[0].nativeElement;
 
-                const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(linkDes[0], 'span', 1, 1);
 
                 const siglumSpanDes = spanDes[0];
                 const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
 
                 const expectedSiglum = expectedSourceData.siglum;
 
-                expectToBe(aEl.textContent.trim(), expectedSiglum.trim());
-                expectToBe(aEl.role, 'link');
-                expectToBe(aEl.tabIndex, 0);
+                expectToBe(linkEl.textContent.trim(), expectedSiglum.trim());
                 expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
                 expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
             });
 
-            describe('... should display siglum with addendum as link text if present', () => {
+            describe('... should display siglum with addendum as content of ConditionalLinkComponent (hollow) if present', () => {
                 it.each([
                     { siglum: 'A', addendum: 'a' },
                     { siglum: 'B', addendum: 'H' },
@@ -217,10 +217,15 @@ describe('SourceSiglumComponent', () => {
                     fixture.componentRef.setInput('siglumData', expectedSourceData);
                     await detectChangesOnPush(fixture);
 
-                    const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                    const linkDes = getAndExpectDebugElementByCss(
+                        getSiglumContainerDes()[0],
+                        'awg-conditional-link',
+                        1,
+                        1
+                    );
+                    const linkEl: HTMLElement = linkDes[0].nativeElement;
 
-                    const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 2, 2);
+                    const spanDes = getAndExpectDebugElementByCss(linkDes[0], 'span', 2, 2);
 
                     const siglumSpanDes = spanDes[0];
                     const siglumSpanEl: HTMLSpanElement = siglumSpanDes.nativeElement;
@@ -231,9 +236,7 @@ describe('SourceSiglumComponent', () => {
                     const expectedSiglum = expectedSourceData.siglum;
                     const expectedAddendum = expectedSourceData.siglumAddendum ?? '';
 
-                    expectToBe(aEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
-                    expectToBe(aEl.role, 'link');
-                    expectToBe(aEl.tabIndex, 0);
+                    expectToBe(linkEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
 
                     expectToBe(siglumSpanEl.textContent.trim(), expectedSiglum.trim());
                     expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
@@ -243,25 +246,11 @@ describe('SourceSiglumComponent', () => {
                 });
             });
 
-            it('... should emit `clicked` when the siglum link is clicked', async () => {
+            it('... should emit `clicked` when ConditionalLinkComponent (hollow) is clicked', () => {
                 const emitSpy = vi.fn();
                 fixture.componentInstance.clicked.subscribe(emitSpy);
 
-                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
-
-                await clickAndAwaitChanges(aDes[0], fixture);
-
-                expectSpyCall(emitSpy, 1);
-            });
-
-            it('... should emit `clicked` on Enter keyup on the siglum link', () => {
-                const emitSpy = vi.fn();
-                fixture.componentInstance.clicked.subscribe(emitSpy);
-
-                const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
-                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
-
-                aEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true }));
+                getConditionalLinkCmp().clicked.emit();
 
                 expectSpyCall(emitSpy, 1);
             });
@@ -276,11 +265,16 @@ describe('SourceSiglumComponent', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should display missing sources in brackets as link text', async () => {
-                    const aDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 1, 1);
-                    const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                it('... should display missing sources in brackets as content of ConditionalLinkComponent (hollow)', async () => {
+                    const linkDes = getAndExpectDebugElementByCss(
+                        getSiglumContainerDes()[0],
+                        'awg-conditional-link',
+                        1,
+                        1
+                    );
+                    const linkEl: HTMLElement = linkDes[0].nativeElement;
 
-                    const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 3, 3);
+                    const spanDes = getAndExpectDebugElementByCss(linkDes[0], 'span', 3, 3);
 
                     const openingBracketSpanDes = spanDes[0];
                     const siglumSpanDes = spanDes[1];
@@ -292,7 +286,7 @@ describe('SourceSiglumComponent', () => {
 
                     const expectedSiglum = expectedSourceData.siglum;
 
-                    expectToBe(aEl.textContent.trim(), `[${expectedSiglum}]`);
+                    expectToBe(linkEl.textContent.trim(), `[${expectedSiglum}]`);
 
                     expectToBe(openingBracketSpanEl.textContent.trim(), '[');
                     expectToBe(closingBracketSpanEl.textContent.trim(), ']');
@@ -301,7 +295,7 @@ describe('SourceSiglumComponent', () => {
                     expectToContain(siglumSpanEl.classList, 'awg-source-list-siglum');
                 });
 
-                describe('... should display missing sources with addendum in brackets as link text', () => {
+                describe('... should display missing sources with addendum in brackets as content of ConditionalLinkComponent (hollow)', () => {
                     it.each([
                         { siglum: 'A', addendum: 'a' },
                         { siglum: 'B', addendum: 'H' },
@@ -312,10 +306,15 @@ describe('SourceSiglumComponent', () => {
                         fixture.componentRef.setInput('siglumData', expectedSourceData);
                         await detectChangesOnPush(fixture);
 
-                        const aDes = getAndExpectDebugElementByCss(fixture.debugElement, 'a', 1, 1);
-                        const aEl: HTMLAnchorElement = aDes[0].nativeElement;
+                        const linkDes = getAndExpectDebugElementByCss(
+                            fixture.debugElement,
+                            'awg-conditional-link',
+                            1,
+                            1
+                        );
+                        const linkEl: HTMLElement = linkDes[0].nativeElement;
 
-                        const spanDes = getAndExpectDebugElementByCss(aDes[0], 'span', 4, 4);
+                        const spanDes = getAndExpectDebugElementByCss(linkDes[0], 'span', 4, 4);
 
                         const openingBracketSpanDes = spanDes[0];
                         const siglumSpanDes = spanDes[1];
@@ -327,7 +326,7 @@ describe('SourceSiglumComponent', () => {
                         const siglumAddendumSpanEl: HTMLSpanElement = siglumAddendumSpanDes.nativeElement;
                         const closingBracketSpanEl: HTMLSpanElement = closingBracketSpanDes.nativeElement;
 
-                        expectToBe(aEl.textContent.trim(), `[${siglum}${addendum}]`);
+                        expectToBe(linkEl.textContent.trim(), `[${siglum}${addendum}]`);
 
                         expectToBe(openingBracketSpanEl.textContent.trim(), '[');
                         expectToBe(closingBracketSpanEl.textContent.trim(), ']');
@@ -341,7 +340,7 @@ describe('SourceSiglumComponent', () => {
                     });
                 });
 
-                it('... should render a missing source without a link when not clickable', async () => {
+                it('... should render a missing source with non-clickable ConditionalLinkComponent (hollow) when not clickable', async () => {
                     const mockSource = {
                         siglum: 'C',
                         siglumAddendum: '',
@@ -355,7 +354,7 @@ describe('SourceSiglumComponent', () => {
                     fixture.componentRef.setInput('isClickable', false);
                     await detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'a', 0, 0);
+                    expectToBe(getConditionalLinkCmp().isClickable(), false);
 
                     const spanDes = getAndExpectDebugElementByCss(getSiglumContainerDes()[0], 'span', 3, 3);
 
@@ -396,7 +395,7 @@ describe('SourceSiglumComponent', () => {
             await detectChangesOnPush(fixture);
         });
 
-        it('... should render a text-source siglum and addendum without a link', () => {
+        it('... should render a text-source siglum and addendum with non-clickable ConditionalLinkComponent (hollow)', () => {
             expectToEqual(component.siglumData(), expectedTextSourceData);
             expectToBe(component.hasMissingFlag(), false);
             expectToBe(component.isClickable(), false);
@@ -407,7 +406,13 @@ describe('SourceSiglumComponent', () => {
                 1,
                 1
             );
-            getAndExpectDebugElementByCss(containerDes[0], 'a', 0, 0);
+            const conditionalLinkDes = getAndExpectDebugElementByDirective(
+                containerDes[0],
+                ConditionalLinkComponent,
+                1,
+                1
+            );
+            expectToBe(conditionalLinkDes[0].injector.get(ConditionalLinkComponent).isClickable(), false);
 
             const siglumDes = getAndExpectDebugElementByCss(containerDes[0], 'span.awg-source-list-text-siglum', 1, 1);
             const addendumDes = getAndExpectDebugElementByCss(

@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -19,8 +18,9 @@ import { mockEditionData } from '@testing/mock-data';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
-import { EditionNavigationService, SheetClickEvent } from '@awg-views/edition-view/services/edition-navigation.service';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { SourceDescContentItemComponent } from './source-desc-content-item.component';
 
@@ -52,7 +52,9 @@ describe('SourceDescContentItemComponent', () => {
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, ConditionalLinkComponent, SourceDescContentItemComponent],
             providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(ConditionalLinkComponent, { set: { template: '<ng-content />', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -98,7 +100,7 @@ describe('SourceDescContentItemComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('content', expectedContent);
 
             // Trigger initial data binding
@@ -109,20 +111,20 @@ describe('SourceDescContentItemComponent', () => {
             expectToEqual(component.content(), expectedContent);
         });
 
-        describe('#sheetIds', () => {
+        describe('#sheetTarget', () => {
             it('... should be a computed signal', () => {
-                expectToBe(isSignal(component.sheetIds), true);
+                expectToBe(isSignal(component.sheetTarget), true);
             });
 
             it('... should hold the complexId and sheetId of itemLinkTo', () => {
-                expectToEqual(component.sheetIds(), { complexId: expectedComplexId, sheetId: expectedSheetId });
+                expectToEqual(component.sheetTarget(), { complexId: expectedComplexId, sheetId: expectedSheetId });
             });
 
             it('... should hold empty ids if itemLinkTo is undefined', async () => {
                 fixture.componentRef.setInput('content', { ...expectedContent, itemLinkTo: undefined });
                 await detectChangesOnPush(fixture);
 
-                expectToEqual(component.sheetIds(), { complexId: '', sheetId: '' });
+                expectToEqual(component.sheetTarget(), { complexId: '', sheetId: '' });
             });
         });
 
@@ -196,18 +198,18 @@ describe('SourceDescContentItemComponent', () => {
             });
 
             describe('... with content.item', () => {
-                it('... should contain one ConditionalLinkComponent', () => {
+                it('... should contain one ConditionalLinkComponent (hollow)', () => {
                     getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
                 });
 
-                it('... should pass down isClickable to ConditionalLinkComponent', () => {
+                it('... should pass down `isClickable` to ConditionalLinkComponent (hollow)', () => {
                     const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
                     const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
 
                     expectToBe(linkCmp.isClickable(), component.isClickable());
                 });
 
-                it('... should not render an anchor if not clickable', async () => {
+                it('... should pass down `isClickable` = false to ConditionalLinkComponent (hollow) if not clickable', async () => {
                     fixture.componentRef.setInput('content', { ...expectedContent, itemLinkTo: undefined });
                     await detectChangesOnPush(fixture);
 
@@ -215,34 +217,33 @@ describe('SourceDescContentItemComponent', () => {
                     const linkCmp = linkDes[0].injector.get(ConditionalLinkComponent);
 
                     expectToBe(linkCmp.isClickable(), false);
-                    getAndExpectDebugElementByCss(compDe, 'a', 0, 0);
                 });
 
                 it.each([
                     {
-                        desc: 'with anchor link and description if given',
+                        desc: 'with clickable ConditionalLinkComponent (hollow) and description if given',
                         getContent: () => expectedContent,
-                        expectedAnchors: 1,
+                        expectedIsClickable: true,
                         expectedLabel: 'Test item',
                         expectedDescription: '(test description)',
                     },
                     {
-                        desc: 'without anchor link if not given',
+                        desc: 'with non-clickable ConditionalLinkComponent (hollow) if no link is given',
                         getContent: () => expectedContentWithoutLink,
-                        expectedAnchors: 0,
+                        expectedIsClickable: false,
                         expectedLabel: 'Test item 2 without link',
                         expectedDescription: '(test description 2)',
                     },
                     {
                         desc: 'without description if not given',
                         getContent: () => expectedContentWithoutDescription,
-                        expectedAnchors: 1,
+                        expectedIsClickable: true,
                         expectedLabel: 'Test item 3 without description',
                         expectedDescription: undefined,
                     },
                 ])(
                     `... should display the content-item label (strong) $desc`,
-                    async ({ getContent, expectedAnchors, expectedLabel, expectedDescription }) => {
+                    async ({ getContent, expectedIsClickable, expectedLabel, expectedDescription }) => {
                         fixture.componentRef.setInput('content', getContent());
                         await detectChangesOnPush(fixture);
 
@@ -252,7 +253,16 @@ describe('SourceDescContentItemComponent', () => {
                             1,
                             1
                         );
-                        getAndExpectDebugElementByCss(contentItemDes[0], 'a', expectedAnchors, expectedAnchors);
+                        const linkDes = getAndExpectDebugElementByDirective(
+                            contentItemDes[0],
+                            ConditionalLinkComponent,
+                            1,
+                            1
+                        );
+                        expectToBe(
+                            linkDes[0].injector.get(ConditionalLinkComponent).isClickable(),
+                            expectedIsClickable
+                        );
 
                         const strongDes = getAndExpectDebugElementByCss(contentItemDes[0], 'strong', 1, 1);
                         const strongEl: HTMLElement = strongDes[0].nativeElement;
@@ -275,7 +285,7 @@ describe('SourceDescContentItemComponent', () => {
             });
 
             describe('... with content.itemDescription', () => {
-                it('... should render a description without an item', async () => {
+                it('... should render a description without an item and without ConditionalLinkComponent (hollow)', async () => {
                     const contentWithoutItem = { ...expectedContent };
                     delete contentWithoutItem.item;
                     delete contentWithoutItem.itemLinkTo;
@@ -362,28 +372,23 @@ describe('SourceDescContentItemComponent', () => {
                     expect(component.selectSvgSheet).toBeDefined();
                 });
 
-                it('... should trigger on click on content item', async () => {
-                    const anchorDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'span.awg-source-desc-content-item a',
-                        1,
-                        1
-                    );
+                it('... should trigger when ConditionalLinkComponent (hollow) is clicked', () => {
+                    const linkDes = getAndExpectDebugElementByDirective(compDe, ConditionalLinkComponent, 1, 1);
 
-                    await clickAndAwaitChanges(anchorDes[0], fixture);
+                    linkDes[0].injector.get(ConditionalLinkComponent).clicked.emit();
 
                     expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
                 });
 
                 it('... should do nothing if no sheetId is provided', () => {
-                    const expectedSheetIds: SheetClickEvent = { complexId: 'op25', sheetId: '' };
+                    const expectedSheetIds: EditionNavigationSheetTarget = { complexId: 'op25', sheetId: '' };
                     component.selectSvgSheet(expectedSheetIds);
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 0, undefined);
                 });
 
                 it('... should trigger NavigationService with selected svg sheet within same complex', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -391,7 +396,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetClickEvent = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedNextSheetId,
                     };
@@ -401,7 +406,7 @@ describe('SourceDescContentItemComponent', () => {
                 });
 
                 it('... should trigger NavigationService with selected svg sheet for another complex', () => {
-                    const expectedSheetIds: SheetClickEvent = {
+                    const expectedSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedComplexId,
                         sheetId: expectedSheetId,
                     };
@@ -409,7 +414,7 @@ describe('SourceDescContentItemComponent', () => {
 
                     expectSpyCall(serviceNavigateToSvgSheetSpy, 1, expectedSheetIds);
 
-                    const expectedNextSheetIds: SheetClickEvent = {
+                    const expectedNextSheetIds: EditionNavigationSheetTarget = {
                         complexId: expectedNextComplexId,
                         sheetId: expectedNextSheetId,
                     };

@@ -89,7 +89,7 @@ describe('ButtonMoreComponent', () => {
         const getButtonEl = () => getButtonDes()[0].nativeElement as HTMLButtonElement;
 
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('targetRoute', expectedTargetRoute);
             fixture.componentRef.setInput('queryParams', expectedQueryParams);
             fixture.componentRef.setInput('disabled', false);

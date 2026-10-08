@@ -84,6 +84,14 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render no content if route is not available', () => {
+                fixture.componentRef.setInput('route', []);
+
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 0, 0);
+            });
+
             it('... should contain one dropdown item link`', () => {
                 getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
             });

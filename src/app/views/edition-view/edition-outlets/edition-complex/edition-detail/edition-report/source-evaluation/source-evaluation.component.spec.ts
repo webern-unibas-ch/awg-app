@@ -36,7 +36,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, SourceEvaluationComponent, SourceEvaluationPlaceholderComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceEvaluationPlaceholderComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -80,7 +82,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('editionComplex', expectedComplex);
             fixture.componentRef.setInput(
                 'sourceEvaluationListData',

@@ -1,0 +1,27 @@
+<div ngbAccordion>
+    <div ngbAccordionItem="awg-edition-folios-view" [collapsed]="false">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton>Konvolutübersicht</button>
+        </div>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    <!-- folios label -->
+                    <div class="awg-edition-folios-panel-label">
+                        <p>
+                            <a [routerLink]="['../report']" [fragment]="reportFragment()">{{
+                                selectedConvolute().convoluteLabel
+                            }}</a>
+                        </p>
+                    </div>
+
+                    <!-- folios viewer -->
+                    <awg-edition-folios-viewer [folios]="folios()" [selectedSvgSheet]="selectedSvgSheet()" />
+
+                    <!-- folios legend -->
+                    <awg-edition-folios-legend class="col-12" />
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

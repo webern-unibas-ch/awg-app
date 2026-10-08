@@ -5,7 +5,6 @@ import { provideRouter, Router, RouterLink } from '@angular/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { StatisticsBreakdownBadgeStubComponent, StatisticsProgressBarStubComponent } from '@testing/component-stubs';
 import {
     expectSpyCall,
     expectToBe,
@@ -43,10 +42,8 @@ describe('StatisticsSeriesBreakdownComponent', () => {
             imports: [StatisticsSeriesBreakdownComponent],
             providers: [provideRouter([])],
         })
-            .overrideComponent(StatisticsSeriesBreakdownComponent, {
-                remove: { imports: [StatisticsBreakdownBadgeComponent, StatisticsProgressBarComponent] },
-                add: { imports: [StatisticsBreakdownBadgeStubComponent, StatisticsProgressBarStubComponent] },
-            })
+            .overrideComponent(StatisticsBreakdownBadgeComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(StatisticsProgressBarComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -198,7 +195,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('seriesBreakdownData', expectedSeriesBreakdownData);
 
             // Trigger initial data binding
@@ -393,7 +390,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
-                                StatisticsBreakdownBadgeStubComponent,
+                                StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
                             );
@@ -419,7 +416,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
-                                StatisticsBreakdownBadgeStubComponent,
+                                StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
                             );
@@ -438,11 +435,11 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const badgeDes = getAndExpectDebugElementByDirective(
                                 tdDes[2],
-                                StatisticsBreakdownBadgeStubComponent,
+                                StatisticsBreakdownBadgeComponent,
                                 1,
                                 1
                             );
-                            const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeStubComponent);
+                            const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeComponent);
 
                             expectToEqual(
                                 badgeCmp.breakdown(),
@@ -513,7 +510,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
 
                         seriesTrDes.forEach(seriesTrDe => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
-                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarStubComponent, 1, 1);
+                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarComponent, 1, 1);
                         });
                     });
 
@@ -529,11 +526,11 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             const tdDes = getAndExpectDebugElementByCss(seriesTrDe, 'td', 5, 5);
                             const progressBarDes = getAndExpectDebugElementByDirective(
                                 tdDes[4],
-                                StatisticsProgressBarStubComponent,
+                                StatisticsProgressBarComponent,
                                 1,
                                 1
                             );
-                            const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
+                            const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarComponent);
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'percentage',
                                 percentage: expectedSeriesBreakdownData[0].progressRate,
@@ -732,7 +729,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectToContain(tdEl.classList, 'text-center');
                             getAndExpectDebugElementByDirective(
                                 tdDes[2],
-                                StatisticsBreakdownBadgeStubComponent,
+                                StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
                             );
@@ -749,12 +746,12 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                             expectToContain(tdEl.classList, 'text-center');
                             const badgeDes = getAndExpectDebugElementByDirective(
                                 tdDes[2],
-                                StatisticsBreakdownBadgeStubComponent,
+                                StatisticsBreakdownBadgeComponent,
                                 expectedBadgeCount,
                                 expectedBadgeCount
                             );
                             if (expectedBadgeCount > 0) {
-                                const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeStubComponent);
+                                const badgeCmp = badgeDes[0].injector.get(StatisticsBreakdownBadgeComponent);
                                 expectToEqual(badgeCmp.breakdown(), sectionData.activeComplexBreakdown);
                             }
                         });
@@ -793,7 +790,7 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         const sectionRows = getAllSectionRows();
 
                         sectionRows.forEach(({ tdDes }) => {
-                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarStubComponent, 1, 1);
+                            getAndExpectDebugElementByDirective(tdDes[4], StatisticsProgressBarComponent, 1, 1);
                         });
                     });
 
@@ -803,11 +800,11 @@ describe('StatisticsSeriesBreakdownComponent', () => {
                         sectionRows.forEach(({ tdDes, sectionData }) => {
                             const progressBarDes = getAndExpectDebugElementByDirective(
                                 tdDes[4],
-                                StatisticsProgressBarStubComponent,
+                                StatisticsProgressBarComponent,
                                 1,
                                 1
                             );
-                            const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarStubComponent);
+                            const progressBarCmp = progressBarDes[0].injector.get(StatisticsProgressBarComponent);
                             const expectedPercentage = sectionData.totalComplexes > 0 ? sectionData.progressRate : 0;
                             const expectedConfig: StatisticsProgressBarConfig = {
                                 mode: 'percentage',

@@ -176,7 +176,7 @@ describe('StatisticsProgressBarComponent', () => {
 
     describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs signals
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('config', { mode: 'percentage', percentage: expectedPercentage });
             fixture.componentRef.setInput('height', expectedHeight);
             fixture.componentRef.setInput('showPercentageLabel', expectedShowPercentageLabel);

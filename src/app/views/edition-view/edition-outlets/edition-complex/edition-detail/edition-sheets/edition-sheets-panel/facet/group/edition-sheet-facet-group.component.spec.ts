@@ -13,9 +13,8 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
-import { EditionSvgSheet, EditionSvgSheetId } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EDITION_TYPE_LABEL_MAP, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
-import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionSheetFacetItemComponent } from '../item/edition-sheet-facet-item.component';
 import { EditionSheetFacetScrollDirective } from '../scroll/edition-sheet-facet-scroll.directive';
@@ -26,14 +25,12 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSheetFacetGroupComponent>;
     let compDe: DebugElement;
 
-    let mockNavigationService: Partial<EditionNavigationService>;
-
     let expectedEditionTypeKey: EditionTypeKey;
     let expectedFacetGroupLabel: string;
     let expectedSvgSheets: EditionSvgSheet[];
-    let expectedSheetId: EditionSvgSheetId;
-    let expectedNextSheetIdInGroup: EditionSvgSheetId;
-    let expectedSheetIdOutsideGroup: EditionSvgSheetId;
+    let expectedSelection: EditionSvgSheetSelection;
+    let expectedNextSelectionInGroup: EditionSvgSheetSelection;
+    let expectedSelectionOutsideGroup: EditionSvgSheetSelection;
 
     const getTitleDes = () => getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
     const getDetailsDes = () =>
@@ -49,21 +46,18 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expectedSvgSheets.length,
             expectedSvgSheets.length
         ).map(de => de.injector.get(EditionSheetFacetItemComponent) as EditionSheetFacetItemComponent);
-    const selectSheet = async (sheetId: EditionSvgSheetId) => {
-        fixture.componentRef.setInput('selectedSheetId', sheetId);
+    const selectSheet = async (sheetId: EditionSvgSheetSelection) => {
+        fixture.componentRef.setInput('selectedSvgSheet', sheetId);
         await detectChangesOnPush(fixture);
     };
 
     beforeEach(async () => {
-        // Mock services (needed by EditionSheetFacetItemLinkDirective)
-        mockNavigationService = {
-            navigateToSvgSheet: vi.fn(),
-        };
-
         await TestBed.configureTestingModule({
             imports: [EditionSheetFacetGroupComponent],
-            providers: [{ provide: EditionNavigationService, useValue: mockNavigationService }],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionDisclaimerWorkeditionsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionSheetFacetItemComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -71,9 +65,21 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         expectedEditionTypeKey = 'sketchEditions';
         expectedFacetGroupLabel = EDITION_TYPE_LABEL_MAP[expectedEditionTypeKey];
         expectedSvgSheets = structuredClone(mockEditionData.mockSvgSheetList.sheets['sketchEditions']);
-        expectedSheetId = { id: expectedSvgSheets[0].id, partial: undefined };
-        expectedNextSheetIdInGroup = { id: expectedSvgSheets[3].id, partial: undefined };
-        expectedSheetIdOutsideGroup = { id: 'not-in-group', partial: undefined };
+        expectedSelection = {
+            id: expectedSvgSheets[0].id,
+            fullId: expectedSvgSheets[0].id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
+        expectedNextSelectionInGroup = {
+            id: expectedSvgSheets[3].id,
+            fullId: expectedSvgSheets[3].id,
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
+        expectedSelectionOutsideGroup = {
+            id: 'not-in-group',
+            fullId: 'not-in-group',
+            content: mockEditionData.mockSvgSheet_Sk1.content[0],
+        };
 
         // Create component fixture
         fixture = TestBed.createComponent(EditionSheetFacetGroupComponent);
@@ -102,10 +108,10 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expect(() => component.svgSheets()).toThrow();
         });
 
-        it('... should throw due to missing required input signal `selectedSheetId`', () => {
-            expectToBe(isSignal(component.selectedSheetId), true);
+        it('... should throw due to missing required input signal `selectedSvgSheet`', () => {
+            expectToBe(isSignal(component.selectedSvgSheet), true);
 
-            expect(() => component.selectedSheetId()).toThrow();
+            expect(() => component.selectedSvgSheet()).toThrow();
         });
 
         it('... should throw when accessing computed signal `facetGroupLabel` due to missing inputs', () => {
@@ -127,7 +133,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no details, no heading and no EditionSheetFacetItemComponent (yet)', () => {
+            it('... should contain no details, no heading and no EditionSheetFacetItemComponent (hollow) (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'details', 0, 0);
                 getAndExpectDebugElementByCss(compDe, 'h6', 0, 0);
                 getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
@@ -137,10 +143,10 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('editionTypeKey', expectedEditionTypeKey);
             fixture.componentRef.setInput('svgSheets', expectedSvgSheets);
-            fixture.componentRef.setInput('selectedSheetId', expectedSheetId);
+            fixture.componentRef.setInput('selectedSvgSheet', expectedSelection);
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -165,8 +171,8 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             expectToEqual(component.svgSheets(), expectedSvgSheets);
         });
 
-        it('... should have input signal `selectedSheetId` to hold the provided sheet id', () => {
-            expectToEqual(component.selectedSheetId(), expectedSheetId);
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
+            expectToEqual(component.selectedSvgSheet(), expectedSelection);
         });
 
         it('... should have computed signal `hasSelectedSheet` to hold true if the selected sheet is in the group', () => {
@@ -174,7 +180,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
         });
 
         it('... should have recomputed signal `hasSelectedSheet` when the selection moves out of the group', async () => {
-            await selectSheet(expectedSheetIdOutsideGroup);
+            await selectSheet(expectedSelectionOutsideGroup);
 
             expectToBe(component.hasSelectedSheet(), false);
         });
@@ -185,7 +191,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
             });
 
             it('... should hold false if the selected sheet is not in the group', async () => {
-                await selectSheet(expectedSheetIdOutsideGroup);
+                await selectSheet(expectedSelectionOutsideGroup);
 
                 expectToBe(component.isOpen(), false);
             });
@@ -201,14 +207,14 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
 
             it('... should keep the manually toggled value if the selection changes within the group', async () => {
                 component.isOpen.set(false);
-                await selectSheet(expectedNextSheetIdInGroup);
+                await selectSheet(expectedNextSelectionInGroup);
 
                 expectToBe(component.isOpen(), false);
             });
 
             it('... should be reset to true if the selection moves into the group', async () => {
-                await selectSheet(expectedSheetIdOutsideGroup);
-                await selectSheet(expectedNextSheetIdInGroup);
+                await selectSheet(expectedSelectionOutsideGroup);
+                await selectSheet(expectedNextSelectionInGroup);
 
                 expectToBe(component.isOpen(), true);
             });
@@ -226,7 +232,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                 });
 
                 it('... should have the details element closed if the selected sheet is not in the group', async () => {
-                    await selectSheet(expectedSheetIdOutsideGroup);
+                    await selectSheet(expectedSelectionOutsideGroup);
 
                     expectToBe(getDetailsEl().open, false);
                 });
@@ -240,7 +246,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     expectToBe(badgeEl.textContent, expectedSvgSheets.length.toString());
                 });
 
-                it('... should contain an EditionDisclaimerWorkeditionsComponent outside the summary if editionTypeKey is `workEditions`', async () => {
+                it('... should contain an EditionDisclaimerWorkeditionsComponent (hollow) outside the summary if editionTypeKey is `workEditions`', async () => {
                     fixture.componentRef.setInput('editionTypeKey', 'workEditions');
                     await detectChangesOnPush(fixture);
 
@@ -258,7 +264,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain no EditionDisclaimerWorkeditionsComponent for other labels', () => {
+                it('... should contain no EditionDisclaimerWorkeditionsComponent (hollow) for other labels', () => {
                     getAndExpectDebugElementByDirective(
                         getDetailsDes()[0],
                         EditionDisclaimerWorkeditionsComponent,
@@ -267,14 +273,14 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     );
                 });
 
-                it('... should contain one EditionSheetFacetItemComponent per svg sheet in the group list', () => {
+                it('... should contain one EditionSheetFacetItemComponent (hollow) per svg sheet in the group list', () => {
                     getFacetItemCmps();
                 });
 
-                it('... should pass down `svgSheet` and `selectedSheetId` to each EditionSheetFacetItemComponent', () => {
+                it('... should pass down `svgSheet` and `selectedSvgSheet` to each EditionSheetFacetItemComponent (hollow)', () => {
                     getFacetItemCmps().forEach((cmp, index) => {
                         expectToEqual(cmp.svgSheet(), expectedSvgSheets[index]);
-                        expectToEqual(cmp.selectedSheetId(), expectedSheetId);
+                        expectToEqual(cmp.selectedSvgSheet(), expectedSelection);
                     });
                 });
             });
@@ -285,7 +291,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no details element and no EditionSheetFacetItemComponent', () => {
+                it('... should contain no details element and no EditionSheetFacetItemComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'details', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, EditionSheetFacetItemComponent, 0, 0);
                 });
@@ -296,7 +302,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                     expectToBe(hEl.textContent.trim(), expectedFacetGroupLabel + ': ---');
                 });
 
-                it('... should contain an EditionDisclaimerWorkeditionsComponent if editionTypeKey is `workEditions`', async () => {
+                it('... should contain an EditionDisclaimerWorkeditionsComponent (hollow) if editionTypeKey is `workEditions`', async () => {
                     fixture.componentRef.setInput('editionTypeKey', 'workEditions');
                     await detectChangesOnPush(fixture);
 
@@ -324,15 +330,15 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
                 it('... should pass down the selected sheet id and the open state as `trigger`', () => {
                     const scrollDir = getScrollDir();
 
-                    expectToEqual(scrollDir?.trigger(), [expectedSheetId, true]);
+                    expectToEqual(scrollDir?.trigger(), [expectedSelection, true]);
                 });
 
                 it('... should pass down an updated `trigger` if the selection changes within the group', async () => {
-                    await selectSheet(expectedNextSheetIdInGroup);
+                    await selectSheet(expectedNextSelectionInGroup);
 
                     const scrollDir = getScrollDir();
 
-                    expectToEqual(scrollDir?.trigger(), [expectedNextSheetIdInGroup, true]);
+                    expectToEqual(scrollDir?.trigger(), [expectedNextSelectionInGroup, true]);
                 });
 
                 it('... should pass down an updated `trigger` if the group is toggled', async () => {
@@ -341,7 +347,7 @@ describe('EditionSheetFacetGroupComponent (DONE)', () => {
 
                     const scrollDir = getScrollDir();
 
-                    expectToEqual(scrollDir?.trigger(), [expectedSheetId, false]);
+                    expectToEqual(scrollDir?.trigger(), [expectedSelection, false]);
                 });
 
                 it('... should use the default `activeSelector` for active facet item links', () => {

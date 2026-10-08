@@ -66,7 +66,7 @@ describe('ConditionalLinkComponent', () => {
 
         describe('... with isClickable = true', () => {
             beforeEach(() => {
-                // Simulate the parent setting the input properties
+                // Set the initial values for the signal inputs
                 fixture.componentRef.setInput('isClickable', true);
 
                 // Trigger change detection

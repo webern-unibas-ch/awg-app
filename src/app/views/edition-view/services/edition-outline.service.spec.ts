@@ -141,8 +141,12 @@ describe('EditionOutlineService (DONE)', () => {
         });
 
         describe('... should compute an empty array if the given raw edition data is', () => {
-            it('... empty array', () => {
-                service['_rawOutlineDataSignal'].set([]);
+            it.each([
+                { desc: 'empty array', rawData: [] },
+                { desc: 'null', rawData: null },
+                { desc: 'undefined', rawData: undefined },
+            ])('... $desc', ({ rawData }) => {
+                service['_rawOutlineDataSignal'].set(rawData as any);
 
                 const editionOutline = service.editionOutline();
 

@@ -97,7 +97,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             component.queryType = expectedQueryType;
             component.isFullscreen = expectedIsFullscreen;
 

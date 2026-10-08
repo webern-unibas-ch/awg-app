@@ -29,12 +29,13 @@ import {
     EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
 import { EditionSheetViewerAdditionsPanelComponent } from '../additions-panel/edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerSvgComponent } from './edition-sheet-viewer-svg.component';
+import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
 
 type CreateSvgFn = EditionSvgDrawingService['createSvg'];
 
@@ -65,8 +66,8 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     let consoleWarnSpy: Spy;
 
     let expectedZoomConfig: ZoomConfig;
-    let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSvgSheet: EditionSvgSheetSelection;
+    let expectedNextSvgSheet: EditionSvgSheetSelection;
     let expectedSuppliedClasses: string[];
     let expectedTkkOverlays: EditionSvgOverlayTkk[];
 
@@ -79,12 +80,12 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
         await component['_renderQueue'];
         await detectChangesOnPush(fixture);
     };
-    const setInputs = (sheet: EditionSvgSheet): void => {
+    const setInputs = (sheet: EditionSvgSheetSelection): void => {
         fixture.componentRef.setInput('selectedSvgSheet', sheet);
         fixture.componentRef.setInput('zoomConfig', expectedZoomConfig);
         fixture.componentRef.setInput('zoomValue', expectedZoomConfig.initial);
     };
-    const setSheetAndRender = async (sheet: EditionSvgSheet): Promise<void> => {
+    const setSheetAndRender = async (sheet: EditionSvgSheetSelection): Promise<void> => {
         fixture.componentRef.setInput('selectedSvgSheet', sheet);
         fixture.detectChanges();
         await awaitRendering();
@@ -152,14 +153,27 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 { provide: EditionSvgDrawingService, useValue: mockSvgDrawingService },
                 { provide: EditionSvgOverlayService, useValue: mockSvgOverlayService },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(EditionSheetViewerAdditionsPanelComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(LicenseComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
         // Test data
         expectedZoomConfig = new ZoomConfig(1, 0.1, 10, 0.01);
-        expectedSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk1);
-        expectedNextSvgSheet = structuredClone(mockEditionData.mockSvgSheet_Sk2);
+        expectedSvgSheet = structuredClone(
+            EDITION_SHEETS_UTILS.toSvgSheetSelection(
+                mockEditionData.mockSvgSheet_Sk1,
+                mockEditionData.mockSvgSheet_Sk1.content[0]
+            )
+        );
+        expectedNextSvgSheet = structuredClone(
+            EDITION_SHEETS_UTILS.toSvgSheetSelection(
+                mockEditionData.mockSvgSheet_Sk2,
+                mockEditionData.mockSvgSheet_Sk2.content[0]
+            )
+        );
         expectedSuppliedClasses = ['class-1', 'class-2'];
         expectedTkkOverlays = [
             createTestTkkOverlay('tkk-1'),
@@ -237,7 +251,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
             await awaitRendering();
         });
 
-        it('... should have input signal `selectedSvgSheet` to hold the provided sheet', () => {
+        it('... should have input signal `selectedSvgSheet` to hold the provided svg sheet selection', () => {
             expectToEqual(component.selectedSvgSheet(), expectedSvgSheet);
         });
 
@@ -273,7 +287,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
             it('... should create the svg with the sheet path, svg element and root group', () => {
                 expectSpyCall(mockSvgDrawingService.createSvg, 1, [
-                    expectedSvgSheet.content[0].svg,
+                    expectedSvgSheet.content.svg,
                     getSvgEl(),
                     getRootGroupEl(),
                 ]);
@@ -303,7 +317,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 await setSheetAndRender(expectedNextSvgSheet);
 
                 expectSpyCall(mockSvgDrawingService.createSvg, 2, [
-                    expectedNextSvgSheet.content[0].svg,
+                    expectedNextSvgSheet.content.svg,
                     getSvgEl(),
                     getRootGroupEl(),
                 ]);
@@ -326,7 +340,7 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
 
             it('... should not create an svg and reset the signals for a sheet without svg path', async () => {
                 const sheetWithoutPath = structuredClone(expectedNextSvgSheet);
-                sheetWithoutPath.content[0].svg = '';
+                sheetWithoutPath.content.svg = '';
 
                 await setSheetAndRender(sheetWithoutPath);
 
@@ -366,10 +380,10 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
             it('... should skip the rendering of a sheet that is no longer selected', async () => {
                 const thirdSvgSheet = structuredClone(expectedNextSvgSheet);
                 thirdSvgSheet.id = 'test-3';
-                thirdSvgSheet.content[0].svg = 'assets/test-3.svg';
+                thirdSvgSheet.content.svg = 'assets/test-3.svg';
                 const fourthSvgSheet = structuredClone(expectedNextSvgSheet);
                 fourthSvgSheet.id = 'test-4';
-                fourthSvgSheet.content[0].svg = 'assets/test-4.svg';
+                fourthSvgSheet.content.svg = 'assets/test-4.svg';
 
                 // Delay the rendering of the next sheet
                 let resolveNextSheet: () => void = () => {};
@@ -396,9 +410,9 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 // Initial, next (already loading) and fourth sheet are rendered; the third sheet is skipped
                 const renderedPaths = mockSvgDrawingService.createSvg.mock.calls.map(([path]) => path);
                 expectToEqual(renderedPaths, [
-                    expectedSvgSheet.content[0].svg,
-                    expectedNextSvgSheet.content[0].svg,
-                    fourthSvgSheet.content[0].svg,
+                    expectedSvgSheet.content.svg,
+                    expectedNextSvgSheet.content.svg,
+                    fourthSvgSheet.content.svg,
                 ]);
             });
         });
@@ -590,11 +604,11 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain one LicenseComponent', () => {
+            it('... should contain one LicenseComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, LicenseComponent, 1, 1);
             });
 
-            describe('... EditionSheetViewerAdditionsPanelComponent', () => {
+            describe('... EditionSheetViewerAdditionsPanelComponent (hollow)', () => {
                 it.each([
                     { suppliedClasses: ['class-1'], hasTkk: false, expected: 1 },
                     { suppliedClasses: [], hasTkk: true, expected: 1 },

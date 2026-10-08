@@ -56,7 +56,11 @@ describe('EditionPrefaceComponent (DONE)', () => {
             providers: [
                 { provide: EditionViewService, useValue: { prefaceViewData: mockViewDataSignal.asReadonly() } },
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(LanguageSwitcherComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -88,11 +92,11 @@ describe('EditionPrefaceComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no AlertErrorComponent', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
             });
 
@@ -100,7 +104,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
             });
 
-            it('... should contain no LanguageSwitcherComponent', () => {
+            it('... should contain no LanguageSwitcherComponent (hollow)', () => {
                 getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 0, 0);
             });
         });
@@ -154,14 +158,14 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain preface view or spinner, but one AlertErrorComponent', () => {
+                it('... should not contain preface view or spinner, but one AlertErrorComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                 });
 
-                it('... should pass down error object to AlertErrorComponent', () => {
+                it('... should pass down error object to AlertErrorComponent (hollow)', () => {
                     const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
                     const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
 
@@ -179,14 +183,14 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent', () => {
+                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
                     getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
                     getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
-                it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
+                it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
                     const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                     const spinnerCmp = spinnerDes[0].injector.get(
                         TwelveToneSpinnerComponent
@@ -213,13 +217,13 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
                 });
 
-                it('... should contain one LanguageSwitcherComponent in div.awg-preface-view', () => {
+                it('... should contain one LanguageSwitcherComponent (hollow) in div.awg-preface-view', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
                     getAndExpectDebugElementByDirective(divDes[0], LanguageSwitcherComponent, 1, 1);
                 });
 
-                it('... should pass down `selectedLanguage` to LanguageSwitcherComponent', () => {
+                it('... should pass down `selectedLanguage` to LanguageSwitcherComponent (hollow)', () => {
                     const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
                     const switcherCmp = switcherDes[0].injector.get(
                         LanguageSwitcherComponent
@@ -228,7 +232,7 @@ describe('EditionPrefaceComponent (DONE)', () => {
                     expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
                 });
 
-                it('... should update `selectedLanguage` when LanguageSwitcherComponent emits a change', () => {
+                it('... should update `selectedLanguage` when LanguageSwitcherComponent (hollow) emits a change', () => {
                     const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
 
                     expectToBe(component.selectedLanguage(), LanguageId.DE);

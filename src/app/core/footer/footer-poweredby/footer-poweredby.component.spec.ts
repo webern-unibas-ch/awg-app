@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { faScrewdriverWrench, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { LogoStubComponent } from '@testing/component-stubs';
 import {
     expectToBe,
     expectToEqual,
@@ -35,10 +34,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [FooterPoweredbyComponent],
         })
-            .overrideComponent(FooterPoweredbyComponent, {
-                remove: { imports: [LogoComponent] },
-                add: { imports: [LogoStubComponent] },
-            })
+            .overrideComponent(LogoComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -158,17 +154,26 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `poweredByData` is not available', () => {
+                fixture.componentRef.setInput('pageMetaData', undefined);
+
+                fixture.detectChanges();
+
+                expectToBe(component.poweredByData(), null);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 0, 0);
+            });
+
             it('... should contain one div.awg-powered-by', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
             });
 
-            it('... should contain 3 logo components (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+            it('... should contain 3 LogoComponents (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, LogoComponent, 3, 3);
             });
 
-            it('... should pass down logos to logo link components', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
-                const logoCmps = logoDes.map(de => de.injector.get(LogoStubComponent) as LogoStubComponent);
+            it('... should pass down logos to LogoComponents (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 3, 3);
+                const logoCmps = logoDes.map(de => de.injector.get(LogoComponent));
 
                 expectToBe(logoCmps.length, 3);
                 expectToEqual(logoCmps[0].logoData(), expectedLogosData['github']);
@@ -176,11 +181,11 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToEqual(logoCmps[2].logoData(), expectedLogosData['bootstrap']);
             });
 
-            it('... should have default linkClass on logo components', () => {
-                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoStubComponent, 3, 3);
+            it('... should have default linkClass on LogoComponents (hollow)', () => {
+                const logoDes = getAndExpectDebugElementByDirective(compDe, LogoComponent, 3, 3);
 
                 logoDes.forEach(logoDe => {
-                    const logoCmp = logoDe.injector.get(LogoStubComponent) as LogoStubComponent;
+                    const logoCmp = logoDe.injector.get(LogoComponent);
 
                     expectToBe(logoCmp.linkClass(), 'awg-logo-link');
                 });

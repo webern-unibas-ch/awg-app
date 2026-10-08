@@ -27,7 +27,9 @@ describe('SourceDescWritingMaterialsComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [SourceDescWritingMaterialComponent, SourceDescWritingMaterialsComponent],
-        }).compileComponents();
+        })
+            .overrideComponent(SourceDescWritingMaterialComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -66,7 +68,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('writingMaterials', expectedWritingMaterials);
 
             // Trigger initial data binding
@@ -99,7 +101,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
                 getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-writing-materials-content', 1, 1);
             });
 
-            it('... should contain one SourceDescWritingMaterialComponent for each writing material', () => {
+            it('... should contain one SourceDescWritingMaterialComponent (hollow) for each writing material', () => {
                 const contentDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-desc-writing-materials-content',
@@ -115,7 +117,7 @@ describe('SourceDescWritingMaterialsComponent', () => {
                 );
             });
 
-            it('... should pass down the writing material to each SourceDescWritingMaterialComponent', () => {
+            it('... should pass down the writing material to each SourceDescWritingMaterialComponent (hollow)', () => {
                 const materialDes = getAndExpectDebugElementByDirective(
                     compDe,
                     SourceDescWritingMaterialComponent,

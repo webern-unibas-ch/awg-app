@@ -65,6 +65,14 @@ describe('FooterCopyrightComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `pageMetaData` is not available', () => {
+                fixture.componentRef.setInput('pageMetaData', undefined);
+
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 0, 0);
+            });
+
             it('... should contain one div.awg-copyright-desc', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
             });

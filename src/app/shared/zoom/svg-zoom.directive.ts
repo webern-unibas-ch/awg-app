@@ -3,8 +3,9 @@ import { Directive, effect, ElementRef, inject, input, model } from '@angular/co
 import * as D3_SELECTION from 'd3-selection';
 import * as D3_ZOOM from 'd3-zoom';
 
+import { NUMBER_UTILS } from '@awg-shared/utils/number-utils';
+
 import { ZoomConfig } from './zoom.model';
-import { roundToStepPrecision } from './zoom.utils';
 
 /**
  * The SvgZoom directive.
@@ -74,7 +75,7 @@ export class SvgZoomDirective {
         // Apply scale changes from outside (e.g., a slider); values set by d3 itself are already in sync
         effect(() => {
             const scale = this.zoomValue();
-            const currentScale = roundToStepPrecision(
+            const currentScale = NUMBER_UTILS.roundToStepPrecision(
                 D3_ZOOM.zoomTransform(this._svg.node() as SVGSVGElement).k,
                 this.zoomConfig().stepSize
             );
@@ -107,6 +108,6 @@ export class SvgZoomDirective {
      */
     private _onZoom(transform: D3_ZOOM.ZoomTransform): void {
         D3_SELECTION.select(this.zoomTarget()).attr('transform', transform.toString());
-        this.zoomValue.set(roundToStepPrecision(transform.k, this.zoomConfig().stepSize));
+        this.zoomValue.set(NUMBER_UTILS.roundToStepPrecision(transform.k, this.zoomConfig().stepSize));
     }
 }

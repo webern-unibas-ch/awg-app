@@ -16,6 +16,7 @@ import {
 
 import * as D3_SELECTION from 'd3-selection';
 
+import { ClickDirective } from '@awg-shared/click/click.directive';
 import { LicenseComponent } from '@awg-shared/license/license.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -26,7 +27,7 @@ import {
     EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionSvgSheet } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
 
@@ -45,7 +46,7 @@ import { EditionSheetViewerAdditionsPanelChange } from '../additions-panel/editi
     templateUrl: './edition-sheet-viewer-svg.component.html',
     styleUrls: ['./edition-sheet-viewer-svg.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
+    imports: [ClickDirective, EditionSheetViewerAdditionsPanelComponent, LicenseComponent, SvgZoomDirective],
 })
 export class EditionSheetViewerSvgComponent {
     /**
@@ -65,9 +66,9 @@ export class EditionSheetViewerSvgComponent {
     /**
      * Readonly input signal: selectedSvgSheet.
      *
-     * It holds the selected svg sheet.
+     * It holds the selected svg sheet (id, full id and selected content).
      */
-    readonly selectedSvgSheet = input.required<EditionSvgSheet>();
+    readonly selectedSvgSheet = input.required<EditionSvgSheetSelection>();
 
     /**
      * Readonly input signal: zoomConfig.
@@ -271,10 +272,10 @@ export class EditionSheetViewerSvgComponent {
      * It queues the rendering of a given svg sheet after the previous rendering.
      * The rendering is skipped if the sheet is no longer selected by then.
      *
-     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @param {EditionSvgSheetSelection} sheet The given selected svg sheet.
      * @returns {void} Queues the rendering.
      */
-    private _queueRendering(sheet: EditionSvgSheet): void {
+    private _queueRendering(sheet: EditionSvgSheetSelection): void {
         this._renderQueue = this._renderQueue
             .then(() => (sheet === this.selectedSvgSheet() ? this._renderSheet(sheet) : undefined))
             .catch(error => console.error('[EditionSheetViewerSvg] Failed to render svg sheet', error));
@@ -285,13 +286,13 @@ export class EditionSheetViewerSvgComponent {
      *
      * It renders a given svg sheet with its overlays and supplied classes, and resets the zoom.
      *
-     * @param {EditionSvgSheet} sheet The given svg sheet.
+     * @param {EditionSvgSheetSelection} sheet The given selected svg sheet.
      * @returns {Promise<void>} Renders the svg sheet.
      */
-    private async _renderSheet(sheet: EditionSvgSheet): Promise<void> {
+    private async _renderSheet(sheet: EditionSvgSheetSelection): Promise<void> {
         this._clearSheet();
 
-        const svgFilePath = sheet.content?.[0]?.svg;
+        const svgFilePath = sheet.content.svg;
         if (!svgFilePath) {
             return;
         }

@@ -9,9 +9,9 @@
  *
  *
  ************************************************/
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectToEqual } from '@testing/expect-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { OrderByPipe } from './order-by.pipe';
 
@@ -20,6 +20,10 @@ describe('OrderByPipe (DONE)', () => {
 
     beforeEach(() => {
         pipe = new OrderByPipe();
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('create an instance', () => {
@@ -647,6 +651,20 @@ describe('OrderByPipe (DONE)', () => {
                 expectToEqual(pipe.transform(collection, ['info.date', 'info.name']), result);
                 expectToEqual(pipe.transform(collection, ['info.date', 'info.name'], true), [b, a, c]);
             });
+        });
+    });
+
+    describe('#_transformObject()', () => {
+        it('... should have a method `_transformObject`', () => {
+            expect(pipe['_transformObject']).toBeDefined();
+        });
+
+        it('... should return the given object as is if the parsed expression has no predicate', () => {
+            // Not reachable via `parseExpression` (`split` always returns at least one element)
+            vi.spyOn(OrderByPipe, 'parseExpression').mockReturnValue([]);
+            const value = { a: [3, 1, 2] };
+
+            expectToBe(pipe['_transformObject'](value, 'a'), value);
         });
     });
 });

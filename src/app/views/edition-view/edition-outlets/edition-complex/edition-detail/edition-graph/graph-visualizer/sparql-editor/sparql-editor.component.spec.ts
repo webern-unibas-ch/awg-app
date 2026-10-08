@@ -212,7 +212,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             component.query = expectedConstructQuery1;
             component.queryList = expectedQueryList;
             component.isFullscreen = expectedIsFullscreen;

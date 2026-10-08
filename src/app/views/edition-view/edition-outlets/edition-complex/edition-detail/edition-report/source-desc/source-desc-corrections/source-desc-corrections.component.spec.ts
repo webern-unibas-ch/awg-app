@@ -42,7 +42,11 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 EditionTkaTableComponent,
                 SourceDescCorrectionsComponent,
             ],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonExpandAllComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaEvaluationsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionTkaTableComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -96,7 +100,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 expectToBe(spanEl.textContent.trim(), expectedLabel);
             });
 
-            it('... should contain one ButtonExpandAllComponent in the label paragraph', () => {
+            it('... should contain one ButtonExpandAllComponent (hollow) in the label paragraph', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
             });
@@ -111,7 +115,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
+            // Set the initial values for the signal inputs
             fixture.componentRef.setInput('corrections', expectedCorrections);
 
             // Trigger initial data binding
@@ -133,7 +137,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down the correct isOpen state to the ButtonExpandAllComponent', () => {
+            it('... should pass down the correct isOpen state to the ButtonExpandAllComponent (hollow)', () => {
                 const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-desc-corrections-label', 1, 1);
                 const buttonDes = getAndExpectDebugElementByDirective(pDes[0], ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
@@ -141,7 +145,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                 expectToEqual(buttonCmp.isOpen(), expectedOpenAllCorrectionDetails);
             });
 
-            it('... should update `correctionsState` when the ButtonExpandAllComponent model changes', async () => {
+            it('... should update `correctionsState` when the ButtonExpandAllComponent (hollow) model changes', async () => {
                 const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonExpandAllComponent, 1, 1);
                 const buttonCmp = buttonDes[0].injector.get(ButtonExpandAllComponent) as ButtonExpandAllComponent;
 
@@ -213,7 +217,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should open or close all details via the ButtonExpandAllComponent', async () => {
+                    it('... should open or close all details via the ButtonExpandAllComponent (hollow)', async () => {
                         // Open all details
                         getButtonCmp().isOpen.set(true);
                         await detectChangesOnPush(fixture);
@@ -343,8 +347,8 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... EditionTkaEvaluationsComponent', () => {
-                    it('... should contain one EditionTkaEvaluationsComponent for each detail', () => {
+                describe('... EditionTkaEvaluationsComponent (hollow)', () => {
+                    it('... should contain one EditionTkaEvaluationsComponent (hollow) for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-desc-correction-details',
@@ -357,7 +361,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should pass down the correct evaluations to the EditionTkaEvaluationsComponent for each detail', () => {
+                    it('... should pass down the correct evaluations to the EditionTkaEvaluationsComponent (hollow) for each detail', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-desc-correction-details',
@@ -381,8 +385,8 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                     });
                 });
 
-                describe('... EditionTkaTableComponent', () => {
-                    it('... should contain no EditionTkaTableComponent in corrections detail if no commentary.comments are given', async () => {
+                describe('... EditionTkaTableComponent (hollow)', () => {
+                    it('... should contain no EditionTkaTableComponent (hollow) in corrections detail if no commentary.comments are given', async () => {
                         component.corrections()[0].commentary.comments = [];
                         await detectChangesOnPush(fixture);
 
@@ -398,7 +402,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should contain one EditionTkaTableComponent in each corrections detail if commentary.comments are given', () => {
+                    it('... should contain one EditionTkaTableComponent (hollow) in each corrections detail if commentary.comments are given', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-desc-correction-details',
@@ -411,7 +415,7 @@ describe('SourceDescCorrectionsComponent (DONE)', () => {
                         });
                     });
 
-                    it('... should pass down the correct values to EditionTkaTableComponent', () => {
+                    it('... should pass down the correct values to EditionTkaTableComponent (hollow)', () => {
                         const detailsDes = getAndExpectDebugElementByCss(
                             compDe,
                             'details.awg-source-desc-correction-details',

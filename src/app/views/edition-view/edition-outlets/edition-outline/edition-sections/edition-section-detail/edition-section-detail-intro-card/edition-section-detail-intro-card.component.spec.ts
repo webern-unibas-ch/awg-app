@@ -28,7 +28,9 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionSectionDetailIntroCardComponent, ButtonMoreComponent],
             providers: [provideRouter([])],
-        }).compileComponents();
+        })
+            .overrideComponent(ButtonMoreComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -140,11 +142,11 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 getTextEndParaDes();
             });
 
-            it('... should have a ButtonMoreComponent in text-end paragraph', () => {
+            it('... should have a ButtonMoreComponent (hollow) in text-end paragraph', () => {
                 getAndExpectDebugElementByDirective(getTextEndParaDes()[0], ButtonMoreComponent, 1, 1);
             });
 
-            it('... should pass down the correct targetRoute to ButtonMoreComponent', () => {
+            it('... should pass down the correct targetRoute to ButtonMoreComponent (hollow)', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getTextEndParaDes()[0],
                     ButtonMoreComponent,
@@ -156,7 +158,7 @@ describe('EditionSectionDetailIntroCardComponent (DONE)', () => {
                 expectToEqual(buttonMoreCmp.targetRoute(), [expectedSection.labeledRoute.route.join('/'), 'intro']);
             });
 
-            it('... should pass down the correct disabled state to ButtonMoreComponent', () => {
+            it('... should pass down the correct disabled state to ButtonMoreComponent (hollow)', () => {
                 const buttonMoreDes = getAndExpectDebugElementByDirective(
                     getTextEndParaDes()[0],
                     ButtonMoreComponent,
