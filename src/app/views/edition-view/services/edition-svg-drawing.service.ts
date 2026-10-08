@@ -1,4 +1,4 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { D3Selection, ViewBox } from '@awg-views/edition-view/models';
 import { DATA_TKK_ID } from '@awg-views/edition-view/models/edition-svg-overlay.model';
@@ -84,25 +84,6 @@ export class EditionSvgDrawingService {
         }
 
         svgEl.attr('fill', color);
-    }
-
-    /**
-     * Public method: getContainerDimensions.
-     *
-     * It returns the dimensions (width and height) of a given container element.
-     *
-     * @param {ElementRef} containerEl The given container element.
-     *
-     * @returns {{ width: number; height: number }} The dimensions (width and height) of the container element.
-     */
-    getContainerDimensions(containerEl: ElementRef<HTMLElement>): { width: number; height: number } {
-        const w = containerEl.nativeElement.clientWidth;
-        const h = containerEl.nativeElement.clientHeight;
-
-        return {
-            width: w,
-            height: h,
-        };
     }
 
     /**

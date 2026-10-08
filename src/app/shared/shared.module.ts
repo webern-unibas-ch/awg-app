@@ -14,7 +14,6 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { AlertErrorComponent } from './alert-error/alert-error.component';
 import { AlertInfoComponent } from './alert-info/alert-info.component';
 import { ButtonScrollToTopComponent } from './button-scroll-to-top/button-scroll-to-top.component';
-import { CodeMirrorComponent } from './codemirror/codemirror.component';
 import { FullscreenToggleComponent } from './fullscreen/fullscreen-toggle.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
@@ -46,7 +45,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         ReactiveFormsModule,
         RouterModule,
         AlertErrorComponent,
-        CodeMirrorComponent,
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
@@ -70,7 +68,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
     declarations: [JsonViewerComponent],
     exports: [
         CommonModule,
-        CodeMirrorComponent,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
