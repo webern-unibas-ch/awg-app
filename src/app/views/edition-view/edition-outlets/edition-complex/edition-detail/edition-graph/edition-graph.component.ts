@@ -1,7 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+
+import { EditionGraphDescriptionComponent } from './edition-graph-description/edition-graph-description.component';
+import { EditionGraphDynamicComponent } from './edition-graph-dynamic/edition-graph-dynamic.component';
+import { EditionGraphStaticComponent } from './edition-graph-static/edition-graph-static.component';
 
 /**
  * The EditionGraph component.
@@ -14,7 +21,13 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
     templateUrl: './edition-graph.component.html',
     styleUrls: ['./edition-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        AlertErrorComponent,
+        EditionGraphDescriptionComponent,
+        EditionGraphDynamicComponent,
+        EditionGraphStaticComponent,
+        TwelveToneSpinnerComponent,
+    ],
 })
 export class EditionGraphComponent {
     /**

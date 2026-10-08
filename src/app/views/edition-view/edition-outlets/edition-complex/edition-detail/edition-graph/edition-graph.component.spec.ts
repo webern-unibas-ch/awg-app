@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { AlertErrorStubComponent, TwelveToneSpinnerStubComponent } from '@testing/component-stubs';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { createMockViewData } from '@testing/edition-data-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
@@ -14,6 +13,9 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import {
@@ -49,19 +51,14 @@ describe('EditionGraphComponent (DONE)', () => {
         mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            imports: [
-                AlertErrorStubComponent,
-                TwelveToneSpinnerStubComponent,
-                EditionGraphDescriptionComponent,
-                EditionGraphDynamicComponent,
-                EditionGraphStaticComponent,
-            ],
-            declarations: [EditionGraphComponent],
+            imports: [EditionGraphComponent],
             providers: [{ provide: EditionViewService, useValue: { graphViewData: mockViewDataSignal.asReadonly() } }],
         })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionGraphDescriptionComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionGraphDynamicComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionGraphStaticComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -113,16 +110,16 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
-            it('... should contain no AlertErrorComponent (stubbed)', () => {
+            it('... should contain no AlertErrorComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
             });
 
-            it('... should contain no TwelveToneSpinnerComponent (stubbed)', () => {
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
             });
 
             it('... should contain no div.awg-edition-graph-view yet', () => {
@@ -157,8 +154,8 @@ describe('EditionGraphComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
-                getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 0, 0);
-                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
                 getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-graph-view', 0, 0);
             });
 
@@ -180,20 +177,18 @@ describe('EditionGraphComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
                 });
 
-                it('... should not contain graph view or spinner, but one AlertErrorComponent (stubbed)', () => {
+                it('... should not contain graph view or spinner, but one AlertErrorComponent (hollow)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-graph-view', 0, 0);
-                    getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(divDes[0], TwelveToneSpinnerComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], AlertErrorComponent, 1, 1);
                 });
 
                 it('... should pass down error object to AlertErrorComponent', () => {
-                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 1, 1);
-                    const alertErrorCmp = alertErrorDes[0].injector.get(
-                        AlertErrorStubComponent
-                    ) as AlertErrorStubComponent;
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent);
 
                     expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
                 });
@@ -208,23 +203,16 @@ describe('EditionGraphComponent (DONE)', () => {
 
                     await detectChangesOnPush(fixture);
                 });
-                it('... should not contain graph view or alert, but one TwelveToneSpinnerComponent (stubbed)', () => {
+                it('... should not contain graph view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-graph-view', 0, 0);
-                    getAndExpectDebugElementByDirective(compDe, AlertErrorStubComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
 
-                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
                 });
 
                 it('... should have default spinnerText on TwelveToneSpinnerComponent', () => {
-                    const spinnerDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        TwelveToneSpinnerStubComponent,
-                        1,
-                        1
-                    );
-                    const spinnerCmp = spinnerDes[0].injector.get(
-                        TwelveToneSpinnerStubComponent
-                    ) as TwelveToneSpinnerStubComponent;
+                    const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
+                    const spinnerCmp = spinnerDes[0].injector.get(TwelveToneSpinnerComponent);
 
                     expectToBe(spinnerCmp.spinnerText(), 'loading');
                 });
