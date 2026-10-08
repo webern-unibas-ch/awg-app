@@ -28,6 +28,19 @@ export interface SimNode extends SimulationNodeDatum {
 }
 
 /**
+ * The GraphSimNode type.
+ *
+ * It represents a visible node of the D3 force simulation,
+ * i.e. a simulation node with its graph node.
+ */
+export type GraphSimNode = SimNode & {
+    /**
+     * The graph node.
+     */
+    readonly graphNode: ResultGraphNode;
+};
+
+/**
  * The SimLink type.
  *
  * It represents a link of the D3 force simulation

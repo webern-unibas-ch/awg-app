@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import * as D3_FORCE from 'd3-force';
 import * as D3_SELECTION from 'd3-selection';
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
@@ -235,6 +236,118 @@ describe('ForceGraphDrawingService (DONE)', () => {
                 expectToBe(linkEl.getAttribute('d'), FORCE_GRAPH_UTILS.linkPath(firstEdge));
                 expectToBe(linkTextEl.getAttribute('x'), String(expectedLabelPosition.x));
                 expectToBe(linkTextEl.getAttribute('y'), String(expectedLabelPosition.y));
+            });
+
+            it('... should position nodes and node texts at the origin on tick if nodes have no position yet', () => {
+                const result = render();
+                result.stop();
+
+                const [firstNode] = expectedSimulationData.nodes;
+                firstNode.x = undefined;
+                firstNode.y = undefined;
+
+                result.on('tick')?.call(result);
+
+                const circleEl = getElements('g.nodes > circle')[0];
+                const nodeTextEl = getElements('g.node-texts > text')[0];
+
+                expectToBe(circleEl.getAttribute('cx'), '0');
+                expectToBe(circleEl.getAttribute('cy'), '0');
+                expectToBe(nodeTextEl.getAttribute('x'), '12');
+                expectToBe(nodeTextEl.getAttribute('y'), '3');
+            });
+        });
+    });
+
+    describe('#_createDragBehaviour()', () => {
+        let dragSimulation: ForceSimulation;
+        let node: SimNode;
+        let alphaTargetSpy: Spy;
+        let restartSpy: Spy;
+
+        /**
+         * Calls the listener of the given drag event type with a given event and the test node.
+         */
+        const callDragListener = (type: 'start' | 'drag' | 'end', event: object): void => {
+            forceGraphDrawingService['_createDragBehaviour'](dragSimulation).on(type)?.call(undefined, event, node);
+        };
+
+        beforeEach(() => {
+            dragSimulation = render();
+            dragSimulation.stop();
+
+            node = { id: 'a', r: 10, x: 5, y: 7 };
+            alphaTargetSpy = vi.spyOn(dragSimulation, 'alphaTarget');
+            restartSpy = vi.spyOn(dragSimulation, 'restart').mockReturnValue(dragSimulation);
+        });
+
+        it('... should have a method `_createDragBehaviour`', () => {
+            expect(forceGraphDrawingService['_createDragBehaviour']).toBeDefined();
+        });
+
+        describe('... on drag start', () => {
+            it('... should stop the propagation of the source event', () => {
+                const stopPropagationSpy = vi.fn();
+
+                callDragListener('start', { active: 1, sourceEvent: { stopPropagation: stopPropagationSpy } });
+
+                expectSpyCall(stopPropagationSpy, 1);
+            });
+
+            it('... should fix the node at its current position', () => {
+                callDragListener('start', { active: 1, sourceEvent: { stopPropagation: vi.fn() } });
+
+                expectToBe(node.fx, 5);
+                expectToBe(node.fy, 7);
+            });
+
+            it('... should reheat the simulation if no other drag is active', () => {
+                callDragListener('start', { active: 0, sourceEvent: { stopPropagation: vi.fn() } });
+
+                expectSpyCall(alphaTargetSpy, 1, 0.3);
+                expectSpyCall(restartSpy, 1);
+            });
+
+            it('... should not reheat the simulation if another drag is active', () => {
+                callDragListener('start', { active: 1, sourceEvent: { stopPropagation: vi.fn() } });
+
+                expectSpyCall(alphaTargetSpy, 0);
+                expectSpyCall(restartSpy, 0);
+            });
+        });
+
+        describe('... on drag', () => {
+            it('... should fix the node at the pointer position', () => {
+                callDragListener('drag', { x: 42, y: 24 });
+
+                expectToBe(node.fx, 42);
+                expectToBe(node.fy, 24);
+            });
+        });
+
+        describe('... on drag end', () => {
+            beforeEach(() => {
+                node.fx = 42;
+                node.fy = 24;
+            });
+
+            it('... should release the node', () => {
+                callDragListener('end', { active: 1 });
+
+                expect(node.fx).toBeNull();
+                expect(node.fy).toBeNull();
+            });
+
+            it('... should cool down the simulation if no other drag is active', () => {
+                callDragListener('end', { active: 0 });
+
+                expectSpyCall(alphaTargetSpy, 1, 0);
+            });
+
+            it('... should not cool down the simulation if another drag is active', () => {
+                callDragListener('end', { active: 1 });
+
+                expectSpyCall(alphaTargetSpy, 0);
             });
         });
     });

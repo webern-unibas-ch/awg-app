@@ -12,7 +12,7 @@ import * as D3_SELECTION from 'd3-selection';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
 import { ResultGraphNode } from '../../../models/result-graph.model';
-import { ForceSimulation, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
+import { ForceSimulation, GraphSimNode, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 
 /**
@@ -62,7 +62,7 @@ export class ForceGraphDrawingService {
         // Clear the content of the root group before redrawing
         svgRootGroupSelection.selectAll('*').remove();
 
-        const graphSimNodes = simulationData.nodes.filter((d: SimNode) => !!d.graphNode);
+        const graphSimNodes = simulationData.nodes.filter((d: SimNode): d is GraphSimNode => !!d.graphNode);
 
         const links = this._drawLinks(svgRootGroupSelection, simulationData.edges);
         const linkTexts = this._drawLinkTexts(svgRootGroupSelection, simulationData.edges);
@@ -81,7 +81,7 @@ export class ForceGraphDrawingService {
                 .attr('y', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).y);
         });
 
-        this._applyDrag(nodes, simulation);
+        nodes.call(this._createDragBehaviour(simulation));
 
         return simulation;
     }
@@ -103,17 +103,16 @@ export class ForceGraphDrawingService {
     }
 
     /**
-     * Private method: _applyDrag.
+     * Private method: _createDragBehaviour.
      *
-     * It binds a draggable behaviour to the given nodes selection:
+     * It creates the drag behaviour for the drawn nodes:
      * a dragged node is fixed at the pointer position and the simulation is reheated.
      *
-     * @param {D3Selection} nodesSelection The given nodes selection.
      * @param {ForceSimulation} simulation The given force simulation.
-     * @returns {void} Applies the drag behaviour.
+     * @returns {D3_DRAG.DragBehavior<any, SimNode, any>} The drag behaviour.
      */
-    private _applyDrag(nodesSelection: D3Selection, simulation: ForceSimulation): void {
-        const dragBehaviour = D3_DRAG.drag<any, SimNode>()
+    private _createDragBehaviour(simulation: ForceSimulation): D3_DRAG.DragBehavior<any, SimNode, any> {
+        return D3_DRAG.drag<any, SimNode>()
             .on('start', (event: any, d: SimNode) => {
                 // Prevent the propagation of the drag start to the parent elements (e.g., panning of the svg)
                 event.sourceEvent.stopPropagation();
@@ -135,8 +134,6 @@ export class ForceGraphDrawingService {
                 d.fx = null;
                 d.fy = null;
             });
-
-        nodesSelection.call(dragBehaviour);
     }
 
     /**
@@ -226,10 +223,10 @@ export class ForceGraphDrawingService {
      * with css class and radius according to the kind of its graph node.
      *
      * @param {D3Selection} parentSelection The given parent selection.
-     * @param {SimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
+     * @param {GraphSimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
      * @returns {D3Selection} The selection of the drawn nodes.
      */
-    private _drawNodes(parentSelection: D3Selection, graphSimNodes: SimNode[]): D3Selection {
+    private _drawNodes(parentSelection: D3Selection, graphSimNodes: GraphSimNode[]): D3Selection {
         return parentSelection
             .append('g')
             .attr('class', 'nodes')
@@ -237,9 +234,9 @@ export class ForceGraphDrawingService {
             .data(graphSimNodes)
             .enter()
             .append('circle')
-            .attr('class', (d: SimNode) => FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode?.kind ?? 'resource'))
-            .attr('id', (d: SimNode) => d.graphNode?.label ?? d.id)
-            .attr('r', (d: SimNode) => d.r);
+            .attr('class', (d: GraphSimNode) => FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode.kind))
+            .attr('id', (d: GraphSimNode) => d.graphNode.label)
+            .attr('r', (d: GraphSimNode) => d.r);
     }
 
     /**
@@ -248,10 +245,10 @@ export class ForceGraphDrawingService {
      * It draws the short name for each of the given simulation nodes.
      *
      * @param {D3Selection} parentSelection The given parent selection.
-     * @param {SimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
+     * @param {GraphSimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
      * @returns {D3Selection} The selection of the drawn node texts.
      */
-    private _drawNodeTexts(parentSelection: D3Selection, graphSimNodes: SimNode[]): D3Selection {
+    private _drawNodeTexts(parentSelection: D3Selection, graphSimNodes: GraphSimNode[]): D3Selection {
         return parentSelection
             .append('g')
             .attr('class', 'node-texts')
@@ -260,6 +257,6 @@ export class ForceGraphDrawingService {
             .enter()
             .append('text')
             .attr('class', 'node-text')
-            .text((d: SimNode) => d.graphNode?.shortName ?? '');
+            .text((d: GraphSimNode) => d.graphNode.shortName);
     }
 }
