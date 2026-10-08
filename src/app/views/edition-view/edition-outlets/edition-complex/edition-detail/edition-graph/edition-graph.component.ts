@@ -1,9 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
-import { UTILS } from '@awg-shared/utils/object-utils';
-
-import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
 
@@ -22,20 +18,6 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 })
 export class EditionGraphComponent {
     /**
-     * Readonly signal: isFullscreen.
-     *
-     * It holds the fullscreen status.
-     */
-    readonly isFullscreen = inject(FullscreenService).isFullscreen;
-
-    /**
-     * Readonly signal: selectedEditionComplex.
-     *
-     * It holds the state of the selected edition complex.
-     */
-    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
-
-    /**
      * Readonly signal: viewData.
      *
      * It holds the state of the graph view data.
@@ -43,35 +25,9 @@ export class EditionGraphComponent {
     readonly viewData = inject(EditionViewService).graphViewData;
 
     /**
-     * Protected readonly variable: UTILS.
+     * Readonly signal: selectedEditionComplex.
      *
-     * It keeps the reference to the {@link UTILS} methods.
+     * It holds the state of the selected edition complex.
      */
-    protected readonly UTILS = UTILS;
-
-    /**
-     * Readonly variable: GRAPH_IMAGES.
-     *
-     * It keeps the paths to static graph images.
-     */
-    readonly GRAPH_IMAGES = {
-        OP12: '',
-        OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
-    } satisfies Record<string, string>;
-
-    /**
-     * Public method: getStaticImage.
-     *
-     * It retrieves the static image source path for a given image key.
-     *
-     * @param {string} imageKey The given image key.
-     * @returns {string | null} The retrieved image source path or null.
-     */
-    getStaticImage(imageKey: string | undefined): string | null {
-        if (!imageKey || !Object.hasOwn(this.GRAPH_IMAGES, imageKey)) {
-            return null;
-        }
-
-        return this.GRAPH_IMAGES[imageKey as keyof typeof this.GRAPH_IMAGES] || null;
-    }
+    readonly selectedEditionComplex = inject(EditionStateService).selectedEditionComplex;
 }

@@ -56,11 +56,11 @@ export class GraphVisualizerComponent {
     private readonly _toastService = inject(ToastService);
 
     /**
-     * Readonly input signal: graphRDFInputData.
+     * Readonly input signal: rdfData.
      *
-     * It holds the input data for the RDF graph.
+     * It holds the RDF data (triples and queries) of the graph.
      */
-    readonly graphRDFInputData = input.required<GraphRDFData>();
+    readonly rdfData = input.required<GraphRDFData>();
 
     /**
      * Readonly input signal: isFullscreenMode.
@@ -81,7 +81,7 @@ export class GraphVisualizerComponent {
      *
      * It holds the query list from the RDF input data.
      */
-    readonly queryList = computed(() => this.graphRDFInputData().queryList);
+    readonly queryList = computed(() => this.rdfData().queryList);
 
     /**
      * Readonly linked signal: triples.
@@ -89,7 +89,7 @@ export class GraphVisualizerComponent {
      * It holds the triples of the graph visualization
      * (reset to the triples from the RDF input data whenever they change).
      */
-    readonly triples = linkedSignal(() => this.graphRDFInputData().triples);
+    readonly triples = linkedSignal(() => this.rdfData().triples);
 
     /**
      * Readonly linked signal: query.
@@ -136,7 +136,7 @@ export class GraphVisualizerComponent {
      * Only {@link performQuery} requests a new run, not edits of query or triples.
      */
     private readonly _queryRequest = linkedSignal<GraphRDFData, SparqlQueryRequest>({
-        source: this.graphRDFInputData,
+        source: this.rdfData,
         computation: rdfData => {
             const { queryType, queryString } = GRAPH_QUERY_UTILS.initialQuery(rdfData.queryList);
             return { queryType, queryString, triples: rdfData.triples };
@@ -163,7 +163,7 @@ export class GraphVisualizerComponent {
      * @returns {void} Resets the triples.
      */
     resetTriples(): void {
-        const initialTriples = this.graphRDFInputData().triples;
+        const initialTriples = this.rdfData().triples;
         if (!initialTriples) {
             return;
         }

@@ -1,0 +1,9 @@
+<div class="awg-graph-description">
+    @if (hasPlaceholder()) {
+        <awg-edition-graph-placeholder [editionComplex]="editionComplex()" />
+    } @else {
+        @for (description of graph().description; track $index) {
+            <p [awgCompileHtml]="description"></p>
+        }
+    }
+</div>
