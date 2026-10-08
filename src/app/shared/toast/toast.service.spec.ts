@@ -1,11 +1,13 @@
 import { Component, isSignal, TemplateRef, viewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
+import { mockConsole } from '@testing/mock-helper';
 
-import { Toast, ToastService } from './toast.service';
+import { Toast, ToastMessage, ToastService } from './toast.service';
 
 // Mock component to get a templateRef
 @Component({
@@ -132,6 +134,125 @@ describe('ToastService (DONE)', () => {
             toastService.remove(expectedToast2);
 
             expectToEqual(toastService.toasts(), [expectedToast1]);
+        });
+    });
+
+    describe('#showMessage()', () => {
+        let addSpy: Spy;
+        let consoleErrorSpy: Spy;
+        let consoleInfoSpy: Spy;
+
+        beforeEach(() => {
+            addSpy = vi.spyOn(toastService, 'add');
+            consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+            consoleInfoSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
+        });
+
+        afterEach(() => {
+            mockConsole.clear();
+            vi.restoreAllMocks();
+        });
+
+        it('... should have a method `showMessage`', () => {
+            expect(toastService.showMessage).toBeDefined();
+        });
+
+        it('... should do nothing if no toastMessage.message is provided', () => {
+            toastService.showMessage(new ToastMessage('Error1', '', 500), 'error');
+
+            expectSpyCall(addSpy, 0);
+            expectSpyCall(consoleErrorSpy, 0);
+            expectToEqual(toastService.toasts(), []);
+        });
+
+        it('... should use "info" as default type if not provided', () => {
+            const toastMessage = new ToastMessage('DefaultInfo', 'Default info message', 2000);
+            const expectedToast = new Toast(toastMessage.message, {
+                header: toastMessage.name,
+                classname: 'bg-info text-light',
+                delay: toastMessage.duration,
+            });
+
+            toastService.showMessage(toastMessage);
+
+            expectSpyCall(addSpy, 1, expectedToast);
+            expectSpyCall(consoleInfoSpy, 1, ['DefaultInfo', ':', 'Default info message']);
+        });
+
+        describe('... on error message', () => {
+            it('... should log the provided name and error message to console', () => {
+                const toastMessage = new ToastMessage('Error1', 'error message', 500);
+
+                toastService.showMessage(toastMessage, 'error');
+
+                expectSpyCall(consoleErrorSpy, 1, [toastMessage.name, ':', toastMessage.message]);
+                expectSpyCall(consoleInfoSpy, 0);
+            });
+
+            it('... should add an error toast', () => {
+                const toastMessage = new ToastMessage('Error1', 'error message', 500);
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-danger text-light',
+                    delay: toastMessage.duration,
+                });
+
+                toastService.showMessage(toastMessage, 'error');
+
+                expectSpyCall(addSpy, 1, expectedToast);
+                expectToEqual(toastService.toasts(), [expectedToast]);
+            });
+
+            it('... should add an error toast with a delay of 3000 if no duration is given', () => {
+                const toastMessage = new ToastMessage('Error1', 'error message');
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-danger text-light',
+                    delay: 3000,
+                });
+
+                toastService.showMessage(toastMessage, 'error');
+
+                expectToEqual(toastService.toasts(), [expectedToast]);
+            });
+        });
+
+        describe('... on info message', () => {
+            it('... should log the provided name and info message to console', () => {
+                const toastMessage = new ToastMessage('Info1', 'info message', 500);
+
+                toastService.showMessage(toastMessage, 'info');
+
+                expectSpyCall(consoleInfoSpy, 1, [toastMessage.name, ':', toastMessage.message]);
+                expectSpyCall(consoleErrorSpy, 0);
+            });
+
+            it('... should add an info toast', () => {
+                const toastMessage = new ToastMessage('Info1', 'info message', 500);
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-info text-light',
+                    delay: toastMessage.duration,
+                });
+
+                toastService.showMessage(toastMessage, 'info');
+
+                expectSpyCall(addSpy, 1, expectedToast);
+                expectToEqual(toastService.toasts(), [expectedToast]);
+            });
+
+            it('... should add an info toast with a delay of 3000 if no duration is given', () => {
+                const toastMessage = new ToastMessage('Info1', 'info message');
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
+                    classname: 'bg-info text-light',
+                    delay: 3000,
+                });
+
+                toastService.showMessage(toastMessage, 'info');
+
+                expectToEqual(toastService.toasts(), [expectedToast]);
+            });
         });
     });
 });

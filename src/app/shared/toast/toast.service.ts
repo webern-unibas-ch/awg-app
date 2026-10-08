@@ -126,4 +126,34 @@ export class ToastService {
     remove(toast: Toast): void {
         this._toasts.update(toasts => toasts.filter(t => t !== toast));
     }
+
+    /**
+     * Public method: showMessage.
+     *
+     * It shows a given toast message with the specified type
+     * and logs it to the console.
+     *
+     * @param {ToastMessage} toastMessage The given toast message.
+     * @param {'error' | 'info'} [type] The optional type of message to display (default: 'info').
+     *
+     * @returns {void} Shows the message.
+     */
+    showMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
+        if (!toastMessage.message) {
+            return;
+        }
+
+        const toast = new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: type === 'error' ? 'bg-danger text-light' : 'bg-info text-light',
+            delay: toastMessage.duration,
+        });
+        this.add(toast);
+
+        if (type === 'error') {
+            console.error(toastMessage.name, ':', toastMessage.message);
+        } else {
+            console.info(toastMessage.name, ':', toastMessage.message);
+        }
+    }
 }

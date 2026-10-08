@@ -5,8 +5,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal, resource } from '@angular/core';
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
-import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
+import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -16,7 +16,8 @@ import { GraphResultsConstructComponent } from './results/construct/graph-result
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
-import { DEFAULT_PREFIXES } from './utils/prefix.utils';
+import { ERROR_UTILS } from './utils/error.utils';
+import { GRAPH_QUERY_UTILS } from './utils/graph-query.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 
 /**
@@ -96,7 +97,7 @@ export class GraphVisualizerComponent {
      * It holds the query of the graph visualization
      * (reset to the first query of the query list whenever it changes).
      */
-    readonly query = linkedSignal<GraphSparqlQuery>(() => this._initialQuery(this.queryList()));
+    readonly query = linkedSignal<GraphSparqlQuery>(() => GRAPH_QUERY_UTILS.initialQuery(this.queryList()));
 
     /**
      * Readonly resource: queryRun.
@@ -131,14 +132,15 @@ export class GraphVisualizerComponent {
     /**
      * Private readonly linked signal: _queryRequest.
      *
-     * It holds the latest requested query
-     * (the initial query whenever the RDF input data changes).
-     * Edits of query or triples do not request a new query run;
-     * only {@link performQuery} does.
+     * It holds the latest requested query (reset to the initial query on input change).
+     * Only {@link performQuery} requests a new run, not edits of query or triples.
      */
     private readonly _queryRequest = linkedSignal<GraphRDFData, SparqlQueryRequest>({
         source: this.graphRDFInputData,
-        computation: rdfData => this._toQueryRequest(this._initialQuery(rdfData.queryList), rdfData.triples),
+        computation: rdfData => {
+            const { queryType, queryString } = GRAPH_QUERY_UTILS.initialQuery(rdfData.queryList);
+            return { queryType, queryString, triples: rdfData.triples };
+        },
     });
 
     /**
@@ -149,7 +151,7 @@ export class GraphVisualizerComponent {
      */
     private readonly _runnableRequest = computed<SparqlQueryRequest | undefined>(() => {
         const request = this._queryRequest();
-        return request.queryType === 'construct' || request.queryType === 'select' ? request : undefined;
+        return GRAPH_QUERY_UTILS.isRunnableQueryType(request.queryType) ? request : undefined;
     });
 
     /**
@@ -176,7 +178,6 @@ export class GraphVisualizerComponent {
      * if no query is given), and performs it.
      *
      * @param {GraphSparqlQuery} [query] The given sample query.
-     *
      * @returns {void} Resets and performs the query.
      */
     resetQuery(query?: GraphSparqlQuery): void {
@@ -185,12 +186,7 @@ export class GraphVisualizerComponent {
             return;
         }
 
-        const resetted = query
-            ? queryList.find(
-                  listQuery => query.queryLabel === listQuery.queryLabel && query.queryType === listQuery.queryType
-              ) || query
-            : queryList[0];
-        this.query.set({ ...resetted });
+        this.query.set({ ...GRAPH_QUERY_UTILS.findQuery(queryList, query) });
 
         this.performQuery();
     }
@@ -203,12 +199,11 @@ export class GraphVisualizerComponent {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        // Set the query type synchronously, because the template chooses the result view by it
-        const query = this._withQueryType(this.query());
-        this.query.set(query);
+        const { queryString } = this.query();
+        const queryType = SPARQL_UTILS.getQueryType(queryString);
+        this.query.update(currentQuery => ({ ...currentQuery, queryType }));
 
-        // A new request object always triggers a new run, even for an unchanged query
-        this._queryRequest.set(this._toQueryRequest(query, this.triples()));
+        this._queryRequest.set({ queryType, queryString, triples: this.triples() });
     }
 
     /**
@@ -239,7 +234,6 @@ export class GraphVisualizerComponent {
      * It performs a query for a given URI from the result table.
      *
      * @param {string} URI The given URI.
-     *
      * @returns {void} Performs the query with the given URI.
      */
     onTableNodeClick(URI: string): void {
@@ -258,38 +252,21 @@ export class GraphVisualizerComponent {
     /**
      * Public method: showToastMessage.
      *
-     * It shows a given toast message with the specified type.
+     * It shows a given toast message with the specified type via the ToastService.
      *
      * @param {ToastMessage} toastMessage The given toast message.
      * @param {'error' | 'info'} type The type of message to display.
-     *
      * @returns {void} Shows the message.
      */
     showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
-        if (!toastMessage.message) {
-            return;
-        }
-
-        const toast = new Toast(toastMessage.message, {
-            header: toastMessage.name,
-            classname: type === 'error' ? 'bg-danger text-light' : 'bg-info text-light',
-            delay: toastMessage.duration,
-        });
-        this._toastService.add(toast);
-
-        if (type === 'error') {
-            console.error(toastMessage.name, ':', toastMessage.message);
-        } else {
-            console.info(toastMessage.name, ':', toastMessage.message);
-        }
+        this._toastService.showMessage(toastMessage, type);
     }
 
     /**
-     * Private method: _runQuery
+     * Private method: _runQuery.
      *
-     * It runs a requested query via the SparqlQueryService and shows the performed query
-     * (completed with missing prefix declarations) in the editor, unless the run has been cancelled.
-     * On errors, it shows a toast message and returns a run with an empty result of the requested query type.
+     * It runs a requested query and shows the completed query in the editor (unless cancelled).
+     * On errors, it shows a toast and returns an empty result.
      *
      * @param {SparqlQueryRequest} request The given query request.
      * @param {AbortSignal} abortSignal The given abort signal of the run.
@@ -310,120 +287,14 @@ export class GraphVisualizerComponent {
         } catch (err) {
             console.error('#runQuery got error:', err);
 
-            if (err instanceof Error) {
-                if (err.message.includes('undefined')) {
-                    this.showToastMessage(
-                        new ToastMessage(err.name, 'The query did not return any results.', 5000),
-                        'error'
-                    );
-                }
-            }
-
             const errorTitle = err instanceof Error ? err.name : 'Query Error';
-            const errorMessage = this._getErrorMessage(err);
-
-            this.showToastMessage(new ToastMessage(errorTitle, errorMessage, 5000), 'error');
+            this.showToastMessage(new ToastMessage(errorTitle, ERROR_UTILS.getErrorMessage(err), 5000), 'error');
 
             return {
                 query: request.queryString,
-                result: this._emptyResult(request.queryType),
+                result: GRAPH_QUERY_UTILS.emptyResult(request.queryType),
                 durationMs: performance.now() - startTime,
             };
         }
-    }
-
-    /**
-     * Private method: _emptyResult
-     *
-     * It creates an empty result of a given query type.
-     *
-     * @param {GraphSparqlQueryType} queryType The given query type.
-     * @returns {SparqlResult} The empty result.
-     */
-    private _emptyResult(queryType: GraphSparqlQueryType): SparqlResult {
-        switch (queryType) {
-            case 'construct':
-                return { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES };
-            case 'select':
-                return { kind: 'select', variables: [], bindings: [], prefixes: DEFAULT_PREFIXES };
-            default:
-                return { kind: 'unsupported', queryType };
-        }
-    }
-
-    /**
-     * Private method: _getErrorMessage.
-     *
-     * It retrieves the message to display on error.
-     *
-     * @param {unknown} err The given unknown error.
-     * @returns {string} The error message.
-     */
-    private _getErrorMessage(err: unknown): string {
-        if (err instanceof Error) {
-            return err.message;
-        }
-
-        if (err && typeof err === 'object') {
-            const anyObjectErr = err as Record<string, unknown>;
-
-            if (typeof anyObjectErr['message'] === 'string' && anyObjectErr['message']) {
-                return anyObjectErr['message'];
-            }
-            if (typeof anyObjectErr['statusText'] === 'string' && anyObjectErr['statusText']) {
-                return anyObjectErr['statusText'];
-            }
-            try {
-                return JSON.stringify(anyObjectErr);
-            } catch {
-                const objectKeys = Object.keys(anyObjectErr).join(', ');
-                return `[Complex Error Object with keys: ${objectKeys}]`;
-            }
-        }
-
-        if (typeof err === 'string' || typeof err === 'number' || typeof err === 'boolean') {
-            return `${err}`;
-        }
-
-        return 'Unknown error format';
-    }
-
-    /**
-     * Private method: _initialQuery.
-     *
-     * It gets the initial query (the first query of a given query list)
-     * with the query type derived from its query string.
-     *
-     * @param {GraphSparqlQuery[]} queryList The given query list.
-     * @returns {GraphSparqlQuery} The initial query.
-     */
-    private _initialQuery(queryList: GraphSparqlQuery[]): GraphSparqlQuery {
-        return this._withQueryType(queryList[0] ?? new GraphSparqlQuery());
-    }
-
-    /**
-     * Private method: _toQueryRequest.
-     *
-     * It creates a query request from a given query and given triples.
-     *
-     * @param {GraphSparqlQuery} query The given query.
-     * @param {string} triples The given triples.
-     * @returns {SparqlQueryRequest} The query request.
-     */
-    private _toQueryRequest(query: GraphSparqlQuery, triples: string): SparqlQueryRequest {
-        return { queryType: query.queryType, queryString: query.queryString, triples };
-    }
-
-    /**
-     * Private method: _withQueryType.
-     *
-     * It creates a copy of a given query
-     * with the query type derived from its query string.
-     *
-     * @param {GraphSparqlQuery} query The given query.
-     * @returns {GraphSparqlQuery} The query with its query type.
-     */
-    private _withQueryType(query: GraphSparqlQuery): GraphSparqlQuery {
-        return { ...query, queryType: SPARQL_UTILS.getQueryType(query.queryString) };
     }
 }

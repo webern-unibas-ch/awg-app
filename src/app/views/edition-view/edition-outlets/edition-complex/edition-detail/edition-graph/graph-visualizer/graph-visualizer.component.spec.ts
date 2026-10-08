@@ -35,6 +35,7 @@ import { GraphResultsConstructComponent } from './results/construct/graph-result
 import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
 import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
 import { SparqlQueryService } from './services/sparql-query.service';
+import { ERROR_UTILS } from './utils/error.utils';
 import { DEFAULT_PREFIXES } from './utils/prefix.utils';
 import { SPARQL_UTILS } from './utils/sparql.utils';
 
@@ -697,44 +698,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectToEqual(component.query(), expectedGraphRDFData.queryList[1]);
                 });
 
-                describe('... should set query as is, and not find from queryList, if', () => {
-                    it('... only queryLabel is known but not queryType', () => {
-                        const changedQuery: GraphSparqlQuery = {
-                            ...expectedGraphRDFData.queryList[1],
-                            queryType: 'select',
-                            queryString: expectedGraphRDFData.queryList[2].queryString,
-                        };
-
-                        component.resetQuery(changedQuery);
-
-                        expectToEqual(component.query(), changedQuery);
-                    });
-
-                    it('... only queryType is known but not queryLabel', () => {
-                        const changedQuery: GraphSparqlQuery = {
-                            ...expectedGraphRDFData.queryList[1],
-                            queryLabel: 'select all tests',
-                        };
-
-                        component.resetQuery(changedQuery);
-
-                        expectToEqual(component.query(), changedQuery);
-                    });
-
-                    it('... given query is not in queryList', () => {
-                        const changedQuery: GraphSparqlQuery = {
-                            queryType: 'select',
-                            queryLabel: 'Test Query 4',
-                            queryString:
-                                'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test4 ?has ?success4 . }',
-                        };
-
-                        component.resetQuery(changedQuery);
-
-                        expectToEqual(component.query(), changedQuery);
-                    });
-                });
-
                 it('... should set initial query (queryList[0]) if no query is provided', () => {
                     component.query.set({ ...expectedGraphRDFData.queryList[1] });
 
@@ -835,116 +798,30 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             describe('#showToastMessage()', () => {
+                let showMessageSpy: Spy;
+
                 beforeEach(() => {
-                    consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                    showMessageSpy = vi.spyOn(toastService, 'showMessage').mockImplementation(() => {});
                 });
 
                 it('... should have a method `showToastMessage`', () => {
                     expect(component.showToastMessage).toBeDefined();
                 });
 
-                it('... should do nothing if no toastMessage.message is provided', () => {
-                    const toastMessage = new ToastMessage('Error1', '', 500);
+                it('... should trigger `toastService.showMessage` with the given toast message and type', () => {
+                    const toastMessage = new ToastMessage('Error1', 'error message', 500);
 
                     component.showToastMessage(toastMessage, 'error');
 
-                    expectSpyCall(toastServiceAddSpy, 0);
-                    expectSpyCall(consoleSpy, 0);
+                    expectSpyCall(showMessageSpy, 1, [toastMessage, 'error']);
                 });
 
                 it('... should use "info" as default type if not provided', () => {
-                    const toastMessage = new ToastMessage('DefaultInfo', 'Default info message', 2000);
-                    const expectedToast = new Toast(toastMessage.message, {
-                        header: toastMessage.name,
-                        classname: 'bg-info text-light',
-                        delay: toastMessage.duration,
-                    });
-                    consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
+                    const toastMessage = new ToastMessage('Info1', 'info message', 500);
 
                     component.showToastMessage(toastMessage);
 
-                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                    expectSpyCall(consoleSpy, 1, ['DefaultInfo', ':', 'Default info message']);
-                });
-
-                describe('... on error message', () => {
-                    it('... should log the provided name and error message to console', () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message', 500);
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
-                    });
-
-                    it('... should trigger toast service and add an error toast message', () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message', 500);
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-danger text-light',
-                            delay: toastMessage.duration,
-                        });
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                        expectToEqual(toastService.toasts(), [expectedToast]);
-                    });
-
-                    it('... should set a duration of 3000 for the error toast message if delay is not given', () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message');
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-danger text-light',
-                            delay: 3000,
-                        });
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                        expectToEqual(toastService.toasts(), [expectedToast]);
-                    });
-                });
-
-                describe('... on info message', () => {
-                    beforeEach(() => {
-                        consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
-                    });
-
-                    it('... should log the provided name and info message to console', () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message', 500);
-
-                        component.showToastMessage(toastMessage, 'info');
-
-                        expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
-                    });
-
-                    it('... should trigger toast service and add an info toast message', () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message', 500);
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-info text-light',
-                            delay: toastMessage.duration,
-                        });
-
-                        component.showToastMessage(toastMessage, 'info');
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                        expectToEqual(toastService.toasts(), [expectedToast]);
-                    });
-
-                    it('... should set a duration of 3000 for the info toast message if delay is not given', () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message');
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-info text-light',
-                            delay: 3000,
-                        });
-
-                        component.showToastMessage(toastMessage, 'info');
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                        expectToEqual(toastService.toasts(), [expectedToast]);
-                    });
+                    expectSpyCall(showMessageSpy, 1, [toastMessage, 'info']);
                 });
             });
 
@@ -1125,11 +1002,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         expectToEqual(consoleSpy.mock.calls[1], ['Query Error', ':', expectedError.statusText]);
                     });
 
-                    it('... should delegate error parsing to _getErrorMessage and trigger showToastMessage', async () => {
+                    it('... should trigger `ERROR_UTILS.getErrorMessage` and show a single error toast', async () => {
                         const error = new Error('some error');
                         const expectedParsedMessage = 'Parsed Error Message Via Helper';
                         const getErrorMessageSpy = vi
-                            .spyOn(component, '_getErrorMessage' as any)
+                            .spyOn(ERROR_UTILS, 'getErrorMessage')
                             .mockReturnValue(expectedParsedMessage);
                         serviceRunSpy.mockRejectedValue(error);
 
@@ -1138,24 +1015,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         expectSpyCall(getErrorMessageSpy, 1, error);
                         expectSpyCall(showToastMessageSpy, 1, [
                             new ToastMessage('Error', expectedParsedMessage, 5000),
-                            'error',
-                        ]);
-                    });
-
-                    it('... should trigger a special toast message if the error message contains `undefined`', async () => {
-                        const specialError = new Error('The query returned an undefined result.');
-                        specialError.name = 'Query Error';
-                        serviceRunSpy.mockRejectedValue(specialError);
-
-                        await component['_runQuery'](expectedRequest, new AbortController().signal);
-
-                        expectSpyCall(showToastMessageSpy, 2);
-                        expectToEqual(showToastMessageSpy.mock.calls[0], [
-                            new ToastMessage('Query Error', 'The query did not return any results.', 5000),
-                            'error',
-                        ]);
-                        expectToEqual(showToastMessageSpy.mock.calls[1], [
-                            new ToastMessage('Query Error', 'The query returned an undefined result.', 5000),
                             'error',
                         ]);
                     });
@@ -1172,178 +1031,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             prefixes: DEFAULT_PREFIXES,
                         });
                     });
-                });
-            });
-
-            describe('#_emptyResult()', () => {
-                it('... should have a method `_emptyResult`', () => {
-                    expect(component['_emptyResult']).toBeDefined();
-                });
-
-                it('... should hold an empty construct result for construct queries', () => {
-                    expectToEqual(component['_emptyResult']('construct'), {
-                        kind: 'construct',
-                        quads: [],
-                        prefixes: DEFAULT_PREFIXES,
-                    });
-                });
-
-                it('... should hold an empty select result for select queries', () => {
-                    expectToEqual(component['_emptyResult']('select'), {
-                        kind: 'select',
-                        variables: [],
-                        bindings: [],
-                        prefixes: DEFAULT_PREFIXES,
-                    });
-                });
-
-                it('... should hold an unsupported result for other query types', () => {
-                    expectToEqual(component['_emptyResult']('ask'), { kind: 'unsupported', queryType: 'ask' });
-                    expectToEqual(component['_emptyResult'](null), { kind: 'unsupported', queryType: null });
-                });
-            });
-
-            describe('#_getErrorMessage()', () => {
-                it('... should have a method `_getErrorMessage`', () => {
-                    expect(component['_getErrorMessage']).toBeDefined();
-                });
-
-                describe('... should parse error messages correctly for various error types', () => {
-                    it.each([
-                        {
-                            desc: 'a structured error object (Error)',
-                            error: (() => {
-                                const err = new Error('error message');
-                                err.name = 'Error';
-                                return err;
-                            })(),
-                            expectedMessage: 'error message',
-                        },
-                        {
-                            desc: 'a structured error object (Error) with specific message',
-                            error: (() => {
-                                const err = new Error('error message undefined');
-                                err.name = 'Error';
-                                return err;
-                            })(),
-                            expectedMessage: 'error message undefined',
-                        },
-                        {
-                            desc: 'a plain object with a `message` property',
-                            error: { status: 400, message: 'Custom API error message' },
-                            expectedMessage: 'Custom API error message',
-                        },
-                        {
-                            desc: 'a plain object with a `statusText` property (like HTTP errors)',
-                            error: { status: 404, statusText: 'Not Found' },
-                            expectedMessage: 'Not Found',
-                        },
-                        {
-                            desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
-                            error: { errorCode: 999, fatal: true },
-                            expectedMessage: '{"errorCode":999,"fatal":true}',
-                        },
-                        {
-                            desc: 'an object where `JSON.stringify` returns undefined',
-                            error: {
-                                toJSON: (): undefined => undefined,
-                            },
-                            expectedMessage: undefined,
-                        },
-                        {
-                            desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
-                            error: (() => {
-                                const circularObj: any = { foo: 'bar' };
-                                circularObj.self = circularObj;
-                                return circularObj;
-                            })(),
-                            expectedMessage: '[Complex Error Object with keys: foo, self]',
-                        },
-                        {
-                            desc: 'a primitive string error',
-                            error: 'Fatal Store Crash',
-                            expectedMessage: 'Fatal Store Crash',
-                        },
-                        {
-                            desc: 'a primitive number error',
-                            error: 500,
-                            expectedMessage: '500',
-                        },
-                        {
-                            desc: 'a primitive boolean error',
-                            error: false,
-                            expectedMessage: 'false',
-                        },
-                        {
-                            desc: 'an unknown format (like null)',
-                            error: null as any,
-                            expectedMessage: 'Unknown error format',
-                        },
-                        {
-                            desc: 'an unknown format (like undefined)',
-                            error: undefined as any,
-                            expectedMessage: 'Unknown error format',
-                        },
-                    ])('... with $desc', ({ error, expectedMessage }) => {
-                        const result = component['_getErrorMessage'](error);
-
-                        if (expectedMessage === undefined) {
-                            expect(result).toBeUndefined();
-                        } else {
-                            expectToBe(result, expectedMessage);
-                        }
-                    });
-                });
-            });
-
-            describe('#_initialQuery()', () => {
-                it('... should have a method `_initialQuery`', () => {
-                    expect(component['_initialQuery']).toBeDefined();
-                });
-
-                it('... should hold the first query of the given query list with its derived query type', () => {
-                    const queryList: GraphSparqlQuery[] = [
-                        { ...expectedGraphRDFData.queryList[2], queryType: null },
-                        expectedGraphRDFData.queryList[0],
-                    ];
-
-                    expectToEqual(component['_initialQuery'](queryList), expectedGraphRDFData.queryList[2]);
-                });
-
-                it('... should hold an empty query for an empty query list', () => {
-                    expectToEqual(component['_initialQuery']([]), new GraphSparqlQuery());
-                });
-            });
-
-            describe('#_toQueryRequest()', () => {
-                it('... should have a method `_toQueryRequest`', () => {
-                    expect(component['_toQueryRequest']).toBeDefined();
-                });
-
-                it('... should hold the query request of the given query and triples', () => {
-                    const query = expectedGraphRDFData.queryList[2];
-
-                    expectToEqual(component['_toQueryRequest'](query, expectedChangedTriples), {
-                        queryType: query.queryType,
-                        queryString: query.queryString,
-                        triples: expectedChangedTriples,
-                    });
-                });
-            });
-
-            describe('#_withQueryType()', () => {
-                it('... should have a method `_withQueryType`', () => {
-                    expect(component['_withQueryType']).toBeDefined();
-                });
-
-                it('... should hold a copy of the given query with the query type from its query string', () => {
-                    const query: GraphSparqlQuery = { ...expectedGraphRDFData.queryList[2], queryType: 'construct' };
-
-                    const queryWithType = component['_withQueryType'](query);
-
-                    expectToEqual(queryWithType, { ...query, queryType: 'select' });
-                    expect(queryWithType).not.toBe(query);
-                    expectToBe(query.queryType, 'construct');
                 });
             });
         });
