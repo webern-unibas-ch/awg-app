@@ -30,6 +30,19 @@ export function stripNonCode(query: string): string {
 }
 
 /**
+ * Utils method: stripCommentsAndLiterals.
+ *
+ * It replaces string literals and comments of a given SPARQL query with spaces,
+ * but keeps its IRIs (e.g., to analyze prefix declarations without false matches).
+ *
+ * @param {string} query The given SPARQL query.
+ * @returns {string} The query without string literals and comments.
+ */
+export function stripCommentsAndLiterals(query: string): string {
+    return query.replaceAll(NON_CODE_REGEX, match => (match.startsWith('<') ? match : ' '));
+}
+
+/**
  * Utils method: getQueryType.
  *
  * It gets the type of a given SPARQL query from its first query form keyword,
@@ -57,5 +70,6 @@ export function getQueryType(query: string): GraphQueryType {
  */
 export const SPARQL_UTILS = {
     getQueryType,
+    stripCommentsAndLiterals,
     stripNonCode,
 } as const;

@@ -118,6 +118,22 @@ describe('PrefixUtils (DONE)', () => {
             it('... should hold an empty map without declarations', () => {
                 expectToEqual(extractSparqlPrefixes('SELECT * WHERE { ?s ?p ?o }'), {});
             });
+
+            it('... should ignore commented-out declarations', () => {
+                const query = `# PREFIX ex: <http://example.org/>\nPREFIX awg: <${AWG}>\nSELECT * WHERE { ?s ?p ?o }`;
+
+                expectToEqual(extractSparqlPrefixes(query), { awg: AWG });
+            });
+
+            it('... should ignore declarations within string literals', () => {
+                const query = `SELECT * WHERE { ?s ?p "PREFIX ex: <http://example.org/>" , 'PREFIX ex2: <http://example.org/2>' }`;
+
+                expectToEqual(extractSparqlPrefixes(query), {});
+            });
+
+            it('... should extract declarations with a `#` in the namespace IRI', () => {
+                expectToEqual(extractSparqlPrefixes(`PREFIX awg: <${AWG}>`), { awg: AWG });
+            });
         });
 
         describe('#findUsedPrefixes()', () => {
@@ -160,6 +176,15 @@ describe('PrefixUtils (DONE)', () => {
         describe('#addMissingPrefixes()', () => {
             it('... should have a method `addMissingPrefixes`', () => {
                 expect(addMissingPrefixes).toBeDefined();
+            });
+
+            it('... should prepend the declaration of a used prefix that is only declared in a comment', () => {
+                const query = `# PREFIX awg: <http://example.org/old#>\nSELECT * WHERE { ?s a awg:Sketch }`;
+
+                const result = addMissingPrefixes(query, DEFAULT_PREFIXES);
+
+                expectToBe(result.query, `PREFIX awg: <${AWG}>\n${query}`);
+                expectToEqual(result.unknownPrefixes, []);
             });
 
             it('... should prepend the declarations of used, but undeclared known prefixes', () => {

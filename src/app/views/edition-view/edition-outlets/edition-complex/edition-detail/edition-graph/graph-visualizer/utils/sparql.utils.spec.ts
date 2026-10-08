@@ -2,12 +2,12 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { getQueryType, SPARQL_UTILS, stripNonCode } from './sparql.utils';
+import { getQueryType, SPARQL_UTILS, stripCommentsAndLiterals, stripNonCode } from './sparql.utils';
 
 describe('SparqlUtils (DONE)', () => {
     describe('SPARQL_UTILS', () => {
         it('... should reference all sparql utils methods', () => {
-            expectToEqual(SPARQL_UTILS, { getQueryType, stripNonCode });
+            expectToEqual(SPARQL_UTILS, { getQueryType, stripCommentsAndLiterals, stripNonCode });
         });
     });
 
@@ -39,6 +39,31 @@ describe('SparqlUtils (DONE)', () => {
 
             it('... should keep code without IRIs, strings and comments', () => {
                 expectToBe(stripNonCode('SELECT ?s WHERE { ?s a awg:Sketch }'), 'SELECT ?s WHERE { ?s a awg:Sketch }');
+            });
+        });
+
+        describe('#stripCommentsAndLiterals()', () => {
+            it('... should have a method `stripCommentsAndLiterals`', () => {
+                expect(stripCommentsAndLiterals).toBeDefined();
+            });
+
+            it('... should keep IRIs', () => {
+                expectToBe(stripCommentsAndLiterals('?s <http://example.org/p> ?o'), '?s <http://example.org/p> ?o');
+            });
+
+            it('... should replace double- and single-quoted string literals with a space', () => {
+                expectToBe(stripCommentsAndLiterals(`?s rdfs:label "a:b" , 'c:d'`), '?s rdfs:label   ,  ');
+            });
+
+            it('... should replace comments up to the end of the line with a space', () => {
+                expectToBe(stripCommentsAndLiterals('# PREFIX ex: <http://example.org/>\nSELECT ?s'), ' \nSELECT ?s');
+            });
+
+            it('... should not start a comment with a `#` within an IRI or a string', () => {
+                expectToBe(
+                    stripCommentsAndLiterals('<http://example.org/onto#x> "#tag" ex:p'),
+                    '<http://example.org/onto#x>   ex:p'
+                );
             });
         });
 

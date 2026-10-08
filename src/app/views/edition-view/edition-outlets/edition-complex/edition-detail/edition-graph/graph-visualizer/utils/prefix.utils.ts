@@ -78,7 +78,8 @@ export function compactIri(iri: string, prefixes: PrefixMap): string {
 /**
  * Utils method: extractSparqlPrefixes.
  *
- * It extracts the prefix declarations of a given SPARQL query.
+ * It extracts the prefix declarations of a given SPARQL query,
+ * ignoring declarations within comments and string literals.
  *
  * @param {string} query The given SPARQL query.
  * @returns {PrefixMap} The declared prefixes.
@@ -86,7 +87,9 @@ export function compactIri(iri: string, prefixes: PrefixMap): string {
 export function extractSparqlPrefixes(query: string): PrefixMap {
     const prefixes: Record<string, string> = {};
 
-    for (const [, prefix = '', namespace] of query.matchAll(PREFIX_DECLARATION_REGEX)) {
+    const code = SPARQL_UTILS.stripCommentsAndLiterals(query);
+
+    for (const [, prefix = '', namespace] of code.matchAll(PREFIX_DECLARATION_REGEX)) {
         prefixes[prefix] = namespace;
     }
 
