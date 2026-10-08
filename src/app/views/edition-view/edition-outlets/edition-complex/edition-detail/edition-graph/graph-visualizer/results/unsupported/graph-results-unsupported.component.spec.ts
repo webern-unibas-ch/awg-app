@@ -243,8 +243,8 @@ describe('GraphResultsUnsupportedComponent (DONE)', () => {
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
-                    // COUNT
-                    newQueryType = 'count';
+                    // UPDATE
+                    newQueryType = 'update';
                     fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 
@@ -401,8 +401,8 @@ describe('GraphResultsUnsupportedComponent (DONE)', () => {
 
                     expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
-                    // COUNT
-                    newQueryType = 'count';
+                    // UPDATE
+                    newQueryType = 'update';
                     fixture.componentRef.setInput('queryType', newQueryType);
                     await detectChangesOnPush(fixture);
 

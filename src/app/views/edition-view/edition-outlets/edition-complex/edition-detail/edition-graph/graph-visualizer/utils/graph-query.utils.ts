@@ -1,4 +1,4 @@
-import { GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery, GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { SparqlResult } from '../models/sparql-result.model';
 import { DEFAULT_PREFIXES } from './prefix.utils';
@@ -10,11 +10,11 @@ import { SPARQL_UTILS } from './sparql.utils';
  * It gets a copy of the initial query (the first query of a given query list)
  * with the query type derived from its query string.
  *
- * @param {GraphSparqlQuery[]} queryList The given query list.
- * @returns {GraphSparqlQuery} The initial query.
+ * @param {GraphQuery[]} queryList The given query list.
+ * @returns {GraphQuery} The initial query.
  */
-export function initialQuery(queryList: GraphSparqlQuery[]): GraphSparqlQuery {
-    const query = queryList[0] ?? new GraphSparqlQuery();
+export function initialQuery(queryList: GraphQuery[]): GraphQuery {
+    const query = queryList[0] ?? new GraphQuery();
     return { ...query, queryType: SPARQL_UTILS.getQueryType(query.queryString) };
 }
 
@@ -25,11 +25,11 @@ export function initialQuery(queryList: GraphSparqlQuery[]): GraphSparqlQuery {
  * If the given query is not in the list, it is returned as is;
  * if no query is given, the first query of the list is returned.
  *
- * @param {GraphSparqlQuery[]} queryList The given query list.
- * @param {GraphSparqlQuery} [query] The optional given query.
- * @returns {GraphSparqlQuery} The found query.
+ * @param {GraphQuery[]} queryList The given query list.
+ * @param {GraphQuery} [query] The optional given query.
+ * @returns {GraphQuery} The found query.
  */
-export function findQuery(queryList: GraphSparqlQuery[], query?: GraphSparqlQuery): GraphSparqlQuery {
+export function findQuery(queryList: GraphQuery[], query?: GraphQuery): GraphQuery {
     if (!query) {
         return queryList[0];
     }
@@ -47,10 +47,10 @@ export function findQuery(queryList: GraphSparqlQuery[], query?: GraphSparqlQuer
  * It checks if queries of a given query type can be run
  * (only construct and select queries for now).
  *
- * @param {GraphSparqlQueryType} queryType The given query type.
+ * @param {GraphQueryType} queryType The given query type.
  * @returns {boolean} The boolean value of the check result.
  */
-export function isRunnableQueryType(queryType: GraphSparqlQueryType): boolean {
+export function isRunnableQueryType(queryType: GraphQueryType): boolean {
     return queryType === 'construct' || queryType === 'select';
 }
 
@@ -59,10 +59,10 @@ export function isRunnableQueryType(queryType: GraphSparqlQueryType): boolean {
  *
  * It creates an empty result of a given query type.
  *
- * @param {GraphSparqlQueryType} queryType The given query type.
+ * @param {GraphQueryType} queryType The given query type.
  * @returns {SparqlResult} The empty result.
  */
-export function emptyResult(queryType: GraphSparqlQueryType): SparqlResult {
+export function emptyResult(queryType: GraphQueryType): SparqlResult {
     switch (queryType) {
         case 'construct':
             return { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES };

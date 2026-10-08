@@ -1,4 +1,4 @@
-import { GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+import { GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 
 /**
  * Regex constant: NON_CODE_REGEX.
@@ -37,9 +37,9 @@ export function stripNonCode(query: string): string {
  * INSERT and DELETE are mapped to `update`.
  *
  * @param {string} query The given SPARQL query.
- * @returns {GraphSparqlQueryType} The type of the query, or null if none was found.
+ * @returns {GraphQueryType} The type of the query, or null if none was found.
  */
-export function getQueryType(query: string): GraphSparqlQueryType {
+export function getQueryType(query: string): GraphQueryType {
     const match = QUERY_FORM_REGEX.exec(stripNonCode(query));
     if (!match) {
         return null;
@@ -47,7 +47,7 @@ export function getQueryType(query: string): GraphSparqlQueryType {
 
     const keyword = match[1].toLowerCase();
 
-    return (keyword === 'insert' || keyword === 'delete' ? 'update' : keyword) as GraphSparqlQueryType;
+    return (keyword === 'insert' || keyword === 'delete' ? 'update' : keyword) as GraphQueryType;
 }
 
 /**

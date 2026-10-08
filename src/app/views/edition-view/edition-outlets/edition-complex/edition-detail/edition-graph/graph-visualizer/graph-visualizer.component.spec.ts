@@ -20,7 +20,7 @@ import { mockConsole } from '@testing/mock-helper';
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
-import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -83,7 +83,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
      *
      * It sets the query type of the current query (without running it) and awaits the changes.
      */
-    const setQueryType = async (queryType: GraphSparqlQuery['queryType']): Promise<void> => {
+    const setQueryType = async (queryType: GraphQuery['queryType']): Promise<void> => {
         component.query.set({ ...component.query(), queryType });
         await detectChangesOnPush(fixture);
     };
@@ -554,7 +554,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have linked signal `query` to hold the two-way bound query', () => {
-                    const changedQuery: GraphSparqlQuery = {
+                    const changedQuery: GraphQuery = {
                         ...expectedGraphRDFData.queryList[0],
                         queryString:
                             'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
@@ -736,7 +736,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should have linked signal `query` to hold a new query with the query type from the query string', () => {
-                    const previousQuery: GraphSparqlQuery = {
+                    const previousQuery: GraphQuery = {
                         ...expectedGraphRDFData.queryList[0],
                         queryString: expectedGraphRDFData.queryList[2].queryString,
                     };

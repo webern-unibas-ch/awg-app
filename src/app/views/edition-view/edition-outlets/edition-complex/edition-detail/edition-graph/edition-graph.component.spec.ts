@@ -31,7 +31,7 @@ import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button
 import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
-import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
+import { EditionComplex, Graph, GraphList, GraphRDFData, GraphQuery } from '@awg-views/edition-view/models';
 import {
     EditionDataAssetsError,
     EditionViewData,
@@ -509,7 +509,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         // No triples
                         graphWithoutRdfData.graph[0].rdfData = new GraphRDFData();
                         graphWithoutRdfData.graph[0].rdfData.triples = '';
-                        graphWithoutRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
+                        graphWithoutRdfData.graph[0].rdfData.queryList = [new GraphQuery()];
 
                         mockViewDataSignal.set(
                             createMockViewData(
@@ -538,7 +538,7 @@ describe('EditionGraphComponent (DONE)', () => {
                             graphWithRdfData = expectedGraphEmptyData;
                             graphWithRdfData.graph[0].rdfData = new GraphRDFData();
                             graphWithRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
-                            graphWithRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
+                            graphWithRdfData.graph[0].rdfData.queryList = [new GraphQuery()];
 
                             mockViewDataSignal.set(
                                 createMockViewData(

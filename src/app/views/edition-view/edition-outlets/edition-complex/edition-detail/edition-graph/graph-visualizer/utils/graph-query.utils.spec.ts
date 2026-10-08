@@ -2,13 +2,13 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { emptyResult, findQuery, GRAPH_QUERY_UTILS, initialQuery, isRunnableQueryType } from './graph-query.utils';
 import { DEFAULT_PREFIXES } from './prefix.utils';
 
 describe('graph-query.utils', () => {
-    let expectedQueryList: GraphSparqlQuery[];
+    let expectedQueryList: GraphQuery[];
 
     beforeEach(() => {
         expectedQueryList = [
@@ -50,13 +50,13 @@ describe('graph-query.utils', () => {
         });
 
         it('... should hold the first query of the given query list with its derived query type', () => {
-            const queryList: GraphSparqlQuery[] = [{ ...expectedQueryList[2], queryType: null }, expectedQueryList[0]];
+            const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: null }, expectedQueryList[0]];
 
             expectToEqual(initialQuery(queryList), expectedQueryList[2]);
         });
 
         it('... should hold a copy of the first query without changing the original query', () => {
-            const queryList: GraphSparqlQuery[] = [{ ...expectedQueryList[2], queryType: 'construct' }];
+            const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: 'construct' }];
 
             const query = initialQuery(queryList);
 
@@ -66,7 +66,7 @@ describe('graph-query.utils', () => {
         });
 
         it('... should hold an empty query for an empty query list', () => {
-            expectToEqual(initialQuery([]), new GraphSparqlQuery());
+            expectToEqual(initialQuery([]), new GraphQuery());
         });
     });
 
@@ -87,7 +87,7 @@ describe('graph-query.utils', () => {
 
         describe('... should hold the given query as is, if', () => {
             it('... only queryLabel is known but not queryType', () => {
-                const changedQuery: GraphSparqlQuery = {
+                const changedQuery: GraphQuery = {
                     ...expectedQueryList[1],
                     queryType: 'select',
                     queryString: expectedQueryList[2].queryString,
@@ -97,13 +97,13 @@ describe('graph-query.utils', () => {
             });
 
             it('... only queryType is known but not queryLabel', () => {
-                const changedQuery: GraphSparqlQuery = { ...expectedQueryList[1], queryLabel: 'select all tests' };
+                const changedQuery: GraphQuery = { ...expectedQueryList[1], queryLabel: 'select all tests' };
 
                 expectToBe(findQuery(expectedQueryList, changedQuery), changedQuery);
             });
 
             it('... given query is not in queryList', () => {
-                const changedQuery: GraphSparqlQuery = {
+                const changedQuery: GraphQuery = {
                     queryType: 'select',
                     queryLabel: 'Test Query 4',
                     queryString:

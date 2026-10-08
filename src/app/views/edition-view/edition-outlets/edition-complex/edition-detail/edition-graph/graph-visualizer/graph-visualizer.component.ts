@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -97,7 +97,7 @@ export class GraphVisualizerComponent {
      * It holds the query of the graph visualization
      * (reset to the first query of the query list whenever it changes).
      */
-    readonly query = linkedSignal<GraphSparqlQuery>(() => GRAPH_QUERY_UTILS.initialQuery(this.queryList()));
+    readonly query = linkedSignal<GraphQuery>(() => GRAPH_QUERY_UTILS.initialQuery(this.queryList()));
 
     /**
      * Readonly resource: queryRun.
@@ -177,10 +177,10 @@ export class GraphVisualizerComponent {
      * if it is known from the query list (or to the first query of the list
      * if no query is given), and performs it.
      *
-     * @param {GraphSparqlQuery} [query] The given sample query.
+     * @param {GraphQuery} [query] The given sample query.
      * @returns {void} Resets and performs the query.
      */
-    resetQuery(query?: GraphSparqlQuery): void {
+    resetQuery(query?: GraphQuery): void {
         const queryList = this.queryList();
         if (!queryList.length) {
             return;

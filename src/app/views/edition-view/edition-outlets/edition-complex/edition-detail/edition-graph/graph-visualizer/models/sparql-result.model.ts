@@ -1,6 +1,6 @@
 import type { Quad } from '@rdfjs/types';
 
-import { GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery, GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 
 import { PrefixMap, SparqlBinding } from './rdf.model';
 
@@ -67,7 +67,7 @@ export interface SparqlUnsupportedResult {
     /**
      * The type of the unsupported query.
      */
-    readonly queryType: GraphSparqlQueryType;
+    readonly queryType: GraphQueryType;
 }
 
 /**
@@ -79,26 +79,16 @@ export interface SparqlUnsupportedResult {
 export type SparqlResult = SparqlConstructResult | SparqlSelectResult | SparqlUnsupportedResult;
 
 /**
- * The SparqlQueryRequest interface.
+ * The SparqlQueryRequest type.
  *
  * It represents a request to run a SPARQL query against given triples.
  */
-export interface SparqlQueryRequest {
-    /**
-     * The type of the query.
-     */
-    readonly queryType: GraphSparqlQueryType;
-
-    /**
-     * The query string itself.
-     */
-    readonly queryString: string;
-
+export type SparqlQueryRequest = Readonly<Pick<GraphQuery, 'queryType' | 'queryString'>> & {
     /**
      * The triples to run the query against (as turtle string).
      */
     readonly triples: string;
-}
+};
 
 /**
  * The SparqlQueryRun interface.

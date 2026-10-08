@@ -5,7 +5,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import { expectToBe } from '@testing/expect-helper';
 import { createRealRdfstore, RDFSTORE_INTEGRATION_TIMEOUT_MS, setGlobalRdfstore } from '@testing/rdfstore-helper';
 
-import { GraphList, GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphList, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { RdfStoreGlobal } from '../rdf-store/rdf-store.model';
 import { DEFAULT_PREFIXES } from '../utils/prefix.utils';
@@ -21,7 +21,7 @@ describe(
 
         let realRdfstore: RdfStoreGlobal;
         let turtle: string;
-        let queryList: GraphSparqlQuery[];
+        let queryList: GraphQuery[];
 
         beforeAll(() => {
             realRdfstore = createRealRdfstore();

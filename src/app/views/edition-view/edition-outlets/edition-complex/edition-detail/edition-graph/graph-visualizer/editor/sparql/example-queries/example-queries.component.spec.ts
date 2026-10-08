@@ -19,7 +19,7 @@ import {
 import { ClickDirective } from '@awg-shared/click/click.directive';
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
-import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { ExampleQueriesComponent } from './example-queries.component';
 
@@ -28,11 +28,11 @@ describe('ExampleQueriesComponent (DONE)', () => {
     let fixture: ComponentFixture<ExampleQueriesComponent>;
     let compDe: DebugElement;
 
-    let expectedConstructQuery1: GraphSparqlQuery;
-    let expectedConstructQuery2: GraphSparqlQuery;
-    let expectedSelectQuery1: GraphSparqlQuery;
-    let expectedSelectQuery2: GraphSparqlQuery;
-    let expectedQueryList: GraphSparqlQuery[];
+    let expectedConstructQuery1: GraphQuery;
+    let expectedConstructQuery2: GraphQuery;
+    let expectedSelectQuery1: GraphQuery;
+    let expectedSelectQuery2: GraphQuery;
+    let expectedQueryList: GraphQuery[];
 
     let emitQuerySelectRequestSpy: Spy;
 
@@ -273,7 +273,7 @@ describe('ExampleQueriesComponent (DONE)', () => {
                     { desc: 'another label', query: { ...expectedConstructQuery1, queryLabel: 'Other' } },
                     {
                         desc: 'another type',
-                        query: { ...expectedConstructQuery1, queryType: 'select' } as GraphSparqlQuery,
+                        query: { ...expectedConstructQuery1, queryType: 'select' } as GraphQuery,
                     },
                 ])('... should be false for a query with $desc', ({ query }) => {
                     expectToBe(component.isActive(query), false);

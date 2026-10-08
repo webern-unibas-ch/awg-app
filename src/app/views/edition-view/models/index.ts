@@ -35,7 +35,7 @@ export {
 } from './edition-svg-overlay.model';
 export { EditionSvgSheet, EditionSvgSheetsList } from './edition-svg-sheets.model';
 export { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioDimensions, FolioSegment } from './folio.model';
-export { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
+export { Graph, GraphList, GraphRDFData, GraphQuery } from './graph.model';
 export { Intro, IntroBlock, IntroList } from './intro.model';
 export { Preface, PrefaceList } from './preface.model';
 export { Rowtables, RowtablesList } from './rowtables.model';

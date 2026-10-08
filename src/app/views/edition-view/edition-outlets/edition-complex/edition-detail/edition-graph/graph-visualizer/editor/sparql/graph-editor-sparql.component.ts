@@ -11,7 +11,7 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 
-import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
@@ -41,14 +41,14 @@ export class GraphEditorSparqlComponent {
      *
      * It holds the list of precomposed SPARQL queries.
      */
-    readonly queryList = input<GraphSparqlQuery[]>([]);
+    readonly queryList = input<GraphQuery[]>([]);
 
     /**
      * Model signal: query.
      *
      * It holds the SPARQL query (two-way bound with the editor).
      */
-    readonly query = model<GraphSparqlQuery>(new GraphSparqlQuery());
+    readonly query = model<GraphQuery>(new GraphQuery());
 
     /**
      * Readonly input signal: isFullscreenMode.
@@ -77,7 +77,7 @@ export class GraphEditorSparqlComponent {
      *
      * It emits a request to reset a given query to its initial state.
      */
-    readonly resetQueryRequest = output<GraphSparqlQuery>();
+    readonly resetQueryRequest = output<GraphQuery>();
 
     /**
      * Readonly variable: cmSparqlMode.
@@ -177,11 +177,11 @@ export class GraphEditorSparqlComponent {
      *
      * It emits a given query to the {@link resetQueryRequest}.
      *
-     * @param {GraphSparqlQuery} query The given query.
+     * @param {GraphQuery} query The given query.
      *
      * @returns {void} Triggers the request.
      */
-    resetQuery(query: GraphSparqlQuery): void {
+    resetQuery(query: GraphQuery): void {
         this.resetQueryRequest.emit(query);
     }
 
@@ -190,12 +190,12 @@ export class GraphEditorSparqlComponent {
      *
      * It switches the type and string of a given query according to a given view type.
      *
-     * @param {GraphSparqlQuery} query The given query.
+     * @param {GraphQuery} query The given query.
      * @param {ViewHandleTypes} viewType The given view type.
      *
-     * @returns {GraphSparqlQuery} The switched query (or the given query if nothing is to switch).
+     * @returns {GraphQuery} The switched query (or the given query if nothing is to switch).
      */
-    switchQueryType(query: GraphSparqlQuery, viewType: ViewHandleTypes): GraphSparqlQuery {
+    switchQueryType(query: GraphQuery, viewType: ViewHandleTypes): GraphQuery {
         switch (viewType) {
             case ViewHandleTypes.TABLE: {
                 if (query.queryType === 'construct' && query.queryString.includes('CONSTRUCT')) {

@@ -6,7 +6,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import { ClickDirective } from '@awg-shared/click/click.directive';
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
-import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 /**
  * The ExampleQueries component.
@@ -27,21 +27,21 @@ export class ExampleQueriesComponent {
      *
      * It holds the list of example queries.
      */
-    readonly queryList = input.required<GraphSparqlQuery[]>();
+    readonly queryList = input.required<GraphQuery[]>();
 
     /**
      * Readonly input signal: activeQuery.
      *
      * It holds the currently active query.
      */
-    readonly activeQuery = input<GraphSparqlQuery>();
+    readonly activeQuery = input<GraphQuery>();
 
     /**
      * Readonly output signal: querySelectRequest.
      *
      * It emits the example query the user selected.
      */
-    readonly querySelectRequest = output<GraphSparqlQuery>();
+    readonly querySelectRequest = output<GraphQuery>();
 
     /**
      * Readonly computed signal: constructQueries.
@@ -69,10 +69,10 @@ export class ExampleQueriesComponent {
      *
      * It checks if a given query is the active query (by label and type).
      *
-     * @param {GraphSparqlQuery} query The given query.
+     * @param {GraphQuery} query The given query.
      * @returns {boolean} True if the query is the active query.
      */
-    isActive(query: GraphSparqlQuery): boolean {
+    isActive(query: GraphQuery): boolean {
         const activeQuery = this.activeQuery();
         return (
             !!activeQuery && query.queryLabel === activeQuery.queryLabel && query.queryType === activeQuery.queryType

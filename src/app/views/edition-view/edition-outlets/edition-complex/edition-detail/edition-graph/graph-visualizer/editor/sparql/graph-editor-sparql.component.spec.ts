@@ -25,7 +25,7 @@ import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
-import { GraphSparqlQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
@@ -36,10 +36,10 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
     let fixture: ComponentFixture<GraphEditorSparqlComponent>;
     let compDe: DebugElement;
 
-    let expectedConstructQuery1: GraphSparqlQuery;
-    let expectedConstructQuery2: GraphSparqlQuery;
-    let expectedSelectQuery1: GraphSparqlQuery;
-    let expectedQueryList: GraphSparqlQuery[];
+    let expectedConstructQuery1: GraphQuery;
+    let expectedConstructQuery2: GraphQuery;
+    let expectedSelectQuery1: GraphQuery;
+    let expectedQueryList: GraphQuery[];
     let expectedIsFullscreen: boolean;
     let expectedViewHandles: ViewHandle[];
 
@@ -127,7 +127,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
 
         it('... should have model signal `query` to hold an empty query initially', () => {
             expectToBe(isSignal(component.query), true);
-            expectToEqual(component.query(), new GraphSparqlQuery());
+            expectToEqual(component.query(), new GraphQuery());
         });
 
         it('... should have input signal `isFullscreenMode` to hold false initially', () => {
@@ -855,7 +855,7 @@ describe('GraphEditorSparqlComponent (DONE)', () => {
                         query: { queryType: 'construct', queryLabel: 'Q', queryString: 'CONSTRUCT\nWHERE {}' },
                         viewType: ViewHandleTypes.GRID,
                     },
-                ] as { desc: string; query: GraphSparqlQuery; viewType: ViewHandleTypes }[])(
+                ] as { desc: string; query: GraphQuery; viewType: ViewHandleTypes }[])(
                     '... should keep $desc unchanged',
                     ({ query, viewType }) => {
                         expectToBe(component.switchQueryType(query, viewType), query);
