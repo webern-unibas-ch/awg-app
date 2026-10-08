@@ -1,6 +1,8 @@
 <svg
     #svg
     class="awg-force-graph-svg"
+    role="group"
+    [attr.aria-label]="ariaLabel()"
     awgSvgZoom
     [zoomConfig]="zoomConfig()"
     [zoomTarget]="zoomGroup"

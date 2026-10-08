@@ -155,6 +155,21 @@ describe('ForceGraphDrawingService (DONE)', () => {
                 );
             });
 
+            it('... should expose the circles as images with their label as title', () => {
+                render();
+
+                const circleEls = getElements<SVGCircleElement>('g.nodes > circle');
+
+                circleEls.forEach(el => {
+                    expectToBe(el.getAttribute('role'), 'img');
+                    expectToBe(el.getAttribute('tabindex'), null);
+                });
+                expectToEqual(
+                    circleEls.map(el => el.querySelector('title')?.textContent),
+                    expectedNodes.map(node => node.label)
+                );
+            });
+
             it('... should label the nodes with their short name', () => {
                 render();
 

@@ -220,14 +220,15 @@ export class ForceGraphDrawingService {
      * Private method: _drawNodes.
      *
      * It draws a circle for each of the given simulation nodes,
-     * with css class and radius according to the kind of its graph node.
+     * with css class and radius by the kind of its graph node,
+     * and its label as accessible title (no tab stop).
      *
      * @param {D3Selection} parentSelection The given parent selection.
      * @param {GraphSimNode[]} graphSimNodes The given simulation nodes of the graph nodes.
      * @returns {D3Selection} The selection of the drawn nodes.
      */
     private _drawNodes(parentSelection: D3Selection, graphSimNodes: GraphSimNode[]): D3Selection {
-        return parentSelection
+        const nodes = parentSelection
             .append('g')
             .attr('class', 'nodes')
             .selectAll('.node')
@@ -236,7 +237,12 @@ export class ForceGraphDrawingService {
             .append('circle')
             .attr('class', (d: GraphSimNode) => FORCE_GRAPH_UTILS.nodeCssClass(d.graphNode.kind))
             .attr('id', (d: GraphSimNode) => d.graphNode.label)
-            .attr('r', (d: GraphSimNode) => d.r);
+            .attr('r', (d: GraphSimNode) => d.r)
+            .attr('role', 'img');
+
+        nodes.append('title').text((d: GraphSimNode) => d.graphNode.label);
+
+        return nodes;
     }
 
     /**

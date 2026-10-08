@@ -135,6 +135,17 @@ export class ForceGraphSvgComponent {
     });
 
     /**
+     * Readonly computed signal: ariaLabel.
+     *
+     * It holds the accessible name of the svg with the number of nodes and edges
+     * and a hint to the textual representations of the graph data.
+     */
+    readonly ariaLabel = computed<string>(() => {
+        const { nodes, edges } = this.resultGraph();
+        return `Graph mit ${nodes.length} Knoten und ${edges.length} Kanten. Eine textuelle Darstellung bieten die RDF-Triples und die Tabellenansicht von SPARQL-SELECT-Abfragen.`;
+    });
+
+    /**
      * Readonly computed signal: simulationData.
      *
      * It holds the data of the force simulation of the graph data.

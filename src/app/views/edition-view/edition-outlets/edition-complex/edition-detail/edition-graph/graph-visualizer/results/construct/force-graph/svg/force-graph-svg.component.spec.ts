@@ -198,6 +198,13 @@ describe('ForceGraphSvgComponent (DONE)', () => {
             expectToBe(component.zoomValue(), expectedZoomConfig.initial);
         });
 
+        it('... should have computed signal `ariaLabel` to hold the number of nodes and edges', () => {
+            expectToBe(
+                component.ariaLabel(),
+                'Graph mit 3 Knoten und 2 Kanten. Eine textuelle Darstellung bieten die RDF-Triples und die Tabellenansicht von SPARQL-SELECT-Abfragen.'
+            );
+        });
+
         it('... should have computed signal `simulationData` to hold the simulation data of the graph data', () => {
             expectToEqual(component.simulationData(), FORCE_GRAPH_UTILS.toSimulationData(expectedResultGraph));
         });
@@ -215,6 +222,11 @@ describe('ForceGraphSvgComponent (DONE)', () => {
                 const markerDes = getAndExpectDebugElementByCss(compDe, 'svg > defs > marker', 1, 1);
 
                 expectToBe(markerDes[0].nativeElement.getAttribute('id'), FORCE_GRAPH_ARROW_MARKER_ID);
+            });
+
+            it('... should set role `group` and `ariaLabel` as aria-label on the svg', () => {
+                expectToBe(getSvgEl().getAttribute('role'), 'group');
+                expectToBe(getSvgEl().getAttribute('aria-label'), component.ariaLabel());
             });
 
             it('... should set the transform of the center group to `centerTransform`', () => {
