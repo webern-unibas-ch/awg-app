@@ -8,6 +8,31 @@ import {
 import * as D3_SELECTION from 'd3-selection';
 
 /**
+ * Test helper function: patchSvgSizeForD3Zoom.
+ *
+ * It patches the SVGSVGElement prototype to provide `width.baseVal` and `height.baseVal`
+ * (missing in jsdom), which d3-zoom reads for the extent of the zoom behaviour
+ * (e.g., on `scaleTo`). Existing properties are not overwritten.
+ *
+ * @returns {void} Patches the SVGSVGElement prototype.
+ */
+export function patchSvgSizeForD3Zoom(): void {
+    if (typeof SVGSVGElement === 'undefined') {
+        return;
+    }
+    for (const key of ['width', 'height']) {
+        if (!(key in SVGSVGElement.prototype)) {
+            Object.defineProperty(SVGSVGElement.prototype, key, {
+                configurable: true,
+                get() {
+                    return { baseVal: { value: 100 } };
+                },
+            });
+        }
+    }
+}
+
+/**
  * Test helper function: createD3TestSvg.
  *
  * It creates a svg element with D3 library.

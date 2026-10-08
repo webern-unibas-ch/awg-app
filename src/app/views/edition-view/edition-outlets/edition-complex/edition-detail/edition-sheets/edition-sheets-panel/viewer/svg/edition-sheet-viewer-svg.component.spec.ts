@@ -16,7 +16,7 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { mockConsole } from '@testing/mock-helper';
-import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
+import { createTestTkkOverlay, patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
 import { LicenseComponent } from '@awg-shared/license/license.component';
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
@@ -106,25 +106,8 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     };
 
     beforeAll(() => {
-        // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
-        if (typeof SVGSVGElement !== 'undefined') {
-            if (!('width' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'width', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-            if (!('height' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'height', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-        }
+        // Provide width/height.baseVal for d3-zoom (missing in jsdom)
+        patchSvgSizeForD3Zoom();
     });
 
     beforeEach(async () => {

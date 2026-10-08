@@ -12,6 +12,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
@@ -65,25 +66,8 @@ describe('ForceGraphComponent (DONE)', () => {
         );
 
     beforeAll(() => {
-        // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
-        if (typeof SVGSVGElement !== 'undefined') {
-            if (!('width' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'width', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-            if (!('height' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'height', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-        }
+        // Provide width/height.baseVal for d3-zoom (missing in jsdom)
+        patchSvgSizeForD3Zoom();
     });
 
     beforeEach(async () => {
