@@ -1,0 +1,24 @@
+@let isFullscreen = isFullscreenMode();
+
+<div ngbAccordion>
+    <div ngbAccordionItem="awg-graph-editor-triples" [collapsed]="!isFullscreen" [disabled]="isFullscreen">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton class="p-3">RDF Triples</button>
+        </div>
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
+            <div ngbAccordionBody>
+                <ng-template>
+                    <!-- CodeMirror editor instance -->
+                    <awg-codemirror [mode]="cmTurtleMode" [(content)]="triples" />
+
+                    <!-- Action buttons -->
+                    <awg-graph-editor-action-buttons
+                        class="mt-2"
+                        (queryRequest)="performQuery()"
+                        (resetRequest)="resetTriples()"
+                        (clearRequest)="clearTriples()" />
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

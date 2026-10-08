@@ -1,50 +1,55 @@
 <!-- Data: Triples, SPARQL query, result -->
 
 @let isFullscreen = isFullscreenMode();
+@let currentQuery = query();
+@let isConstructQuery = currentQuery.queryType === 'construct';
+@let isSelectQuery = currentQuery.queryType === 'select';
 
 <div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
     <div [class]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
         <div [class.row]="!isFullscreen">
             <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 pe-lg-0'">
-                <!-- awg-graph-triples-editor -->
-                <awg-triples-editor
-                    [triples]="triples"
-                    [isFullscreen]="isFullscreen"
+                <!-- awg-graph-editor-triples -->
+                <awg-graph-editor-triples
+                    [(triples)]="triples"
+                    [isFullscreenMode]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
-                    (resetTriplesRequest)="resetTriples()"
-                    (updateTriplesRequest)="triples = $event" />
+                    (resetTriplesRequest)="resetTriples()" />
             </div>
             <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 ps-lg-0'">
-                <!-- awg-graph-sparql-editor -->
-                <awg-sparql-editor
-                    [queryList]="queryList"
-                    [query]="query"
-                    [isFullscreen]="isFullscreen"
+                <!-- awg-graph-editor-sparql -->
+                <awg-graph-editor-sparql
+                    [queryList]="queryList()"
+                    [(query)]="query"
+                    [isFullscreenMode]="isFullscreen"
                     (errorMessageRequest)="showToastMessage($event, 'error')"
                     (performQueryRequest)="performQuery()"
-                    (resetQueryRequest)="resetQuery($event)"
-                    (updateQueryStringRequest)="query.queryString = $event" />
+                    (resetQueryRequest)="resetQuery($event)" />
             </div>
         </div>
     </div>
     <!-- Results -->
     <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
-        @if (query.queryType === 'construct') {
-            <awg-construct-results
-                #queryConstructResultAcc
-                [queryResult$]="$any(queryResult$)"
+        @if (isConstructQuery) {
+            <awg-graph-results-construct
+                [queryResult]="queryResult()"
                 [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
-                [isFullscreen]="isFullscreen"
+                [isFullscreenMode]="isFullscreen"
                 (clickedNodeRequest)="onGraphNodeClick($event)" />
-        } @else if (query.queryType === 'select') {
-            <awg-select-results
-                [queryResult$]="$any(queryResult$)"
-                [queryTime]="queryTime"
-                [isFullscreen]="isFullscreen"
+        } @else if (isSelectQuery) {
+            <awg-graph-results-select
+                [queryResult]="queryResult()"
+                [isFullscreenMode]="isFullscreen"
                 (clickedTableRequest)="onTableNodeClick($event)" />
         } @else {
-            <awg-unsupported-type-results [queryType]="query.queryType || ''" [isFullscreen]="isFullscreen" />
+            <awg-graph-results-unsupported
+                [queryType]="currentQuery.queryType || ''"
+                [isFullscreenMode]="isFullscreen" />
+        }
+        @if (isConstructQuery || isSelectQuery) {
+            <!-- awg-graph-results-status -->
+            <awg-graph-results-status [queryResult]="queryResult()" [queryTime]="queryTime()" />
         }
     </div>
 </div>

@@ -1,0 +1,15 @@
+.awg-force-graph-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    > .awg-force-graph-icon-bar {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    > .awg-force-graph-svg-container {
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+}

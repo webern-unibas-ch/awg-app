@@ -44,7 +44,7 @@ describe('FullscreenToggleComponent (DONE)', () => {
      */
     const simulateFullscreenChangeEvent = (element: HTMLElement | null): void => {
         (mockDocument as any).fullscreenElement = element;
-        component.onFullscreenChange();
+        mockDocument.dispatchEvent(new Event('fullscreenchange'));
     };
 
     beforeEach(async () => {
@@ -284,20 +284,6 @@ describe('FullscreenToggleComponent (DONE)', () => {
             });
         });
 
-        describe('#Hostlistener onFullscreenChange()', () => {
-            it('... should have a Hostlistener `onFullscreenChange`', () => {
-                expect(component.onFullscreenChange).toBeDefined();
-            });
-
-            it('... should trigger state update (via service) based on document fullscreen changes', () => {
-                expectSpyCall(serviceUpdateStateSpy, 1);
-
-                simulateFullscreenChangeEvent(expectedFsElement);
-
-                expectSpyCall(serviceUpdateStateSpy, 2);
-            });
-        });
-
         describe('METHODS', () => {
             describe('#closeFullscreen()', () => {
                 it('... should have a method `closeFullscreen`', () => {
@@ -344,6 +330,28 @@ describe('FullscreenToggleComponent (DONE)', () => {
                     component.openFullscreen();
 
                     expectSpyCall(serviceOpenFullscreenSpy, 1, expectedFsElement);
+                });
+            });
+
+            describe('#onFullscreenChange()', () => {
+                it('... should have a method `onFullscreenChange`', () => {
+                    expect(component['onFullscreenChange']).toBeDefined();
+                });
+
+                it('... should trigger `fullscreenService.updateState`', () => {
+                    const baselineCallCount = serviceUpdateStateSpy.mock.calls.length;
+
+                    component['onFullscreenChange']();
+
+                    expectSpyCall(serviceUpdateStateSpy, baselineCallCount + 1);
+                });
+
+                it('... should be called on fullscreenchange of the document', () => {
+                    const onFullscreenChangeSpy = vi.spyOn(component as any, 'onFullscreenChange');
+
+                    mockDocument.dispatchEvent(new Event('fullscreenchange'));
+
+                    expectSpyCall(onFullscreenChangeSpy, 1);
                 });
             });
         });

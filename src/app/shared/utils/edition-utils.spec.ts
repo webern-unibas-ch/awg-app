@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
-import { expectToBe } from '@testing/expect-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { isSketchId, isWorkEditionId } from './edition-utils';
+import { EDITION_UTILS, isSketchId, isWorkEditionId } from './edition-utils';
 
 describe('EditionUtils (DONE)', () => {
+    describe('EDITION_UTILS', () => {
+        it('... should reference all edition utils methods', () => {
+            expectToEqual(EDITION_UTILS, { isSketchId, isWorkEditionId });
+        });
+    });
+
     describe('METHODS', () => {
         describe('#isSketchId()', () => {
             it('... should have a method `isSketchId`', () => {

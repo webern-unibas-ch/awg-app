@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { CodeMirrorModule } from './codemirror/codemirror.module';
 
 //
 // Shared components
@@ -23,7 +22,6 @@ import { LicenseComponent } from './license/license.component';
 import { LogoComponent } from './logos/logo.component';
 import { MetaIdentifierBadgesComponent } from './meta/meta-identifier-badges/meta-identifier-badges.component';
 import { ModalComponent } from './modal/modal.component';
-import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
@@ -34,10 +32,6 @@ import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-
 import { AbbrDirective } from './abbr/abbr.directive';
 import { CompileHtmlDirective } from './compile-html/compile-html.directive';
 import { ExternalLinkDirective } from './external-link/external-link.directive';
-
-//
-// Shared pipes
-import { OrderByPipe } from './order-by-pipe/order-by.pipe';
 
 /**
  * The shared module.
@@ -51,7 +45,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         AlertErrorComponent,
-        CodeMirrorModule,
         FontAwesomeModule,
         NgxJsonViewerModule,
         SharedNgbootstrapModule,
@@ -64,22 +57,17 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         LogoComponent,
         MetaIdentifierBadgesComponent,
         ModalComponent,
+        TableComponent,
+        ToastComponent,
         TwelveToneSpinnerComponent,
+        ViewHandleButtonGroupComponent,
         AbbrDirective,
         CompileHtmlDirective,
         ExternalLinkDirective,
     ],
-    declarations: [
-        JsonViewerComponent,
-        TableComponent,
-        TablePaginationComponent,
-        ToastComponent,
-        ViewHandleButtonGroupComponent,
-        OrderByPipe,
-    ],
+    declarations: [JsonViewerComponent],
     exports: [
         CommonModule,
-        CodeMirrorModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
@@ -104,7 +92,6 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         AbbrDirective,
         ExternalLinkDirective,
         CompileHtmlDirective,
-        OrderByPipe,
     ],
 })
 export class SharedModule {}

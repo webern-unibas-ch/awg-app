@@ -1,269 +1,237 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output, signal } from '@angular/core';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
+import { NgbHighlight } from '@ng-bootstrap/ng-bootstrap/typeahead';
 
-import { TableData, TableOptions, TablePaginatorOptions, TableRows } from './models';
+import { ClickDirective } from '@awg-shared/click/click.directive';
+
+import { TablePaginationComponent } from './table-pagination/table-pagination.component';
+import { TableRows, TableSortState } from './table.model';
+import {
+    filterTableRows,
+    paginateTableRows,
+    sortTableRows,
+    TABLE_DEFAULT_PAGE_SIZE,
+    TABLE_PAGE_SIZE_OPTIONS,
+} from './table.utils';
 
 /**
  * The Table component.
  *
- * It contains a generic configurable table
- * that is provided via the {@link SharedModule}.
+ * It contains a generic table with search filter,
+ * sortable columns and pagination.
  */
 @Component({
     selector: 'awg-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        ClickDirective,
+        FaIconComponent,
+        NgbDropdownModule,
+        NgbHighlight,
+        NgTemplateOutlet,
+        TablePaginationComponent,
+    ],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
     /**
-     * Input variable: tableTitle.
+     * Readonly input signal: tableTitle.
      *
-     * It keeps the title for the table.
+     * It holds the title of the table.
+     * @default ''
      */
-    @Input()
-    tableTitle = '';
+    readonly tableTitle = input<string>('');
 
     /**
-     * Input variable: headerInputData.
+     * Readonly input signal: headerInputData.
      *
-     * It keeps the input data for the table header.
+     * It holds the header labels of the table.
+     * @default []
      */
-    @Input()
-    headerInputData: string[] = [];
+    readonly headerInputData = input<readonly string[]>([]);
 
     /**
-     * Input variable: rowInputData.
+     * Readonly input signal: rowInputData.
      *
-     * It keeps the input data for the table rows.
+     * It holds the rows of the table.
+     * @default []
      */
-    @Input()
-    rowInputData: any[] = [];
+    readonly rowInputData = input<TableRows[]>([]);
 
     /**
-     * Output variable: clickedTableValueRequest.
+     * Readonly output signal: clickedTableValueRequest.
      *
-     * It keeps an event emitter for a click on a table value.
+     * It emits the value of a clicked table cell.
      */
-    @Output()
-    clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
+    readonly clickedTableValueRequest = output<string>();
 
     /**
-     * Output variable: clickedTableRowRequest.
+     * Readonly output signal: clickedTableRowRequest.
      *
-     * It keeps an event emitter for a click on a table row.
+     * It emits the event of a clicked table row.
      */
-    @Output()
-    clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
+    readonly clickedTableRowRequest = output<Event>();
 
     /**
-     * Public variable: faSortUp.
+     * Readonly variable: pageSizeOptions.
      *
-     * It instantiates fontawesome's faSortUp icon.
+     * It keeps the selectable page sizes.
      */
-    faSortUp = faSortUp;
+    readonly pageSizeOptions = TABLE_PAGE_SIZE_OPTIONS;
 
     /**
-     * Public variable: faSortDown.
+     * Readonly signal: searchFilter.
      *
-     * It instantiates fontawesome's faSortDown icon.
+     * It holds the search term to filter the rows.
      */
-    faSortDown = faSortDown;
+    readonly searchFilter = signal<string>('');
 
     /**
-     * Public variable: paginatorOptions.
+     * Readonly signal: page.
      *
-     * It keeps the options of the Paginator.
+     * It holds the current page of the pagination.
      */
-    paginatorOptions: TablePaginatorOptions = new TablePaginatorOptions(0, 0, [0], 0);
+    readonly page = signal<number>(1);
 
     /**
-     * Public variable: searchFilter.
+     * Readonly signal: pageSize.
      *
-     * It keeps the string value of the search filter.
+     * It holds the number of rows per page.
      */
-    searchFilter = '';
+    readonly pageSize = signal<number>(TABLE_DEFAULT_PAGE_SIZE);
 
     /**
-     * Public variable: tableData.
+     * Readonly linked signal: sortState.
      *
-     * It keeps the data arrays of the table.
+     * It holds the sort state of the table.
+     * It is reset to the first header label when the header changes.
      */
-    tableData: TableData = new TableData([], []);
-
-    /**
-     * Public variable: tableOptions.
-     *
-     * It keeps the options of the table.
-     */
-    tableOptions: TableOptions = {
-        selectedKey: '',
-        sortKey: '',
-        sortIcon: this.faSortDown,
+    readonly sortState = linkedSignal<TableSortState>(() => ({
+        key: this.headerInputData()[0] ?? '',
         reverse: false,
-        isCaseInsensitive: false,
-    };
+    }));
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly computed signal: sortIcon.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It holds the icon for the current sort order.
      */
-    ngOnInit(): void {
-        this.initTable();
-    }
+    readonly sortIcon = computed(() => (this.sortState().reverse ? faSortUp : faSortDown));
 
     /**
-     * Public method: initTable.
+     * Readonly computed signal: totalRows.
      *
-     * It inits all the data needed for the table.
-     *
-     * @returns {void} Inits the table data.
+     * It holds all rows of the table,
+     * or an empty array if no rows are given.
      */
-    initTable(): void {
-        if (this.headerInputData?.length && this.rowInputData?.length) {
-            this.tableData = new TableData(this.headerInputData, this.rowInputData);
-        } else {
-            this.tableData = new TableData([], []);
-        }
-
-        this.paginatorOptions = new TablePaginatorOptions(
-            1,
-            10,
-            [5, 10, 25, 50, 100, 200],
-            this.rowInputData.length || 0
-        );
-        this.searchFilter = '';
-
-        this.onSort(this.tableData.header[0]);
-
-        this.onPageSizeChange(this.searchFilter);
-    }
+    readonly totalRows = computed(() => this.rowInputData() ?? []);
 
     /**
-     * Public method: onPageSizeChange.
+     * Readonly computed signal: filteredRows.
      *
-     * It emits the new start position of the Paginator
-     * from a given page number to the {@link pageChangeRequest}.
-     *
-     * @param {string} searchFilter The given search filter.
-     * @param {number} selectedPageSizeOption The selected page size option.
-     *
-     * @returns {void} Emits the new start position.
+     * It holds the rows filtered by the search filter.
      */
-    onPageSizeChange(searchFilter: string, selectedPageSizeOption?: number): void {
-        if (!this.headerInputData.length || !this.rowInputData?.length) {
-            return;
-        }
-        if (selectedPageSizeOption) {
-            this.paginatorOptions.selectedPageSize = selectedPageSizeOption;
-        }
-        this.tableData.paginatedRows$ = this._paginateRows(searchFilter);
-    }
+    readonly filteredRows = computed(() => filterTableRows(this.totalRows(), this.searchFilter()));
+
+    /**
+     * Readonly computed signal: sortedRows.
+     *
+     * It holds the filtered rows sorted by the sort state.
+     */
+    readonly sortedRows = computed(() => {
+        const { key, reverse } = this.sortState();
+        return sortTableRows(this.filteredRows(), key, reverse);
+    });
+
+    /**
+     * Readonly computed signal: paginatedRows.
+     *
+     * It holds the sorted rows of the current page.
+     */
+    readonly paginatedRows = computed(() => paginateTableRows(this.sortedRows(), this.page(), this.pageSize()));
 
     /**
      * Public method: onSort.
      *
-     * It sets the options to sort a table column by a given sort key (header label).
+     * It sorts the table by the given key (header label).
+     * Sorting by the current key again reverses the sort order.
      *
      * @param {string} key The given key to sort by.
      *
-     * @returns {void} Sets the options.
+     * @returns {void} Sets the sort state.
      */
     onSort(key: string): void {
         if (!key) {
             return;
         }
+        this.sortState.update(state => ({
+            key,
+            reverse: state.key === key ? !state.reverse : false,
+        }));
+    }
 
-        // Switch sort order when clicking on same key
-        if (this.tableOptions.selectedKey === key) {
-            this.tableOptions.reverse = !this.tableOptions.reverse;
-        }
+    /**
+     * Public method: onSearchFilterChange.
+     *
+     * It sets the given search term and resets the page.
+     *
+     * @param {string} term The given search term.
+     *
+     * @returns {void} Sets the search filter.
+     */
+    onSearchFilterChange(term: string): void {
+        this.searchFilter.set(term);
+        this.page.set(1);
+    }
 
-        // Set sort icon
-        this.tableOptions.sortIcon = this.tableOptions.reverse ? this.faSortUp : this.faSortDown;
-
-        // Select new key
-        this.tableOptions.selectedKey = key;
-
-        // Create sortKey for nested object
-        this.tableOptions.sortKey = this.tableOptions.selectedKey.toString() + '.label';
+    /**
+     * Public method: onPageSizeChange.
+     *
+     * It sets the given page size and resets the page.
+     *
+     * @param {number} pageSize The given page size.
+     *
+     * @returns {void} Sets the page size.
+     */
+    onPageSizeChange(pageSize: number): void {
+        this.pageSize.set(pageSize);
+        this.page.set(1);
     }
 
     /**
      * Public method: onTableValueClick.
      *
-     * It emits an event when the user clicks on a table value.
+     * It emits the value of a clicked table cell.
      *
-     * @param {any} e The given event.
+     * @param {string} value The given value.
      *
-     * @returns {void} Emits the event.
+     * @returns {void} Emits the value.
      */
-    onTableValueClick(e: any): void {
-        if (!e) {
+    onTableValueClick(value: string): void {
+        if (!value) {
             return;
         }
-        this.clickedTableValueRequest.emit(e);
+        this.clickedTableValueRequest.emit(value);
     }
 
     /**
      * Public method: onTableRowClick.
      *
-     * It emits an event when the user clicks on a table row.
+     * It emits the event of a clicked table row.
      *
-     * @param {any} e The given event.
+     * @param {Event} event The given event.
      *
      * @returns {void} Emits the event.
      */
-    onTableRowClick(e: any): void {
-        if (!e) {
+    onTableRowClick(event: Event): void {
+        if (!event) {
             return;
         }
-        this.clickedTableRowRequest.emit(e);
-    }
-
-    /**
-     * Private method: _paginateRows.
-     *
-     * It filters by searchTerm and paginates the observable of total rows.
-     *
-     * @param {string} searchTerm The given searchTerm.
-     *
-     * @returns {Observable<TableRows[]>} Returns an observable of the paginated rows.
-     */
-    private _paginateRows(searchTerm: string): Observable<TableRows[]> {
-        return this.tableData.totalRows$.pipe(
-            // Filter rows by searchTerm
-            map((rows: TableRows[]) => {
-                const term = searchTerm.toString().toLowerCase();
-                this.tableData.filteredRows = rows.filter(row =>
-                    Object.values(row).some(rowEntry => {
-                        if (rowEntry === null || rowEntry === undefined) {
-                            return false;
-                        }
-                        return rowEntry['label']?.toString().toLowerCase().includes(term);
-                    })
-                );
-                return this.tableData.filteredRows;
-            }),
-            // Paginate rows
-            map((rows: TableRows[]) => {
-                const startRow = (this.paginatorOptions.page - 1) * this.paginatorOptions.selectedPageSize;
-                const endRow = startRow + this.paginatorOptions.selectedPageSize;
-                const range = endRow - startRow;
-
-                if (rows.length <= range) {
-                    return rows;
-                } else {
-                    return rows.slice(startRow, endRow);
-                }
-            })
-        );
+        this.clickedTableRowRequest.emit(event);
     }
 }

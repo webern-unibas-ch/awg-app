@@ -14,39 +14,26 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
+    DestroyRef,
+    effect,
     ElementRef,
-    EventEmitter,
-    Input,
-    OnChanges,
-    Output,
-    SimpleChanges,
-    ViewChild,
+    inject,
+    input,
+    model,
+    viewChild,
     ViewEncapsulation,
 } from '@angular/core';
 
-import { StreamLanguage, StreamParser } from '@codemirror/language';
-import { EditorState, Extension } from '@codemirror/state';
-import { basicSetup, EditorView } from 'codemirror';
+import { EditorState } from '@codemirror/state';
+import { EditorView } from 'codemirror';
 
-/**
- * The CmMode type.
- *
- * It represents the mode of a codemirror editor object.
- */
-export type CmMode = StreamParser<unknown>;
-
-/**
- * The EditorStateConfig type.
- *
- * It represents the config object of a codemirror editor state.
- */
-type EditorStateConfig = Parameters<typeof EditorState.create>[0];
+import { CmMode, createEditorState } from './codemirror.utils';
 
 /**
  * The CodeMirror component.
  *
- * It contains a CodeMirror editor instance that is
- * provided via the {@link SharedModule}.
+ * It contains a CodeMirror editor instance
+ * with two-way binding of its content.
  */
 @Component({
     selector: 'awg-codemirror',
@@ -54,36 +41,37 @@ type EditorStateConfig = Parameters<typeof EditorState.create>[0];
     styleUrls: ['./codemirror.component.scss'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
-export class CodeMirrorComponent implements AfterViewInit, OnChanges {
+export class CodeMirrorComponent implements AfterViewInit {
     /**
-     * Input variable: mode.
+     * Private readonly injection variable: _destroyRef.
      *
-     * It keeps the mode of the codemirror editor.
+     * It keeps the DestroyRef to clean up the editor view.
      */
-    @Input({ required: true }) mode!: CmMode;
+    private readonly _destroyRef = inject(DestroyRef);
 
     /**
-     * Input variable: content.
+     * Readonly input signal: mode.
      *
-     * It keeps the content of the codemirror editor.
+     * It holds the mode of the codemirror editor.
      */
-    @Input() content = '';
+    readonly mode = input.required<CmMode>();
 
     /**
-     * Output variable: contentChange.
+     * Readonly model signal: content.
      *
-     * It keeps an event emitter to update the content after editor changes.
+     * It holds the content of the codemirror editor.
+     * Changes from the editor are emitted via `contentChange`.
+     * @default ''
      */
-    @Output() contentChange: EventEmitter<string> = new EventEmitter();
+    readonly content = model<string>('');
 
     /**
-     * ViewChild variable: codemirrorhost.
+     * Readonly view child signal: codemirrorhost.
      *
-     * It keeps the reference to the HTML template of the codemirror editor.
+     * It holds the reference to the host element of the codemirror editor.
      */
-    @ViewChild('codemirrorhost') codemirrorhost!: ElementRef<HTMLDivElement>;
+    readonly codemirrorhost = viewChild.required<ElementRef<HTMLDivElement>>('codemirrorhost');
 
     /**
      * Private variable: _editor.
@@ -93,82 +81,37 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     private _editor: EditorView | undefined;
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Constructor of the CodeMirrorComponent.
      *
-     * It checks for changes of the given input.
-     *
-     * @param {SimpleChanges} changes The changes of the input.
+     * It syncs external content changes into the editor
+     * and destroys the editor view on component destroy.
      */
-    ngOnChanges(changes: SimpleChanges): void {
-        if (
-            changes['content'] &&
-            !changes['content'].isFirstChange() &&
-            typeof changes['content'].currentValue === 'string' &&
-            this._editor &&
-            this.content !== this._editor.state.doc.toString()
-        ) {
-            this._editor.dispatch({
-                changes: {
-                    from: 0,
-                    to: this._editor.state.doc.length,
-                    insert: this.content,
-                },
-            });
-        }
+    constructor() {
+        effect(() => {
+            const content = this.content();
+            if (this._editor && content !== this._editor.state.doc.toString()) {
+                this._editor.dispatch({
+                    changes: {
+                        from: 0,
+                        to: this._editor.state.doc.length,
+                        insert: content,
+                    },
+                });
+            }
+        });
+
+        this._destroyRef.onDestroy(() => this._editor?.destroy());
     }
 
     /**
      * Angular life cycle hook: ngAfterViewInit.
      *
-     * It calls the containing methods
-     * after initializing the view.
+     * It initializes the editor view after initializing the view.
+     * The editor is created in this hook (and not in an afterRender hook)
+     * so that its DOM listeners run inside the NgZone.
      */
     ngAfterViewInit(): void {
-        const editorTheme = EditorView.theme({
-            /* eslint-disable @typescript-eslint/naming-convention */
-            '&': {
-                fontSize: 'small',
-                minHeight: '300px',
-            },
-            /* eslint-disable @typescript-eslint/naming-convention */
-            '.cm-gutters': {
-                color: '#999',
-            },
-            /* eslint-disable @typescript-eslint/naming-convention */
-            '.cm-scroller': {
-                overflow: 'auto',
-                maxHeight: '300px',
-            },
-        });
-        const editorThemeExtension: Extension[] = [editorTheme];
-
-        const setupExtensions: Extension[] = this._supportsRangeGeometry() ? [basicSetup] : [];
-
-        const ext: Extension[] = [
-            ...setupExtensions,
-            EditorView.lineWrapping,
-
-            // Apply the custom editor theme
-            editorThemeExtension,
-
-            // Listen for editor content changes
-            EditorView.updateListener.of(view => {
-                if (view.docChanged) {
-                    this.onContentChange(view.state.doc.toString());
-                }
-            }),
-
-            // Define the language mode
-            StreamLanguage.define(this.mode),
-        ];
-
-        const config: EditorStateConfig = {
-            doc: this.content || '',
-            extensions: ext,
-        };
-
-        const state = EditorState.create(config);
-        this.init(state);
+        this.init(createEditorState(this.mode(), this.content(), content => this.onContentChange(content)));
     }
 
     /**
@@ -183,39 +126,21 @@ export class CodeMirrorComponent implements AfterViewInit, OnChanges {
     init(state: EditorState): void {
         this._editor = new EditorView({
             state,
-            parent: this.codemirrorhost.nativeElement,
+            parent: this.codemirrorhost().nativeElement,
         });
     }
 
     /**
      * Public method: onContentChange.
      *
-     * It listens for a change of the content
-     * and emits it via the contentChange EventEmitter.
+     * It listens for a change of the editor content
+     * and sets it on the content model signal.
      *
      * @param {string} content The given content.
      *
-     * @returns {void} Emits the changed content.
+     * @returns {void} Sets the changed content.
      */
     onContentChange(content: string): void {
-        this.contentChange.emit(content);
-    }
-
-    /**
-     * Private method: _supportsRangeGeometry.
-     *
-     * It checks if the current DOM implementation supports range geometry APIs
-     * required by CodeMirror view measurement plugins.
-     *
-     * @returns {boolean} A boolean indicating support for range geometry APIs.
-     */
-    private _supportsRangeGeometry(): boolean {
-        if (typeof document === 'undefined' || typeof document.createRange !== 'function') {
-            return false;
-        }
-
-        const range = document.createRange() as Partial<Range>;
-
-        return typeof range.getClientRects === 'function' && typeof range.getBoundingClientRect === 'function';
+        this.content.set(content);
     }
 }

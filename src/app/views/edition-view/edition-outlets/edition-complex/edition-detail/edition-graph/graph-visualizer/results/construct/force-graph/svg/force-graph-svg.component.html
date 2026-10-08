@@ -1,0 +1,28 @@
+<svg
+    #svg
+    class="awg-force-graph-svg"
+    role="group"
+    [attr.aria-label]="ariaLabel()"
+    awgSvgZoom
+    [zoomConfig]="zoomConfig()"
+    [zoomTarget]="zoomGroup"
+    [(zoomValue)]="zoomValue"
+    (awgClick)="onNodeSelect($event)">
+    <defs>
+        <marker
+            [attr.id]="arrowMarkerId"
+            viewBox="0 -5 10 10"
+            refX="30"
+            refY="0"
+            markerWidth="6"
+            markerHeight="6"
+            orient="auto">
+            <polyline points="0,-5 10,0 0,5" />
+        </marker>
+    </defs>
+    <g #zoomGroup class="awg-force-graph-svg-zoom-group">
+        <g class="awg-force-graph-svg-center-group" [attr.transform]="centerTransform()">
+            <g #svgRootGroup class="awg-force-graph-svg-root-group" />
+        </g>
+    </g>
+</svg>

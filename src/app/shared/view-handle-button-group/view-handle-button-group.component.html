@@ -1,23 +1,24 @@
 <!-- View Handle -->
 <div class="awg-view-handle-btn-group btn-group" role="group">
-    <form [formGroup]="viewHandleControlForm">
-        <div class="btn-group" role="group" name="viewHandle" aria-label="View handle button group">
-            @for (viewHandle of viewHandles; track viewHandle.type) {
-                <input
-                    type="radio"
-                    class="btn-check"
-                    [id]="viewHandle.type + '-view-button'"
-                    [formControl]="viewHandleControl"
-                    [value]="viewHandle.type"
-                    autocomplete="off" />
-                <label
-                    class="btn btn-sm btn-outline-info"
-                    [for]="viewHandle.type + '-view-button'"
-                    [ngbTooltip]="viewHandle.type + ' view'"
-                    ><fa-icon [icon]="viewHandle.icon" />
-                    <span class="visually-hidden">{{ viewHandle.type }} view</span>
-                </label>
-            }
-        </div>
-    </form>
+    <div class="btn-group" role="group" aria-label="View handle button group">
+        @for (viewHandle of viewHandles(); track viewHandle.type) {
+            <input
+                #radioInput
+                type="radio"
+                class="btn-check"
+                [name]="groupName"
+                [id]="groupName + '-' + viewHandle.type + '-view-button'"
+                [value]="viewHandle.type"
+                [checked]="viewHandle.type === selectedViewType()"
+                (change)="onViewChange(viewHandle.type)"
+                autocomplete="off" />
+            <label
+                class="btn btn-sm btn-outline-info"
+                [for]="groupName + '-' + viewHandle.type + '-view-button'"
+                [ngbTooltip]="viewHandle.type + ' view'"
+                ><fa-icon [icon]="viewHandle.icon" />
+                <span class="visually-hidden">{{ viewHandle.type }} view</span>
+            </label>
+        }
+    </div>
 </div>

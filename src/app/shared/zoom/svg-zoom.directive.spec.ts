@@ -6,6 +6,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import * as D3_ZOOM from 'd3-zoom';
 
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { patchSvgSizeForD3Zoom } from '@testing/svg-drawing-helper';
 
 import { ZoomConfig } from './zoom.model';
 
@@ -36,25 +37,8 @@ describe('SvgZoomDirective (DONE)', () => {
     const getCurrentTransform = () => D3_ZOOM.zoomTransform(svgEl);
 
     beforeAll(() => {
-        // Patch SVGSVGElement prototype to provide width/height.baseVal for d3-zoom (missing in jsdom)
-        if (typeof SVGSVGElement !== 'undefined') {
-            if (!('width' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'width', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-            if (!('height' in SVGSVGElement.prototype)) {
-                Object.defineProperty(SVGSVGElement.prototype, 'height', {
-                    configurable: true,
-                    get() {
-                        return { baseVal: { value: 100 } };
-                    },
-                });
-            }
-        }
+        // Provide width/height.baseVal for d3-zoom (missing in jsdom)
+        patchSvgSizeForD3Zoom();
     });
 
     beforeEach(async () => {

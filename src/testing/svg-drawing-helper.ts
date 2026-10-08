@@ -1,3 +1,7 @@
+import { vi } from 'vitest';
+
+import * as D3_SELECTION from 'd3-selection';
+
 import {
     D3Selection,
     EditionSvgLinkBox,
@@ -5,7 +9,102 @@ import {
     EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models';
 
-import * as D3_SELECTION from 'd3-selection';
+/**
+ * Test helper function: patchSvgSizeForD3Zoom.
+ *
+ * It patches the SVGSVGElement prototype to provide `width.baseVal` and `height.baseVal`
+ * (missing in jsdom), which d3-zoom reads for the extent of the zoom behaviour
+ * (e.g., on `scaleTo`). Existing properties are not overwritten.
+ *
+ * @returns {void} Patches the SVGSVGElement prototype.
+ */
+export function patchSvgSizeForD3Zoom(): void {
+    if (typeof SVGSVGElement === 'undefined') {
+        return;
+    }
+    for (const key of ['width', 'height']) {
+        if (!(key in SVGSVGElement.prototype)) {
+            Object.defineProperty(SVGSVGElement.prototype, key, {
+                configurable: true,
+                get() {
+                    return { baseVal: { value: 100 } };
+                },
+            });
+        }
+    }
+}
+
+/**
+ * Test helper class: MockResizeObserver.
+ *
+ * It replaces the ResizeObserver (missing in jsdom)
+ * and keeps its callback and observed elements.
+ */
+export class MockResizeObserver {
+    /**
+     * The mocked `observe` method: it keeps the observed element.
+     */
+    readonly observe = vi.fn((element: Element) => {
+        this.observedElements.push(element);
+    });
+
+    /**
+     * The mocked `unobserve` method.
+     */
+    readonly unobserve = vi.fn();
+
+    /**
+     * The mocked `disconnect` method.
+     */
+    readonly disconnect = vi.fn();
+
+    /**
+     * The observed elements.
+     */
+    readonly observedElements: Element[] = [];
+
+    /**
+     * Constructor of the MockResizeObserver.
+     *
+     * @param {ResizeObserverCallback} callback The given callback of the observer.
+     */
+    constructor(readonly callback: ResizeObserverCallback) {}
+
+    /**
+     * Public method: trigger.
+     *
+     * It calls the callback of the observer (as on a resize of an observed element).
+     *
+     * @returns {void} Calls the callback.
+     */
+    trigger(): void {
+        this.callback([], this as unknown as ResizeObserver);
+    }
+}
+
+/**
+ * Test helper function: stubResizeObserver.
+ *
+ * It stubs the global ResizeObserver (missing in jsdom) with the {@link MockResizeObserver}
+ * and keeps all created observers. Restore it with `vi.unstubAllGlobals()`.
+ *
+ * @returns {MockResizeObserver[]} The created mock observers.
+ */
+export function stubResizeObserver(): MockResizeObserver[] {
+    const mockResizeObservers: MockResizeObserver[] = [];
+
+    vi.stubGlobal(
+        'ResizeObserver',
+        class extends MockResizeObserver {
+            constructor(callback: ResizeObserverCallback) {
+                super(callback);
+                mockResizeObservers.push(this);
+            }
+        }
+    );
+
+    return mockResizeObservers;
+}
 
 /**
  * Test helper function: createD3TestSvg.

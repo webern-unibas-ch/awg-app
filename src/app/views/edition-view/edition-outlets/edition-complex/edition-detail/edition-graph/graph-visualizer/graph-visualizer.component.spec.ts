@@ -1,10 +1,11 @@
-import { Component, DebugElement, EventEmitter, Input, isSignal, Output } from '@angular/core';
+import { DebugElement, isSignal, Type } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { EMPTY, EmptyError, firstValueFrom, lastValueFrom, Observable, take } from 'rxjs';
+import type { Quad } from '@rdfjs/types';
+import { DataFactory } from 'n3';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -16,163 +17,116 @@ import {
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
+import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
-import { GraphRDFData, GraphSparqlQuery, GraphSparqlQueryType } from '@awg-views/edition-view/models/graph.model';
-import { D3SimulationNode, D3SimulationNodeType, QueryResult, QuerySelectResult, Triple } from './models';
-import { GraphVisualizerService } from './services/graph-visualizer.service';
+import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
+
+import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
+import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
+import { ResultGraphNode } from './models/result-graph.model';
+import {
+    SparqlConstructResult,
+    SparqlQueryRequest,
+    SparqlQueryRun,
+    SparqlSelectResult,
+} from './models/sparql-result.model';
+import { GraphResultsConstructComponent } from './results/construct/graph-results-construct.component';
+import { GraphResultsSelectComponent } from './results/select/graph-results-select.component';
+import { GraphResultsStatusComponent } from './results/status/graph-results-status.component';
+import { GraphResultsUnsupportedComponent } from './results/unsupported/graph-results-unsupported.component';
+import { SparqlQueryService } from './services/sparql-query.service';
+import { ERROR_UTILS } from './utils/error.utils';
+import { DEFAULT_PREFIXES } from './utils/prefix.utils';
+import { SPARQL_UTILS } from './utils/sparql.utils';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
-// Mock components
-@Component({
-    selector: 'awg-construct-results',
-    template: '',
-    standalone: false,
-})
-class ConstructResultsStubComponent {
-    @Input()
-    queryResult$: Observable<Triple[]> = EMPTY;
-    @Input()
-    defaultForceGraphHeight = 0;
-    @Input()
-    isFullscreen = false;
-    @Output()
-    clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
-}
+const { literal, namedNode, quad } = DataFactory;
 
-@Component({
-    selector: 'awg-select-results',
-    template: '',
-    standalone: false,
-})
-class SelectResultsStubComponent {
-    @Input()
-    queryResult$: Observable<QuerySelectResult | string | undefined> = EMPTY;
-    @Input()
-    queryTime = 0;
-    @Input()
-    isFullscreen = false;
-    @Output()
-    clickedTableRequest: EventEmitter<string> = new EventEmitter();
-}
-
-@Component({
-    selector: 'awg-sparql-editor',
-    template: '',
-    standalone: false,
-})
-class SparqlEditorStubComponent {
-    @Input()
-    queryList: GraphSparqlQuery[] = [];
-    @Input()
-    query: GraphSparqlQuery = new GraphSparqlQuery();
-    @Input()
-    isFullscreen = false;
-    @Output()
-    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
-    @Output()
-    performQueryRequest: EventEmitter<void> = new EventEmitter();
-    @Output()
-    resetQueryRequest: EventEmitter<GraphSparqlQuery> = new EventEmitter();
-    @Output()
-    updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
-}
-
-@Component({
-    selector: 'awg-toast',
-    template: '',
-    standalone: false,
-})
-class ToastStubComponent {}
-
-@Component({
-    selector: 'awg-triples-editor',
-    template: '',
-    standalone: false,
-})
-class TriplesEditorStubComponent {
-    @Input()
-    triples = '';
-    @Input()
-    isFullscreen = false;
-    @Output()
-    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
-    @Output()
-    performQueryRequest: EventEmitter<void> = new EventEmitter();
-    @Output()
-    resetTriplesRequest: EventEmitter<void> = new EventEmitter();
-    @Output()
-    updateTriplesRequest: EventEmitter<string> = new EventEmitter();
-}
-
-@Component({
-    selector: 'awg-unsupported-type-results',
-    template: '',
-    standalone: false,
-})
-class UnsupportedTypeResultsStubComponent {
-    @Input()
-    queryType = '';
-    @Input()
-    isFullscreen = false;
-}
+const EXAMPLE = 'https://example.com/onto#';
 
 describe('GraphVisualizerComponent (DONE)', () => {
     let component: GraphVisualizerComponent;
     let fixture: ComponentFixture<GraphVisualizerComponent>;
     let compDe: DebugElement;
 
-    let mockGraphVisualizerService: GraphVisualizerService;
+    let mockSparqlQueryService: { run: Spy };
     let toastService: ToastService;
 
-    let expectedGraphRDFData: GraphRDFData;
-    let expectedConstructResult: Triple[];
-    let expectedSelectResult: QuerySelectResult | string | undefined;
+    let expectedRdfData: GraphRdfData;
+    let expectedConstructResult: SparqlConstructResult;
+    let expectedSelectResult: SparqlSelectResult;
+    let expectedDurationMs: number;
+    let expectedNode: ResultGraphNode;
+    let expectedChangedTriples: string;
 
     let consoleSpy: Spy;
-    let serviceCheckNamespacesInQuerySpy: Spy;
-    let serviceDoQuerySpy: Spy;
-    let serviceGetQueryTypeSpy: Spy;
+    let serviceRunSpy: Spy;
     let onTableNodeClickSpy: Spy;
     let performQuerySpy: Spy;
-    let queryLocalStoreSpy: Spy;
+    let runQuerySpy: Spy;
     let resetQuerySpy: Spy;
     let resetTriplesSpy: Spy;
     let showToastMessageSpy: Spy;
     let toastServiceAddSpy: Spy;
 
-    let lastQueryString = '';
+    /**
+     * Helper function: getChildCmp.
+     *
+     * It gets the instance of the single (hollow) child component of a given type.
+     */
+    const getChildCmp = <T>(childType: Type<T>): T =>
+        getAndExpectDebugElementByDirective(compDe, childType, 1, 1)[0].injector.get(childType);
+
+    /**
+     * Helper function: setQueryType.
+     *
+     * It sets the query type of the current query (without running it) and awaits the changes.
+     */
+    const setQueryType = async (queryType: GraphQuery['queryType']): Promise<void> => {
+        component.query.set({ ...component.query(), queryType });
+        await detectChangesOnPush(fixture);
+    };
+
+    /**
+     * Helper function: createDeferredRun.
+     *
+     * It creates a query run promise that resolves only when triggered.
+     */
+    const createDeferredRun = (): { promise: Promise<SparqlQueryRun>; resolve: (run: SparqlQueryRun) => void } => {
+        let resolve!: (run: SparqlQueryRun) => void;
+        const promise = new Promise<SparqlQueryRun>(res => (resolve = res));
+        return { promise, resolve };
+    };
 
     beforeEach(async () => {
-        lastQueryString = '';
-
-        // Mocked dataStreamerService
-        mockGraphVisualizerService = {
-            checkNamespacesInQuery: (queryString: string): string => {
-                lastQueryString = queryString;
-                return queryString;
-            },
-            getQuerytype: (): GraphSparqlQueryType =>
-                lastQueryString.toLowerCase().includes('select') ? 'select' : 'construct',
-            doQuery: (queryString: string): Promise<QueryResult> => {
-                const isSelectQuery = queryString.toLowerCase().includes('select');
-                return isSelectQuery ? Promise.resolve(expectedSelectResult) : Promise.resolve(expectedConstructResult);
-            },
-        } as unknown as GraphVisualizerService;
+        // Mocked SparqlQueryService: it performs the query unchanged and resolves the expected result of its type
+        mockSparqlQueryService = {
+            run: vi.fn((queryString: string): Promise<SparqlQueryRun> =>
+                Promise.resolve({
+                    query: queryString,
+                    result:
+                        SPARQL_UTILS.getQueryType(queryString) === 'select'
+                            ? expectedSelectResult
+                            : expectedConstructResult,
+                    durationMs: expectedDurationMs,
+                })
+            ),
+        };
 
         await TestBed.configureTestingModule({
-            declarations: [
-                GraphVisualizerComponent,
-                ConstructResultsStubComponent,
-                SparqlEditorStubComponent,
-                SelectResultsStubComponent,
-                ToastStubComponent,
-                TriplesEditorStubComponent,
-                UnsupportedTypeResultsStubComponent,
-            ],
-            providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
-        }).compileComponents();
+            imports: [GraphVisualizerComponent],
+            providers: [{ provide: SparqlQueryService, useValue: mockSparqlQueryService }, ToastService],
+        })
+            .overrideComponent(GraphEditorSparqlComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphEditorTriplesComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsConstructComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsSelectComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsStatusComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(GraphResultsUnsupportedComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ToastComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
@@ -181,57 +135,63 @@ describe('GraphVisualizerComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Inject services
-        mockGraphVisualizerService = TestBed.inject(GraphVisualizerService);
         toastService = TestBed.inject(ToastService);
 
         // Test data
-        expectedGraphRDFData = new GraphRDFData();
-        expectedGraphRDFData.queryList = [];
-        expectedGraphRDFData.queryList.push({
-            queryType: 'construct',
-            queryLabel: 'Test Query 1',
-            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
-        });
-        expectedGraphRDFData.queryList.push({
-            queryType: 'construct',
-            queryLabel: 'Test Query 2',
-            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
-        });
-        expectedGraphRDFData.queryList.push({
-            queryType: 'select',
-            queryLabel: 'Test Query 3',
-            queryString: 'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
-        });
-        expectedGraphRDFData.triples =
-            '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
-
-        expectedConstructResult = [
+        expectedRdfData = new GraphRdfData();
+        expectedRdfData.queryList = [
             {
-                subject: 'Test',
-                predicate: 'has',
-                object: 'Success',
+                queryType: 'construct',
+                queryLabel: 'Test Query 1',
+                queryString:
+                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
+            },
+            {
+                queryType: 'construct',
+                queryLabel: 'Test Query 2',
+                queryString:
+                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
+            },
+            {
+                queryType: 'select',
+                queryLabel: 'Test Query 3',
+                queryString:
+                    'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
             },
         ];
-        expectedSelectResult = {
-            head: { vars: ['test', 'has', 'success'] },
-            body: {
-                bindings: [
-                    {
-                        test: { type: 'uri', value: 'Test' },
-                        has: { type: 'uri', value: 'has' },
-                        success: { type: 'uri', value: 'Success' },
-                    },
-                ],
-            },
+        expectedRdfData.triples =
+            '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
+        expectedChangedTriples =
+            '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
+
+        const prefixes = { ...DEFAULT_PREFIXES, example: EXAMPLE };
+        expectedConstructResult = {
+            kind: 'construct',
+            quads: [
+                quad(namedNode(`${EXAMPLE}Test`), namedNode(`${EXAMPLE}has`), namedNode(`${EXAMPLE}Success`)) as Quad,
+            ],
+            prefixes,
         };
+        expectedSelectResult = {
+            kind: 'select',
+            variables: ['test', 'has', 'success'],
+            bindings: [
+                {
+                    test: namedNode(`${EXAMPLE}Test`),
+                    has: namedNode(`${EXAMPLE}has`),
+                    success: literal('Success'),
+                },
+            ],
+            prefixes,
+        };
+        expectedDurationMs = 42;
+        expectedNode = { id: `${EXAMPLE}Test`, shortName: 'example:Test', label: 'Test', kind: 'resource' };
 
         // Spies
-        serviceDoQuerySpy = vi.spyOn(mockGraphVisualizerService, 'doQuery');
-        serviceGetQueryTypeSpy = vi.spyOn(mockGraphVisualizerService, 'getQuerytype');
-        serviceCheckNamespacesInQuerySpy = vi.spyOn(mockGraphVisualizerService, 'checkNamespacesInQuery');
+        serviceRunSpy = mockSparqlQueryService.run;
         onTableNodeClickSpy = vi.spyOn(component, 'onTableNodeClick');
         performQuerySpy = vi.spyOn(component, 'performQuery');
-        queryLocalStoreSpy = vi.spyOn(component, '_queryLocalStore' as any);
+        runQuerySpy = vi.spyOn(component, '_runQuery' as any);
         resetQuerySpy = vi.spyOn(component, 'resetQuery');
         resetTriplesSpy = vi.spyOn(component, 'resetTriples');
         showToastMessageSpy = vi.spyOn(component, 'showToastMessage');
@@ -249,46 +209,46 @@ describe('GraphVisualizerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default input `graphRDFInputData`', () => {
-            expectToEqual(component.graphRDFInputData, new GraphRDFData());
+        it('... should throw due to missing required input signal `rdfData`', () => {
+            expectToBe(isSignal(component.rdfData), true);
+
+            expect(() => component.rdfData()).toThrow();
         });
 
-        it('... should have input signal `isFullscreenMode` to hold the default value', () => {
+        it('... should have input signal `isFullscreenMode` to hold false initially', () => {
             expectToBe(isSignal(component.isFullscreenMode), true);
-
             expectToBe(component.isFullscreenMode(), false);
         });
 
-        it('... should have default `defaultForceGraphHeight` ', () => {
+        it('... should have `defaultForceGraphHeight` to hold 500', () => {
             expectToBe(component.defaultForceGraphHeight, 500);
         });
 
-        it('... should have default `query`', () => {
-            expectToEqual(component.query, new GraphSparqlQuery());
+        it('... should throw when accessing computed signal `queryList` due to missing input', () => {
+            expectToBe(isSignal(component.queryList), true);
+
+            expect(() => component.queryList()).toThrow();
         });
 
-        it('... should have default `queryList`', () => {
-            expectToEqual(component.queryList, []);
+        it('... should throw when accessing linked signal `triples` due to missing input', () => {
+            expectToBe(isSignal(component.triples), true);
+
+            expect(() => component.triples()).toThrow();
         });
 
-        it('... should have default `queryResult`', () => {
-            expectToEqual(component.queryResult$, EMPTY);
+        it('... should throw when accessing linked signal `query` due to missing input', () => {
+            expectToBe(isSignal(component.query), true);
+
+            expect(() => component.query()).toThrow();
         });
 
-        it('... should have default `queryTime`', () => {
-            expectToBe(component.queryTime, 0);
+        it('... should have computed signals `queryResult` and `queryTime`', () => {
+            expectToBe(isSignal(component.queryResult), true);
+            expectToBe(isSignal(component.queryTime), true);
         });
 
-        it('... should have default `triples`', () => {
-            expectToBe(component.triples, '');
-        });
-
-        it('... should not have triggered `resetTriples()`', () => {
-            expectSpyCall(resetTriplesSpy, 0);
-        });
-
-        it('... should not have triggered `resetQuery()`', () => {
-            expectSpyCall(resetQuerySpy, 0);
+        it('... should not have run any query', () => {
+            expectSpyCall(serviceRunSpy, 0);
         });
 
         describe('VIEW', () => {
@@ -300,67 +260,123 @@ describe('GraphVisualizerComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Set the initial values for the signal inputs
-            component.graphRDFInputData = expectedGraphRDFData;
+            fixture.componentRef.setInput('rdfData', expectedRdfData);
             fixture.componentRef.setInput('isFullscreenMode', false);
 
-            // Trigger initial data binding
+            // Trigger initial data binding and await the initial query run
             fixture.detectChanges();
+            await fixture.whenStable();
         });
 
-        it('... should have input `graphRDFInputData`', () => {
-            expectToEqual(component.graphRDFInputData, expectedGraphRDFData);
+        it('... should have input signal `rdfData` to hold the provided data', () => {
+            expectToEqual(component.rdfData(), expectedRdfData);
         });
 
-        it('... should have input signal `isFullScreenMode` to hold false', () => {
-            expectToBe(component.isFullscreenMode(), false);
+        it('... should have computed signal `queryList` to hold the provided query list', () => {
+            expectToEqual(component.queryList(), expectedRdfData.queryList);
         });
 
-        it('... should have `triples`', () => {
-            expectToEqual(component.triples, expectedGraphRDFData.triples);
+        it('... should have linked signal `triples` to hold the provided triples', () => {
+            expectToBe(component.triples(), expectedRdfData.triples);
         });
 
-        it('... should have `queryList`', () => {
-            expectToEqual(component.queryList, expectedGraphRDFData.queryList);
+        it('... should have linked signal `query` to hold the initial query', () => {
+            expectToEqual(component.query(), expectedRdfData.queryList[0]);
         });
 
-        it('... should have `query`', () => {
-            expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
+        it('... should have resource `queryRun` to hold the initial query run', () => {
+            expectToEqual(component.queryRun.value(), {
+                query: expectedRdfData.queryList[0].queryString,
+                result: expectedConstructResult,
+                durationMs: expectedDurationMs,
+            });
+            expectSpyCall(serviceRunSpy, 1, [expectedRdfData.queryList[0].queryString, expectedRdfData.triples]);
         });
 
-        it('... should have `queryResult`', () => {
-            expect(component.queryResult$).toBeDefined();
+        it('... should have computed signal `queryResult` to hold the expected result', () => {
+            expectToEqual(component.queryResult(), expectedConstructResult);
+        });
 
-            component.queryResult$.pipe(take(1)).subscribe(result => {
-                expectToEqual(result, expectedConstructResult);
+        it('... should have computed signal `queryTime` to hold the expected duration', () => {
+            expectToBe(component.queryTime(), expectedDurationMs);
+        });
+
+        describe('... computed signal `queryResult`', () => {
+            it('... should hold undefined while the query is running', async () => {
+                const deferredRun = createDeferredRun();
+                serviceRunSpy.mockReturnValueOnce(deferredRun.promise);
+
+                component.performQuery();
+                TestBed.tick();
+
+                expect(component.queryResult()).toBeUndefined();
+
+                deferredRun.resolve({ query: '', result: expectedSelectResult, durationMs: 1 });
+                await fixture.whenStable();
+
+                expectToEqual(component.queryResult(), expectedSelectResult);
+            });
+
+            it('... should hold undefined without running unsupported queries', async () => {
+                component.query.set({ ...component.query(), queryString: 'WHERE { ?s ?p ?o }' });
+                component.performQuery();
+                await fixture.whenStable();
+
+                expectSpyCall(serviceRunSpy, 1);
+                expect(component.queryResult()).toBeUndefined();
+                expectToBe(component.queryTime(), 0);
             });
         });
 
-        it('... should have `queryTime`', async () => {
-            const expectedCallback = [
-                'construct',
-                expectedGraphRDFData.queryList[0].queryString,
-                expectedGraphRDFData.triples,
-            ];
+        describe('... on input change', () => {
+            let changedRdfData: GraphRdfData;
 
-            await expect(
-                mockGraphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-            ).resolves.toEqual(expectedConstructResult);
+            beforeEach(async () => {
+                // Edit triples and query locally
+                component.triples.set(expectedChangedTriples);
+                component.query.set({ ...expectedRdfData.queryList[2] });
+                await detectChangesOnPush(fixture);
 
-            expect(component.queryTime).toBeDefined();
-            // Value is not predictable
+                changedRdfData = {
+                    queryList: [expectedRdfData.queryList[1]],
+                    triples: '@prefix example: <https://example.com/onto#> .\n\n example:A example:b example:C .',
+                };
+                fixture.componentRef.setInput('rdfData', changedRdfData);
+                await detectChangesOnPush(fixture);
+            });
+
+            it('... should have linked signal `triples` to hold the changed triples', () => {
+                expectToBe(component.triples(), changedRdfData.triples);
+            });
+
+            it('... should have linked signal `query` to hold the changed initial query', () => {
+                expectToEqual(component.query(), changedRdfData.queryList[0]);
+            });
+
+            it('... should have resource `queryRun` to hold the run of the changed initial query', () => {
+                expectSpyCall(serviceRunSpy, 2, [changedRdfData.queryList[0].queryString, changedRdfData.triples]);
+            });
         });
 
-        it('... should have triggered `resetTriples()`', () => {
-            expectSpyCall(resetTriplesSpy, 1, undefined);
-        });
+        it('... should not run a query on local edits of `triples` or `query`', async () => {
+            component.triples.set(expectedChangedTriples);
+            component.query.set({ ...expectedRdfData.queryList[2] });
+            await detectChangesOnPush(fixture);
 
-        it('... should have triggered `resetQuery()`', () => {
-            expectSpyCall(resetQuerySpy, 1, undefined);
+            expectSpyCall(serviceRunSpy, 1);
         });
 
         describe('VIEW', () => {
+            it('... should contain one ToastComponent (hollow) after the main div', () => {
+                const toastDes = getAndExpectDebugElementByDirective(compDe, ToastComponent, 1, 1);
+                const toastEl: HTMLElement = toastDes[0].nativeElement;
+
+                expectToBe(toastEl.getAttribute('aria-live'), 'polite');
+                expectToBe(toastEl.getAttribute('aria-atomic'), 'true');
+            });
+
             describe('not in fullscreen mode', () => {
                 it('... should contain a main div with 2 child divs', () => {
                     const rowDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer', 1, 1);
@@ -373,7 +389,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(divDes[0], 'div.row > div', 2, 2);
                 });
 
-                it('... should contain one TriplesEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorTriplesComponent (hollow) in first inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div.row > div',
@@ -381,10 +397,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], GraphEditorTriplesComponent, 1, 1);
                 });
 
-                it('... should contain one SparqlEditor component (stubbed) in second inner sub div', () => {
+                it('... should contain one GraphEditorSparqlComponent (hollow) in second inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div.row > div',
@@ -392,42 +408,57 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
+                it('... should contain one GraphResultsConstructComponent (hollow) in second child div (queryType === construct)', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsConstructComponent, 1, 1);
+                });
+
+                it('... should contain one GraphResultsSelectComponent (hollow) in second child div (queryType === select)', async () => {
+                    await setQueryType('select');
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsSelectComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', async () => {
-                    component.query.queryType = 'select';
-                    await detectChangesOnPush(fixture);
+                it('... should contain one GraphResultsUnsupportedComponent (hollow) in second child div (queryType === other)', async () => {
+                    await setQueryType('ask');
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsUnsupportedComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', async () => {
-                    component.query.queryType = 'other' as any;
-                    await detectChangesOnPush(fixture);
+                it('... should contain one GraphResultsStatusComponent (hollow) in second child div (queryType === construct)', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 1, 1);
+                });
+
+                it('... should contain one GraphResultsStatusComponent (hollow) in second child div (queryType === select)', async () => {
+                    await setQueryType('select');
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 1, 1);
+                });
+
+                it('... should not contain a GraphResultsStatusComponent (hollow) in second child div (queryType === other)', async () => {
+                    await setQueryType('ask');
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsStatusComponent, 0, 0);
                 });
             });
 
             describe('in fullscreen mode', () => {
                 beforeEach(async () => {
-                    // Set fullscreen mode
                     fixture.componentRef.setInput('isFullscreenMode', true);
-
                     await detectChangesOnPush(fixture);
                 });
 
@@ -436,7 +467,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(rowDes[0], 'div.awg-graph-visualizer > div', 2, 2);
                 });
 
-                it('... should contain one TriplesEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorTriplesComponent (hollow) in first inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div > div',
@@ -444,10 +475,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], GraphEditorTriplesComponent, 1, 1);
                 });
 
-                it('... should contain one SparqlEditor component (stubbed) in first inner sub div', () => {
+                it('... should contain one GraphEditorSparqlComponent (hollow) in second inner sub div', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer > div > div > div',
@@ -455,267 +486,199 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphEditorSparqlComponent, 1, 1);
                 });
 
-                it('... should contain one ConstructResults component (stubbed) in second child div (queryType === construct)', async () => {
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
+                it('... should contain one GraphResultsConstructComponent (hollow) in second child div (queryType === construct)', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsConstructComponent, 1, 1);
+                });
+
+                it('... should contain one GraphResultsSelectComponent (hollow) in second child div (queryType === select)', async () => {
+                    await setQueryType('select');
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsSelectComponent, 1, 1);
                 });
 
-                it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', async () => {
-                    component.query.queryType = 'select';
-                    await detectChangesOnPush(fixture);
+                it('... should contain one GraphResultsUnsupportedComponent (hollow) in second child div (queryType === other)', async () => {
+                    await setQueryType('ask');
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
 
-                    getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], GraphResultsUnsupportedComponent, 1, 1);
                 });
 
-                it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', async () => {
-                    component.query.queryType = 'other' as any;
-                    await detectChangesOnPush(fixture);
+                it('... should pass down a force graph height of 1000 to GraphResultsConstructComponent (hollow)', () => {
+                    expectToBe(getChildCmp(GraphResultsConstructComponent).defaultForceGraphHeight(), 1000);
+                });
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-visualizer > div', 2, 2);
-
-                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsStubComponent, 1, 1);
+                it('... should pass down `isFullscreenMode` to all children (hollow)', () => {
+                    expectToBe(getChildCmp(GraphEditorTriplesComponent).isFullscreenMode(), true);
+                    expectToBe(getChildCmp(GraphEditorSparqlComponent).isFullscreenMode(), true);
+                    expectToBe(getChildCmp(GraphResultsConstructComponent).isFullscreenMode(), true);
                 });
             });
 
-            describe('TriplesEditorComponent', () => {
+            describe('GraphEditorTriplesComponent (hollow)', () => {
                 it('... should have `triples` passed down from main component', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
-
-                    expectToEqual(editorCmp.triples, expectedGraphRDFData.triples);
+                    expectToBe(getChildCmp(GraphEditorTriplesComponent).triples(), expectedRdfData.triples);
                 });
 
-                it('... should update `triples` with updateTriplesRequest event', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
-
-                    // Set changed triples
-                    const changedTriples =
-                        '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
-                    editorCmp.updateTriplesRequest.emit(changedTriples);
-
-                    expectToEqual(component.triples, changedTriples);
+                it('... should have `isFullscreenMode` passed down from main component', () => {
+                    expectToBe(getChildCmp(GraphEditorTriplesComponent).isFullscreenMode(), false);
                 });
 
-                it('... should re-trigger `resetTriples()` with resetTriplesRequest event', () => {
+                it('... should have linked signal `triples` to hold the two-way bound triples', () => {
+                    getChildCmp(GraphEditorTriplesComponent).triples.set(expectedChangedTriples);
+
+                    expectToBe(component.triples(), expectedChangedTriples);
+                });
+
+                it('... should trigger `resetTriples()` on resetTriplesRequest event', () => {
+                    getChildCmp(GraphEditorTriplesComponent).resetTriplesRequest.emit();
+
                     expectSpyCall(resetTriplesSpy, 1);
-
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
-
-                    editorCmp.resetTriplesRequest.emit();
-
-                    expectSpyCall(resetTriplesSpy, 2);
                 });
 
-                it('... should re-trigger `performQuery()` with performQueryRequest event', () => {
+                it('... should trigger `performQuery()` on performQueryRequest event', () => {
+                    getChildCmp(GraphEditorTriplesComponent).performQueryRequest.emit();
+
                     expectSpyCall(performQuerySpy, 1);
+                });
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                it('... should trigger `showToastMessage()` on errorMessageRequest event', () => {
+                    consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                    const toastMessage = new ToastMessage('Test', 'test message');
 
-                    editorCmp.performQueryRequest.emit();
+                    getChildCmp(GraphEditorTriplesComponent).errorMessageRequest.emit(toastMessage);
 
-                    expectSpyCall(performQuerySpy, 2);
+                    expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'error']);
                 });
             });
 
-            describe('SparqlEditorComponent', () => {
+            describe('GraphEditorSparqlComponent (hollow)', () => {
                 it('... should have `queryList` and `query` passed down from main component', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                    const editorCmp = getChildCmp(GraphEditorSparqlComponent);
 
-                    expectToEqual(editorCmp.queryList, expectedGraphRDFData.queryList);
-                    expectToEqual(editorCmp.query, expectedGraphRDFData.queryList[0]);
+                    expectToEqual(editorCmp.queryList(), expectedRdfData.queryList);
+                    expectToEqual(editorCmp.query(), expectedRdfData.queryList[0]);
                 });
 
-                it('... should update `query.string` with updateQueryStringRequest event', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                    // Set changed query string
-                    const changedQueryString =
-                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
-                    editorCmp.updateQueryStringRequest.emit(changedQueryString);
-
-                    expectToBe(component.query.queryString, changedQueryString);
+                it('... should have `isFullscreenMode` passed down from main component', () => {
+                    expectToBe(getChildCmp(GraphEditorSparqlComponent).isFullscreenMode(), false);
                 });
 
-                it('... should re-trigger `resetQuery()` with resetQueryRequest event', () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
+                it('... should have linked signal `query` to hold the two-way bound query', () => {
+                    const changedQuery: GraphQuery = {
+                        ...expectedRdfData.queryList[0],
+                        queryString:
+                            'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
+                    };
+                    getChildCmp(GraphEditorSparqlComponent).query.set(changedQuery);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                    // Set changed query
-                    editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
-
-                    expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
+                    expectToEqual(component.query(), changedQuery);
                 });
 
-                it('... should re-trigger `performQuery()` with performQueryRequest event', () => {
+                it('... should trigger `resetQuery()` on resetQueryRequest event', () => {
+                    getChildCmp(GraphEditorSparqlComponent).resetQueryRequest.emit(expectedRdfData.queryList[1]);
+
+                    expectSpyCall(resetQuerySpy, 1, expectedRdfData.queryList[1]);
+                });
+
+                it('... should trigger `performQuery()` on performQueryRequest event', () => {
+                    getChildCmp(GraphEditorSparqlComponent).performQueryRequest.emit();
+
                     expectSpyCall(performQuerySpy, 1);
+                });
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+                it('... should trigger `showToastMessage()` on errorMessageRequest event', () => {
+                    consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                    const toastMessage = new ToastMessage('Test', 'test message');
 
-                    editorCmp.performQueryRequest.emit();
+                    getChildCmp(GraphEditorSparqlComponent).errorMessageRequest.emit(toastMessage);
 
-                    expectSpyCall(performQuerySpy, 2);
+                    expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'error']);
                 });
             });
 
-            describe('ConstructResultsComponent', () => {
-                beforeEach(async () => {
-                    // Set select mode
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
-                });
-
+            describe('GraphResultsConstructComponent (hollow)', () => {
                 it('... should have `queryResult` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
-
-                    expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
-                        expectToEqual(result, expectedConstructResult);
-                    });
+                    expectToEqual(getChildCmp(GraphResultsConstructComponent).queryResult(), expectedConstructResult);
                 });
 
                 it('... should have `defaultForceGraphHeight` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
-
-                    expectToBe(resultsCmp.defaultForceGraphHeight, 500);
+                    expectToBe(getChildCmp(GraphResultsConstructComponent).defaultForceGraphHeight(), 500);
                 });
 
-                it('... should re-trigger `onGraphNodeClick()` with clickedTableRequest event', () => {
+                it('... should have `isFullscreenMode` passed down from main component', () => {
+                    expectToBe(getChildCmp(GraphResultsConstructComponent).isFullscreenMode(), false);
+                });
+
+                it('... should trigger `onGraphNodeClick()` on clickedNodeRequest event', () => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
                     const onGraphNodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
 
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
-
-                    // Emit node
-                    const expectedNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
-                    resultsCmp.clickedNodeRequest.emit(expectedNode);
+                    getChildCmp(GraphResultsConstructComponent).clickedNodeRequest.emit(expectedNode);
 
                     expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
                 });
             });
 
-            describe('SelectResultsComponent', () => {
+            describe('GraphResultsSelectComponent (hollow)', () => {
                 beforeEach(async () => {
-                    // Set select query type
-                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
-                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
-
-                    // Perform query to set SELECT queryResult
+                    // Perform select query
+                    component.query.set({ ...expectedRdfData.queryList[2] });
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
                 });
 
                 it('... should have `queryResult` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
-
-                    expect(resultsCmp.queryResult$).toBeDefined();
-                    resultsCmp.queryResult$.pipe(take(1)).subscribe(result => {
-                        expectToEqual(result, expectedSelectResult);
-                    });
+                    expectToEqual(getChildCmp(GraphResultsSelectComponent).queryResult(), expectedSelectResult);
                 });
 
-                it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
+                it('... should have `isFullscreenMode` passed down from main component', () => {
+                    expectToBe(getChildCmp(GraphResultsSelectComponent).isFullscreenMode(), false);
+                });
+
+                it('... should trigger `onTableNodeClick()` on clickedTableRequest event', () => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
-
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
-
-                    // Emit IRI
                     const expectedUri = 'example:Test';
-                    resultsCmp.clickedTableRequest.emit(expectedUri);
+
+                    getChildCmp(GraphResultsSelectComponent).clickedTableRequest.emit(expectedUri);
 
                     expectSpyCall(onTableNodeClickSpy, 1, expectedUri);
                 });
             });
 
-            describe('UnsupportedTypeResultsComponent', () => {
+            describe('GraphResultsStatusComponent (hollow)', () => {
+                it('... should have `queryResult` and `queryTime` passed down from main component', () => {
+                    const statusCmp = getChildCmp(GraphResultsStatusComponent);
+
+                    expectToEqual(statusCmp.queryResult(), expectedConstructResult);
+                    expectToBe(statusCmp.queryTime(), expectedDurationMs);
+                });
+            });
+
+            describe('GraphResultsUnsupportedComponent (hollow)', () => {
                 beforeEach(async () => {
-                    // Set select mode
-                    component.query.queryType = 'other' as any;
-                    await detectChangesOnPush(fixture);
+                    await setQueryType('ask');
                 });
 
                 it('... should have `queryType` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        UnsupportedTypeResultsStubComponent,
-                        1,
-                        1
-                    );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
-
-                    expectToBe(resultsCmp.queryType, 'other');
+                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).queryType(), 'ask');
                 });
 
-                it('... should pass down empty string to UnsupportedTypeResultsComponent if queryType is missing', async () => {
-                    component.query.queryType = null;
-                    await detectChangesOnPush(fixture);
+                it('... should pass down an empty string if queryType is missing', async () => {
+                    await setQueryType(null);
 
-                    const resultsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        UnsupportedTypeResultsStubComponent,
-                        1,
-                        1
-                    );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
-
-                    expectToBe(resultsCmp.queryType, '');
+                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).queryType(), '');
                 });
 
-                it('... should have `isFullscreen` passed down from main component', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        UnsupportedTypeResultsStubComponent,
-                        1,
-                        1
-                    );
-                    const resultsCmp = resultsDes[0].injector.get(
-                        UnsupportedTypeResultsStubComponent
-                    ) as UnsupportedTypeResultsStubComponent;
-
-                    expectToBe(resultsCmp.isFullscreen, false);
+                it('... should have `isFullscreenMode` passed down from main component', () => {
+                    expectToBe(getChildCmp(GraphResultsUnsupportedComponent).isFullscreenMode(), false);
                 });
             });
         });
@@ -726,60 +689,22 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.resetTriples).toBeDefined();
                 });
 
-                it('... should trigger on resetTriplesRequest event from TriplesEditorComponent', () => {
-                    expectSpyCall(resetTriplesSpy, 1, undefined);
+                it('... should have linked signal `triples` to hold the initial triples after reset', () => {
+                    component.triples.set(expectedChangedTriples);
 
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
-
-                    editorCmp.resetTriplesRequest.emit();
-
-                    expectSpyCall(resetTriplesSpy, 2, undefined);
-                });
-
-                it('... should set initial triples', () => {
-                    expectSpyCall(resetTriplesSpy, 1, undefined);
-
-                    expectToEqual(component.triples, expectedGraphRDFData.triples);
-                });
-
-                it('... should reset changed triples to initial triples', async () => {
-                    expectSpyCall(resetTriplesSpy, 1, undefined);
-
-                    // Set changed triples
-                    const changedTriples =
-                        '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
-                    component.triples = changedTriples;
-                    // Wait for fixture to be stable
-                    await detectChangesOnPush(fixture);
-
-                    expectToEqual(component.triples, changedTriples);
-
-                    // Reset triples
                     component.resetTriples();
-                    await detectChangesOnPush(fixture);
 
-                    expectSpyCall(resetTriplesSpy, 2, undefined);
-                    expect(component.triples).toBeDefined();
-                    expectToEqual(component.triples, expectedGraphRDFData.triples);
+                    expectToBe(component.triples(), expectedRdfData.triples);
                 });
 
-                it('... should do nothing if no triples are provided from rdf data', async () => {
-                    expectSpyCall(resetTriplesSpy, 1);
-
-                    // Set undefined triples
-                    component.triples = '';
-                    component.graphRDFInputData.triples = '';
+                it('... should do nothing if no triples are provided from RDF data', async () => {
+                    fixture.componentRef.setInput('rdfData', { ...expectedRdfData, triples: '' });
                     await detectChangesOnPush(fixture);
+                    component.triples.set(expectedChangedTriples);
 
-                    // Reset triples
                     component.resetTriples();
-                    await detectChangesOnPush(fixture);
 
-                    expectSpyCall(resetTriplesSpy, 2);
-                    expectToBe(component.triples, '');
+                    expectToBe(component.triples(), expectedChangedTriples);
                 });
             });
 
@@ -788,160 +713,43 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.resetQuery).toBeDefined();
                 });
 
-                it('... should trigger on resetQueryRequest event from SparqlEditorComponent', () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                    // Set changed query
-                    editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
-
-                    expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
-                });
-
-                it('... should set initial queryList', () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    expectToEqual(component.queryList, expectedGraphRDFData.queryList);
-                });
-
-                it('... should set initial query', () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
-                });
-
-                it('... should find and reset a query from queryList if queryLabel and queryType is known', async () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    // Request for query with known queryLabel and queryType
-                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                it('... should find and reset a query from queryList if queryLabel and queryType are known', () => {
+                    const changedQuery = { ...expectedRdfData.queryList[1], queryString: 'CONSTRUCT {}' };
 
                     component.resetQuery(changedQuery);
-                    await detectChangesOnPush(fixture);
 
-                    // Matches queryList queries by label
-                    expectSpyCall(resetQuerySpy, 2, undefined);
-
-                    expectToEqual(component.query, changedQuery);
-                    expectToBe(component.query.queryLabel, changedQuery.queryLabel);
-                    expectToBe(component.query.queryType, changedQuery.queryType);
+                    expectToEqual(component.query(), expectedRdfData.queryList[1]);
                 });
 
-                describe('... should set query as is, and not find from queryList, if', () => {
-                    it('... only queryLabel is known but not queryType', async () => {
-                        expectSpyCall(resetQuerySpy, 1, undefined);
+                it('... should set initial query (queryList[0]) if no query is provided', () => {
+                    component.query.set({ ...expectedRdfData.queryList[1] });
 
-                        // Request for query with known queryLabel but unknown queryType
-                        const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                        changedQuery.queryType = 'select';
-
-                        // Set correct return value of service
-                        serviceGetQueryTypeSpy.mockReturnValue(changedQuery.queryType);
-
-                        component.resetQuery(changedQuery);
-                        await detectChangesOnPush(fixture);
-
-                        // Matches queryList queries only by label
-                        expectSpyCall(resetQuerySpy, 2, undefined);
-
-                        expectToEqual(component.query, changedQuery);
-                        expectToBe(component.query.queryLabel, changedQuery.queryLabel);
-                        expectToBe(component.query.queryType, changedQuery.queryType);
-                    });
-
-                    it('... only queryType is known but not queryLabel', async () => {
-                        expectSpyCall(resetQuerySpy, 1, undefined);
-
-                        // Request for query with known queryType but unknown label
-                        const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                        changedQuery.queryLabel = 'select all tests';
-
-                        component.resetQuery(changedQuery);
-                        await detectChangesOnPush(fixture);
-
-                        // Matches queryList queries only by type
-                        expectSpyCall(resetQuerySpy, 2, undefined);
-
-                        expectToEqual(component.query, changedQuery);
-                        expectToBe(component.query.queryLabel, changedQuery.queryLabel);
-                        expectToBe(component.query.queryType, changedQuery.queryType);
-                    });
-
-                    it('... given query is not in queryList', async () => {
-                        expectSpyCall(resetQuerySpy, 1, undefined);
-
-                        // Request for unknown query
-                        const changedQuery: GraphSparqlQuery = {
-                            queryType: 'select',
-                            queryLabel: 'Test Query 3',
-                            queryString:
-                                'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
-                        };
-                        // Set correct return value of service
-                        serviceGetQueryTypeSpy.mockReturnValue(changedQuery.queryType);
-                        component.resetQuery(changedQuery);
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(resetQuerySpy, 2, undefined);
-
-                        expectToEqual(component.query, changedQuery);
-                        expectToBe(component.query.queryLabel, changedQuery.queryLabel);
-                        expectToBe(component.query.queryType, changedQuery.queryType);
-                    });
-                });
-
-                it('... should set initial query (queryList[0]) if no query is provided', async () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    // Set changed query
-                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                    component.query = changedQuery;
-                    await detectChangesOnPush(fixture);
-
-                    expectToEqual(component.query, changedQuery);
-
-                    // Reset triples
                     component.resetQuery();
-                    await detectChangesOnPush(fixture);
 
-                    expectSpyCall(resetQuerySpy, 2, undefined);
+                    expectToEqual(component.query(), expectedRdfData.queryList[0]);
+                });
 
-                    expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
+                it('... should set a copy of the query from queryList', () => {
+                    component.resetQuery(expectedRdfData.queryList[1]);
+
+                    expect(component.query()).not.toBe(expectedRdfData.queryList[1]);
+                });
+
+                it('... should trigger `performQuery()`', () => {
+                    component.resetQuery(expectedRdfData.queryList[1]);
+
+                    expectSpyCall(performQuerySpy, 1);
                 });
 
                 it('... should do nothing if no queryList is provided from RDF data', async () => {
-                    expectSpyCall(resetQuerySpy, 1, undefined);
-
-                    // Set undefined triples
-                    component.queryList = [];
-                    component.graphRDFInputData.queryList = [];
+                    fixture.componentRef.setInput('rdfData', { ...expectedRdfData, queryList: [] });
                     await detectChangesOnPush(fixture);
+                    const query = component.query();
 
-                    // Reset query
-                    const changedQuery: GraphSparqlQuery = {
-                        queryType: 'construct',
-                        queryLabel: 'Test Query 3',
-                        queryString:
-                            'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
-                    };
-                    component.resetQuery(changedQuery);
-                    await detectChangesOnPush(fixture);
+                    component.resetQuery(expectedRdfData.queryList[1]);
 
-                    expectSpyCall(resetQuerySpy, 2, changedQuery);
-                    expectToEqual(component.queryList, []);
-                });
-
-                it('... should trigger `performQuery()`', async () => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
-                    // Reset query
-                    component.resetQuery(expectedGraphRDFData.queryList[1]);
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
-                    expectSpyCall(performQuerySpy, 2, undefined);
+                    expectToBe(component.query(), query);
+                    expectSpyCall(performQuerySpy, 0);
                 });
             });
 
@@ -950,338 +758,95 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.performQuery).toBeDefined();
                 });
 
-                it('... should trigger on event from TriplesEditorComponent', () => {
-                    // First time called on ngOnInit
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
-
-                    // Set changed query
-                    editorCmp.performQueryRequest.emit();
-
-                    expectSpyCall(performQuerySpy, 2);
-                });
-
-                it('... should trigger on event from SparqlEditorComponent', () => {
-                    // First time called on ngOnInit
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                    // Set changed query
-                    editorCmp.performQueryRequest.emit();
-
-                    expectSpyCall(performQuerySpy, 2);
-                });
-
-                it('... should append namespaces to query if no prefixes given', async () => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
-                    const queryStringWithoutPrefixes = 'CONSTRUCT WHERE { ?test ?has ?success . }';
-                    const queryWithoutPrefixes: GraphSparqlQuery = {
-                        queryType: 'construct',
-                        queryLabel: 'Test Query 1',
-                        queryString: queryStringWithoutPrefixes,
+                it('... should have linked signal `query` to hold a new query with the query type from the query string', () => {
+                    const previousQuery: GraphQuery = {
+                        ...expectedRdfData.queryList[0],
+                        queryString: expectedRdfData.queryList[2].queryString,
                     };
-                    serviceCheckNamespacesInQuerySpy.mockReturnValue(
-                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
-                    );
+                    component.query.set(previousQuery);
 
-                    // Perform query without prefixes
-                    component.query = queryWithoutPrefixes;
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
 
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(serviceCheckNamespacesInQuerySpy, 2, [
-                        queryStringWithoutPrefixes,
-                        expectedGraphRDFData.triples,
-                    ]);
-
-                    expectToEqual(component.query, expectedGraphRDFData.queryList[0]);
+                    expectToBe(component.query().queryType, 'select');
+                    expect(component.query()).not.toBe(previousQuery);
+                    expectToBe(previousQuery.queryType, 'construct');
                 });
 
-                it('... should get queryType from service', async () => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-                    expectSpyCall(serviceGetQueryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
+                it('... should run the current query against the current triples', async () => {
+                    component.triples.set(expectedChangedTriples);
+                    component.query.set({ ...expectedRdfData.queryList[2] });
 
-                    // Perform query
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
 
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(serviceGetQueryTypeSpy, 2, expectedGraphRDFData.queryList[0].queryString);
-
-                    expectToBe(component.query.queryType, 'construct');
+                    expectSpyCall(serviceRunSpy, 2, [expectedRdfData.queryList[2].queryString, expectedChangedTriples]);
+                    expectToEqual(component.queryResult(), expectedSelectResult);
                 });
 
-                it('... should trigger `_queryLocalStore` for construct queries', async () => {
-                    // Set construct query type
-                    serviceGetQueryTypeSpy.mockReturnValue('construct');
-
-                    // Perform query
+                it('... should run an unchanged query again', async () => {
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
 
-                    // First spy call already triggered by ChangeDetection in beforeEach
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(queryLocalStoreSpy, 2, [
-                        'construct',
-                        expectedGraphRDFData.queryList[0].queryString,
-                        expectedGraphRDFData.triples,
+                    expectSpyCall(serviceRunSpy, 2, [
+                        expectedRdfData.queryList[0].queryString,
+                        expectedRdfData.triples,
                     ]);
                 });
 
-                it('... should trigger `_queryLocalStore` for select queries', async () => {
-                    // Set select query type
-                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
-                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
+                it('... should not run update queries', async () => {
+                    component.query.set({
+                        ...component.query(),
+                        queryString: `PREFIX example: <${EXAMPLE}>\nINSERT DATA { example:a example:b example:c }`,
+                    });
 
-                    // Perform query
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
 
-                    // First spy call already triggered by ChangeDetection in beforeEach
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(queryLocalStoreSpy, 2, [
-                        'select',
-                        expectedGraphRDFData.queryList[2].queryString,
-                        expectedGraphRDFData.triples,
-                    ]);
+                    expectToBe(component.query().queryType, 'update');
+                    expectSpyCall(serviceRunSpy, 1);
                 });
 
-                it('... should get queryResult for construct queries', async () => {
-                    // Set construct query type
-                    serviceGetQueryTypeSpy.mockReturnValue('construct');
+                it('... should not run queries of unknown type', async () => {
+                    component.query.set({ ...component.query(), queryString: 'WHERE { ?s ?p ?o }' });
 
-                    // Perform query
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
 
-                    expectToBe(component.query.queryType, 'construct');
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
-                });
-
-                it('... should get queryResult for select queries', async () => {
-                    // Set select query type
-                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
-                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
-
-                    // Perform query
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectToBe(component.query.queryType, 'select');
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
-                });
-
-                it('... should set empty observable for update query types', async () => {
-                    serviceGetQueryTypeSpy.mockReturnValue('update');
-
-                    // Perform query
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectToBe(component.query.queryType, 'update');
-                    await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
-                });
-
-                it('... should set empty observable for other query types', async () => {
-                    serviceGetQueryTypeSpy.mockReturnValue('other');
-
-                    // Perform query
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectToBe(component.query.queryType, 'other');
-                    await expect(lastValueFrom(component.queryResult$)).rejects.toThrow(EmptyError);
+                    expectToBe(component.query().queryType, null);
+                    expectSpyCall(serviceRunSpy, 1);
                 });
             });
 
             describe('#showToastMessage()', () => {
-                beforeEach(async () => {
-                    // Set construct mode
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
+                let showMessageSpy: Spy;
 
-                    consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                beforeEach(() => {
+                    showMessageSpy = vi.spyOn(toastService, 'showMessage').mockImplementation(() => {});
                 });
 
                 it('... should have a method `showToastMessage`', () => {
                     expect(component.showToastMessage).toBeDefined();
                 });
 
-                it('... should trigger on event from TriplesEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(
-                        TriplesEditorStubComponent
-                    ) as TriplesEditorStubComponent;
+                it('... should trigger `toastService.showMessage` with the given toast message and type', () => {
+                    const toastMessage = new ToastMessage('Error1', 'error message', 500);
 
-                    // Set changed query
-                    editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
+                    component.showToastMessage(toastMessage, 'error');
 
-                    expectSpyCall(showToastMessageSpy, 1);
-                });
-
-                it('... should trigger on event from SparqlEditorComponent', () => {
-                    const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                    const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                    // Set changed query
-                    editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
-
-                    expectSpyCall(showToastMessageSpy, 1);
-                });
-
-                describe('... should do nothing', () => {
-                    it('... if no toastMessage.message is provided', () => {
-                        const toastMessage = new ToastMessage('Error1', '', 500);
-                        consoleSpy.mockClear();
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(showToastMessageSpy, 1, toastMessage);
-                        expectSpyCall(toastServiceAddSpy, 0);
-                        expectSpyCall(consoleSpy, 0);
-                    });
+                    expectSpyCall(showMessageSpy, 1, [toastMessage, 'error']);
                 });
 
                 it('... should use "info" as default type if not provided', () => {
-                    const toastMessage = new ToastMessage('DefaultInfo', 'Default info message', 2000);
-                    const expectedToast = new Toast(toastMessage.message, {
-                        header: toastMessage.name,
-                        classname: 'bg-info text-light',
-                        delay: toastMessage.duration,
-                    });
-                    consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
+                    const toastMessage = new ToastMessage('Info1', 'info message', 500);
 
                     component.showToastMessage(toastMessage);
 
-                    expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                    expectSpyCall(consoleSpy, 1, ['DefaultInfo', ':', 'Default info message']);
-                });
-
-                describe('... on error message', () => {
-                    it('... should log the provided name and error message to console', () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message', 500);
-                        consoleSpy.mockClear();
-
-                        component.showToastMessage(toastMessage, 'error');
-
-                        expectSpyCall(showToastMessageSpy, 1, toastMessage);
-                        expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
-                    });
-
-                    it('... should trigger toast service and add an error toast message', async () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message', 500);
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-danger text-light',
-                            delay: toastMessage.duration,
-                        });
-
-                        // Trigger error message
-                        component.showToastMessage(toastMessage, 'error');
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
-                    });
-
-                    it('... should set durationvValue = 3000 for the errortoast message if delay not given ', async () => {
-                        const toastMessage = new ToastMessage('Error1', 'error message');
-                        const expectedDuration = 3000;
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-danger text-light',
-                            delay: expectedDuration,
-                        });
-
-                        // Trigger error message without delay value
-                        component.showToastMessage(toastMessage, 'error');
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
-                    });
-                });
-
-                describe('... on info message', () => {
-                    it('... should log the provided name and info message to console', () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message', 500);
-                        consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
-                        consoleSpy.mockClear();
-
-                        component.showToastMessage(toastMessage, 'info');
-
-                        expectSpyCall(showToastMessageSpy, 1, toastMessage);
-                        expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
-                    });
-
-                    it('... should trigger toast service and add an info toast message', async () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message', 500);
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-info text-light',
-                            delay: toastMessage.duration,
-                        });
-                        vi.spyOn(console, 'info').mockImplementation(mockConsole.log); // Catch console output
-
-                        // Trigger info message
-                        component.showToastMessage(toastMessage, 'info');
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
-                    });
-
-                    it('... should set durationValue = 3000 for the info toast message if delay not given ', async () => {
-                        const toastMessage = new ToastMessage('Info1', 'info message');
-                        const expectedDuration = 3000;
-                        const expectedToast = new Toast(toastMessage.message, {
-                            header: toastMessage.name,
-                            classname: 'bg-info text-light',
-                            delay: expectedDuration,
-                        });
-                        vi.spyOn(console, 'info').mockImplementation(mockConsole.log); // Catch console output
-
-                        // Trigger info message without delay value
-                        component.showToastMessage(toastMessage, 'info');
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-
-                        expect(toastService.toasts).toBeDefined();
-                        expectToBe(toastService.toasts.length, 1);
-                        expectToEqual(toastService.toasts[0], expectedToast);
-                    });
+                    expectSpyCall(showMessageSpy, 1, [toastMessage, 'info']);
                 });
             });
 
             describe('#onGraphNodeClick()', () => {
-                let onGraphNodeClickSpy: Spy;
-
-                beforeEach(async () => {
-                    // Set construct mode
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
-
-                    onGraphNodeClickSpy = vi.spyOn(component, 'onGraphNodeClick');
+                beforeEach(() => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
                 });
 
@@ -1289,70 +854,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.onGraphNodeClick).toBeDefined();
                 });
 
-                it('... should trigger on event from ConstructResultsComponent', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
+                it('... should do nothing if no node is provided', () => {
+                    component.onGraphNodeClick(undefined as unknown as ResultGraphNode);
 
-                    const expectedNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
-                    resultsCmp.clickedNodeRequest.emit(expectedNode);
-
-                    expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
-                });
-
-                it('... should not do anything if no node is provided', () => {
-                    // Check initial state
-                    expectSpyCall(performQuerySpy, 1, undefined);
-                    expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
-
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
-
-                    // Emit undefined value
-                    resultsCmp.clickedNodeRequest.emit(undefined);
-
-                    expectSpyCall(onGraphNodeClickSpy, 1, undefined);
-                    expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
-                    expectSpyCall(performQuerySpy, 1, undefined);
+                    expectSpyCall(showToastMessageSpy, 0);
                 });
 
                 it('... should show the provided node in a ToastMessage', () => {
-                    consoleSpy.mockClear();
-
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        ConstructResultsStubComponent
-                    ) as ConstructResultsStubComponent;
-
-                    const expectedNode = new D3SimulationNode('Test', D3SimulationNodeType.node);
-                    resultsCmp.clickedNodeRequest.emit(expectedNode);
-
-                    // Check ToastMessage
-                    const expectedMessage = `GraphVisualizerComponent# graphClick on node ${expectedNode.id}\n\n Label: ${expectedNode.label}`;
-                    const toastMessage = new ToastMessage(expectedNode.id, expectedMessage, 5000);
+                    const expectedMessage = `GraphVisualizerComponent# graphClick on node ${expectedNode.shortName}\n\n Label: ${expectedNode.label}`;
+                    const toastMessage = new ToastMessage(expectedNode.shortName, expectedMessage, 5000);
                     const expectedToast = new Toast(toastMessage.message, {
                         header: toastMessage.name,
                         classname: 'bg-info text-light',
                         delay: toastMessage.duration,
                     });
 
-                    expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
+                    component.onGraphNodeClick(expectedNode);
+
                     expectSpyCall(showToastMessageSpy, 1, [toastMessage, 'info']);
                     expectSpyCall(toastServiceAddSpy, 1, expectedToast);
-                    expectSpyCall(consoleSpy, 1, ['Test', ':', expectedMessage]);
+                    expectSpyCall(consoleSpy, 1, [expectedNode.shortName, ':', expectedMessage]);
                 });
             });
 
             describe('#onTableNodeClick()', () => {
-                beforeEach(async () => {
-                    // Set select mode
-                    component.query = expectedGraphRDFData.queryList[0];
-                    component.query.queryType = 'select';
-                    await detectChangesOnPush(fixture);
-
+                beforeEach(() => {
                     consoleSpy = vi.spyOn(console, 'info').mockImplementation(mockConsole.log);
                 });
 
@@ -1360,285 +886,234 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component.onTableNodeClick).toBeDefined();
                 });
 
-                it('... should trigger on event from SelectResultsComponent', () => {
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
+                it('... should do nothing if no URI is provided', () => {
+                    component.onTableNodeClick('');
 
-                    const expectedUri = 'example:Test';
-                    resultsCmp.clickedTableRequest.emit(expectedUri);
-
-                    expectSpyCall(onTableNodeClickSpy, 1, expectedUri);
-                });
-
-                it('... should not do anything if no URI is provided', () => {
-                    // Check initial state
-                    expectSpyCall(performQuerySpy, 1, undefined);
-                    expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
-
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
-
-                    // Emit undefined value
-                    resultsCmp.clickedTableRequest.emit('');
-
-                    expectSpyCall(onTableNodeClickSpy, 1, '');
-                    expectToBe(component.query.queryString, component.graphRDFInputData.queryList[0].queryString);
-                    expectSpyCall(performQuerySpy, 1, undefined);
+                    expectSpyCall(consoleSpy, 0);
+                    expectSpyCall(performQuerySpy, 0);
                 });
 
                 it('... should log the provided URI to console', () => {
-                    consoleSpy.mockClear();
-
-                    const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
-                    const resultsCmp = resultsDes[0].injector.get(
-                        SelectResultsStubComponent
-                    ) as SelectResultsStubComponent;
-
                     const expectedUri = 'example:Test';
-                    resultsCmp.clickedTableRequest.emit(expectedUri);
 
-                    expectSpyCall(onTableNodeClickSpy, 1, expectedUri);
+                    component.onTableNodeClick(expectedUri);
+
                     expectSpyCall(consoleSpy, 1, ['GraphVisualizerComponent# tableClick on URI', expectedUri]);
                 });
             });
 
-            describe('#_queryLocalStore()', () => {
-                beforeEach(async () => {
-                    // Set construct mode
-                    component.query.queryType = 'construct';
-                    await detectChangesOnPush(fixture);
+            describe('#_createQueryRequest()', () => {
+                it('... should have a method `_createQueryRequest`', () => {
+                    expect(component['_createQueryRequest']).toBeDefined();
                 });
 
-                it('... should have a method `_queryLocalStore`', () => {
-                    expect(component['_queryLocalStore']).toBeDefined();
+                it('... should hold a request of the current query against the current triples', () => {
+                    const currentQuery = { ...expectedRdfData.queryList[2], queryType: 'select' as const };
+                    component.triples.set(expectedChangedTriples);
+                    component.query.set(currentQuery);
+
+                    expectToEqual(component['_createQueryRequest'](), {
+                        queryType: 'select',
+                        queryString: currentQuery.queryString,
+                        triples: expectedChangedTriples,
+                    });
+                });
+            });
+
+            describe('#_runQuery()', () => {
+                let expectedRequest: SparqlQueryRequest;
+
+                beforeEach(() => {
+                    expectedRequest = {
+                        queryType: 'construct',
+                        queryString: expectedRdfData.queryList[0].queryString,
+                        triples: expectedRdfData.triples,
+                    };
                 });
 
-                it('... should trigger `graphVisualizerService.doQuery`', async () => {
-                    const expectedCallback = [
-                        'construct',
-                        expectedGraphRDFData.queryList[0].queryString,
-                        expectedGraphRDFData.triples,
-                    ];
+                it('... should have a method `_runQuery`', () => {
+                    expect(component['_runQuery']).toBeDefined();
+                });
 
+                it('... should be triggered by resource `queryRun` with the requested query', () => {
+                    expectSpyCall(runQuerySpy, 1);
+                    expectToEqual(runQuerySpy.mock.calls[0][0], expectedRequest);
+                    expect(runQuerySpy.mock.calls[0][1]).toBeInstanceOf(AbortSignal);
+                });
+
+                it('... should trigger `sparqlQueryService.run` with the query string and the triples', async () => {
+                    serviceRunSpy.mockClear();
+
+                    await component['_runQuery'](expectedRequest, new AbortController().signal);
+
+                    expectSpyCall(serviceRunSpy, 1, [expectedRequest.queryString, expectedRequest.triples]);
+                });
+
+                it('... should hold the run of the query service on success', async () => {
+                    const run = await component['_runQuery'](expectedRequest, new AbortController().signal);
+
+                    expectToEqual(run, {
+                        query: expectedRequest.queryString,
+                        result: expectedConstructResult,
+                        durationMs: expectedDurationMs,
+                    });
+                });
+
+                it('... should set the performed query (completed with prefixes) on success', async () => {
+                    const performedQuery = `PREFIX rdf: <${DEFAULT_PREFIXES['rdf']}>\n${expectedRequest.queryString}`;
+                    serviceRunSpy.mockResolvedValueOnce({
+                        query: performedQuery,
+                        result: expectedConstructResult,
+                        durationMs: 7,
+                    });
+
+                    await component['_runQuery'](expectedRequest, new AbortController().signal);
+
+                    expectToBe(component.query().queryString, performedQuery);
+                });
+
+                it('... should not set the performed query if the run has been aborted', async () => {
+                    const abortController = new AbortController();
+                    const deferredRun = createDeferredRun();
+                    serviceRunSpy.mockReturnValueOnce(deferredRun.promise);
+                    const query = component.query();
+
+                    const pendingRun = component['_runQuery'](expectedRequest, abortController.signal);
+                    abortController.abort();
+                    deferredRun.resolve({ query: 'PREFIX stale', result: expectedConstructResult, durationMs: 1 });
+                    await pendingRun;
+
+                    expectToBe(component.query(), query);
+                });
+
+                it('... should not set the performed query if the query has been edited while running', async () => {
+                    const deferredRun = createDeferredRun();
+                    serviceRunSpy.mockReturnValueOnce(deferredRun.promise);
+                    const editedQueryString = `${expectedRequest.queryString}\n# edited`;
+
+                    const pendingRun = component['_runQuery'](expectedRequest, new AbortController().signal);
+                    component.query.update(currentQuery => ({ ...currentQuery, queryString: editedQueryString }));
+                    deferredRun.resolve({ query: 'PREFIX performed', result: expectedConstructResult, durationMs: 1 });
+                    await pendingRun;
+
+                    expectToBe(component.query().queryString, editedQueryString);
+                });
+
+                it('... should not set the performed query of a stale run in the editor', async () => {
+                    const deferredRun = createDeferredRun();
+                    serviceRunSpy.mockReturnValueOnce(deferredRun.promise);
+
+                    // Start a run that is outdated by the next query request
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    expectSpyCall(performQuerySpy, 2, undefined);
-                    expectSpyCall(queryLocalStoreSpy, 2, expectedCallback);
-                    expectSpyCall(serviceDoQuerySpy, 2, expectedCallback);
-                });
-
-                it('... should return query result on success (construct)', async () => {
+                    TestBed.tick();
+                    component.query.set({ ...expectedRdfData.queryList[2] });
                     component.performQuery();
-                    await detectChangesOnPush(fixture);
+                    await fixture.whenStable();
 
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedConstructResult);
-                });
+                    deferredRun.resolve({ query: 'PREFIX stale', result: expectedConstructResult, durationMs: 1 });
+                    await fixture.whenStable();
 
-                it('... should return query result on success (select)', async () => {
-                    // Set select query type
-                    component.query.queryType = expectedGraphRDFData.queryList[2].queryType;
-                    component.query.queryString = expectedGraphRDFData.queryList[2].queryString;
-
-                    component.performQuery();
-                    await detectChangesOnPush(fixture);
-
-                    await expect(lastValueFrom(component.queryResult$)).resolves.not.toThrow();
-                    await expect(lastValueFrom(component.queryResult$)).resolves.toEqual(expectedSelectResult);
-                });
-
-                it('... should return string message on successful select query with no results', async () => {
-                    const expectedNoResults = 'Query returned no results';
-                    const expectedCallback = [
-                        'select',
-                        expectedGraphRDFData.queryList[0].queryString,
-                        expectedGraphRDFData.triples,
-                    ];
-
-                    serviceDoQuerySpy.mockResolvedValue(expectedNoResults);
-
-                    const result = await component['_queryLocalStore'](
-                        expectedCallback[0],
-                        expectedCallback[1],
-                        expectedCallback[2]
-                    );
-
-                    expectToBe(result, expectedNoResults);
+                    expectToBe(component.query().queryString, expectedRdfData.queryList[2].queryString);
+                    expectToEqual(component.queryResult(), expectedSelectResult);
                 });
 
                 describe('... on error', () => {
-                    it('... should return empty array', async () => {
-                        const expectedError = { status: 404, statusText: 'error' };
+                    beforeEach(() => {
+                        consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
+                    });
 
-                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log); // Catch console output
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
+                    it('... should hold a run with an empty result of the query type', async () => {
+                        serviceRunSpy.mockRejectedValue({ status: 404, statusText: 'error' });
 
-                        component.performQuery();
-                        await detectChangesOnPush(fixture);
+                        const run = await component['_runQuery'](expectedRequest, new AbortController().signal);
 
-                        const queryResult = await firstValueFrom(component.queryResult$);
+                        expectToBe(run.query, expectedRequest.queryString);
+                        expectToEqual(run.result, { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
+                        expectToBe(typeof run.durationMs, 'number');
+                    });
 
-                        expectToEqual(queryResult, []);
+                    it('... should keep the query unchanged', async () => {
+                        serviceRunSpy.mockRejectedValue(new Error('error'));
+                        const query = component.query();
+
+                        await component['_runQuery'](expectedRequest, new AbortController().signal);
+
+                        expectToBe(component.query(), query);
                     });
 
                     it('... should log an error', async () => {
                         const expectedError = { status: 404, statusText: 'error' };
+                        serviceRunSpy.mockRejectedValue(expectedError);
 
-                        const errorSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(expectedError));
-                        errorSpy.mockClear();
+                        await component['_runQuery'](expectedRequest, new AbortController().signal);
 
-                        component.performQuery();
-                        await detectChangesOnPush(fixture);
-
-                        expectSpyCall(errorSpy, 2);
-                        expectToEqual(errorSpy.mock.calls[0], ['#queryLocalstore got error:', expectedError]);
+                        expectSpyCall(consoleSpy, 2);
+                        expectToEqual(consoleSpy.mock.calls[0], ['#runQuery got error:', expectedError]);
                         // Error logged by `showToastMessage` method
-                        expectToEqual(errorSpy.mock.calls[1], ['Query Error', ':', String(expectedError.statusText)]);
+                        expectToEqual(consoleSpy.mock.calls[1], ['Query Error', ':', expectedError.statusText]);
                     });
 
-                    it('... should delegate error parsing to _getErrorMessage and trigger showToastMessage', async () => {
+                    it('... should trigger `ERROR_UTILS.getErrorMessage` and show a single error toast', async () => {
                         const error = new Error('some error');
                         const expectedParsedMessage = 'Parsed Error Message Via Helper';
-
-                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
                         const getErrorMessageSpy = vi
-                            .spyOn(component, '_getErrorMessage' as any)
+                            .spyOn(ERROR_UTILS, 'getErrorMessage')
                             .mockReturnValue(expectedParsedMessage);
+                        serviceRunSpy.mockRejectedValue(error);
 
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(error));
+                        await component['_runQuery'](expectedRequest, new AbortController().signal);
 
-                        component.performQuery();
-                        await detectChangesOnPush(fixture);
-
-                        expect(getErrorMessageSpy).toHaveBeenCalledWith(error);
-
-                        expectSpyCall(showToastMessageSpy, 1);
-                        expectToEqual(showToastMessageSpy.mock.calls[0], [
+                        expectSpyCall(getErrorMessageSpy, 1, error);
+                        expectSpyCall(showToastMessageSpy, 1, [
                             new ToastMessage('Error', expectedParsedMessage, 5000),
                             'error',
                         ]);
                     });
 
-                    it('... should trigger a special toast message if the error message contains `undefined`', async () => {
-                        const specialError = new Error('The query returned an undefined result.');
-                        specialError.name = 'Query Error';
+                    it('... should neither log an error nor show a toast if the run has been aborted', async () => {
+                        const abortController = new AbortController();
+                        let reject!: (err: unknown) => void;
+                        serviceRunSpy.mockReturnValueOnce(new Promise<SparqlQueryRun>((_, rej) => (reject = rej)));
 
-                        vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
-                        serviceDoQuerySpy.mockImplementation(() => Promise.reject(specialError));
-                        showToastMessageSpy.mockClear();
+                        const pendingRun = component['_runQuery'](expectedRequest, abortController.signal);
+                        abortController.abort();
+                        reject(new Error('stale error'));
+                        const run = await pendingRun;
+
+                        expectSpyCall(consoleSpy, 0);
+                        expectSpyCall(showToastMessageSpy, 0);
+                        expectToEqual(run.result, { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
+                    });
+
+                    it('... should not show an error toast of a stale run after a newer query succeeded', async () => {
+                        let reject!: (err: unknown) => void;
+                        serviceRunSpy.mockReturnValueOnce(new Promise<SparqlQueryRun>((_, rej) => (reject = rej)));
+
+                        // Start a run that is outdated by the next query request
+                        component.performQuery();
+                        TestBed.tick();
+                        component.query.set({ ...expectedRdfData.queryList[2] });
+                        component.performQuery();
+                        await fixture.whenStable();
+
+                        reject(new Error('stale error'));
+                        await fixture.whenStable();
+
+                        expectSpyCall(showToastMessageSpy, 0);
+                        expectToEqual(component.queryResult(), expectedSelectResult);
+                    });
+
+                    it('... should have computed signal `queryResult` to hold the empty result', async () => {
+                        serviceRunSpy.mockRejectedValue(new Error('error'));
 
                         component.performQuery();
-                        await detectChangesOnPush(fixture);
+                        await fixture.whenStable();
 
-                        expectSpyCall(showToastMessageSpy, 2);
-
-                        expectToEqual(showToastMessageSpy.mock.calls[0], [
-                            new ToastMessage('Query Error', 'The query did not return any results.', 5000),
-                            'error',
-                        ]);
-                        expectToEqual(showToastMessageSpy.mock.calls[1], [
-                            new ToastMessage('Query Error', 'The query returned an undefined result.', 5000),
-                            'error',
-                        ]);
-                    });
-                });
-            });
-
-            describe('#_getErrorMessage()', () => {
-                it('... should have a method `_getErrorMessage`', () => {
-                    expect(component['_getErrorMessage']).toBeDefined();
-                });
-
-                describe('... should parse error messages correctly for various error types', () => {
-                    it.each([
-                        {
-                            desc: 'a structured error object (Error)',
-                            error: (() => {
-                                const err = new Error('error message');
-                                err.name = 'Error';
-                                return err;
-                            })(),
-                            expectedMessage: 'error message',
-                        },
-                        {
-                            desc: 'a structured error object (Error) with specific message',
-                            error: (() => {
-                                const err = new Error('error message undefined');
-                                err.name = 'Error';
-                                return err;
-                            })(),
-                            expectedMessage: 'error message undefined',
-                        },
-                        {
-                            desc: 'a plain object with a `message` property',
-                            error: { status: 400, message: 'Custom API error message' },
-                            expectedMessage: 'Custom API error message',
-                        },
-                        {
-                            desc: 'a plain object with a `statusText` property (like HTTP errors)',
-                            error: { status: 404, statusText: 'Not Found' },
-                            expectedMessage: 'Not Found',
-                        },
-                        {
-                            desc: 'a plain object without a `message` or `statusText` property (forces `JSON.stringify`)',
-                            error: { errorCode: 999, fatal: true },
-                            expectedMessage: '{"errorCode":999,"fatal":true}',
-                        },
-                        {
-                            desc: 'an object where `JSON.stringify` returns undefined',
-                            error: {
-                                toJSON: (): undefined => undefined,
-                            },
-                            expectedMessage: undefined,
-                        },
-                        {
-                            desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
-                            error: (() => {
-                                const circularObj: any = { foo: 'bar' };
-                                circularObj.self = circularObj;
-                                return circularObj;
-                            })(),
-                            expectedMessage: '[Complex Error Object with keys: foo, self]',
-                        },
-                        {
-                            desc: 'a primitive string error',
-                            error: 'Fatal Store Crash',
-                            expectedMessage: 'Fatal Store Crash',
-                        },
-                        {
-                            desc: 'a primitive number error',
-                            error: 500,
-                            expectedMessage: '500',
-                        },
-                        {
-                            desc: 'a primitive boolean error',
-                            error: false,
-                            expectedMessage: 'false',
-                        },
-                        {
-                            desc: 'an unknown format (like null)',
-                            error: null as any,
-                            expectedMessage: 'Unknown error format',
-                        },
-                        {
-                            desc: 'an unknown format (like undefined)',
-                            error: undefined as any,
-                            expectedMessage: 'Unknown error format',
-                        },
-                    ])('... with $desc', ({ error, expectedMessage }) => {
-                        const result = component['_getErrorMessage'](error);
-
-                        if (expectedMessage === undefined) {
-                            expect(result).toBeUndefined();
-                        } else {
-                            expectToBe(result, expectedMessage);
-                        }
+                        expectToEqual(component.queryResult(), {
+                            kind: 'construct',
+                            quads: [],
+                            prefixes: DEFAULT_PREFIXES,
+                        });
                     });
                 });
             });

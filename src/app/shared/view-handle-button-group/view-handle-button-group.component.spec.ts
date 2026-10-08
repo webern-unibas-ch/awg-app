@@ -1,14 +1,14 @@
-import { DebugElement, SimpleChange } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
 
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap/tooltip';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
@@ -29,24 +29,17 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let expectedViewHandles: ViewHandle[];
     let expectedSelectedViewType: ViewHandleTypes;
 
-    let createFormGroupSpy: Spy;
-    let listenToUserInputChangeSpy: Spy;
-    let onViewChangeSpy: Spy;
     let viewChangeRequestSpy: Spy;
+
+    const btnGroupSelector = 'div.awg-view-handle-btn-group > div.btn-group';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbTooltip, ReactiveFormsModule],
-            declarations: [ViewHandleButtonGroupComponent],
-            providers: [FormBuilder],
+            imports: [ViewHandleButtonGroupComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
         // Test data
         expectedViewHandles = [
             new ViewHandle('Graph view', ViewHandleTypes.GRAPH, faDiagramProject),
@@ -55,10 +48,12 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         ];
         expectedSelectedViewType = ViewHandleTypes.GRAPH;
 
-        // Spies
-        createFormGroupSpy = vi.spyOn(component, '_createFormGroup' as any);
-        listenToUserInputChangeSpy = vi.spyOn(component, '_listenToUserInputChange' as any);
-        onViewChangeSpy = vi.spyOn(component, '_onViewChange' as any);
+        // Create component fixture
+        fixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
         viewChangeRequestSpy = vi.spyOn(component.viewChangeRequest, 'emit');
     });
 
@@ -71,53 +66,46 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have default `viewHandles` input', () => {
-            expectToEqual(component.viewHandles, []);
+        it('... should have input signal `viewHandles` to hold the default value', () => {
+            expectToBe(isSignal(component.viewHandles), true);
+            expectToEqual(component.viewHandles(), []);
         });
 
-        it('... should not have `selectedViewType`', () => {
-            expect(component.selectedViewType).toBeUndefined();
+        it('... should have `groupName` to hold a unique name per instance', () => {
+            const otherComponent = TestBed.createComponent(ViewHandleButtonGroupComponent).componentInstance;
+
+            expect(component.groupName).toMatch(/^awg-view-handle-\d+$/);
+            expect(otherComponent.groupName).toMatch(/^awg-view-handle-\d+$/);
+            expect(otherComponent.groupName).not.toBe(component.groupName);
         });
 
-        it('... should not have `viewHandleControlForm`', () => {
-            expect(component.viewHandleControlForm).toBeUndefined();
+        it('... should throw due to missing required input signal `selectedViewType`', () => {
+            expectToBe(isSignal(component.selectedViewType), true);
+
+            expect(() => component.selectedViewType()).toThrow();
         });
 
         describe('VIEW', () => {
-            it('... should have a div.awg-view-handle-btn-group', () => {
+            it('... should contain one div.awg-view-handle-btn-group', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
             });
 
-            it('... should have a form in div.awg-view-handle-btn-group', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
+            it('... should contain another div.btn-group in div.awg-view-handle-btn-group', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                getAndExpectDebugElementByCss(divDes[0], 'form', 1, 1);
+                expectToBe(divEl.getAttribute('role'), 'group');
+                expectToBe(divEl.getAttribute('aria-label'), 'View handle button group');
             });
 
-            it('... should have another div.btn-group in form', () => {
-                const formDes = getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group > form', 1, 1);
-
-                getAndExpectDebugElementByCss(formDes[0], 'div.btn-group', 1, 1);
-            });
-
-            it('... should not have any input elements in div.btn-group', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
+            it('... should contain no input elements in div.btn-group yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'input', 0, 0);
             });
 
-            it('... should not have any label elements in div.btn-group', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
+            it('... should contain no label elements in div.btn-group yet', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'label', 0, 0);
             });
@@ -125,28 +113,42 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
+        const getInputEls = (): HTMLInputElement[] =>
+            getAndExpectDebugElementByCss(
+                compDe,
+                `${btnGroupSelector} > input`,
+                expectedViewHandles.length,
+                expectedViewHandles.length
+            ).map(de => de.nativeElement);
+
         beforeEach(() => {
-            // Simulate the parent component setting the data
-            component.viewHandles = expectedViewHandles;
-            component.selectedViewType = expectedSelectedViewType;
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('viewHandles', expectedViewHandles);
+            fixture.componentRef.setInput('selectedViewType', expectedSelectedViewType);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should trigger the `createFormGroup()` method with selected view type', () => {
-            expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
+        it('... should have input signal `viewHandles` to hold the provided view handles', () => {
+            expectToEqual(component.viewHandles(), expectedViewHandles);
+        });
+
+        it('... should have input signal `selectedViewType` to hold the provided view type', () => {
+            expectToBe(component.selectedViewType(), expectedSelectedViewType);
+        });
+
+        it('... should have view children signal `radioInputs` to hold the radio input elements', () => {
+            expectToBe(isSignal(component.radioInputs), true);
+            expectToEqual(
+                component.radioInputs().map(inputRef => inputRef.nativeElement),
+                getInputEls()
+            );
         });
 
         describe('VIEW', () => {
-            it('... should have as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-
+            it('... should contain as many radio elements (input.btn-check) in div.btn-group as viewHandles given', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
                 const inputDes = getAndExpectDebugElementByCss(
                     divDes[0],
                     'input.btn-check',
@@ -154,73 +156,70 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                     expectedViewHandles.length
                 );
 
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    const inputEl: HTMLInputElement = inputDes[i].nativeElement;
+                inputDes.forEach(inputDe => {
+                    const inputEl: HTMLInputElement = inputDe.nativeElement;
+
                     expectToBe(inputEl.type, 'radio');
-                }
+                });
             });
 
-            it('... should set the value of the input element to the viewHandle type', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'input',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    // Get the viewHandleControl
-                    const control = component.viewHandleControl;
-
-                    // Get native element of the input
-                    const inputEl: HTMLInputElement = inputDes[i].nativeElement;
-
-                    // Dispatch a change event to activate the form control
-                    inputEl.value = expectedViewHandles[i].type;
-                    inputEl.dispatchEvent(new Event('change'));
-                    fixture.detectChanges();
-
-                    // Check if the value of the input element is the same as the viewHandle type
-                    expectToBe(control.value, expectedViewHandles[i].type);
-                }
+            it('... should group all radio elements by the unique `groupName`', () => {
+                getInputEls().forEach(inputEl => {
+                    expectToBe(inputEl.name, component.groupName);
+                });
             });
 
-            it('... should set the id of the input element to `{viewHandle.type}-view-button`', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const inputDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'input',
-                    expectedViewHandles.length,
-                    expectedViewHandles.length
-                );
-
-                const inputEl1: HTMLInputElement = inputDes[0].nativeElement;
-                const inputEl2: HTMLInputElement = inputDes[1].nativeElement;
-                const inputEl3: HTMLInputElement = inputDes[2].nativeElement;
-
-                expectToBe(inputEl1.id, `${expectedViewHandles[0].type}-view-button`);
-                expectToBe(inputEl2.id, `${expectedViewHandles[1].type}-view-button`);
-                expectToBe(inputEl3.id, `${expectedViewHandles[2].type}-view-button`);
+            it('... should set the value of the input elements to the viewHandle types', () => {
+                getInputEls().forEach((inputEl, i) => {
+                    expectToBe(inputEl.value, expectedViewHandles[i].type);
+                });
             });
 
-            it('... should have as many label elements in div.btn-group as viewHandles given', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
+            it('... should set the id of the input elements to `{groupName}-{viewHandle.type}-view-button`', () => {
+                getInputEls().forEach((inputEl, i) => {
+                    expectToBe(inputEl.id, `${component.groupName}-${expectedViewHandles[i].type}-view-button`);
+                });
+            });
+
+            it('... should check only the radio element of the selected view type', () => {
+                const inputEls = getInputEls();
+
+                expectToBe(inputEls[0].checked, true);
+                expectToBe(inputEls[1].checked, false);
+                expectToBe(inputEls[2].checked, false);
+            });
+
+            it('... should not uncheck the radio elements of another instance', () => {
+                const otherFixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
+                otherFixture.componentRef.setInput('viewHandles', expectedViewHandles);
+                otherFixture.componentRef.setInput('selectedViewType', ViewHandleTypes.TABLE);
+                otherFixture.detectChanges();
+
+                const otherInputEls: HTMLInputElement[] = Array.from(
+                    otherFixture.nativeElement.querySelectorAll('input[type="radio"]')
                 );
+
+                // Both instances keep their own checked radio element
+                expectToBe(getInputEls()[0].checked, true);
+                expectToBe(otherInputEls[1].checked, true);
+                otherInputEls.forEach((inputEl, i) => {
+                    expect(inputEl.id).not.toBe(getInputEls()[i].id);
+                });
+            });
+
+            it('... should check the radio element of a changed selected view type', async () => {
+                fixture.componentRef.setInput('selectedViewType', ViewHandleTypes.TABLE);
+                await detectChangesOnPush(fixture);
+
+                const inputEls = getInputEls();
+
+                expectToBe(inputEls[0].checked, false);
+                expectToBe(inputEls[1].checked, true);
+                expectToBe(inputEls[2].checked, false);
+            });
+
+            it('... should contain as many label elements in div.btn-group as viewHandles given', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
@@ -230,259 +229,148 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 );
             });
 
-            it('... should set the `for` attribute of the label element to `{viewHandle.type}-view-button`', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
+            it('... should set the `for` attribute of the label elements to `{groupName}-{viewHandle.type}-view-button`', () => {
                 const labelDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'label',
+                    compDe,
+                    `${btnGroupSelector} > label`,
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    expectToBe(labelDes[i].attributes['for'], `${expectedViewHandles[i].type}-view-button`);
-                }
+                labelDes.forEach((labelDe, i) => {
+                    expectToBe(
+                        labelDe.attributes['for'],
+                        `${component.groupName}-${expectedViewHandles[i].type}-view-button`
+                    );
+                });
             });
 
-            it('... should have as many icon elements in div.btn-group > label as viewHandles given', () => {
-                const divDes = getAndExpectDebugElementByCss(
+            it('... should emit the view type by click on a label', () => {
+                const labelDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
-                const iconDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'label > fa-icon',
+                    `${btnGroupSelector} > label`,
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
-                const iconDeChild1 = iconDes[0].children[0];
-                const iconDeChild2 = iconDes[1].children[0];
-                const iconDeChild3 = iconDes[2].children[0];
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
 
-                expect(iconDeChild1.classes['fa-diagram-project']).toBeTruthy();
-                expect(iconDeChild2.classes['fa-table']).toBeTruthy();
-                expect(iconDeChild3.classes['fa-grip']).toBeTruthy();
+                expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
+            });
+
+            it('... should display a visually hidden `{type} view` text in the label elements', () => {
+                const spanDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label > span.visually-hidden`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                spanDes.forEach((spanDe, i) => {
+                    const spanEl: HTMLSpanElement = spanDe.nativeElement;
+
+                    expectToBe(spanEl.textContent, `${expectedViewHandles[i].type} view`);
+                });
+            });
+
+            it('... should display the viewHandle icon in each label element', () => {
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
+
+                labelDes.forEach((labelDe, i) => {
+                    const faIconDes = getAndExpectDebugElementByDirective(labelDe, FaIconComponent, 1, 1);
+                    const faIconIns = faIconDes[0].injector.get(FaIconComponent);
+
+                    expectToEqual(faIconIns.icon(), expectedViewHandles[i].icon);
+                });
             });
 
             it('... should display tooltip with `{type} view` for each view handle', () => {
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group',
-                    1,
-                    1
-                );
                 const tooltipDes = getAndExpectDebugElementByDirective(
-                    divDes[0],
+                    compDe,
                     NgbTooltip,
                     expectedViewHandles.length,
                     expectedViewHandles.length
                 );
 
-                for (let i = 0; i < expectedViewHandles.length; i++) {
-                    const tooltipCmp = tooltipDes[i].injector.get(NgbTooltip) as NgbTooltip;
+                tooltipDes.forEach((tooltipDe, i) => {
+                    const tooltipCmp = tooltipDe.injector.get(NgbTooltip);
 
-                    expectToBe(tooltipCmp.ngbTooltip, expectedViewHandles[i].type + ' view');
-                }
-            });
-        });
-
-        describe('#_createFormGroup()', () => {
-            it('... should have a method `_createFormGroup()`', () => {
-                expect(component['_createFormGroup']).toBeDefined();
+                    expectToBe(tooltipCmp.ngbTooltip, `${expectedViewHandles[i].type} view`);
+                });
             });
 
-            it('... should trigger on init', () => {
-                expectSpyCall(createFormGroupSpy, 1, expectedSelectedViewType);
-            });
+            describe('... output `viewChangeRequest`', () => {
+                it('... should emit GRAPH by change event from GRAPH radio button', () => {
+                    getInputEls()[0].dispatchEvent(new Event('change'));
 
-            it('... should trigger on changes of selectedViewType', () => {
-                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
-
-                // Directly trigger ngOnChanges
-                component.selectedViewType = ViewHandleTypes.GRID;
-                component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, component.selectedViewType, false),
+                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRAPH);
                 });
 
-                expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
-            });
+                it('... should emit TABLE by change event from TABLE radio button', () => {
+                    getInputEls()[1].dispatchEvent(new Event('change'));
 
-            it('... should not trigger on changes of selectedViewType if first change', () => {
-                expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
-
-                // Directly trigger ngOnChanges
-                component.selectedViewType = ViewHandleTypes.GRID;
-                component.ngOnChanges({
-                    selectedViewType: new SimpleChange(component.selectedViewType, ViewHandleTypes.GRID, true),
+                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
                 });
 
-                expectSpyCall(createFormGroupSpy, 1, (component.selectedViewType = ViewHandleTypes.GRAPH));
+                it('... should emit GRID by change event from GRID radio button', () => {
+                    getInputEls()[2].dispatchEvent(new Event('change'));
+
+                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.GRID);
+                });
             });
 
-            it('... should create the viewHandleControlForm', () => {
-                expect(component.viewHandleControlForm).toBeDefined();
-                expect(component.viewHandleControlForm).toBeInstanceOf(FormGroup);
-                expect(component.viewHandleControlForm.controls).toBeDefined();
-            });
-
-            it('... should create the viewHandleControlForm with correct viewHandleControl', () => {
-                expect(component.viewHandleControlForm.controls).toBeDefined();
-
-                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeDefined();
-                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeInstanceOf(FormControl);
-            });
-
-            it('... should create the viewHandleControlForm with correct viewHandleControl value', () => {
-                expectToBe(
-                    component.viewHandleControlForm.controls['viewHandleControl'].value,
-                    expectedSelectedViewType
+            it('... should keep the selected radio element checked if the view change is not accepted', async () => {
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
                 );
+
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                await detectChangesOnPush(fixture);
+
+                const inputEls = getInputEls();
+                expectToBe(inputEls[0].checked, true);
+                expectToBe(inputEls[1].checked, false);
             });
 
-            it('... should get the viewHandleControl from its getter', () => {
-                expect(component.viewHandleControl).toBeDefined();
-                expect(component.viewHandleControl).toBeInstanceOf(FormControl);
+            it('... should check the radio element of the new view type if the view change is accepted', async () => {
+                viewChangeRequestSpy.mockImplementation((viewType: ViewHandleTypes) =>
+                    fixture.componentRef.setInput('selectedViewType', viewType)
+                );
+                const labelDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    `${btnGroupSelector} > label`,
+                    expectedViewHandles.length,
+                    expectedViewHandles.length
+                );
 
-                expectToBe(component.viewHandleControl.value, expectedSelectedViewType);
-            });
+                (labelDes[1].nativeElement as HTMLLabelElement).click();
+                await detectChangesOnPush(fixture);
 
-            it('... should trigger the `listenToUserInputChange()` method', () => {
-                expectSpyCall(listenToUserInputChangeSpy, 1);
-
-                // Trigger the `listenToUserInputChange()` method
-                component['_createFormGroup'](ViewHandleTypes.TABLE);
-                fixture.detectChanges();
-
-                expectSpyCall(listenToUserInputChangeSpy, 2);
+                const inputEls = getInputEls();
+                expectToBe(inputEls[0].checked, false);
+                expectToBe(inputEls[1].checked, true);
             });
         });
 
-        describe('#listenToUserInputChange()', () => {
-            it('... should have a method `listenToUserInputChange()`', () => {
-                expect(component['_listenToUserInputChange']).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#onViewChange()', () => {
+                it('... should have a method `onViewChange`', () => {
+                    expect(component.onViewChange).toBeDefined();
+                });
 
-            it('... should trigger the `onViewChange()` method when viewHandle controls changes value', () => {
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
-                fixture.detectChanges();
+                it('... should emit the given view type', () => {
+                    component.onViewChange(ViewHandleTypes.TABLE);
 
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 2, ViewHandleTypes.GRAPH);
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRID);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 3, ViewHandleTypes.GRID);
-            });
-
-            it('... should trigger the `onViewChange()` method by change event from GRAPH radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl: HTMLInputElement = inputDes[0].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRAPH);
-            });
-
-            it('... should trigger the `onViewChange()` method by by change event from TABLE radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl: HTMLInputElement = inputDes[1].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-            });
-
-            it('... should trigger the `onViewChange()` method by change event from GRID radio button', () => {
-                const inputDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-view-handle-btn-group > form > div.btn-group > input',
-                    3,
-                    3
-                );
-                const inputEl: HTMLInputElement = inputDes[2].nativeElement;
-
-                inputEl.dispatchEvent(new Event('change'));
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.GRID);
-            });
-
-            it('... should not trigger the `onViewChange()` method when component is destroyed', () => {
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.TABLE);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-
-                // Destroy the component
-                fixture.destroy();
-
-                // Trigger the value change
-                component.viewHandleControl.setValue(ViewHandleTypes.GRAPH);
-                fixture.detectChanges();
-
-                expectSpyCall(onViewChangeSpy, 1, ViewHandleTypes.TABLE);
-            });
-        });
-
-        describe('#onViewChange()', () => {
-            it('... should have a method `onViewChange()`', () => {
-                expect(component['_onViewChange']).toBeDefined();
-            });
-
-            it('... should emit a given GRAPH view', () => {
-                const expectedView = ViewHandleTypes.GRAPH;
-
-                component['_onViewChange'](expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'graph');
-            });
-
-            it('... should emit a given TABLE view', () => {
-                const expectedView = ViewHandleTypes.TABLE;
-
-                component['_onViewChange'](expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'table');
-            });
-
-            it('... should emit a given GRID view', () => {
-                const expectedView = ViewHandleTypes.GRID;
-
-                component['_onViewChange'](expectedView);
-                fixture.detectChanges();
-
-                expectSpyCall(viewChangeRequestSpy, 1, 'grid');
+                    expectSpyCall(viewChangeRequestSpy, 1, ViewHandleTypes.TABLE);
+                });
             });
         });
     });

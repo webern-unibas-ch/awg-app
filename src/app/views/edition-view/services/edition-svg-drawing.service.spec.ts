@@ -1,4 +1,4 @@
-import { DOCUMENT, ElementRef } from '@angular/core';
+import { DOCUMENT } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -206,24 +206,6 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
             expect(d3Selection).toBeDefined();
             expectToBe(d3Selection.attr('fill'), color);
-        });
-    });
-
-    describe('#getContainerDimensions()', () => {
-        it('... should have a method `getContainerDimensions`', () => {
-            expect(service.getContainerDimensions).toBeDefined();
-        });
-
-        it('... should return an object with the correct dimensions for a given container', () => {
-            const containerEl = new ElementRef(document.createElement('div'));
-            const dim = service.getContainerDimensions(containerEl);
-
-            expectToEqual(dim, {
-                width: containerEl.nativeElement.clientWidth,
-                height: containerEl.nativeElement.clientHeight,
-            });
-            expectToEqual(dim.width, containerEl.nativeElement.clientWidth);
-            expectToEqual(dim.height, containerEl.nativeElement.clientHeight);
         });
     });
 

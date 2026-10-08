@@ -88,8 +88,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                             {
                                 path: 'graph',
                                 loadChildren: () =>
-                                    import('./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module').then(
-                                        m => m.EditionGraphModule
+                                    import('./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.routes').then(
+                                        m => m.EDITION_GRAPH_ROUTES
                                     ),
                             },
                             {

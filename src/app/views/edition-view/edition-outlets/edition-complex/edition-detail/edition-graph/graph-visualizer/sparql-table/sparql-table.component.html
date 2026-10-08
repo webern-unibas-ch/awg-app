@@ -1,8 +1,0 @@
-@if (queryResult(); as queryResult) {
-    <awg-table
-        [tableTitle]="'SELECT Anfrage'"
-        [headerInputData]="queryResult.head.vars"
-        [rowInputData]="queryResult.body.bindings"
-        (clickedTableValueRequest)="onTableNodeClick($event)"
-        (clickedTableRowRequest)="(undefined)" />
-}
