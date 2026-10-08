@@ -19,7 +19,7 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
 
-import { SourceEvaluationPlaceholderComponent } from './source-evaluation-placeholder/source-evaluation-placeholder.component';
+import { EditionComplexPlaceholderComponent } from '../../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
 describe('SourceEvaluationComponent (DONE)', () => {
@@ -35,9 +35,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [CompileHtmlDirective, SourceEvaluationComponent, SourceEvaluationPlaceholderComponent],
+            imports: [CompileHtmlDirective, SourceEvaluationComponent, EditionComplexPlaceholderComponent],
         })
-            .overrideComponent(SourceEvaluationPlaceholderComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPlaceholderComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -207,23 +207,38 @@ describe('SourceEvaluationComponent (DONE)', () => {
                         fixture.componentRef.setInput('sourceEvaluationListData', sourceEvaluationListData);
                         await detectChangesOnPush(fixture);
 
-                        getAndExpectDebugElementByDirective(compDe, SourceEvaluationPlaceholderComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(compDe, EditionComplexPlaceholderComponent, 1, 1);
                         getAndExpectDebugElementByCss(compDe, 'p.awg-source-evaluation-entry', 0, 0);
                     });
                 });
 
-                it('... should pass down the expected complex to the placeholder component', () => {
+                it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', () => {
                     const placeholderDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        SourceEvaluationPlaceholderComponent,
+                        EditionComplexPlaceholderComponent,
                         1,
                         1
                     );
                     const placeholderIns = placeholderDes[0].injector.get(
-                        SourceEvaluationPlaceholderComponent
-                    ) as SourceEvaluationPlaceholderComponent;
+                        EditionComplexPlaceholderComponent
+                    ) as EditionComplexPlaceholderComponent;
 
+                    expectToBe(placeholderIns.type(), 'sourceEvaluation');
                     expectToEqual(placeholderIns.editionComplex(), expectedComplex);
+                });
+
+                it('... should set the box classes on EditionComplexPlaceholderComponent (hollow)', () => {
+                    const placeholderDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionComplexPlaceholderComponent,
+                        1,
+                        1
+                    );
+                    const placeholderEl: HTMLElement = placeholderDes[0].nativeElement;
+
+                    expectToContain(placeholderEl.classList, 'p-5');
+                    expectToContain(placeholderEl.classList, 'border');
+                    expectToContain(placeholderEl.classList, 'rounded-3');
                 });
             });
         });

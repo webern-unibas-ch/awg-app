@@ -1,0 +1,13 @@
+@if (editionComplex(); as complex) {
+    @let complexId = complex.complexId;
+    @let sectionRoute = complex.pubStatement.labeledSectionRoute;
+    @let placeholder = placeholderSubject();
+
+    <p class="awg-edition-complex-placeholder">
+        <small class="text-muted"
+            >[{{ placeholder.subject }} zum Editionskomplex <span [innerHTML]="complexId.full"></span>
+            {{ placeholder.verb }} im Zusammenhang der vollständigen Edition von
+            <span [innerHTML]="complexId.short"></span> in {{ sectionRoute.label }}.]
+        </small>
+    </p>
+}

@@ -28,7 +28,7 @@ import { EditionViewService } from '@awg-views/edition-view/services/edition-vie
 import { EditionIntroContentComponent } from './edition-intro-content/edition-intro-content.component';
 import { EditionIntroNavComponent } from './edition-intro-nav/edition-intro-nav.component';
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer/edition-intro-partial-disclaimer.component';
-import { EditionIntroPlaceholderComponent } from './edition-intro-placeholder/edition-intro-placeholder.component';
+import { EditionComplexPlaceholderComponent } from '../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { EditionIntroScrollDirective } from './edition-intro-scroll/edition-intro-scroll.directive';
 import { EditionIntroComponent } from './edition-intro.component';
 
@@ -64,7 +64,7 @@ describe('IntroComponent (DONE)', () => {
                 EditionIntroContentComponent,
                 EditionIntroNavComponent,
                 EditionIntroPartialDisclaimerComponent,
-                EditionIntroPlaceholderComponent,
+                EditionComplexPlaceholderComponent,
                 EditionIntroScrollDirective,
                 TwelveToneSpinnerComponent,
             ],
@@ -77,7 +77,7 @@ describe('IntroComponent (DONE)', () => {
             .overrideComponent(EditionIntroContentComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionIntroNavComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionIntroPartialDisclaimerComponent, { set: { template: '', imports: [] } })
-            .overrideComponent(EditionIntroPlaceholderComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPlaceholderComponent, { set: { template: '', imports: [] } })
             .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
@@ -313,23 +313,24 @@ describe('IntroComponent (DONE)', () => {
                         await detectChangesOnPush(fixture);
                     });
 
-                    it('... should contain one EditionIntroPlaceholderComponent (hollow)', async () => {
+                    it('... should contain one EditionComplexPlaceholderComponent (hollow)', async () => {
                         const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-intro-view', 1, 1);
-                        getAndExpectDebugElementByDirective(divDes[0], EditionIntroPlaceholderComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(divDes[0], EditionComplexPlaceholderComponent, 1, 1);
                     });
 
-                    it('... should pass down `editionComplex` to EditionIntroPlaceholderComponent (hollow)', async () => {
-                        const editionIntroPlaceholderDes = getAndExpectDebugElementByDirective(
+                    it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', async () => {
+                        const placeholderDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionIntroPlaceholderComponent,
+                            EditionComplexPlaceholderComponent,
                             1,
                             1
                         );
-                        const editionIntroPlaceholderCmp = editionIntroPlaceholderDes[0].injector.get(
-                            EditionIntroPlaceholderComponent
-                        ) as EditionIntroPlaceholderComponent;
+                        const placeholderCmp = placeholderDes[0].injector.get(
+                            EditionComplexPlaceholderComponent
+                        ) as EditionComplexPlaceholderComponent;
 
-                        expectToEqual(editionIntroPlaceholderCmp.editionComplex(), expectedComplex);
+                        expectToBe(placeholderCmp.type(), 'intro');
+                        expectToEqual(placeholderCmp.editionComplex(), expectedComplex);
                     });
                 });
 
