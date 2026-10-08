@@ -3,7 +3,10 @@
         <div class="card-body">
             @let content = sourceEvaluationData.sources[0]?.content || [];
             @if (!content.length && editionComplex(); as complex) {
-                <awg-source-evaluation-placeholder [editionComplex]="complex" />
+                <awg-edition-complex-placeholder
+                    class="p-5 border rounded-3"
+                    type="sourceEvaluation"
+                    [editionComplex]="complex" />
             } @else {
                 @for (evaluation of content; track evaluation) {
                     <p class="awg-source-evaluation-entry" [awgCompileHtml]="evaluation"></p>

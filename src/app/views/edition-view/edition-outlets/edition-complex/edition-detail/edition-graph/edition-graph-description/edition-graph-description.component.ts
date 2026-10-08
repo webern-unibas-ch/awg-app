@@ -4,7 +4,7 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { Graph } from '@awg-views/edition-view/models/graph.model';
 
-import { EditionGraphPlaceholderComponent } from '../edition-graph-placeholder/edition-graph-placeholder.component';
+import { EditionComplexPlaceholderComponent } from '../../../edition-complex-placeholder/edition-complex-placeholder.component';
 
 /**
  * The EditionGraphDescription component.
@@ -18,7 +18,7 @@ import { EditionGraphPlaceholderComponent } from '../edition-graph-placeholder/e
     templateUrl: './edition-graph-description.component.html',
     styleUrls: ['./edition-graph-description.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CompileHtmlDirective, EditionGraphPlaceholderComponent],
+    imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })
 export class EditionGraphDescriptionComponent {
     /**

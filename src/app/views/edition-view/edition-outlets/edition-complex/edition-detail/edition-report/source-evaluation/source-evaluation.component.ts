@@ -5,7 +5,7 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
 
-import { SourceEvaluationPlaceholderComponent } from './source-evaluation-placeholder/source-evaluation-placeholder.component';
+import { EditionComplexPlaceholderComponent } from '../../../edition-complex-placeholder/edition-complex-placeholder.component';
 
 /**
  * The SourceEvaluation component.
@@ -18,7 +18,7 @@ import { SourceEvaluationPlaceholderComponent } from './source-evaluation-placeh
     templateUrl: './source-evaluation.component.html',
     styleUrls: ['./source-evaluation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CompileHtmlDirective, SourceEvaluationPlaceholderComponent],
+    imports: [CompileHtmlDirective, EditionComplexPlaceholderComponent],
 })
 export class SourceEvaluationComponent {
     /**

@@ -17,7 +17,7 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { Graph } from '@awg-views/edition-view/models/graph.model';
 
-import { EditionGraphPlaceholderComponent } from '../edition-graph-placeholder/edition-graph-placeholder.component';
+import { EditionComplexPlaceholderComponent } from '../../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { EditionGraphDescriptionComponent } from './edition-graph-description.component';
 
 describe('EditionGraphDescriptionComponent (DONE)', () => {
@@ -34,7 +34,7 @@ describe('EditionGraphDescriptionComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionGraphDescriptionComponent],
         })
-            .overrideComponent(EditionGraphPlaceholderComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(EditionComplexPlaceholderComponent, { set: { template: '', imports: [] } })
             .compileComponents();
     });
 
@@ -121,8 +121,8 @@ describe('EditionGraphDescriptionComponent (DONE)', () => {
             });
 
             describe('... if a description is given', () => {
-                it('... should contain no EditionGraphPlaceholderComponent (hollow)', () => {
-                    getAndExpectDebugElementByDirective(compDe, EditionGraphPlaceholderComponent, 0, 0);
+                it('... should contain no EditionComplexPlaceholderComponent (hollow)', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionComplexPlaceholderComponent, 0, 0);
                 });
 
                 it('... should contain one paragraph with CompileHtmlDirective per description', () => {
@@ -166,19 +166,20 @@ describe('EditionGraphDescriptionComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-description > p', 0, 0);
                 });
 
-                it('... should contain one EditionGraphPlaceholderComponent (hollow)', () => {
-                    getAndExpectDebugElementByDirective(compDe, EditionGraphPlaceholderComponent, 1, 1);
+                it('... should contain one EditionComplexPlaceholderComponent (hollow)', () => {
+                    getAndExpectDebugElementByDirective(compDe, EditionComplexPlaceholderComponent, 1, 1);
                 });
 
-                it('... should pass down `editionComplex` to the EditionGraphPlaceholderComponent', () => {
+                it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', () => {
                     const placeholderDes = getAndExpectDebugElementByDirective(
                         compDe,
-                        EditionGraphPlaceholderComponent,
+                        EditionComplexPlaceholderComponent,
                         1,
                         1
                     );
-                    const placeholderCmp = placeholderDes[0].injector.get(EditionGraphPlaceholderComponent);
+                    const placeholderCmp = placeholderDes[0].injector.get(EditionComplexPlaceholderComponent);
 
+                    expectToBe(placeholderCmp.type(), 'graph');
                     expectToEqual(placeholderCmp.editionComplex(), expectedComplex);
                 });
             });
