@@ -1,10 +1,7 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
-
-import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -27,28 +24,34 @@ import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 
 import { ForceGraphComponent } from './force-graph.component';
 
-describe('ForceGraphComponent', () => {
+describe('ForceGraphComponent (DONE)', () => {
     let component: ForceGraphComponent;
     let fixture: ComponentFixture<ForceGraphComponent>;
     let compDe: DebugElement;
 
-    let onResetZoomSpy: Spy;
+    let clickedNodeRequestSpy: Mock<(node: GraphNode) => void>;
 
     let expectedZoomConfig: ZoomConfig;
 
-    const nodes: GraphNode[] = [
+    const expectedHeight = 500;
+    const expectedNodes: GraphNode[] = [
         { id: 'a', shortName: 'awg:a', label: 'A', kind: 'instance' },
         { id: 'b', shortName: 'awg:B', label: 'awg:B', kind: 'class' },
         { id: '_:c', shortName: '_:c', label: '_:c', kind: 'blank' },
         { id: '"x"', shortName: 'x', label: 'x', kind: 'literal' },
     ];
-    const graphData: GraphData = {
-        nodes,
+    const expectedGraphData: GraphData = {
+        nodes: expectedNodes,
         edges: [
             { id: 'e0', source: 'a', target: 'b', label: 'rdf:type' },
             { id: 'e1', source: 'a', target: '_:c', label: 'awg:has' },
             { id: 'e2', source: '_:c', target: '"x"', label: 'awg:value' },
         ],
+        tripleCount: 3,
+    };
+    const expectedLimitedGraphData: GraphData = {
+        nodes: expectedNodes.slice(0, 2),
+        edges: expectedGraphData.edges.slice(0, 1),
         tripleCount: 3,
     };
 
@@ -91,8 +94,7 @@ describe('ForceGraphComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, ForceGraphLimitComponent, ForceGraphSvgComponent, SliderZoomComponent],
-            declarations: [ForceGraphComponent],
+            imports: [ForceGraphComponent],
             providers: [{ provide: ForceGraphDrawingService, useValue: mockForceGraphDrawingService }],
         })
             .overrideComponent(ForceGraphLimitComponent, { set: { template: '', imports: [] } })
@@ -100,15 +102,17 @@ describe('ForceGraphComponent', () => {
     });
 
     beforeEach(() => {
+        // Test data
+        expectedZoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
+
+        // Create component fixture
         fixture = TestBed.createComponent(ForceGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        // Test data
-        expectedZoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
-
         // Spies
-        onResetZoomSpy = vi.spyOn(component, 'onResetZoom');
+        clickedNodeRequestSpy = vi.fn();
+        component.clickedNodeRequest.subscribe(clickedNodeRequestSpy);
     });
 
     it('... should create', () => {
@@ -116,6 +120,16 @@ describe('ForceGraphComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should throw due to missing required input signal `graphData`', () => {
+            expectToBe(isSignal(component.graphData), true);
+
+            expect(() => component.graphData()).toThrow();
+        });
+
+        it('... should have input signal `height` to hold the default height', () => {
+            expectToBe(component.height(), 0);
+        });
+
         it('... should have `zoomConfig`', () => {
             expectToEqual(component.zoomConfig, expectedZoomConfig);
         });
@@ -124,47 +138,61 @@ describe('ForceGraphComponent', () => {
             expectToBe(component.zoomValue(), expectedZoomConfig.initial);
         });
 
-        it('... should have `limit`', () => {
-            expectToBe(component.limit, 50);
-        });
-
-        it('... should not have `limitedGraphData`', () => {
-            expect(component.limitedGraphData).toBeUndefined();
+        it('... should have signal `limit` to hold the default limit', () => {
+            expectToBe(component.limit(), 50);
         });
 
         describe('VIEW', () => {
-            it('... should contain one SliderZoomComponent in div.awg-force-graph-icon-bar', () => {
+            it('... should contain one container with an icon bar and one ForceGraphSvgComponent', () => {
+                const containerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-container', 1, 1);
+
+                getAndExpectDebugElementByCss(containerDes[0], 'div.awg-force-graph-icon-bar', 1, 1);
+                getAndExpectDebugElementByDirective(containerDes[0], ForceGraphSvgComponent, 1, 1);
+            });
+
+            it('... should contain one SliderZoomComponent and one ForceGraphLimitComponent (hollow) in the icon bar', () => {
                 const iconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-icon-bar', 1, 1);
 
                 getAndExpectDebugElementByDirective(iconBarDes[0], SliderZoomComponent, 1, 1);
-            });
-
-            it('... should not contain the ForceGraphSvgComponent (with mocked drawing) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, ForceGraphSvgComponent, 0, 0);
+                getAndExpectDebugElementByDirective(iconBarDes[0], ForceGraphLimitComponent, 1, 1);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            fixture.componentRef.setInput('graphData', graphData);
-            fixture.componentRef.setInput('height', 500);
+            fixture.componentRef.setInput('graphData', expectedGraphData);
+            fixture.componentRef.setInput('height', expectedHeight);
             fixture.detectChanges();
         });
 
-        it('... should have `limitedGraphData` to hold the provided graph data (below the limit)', () => {
-            expectToBe(component.limitedGraphData, graphData);
+        it('... should have input signal `graphData` to hold the provided graph data', () => {
+            expectToEqual(component.graphData(), expectedGraphData);
+        });
+
+        it('... should have input signal `height` to hold the provided height', () => {
+            expectToBe(component.height(), expectedHeight);
+        });
+
+        it('... should have computed signal `limitedGraphData` to hold the graph data (below the limit)', () => {
+            expectToBe(component.limitedGraphData(), expectedGraphData);
+        });
+
+        it('... should have computed signal `limitedGraphData` to hold the limited graph data', () => {
+            component.limit.set(1);
+
+            expectToEqual(component.limitedGraphData(), expectedLimitedGraphData);
         });
 
         describe('VIEW', () => {
             it('... should set the height of the container', () => {
                 const containerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-container', 1, 1);
 
-                expectToBe(containerDes[0].nativeElement.style.height, '500px');
+                expectToBe(containerDes[0].nativeElement.style.height, `${expectedHeight}px`);
             });
 
             describe('... SliderZoomComponent', () => {
-                it('... should pass down `zoomConfig` and `zoomValue` to the SliderZoomComponent', () => {
+                it('... should pass down `zoomConfig` and `zoomValue`', () => {
                     const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
                     const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
 
@@ -182,12 +210,28 @@ describe('ForceGraphComponent', () => {
                     expectToBe(component.zoomValue(), 2.5);
                 });
 
-                it('... should trigger `onResetZoom` on reset request of the SliderZoomComponent', async () => {
+                it('... should reset the zoom of the ForceGraphSvgComponent on reset request', async () => {
+                    const resetZoomSpy = vi.spyOn(getGraphSvgCmp(), 'resetZoom').mockImplementation(() => undefined);
                     const buttonDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
 
                     await clickAndAwaitChanges(buttonDes[0], fixture);
 
-                    expectSpyCall(onResetZoomSpy, 1);
+                    expectSpyCall(resetZoomSpy, 1);
+                });
+            });
+
+            describe('... ForceGraphLimitComponent (hollow)', () => {
+                it('... should pass down the triple count and `limit`', () => {
+                    const graphLimitCmp = getGraphLimitCmp();
+
+                    expectToBe(graphLimitCmp.tripleCount(), expectedGraphData.tripleCount);
+                    expectToBe(graphLimitCmp.limit(), 50);
+                });
+
+                it('... should sync `limit` from the ForceGraphLimitComponent', () => {
+                    getGraphLimitCmp().limit.set(1);
+
+                    expectToBe(component.limit(), 1);
                 });
             });
 
@@ -195,9 +239,16 @@ describe('ForceGraphComponent', () => {
                 it('... should pass down `limitedGraphData`, `zoomConfig` and `zoomValue`', () => {
                     const graphSvgCmp = getGraphSvgCmp();
 
-                    expectToBe(graphSvgCmp.graphData(), graphData);
+                    expectToBe(graphSvgCmp.graphData(), expectedGraphData);
                     expectToEqual(graphSvgCmp.zoomConfig(), expectedZoomConfig);
                     expectToBe(graphSvgCmp.zoomValue(), expectedZoomConfig.initial);
+                });
+
+                it('... should pass down the limited graph data after a limit change', async () => {
+                    component.limit.set(1);
+                    await detectChangesOnPush(fixture);
+
+                    expectToEqual(getGraphSvgCmp().graphData(), expectedLimitedGraphData);
                 });
 
                 it('... should sync `zoomValue` from the ForceGraphSvgComponent', async () => {
@@ -207,95 +258,10 @@ describe('ForceGraphComponent', () => {
                     expectToBe(component.zoomValue(), 2);
                 });
 
-                it('... should emit the clicked graph node of the ForceGraphSvgComponent', () => {
-                    const emitSpy = vi.spyOn(component.clickedNodeRequest, 'emit');
+                it('... should emit `clickedNodeRequest` for a clicked graph node of the ForceGraphSvgComponent', () => {
+                    getGraphSvgCmp().clickedNodeRequest.emit(expectedNodes[0]);
 
-                    getGraphSvgCmp().clickedNodeRequest.emit(nodes[0]);
-
-                    expectSpyCall(emitSpy, 1, nodes[0]);
-                });
-
-                it('... should pass down the limited graph data after a limit change', async () => {
-                    component.onLimitValueChange(1);
-                    await detectChangesOnPush(fixture);
-
-                    expectToEqual(getGraphSvgCmp().graphData(), {
-                        nodes: nodes.slice(0, 2),
-                        edges: graphData.edges.slice(0, 1),
-                        tripleCount: 3,
-                    });
-                });
-            });
-
-            describe('... ForceGraphLimitComponent (hollow)', () => {
-                it('... should contain one ForceGraphLimitComponent in div.awg-force-graph-icon-bar', () => {
-                    const iconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-icon-bar', 1, 1);
-
-                    getAndExpectDebugElementByDirective(iconBarDes[0], ForceGraphLimitComponent, 1, 1);
-                });
-
-                it('... should pass down the triple count and `limit`', () => {
-                    const graphLimitCmp = getGraphLimitCmp();
-
-                    expectToBe(graphLimitCmp.tripleCount(), graphData.tripleCount);
-                    expectToBe(graphLimitCmp.limit(), 50);
-                });
-
-                it('... should trigger `onLimitValueChange` on a limit change of the ForceGraphLimitComponent', () => {
-                    const onLimitValueChangeSpy = vi.spyOn(component, 'onLimitValueChange');
-
-                    getGraphLimitCmp().limit.set(2);
-
-                    expectSpyCall(onLimitValueChangeSpy, 1, 2);
-                });
-            });
-        });
-
-        describe('METHODS', () => {
-            describe('#ngOnChanges()', () => {
-                it('... should have a method `ngOnChanges`', () => {
-                    expect(component.ngOnChanges).toBeDefined();
-                });
-
-                it('... should limit the changed graph data', () => {
-                    const nextGraphData: GraphData = { ...graphData, tripleCount: 60 };
-                    component.limit = 1;
-
-                    fixture.componentRef.setInput('graphData', nextGraphData);
-                    fixture.detectChanges();
-
-                    expectToEqual(component.limitedGraphData, {
-                        nodes: nodes.slice(0, 2),
-                        edges: graphData.edges.slice(0, 1),
-                        tripleCount: 60,
-                    });
-                });
-            });
-
-            describe('#onLimitValueChange()', () => {
-                it('... should have a method `onLimitValueChange`', () => {
-                    expect(component.onLimitValueChange).toBeDefined();
-                });
-
-                it('... should set `limit` and limit the graph data', () => {
-                    component.onLimitValueChange(2);
-
-                    expectToBe(component.limit, 2);
-                    expectToEqual(component.limitedGraphData?.edges, graphData.edges.slice(0, 2));
-                });
-            });
-
-            describe('#onResetZoom()', () => {
-                it('... should have a method `onResetZoom`', () => {
-                    expect(component.onResetZoom).toBeDefined();
-                });
-
-                it('... should reset the zoom via the ForceGraphSvgComponent', () => {
-                    const resetZoomSpy = vi.spyOn(getGraphSvgCmp(), 'resetZoom').mockImplementation(() => undefined);
-
-                    component.onResetZoom();
-
-                    expectSpyCall(resetZoomSpy, 1);
+                    expectSpyCall(clickedNodeRequestSpy, 1, expectedNodes[0]);
                 });
             });
         });

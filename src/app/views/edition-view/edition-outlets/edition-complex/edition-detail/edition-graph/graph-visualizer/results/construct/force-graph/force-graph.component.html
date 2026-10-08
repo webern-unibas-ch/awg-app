@@ -1,29 +1,25 @@
-<div class="awg-force-graph-container" [style.height.px]="height">
+<div class="awg-force-graph-container" [style.height.px]="height()">
     <div class="awg-force-graph-icon-bar">
         <!-- Slider -->
         <awg-slider-zoom
             class="awg-force-graph-slider-zoom float-start mb-3"
             [zoomConfig]="zoomConfig"
             [(zoomValue)]="zoomValue"
-            (resetRequest)="onResetZoom()" />
+            (resetRequest)="graphSvg.resetZoom()" />
 
         <!-- Limit -->
-        @if (graphData; as graph) {
-            <awg-force-graph-limit
-                class="awg-force-graph-limit-container float-end my-auto"
-                [tripleCount]="graph.tripleCount"
-                [limit]="limit"
-                (limitChange)="onLimitValueChange($event)" />
-        }
+        <awg-force-graph-limit
+            class="awg-force-graph-limit-container float-end my-auto"
+            [tripleCount]="graphData().tripleCount"
+            [(limit)]="limit" />
     </div>
 
     <!-- Graph -->
-    @if (limitedGraphData; as graph) {
-        <awg-force-graph-svg
-            class="awg-force-graph-svg-container"
-            [graphData]="graph"
-            [zoomConfig]="zoomConfig"
-            [(zoomValue)]="zoomValue"
-            (clickedNodeRequest)="clickedNodeRequest.emit($event)" />
-    }
+    <awg-force-graph-svg
+        #graphSvg
+        class="awg-force-graph-svg-container"
+        [graphData]="limitedGraphData()"
+        [zoomConfig]="zoomConfig"
+        [(zoomValue)]="zoomValue"
+        (clickedNodeRequest)="clickedNodeRequest.emit($event)" />
 </div>

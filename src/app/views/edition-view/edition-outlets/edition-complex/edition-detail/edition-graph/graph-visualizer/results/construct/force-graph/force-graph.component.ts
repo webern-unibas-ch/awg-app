@@ -3,75 +3,59 @@
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
 
-import { Component, EventEmitter, Input, OnChanges, Output, signal, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 
+import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { GraphData, GraphNode } from '../../../models/graph-data.model';
 import { GRAPH_DATA_UTILS } from '../../../utils/graph-data.utils';
+import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 
 /**
  * The ForceGraphComponent component.
  *
  * It visualizes an RDF graph using a D3 force simulation
- * (rendered by the {@link ForceGraphSvgComponent}).
+ * (rendered by the {@link ForceGraphSvgComponent})
+ * with an icon bar for zoom ({@link SliderZoomComponent})
+ * and limit ({@link ForceGraphLimitComponent}).
  */
 @Component({
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
     styleUrls: ['./force-graph.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [ForceGraphLimitComponent, ForceGraphSvgComponent, SliderZoomComponent],
 })
-export class ForceGraphComponent implements OnChanges {
+export class ForceGraphComponent {
     /**
-     * Input variable: graphData.
+     * Readonly input signal: graphData.
      *
-     * It keeps the graph data of the query result.
+     * It holds the graph data of the query result.
      */
-    @Input() graphData?: GraphData;
+    readonly graphData = input.required<GraphData>();
 
     /**
-     * Input variable: height.
+     * Readonly input signal: height.
      *
-     * It keeps the default height of the component.
+     * It holds the height (in px) of the component.
      */
-    @Input() height = 0;
+    readonly height = input<number>(0);
 
     /**
-     * Output variable: clickedNodeRequest.
+     * Readonly output signal: clickedNodeRequest.
      *
-     * It keeps an event emitter for the graph node a user clicked on.
+     * It emits the graph node a user clicked on.
      */
-    @Output() clickedNodeRequest = new EventEmitter<GraphNode>();
+    readonly clickedNodeRequest = output<GraphNode>();
 
     /**
-     * ViewChild variable: graphSvg.
-     *
-     * It keeps the reference to the svg component of the graph.
-     */
-    @ViewChild(ForceGraphSvgComponent) graphSvg?: ForceGraphSvgComponent;
-
-    /**
-     * Public variable: limit.
-     *
-     * It keeps the default limit value for the display of query results.
-     */
-    limit = 50;
-
-    /**
-     * Public variable: limitedGraphData.
-     *
-     * It keeps the graph data limited to the current limit.
-     */
-    limitedGraphData: GraphData | undefined;
-
-    /**
-     * Public variable: zoomConfig.
+     * Readonly variable: zoomConfig.
      *
      * It keeps the default values for the zoom slider input.
      */
-    zoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
+    readonly zoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
 
     /**
      * Readonly signal: zoomValue.
@@ -81,54 +65,18 @@ export class ForceGraphComponent implements OnChanges {
     readonly zoomValue = signal<number>(this.zoomConfig.initial);
 
     /**
-     * Angular life cycle hook: ngOnChanges.
+     * Readonly signal: limit.
      *
-     * It checks for changes of the given input.
-     *
-     * @param {SimpleChanges} changes The changes of the input.
+     * It holds the current limit of displayed triples.
      */
-    ngOnChanges(changes: SimpleChanges) {
-        if (changes['graphData']) {
-            this._updateLimitedGraphData();
-        }
-    }
+    readonly limit = signal<number>(50);
 
     /**
-     * Public method: onLimitValueChange.
+     * Readonly computed signal: limitedGraphData.
      *
-     * It sets the current limit to a given limit value
-     * and limits the graph data accordingly.
-     *
-     * @param {number} limitValue The given limit value.
-     *
-     * @returns {void} Sets the new limit.
+     * It holds the graph data limited to the current limit.
      */
-    onLimitValueChange(limitValue: number): void {
-        this.limit = limitValue;
-        this._updateLimitedGraphData();
-    }
-
-    /**
-     * Public method: onResetZoom.
-     *
-     * It resets the zoom of the graph via the svg component.
-     *
-     * @returns {void} Resets the zoom.
-     */
-    onResetZoom(): void {
-        this.graphSvg?.resetZoom();
-    }
-
-    /**
-     * Private method: _updateLimitedGraphData.
-     *
-     * It limits the graph data to the current limit.
-     *
-     * @returns {void} Sets the limited graph data.
-     */
-    private _updateLimitedGraphData(): void {
-        this.limitedGraphData = this.graphData
-            ? GRAPH_DATA_UTILS.limitGraphData(this.graphData, this.limit)
-            : undefined;
-    }
+    readonly limitedGraphData = computed<GraphData>(() =>
+        GRAPH_DATA_UTILS.limitGraphData(this.graphData(), this.limit())
+    );
 }
