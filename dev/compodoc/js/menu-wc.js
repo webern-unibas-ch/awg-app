@@ -275,6 +275,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionBreadcrumbComponent.html" data-type="entity-link" >EditionBreadcrumbComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/EditionComplexPlaceholderComponent.html" data-type="entity-link" >EditionComplexPlaceholderComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/EditionDetailComponent.html" data-type="entity-link" >EditionDetailComponent</a>
                             </li>
                             <li class="link">
@@ -305,9 +308,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionGraphDynamicComponent.html" data-type="entity-link" >EditionGraphDynamicComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionGraphPlaceholderComponent.html" data-type="entity-link" >EditionGraphPlaceholderComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/EditionGraphStaticComponent.html" data-type="entity-link" >EditionGraphStaticComponent</a>
                             </li>
                             <li class="link">
@@ -321,9 +321,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/EditionIntroPartialDisclaimerComponent.html" data-type="entity-link" >EditionIntroPartialDisclaimerComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/EditionIntroPlaceholderComponent.html" data-type="entity-link" >EditionIntroPlaceholderComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
@@ -567,9 +564,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/SourceEvaluationComponent.html" data-type="entity-link" >SourceEvaluationComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/SourceEvaluationPlaceholderComponent.html" data-type="entity-link" >SourceEvaluationPlaceholderComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/SourceListComponent.html" data-type="entity-link" >SourceListComponent</a>

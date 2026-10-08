@@ -197,6 +197,9 @@
                             <a href="#EDITION_CATALOGUE_TYPE_CONSTANTS" title="src/app/views/edition-view/edition-routes.constants.ts" ><b>EDITION_CATALOGUE_TYPE_CONSTANTS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-routes.constants.ts)</a>
                         </li>
                         <li>
+                            <a href="#EDITION_COMPLEX_PLACEHOLDER_SUBJECTS" title="src/app/views/edition-view/models/edition-complex-placeholder.model.ts" ><b>EDITION_COMPLEX_PLACEHOLDER_SUBJECTS</b>&nbsp;&nbsp;&nbsp;(src/.../edition-complex-placeholder.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EDITION_DETAIL_ROUTES" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts" ><b>EDITION_DETAIL_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../edition-detail-nav.component.ts)</a>
                         </li>
                         <li>
@@ -929,7 +932,7 @@ ensure that longer abbreviations are matched first.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-301-g14e62a7ec&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-302-g910e23f44&#x27;</code>
                     </td>
                 </tr>
 
@@ -2525,6 +2528,46 @@ to store route constants of the editions.</p>
                     <div class="io-description"><p>The EDITION_TYPE_CONSTANTS class.</p>
 <p>It is used in the context of the edition view
 to store the route constants of the edition types.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/models/edition-complex-placeholder.model.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EDITION_COMPLEX_PLACEHOLDER_SUBJECTS"></a>
+                    <span class="name">
+                        <span ><b>EDITION_COMPLEX_PLACEHOLDER_SUBJECTS</b></span>
+                        <a href="#EDITION_COMPLEX_PLACEHOLDER_SUBJECTS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    graph: { subject: &#x27;Die Graph-Visualisierungen&#x27;, verb: &#x27;erscheinen&#x27; },
+    intro: { subject: &#x27;Die Einleitung&#x27;, verb: &#x27;erscheint&#x27; },
+    sourceEvaluation: { subject: &#x27;Die Quellenbewertung&#x27;, verb: &#x27;erscheint&#x27; },
+} as const</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Object constant: EDITION_COMPLEX_PLACEHOLDER_SUBJECTS.</p>
+<p>It keeps the subject (with its verb) of the placeholder per placeholder type.</p>
 </div>
                 </td>
             </tr>
