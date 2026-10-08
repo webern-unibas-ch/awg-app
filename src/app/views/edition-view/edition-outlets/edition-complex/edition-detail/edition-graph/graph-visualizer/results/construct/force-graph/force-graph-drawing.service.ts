@@ -76,9 +76,11 @@ export class ForceGraphDrawingService {
             nodes.attr('cx', (d: SimNode) => d.x ?? 0).attr('cy', (d: SimNode) => d.y ?? 0);
             nodeTexts.attr('x', (d: SimNode) => (d.x ?? 0) + 12).attr('y', (d: SimNode) => (d.y ?? 0) + 3);
             links.attr('d', (d: SimEdge) => FORCE_GRAPH_UTILS.linkPath(d));
-            linkTexts
-                .attr('x', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).x)
-                .attr('y', (d: SimEdge) => FORCE_GRAPH_UTILS.linkLabelPosition(d).y);
+            linkTexts.each(function (d: SimEdge) {
+                // Compute the label position only once per edge
+                const { x, y } = FORCE_GRAPH_UTILS.linkLabelPosition(d);
+                D3_SELECTION.select(this).attr('x', x).attr('y', y);
+            });
         });
 
         nodes.call(this._createDragBehaviour(simulation));

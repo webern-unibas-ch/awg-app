@@ -203,6 +203,51 @@ describe('SparqlQueryService (DONE)', () => {
         });
     });
 
+    describe('#_parseTurtleCached()', () => {
+        let parseTurtleSpy: Spy;
+
+        beforeEach(() => {
+            parseTurtleSpy = vi.spyOn(service, 'parseTurtle');
+        });
+
+        it('... should have a method `_parseTurtleCached`', () => {
+            expect(service['_parseTurtleCached']).toBeDefined();
+        });
+
+        it('... should parse the turtle data via `parseTurtle`', async () => {
+            const result = await service['_parseTurtleCached'](TURTLE);
+
+            expectSpyCall(parseTurtleSpy, 1, TURTLE);
+            expectToEqual(result, { quadCount: 2, prefixes: { ex: EX } });
+        });
+
+        it('... should not parse unchanged turtle data again', async () => {
+            const firstResult = service['_parseTurtleCached'](TURTLE);
+            const secondResult = service['_parseTurtleCached'](TURTLE);
+
+            expectSpyCall(parseTurtleSpy, 1);
+            expectToBe(secondResult, firstResult);
+            await firstResult;
+        });
+
+        it('... should parse changed turtle data again', async () => {
+            const changedTurtle = `${TURTLE}\nex:b ex:p ex:c .`;
+
+            await service['_parseTurtleCached'](TURTLE);
+            const result = await service['_parseTurtleCached'](changedTurtle);
+
+            expectSpyCall(parseTurtleSpy, 2, changedTurtle);
+            expectToBe(result.quadCount, 3);
+        });
+
+        it('... should not parse unchanged turtle data again via `run`', async () => {
+            await service.run('SELECT ?s WHERE { ?s ?p ?o }', TURTLE);
+            await service.run('CONSTRUCT WHERE { ?s ?p ?o }', TURTLE);
+
+            expectSpyCall(parseTurtleSpy, 1);
+        });
+    });
+
     describe('#_toPrefixMap()', () => {
         it('... should have a method `_toPrefixMap`', () => {
             expect(service['_toPrefixMap']).toBeDefined();

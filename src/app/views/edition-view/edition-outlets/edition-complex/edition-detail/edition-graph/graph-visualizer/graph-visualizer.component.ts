@@ -2,7 +2,16 @@
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
-import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal, resource } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    computed,
+    inject,
+    input,
+    linkedSignal,
+    resource,
+    untracked,
+} from '@angular/core';
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
@@ -132,15 +141,12 @@ export class GraphVisualizerComponent {
     /**
      * Private readonly linked signal: _queryRequest.
      *
-     * It holds the latest requested query (reset to the initial query on input change).
-     * Only {@link performQuery} requests a new run, not edits of query or triples.
+     * It holds the latest requested query (reset to the current query and triples on input change,
+     * which are reset themselves). Only {@link performQuery} requests a new run, not edits of query or triples.
      */
     private readonly _queryRequest = linkedSignal<GraphRdfData, SparqlQueryRequest>({
         source: this.rdfData,
-        computation: rdfData => {
-            const { queryType, queryString } = GRAPH_QUERY_UTILS.initialQuery(rdfData.queryList);
-            return { queryType, queryString, triples: rdfData.triples };
-        },
+        computation: () => untracked(() => this._createQueryRequest()),
     });
 
     /**
@@ -199,11 +205,10 @@ export class GraphVisualizerComponent {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        const { queryString } = this.query();
-        const queryType = SPARQL_UTILS.getQueryType(queryString);
+        const queryType = SPARQL_UTILS.getQueryType(this.query().queryString);
         this.query.update(currentQuery => ({ ...currentQuery, queryType }));
 
-        this._queryRequest.set({ queryType, queryString, triples: this.triples() });
+        this._queryRequest.set(this._createQueryRequest());
     }
 
     /**
@@ -260,6 +265,18 @@ export class GraphVisualizerComponent {
      */
     showToastMessage(toastMessage: ToastMessage, type: 'error' | 'info' = 'info'): void {
         this._toastService.showMessage(toastMessage, type);
+    }
+
+    /**
+     * Private method: _createQueryRequest.
+     *
+     * It creates a request of the current query against the current triples.
+     *
+     * @returns {SparqlQueryRequest} The query request.
+     */
+    private _createQueryRequest(): SparqlQueryRequest {
+        const { queryType, queryString } = this.query();
+        return { queryType, queryString, triples: this.triples() };
     }
 
     /**

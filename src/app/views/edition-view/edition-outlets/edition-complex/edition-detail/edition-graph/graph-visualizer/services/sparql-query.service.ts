@@ -54,6 +54,14 @@ export class SparqlQueryService {
     private readonly _rdfStoreService = inject(RdfStoreService);
 
     /**
+     * Private variable: _lastTurtleParse.
+     *
+     * It keeps the turtle data of the latest parse and its (pending) result,
+     * so that repeated runs against unchanged turtle data do not parse it again.
+     */
+    private _lastTurtleParse: { turtle: string; result: Promise<TurtleParseResult> } | undefined;
+
+    /**
      * Public method: run.
      *
      * It performs a given SPARQL query against the given turtle data.
@@ -67,7 +75,7 @@ export class SparqlQueryService {
     async run(query: string, turtle: string): Promise<SparqlQueryRun> {
         const startTime = performance.now();
 
-        const { prefixes: turtlePrefixes } = await this.parseTurtle(turtle);
+        const { prefixes: turtlePrefixes } = await this._parseTurtleCached(turtle);
         const prefixes = PREFIX_UTILS.mergePrefixes(DEFAULT_PREFIXES, turtlePrefixes);
 
         const { query: completedQuery, unknownPrefixes } = PREFIX_UTILS.addMissingPrefixes(query, prefixes);
@@ -106,6 +114,22 @@ export class SparqlQueryService {
                 resolve({ quadCount, prefixes: this._toPrefixMap(prefixes) });
             });
         });
+    }
+
+    /**
+     * Private method: _parseTurtleCached.
+     *
+     * It parses the given turtle data via {@link parseTurtle},
+     * unless it is the same as in the latest parse (then it reuses that result).
+     *
+     * @param {string} turtle The given turtle data.
+     * @returns {Promise<TurtleParseResult>} A promise of the number of quads and the declared prefixes.
+     */
+    private _parseTurtleCached(turtle: string): Promise<TurtleParseResult> {
+        if (this._lastTurtleParse?.turtle !== turtle) {
+            this._lastTurtleParse = { turtle, result: this.parseTurtle(turtle) };
+        }
+        return this._lastTurtleParse.result;
     }
 
     /**

@@ -873,6 +873,24 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
             });
 
+            describe('#_createQueryRequest()', () => {
+                it('... should have a method `_createQueryRequest`', () => {
+                    expect(component['_createQueryRequest']).toBeDefined();
+                });
+
+                it('... should hold a request of the current query against the current triples', () => {
+                    const currentQuery = { ...expectedRdfData.queryList[2], queryType: 'select' as const };
+                    component.triples.set(expectedChangedTriples);
+                    component.query.set(currentQuery);
+
+                    expectToEqual(component['_createQueryRequest'](), {
+                        queryType: 'select',
+                        queryString: currentQuery.queryString,
+                        triples: expectedChangedTriples,
+                    });
+                });
+            });
+
             describe('#_runQuery()', () => {
                 let expectedRequest: SparqlQueryRequest;
 
