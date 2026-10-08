@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -60,7 +60,7 @@ export class GraphVisualizerComponent {
      *
      * It holds the RDF data (triples and queries) of the graph.
      */
-    readonly rdfData = input.required<GraphRDFData>();
+    readonly rdfData = input.required<GraphRdfData>();
 
     /**
      * Readonly input signal: isFullscreenMode.
@@ -135,7 +135,7 @@ export class GraphVisualizerComponent {
      * It holds the latest requested query (reset to the initial query on input change).
      * Only {@link performQuery} requests a new run, not edits of query or triples.
      */
-    private readonly _queryRequest = linkedSignal<GraphRDFData, SparqlQueryRequest>({
+    private readonly _queryRequest = linkedSignal<GraphRdfData, SparqlQueryRequest>({
         source: this.rdfData,
         computation: rdfData => {
             const { queryType, queryString } = GRAPH_QUERY_UTILS.initialQuery(rdfData.queryList);

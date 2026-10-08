@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
-import { GraphRDFData } from '@awg-views/edition-view/models/graph.model';
+import { GraphRdfData } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.component';
 
@@ -33,7 +33,7 @@ export class EditionGraphDynamicComponent {
      *
      * It holds the RDF data (triples and queries) of the graph.
      */
-    readonly rdfData = input.required<GraphRDFData>();
+    readonly rdfData = input.required<GraphRdfData>();
 
     /**
      * Readonly computed signal: hasRdfData.

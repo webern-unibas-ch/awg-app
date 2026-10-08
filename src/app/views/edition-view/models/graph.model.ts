@@ -32,13 +32,13 @@ export class GraphQuery {
 }
 
 /**
- * The GraphRDFData class.
+ * The GraphRdfData class.
  *
  * It is used in the context of the edition view
  * to store the RDF data for a single graph
  * from a graph json file.
  */
-export class GraphRDFData {
+export class GraphRdfData {
     /**
      * The predefined query list for a graph.
      */
@@ -77,7 +77,7 @@ export class Graph {
     /**
      * The RDF data for a graph.
      */
-    rdfData: GraphRDFData = new GraphRDFData();
+    rdfData: GraphRdfData = new GraphRdfData();
 
     /**
      * An optional staticImage of a graph.

@@ -20,7 +20,7 @@ import { mockConsole } from '@testing/mock-helper';
 import { ToastComponent } from '@awg-shared/toast/toast.component';
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
-import { GraphRDFData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
+import { GraphRdfData, GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphEditorSparqlComponent } from './editor/sparql/graph-editor-sparql.component';
 import { GraphEditorTriplesComponent } from './editor/triples/graph-editor-triples.component';
@@ -53,7 +53,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let mockSparqlQueryService: { run: Spy };
     let toastService: ToastService;
 
-    let expectedRdfData: GraphRDFData;
+    let expectedRdfData: GraphRdfData;
     let expectedConstructResult: SparqlConstructResult;
     let expectedSelectResult: SparqlSelectResult;
     let expectedDurationMs: number;
@@ -136,7 +136,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         toastService = TestBed.inject(ToastService);
 
         // Test data
-        expectedRdfData = new GraphRDFData();
+        expectedRdfData = new GraphRdfData();
         expectedRdfData.queryList = [
             {
                 queryType: 'construct',
@@ -329,7 +329,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('... on input change', () => {
-            let changedRdfData: GraphRDFData;
+            let changedRdfData: GraphRdfData;
 
             beforeEach(async () => {
                 // Edit triples and query locally

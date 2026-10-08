@@ -15,7 +15,7 @@ import {
 import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
-import { GraphQuery, GraphRDFData } from '@awg-views/edition-view/models/graph.model';
+import { GraphQuery, GraphRdfData } from '@awg-views/edition-view/models/graph.model';
 
 import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.component';
 import { EditionGraphDynamicComponent } from './edition-graph-dynamic.component';
@@ -27,7 +27,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
 
     let mockIsFullscreen: WritableSignal<boolean>;
 
-    let expectedRdfData: GraphRDFData;
+    let expectedRdfData: GraphRdfData;
 
     beforeEach(async () => {
         mockIsFullscreen = signal(false);
@@ -44,7 +44,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
 
     beforeEach(() => {
         // Test data
-        expectedRdfData = new GraphRDFData();
+        expectedRdfData = new GraphRdfData();
         expectedRdfData.triples = 'example:test example:has example:Success';
         expectedRdfData.queryList = [new GraphQuery()];
 
@@ -104,7 +104,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
                     queryList: null,
                 },
             ])('... should hold false if $desc', async ({ triples, queryList }) => {
-                fixture.componentRef.setInput('rdfData', { triples, queryList } as GraphRDFData);
+                fixture.componentRef.setInput('rdfData', { triples, queryList } as GraphRdfData);
                 await detectChangesOnPush(fixture);
 
                 expectToBe(component.hasRdfData(), false);
@@ -113,7 +113,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain no div.awg-graph-dynamic if no rdf data is given', async () => {
-                fixture.componentRef.setInput('rdfData', new GraphRDFData());
+                fixture.componentRef.setInput('rdfData', new GraphRdfData());
                 await detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic', 0, 0);
