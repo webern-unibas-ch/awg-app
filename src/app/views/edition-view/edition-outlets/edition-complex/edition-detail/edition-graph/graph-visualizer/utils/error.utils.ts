@@ -21,11 +21,16 @@ export function getErrorMessage(err: unknown): string {
             return anyObjectErr['statusText'];
         }
         try {
-            return JSON.stringify(anyObjectErr);
+            // JSON.stringify returns undefined if the object's toJSON() does
+            const json = JSON.stringify(anyObjectErr);
+            if (typeof json === 'string') {
+                return json;
+            }
         } catch {
-            const objectKeys = Object.keys(anyObjectErr).join(', ');
-            return `[Complex Error Object with keys: ${objectKeys}]`;
+            // Fall back to the object keys below (e.g., for circular objects)
         }
+        const objectKeys = Object.keys(anyObjectErr).join(', ');
+        return `[Complex Error Object with keys: ${objectKeys}]`;
     }
 
     if (typeof err === 'string' || typeof err === 'number' || typeof err === 'boolean') {

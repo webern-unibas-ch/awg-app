@@ -40,11 +40,11 @@ describe('ErrorUtils (DONE)', () => {
                         expectedMessage: '{"errorCode":999,"fatal":true}',
                     },
                     {
-                        desc: 'an object where `JSON.stringify` returns undefined',
+                        desc: 'an object where `JSON.stringify` returns undefined (falls back to the keys)',
                         error: {
                             toJSON: (): undefined => undefined,
                         },
-                        expectedMessage: undefined,
+                        expectedMessage: '[Complex Error Object with keys: toJSON]',
                     },
                     {
                         desc: 'a circular object that causes `JSON.stringify` to throw (forces catch)',
@@ -81,13 +81,7 @@ describe('ErrorUtils (DONE)', () => {
                         expectedMessage: 'Unknown error format',
                     },
                 ])('... with $desc', ({ error, expectedMessage }) => {
-                    const result = getErrorMessage(error);
-
-                    if (expectedMessage === undefined) {
-                        expect(result).toBeUndefined();
-                    } else {
-                        expectToBe(result, expectedMessage);
-                    }
+                    expectToBe(getErrorMessage(error), expectedMessage);
                 });
             });
         });
