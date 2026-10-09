@@ -25,8 +25,8 @@ import { Logos } from '@awg-shared/logos/logos.model';
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';

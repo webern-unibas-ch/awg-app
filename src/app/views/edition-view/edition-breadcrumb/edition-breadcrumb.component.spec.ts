@@ -14,7 +14,8 @@ import {
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '../edition-routes.constants';
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';

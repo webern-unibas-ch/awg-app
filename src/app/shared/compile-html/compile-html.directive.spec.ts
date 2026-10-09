@@ -14,7 +14,7 @@ import {
     EditionNavigationFragmentTarget,
     EditionNavigationSheetTarget,
 } from '@awg-views/edition-view/models/edition-navigation.model';
-import { EditionGlyphService } from '@awg-views/edition-view/services';
+import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { CompileHtmlDirective } from './compile-html.directive';

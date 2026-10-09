@@ -17,7 +17,9 @@ import {
     createTestTkkOverlay,
 } from '@testing/svg-drawing-helper';
 
-import { D3Selection, EditionSvgLinkBox, EditionSvgOverlayTkk } from '@awg-views/edition-view/models';
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
+import { EditionSvgLinkBox } from '@awg-views/edition-view/models/edition-svg-link-box.model';
+import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 

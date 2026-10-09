@@ -15,24 +15,21 @@ import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data/edition-assets.data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    GraphList,
-    IntroList,
-    PrefaceList,
-    RowtablesList,
-} from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { GraphList } from '@awg-views/edition-view/models/graph.model';
+import { IntroList } from '@awg-views/edition-view/models/intro.model';
+import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
+import { RowtablesList } from '@awg-views/edition-view/models/rowtables.model';
 import {
     EditionComplexDataAssetsKeys,
     EditionDataAssetsError,
     EditionDataAssetsKeys,
     EditionStaticDataAssetsKeys,
 } from '@awg-views/edition-view/models/edition-data.model';
-import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import { EditionDataService } from './edition-data.service';

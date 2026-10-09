@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import {
-    D3Selection,
     EditionSvgOverlay,
     EditionSvgOverlaysState,
     EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
-} from '@awg-views/edition-view/models';
+} from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import { DATA_TKK_ID } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';

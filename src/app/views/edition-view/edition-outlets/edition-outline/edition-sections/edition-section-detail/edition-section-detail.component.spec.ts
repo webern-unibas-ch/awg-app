@@ -8,8 +8,9 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
 

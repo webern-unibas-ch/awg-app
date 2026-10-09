@@ -1,10 +1,9 @@
+import { EditionComplex, EditionComplexesList } from '@awg-views/edition-view/models/edition-complex.model';
 import {
-    EditionComplex,
-    EditionComplexesList,
     EditionOutline,
     EditionOutlineSection,
     EditionOutlineSeries,
-} from '@awg-views/edition-view/models';
+} from '@awg-views/edition-view/models/edition-outline.model';
 
 import jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 import jsonEditionOutline from 'assets/data/edition/edition-outline.json';

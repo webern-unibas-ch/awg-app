@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
  * The EditionSeriesDetail component.

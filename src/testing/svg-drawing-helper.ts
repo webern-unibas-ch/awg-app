@@ -2,12 +2,9 @@ import { vi } from 'vitest';
 
 import * as D3_SELECTION from 'd3-selection';
 
-import {
-    D3Selection,
-    EditionSvgLinkBox,
-    EditionSvgOverlayTkk,
-    EditionSvgOverlayTypes,
-} from '@awg-views/edition-view/models';
+import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
+import { EditionSvgLinkBox } from '@awg-views/edition-view/models/edition-svg-link-box.model';
+import { EditionSvgOverlayTkk, EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
 /**
  * Test helper function: patchSvgSizeForD3Zoom.

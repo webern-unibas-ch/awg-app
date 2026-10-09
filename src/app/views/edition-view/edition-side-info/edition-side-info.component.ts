@@ -6,7 +6,8 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
  * The EditionSideInfo component.

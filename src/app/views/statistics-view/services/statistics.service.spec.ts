@@ -9,7 +9,7 @@ import {
     EditionOutlineComplexItem,
     EditionOutlineComplexTypes,
     EditionOutlineSeries,
-} from '@awg-views/edition-view/models';
+} from '@awg-views/edition-view/models/edition-outline.model';
 
 import { Statistics, StatisticsSectionBreakdown, StatisticsSeriesBreakdown } from '../models/statistics.model';
 import { StatisticsService } from './statistics.service';

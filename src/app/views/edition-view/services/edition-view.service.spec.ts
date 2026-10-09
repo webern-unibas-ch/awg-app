@@ -19,7 +19,8 @@ import {
 
 import { EditionDataService } from './edition-data.service';
 
-import { EditionSvgSheetsList, TextcriticsList } from '../models';
+import { EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionViewService } from './edition-view.service';
 
 describe('EditionViewService', () => {

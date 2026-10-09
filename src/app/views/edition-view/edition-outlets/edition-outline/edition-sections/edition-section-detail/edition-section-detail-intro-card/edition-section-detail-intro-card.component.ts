@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
 
 /**
  * The EditionSectionDetailIntroCard component.

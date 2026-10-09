@@ -20,7 +20,8 @@ import { mockEditionData } from '@testing/mock-data';
 import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
-import { TextcriticalCommentary, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
+import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
+import { TkaTableHeaderColumn } from '@awg-views/edition-view/models/tka-table-header.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
 

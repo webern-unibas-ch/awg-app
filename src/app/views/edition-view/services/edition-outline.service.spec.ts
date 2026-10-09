@@ -8,9 +8,13 @@ import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionComplex, EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionOutline, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 
-import { EditionOutlineJsonData, EditionOutlineSeriesJsonData } from '../models/edition-outline.model';
+import {
+    EditionOutlineJsonData,
+    EditionOutlineSeriesJsonData,
+} from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionComplexesService } from './edition-complexes.service';
 import { EditionOutlineService } from './edition-outline.service';
 

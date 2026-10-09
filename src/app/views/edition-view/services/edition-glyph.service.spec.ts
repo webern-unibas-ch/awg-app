@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
+import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data/edition-glyphs.data';
 
 import { EditionGlyphService } from './edition-glyph.service';
 

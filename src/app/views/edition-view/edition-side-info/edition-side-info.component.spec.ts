@@ -21,8 +21,9 @@ import {
 
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionOutlineSection } from '@awg-views/edition-view/models';
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionSideInfoComponent } from './edition-side-info.component';
 
