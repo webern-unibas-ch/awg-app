@@ -143,7 +143,7 @@
             </p>
             <p class="comment">
                 <p>The ModalService.</p>
-<p>It provides methods to open and close the modal with a given modal snippet id.</p>
+<p>It provides methods to open and close the modal with a given text or image content.</p>
 
             </p>
 
@@ -236,8 +236,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="110"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:110</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="106"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -314,8 +314,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="83"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:83</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -391,8 +391,8 @@ and supply it with the required ModalData input.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/shared/modal/modal.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -476,7 +476,7 @@ and supply it with the required ModalData input.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>openTextModal(snippetKey?: string | null)</code>
+<code>openTextModal(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, content: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -492,7 +492,7 @@ and supply it with the required ModalData input.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: openTextModal.</p>
-<p>It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.</p>
+<p>It opens the modal component with the given text content.</p>
 </div>
 
                             <div class="io-description">
@@ -509,18 +509,34 @@ and supply it with the required ModalData input.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>snippetKey</td>
+                                                <td>id</td>
                                             <td>
-                                                        <code>string | null</code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
                                             </td>
 
 
                                             <td>
-                                                    <p>The key of the text snippet.</p>
+                                                    <p>The identifier for the text.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>content</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The (HTML) text content.</p>
 
                                             </td>
                                         </tr>
@@ -571,7 +587,7 @@ and supply it with the required ModalData input.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/modal/modal.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/modal/modal.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -610,7 +626,7 @@ and supply it with the required ModalData input.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/modal/modal.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/modal/modal.service.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -634,14 +650,13 @@ and supply it with the required ModalData input.</p>
 
 import { ModalDismissReasons, NgbModal } from &#x27;@ng-bootstrap/ng-bootstrap/modal&#x27;;
 
-import { MODAL_TEXT_SNIPPETS } from &#x27;./modal-text-snippets.data&#x27;;
 import { ModalComponent } from &#x27;./modal.component&#x27;;
 import { ModalData } from &#x27;./modal.model&#x27;;
 
 /**
  * The ModalService.
  *
- * It provides methods to open and close the modal with a given modal snippet id.
+ * It provides methods to open and close the modal with a given text or image content.
  */
 @Injectable({
     providedIn: &#x27;root&#x27;,
@@ -664,21 +679,18 @@ export class ModalService {
     /**
      * Public method: openTextModal.
      *
-     * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
+     * It opens the modal component with the given text content.
      *
-     * @param {string | null | undefined}  snippetKey The key of the text snippet.
+     * @param {string} id The identifier for the text.
+     * @param {string} content The (HTML) text content.
      * @returns {void} Opens the modal.
      */
-    openTextModal(snippetKey?: string | null): void {
-        const id &#x3D; snippetKey || &#x27;CONTENTS_NOT_AVAILABLE&#x27;;
-        const isValidKey &#x3D; Object.hasOwn(MODAL_TEXT_SNIPPETS, id);
-        const textSnippet &#x3D; isValidKey ? MODAL_TEXT_SNIPPETS[id as keyof typeof MODAL_TEXT_SNIPPETS] : &#x27;&#x27;;
-
+    openTextModal(id: string, content: string): void {
         const modalData: ModalData &#x3D; {
             type: &#x27;text&#x27;,
             id: id,
             title: &#x27;Hinweis&#x27;,
-            content: textSnippet,
+            content: content,
         };
         this._open(modalData);
     }

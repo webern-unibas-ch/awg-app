@@ -141,7 +141,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/models/tka-table-header.model.ts</code>
+            <code>src/app/views/edition-view/shared/tka/table/edition-tka-table.model.ts</code>
         </p>
 
 
@@ -285,6 +285,32 @@ to store the data for a tka table header column.</p>
      */
     label: string;
 }
+
+/**
+ * Object constant: TKA_TABLE_HEADERS.
+ *
+ * It is used in the context of the TkA tables.
+ */
+export const TKA_TABLE_HEADERS: Record&lt;string, TkaTableHeaderColumn[]&gt; &#x3D; {
+    default: [
+        { ref: &#x27;measure&#x27;, label: &#x27;Takt&#x27; },
+        { ref: &#x27;system&#x27;, label: &#x27;System&#x27; },
+        { ref: &#x27;location&#x27;, label: &#x27;Ort im Takt&#x27; },
+        { ref: &#x27;comment&#x27;, label: &#x27;Anmerkung&#x27; },
+    ],
+    corrections: [
+        { ref: &#x27;measure&#x27;, label: &#x27;Takt&#x27; },
+        { ref: &#x27;system&#x27;, label: &#x27;System&#x27; },
+        { ref: &#x27;location&#x27;, label: &#x27;Ort im Takt&#x27; },
+        { ref: &#x27;comment&#x27;, label: &#x27;Korrektur&#x27; },
+    ],
+    rowtable: [
+        { ref: &#x27;measure&#x27;, label: &#x27;Folio&#x27; },
+        { ref: &#x27;system&#x27;, label: &#x27;System&#x27; },
+        { ref: &#x27;location&#x27;, label: &#x27;Reihe/Reihenton&#x27; },
+        { ref: &#x27;comment&#x27;, label: &#x27;Anmerkung&#x27; },
+    ],
+};
 </code></pre>
     </div>
 </div>

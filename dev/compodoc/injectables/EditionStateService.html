@@ -145,6 +145,8 @@
                 <p>The EditionState service.</p>
 <p>It handles the provision of the current state
 of an edition complex and other parts of the edition outline.</p>
+<p>If an edition complex is selected, it takes precedence:
+the selected series and section are derived from its publication statement.</p>
 
             </p>
 
@@ -162,6 +164,11 @@ of an edition complex and other parts of the edition outline.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_editionOutlineService" >_editionOutlineService</a>
+                            </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
@@ -248,8 +255,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -257,7 +264,8 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionComplex.</p>
-<p>It updates the selectedEditionComplex signal with the given edition complex.</p>
+<p>It updates the selectedEditionComplex signal with the given edition complex
+and resets the manually selected series and section signals to null (to be computed from complex).</p>
 </div>
 
                             <div class="io-description">
@@ -324,8 +332,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="71"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:71</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="111"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -333,7 +341,8 @@ of an edition complex and other parts of the edition outline.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionSection.</p>
-<p>It updates the selectedEditionSection signal with the given section.</p>
+<p>It updates the selectedEditionSection signal with the given section
+and resets the selectedEditionComplex signal to null.</p>
 </div>
 
                             <div class="io-description">
@@ -400,8 +409,8 @@ of an edition complex and other parts of the edition outline.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="85"
-                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:85</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:125</a></div>
                         </td>
                     </tr>
 
@@ -410,7 +419,7 @@ of an edition complex and other parts of the edition outline.</p>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: updateSelectedEditionSeries.</p>
 <p>It updates the selectedEditionSeries signal with the given series
-and resets the selectedEditionSection signal to null.</p>
+and resets the selectedEditionSection and selectedEditionComplex signals to null.</p>
 </div>
 
                             <div class="io-description">
@@ -467,6 +476,46 @@ and resets the selectedEditionSection signal to null.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_editionOutlineService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_editionOutlineService</b></span>
+                        <a href="#_editionOutlineService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(EditionOutlineService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _editionOutlineService.</p>
+<p>It keeps the instance of the injected EditionOutlineService.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_selectedEditionComplexSignal"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -489,7 +538,7 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -528,13 +577,13 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:36</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly signal holding the selected edition section.</p>
+                    <div class="io-description"><p>Private readonly signal holding the manually selected edition section.</p>
 </div>
                 </td>
             </tr>
@@ -567,13 +616,13 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:41</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly signal holding the selected edition series.</p>
+                    <div class="io-description"><p>Private readonly signal holding the manually selected edition series.</p>
 </div>
                 </td>
             </tr>
@@ -605,7 +654,7 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -639,19 +688,33 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedEditionSectionSignal.asReadonly()</code>
+                        <i>Default value : </i><code>computed&lt;EditionOutlineSection | null&gt;(() &#x3D;&gt; {
+        const complex &#x3D; this._selectedEditionComplexSignal();
+
+        if (!complex) {
+            return this._selectedEditionSectionSignal();
+        }
+
+        return (
+            this._editionOutlineService.getEditionSectionById(
+                complex.pubStatement.series.route,
+                complex.pubStatement.section.route
+            ) ?? null
+        );
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:56</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly signal: selectedEditionSection.</p>
-<p>It holds the state of the selected edition section.</p>
+                    <div class="io-description"><p>Readonly computed signal: selectedEditionSection.</p>
+<p>It holds the section of the selected edition complex,
+otherwise the manually selected edition section.</p>
 </div>
                 </td>
             </tr>
@@ -678,19 +741,28 @@ and resets the selectedEditionSection signal to null.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._selectedEditionSeriesSignal.asReadonly()</code>
+                        <i>Default value : </i><code>computed&lt;EditionOutlineSeries | null&gt;(() &#x3D;&gt; {
+        const complex &#x3D; this._selectedEditionComplexSignal();
+
+        if (!complex) {
+            return this._selectedEditionSeriesSignal();
+        }
+
+        return this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route) ?? null;
+    })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/edition-view/services/edition-state.service.ts:77</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Readonly signal: selectedEditionSeries.</p>
-<p>It holds the state of the selected edition series.</p>
+                    <div class="io-description"><p>Readonly computed signal: selectedEditionSeries.</p>
+<p>It holds the series of the selected edition complex,
+otherwise the manually selected edition series.</p>
 </div>
                 </td>
             </tr>
@@ -703,32 +775,45 @@ and resets the selectedEditionSection signal to null.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { computed, inject, Injectable, signal } from &#x27;@angular/core&#x27;;
 
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionComplex } from &#x27;../models/edition-complex.model&#x27;;
+import { EditionOutlineSection, EditionOutlineSeries } from &#x27;../models/edition-outline.model&#x27;;
+
+import { EditionOutlineService } from &#x27;./edition-outline.service&#x27;;
 
 /**
  * The EditionState service.
  *
  * It handles the provision of the current state
  * of an edition complex and other parts of the edition outline.
+ *
+ * If an edition complex is selected, it takes precedence:
+ * the selected series and section are derived from its publication statement.
  */
 @Injectable({
     providedIn: &#x27;root&#x27;,
 })
 export class EditionStateService {
     /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService &#x3D; inject(EditionOutlineService);
+
+    /**
      * Private readonly signal holding the selected edition complex.
      */
     private readonly _selectedEditionComplexSignal &#x3D; signal&lt;EditionComplex | null&gt;(null);
 
     /**
-     * Private readonly signal holding the selected edition section.
+     * Private readonly signal holding the manually selected edition section.
      */
     private readonly _selectedEditionSectionSignal &#x3D; signal&lt;EditionOutlineSection | null&gt;(null);
 
     /**
-     * Private readonly signal holding the selected edition series.
+     * Private readonly signal holding the manually selected edition series.
      */
     private readonly _selectedEditionSeriesSignal &#x3D; signal&lt;EditionOutlineSeries | null&gt;(null);
 
@@ -740,41 +825,68 @@ export class EditionStateService {
     readonly selectedEditionComplex &#x3D; this._selectedEditionComplexSignal.asReadonly();
 
     /**
-     * Readonly signal: selectedEditionSection.
+     * Readonly computed signal: selectedEditionSection.
      *
-     * It holds the state of the selected edition section.
+     * It holds the section of the selected edition complex,
+     * otherwise the manually selected edition section.
      */
-    readonly selectedEditionSection &#x3D; this._selectedEditionSectionSignal.asReadonly();
+    readonly selectedEditionSection &#x3D; computed&lt;EditionOutlineSection | null&gt;(() &#x3D;&gt; {
+        const complex &#x3D; this._selectedEditionComplexSignal();
+
+        if (!complex) {
+            return this._selectedEditionSectionSignal();
+        }
+
+        return (
+            this._editionOutlineService.getEditionSectionById(
+                complex.pubStatement.series.route,
+                complex.pubStatement.section.route
+            ) ?? null
+        );
+    });
 
     /**
-     * Readonly signal: selectedEditionSeries.
+     * Readonly computed signal: selectedEditionSeries.
      *
-     * It holds the state of the selected edition series.
+     * It holds the series of the selected edition complex,
+     * otherwise the manually selected edition series.
      */
-    readonly selectedEditionSeries &#x3D; this._selectedEditionSeriesSignal.asReadonly();
+    readonly selectedEditionSeries &#x3D; computed&lt;EditionOutlineSeries | null&gt;(() &#x3D;&gt; {
+        const complex &#x3D; this._selectedEditionComplexSignal();
+
+        if (!complex) {
+            return this._selectedEditionSeriesSignal();
+        }
+
+        return this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route) ?? null;
+    });
 
     /**
      * Public method: updateSelectedEditionComplex.
      *
-     * It updates the selectedEditionComplex signal with the given edition complex.
+     * It updates the selectedEditionComplex signal with the given edition complex
+     * and resets the manually selected series and section signals to null (to be computed from complex).
      *
      * @param {EditionComplex} complex The given edition complex.
      * @returns {void} Sets the next complex to the signal.
      */
     updateSelectedEditionComplex(complex: EditionComplex | null): void {
+        this._selectedEditionSeriesSignal.set(null);
+        this._selectedEditionSectionSignal.set(null);
         this._selectedEditionComplexSignal.set(complex);
     }
 
     /**
      * Public method: updateSelectedEditionSection.
      *
-     * It updates the selectedEditionSection signal with the given section.
+     * It updates the selectedEditionSection signal with the given section
+     * and resets the selectedEditionComplex signal to null.
      *
      * @param {EditionOutlineSection} editionSection The given edition section.
      * @returns {void} Sets the next section to the signal.
      */
     updateSelectedEditionSection(editionSection: EditionOutlineSection | null): void {
-        this.updateSelectedEditionComplex(null);
+        this._selectedEditionComplexSignal.set(null);
         this._selectedEditionSectionSignal.set(editionSection);
     }
 
@@ -782,13 +894,14 @@ export class EditionStateService {
      * Public method: updateSelectedEditionSeries.
      *
      * It updates the selectedEditionSeries signal with the given series
-     * and resets the selectedEditionSection signal to null.
+     * and resets the selectedEditionSection and selectedEditionComplex signals to null.
      *
      * @param {EditionOutlineSeries} editionSeries The given edition series.
      * @returns {void} Sets the next series to the signal.
      */
     updateSelectedEditionSeries(editionSeries: EditionOutlineSeries | null): void {
-        this.updateSelectedEditionSection(null);
+        this._selectedEditionComplexSignal.set(null);
+        this._selectedEditionSectionSignal.set(null);
         this._selectedEditionSeriesSignal.set(editionSeries);
     }
 }
