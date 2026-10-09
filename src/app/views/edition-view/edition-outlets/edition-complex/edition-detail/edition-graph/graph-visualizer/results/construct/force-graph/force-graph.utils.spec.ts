@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { ResultGraph, ResultGraphEdge, ResultGraphNode } from '../../../models/result-graph.model';
+import { ResultGraph, ResultGraphEdge, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { SimEdge, SimNode } from './force-graph.model';
 import {
     FORCE_GRAPH_UTILS,

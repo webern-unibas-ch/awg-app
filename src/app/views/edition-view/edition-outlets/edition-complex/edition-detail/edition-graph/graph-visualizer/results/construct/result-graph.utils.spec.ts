@@ -4,9 +4,10 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { ResultGraph } from '../../models/result-graph.model';
-import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
-import { RDF_TYPE, RDFS_LABEL } from '../../utils/term.utils';
+import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
+import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
+import { RDF_TYPE, RDFS_LABEL } from '@awg-graph/graph-visualizer/utils/term.utils';
+
 import { extractLabels, limitResultGraph, RESULT_GRAPH_UTILS, toResultGraph } from './result-graph.utils';
 
 const { blankNode, literal, namedNode, quad } = DataFactory;

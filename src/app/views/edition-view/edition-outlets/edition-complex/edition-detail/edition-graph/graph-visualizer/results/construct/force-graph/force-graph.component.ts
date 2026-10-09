@@ -8,7 +8,8 @@ import { ChangeDetectionStrategy, Component, computed, input, output, signal } f
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
-import { ResultGraph, ResultGraphNode } from '../../../models/result-graph.model';
+import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { RESULT_GRAPH_UTILS } from '../result-graph.utils';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';

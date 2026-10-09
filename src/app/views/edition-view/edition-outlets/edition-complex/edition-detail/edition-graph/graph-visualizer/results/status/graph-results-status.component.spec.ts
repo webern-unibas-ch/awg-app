@@ -9,7 +9,7 @@ import { DataFactory } from 'n3';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { SparqlConstructResult, SparqlSelectResult } from '../../models/sparql-result.model';
+import { SparqlConstructResult, SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 
 import { GraphResultsStatusComponent } from './graph-results-status.component';
 

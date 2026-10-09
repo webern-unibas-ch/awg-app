@@ -22,14 +22,14 @@ import {
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { ResultGraph, ResultGraphNode } from '../../models/result-graph.model';
-import { SparqlConstructResult, SparqlResult } from '../../models/sparql-result.model';
-import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
+import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+import { SparqlConstructResult, SparqlResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
+
 import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
-import { RESULT_GRAPH_UTILS } from './result-graph.utils';
-
 import { GraphResultsConstructComponent } from './graph-results-construct.component';
+import { RESULT_GRAPH_UTILS } from './result-graph.utils';
 
 const { namedNode, quad } = DataFactory;
 

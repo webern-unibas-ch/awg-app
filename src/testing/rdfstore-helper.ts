@@ -9,7 +9,7 @@ import {
     RdfStoreGlobal,
     RdfStoreNode,
     RdfStoreToken,
-} from '@awg-views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.model';
+} from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
 
 /**
  * Number constant: RDFSTORE_INTEGRATION_TIMEOUT_MS.

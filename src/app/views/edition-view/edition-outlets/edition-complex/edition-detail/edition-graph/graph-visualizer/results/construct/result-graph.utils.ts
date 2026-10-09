@@ -1,8 +1,13 @@
 import type { Quad } from '@rdfjs/types';
 
-import { ResultGraph, ResultGraphEdge, ResultGraphNode, ResultNodeKind } from '../../models/result-graph.model';
-import { PrefixMap, RdfTerm } from '../../models/rdf.model';
-import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '../../utils/term.utils';
+import { PrefixMap, RdfTerm } from '@awg-graph/graph-visualizer/models/rdf.model';
+import {
+    ResultGraph,
+    ResultGraphEdge,
+    ResultGraphNode,
+    ResultNodeKind,
+} from '@awg-graph/graph-visualizer/models/result-graph.model';
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '@awg-graph/graph-visualizer/utils/term.utils';
 
 /**
  * The ResultGraphNodeDraft interface.

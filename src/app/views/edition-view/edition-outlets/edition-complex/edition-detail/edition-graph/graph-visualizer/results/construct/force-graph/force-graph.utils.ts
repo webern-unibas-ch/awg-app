@@ -1,4 +1,5 @@
-import { ResultGraph, ResultNodeKind } from '../../../models/result-graph.model';
+import { ResultGraph, ResultNodeKind } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { Point, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 
 /**

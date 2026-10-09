@@ -17,13 +17,13 @@ import { patchSvgSizeForD3Zoom, stubResizeObserver } from '@testing/svg-drawing-
 import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
-import { ResultGraph, ResultGraphNode } from '../../../models/result-graph.model';
+import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { ForceGraphDrawingService } from './force-graph-drawing.service';
+import { ForceGraphComponent } from './force-graph.component';
 import { ForceSimulation } from './force-graph.model';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
 import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
-
-import { ForceGraphComponent } from './force-graph.component';
 
 describe('ForceGraphComponent (DONE)', () => {
     let component: ForceGraphComponent;

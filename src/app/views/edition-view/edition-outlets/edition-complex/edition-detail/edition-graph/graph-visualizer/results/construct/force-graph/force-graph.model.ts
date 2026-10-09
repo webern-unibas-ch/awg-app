@@ -1,6 +1,6 @@
 import type { Simulation, SimulationLinkDatum, SimulationNodeDatum } from 'd3-force';
 
-import { ResultGraphEdge, ResultGraphNode } from '../../../models/result-graph.model';
+import { ResultGraphEdge, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
 /**
  * The SimNode interface.

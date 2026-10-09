@@ -4,7 +4,8 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
-import { SparqlResult, SparqlSelectResult } from '../../models/sparql-result.model';
+import { SparqlResult, SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
+
 import { GraphResultsEmptyComponent } from '../empty/graph-results-empty.component';
 import { SelectTableComponent } from './table/select-table.component';
 
