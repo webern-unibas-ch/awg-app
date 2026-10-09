@@ -10,7 +10,8 @@
             "@awg-shared/*": ["app/shared/*"],
             "@awg-side-info/*": ["app/side-info/*"],
             "@awg-views/*": ["app/views/*"],
-            "@awg-graph/*": ["app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"]
+            "@awg-graph/*": ["app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"],
+            "@awg-report/*": ["app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/*"]
         }
     },
     "include": ["src/**/*.ts"],
