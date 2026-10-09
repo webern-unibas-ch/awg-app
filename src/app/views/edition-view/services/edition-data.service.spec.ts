@@ -33,6 +33,7 @@ import {
     EditionStaticDataAssetsKeys,
 } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import { EditionDataService } from './edition-data.service';
 
@@ -218,9 +219,10 @@ describe('EditionDataService (DONE)', () => {
 
         describe('... with selected complex', () => {
             beforeEach(() => {
-                // Set selected series and section for intro data signal
-                editionStateService.updateSelectedEditionSeries(expectedSeries);
-                editionStateService.updateSelectedEditionSection(expectedSection);
+                // Mock outline lookups for series and section derived from the selected complex (intro data signal)
+                const editionOutlineService = TestBed.inject(EditionOutlineService);
+                vi.spyOn(editionOutlineService, 'getEditionSeriesById').mockReturnValue(expectedSeries);
+                vi.spyOn(editionOutlineService, 'getEditionSectionById').mockReturnValue(expectedSection);
 
                 // Set selected complex for all complex data signals
                 editionStateService.updateSelectedEditionComplex(expectedComplex);

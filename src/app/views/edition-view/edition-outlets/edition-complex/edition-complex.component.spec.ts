@@ -11,7 +11,6 @@ import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByDir
 import { EDITION_ROUTE_CONSTANTS, EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
-import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionComplexComponent } from './edition-complex.component';
@@ -22,20 +21,25 @@ describe('EditionComplexComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let editionComplexesService: EditionComplexesService;
-    let editionOutlineService: EditionOutlineService;
     let editionStateService: EditionStateService;
 
     let updateEditionComplexFromRouteSpy: Spy;
     let complexesServiceGetEditionComplexByIdSpy: Spy;
-    let outlineServiceGetEditionSectionByIdSpy: Spy;
-    let outlineServiceGetEditionSeriesByIdSpy: Spy;
     let stateServiceUpdateSelectedEditionComplexSpy: Spy;
-    let stateServiceUpdateSelectedEditionSeriesSpy: Spy;
-    let stateServiceUpdateSelectedEditionSectionSpy: Spy;
 
     let expectedComplex: EditionComplex;
     let expectedComplexId: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+
+    /**
+     * Helper function: setComplexId.
+     *
+     * It sets the given complex id as input and triggers change detection.
+     */
+    const setComplexId = (complexId: string | null): void => {
+        fixture.componentRef.setInput('complexId', complexId);
+        fixture.detectChanges();
+    };
 
     /**
      * Helper function: mockComplexOnce.
@@ -57,7 +61,6 @@ describe('EditionComplexComponent (DONE)', () => {
     beforeEach(() => {
         // Inject services
         editionComplexesService = TestBed.inject(EditionComplexesService);
-        editionOutlineService = TestBed.inject(EditionOutlineService);
         editionStateService = TestBed.inject(EditionStateService);
 
         // Service spies
@@ -70,27 +73,7 @@ describe('EditionComplexComponent (DONE)', () => {
                     return undefined;
                 }
             });
-        outlineServiceGetEditionSeriesByIdSpy = vi
-            .spyOn(editionOutlineService, 'getEditionSeriesById')
-            .mockImplementation((seriesId: string) => {
-                try {
-                    return EditionStateHelper.getSeries(seriesId);
-                } catch {
-                    return undefined;
-                }
-            });
-        outlineServiceGetEditionSectionByIdSpy = vi
-            .spyOn(editionOutlineService, 'getEditionSectionById')
-            .mockImplementation((seriesId: string, sectionId: string) => {
-                try {
-                    return EditionStateHelper.getSection(seriesId, sectionId);
-                } catch {
-                    return undefined;
-                }
-            });
         stateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'updateSelectedEditionComplex');
-        stateServiceUpdateSelectedEditionSectionSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSection');
-        stateServiceUpdateSelectedEditionSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
 
         // Prototype spies (to catch calls in constructor)
         updateEditionComplexFromRouteSpy = vi.spyOn(EditionComplexComponent.prototype, 'updateEditionComplexFromRoute');
@@ -126,6 +109,12 @@ describe('EditionComplexComponent (DONE)', () => {
             expectToBe(component.selectedEditionComplex(), null);
         });
 
+        it('... should have computed signal `_complexFromRoute` to hold null', () => {
+            expectToBe(isSignal(component['_complexFromRoute']), true);
+
+            expectToBe(component['_complexFromRoute'](), null);
+        });
+
         it('... should have `editionRouteConstants`', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
@@ -143,19 +132,139 @@ describe('EditionComplexComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Set the initial values for the signal inputs
-            fixture.componentRef.setInput('complexId', expectedComplexId);
-
-            // Trigger initial data binding
-            fixture.detectChanges();
+            // Set the initial values for the signal inputs and trigger initial data binding
+            setComplexId(expectedComplexId);
         });
 
         it('... should have input signal `complexId` to hold the provided id', () => {
             expectToBe(component.complexId(), expectedComplexId);
         });
 
+        it('... should have computed signal `_complexFromRoute` to hold the expected complex', () => {
+            expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 1, expectedComplexId);
+            expectToEqual(component['_complexFromRoute'](), expectedComplex);
+        });
+
         it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
             expectToEqual(component.selectedEditionComplex(), expectedComplex);
+        });
+
+        describe('... computed signal `_complexFromRoute`', () => {
+            describe('... should hold null if', () => {
+                it.each([
+                    { desc: 'param `complexId` is missing', complexId: null, expectedLookupCalls: 0 },
+                    { desc: 'param `complexId` is empty', complexId: '', expectedLookupCalls: 0 },
+                    { desc: 'edition complex cannot be found', complexId: 'fail', expectedLookupCalls: 1 },
+                ])('... $desc', ({ complexId, expectedLookupCalls }) => {
+                    complexesServiceGetEditionComplexByIdSpy.mockClear();
+
+                    setComplexId(complexId);
+
+                    expectSpyCall(complexesServiceGetEditionComplexByIdSpy, expectedLookupCalls);
+                    expectToBe(component['_complexFromRoute'](), null);
+                });
+            });
+
+            describe('... should hold an edition complex with', () => {
+                const defaultResp = { editors: [], lastModified: '---' };
+                const defaultPub = { series: '1', section: '5' };
+
+                it.each([
+                    {
+                        desc: 'opus number',
+                        complexId: 'op100',
+                        title: { title: 'Test Opus Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
+                        resp: defaultResp,
+                        pub: defaultPub,
+                    },
+                    {
+                        desc: 'M number',
+                        complexId: 'm100',
+                        title: { title: 'Test M Complex', catalogueType: 'MNR', catalogueNumber: '100' },
+                        resp: defaultResp,
+                        pub: defaultPub,
+                    },
+                    {
+                        desc: 'M* number',
+                        complexId: 'mx100',
+                        title: { title: 'Test M* Complex', catalogueType: 'MNR_X', catalogueNumber: '100' },
+                        resp: defaultResp,
+                        pub: defaultPub,
+                    },
+                    {
+                        desc: 'unknown catalogue type',
+                        complexId: 'bwv100',
+                        title: { title: 'Test BWV Complex', catalogueType: 'BWV', catalogueNumber: '100' },
+                        resp: defaultResp,
+                        pub: defaultPub,
+                    },
+                    {
+                        desc: 'missing resp statement',
+                        complexId: 'op100',
+                        title: { title: 'Test Missing Resp Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
+                        resp: null as any,
+                        pub: defaultPub,
+                    },
+                    {
+                        desc: 'missing pub statement',
+                        complexId: 'op100',
+                        title: { title: 'Test Missing Pub Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
+                        resp: defaultResp,
+                        pub: null as any,
+                    },
+                ])('... $desc', ({ complexId, title, resp, pub }) => {
+                    const complex = new EditionComplex(title, resp, pub);
+                    mockComplexOnce(complexId, complex);
+
+                    setComplexId(complexId);
+
+                    expectToEqual(component['_complexFromRoute'](), complex);
+                });
+            });
+
+            it('... should hold an edition complex with unknown catalogue type as empty route constant', () => {
+                const unknownCatTypeComplex = new EditionComplex(
+                    { title: 'Test BWV Complex', catalogueType: 'BWV', catalogueNumber: '100' },
+                    { editors: [], lastModified: '---' },
+                    { series: '1', section: '5' }
+                );
+                mockComplexOnce('bwv100', unknownCatTypeComplex);
+
+                setComplexId('bwv100');
+
+                expectToEqual(
+                    component['_complexFromRoute']()?.titleStatement.catalogueType,
+                    new EditionRouteConstant()
+                );
+            });
+
+            it('... should hold an edition complex with editor $ref not found in PERSONS_DATA', () => {
+                const unknownEditorComplex = new EditionComplex(
+                    { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
+                    { editors: [{ $ref: 'PERSON_UNKNOWN' }], lastModified: '2026-08-12' },
+                    { series: '1', section: '5' }
+                );
+                mockComplexOnce('op100', unknownEditorComplex);
+
+                setComplexId('op100');
+
+                expectToEqual(component['_complexFromRoute']()?.respStatement?.editors, [
+                    { name: 'PERSON_UNKNOWN', homepage: '', identifiers: {} },
+                ]);
+            });
+
+            it('... should throw when instantiating an edition complex with missing title statement', () => {
+                const createIncompleteComplex = () =>
+                    new EditionComplex(
+                        null as any,
+                        { editors: [], lastModified: '---' },
+                        { series: '1', section: '5' }
+                    );
+
+                expect(createIncompleteComplex).toThrow(
+                    '[EditionComplexModel] Cannot instantiate complex: Missing catalogueType or catalogueNumber.'
+                );
+            });
         });
 
         describe('#updateEditionComplexFromRoute()', () => {
@@ -163,292 +272,42 @@ describe('EditionComplexComponent (DONE)', () => {
                 expect(component.updateEditionComplexFromRoute).toBeDefined();
             });
 
-            it('... should have triggered `EditionComplexesService.getEditionComplexById` with the provided id', () => {
-                expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 1, expectedComplexId);
-            });
-
-            it('... should have triggered `EditionOutlineService.getEditionSeriesById`', () => {
-                expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 1, expectedComplex.pubStatement.series.route);
-            });
-
-            it('... should have triggered `EditionOutlineService.getEditionSectionById`', () => {
-                expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 1, [
-                    expectedComplex.pubStatement.series.route,
-                    expectedComplex.pubStatement.section.route,
-                ]);
-            });
-
-            it('... should have updated selectedEditionSeries (via EditionStateService; 1x per series)', () => {
-                const series = EditionStateHelper.getSeries(expectedComplex.pubStatement.series.route);
-
-                expectSpyCall(stateServiceUpdateSelectedEditionSeriesSpy, 1, series);
-                expectToEqual(editionStateService.selectedEditionSeries(), series);
-            });
-
-            it('... should have updated selectedEditionSection (via EditionStateService; 2x per section)', () => {
-                const section = EditionStateHelper.getSection(
-                    expectedComplex.pubStatement.series.route,
-                    expectedComplex.pubStatement.section.route
-                );
-
-                expectSpyCall(stateServiceUpdateSelectedEditionSectionSpy, 2, section);
-                expectToEqual(editionStateService.selectedEditionSection(), section);
-            });
-
-            it('... should have updated selectedEditionComplex (via EditionStateService; 3x per complex)', () => {
-                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 3, expectedComplex);
+            it('... should have updated selectedEditionComplex to hold the expected complex (via EditionStateService)', () => {
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 1, expectedComplex);
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
             });
 
-            it('... should have signal `selectedEditionComplex` to hold the new complex when complex id changes', () => {
-                const newComplexId = 'op25';
-                const newComplex = EditionStateHelper.getComplex(newComplexId);
+            it('... should have updated selectedEditionComplex to hold the new complex when complex id changes', () => {
+                const newComplex = EditionStateHelper.getComplex('op25');
+                stateServiceUpdateSelectedEditionComplexSpy.mockClear();
 
-                fixture.componentRef.setInput('complexId', newComplexId);
-                fixture.detectChanges();
+                setComplexId('op25');
 
-                expectSpyCall(updateEditionComplexFromRouteSpy, 1);
+                // 2 calls because of onCleanup
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 2, newComplex);
+                expect(stateServiceUpdateSelectedEditionComplexSpy).toHaveBeenNthCalledWith(1, null);
                 expectToEqual(editionStateService.selectedEditionComplex(), newComplex);
                 expectToEqual(component.selectedEditionComplex(), newComplex);
             });
 
-            describe('... with a found edition complex of special shape', () => {
-                it('... should hold an edition complex with opus number', () => {
-                    const opusComplex = new EditionComplex(
-                        { title: 'Test Opus Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
-                        { editors: [], lastModified: '---' },
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('op100', opusComplex);
+            it('... should have updated selectedEditionComplex to hold null if edition complex cannot be found', () => {
+                stateServiceUpdateSelectedEditionComplexSpy.mockClear();
 
-                    fixture.componentRef.setInput('complexId', 'op100');
-                    fixture.detectChanges();
+                setComplexId('fail');
 
-                    expectToEqual(editionStateService.selectedEditionComplex(), opusComplex);
-                    expectToEqual(component.selectedEditionComplex(), opusComplex);
-                });
-
-                it('... should hold an edition complex with M number', () => {
-                    const mnrComplex = new EditionComplex(
-                        { title: 'Test M Complex', catalogueType: 'MNR', catalogueNumber: '100' },
-                        { editors: [], lastModified: '---' },
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('m100', mnrComplex);
-
-                    fixture.componentRef.setInput('complexId', 'm100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionComplex(), mnrComplex);
-                    expectToEqual(component.selectedEditionComplex(), mnrComplex);
-                });
-
-                it('... should hold an edition complex with M* number', () => {
-                    const mnrXComplex = new EditionComplex(
-                        { title: 'Test M* Complex', catalogueType: 'MNR_X', catalogueNumber: '100' },
-                        { editors: [], lastModified: '---' },
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('mx100', mnrXComplex);
-
-                    fixture.componentRef.setInput('complexId', 'mx100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionComplex(), mnrXComplex);
-                    expectToEqual(component.selectedEditionComplex(), mnrXComplex);
-                });
-
-                it('... should hold an edition complex with unknown catalogue type', () => {
-                    const unknownCatTypeComplex = new EditionComplex(
-                        { title: 'Test BWV Complex', catalogueType: 'BWV', catalogueNumber: '100' },
-                        { editors: [], lastModified: '---' },
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('bwv100', unknownCatTypeComplex);
-
-                    fixture.componentRef.setInput('complexId', 'bwv100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionComplex(), unknownCatTypeComplex);
-                    expectToEqual(component.selectedEditionComplex(), unknownCatTypeComplex);
-                    expectToEqual(
-                        component.selectedEditionComplex()?.titleStatement.catalogueType,
-                        new EditionRouteConstant()
-                    );
-                });
-
-                it('... should hold an edition complex with missing resp statement', () => {
-                    const missingRespComplex = new EditionComplex(
-                        { title: 'Test Missing Resp Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
-                        null as any,
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('op100', missingRespComplex);
-
-                    fixture.componentRef.setInput('complexId', 'op100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionComplex(), missingRespComplex);
-                    expectToEqual(component.selectedEditionComplex(), missingRespComplex);
-                });
-
-                it('... should hold an edition complex with missing pub statement (and series and section to hold null)', () => {
-                    const missingPubComplex = new EditionComplex(
-                        { title: 'Test Missing Pub Complex', catalogueType: 'OPUS', catalogueNumber: '100' },
-                        { editors: [], lastModified: '---' },
-                        null as any
-                    );
-                    mockComplexOnce('op100', missingPubComplex);
-
-                    fixture.componentRef.setInput('complexId', 'op100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionSeries(), null);
-                    expectToEqual(editionStateService.selectedEditionSection(), null);
-                    expectToEqual(editionStateService.selectedEditionComplex(), missingPubComplex);
-                    expectToEqual(component.selectedEditionComplex(), missingPubComplex);
-                });
-
-                it('... should hold an edition complex with editor $ref not found in PERSONS_DATA', () => {
-                    const unknownEditorComplex = new EditionComplex(
-                        { title: 'Test Complex', catalogueType: 'OPUS', catalogueNumber: '12' },
-                        { editors: [{ $ref: 'PERSON_UNKNOWN' }], lastModified: '2026-08-12' },
-                        { series: '1', section: '5' }
-                    );
-                    mockComplexOnce('op100', unknownEditorComplex);
-
-                    fixture.componentRef.setInput('complexId', 'op100');
-                    fixture.detectChanges();
-
-                    expectToEqual(editionStateService.selectedEditionComplex(), unknownEditorComplex);
-                    expectToEqual(component.selectedEditionComplex()?.respStatement?.editors, [
-                        { name: 'PERSON_UNKNOWN', homepage: '', identifiers: {} },
-                    ]);
-                });
-
-                it('... should throw when instantiating an edition complex with missing title statement', () => {
-                    const createIncompleteComplex = () =>
-                        new EditionComplex(
-                            null as any,
-                            { editors: [], lastModified: '---' },
-                            { series: '1', section: '5' }
-                        );
-
-                    expect(createIncompleteComplex).toThrow(
-                        '[EditionComplexModel] Cannot instantiate complex: Missing catalogueType or catalogueNumber.'
-                    );
-                });
+                // 2 calls because of onCleanup
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 2, null);
+                expectToEqual(editionStateService.selectedEditionComplex(), null);
+                expectToEqual(component.selectedEditionComplex(), null);
             });
 
-            describe('... if edition complex is found but series or section are missing', () => {
-                beforeEach(() => {
-                    // Reset to a state without complex, so that the next id triggers a fresh run without cleanup
-                    fixture.componentRef.setInput('complexId', null);
-                    fixture.detectChanges();
+            it('... should have updated selectedEditionComplex to hold null on cleanup', () => {
+                stateServiceUpdateSelectedEditionComplexSpy.mockClear();
 
-                    stateServiceUpdateSelectedEditionSeriesSpy.mockClear();
-                    stateServiceUpdateSelectedEditionSectionSpy.mockClear();
-                    stateServiceUpdateSelectedEditionComplexSpy.mockClear();
-                });
+                fixture.destroy();
 
-                it('... should have updated selectedEditionSeries to hold null if series is missing (undefined)', () => {
-                    const expectedSection = EditionStateHelper.getSection(
-                        expectedComplex.pubStatement.series.route,
-                        expectedComplex.pubStatement.section.route
-                    );
-                    outlineServiceGetEditionSeriesByIdSpy.mockReturnValue(undefined);
-                    outlineServiceGetEditionSectionByIdSpy.mockReturnValue(expectedSection);
-
-                    fixture.componentRef.setInput('complexId', expectedComplexId);
-                    fixture.detectChanges();
-
-                    expectSpyCall(stateServiceUpdateSelectedEditionSeriesSpy, 1, null);
-                    expectSpyCall(stateServiceUpdateSelectedEditionSectionSpy, 2, expectedSection);
-                    expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 3, expectedComplex);
-                });
-
-                it('... should have updated selectedEditionSection to hold null if section is missing (undefined)', () => {
-                    const expectedSeries = EditionStateHelper.getSeries(expectedComplex.pubStatement.series.route);
-                    outlineServiceGetEditionSeriesByIdSpy.mockReturnValue(expectedSeries);
-                    outlineServiceGetEditionSectionByIdSpy.mockReturnValue(undefined);
-
-                    fixture.componentRef.setInput('complexId', expectedComplexId);
-                    fixture.detectChanges();
-
-                    expectSpyCall(stateServiceUpdateSelectedEditionSeriesSpy, 1, expectedSeries);
-                    expectSpyCall(stateServiceUpdateSelectedEditionSectionSpy, 2, null);
-                    expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 3, expectedComplex);
-                });
-
-                it('... should have updated selectedEditionSeries and selectedEditionSection to hold null if series and section are missing (undefined)', () => {
-                    outlineServiceGetEditionSeriesByIdSpy.mockReturnValue(undefined);
-                    outlineServiceGetEditionSectionByIdSpy.mockReturnValue(undefined);
-
-                    fixture.componentRef.setInput('complexId', expectedComplexId);
-                    fixture.detectChanges();
-
-                    expectSpyCall(stateServiceUpdateSelectedEditionSeriesSpy, 1, null);
-                    expectSpyCall(stateServiceUpdateSelectedEditionSectionSpy, 2, null);
-                    expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 3, expectedComplex);
-                });
-            });
-
-            describe('... should have updated series, section and complex to hold null', () => {
-                beforeEach(() => {
-                    outlineServiceGetEditionSeriesByIdSpy.mockClear();
-                    outlineServiceGetEditionSectionByIdSpy.mockClear();
-                });
-
-                it('... if param `complexId` is missing', () => {
-                    complexesServiceGetEditionComplexByIdSpy.mockClear();
-
-                    fixture.componentRef.setInput('complexId', null);
-                    fixture.detectChanges();
-
-                    expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 0);
-                    expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 0);
-                    expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 0);
-                    expectToEqual(editionStateService.selectedEditionSeries(), null);
-                    expectToEqual(editionStateService.selectedEditionSection(), null);
-                    expectToEqual(editionStateService.selectedEditionComplex(), null);
-                    expectToEqual(component.selectedEditionComplex(), null);
-                });
-
-                it('... if param `complexId` is empty', () => {
-                    complexesServiceGetEditionComplexByIdSpy.mockClear();
-
-                    fixture.componentRef.setInput('complexId', '');
-                    fixture.detectChanges();
-
-                    expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 0);
-                    expectToEqual(editionStateService.selectedEditionSeries(), null);
-                    expectToEqual(editionStateService.selectedEditionSection(), null);
-                    expectToEqual(editionStateService.selectedEditionComplex(), null);
-                });
-
-                it('... if edition complex cannot be found', () => {
-                    fixture.componentRef.setInput('complexId', 'fail');
-                    fixture.detectChanges();
-
-                    expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 2, 'fail');
-                    expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 0);
-                    expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 0);
-                    expectToEqual(editionStateService.selectedEditionSeries(), null);
-                    expectToEqual(editionStateService.selectedEditionSection(), null);
-                    expectToEqual(editionStateService.selectedEditionComplex(), null);
-                    expectToEqual(component.selectedEditionComplex(), null);
-                });
-
-                it('... on cleanup', () => {
-                    stateServiceUpdateSelectedEditionSeriesSpy.mockClear();
-
-                    fixture.destroy();
-
-                    expectSpyCall(stateServiceUpdateSelectedEditionSeriesSpy, 1, null);
-                    expectToEqual(editionStateService.selectedEditionSeries(), null);
-                    expectToEqual(editionStateService.selectedEditionSection(), null);
-                    expectToEqual(editionStateService.selectedEditionComplex(), null);
-                });
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 1, null);
+                expectToEqual(editionStateService.selectedEditionComplex(), null);
             });
         });
     });

@@ -1,11 +1,9 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { UTILS } from '@awg-shared/utils/object-utils';
-
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
-import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
@@ -28,13 +26,6 @@ export class EditionComplexComponent {
      * It keeps the instance of the injected EditionComplexesService.
      */
     private readonly _editionComplexesService = inject(EditionComplexesService);
-
-    /**
-     * Private readonly injection variable: _editionOutlineService.
-     *
-     * It keeps the instance of the injected EditionOutlineService.
-     */
-    private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
      * Private readonly injection variable: _editionStateService.
@@ -65,6 +56,19 @@ export class EditionComplexComponent {
     readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
 
     /**
+     * Private readonly computed signal: _complexFromRoute.
+     *
+     * It holds the edition complex for the given route param id, otherwise null.
+     */
+    private readonly _complexFromRoute = computed<EditionComplex | null>(() => {
+        const currentComplexId = this.complexId();
+
+        return currentComplexId
+            ? (this._editionComplexesService.getEditionComplexById(currentComplexId) ?? null)
+            : null;
+    });
+
+    /**
      * Constructor of the EditionComplexComponent.
      *
      * It calls a method to update the edition complex from the route.
@@ -77,36 +81,18 @@ export class EditionComplexComponent {
     /**
      * Public method: updateEditionComplexFromRoute.
      *
-     * It reactively tracks the route param id of the current edition complex
-     * and updates the corresponding series, section and complex in the EditionStateService.
+     * It syncs the edition complex of the current route to the EditionStateService
+     * (which derives the corresponding series and section from it)
+     * and resets it on cleanup.
      *
      * @returns {void} Updates the current edition complex from the route.
      */
     updateEditionComplexFromRoute(): void {
         effect(onCleanup => {
-            const currentComplexId = this.complexId();
-            const complex = currentComplexId
-                ? this._editionComplexesService.getEditionComplexById(currentComplexId)
-                : null;
-
-            if (!complex || UTILS.isEmptyObject(complex)) {
-                this._editionStateService.updateSelectedEditionSeries(null);
-                return;
-            }
-
-            const series = this._editionOutlineService.getEditionSeriesById(complex.pubStatement.series.route) ?? null;
-            const section =
-                this._editionOutlineService.getEditionSectionById(
-                    complex.pubStatement.series.route,
-                    complex.pubStatement.section.route
-                ) ?? null;
-
-            this._editionStateService.updateSelectedEditionSeries(series);
-            this._editionStateService.updateSelectedEditionSection(section);
-            this._editionStateService.updateSelectedEditionComplex(complex);
+            this._editionStateService.updateSelectedEditionComplex(this._complexFromRoute());
 
             onCleanup(() => {
-                this._editionStateService.updateSelectedEditionSeries(null);
+                this._editionStateService.updateSelectedEditionComplex(null);
             });
         });
     }

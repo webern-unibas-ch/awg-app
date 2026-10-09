@@ -1,17 +1,24 @@
 import { isSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
-import { expectToBe, expectToEqual } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
 
+import { EditionOutlineService } from './edition-outline.service';
 import { EditionStateService } from './edition-state.service';
 
 describe('EditionStateService (DONE)', () => {
     let editionStateService: EditionStateService;
+    let editionOutlineService: EditionOutlineService;
+
+    let outlineServiceGetEditionSeriesByIdSpy: Spy;
+    let outlineServiceGetEditionSectionByIdSpy: Spy;
 
     let expectedComplex: EditionComplex;
     let expectedSeries: EditionOutlineSeries;
@@ -23,11 +30,36 @@ describe('EditionStateService (DONE)', () => {
         });
         // Inject services
         editionStateService = TestBed.inject(EditionStateService);
+        editionOutlineService = TestBed.inject(EditionOutlineService);
+
+        // Service spies
+        outlineServiceGetEditionSeriesByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSeriesById')
+            .mockImplementation((seriesId: string) => {
+                try {
+                    return EditionStateHelper.getSeries(seriesId);
+                } catch {
+                    return undefined;
+                }
+            });
+        outlineServiceGetEditionSectionByIdSpy = vi
+            .spyOn(editionOutlineService, 'getEditionSectionById')
+            .mockImplementation((seriesId: string, sectionId: string) => {
+                try {
+                    return EditionStateHelper.getSection(seriesId, sectionId);
+                } catch {
+                    return undefined;
+                }
+            });
 
         // Test data (default)
         expectedComplex = EditionStateHelper.getComplex('op12');
         expectedSeries = EditionStateHelper.getSeries('1');
         expectedSection = EditionStateHelper.getSection('1', '5');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -48,25 +80,77 @@ describe('EditionStateService (DONE)', () => {
 
     it('... should have signal `_selectedEditionSectionSignal`', () => {
         expectToBe(isSignal(editionStateService['_selectedEditionSectionSignal']), true);
+
         expectToBe(editionStateService['_selectedEditionSectionSignal'](), null);
     });
 
-    it('... should have signal `selectedEditionComplex`', () => {
+    it('... should have signal `selectedEditionComplex` to hold null', () => {
         expectToBe(isSignal(editionStateService.selectedEditionComplex), true);
 
         expectToBe(editionStateService.selectedEditionComplex(), null);
     });
 
-    it('... should have signal `selectedEditionSection`', () => {
+    it('... should have computed signal `selectedEditionSection` to hold null', () => {
         expectToBe(isSignal(editionStateService.selectedEditionSection), true);
 
         expectToBe(editionStateService.selectedEditionSection(), null);
     });
 
-    it('... should have signal `selectedEditionSeries`', () => {
+    it('... should have computed signal `selectedEditionSeries` to hold null', () => {
         expectToBe(isSignal(editionStateService.selectedEditionSeries), true);
 
         expectToBe(editionStateService.selectedEditionSeries(), null);
+    });
+
+    describe('... computed signals `selectedEditionSeries` and `selectedEditionSection`', () => {
+        it('... should hold the series and section derived from the selected complex', () => {
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 0);
+            expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 0);
+
+            expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
+            expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
+
+            expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 1, expectedComplex.pubStatement.series.route);
+            expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 1, [
+                expectedComplex.pubStatement.series.route,
+                expectedComplex.pubStatement.section.route,
+            ]);
+        });
+
+        it('... should hold the derived series and section of the selected complex over the manual ones', () => {
+            editionStateService.updateSelectedEditionSeries(EditionStateHelper.getSeries('2'));
+            editionStateService.updateSelectedEditionSection(EditionStateHelper.getSection('2', '2a'));
+
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
+            expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
+        });
+
+        it('... should hold the manual series and section again if the selected complex is reset to null', () => {
+            const manualSeries = EditionStateHelper.getSeries('2');
+            const manualSection = EditionStateHelper.getSection('2', '2a');
+            editionStateService.updateSelectedEditionSeries(manualSeries);
+            editionStateService.updateSelectedEditionSection(manualSection);
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            editionStateService.updateSelectedEditionComplex(null);
+
+            expectToEqual(editionStateService.selectedEditionSeries(), manualSeries);
+            expectToEqual(editionStateService.selectedEditionSection(), manualSection);
+        });
+
+        it('... should hold null if series and section of the selected complex cannot be found', () => {
+            outlineServiceGetEditionSeriesByIdSpy.mockReturnValue(undefined);
+            outlineServiceGetEditionSectionByIdSpy.mockReturnValue(undefined);
+
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+            expectToBe(editionStateService.selectedEditionSeries(), null);
+            expectToBe(editionStateService.selectedEditionSection(), null);
+        });
     });
 
     describe('METHODS', () => {
@@ -75,7 +159,7 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateSelectedEditionComplex).toBeDefined();
             });
 
-            it('... should update `selectedEditionComplex` signal to hold expected complex', () => {
+            it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
                 editionStateService.updateSelectedEditionComplex(expectedComplex);
 
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
@@ -85,6 +169,16 @@ describe('EditionStateService (DONE)', () => {
 
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
             });
+
+            it('... should not touch the manual series and section signals', () => {
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
+                editionStateService.updateSelectedEditionSection(expectedSection);
+
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
+
+                expectToEqual(editionStateService['_selectedEditionSeriesSignal'](), expectedSeries);
+                expectToEqual(editionStateService['_selectedEditionSectionSignal'](), expectedSection);
+            });
         });
 
         describe('#updateSelectedEditionSection()', () => {
@@ -92,7 +186,7 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateSelectedEditionSection).toBeDefined();
             });
 
-            it('... should update `selectedEditionSection` signal to hold the expected section', () => {
+            it('... should have computed signal `selectedEditionSection` to hold the expected section', () => {
                 editionStateService.updateSelectedEditionSection(expectedSection);
 
                 expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
@@ -103,7 +197,7 @@ describe('EditionStateService (DONE)', () => {
                 expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
             });
 
-            it('... should update `selectedEditionComplex` signal to hold null when updating `selectedEditionSection`', () => {
+            it('... should have signal `selectedEditionComplex` to hold null when updating `selectedEditionSection`', () => {
                 editionStateService.updateSelectedEditionComplex(expectedComplex);
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
 
@@ -117,7 +211,7 @@ describe('EditionStateService (DONE)', () => {
                 expect(editionStateService.updateSelectedEditionSeries).toBeDefined();
             });
 
-            it('... should update `selectedEditionSeries` signal to hold expected series', () => {
+            it('... should have computed signal `selectedEditionSeries` to hold the expected series', () => {
                 editionStateService.updateSelectedEditionSeries(expectedSeries);
 
                 expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
@@ -128,7 +222,7 @@ describe('EditionStateService (DONE)', () => {
                 expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
             });
 
-            it('... should update `selectedEditionSection` signal to hold null when updating `selectedEditionSeries`', () => {
+            it('... should have computed signal `selectedEditionSection` to hold null when updating `selectedEditionSeries`', () => {
                 editionStateService.updateSelectedEditionSection(expectedSection);
                 expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
 
@@ -136,7 +230,7 @@ describe('EditionStateService (DONE)', () => {
                 expectToEqual(editionStateService.selectedEditionSection(), null);
             });
 
-            it('... should update `selectedEditionComplex` signal to hold null when updating `selectedEditionSeries`', () => {
+            it('... should have signal `selectedEditionComplex` to hold null when updating `selectedEditionSeries`', () => {
                 editionStateService.updateSelectedEditionComplex(expectedComplex);
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
 
