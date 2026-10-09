@@ -244,6 +244,21 @@ describe('JsonViewerComponent (DONE)', () => {
                 expectToEqual(viewerCmp.json, expectedData);
             });
 
+            describe('... should pass down an empty object to ngx-json-viewer component if `jsonViewerData` is', () => {
+                it.each([
+                    { desc: 'undefined', data: undefined },
+                    { desc: 'null', data: null },
+                ])('... $desc', ({ data }) => {
+                    fixture.componentRef.setInput('jsonViewerData', data);
+                    fixture.detectChanges();
+
+                    const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
+                    const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
+
+                    expectToEqual(viewerCmp.json, {});
+                });
+            });
+
             it('... should render `jsonViewerData` in Plain view', async () => {
                 const navLinkDes = getNavLinks(fixture);
 
