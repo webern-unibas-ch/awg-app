@@ -1,9 +1,13 @@
 import { JsonPipe } from '@angular/common';
-import { DebugElement, inject, isSignal, NgModule } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { beforeEach, describe, expect, it } from 'vitest';
+
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap/config';
+import { NgbNavLink, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap/nav';
+import { NgxJsonViewerComponent } from 'ngx-json-viewer';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
@@ -14,9 +18,6 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-
-import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
-import { NgxJsonViewerComponent } from 'ngx-json-viewer';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
@@ -80,24 +81,16 @@ describe('JsonViewerComponent (DONE)', () => {
     let expectedHeader: string;
     let expectedData: unknown;
 
-    // Global NgbConfigModule
-    @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
-    class NgbConfigModule {
-        constructor() {
-            const config = inject(NgbConfig);
-
-            // Set animations to false
-            config.animation = false;
-        }
-    }
-
     beforeEach(async () => {
         // Hollow out the third-party child component
         TestBed.overrideComponent(NgxJsonViewerComponent, { set: { template: '' } });
 
         await TestBed.configureTestingModule({
-            imports: [JsonViewerComponent, NgbConfigModule],
+            imports: [JsonViewerComponent],
         }).compileComponents();
+
+        // Disable ng-bootstrap animations
+        TestBed.inject(NgbConfig).animation = false;
     });
 
     beforeEach(() => {
