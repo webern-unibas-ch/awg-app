@@ -106,12 +106,6 @@ const EDITION_VIEW_ROUTES: Routes = [
 ];
 
 /**
- * Routed components of the {@link EditionViewModule}:
- * {@link EditionComplexComponent}.
- */
-export const routedEditionViewComponents = [EditionComplexComponent];
-
-/**
  * EditionView module routing.
  *
  * It activates the EDITION_VIEW_ROUTES.

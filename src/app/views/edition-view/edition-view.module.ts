@@ -4,11 +4,12 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionBreadcrumbComponent } from './edition-breadcrumb/edition-breadcrumb.component';
 import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
+import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { EditionSectionsComponent } from './edition-outlets/edition-outline/edition-sections/edition-sections.component';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-outline/edition-series-detail/edition-series-detail.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
-import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';
+import { EditionViewRoutingModule } from './edition-view-routing.module';
 import { EditionViewComponent } from './edition-view.component';
 
 /**
@@ -23,6 +24,7 @@ import { EditionViewComponent } from './edition-view.component';
         SharedModule,
         EditionViewRoutingModule,
         EditionBreadcrumbComponent,
+        EditionComplexComponent,
         EditionOutlineComponent,
         EditionSeriesDetailComponent,
         EditionSectionsComponent,
@@ -30,6 +32,5 @@ import { EditionViewComponent } from './edition-view.component';
         EditionJumbotronComponent,
         EditionViewComponent,
     ],
-    declarations: [routedEditionViewComponents],
 })
 export class EditionViewModule {}
