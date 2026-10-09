@@ -24,7 +24,7 @@ import { EditionIntroScrollDirective } from './edition-intro-scroll.directive';
 })
 class TestHostComponent {}
 
-describe('EditionIntroScrollDirective', () => {
+describe('EditionIntroScrollDirective (DONE)', () => {
     let fixture: ComponentFixture<TestHostComponent>;
     let directiveDes: DebugElement[];
     let directiveInstance: EditionIntroScrollDirective;

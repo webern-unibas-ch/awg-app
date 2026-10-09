@@ -11,7 +11,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceDescDetailsComponent } from './source-desc-details.component';
 

@@ -11,7 +11,7 @@ import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-ou
 
 import { EditionSectionDetailPlaceholderComponent } from './edition-section-detail-placeholder.component';
 
-describe('EditionSectionDetailPlaceholderComponent', () => {
+describe('EditionSectionDetailPlaceholderComponent (DONE)', () => {
     let component: EditionSectionDetailPlaceholderComponent;
     let fixture: ComponentFixture<EditionSectionDetailPlaceholderComponent>;
     let compDe: DebugElement;

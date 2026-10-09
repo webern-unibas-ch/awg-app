@@ -13,9 +13,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { SourceDesc } from '@awg-views/edition-view/models/source-desc.model';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
@@ -25,7 +25,7 @@ import { SourceDescWritingInstrumentsComponent } from '../source-desc-writing-in
 import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-materials/source-desc-writing-materials.component';
 import { SourceDescItemComponent } from './source-desc-item.component';
 
-describe('SourceDescItemComponent', () => {
+describe('SourceDescItemComponent (DONE)', () => {
     let component: SourceDescItemComponent;
     let fixture: ComponentFixture<SourceDescItemComponent>;
     let compDe: DebugElement;

@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { ModalService } from '@awg-shared/modal/modal.service';
-
 import { EditionNavigationFragmentTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { Source } from '@awg-views/edition-view/models/source.model';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceSiglumComponent } from '../source-siglum/source-siglum.component';
 
@@ -33,11 +32,11 @@ export class SourceListComponent {
     private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Private readonly injection variable: _modalService
+     * Private readonly injection variable: _editionModalService
      *
-     * It keeps the instance of the injected ModalService.
+     * It keeps the instance of the injected EditionModalService.
      */
-    private readonly _modalService = inject(ModalService);
+    private readonly _editionModalService = inject(EditionModalService);
 
     /**
      * Input variable: sourceListData.
@@ -86,7 +85,7 @@ export class SourceListComponent {
     /**
      * Private method: openModal.
      *
-     * It opens a text modal snippet via the {@link ModalService} for a given id.
+     * It opens a text modal snippet via the {@link EditionModalService} for a given id.
      *
      * @param {string} id The given modal snippet id.
      * @returns {void} Opens the text modal.
@@ -95,6 +94,6 @@ export class SourceListComponent {
         if (!id) {
             return;
         }
-        this._modalService.openTextModal(id);
+        this._editionModalService.openTextModal(id);
     }
 }

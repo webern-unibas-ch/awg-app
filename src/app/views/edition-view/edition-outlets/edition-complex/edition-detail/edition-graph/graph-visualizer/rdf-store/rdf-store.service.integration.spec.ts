@@ -61,7 +61,7 @@ const quadKeys = (quads: readonly Quad[]): string[] =>
     quads.map(quad => [quad.subject, quad.predicate, quad.object].map(termKey).join(' ')).sort();
 
 describe(
-    'RdfStoreService (integration: contract with the rdfstore engine)',
+    'RdfStoreService (integration: contract with the rdfstore engine) (DONE)',
     { timeout: RDFSTORE_INTEGRATION_TIMEOUT_MS },
     () => {
         let service: RdfStoreService;

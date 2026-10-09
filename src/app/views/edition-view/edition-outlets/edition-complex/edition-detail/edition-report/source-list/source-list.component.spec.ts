@@ -14,12 +14,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { ModalService } from '@awg-shared/modal/modal.service';
-
 import { SourceList } from '@awg-views/edition-view/models/source-list.model';
 import { Source, TextSource } from '@awg-views/edition-view/models/source.model';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceSiglumComponent } from '../source-siglum/source-siglum.component';
 import { SourceListComponent } from './source-list.component';
@@ -29,7 +28,7 @@ describe('SourceListComponent (DONE)', () => {
     let fixture: ComponentFixture<SourceListComponent>;
     let compDe: DebugElement;
 
-    let mockModalService: Partial<ModalService>;
+    let mockModalService: Partial<EditionModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let onSourceClickSpy: Spy;
@@ -54,7 +53,7 @@ describe('SourceListComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [CompileHtmlDirective, SourceListComponent, SourceSiglumComponent],
             providers: [
-                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
             ],
         })
@@ -622,7 +621,7 @@ describe('SourceListComponent (DONE)', () => {
                 expectSpyCall(serviceOpenModalSpy, 0);
             });
 
-            it('... should trigger ModalService with id of given modal snippet', () => {
+            it('... should trigger EditionModalService with id of given modal snippet', () => {
                 component['_openModal'](expectedSourceListData.sources[2].linkTo);
 
                 expectSpyCall(serviceOpenModalSpy, 1, expectedSourceListData.sources[2].linkTo);

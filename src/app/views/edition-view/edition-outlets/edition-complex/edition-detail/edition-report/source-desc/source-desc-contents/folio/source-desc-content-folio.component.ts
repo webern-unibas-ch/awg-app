@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 
 /**
  * The SourceDescContentFolio component.

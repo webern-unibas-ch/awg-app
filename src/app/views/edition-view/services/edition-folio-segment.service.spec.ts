@@ -7,12 +7,8 @@ import * as D3_SELECTION from 'd3-selection';
 import { expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import {
-    FolioSettings,
-    FolioSvgContentSegment,
-    FolioSvgData,
-} from '@awg-views/edition-view/models/folio-svg-data.model';
+import { D3Selection } from '../models/d3-selection.model';
+import { FolioSettings, FolioSvgContentSegment, FolioSvgData } from '../models/folio-svg-data.model';
 
 import { EditionFolioDrawingService } from './edition-folio-drawing.service';
 import { calculateFolioSvgData } from './edition-folio-drawing.utils';

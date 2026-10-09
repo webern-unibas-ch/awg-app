@@ -16,7 +16,8 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 import { ViewContainerComponent } from './core/view-container/view-container.component';
 
 // Services
-import { EditionComplexesService, EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 // Loading interceptor
 import { loadingInterceptor } from './shared/loading/loading.interceptor';

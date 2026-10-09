@@ -18,7 +18,6 @@ import {
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
-import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
 import { ModalService } from '@awg-shared/modal/modal.service';
@@ -30,8 +29,9 @@ import {
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { UsageHintsComponent } from '@awg-views/edition-view/shared/usage-hints/usage-hints.component';
+import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
-import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
@@ -64,7 +64,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                 { provide: ModalService, useValue: { openTextModal: vi.fn() } },
             ],
         })
-            .overrideComponent(ButtonUsageHintsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(UsageHintsComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionSheetFacetComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionSheetFooterComponent, { set: { template: '', imports: [] } })
             .overrideComponent(EditionSheetViewerComponent, { set: { template: '', imports: [] } })
@@ -207,16 +207,16 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     expectToBe(btnEl.textContent.trim(), 'Edierte Notentexte');
                 });
 
-                it('... should contain the ButtonUsageHintsComponent (hollow) and the FullscreenToggleComponent (hollow) in div.ms-auto', () => {
+                it('... should contain the UsageHintsComponent (hollow) and the FullscreenToggleComponent (hollow) in div.ms-auto', () => {
                     const msAutoDes = getAndExpectDebugElementByCss(getItemHeaderDes()[0], 'div.ms-auto', 1, 1);
 
-                    getAndExpectDebugElementByDirective(msAutoDes[0], ButtonUsageHintsComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(msAutoDes[0], UsageHintsComponent, 1, 1);
                     getAndExpectDebugElementByDirective(msAutoDes[0], FullscreenToggleComponent, 1, 1);
                 });
 
-                it('... should pass down `snippetKey` to the ButtonUsageHintsComponent (hollow)', () => {
-                    const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonUsageHintsComponent, 1, 1);
-                    const buttonCmp = buttonDes[0].injector.get(ButtonUsageHintsComponent);
+                it('... should pass down `snippetKey` to the UsageHintsComponent (hollow)', () => {
+                    const buttonDes = getAndExpectDebugElementByDirective(compDe, UsageHintsComponent, 1, 1);
+                    const buttonCmp = buttonDes[0].injector.get(UsageHintsComponent);
 
                     expectToBe(buttonCmp.snippetKey(), 'HINT_EDITION_SHEETS');
                 });
@@ -225,7 +225,7 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     isFullscreenMockSignal.set(true);
                     await detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], ButtonUsageHintsComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(getItemHeaderDes()[0], UsageHintsComponent, 0, 0);
                     getAndExpectDebugElementByDirective(getItemHeaderDes()[0], FullscreenToggleComponent, 1, 1);
                 });
 

@@ -7,12 +7,9 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal';
 
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
-import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
-import { MODAL_TEXT_SNIPPETS } from './modal-text-snippets.data';
 import { ModalComponent } from './modal.component';
 import { ModalData } from './modal.model';
-
 import { ModalService } from './modal.service';
 
 describe('ModalService (DONE)', () => {
@@ -24,7 +21,8 @@ describe('ModalService (DONE)', () => {
     let openSpy: Spy;
     let openModalSpy: Spy;
 
-    let expectedSnippetKey: string;
+    let expectedTextId: string;
+    let expectedTextContent: string;
     let expectedTextModalData: ModalData;
     let expectedImageModalData: ModalData;
 
@@ -54,13 +52,13 @@ describe('ModalService (DONE)', () => {
         openModalSpy = vi.spyOn(mockModal, 'open');
 
         // Test data
-        expectedSnippetKey = structuredClone(mockEditionData.mockModalSnippet);
-        const expectedText = MODAL_TEXT_SNIPPETS[expectedSnippetKey as keyof typeof MODAL_TEXT_SNIPPETS] || '';
+        expectedTextId = 'TEXT_ID';
+        expectedTextContent = '<p>Test text content</p>';
         expectedTextModalData = {
             type: 'text',
-            id: expectedSnippetKey,
+            id: expectedTextId,
             title: 'Hinweis',
-            content: expectedText,
+            content: expectedTextContent,
         };
 
         expectedImgId = 'snip-123';
@@ -93,62 +91,10 @@ describe('ModalService (DONE)', () => {
                 expect(service.openTextModal).toBeDefined();
             });
 
-            it('... should prepare correct ModalData and trigger `_open`', () => {
-                service.openTextModal(expectedSnippetKey);
+            it('... should prepare correct ModalData with the given id and content and trigger `_open`', () => {
+                service.openTextModal(expectedTextId, expectedTextContent);
 
                 expectSpyCall(openSpy, 1, [expectedTextModalData]);
-            });
-
-            it('... should prepare ModalData with default content if snippetKey is missing (undefined, null, or empty) and trigger `_open`', () => {
-                const defaultId = 'CONTENTS_NOT_AVAILABLE';
-                const defaultContent = MODAL_TEXT_SNIPPETS[defaultId];
-
-                const expectedDefaultModalData = {
-                    type: 'text',
-                    id: defaultId,
-                    title: 'Hinweis',
-                    content: defaultContent,
-                };
-
-                service.openTextModal(undefined);
-
-                expectSpyCall(openSpy, 1, [expectedDefaultModalData]);
-
-                service.openTextModal(null);
-
-                expectSpyCall(openSpy, 2, [expectedDefaultModalData]);
-
-                service.openTextModal('');
-
-                expectSpyCall(openSpy, 3, [expectedDefaultModalData]);
-            });
-
-            it('... should prepare ModalData with empty content if snippetKey is unknown and trigger `_open`', () => {
-                const unknownKey = 'NON_EXISTING_KEY';
-                const expectedUnknownModalData = {
-                    type: 'text',
-                    id: unknownKey,
-                    title: 'Hinweis',
-                    content: '',
-                };
-
-                service.openTextModal(unknownKey);
-
-                expectSpyCall(openSpy, 1, [expectedUnknownModalData]);
-            });
-
-            it('... should prepare ModalData with empty content if snippetKey is a prototype property and trigger `_open`', () => {
-                const prototypeKey = 'toString';
-                const expectedPrototypeModalData = {
-                    type: 'text',
-                    id: prototypeKey,
-                    title: 'Hinweis',
-                    content: '',
-                };
-
-                service.openTextModal(prototypeKey);
-
-                expectSpyCall(openSpy, 1, [expectedPrototypeModalData]);
             });
         });
 
@@ -201,7 +147,7 @@ describe('ModalService (DONE)', () => {
             it('... should set signal `closeResult` when modal is closed successfully', async () => {
                 mockModalRef.result = Promise.resolve('Save click');
 
-                service.openTextModal(expectedSnippetKey);
+                service.openTextModal(expectedTextId, expectedTextContent);
 
                 await new Promise(process.nextTick);
 
@@ -221,7 +167,7 @@ describe('ModalService (DONE)', () => {
             ])('... should return "$expected" when reason is $reason', async ({ reason, expected }) => {
                 mockModalRef.result = Promise.reject(reason);
 
-                service.openTextModal(expectedSnippetKey);
+                service.openTextModal(expectedTextId, expectedTextContent);
 
                 await new Promise(process.nextTick);
 

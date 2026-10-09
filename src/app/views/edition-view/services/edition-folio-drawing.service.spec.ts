@@ -8,15 +8,10 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import {
-    FolioSettings,
-    FolioSvgContentSegment,
-    FolioSvgData,
-    FolioSvgRectangle,
-} from '@awg-views/edition-view/models/folio-svg-data.model';
-import { Folio } from '@awg-views/edition-view/models/folio.model';
-import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
+import { D3Selection } from '../models/d3-selection.model';
+import { FolioSettings, FolioSvgContentSegment, FolioSvgData, FolioSvgRectangle } from '../models/folio-svg-data.model';
+import { Folio } from '../models/folio.model';
+import { ViewBox } from '../models/view-box.model';
 
 import { EditionFolioDrawingService } from './edition-folio-drawing.service';
 import { calculateFolioSvgData } from './edition-folio-drawing.utils';

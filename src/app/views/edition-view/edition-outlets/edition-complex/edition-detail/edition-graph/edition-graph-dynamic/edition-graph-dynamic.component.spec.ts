@@ -12,10 +12,11 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+
 import { GraphQuery, GraphRdfData } from '@awg-views/edition-view/models/graph.model';
+import { UsageHintsComponent } from '@awg-views/edition-view/shared/usage-hints/usage-hints.component';
 
 import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.component';
 import { EditionGraphDynamicComponent } from './edition-graph-dynamic.component';
@@ -36,7 +37,7 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
             imports: [EditionGraphDynamicComponent],
             providers: [{ provide: FullscreenService, useValue: { isFullscreen: mockIsFullscreen.asReadonly() } }],
         })
-            .overrideComponent(ButtonUsageHintsComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(UsageHintsComponent, { set: { template: '', imports: [] } })
             .overrideComponent(FullscreenToggleComponent, { set: { template: '', imports: [] } })
             .overrideComponent(GraphVisualizerComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -123,13 +124,13 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic', 1, 1);
             });
 
-            it('... should contain a header with ButtonUsageHintsComponent (hollow) and FullscreenToggleComponent (hollow)', () => {
+            it('... should contain a header with UsageHintsComponent (hollow) and FullscreenToggleComponent (hollow)', () => {
                 const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                 expectToContain(hEl.textContent, 'Dynamischer Graph');
 
-                const buttonDes = getAndExpectDebugElementByDirective(hDes[0], ButtonUsageHintsComponent, 1, 1);
+                const buttonDes = getAndExpectDebugElementByDirective(hDes[0], UsageHintsComponent, 1, 1);
                 const buttonEl: HTMLElement = buttonDes[0].nativeElement;
 
                 expectToContain(buttonEl.classList, 'ms-2');
@@ -137,9 +138,9 @@ describe('EditionGraphDynamicComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(hDes[0], FullscreenToggleComponent, 1, 1);
             });
 
-            it('... should pass down `snippetKey` to the ButtonUsageHintsComponent', () => {
-                const buttonDes = getAndExpectDebugElementByDirective(compDe, ButtonUsageHintsComponent, 1, 1);
-                const buttonCmp = buttonDes[0].injector.get(ButtonUsageHintsComponent);
+            it('... should pass down `snippetKey` to the UsageHintsComponent', () => {
+                const buttonDes = getAndExpectDebugElementByDirective(compDe, UsageHintsComponent, 1, 1);
+                const buttonCmp = buttonDes[0].injector.get(UsageHintsComponent);
 
                 expectToBe(buttonCmp.snippetKey(), 'HINT_EDITION_GRAPH');
             });

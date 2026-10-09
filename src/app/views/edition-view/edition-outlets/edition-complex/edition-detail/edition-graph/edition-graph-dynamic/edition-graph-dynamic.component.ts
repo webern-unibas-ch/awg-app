@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+
 import { GraphRdfData } from '@awg-views/edition-view/models/graph.model';
+import { UsageHintsComponent } from '@awg-views/edition-view/shared/usage-hints/usage-hints.component';
 
 import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.component';
 
@@ -18,7 +19,7 @@ import { GraphVisualizerComponent } from '../graph-visualizer/graph-visualizer.c
     templateUrl: './edition-graph-dynamic.component.html',
     styleUrls: ['./edition-graph-dynamic.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ButtonUsageHintsComponent, FullscreenToggleComponent, GraphVisualizerComponent],
+    imports: [FullscreenToggleComponent, GraphVisualizerComponent, UsageHintsComponent],
 })
 export class EditionGraphDynamicComponent {
     /**

@@ -8,12 +8,13 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '../models';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
 import { EditionViewContext } from '../models/edition-data.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
 
-describe('EditionBreadcrumbService', () => {
+describe('EditionBreadcrumbService (DONE)', () => {
     let service: EditionBreadcrumbService;
 
     let expectedComplex: EditionComplex;

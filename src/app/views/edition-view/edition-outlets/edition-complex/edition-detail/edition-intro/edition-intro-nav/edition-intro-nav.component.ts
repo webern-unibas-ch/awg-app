@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { LanguageSwitcherComponent } from '@awg-shared/language-switcher/language-switcher.component';
-import { LanguageId } from '@awg-shared/language-switcher/language.model';
-
 import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
+import { LanguageSwitcherComponent } from '@awg-views/edition-view/shared/language-switcher/language-switcher.component';
+import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/language.model';
 
 /**
  * The EditionIntroNav component.

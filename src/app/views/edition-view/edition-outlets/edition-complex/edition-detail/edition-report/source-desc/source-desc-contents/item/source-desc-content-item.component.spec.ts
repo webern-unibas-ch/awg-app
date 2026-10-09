@@ -15,16 +15,16 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceDescContentItemComponent } from './source-desc-content-item.component';
 
-describe('SourceDescContentItemComponent', () => {
+describe('SourceDescContentItemComponent (DONE)', () => {
     let component: SourceDescContentItemComponent;
     let fixture: ComponentFixture<SourceDescContentItemComponent>;
     let compDe: DebugElement;

@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { isEmptyObject } from '@awg-shared/utils/object-utils';
 
 import { SourceDesc, SourceDescDetails, SourceDescPhysDesc } from '@awg-views/edition-view/models/source-desc.model';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
@@ -12,7 +12,6 @@ import { SourceDescCorrectionsComponent } from '../source-desc-corrections/sourc
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';
 import { SourceDescWritingInstrumentsComponent } from '../source-desc-writing-instruments/source-desc-writing-instruments.component';
 import { SourceDescWritingMaterialsComponent } from '../source-desc-writing-materials/source-desc-writing-materials.component';
-
 import { SOURCE_DESC_DETAILS } from './source-desc-item.data';
 
 /**

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, input, linkedSignal, output } from '@angular/core';
 
 import { FormSwitchComponent } from '@awg-shared/form-switch/form-switch.component';
-import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 
-import { EditionTkaLabelComponent } from '../../../../edition-tka/edition-tka-label/edition-tka-label.component';
+import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
 
 import {
     EDITION_SHEET_VIEWER_SUPPLIED_CLASS_LABELS,

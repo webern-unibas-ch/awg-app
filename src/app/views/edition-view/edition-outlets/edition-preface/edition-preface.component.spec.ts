@@ -14,9 +14,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { LanguageSwitcherComponent } from '@awg-shared/language-switcher/language-switcher.component';
-import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import {
@@ -26,6 +23,9 @@ import {
 } from '@awg-views/edition-view/models/edition-data.model';
 import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { LanguageSwitcherComponent } from '@awg-views/edition-view/shared/language-switcher/language-switcher.component';
+import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/language.model';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
 

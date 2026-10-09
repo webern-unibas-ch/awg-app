@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 
 import * as D3_SELECTION from 'd3-selection';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import {
-    FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
-    FolioSvgContentSegment,
-} from '@awg-views/edition-view/models/folio-svg-data.model';
+import { D3Selection } from '../models/d3-selection.model';
+import { FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS, FolioSvgContentSegment } from '../models/folio-svg-data.model';
 
 /**
  * The EditionFolioSegment service.

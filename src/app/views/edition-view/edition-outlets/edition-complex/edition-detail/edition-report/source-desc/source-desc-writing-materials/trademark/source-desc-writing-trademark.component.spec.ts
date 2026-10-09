@@ -12,13 +12,13 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { SourceDescWritingMaterialTrademark } from '@awg-views/edition-view/models/source-desc.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { getItemLocus, getTrademark } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingTrademarkComponent } from './source-desc-writing-trademark.component';
 
-describe('SourceDescWritingTrademarkComponent', () => {
+describe('SourceDescWritingTrademarkComponent (DONE)', () => {
     let component: SourceDescWritingTrademarkComponent;
     let fixture: ComponentFixture<SourceDescWritingTrademarkComponent>;
     let compDe: DebugElement;

@@ -17,7 +17,7 @@ import {
 } from '@testing/expect-helper';
 
 import { ButtonMoreComponent } from '@awg-shared/button-more/button-more.component';
-import { EditionOutlineComplexItem } from '@awg-views/edition-view/models';
+import { EditionOutlineComplexItem } from '@awg-views/edition-view/models/edition-outline.model';
 
 import { EditionSectionDetailComplexCardComponent } from './edition-section-detail-complex-card.component';
 

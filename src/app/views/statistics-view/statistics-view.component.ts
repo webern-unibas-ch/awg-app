@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import {
     Statistics,

@@ -13,10 +13,9 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
-
-import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
-import { EditionTkaLabelComponent } from '../../../edition-tka/edition-tka-label/edition-tka-label.component';
-import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
+import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
 
 import { EditionSheetFooterComponent } from './edition-sheet-footer.component';
 

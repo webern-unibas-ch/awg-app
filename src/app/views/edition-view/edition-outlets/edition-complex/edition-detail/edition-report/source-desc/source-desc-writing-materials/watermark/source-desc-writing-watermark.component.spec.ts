@@ -6,13 +6,13 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { SourceDescWritingMaterialWatermark } from '@awg-views/edition-view/models/source-desc.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { getItemLocus } from '../source-desc-writing-materials.utils';
 import { SourceDescWritingWatermarkComponent } from './source-desc-writing-watermark.component';
 
-describe('SourceDescWritingWatermarkComponent', () => {
+describe('SourceDescWritingWatermarkComponent (DONE)', () => {
     let component: SourceDescWritingWatermarkComponent;
     let fixture: ComponentFixture<SourceDescWritingWatermarkComponent>;
     let compDe: DebugElement;

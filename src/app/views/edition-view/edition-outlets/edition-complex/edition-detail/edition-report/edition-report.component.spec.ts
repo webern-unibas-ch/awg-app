@@ -39,7 +39,7 @@ import { SourceEvaluationComponent } from './source-evaluation/source-evaluation
 import { SourceListComponent } from './source-list/source-list.component';
 import { TextcriticsListComponent } from './textcritics-list/textcritics-list.component';
 
-describe('EditionReportComponent', () => {
+describe('EditionReportComponent (DONE)', () => {
     let component: EditionReportComponent;
     let fixture: ComponentFixture<EditionReportComponent>;
     let compDe: DebugElement;

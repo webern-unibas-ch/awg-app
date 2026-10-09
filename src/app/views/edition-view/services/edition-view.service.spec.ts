@@ -9,20 +9,21 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { LoadingService } from '@awg-shared/loading/loading.service';
-import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data/edition-assets.data';
+import { EDITION_ASSETS_DATA } from '../data/edition-assets.data';
 import {
     EditionDataAssetsKeys,
     EditionViewData,
     EditionViewDataTypeMapping,
     EditionViewKey,
-} from '@awg-views/edition-view/models/edition-data.model';
+} from '../models/edition-data.model';
 
 import { EditionDataService } from './edition-data.service';
 
-import { EditionSvgSheetsList, TextcriticsList } from '../models';
+import { EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
+import { TextcriticsList } from '../models/textcritics.model';
 import { EditionViewService } from './edition-view.service';
 
-describe('EditionViewService', () => {
+describe('EditionViewService (DONE)', () => {
     let service: EditionViewService;
 
     let mockEditionDataService: EditionDataService;

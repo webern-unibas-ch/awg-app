@@ -13,14 +13,14 @@ import {
     createTestTkkOverlay,
 } from '@testing/svg-drawing-helper';
 
+import { D3Selection } from '../models/d3-selection.model';
+import { EditionSvgLinkBox } from '../models/edition-svg-link-box.model';
 import {
-    D3Selection,
-    EditionSvgLinkBox,
     EditionSvgOverlaysState,
     EditionSvgOverlayTkk,
     EditionSvgOverlayTypes,
-} from '@awg-views/edition-view/models';
-import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
+} from '../models/edition-svg-overlay.model';
+import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
 import { EditionSvgOverlayService } from './edition-svg-overlay.service';
 

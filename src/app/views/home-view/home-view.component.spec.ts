@@ -22,8 +22,8 @@ import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models';
-import { EditionOutlineService } from '@awg-views/edition-view/services';
+import { EditionOutlineSection, EditionSectionLink } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
 
 import { HomeViewCardComponent } from './home-view-card/home-view-card.component';
 import { HOME_VIEW_CARD_DATA } from './home-view-card/home-view-card.data';

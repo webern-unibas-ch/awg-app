@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { EditionOutlineService, EditionStateService } from '@awg-views/edition-view/services';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
  * The EditionSeriesDetail component.
@@ -45,18 +46,18 @@ export class EditionSeriesDetailComponent {
      *
      */
     constructor() {
-        this.updateSeriesFromRoute();
+        this._updateSeriesFromRoute();
     }
 
     /**
-     * Public method: updateSeriesFromRoute.
+     * Private method: _updateSeriesFromRoute.
      *
      * It fetches the route params to get the id of the current series
      * and updates the EditionStateService.
      *
      * @returns {void} Updates the edition series.
      */
-    updateSeriesFromRoute(): void {
+    private _updateSeriesFromRoute(): void {
         effect(onCleanup => {
             const currentSeriesId = this.seriesId();
 

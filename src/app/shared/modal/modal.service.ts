@@ -2,14 +2,13 @@ import { inject, Injectable, signal } from '@angular/core';
 
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
-import { MODAL_TEXT_SNIPPETS } from './modal-text-snippets.data';
 import { ModalComponent } from './modal.component';
 import { ModalData } from './modal.model';
 
 /**
  * The ModalService.
  *
- * It provides methods to open and close the modal with a given modal snippet id.
+ * It provides methods to open and close the modal with a given text or image content.
  */
 @Injectable({
     providedIn: 'root',
@@ -32,21 +31,18 @@ export class ModalService {
     /**
      * Public method: openTextModal.
      *
-     * It opens the modal component with a text snippet from MODAL_TEXT_SNIPPETS.
+     * It opens the modal component with the given text content.
      *
-     * @param {string | null | undefined}  snippetKey The key of the text snippet.
+     * @param {string} id The identifier for the text.
+     * @param {string} content The (HTML) text content.
      * @returns {void} Opens the modal.
      */
-    openTextModal(snippetKey?: string | null): void {
-        const id = snippetKey || 'CONTENTS_NOT_AVAILABLE';
-        const isValidKey = Object.hasOwn(MODAL_TEXT_SNIPPETS, id);
-        const textSnippet = isValidKey ? MODAL_TEXT_SNIPPETS[id as keyof typeof MODAL_TEXT_SNIPPETS] : '';
-
+    openTextModal(id: string, content: string): void {
         const modalData: ModalData = {
             type: 'text',
             id: id,
             title: 'Hinweis',
-            content: textSnippet,
+            content: content,
         };
         this._open(modalData);
     }

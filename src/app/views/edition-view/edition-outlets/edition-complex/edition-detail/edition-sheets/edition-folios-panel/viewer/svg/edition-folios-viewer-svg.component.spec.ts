@@ -10,7 +10,6 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import {
@@ -23,6 +22,7 @@ import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
 import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
 import { calculateFolioSvgData } from '@awg-views/edition-view/services/edition-folio-drawing.utils';
 import { EditionFolioSegmentService } from '@awg-views/edition-view/services/edition-folio-segment.service';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 import { EditionFoliosViewerSvgComponent } from './edition-folios-viewer-svg.component';
@@ -34,7 +34,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
 
     let folioDrawingService: EditionFolioDrawingService;
     let folioSegmentService: EditionFolioSegmentService;
-    let mockModalService: Partial<ModalService>;
+    let mockModalService: Partial<EditionModalService>;
     let mockNavigationService: Partial<EditionNavigationService>;
 
     let getContentSegmentSpy: Spy;
@@ -78,7 +78,7 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [EditionFoliosViewerSvgComponent],
             providers: [
-                { provide: ModalService, useValue: mockModalService },
+                { provide: EditionModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
             ],
         }).compileComponents();

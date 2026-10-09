@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 
 import { SourceDescContentFolioComponent } from './source-desc-content-folio.component';
 

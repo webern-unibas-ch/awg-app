@@ -224,7 +224,18 @@ export default defineConfig(
             'no-eval': 'error',
             'no-fallthrough': 'error',
             'no-new-wrappers': 'error',
-            'no-restricted-imports': ['error', 'rxjs/Rx'],
+            'no-restricted-imports': [
+                'error',
+                {
+                    paths: [
+                        { name: 'rxjs/Rx' },
+                        ...['data', 'models', 'services'].map(barrel => ({
+                            name: `@awg-views/edition-view/${barrel}`,
+                            message: 'Import from the concrete file instead of the barrel.',
+                        })),
+                    ],
+                },
+            ],
             'no-throw-literal': 'error',
             'no-trailing-spaces': 'off',
             'no-undef-init': 'error',

@@ -5,23 +5,20 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, map, startWith, switchMap } from 'rxjs/operators';
 
-import { EDITION_ASSETS_DATA } from '../data';
+import { EDITION_ASSETS_DATA } from '../data/edition-assets.data';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionSvgSheetsList,
-    FolioConvoluteList,
-    GraphList,
-    IntroList,
-    PrefaceList,
-    RowtablesList,
-    SourceDescList,
-    SourceEvaluationList,
-    SourceList,
-    TextcriticsList,
-} from '../models';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
+import { EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
+import { FolioConvoluteList } from '../models/folio.model';
+import { GraphList } from '../models/graph.model';
+import { IntroList } from '../models/intro.model';
+import { PrefaceList } from '../models/preface.model';
+import { RowtablesList } from '../models/rowtables.model';
+import { SourceDescList } from '../models/source-desc.model';
+import { SourceEvaluationList } from '../models/source-evaluation.model';
+import { SourceList } from '../models/source-list.model';
+import { TextcriticsList } from '../models/textcritics.model';
 import {
     EditionComplexDataAssetsKeys,
     EditionDataAssetsError,

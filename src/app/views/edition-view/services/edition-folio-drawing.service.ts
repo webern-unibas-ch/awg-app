@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
+import { D3Selection } from '../models/d3-selection.model';
 import {
     FOLIO_SVG_CONTENT_SEGMENT_GROUP_CLASS,
     FolioSettings,
@@ -8,8 +8,8 @@ import {
     FolioSvgData,
     FolioSvgLine,
     FolioSvgRectangle,
-} from '@awg-views/edition-view/models/folio-svg-data.model';
-import { Folio } from '@awg-views/edition-view/models/folio.model';
+} from '../models/folio-svg-data.model';
+import { Folio } from '../models/folio.model';
 
 import { calculateFolioSvgData, FOLIO_DEFAULT_NUMBER_OF_SYSTEMS } from './edition-folio-drawing.utils';
 
