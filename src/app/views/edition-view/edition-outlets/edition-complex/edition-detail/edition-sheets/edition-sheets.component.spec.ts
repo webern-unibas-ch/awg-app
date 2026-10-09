@@ -40,11 +40,11 @@ import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models/tex
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
 import { EditionFoliosPanelComponent } from './edition-folios-panel/edition-folios-panel.component';
 import { EditionSheetsPanelComponent } from './edition-sheets-panel/edition-sheets-panel.component';
 import { EditionSheetsComponent } from './edition-sheets.component';
-import { EDITION_SHEETS_UTILS } from './edition-sheets.utils';
 
 describe('EditionSheetsComponent (DONE)', () => {
     let component: EditionSheetsComponent;

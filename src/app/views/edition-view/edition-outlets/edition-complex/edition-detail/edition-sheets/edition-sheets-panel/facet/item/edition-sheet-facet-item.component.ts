@@ -6,10 +6,9 @@ import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionSvgSheet, EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
+import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
-import { EDITION_SHEETS_UTILS } from '../../../edition-sheets.utils';
 import { EditionSheetFacetPartialLink } from '../edition-sheet-facet.model';
-
 import { EditionSheetFacetItemLinkDirective } from './edition-sheet-facet-item-link.directive';
 
 /**

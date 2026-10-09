@@ -6,10 +6,9 @@ import { mockEditionData } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper/mock-console';
 import { createTestTkkOverlay } from '@testing/svg-drawing-helper';
 
-import { EditionSvgSheet, EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
-
+import { EditionSvgSheet, EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
+import { FolioConvolute } from '../models/folio.model';
+import { TextcriticalCommentary, Textcritics } from '../models/textcritics.model';
 import {
     EDITION_SHEETS_UTILS,
     filterCommentaryForOverlays,

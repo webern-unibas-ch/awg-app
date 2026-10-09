@@ -23,8 +23,8 @@ import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg
 import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services/edition-svg-drawing.service';
 import { EditionSvgOverlayService } from '@awg-views/edition-view/services/edition-svg-overlay.service';
+import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
-import { EDITION_SHEETS_UTILS } from '../../edition-sheets.utils';
 import { EditionSheetViewerComponent } from './edition-sheet-viewer.component';
 import { EditionSheetViewerNavComponent } from './nav/edition-sheet-viewer-nav.component';
 import { EditionSheetViewerSvgComponent } from './svg/edition-sheet-viewer-svg.component';

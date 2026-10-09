@@ -30,8 +30,8 @@ import {
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
 import { UsageHintsComponent } from '@awg-views/edition-view/shared/usage-hints/usage-hints.component';
+import { EDITION_SHEETS_UTILS } from '@awg-views/edition-view/utils/edition-sheets.utils';
 
-import { EDITION_SHEETS_UTILS } from '../edition-sheets.utils';
 import { EditionSheetsPanelComponent } from './edition-sheets-panel.component';
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';

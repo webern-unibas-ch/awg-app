@@ -1,22 +1,22 @@
 /**
- * Utilities of the EditionSheetsComponent.
+ * Utilities for edition svg sheets.
  *
  * They select svg sheets (incl. partials), their edition type, convolute and textcritics,
  * and evaluate the sheet ids to navigate to, as pure functions.
  */
 import { UTILS } from '@awg-shared/utils/object-utils';
 
-import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { EditionSvgOverlayTkk } from '../models/edition-svg-overlay.model';
 import {
     EditionSvgSheet,
     EditionSvgSheetContent,
     EditionSvgSheetContext,
     EditionSvgSheetSelection,
     EditionSvgSheetsList,
-} from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { EDITION_TYPE_KEYS, EditionTypeKey } from '@awg-views/edition-view/models/edition-type.model';
-import { FolioConvolute } from '@awg-views/edition-view/models/folio.model';
-import { TextcriticalCommentary, Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+} from '../models/edition-svg-sheets.model';
+import { EDITION_TYPE_KEYS, EditionTypeKey } from '../models/edition-type.model';
+import { FolioConvolute } from '../models/folio.model';
+import { TextcriticalCommentary, Textcritics } from '../models/textcritics.model';
 
 /**
  * Function: toFullSheetId.
