@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, DebugElement, Input, NgModule, inject } from '@angular/core';
+import { DebugElement, inject, isSignal, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -16,6 +16,7 @@ import {
 } from '@testing/expect-helper';
 
 import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
+import { NgxJsonViewerComponent } from 'ngx-json-viewer';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
@@ -71,17 +72,6 @@ function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[]
     expectNavContents(fixture, expectedContents);
 }
 
-// Mock ngx-json-viewer component
-@Component({
-    selector: 'ngx-json-viewer',
-    template: '',
-    standalone: false,
-})
-class NgxJsonViewerStubComponent {
-    @Input()
-    json: unknown;
-}
-
 describe('JsonViewerComponent (DONE)', () => {
     let component: JsonViewerComponent;
     let fixture: ComponentFixture<JsonViewerComponent>;
@@ -102,9 +92,11 @@ describe('JsonViewerComponent (DONE)', () => {
     }
 
     beforeEach(async () => {
+        // Hollow out the third-party child component
+        TestBed.overrideComponent(NgxJsonViewerComponent, { set: { template: '' } });
+
         await TestBed.configureTestingModule({
-            imports: [NgbNavModule, NgbConfigModule],
-            declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
+            imports: [JsonViewerComponent, NgbConfigModule],
         }).compileComponents();
     });
 
@@ -135,12 +127,16 @@ describe('JsonViewerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `jsonViewerData`', () => {
-            expect(component.jsonViewerData).toBeUndefined();
+        it('... should have input signal `jsonViewerData` to hold undefined', () => {
+            expectToBe(isSignal(component.jsonViewerData), true);
+
+            expect(component.jsonViewerData()).toBeUndefined();
         });
 
-        it('... should have empty `jsonViewerHeader`', () => {
-            expectToBe(component.jsonViewerHeader, '');
+        it('... should have input signal `jsonViewerHeader` to hold an empty string', () => {
+            expectToBe(isSignal(component.jsonViewerHeader), true);
+
+            expectToBe(component.jsonViewerHeader(), '');
         });
 
         describe('VIEW', () => {
@@ -173,8 +169,8 @@ describe('JsonViewerComponent (DONE)', () => {
                 expectToBe(navContent.length, 0);
             });
 
-            it('... should not contain ngx-json-viewer component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 0, 0);
+            it('... should not contain ngx-json-viewer component (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
             });
         });
     });
@@ -182,14 +178,29 @@ describe('JsonViewerComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set the initial values for the signal inputs
-            component.jsonViewerHeader = expectedHeader;
-            component.jsonViewerData = expectedData;
+            fixture.componentRef.setInput('jsonViewerHeader', expectedHeader);
+            fixture.componentRef.setInput('jsonViewerData', expectedData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        it('... should have input signal `jsonViewerData` to hold the provided data', () => {
+            expectToEqual(component.jsonViewerData(), expectedData);
+        });
+
+        it('... should have input signal `jsonViewerHeader` to hold the provided header', () => {
+            expectToBe(component.jsonViewerHeader(), expectedHeader);
+        });
+
         describe('VIEW', () => {
+            it('... should render the provided header in div.card-header', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header > h4', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent.trim(), expectedHeader);
+            });
+
             it('... should render navItem content and select first navItem (Formatted) by default', () => {
                 const navContent = getNavContents(fixture);
 
@@ -211,11 +222,11 @@ describe('JsonViewerComponent (DONE)', () => {
                 expectNavPanel(fixture, [true, false], ['content1']);
             });
 
-            it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', async () => {
+            it('... should contain one ngx-json-viewer component (hollow) only in Formatted view', async () => {
                 const navLinkDes = getNavLinks(fixture);
                 getAndExpectDebugElementByDirective(
                     compDe,
-                    NgxJsonViewerStubComponent,
+                    NgxJsonViewerComponent,
                     1,
                     1,
                     'in default (formatted) view'
@@ -223,12 +234,12 @@ describe('JsonViewerComponent (DONE)', () => {
 
                 await clickAndAwaitChanges(navLinkDes[1], fixture);
 
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 0, 0, 'in plain view');
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0, 'in plain view');
             });
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {
-                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 1, 1);
-                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerStubComponent) as NgxJsonViewerStubComponent;
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
+                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
 
                 expectToEqual(viewerCmp.json, expectedData);
             });

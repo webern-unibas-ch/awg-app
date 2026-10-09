@@ -1,9 +1,9 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, Injector, signal } from '@angular/core';
 
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
 import { ModalComponent } from './modal.component';
-import { ModalData } from './modal.model';
+import { MODAL_DATA, ModalData } from './modal.model';
 
 /**
  * The ModalService.
@@ -14,6 +14,13 @@ import { ModalData } from './modal.model';
     providedIn: 'root',
 })
 export class ModalService {
+    /**
+     * Private readonly injection variable: _injector.
+     *
+     * It keeps the instance of the injected Angular Injector.
+     */
+    private readonly _injector = inject(Injector);
+
     /**
      * Private readonly injection variable: _ngbModal.
      *
@@ -71,7 +78,7 @@ export class ModalService {
      * Private method: _open.
      *
      * An internal helper method to open the ModalComponent via NgbModal
-     * and supply it with the required ModalData input.
+     * and supply it with the given ModalData via the MODAL_DATA injection token.
      *
      * @param {ModalData} modalData The data for the modal.
      * @returns {void} Opens the modal via NgBootstrap.
@@ -80,10 +87,12 @@ export class ModalService {
         const modalRef = this._ngbModal.open(ModalComponent, {
             size: 'xl',
             centered: true,
-            ariaLabelledBy: 'awg-modal',
+            ariaLabelledBy: 'awg-modal-title',
+            injector: Injector.create({
+                providers: [{ provide: MODAL_DATA, useValue: modalData }],
+                parent: this._injector,
+            }),
         });
-
-        modalRef.componentInstance.modalData = modalData;
 
         modalRef.result.then(
             result => {

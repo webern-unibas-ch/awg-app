@@ -1,33 +1,33 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
-import { ModalData } from './modal.model';
+import { MODAL_DATA, ModalData } from './modal.model';
 
 /**
  * The Modal component.
  *
- * It contains a modal template that passes the modal data to the modal content component.
+ * It contains a modal template that displays the modal data
+ * provided via the {@link MODAL_DATA} injection token.
  */
 @Component({
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
     /**
-     * Readonly injection variable: _activeModal.
+     * Readonly injection variable: activeModal.
      *
      * It keeps the instance of the injected NgbActiveModal.
      */
     readonly activeModal = inject(NgbActiveModal);
 
     /**
-     * Input variable: modalData.
+     * Readonly injection variable: modalData.
      *
-     * It keeps the data for the modal content.
-     *
-     * @todo Use input signal as soon as NgbActiveModal supports signals
+     * It keeps the injected data for the modal content.
      */
-    @Input() modalData: ModalData | undefined;
+    readonly modalData: ModalData = inject(MODAL_DATA);
 }
