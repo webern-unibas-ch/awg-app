@@ -8,9 +8,9 @@ import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { LabeledRoute } from '@awg-shared/models/labeled-route.model';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
-import { EditionViewContext } from '@awg-views/edition-view/models/edition-data.model';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
+import { EditionViewContext } from '../models/edition-data.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
 

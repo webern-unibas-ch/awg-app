@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 
-import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
 
 import { EditionOutlineService } from './edition-outline.service';
 

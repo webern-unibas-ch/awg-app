@@ -11,7 +11,7 @@ import {
     EditionViewData,
     EditionViewDataTypeMapping,
     EditionViewKey,
-} from '@awg-views/edition-view/models/edition-data.model';
+} from '../models/edition-data.model';
 
 import { EditionDataService } from './edition-data.service';
 

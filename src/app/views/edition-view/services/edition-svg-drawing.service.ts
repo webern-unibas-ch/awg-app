@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { ViewBox } from '@awg-views/edition-view/models/view-box.model';
-import { DATA_TKK_ID } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { D3Selection } from '../models/d3-selection.model';
+import { ViewBox } from '../models/view-box.model';
+import { DATA_TKK_ID } from '../models/edition-svg-overlay.model';
 
 import * as D3_FETCH from 'd3-fetch';
 import * as D3_SELECTION from 'd3-selection';

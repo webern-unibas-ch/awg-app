@@ -17,9 +17,9 @@ import {
     createTestTkkOverlay,
 } from '@testing/svg-drawing-helper';
 
-import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
-import { EditionSvgLinkBox } from '@awg-views/edition-view/models/edition-svg-link-box.model';
-import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
+import { D3Selection } from '../models/d3-selection.model';
+import { EditionSvgLinkBox } from '../models/edition-svg-link-box.model';
+import { EditionSvgOverlayTkk } from '../models/edition-svg-overlay.model';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 

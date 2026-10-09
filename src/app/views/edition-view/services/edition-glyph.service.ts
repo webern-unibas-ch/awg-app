@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data/edition-glyphs.data';
+import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
 
 /**
  * The EditionGlyph service.

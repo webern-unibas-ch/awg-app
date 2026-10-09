@@ -5,26 +5,26 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, map, startWith, switchMap } from 'rxjs/operators';
 
-import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data/edition-assets.data';
+import { EDITION_ASSETS_DATA } from '../data/edition-assets.data';
 import { EDITION_ROUTE_CONSTANTS } from '../edition-routes.constants';
-import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
-import { EditionSvgSheetsList } from '@awg-views/edition-view/models/edition-svg-sheets.model';
-import { FolioConvoluteList } from '@awg-views/edition-view/models/folio.model';
-import { GraphList } from '@awg-views/edition-view/models/graph.model';
-import { IntroList } from '@awg-views/edition-view/models/intro.model';
-import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
-import { RowtablesList } from '@awg-views/edition-view/models/rowtables.model';
-import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model';
-import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
-import { SourceList } from '@awg-views/edition-view/models/source-list.model';
-import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+import { EditionComplex } from '../models/edition-complex.model';
+import { EditionOutlineSection, EditionOutlineSeries } from '../models/edition-outline.model';
+import { EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
+import { FolioConvoluteList } from '../models/folio.model';
+import { GraphList } from '../models/graph.model';
+import { IntroList } from '../models/intro.model';
+import { PrefaceList } from '../models/preface.model';
+import { RowtablesList } from '../models/rowtables.model';
+import { SourceDescList } from '../models/source-desc.model';
+import { SourceEvaluationList } from '../models/source-evaluation.model';
+import { SourceList } from '../models/source-list.model';
+import { TextcriticsList } from '../models/textcritics.model';
 import {
     EditionComplexDataAssetsKeys,
     EditionDataAssetsError,
     EditionDataAssetsKeys,
     EditionStaticDataAssetsKeys,
-} from '@awg-views/edition-view/models/edition-data.model';
+} from '../models/edition-data.model';
 
 import { EditionStateService } from './edition-state.service';
 

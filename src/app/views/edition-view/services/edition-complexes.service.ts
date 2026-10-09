@@ -1,10 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-import {
-    EditionComplex,
-    EditionComplexesList,
-    EditionComplexJsonData,
-} from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionComplex, EditionComplexesList, EditionComplexJsonData } from '../models/edition-complex.model';
 
 import * as jsonEditionComplexes from 'assets/data/edition/edition-complexes.json';
 
