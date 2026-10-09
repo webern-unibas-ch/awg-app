@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EditionRouteConstant } from '@awg-views/edition-view/edition-routes.constants';
 import { SourceDescWritingMaterialTrademark } from '@awg-views/edition-view/models/source-desc.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { getItemLocus, getTrademark } from '../source-desc-writing-materials.utils';
 

@@ -11,8 +11,8 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { EditionTkaEvaluationsComponent } from './edition-tka-evaluations.component';
 

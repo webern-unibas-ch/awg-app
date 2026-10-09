@@ -14,7 +14,7 @@ import { SparqlQueryService } from './sparql-query.service';
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
 
 describe(
-    'SparqlQueryService (integration with rdfstore and the op. 25 graph data)',
+    'SparqlQueryService (integration with rdfstore and the op. 25 graph data) (DONE)',
     { timeout: RDFSTORE_INTEGRATION_TIMEOUT_MS },
     () => {
         let service: SparqlQueryService;

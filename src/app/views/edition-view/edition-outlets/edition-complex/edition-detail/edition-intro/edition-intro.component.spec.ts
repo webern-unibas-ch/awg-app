@@ -16,7 +16,6 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
-import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
@@ -25,6 +24,7 @@ import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-
 import { IntroList } from '@awg-views/edition-view/models/intro.model';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/language.model';
 import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 import { EditionIntroContentComponent } from './edition-intro-content/edition-intro-content.component';

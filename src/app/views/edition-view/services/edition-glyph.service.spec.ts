@@ -8,7 +8,7 @@ import { EDITION_GLYPHS_DATA } from '../data/edition-glyphs.data';
 
 import { EditionGlyphService } from './edition-glyph.service';
 
-describe('EditionGlyphService', () => {
+describe('EditionGlyphService (DONE)', () => {
     let editionGlyphService: EditionGlyphService;
 
     beforeEach(() => {

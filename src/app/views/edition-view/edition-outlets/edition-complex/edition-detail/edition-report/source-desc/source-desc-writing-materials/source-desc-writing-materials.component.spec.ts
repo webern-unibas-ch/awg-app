@@ -17,7 +17,7 @@ import { SourceDescWritingMaterial } from '@awg-views/edition-view/models/source
 import { SourceDescWritingMaterialComponent } from './material/source-desc-writing-material.component';
 import { SourceDescWritingMaterialsComponent } from './source-desc-writing-materials.component';
 
-describe('SourceDescWritingMaterialsComponent', () => {
+describe('SourceDescWritingMaterialsComponent (DONE)', () => {
     let component: SourceDescWritingMaterialsComponent;
     let fixture: ComponentFixture<SourceDescWritingMaterialsComponent>;
     let compDe: DebugElement;

@@ -19,7 +19,7 @@ import { SourceDescWritingTrademarkComponent } from '../trademark/source-desc-wr
 import { SourceDescWritingWatermarkComponent } from '../watermark/source-desc-writing-watermark.component';
 import { SourceDescWritingMaterialComponent } from './source-desc-writing-material.component';
 
-describe('SourceDescWritingMaterialComponent', () => {
+describe('SourceDescWritingMaterialComponent (DONE)', () => {
     let component: SourceDescWritingMaterialComponent;
     let fixture: ComponentFixture<SourceDescWritingMaterialComponent>;
     let compDe: DebugElement;

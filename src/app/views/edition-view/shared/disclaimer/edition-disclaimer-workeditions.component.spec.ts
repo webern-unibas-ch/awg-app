@@ -12,7 +12,7 @@ import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByC
 
 import { EditionDisclaimerWorkeditionsComponent } from './edition-disclaimer-workeditions.component';
 
-describe('EditionDisclaimerWorkeditionsComponent', () => {
+describe('EditionDisclaimerWorkeditionsComponent (DONE)', () => {
     let component: EditionDisclaimerWorkeditionsComponent;
     let fixture: ComponentFixture<EditionDisclaimerWorkeditionsComponent>;
     let compDe: DebugElement;

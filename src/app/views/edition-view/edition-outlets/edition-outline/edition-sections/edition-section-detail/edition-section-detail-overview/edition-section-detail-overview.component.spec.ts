@@ -23,7 +23,7 @@ import { EditionSectionDetailIntroCardComponent } from '../edition-section-detai
 import { EditionSectionDetailPlaceholderComponent } from '../edition-section-detail-placeholder/edition-section-detail-placeholder.component';
 import { EditionSectionDetailOverviewComponent } from './edition-section-detail-overview.component';
 
-describe('EditionSectionDetailOverviewComponent', () => {
+describe('EditionSectionDetailOverviewComponent (DONE)', () => {
     let component: EditionSectionDetailOverviewComponent;
     let fixture: ComponentFixture<EditionSectionDetailOverviewComponent>;
     let compDe: DebugElement;

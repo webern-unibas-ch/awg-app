@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { IntroBlock } from '@awg-views/edition-view/models/intro.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 /**
  * The EditionIntroContent component.

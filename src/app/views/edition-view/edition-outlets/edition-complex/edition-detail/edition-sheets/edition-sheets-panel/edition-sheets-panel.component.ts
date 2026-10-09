@@ -2,15 +2,16 @@ import { ChangeDetectionStrategy, Component, inject, input, model, output } from
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ButtonUsageHintsComponent } from '@awg-shared/button-usage-hints/button-usage-hints.component';
 import { FullscreenToggleComponent } from '@awg-shared/fullscreen/fullscreen-toggle.component';
 import { FullscreenService } from '@awg-shared/fullscreen/fullscreen.service';
+
 import { EditionSvgOverlayTkk } from '@awg-views/edition-view/models/edition-svg-overlay.model';
 import {
     EditionSvgSheetSelection,
     EditionSvgSheetsList,
 } from '@awg-views/edition-view/models/edition-svg-sheets.model';
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { UsageHintsComponent } from '@awg-views/edition-view/shared/usage-hints/usage-hints.component';
 
 import { EditionSheetFacetComponent } from './facet/edition-sheet-facet.component';
 import { EditionSheetFooterComponent } from './footer/edition-sheet-footer.component';
@@ -28,12 +29,12 @@ import { EditionSheetViewerComponent } from './viewer/edition-sheet-viewer.compo
     styleUrls: ['./edition-sheets-panel.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        ButtonUsageHintsComponent,
         EditionSheetFacetComponent,
         EditionSheetFooterComponent,
         EditionSheetViewerComponent,
         FullscreenToggleComponent,
         NgbAccordionModule,
+        UsageHintsComponent,
     ],
 })
 export class EditionSheetsPanelComponent {

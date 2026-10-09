@@ -20,7 +20,7 @@ import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { EditionBreadcrumbComponent } from './edition-breadcrumb.component';
 
-describe('EditionBreadcrumbComponent', () => {
+describe('EditionBreadcrumbComponent (DONE)', () => {
     let component: EditionBreadcrumbComponent;
     let fixture: ComponentFixture<EditionBreadcrumbComponent>;
     let compDe: DebugElement;

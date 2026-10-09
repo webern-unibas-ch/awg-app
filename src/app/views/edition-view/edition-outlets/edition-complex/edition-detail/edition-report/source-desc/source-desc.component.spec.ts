@@ -17,7 +17,7 @@ import { SourceDescList } from '@awg-views/edition-view/models/source-desc.model
 import { SourceDescItemComponent } from './source-desc-item/source-desc-item.component';
 import { SourceDescComponent } from './source-desc.component';
 
-describe('SourceDescComponent', () => {
+describe('SourceDescComponent (DONE)', () => {
     let component: SourceDescComponent;
     let fixture: ComponentFixture<SourceDescComponent>;
     let compDe: DebugElement;

@@ -5,7 +5,7 @@ import { LanguageId } from './language.model';
 /**
  * The LanguageSwitcher component.
  *
- * It contains the language switcher of the app.
+ * It contains the language switcher of the edition view.
  */
 @Component({
     selector: 'awg-language-switcher',
@@ -24,7 +24,7 @@ export class LanguageSwitcherComponent {
     /**
      * Protected readonly variable: languages.
      *
-     * It holds the available languages of the app.
+     * It holds the available languages of the edition view.
      */
     protected readonly languages = Object.values(LanguageId)
         .filter((value): value is LanguageId => typeof value === 'number')

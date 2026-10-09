@@ -13,10 +13,9 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { Graph } from '@awg-views/edition-view/models/graph.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 import { EditionGraphDescriptionComponent } from './edition-graph-description.component';

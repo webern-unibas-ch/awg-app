@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap/tooltip';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
-
 import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 
 import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.model';
 

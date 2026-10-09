@@ -12,15 +12,15 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceDescContentSystemComponent } from './source-desc-content-system.component';
 
-describe('SourceDescContentSystemComponent', () => {
+describe('SourceDescContentSystemComponent (DONE)', () => {
     let component: SourceDescContentSystemComponent;
     let fixture: ComponentFixture<SourceDescContentSystemComponent>;
     let compDe: DebugElement;

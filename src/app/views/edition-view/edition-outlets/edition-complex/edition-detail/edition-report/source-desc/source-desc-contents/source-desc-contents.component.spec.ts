@@ -22,7 +22,7 @@ import { SourceDescContentGridComponent } from './grid/source-desc-content-grid.
 import { SourceDescContentItemComponent } from './item/source-desc-content-item.component';
 import { SourceDescContentsComponent } from './source-desc-contents.component';
 
-describe('SourceDescContentsComponent', () => {
+describe('SourceDescContentsComponent (DONE)', () => {
     let component: SourceDescContentsComponent;
     let fixture: ComponentFixture<SourceDescContentsComponent>;
     let compDe: DebugElement;

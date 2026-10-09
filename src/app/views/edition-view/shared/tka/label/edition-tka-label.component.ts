@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
+import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 
 /**
  * The EditionTkaLabel component.

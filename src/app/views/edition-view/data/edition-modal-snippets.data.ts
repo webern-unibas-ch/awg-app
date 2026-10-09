@@ -1,9 +1,9 @@
 /**
- * Object constant with a set of modal texts.
+ * Object constant: EDITION_MODAL_SNIPPETS.
  *
- * It provides the text snippets to be used in a modal.
+ * It provides the edition text snippets to be used in a text modal.
  */
-export const MODAL_TEXT_SNIPPETS = {
+export const EDITION_MODAL_SNIPPETS = {
     CONTENTS_NOT_AVAILABLE: '<p>Diese Inhalte sind derzeit leider noch nicht verfügbar.</p>',
     OP12_SOURCE_NOT_AVAILABLE:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>C</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',

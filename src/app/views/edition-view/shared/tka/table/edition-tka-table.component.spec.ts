@@ -17,12 +17,11 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.model';

@@ -14,7 +14,7 @@ import { EditionViewContext } from '../models/edition-data.model';
 
 import { EditionBreadcrumbService } from './edition-breadcrumb.service';
 
-describe('EditionBreadcrumbService', () => {
+describe('EditionBreadcrumbService (DONE)', () => {
     let service: EditionBreadcrumbService;
 
     let expectedComplex: EditionComplex;

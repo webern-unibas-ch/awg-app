@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-expand-all.component';
 import { createExpandAllState } from '@awg-shared/button-expand-all/button-expand-all.utils';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
 import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
 

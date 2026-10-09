@@ -23,7 +23,7 @@ import { EditionSvgSheetsList } from '../models/edition-svg-sheets.model';
 import { TextcriticsList } from '../models/textcritics.model';
 import { EditionViewService } from './edition-view.service';
 
-describe('EditionViewService', () => {
+describe('EditionViewService (DONE)', () => {
     let service: EditionViewService;
 
     let mockEditionDataService: EditionDataService;

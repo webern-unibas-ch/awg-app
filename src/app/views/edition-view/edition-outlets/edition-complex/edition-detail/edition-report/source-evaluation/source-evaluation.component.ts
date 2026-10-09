@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 /**

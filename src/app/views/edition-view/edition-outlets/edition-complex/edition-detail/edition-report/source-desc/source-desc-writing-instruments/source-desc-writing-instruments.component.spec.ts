@@ -12,12 +12,12 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { SourceDescWritingInstruments } from '@awg-views/edition-view/models/source-desc.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceDescWritingInstrumentsComponent } from './source-desc-writing-instruments.component';
 
-describe('SourceDescWritingInstrumentsComponent', () => {
+describe('SourceDescWritingInstrumentsComponent (DONE)', () => {
     let component: SourceDescWritingInstrumentsComponent;
     let fixture: ComponentFixture<SourceDescWritingInstrumentsComponent>;
     let compDe: DebugElement;

@@ -14,7 +14,7 @@ import { toResultGraph } from './result-graph.utils';
 
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
 
-describe('ResultGraphUtils (integration with the op. 25 graph data)', () => {
+describe('ResultGraphUtils (integration with the op. 25 graph data) (DONE)', () => {
     let quads: Quad[];
     let graph: ResultGraph;
 

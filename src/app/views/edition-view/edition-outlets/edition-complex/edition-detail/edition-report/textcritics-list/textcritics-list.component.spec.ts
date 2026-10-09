@@ -19,11 +19,10 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/shared/disclaimer/edition-disclaimer-workeditions.component';
 import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';

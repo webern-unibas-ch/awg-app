@@ -20,7 +20,7 @@ import { Source, TextSource } from '@awg-views/edition-view/models/source.model'
 
 import { SourceSiglumComponent } from './source-siglum.component';
 
-describe('SourceSiglumComponent', () => {
+describe('SourceSiglumComponent (DONE)', () => {
     let component: SourceSiglumComponent;
     let fixture: ComponentFixture<SourceSiglumComponent>;
     let compDe: DebugElement;

@@ -7,16 +7,16 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { ModalService } from '@awg-shared/modal/modal.service';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 
-import { ButtonUsageHintsComponent } from './button-usage-hints.component';
+import { UsageHintsComponent } from './usage-hints.component';
 
-describe('ButtonUsageHintsComponent (DONE)', () => {
-    let component: ButtonUsageHintsComponent;
-    let fixture: ComponentFixture<ButtonUsageHintsComponent>;
+describe('UsageHintsComponent (DONE)', () => {
+    let component: UsageHintsComponent;
+    let fixture: ComponentFixture<UsageHintsComponent>;
     let compDe: DebugElement;
 
-    let mockModalService: Partial<ModalService>;
+    let mockEditionModalService: Partial<EditionModalService>;
 
     let openUsageHintsSpy: Spy;
     let serviceOpenTextModalSpy: Spy;
@@ -26,24 +26,24 @@ describe('ButtonUsageHintsComponent (DONE)', () => {
     const getButtonDes = () => getAndExpectDebugElementByCss(compDe, 'button.btn.btn-sm.btn-outline-info', 1, 1);
 
     beforeEach(async () => {
-        mockModalService = {
+        mockEditionModalService = {
             openTextModal: vi.fn(),
         };
 
         await TestBed.configureTestingModule({
-            imports: [ButtonUsageHintsComponent],
-            providers: [{ provide: ModalService, useValue: mockModalService }],
+            imports: [UsageHintsComponent],
+            providers: [{ provide: EditionModalService, useValue: mockEditionModalService }],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ButtonUsageHintsComponent);
+        fixture = TestBed.createComponent(UsageHintsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
         // Spies
         openUsageHintsSpy = vi.spyOn(component, 'openUsageHints');
-        serviceOpenTextModalSpy = vi.spyOn(mockModalService, 'openTextModal');
+        serviceOpenTextModalSpy = vi.spyOn(mockEditionModalService, 'openTextModal');
     });
 
     afterEach(() => {
@@ -97,7 +97,7 @@ describe('ButtonUsageHintsComponent (DONE)', () => {
                     expect(component.openUsageHints).toBeDefined();
                 });
 
-                it('... should trigger `openTextModal` of the ModalService with the snippet key', () => {
+                it('... should trigger `openTextModal` of the EditionModalService with the snippet key', () => {
                     component.openUsageHints();
 
                     expectSpyCall(serviceOpenTextModalSpy, 1, expectedSnippetKey);

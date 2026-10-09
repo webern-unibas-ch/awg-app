@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
-import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { SourceDescSystem } from '@awg-views/edition-view/models/source-desc.model';
+import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 /**
  * The SourceDescContentSystem component.

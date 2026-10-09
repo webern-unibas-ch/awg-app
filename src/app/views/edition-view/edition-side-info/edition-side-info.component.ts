@@ -1,7 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
 import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
 import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
@@ -18,6 +18,7 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     selector: 'awg-edition-side-info',
     templateUrl: './edition-side-info.component.html',
     styleUrls: ['./edition-side-info.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgbAccordionModule, RouterLink],
 })
 export class EditionSideInfoComponent {
@@ -36,7 +37,7 @@ export class EditionSideInfoComponent {
     private readonly _editionStateService = inject(EditionStateService);
 
     /**
-     * Public variable: EDITION_INFO_HEADER.
+     * Readonly variable: EDITION_INFO_HEADER.
      *
      * It keeps the header for the edition-info.
      */

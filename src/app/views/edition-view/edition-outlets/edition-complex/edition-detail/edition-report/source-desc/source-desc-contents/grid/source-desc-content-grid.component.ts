@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 import { ConditionalLinkComponent } from '@awg-shared/conditional-link/conditional-link.component';
 
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { SourceDescContent } from '@awg-views/edition-view/models/source-desc.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
 import { SourceDescContentFolioComponent } from '../folio/source-desc-content-folio.component';
 import { SourceDescContentSystemComponent } from '../system/source-desc-content-system.component';

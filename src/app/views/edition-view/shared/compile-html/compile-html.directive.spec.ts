@@ -8,15 +8,15 @@ type Spy = ReturnType<typeof vi.fn>;
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data/mockEditionData';
 
-import { ABBR_UTILS } from '@awg-shared/abbr/abbr.utils';
-import { ModalService } from '@awg-shared/modal/modal.service';
 import {
     EditionNavigationFragmentTarget,
     EditionNavigationSheetTarget,
 } from '@awg-views/edition-view/models/edition-navigation.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
+import { ABBR_UTILS } from '../abbr/abbr.utils';
 import { CompileHtmlDirective } from './compile-html.directive';
 
 @Component({
@@ -83,7 +83,7 @@ describe('CompileHtmlDirective (DONE)', () => {
                     },
                 },
                 {
-                    provide: ModalService,
+                    provide: EditionModalService,
                     useValue: {
                         openTextModal: vi.fn(),
                         openImageModal: vi.fn(),
@@ -115,9 +115,9 @@ describe('CompileHtmlDirective (DONE)', () => {
         const glyphService = TestBed.inject(EditionGlyphService);
         serviceGetGlyphSpy = vi.spyOn(glyphService, 'getGlyph').mockImplementation((glyph: string) => `${glyph}`);
 
-        const modalService = TestBed.inject(ModalService);
-        serviceOpenImageModalSpy = vi.spyOn(modalService, 'openImageModal');
-        serviceOpenTextModalSpy = vi.spyOn(modalService, 'openTextModal');
+        const editionModalService = TestBed.inject(EditionModalService);
+        serviceOpenImageModalSpy = vi.spyOn(editionModalService, 'openImageModal');
+        serviceOpenTextModalSpy = vi.spyOn(editionModalService, 'openTextModal');
 
         // Test data
         expectedComplexId = 'op12';

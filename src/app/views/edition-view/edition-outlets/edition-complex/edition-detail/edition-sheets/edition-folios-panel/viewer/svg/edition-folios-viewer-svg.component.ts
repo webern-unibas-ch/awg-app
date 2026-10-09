@@ -13,7 +13,6 @@ import {
 import * as D3_SELECTION from 'd3-selection';
 
 import { ClickDirective } from '@awg-shared/click/click.directive';
-import { ModalService } from '@awg-shared/modal/modal.service';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 import { EditionSvgSheetSelection } from '@awg-views/edition-view/models/edition-svg-sheets.model';
@@ -21,6 +20,7 @@ import { FolioSvgData } from '@awg-views/edition-view/models/folio-svg-data.mode
 import { Folio } from '@awg-views/edition-view/models/folio.model';
 import { EditionFolioDrawingService } from '@awg-views/edition-view/services/edition-folio-drawing.service';
 import { EditionFolioSegmentService } from '@awg-views/edition-view/services/edition-folio-segment.service';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
 
 /**
@@ -53,11 +53,11 @@ export class EditionFoliosViewerSvgComponent {
     private readonly _folioSegmentService = inject(EditionFolioSegmentService);
 
     /**
-     * Private readonly injection variable: _modalService.
+     * Private readonly injection variable: _editionModalService.
      *
-     * It keeps the instance of the injected ModalService.
+     * It keeps the instance of the injected EditionModalService.
      */
-    private readonly _modalService = inject(ModalService);
+    private readonly _editionModalService = inject(EditionModalService);
 
     /**
      * Private readonly injection variable: _navigationService.
@@ -152,7 +152,7 @@ export class EditionFoliosViewerSvgComponent {
         if (contentSegment.selectable) {
             this._navigationService.navigateToSvgSheet(contentSegment.sheetTarget);
         } else {
-            this._modalService.openTextModal(contentSegment.linkTo);
+            this._editionModalService.openTextModal(contentSegment.linkTo);
         }
     }
 

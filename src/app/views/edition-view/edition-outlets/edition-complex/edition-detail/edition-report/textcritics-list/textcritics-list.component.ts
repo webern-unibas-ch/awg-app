@@ -3,16 +3,15 @@ import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
 
-import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
-import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
-
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/shared/disclaimer/edition-disclaimer-workeditions.component';
 import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
 import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
 import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
+import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 
 /**
  * The TextcriticsList component.

@@ -1,10 +1,10 @@
 import { Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
 
-import { ABBR_UTILS } from '@awg-shared/abbr/abbr.utils';
-import { ModalService } from '@awg-shared/modal/modal.service';
-
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
+import { EditionModalService } from '@awg-views/edition-view/services/edition-modal.service';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+
+import { ABBR_UTILS } from '../abbr/abbr.utils';
 
 /**
  * The CompileHtmlDirective.
@@ -42,11 +42,11 @@ export class CompileHtmlDirective {
     private readonly _glyphService = inject(EditionGlyphService);
 
     /**
-     * Private readonly injection variable: _modalService
+     * Private readonly injection variable: _editionModalService
      *
-     * It keeps the instance of the injected ModalService.
+     * It keeps the instance of the injected EditionModalService.
      */
-    private readonly _modalService = inject(ModalService);
+    private readonly _editionModalService = inject(EditionModalService);
 
     /**
      * Private readonly injection variable: _navigationService
@@ -185,7 +185,7 @@ export class CompileHtmlDirective {
         const modalId = anchor.dataset['modalId'];
         if (modalId) {
             event.preventDefault();
-            this._modalService.openTextModal(modalId);
+            this._editionModalService.openTextModal(modalId);
             return;
         }
 
@@ -233,7 +233,7 @@ export class CompileHtmlDirective {
         }
 
         event.preventDefault();
-        this._modalService.openImageModal(id, src);
+        this._editionModalService.openImageModal(id, src);
     }
 
     /**
