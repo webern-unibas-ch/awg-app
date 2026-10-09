@@ -363,7 +363,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export type ModalType &#x3D; &#x27;text&#x27; | &#x27;image&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { InjectionToken } from &#x27;@angular/core&#x27;;
+
+/**
+ * The ModalType type.
+ *
+ * It defines the possible types of modal data, either &#x27;text&#x27; or &#x27;image&#x27;.
+ */
+export type ModalType &#x3D; &#x27;text&#x27; | &#x27;image&#x27;;
 
 /**
  * The ModalData interface.
@@ -391,6 +398,14 @@ export interface ModalData {
      */
     content: string;
 }
+
+/**
+ * The injection token for the modal data.
+ *
+ * It provides the {@link ModalData} to the ModalComponent
+ * via the injector of the opened modal.
+ */
+export const MODAL_DATA &#x3D; new InjectionToken&lt;ModalData&gt;(&#x27;MODAL_DATA&#x27;);
 </code></pre>
     </div>
 </div>

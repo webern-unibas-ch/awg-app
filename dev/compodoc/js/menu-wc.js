@@ -77,13 +77,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-AppModule-91bb81f354d14f061eae960dd04415d727895d24fbbe0e2368b715442318487749eb92c0672b50c2fd919fae1f7e3cdbcfa40eb5b9340bb2817115b0fa0f9b62"' : 'data-bs-target="#xs-components-links-module-AppModule-91bb81f354d14f061eae960dd04415d727895d24fbbe0e2368b715442318487749eb92c0672b50c2fd919fae1f7e3cdbcfa40eb5b9340bb2817115b0fa0f9b62"' }>
+                                            'data-bs-target="#components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' : 'data-bs-target="#xs-components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-91bb81f354d14f061eae960dd04415d727895d24fbbe0e2368b715442318487749eb92c0672b50c2fd919fae1f7e3cdbcfa40eb5b9340bb2817115b0fa0f9b62"' :
-                                            'id="xs-components-links-module-AppModule-91bb81f354d14f061eae960dd04415d727895d24fbbe0e2368b715442318487749eb92c0672b50c2fd919fae1f7e3cdbcfa40eb5b9340bb2817115b0fa0f9b62"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' :
+                                            'id="xs-components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' }>
                                             <li class="link">
                                                 <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
                                             </li>
@@ -101,88 +101,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SharedModule.html" data-type="entity-link" >SharedModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' : 'data-bs-target="#xs-components-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' :
-                                            'id="xs-components-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' }>
-                                            <li class="link">
-                                                <a href="components/AlertErrorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AlertErrorComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/AlertInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AlertInfoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ButtonScrollToTopComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ButtonScrollToTopComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FullscreenToggleComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FullscreenToggleComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/HeadingComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HeadingComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/JsonViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >JsonViewerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/LanguageSwitcherComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LanguageSwitcherComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/LicenseComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LicenseComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/LogoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LogoComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/MetaIdentifierBadgesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MetaIdentifierBadgesComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ModalComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ModalComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TableComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ToastComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToastComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TwelveToneSpinnerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TwelveToneSpinnerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ViewHandleButtonGroupComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ViewHandleButtonGroupComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#directives-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' : 'data-bs-target="#xs-directives-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' }>
-                                        <span class="icon ion-md-code-working"></span>
-                                        <span>Directives</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' :
-                                        'id="xs-directives-links-module-SharedModule-641bcb10ab084fa1c56a73d86af7c1a62a552093e0342d66891be0d30ce3c5aa684375212d7243e5d828e20621dcbe784b7e882a122dacea0883f7f2eae81121"' }>
-                                        <li class="link">
-                                            <a href="directives/AbbrDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AbbrDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/CompileHtmlDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CompileHtmlDirective</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="directives/ExternalLinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExternalLinkDirective</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/SharedNgbootstrapModule.html" data-type="entity-link" >SharedNgbootstrapModule</a>
                             </li>
                 </ul>
                 </li>
@@ -439,6 +357,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/HomeViewComponent.html" data-type="entity-link" >HomeViewComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/JsonViewerComponent.html" data-type="entity-link" >JsonViewerComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/LanguageSwitcherComponent.html" data-type="entity-link" >LanguageSwitcherComponent</a>
