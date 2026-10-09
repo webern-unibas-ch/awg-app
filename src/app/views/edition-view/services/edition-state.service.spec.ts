@@ -129,17 +129,15 @@ describe('EditionStateService (DONE)', () => {
             expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
         });
 
-        it('... should hold the manual series and section again if the selected complex is reset to null', () => {
-            const manualSeries = EditionStateHelper.getSeries('2');
-            const manualSection = EditionStateHelper.getSection('2', '2a');
-            editionStateService.updateSelectedEditionSeries(manualSeries);
-            editionStateService.updateSelectedEditionSection(manualSection);
+        it('... should hold null (and no stale manual series and section) if the selected complex is reset to null', () => {
+            editionStateService.updateSelectedEditionSeries(EditionStateHelper.getSeries('2'));
+            editionStateService.updateSelectedEditionSection(EditionStateHelper.getSection('2', '2a'));
             editionStateService.updateSelectedEditionComplex(expectedComplex);
 
             editionStateService.updateSelectedEditionComplex(null);
 
-            expectToEqual(editionStateService.selectedEditionSeries(), manualSeries);
-            expectToEqual(editionStateService.selectedEditionSection(), manualSection);
+            expectToBe(editionStateService.selectedEditionSeries(), null);
+            expectToBe(editionStateService.selectedEditionSection(), null);
         });
 
         it('... should hold null if series and section of the selected complex cannot be found', () => {
@@ -170,14 +168,19 @@ describe('EditionStateService (DONE)', () => {
                 expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
             });
 
-            it('... should not touch the manual series and section signals', () => {
-                editionStateService.updateSelectedEditionSeries(expectedSeries);
-                editionStateService.updateSelectedEditionSection(expectedSection);
+            describe('... should have the manual series and section signals to hold null when updating `selectedEditionComplex`', () => {
+                it.each([
+                    { desc: 'a complex', complex: () => expectedComplex },
+                    { desc: 'null', complex: () => null },
+                ])('... to $desc', ({ complex }) => {
+                    editionStateService.updateSelectedEditionSeries(expectedSeries);
+                    editionStateService.updateSelectedEditionSection(expectedSection);
 
-                editionStateService.updateSelectedEditionComplex(expectedComplex);
+                    editionStateService.updateSelectedEditionComplex(complex());
 
-                expectToEqual(editionStateService['_selectedEditionSeriesSignal'](), expectedSeries);
-                expectToEqual(editionStateService['_selectedEditionSectionSignal'](), expectedSection);
+                    expectToBe(editionStateService['_selectedEditionSeriesSignal'](), null);
+                    expectToBe(editionStateService['_selectedEditionSectionSignal'](), null);
+                });
             });
         });
 
@@ -195,6 +198,14 @@ describe('EditionStateService (DONE)', () => {
                 editionStateService.updateSelectedEditionSection(expectedSection);
 
                 expectToEqual(editionStateService.selectedEditionSection(), expectedSection);
+            });
+
+            it('... should have computed signal `selectedEditionSeries` to keep the selected series when updating `selectedEditionSection`', () => {
+                editionStateService.updateSelectedEditionSeries(expectedSeries);
+
+                editionStateService.updateSelectedEditionSection(expectedSection);
+
+                expectToEqual(editionStateService.selectedEditionSeries(), expectedSeries);
             });
 
             it('... should have signal `selectedEditionComplex` to hold null when updating `selectedEditionSection`', () => {

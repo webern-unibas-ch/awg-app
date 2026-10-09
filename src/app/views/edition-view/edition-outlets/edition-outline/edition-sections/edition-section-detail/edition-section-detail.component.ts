@@ -46,18 +46,18 @@ export class EditionSectionDetailComponent {
      *
      */
     constructor() {
-        this.updateSectionFromRoute();
+        this._updateSectionFromRoute();
     }
 
     /**
-     * Public method: updateSectionFromRoute.
+     * Private method: _updateSectionFromRoute.
      *
      * It reactively tracks the route params and the selected series
      * to update the corresponding edition section in the EditionStateService.
      *
      * @returns {void} Updates the edition section from the route.
      */
-    updateSectionFromRoute(): void {
+    private _updateSectionFromRoute(): void {
         effect(onCleanup => {
             const series = this._editionStateService.selectedEditionSeries();
             const currentSectionId = this.sectionId();

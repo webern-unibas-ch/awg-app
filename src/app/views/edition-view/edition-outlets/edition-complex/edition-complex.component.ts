@@ -75,11 +75,11 @@ export class EditionComplexComponent {
      *
      */
     constructor() {
-        this.updateEditionComplexFromRoute();
+        this._updateEditionComplexFromRoute();
     }
 
     /**
-     * Public method: updateEditionComplexFromRoute.
+     * Private method: _updateEditionComplexFromRoute.
      *
      * It syncs the edition complex of the current route to the EditionStateService
      * (which derives the corresponding series and section from it)
@@ -87,7 +87,7 @@ export class EditionComplexComponent {
      *
      * @returns {void} Updates the current edition complex from the route.
      */
-    updateEditionComplexFromRoute(): void {
+    private _updateEditionComplexFromRoute(): void {
         effect(onCleanup => {
             this._editionStateService.updateSelectedEditionComplex(this._complexFromRoute());
 

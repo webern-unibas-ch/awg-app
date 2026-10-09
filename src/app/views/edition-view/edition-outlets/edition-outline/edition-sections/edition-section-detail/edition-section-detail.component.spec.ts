@@ -58,7 +58,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         );
 
         // Prototype spies (to catch calls in constructor)
-        updateSectionFromRouteSpy = vi.spyOn(EditionSectionDetailComponent.prototype, 'updateSectionFromRoute');
+        updateSectionFromRouteSpy = vi.spyOn(EditionSectionDetailComponent.prototype, '_updateSectionFromRoute' as any);
 
         // Test data
         expectedSeries = EditionStateHelper.getSeries('1');
@@ -87,7 +87,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             expectToBe(component.sectionId(), null);
         });
 
-        it('... should have called `updateSectionFromRoute` method', () => {
+        it('... should have called `_updateSectionFromRoute` method', () => {
             expectSpyCall(updateSectionFromRouteSpy, 1);
         });
 
@@ -113,7 +113,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             expectToBe(component.sectionId(), expectedSectionId);
         });
 
-        it('... should have called `updateSectionFromRoute` method', () => {
+        it('... should have called `_updateSectionFromRoute` method', () => {
             expectSpyCall(updateSectionFromRouteSpy, 1);
         });
 
@@ -124,27 +124,27 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         });
 
         describe('METHODS', () => {
-            describe('#updateSectionFromRoute()', () => {
+            describe('#_updateSectionFromRoute()', () => {
                 beforeEach(() => {
                     // Reset spy calls
                     editionOutlineServiceGetEditionSectionByIdSpy.mockClear();
                     editionStateServiceUpdateSelectedEditionSectionSpy.mockClear();
                 });
 
-                it('... should have a method `updateSectionFromRoute`', () => {
-                    expect(component.updateSectionFromRoute).toBeDefined();
+                it('... should have a method `_updateSectionFromRoute`', () => {
+                    expect(component['_updateSectionFromRoute']).toBeDefined();
                 });
 
                 it('... should do nothing if no series is selected', () => {
                     expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
                     expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 0);
 
-                    editionStateService.updateSelectedEditionSeries(null); // Triggers one call to section update with null
+                    editionStateService.updateSelectedEditionSeries(null);
 
                     fixture.detectChanges();
 
                     expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 0);
                 });
 
                 it('... should call EditionOutlineService.getEditionSectionById', () => {
@@ -163,7 +163,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
 
                     fixture.detectChanges();
 
-                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, expectedSection);
+                    expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, expectedSection);
                 });
 
                 describe('... should update selected section to null', () => {
@@ -181,7 +181,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                         fixture.detectChanges();
 
                         expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
-                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
                     });
 
                     it('... if `sectionId` is missing', () => {
@@ -191,7 +191,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                         fixture.detectChanges();
 
                         expectSpyCall(editionOutlineServiceGetEditionSectionByIdSpy, 0);
-                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
                     });
 
                     it('... if section cannot be found by id', () => {
@@ -209,11 +209,13 @@ describe('EditionSectionDetailComponent (DONE)', () => {
                             'series-1',
                             nonMatchingSectionId,
                         ]);
-                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 2, null);
+                        expectSpyCall(editionStateServiceUpdateSelectedEditionSectionSpy, 1, null);
                     });
 
                     it('... on cleanup', () => {
                         editionStateService.updateSelectedEditionSeries(expectedSeries);
+                        fixture.detectChanges();
+                        editionStateServiceUpdateSelectedEditionSectionSpy.mockClear();
 
                         fixture.destroy();
 

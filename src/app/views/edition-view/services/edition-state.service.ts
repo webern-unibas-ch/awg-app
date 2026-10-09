@@ -87,13 +87,15 @@ export class EditionStateService {
     /**
      * Public method: updateSelectedEditionComplex.
      *
-     * It updates the selectedEditionComplex signal with the given edition complex.
-     * The selected series and section are derived from it.
+     * It updates the selectedEditionComplex signal with the given edition complex
+     * and resets the manually selected series and section signals to null (to be computed from complex).
      *
      * @param {EditionComplex} complex The given edition complex.
      * @returns {void} Sets the next complex to the signal.
      */
     updateSelectedEditionComplex(complex: EditionComplex | null): void {
+        this._selectedEditionSeriesSignal.set(null);
+        this._selectedEditionSectionSignal.set(null);
         this._selectedEditionComplexSignal.set(complex);
     }
 
@@ -107,7 +109,7 @@ export class EditionStateService {
      * @returns {void} Sets the next section to the signal.
      */
     updateSelectedEditionSection(editionSection: EditionOutlineSection | null): void {
-        this.updateSelectedEditionComplex(null);
+        this._selectedEditionComplexSignal.set(null);
         this._selectedEditionSectionSignal.set(editionSection);
     }
 
@@ -121,7 +123,8 @@ export class EditionStateService {
      * @returns {void} Sets the next series to the signal.
      */
     updateSelectedEditionSeries(editionSeries: EditionOutlineSeries | null): void {
-        this.updateSelectedEditionSection(null);
+        this._selectedEditionComplexSignal.set(null);
+        this._selectedEditionSectionSignal.set(null);
         this._selectedEditionSeriesSignal.set(editionSeries);
     }
 }

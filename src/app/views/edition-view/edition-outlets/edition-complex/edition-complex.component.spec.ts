@@ -76,7 +76,10 @@ describe('EditionComplexComponent (DONE)', () => {
         stateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'updateSelectedEditionComplex');
 
         // Prototype spies (to catch calls in constructor)
-        updateEditionComplexFromRouteSpy = vi.spyOn(EditionComplexComponent.prototype, 'updateEditionComplexFromRoute');
+        updateEditionComplexFromRouteSpy = vi.spyOn(
+            EditionComplexComponent.prototype,
+            '_updateEditionComplexFromRoute' as any
+        );
 
         // Test data
         expectedComplexId = 'op12';
@@ -119,7 +122,7 @@ describe('EditionComplexComponent (DONE)', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should have triggered method `updateEditionComplexFromRoute`', () => {
+        it('... should have triggered method `_updateEditionComplexFromRoute`', () => {
             expectSpyCall(updateEditionComplexFromRouteSpy, 1);
         });
 
@@ -267,9 +270,9 @@ describe('EditionComplexComponent (DONE)', () => {
             });
         });
 
-        describe('#updateEditionComplexFromRoute()', () => {
-            it('... should have a method `updateEditionComplexFromRoute`', () => {
-                expect(component.updateEditionComplexFromRoute).toBeDefined();
+        describe('#_updateEditionComplexFromRoute()', () => {
+            it('... should have a method `_updateEditionComplexFromRoute`', () => {
+                expect(component['_updateEditionComplexFromRoute']).toBeDefined();
             });
 
             it('... should have updated selectedEditionComplex to hold the expected complex (via EditionStateService)', () => {

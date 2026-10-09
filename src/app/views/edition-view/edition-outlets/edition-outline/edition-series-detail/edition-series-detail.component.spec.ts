@@ -56,7 +56,7 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
         );
 
         // Prototype spies (to catch calls in constructor)
-        updateSeriesFromRouteSpy = vi.spyOn(EditionSeriesDetailComponent.prototype, 'updateSeriesFromRoute');
+        updateSeriesFromRouteSpy = vi.spyOn(EditionSeriesDetailComponent.prototype, '_updateSeriesFromRoute' as any);
 
         // Test data
         expectedSeries = EditionStateHelper.getSeries('1');
@@ -77,7 +77,7 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have triggered method `updateSeriesFromRoute`', () => {
+        it('... should have triggered method `_updateSeriesFromRoute`', () => {
             expectSpyCall(updateSeriesFromRouteSpy, 1);
         });
 
@@ -103,15 +103,15 @@ describe('EditionSeriesDetailComponent (DONE)', () => {
             });
         });
 
-        describe('#updateSeriesFromRoute()', () => {
+        describe('#_updateSeriesFromRoute()', () => {
             beforeEach(() => {
                 // Reset spy calls
                 editionOutlineServiceGetEditionSeriesByIdSpy.mockClear();
                 editionStateServiceUpdateSelectedEditionSeriesSpy.mockClear();
             });
 
-            it('... should have a method `updateSeriesFromRoute`', () => {
-                expect(component.updateSeriesFromRoute).toBeDefined();
+            it('... should have a method `_updateSeriesFromRoute`', () => {
+                expect(component['_updateSeriesFromRoute']).toBeDefined();
             });
 
             it('... should call EditionOutlineService.getEditionSeriesById', () => {
