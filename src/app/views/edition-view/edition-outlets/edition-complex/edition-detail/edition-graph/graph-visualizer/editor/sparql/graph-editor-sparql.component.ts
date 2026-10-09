@@ -13,7 +13,8 @@ import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-grou
 
 import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
-import { GRAPH_QUERY_UTILS } from '../../utils/graph-query.utils';
+import { GRAPH_QUERY_UTILS } from '@awg-graph/graph-visualizer/utils/graph-query.utils';
+
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 

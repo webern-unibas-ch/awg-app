@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { SparqlResult } from '../../models/sparql-result.model';
+import { SparqlResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
 
 /**
  * Object constant: DURATION_FORMAT.

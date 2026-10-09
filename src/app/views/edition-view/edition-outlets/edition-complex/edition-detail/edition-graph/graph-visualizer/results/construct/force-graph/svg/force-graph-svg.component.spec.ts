@@ -15,13 +15,14 @@ import { MockResizeObserver, patchSvgSizeForD3Zoom, stubResizeObserver } from '@
 
 import { SvgZoomDirective } from '@awg-shared/zoom/svg-zoom.directive';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
+
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { ResultGraph, ResultGraphNode } from '../../../../models/result-graph.model';
+import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { FORCE_GRAPH_ARROW_MARKER_ID, ForceGraphDrawingService } from '../force-graph-drawing.service';
 import { ForceSimulation } from '../force-graph.model';
 import { FORCE_GRAPH_UTILS } from '../force-graph.utils';
-
 import { ForceGraphSvgComponent } from './force-graph-svg.component';
 
 describe('ForceGraphSvgComponent (DONE)', () => {

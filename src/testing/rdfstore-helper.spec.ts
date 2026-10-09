@@ -1,5 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { RdfStore, RdfStoreGlobal } from '@awg-graph/graph-visualizer/rdf-store/rdf-store.model';
+
 import { expectSpyCall, expectToBe, expectToEqual } from './expect-helper';
 import {
     createMockRdfstore,
@@ -9,11 +11,6 @@ import {
     createRealRdfstore,
     setGlobalRdfstore,
 } from './rdfstore-helper';
-
-import {
-    RdfStore,
-    RdfStoreGlobal,
-} from '@awg-views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.model';
 
 /**
  * Helper function: createStore.

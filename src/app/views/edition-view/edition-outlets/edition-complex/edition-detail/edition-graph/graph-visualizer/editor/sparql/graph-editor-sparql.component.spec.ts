@@ -25,9 +25,11 @@ import { CodeMirrorComponent } from '@awg-shared/codemirror/codemirror.component
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandleButtonGroupComponent } from '@awg-shared/view-handle-button-group/view-handle-button-group.component';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
+
 import { GraphQuery } from '@awg-views/edition-view/models/graph.model';
 
-import { GRAPH_QUERY_UTILS } from '../../utils/graph-query.utils';
+import { GRAPH_QUERY_UTILS } from '@awg-graph/graph-visualizer/utils/graph-query.utils';
+
 import { GraphEditorActionButtonsComponent } from '../action-buttons/graph-editor-action-buttons.component';
 import { ExampleQueriesComponent } from './example-queries/example-queries.component';
 import { GraphEditorSparqlComponent } from './graph-editor-sparql.component';

@@ -30,8 +30,8 @@ Branching follows Gitflow: feature branches start from `develop` and PRs target 
 
 ## Architecture
 
-- **Bootstrap**: still NgModule-based (`src/main.ts` → `AppModule`, `app-routing.module.ts`). Views are lazy-loaded feature modules (`views/*-view/*.module.ts`).
-- **Path aliases** (tsconfig): `@awg-app/*`, `@awg-core/*`, `@awg-shared/*`, `@awg-side-info/*`, `@awg-views/*`, `@testing/*`.
+- **Bootstrap**: still NgModule-based (`src/main.ts` → `AppModule`, `app-routing.module.ts`). Views are standalone and lazy-loaded via route files (`views/*-view/*-view.routes.ts`, `loadChildren`).
+- **Path aliases** (tsconfig): `@awg-app/*`, `@awg-core/*`, `@awg-shared/*`, `@awg-side-info/*`, `@awg-views/*`, `@testing/*`, plus the outlet aliases `@awg-graph/*` for `edition-graph/` and `@awg-report/*` for `edition-report/` (further outlet aliases only when needed). Relative imports only with `./` or a single `../`, deeper paths use an alias.
 - **Layout**: `core/` (navbar, footer, view-container, analytics), `shared/` (reusable components, directives, pipes, models; `SharedModule` bundles the legacy non-standalone ones), `views/` (one folder per top-level route).
 - **Edition view** (`views/edition-view/`) is the bulk of the app. Routes go `edition/series/:seriesId/...` → `complex/:complexId/{intro,sheets,report,graph}`, plus `preface` and `rowtables`. The components that make up these pages live in `edition-outlets/`, and the matching models are in `edition-view/models/`.
 - **Data**: no backend. All edition content is static JSON under `src/assets/data/edition/` (global files such as `edition-complexes.json` and `edition-outline.json`, plus per-complex folders under `series/`). `EditionDataService` fetches it with `HttpClient` and exposes it as signals (`toSignal`). It uses `EDITION_ASSETS_DATA` (`edition-view/data/`) to map asset keys to file names, and `EditionStateService` to decide which complex is current. Complex-specific data signals recompute when the selected complex changes.

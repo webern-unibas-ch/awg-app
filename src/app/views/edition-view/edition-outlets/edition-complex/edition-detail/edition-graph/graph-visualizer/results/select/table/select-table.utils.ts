@@ -1,8 +1,9 @@
 import { TableRows } from '@awg-shared/table/table.model';
 
-import { PrefixMap, RdfTerm } from '../../../models/rdf.model';
-import { SparqlSelectResult } from '../../../models/sparql-result.model';
-import { TERM_UTILS } from '../../../utils/term.utils';
+import { PrefixMap, RdfTerm } from '@awg-graph/graph-visualizer/models/rdf.model';
+import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
+import { TERM_UTILS } from '@awg-graph/graph-visualizer/utils/term.utils';
+
 import { SelectTableCell } from './select-table.model';
 
 /**

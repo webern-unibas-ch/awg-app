@@ -11,7 +11,8 @@ import * as D3_SELECTION from 'd3-selection';
 
 import { D3Selection } from '@awg-views/edition-view/models/d3-selection.model';
 
-import { ResultGraphNode } from '../../../models/result-graph.model';
+import { ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
+
 import { ForceSimulation, GraphSimNode, SimEdge, SimLink, SimNode, SimulationData } from './force-graph.model';
 import { FORCE_GRAPH_UTILS } from './force-graph.utils';
 

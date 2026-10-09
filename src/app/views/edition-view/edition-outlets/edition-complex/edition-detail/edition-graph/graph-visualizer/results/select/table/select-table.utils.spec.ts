@@ -3,8 +3,9 @@ import { describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
-import { SparqlSelectResult } from '../../../models/sparql-result.model';
-import { DEFAULT_PREFIXES } from '../../../utils/prefix.utils';
+import { SparqlSelectResult } from '@awg-graph/graph-visualizer/models/sparql-result.model';
+import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
+
 import { SELECT_TABLE_UTILS, toTableCell, toTableRows } from './select-table.utils';
 
 const { blankNode, literal, namedNode } = DataFactory;

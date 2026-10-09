@@ -6,7 +6,8 @@ import { SourceDesc, SourceDescDetails, SourceDescPhysDesc } from '@awg-views/ed
 import { AbbrDirective } from '@awg-views/edition-view/shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
 
-import { SourceSiglumComponent } from '../../source-siglum/source-siglum.component';
+import { SourceSiglumComponent } from '@awg-report/source-siglum/source-siglum.component';
+
 import { SourceDescContentsComponent } from '../source-desc-contents/source-desc-contents.component';
 import { SourceDescCorrectionsComponent } from '../source-desc-corrections/source-desc-corrections.component';
 import { SourceDescDetailsComponent } from '../source-desc-details/source-desc-details.component';

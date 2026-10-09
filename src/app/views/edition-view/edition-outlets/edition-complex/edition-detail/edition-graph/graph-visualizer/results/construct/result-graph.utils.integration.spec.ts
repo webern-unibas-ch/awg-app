@@ -6,10 +6,11 @@ import { expectToBe } from '@testing/expect-helper';
 
 import { GraphList } from '@awg-views/edition-view/models/graph.model';
 
-import { RdfTerm } from '../../models/rdf.model';
-import { ResultGraph } from '../../models/result-graph.model';
-import { DEFAULT_PREFIXES } from '../../utils/prefix.utils';
-import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '../../utils/term.utils';
+import { RdfTerm } from '@awg-graph/graph-visualizer/models/rdf.model';
+import { ResultGraph } from '@awg-graph/graph-visualizer/models/result-graph.model';
+import { DEFAULT_PREFIXES } from '@awg-graph/graph-visualizer/utils/prefix.utils';
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '@awg-graph/graph-visualizer/utils/term.utils';
+
 import { toResultGraph } from './result-graph.utils';
 
 import graphDataOp25 from 'assets/data/edition/series/1/section/5/op25/graph.json';
