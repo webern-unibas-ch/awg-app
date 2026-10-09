@@ -7,10 +7,10 @@ type Spy = ReturnType<typeof vi.spyOn>;
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { ModalComponent } from './modal.component';
-import { ModalData } from './modal.model';
+import { MODAL_DATA, ModalData } from './modal.model';
 
 describe('ModalComponent (DONE)', () => {
     let component: ModalComponent;
@@ -26,12 +26,16 @@ describe('ModalComponent (DONE)', () => {
     let expectedTextData: ModalData;
     let expectedImageData: ModalData;
 
-    beforeEach(async () => {
-        mockActiveModal = {
-            close: vi.fn(),
-            dismiss: vi.fn(),
-        };
-
+    /**
+     * Helper function: createModalFixture.
+     *
+     * It configures the TestBed with the given modal data
+     * (provided via the MODAL_DATA injection token)
+     * and creates the component fixture.
+     *
+     * @param {ModalData} modalData The given modal data.
+     */
+    async function createModalFixture(modalData: ModalData): Promise<void> {
         await TestBed.configureTestingModule({
             imports: [ModalComponent],
             providers: [
@@ -39,14 +43,27 @@ describe('ModalComponent (DONE)', () => {
                     provide: NgbActiveModal,
                     useValue: mockActiveModal,
                 },
+                {
+                    provide: MODAL_DATA,
+                    useValue: modalData,
+                },
             ],
         }).compileComponents();
-    });
 
-    beforeEach(() => {
         // Inject services
         mockDocument = TestBed.inject(DOCUMENT);
-        mockActiveModal = TestBed.inject(NgbActiveModal);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(ModalComponent);
+        component = fixture.debugElement.componentInstance;
+        compDe = fixture.debugElement;
+    }
+
+    beforeEach(async () => {
+        mockActiveModal = {
+            close: vi.fn(),
+            dismiss: vi.fn(),
+        };
 
         // Spies
         modalCloseSpy = vi.spyOn(mockActiveModal, 'close');
@@ -67,10 +84,7 @@ describe('ModalComponent (DONE)', () => {
             content: 'assets/img/test.png',
         };
 
-        // Create component fixture
-        fixture = TestBed.createComponent(ModalComponent);
-        component = fixture.debugElement.componentInstance;
-        compDe = fixture.debugElement;
+        await createModalFixture(expectedTextData);
     });
 
     afterEach(() => {
@@ -82,36 +96,8 @@ describe('ModalComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `modalData`', () => {
-            expect(component.modalData).toBeUndefined();
-        });
-
-        describe('VIEW', () => {
-            it('... should have no div.modal-header', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-header', 0, 0);
-            });
-
-            it('... should have no div.modal-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 0, 0);
-            });
-
-            it('... should have no div.modal-footer', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 0, 0);
-            });
-        });
-    });
-
-    describe('AFTER initial data binding', () => {
-        beforeEach(() => {
-            // Set the initial values for the signal inputs
-            fixture.componentRef.setInput('modalData', expectedTextData);
-
-            // Trigger initial data binding
-            fixture.detectChanges();
-        });
-
-        it('... should have `modalData`', () => {
-            expectToBe(component.modalData, expectedTextData);
+        it('... should have injected `modalData` to hold the provided modal data', () => {
+            expectToEqual(component.modalData, expectedTextData);
         });
 
         describe('VIEW', () => {
@@ -119,9 +105,36 @@ describe('ModalComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
             });
 
-            it('... should have h5.modal-title in div.modal-header', () => {
+            it('... should have one div.modal-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 1, 1);
+            });
+
+            it('... should have one div.modal-footer', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
+            });
+
+            it('... should not render the modal title yet', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header > h5.modal-title', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent.trim(), '');
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should have h5.modal-title with id `awg-modal-title` in div.modal-header', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
-                getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1);
+                const hDes = getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.id, 'awg-modal-title');
             });
 
             it('... should have dismiss button without label in div.modal-header', () => {
@@ -143,14 +156,6 @@ describe('ModalComponent (DONE)', () => {
                 await clickAndAwaitChanges(dismissBtnDes[0], fixture);
 
                 expectSpyCall(modalDismissSpy, 1);
-            });
-
-            it('... should have one div.modal-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-body', 1, 1);
-            });
-
-            it('... should have one div.modal-footer', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.modal-footer', 1, 1);
             });
 
             it('... should have one close button.awg-modal-button in div.modal-footer', () => {
@@ -183,15 +188,9 @@ describe('ModalComponent (DONE)', () => {
             });
 
             describe('with text content', () => {
-                beforeEach(() => {
-                    fixture.componentRef.setInput('modalData', expectedTextData);
-
-                    fixture.detectChanges();
-                });
-
                 it('... should render the modal title label', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.modal-header', 1, 1);
-                    const hDes = getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1); // H5 an dein neues Template angepasst
+                    const hDes = getAndExpectDebugElementByCss(divDes[0], 'h5.modal-title', 1, 1);
                     const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
                     expectToBe(hEl.textContent.trim(), expectedTextData.title);
@@ -216,8 +215,10 @@ describe('ModalComponent (DONE)', () => {
             });
 
             describe('with image content', () => {
-                beforeEach(() => {
-                    fixture.componentRef.setInput('modalData', expectedImageData);
+                beforeEach(async () => {
+                    // Recreate the component with image data
+                    TestBed.resetTestingModule();
+                    await createModalFixture(expectedImageData);
 
                     fixture.detectChanges();
                 });

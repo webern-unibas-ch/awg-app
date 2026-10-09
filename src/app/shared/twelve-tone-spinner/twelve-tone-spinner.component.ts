@@ -4,8 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
  * The TwelveToneSpinner component.
  *
  * It contains the loading spinner of the app
- * (an animated twelve tone cycle)
- * that is provided via the {@link SharedModule}.
+ * (an animated twelve tone cycle).
  */
 @Component({
     selector: 'awg-twelve-tone-spinner',

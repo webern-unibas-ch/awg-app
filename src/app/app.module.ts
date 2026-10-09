@@ -6,8 +6,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 //
-// Main app modules
-import { SharedModule } from '@awg-shared/shared.module';
+// Main app component
 import { AppComponent } from './app.component';
 
 // Core components
@@ -31,12 +30,11 @@ registerLocaleData(localeDeDE);
 /**
  * The bootstrapping app module.
  *
- * It embeds the {@link AppComponent} and its [routing definition]{@link AppRoutingModule},
- * the {@link SharedModule} and {@link SideInfoModule} as well as the {@link FooterComponent},
- * {@link NavbarComponent} and {@link ViewContainerComponent}.
+ * It embeds the {@link AppComponent} and its [routing definition]{@link AppRoutingModule}
+ * as well as the {@link FooterComponent}, {@link NavbarComponent} and {@link ViewContainerComponent}.
  */
 @NgModule({
-    imports: [BrowserModule, FooterComponent, NavbarComponent, ViewContainerComponent, SharedModule, AppRoutingModule],
+    imports: [BrowserModule, FooterComponent, NavbarComponent, ViewContainerComponent, AppRoutingModule],
     declarations: [AppComponent],
     providers: [
         Title,

@@ -1,4 +1,4 @@
-import { isSignal } from '@angular/core';
+import { Injector, isSignal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -9,7 +9,7 @@ import { ModalDismissReasons, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-boo
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { ModalComponent } from './modal.component';
-import { ModalData } from './modal.model';
+import { MODAL_DATA, ModalData } from './modal.model';
 import { ModalService } from './modal.service';
 
 describe('ModalService (DONE)', () => {
@@ -32,7 +32,6 @@ describe('ModalService (DONE)', () => {
     beforeEach(() => {
         // Mock NgbModal and NgbModalRef
         mockModalRef = {
-            componentInstance: {},
             result: new Promise(() => {}),
         };
 
@@ -125,22 +124,24 @@ describe('ModalService (DONE)', () => {
 
                     expectSpyCall(openModalSpy, 1, [
                         ModalComponent,
-                        {
+                        expect.objectContaining({
                             size: 'xl',
                             centered: true,
-                            ariaLabelledBy: 'awg-modal',
-                        },
+                            ariaLabelledBy: 'awg-modal-title',
+                        }),
                     ]);
                 });
             });
 
-            describe('... should pass modalData to componentInstance for', () => {
+            describe('... should provide modalData via MODAL_DATA in the modal injector for', () => {
                 it.each(modalCases)('... $type modal', ({ type }) => {
                     const expectedData = type === 'text' ? expectedTextModalData : expectedImageModalData;
 
                     service['_open'](expectedData);
 
-                    expectToEqual(mockModalRef.componentInstance.modalData, expectedData);
+                    const modalInjector: Injector = openModalSpy.mock.calls[0][1].injector;
+
+                    expectToEqual(modalInjector.get(MODAL_DATA), expectedData);
                 });
             });
 

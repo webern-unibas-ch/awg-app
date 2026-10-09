@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 /**
  * The ModalType type.
  *
@@ -31,3 +33,11 @@ export interface ModalData {
      */
     content: string;
 }
+
+/**
+ * The injection token for the modal data.
+ *
+ * It provides the {@link ModalData} to the ModalComponent
+ * via the injector of the opened modal.
+ */
+export const MODAL_DATA = new InjectionToken<ModalData>('MODAL_DATA');
