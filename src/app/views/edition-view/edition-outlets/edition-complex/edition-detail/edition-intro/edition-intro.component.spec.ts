@@ -18,17 +18,18 @@ import { mockEditionData } from '@testing/mock-data';
 import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
 import { LanguageId } from '@awg-shared/language-switcher/language.model';
 import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { EditionDataAssetsError, EditionViewDataContent } from '@awg-views/edition-view/models/edition-data.model';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 import { IntroList } from '@awg-views/edition-view/models/intro.model';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 import { EditionIntroContentComponent } from './edition-intro-content/edition-intro-content.component';
 import { EditionIntroNavComponent } from './edition-intro-nav/edition-intro-nav.component';
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer/edition-intro-partial-disclaimer.component';
-import { EditionComplexPlaceholderComponent } from '../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { EditionIntroScrollDirective } from './edition-intro-scroll/edition-intro-scroll.directive';
 import { EditionIntroComponent } from './edition-intro.component';
 

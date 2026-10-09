@@ -17,9 +17,8 @@ import { ButtonExpandAllComponent } from '@awg-shared/button-expand-all/button-e
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { Textcritics } from '@awg-views/edition-view/models/textcritics.model';
-
-import { EditionTkaEvaluationsComponent } from '../../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
-import { EditionTkaTableComponent } from '../../../edition-tka/edition-tka-table/edition-tka-table.component';
+import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
+import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
 
 import { SourceDescCorrectionsComponent } from './source-desc-corrections.component';
 

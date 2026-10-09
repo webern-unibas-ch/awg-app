@@ -6,11 +6,11 @@ import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twel
 
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 import { EditionIntroContentComponent } from './edition-intro-content/edition-intro-content.component';
 import { EditionIntroNavComponent } from './edition-intro-nav/edition-intro-nav.component';
 import { EditionIntroPartialDisclaimerComponent } from './edition-intro-partial-disclaimer/edition-intro-partial-disclaimer.component';
-import { EditionComplexPlaceholderComponent } from '../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { EditionIntroScrollDirective } from './edition-intro-scroll/edition-intro-scroll.directive';
 
 /**

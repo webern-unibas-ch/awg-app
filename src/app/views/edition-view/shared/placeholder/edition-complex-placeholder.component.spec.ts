@@ -7,13 +7,13 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import {
-    EDITION_COMPLEX_PLACEHOLDER_SUBJECTS,
-    EditionComplexPlaceholderType,
-} from '@awg-views/edition-view/models/edition-complex-placeholder.model';
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 
 import { EditionComplexPlaceholderComponent } from './edition-complex-placeholder.component';
+import {
+    EDITION_COMPLEX_PLACEHOLDER_SUBJECTS,
+    EditionComplexPlaceholderType,
+} from './edition-complex-placeholder.model';
 
 describe('EditionComplexPlaceholderComponent (DONE)', () => {
     let component: EditionComplexPlaceholderComponent;

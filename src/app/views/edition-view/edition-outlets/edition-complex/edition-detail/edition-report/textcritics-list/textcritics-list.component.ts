@@ -9,11 +9,10 @@ import { EDITION_UTILS } from '@awg-shared/utils/edition-utils';
 import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
 import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
 import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
-
-import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/edition-disclaimer-workeditions/edition-disclaimer-workeditions.component';
-import { EditionTkaEvaluationsComponent } from '../../edition-tka/edition-tka-evaluations/edition-tka-evaluations.component';
-import { EditionTkaLabelComponent } from '../../edition-tka/edition-tka-label/edition-tka-label.component';
-import { EditionTkaTableComponent } from '../../edition-tka/edition-tka-table/edition-tka-table.component';
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/shared/disclaimer/edition-disclaimer-workeditions.component';
+import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
 
 /**
  * The TextcriticsList component.

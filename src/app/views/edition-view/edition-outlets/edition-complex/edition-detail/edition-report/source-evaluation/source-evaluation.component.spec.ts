@@ -18,8 +18,8 @@ import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.dire
 
 import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
 import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
-import { EditionComplexPlaceholderComponent } from '../../../edition-complex-placeholder/edition-complex-placeholder.component';
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
 describe('SourceEvaluationComponent (DONE)', () => {

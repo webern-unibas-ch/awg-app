@@ -1,4 +1,20 @@
-import { TkaTableHeaderColumn } from '@awg-views/edition-view/models/tka-table-header.model';
+/**
+ * The TkaTableHeaderColumn interface.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a tka table header column.
+ */
+export interface TkaTableHeaderColumn {
+    /**
+     * The reference of the header column.
+     */
+    ref: string;
+
+    /**
+     * The label of the header column.
+     */
+    label: string;
+}
 
 /**
  * Object constant: TKA_TABLE_HEADERS.

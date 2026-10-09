@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+
 import {
     EDITION_COMPLEX_PLACEHOLDER_SUBJECTS,
     EditionComplexPlaceholderType,
-} from '@awg-views/edition-view/models/edition-complex-placeholder.model';
-import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+} from './edition-complex-placeholder.model';
 
 /**
  * The EditionComplexPlaceholder component.

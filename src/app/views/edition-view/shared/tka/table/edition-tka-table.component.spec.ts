@@ -21,12 +21,11 @@ import { AbbrDirective } from '@awg-shared/abbr/abbr.directive';
 import { CompileHtmlDirective } from '@awg-shared/compile-html/compile-html.directive';
 
 import { TextcriticalCommentary } from '@awg-views/edition-view/models/textcritics.model';
-import { TkaTableHeaderColumn } from '@awg-views/edition-view/models/tka-table-header.model';
 import { EditionGlyphService } from '@awg-views/edition-view/services/edition-glyph.service';
 import { EditionSnippetService } from '@awg-views/edition-view/services/edition-snippet.service';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
-import { TKA_TABLE_HEADERS } from './edition-tka-table.data';
+import { TKA_TABLE_HEADERS, TkaTableHeaderColumn } from './edition-tka-table.model';
 
 describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;

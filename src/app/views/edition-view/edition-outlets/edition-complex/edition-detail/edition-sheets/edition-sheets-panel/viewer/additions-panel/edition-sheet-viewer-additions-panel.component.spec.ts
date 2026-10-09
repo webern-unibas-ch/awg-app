@@ -16,7 +16,7 @@ import {
 import { FormSwitchComponent } from '@awg-shared/form-switch/form-switch.component';
 
 import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay.model';
-import { EditionTkaLabelComponent } from '../../../../edition-tka/edition-tka-label/edition-tka-label.component';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
 
 import { EditionSheetViewerAdditionsPanelComponent } from './edition-sheet-viewer-additions-panel.component';
 import { EditionSheetViewerAdditionsPanelChange } from './edition-sheet-viewer-additions-panel.model';
