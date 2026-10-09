@@ -11,7 +11,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { AppConfig } from '@awg-app/app.config';
+import { AppConstants } from '@awg-app/app.constants';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
@@ -54,8 +54,8 @@ describe('ContactSideInfoComponent (DONE)', () => {
         expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
 
         // Link values for open streets map
-        expectedUnsafeEmbedUrl = AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL;
-        expectedLinkUrl = AppConfig.CONTACT_MAP_LINK_URL;
+        expectedUnsafeEmbedUrl = AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL;
+        expectedLinkUrl = AppConstants.CONTACT_MAP_LINK_URL;
 
         // Trust the unsafe values
         expectedEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeEmbedUrl);

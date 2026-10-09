@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { AppConfig } from '@awg-app/app.config';
+import { AppConstants } from '@awg-app/app.constants';
 import { META_DATA } from '@awg-shared/meta/meta.data';
 import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
@@ -56,7 +56,7 @@ export class ContactSideInfoComponent {
      * It keeps the sanitized link to embed the map.
      */
     readonly mapEmbedUrl: SafeResourceUrl = this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL
+        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
     ); // NOSONAR: URL is a static, trusted source
 
     /**
@@ -64,5 +64,5 @@ export class ContactSideInfoComponent {
      *
      * It keeps the link to the external map page.
      */
-    readonly mapLinkUrl = AppConfig.CONTACT_MAP_LINK_URL;
+    readonly mapLinkUrl = AppConstants.CONTACT_MAP_LINK_URL;
 }

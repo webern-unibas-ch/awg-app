@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { AppConfig } from '@awg-app/app.config';
+import { AppConstants } from '@awg-app/app.constants';
 
 import { ContactMapComponent } from './contact-map.component';
 
@@ -44,8 +44,8 @@ describe('ContactMapComponent (DONE)', () => {
         };
 
         // Unsafe link values for open streets map
-        expectedUnsafeEmbedUrl = AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL;
-        expectedLinkUrl = AppConfig.CONTACT_MAP_LINK_URL;
+        expectedUnsafeEmbedUrl = AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL;
+        expectedLinkUrl = AppConstants.CONTACT_MAP_LINK_URL;
 
         // Trust the unsafe values
         expectedEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeEmbedUrl);

@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
-import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { HOME_VIEW_ROUTES } from '@awg-views/home-view/home-view.routes';
 
-/* Routes of the AppModule */
-const APP_ROUTES: Routes = [
+/**
+ * The routes of the app.
+ *
+ * The home view is loaded eagerly, all other views are lazy-loaded.
+ */
+export const APP_ROUTES: Routes = [
     // Default route
     {
         path: '',
@@ -53,25 +56,3 @@ const APP_ROUTES: Routes = [
         pathMatch: 'full',
     },
 ];
-
-/**
- * Options for the app routes.
- */
-const APP_ROUTER_OPTIONS: ExtraOptions = {
-    anchorScrolling: 'enabled',
-    onSameUrlNavigation: 'reload',
-    scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules,
-    bindToComponentInputs: true,
-};
-
-/**
- * Main app module routing.
- *
- * It activates the APP_ROUTES, esp. lazy-loaded View Modules.
- */
-@NgModule({
-    imports: [RouterModule.forRoot(APP_ROUTES, APP_ROUTER_OPTIONS)],
-    exports: [RouterModule],
-})
-export class AppRoutingModule {}
