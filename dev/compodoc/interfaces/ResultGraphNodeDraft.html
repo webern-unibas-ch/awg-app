@@ -342,9 +342,14 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import type { Quad } from &#x27;@rdfjs/types&#x27;;
 
-import { ResultGraph, ResultGraphEdge, ResultGraphNode, ResultNodeKind } from &#x27;../../models/result-graph.model&#x27;;
-import { PrefixMap, RdfTerm } from &#x27;../../models/rdf.model&#x27;;
-import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from &#x27;../../utils/term.utils&#x27;;
+import { PrefixMap, RdfTerm } from &#x27;@awg-graph/graph-visualizer/models/rdf.model&#x27;;
+import {
+    ResultGraph,
+    ResultGraphEdge,
+    ResultGraphNode,
+    ResultNodeKind,
+} from &#x27;@awg-graph/graph-visualizer/models/result-graph.model&#x27;;
+import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from &#x27;@awg-graph/graph-visualizer/utils/term.utils&#x27;;
 
 /**
  * The ResultGraphNodeDraft interface.
