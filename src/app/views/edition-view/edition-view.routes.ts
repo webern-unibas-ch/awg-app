@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { editionComplexGuard } from './edition-outlets/edition-complex/edition-complex.guard';
@@ -8,8 +7,10 @@ import { EditionOutlineComponent } from './edition-outlets/edition-outline/editi
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewComponent } from './edition-view.component';
 
-/* Routes of the EditionViewModule */
-const EDITION_VIEW_ROUTES: Routes = [
+/**
+ * The routes for the edition view.
+ */
+export const EDITION_VIEW_ROUTES: Routes = [
     {
         path: '',
         outlet: 'side',
@@ -106,14 +107,3 @@ const EDITION_VIEW_ROUTES: Routes = [
         ],
     },
 ];
-
-/**
- * EditionView module routing.
- *
- * It activates the EDITION_VIEW_ROUTES.
- */
-@NgModule({
-    imports: [RouterModule.forChild(EDITION_VIEW_ROUTES)],
-    exports: [RouterModule],
-})
-export class EditionViewRoutingModule {}

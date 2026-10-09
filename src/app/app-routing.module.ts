@@ -23,7 +23,7 @@ const APP_ROUTES: Routes = [
     },
     {
         path: 'edition',
-        loadChildren: () => import('@awg-views/edition-view/edition-view.module').then(m => m.EditionViewModule),
+        loadChildren: () => import('@awg-views/edition-view/edition-view.routes').then(m => m.EDITION_VIEW_ROUTES),
     },
     {
         path: 'editions',
