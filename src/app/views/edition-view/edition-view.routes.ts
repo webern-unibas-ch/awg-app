@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { editionComplexGuard } from './edition-outlets/edition-complex/edition-complex.guard';
+import { editionComplexResolver } from './edition-outlets/edition-complex/edition-complex.resolver';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
@@ -61,6 +62,7 @@ export const EDITION_VIEW_ROUTES: Routes = [
                 // ComplexID (op12, m34, etc.).
                 path: 'complex/:complexId',
                 canMatch: [editionComplexGuard],
+                resolve: { complex: editionComplexResolver },
                 component: EditionComplexComponent,
                 children: [
                     {
