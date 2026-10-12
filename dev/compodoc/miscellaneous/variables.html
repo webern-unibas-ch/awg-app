@@ -146,7 +146,10 @@
                             <a href="#analyticsStore" title="src/testing/mock-helper/mock-analytics.ts" ><b>analyticsStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-analytics.ts)</a>
                         </li>
                         <li>
-                            <a href="#APP_ROUTER_OPTIONS" title="src/app/app-routing.module.ts" ><b>APP_ROUTER_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../app-routing.module.ts)</a>
+                            <a href="#APP_ROUTES" title="src/app/app.routes.ts" ><b>APP_ROUTES</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
                         </li>
                         <li>
                             <a href="#appHomepage" title="src/app/app.globals.ts" ><b>appHomepage</b>&nbsp;&nbsp;&nbsp;(src/.../app.globals.ts)</a>
@@ -270,6 +273,9 @@
                         </li>
                         <li>
                             <a href="#editionComplexGuard" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.guard.ts" ><b>editionComplexGuard</b>&nbsp;&nbsp;&nbsp;(src/.../edition-complex.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#editionComplexResolver" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.resolver.ts" ><b>editionComplexResolver</b>&nbsp;&nbsp;&nbsp;(src/.../edition-complex.resolver.ts)</a>
                         </li>
                         <li>
                             <a href="#EMPTY_GRAPH_DATA" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/graph-results-construct.component.ts" ><b>EMPTY_GRAPH_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../graph-results-construct.component.ts)</a>
@@ -844,40 +850,141 @@ ensure that longer abbreviations are matched first.</p>
         </tbody>
     </table>
 </section>
-    <h3>src/app/app-routing.module.ts</h3>
+    <h3>src/app/app.routes.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="APP_ROUTER_OPTIONS"></a>
+                    <a name="APP_ROUTES"></a>
                     <span class="name">
-                        <span ><b>APP_ROUTER_OPTIONS</b></span>
-                        <a href="#APP_ROUTER_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>APP_ROUTES</b></span>
+                        <a href="#APP_ROUTES"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/router/ExtraOptions" target="_blank" >ExtraOptions</a></code>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/Routes" target="_blank" >Routes</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    // Default route
+    {
+        path: &#x27;&#x27;,
+        redirectTo: &#x27;home&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
+    {
+        path: &#x27;&#x27;,
+        children: HOME_VIEW_ROUTES,
+    },
+
+    // Lazy loaded routes
+    {
+        path: &#x27;contact&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.routes&#x27;).then(m &#x3D;&gt; m.CONTACT_VIEW_ROUTES)&quot;,
+    },
+    {
+        path: &#x27;edition&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/edition-view/edition-view.routes&#x27;).then(m &#x3D;&gt; m.EDITION_VIEW_ROUTES)&quot;,
+    },
+    {
+        path: &#x27;editions&#x27;,
+        redirectTo: &#x27;edition&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
+    {
+        path: &#x27;statistics&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/statistics-view/statistics-view.routes&#x27;).then(m &#x3D;&gt; m.STATISTICS_VIEW_ROUTES)&quot;,
+    },
+    {
+        path: &#x27;structure&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/structure-view/structure-view.routes&#x27;).then(m &#x3D;&gt; m.STRUCTURE_VIEW_ROUTES)&quot;,
+    },
+
+    // Fallback routes
+    {
+        path: &#x27;404&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/page-not-found-view/page-not-found-view.routes&#x27;).then(m &#x3D;&gt; m.PAGE_NOT_FOUND_VIEW_ROUTES)&quot;,
+    },
+    {
+        path: &#x27;**&#x27;,
+        redirectTo: &#x27;404&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The routes of the app.</p>
+<p>The home view is loaded eagerly, all other views are lazy-loaded.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
 
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    anchorScrolling: &#x27;enabled&#x27;,
-    onSameUrlNavigation: &#x27;reload&#x27;,
-    scrollPositionRestoration: &#x27;enabled&#x27;,
-    preloadingStrategy: PreloadAllModules,
-    bindToComponentInputs: true,
+    providers: [
+        provideZoneChangeDetection(),
+        provideRouter(
+            APP_ROUTES,
+            withComponentInputBinding(),
+            withInMemoryScrolling({ anchorScrolling: &#x27;enabled&#x27;, scrollPositionRestoration: &#x27;enabled&#x27; }),
+            withPreloading(PreloadAllModules),
+            withRouterConfig({ onSameUrlNavigation: &#x27;reload&#x27; })
+        ),
+        provideHttpClient(withInterceptors([loadingInterceptor])),
+        { provide: LOCALE_ID, useValue: &#x27;de-DE&#x27; }, // Change global LOCALE-ID
+        provideAppInitializer(() &#x3D;&gt; {
+            const editionOutlineService &#x3D; inject(EditionOutlineService);
+            const editionComplexesService &#x3D; inject(EditionComplexesService);
+
+            editionComplexesService.initializeEditionComplexesList();
+            editionOutlineService.initializeEditionOutline();
+        }),
+    ],
 }</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Options for the app routes.</p>
+                    <div class="io-description"><p>The application config.</p>
+<p>It provides the app-wide providers for the bootstrapping
+of the <a href="../components/AppComponent.html">AppComponent</a>: change detection, router (with the <a href="../miscellaneous/variables.html#APP_ROUTES">APP_ROUTES</a>),
+http client (with loading interceptor), locale and the initialization of the edition data.</p>
 </div>
                 </td>
             </tr>
@@ -938,7 +1045,7 @@ ensure that longer abbreviations are matched first.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-307-gf4f41da8a&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-308-g113839f74&#x27;</code>
                     </td>
                 </tr>
 
@@ -970,7 +1077,7 @@ ensure that longer abbreviations are matched first.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-10-09&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-10-12&#x27;</code>
                     </td>
                 </tr>
 
@@ -4264,6 +4371,7 @@ to define the available labels for the edition types.</p>
                 // ComplexID (op12, m34, etc.).
                 path: &#x27;complex/:complexId&#x27;,
                 canMatch: [editionComplexGuard],
+                resolve: { complex: editionComplexResolver },
                 component: EditionComplexComponent,
                 children: [
                     {
@@ -4360,6 +4468,55 @@ to define the available labels for the edition types.</p>
                     <div class="io-description"><p>Guard: editionComplexGuard.</p>
 <p>It lets the route <code>complex/:complexId</code> only match for known edition complexes
 and redirects unknown complex ids to the 404 page.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionComplexResolver"></a>
+                    <span class="name">
+                        <span ><b>editionComplexResolver</b></span>
+                        <a href="#editionComplexResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>miscellaneous</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>route &#x3D;&gt; {
+    const editionComplexesService &#x3D; inject(EditionComplexesService);
+    const editionStateService &#x3D; inject(EditionStateService);
+
+    const complexId &#x3D; route.paramMap.get(&#x27;complexId&#x27;) ?? &#x27;&#x27;;
+    const complex &#x3D; complexId ? (editionComplexesService.getEditionComplexById(complexId) ?? null) : null;
+
+    editionStateService.updateSelectedEditionComplex(complex);
+
+    return complex;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resolver: editionComplexResolver.</p>
+<p>It resolves the edition complex of the route <code>complex/:complexId</code>
+and sets it as selected edition complex in the EditionStateService.</p>
+<p>The state is updated during the navigation (before the routed components are activated),
+so that all complex-dependent data is reset before any view reacts to the new complex.</p>
 </div>
                 </td>
             </tr>
@@ -5408,18 +5565,18 @@ It automatically handles request completion, errors, and cancellations.</p>
                         <i>Default value : </i><code>{
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
-    awgAppUrl: AppConfig.AWG_APP_URL,
-    awgAppDevUrl: AppConfig.AWG_APP_URL + &#x27;/dev/&#x27;,
-    awgAppGithubUrl: AppConfig.AWG_APP_GITHUB_URL,
-    awgAppVersion: AppConfig.AWG_APP_VERSION,
-    awgAppVersionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
-    awgAppZenodoUrl: AppConfig.AWG_APP_ZENODO_URL,
-    awgProjectUrl: AppConfig.AWG_PROJECT_URL,
-    awgProjectName: AppConfig.AWG_PROJECT_NAME,
-    compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
-    daschUrl: AppConfig.DASCH_URL,
-    deepWikiUrl: AppConfig.DEEP_WIKI_URL,
-    dhlabUrl: AppConfig.DHLAB_URL,
+    awgAppUrl: AppConstants.AWG_APP_URL,
+    awgAppDevUrl: AppConstants.AWG_APP_URL + &#x27;/dev/&#x27;,
+    awgAppGithubUrl: AppConstants.AWG_APP_GITHUB_URL,
+    awgAppVersion: AppConstants.AWG_APP_VERSION,
+    awgAppVersionReleaseDate: AppConstants.AWG_APP_VERSION_RELEASE_DATE,
+    awgAppZenodoUrl: AppConstants.AWG_APP_ZENODO_URL,
+    awgProjectUrl: AppConstants.AWG_PROJECT_URL,
+    awgProjectName: AppConstants.AWG_PROJECT_NAME,
+    compodocUrl: AppConstants.AWG_APP_COMPODOC_URL,
+    daschUrl: AppConstants.DASCH_URL,
+    deepWikiUrl: AppConstants.DEEP_WIKI_URL,
+    dhlabUrl: AppConstants.DHLAB_URL,
 } as const</code>
                     </td>
                 </tr>
@@ -8436,7 +8593,7 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
                         <i>Default value : </i><code>{
     thomas_ahrend: {
         name: &#x27;Thomas Ahrend&#x27;,
-        homepage: AppConfig.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
+        homepage: AppConstants.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
         identifiers: {
             gnd: &#x27;129772429&#x27;,
             viaf: &#x27;74941235&#x27;,
@@ -8444,7 +8601,7 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
     },
     michael_matter: {
         name: &#x27;Michael Matter&#x27;,
-        homepage: AppConfig.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
+        homepage: AppConstants.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
         identifiers: {
             gnd: &#x27;1069569267&#x27;,
             viaf: &#x27;256375308&#x27;,
@@ -8452,7 +8609,7 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
     },
     stefan_muennich: {
         name: &#x27;Stefan Münnich&#x27;,
-        homepage: AppConfig.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
+        homepage: AppConstants.AWG_PROJECT_URL + &#x27;de/projekt/mitarbeitende.html&#x27;,
         identifiers: {
             gnd: &#x27;1068032472&#x27;,
             orcid: &#x27;0000-0002-0744-5374&#x27;,

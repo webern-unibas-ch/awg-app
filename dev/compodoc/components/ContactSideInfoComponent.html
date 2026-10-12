@@ -413,7 +413,7 @@ showing contact information and a map.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL
+        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
     )</code>
                     </td>
                 </tr>
@@ -453,7 +453,7 @@ showing contact information and a map.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConfig.CONTACT_MAP_LINK_URL</code>
+                        <i>Default value : </i><code>AppConstants.CONTACT_MAP_LINK_URL</code>
                     </td>
                 </tr>
                     <tr>
@@ -520,7 +520,7 @@ showing contact information and a map.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
-import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
 import { META_DATA } from &#x27;@awg-shared/meta/meta.data&#x27;;
 import { MetaSectionTypes } from &#x27;@awg-shared/meta/meta.model&#x27;;
 
@@ -575,7 +575,7 @@ export class ContactSideInfoComponent {
      * It keeps the sanitized link to embed the map.
      */
     readonly mapEmbedUrl: SafeResourceUrl &#x3D; this._sanitizer.bypassSecurityTrustResourceUrl(
-        AppConfig.CONTACT_MAP_UNSAFE_EMBED_URL
+        AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL
     ); // NOSONAR: URL is a static, trusted source
 
     /**
@@ -583,7 +583,7 @@ export class ContactSideInfoComponent {
      *
      * It keeps the link to the external map page.
      */
-    readonly mapLinkUrl &#x3D; AppConfig.CONTACT_MAP_LINK_URL;
+    readonly mapLinkUrl &#x3D; AppConstants.CONTACT_MAP_LINK_URL;
 }
 </code></pre>
     </div>

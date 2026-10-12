@@ -164,6 +164,10 @@ and <a href="../components/LogoComponent.html">LogoComponent</a>.</p>
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -283,7 +287,7 @@ and <a href="../components/LogoComponent.html">LogoComponent</a>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer.component.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/core/footer/footer.component.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -322,7 +326,7 @@ and <a href="../components/LogoComponent.html">LogoComponent</a>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/core/footer/footer.component.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/footer/footer.component.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -342,7 +346,7 @@ and <a href="../components/LogoComponent.html">LogoComponent</a>.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 
 import { LogoComponent } from &#x27;@awg-shared/logos/logo.component&#x27;;
 import { LOGOS_DATA } from &#x27;@awg-shared/logos/logos.data&#x27;;
@@ -366,6 +370,7 @@ import { FooterPoweredbyComponent } from &#x27;./footer-poweredby/footer-powered
     selector: &#x27;awg-footer&#x27;,
     templateUrl: &#x27;./footer.component.html&#x27;,
     styleUrls: [&#x27;./footer.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })
 export class FooterComponent {

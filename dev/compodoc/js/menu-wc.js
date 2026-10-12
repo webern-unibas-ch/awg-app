@@ -63,47 +63,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
 
                     </ul>
                 </li>
-                    <li class="chapter modules">
-                        <a data-type="chapter-link" href="modules.html">
-                            <div class="menu-toggler linked" data-bs-toggle="collapse" ${ isNormalMode ?
-                                'data-bs-target="#modules-links"' : 'data-bs-target="#xs-modules-links"' }>
-                                <span class="icon ion-ios-archive"></span>
-                                <span class="link-name">Modules</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                        </a>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
-                            <li class="link">
-                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' : 'data-bs-target="#xs-components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' :
-                                            'id="xs-components-links-module-AppModule-0eaf488906ca5dd6584087cdd70010d71867dad68ad032001f1efd76406d2be4eb749fcd52c5f91b24ca57db6b173e3499f8bb40a780748e51190a66a7fac646"' }>
-                                            <li class="link">
-                                                <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/NavbarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavbarComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ViewContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ViewContainerComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                            <li class="link">
-                                <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
-                            </li>
-                </ul>
-                </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#components-links"' :
                             'data-bs-target="#xs-components-links"' }>
@@ -117,6 +76,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/AlertInfoComponent.html" data-type="entity-link" >AlertInfoComponent</a>
+                            </li>
+                            <li class="link">
+                                <a href="components/AppComponent.html" data-type="entity-link" >AppComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ButtonExpandAllComponent.html" data-type="entity-link" >ButtonExpandAllComponent</a>
@@ -547,7 +509,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/AppConfig.html" data-type="entity-link" >AppConfig</a>
+                                <a href="classes/AppConstants.html" data-type="entity-link" >AppConstants</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>

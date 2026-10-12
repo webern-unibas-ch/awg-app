@@ -415,7 +415,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConfig.ANALYTICS_ENDPOINT</code>
+                        <i>Default value : </i><code>AppConstants.ANALYTICS_ENDPOINT</code>
                     </td>
                 </tr>
                     <tr>
@@ -455,7 +455,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConfig.ANALYTICS_ID</code>
+                        <i>Default value : </i><code>AppConstants.ANALYTICS_ID</code>
                     </td>
                 </tr>
                     <tr>
@@ -603,7 +603,7 @@ PRODUCTION: TRUE</p>
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT, inject, Injectable } from &#x27;@angular/core&#x27;;
 
-import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
 
 import { environment } from &#x27;environments/environment&#x27;;
 
@@ -652,14 +652,14 @@ export class AnalyticsService {
      * It stores the analytics id.
      *
      */
-    private readonly _analyticsId: string &#x3D; AppConfig.ANALYTICS_ID;
+    private readonly _analyticsId: string &#x3D; AppConstants.ANALYTICS_ID;
 
     /**
      * Private readonly variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private readonly _analyticsEndpoint: string &#x3D; AppConfig.ANALYTICS_ENDPOINT;
+    private readonly _analyticsEndpoint: string &#x3D; AppConstants.ANALYTICS_ENDPOINT;
 
     /**
      * Private readonly variable: _sendPageView.

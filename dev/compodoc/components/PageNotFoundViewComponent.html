@@ -291,7 +291,7 @@ with redirects to the AWG contact pages.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>AppConfig.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;</code>
+                        <i>Default value : </i><code>AppConstants.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -477,7 +477,7 @@ of the page not found view.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
 import { RouterLink, RouterLinkActive } from &#x27;@angular/router&#x27;;
 
-import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+import { AppConstants } from &#x27;@awg-app/app.constants&#x27;;
 import { ExternalLinkDirective } from &#x27;@awg-shared/external-link/external-link.directive&#x27;;
 import { HeadingComponent } from &#x27;@awg-shared/heading/heading.component&#x27;;
 
@@ -530,7 +530,7 @@ export class PageNotFoundViewComponent {
      *
      * It keeps the url to the contact page of the Webern project homepage.
      */
-    readonly AWG_CONTACT_URL &#x3D; AppConfig.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;;
+    readonly AWG_CONTACT_URL &#x3D; AppConstants.AWG_PROJECT_URL + &#x27;de/info/kontakt.html&#x27;;
 }
 </code></pre>
     </div>
