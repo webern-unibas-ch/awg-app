@@ -1,0 +1,1 @@
+import{Cr as x}from"./chunk-DMq3qlna.js";var i=(()=>{class t{constructor(){this.animation=!0}static{this.ɵfac=function(o){return new(o||t)}}static{this.ɵprov=x({token:t,factory:t.ɵfac,providedIn:`root`})}}return t})();export{i as t};
