@@ -159,7 +159,7 @@ describe('CodeMirrorComponent (DONE)', () => {
                     expect(component.init).toBeDefined();
                 });
 
-                it('... should be triggered on ngAfterViewInit', () => {
+                it('... should be triggered after the first rendering', () => {
                     expectSpyCall(initSpy, 1);
                 });
 
@@ -257,9 +257,13 @@ describe('CodeMirrorComponent (DONE)', () => {
         });
     });
 
-    describe('#ngAfterViewInit()', () => {
-        it('... should have a method `ngAfterViewInit`', () => {
-            expect(component.ngAfterViewInit).toBeDefined();
+    describe('... editor initialization after the first rendering', () => {
+        it('... should not init the editor before the first rendering', () => {
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
+
+            expectSpyCall(initSpy, 0);
+            expect(component['_editor']).toBeUndefined();
         });
 
         it('... should init the editor with a state holding the provided content', () => {

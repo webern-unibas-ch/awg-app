@@ -11,7 +11,7 @@
  ************************************************/
 
 import {
-    AfterViewInit,
+    afterNextRender,
     ChangeDetectionStrategy,
     Component,
     DestroyRef,
@@ -42,7 +42,7 @@ import { CmMode, createEditorState } from './codemirror.utils';
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CodeMirrorComponent implements AfterViewInit {
+export class CodeMirrorComponent {
     /**
      * Private readonly injection variable: _destroyRef.
      *
@@ -83,10 +83,15 @@ export class CodeMirrorComponent implements AfterViewInit {
     /**
      * Constructor of the CodeMirrorComponent.
      *
-     * It syncs external content changes into the editor
+     * It initializes the editor view after the first rendering,
+     * syncs external content changes into the editor
      * and destroys the editor view on component destroy.
      */
     constructor() {
+        afterNextRender(() => {
+            this.init(createEditorState(this.mode(), this.content(), content => this.onContentChange(content)));
+        });
+
         effect(() => {
             const content = this.content();
             if (this._editor && content !== this._editor.state.doc.toString()) {
@@ -101,17 +106,6 @@ export class CodeMirrorComponent implements AfterViewInit {
         });
 
         this._destroyRef.onDestroy(() => this._editor?.destroy());
-    }
-
-    /**
-     * Angular life cycle hook: ngAfterViewInit.
-     *
-     * It initializes the editor view after initializing the view.
-     * The editor is created in this hook (and not in an afterRender hook)
-     * so that its DOM listeners run inside the NgZone.
-     */
-    ngAfterViewInit(): void {
-        this.init(createEditorState(this.mode(), this.content(), content => this.onContentChange(content)));
     }
 
     /**
