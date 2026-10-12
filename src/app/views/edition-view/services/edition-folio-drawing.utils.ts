@@ -417,8 +417,9 @@ function calculateContentSegmentY(
         systemIndex = lines.length - 1 - systemIndex;
     }
     const systemLines = lines[systemIndex];
+    const systemLine = isStart ? systemLines?.at(0) : systemLines?.at(-1);
 
-    if (!systemLines || systemLines.length === 0) {
+    if (!systemLine) {
         throw new Error(
             `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
         );
@@ -431,7 +432,7 @@ function calculateContentSegmentY(
         relativeOffset = -CONTENT_SEGMENT_RELATIVE_TO_SYSTEM_OFFSET;
     }
 
-    const yValue = isStart ? systemLines[0].start.y : systemLines[systemLines.length - 1].end.y;
+    const yValue = isStart ? systemLine.start.y : systemLine.end.y;
     const correction = verticalPadding * (isStart ? -1 : 1) + relativeOffset;
 
     return NUMBER_UTILS.roundToDecimals(yValue + correction, 2);
