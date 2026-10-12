@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 import {
     EditionOutlineComplexItem,
     EditionOutlineComplexTypes,
+    EditionOutlineSeries,
 } from '@awg-views/edition-view/models/edition-outline.model';
 
 import {
