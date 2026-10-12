@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -118,58 +125,118 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Dependencies</li>
     </ol>
-    <ul class="dependencies-list">
-        <li>
-            <b>@angular/common</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/compiler</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/core</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/forms</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/localize</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/platform-browser</b> : ^22.2.2</li>
-        <li>
-            <b>@angular/router</b> : ^22.2.2</li>
-        <li>
-            <b>@codemirror/legacy-modes</b> : ^6.5.4</li>
-        <li>
-            <b>@fortawesome/angular-fontawesome</b> : ^5.1.0</li>
-        <li>
-            <b>@fortawesome/free-solid-svg-icons</b> : ^7.3.1</li>
-        <li>
-            <b>@ng-bootstrap/ng-bootstrap</b> : ^21.0.0</li>
-        <li>
-            <b>@popperjs/core</b> : ^2.11.8</li>
-        <li>
-            <b>bootstrap</b> : ^5.3.8</li>
-        <li>
-            <b>codemirror</b> : ^6.0.2</li>
-        <li>
-            <b>d3-drag</b> : ^3.0.0</li>
-        <li>
-            <b>d3-fetch</b> : ^3.0.1</li>
-        <li>
-            <b>d3-force</b> : ^3.0.0</li>
-        <li>
-            <b>d3-selection</b> : ^3.0.0</li>
-        <li>
-            <b>d3-zoom</b> : ^3.0.0</li>
-        <li>
-            <b>n3</b> : ^2.13.8</li>
-        <li>
-            <b>ngx-json-viewer</b> : ^3.2.1</li>
-        <li>
-            <b>rdfstore</b> : musicEnfanthen/rdfstore-js#v0.9.18-alpha.21</li>
-        <li>
-            <b>rxjs</b> : ~7.8.2</li>
-        <li>
-            <b>stream</b> : ^0.0.3</li>
-        <li>
-            <b>tslib</b> : ^2.8.1</li>
-    </ul>
+    <div class="dependencies-table-wrapper">
+        <table class="table table-sm table-bordered dependencies-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>@angular/common</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/compiler</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/core</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/forms</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/localize</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/platform-browser</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@angular/router</b></td>
+                    <td>^22.2.2</td>
+                </tr>
+                <tr>
+                    <td><b>@codemirror/legacy-modes</b></td>
+                    <td>^6.5.4</td>
+                </tr>
+                <tr>
+                    <td><b>@fortawesome/angular-fontawesome</b></td>
+                    <td>^5.1.0</td>
+                </tr>
+                <tr>
+                    <td><b>@fortawesome/free-solid-svg-icons</b></td>
+                    <td>^7.3.1</td>
+                </tr>
+                <tr>
+                    <td><b>@ng-bootstrap/ng-bootstrap</b></td>
+                    <td>^21.0.0</td>
+                </tr>
+                <tr>
+                    <td><b>@popperjs/core</b></td>
+                    <td>^2.11.8</td>
+                </tr>
+                <tr>
+                    <td><b>bootstrap</b></td>
+                    <td>^5.3.8</td>
+                </tr>
+                <tr>
+                    <td><b>codemirror</b></td>
+                    <td>^6.0.2</td>
+                </tr>
+                <tr>
+                    <td><b>d3-drag</b></td>
+                    <td>^3.0.0</td>
+                </tr>
+                <tr>
+                    <td><b>d3-fetch</b></td>
+                    <td>^3.0.1</td>
+                </tr>
+                <tr>
+                    <td><b>d3-force</b></td>
+                    <td>^3.0.0</td>
+                </tr>
+                <tr>
+                    <td><b>d3-selection</b></td>
+                    <td>^3.0.0</td>
+                </tr>
+                <tr>
+                    <td><b>d3-zoom</b></td>
+                    <td>^3.0.0</td>
+                </tr>
+                <tr>
+                    <td><b>n3</b></td>
+                    <td>^2.13.8</td>
+                </tr>
+                <tr>
+                    <td><b>ngx-json-viewer</b></td>
+                    <td>^3.2.1</td>
+                </tr>
+                <tr>
+                    <td><b>rdfstore</b></td>
+                    <td>musicEnfanthen/rdfstore-js#v0.9.18-alpha.21</td>
+                </tr>
+                <tr>
+                    <td><b>rxjs</b></td>
+                    <td>~7.8.2</td>
+                </tr>
+                <tr>
+                    <td><b>stream</b></td>
+                    <td>^0.0.3</td>
+                </tr>
+                <tr>
+                    <td><b>tslib</b></td>
+                    <td>^2.8.1</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
@@ -209,6 +276,24 @@
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -224,7 +309,6 @@
        <script src="./js/libs/lit-html.js"></script>
 
        <script src="./js/menu-wc.js" defer></script>
-       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

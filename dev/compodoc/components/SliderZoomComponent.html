@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -111,10 +118,19 @@
   SliderZoomComponent</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/zoom/slider-zoom.component.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" class="nav-link"
@@ -125,20 +141,17 @@
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
         <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
             <a href="#tree" class="nav-link"
                 role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/shared/zoom/slider-zoom.component.ts</code>
-</p>
-
-
+    <div class="tab-pane fade active in" id="info">
     <p class="comment">
         <h3>Description</h3>
     </p>
@@ -151,6 +164,11 @@ and a button to reset the zoom.</p>
 
 
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
 
 <section data-compodoc="block-metadata">
     <h3>Metadata</h3>
@@ -177,12 +195,22 @@ and a button to reset the zoom.</p>
                 <td class="col-md-9"><code>awg-slider-zoom</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>FaIconComponent</code>
+                        <div>    <code>FaIconComponent</code>
+</div>
                 </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./slider-zoom.component.scss</code></td>
             </tr>
 
 
@@ -208,67 +236,98 @@ and a button to reset the zoom.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-index">
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/EditionSheetViewerComponent.html" target="_self" >EditionSheetViewerComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ForceGraphComponent.html" target="_self" >ForceGraphComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                        <code>FaIconComponent</code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#faCompressArrowsAlt" >faCompressArrowsAlt</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Inputs</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
-                                <a href="#zoomConfig" >zoomConfig</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#zoomConfig" >zoomConfig</a>
                             </li>
                             <li>
-                                <a href="#zoomValue" >zoomValue</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#zoomValue" >zoomValue</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Outputs</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
-                                <a href="#resetRequest" >resetRequest</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">O</span><a href="#resetRequest" >resetRequest</a>
                             </li>
                             <li>
-                                <a href="#zoomValue" >zoomValue</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">O</span><a href="#zoomValue" >zoomValue</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -342,6 +401,7 @@ Changes by the user are emitted via <code>zoomValueChange</code>.</p>
             </tbody>
         </table>
 </section>
+
     <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -402,6 +462,7 @@ Changes by the user are emitted via <code>zoomValueChange</code>.</p>
             </tbody>
         </table>
 </section>
+
 
 
 
@@ -534,6 +595,119 @@ export class SliderZoomComponent {
 </code></pre>
     </div>
 
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./slider-zoom.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;/src/assets/themes/scss/shared&#x27;;
+
+:host {
+    display: block;
+}
+
+/* slider */
+.input-group.awg-slider-zoom-container {
+    flex-wrap: nowrap;
+    width: auto;
+
+    &gt; :not(:first-child) {
+        margin-left: 0px !important;
+    }
+}
+
+.input-group-text.awg-slider-zoom-label {
+    min-width: 50px;
+    color: $info;
+}
+
+/* slider input */
+@mixin slider-track-base($radius) {
+    background: rgba(221, 221, 221, 0.78);
+    border: 0.2px solid #dddddd;
+    border-radius: $radius;
+}
+
+@mixin slider-track($height) {
+    @include slider-track-base(1.3px);
+    width: 100%;
+    height: $height;
+    cursor: pointer;
+}
+@mixin slider-thumb($height) {
+    width: 15px;
+    height: $height;
+    background: $info;
+    border: 1.8px solid $info;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input[type&#x3D;&#x27;range&#x27;].awg-slider-zoom {
+    width: 100%;
+    background-color: transparent;
+    -webkit-appearance: none;
+
+    &amp;:focus {
+        outline: none;
+
+        &amp;::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &amp;::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+
+        &amp;::-webkit-slider-runnable-track {
+            background: #e5e5e5;
+        }
+    }
+
+    &amp;::-webkit-slider-runnable-track {
+        @include slider-track(31px);
+    }
+
+    &amp;::-webkit-slider-thumb {
+        @include slider-thumb(29px);
+        -webkit-appearance: none;
+    }
+
+    &amp;::-moz-range-track {
+        @include slider-track(29px);
+        -moz-margin-start: fill;
+        margin-right: fill;
+    }
+
+    &amp;::-moz-range-thumb {
+        @include slider-thumb(27px);
+    }
+
+    &amp;::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 7.4px 0;
+        color: transparent;
+        width: 100%;
+        height: 31px;
+        cursor: pointer;
+    }
+
+    &amp;::-ms-fill-lower {
+        @include slider-track-base(2.6px);
+    }
+
+    &amp;::-ms-fill-upper {
+        @include slider-track-base(2.6px);
+    }
+
+    &amp;::-ms-thumb {
+        @include slider-thumb(29px);
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+}
+</code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -615,6 +789,24 @@ export class SliderZoomComponent {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -630,7 +822,6 @@ export class SliderZoomComponent {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

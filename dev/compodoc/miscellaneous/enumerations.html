@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -131,16 +138,16 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#EditionSvgOverlayTypes" title="src/app/views/edition-view/models/edition-svg-overlay.model.ts" ><b>EditionSvgOverlayTypes</b>&nbsp;&nbsp;&nbsp;(src/.../edition-svg-overlay.model.ts)</a>
+                            <a href="#EditionSvgOverlayTypes" title="src/app/views/edition-view/models/edition-svg-overlay.model.ts" class="reference-link "><span class="reference-badge reference-badge--enum" aria-hidden="true">E</span><span class="reference-link-label"><b>EditionSvgOverlayTypes</b>&nbsp;&nbsp;&nbsp;(src/.../edition-svg-overlay.model.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#LanguageId" title="src/app/views/edition-view/shared/language-switcher/language.model.ts" ><b>LanguageId</b>&nbsp;&nbsp;&nbsp;(src/.../language.model.ts)</a>
+                            <a href="#LanguageId" title="src/app/views/edition-view/shared/language-switcher/language.model.ts" class="reference-link "><span class="reference-badge reference-badge--enum" aria-hidden="true">E</span><span class="reference-link-label"><b>LanguageId</b>&nbsp;&nbsp;&nbsp;(src/.../language.model.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#MetaSectionTypes" title="src/app/shared/meta/meta.model.ts" ><b>MetaSectionTypes</b>&nbsp;&nbsp;&nbsp;(src/.../meta.model.ts)</a>
+                            <a href="#MetaSectionTypes" title="src/app/shared/meta/meta.model.ts" class="reference-link "><span class="reference-badge reference-badge--enum" aria-hidden="true">E</span><span class="reference-link-label"><b>MetaSectionTypes</b>&nbsp;&nbsp;&nbsp;(src/.../meta.model.ts)</span></a>
                         </li>
                         <li>
-                            <a href="#ViewHandleTypes" title="src/app/shared/view-handle-button-group/view-handle.model.ts" ><b>ViewHandleTypes</b>&nbsp;&nbsp;&nbsp;(src/.../view-handle.model.ts)</a>
+                            <a href="#ViewHandleTypes" title="src/app/shared/view-handle-button-group/view-handle.model.ts" class="reference-link "><span class="reference-badge reference-badge--enum" aria-hidden="true">E</span><span class="reference-link-label"><b>ViewHandleTypes</b>&nbsp;&nbsp;&nbsp;(src/.../view-handle.model.ts)</span></a>
                         </li>
                     </ul>
                 </td>
@@ -360,6 +367,24 @@
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -375,7 +400,6 @@
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

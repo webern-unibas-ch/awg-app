@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -120,12 +127,23 @@
   FolioSystemsLayout</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/services/edition-folio-drawing.utils.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -137,13 +155,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/services/edition-folio-drawing.utils.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -157,79 +168,120 @@ the horizontal dimensions of the systems area and the gap between two systems
             </p>
 
 
-        <section data-compodoc="block-index">
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#gap" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">gap</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#startX" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">startX</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#systems" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">systems</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#width" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">width</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
                 <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="gap"></a>
+                                <span class="name "><b>gap</b>
+                                    <a href="#gap">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>gap:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="199" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:199</a></div>
+                                </td>
+                            </tr>
+
                     <tr>
                         <td class="col-md-4">
-                            <h6><b>Properties</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                        <a href="#gap" 
->
-                                            gap
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#startX" 
->
-                                            startX
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#systems" 
->
-                                            systems
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#width" 
->
-                                            width
-                                        </a>
-                                </li>
-                            </ul>
+                            <div class="io-description"><p>The gap between two systems (space per system without the staff lines).</p>
+</div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </section>
-
-
-
-            <section data-compodoc="block-properties">
-                <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="gap"></a>
-                                        <span class="name "><b>gap</b>
-                                            <a href="#gap">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>gap:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="startX"></a>
+                                <span class="name "><b>startX</b>
+                                    <a href="#startX">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>startX:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -237,38 +289,44 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The gap between two systems (space per system without the staff lines).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:189</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="startX"></a>
-                                        <span class="name "><b>startX</b>
-                                            <a href="#startX">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>startX:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The x value of the start of the systems area.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="systems"></a>
+                                <span class="name "><b>systems</b>
+                                    <a href="#systems">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>systems:         <code><a href="../interfaces/FolioSvgSystems.html" target="_self" >FolioSvgSystems</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/FolioSvgSystems.html" target="_self" >FolioSvgSystems</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -276,38 +334,44 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The x value of the start of the systems area.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="184" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:184</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="systems"></a>
-                                        <span class="name "><b>systems</b>
-                                            <a href="#systems">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>systems:         <code><a href="../interfaces/FolioSvgSystems.html" target="_self" >FolioSvgSystems</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The calculated systems of the folio.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="width"></a>
+                                <span class="name "><b>width</b>
+                                    <a href="#width">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>width:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/FolioSvgSystems.html" target="_self" >FolioSvgSystems</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -315,53 +379,20 @@ the horizontal dimensions of the systems area and the gap between two systems
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The calculated systems of the folio.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/views/edition-view/services/edition-folio-drawing.utils.ts:194</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="width"></a>
-                                        <span class="name "><b>width</b>
-                                            <a href="#width">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>width:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                                    </td>
-                                </tr>
 
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The width of the systems area.</p>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The width of the systems area.</p>
 </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
@@ -930,6 +961,24 @@ export function calculateFolioSvgData(
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -945,7 +994,6 @@ export function calculateFolioSvgData(
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

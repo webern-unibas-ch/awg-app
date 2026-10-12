@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -120,12 +127,23 @@
   SourceDescWritingMaterial</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/models/source-desc.model.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -137,13 +155,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/views/edition-view/models/source-desc.model.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -157,337 +168,367 @@ from a source description json file.</p>
             </p>
 
 
-        <section data-compodoc="block-index">
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#dimensions" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dimensions</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#folioAddendum" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">folioAddendum</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#materialType" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">materialType</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#systems" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">systems</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#trademark" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">trademark</span>
+                                </a>
+                        </li>
+                        <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#watermark" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">watermark</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
                 <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dimensions"></a>
+                                <span class="name "><b>dimensions</b>
+                                    <a href="#dimensions">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dimensions:         <code><a href="../interfaces/SourceDescWritingMaterialDimensions.html" target="_self" >SourceDescWritingMaterialDimensions</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialDimensions.html" target="_self" >SourceDescWritingMaterialDimensions</a></code>
+
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="329" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:329</a></div>
+                                </td>
+                            </tr>
+
                     <tr>
                         <td class="col-md-4">
-                            <h6><b>Properties</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#dimensions" 
->
-                                            dimensions
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#folioAddendum" 
->
-                                            folioAddendum
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#materialType" 
->
-                                            materialType
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#systems" 
->
-                                            systems
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#trademark" 
->
-                                            trademark
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#watermark" 
->
-                                            watermark
-                                        </a>
-                                </li>
-                            </ul>
+                            <div class="io-description"><p>The dimensions of the writing material (optional).</p>
+</div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </section>
-
-
-
-            <section data-compodoc="block-properties">
-                <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="dimensions"></a>
-                                        <span class="name "><b>dimensions</b>
-                                            <a href="#dimensions">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>dimensions:         <code><a href="../interfaces/SourceDescWritingMaterialDimensions.html" target="_self" >SourceDescWritingMaterialDimensions</a></code>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="folioAddendum"></a>
+                                <span class="name "><b>folioAddendum</b>
+                                    <a href="#folioAddendum">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>folioAddendum:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialDimensions.html" target="_self" >SourceDescWritingMaterialDimensions</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The dimensions of the writing material (optional).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:344</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="folioAddendum"></a>
-                                        <span class="name "><b>folioAddendum</b>
-                                            <a href="#folioAddendum">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>folioAddendum:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The folio addendum of the writing material (optional).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="materialType"></a>
+                                <span class="name "><b>materialType</b>
+                                    <a href="#materialType">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>materialType:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The folio addendum of the writing material (optional).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="319" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:319</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="materialType"></a>
-                                        <span class="name "><b>materialType</b>
-                                            <a href="#materialType">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>materialType:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The type of the writing material (optional).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="systems"></a>
+                                <span class="name "><b>systems</b>
+                                    <a href="#systems">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>systems:         <code><a href="../interfaces/SourceDescWritingMaterialSystems.html" target="_self" >SourceDescWritingMaterialSystems</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialSystems.html" target="_self" >SourceDescWritingMaterialSystems</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The type of the writing material (optional).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="324" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:324</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="systems"></a>
-                                        <span class="name "><b>systems</b>
-                                            <a href="#systems">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>systems:         <code><a href="../interfaces/SourceDescWritingMaterialSystems.html" target="_self" >SourceDescWritingMaterialSystems</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The systems of the writing material (optional).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="trademark"></a>
+                                <span class="name "><b>trademark</b>
+                                    <a href="#trademark">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>trademark:         <code><a href="../interfaces/SourceDescWritingMaterialTrademark.html" target="_self" >SourceDescWritingMaterialTrademark</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialSystems.html" target="_self" >SourceDescWritingMaterialSystems</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialTrademark.html" target="_self" >SourceDescWritingMaterialTrademark</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The systems of the writing material (optional).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:334</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="trademark"></a>
-                                        <span class="name "><b>trademark</b>
-                                            <a href="#trademark">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>trademark:         <code><a href="../interfaces/SourceDescWritingMaterialTrademark.html" target="_self" >SourceDescWritingMaterialTrademark</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The trademark of the writing material (optional).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="watermark"></a>
+                                <span class="name "><b>watermark</b>
+                                    <a href="#watermark">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>watermark:         <code><a href="../interfaces/SourceDescWritingMaterialWatermark.html" target="_self" >SourceDescWritingMaterialWatermark</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialTrademark.html" target="_self" >SourceDescWritingMaterialTrademark</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialWatermark.html" target="_self" >SourceDescWritingMaterialWatermark</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Optional</i>
+                                </td>
+                            </tr>
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The trademark of the writing material (optional).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="339" class="link-to-prism">src/app/views/edition-view/models/source-desc.model.ts:339</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="watermark"></a>
-                                        <span class="name "><b>watermark</b>
-                                            <a href="#watermark">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>watermark:         <code><a href="../interfaces/SourceDescWritingMaterialWatermark.html" target="_self" >SourceDescWritingMaterialWatermark</a></code>
-</code>
-                                    </td>
-                                </tr>
 
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/SourceDescWritingMaterialWatermark.html" target="_self" >SourceDescWritingMaterialWatermark</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The watermark of the writing material (optional).</p>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The watermark of the writing material (optional).</p>
 </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
@@ -1000,6 +1041,24 @@ export class SourceDescList {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1015,7 +1074,6 @@ export class SourceDescList {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

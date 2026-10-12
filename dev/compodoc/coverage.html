@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -125,6 +132,20 @@
 
 <div>
     <img src="./images/coverage-badge-documentation.svg">
+</div>
+
+<div class="coverage-summary" data-coverage-summary></div>
+
+<div class="coverage-filter">
+    <input type="text"
+        class="coverage-filter-input"
+        placeholder="Filter entities..."
+        aria-label="Filter coverage results"
+        data-coverage-filter>
+    <button type="button"
+        class="coverage-filter-clear"
+        aria-label="Clear filter"
+        data-coverage-filter-clear>&times;</button>
 </div>
 
 <table class="table table-bordered coverage" id="coverage-table">
@@ -1616,9 +1637,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionComplexGuard">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.guard.ts</a>
+                        <a href="./guards/editionComplexGuard.html">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.guard.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionComplexGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -1628,9 +1649,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionComplexResolver">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.resolver.ts</a>
+                        <a href="./guards/editionComplexResolver.html">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.resolver.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionComplexResolver</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -1664,10 +1685,46 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</a>
+                        <a href="./miscellaneous/variables.html#EDITION_GRAPH">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</a>
             </td>
             <td>variable</td>
-            <td></td>
+            <td>EDITION_GRAPH</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#EDITION_INTRO">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>EDITION_INTRO</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#EDITION_REPORT">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>EDITION_REPORT</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#EDITION_SHEETS">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>EDITION_SHEETS</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
                 <span class="coverage-count">(1/1)</span>
@@ -2057,6 +2114,18 @@
                 <span class="coverage-count">(15/15)</span>
             </td>
         </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#blankNode">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>blankNode</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
@@ -2072,10 +2141,34 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</a>
+                        <a href="./miscellaneous/variables.html#literal">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</a>
             </td>
             <td>variable</td>
-            <td></td>
+            <td>literal</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#namedNode">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>namedNode</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./miscellaneous/variables.html#quad">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/rdf-store/rdf-store.service.ts</a>
+            </td>
+            <td>variable</td>
+            <td>quad</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
@@ -3956,9 +4049,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionSectionGuard">src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.guard.ts</a>
+                        <a href="./guards/editionSectionGuard.html">src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.guard.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionSectionGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -3968,9 +4061,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionSectionResolver">src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.resolver.ts</a>
+                        <a href="./guards/editionSectionResolver.html">src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.resolver.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionSectionResolver</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -4028,9 +4121,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionSeriesGuard">src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.guard.ts</a>
+                        <a href="./guards/editionSeriesGuard.html">src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.guard.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionSeriesGuard</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -4040,9 +4133,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionSeriesResolver">src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.resolver.ts</a>
+                        <a href="./guards/editionSeriesResolver.html">src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.resolver.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionSeriesResolver</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -4184,9 +4277,9 @@
         <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#editionStateResetResolver">src/app/views/edition-view/edition-state-reset.resolver.ts</a>
+                        <a href="./guards/editionStateResetResolver.html">src/app/views/edition-view/edition-state-reset.resolver.ts</a>
             </td>
-            <td>variable</td>
+            <td>guard</td>
             <td>editionStateResetResolver</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
@@ -6857,498 +6950,6 @@
                 <span class="coverage-count">(1/1)</span>
             </td>
         </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockEditionData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockEditionData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockFolioConvoluteData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockFolioConvoluteData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockGraphEmptyData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockGraphEmptyData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockIntroComplexData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockIntroComplexData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockIntroSectionData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockIntroSectionData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockIntroSectionFilteredData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockIntroSectionFilteredData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockModalSnippet">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockModalSnippet</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockPrefaceData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockPrefaceData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockReversedFolio">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockReversedFolio</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockRowtablesData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockRowtablesData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSourceDescListData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSourceDescListData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSourceEvaluationListData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSourceEvaluationListData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSourceEvaluationListEmptyData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSourceEvaluationListEmptyData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSourceListData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSourceListData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSourceListDataWithTexts">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSourceListDataWithTexts</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk1">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk1</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk2">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk2</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk2a">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk2a</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk2b">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk2b</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk3">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk3</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk3a">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk3a</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk3b">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk3b</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk3c">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk3c</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk4">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk4</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk5">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk5</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_Sk6">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_Sk6</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_TF1">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_TF1</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheet_WE1">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheet_WE1</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockSvgSheetList">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockSvgSheetList</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockTextcriticsListData">src/testing/mock-data/mockEditionData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockTextcriticsListData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockStatisticsData">src/testing/mock-data/mockStatisticsData.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockStatisticsData</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./interfaces/IMockAnalytics.html">src/testing/mock-helper/mock-analytics.ts</a>
-            </td>
-            <td>interface</td>
-            <td>IMockAnalytics</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#analyticsStore">src/testing/mock-helper/mock-analytics.ts</a>
-            </td>
-            <td>variable</td>
-            <td>analyticsStore</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockAnalytics">src/testing/mock-helper/mock-analytics.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockAnalytics</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/typealiases.html#analyticsType">src/testing/mock-helper/mock-analytics.ts</a>
-            </td>
-            <td>type alias</td>
-            <td>analyticsType</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./interfaces/IMockCache.html">src/testing/mock-helper/mock-cache.ts</a>
-            </td>
-            <td>interface</td>
-            <td>IMockCache</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#cachedResponses">src/testing/mock-helper/mock-cache.ts</a>
-            </td>
-            <td>variable</td>
-            <td>cachedResponses</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockCache">src/testing/mock-helper/mock-cache.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockCache</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./interfaces/IMockConsole.html">src/testing/mock-helper/mock-console.ts</a>
-            </td>
-            <td>interface</td>
-            <td>IMockConsole</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#consoleMessages">src/testing/mock-helper/mock-console.ts</a>
-            </td>
-            <td>variable</td>
-            <td>consoleMessages</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#mockConsole">src/testing/mock-helper/mock-console.ts</a>
-            </td>
-            <td>variable</td>
-            <td>mockConsole</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
-            </td>
-        </tr>
     </tbody>
 </table>
 
@@ -7356,7 +6957,188 @@
 <script src="js/libs/tablesort.number.min.js"></script>
 <script>
     new Tablesort(document.getElementById('coverage-table'));
+
+    (function () {
+        var table = document.getElementById('coverage-table');
+        if (!table) {
+            return;
+        }
+
+        var tableBody = table.querySelector('tbody');
+        if (!tableBody) {
+            return;
+        }
+
+        var rows = Array.prototype.slice.call(tableBody.querySelectorAll('tr'));
+        var summaryContainer = document.querySelector('[data-coverage-summary]');
+        var filterInput = document.querySelector('[data-coverage-filter]');
+        var filterClearButton = document.querySelector('[data-coverage-filter-clear]');
+
+        function toPercent(value, total) {
+            if (!total) {
+                return 0;
+            }
+            return Math.round((value / total) * 100);
+        }
+
+        function getRowCoverageBucket(row) {
+            var className = (row.className || '').toLowerCase();
+            if (className.indexOf('low') !== -1) {
+                return 'undocumented';
+            }
+            if (className.indexOf('medium') !== -1) {
+                return 'partial';
+            }
+            if (className.indexOf('very-good') !== -1 || className.indexOf('good') !== -1) {
+                return 'documented';
+            }
+            return 'partial';
+        }
+
+        function getCoverageStats() {
+            var documented = 0;
+            var partial = 0;
+            var undocumented = 0;
+
+            rows.forEach(function (row) {
+                var bucket = getRowCoverageBucket(row);
+                if (bucket === 'documented') {
+                    documented += 1;
+                } else if (bucket === 'partial') {
+                    partial += 1;
+                } else {
+                    undocumented += 1;
+                }
+            });
+
+            var total = rows.length;
+            var totalCoveragePercent = rows.reduce(function (sum, row) {
+                var scoreCell = row.querySelector('td[data-sort]');
+                var rowScore = scoreCell ? parseFloat(scoreCell.getAttribute('data-sort') || '0') : 0;
+                return sum + (isNaN(rowScore) ? 0 : rowScore);
+            }, 0);
+            var score = total ? Math.floor(totalCoveragePercent / total) : 0;
+
+            return {
+                total: total,
+                documented: documented,
+                partial: partial,
+                undocumented: undocumented,
+                score: score
+            };
+        }
+
+        function buildDonutSegment(title, color, count, total, offset, circumference) {
+            var percent = toPercent(count, total);
+            if (!count) {
+                return '';
+            }
+
+            var arcLength = (count / total) * circumference;
+            var remaining = circumference - arcLength;
+
+            return '<circle cx="60" cy="60" r="50" fill="none" stroke="' + color + '" stroke-width="10" ' +
+                'style="stroke-dasharray: ' + arcLength + ', ' + remaining + '; stroke-dashoffset: ' + (-offset) + ';" ' +
+                'transform="rotate(-90 60 60)" class="coverage-donut-segment">' +
+                '<title>' + title + ': ' + count + ' (' + percent + '%)</title>' +
+                '</circle>';
+        }
+
+        function renderSummary(stats) {
+            if (!summaryContainer) {
+                return;
+            }
+
+            var total = stats.total;
+            var documentedPercent = toPercent(stats.documented, total);
+            var partialPercent = toPercent(stats.partial, total);
+            var undocumentedPercent = toPercent(stats.undocumented, total);
+            var circumference = 2 * Math.PI * 50;
+            var offset = 0;
+
+            var documentedSegment = buildDonutSegment('Documented', '#4dc71f', stats.documented, total, offset, circumference);
+            offset += total ? (stats.documented / total) * circumference : 0;
+
+            var partialSegment = buildDonutSegment('Partial', '#dab226', stats.partial, total, offset, circumference);
+            offset += total ? (stats.partial / total) * circumference : 0;
+
+            var undocumentedSegment = buildDonutSegment('Undocumented', '#d8624c', stats.undocumented, total, offset, circumference);
+
+            summaryContainer.innerHTML =
+                '<svg viewBox="0 0 120 120" class="coverage-donut" role="img" aria-label="Documentation coverage: ' + stats.score + '%">' +
+                    '<title>Documentation coverage: ' + stats.score + '%</title>' +
+                    '<desc>' + stats.documented + ' documented, ' + stats.partial + ' partial, ' + stats.undocumented + ' undocumented of ' + stats.total + ' entities</desc>' +
+                    '<circle cx="60" cy="60" r="50" fill="none" stroke="var(--bs-border-color, #dee2e6)" stroke-width="10" class="coverage-donut-ring"></circle>' +
+                    documentedSegment +
+                    partialSegment +
+                    undocumentedSegment +
+                    '<text x="60" y="60" text-anchor="middle" dominant-baseline="central" class="coverage-donut-pct">' + stats.score + '%</text>' +
+                '</svg>' +
+                '<div class="coverage-stats">' +
+                    '<div>' +
+                        '<div class="coverage-stat-value">' + stats.total + '</div>' +
+                        '<div class="coverage-stat-label">Total</div>' +
+                        '<div class="coverage-stat-sub">' + stats.total + ' entities</div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<div class="coverage-stat-value coverage-stat-value--documented">' + stats.documented + '</div>' +
+                        '<div class="coverage-stat-label">Documented</div>' +
+                        '<div class="coverage-stat-sub">' + documentedPercent + '%</div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<div class="coverage-stat-value coverage-stat-value--partial">' + stats.partial + '</div>' +
+                        '<div class="coverage-stat-label">Partial</div>' +
+                        '<div class="coverage-stat-sub">' + partialPercent + '%</div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<div class="coverage-stat-value coverage-stat-value--undocumented">' + stats.undocumented + '</div>' +
+                        '<div class="coverage-stat-label">Undocumented</div>' +
+                        '<div class="coverage-stat-sub">' + undocumentedPercent + '%</div>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        function applyFilter() {
+            if (!filterInput) {
+                return;
+            }
+
+            var query = filterInput.value.toLowerCase().trim();
+            rows.forEach(function (row) {
+                var text = (row.textContent || '').toLowerCase();
+                row.style.display = query.length === 0 || text.indexOf(query) !== -1 ? '' : 'none';
+            });
+
+            if (filterClearButton) {
+                filterClearButton.classList.toggle('is-visible', query.length > 0);
+            }
+        }
+
+        if (filterInput) {
+            filterInput.addEventListener('input', applyFilter);
+            filterInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    filterInput.value = '';
+                    applyFilter();
+                }
+            });
+        }
+
+        if (filterClearButton) {
+            filterClearButton.addEventListener('click', function () {
+                if (filterInput) {
+                    filterInput.value = '';
+                    applyFilter();
+                    filterInput.focus();
+                }
+            });
+        }
+
+        renderSummary(getCoverageStats());
+        applyFilter();
+    })();
 </script>
+
 
                    </div><div class="search-results">
     <div class="has-results">
@@ -7390,6 +7172,24 @@
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -7405,7 +7205,6 @@
        <script src="./js/libs/lit-html.js"></script>
 
        <script src="./js/menu-wc.js" defer></script>
-       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

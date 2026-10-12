@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -114,9 +121,7 @@
 <a href="https://deepwiki.com/webern-unibas-ch/awg-app"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" class="img-responsive"></a></p>
 <p>A web application for the online edition of the <a href="https://anton-webern.ch">Anton Webern Gesamtausgabe</a> (AWG), located at the Department of Musicology of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
 <p><strong>Project Status</strong>: This project is actively maintained.</p>
-<img width="947" alt="Screenshot 2024-10-26 124804" src="https://github.com/user-attachments/assets/e5403d43-c555-4097-a250-79b5184a4e47">
-
-<h2>Table of Contents</h2>
+<img width="947" alt="Screenshot 2024-10-26 124804" src="https://github.com/user-attachments/assets/e5403d43-c555-4097-a250-79b5184a4e47"><h2>Table of Contents</h2>
 <ul>
 <li><a href="#description">Description</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
@@ -216,14 +221,8 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/lili041"><img src="https://avatars.githubusercontent.com/u/186849853?v=4?s=100" width="100px;" alt="lili041"/><br /><sub><b>lili041</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3Alili041" title="Bug reports">🐛</a> <a href="#data-lili041" title="Data">🔣</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=lili041" title="Documentation">📖</a></td>
     </tr>
   </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
+</table><!-- markdownlint-restore -->
+<!-- prettier-ignore-end --><!-- ALL-CONTRIBUTORS-LIST:END --><p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
 <h2>License</h2>
 <p>The software code of this project is released under <a href="https://opensource.org/licenses/MIT">MIT</a> license, see <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">LICENSE.md</a>.</p>
 <p>The contents of the webpage are released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)</a>, see <a href="http://edition.anton-webern.ch/contact#awg-disclaimer">Disclaimer</a>.</p>
@@ -287,6 +286,24 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -302,7 +319,6 @@ While it&#39;s likely that the project can be run with <a href="https://classic.
        <script src="./js/libs/lit-html.js"></script>
 
        <script src="./js/menu-wc.js" defer></script>
-       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

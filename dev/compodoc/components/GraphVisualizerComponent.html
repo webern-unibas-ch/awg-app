@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -111,10 +118,19 @@
   GraphVisualizerComponent</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" class="nav-link"
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" class="nav-link"
@@ -135,14 +151,7 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts</code>
-</p>
-
-
+    <div class="tab-pane fade active in" id="info">
     <p class="comment">
         <h3>Description</h3>
     </p>
@@ -155,6 +164,11 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
 
 
+    <p class="comment">
+        <h3>Example</h3>
+    </p>
+    <div class="io-description">
+    </div>
 
 <section data-compodoc="block-metadata">
     <h3>Metadata</h3>
@@ -181,17 +195,28 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                 <td class="col-md-9"><code>awg-graph-visualizer</code></td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                                <code><a href="../components/GraphEditorSparqlComponent.html" target="_self" >GraphEditorSparqlComponent</a></code>
-                                <code><a href="../components/GraphEditorTriplesComponent.html" target="_self" >GraphEditorTriplesComponent</a></code>
-                                <code><a href="../components/GraphResultsConstructComponent.html" target="_self" >GraphResultsConstructComponent</a></code>
-                                <code><a href="../components/GraphResultsSelectComponent.html" target="_self" >GraphResultsSelectComponent</a></code>
-                                <code><a href="../components/GraphResultsStatusComponent.html" target="_self" >GraphResultsStatusComponent</a></code>
-                                <code><a href="../components/GraphResultsUnsupportedComponent.html" target="_self" >GraphResultsUnsupportedComponent</a></code>
-                                <code><a href="../components/ToastComponent.html" target="_self" >ToastComponent</a></code>
+                        <div>        <code><a href="../components/GraphEditorSparqlComponent.html" target="_self" >GraphEditorSparqlComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphEditorTriplesComponent.html" target="_self" >GraphEditorTriplesComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsConstructComponent.html" target="_self" >GraphResultsConstructComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsSelectComponent.html" target="_self" >GraphResultsSelectComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsStatusComponent.html" target="_self" >GraphResultsStatusComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/GraphResultsUnsupportedComponent.html" target="_self" >GraphResultsUnsupportedComponent</a></code>
+</div>
+                        <div>        <code><a href="../components/ToastComponent.html" target="_self" >ToastComponent</a></code>
+</div>
                 </td>
             </tr>
 
@@ -201,6 +226,32 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
             </tr>
 
 
+
+            <tr>
+                <td class="col-md-3">templateVariables</td>
+                <td class="col-md-9">
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                            <tr>
+                                <td class="col-md-3"><code>isFullscreen</code></td>
+                                <td class="col-md-9"><code>isFullscreenMode()</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>currentQuery</code></td>
+                                <td class="col-md-9"><code>query()</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>isConstructQuery</code></td>
+                                <td class="col-md-9"><code>currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3"><code>isSelectQuery</code></td>
+                                <td class="col-md-9"><code>currentQuery.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
@@ -218,132 +269,196 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
     </table>
 </section>
 
-    <section data-compodoc="block-index">
+        <section data-compodoc="block-relationships">
+            <h3>Relationships</h3>
+
+            <div class="row pt-3">
+                <div class="col-sm-6">
+                    <h4>Used by</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/EditionGraphDynamicComponent.html" target="_self" >EditionGraphDynamicComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <h4>Depends on</h4>
+                        <ul class="list-unstyled relationships-list">
+                                <li>
+                                            <code><a href="../components/GraphEditorSparqlComponent.html" target="_self" >GraphEditorSparqlComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphEditorTriplesComponent.html" target="_self" >GraphEditorTriplesComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsConstructComponent.html" target="_self" >GraphResultsConstructComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsSelectComponent.html" target="_self" >GraphResultsSelectComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsStatusComponent.html" target="_self" >GraphResultsStatusComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/GraphResultsUnsupportedComponent.html" target="_self" >GraphResultsUnsupportedComponent</a></code>
+                                </li>
+                                <li>
+                                            <code><a href="../components/ToastComponent.html" target="_self" >ToastComponent</a></code>
+                                </li>
+                        </ul>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <div class="tab-pane fade " id="api">    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
-    <table class="table table-sm table-bordered index-table">
-        <tbody>
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Properties</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_queryRequest" >_queryRequest</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_runnableRequest" >_runnableRequest</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_sparqlQueryService" >_sparqlQueryService</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#_toastService" >_toastService</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#defaultForceGraphHeight" >defaultForceGraphHeight</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#query" >query</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#queryList" >queryList</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#queryResult" >queryResult</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#queryRun" >queryRun</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#queryTime" >queryTime</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">P</span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#triples" >triples</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Methods</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                 <a href="#_createQueryRequest" >_createQueryRequest</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Async</span>
                                 <a href="#_runQuery" >_runQuery</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#onGraphNodeClick" >onGraphNodeClick</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#onTableNodeClick" >onTableNodeClick</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#performQuery" >performQuery</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#resetQuery" >resetQuery</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#resetTriples" >resetTriples</a>
                             </li>
                             <li>
+                                <span class="reference-badge reference-badge--method" aria-hidden="true">M</span>
                                 <a href="#showToastMessage" >showToastMessage</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
+        <table class="table table-sm table-bordered index-table">
+            <tbody>
                 <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-3">
                         <h6><b>Inputs</b></h6>
                     </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
+                    <td class="col-md-9">
                         <ul class="index-list">
                             <li>
-                                <a href="#isFullscreenMode" >isFullscreenMode</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#isFullscreenMode" >isFullscreenMode</a>
                             </li>
                             <li>
-                                <a href="#rdfData" >rdfData</a>
+                                <span class="reference-badge reference-badge--property" aria-hidden="true">I</span><a href="#rdfData" >rdfData</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+            </tbody>
+        </table>
 
 
 
 
-        </tbody>
-    </table>
 </section>
 
 
@@ -416,6 +531,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
             </tbody>
         </table>
 </section>
+
 
 
 
@@ -979,6 +1095,7 @@ from the RDF input data.</p>
         </tbody>
     </table>
 </section>
+
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
@@ -1919,6 +2036,24 @@ export class GraphVisualizerComponent {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1934,7 +2069,6 @@ export class GraphVisualizerComponent {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

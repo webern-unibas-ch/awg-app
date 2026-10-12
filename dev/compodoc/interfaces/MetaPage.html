@@ -85,7 +85,14 @@
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
@@ -120,12 +127,23 @@
   MetaPage</li>
 </ol>
 
+<div class="io-file io-file-path" data-compodoc="entity-file-path">
+    <span class="icon ion-ios-document" aria-hidden="true"></span>
+    <code>src/app/shared/meta/meta.model.ts</code>
+</div>
+
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
             <a href="#info" 
                 class="nav-link"
                 class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#api" 
+                class="nav-link"
+                
+                role="tab" id="api-tab" data-bs-toggle="tab" data-link="api">API</a>
         </li>
         <li class="nav-item">
             <a href="#source" 
@@ -137,13 +155,6 @@
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="info">
-        <p class="comment">
-            <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/app/shared/meta/meta.model.ts</code>
-        </p>
-
 
             <p class="comment">
                 <h3>Description</h3>
@@ -155,139 +166,170 @@
             </p>
 
 
-        <section data-compodoc="block-index">
-            <h3 id="index">Index</h3>
-            <table class="table table-sm table-bordered index-table">
+            </div>
+
+    <div class="tab-pane fade " id="api"><section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-3">
+                    <h6><b>Properties</b></h6>
+                </td>
+                <td class="col-md-9">
+                    <ul class="index-list">
+                        <li>
+                                <a href="#awgAppDevUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppDevUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgAppGithubUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppGithubUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgAppUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgAppVersion" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppVersion</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgAppVersionReleaseDate" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppVersionReleaseDate</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgAppZenodoUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgAppZenodoUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgProjectName" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgProjectName</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#awgProjectUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">awgProjectUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#compodocUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">compodocUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#daschUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">daschUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#deepWikiUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">deepWikiUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#dhlabUrl" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">dhlabUrl</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#yearCurrent" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">yearCurrent</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a href="#yearStart" class="reference-link ">
+                                    <span class="reference-badge reference-badge--property" aria-hidden="true">P</span><span class="reference-link-label">yearStart</span>
+                                </a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section data-compodoc="block-properties">
+        <h3 id="inputs">Properties</h3>
+            <table class="table table-sm table-bordered">
                 <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppDevUrl"></a>
+                                <span class="name "><b>awgAppDevUrl</b>
+                                    <a href="#awgAppDevUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppDevUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                            </td>
+                        </tr>
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </td>
+                            </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/shared/meta/meta.model.ts:80</a></div>
+                                </td>
+                            </tr>
+
                     <tr>
                         <td class="col-md-4">
-                            <h6><b>Properties</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                        <a href="#awgAppDevUrl" 
->
-                                            awgAppDevUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgAppGithubUrl" 
->
-                                            awgAppGithubUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgAppUrl" 
->
-                                            awgAppUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgAppVersion" 
->
-                                            awgAppVersion
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgAppVersionReleaseDate" 
->
-                                            awgAppVersionReleaseDate
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgAppZenodoUrl" 
->
-                                            awgAppZenodoUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgProjectName" 
->
-                                            awgProjectName
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#awgProjectUrl" 
->
-                                            awgProjectUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#compodocUrl" 
->
-                                            compodocUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#daschUrl" 
->
-                                            daschUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#deepWikiUrl" 
->
-                                            deepWikiUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#dhlabUrl" 
->
-                                            dhlabUrl
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#yearCurrent" 
->
-                                            yearCurrent
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#yearStart" 
->
-                                            yearStart
-                                        </a>
-                                </li>
-                            </ul>
+                            <div class="io-description"><p>The url to the dev version of the AWG edition homepage (awg-app-dev).</p>
+</div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </section>
-
-
-
-            <section data-compodoc="block-properties">
-                <h3 id="inputs">Properties</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppDevUrl"></a>
-                                        <span class="name "><b>awgAppDevUrl</b>
-                                            <a href="#awgAppDevUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppDevUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppGithubUrl"></a>
+                                <span class="name "><b>awgAppGithubUrl</b>
+                                    <a href="#awgAppGithubUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppGithubUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -295,38 +337,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the dev version of the AWG edition homepage (awg-app-dev).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/shared/meta/meta.model.ts:85</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppGithubUrl"></a>
-                                        <span class="name "><b>awgAppGithubUrl</b>
-                                            <a href="#awgAppGithubUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppGithubUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the GitHub repository of the AWG edition website (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppUrl"></a>
+                                <span class="name "><b>awgAppUrl</b>
+                                    <a href="#awgAppUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -334,38 +382,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the GitHub repository of the AWG edition website (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/shared/meta/meta.model.ts:75</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppUrl"></a>
-                                        <span class="name "><b>awgAppUrl</b>
-                                            <a href="#awgAppUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the AWG edition homepage (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppVersion"></a>
+                                <span class="name "><b>awgAppVersion</b>
+                                    <a href="#awgAppVersion">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppVersion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -373,38 +427,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the AWG edition homepage (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/shared/meta/meta.model.ts:90</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppVersion"></a>
-                                        <span class="name "><b>awgAppVersion</b>
-                                            <a href="#awgAppVersion">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppVersion:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The latest version of the AWG edition website (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppVersionReleaseDate"></a>
+                                <span class="name "><b>awgAppVersionReleaseDate</b>
+                                    <a href="#awgAppVersionReleaseDate">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppVersionReleaseDate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -412,38 +472,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The latest version of the AWG edition website (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/shared/meta/meta.model.ts:95</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppVersionReleaseDate"></a>
-                                        <span class="name "><b>awgAppVersionReleaseDate</b>
-                                            <a href="#awgAppVersionReleaseDate">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppVersionReleaseDate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The release date of the latest version of the AWG edition website (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgAppZenodoUrl"></a>
+                                <span class="name "><b>awgAppZenodoUrl</b>
+                                    <a href="#awgAppZenodoUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgAppZenodoUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -451,38 +517,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The release date of the latest version of the AWG edition website (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/shared/meta/meta.model.ts:100</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgAppZenodoUrl"></a>
-                                        <span class="name "><b>awgAppZenodoUrl</b>
-                                            <a href="#awgAppZenodoUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgAppZenodoUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the Zenodo repository of the AWG edition website (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgProjectName"></a>
+                                <span class="name "><b>awgProjectName</b>
+                                    <a href="#awgProjectName">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgProjectName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -490,38 +562,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the Zenodo repository of the AWG edition website (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/shared/meta/meta.model.ts:105</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgProjectName"></a>
-                                        <span class="name "><b>awgProjectName</b>
-                                            <a href="#awgProjectName">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgProjectName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The name of the AWG.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="awgProjectUrl"></a>
+                                <span class="name "><b>awgProjectUrl</b>
+                                    <a href="#awgProjectUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>awgProjectUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -529,38 +607,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The name of the AWG.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/shared/meta/meta.model.ts:110</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="awgProjectUrl"></a>
-                                        <span class="name "><b>awgProjectUrl</b>
-                                            <a href="#awgProjectUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>awgProjectUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the AWG project homepage.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="compodocUrl"></a>
+                                <span class="name "><b>compodocUrl</b>
+                                    <a href="#compodocUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>compodocUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -568,38 +652,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the AWG project homepage.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/shared/meta/meta.model.ts:115</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="compodocUrl"></a>
-                                        <span class="name "><b>compodocUrl</b>
-                                            <a href="#compodocUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>compodocUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the compodoc documentation of the AWG edition website (awg-app).</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="daschUrl"></a>
+                                <span class="name "><b>daschUrl</b>
+                                    <a href="#daschUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>daschUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -607,38 +697,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the compodoc documentation of the AWG edition website (awg-app).</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/shared/meta/meta.model.ts:120</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="daschUrl"></a>
-                                        <span class="name "><b>daschUrl</b>
-                                            <a href="#daschUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>daschUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the DaSCH.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="deepWikiUrl"></a>
+                                <span class="name "><b>deepWikiUrl</b>
+                                    <a href="#deepWikiUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>deepWikiUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -646,38 +742,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the DaSCH.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/shared/meta/meta.model.ts:125</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="deepWikiUrl"></a>
-                                        <span class="name "><b>deepWikiUrl</b>
-                                            <a href="#deepWikiUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>deepWikiUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the DeepWiki.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="dhlabUrl"></a>
+                                <span class="name "><b>dhlabUrl</b>
+                                    <a href="#dhlabUrl">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>dhlabUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -685,38 +787,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the DeepWiki.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/shared/meta/meta.model.ts:130</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="dhlabUrl"></a>
-                                        <span class="name "><b>dhlabUrl</b>
-                                            <a href="#dhlabUrl">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>dhlabUrl:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The url to the DHLab Basel.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="yearCurrent"></a>
+                                <span class="name "><b>yearCurrent</b>
+                                    <a href="#yearCurrent">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>yearCurrent:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -724,38 +832,44 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The url to the DHLab Basel.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/shared/meta/meta.model.ts:70</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="yearCurrent"></a>
-                                        <span class="name "><b>yearCurrent</b>
-                                            <a href="#yearCurrent">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>yearCurrent:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The recent year for the copyright information.</p>
+</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm table-bordered">
+                <tbody>
+                        <tr>
+                            <td class="col-md-4">
+                                <a name="yearStart"></a>
+                                <span class="name "><b>yearStart</b>
+                                    <a href="#yearStart">
+                                        <span class="icon ion-ios-link"></span>
+                                    </a>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <code>yearStart:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
-                                    </td>
-                                </tr>
+                            </td>
+                        </tr>
 
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <tr>
+                                <td class="col-md-4">
+                                    <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
 
 
 
@@ -763,53 +877,20 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The recent year for the copyright information.</p>
-</div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/shared/meta/meta.model.ts:65</a></div>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="yearStart"></a>
-                                        <span class="name "><b>yearStart</b>
-                                            <a href="#yearStart">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>yearStart:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                                    </td>
-                                </tr>
 
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The start year for the copyright information.</p>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-description"><p>The start year for the copyright information.</p>
 </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
-    </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+</div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
@@ -1102,6 +1183,24 @@ export interface Meta {
 
        <script>
                $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var updateDarkModeSwitchOffset = function () {
+                    var content = document.querySelector('.content');
+                    var scrollbarWidth = 0;
+
+                    if (content) {
+                         scrollbarWidth = Math.max(0, content.offsetWidth - content.clientWidth);
+                    }
+
+                    document.documentElement.style.setProperty(
+                         '--content-scrollbar-width',
+                         scrollbarWidth + 'px'
+                    );
+               };
+
+               updateDarkModeSwitchOffset();
+               requestAnimationFrame(updateDarkModeSwitchOffset);
+               window.addEventListener('resize', updateDarkModeSwitchOffset);
+
                checkToggle(darkModeState);
                if ($darkModeToggleSwitchers.length > 0) {
                     for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
@@ -1117,7 +1216,6 @@ export interface Meta {
        <script src="../js/libs/lit-html.js"></script>
 
        <script src="../js/menu-wc.js" defer></script>
-       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

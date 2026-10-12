@@ -19,7 +19,14 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                 </li>
 
                 <li class="divider"></li>
-                ${ isNormalMode ? `<div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>` : '' }
+                ${ isNormalMode ? `<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+    <button type="button"
+        class="search-input-clear"
+        aria-label="Clear search"
+        data-search-input-clear>&times;</button>
+</div>
+` : '' }
                 <li class="chapter">
                     <a data-type="chapter-link" href="index.html"><span class="icon ion-ios-home"></span>Getting started</a>
                     <ul class="links">
@@ -50,6 +57,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-paper"></span>LICENSE
                             </a>
                         </li>
+                                <li class="link">
+                                    <a href="architecture.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-git-branch"></span>Architecture
+                                    </a>
+                                </li>
                                 <li class="link">
                                     <a href="dependencies.html" data-type="chapter-link">
                                         <span class="icon ion-ios-list"></span>Dependencies
@@ -695,6 +707,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </ul>
                         </li>
                     <li class="chapter">
+                        <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#guards-links"' :
+                            'data-bs-target="#xs-guards-links"' }>
+                            <span class="icon ion-ios-lock"></span>
+                            <span>Guards</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
+                            <li class="link">
+                                <a href="guards/editionComplexGuard.html" data-type="entity-link" >editionComplexGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionComplexResolver.html" data-type="entity-link" >editionComplexResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSectionGuard.html" data-type="entity-link" >editionSectionGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSectionResolver.html" data-type="entity-link" >editionSectionResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSeriesGuard.html" data-type="entity-link" >editionSeriesGuard</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionSeriesResolver.html" data-type="entity-link" >editionSeriesResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="guards/editionStateResetResolver.html" data-type="entity-link" >editionStateResetResolver</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="chapter">
                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ? 'data-bs-target="#interfaces-links"' :
                             'data-bs-target="#xs-interfaces-links"' }>
                             <span class="icon ion-md-information-circle-outline"></span>
@@ -796,13 +839,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/EditionSvgSheetSelection.html" data-type="entity-link" >EditionSvgSheetSelection</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData</a>
+                                <a href="interfaces/EditionViewData.html" data-type="entity-link" >EditionViewData&lt;K extends EditionViewKey&gt;</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/EditionViewDataTypeMapping.html" data-type="entity-link" >EditionViewDataTypeMapping</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/ExpandAllState.html" data-type="entity-link" >ExpandAllState</a>
+                                <a href="interfaces/ExpandAllState.html" data-type="entity-link" >ExpandAllState&lt;K&gt;</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Folio.html" data-type="entity-link" >Folio</a>
@@ -857,15 +900,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/HomeViewCardInternalLink.html" data-type="entity-link" >HomeViewCardInternalLink</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IMockAnalytics.html" data-type="entity-link" >IMockAnalytics</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IMockCache.html" data-type="entity-link" >IMockCache</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/IMockConsole.html" data-type="entity-link" >IMockConsole</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Intro.html" data-type="entity-link" >Intro</a>
