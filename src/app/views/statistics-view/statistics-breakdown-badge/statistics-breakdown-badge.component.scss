@@ -1,0 +1,12 @@
+/* Statistics Breakdown Badge Component Styles */
+.badge {
+    // Ensure proper spacing and alignment
+    font-size: 0.75em;
+}
+
+.text-muted {
+    // Ensure proper contrast for badges within muted text
+    .badge {
+        opacity: 0.9;
+    }
+}

@@ -1,0 +1,18 @@
+@if (siglumData(); as siglum) {
+    <span [class]="siglumContainerClass()">
+        <awg-conditional-link [isClickable]="isClickable()" (clicked)="clicked.emit()">
+            @if (hasMissingFlag()) {
+                <span>[</span>
+            }
+            <span [class]="siglumClass()">{{ siglum.siglum }}</span>
+            @if (siglum.siglumAddendum) {
+                <span [class]="siglumAddendumClass()">
+                    <sup>{{ siglum.siglumAddendum }}</sup>
+                </span>
+            }
+            @if (hasMissingFlag()) {
+                <span>]</span>
+            }
+        </awg-conditional-link>
+    </span>
+}

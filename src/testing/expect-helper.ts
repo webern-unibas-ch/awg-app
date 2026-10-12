@@ -1,6 +1,13 @@
 import { DebugElement, Type } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import Spy = jasmine.Spy;
+
+import { expect } from 'vitest';
+
+interface Spy {
+    mock: {
+        calls: any[][];
+    };
+}
 
 // Test helper functions for expectation statements
 
@@ -38,7 +45,7 @@ function expectDebugElement(
         : `should have ${expectedFailMsg} ${selector}`;
 
     expect(des).toBeDefined();
-    expect(des.length).withContext(failMsg).toBe(expected);
+    expect(des.length, failMsg).toBe(expected);
 }
 
 /**
@@ -114,52 +121,69 @@ export function getAndExpectDebugElementByDirective(
 /**
  * Test helper function: expectToBe.
  *
- * It checks if a given source value is defined and if it is the same as the expected value ('toBe').
+ * It checks if a given actual value is defined and if it is the same as the expected value ('toBe').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value.
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToBe(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source).withContext(`should be ${expected}`).toBe(expected);
+export function expectToBe<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should be ${expected}`).toBe(expected);
 }
 
 /**
  * Test helper function: expectToContain.
  *
- * It checks if a given source value is defined and if it contains the expected value ('toContain').
+ * It checks if a given actual value is defined and if it contains the expected value ('toContain').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should be contained.
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToContain(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source).withContext(`should contain ${expected}`).toContain(expected);
+export function expectToContain<T>(actual: T extends Function ? never : T, expected: any): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should contain ${expected}`).toContain(expected);
+}
+
+/**
+ * Test helper function: expectToNotContain.
+ *
+ * It checks if a given actual value is defined and if it does not contain the expected value ('not.toContain').
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {T} actual The input value to be checked (Array, String, etc. - cannot be a function).
+ * @param {any} expected The expected value that should not be contained.
+ *
+ * @returns {void} Throws the expectation statements.
+ */
+export function expectToNotContain<T>(actual: T extends Function ? never : T, expected: any): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should not contain ${expected}`).not.toContain(expected);
 }
 
 /**
  * Test helper function: expectToEqual.
  *
- * It checks if a given source value is defined and if it equals the expected value ('toEqual').
+ * It checks if a given actual value is defined and if it equals the expected value ('toEqual').
  *
  * Exposed to be called from tests.
  *
- * @param {any} source The input value to be checked.
- * @param {any} expected The expected value.
+ * @param {T} actual The actual input value to be checked.
+ * @param {T} expected The expected value
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectToEqual(source: any, expected: any): void {
-    expect(source).toBeDefined();
-    expect(source).withContext(`should equal ${expected}`).toEqual(expected);
+export function expectToEqual<T>(actual: T, expected: T): void {
+    expect(actual).toBeDefined();
+    expect(actual, `should equal ${expected}`).toEqual(expected);
 }
 
 /**
@@ -176,10 +200,14 @@ export function expectToEqual(source: any, expected: any): void {
  * @returns {void} Throws the expectation statements.
  */
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
-    if (expectedMostRecentValue && expectedMostRecentValue instanceof Object) {
-        expect(spy.calls.mostRecent().args[index]).toEqual(expectedMostRecentValue);
+    const recentCall = spy.mock.calls.at(-1);
+
+    // Use a realm-safe object check so DOM objects from different globals
+    // (e.g. jsdom document elements) are compared by value, not identity.
+    if (expectedMostRecentValue !== null && typeof expectedMostRecentValue === 'object') {
+        expect(recentCall?.[index]).toEqual(expectedMostRecentValue);
     } else {
-        expect(spy.calls.mostRecent().args[index]).toBe(expectedMostRecentValue);
+        expect(recentCall?.[index]).toBe(expectedMostRecentValue);
     }
 }
 
@@ -208,12 +236,12 @@ export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecen
     expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
     // If spy was called, check if it was called with value x
-    if (spy.calls.any() !== false) {
-        if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
+    if (spy.mock.calls.length) {
+        if (expectedMostRecentValue !== undefined && Array.isArray(expectedMostRecentValue)) {
             expectedMostRecentValue.forEach((value, index) => {
                 expectRecentSpyCall(spy, value, index);
             });
-        } else if (expectedMostRecentValue) {
+        } else if (expectedMostRecentValue !== undefined) {
             expectRecentSpyCall(spy, expectedMostRecentValue, 0);
         }
     }

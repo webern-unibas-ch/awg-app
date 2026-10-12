@@ -1,21 +1,16 @@
-@if (sourceEvaluationListData) {
+@if (sourceEvaluationListData(); as sourceEvaluationData) {
     <div class="awg-source-evaluation-list card">
         <div class="card-body">
-            @if (UTILS.isNotEmptyArray(sourceEvaluationListData.sources?.[0]?.content)) {
-                @for (evaluation of sourceEvaluationListData.sources?.[0]?.content; track evaluation) {
-                    <p class="awg-source-evaluation-entry" [compile-html]="evaluation" [compile-html-ref]="this"></p>
-                }
+            @let content = sourceEvaluationData.sources[0]?.content || [];
+            @if (!content.length && editionComplex(); as complex) {
+                <awg-edition-complex-placeholder
+                    class="p-5 border rounded-3"
+                    type="sourceEvaluation"
+                    [editionComplex]="complex" />
             } @else {
-                <p class="awg-source-evaluation-empty p-5 border rounded-3">
-                    <small class="text-muted"
-                        >[Die Quellenbewertung zum Editionskomplex
-                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
-                        vollständigen Edition von <span [innerHTML]="editionComplex.complexId.short"></span> in
-                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.pubStatement.series.short }}/{{
-                            editionComplex.pubStatement.section.short
-                        }}.]
-                    </small>
-                </p>
+                @for (evaluation of content; track evaluation) {
+                    <p class="awg-source-evaluation-entry" [awgCompileHtml]="evaluation"></p>
+                }
             }
         </div>
     </div>

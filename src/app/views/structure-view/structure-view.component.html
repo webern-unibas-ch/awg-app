@@ -1,7 +1,9 @@
 <!-- content: structure -->
 <div class="awg-structure-view p-5 border rounded-3">
+    <awg-button-scroll-to-top />
+
     <!-- heading -->
-    <awg-heading [title]="structureViewTitle" [id]="structureViewId"></awg-heading>
+    <awg-heading [id]="STRUCTURE_VIEW_ID" [title]="STRUCTURE_VIEW_TITLE" />
 
     <!-- content -->
     <div class="awg-structure-view-content">
@@ -12,7 +14,7 @@
 
         <p>
             Die erforderlichen Objektklassen und Eigenschaften werden von DSP intern als RDF (<a
-                href="https://www.w3.org/RDF/"
+                [href]="'https://www.w3.org/RDF/'"
                 >Resource Description Framework</a
             >) Triple verwaltet. Sie sind in der Grafik als Ellipsen symbolisiert, deren Verknüpfungen und Verweise
             untereinander als Pfeile dargestellt.
@@ -30,10 +32,11 @@
             xmlns="https://www.w3.org/2000/svg"
             xmlns:xlink="https://www.w3.org/1999/xlink"
             viewBox="0 0 1980 1980"
-            id="structure">
+            id="awg-structure-view-svg">
             <image
-                xlink:href="assets/img/WebernGraph.svg"
-                src="assets/img/WebernGraph.png"
+                [attr.href]="STRUCTURE_VIEW_SVG_PATH"
+                [attr.xlink:href]="STRUCTURE_VIEW_SVG_PATH"
+                [attr.src]="STRUCTURE_VIEW_IMG_PATH"
                 width="1980"
                 height="1980" />
         </svg>

@@ -1,0 +1,11 @@
+<p class="awg-language-switcher">
+    @for (lang of languages; track lang.id) {
+        <button type="button" (click)="selectedLanguage.set(lang.id)" [class.active]="selectedLanguage() === lang.id">
+            {{ lang.label }}
+        </button>
+
+        @if (!$last) {
+            |
+        }
+    }
+</p>

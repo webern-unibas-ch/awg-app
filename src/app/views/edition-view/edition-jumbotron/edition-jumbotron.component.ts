@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 /**
  * The EditionJumbotron component.
@@ -11,22 +11,19 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     templateUrl: './edition-jumbotron.component.html',
     styleUrls: ['./edition-jumbotron.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
 })
 export class EditionJumbotronComponent {
     /**
-     * Input variable: jumbotronId.
+     * Readonly input signal: id.
      *
-     * It keeps the id of the jumbotron.
+     * It holds the id of the jumbotron.
      */
-    @Input()
-    jumbotronId: string;
+    readonly id = input.required<string>();
 
     /**
-     * Input variable: jumbotronTitle.
+     * Readonly input signal: title.
      *
-     * It keeps the title of the jumbotron.
+     * It holds the title of the jumbotron.
      */
-    @Input()
-    jumbotronTitle: string;
+    readonly title = input.required<string>();
 }

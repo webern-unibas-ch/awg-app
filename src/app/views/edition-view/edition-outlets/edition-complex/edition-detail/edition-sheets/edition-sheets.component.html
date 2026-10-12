@@ -1,44 +1,25 @@
 <!-- content: edition detail -->
 <div>
-    <!-- modal -->
-    <awg-modal #modal></awg-modal>
-
-    <!-- loading spinner -->
-    @if (isLoading$ | async) {
-        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-    } @else {
-        <!-- error message -->
-        @if (errorObject) {
-            <awg-alert-error [errorObject]="errorObject"></awg-alert-error>
+    @if (viewData(); as view) {
+        @if (view.error; as errorObject) {
+            <awg-alert-error [errorObject]="errorObject" />
+        } @else if (isFirstPageLoad() || view.isLoading) {
+            <awg-twelve-tone-spinner />
         } @else {
-            <div class="awg-sheets-view">
-                <!-- accolade view -->
-                <awg-edition-accolade
-                    [isFullscreen]="isFullscreen"
-                    [isSheetFacetMinimized]="isSheetFacetMinimized"
-                    [svgSheetsData]="svgSheetsData"
-                    [selectedSvgSheet]="selectedSvgSheet"
-                    [selectedTextcritics]="selectedTextcritics"
-                    [selectedTextcriticalCommentary]="selectedTextcriticalCommentary"
-                    [showTkA]="showTkA"
-                    (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
-                    (fullscreenToggleRequest)="onFullscreenToggle($event)"
-                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="modal.open($event)"
+            <div class="awg-edition-sheets-view">
+                <!-- sheets panel -->
+                <awg-edition-sheets-panel
+                    [(isSheetFacetMinimized)]="isSheetFacetMinimized"
+                    [svgSheetsData]="view.data.svgSheetsData"
+                    [selectedSvgSheet]="selectedSvgSheet()"
+                    [selectedTextcritics]="selectedTextcritics()"
+                    (browseSheetRequest)="onSheetBrowse($event)"
                     (selectLinkBoxRequest)="onLinkBoxSelect($event)"
-                    (selectOverlaysRequest)="onOverlaySelect($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-                    (toggleSheetFacetRequest)="onToggleSheetFacet($event)">
-                </awg-edition-accolade>
+                    (selectTkkOverlaysRequest)="onOverlaySelect($event)" />
 
-                <!-- convolute view -->
-                @if (selectedConvolute && selectedSvgSheet) {
-                    <awg-edition-convolute
-                        [selectedConvolute]="selectedConvolute"
-                        [selectedSvgSheet]="selectedSvgSheet"
-                        (openModalRequest)="modal.open($event)"
-                        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-                    </awg-edition-convolute>
+                <!-- folios panel -->
+                @if (selectedConvolute(); as convolute) {
+                    <awg-edition-folios-panel [selectedConvolute]="convolute" [selectedSvgSheet]="selectedSvgSheet()" />
                 }
             </div>
         }

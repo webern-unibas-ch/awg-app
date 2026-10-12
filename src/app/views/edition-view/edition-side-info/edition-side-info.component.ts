@@ -1,0 +1,71 @@
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
+
+/**
+ * The EditionSideInfo component.
+ *
+ * It contains the side-info section of the edition view.
+ */
+@Component({
+    selector: 'awg-edition-side-info',
+    templateUrl: './edition-side-info.component.html',
+    styleUrls: ['./edition-side-info.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgbAccordionModule, RouterLink],
+})
+export class EditionSideInfoComponent {
+    /**
+     * Private readonly injection variable: _editionOutlineService.
+     *
+     * It keeps the instance of the injected EditionOutlineService.
+     */
+    private readonly _editionOutlineService = inject(EditionOutlineService);
+
+    /**
+     * Private readonly injection variable: _editionStateService.
+     *
+     * It keeps the instance of the injected EditionStateService.
+     */
+    private readonly _editionStateService = inject(EditionStateService);
+
+    /**
+     * Readonly variable: EDITION_INFO_HEADER.
+     *
+     * It keeps the header for the edition-info.
+     */
+    readonly EDITION_INFO_HEADER = 'Edition';
+
+    /**
+     * Readonly variable: generalEditionLinks.
+     *
+     * It keeps the general edition links for the navbar.
+     */
+    readonly generalEditionLinks = EDITION_GENERAL_LINKS;
+
+    /**
+     * Readonly signal: selectedEditionSection.
+     *
+     * It holds the state of the selected edition section.
+     */
+    readonly selectedEditionSection = this._editionStateService.selectedEditionSection;
+
+    /**
+     * Readonly signal: sectionsData.
+     *
+     * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out.
+     */
+    readonly sectionsData = signal(
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        ).filter((section): section is EditionOutlineSection => section !== undefined)
+    ).asReadonly();
+}

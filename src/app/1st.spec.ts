@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 describe('1st tests (DONE)', () => {
     it('true is true', () => expect(true).toBe(true));
     it('false is false', () => expect(false).toBe(false));

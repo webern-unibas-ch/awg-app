@@ -1,0 +1,27 @@
+<div ngbAccordion>
+    <div ngbAccordionItem="awg-graph-results-construct" [collapsed]="false" [disabled]="isFullscreenMode()">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton class="p-3">Resultat</button>
+        </div>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    @if (resultGraph(); as resultGraph) {
+                        @if (isValidResultGraph(resultGraph)) {
+                            <!-- Force graph visualization -->
+                            <awg-force-graph
+                                class="full-width"
+                                [resultGraph]="resultGraph"
+                                [height]="defaultForceGraphHeight()"
+                                (clickedNodeRequest)="onGraphNodeClick($event)" />
+                        } @else {
+                            <awg-graph-results-empty />
+                        }
+                    } @else {
+                        <awg-twelve-tone-spinner />
+                    }
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

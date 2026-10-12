@@ -44,18 +44,8 @@ let analyticsStore: Array<analyticsType> = [];
  * It mocks the analytics object to catch analytics events.
  */
 export const mockAnalytics: IMockAnalytics = {
-    gtag: (
-        event: string,
-        eventName: string,
-        eventOptions: {
-            /* eslint-disable @typescript-eslint/naming-convention */
-            page_path: string;
-            anonymize_ip: boolean;
-            send_page_view: boolean;
-            /* eslint-enable @typescript-eslint/naming-convention */
-        }
-    ): void => {
-        analyticsStore.push([event, eventName, eventOptions]);
+    gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }): void => {
+        analyticsStore.push([event, eventName, eventOptions as analyticsType[2]]);
     },
     getGtag: (index: number): analyticsType => analyticsStore[index] || null,
     clear: () => {

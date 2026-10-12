@@ -1,0 +1,31 @@
+@let count = tripleCount();
+
+<div
+    class="btn-group awg-force-graph-limit"
+    ngbDropdown
+    [popperOptions]="dropdownPopperOptions"
+    role="group"
+    aria-label="Button group with nested dropdown for node limit">
+    <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+        @if (isLimited()) {
+            <span>{{ limit() }} von </span>
+        }
+        {{ count }} Triples
+    </button>
+    <button
+        type="button"
+        class="btn btn-sm btn-info dropdown-toggle-split"
+        ngbDropdownToggle
+        [disabled]="count === 0"
+        aria-label="Toggle dropdown"></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+        @for (limitValue of limitValues(); track limitValue) {
+            <button type="button" ngbDropdownItem (click)="limit.set(limitValue)">
+                <span>{{ limitValue }}</span>
+            </button>
+        }
+        <button type="button" ngbDropdownItem (click)="limit.set(count)">
+            <span>Kein Limit</span>
+        </button>
+    </div>
+</div>

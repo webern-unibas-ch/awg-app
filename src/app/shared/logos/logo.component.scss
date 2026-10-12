@@ -1,0 +1,23 @@
+.navbar-brand:hover {
+    border-bottom: none !important;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-brand img {
+        max-width: 90%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .navbar-brand img {
+        max-width: 200%;
+    }
+    .navbar > .container-fluid > .row {
+        flex-wrap: nowrap;
+    }
+}
+@media screen and (max-width: 575px) {
+    .navbar-brand img {
+        max-width: 250%;
+    }
+}

@@ -7,23 +7,22 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
 
 ## Table of Contents
 
--   [Contribution process](#contribution-process)
-    -   [Code Formatting](#code-formatting)
-    -   [Testing](#testing)
-    -   [Branching / Git flow](#branching--git-flow)
-    -   [Commit Message Schema](#commit-message-schema)
-    -   [Pull Requests](#pull-requests)
-    -   [Release Versioning Convention](#release-versioning-convention)
-    -   [Issue Reporting](#issue-reporting)
--   [Angular quick start guide](#quick-start-guide)
-    -   [Prerequisites](#prerequisites)
-    -   [Development server](#development-server)
-    -   [Code scaffolding](#code-scaffolding)
-    -   [Build](#build)
-    -   [Running unit tests](#running-unit-tests)
-    -   [Running end-to-end tests](#running-end-to-end-tests)
-    -   [Further help](#further-help)
--   [Code of Conduct](#code-of-conduct)
+- [Contribution process](#contribution-process)
+    - [Code Formatting](#code-formatting)
+    - [Testing](#testing)
+    - [Branching / Git flow](#branching--git-flow)
+    - [Commit Message Schema](#commit-message-schema)
+    - [Pull Requests](#pull-requests)
+    - [Release Versioning Convention](#release-versioning-convention)
+    - [Issue Reporting](#issue-reporting)
+- [Angular quick start guide](#angular-quick-start-guide)
+    - [Prerequisites](#prerequisites)
+    - [Development server](#development-server)
+    - [Code scaffolding](#code-scaffolding)
+    - [Build](#build)
+    - [Running unit tests](#running-unit-tests)
+    - [Further help](#further-help)
+- [Code of Conduct](#code-of-conduct)
 
 ## Contribution process
 
@@ -35,33 +34,35 @@ Prettier helps enforce a consistent style by parsing your code and re-printing i
 
 In addition to the automatic formatting, you can manually check and fix formatting issues using the following commands:
 
--   `yarn format-files:check`: This command checks the code for formatting issues.
+- `yarn format-files:check`: This command checks the code for formatting issues.
 
--   `yarn format-files:fix`: This command fixes any formatting issues that it can.
+- `yarn format-files:fix`: This command fixes any formatting issues that it can.
 
 ### Testing
 
-This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.
+This project uses a dynamic testing approach with Vitest for unit tests in Angular. Code coverage is measured with CodeCov.
 
 We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.
 
 To assist with this, the following commands are provided:
 
--   `yarn test`: Launches the test runner.
+- `yarn test`: Launches the test runner.
 
--   `yarn test:cov`: Runs the tests and generates a coverage report.
+- `yarn test:local`: Runs the tests in a local browser environment.
 
--   `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
+- `yarn test:cov`: Runs the tests (headless) and generates a coverage report.
+
+- `yarn test:cov:serve`: Runs the tests (headless), generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
 
 ### Branching / Git flow
 
 This project uses the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) which defines a strict branching model designed around the project releases. Therefore the following branch structure is used
 
--   `main` (stores the official release history; all commits are tagged with a version number)
--   `develop` (serves as an integration branch for features; gets released into `release/xxx`)
--   `feature/XXX` (main branch for developing new features; gets branched from and merged into `develop`, never interacts with `main`)
--   `release/xxx` (used to prepare a release with latest features from `develop`; gets merged into `main`)
--   `hotfix/xxx` (used to quickly patch production releases; forked from and merged directly into `main`)
+- `main` (stores the official release history; all commits are tagged with a version number)
+- `develop` (serves as an integration branch for features; gets released into `release/xxx`)
+- `feature/XXX` (main branch for developing new features; gets branched from and merged into `develop`, never interacts with `main`)
+- `release/xxx` (used to prepare a release with latest features from `develop`; gets merged into `main`)
+- `hotfix/xxx` (used to quickly patch production releases; forked from and merged directly into `main`)
 
 To initialize the GitFlow workflow execute `git flow init` inside your local copy of the repository.
 
@@ -85,46 +86,44 @@ The **header** (first line) is mandatory, with a **subject** message summarizing
 
 Types:
 
--   `build` (changes that affect the build system or external dependencies; no production code changes),
--   `ci` (changes to Continuous Integration, no production code changes)
--   `docs` (changes to the documentation, no production code changes),
--   `feat` (new feature for the user),
--   `fix` (bug fix for the user),
--   `perf` (code change that improves performance),
--   `refactor` (refactoring production code, eg. renaming a variable),
--   `revert` (reverting a former commit),
--   `style` (formatting, etc; no production code changes),
--   `test` (adding missing tests, refactoring tests; no production code changes)
+- `build` (changes that affect the build system or external dependencies; no production code changes),
+- `ci` (changes to Continuous Integration, no production code changes)
+- `docs` (changes to the documentation, no production code changes),
+- `feat` (new feature for the user),
+- `fix` (bug fix for the user),
+- `perf` (code change that improves performance),
+- `refactor` (refactoring production code, eg. renaming a variable),
+- `revert` (reverting a former commit),
+- `style` (formatting, etc; no production code changes),
+- `test` (adding missing tests, refactoring tests; no production code changes)
 
 Scopes (specific to this project, not part of the Angular convention):
 
--   related to app structure
+- related to app structure
+    - `app`
+    - `assets`
+    - `contact`
+    - `core`
+    - `edition`
+    - `home`
+    - `page-not-found`
+    - `search`
+    - `shared`
+    - `side-info`
+    - `structure`
+    - `views`
 
-    -   `app`
-    -   `assets`
-    -   `contact`
-    -   `core`
-    -   `edition`
-    -   `home`
-    -   `page-not-found`
-    -   `search`
-    -   `shared`
-    -   `side-info`
-    -   `structure`
-    -   `views`
+- related to build process and tests
+    - `deps`
+    - `deps-dev`
+    - `gh-actions`
+    - `testing`
 
--   related to build process and tests
-
-    -   `deps`
-    -   `deps-dev`
-    -   `gh-actions`
-    -   `testing`
-
--   related to documentation
-    -   `CHANGELOG`
-    -   `CONTRIBUTING`
-    -   `LICENSE`
-    -   `README`
+- related to documentation
+    - `CHANGELOG`
+    - `CONTRIBUTING`
+    - `LICENSE`
+    - `README`
 
 #### Examples:
 
@@ -157,7 +156,7 @@ For security concerns, please do not create a public issue. Instead, send an ema
 
 ## Angular quick start guide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3. Check there for necessary prerequisites (which comprise `Node` and `npm`or `yarn`).
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 21. Check there for necessary prerequisites (which comprise `Node` and `npm` or `yarn`).
 
 ### Development server
 
@@ -173,11 +172,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test` to execute the unit tests via [Vitest](https://vitest.dev/).
 
 ### Further help
 

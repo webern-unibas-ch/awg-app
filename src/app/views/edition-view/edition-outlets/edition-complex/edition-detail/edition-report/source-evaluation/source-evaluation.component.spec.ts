@@ -1,24 +1,23 @@
-import { DebugElement, DOCUMENT } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, DOCUMENT, isSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { SourceEvaluationList } from '@awg-views/edition-view/models/source-evaluation.model';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { EditionComplexPlaceholderComponent } from '@awg-views/edition-view/shared/placeholder/edition-complex-placeholder.component';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -29,62 +28,31 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let expectedEditionComplex: EditionComplex;
-    let expectedComplexId: string;
-    let expectedNextComplexId: string;
+    let expectedComplex: EditionComplex;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
-    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
-    let expectedReportFragment: string;
-    let expectedModalSnippet: string;
-    let expectedSheetId: string;
-    let expectedNextSheetId: string;
 
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
-    let navigateToReportFragmentSpy: Spy;
-    let navigateToReportFragmentRequestEmitSpy: Spy;
-
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
-        }).compileComponents();
-    }));
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [CompileHtmlDirective, SourceEvaluationComponent, EditionComplexPlaceholderComponent],
+        })
+            .overrideComponent(EditionComplexPlaceholderComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
+    });
 
     beforeEach(() => {
+        // Inject services
+        mockDocument = TestBed.inject(DOCUMENT);
+
+        // Test data
+        expectedComplex = EditionStateHelper.getComplex('op25');
+        expectedSourceEvaluationListData = structuredClone(mockEditionData.mockSourceEvaluationListData);
+        expectedSourceEvaluationListEmptyData = structuredClone(mockEditionData.mockSourceEvaluationListEmptyData);
+
+        // Create component fixture
         fixture = TestBed.createComponent(SourceEvaluationComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op25');
-        expectedComplexId = 'testComplex1';
-        expectedNextComplexId = 'testComplex2';
-        expectedReportFragment = 'source_A';
-        expectedSheetId = 'test_item_id_1';
-        expectedNextSheetId = 'test_item_id_2';
-        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSourceEvaluationListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceEvaluationListData));
-        expectedSourceEvaluationListEmptyData = JSON.parse(
-            JSON.stringify(mockEditionData.mockSourceEvaluationListEmptyData)
-        );
-
-        mockDocument = TestBed.inject(DOCUMENT);
-
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
-        navigateToReportFragmentRequestEmitSpy = spyOn(
-            component.navigateToReportFragmentRequest,
-            'emit'
-        ).and.callThrough();
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
     it('... should create', () => {
@@ -92,20 +60,16 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
+        it('... should throw due to missing required input signal `editionComplex`', () => {
+            expectToBe(isSignal(component.editionComplex), true);
+
+            expect(() => component.editionComplex()).toThrow();
         });
 
-        it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceEvaluationListData).toBeUndefined();
-        });
+        it('... should throw due to missing required input signal `sourceEvaluationListData`', () => {
+            expectToBe(isSignal(component.sourceEvaluationListData), true);
 
-        it('... should have `ref`', () => {
-            expectToEqual(component.ref, component);
-        });
-
-        it('... should have `editionRouteConstants`', () => {
-            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
+            expect(() => component.sourceEvaluationListData()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -117,23 +81,34 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.editionComplex = expectedEditionComplex;
-            component.sourceEvaluationListData = { ...mockEditionData.mockSourceEvaluationListData };
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('editionComplex', expectedComplex);
+            fixture.componentRef.setInput(
+                'sourceEvaluationListData',
+                structuredClone(expectedSourceEvaluationListData)
+            );
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have editionComplex', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+        it('... should have input signal `editionComplex` to hold the expected complex', () => {
+            expectToEqual(component.editionComplex(), expectedComplex);
         });
 
-        it('... should have sourceEvaluationListData', () => {
-            expectToEqual(component.sourceEvaluationListData, expectedSourceEvaluationListData);
+        it('... should have input signal `sourceEvaluationListData` to hold the expected data', () => {
+            expectToEqual(component.sourceEvaluationListData(), expectedSourceEvaluationListData);
         });
 
         describe('VIEW', () => {
+            it('... should render no content if `sourceEvaluationListData` is not available', () => {
+                fixture.componentRef.setInput('sourceEvaluationListData', null);
+
+                fixture.detectChanges();
+
+                getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 0, 0);
+            });
+
             it('... should contain one evaluation list div', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
             });
@@ -145,13 +120,14 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 expectToContain(divEl.classList, 'card');
             });
 
-            it('... should have 1 div. card-body in evaluation list div', () => {
+            it('... should have 1 div.card-body in evaluation list div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
                 getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
             });
 
             it('... should contain as many paragraphs in div.card-body as evaluation data has content entries', () => {
+                const expectedContent = expectedSourceEvaluationListData.sources[0].content;
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-source-evaluation-list > div.card-body',
@@ -159,253 +135,110 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     1
                 );
 
-                getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
+                getAndExpectDebugElementByCss(
+                    divDes[0],
+                    'p.awg-source-evaluation-entry',
+                    expectedContent.length,
+                    expectedContent.length
+                );
             });
 
-            it('... should display evaluation entries in paragraphs', () => {
+            it('... should have CompileHtmlDirective on paragraphs and pass down the correct evaluations', () => {
+                const expectedContent = expectedSourceEvaluationListData.sources[0].content;
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-entry',
-                    2,
-                    2
+                    expectedContent.length,
+                    expectedContent.length
+                );
+
+                pDes.forEach((pDe, index) => {
+                    const directiveIns = pDe.injector.get(CompileHtmlDirective) as CompileHtmlDirective;
+
+                    expect(directiveIns).toBeTruthy();
+                    expectToBe(directiveIns.htmlContent(), expectedContent[index]);
+                });
+            });
+
+            it('... should display evaluation entries in paragraphs', () => {
+                const expectedContent = expectedSourceEvaluationListData.sources[0].content;
+                const pDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-entry',
+                    expectedContent.length,
+                    expectedContent.length
                 );
                 const pEl0: HTMLParagraphElement = pDes[0].nativeElement;
                 const pEl1: HTMLParagraphElement = pDes[1].nativeElement;
 
-                // Process HTML expression of first evaluation entry
                 let htmlEvaluationEntry = mockDocument.createElement('p');
-                htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[0];
+                htmlEvaluationEntry.innerHTML = expectedContent[0];
 
                 expectToEqual(pEl0.textContent.trim(), htmlEvaluationEntry.textContent.trim());
 
-                // Process HTML expression of second evaluation entry
                 htmlEvaluationEntry = mockDocument.createElement('p');
-                htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[1];
+                htmlEvaluationEntry.innerHTML = expectedContent[1];
 
                 expectToEqual(pEl1.textContent.trim(), htmlEvaluationEntry.textContent.trim());
             });
 
-            it('... should contain a placeholder if content of evaluation data is empty', waitForAsync(() => {
-                // Simulate the parent setting an empty content array
-                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
-                detectChangesOnPush(fixture);
-
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-source-evaluation-list > div.card-body',
-                    1,
-                    1
-                );
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-empty', 1, 1);
-
-                getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
-            }));
-
-            it('... should display placeholder in paragraph', waitForAsync(() => {
-                // Simulate the parent setting an empty content array
-                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
-                detectChangesOnPush(fixture);
-
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-empty',
-                    1,
-                    1
-                );
-                const pEl: HTMLParagraphElement = pDes[0].nativeElement;
-
-                // Create evaluation placeholder
-                const fullComplexSpan = mockDocument.createElement('span');
-                fullComplexSpan.innerHTML = expectedEditionComplex.complexId.full;
-
-                const shortComplexSpan = mockDocument.createElement('span');
-                shortComplexSpan.innerHTML = expectedEditionComplex.complexId.short;
-
-                const awg = EDITION_ROUTE_CONSTANTS.EDITION.short;
-                const series = expectedEditionComplex.pubStatement.series.short;
-                const section = expectedEditionComplex.pubStatement.section.short;
-
-                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${fullComplexSpan.textContent} erscheint im Zusammenhang der vollständigen Edition von ${shortComplexSpan.textContent} in ${awg} ${series}/${section}.]`;
-
-                expectToBe(pEl.textContent.trim(), evaluationPlaceholder);
-            }));
-        });
-
-        describe('#navigateToReportFragment()', () => {
-            it('... should have a method `navigateToReportFragment`', () => {
-                expect(component.navigateToReportFragment).toBeDefined();
-            });
-
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
-
-                // Find evaluation paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
-
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
-
-                // CLick on first anchor (with navigateToReportFragment call)
-                clickAndAwaitChanges(anchorDes[0], fixture);
-
-                expectSpyCall(navigateToReportFragmentSpy, 1, { complexId: '', fragmentId: expectedReportFragment });
-            }));
-
-            describe('... should not emit anything if', () => {
-                it('... parameter is undefined', () => {
-                    component.navigateToReportFragment(undefined);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... parameter is null', () => {
-                    component.navigateToReportFragment(null);
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is undefined', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: undefined });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is null', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: null });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-                it('... fragment id is empty string', () => {
-                    component.navigateToReportFragment({ complexId: 'testComplex', fragmentId: '' });
-
-                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
-                });
-            });
-
-            it('... should emit id of selected report fragment within same complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-
-            it('... should emit id of selected report fragment for another complex', () => {
-                const expectedReportIds = { complexId: expectedComplexId, fragmentId: expectedReportFragment };
-                component.navigateToReportFragment(expectedReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedReportIds);
-
-                const otherFragment = 'source_B';
-                const expectedNextReportIds = { complexId: expectedNextComplexId, fragmentId: otherFragment };
-                component.navigateToReportFragment(expectedNextReportIds);
-
-                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, expectedNextReportIds);
-            });
-        });
-
-        describe('#openModal()', () => {
-            it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeDefined();
-            });
-
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
-
-                // Find evaluation paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
-
-                // Find anchors in second description paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
-
-                // Click on second anchor with modal call
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
-            }));
-
-            describe('... should not emit anything if ', () => {
-                it('... id is undefined', () => {
-                    component.openModal(undefined);
-
-                    expectSpyCall(openModalRequestEmitSpy, 0);
+            describe('... if evaluation data is empty', () => {
+                beforeEach(async () => {
+                    fixture.componentRef.setInput('editionComplex', expectedComplex);
+                    fixture.componentRef.setInput(
+                        'sourceEvaluationListData',
+                        structuredClone(expectedSourceEvaluationListEmptyData)
+                    );
+                    await detectChangesOnPush(fixture);
                 });
 
-                it('... id is null', () => {
-                    component.openModal(undefined);
+                describe('... should contain one placeholder component when', () => {
+                    it.each([
+                        {
+                            desc: 'there are no source entries',
+                            sourceEvaluationListData: { sources: [] },
+                        },
+                        {
+                            desc: 'the source has empty content',
+                            sourceEvaluationListData: { sources: [{ id: 'op25', content: [] }] },
+                        },
+                    ])('... $desc', async ({ sourceEvaluationListData }) => {
+                        fixture.componentRef.setInput('sourceEvaluationListData', sourceEvaluationListData);
+                        await detectChangesOnPush(fixture);
 
-                    expectSpyCall(openModalRequestEmitSpy, 0, null);
+                        getAndExpectDebugElementByDirective(compDe, EditionComplexPlaceholderComponent, 1, 1);
+                        getAndExpectDebugElementByCss(compDe, 'p.awg-source-evaluation-entry', 0, 0);
+                    });
                 });
-                it('... id is empty string', () => {
-                    component.openModal('');
 
-                    expectSpyCall(openModalRequestEmitSpy, 0);
+                it('... should pass down `type` and `editionComplex` to EditionComplexPlaceholderComponent (hollow)', () => {
+                    const placeholderDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionComplexPlaceholderComponent,
+                        1,
+                        1
+                    );
+                    const placeholderIns = placeholderDes[0].injector.get(
+                        EditionComplexPlaceholderComponent
+                    ) as EditionComplexPlaceholderComponent;
+
+                    expectToBe(placeholderIns.type(), 'sourceEvaluation');
+                    expectToEqual(placeholderIns.editionComplex(), expectedComplex);
                 });
-            });
 
-            it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedModalSnippet);
+                it('... should set the box classes on EditionComplexPlaceholderComponent (hollow)', () => {
+                    const placeholderDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionComplexPlaceholderComponent,
+                        1,
+                        1
+                    );
+                    const placeholderEl: HTMLElement = placeholderDes[0].nativeElement;
 
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
-
-                // Find evaluation paragraphs
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
-
-                // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(pDes[1], 'a', 3, 3);
-
-                // CLick on third anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                expectSpyCall(selectSvgSheetSpy, 1, { complexId: expectedComplexId, sheetId: expectedSheetId });
-            }));
-
-            it('... should not emit anything if no id is provided', () => {
-                const expectedSheetIds = undefined;
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
-                component.selectSvgSheet(expectedSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
-                component.selectSvgSheet(expectedNextSheetIds);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+                    expectToContain(placeholderEl.classList, 'p-5');
+                    expectToContain(placeholderEl.classList, 'border');
+                    expectToContain(placeholderEl.classList, 'rounded-3');
+                });
             });
         });
     });

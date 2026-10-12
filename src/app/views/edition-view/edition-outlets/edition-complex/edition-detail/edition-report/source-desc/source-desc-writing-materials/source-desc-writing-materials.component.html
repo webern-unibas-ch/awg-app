@@ -1,0 +1,13 @@
+<p class="awg-source-desc-writing-materials">
+    <span class="awg-source-desc-writing-materials-label smallcaps">Beschreibstoff:&nbsp;</span>
+    <span class="awg-source-desc-writing-materials-content">
+        @for (writingMaterial of writingMaterials(); track $index; let lastWritingMaterial = $last) {
+            <awg-source-desc-writing-material [material]="writingMaterial" />
+            @if (lastWritingMaterial) {
+                <span>.</span>
+            } @else {
+                <span>;</span><br />
+            }
+        }
+    </span>
+</p>

@@ -34,7 +34,7 @@ export default defineConfig(
             globals: {
                 ...globals.browser,
                 ...globals.node,
-                ...globals.jasmine,
+                ...globals.vitest,
             },
         },
     },
@@ -77,6 +77,7 @@ export default defineConfig(
             '@angular-eslint/no-output-on-prefix': 'error',
             '@angular-eslint/no-output-rename': 'error',
             '@angular-eslint/no-outputs-metadata-property': 'error',
+            '@angular-eslint/no-uncalled-signals': 'error',
             '@angular-eslint/prefer-standalone': 'off',
             '@angular-eslint/use-lifecycle-interface': 'error',
             '@angular-eslint/use-pipe-transform-interface': 'error',
@@ -102,7 +103,7 @@ export default defineConfig(
                     },
                 },
             ],
-            '@typescript-eslint/member-ordering': 'error',
+            '@typescript-eslint/member-ordering': 'warn',
             '@typescript-eslint/naming-convention': [
                 'error',
                 {
@@ -124,16 +125,15 @@ export default defineConfig(
                     leadingUnderscore: 'require',
                 },
                 {
-                    selector: ['classProperty'],
-                    modifiers: ['readonly'],
-                    format: ['UPPER_CASE'],
-                    trailingUnderscore: 'allow',
-                },
-                {
                     selector: 'objectLiteralProperty',
                     format: ['camelCase', 'UPPER_CASE', 'snake_case'],
                     leadingUnderscore: 'allow',
                     trailingUnderscore: 'allow',
+                },
+                {
+                    selector: 'objectLiteralProperty',
+                    modifiers: ['requiresQuotes'],
+                    format: null,
                 },
             ],
             '@typescript-eslint/no-deprecated': 'warn',
@@ -224,7 +224,18 @@ export default defineConfig(
             'no-eval': 'error',
             'no-fallthrough': 'error',
             'no-new-wrappers': 'error',
-            'no-restricted-imports': ['error', 'rxjs/Rx'],
+            'no-restricted-imports': [
+                'error',
+                {
+                    paths: [
+                        { name: 'rxjs/Rx' },
+                        ...['data', 'models', 'services'].map(barrel => ({
+                            name: `@awg-views/edition-view/${barrel}`,
+                            message: 'Import from the concrete file instead of the barrel.',
+                        })),
+                    ],
+                },
+            ],
             'no-throw-literal': 'error',
             'no-trailing-spaces': 'off',
             'no-undef-init': 'error',
@@ -270,6 +281,7 @@ export default defineConfig(
             prettier: prettierPlugin,
         },
         rules: {
+            '@angular-eslint/template/prefer-self-closing-tags': 'error',
             'prettier/prettier': [
                 'error',
                 {

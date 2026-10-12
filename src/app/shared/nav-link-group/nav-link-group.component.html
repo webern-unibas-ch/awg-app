@@ -1,0 +1,16 @@
+<div class="awg-nav-link-group para d-flex justify-content-between" aria-label="Nav link group">
+    @for (navLink of navLinks(); track $index; let i = $index; let isFirst = $first; let isLast = $last) {
+        <a
+            class="awg-nav-link"
+            [class.first]="isFirst"
+            [class.last]="isLast"
+            [class.disabled]="navLink.disabled"
+            [attr.aria-disabled]="navLink.disabled || null"
+            [routerLink]="navLink.disabled ? null : [navLink.root, navLink.link]"
+            [queryParamsHandling]="queryParamsHandling()"
+            routerLinkActive="active"
+            (awgClick)="selectNavLink(navLink)">
+            {{ navLink.label | uppercase }}
+        </a>
+    }
+</div>

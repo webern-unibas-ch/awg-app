@@ -1,0 +1,28 @@
+@if (editionOutline(); as outline) {
+    <div class="awg-edition-outline">
+        <div class="awg-edition-outline-text p-4 border rounded-3 para">
+            <p>
+                Die Anton Webern Gesamtausgabe (AWG) versteht sich als historisch-kritische Gesamtausgabe der
+                Kompositionen Anton Weberns. Sie ist <em>historisch</em>, indem sie die Kompositionen durch
+                Dokumentation verschiedener Textfassungen und ihrer Skizzen als in sich chronologisch differenzierte
+                Editionskomplexe präsentiert sowie deren Entstehung in den Zusammenhang der Biographie des Komponisten
+                und der allgemeinen Musikgeschichte einordnet. Sie ist <em>kritisch</em>, indem sie sämtliche
+                erreichbaren Quellen vergleicht und textkritisch prüft. Sie ist eine <em>Gesamt</em>ausgabe, indem sie
+                die auf Grundlage dieser Quellenkritik erkennbaren Textfassungen und Skizzen sämtlicher, auch
+                fragmentarischer Kompositionen ediert. Sie ist eine Gesamt<em>ausgabe</em>, indem sie Notentexte mit dem
+                methodischen Bewusstsein vorlegt, dass eine Edition grundsätzlich eine Interpretation des durch die
+                Quellen bezeugten Texts darstellt.
+            </p>
+
+            <p>Die AWG gliedert sich in drei Serien:</p>
+        </div>
+
+        <div class="awg-edition-series-grid row row-cols-1 row-cols-md-3 g-4">
+            @for (series of outline; track series.series.route) {
+                <div class="col">
+                    <awg-edition-series-card [displayedSeries]="series" />
+                </div>
+            }
+        </div>
+    </div>
+}

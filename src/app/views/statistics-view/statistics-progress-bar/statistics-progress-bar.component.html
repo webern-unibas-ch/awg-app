@@ -1,0 +1,34 @@
+@let hLabel = headerLabel();
+@let hasHeaderVal = hasHeaderValue();
+@let width = progressBarWidth();
+
+@if (hLabel) {
+    <div
+        class="awg-statistics-progress-header mb-1"
+        [class.d-flex]="hasHeaderVal"
+        [class.justify-content-between]="hasHeaderVal">
+        <span>{{ hLabel }}</span>
+
+        @if (hasHeaderVal) {
+            <span>{{ progressHeaderValue() }}</span>
+        }
+    </div>
+}
+
+<div class="awg-statistics-progress-container d-flex align-items-center">
+    <ngb-progressbar
+        class="flex-grow-1"
+        [class.me-2]="showPercentageLabel()"
+        [type]="progressBarColorType()"
+        [height]="height()"
+        [value]="width"
+        [ariaLabel]="hLabel || 'Progress Bar'" />
+    @if (showPercentageLabel()) {
+        <small
+            class="text-nowrap awg-statistics-progress-label"
+            [class.fw-bold]="boldPercentageLabel()"
+            [class.text-muted]="width === 0"
+            >{{ width }}%</small
+        >
+    }
+</div>

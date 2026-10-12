@@ -1,0 +1,171 @@
+import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import {
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+
+import { AppConstants } from '@awg-app/app.constants';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
+
+import { ContactAddressComponent } from '../contact-address/contact-address.component';
+import { ContactMapComponent } from '../contact-map/contact-map.component';
+
+import { ContactSideInfoComponent } from './contact-side-info.component';
+
+describe('ContactSideInfoComponent (DONE)', () => {
+    let component: ContactSideInfoComponent;
+    let fixture: ComponentFixture<ContactSideInfoComponent>;
+    let compDe: DebugElement;
+
+    let domSanitizer: DomSanitizer;
+
+    let expectedPageMetaData: MetaPage;
+    let expectedContactMetaData: MetaContact;
+
+    let expectedUnsafeEmbedUrl: string;
+    let expectedEmbedUrl: SafeResourceUrl;
+    let expectedLinkUrl: string;
+
+    const expectedContactSideInfoHeader = 'Kontakt';
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ContactSideInfoComponent],
+        })
+            .overrideComponent(ContactAddressComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(ContactMapComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
+    });
+
+    beforeEach(() => {
+        // Inject services
+        domSanitizer = TestBed.inject(DomSanitizer);
+
+        // Test data
+        expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+        expectedContactMetaData = META_DATA[MetaSectionTypes.contact];
+
+        // Link values for open streets map
+        expectedUnsafeEmbedUrl = AppConstants.CONTACT_MAP_UNSAFE_EMBED_URL;
+        expectedLinkUrl = AppConstants.CONTACT_MAP_LINK_URL;
+
+        // Trust the unsafe values
+        expectedEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeEmbedUrl);
+
+        // Create component fixture
+        fixture = TestBed.createComponent(ContactSideInfoComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+    });
+
+    it('... should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should have `CONTACT_SIDE_INFO_HEADER`', () => {
+            expectToBe(component.CONTACT_SIDE_INFO_HEADER, expectedContactSideInfoHeader);
+        });
+
+        it('... should have `contactMetaData`', () => {
+            expectToEqual(component.contactMetaData, expectedContactMetaData);
+        });
+
+        it('... should have `pageMetaData`', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
+        });
+
+        it('... should have `mapEmbedUrl`', () => {
+            expectToEqual(component.mapEmbedUrl, expectedEmbedUrl);
+        });
+
+        it('... should have `mapLinkUrl`', () => {
+            expectToBe(component.mapLinkUrl, expectedLinkUrl);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one div.card with div.card-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
+            });
+
+            it('... should contain one `h5` header in div.card-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-contact-side-info-header', 1, 1);
+            });
+
+            it('... should not render `CONTACT_SIDE_INFO_HEADER` yet', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-side-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent, '');
+            });
+
+            it('... should contain one address component (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
+            });
+
+            it('... should throw when accessing address component inputs (`pageMetaData` and `contactMetaData`) due to missing initial data binding', () => {
+                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
+                const addressCmp = addressDes[0].injector.get(ContactAddressComponent);
+
+                expect(() => addressCmp.pageMetaData()).toThrow();
+                expect(() => addressCmp.contactMetaData()).toThrow();
+            });
+
+            it('... should contain one map component (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
+            });
+
+            it('... should throw due to missing required values for map component (`embedUrl` and `linkUrl`)', () => {
+                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
+                const mapCmp = mapDes[0].injector.get(ContactMapComponent);
+
+                // Expect the required inputs to throw if not provided
+                expect(() => mapCmp.embedUrl()).toThrow();
+                expect(() => mapCmp.linkUrl()).toThrow();
+            });
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should render `CONTACT_SIDE_INFO_HEADER`', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-contact-side-info-header', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent, expectedContactSideInfoHeader);
+            });
+
+            it('... should pass down updated values to address component (`pageMetaData` and `contactMetaData`)', () => {
+                const addressDes = getAndExpectDebugElementByDirective(compDe, ContactAddressComponent, 1, 1);
+                const addressCmp = addressDes[0].injector.get(ContactAddressComponent);
+
+                expectToEqual(addressCmp.pageMetaData(), expectedPageMetaData);
+                expectToEqual(addressCmp.contactMetaData(), expectedContactMetaData);
+            });
+
+            it('... should pass down updated values to map component (`embedUrl` and `linkUrl`)', () => {
+                const mapDes = getAndExpectDebugElementByDirective(compDe, ContactMapComponent, 1, 1);
+                const mapCmp = mapDes[0].injector.get(ContactMapComponent);
+
+                expect(() => mapCmp.embedUrl()).not.toThrow();
+                expect(() => mapCmp.linkUrl()).not.toThrow();
+                expectToEqual(mapCmp.embedUrl(), expectedEmbedUrl);
+                expectToEqual(mapCmp.linkUrl(), expectedLinkUrl);
+            });
+        });
+    });
+});

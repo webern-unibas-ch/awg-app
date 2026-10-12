@@ -1,0 +1,10 @@
+@if (selectedSection(); as section) {
+    @let imgSrc = 'assets/img' + section.labeledRoute.route.join('/') + '/cover.jpg';
+    @let imgLabel = section.labeledRoute.label;
+
+    <img
+        [src]="imgSrc"
+        [title]="imgLabel"
+        class="awg-edition-section-detail-cover card-img-top img-fluid border rounded-3"
+        alt="Cover {{ imgLabel }}" />
+}

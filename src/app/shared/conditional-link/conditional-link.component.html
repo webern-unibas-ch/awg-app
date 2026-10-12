@@ -1,0 +1,11 @@
+@if (isClickable()) {
+    <a (click)="clicked.emit()" (keyup.enter)="clicked.emit()" role="link" tabindex="0">
+        <ng-container [ngTemplateOutlet]="linkContent" />
+    </a>
+} @else {
+    <ng-container [ngTemplateOutlet]="linkContent" />
+}
+
+<ng-template #linkContent>
+    <ng-content />
+</ng-template>

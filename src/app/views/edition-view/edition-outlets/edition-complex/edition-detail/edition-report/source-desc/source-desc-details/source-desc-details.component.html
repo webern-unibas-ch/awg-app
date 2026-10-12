@@ -1,0 +1,19 @@
+@if (details().length) {
+    <p class="awg-source-desc-{{ detailsClass() }}">
+        @if (detailsLabel(); as label) {
+            <span class="awg-source-desc-details-label smallcaps">{{ label }}:&nbsp;</span>
+        }
+        <span class="awg-source-desc-details-content">
+            @for (detail of details(); track $index; let lastDetail = $last) {
+                <span [awgCompileHtml]="detail"></span>
+                @if (hasPunctuation()) {
+                    @if (lastDetail) {
+                        <span>.</span>
+                    } @else {
+                        <span>;</span><br />
+                    }
+                }
+            }
+        </span>
+    </p>
+}

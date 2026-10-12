@@ -1,12 +1,11 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { lastValueFrom, Observable, of as observableOf, ReplaySubject } from 'rxjs';
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { createMockViewData } from '@testing/edition-data-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -14,99 +13,65 @@ import {
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { PrefaceList } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionGlyphService, EditionStateService } from '@awg-views/edition-view/services';
+import { AlertErrorComponent } from '@awg-shared/alert-error/alert-error.component';
+import { TwelveToneSpinnerComponent } from '@awg-shared/twelve-tone-spinner/twelve-tone-spinner.component';
+
+import {
+    EditionDataAssetsError,
+    EditionViewData,
+    EditionViewDataContent,
+} from '@awg-views/edition-view/models/edition-data.model';
+import { PrefaceList } from '@awg-views/edition-view/models/preface.model';
+import { EditionViewService } from '@awg-views/edition-view/services/edition-view.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { LanguageSwitcherComponent } from '@awg-views/edition-view/shared/language-switcher/language-switcher.component';
+import { LanguageId } from '@awg-views/edition-view/shared/language-switcher/language.model';
 
 import { EditionPrefaceComponent } from './edition-preface.component';
-
-// Mock components
-@Component({
-    selector: 'awg-language-switcher',
-    template: '',
-    standalone: false,
-})
-class LanguageSwitcherStubComponent {
-    @Input()
-    currentLanguage: number;
-    @Output() languageChangeRequest = new EventEmitter<number>();
-}
 
 describe('EditionPrefaceComponent (DONE)', () => {
     let component: EditionPrefaceComponent;
     let fixture: ComponentFixture<EditionPrefaceComponent>;
     let compDe: DebugElement;
 
-    let getGlyphSpy: Spy;
-    let setLanguageSpy: Spy;
-    let editionDataServiceGetPrefaceDataSpy: Spy;
-    let editionGlyphServiceGetGlyphSpy: Spy;
-    let editionStateServiceUpdateIsPrefaceViewSpy: Spy;
-    let editionStateServiceClearIsPrefaceViewSpy: Spy;
-
-    let mockEditionStateService: Partial<EditionStateService>;
-    let mockEditionGlyphService: Partial<EditionGlyphService>;
-    let mockEditionDataService: Partial<EditionDataService>;
-    let mockIsPrefaceViewSubject: ReplaySubject<boolean>;
-
+    let mockViewDataSignal: WritableSignal<EditionViewData<'preface'>>;
+    let expectedViewDataContent: EditionViewDataContent<'preface'>;
+    let expectedDefaultViewDataContent: EditionViewDataContent<'preface'>;
     let expectedPrefaceData: PrefaceList;
-    let expectedCurrentLanguage: number;
+    let expectedSelectedLanguage: LanguageId;
 
     beforeEach(async () => {
-        mockIsPrefaceViewSubject = new ReplaySubject<boolean>(1);
-
-        mockEditionDataService = {
-            getEditionPrefaceData: (): Observable<PrefaceList> => observableOf(expectedPrefaceData),
-        };
-
-        mockEditionGlyphService = {
-            getGlyph: (): string => 'glyphString',
-        };
-
-        mockEditionStateService = {
-            updateIsPrefaceView: (isView: boolean): void => mockIsPrefaceViewSubject.next(isView),
-            clearIsPrefaceView: (): void => mockIsPrefaceViewSubject.next(null),
-        };
+        // Mock services
+        expectedDefaultViewDataContent = { prefaceData: new PrefaceList() };
+        mockViewDataSignal = signal(createMockViewData(expectedDefaultViewDataContent));
 
         await TestBed.configureTestingModule({
-            declarations: [CompileHtmlComponent, EditionPrefaceComponent, LanguageSwitcherStubComponent],
-            providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionGlyphService, useValue: mockEditionGlyphService },
-                { provide: EditionStateService, useValue: mockEditionStateService },
+            imports: [
+                EditionPrefaceComponent,
+                AlertErrorComponent,
+                CompileHtmlDirective,
+                LanguageSwitcherComponent,
+                TwelveToneSpinnerComponent,
             ],
-        }).compileComponents();
+            providers: [
+                { provide: EditionViewService, useValue: { prefaceViewData: mockViewDataSignal.asReadonly() } },
+            ],
+        })
+            .overrideComponent(AlertErrorComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(LanguageSwitcherComponent, { set: { template: '', imports: [] } })
+            .overrideComponent(TwelveToneSpinnerComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
     });
 
     beforeEach(() => {
+        // Test data
+        expectedPrefaceData = structuredClone(mockEditionData.mockPrefaceData);
+        expectedSelectedLanguage = LanguageId.DE;
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionPrefaceComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        mockEditionDataService = TestBed.inject(EditionDataService);
-        mockEditionGlyphService = TestBed.inject(EditionGlyphService);
-        mockEditionStateService = TestBed.inject(EditionStateService);
-
-        // Test data
-        expectedPrefaceData = JSON.parse(JSON.stringify(mockEditionData.mockPrefaceData));
-        expectedCurrentLanguage = 0;
-
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
-        setLanguageSpy = spyOn(component, 'setLanguage').and.callThrough();
-
-        editionDataServiceGetPrefaceDataSpy = spyOn(mockEditionDataService, 'getEditionPrefaceData').and.callThrough();
-        editionGlyphServiceGetGlyphSpy = spyOn(mockEditionGlyphService, 'getGlyph').and.callThrough();
-        editionStateServiceUpdateIsPrefaceViewSpy = spyOn(
-            mockEditionStateService,
-            'updateIsPrefaceView'
-        ).and.callThrough();
-        editionStateServiceClearIsPrefaceViewSpy = spyOn(
-            mockEditionStateService,
-            'clearIsPrefaceView'
-        ).and.callThrough();
     });
 
     it('... should create', () => {
@@ -114,172 +79,237 @@ describe('EditionPrefaceComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `prefaceData$`', () => {
-            expect(component.prefaceData$).toBeUndefined();
+        it('... should have signal `viewData` to hold the default fallback data', () => {
+            expectToBe(isSignal(component.viewData), true);
+
+            expectToEqual(component.viewData(), createMockViewData(expectedDefaultViewDataContent));
         });
 
-        it('... should have `currentLanguage` = 0', () => {
-            expectToBe(component.currentLanguage, expectedCurrentLanguage);
-        });
+        it('... should have signal `selectedLanguage` to hold the default language (DE)', () => {
+            expectToBe(isSignal(component.selectedLanguage), true);
 
-        it('... should have `ref`', () => {
-            expectToEqual(component.ref, component);
-        });
-
-        it('... should not have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 0);
-        });
-        it('... should not have called EditionGlyphService', () => {
-            expectSpyCall(editionGlyphServiceGetGlyphSpy, 0);
-        });
-
-        it('... should not have called EditionStateService', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 0);
+            expectToBe(component.selectedLanguage(), expectedSelectedLanguage);
         });
 
         describe('VIEW', () => {
-            it('... should contain no outer div.row (yet)', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
+            it('... should contain no AlertErrorComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
             });
 
-            it('... should not contain language switcher component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 0, 0);
+            it('... should contain no TwelveToneSpinnerComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
+            });
+
+            it('... should contain no outer div.awg-preface-view yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
+            });
+
+            it('... should contain no LanguageSwitcherComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Set mock view data signal to expected data state
+            expectedViewDataContent = { prefaceData: expectedPrefaceData };
+            mockViewDataSignal.set(
+                createMockViewData(expectedViewDataContent, {
+                    isLoading: false,
+                    error: null,
+                })
+            );
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have updated IsPrefaceViewFlag (via EditionStateService)', () => {
-            expectSpyCall(editionStateServiceUpdateIsPrefaceViewSpy, 1, true);
+        it('... should have signal `viewData` to hold the expected data', () => {
+            expectToEqual(component.viewData(), createMockViewData(expectedViewDataContent));
         });
-
-        it('... should have called EditionDataService', () => {
-            expectSpyCall(editionDataServiceGetPrefaceDataSpy, 1);
-        });
-
-        it('... should have prefaceData$', waitForAsync(() => {
-            expectAsync(lastValueFrom(component.prefaceData$)).toBeResolved();
-            expectAsync(lastValueFrom(component.prefaceData$)).toBeResolvedTo(expectedPrefaceData);
-        }));
 
         describe('VIEW', () => {
-            it('... should contain 1 outer div.awg-preface-view', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+            it('... should render nothing if viewData is not available', async () => {
+                mockViewDataSignal.set(null as any);
+
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
             });
 
-            it('... should contain one language switcher component (stubbed) in div.awg-preface-view', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+            describe('on error', () => {
+                const expectedErrorObject: EditionDataAssetsError = {
+                    key: 'preface',
+                    error: { status: 404, statusText: 'Data not found' },
+                };
 
-                getAndExpectDebugElementByDirective(divDes[0], LanguageSwitcherStubComponent, 1, 1);
+                beforeEach(async () => {
+                    // Mock error state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, {
+                            isLoading: false,
+                            error: expectedErrorObject,
+                        })
+                    );
+
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should not contain preface view or spinner, but one AlertErrorComponent (hollow)', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 0, 0);
+
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                });
+
+                it('... should pass down error object to AlertErrorComponent (hollow)', () => {
+                    const alertErrorDes = getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 1, 1);
+                    const alertErrorCmp = alertErrorDes[0].injector.get(AlertErrorComponent) as AlertErrorComponent;
+
+                    expectToEqual(alertErrorCmp.errorObject(), expectedErrorObject);
+                });
             });
 
-            it('... should pass down `currentLanguage` to language switcher component', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(
-                    LanguageSwitcherStubComponent
-                ) as LanguageSwitcherStubComponent;
+            describe('on loading', () => {
+                beforeEach(async () => {
+                    // Mock loading state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, { isLoading: true, error: null })
+                    );
 
-                expectToEqual(switcherCmp.currentLanguage, expectedCurrentLanguage);
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should not contain preface view or alert, but one TwelveToneSpinnerComponent (hollow)', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 0, 0);
+                    getAndExpectDebugElementByDirective(compDe, AlertErrorComponent, 0, 0);
+
+                    getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
+                });
+
+                it('... should have default spinnerText on TwelveToneSpinnerComponent (hollow)', () => {
+                    const spinnerDes = getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerComponent, 1, 1);
+                    const spinnerCmp = spinnerDes[0].injector.get(
+                        TwelveToneSpinnerComponent
+                    ) as TwelveToneSpinnerComponent;
+
+                    expectToBe(spinnerCmp.spinnerText(), 'loading');
+                });
             });
 
-            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (german)', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+            describe('on view data available', () => {
+                beforeEach(async () => {
+                    // Mock data state
+                    mockViewDataSignal.set(
+                        createMockViewData(expectedViewDataContent, {
+                            isLoading: false,
+                            error: null,
+                        })
+                    );
 
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'div.awg-edition-preface-block',
-                    expectedPrefaceData.preface[0].content.length,
-                    expectedPrefaceData.preface[0].content.length
-                );
-            });
+                    await detectChangesOnPush(fixture);
+                });
 
-            it('... should contain as many preface block elements in div.awg-preface-view as content items in preview data (english)', () => {
-                // Div debug element
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+                it('... should contain one outer div.awg-preface-view', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+                });
 
-                getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'div.awg-edition-preface-block',
-                    expectedPrefaceData.preface[1].content.length,
-                    expectedPrefaceData.preface[1].content.length
-                );
-            });
-        });
+                it('... should contain one LanguageSwitcherComponent (hollow) in div.awg-preface-view', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
-        describe('#getGlyph()', () => {
-            it('... should have a method `getGlyph`', () => {
-                expect(component.getGlyph).toBeDefined();
-            });
+                    getAndExpectDebugElementByDirective(divDes[0], LanguageSwitcherComponent, 1, 1);
+                });
 
-            it('... should trigger on change detection', () => {
-                expectSpyCall(getGlyphSpy, 1);
+                it('... should pass down `selectedLanguage` to LanguageSwitcherComponent (hollow)', () => {
+                    const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
+                    const switcherCmp = switcherDes[0].injector.get(
+                        LanguageSwitcherComponent
+                    ) as LanguageSwitcherComponent;
 
-                detectChangesOnPush(fixture);
+                    expectToEqual(switcherCmp.selectedLanguage(), expectedSelectedLanguage);
+                });
 
-                expectSpyCall(getGlyphSpy, 2);
-            });
+                it('... should update `selectedLanguage` when LanguageSwitcherComponent (hollow) emits a change', () => {
+                    const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherComponent, 1, 1);
 
-            it('... should call `getGlyphs` method from EditionGlyphService with correct glyph string', () => {
-                expectSpyCall(editionGlyphServiceGetGlyphSpy, 1);
+                    expectToBe(component.selectedLanguage(), LanguageId.DE);
 
-                component.getGlyph('[bb]');
+                    switcherDes[0].triggerEventHandler('selectedLanguageChange', LanguageId.EN);
 
-                expectSpyCall(editionGlyphServiceGetGlyphSpy, 2, '[bb]');
-            });
+                    fixture.detectChanges();
 
-            it('... should return the glyph string from EditionGlyphService', () => {
-                const result = component.getGlyph('[bb]');
+                    expectToBe(component.selectedLanguage(), LanguageId.EN);
+                });
 
-                expectToBe(result, 'glyphString');
-            });
-        });
+                describe('... with language specific content', () => {
+                    const languageCases = [
+                        { desc: 'german', langId: LanguageId.DE, dataIndex: 0 },
+                        { desc: 'english', langId: LanguageId.EN, dataIndex: 1 },
+                    ];
 
-        describe('#setLanguage()', () => {
-            it('... should have a method `setLanguage`', () => {
-                expect(component.setLanguage).toBeDefined();
-            });
+                    it.each(languageCases)(
+                        '... should contain as many preface block elements in div.awg-preface-view as content items in preview data ($desc)',
+                        ({ langId, dataIndex }) => {
+                            component.selectedLanguage.set(langId);
+                            fixture.detectChanges();
 
-            it('... should trigger on event from LanguageSwitcherComponent', () => {
-                const switcherDes = getAndExpectDebugElementByDirective(compDe, LanguageSwitcherStubComponent, 1, 1);
-                const switcherCmp = switcherDes[0].injector.get(
-                    LanguageSwitcherStubComponent
-                ) as LanguageSwitcherStubComponent;
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
 
-                // Language = 0
-                switcherCmp.languageChangeRequest.emit(0);
+                            const expectedLength = expectedPrefaceData.preface[dataIndex].content.length;
+                            getAndExpectDebugElementByCss(
+                                divDes[0],
+                                'div.awg-edition-preface-block',
+                                expectedLength,
+                                expectedLength
+                            );
+                        }
+                    );
 
-                expectSpyCall(setLanguageSpy, 1, 0);
+                    it.each(languageCases)(
+                        `... should pass correct content strings to the CompileHtmlDirective ($desc)`,
+                        ({ langId, dataIndex }) => {
+                            component.selectedLanguage.set(langId);
+                            fixture.detectChanges();
 
-                // Language = 1
-                switcherCmp.languageChangeRequest.emit(1);
+                            const expectedContent = expectedPrefaceData.preface[dataIndex].content;
+                            const expectedLength = expectedContent.length;
 
-                expectSpyCall(setLanguageSpy, 2, 1);
-            });
+                            const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+                            const allDirectiveDes = getAndExpectDebugElementByDirective(
+                                divDes[0],
+                                CompileHtmlDirective,
+                                expectedLength,
+                                expectedLength
+                            );
 
-            it('... should set the currentLanguage to 0 when called with 0', () => {
-                component.setLanguage(0);
+                            expectedContent.forEach((expectedText, contentIndex) => {
+                                const currentDirectiveDe = allDirectiveDes[contentIndex];
+                                const currentDirectiveIns = currentDirectiveDe.injector.get(CompileHtmlDirective);
 
-                expectToBe(component.currentLanguage, 0);
-            });
+                                expectToBe(currentDirectiveIns.htmlContent(), expectedText);
+                            });
+                        }
+                    );
 
-            it('... should set the currentLanguage to 1 when called with 1', () => {
-                component.setLanguage(1);
+                    it('... should render no preface blocks if preface for selected language is missing', () => {
+                        const prefaceWithoutEnglish = { preface: [expectedPrefaceData.preface[0]] };
 
-                expectToBe(component.currentLanguage, 1);
-            });
-        });
+                        mockViewDataSignal.set(
+                            createMockViewData(
+                                { prefaceData: prefaceWithoutEnglish },
+                                { isLoading: false, error: null }
+                            )
+                        );
+                        component.selectedLanguage.set(LanguageId.EN);
+                        fixture.detectChanges();
 
-        describe('#ngOnDestroy()', () => {
-            it('... should have cleared isPrefaceView$ on destroy (via EditionStateService)', () => {
-                component.ngOnDestroy();
-
-                expectSpyCall(editionStateServiceClearIsPrefaceViewSpy, 1);
+                        const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-preface-view', 1, 1);
+                        getAndExpectDebugElementByCss(divDes[0], 'div.awg-edition-preface-block', 0, 0);
+                    });
+                });
             });
         });
     });

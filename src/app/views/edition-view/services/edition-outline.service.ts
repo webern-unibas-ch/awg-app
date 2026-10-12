@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 
 import {
     EditionOutline,
     EditionOutlineJsonData,
     EditionOutlineSection,
     EditionOutlineSeries,
-} from '@awg-views/edition-view/models';
+    EditionOutlineSeriesJsonData,
+} from '../models/edition-outline.model';
+import { EditionComplexesService } from './edition-complexes.service';
 
 import * as jsonEditionOutline from 'assets/data/edition/edition-outline.json';
 
@@ -21,88 +23,69 @@ import * as jsonEditionOutline from 'assets/data/edition/edition-outline.json';
 })
 export class EditionOutlineService {
     /**
-     * Static variable: _EditionOutline.
+     * Private readonly injection variable: _editionComplexesService.
      *
-     * It keeps the edition outline.
+     * It keeps the instance of the injected EditionComplexesService.
      */
-    private static _editionOutline: EditionOutlineSeries[] = [];
+    private readonly _editionComplexesService = inject(EditionComplexesService);
 
     /**
-     * Static method: initEditionOutline.
+     * Private readonly signal holding the raw json data of the edition outline.
+     */
+    private readonly _rawOutlineDataSignal = signal<EditionOutlineSeriesJsonData[]>([]);
+
+    /**
+     * Readonly computed signal: editionOutline.
+     *
+     * It computes the edition outline based on the raw json data and the edition complexes list.
+     */
+    readonly editionOutline = computed<EditionOutlineSeries[]>(() => {
+        const rawOutlineData = this._rawOutlineDataSignal();
+        if (!rawOutlineData) {
+            return [];
+        }
+
+        const complexesList = this._editionComplexesService.editionComplexesList();
+        const outlineModel = new EditionOutline(rawOutlineData, id => complexesList[id.toLowerCase()]);
+
+        return outlineModel.outline;
+    });
+
+    /**
+     * Public method: initEditionOutline.
      *
      * It initializes the edition outline.
      *
      * @returns {void} Initializes the edition outline.
      */
-    static initializeEditionOutline(): void {
-        const outline = EditionOutlineService._fetchEditionOutlineData();
-        EditionOutlineService.setEditionOutline(outline.outline);
+    initializeEditionOutline(): void {
+        const rawOutlineData: EditionOutlineJsonData = jsonEditionOutline as EditionOutlineJsonData;
+        this._rawOutlineDataSignal.set(rawOutlineData['editionOutline']);
     }
 
     /**
-     * Static method: getEditionOutline.
-     *
-     * It provides the edition outline with its series.
-     *
-     * @returns {EditionOutline} The edition outline.
-     */
-    static getEditionOutline(): EditionOutlineSeries[] {
-        return EditionOutlineService._editionOutline;
-    }
-
-    /**
-     * Static method: getEditionSeriesById.
+     * Public method: getEditionSeriesById.
      *
      * It finds a series of the edition by a given id.
      *
      * @param {string} seriesId The given series id.
-     *
-     * @returns {EditionOutlineSeries} The found edition series.
+     * @returns {EditionOutlineSeries | undefined} The found edition series, otherwise undefined.
      */
-    static getEditionSeriesById(seriesId: string): EditionOutlineSeries {
-        return EditionOutlineService.getEditionOutline().find(series => series.series.route === seriesId);
+    getEditionSeriesById(seriesId: string): EditionOutlineSeries | undefined {
+        return this.editionOutline().find(series => series.series.route === seriesId);
     }
 
     /**
-     * Static method: getEditionSectionById.
+     * Public method: getEditionSectionById.
      *
      * It finds a section of an edition series by a given id.
      *
      * @param {string} seriesId The given series id.
      * @param {string} sectionId The given series id.
-     *
-     * @returns {EditionOutlineSection} The found edition section.
+     * @returns {EditionOutlineSection | undefined} The found edition section, otherwise undefined.
      */
-    static getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection {
-        const series = EditionOutlineService.getEditionSeriesById(seriesId);
-        return series.sections.find(section => section.section.route === sectionId);
-    }
-
-    /**
-     * Static method: setEditionOutline.
-     *
-     * It sets the edition outline.
-     *
-     * @param {EditionOutline} outline The given edition outline.
-     *
-     * @returns {void} Sets the edition outline.
-     */
-    static setEditionOutline(outline: EditionOutlineSeries[]): void {
-        EditionOutlineService._editionOutline = outline;
-    }
-
-    /**
-     * Public method: _fetchEditionOutlineData.
-     *
-     * It fetches the data from a JSON file
-     * for the outline of the edition view.
-     *
-     * @returns {EditionOutline} The EditionOutline data.
-     */
-    private static _fetchEditionOutlineData(): EditionOutline {
-        // Load the JSON data directly from the file
-        const outlineData: EditionOutlineJsonData = jsonEditionOutline as EditionOutlineJsonData;
-
-        return new EditionOutline(outlineData['editionOutline']);
+    getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection | undefined {
+        const series = this.getEditionSeriesById(seriesId);
+        return series?.sections.find(section => section.section.route === sectionId);
     }
 }

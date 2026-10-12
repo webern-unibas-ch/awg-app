@@ -1,16 +1,22 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { isActive, Router } from '@angular/router';
 
-import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap/collapse';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 
-import { Logos } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService } from '@awg-views/edition-view/services';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+import { ACTIVE_EDITION_SECTION_IDS } from '@awg-views/edition-view/data/active-edition-sections.data';
+import { EDITION_GENERAL_LINKS } from '@awg-views/edition-view/edition-links.constants';
+import { EditionOutlineSection } from '@awg-views/edition-view/models/edition-outline.model';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+
+import { NavbarDropdownLinkComponent } from './navbar-dropdown-link/navbar-dropdown-link.component';
+import { NavbarItemComponent } from './navbar-item/navbar-item.component';
+import { NAVBAR_DROPDOWN_EDITION_SECTION_LINKS, NAVBAR_ITEMS } from './navbar.data';
 
 /**
- * The Header component.
+ * The Navbar component.
  *
  * It contains the header section of the app
  * with the navigation bar, menu and brand.
@@ -19,76 +25,16 @@ import { EditionComplexesService } from '@awg-views/edition-view/services';
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [LogoComponent, NavbarItemComponent, NavbarDropdownLinkComponent, NgbCollapse, NgbDropdownModule],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
     /**
-     * Public variable: isCollapsed.
+     * Private readonly injection variable: _editionOutlineService.
      *
-     * It keeps the boolean value if the header menu is collapsed or not.
+     * It keeps the instance of the injected EditionOutlineService.
      */
-    isCollapsed = true;
-
-    /**
-     * Public variable: logos.
-     *
-     * It keeps the logos for the footer.
-     */
-    logos: Logos;
-
-    /**
-     * Public variable: navbarIcons.
-     *
-     * It keeps the fontawesome icons for the navbar.
-     */
-    navbarIcons = {
-        contact: faEnvelope,
-        edition: faFileAlt,
-        home: faHome,
-        structure: faNetworkWired,
-        search: faSearch,
-    };
-
-    /**
-     * Public variable: navbarLabels.
-     *
-     * It keeps the labels for the navbar.
-     */
-    navbarLabels = {
-        home: 'Home',
-        complexes: 'Auswahl Skizzenkomplexe',
-        contact: 'Kontakt',
-        edition: 'Edition',
-        general: 'Allgemein',
-        search: 'Datenbank-Suche',
-        structure: 'Strukturmodell',
-    };
-
-    /**
-     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
-     *
-     * It keeps the array of displayed edition complexes.
-     */
-    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
-        EditionComplexesService.getEditionComplexById('op3'),
-        EditionComplexesService.getEditionComplexById('op4'),
-        EditionComplexesService.getEditionComplexById('op12'),
-        EditionComplexesService.getEditionComplexById('op23'),
-        EditionComplexesService.getEditionComplexById('op25'),
-        EditionComplexesService.getEditionComplexById('m22'),
-        EditionComplexesService.getEditionComplexById('m30'),
-        EditionComplexesService.getEditionComplexById('m31'),
-        EditionComplexesService.getEditionComplexById('m34'),
-        EditionComplexesService.getEditionComplexById('m35_42'),
-        EditionComplexesService.getEditionComplexById('m37'),
-    ];
-
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
+    private readonly _editionOutlineService = inject(EditionOutlineService);
 
     /**
      * Private readonly injection variable: _router.
@@ -98,63 +44,67 @@ export class NavbarComponent implements OnInit {
     private readonly _router = inject(Router);
 
     /**
-     * Getter variable: editionRouteConstants.
+     * Readonly variable: navbarItems.
      *
-     *  It returns the EDITION_ROUTE_CONSTANTS.
-     **/
-    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
-        return EDITION_ROUTE_CONSTANTS;
-    }
+     * It keeps the navigation items for the navbar.
+     */
+    readonly navbarItems = NAVBAR_ITEMS;
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Readonly variable: generalEditionLinks.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It keeps the general edition links for the navbar.
      */
-    ngOnInit() {
-        this.provideMetaData();
-    }
+    readonly generalEditionLinks = EDITION_GENERAL_LINKS;
 
     /**
-     * Public method: isActiveRoute.
+     * Readonly variable: sectionEditionLinks.
      *
-     * It checks if a given route is active.
-
-     * @param {string} route The route to check.
-     *
-     * @returns {boolean} The boolean value of the check.
+     * It keeps the section edition links for the navbar.
      */
-    isActiveRoute(route: string): boolean {
-        return this._router.isActive(route, {
-            paths: 'subset',
-            queryParams: 'subset',
-            fragment: 'ignored',
-            matrixParams: 'ignored',
-        });
-    }
+    readonly sectionEditionLinks = NAVBAR_DROPDOWN_EDITION_SECTION_LINKS;
 
     /**
-     * Public method: provideMetaData.
+     * Readonly variable: logosData.
      *
-     * It calls the CoreService to provide
-     * the metadata for the header.
-     *
-     * @returns {void} Sets the logos variable.
+     * It keeps the logos data for the navbar.
      */
-    provideMetaData(): void {
-        this.logos = this._coreService.getLogos();
-    }
+    readonly logosData = LOGOS_DATA;
+
+    /**
+     * Readonly signal: isCollapsed.
+     *
+     * It holds the boolean value if the header menu is collapsed or not.
+     */
+    readonly isCollapsed = signal(true);
+
+    /**
+     * Readonly signal: sectionsData.
+     *
+     * It holds the array of displayed edition sections based on active IDs.
+     * Undefined sections are filtered out.
+     */
+    readonly sectionsData = signal(
+        ACTIVE_EDITION_SECTION_IDS.map(ids =>
+            this._editionOutlineService.getEditionSectionById(ids.seriesId, ids.sectionId)
+        ).filter((section): section is EditionOutlineSection => section !== undefined)
+    ).asReadonly();
+
+    /**
+     * Readonly signal: isEditionRouteActive.
+     *
+     * It checks if the edition route is active.
+     */
+    readonly isEditionRouteActive = isActive('/edition', this._router);
 
     /**
      * Public method: toggleNav.
      *
-     * It toggles the isCollapsed flag.
+     * It toggles the isCollapsed signal.
      *
-     * @returns {boolean} Sets the isCollapsed flag.
+     * @returns {void} Updates the isCollapsed signal.
      */
-    toggleNav(): boolean {
-        this.isCollapsed = !this.isCollapsed;
-        return this.isCollapsed;
+    toggleNav(): void {
+        this.isCollapsed.update(collapsed => !collapsed);
     }
 }

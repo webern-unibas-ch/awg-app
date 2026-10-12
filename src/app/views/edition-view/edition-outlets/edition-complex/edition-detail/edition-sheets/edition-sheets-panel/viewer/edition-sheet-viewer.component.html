@@ -1,0 +1,21 @@
+<div class="awg-edition-sheet-viewer">
+    <div class="awg-edition-sheet-viewer-icon-bar">
+        <awg-slider-zoom
+            class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
+            [zoomConfig]="zoomConfig"
+            [(zoomValue)]="zoomValue"
+            (resetRequest)="sheetSvg.resetZoom()" />
+    </div>
+
+    <awg-edition-sheet-viewer-svg
+        #sheetSvg
+        class="awg-edition-sheet-viewer-svg-container px-2r"
+        [selectedSvgSheet]="selectedSvgSheet()"
+        [zoomConfig]="zoomConfig"
+        [(zoomValue)]="zoomValue"
+        (selectLinkBoxRequest)="selectLinkBoxRequest.emit($event)"
+        (selectTkkOverlaysRequest)="selectTkkOverlaysRequest.emit($event)" />
+
+    <!-- Next and previous buttons -->
+    <awg-edition-sheet-viewer-nav (browseSheetRequest)="browseSheetRequest.emit($event)" />
+</div>

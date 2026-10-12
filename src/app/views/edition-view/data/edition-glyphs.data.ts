@@ -53,6 +53,18 @@ export const EDITION_GLYPHS_DATA = {
         hex: '\uE262',
     },
 
+    /** ***********************************/
+    /**         ARTICULATIONS              /
+    /** ***********************************/
+    /**
+     * The glyph of a musical accent above symbol.
+     * Cf. https://w3c-cg.github.io/smufl/latest/tables/articulation.html
+     */
+    ACCENT_ABOVE: {
+        alt: '[>]',
+        hex: '\uE4A0',
+    },
+
     /** ********************************/
     /**            DYNAMICS             /
     /** ********************************/

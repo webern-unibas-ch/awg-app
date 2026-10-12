@@ -1,10 +1,12 @@
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
-import { DebugElement, LOCALE_ID } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, isSignal, LOCALE_ID } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { click } from '@testing/click-helper';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectToBe,
     expectToContain,
@@ -12,10 +14,9 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { META_DATA } from '@awg-core/core-data';
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaPage, MetaSectionTypes } from '@awg-shared/meta/meta.model';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
 
@@ -26,30 +27,39 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let fixture: ComponentFixture<FooterDeclarationComponent>;
     let compDe: DebugElement;
 
-    let linkDes: DebugElement[];
-    let routerLinks;
+    let router: Router;
 
     let expectedPageMetaData: MetaPage;
+    let expectedVersionData: NonNullable<ReturnType<typeof component.versionData>>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
-            imports: [DatePipe],
-            providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }],
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [FooterDeclarationComponent],
+            providers: [provideRouter([]), { provide: LOCALE_ID, useValue: 'de-DE' }],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterDeclarationComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
+        // Inject services
+        router = TestBed.inject(Router);
 
         // Test data
         expectedPageMetaData = META_DATA[MetaSectionTypes.page];
+
+        expectedVersionData = {
+            url: `${expectedPageMetaData.awgAppGithubUrl}/blob/v${expectedPageMetaData.awgAppVersion}/CHANGELOG.md`,
+            version: expectedPageMetaData.awgAppVersion,
+            versionDate: expectedPageMetaData.awgAppVersionReleaseDate,
+        };
+
+        // Create component fixture
+        fixture = TestBed.createComponent(FooterDeclarationComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -57,20 +67,32 @@ describe('FooterDeclarationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have pageMetaData', () => {
-            expect(component.pageMetaData).toBeUndefined();
+        it('... should throw due to missing required input signal `pageMetaData`', () => {
+            expectToBe(isSignal(component.pageMetaData), true);
+
+            expect(() => component.pageMetaData()).toThrow();
+        });
+
+        it('... should throw when accessing computed signal `versionData` due to missing input', () => {
+            expectToBe(isSignal(component.versionData), true);
+
+            expect(() => component.versionData()).toThrow();
         });
 
         describe('VIEW', () => {
-            it('... should contain 3 paragraphs', () => {
-                getAndExpectDebugElementByCss(compDe, 'p', 3, 3);
-
-                getAndExpectDebugElementByCss(compDe, 'p.awg-version-title', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'p.awg-version-desc', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'p#awg-contact-link', 1, 1);
+            it('... should contain one div container', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-footer-declaration', 1, 1);
             });
 
-            it('... should render version title', () => {
+            it('... should contain 3 paragraphs in div container', () => {
+                const containerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-footer-declaration', 1, 1);
+                getAndExpectDebugElementByCss(containerDes[0], 'p', 3, 3);
+                getAndExpectDebugElementByCss(containerDes[0], 'p.awg-version-title', 1, 1);
+                getAndExpectDebugElementByCss(containerDes[0], 'p.awg-version-desc', 1, 1);
+                getAndExpectDebugElementByCss(containerDes[0], 'p#awg-contact-link', 1, 1);
+            });
+
+            it('... should render version title in first paragraph', () => {
                 const expectedTitle = 'AWG-Online-Edition';
 
                 const titleDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-title', 1, 1);
@@ -79,33 +101,105 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expectToContain(titleEl.textContent, expectedTitle);
             });
 
-            it('... should not render pageMetaData yet', () => {
-                const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
-                const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
+            it('... should not render version desc info yet in second paragraph', () => {
+                const changeLogDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-desc', 1, 1);
 
-                const versionEl: HTMLElement = versionDes[0].nativeElement;
-                const versionDateEl: HTMLElement = versionDateDes[0].nativeElement;
+                getAndExpectDebugElementByCss(changeLogDes[0], 'a', 0, 0);
+                getAndExpectDebugElementByCss(changeLogDes[0], '#awg-version', 0, 0);
+                getAndExpectDebugElementByCss(changeLogDes[0], '#awg-version-date', 0, 0);
+            });
 
-                expectToBe(versionEl.textContent, '');
-                expectToBe(versionDateEl.textContent, '');
+            it('... should render contact link text in third paragraph', () => {
+                const contactLinkDes = getAndExpectDebugElementByCss(compDe, 'p#awg-contact-link', 1, 1);
+                const contactLinkEl: HTMLParagraphElement = contactLinkDes[0].nativeElement;
+
+                const normalizedLinkText = contactLinkEl.textContent.replace(/\s+/g, ' ').trim();
+
+                expectToContain(normalizedLinkText, 'Impressum | Dokumentation');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.pageMetaData = expectedPageMetaData;
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('pageMetaData', expectedPageMetaData);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        it('... should have input signal `pageMetaData` to hold the provided data', () => {
+            expectToEqual(component.pageMetaData(), expectedPageMetaData);
+        });
+
+        it('... should have computed signal `versionData` to hold the expected data', () => {
+            expectToEqual(component.versionData(), expectedVersionData);
+        });
+
+        describe('... should have computed signal `versionData` to hold null if ...', () => {
+            it('... pageMetaData is an empty object {}, null or undefined', () => {
+                fixture.componentRef.setInput('pageMetaData', {} as MetaPage);
+                expectToBe(component.versionData(), null);
+
+                fixture.componentRef.setInput('pageMetaData', undefined as any);
+                expectToBe(component.versionData(), null);
+
+                fixture.componentRef.setInput('pageMetaData', null as any);
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... `awgAppGithubUrl` is empty', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppGithubUrl: '',
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... `awgAppVersion` is empty', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppVersion: '',
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
+            });
+
+            it('... `awgAppVersionReleaseDate` is empty', () => {
+                const incompletePageMetaData = {
+                    ...expectedPageMetaData,
+                    awgAppVersionReleaseDate: '',
+                } as MetaPage;
+                fixture.componentRef.setInput('pageMetaData', incompletePageMetaData);
+
+                expectToBe(component.versionData(), null);
+            });
+        });
+
         describe('VIEW', () => {
-            it('... should render version values', () => {
-                const expectedVersion = expectedPageMetaData.version;
+            it('... should render no version content if `versionData` is not available', () => {
+                fixture.componentRef.setInput('pageMetaData', { ...expectedPageMetaData, awgAppVersion: '' });
+
+                fixture.detectChanges();
+
+                const versionDescDes = getAndExpectDebugElementByCss(compDe, 'p.awg-version-desc', 1, 1);
+
+                getAndExpectDebugElementByCss(versionDescDes[0], 'a', 0, 0);
+                getAndExpectDebugElementByCss(versionDescDes[0], '#awg-version', 0, 0);
+                getAndExpectDebugElementByCss(versionDescDes[0], '#awg-version-date', 0, 0);
+            });
+
+            it('... should render version desc info in second paragraph', () => {
+                const expectedVersion = expectedPageMetaData.awgAppVersion;
                 const datePipe = new DatePipe('de-DE');
-                const expectedVersionDate = datePipe.transform(expectedPageMetaData.versionReleaseDate, 'longDate');
+                const expectedVersionDate = datePipe.transform(
+                    expectedPageMetaData.awgAppVersionReleaseDate,
+                    'longDate'
+                );
 
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
@@ -119,12 +213,13 @@ describe('FooterDeclarationComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
-            beforeEach(() => {
-                // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 2, 2);
+            let linkDes: DebugElement[];
+            let routerLinks: RouterLink[];
 
-                // Get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            beforeEach(() => {
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLink, 2, 2);
+
+                routerLinks = linkDes.map(de => de.injector.get(RouterLink));
             });
 
             it('... can get correct number of routerLinks from template', () => {
@@ -132,39 +227,44 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can get correct linkParams from template', () => {
-                expectToEqual(routerLinks[0].linkParams, ['/contact']);
-                expectToEqual(routerLinks[1].linkParams, ['/contact']);
+                const urlTreeString1 = routerLinks[0].urlTree?.toString();
+                const urlTreeString2 = routerLinks[1].urlTree?.toString();
+
+                expectToBe(urlTreeString1, '/contact#awg-imprint');
+                expectToBe(urlTreeString2, '/contact#awg-documentation');
+            });
+            it('... can click imprint link in template', async () => {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+                navigateSpy.mockClear();
+
+                const imprintLinkDe = linkDes[0];
+
+                await clickAndAwaitChanges(imprintLinkDe, fixture);
+
+                expect(navigateSpy).toHaveBeenCalled();
+                const firstCallArg = navigateSpy.mock.calls[0][0];
+                const actualUrl = firstCallArg.toString();
+
+                expectToBe(actualUrl, '/contact#awg-imprint');
+
+                navigateSpy.mockRestore();
             });
 
-            it('... can get correct fragments from template', () => {
-                expectToBe(routerLinks[0].fragment, 'awg-imprint');
-                expectToBe(routerLinks[1].fragment, 'awg-documentation');
-            });
+            it('... can click documentation link in template', async () => {
+                const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+                navigateSpy.mockClear();
 
-            it('... can click imprint link in template', () => {
-                const imprintLinkDes = linkDes[0]; // Contact link DebugElement
-                const imprintLink = routerLinks[0]; // Contact link directive
+                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
 
-                expectToBe(imprintLink.navigatedTo, null);
+                await clickAndAwaitChanges(documentationLinkDe, fixture);
 
-                click(imprintLinkDes);
-                fixture.detectChanges();
+                expect(navigateSpy).toHaveBeenCalled();
+                const firstCallArg = navigateSpy.mock.calls[0][0];
+                const actualUrl = firstCallArg.toString();
 
-                expectToEqual(imprintLink.navigatedTo, ['/contact']);
-                expectToBe(imprintLink.navigatedToFragment, 'awg-imprint');
-            });
+                expectToBe(actualUrl, '/contact#awg-documentation');
 
-            it('... can click documentation link in template', () => {
-                const documentationLinkDes = linkDes[1]; // Contact link DebugElement
-                const documentationLink = routerLinks[1]; // Contact link directive
-
-                expectToBe(documentationLink.navigatedTo, null);
-
-                click(documentationLinkDes);
-                fixture.detectChanges();
-
-                expectToEqual(documentationLink.navigatedTo, ['/contact']);
-                expectToBe(documentationLink.navigatedToFragment, 'awg-documentation');
+                navigateSpy.mockRestore();
             });
         });
     });

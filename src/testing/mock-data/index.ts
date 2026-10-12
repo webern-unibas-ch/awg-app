@@ -7,3 +7,4 @@
  *
  */
 export { mockEditionData } from './mockEditionData';
+export { mockStatisticsData } from './mockStatisticsData';

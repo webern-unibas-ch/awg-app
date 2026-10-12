@@ -1,57 +1,65 @@
-import { DebugElement, SimpleChange } from '@angular/core';
+import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
 import { StreamLanguage } from '@codemirror/language';
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { EditorState, EditorStateConfig, Extension } from '@codemirror/state';
-import { basicSetup } from 'codemirror';
 
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { CmMode, CodeMirrorComponent } from './codemirror.component';
+import { CodeMirrorComponent } from './codemirror.component';
+import { CmMode } from './codemirror.utils';
 
-describe('CodemirrorComponent', () => {
+describe('CodeMirrorComponent (DONE)', () => {
     let component: CodeMirrorComponent;
     let fixture: ComponentFixture<CodeMirrorComponent>;
     let compDe: DebugElement;
 
     let expectedMode: CmMode;
     let expectedContent: string;
+    let expectedOtherContent: string;
     let expectedState: EditorState;
 
     let initSpy: Spy;
     let onContentChangeSpy: Spy;
-    let emitContentChangeSpy: Spy;
+    let contentSetSpy: Spy;
     let editorDispatchSpy: Spy;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [CodeMirrorComponent],
+            imports: [CodeMirrorComponent],
         }).compileComponents();
+    });
 
-        fixture = TestBed.createComponent(CodeMirrorComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+    beforeEach(() => {
         // Test data
         expectedMode = sparql;
         expectedContent = 'SELECT * WHERE { ?s ?p ?o }';
+        expectedOtherContent = 'SELECT * WHERE { ?s ?changed ?o }';
 
-        const expectedExtensions: Extension[] = [basicSetup, StreamLanguage.define(expectedMode)];
+        const expectedExtensions: Extension[] = [StreamLanguage.define(expectedMode)];
         const config: EditorStateConfig = {
             doc: expectedContent || '',
             extensions: expectedExtensions,
         };
         expectedState = EditorState.create(config);
 
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        initSpy = spyOn(component, 'init').and.callThrough();
-        onContentChangeSpy = spyOn(component, 'onContentChange').and.callThrough();
-        emitContentChangeSpy = spyOn(component.contentChange, 'emit').and.callThrough();
+        // Create component fixture
+        fixture = TestBed.createComponent(CodeMirrorComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        // Component spies
+        initSpy = vi.spyOn(component, 'init');
+        onContentChangeSpy = vi.spyOn(component, 'onContentChange');
+        contentSetSpy = vi.spyOn(component.content, 'set');
+    });
+
+    afterEach(() => {
+        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -59,17 +67,23 @@ describe('CodemirrorComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have mode', () => {
-            expect(component.mode).toBeUndefined();
+        it('... should throw due to missing required input signal `mode`', () => {
+            expectToBe(isSignal(component.mode), true);
+
+            expect(() => component.mode()).toThrow();
         });
 
-        it('... should not have content', () => {
-            expect(component.content).toBeUndefined();
+        it('... should have model signal `content` to hold the default value', () => {
+            expectToBe(isSignal(component.content), true);
+            expectToBe(component.content(), '');
+        });
+
+        it('... should have no editor yet', () => {
+            expect(component['_editor']).toBeUndefined();
         });
 
         describe('VIEW', () => {
             it('... should contain one div.codemirrorhost', () => {
-                // Div debug element
                 getAndExpectDebugElementByCss(compDe, 'div.codemirrorhost', 1, 1);
             });
         });
@@ -77,170 +91,214 @@ describe('CodemirrorComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.mode = sparql;
-            component.content = 'SELECT * WHERE { ?s ?p ?o }';
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have mode', () => {
-            expectToEqual(component.mode, expectedMode);
+        it('... should have input signal `mode` to hold the provided mode', () => {
+            expectToEqual(component.mode(), expectedMode);
         });
 
-        it('... should have content', () => {
-            expectToBe(component.content, expectedContent);
+        it('... should have model signal `content` to hold the provided content', () => {
+            expectToBe(component.content(), expectedContent);
         });
 
-        describe('#init()', () => {
-            it('... should have a method `init`', () => {
-                expect(component.init).toBeDefined();
+        it('... should have view child signal `codemirrorhost` to hold the host element', () => {
+            const hostDes = getAndExpectDebugElementByCss(compDe, 'div.codemirrorhost', 1, 1);
+
+            expectToBe(component.codemirrorhost().nativeElement, hostDes[0].nativeElement);
+        });
+
+        describe('... editor sync on content change', () => {
+            beforeEach(() => {
+                editorDispatchSpy = vi.spyOn(component['_editor'] as any, 'dispatch');
             });
 
-            it('... should trigger on ngAfterViewInit', () => {
-                expectSpyCall(initSpy, 1);
-            });
-
-            it('... should init the editor with the correct state', () => {
-                expectSpyCall(initSpy, 1);
-
-                component.init(expectedState);
+            it('... should dispatch the provided content to the editor', () => {
+                fixture.componentRef.setInput('content', expectedOtherContent);
                 fixture.detectChanges();
-
-                expectSpyCall(initSpy, 2, expectedState);
-                expectToEqual(component.editor.state, expectedState);
-            });
-
-            it('... should init the editor with the correct content if given', () => {
-                expectSpyCall(initSpy, 1);
-
-                expectToBe(component.editor.state.doc.toString(), expectedContent);
-            });
-
-            it('... should init an empty editor if no content is given', () => {
-                fixture = TestBed.createComponent(CodeMirrorComponent);
-                component = fixture.componentInstance;
-                component.mode = sparql;
-                component.content = undefined;
-                fixture.detectChanges();
-
-                expectSpyCall(initSpy, 1);
-                expectToBe(component.editor.state.doc.toString(), '');
-            });
-        });
-
-        describe('#onContentChange()', () => {
-            it('... should have a method `onContentChange`', () => {
-                expect(component.onContentChange).toBeDefined();
-            });
-
-            it('... should trigger on change of content input', () => {
-                const otherContent = 'SELECT * WHERE { ?s ?changed ?o }';
-                component.editor.dispatch({
-                    changes: {
-                        from: 0,
-                        to: component.editor.state.doc.length,
-                        insert: otherContent,
-                    },
-                });
-                fixture.detectChanges();
-
-                expectSpyCall(onContentChangeSpy, 1, otherContent);
-            });
-
-            describe('... should emit provided content on editor change', () => {
-                it('... if string is thruthy', () => {
-                    component.editor.dispatch({
-                        changes: {
-                            from: 0,
-                            to: component.editor.state.doc.length,
-                            insert: expectedContent,
-                        },
-                    });
-                    fixture.detectChanges();
-
-                    expectSpyCall(onContentChangeSpy, 1, expectedContent);
-                    expectSpyCall(emitContentChangeSpy, 1, expectedContent);
-                });
-
-                it('... if string is empty', () => {
-                    component.editor.dispatch({
-                        changes: {
-                            from: 0,
-                            to: component.editor.state.doc.length,
-                            insert: '',
-                        },
-                    });
-                    fixture.detectChanges();
-
-                    expectSpyCall(onContentChangeSpy, 1, '');
-                    expectSpyCall(emitContentChangeSpy, 1, '');
-                });
-            });
-        });
-
-        describe('#ngOnChanges()', () => {
-            it('... should update the editor on changes of content', () => {
-                editorDispatchSpy = spyOn(component.editor, 'dispatch').and.callThrough();
-
-                // Directly trigger ngOnChanges
-                component.content = 'SELECT * WHERE { ?s ?changed ?o }';
-                component.ngOnChanges({
-                    content: new SimpleChange(expectedContent, component.content, false),
-                });
 
                 expectSpyCall(editorDispatchSpy, 1, {
-                    changes: { from: 0, to: expectedContent.length, insert: component.content },
+                    changes: { from: 0, to: expectedContent.length, insert: expectedOtherContent },
+                });
+                expectToBe(component['_editor']?.state.doc.toString(), expectedOtherContent);
+            });
+
+            it('... should not dispatch if content is equal to editor content', () => {
+                fixture.componentRef.setInput('content', expectedContent);
+                fixture.detectChanges();
+
+                expectSpyCall(editorDispatchSpy, 0);
+            });
+
+            it('... should not dispatch if editor is undefined', () => {
+                component['_editor'] = undefined;
+
+                fixture.componentRef.setInput('content', expectedOtherContent);
+                fixture.detectChanges();
+
+                expectSpyCall(editorDispatchSpy, 0);
+            });
+        });
+
+        it('... should destroy the editor on component destroy', () => {
+            const editorDestroySpy = vi.spyOn(component['_editor'] as any, 'destroy');
+
+            fixture.destroy();
+
+            expectSpyCall(editorDestroySpy, 1);
+        });
+
+        describe('METHODS', () => {
+            describe('#init()', () => {
+                it('... should have a method `init`', () => {
+                    expect(component.init).toBeDefined();
+                });
+
+                it('... should be triggered after the first rendering', () => {
+                    expectSpyCall(initSpy, 1);
+                });
+
+                it('... should init the editor with the given state', () => {
+                    component.init(expectedState);
+                    fixture.detectChanges();
+
+                    expectSpyCall(initSpy, 2, expectedState);
+                    expectToEqual(component['_editor']?.state, expectedState);
+                });
+
+                it('... should init the editor with the provided content', () => {
+                    expectToBe(component['_editor']?.state.doc.toString(), expectedContent);
+                });
+
+                it('... should init an empty editor if no content is provided', () => {
+                    fixture = TestBed.createComponent(CodeMirrorComponent);
+                    component = fixture.componentInstance;
+                    fixture.componentRef.setInput('mode', expectedMode);
+                    fixture.detectChanges();
+
+                    expectToBe(component['_editor']?.state.doc.toString(), '');
                 });
             });
 
-            describe('... should not trigger on changes of content', () => {
-                beforeEach(() => {
-                    editorDispatchSpy = spyOn(component.editor, 'dispatch').and.callThrough();
+            describe('#onContentChange()', () => {
+                it('... should have a method `onContentChange`', () => {
+                    expect(component.onContentChange).toBeDefined();
                 });
 
-                it('... if first change', () => {
-                    // Directly trigger ngOnChanges
-                    component.content = 'SELECT * WHERE { ?s ?changed ?o }';
-                    component.ngOnChanges({
-                        content: new SimpleChange(expectedContent, component.content, true),
+                it('... should not be triggered if editor update does not change the document', () => {
+                    component['_editor']?.dispatch({
+                        selection: {
+                            anchor: 0,
+                        },
                     });
+                    fixture.detectChanges();
 
-                    expectSpyCall(editorDispatchSpy, 0);
+                    expectSpyCall(onContentChangeSpy, 0);
+                    expectSpyCall(contentSetSpy, 0);
                 });
 
-                it('... if typeof content is not string', () => {
-                    // Directly trigger ngOnChanges
-                    component.content = undefined;
-                    component.ngOnChanges({
-                        content: new SimpleChange(expectedContent, component.content, false),
+                it('... should be triggered on editor change', () => {
+                    component['_editor']?.dispatch({
+                        changes: {
+                            from: 0,
+                            to: component['_editor']?.state.doc.length,
+                            insert: expectedOtherContent,
+                        },
                     });
+                    fixture.detectChanges();
 
-                    expectSpyCall(editorDispatchSpy, 0);
+                    expectSpyCall(onContentChangeSpy, 1, expectedOtherContent);
                 });
 
-                it('... if editor is undefined', () => {
-                    // Directly trigger ngOnChanges
-                    component.content = 'SELECT * WHERE { ?s ?changed ?o }';
-                    component.editor = undefined;
-                    component.ngOnChanges({
-                        content: new SimpleChange(expectedContent, component.content, false),
+                describe('... should set the provided content on model signal `content`', () => {
+                    it('... if string is truthy', () => {
+                        component['_editor']?.dispatch({
+                            changes: {
+                                from: 0,
+                                to: component['_editor'].state.doc.length,
+                                insert: expectedOtherContent,
+                            },
+                        });
+                        fixture.detectChanges();
+
+                        expectSpyCall(contentSetSpy, 1, expectedOtherContent);
+                        expectToBe(component.content(), expectedOtherContent);
                     });
 
-                    expectSpyCall(editorDispatchSpy, 0);
+                    it('... if string is empty', () => {
+                        component['_editor']?.dispatch({
+                            changes: {
+                                from: 0,
+                                to: component['_editor'].state.doc.length,
+                                insert: '',
+                            },
+                        });
+                        fixture.detectChanges();
+
+                        expectSpyCall(contentSetSpy, 1, '');
+                        expectToBe(component.content(), '');
+                    });
                 });
 
-                it('... if content is equal to editor content', () => {
-                    // Directly trigger ngOnChanges
-                    component.content = expectedContent;
-                    component.ngOnChanges({
-                        content: new SimpleChange(expectedContent, component.content, false),
-                    });
+                it('... should emit `contentChange` via model signal `content`', () => {
+                    const emittedValues: string[] = [];
+                    component.content.subscribe(value => emittedValues.push(value));
 
-                    expectSpyCall(editorDispatchSpy, 0);
+                    component.onContentChange(expectedOtherContent);
+
+                    expectToEqual(emittedValues, [expectedOtherContent]);
                 });
             });
+        });
+    });
+
+    describe('... editor initialization after the first rendering', () => {
+        it('... should not init the editor before the first rendering', () => {
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
+
+            expectSpyCall(initSpy, 0);
+            expect(component['_editor']).toBeUndefined();
+        });
+
+        it('... should init the editor with a state holding the provided content', () => {
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
+            fixture.detectChanges();
+
+            expectSpyCall(initSpy, 1);
+            const state = initSpy.mock.calls[0][0] as EditorState;
+            expectToBe(state.doc.toString(), expectedContent);
+        });
+
+        it('... should not throw if range geometry APIs are available', () => {
+            vi.spyOn(document, 'createRange').mockReturnValue({
+                getClientRects: () => [] as unknown as DOMRectList,
+                getBoundingClientRect: () => new DOMRect(0, 0, 0, 0),
+            } as unknown as Range);
+            // Skip the view creation, jsdom cannot measure the basic setup
+            initSpy.mockImplementation(() => undefined);
+
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
+
+            expect(() => fixture.detectChanges()).not.toThrow();
+            expectSpyCall(initSpy, 1);
+        });
+
+        it('... should not throw if range geometry APIs are unavailable', () => {
+            vi.spyOn(document, 'createRange').mockReturnValue({} as unknown as Range);
+
+            fixture.componentRef.setInput('mode', expectedMode);
+            fixture.componentRef.setInput('content', expectedContent);
+
+            expect(() => fixture.detectChanges()).not.toThrow();
+            expectToBe(component['_editor']?.state.doc.toString(), expectedContent);
         });
     });
 });

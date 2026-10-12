@@ -2,7 +2,6 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./src",
         "declaration": false,
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
@@ -14,22 +13,25 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
-        "strict": false,
+        "strict": true,
         "useDefineForClassFields": false,
         "target": "ES2022",
         "module": "preserve",
         "typeRoots": ["node_modules/@types"],
         "paths": {
-            "@awg-app/*": ["app/*"],
-            "@awg-core/*": ["app/core/*"],
-            "@awg-shared/*": ["app/shared/*"],
-            "@awg-side-info/*": ["app/side-info/*"],
-            "@awg-views/*": ["app/views/*"],
-            "@testing/*": ["testing/*"]
+            "@awg-app/*": ["./src/app/*"],
+            "@awg-core/*": ["./src/app/core/*"],
+            "@awg-shared/*": ["./src/app/shared/*"],
+            "@awg-side-info/*": ["./src/app/side-info/*"],
+            "@awg-views/*": ["./src/app/views/*"],
+            "@awg-graph/*": ["./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"],
+            "@awg-report/*": ["./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/*"],
+            "assets/*": ["./src/assets/*"],
+            "environments/*": ["./src/environments/*"],
+            "@testing/*": ["./src/testing/*"]
         }
     },
     "angularCompilerOptions": {
-        "fullTemplateTypeCheck": true,
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,
         "strictInputAccessModifiers": true,

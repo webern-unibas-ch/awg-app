@@ -1,0 +1,22 @@
+@import '/src/assets/themes/scss/shared';
+
+.nav-link {
+    display: flex;
+    text-decoration: none;
+
+    &.active,
+    &:focus:not(#dropdownNavEdition),
+    &:active:not(#dropdownNavEdition) {
+        color: $link-color !important;
+    }
+
+    &:hover {
+        border-bottom: none !important;
+        text-decoration: none !important;
+    }
+
+    > fa-icon {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}

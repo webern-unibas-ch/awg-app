@@ -1,211 +1,57 @@
-import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
+import { registerLocaleData } from '@angular/common';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import localeDeDE from '@angular/common/locales/de';
+import {
+    ApplicationConfig,
+    inject,
+    LOCALE_ID,
+    provideAppInitializer,
+    provideZonelessChangeDetection,
+} from '@angular/core';
+import {
+    PreloadAllModules,
+    provideRouter,
+    withComponentInputBinding,
+    withInMemoryScrolling,
+    withPreloading,
+    withRouterConfig,
+} from '@angular/router';
+
+import { loadingInterceptor } from '@awg-shared/loading/loading.interceptor';
+
+import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
+import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
+
+import { APP_ROUTES } from './app.routes';
+
+/* Load and register the used locale file */
+registerLocaleData(localeDeDE);
 
 /**
- * App config with accessors to app-wide constants.
+ * The application config.
+ *
+ * It provides the app-wide providers for the bootstrapping
+ * of the {@link AppComponent}: zoneless change detection, router (with the {@link APP_ROUTES}),
+ * http client (with loading interceptor), locale and the initialization of the edition data.
  */
-export class AppConfig {
-    /**
-     * Getter for the URL of the Salsah API endpoint
-     * ({@link https://www.salsah.org/api}).
-     *
-     * @returns {string}
-     */
-    public static get API_ENDPOINT(): string {
-        const root = AppConfig.SALSAH_URL;
-        const api = 'api/';
-        return root + api;
-    }
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideZonelessChangeDetection(),
+        provideRouter(
+            APP_ROUTES,
+            withComponentInputBinding(),
+            withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
+            withPreloading(PreloadAllModules),
+            withRouterConfig({ onSameUrlNavigation: 'reload' })
+        ),
+        provideHttpClient(withInterceptors([loadingInterceptor])),
+        { provide: LOCALE_ID, useValue: 'de-DE' }, // Change global LOCALE-ID
+        provideAppInitializer(() => {
+            const editionOutlineService = inject(EditionOutlineService);
+            const editionComplexesService = inject(EditionComplexesService);
 
-    /**
-     * Getter for the URL of the Analytics endpoint
-     * ({@link https://www.google-analytics.com/}).
-     *
-     * @returns {string}
-     */
-    public static get ANALYTICS_ENDPOINT(): string {
-        return 'https://www.googletagmanager.com/gtag/js';
-    }
-
-    /**
-     * Getter for the Analytics id ('G-XXXXXXXXXX').
-     *
-     * @returns {string}
-     */
-    public static get ANALYTICS_ID(): string {
-        return 'G-8KDNK9HM70';
-    }
-
-    /**
-     * Getter for the name of the AWG.
-     *
-     * @returns {string}
-     */
-    public static get AWG_PROJECT_NAME(): string {
-        return 'Anton Webern Gesamtausgabe';
-    }
-
-    /**
-     * Getter for the URL of the AWG project website
-     * ({@link https://anton-webern.ch}).
-     *
-     * @returns {string}
-     */
-    public static get AWG_PROJECT_URL(): string {
-        return 'https://anton-webern.ch/';
-    }
-
-    /**
-     * Getter for the url of the AWG edition website (awg-app).
-     * ({@link https://edition.anton-webern.ch/})
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_URL(): string {
-        return appHomepage;
-    }
-
-    /**
-     * Getter for the URL of the compodoc documentation
-     * of the AWG edition website (awg-app).
-     * ({@link compodoc/index.html}).
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_COMPODOC_URL(): string {
-        return 'compodoc/index.html';
-    }
-
-    /**
-     * Getter for the URL of the GitHub repository
-     * of the AWG edition website (awg-app).
-     * ({@link https://github.com/webern-unibas-ch/awg-app}).
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_GITHUB_URL(): string {
-        return 'https://github.com/webern-unibas-ch/awg-app';
-    }
-
-    /**
-     * Getter for the latest version of the AWG edition website (awg-app).
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_VERSION(): string {
-        return appVersion;
-    }
-
-    /**
-     * Getter for the release date of the latest version of the AWG edition website (awg-app).
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_VERSION_RELEASE_DATE(): string {
-        return appVersionReleaseDate;
-    }
-
-    /**
-     * Getter for the URL of the DaSCH
-     * ({@link https://www.dasch.swiss}).
-     *
-     * @returns {string}
-     */
-    public static get DASCH_URL(): string {
-        return 'https://www.dasch.swiss/';
-    }
-
-    /**
-     * Getter for the URL of the DeepWiki
-     * ({@link https://deepwiki.com/webern-unibas-ch/awg-app}).
-     *
-     * @returns {string}
-     */
-    public static get DEEP_WIKI_URL(): string {
-        return 'https://deepwiki.com/webern-unibas-ch/awg-app';
-    }
-
-    /**
-     * Getter for the URL of the DHLAB Basel
-     * ({@link https://dhlab.philhist.unibas.ch}).
-     *
-     * @returns {string}
-     */
-    public static get DHLAB_URL(): string {
-        return 'https://dhlab.philhist.unibas.ch/';
-    }
-
-    /**
-     * Getter for the URL of the DSP API endpoint
-     * ({@link http://api.dasch.swiss/v2/}).
-     *
-     * @returns {string}
-     */
-    public static get DSP_API_URL(): string {
-        return 'https://api.dasch.swiss/v2/';
-    }
-
-    /**
-     * Getter for the URL of the INSERI Instance
-     * ({@link https://apps.inseri.swiss}).
-     *
-     * @returns {string}
-     */
-    public static get INSERI_URL(): string {
-        return 'https://apps.inseri.swiss/';
-    }
-
-    /**
-     * Getter for the URL of the localhost
-     * ({@link http://localhost:4200}).
-     *
-     * @returns {string}
-     */
-    public static get LOCALHOST_URL(): string {
-        return 'http://localhost:4200';
-    }
-
-    /**
-     * Getter for the OSM external link.
-     *
-     * @returns {string}
-     */
-    public static get OSM_LINK_URL(): string {
-        const osmLinkRoot = 'https://www.openstreetmap.org/';
-        const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
-        return osmLinkRoot + osmLinkId;
-    }
-
-    /**
-     * Getter for the URL of SALSAH
-     * ({@link https://www.salsah.org}).
-     *
-     * @returns {string}
-     */
-    public static get SALSAH_URL(): string {
-        return 'https://www.salsah.org/';
-    }
-
-    /**
-     * Getter for the unsanitized OSM embed link.
-     *
-     * @returns {string}
-     */
-    public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
-        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
-        const layer = 'layer=mapnik';
-        const marker = '47.55896585846639%2C7.584506571292877';
-
-        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
-    }
-
-    /**
-     * Getter for the URL of the Zenodo record
-     * ({@link https://doi.org/10.5281/zenodo.4717678}).
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_ZENODO_URL(): string {
-        return 'https://doi.org/10.5281/zenodo.4717678';
-    }
-}
+            editionComplexesService.initializeEditionComplexesList();
+            editionOutlineService.initializeEditionOutline();
+        }),
+    ],
+};

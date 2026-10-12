@@ -1,33 +1,28 @@
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { QueryParamsHandling } from '@angular/router';
+import { DebugElement, isSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter, RouterOutlet } from '@angular/router';
 
-import { of as observableOf } from 'rxjs';
-import Spy = jasmine.Spy;
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { RouterOutletStubComponent } from '@testing/router-stubs';
+import { EditionStateHelper } from '@testing/edition-state-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex } from '@awg-views/edition-view/models';
-import { EditionComplexesService, EditionStateService } from '@awg-views/edition-view/services';
+import { NavLinkGroupComponent } from '@awg-shared/nav-link-group/nav-link-group.component';
+import { NavLink } from '@awg-shared/nav-link-group/nav-link.model';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
+import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
+import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
-// Mock components
-@Component({
-    selector: 'awg-router-link-button-group',
-    template: '',
-    standalone: false,
-})
-class RouterLinkButtonGroupStubComponent {
-    @Input()
-    routerLinkButtons: RouterLinkButton[];
-    @Input() queryParamsHandling?: QueryParamsHandling = '';
-    @Output()
-    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
+// Helper function
+function getExpectedNavLinks(complex: EditionComplex): NavLink[] {
+    return [
+        EDITION_ROUTE_CONSTANTS.EDITION_INTRO,
+        EDITION_ROUTE_CONSTANTS.EDITION_SHEETS,
+        EDITION_ROUTE_CONSTANTS.EDITION_REPORT,
+        EDITION_ROUTE_CONSTANTS.EDITION_GRAPH,
+    ].map(routerLink => new NavLink(complex.baseRoute, routerLink.route, routerLink.short, false));
 }
 
 describe('EditionDetailNavComponent (DONE)', () => {
@@ -35,68 +30,32 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionDetailNavComponent>;
     let compDe: DebugElement;
 
-    let expectedEditionRouterLinkButtons: RouterLinkButton[];
-    let expectedEditionComplex: EditionComplex;
+    let editionStateService: EditionStateService;
 
-    let setButtonsSpy: Spy;
-    let getSelectedEditionComplexSpy: Spy;
+    let expectedNavLinks: NavLink[];
+    let expectedComplex: EditionComplex;
 
-    beforeEach(waitForAsync(() => {
-        // Create a fake service object with a `getData()` spy
-        const mockEditionStateService = jasmine.createSpyObj('EditionStateService', ['getSelectedEditionComplex']);
-        // Make the spy return a synchronous Observable with the test data
-        getSelectedEditionComplexSpy = mockEditionStateService.getSelectedEditionComplex.and.returnValue(
-            observableOf(EditionComplexesService.getEditionComplexById('op12'))
-        );
-
-        TestBed.configureTestingModule({
-            declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionStateService, useValue: mockEditionStateService }],
-        }).compileComponents();
-    }));
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [EditionDetailNavComponent],
+            providers: [provideRouter([])],
+        })
+            .overrideComponent(NavLinkGroupComponent, { set: { template: '', imports: [] } })
+            .compileComponents();
+    });
 
     beforeEach(() => {
+        // Inject services
+        editionStateService = TestBed.inject(EditionStateService);
+
+        // Test data
+        expectedComplex = EditionStateHelper.getComplex('op12');
+        expectedNavLinks = getExpectedNavLinks(expectedComplex);
+
+        // Create component fixture
         fixture = TestBed.createComponent(EditionDetailNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedEditionComplex = EditionComplexesService.getEditionComplexById('op12');
-        expectedEditionRouterLinkButtons = [
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
-                false
-            ),
-            new RouterLinkButton(
-                expectedEditionComplex.baseRoute,
-                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route,
-                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
-                false
-            ),
-        ];
-
-        // Spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        setButtonsSpy = spyOn(component, 'setButtons').and.callThrough();
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
@@ -104,87 +63,90 @@ describe('EditionDetailNavComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `editionRouterLinkButtons`', () => {
-            expect(component.editionRouterLinkButtons).toBeUndefined();
+        it('... should have signal `selectedEditionComplex` to hold null', () => {
+            expectToBe(isSignal(component.selectedEditionComplex), true);
+
+            expectToBe(component.selectedEditionComplex(), null);
         });
 
-        it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).toBeUndefined();
-        });
+        it('... should have computed signal `editionDetailNavLinks` to hold null', () => {
+            expectToBe(isSignal(component.editionDetailNavLinks), true);
 
-        describe('#getEditionComplex()', () => {
-            it('... should have a method `getEditionComplex`', () => {
-                expect(component.getEditionComplex).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(getSelectedEditionComplexSpy, 0);
-            });
-        });
-
-        describe('#setButtons()', () => {
-            it('... should have a method `setButtons`', () => {
-                expect(component.setButtons).toBeDefined();
-            });
-
-            it('... should not have been called', () => {
-                expectSpyCall(setButtonsSpy, 0);
-            });
+            expectToBe(component.editionDetailNavLinks(), null);
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should contain no NavLinkGroupComponent (hollow) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
             });
 
-            it('... should contain no RouterLinkButtonGroupComponent yet', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 0, 0);
+            it('... should contain one router outlet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutlet, 1, 1);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            editionStateService.updateSelectedEditionComplex(expectedComplex);
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('#getEditionComplex()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(getSelectedEditionComplexSpy, 1);
-            });
+        it('... should have signal `selectedEditionComplex` to hold the expected complex', () => {
+            expectToEqual(component.selectedEditionComplex(), expectedComplex);
         });
 
-        it('... should have `editionComplex`', () => {
-            expectToEqual(component.editionComplex, expectedEditionComplex);
+        it('... should have computed signal `editionDetailNavLinks` to hold the expected nav links', () => {
+            expectToEqual(component.editionDetailNavLinks(), expectedNavLinks);
         });
 
-        describe('#setButtons()', () => {
-            it('... should have been called', () => {
-                expectSpyCall(setButtonsSpy, 1);
-            });
+        it('... should have recomputed signal `editionDetailNavLinks` when complex changes', () => {
+            const newComplex = EditionStateHelper.getComplex('op25');
+            const newExpectedNavLinks = getExpectedNavLinks(newComplex);
 
-            it('... should have `editionRouterLinkButtons`', () => {
-                expectToEqual(component.editionRouterLinkButtons, expectedEditionRouterLinkButtons);
-            });
+            editionStateService.updateSelectedEditionComplex(newComplex);
+
+            expectToEqual(component.editionDetailNavLinks(), newExpectedNavLinks);
         });
 
         describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            it('... should render no content if `editionDetailNavLinks` is not available', () => {
+                editionStateService.updateSelectedEditionComplex(null);
+                fixture.detectChanges();
+
+                expectToBe(component.editionDetailNavLinks(), null);
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 0, 0);
             });
 
-            it('... should contain one RouterLinkButtonGroupComponent', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+            it('... should contain one NavLinkGroupComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
             });
 
-            it('... should pass down editionRouterLinkButtons to RouterLinkButtonGroupComponent', () => {
-                const btnDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
-                const btnCmp = btnDes[0].injector.get(
-                    RouterLinkButtonGroupStubComponent
-                ) as RouterLinkButtonGroupStubComponent;
+            it('... should pass down `editionDetailNavLinks` to NavLinkGroupComponent (hollow)', () => {
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
 
-                expectToEqual(btnCmp.routerLinkButtons, expectedEditionRouterLinkButtons);
+                expectToEqual(navLinkGroupCmp.navLinks(), expectedNavLinks);
+            });
+
+            it('... should pass down the updated nav links to NavLinkGroupComponent (hollow) when complex changes', () => {
+                const newComplex = EditionStateHelper.getComplex('op25');
+                editionStateService.updateSelectedEditionComplex(newComplex);
+                fixture.detectChanges();
+
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
+
+                expectToEqual(navLinkGroupCmp.navLinks(), getExpectedNavLinks(newComplex));
+            });
+
+            it('... should keep default `queryParamsHandling` in NavLinkGroupComponent (hollow)', () => {
+                const navLinkGroupDes = getAndExpectDebugElementByDirective(compDe, NavLinkGroupComponent, 1, 1);
+                const navLinkGroupCmp = navLinkGroupDes[0].injector.get(NavLinkGroupComponent);
+
+                expectToBe(navLinkGroupCmp.queryParamsHandling(), '');
             });
         });
     });

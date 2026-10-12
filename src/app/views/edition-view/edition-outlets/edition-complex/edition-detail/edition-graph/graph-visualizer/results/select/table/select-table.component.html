@@ -1,0 +1,5 @@
+<awg-table
+    [tableTitle]="'SELECT Anfrage'"
+    [headerInputData]="queryResult().variables"
+    [rowInputData]="tableRows()"
+    (clickedTableValueRequest)="onTableNodeClick($event)" />

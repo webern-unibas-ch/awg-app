@@ -1,57 +1,57 @@
 <!-- Data: Triples, SPARQL query, result -->
-@if (graphRDFInputData) {
-    <div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
-        <div [ngClass]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
-            <div [ngClass]="{ row: !isFullscreen }">
-                <div [ngClass]="{ 'col-12 col-lg-6 py-0 pe-lg-0': !isFullscreen }">
-                    <!-- awg-graph-triples-editor -->
-                    <awg-triples-editor
-                        [triples]="triples"
-                        [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showToastMessage($event, 'error')"
-                        (performQueryRequest)="performQuery()"
-                        (resetTriplesRequest)="resetTriples()"
-                        (updateTriplesRequest)="triples = $event"></awg-triples-editor>
-                </div>
-                <div [ngClass]="{ 'col-12 col-lg-6 py-0 ps-lg-0': !isFullscreen }">
-                    <!-- awg-graph-sparql-editor -->
-                    <awg-sparql-editor
-                        [queryList]="queryList"
-                        [query]="query"
-                        [isFullscreen]="isFullscreen"
-                        (errorMessageRequest)="showToastMessage($event, 'error')"
-                        (performQueryRequest)="performQuery()"
-                        (resetQueryRequest)="resetQuery($event)"
-                        (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>
-                </div>
+
+@let isFullscreen = isFullscreenMode();
+@let currentQuery = query();
+@let isConstructQuery = currentQuery.queryType === 'construct';
+@let isSelectQuery = currentQuery.queryType === 'select';
+
+<div class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen">
+    <div [class]="isFullscreen ? 'col-4 col-lg-3 px-0 awg-fullscreen' : 'col-12'">
+        <div [class.row]="!isFullscreen">
+            <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 pe-lg-0'">
+                <!-- awg-graph-editor-triples -->
+                <awg-graph-editor-triples
+                    [(triples)]="triples"
+                    [isFullscreenMode]="isFullscreen"
+                    (errorMessageRequest)="showToastMessage($event, 'error')"
+                    (performQueryRequest)="performQuery()"
+                    (resetTriplesRequest)="resetTriples()" />
+            </div>
+            <div [class]="isFullscreen ? '' : 'col-12 col-lg-6 py-0 ps-lg-0'">
+                <!-- awg-graph-editor-sparql -->
+                <awg-graph-editor-sparql
+                    [queryList]="queryList()"
+                    [(query)]="query"
+                    [isFullscreenMode]="isFullscreen"
+                    (errorMessageRequest)="showToastMessage($event, 'error')"
+                    (performQueryRequest)="performQuery()"
+                    (resetQueryRequest)="resetQuery($event)" />
             </div>
         </div>
-        <!-- Results -->
-        <div [ngClass]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
-            <!-- CONSTRUCT -->
-            <!-- awg-graph-construct-result -->
-            @if (query.queryType === 'construct') {
-                <awg-construct-results
-                    #queryConstructResultAcc
-                    [queryResult$]="queryResult$"
-                    [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
-                    [isFullscreen]="isFullscreen"
-                    (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
-            } @else {
-                @if (query.queryType === 'select') {
-                    <awg-select-results
-                        [queryResult$]="queryResult$"
-                        [queryTime]="queryTime"
-                        [isFullscreen]="isFullscreen"
-                        (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>
-                } @else {
-                    <awg-unsupported-type-results
-                        [queryType]="query.queryType"
-                        [isFullscreen]="isFullscreen"></awg-unsupported-type-results>
-                }
-            }
-        </div>
     </div>
-}
+    <!-- Results -->
+    <div [class]="isFullscreen ? 'col-8 col-lg-9 px-0 awg-fullscreen' : 'col-12'">
+        @if (isConstructQuery) {
+            <awg-graph-results-construct
+                [queryResult]="queryResult()"
+                [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"
+                [isFullscreenMode]="isFullscreen"
+                (clickedNodeRequest)="onGraphNodeClick($event)" />
+        } @else if (isSelectQuery) {
+            <awg-graph-results-select
+                [queryResult]="queryResult()"
+                [isFullscreenMode]="isFullscreen"
+                (clickedTableRequest)="onTableNodeClick($event)" />
+        } @else {
+            <awg-graph-results-unsupported
+                [queryType]="currentQuery.queryType || ''"
+                [isFullscreenMode]="isFullscreen" />
+        }
+        @if (isConstructQuery || isSelectQuery) {
+            <!-- awg-graph-results-status -->
+            <awg-graph-results-status [queryResult]="queryResult()" [queryTime]="queryTime()" />
+        }
+    </div>
+</div>
 
-<awg-toast aria-live="polite" aria-atomic="true"></awg-toast>
+<awg-toast aria-live="polite" aria-atomic="true" />

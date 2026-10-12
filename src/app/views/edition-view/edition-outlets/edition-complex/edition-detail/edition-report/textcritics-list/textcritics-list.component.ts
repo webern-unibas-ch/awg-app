@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services';
-import { TextcriticsList } from '@awg-views/edition-view/models';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap/accordion';
+
+import { EditionNavigationSheetTarget } from '@awg-views/edition-view/models/edition-navigation.model';
+import { TextcriticsList } from '@awg-views/edition-view/models/textcritics.model';
+import { EditionNavigationService } from '@awg-views/edition-view/services/edition-navigation.service';
+import { CompileHtmlDirective } from '@awg-views/edition-view/shared/compile-html/compile-html.directive';
+import { EditionDisclaimerWorkeditionsComponent } from '@awg-views/edition-view/shared/disclaimer/edition-disclaimer-workeditions.component';
+import { EditionTkaEvaluationsComponent } from '@awg-views/edition-view/shared/tka/evaluations/edition-tka-evaluations.component';
+import { EditionTkaLabelComponent } from '@awg-views/edition-view/shared/tka/label/edition-tka-label.component';
+import { EditionTkaTableComponent } from '@awg-views/edition-view/shared/tka/table/edition-tka-table.component';
+import { EDITION_UTILS } from '@awg-views/edition-view/utils/edition-utils';
 
 /**
  * The TextcriticsList component.
@@ -15,123 +25,51 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [
+        CompileHtmlDirective,
+        EditionDisclaimerWorkeditionsComponent,
+        EditionTkaEvaluationsComponent,
+        EditionTkaLabelComponent,
+        EditionTkaTableComponent,
+        NgTemplateOutlet,
+        NgbAccordionModule,
+    ],
 })
 export class TextcriticsListComponent {
     /**
-     * Input variable: textcriticsData.
+     * Private readonly injection variable: _navigationService
      *
-     * It keeps the textcritics data.
+     * It keeps the instance of the injected EditionNavigationService.
      */
-    @Input()
-    textcriticsData: TextcriticsList;
+    private readonly _navigationService = inject(EditionNavigationService);
 
     /**
-     * Output variable: navigateToReportFragment.
+     * Readonly input signal: textcriticsListData.
      *
-     * It keeps an event emitter for the selected ids of an edition complex and report fragment.
+     * It holds the textcritics list data.
      */
-    @Output()
-    navigateToReportFragmentRequest: EventEmitter<{ complexId: string; fragmentId: string }> = new EventEmitter();
+    readonly textcriticsListData = input.required<TextcriticsList | null>();
 
     /**
-     * Output variable: openModalRequest.
+     * Protected readonly variable: EDITION_UTILS.
      *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
+     * It keeps the reference to the {@link EDITION_UTILS} methods.
      */
-    @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
-
-    /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: TextcriticsListComponent;
-
-    /**
-     * Public readonly injection variable: UTILS.
-     *
-     * It keeps the instance of the injected UtilityService.
-     */
-    readonly UTILS = inject(UtilityService);
-
-    /**
-     * Constructor of the TextcriticsComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
-
-    /**
-     * Public method: isWorkEditionId.
-     *
-     * It checks if the given id is a work edition id.
-     *
-     * @param {string} id The given id.
-     * @returns {boolean} The result of the check.
-     */
-    isWorkEditionId(id: string): boolean {
-        if (!id) {
-            return false;
-        }
-        return id.includes('_WE');
-    }
-
-    /**
-     * Public method: navigateToReportFragment.
-     *
-     * It emits the given ids of a selected edition complex and report fragment
-     * to the {@link navigateToReportFragmentRequest}.
-     *
-     * @param {object} reportIds The given report ids as { complexId: string, fragmentId: string }.
-     * @returns {void} Emits the ids.
-     */
-    navigateToReportFragment(reportIds: { complexId: string; fragmentId: string }): void {
-        if (!reportIds?.fragmentId) {
-            return;
-        }
-        this.navigateToReportFragmentRequest.emit(reportIds);
-    }
-
-    /**
-     * Public method: openModal.
-     *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
-     *
-     * @param {string} id The given modal snippet id.
-     * @returns {void} Emits the id.
-     */
-    openModal(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.openModalRequest.emit(id);
-    }
+    protected readonly EDITION_UTILS = EDITION_UTILS;
 
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
+     * It delegates the navigation to the given sheet navigation target
+     * directly to the {@link EditionNavigationService}.
      *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
-     * @returns {void} Emits the ids.
+     * @param {EditionNavigationSheetTarget} sheetTarget The given sheet navigation target.
+     * @returns {void} Navigates to the selected SVG sheet.
      */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
-        if (!sheetIds?.sheetId) {
+    selectSvgSheet(sheetTarget: EditionNavigationSheetTarget): void {
+        if (!sheetTarget?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(sheetIds);
+        this._navigationService.navigateToSvgSheet(sheetTarget);
     }
 }

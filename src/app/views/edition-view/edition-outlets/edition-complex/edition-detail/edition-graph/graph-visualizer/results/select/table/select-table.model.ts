@@ -1,0 +1,30 @@
+/**
+ * The SelectTableCellType type.
+ *
+ * It represents the type of a table cell,
+ * named as in the SPARQL 1.1 Query Results JSON Format.
+ */
+export type SelectTableCellType = 'uri' | 'bnode' | 'literal';
+
+/**
+ * The SelectTableCell interface.
+ *
+ * It represents a cell of the SPARQL results table (a bound value of a variable).
+ */
+export interface SelectTableCell {
+    /**
+     * The type of the cell.
+     */
+    readonly type: SelectTableCellType;
+
+    /**
+     * The value of the cell (IRI, blank node id or literal value).
+     */
+    readonly value: string;
+
+    /**
+     * The label of the cell to be displayed, searched and sorted
+     * (compacted IRI, `_:id` or the exact lexical value of a literal).
+     */
+    readonly label: string;
+}

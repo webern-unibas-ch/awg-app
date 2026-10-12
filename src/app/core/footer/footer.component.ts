@@ -1,7 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
+import { LogoComponent } from '@awg-shared/logos/logo.component';
+import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
+import { META_DATA } from '@awg-shared/meta/meta.data';
+import { MetaSectionTypes } from '@awg-shared/meta/meta.model';
+
+import { FooterCopyrightComponent } from './footer-copyright/footer-copyright.component';
+import { FooterDeclarationComponent } from './footer-declaration/footer-declaration.component';
+import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.component';
 
 /**
  * The Footer component.
@@ -10,56 +16,27 @@ import { CoreService } from '@awg-core/services';
  * with the {@link FooterDeclarationComponent},
  * {@link FooterCopyrightComponent},
  * {@link FooterPoweredbyComponent}
- * and {@link FooterLogoComponent}.
+ * and {@link LogoComponent}.
  */
 @Component({
     selector: 'awg-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [LogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
     /**
-     * Public variable: logos.
+     * Readonly variable: logosData.
      *
-     * It keeps the logos for the footer.
+     * It keeps the logos data for the footer.
      */
-    logos: Logos;
+    readonly logosData = LOGOS_DATA;
 
     /**
-     * Public variable: pageMetaData.
+     * Readonly variable: pageMetaData.
      *
      * It keeps the page metadata for the footer.
      */
-    pageMetaData: MetaPage;
-
-    /**
-     * Private readonly injection variable: _coreService.
-     *
-     * It keeps the instance of the injected CoreService.
-     */
-    private readonly _coreService = inject(CoreService);
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the metadata and logos for the footer.
-     *
-     * @returns {void} Sets the pageMetaData and logos variables.
-     */
-    provideMetaData(): void {
-        this.pageMetaData = this._coreService.getMetaDataSection(MetaSectionTypes.page);
-        this.logos = this._coreService.getLogos();
-    }
+    readonly pageMetaData = META_DATA[MetaSectionTypes.page];
 }

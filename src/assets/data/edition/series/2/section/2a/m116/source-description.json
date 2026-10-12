@@ -377,132 +377,154 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-001",
                                             "measure": "1",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "Oberstimmenschicht: c überschreibt es."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-002",
                                             "measure": "5",
                                             "system": "Klav. u.",
                                             "position": "Taktanfang",
                                             "comment": "Tonartvorzeichnung: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für b überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> für des."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-003",
                                             "measure": "8",
                                             "system": "Klav. o.",
                                             "position": "7/16",
                                             "comment": "cis<sup>2</sup> überschreibt dis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-004",
                                             "measure": "8",
                                             "system": "Klav. u.",
                                             "position": "3/4",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-005",
                                             "measure": "9",
                                             "system": "Klav. o.",
                                             "position": "8/8",
                                             "comment": "Auf Rasur. Ante correcturam: f<sup>1</sup>/f<sup>2 </sup>mit Ligatur zu T. 10."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-006",
                                             "measure": "9",
                                             "system": "Klav. u.",
                                             "position": "8/8",
                                             "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F/<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>f."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-007",
                                             "measure": "10",
                                             "system": "Klav. o.",
                                             "position": "1. Pause",
                                             "comment": "Auf Rasur. Ante correcturam: Achtelnote f<sup>1</sup>/f<sup>2</sup> zusammengebalkt mit d<sup>3</sup>–c<sup>3</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-008",
                                             "measure": "10",
                                             "system": "Klav.",
                                             "position": "(2/8)",
                                             "comment": "<span class='glyph'>{{ref.getGlyph('[p]')}}</span> zwischen den Systemen rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-009",
                                             "measure": "10",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis<sub>1</sub>/<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>Fis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-010",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1. Note",
                                             "comment": "F<sub>1</sub> überschreibt E<sub>1</sub>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-011",
                                             "measure": "11",
                                             "system": "Klav. u.",
                                             "position": "1–4/8",
                                             "comment": "Unterhalb von <span class='glyph accid'>{{ref.getGlyph('[a]')}}</span>F<sub>1</sub> angesetzter Achtelbalken rasiert."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-012",
                                             "measure": "12",
                                             "system": "Klav. o.",
                                             "position": "2/16",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-013",
                                             "measure": "12",
                                             "system": "Klav. u.",
                                             "position": "2/8",
                                             "comment": "Es sowie <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem Ges gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-014",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "1/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu ges überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span> zu potenziellem b."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-015",
                                             "measure": "13",
                                             "system": "Klav. o.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>des<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>cis<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-016",
                                             "measure": "13",
                                             "system": "Klav. u.",
                                             "position": "6/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[#]')}}</span>dis überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>es."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-017",
                                             "measure": "14",
                                             "system": "Klav. o.",
                                             "position": "letzte Note",
                                             "comment": "Auf Rasur. Ante correcturam: <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>1</sup>/<span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>ces<sup>2</sup>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-018",
                                             "measure": "14",
                                             "system": "Klav. u.",
                                             "position": "letzte Note",
                                             "comment": "Auf Rasur."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-019",
                                             "measure": "15",
                                             "system": "Klav. u.",
                                             "position": "1/4",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu C überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-020",
                                             "measure": "15",
                                             "system": "Klav. o.",
                                             "position": "4/4",
                                             "comment": "c<sup>2</sup> gestrichen."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-021",
                                             "measure": "16",
                                             "system": "Klav. o.",
                                             "position": "3/8",
                                             "comment": "<span class='glyph accid'>{{ref.getGlyph('[a]')}}</span> zu e<sup>2</sup> überschreibt <span class='glyph accid'>{{ref.getGlyph('[b]')}}</span>."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_1-022",
                                             "measure": "16",
                                             "system": "Klav. u.",
                                             "position": "3/8",
@@ -524,18 +546,21 @@
                                     "blockHeader": "",
                                     "blockComments": [
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_2-001",
                                             "measure": "2",
                                             "system": "Klav. u.",
                                             "position": "8/8",
                                             "comment": "Unterstimmenschicht: Ges überschrieben zu Fis."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_2-002",
                                             "measure": "6",
                                             "system": "Klav. u.",
                                             "position": "Taktende",
                                             "comment": "Taktstrich eingekreist; <em>V</em> (römische 5) davor."
                                         },
                                         {
+                                            "svgGroupId": "awg-kv-m116_tf1_C_corr_2-003",
                                             "measure": "17",
                                             "system": "Klav.",
                                             "position": "1/8",

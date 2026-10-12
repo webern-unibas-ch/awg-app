@@ -1,61 +1,38 @@
 import { Location } from '@angular/common';
-import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, isSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot, Router, RouterModule, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, provideRouter, Router, Routes } from '@angular/router';
 
-import Spy = jasmine.Spy;
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+type Spy = ReturnType<typeof vi.spyOn>;
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { AnalyticsService, EditionInitService } from '@awg-core/services';
+import { AnalyticsService } from '@awg-core/services/analytics.service';
 
 import { AppComponent } from './app.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { ViewContainerComponent } from './core/view-container/view-container.component';
 
 // Mock components
 @Component({
-    selector: 'awg-navbar',
-    template: '',
-    standalone: false,
-})
-class NavbarStubComponent {}
-
-@Component({
-    selector: 'awg-view-container',
-    template: '',
-    standalone: false,
-})
-class ViewContainerStubComponent {
-    @Input() activateSideOutlet: boolean;
-}
-
-@Component({
-    selector: 'awg-footer',
-    template: '',
-    standalone: false,
-})
-class FooterStubComponent {}
-
-@Component({
     selector: 'awg-test',
     template: 'test',
-    standalone: false,
 })
 export class RoutedTestMockComponent {}
 
 @Component({
     selector: 'awg-test2',
     template: 'test2',
-    standalone: false,
 })
 export class RoutedTest2MockComponent {}
 
 @Component({
     selector: 'awg-side',
     template: 'test',
-    standalone: false,
 })
 export class RoutedSideMockComponent {}
 
@@ -84,31 +61,22 @@ describe('AppComponent (DONE)', () => {
     let router: Router;
 
     let mockAnalyticsService: Partial<AnalyticsService>;
-    let mockEditionInitService: Partial<EditionInitService>;
     let mockTitleService: Partial<Title>;
 
     let getTitleSpy: Spy;
     let setTitleSpy: Spy;
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
-    let initializeEditionSpy: Spy;
 
     let expectedActivateSideOutlet: boolean;
 
-    beforeEach(waitForAsync(() => {
+    beforeEach(async () => {
         // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
         mockAnalyticsService = {
             initializeAnalytics: (): void => {
                 // Intentional empty test override
             },
             trackPageView: (): void => {
-                // Intentional empty test override
-            },
-        };
-
-        // Create a mocked EditionInitService with an `initializeEdition` spy
-        mockEditionInitService = {
-            initializeEdition: (): void => {
                 // Intentional empty test override
             },
         };
@@ -121,190 +89,152 @@ describe('AppComponent (DONE)', () => {
             },
         };
 
-        TestBed.configureTestingModule({
-            imports: [RouterModule.forRoot(MOCK_ROUTES)],
-            declarations: [
-                AppComponent,
-                FooterStubComponent,
-                NavbarStubComponent,
-                ViewContainerStubComponent,
-                RoutedTestMockComponent,
-                RoutedTest2MockComponent,
-                RoutedSideMockComponent,
-            ],
+        // Hollow out the direct child components
+        TestBed.overrideComponent(FooterComponent, { set: { template: '', imports: [] } });
+        TestBed.overrideComponent(NavbarComponent, { set: { template: '', imports: [] } });
+        TestBed.overrideComponent(ViewContainerComponent, { set: { template: '', imports: [] } });
+
+        await TestBed.configureTestingModule({
+            imports: [AppComponent],
             providers: [
+                provideRouter(MOCK_ROUTES),
                 { provide: AnalyticsService, useValue: mockAnalyticsService },
-                { provide: EditionInitService, useValue: mockEditionInitService },
                 { provide: Title, useValue: mockTitleService },
             ],
         }).compileComponents();
-
-        // Spies for service methods
-        getTitleSpy = spyOn(mockTitleService, 'getTitle').and.returnValue('Default Page Title');
-        setTitleSpy = spyOn(mockTitleService, 'setTitle').and.callThrough();
-        initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
-        initializeEditionSpy = spyOn(mockEditionInitService, 'initializeEdition').and.callThrough();
-        trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
-    }));
+    });
 
     beforeEach(() => {
         // Window spy object (Analytics)
-        (window as any).gtag = jasmine.createSpy('gtag');
+        (window as any).gtag = vi.fn();
 
-        fixture = TestBed.createComponent(AppComponent);
-        component = fixture.componentInstance;
-        compDe = fixture.debugElement;
-
+        // Inject services
         location = TestBed.inject(Location);
         router = TestBed.inject(Router);
+
+        // Service spies
+        getTitleSpy = vi.spyOn(mockTitleService, 'getTitle').mockReturnValue('Default Page Title');
+        setTitleSpy = vi.spyOn(mockTitleService, 'setTitle');
+        initialzeAnalyticsSpy = vi.spyOn(mockAnalyticsService, 'initializeAnalytics');
+        trackpageViewSpy = vi.spyOn(mockAnalyticsService, 'trackPageView');
 
         // Test data
         expectedActivateSideOutlet = true;
 
-        // Workaround for ngZone issue;
-        // Cf. https://github.com/angular/angular/issues/25837
-        // Cf. https://github.com/ngneat/spectator/pull/334/files
-        fixture.ngZone.run(() => {
-            // Initial navigation
-            router.initialNavigation();
-        });
+        // Create component fixture
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        compDe = fixture.debugElement;
     });
 
     afterEach(() => {
         // Remove global spy object
         (window as any).gtag = undefined;
+
+        vi.restoreAllMocks();
     });
 
-    afterAll(() => {
-        cleanStylesFromDOM();
-    });
-
-    it('... should create the app', waitForAsync(() => {
+    it('... should create the app', () => {
         expect(component).toBeTruthy();
-    }));
+    });
 
     it('... injected services should use provided mockValues', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
         expectToBe(analyticsService === mockAnalyticsService, true);
-
-        const editionInitService = TestBed.inject(EditionInitService);
-        expectToBe(editionInitService === mockEditionInitService, true);
 
         const titleService = TestBed.inject(Title);
         expectToBe(titleService === mockTitleService, true);
     });
 
     describe('router setup (self-test)', () => {
-        it("... initial navigation should have detected empty route ''", waitForAsync(() => {
+        it('... should start with empty route before navigation', () => {
             expectToBe(location.path(), '');
-        }));
-
-        it("... should redirect to /test1 from '' redirect", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test1');
         });
 
-        it("... should navigate to 'test1' from /test1", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test1']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test1');
-        });
+        describe('... should navigate to', () => {
+            it.each([
+                { desc: '`/test1` from empty redirect', commands: [''], expectedPath: '/test1' },
+                { desc: '`test1` from `/test1`', commands: ['/test1'], expectedPath: '/test1' },
+                { desc: '`test2` from `/test2`', commands: ['/test2'], expectedPath: '/test2' },
+                {
+                    desc: '`/test2/test3` from `/test2/test3`',
+                    commands: ['/test2/test3'],
+                    expectedPath: '/test2/test3',
+                },
+                {
+                    desc: '`test2` with outlet from `/test2`',
+                    commands: [{ outlets: { primary: 'test2', side: 'test2' } }],
+                    expectedPath: '/test2(side:test2)',
+                },
+                {
+                    desc: '`/test2/test3` with outlet from `/test2/test3`',
+                    commands: [{ outlets: { primary: 'test2/test3', side: 'test2' } }],
+                    expectedPath: '/test2/test3(side:test2)',
+                },
+            ])('... $desc', async ({ commands, expectedPath }) => {
+                const success = await router.navigate(commands);
 
-        it("... should navigate to 'test2' from /test2", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test2']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2');
-        });
-
-        it("... should navigate to 'test2' with outlet from /test2", async () => {
-            const success = await fixture.ngZone.run(() =>
-                router.navigate([{ outlets: { primary: 'test2', side: 'test2' } }])
-            );
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2(side:test2)');
-        });
-
-        it("... should navigate to '/test2/test3' from /test2/test3", async () => {
-            const success = await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2/test3');
-        });
-
-        it("... should navigate to '/test2/test3' with outlet from /test2/test3", async () => {
-            const success = await fixture.ngZone.run(() =>
-                router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
-            );
-            expect(success).toBeTruthy();
-            expectToBe(location.path(), '/test2/test3(side:test2)');
+                expect(success).toBeTruthy();
+                expectToBe(location.path(), expectedPath);
+            });
         });
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have `activateSideOutlet=false`', () => {
-            expectToBe(component.activateSideOutlet, false);
+        it('... should have signal `activateSideOutlet` to hold false', () => {
+            expectToBe(isSignal(component.activateSideOutlet), true);
+
+            expectToBe(component.activateSideOutlet(), false);
         });
 
         describe('VIEW', () => {
-            it('... should contain one header component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
+            it('... should contain one NavbarComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, NavbarComponent, 1, 1);
             });
 
-            it('... should contain one view container component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+            it('... should contain one ViewContainerComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
             });
 
-            it('... should not pass down `showSideOutlet` to view container component yet', () => {
-                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+            it('... should throw due to missing required values for ViewContainerComponent', () => {
+                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
                 const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerStubComponent
-                ) as ViewContainerStubComponent;
+                    ViewContainerComponent
+                ) as ViewContainerComponent;
 
-                expect(viewContainerCmp.activateSideOutlet).toBeUndefined();
+                // Expect the required inputs to throw if not provided
+                expect(() => viewContainerCmp.activateSideOutlet()).toThrow();
             });
 
-            it('... should contain one footer component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
+            it('... should contain one FooterComponent (hollow)', () => {
+                getAndExpectDebugElementByDirective(compDe, FooterComponent, 1, 1);
             });
         });
 
         describe('Analytics', () => {
-            it('... should call AnalyticsService to initialize Analytics', waitForAsync(() => {
+            it('... should call AnalyticsService to initialize Analytics', () => {
                 expectSpyCall(initialzeAnalyticsSpy, 1);
-            }));
+            });
 
-            it('... should not call AnalyticsService to track page view without navigation', waitForAsync(() => {
+            it('... should not call AnalyticsService to track page view without navigation', () => {
                 expectSpyCall(trackpageViewSpy, 0);
-            }));
+            });
 
-            it('... should call AnalyticsService to track page view after navigation', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test1');
-                    });
-                });
-            }));
+            it('... should call AnalyticsService to track page view after navigation', async () => {
+                await router.navigate(['']);
 
-            it('... should call AnalyticsService to track page view after navigation changed', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['']).then(() => {
-                        expectSpyCall(trackpageViewSpy, 1, '/test1');
+                expectSpyCall(trackpageViewSpy, 1, '/test1');
+            });
 
-                        router.navigate(['/test2']).then(() => {
-                            expectSpyCall(trackpageViewSpy, 2, '/test2');
+            it('... should call AnalyticsService to track page view after navigation changed', async () => {
+                await router.navigate(['']);
+                expectSpyCall(trackpageViewSpy, 1, '/test1');
 
-                            router.navigate(['/test1']).then(() => {
-                                expectSpyCall(trackpageViewSpy, 3, '/test1');
-                            });
-                        });
-                    });
-                });
-            }));
-        });
+                await router.navigate(['/test2']);
+                expectSpyCall(trackpageViewSpy, 2, '/test2');
 
-        describe('EditionInit', () => {
-            it('... should call EditionInitService to initialize edition', () => {
-                expectSpyCall(initializeEditionSpy, 1);
+                await router.navigate(['/test1']);
+                expectSpyCall(trackpageViewSpy, 3, '/test1');
             });
         });
 
@@ -317,68 +247,60 @@ describe('AppComponent (DONE)', () => {
                 expectSpyCall(setTitleSpy, 0);
             });
 
-            it('... should set the custom page title from route data if available', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test1']).then(() => {
-                        expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
+            it('... should set the custom page title from route data if available', async () => {
+                await router.navigate(['/test1']);
+                expectSpyCall(setTitleSpy, 1, 'Custom Page Title 1');
 
-                        router.navigate(['/test2/test3']).then(() => {
-                            expectSpyCall(setTitleSpy, 2, 'Custom Page Title 3');
-                        });
-                    });
-                });
-            }));
+                await router.navigate(['/test2/test3']);
+                expectSpyCall(setTitleSpy, 2, 'Custom Page Title 3');
+            });
 
-            it('... should set the default page title if route data title is not available', waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test2']).then(() => {
-                        expectSpyCall(setTitleSpy, 1, 'Default Page Title');
-                    });
-                });
-            }));
+            it('... should set the default page title if route data title is not available', async () => {
+                await router.navigate(['/test2']);
+
+                expectSpyCall(setTitleSpy, 1, 'Default Page Title');
+            });
         });
 
         describe('SideOutlet', () => {
-            it('... should set `activateSideOutlet` to false if not given in route data', async () => {
-                const success = await fixture.ngZone.run(() => router.navigate(['/test1']));
+            it('... should have signal `activateSideOutlet` to hold false if not given in route data', async () => {
+                const success = await router.navigate(['/test1']);
+
                 expect(success).toBeTruthy();
-                expectToBe(component.activateSideOutlet, false);
+                expectToBe(component.activateSideOutlet(), false);
             });
 
-            it('... should set `activateSideOutlet` to true if given in route data', async () => {
-                const success = await fixture.ngZone.run(() =>
-                    router.navigate([{ outlets: { primary: 'test2', side: 'test2' } }])
-                );
+            it('... should have signal `activateSideOutlet` to hold true if given in route data', async () => {
+                const success = await router.navigate([{ outlets: { primary: 'test2', side: 'test2' } }]);
+
                 expect(success).toBeTruthy();
-                expectToBe(component.activateSideOutlet, true);
+                expectToBe(component.activateSideOutlet(), true);
             });
 
-            it('... should set `activateSideOutlet` to true if given in parent route data', async () => {
-                const success = await fixture.ngZone.run(() =>
-                    router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
-                );
+            it('... should have signal `activateSideOutlet` to hold true if given in parent route data', async () => {
+                const success = await router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }]);
+
                 expect(success).toBeTruthy();
-                expectToBe(component.activateSideOutlet, true);
+                expectToBe(component.activateSideOutlet(), true);
             });
 
-            it('... should set `activateSideOutlet` to false if not given in parent route data', async () => {
-                const success = await fixture.ngZone.run(() => router.navigate(['/test2/test3']));
+            it('... should have signal `activateSideOutlet` to hold false if not given in parent route data', async () => {
+                const success = await router.navigate(['/test2/test3']);
+
                 expect(success).toBeTruthy();
-                expectToBe(component.activateSideOutlet, false);
+                expectToBe(component.activateSideOutlet(), false);
             });
 
-            it('... should set `activateSideOutlet` back to false if navigating back to route without side outlet', async () => {
-                const success = await fixture.ngZone.run(() =>
-                    router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
-                );
-                expect(success).toBeTruthy();
-                expectToBe(component.activateSideOutlet, true);
+            it('... should have signal `activateSideOutlet` to hold false again if navigating back to route without side outlet', async () => {
+                const success = await router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }]);
 
-                const success2 = await fixture.ngZone.run(() =>
-                    router.navigate([{ outlets: { primary: 'test1', side: null } }])
-                );
+                expect(success).toBeTruthy();
+                expectToBe(component.activateSideOutlet(), true);
+
+                const success2 = await router.navigate([{ outlets: { primary: 'test1', side: null } }]);
+
                 expect(success2).toBeTruthy();
-                expectToBe(component.activateSideOutlet, false);
+                expectToBe(component.activateSideOutlet(), false);
             });
         });
     });
@@ -391,62 +313,63 @@ describe('AppComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `activateSideOutlet` to view container component', async () => {
-                const success = await fixture.ngZone.run(() =>
-                    router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }])
-                );
+                const success = await router.navigate([{ outlets: { primary: 'test2/test3', side: 'test2' } }]);
+
                 expect(success).toBeTruthy();
 
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
-                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
+                const viewContainerDes = getAndExpectDebugElementByDirective(compDe, ViewContainerComponent, 1, 1);
                 const viewContainerCmp = viewContainerDes[0].injector.get(
-                    ViewContainerStubComponent
-                ) as ViewContainerStubComponent;
+                    ViewContainerComponent
+                ) as ViewContainerComponent;
 
-                expectToBe(viewContainerCmp.activateSideOutlet, expectedActivateSideOutlet);
+                expectToBe(viewContainerCmp.activateSideOutlet(), expectedActivateSideOutlet);
             });
         });
 
-        describe('#_hasSideOutlet()', () => {
-            it('... should have a method `_hasSideOutlet`', () => {
-                expect((component as any)._hasSideOutlet).toBeDefined();
-            });
+        describe('METHODS', () => {
+            describe('#_hasSideOutlet()', () => {
+                it('... should have a method `_hasSideOutlet`', () => {
+                    expect(component['_hasSideOutlet']).toBeDefined();
+                });
 
-            it('... should return true if route has side outlet', () => {
-                const mockRoute: ActivatedRouteSnapshot = {
-                    outlet: 'side',
-                    children: [],
-                } as any;
+                it('... should detect a side outlet in the route itself', () => {
+                    const mockRoute: ActivatedRouteSnapshot = {
+                        outlet: 'side',
+                        children: [],
+                    } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
-            });
+                    expectToBe(component['_hasSideOutlet'](mockRoute), true);
+                });
 
-            it('... should return true if any child route has side outlet', () => {
-                const mockRoute: ActivatedRouteSnapshot = {
-                    outlet: 'primary',
-                    children: [
-                        {
-                            outlet: 'side',
-                            children: [],
-                        } as any,
-                    ],
-                } as any;
+                it('... should detect a side outlet in any child route', () => {
+                    const mockRoute: ActivatedRouteSnapshot = {
+                        outlet: 'primary',
+                        children: [
+                            {
+                                outlet: 'side',
+                                children: [],
+                            } as any,
+                        ],
+                    } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), true);
-            });
+                    expectToBe(component['_hasSideOutlet'](mockRoute), true);
+                });
 
-            it('... should return false if route has no side outlet', () => {
-                const mockRoute: ActivatedRouteSnapshot = {
-                    outlet: 'primary',
-                    children: [
-                        {
-                            outlet: 'primary',
-                            children: [],
-                        } as any,
-                    ],
-                } as any;
+                it('... should not detect a side outlet if there is none', () => {
+                    const mockRoute: ActivatedRouteSnapshot = {
+                        outlet: 'primary',
+                        children: [
+                            {
+                                outlet: 'primary',
+                                children: [],
+                            } as any,
+                        ],
+                    } as any;
 
-                expectToBe((component as any)._hasSideOutlet(mockRoute), false);
+                    expectToBe(component['_hasSideOutlet'](mockRoute), false);
+                });
             });
         });
     });

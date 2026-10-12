@@ -9,7 +9,7 @@ export class FolioConvoluteList {
     /**
      * The array of FolioLists from a convolute list.
      */
-    convolutes: FolioConvolute[];
+    convolutes: FolioConvolute[] = [];
 }
 
 /**
@@ -23,17 +23,17 @@ export class FolioConvolute {
     /**
      * The convolute's id.
      */
-    convoluteId: string;
+    convoluteId = '';
 
     /**
      * The convolute's label.
      */
-    convoluteLabel: string;
+    convoluteLabel = '';
 
     /**
      * The array of folios from a convolute.
      */
-    folios: Folio[];
+    folios: Folio[] = [];
 
     /**
      * The link to a convolute description in the critical report.
@@ -42,13 +42,13 @@ export class FolioConvolute {
 }
 
 /**
- * The Folio class.
+ * The Folio interface.
  *
  * It is used in the context of the edition folio convolutes
  * to store the top level data for a single folio
  * from a folio json file.
  */
-export class Folio {
+export interface Folio {
     /**
      * The folio's id.
      */
@@ -81,13 +81,13 @@ export class Folio {
 }
 
 /**
- * The Folio format class.
+ * The Folio format interface.
  *
  * It is used in the context of the edition folio convolutes
  * to store the sub level data for folio format
  * from a folio json file.
  */
-export class FolioDimensions {
+export interface FolioDimensions {
     /**
      * The folio's height.
      */
@@ -100,13 +100,13 @@ export class FolioDimensions {
 }
 
 /**
- * The Folio content class.
+ * The Folio content interface.
  *
  * It is used in the context of the edition folio convolutes
  * to store the sub level data for folio content
  * from a folio json file.
  */
-export class FolioContent {
+export interface FolioContent {
     /**
      * The folio content's complex id.
      */
@@ -154,13 +154,13 @@ export class FolioContent {
 }
 
 /**
- * The FolioSegment class.
+ * The FolioSegment interface.
  *
  * It is used in the context of the edition folio convolutes
  * to store the sub level data for folio segments
  * from a folio json file.
  */
-export class FolioSegment {
+export interface FolioSegment {
     /**
      * The folio segment's start system.
      */

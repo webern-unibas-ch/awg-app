@@ -4,9 +4,9 @@
             "id": "Mx416_TF1",
             "label": "M* 416 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M* 416 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_A'})\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a> weist keine Korrekturen auf.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <a (click)=\"ref.navigateToReportFragment({complexId: 'mx416', fragmentId: 'source_B'})\"><strong>B</strong></a>."
+                "Für die Textedition der Studienkomposition für Klavier M* 416 ist <a data-complex-id='mx416' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='mx416' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='mx416' data-report-fragment-id='source_B'><strong>B</strong></a> weist keine Korrekturen auf.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M* 416 ist <a data-complex-id='mx416' data-report-fragment-id='source_B'><strong>B</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -17,7 +17,7 @@
             "id": "Mx416_Sk1",
             "label": "M* 416 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'mx416', sheetId: 'Mx416_TF1'})\">Studienkomposition für Klavier M* 416</a>."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zu der <a data-complex-id='mx416' data-sheet-id='Mx416_TF1'>Studienkomposition für Klavier M* 416</a>."
             ],
             "commentary": {
                 "preamble": "",

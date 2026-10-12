@@ -1,8 +1,9 @@
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, isSignal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { expectToBe, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { HeadingComponent } from './heading.component';
 
@@ -11,27 +12,24 @@ describe('HeadingComponent (DONE)', () => {
     let fixture: ComponentFixture<HeadingComponent>;
     let compDe: DebugElement;
 
-    let expectedTitle: string;
     let expectedId: string;
+    let expectedTitle: string;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [HeadingComponent],
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [HeadingComponent],
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
+        // Test data
+        expectedTitle = 'Test Title';
+        expectedId = 'test-heading-id';
+
+        // Create component fixture
         fixture = TestBed.createComponent(HeadingComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-
-        // Test data
-        expectedTitle = 'Test Title';
-        expectedId = '23';
-    });
-
-    afterAll(() => {
-        cleanStylesFromDOM();
     });
 
     it('... should create', () => {
@@ -39,9 +37,15 @@ describe('HeadingComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `title` and `id`', () => {
-            expect(component.title).toBeUndefined();
-            expect(component.id).toBeUndefined();
+        it('... should throw due to missing required input signal `id`', () => {
+            expectToBe(isSignal(component.id), true);
+
+            expect(() => component.id()).toThrow();
+        });
+        it('... should throw due to missing required input signal `title`', () => {
+            expectToBe(isSignal(component.title), true);
+
+            expect(() => component.title()).toThrow();
         });
 
         describe('VIEW', () => {
@@ -49,29 +53,54 @@ describe('HeadingComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
             });
+
+            it('... should have empty `id` on div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
+                const divEl: HTMLDivElement = divDes[0].nativeElement;
+
+                expectToBe(divEl.id, '');
+            });
+
+            it('... should have empty `title` on h3', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+                const hEl: HTMLHeadingElement = hDes[0].nativeElement;
+
+                expectToBe(hEl.textContent, '');
+            });
         });
     });
 
-    describe('AFTER initial data binding', () => {
+    describe('AFTER initial data binding (update)', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.title = expectedTitle;
-            component.id = expectedId;
+            // Set the initial values for the signal inputs
+            fixture.componentRef.setInput('id', expectedId);
+            fixture.componentRef.setInput('title', expectedTitle);
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('VIEW', () => {
-            it('... should pass down `title` and `id` to component', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
-                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
+        it('... should have input signal `id` to hold the provided id', () => {
+            expectToBe(component.id(), expectedId);
+        });
 
+        it('... should have input signal `title` to hold the provided title', () => {
+            expectToBe(component.title(), expectedTitle);
+        });
+
+        describe('VIEW', () => {
+            it('... should have updated `id` on div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
+
+                expectToBe(divEl.id, expectedId);
+            });
+
+            it('... should have updated `title` on h3', () => {
+                const hDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
                 const hEl: HTMLHeadingElement = hDes[0].nativeElement;
 
-                expectToContain(divEl.id, expectedId);
-                expectToContain(hEl.textContent, expectedTitle);
+                expectToBe(hEl.textContent, expectedTitle);
             });
         });
     });

@@ -1,0 +1,46 @@
+@import '/src/assets/themes/scss/shared';
+
+.awg-edition-sheet-viewer-nav {
+    > .prev,
+    .next {
+        // Reset native button styles
+        border: 0;
+        background-color: transparent;
+
+        cursor: pointer;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        width: auto;
+        padding: 8px;
+        user-select: none;
+
+        // Center the arrow vertically
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background-color: #dddddd;
+        }
+
+        span {
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            color: $link-color;
+        }
+    }
+
+    > .prev {
+        border-right: 1px solid #dddddd;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    > .next {
+        right: 0;
+        border-left: 1px solid #dddddd;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}

@@ -1,0 +1,13 @@
+@if (item(); as item) {
+    @if (isDropdown()) {
+        <a [id]="id()" class="nav-link" ngbDropdownToggle>
+            <span [class]="item.spanClass">{{ item.label }}</span>
+            <fa-icon [icon]="item.icon" [class]="item.iconClass" />
+        </a>
+    } @else {
+        <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+            <span [class]="item.spanClass">{{ item.label }}</span>
+            <fa-icon [icon]="item.icon" [class]="item.iconClass" />
+        </a>
+    }
+}

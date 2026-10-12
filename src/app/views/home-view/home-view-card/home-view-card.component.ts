@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-import { HomeViewCard } from '@awg-views/home-view/models';
+import { ExternalLinkDirective } from '@awg-shared/external-link/external-link.directive';
+
+import { HomeViewCard } from './home-view-card.model';
 
 /**
  * The HomeViewCard component.
@@ -15,20 +20,20 @@ import { HomeViewCard } from '@awg-views/home-view/models';
     templateUrl: './home-view-card.component.html',
     styleUrls: ['./home-view-card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    imports: [FaIconComponent, ExternalLinkDirective, NgTemplateOutlet, RouterLink],
 })
 export class HomeViewCardComponent {
     /**
-     * Input variable: cardData.
+     * Readonly input signal: cardData.
      *
-     * It keeps the data for the home view card.
+     * It holds the data for the home view card.
      */
-    @Input() cardData: HomeViewCard;
+    readonly cardData = input.required<HomeViewCard>();
 
     /**
-     * Public variable: faArrowRight.
+     * Readonly variable: faArrowRight.
      *
      * It instantiates fontawesome's faArrowRight icon.
      */
-    faArrowRight = faArrowRight;
+    readonly faArrowRight = faArrowRight;
 }

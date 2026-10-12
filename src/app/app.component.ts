@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
 
@@ -6,7 +7,11 @@ import { filter, map } from 'rxjs/operators';
 
 import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { AnalyticsService, EditionInitService } from '@awg-core/services';
+import { AnalyticsService } from '@awg-core/services/analytics.service';
+
+import { FooterComponent } from './core/footer/footer.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { ViewContainerComponent } from './core/view-container/view-container.component';
 
 /**
  * The main component of the AWG App.
@@ -17,15 +22,16 @@ import { AnalyticsService, EditionInitService } from '@awg-core/services';
     selector: 'awg-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FooterComponent, NavbarComponent, ViewContainerComponent],
 })
 export class AppComponent {
     /**
-     * Public variable: activateSideOutlet.
+     * Readonly signal: activateSideOutlet.
      *
-     * It keeps track of the side outlet.
+     * It holds the state of the side outlet.
      */
-    activateSideOutlet = false;
+    readonly activateSideOutlet = signal(false);
 
     /**
      * Private readonly injection variable: _activatedRoute.
@@ -40,13 +46,6 @@ export class AppComponent {
      * It keeps the instance of the injected AnalyticsService.
      */
     private readonly _analyticsService = inject(AnalyticsService);
-
-    /**
-     * Private readonly injection variable: _editionInitService.
-     *
-     * It keeps the instance of the injected EditionInitService.
-     */
-    private readonly _editionInitService = inject(EditionInitService);
 
     /**
      * Private readonly injection variable: _ngbConfig.
@@ -83,9 +82,6 @@ export class AppComponent {
         // Init analytics
         this._analyticsService.initializeAnalytics();
 
-        // Init edition complexes and outline
-        this._editionInitService.initializeEdition();
-
         // Track router events
         this._router.events
             .pipe(
@@ -96,14 +92,13 @@ export class AppComponent {
 
                     // Get page title from route data
                     let child = this._activatedRoute.firstChild;
-                    while (child.firstChild) {
+                    while (child?.firstChild) {
                         child = child.firstChild;
                     }
-                    if (child.snapshot.data['title']) {
-                        return child.snapshot.data['title'];
-                    }
-                    return appTitle;
-                })
+
+                    return child?.snapshot?.data?.['title'] ?? appTitle;
+                }),
+                takeUntilDestroyed()
             )
             .subscribe({
                 next: (pageTitle: string) => {
@@ -112,7 +107,7 @@ export class AppComponent {
 
                     // Activate side outlet
                     const currentRoute = this._router.routerState.snapshot.root;
-                    this.activateSideOutlet = this._hasSideOutlet(currentRoute);
+                    this.activateSideOutlet.set(this._hasSideOutlet(currentRoute));
                 },
             });
     }

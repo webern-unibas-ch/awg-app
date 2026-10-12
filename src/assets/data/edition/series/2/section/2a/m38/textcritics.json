@@ -4,9 +4,9 @@
             "id": "M38_TF1",
             "label": "M 38 einzige Textfassung",
             "evaluations": [
-                "Für die Textedition der Studienkomposition für Klavier M 38 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen.",
-                "<a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
-                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 38 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+                "Für die Textedition der Studienkomposition für Klavier M 38 ist <a data-complex-id='m38' data-report-fragment-id='source_B'><strong>B</strong></a> relevante Quelle. <a data-complex-id='m38' data-report-fragment-id='source_A'><strong>A</strong></a> enthält Skizzen.",
+                "<a data-complex-id='m38' data-report-fragment-id='source_B'><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern.",
+                "Hauptquelle für die Textedition der Studienkomposition für Klavier M 38 ist <a data-complex-id='m38' data-report-fragment-id='source_B'><strong>B</strong></a> nach Korrekturen 1."
             ],
             "commentary": {
                 "preamble": "",
@@ -51,7 +51,7 @@
             "id": "M38_Sk1",
             "label": "M 38 Sk1",
             "evaluations": [
-                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk1</strong> enthält einen rhythmischen Entwurf des Melodieverlaufs der <a data-complex-id='m38' data-sheet-id='M38_TF1'><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -103,7 +103,7 @@
             "id": "M38_Sk2",
             "label": "M 38 Sk2",
             "evaluations": [
-                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk2</strong> enthält eine flüchtige, teils nur rhythmisch formulierte Darstellung des Zwischenthemas der <a data-complex-id='m38' data-sheet-id='M38_TF1'><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",
@@ -143,7 +143,7 @@
             "id": "M38_Sk3",
             "label": "M 38 Sk3",
             "evaluations": [
-                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a (click)=\"ref.selectSvgSheet({complexId: 'm38', sheetId: 'M38_TF1'})\"><strong>Studienkomposition für Klavier M 38</strong></a>."
+                "<strong>Sk3</strong> ist die Verlaufsskizze zu der <a data-complex-id='m38' data-sheet-id='M38_TF1'><strong>Studienkomposition für Klavier M 38</strong></a>."
             ],
             "commentary": {
                 "preamble": "",

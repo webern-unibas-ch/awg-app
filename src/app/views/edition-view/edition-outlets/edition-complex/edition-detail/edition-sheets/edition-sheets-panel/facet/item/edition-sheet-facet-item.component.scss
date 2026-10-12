@@ -1,0 +1,25 @@
+@import '/src/assets/themes/scss/shared';
+
+// Render the item as block (like the former direct children of the facet group)
+:host {
+    display: block;
+}
+
+a.awg-edition-sheet-facet-item-link-dropdown-toggle {
+    &.btn {
+        border: none !important;
+    }
+    &.active,
+    &:active {
+        color: $link-color !important;
+    }
+    &:hover {
+        color: rgb(51, 51, 51) !important;
+    }
+
+    > span {
+        display: inline-block;
+        white-space: break-spaces;
+        text-align: start;
+    }
+}

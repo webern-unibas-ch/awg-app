@@ -20,6 +20,7 @@ module.exports = {
                 'search',
                 'shared',
                 'side-info',
+                'statistics',
                 'structure',
                 'testing',
                 'views',
