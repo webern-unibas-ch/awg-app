@@ -2,12 +2,10 @@ import { DebugElement, isSignal, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-type Spy = ReturnType<typeof vi.spyOn>;
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import {
-    expectSpyCall,
     expectToBe,
     expectToEqual,
     getAndExpectDebugElementByCss,
@@ -16,7 +14,6 @@ import {
 
 import { EditionOutlineSeries } from '@awg-views/edition-view/models/edition-outline.model';
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionOutlineComponent } from './edition-outline.component';
 import { EditionSeriesCardComponent } from './edition-series-card/edition-series-card.component';
@@ -25,10 +22,6 @@ describe('EditionOutlineComponent (DONE)', () => {
     let component: EditionOutlineComponent;
     let fixture: ComponentFixture<EditionOutlineComponent>;
     let compDe: DebugElement;
-
-    let editionStateService: EditionStateService;
-
-    let stateServiceUpdateSeriesSpy: Spy;
 
     let mockOutlineSignal: WritableSignal<EditionOutlineSeries[]>;
     let expectedOutline: EditionOutlineSeries[];
@@ -55,20 +48,10 @@ describe('EditionOutlineComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // Inject services
-        editionStateService = TestBed.inject(EditionStateService);
-
-        // Service spies
-        stateServiceUpdateSeriesSpy = vi.spyOn(editionStateService, 'updateSelectedEditionSeries');
-
         // Create component fixture
         fixture = TestBed.createComponent(EditionOutlineComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     it('... should create', () => {
@@ -80,10 +63,6 @@ describe('EditionOutlineComponent (DONE)', () => {
             expectToBe(isSignal(component.editionOutline), true);
 
             expectToEqual(component.editionOutline(), expectedOutline);
-        });
-
-        it('... should have cleared the selected edition series in the constructor (via service)', () => {
-            expectSpyCall(stateServiceUpdateSeriesSpy, 1, null);
         });
 
         describe('VIEW', () => {

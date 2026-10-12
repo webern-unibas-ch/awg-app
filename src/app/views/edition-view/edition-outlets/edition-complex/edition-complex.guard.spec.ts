@@ -65,12 +65,12 @@ describe('editionComplexGuard (DONE)', () => {
         expectToBe(result, true);
     });
 
-    describe('... should redirect to the 404 page', () => {
+    describe('... should redirect to the 404 page for', () => {
         it.each([
             { desc: 'an unknown complex id', paths: ['complex', 'fail'], expectedLookupId: 'fail' },
             { desc: 'an empty complex id', paths: ['complex', ''], expectedLookupId: '' },
             { desc: 'a missing complex id segment', paths: ['complex'], expectedLookupId: '' },
-        ])('... for $desc', ({ paths, expectedLookupId }) => {
+        ])('... $desc', ({ paths, expectedLookupId }) => {
             const result = runGuard(paths);
 
             expectSpyCall(complexesServiceGetEditionComplexByIdSpy, 1, expectedLookupId);

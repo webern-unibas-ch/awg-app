@@ -1,8 +1,12 @@
 import { Routes } from '@angular/router';
 
-import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { editionComplexGuard } from './edition-outlets/edition-complex/edition-complex.guard';
 import { editionComplexResolver } from './edition-outlets/edition-complex/edition-complex.resolver';
+import { editionSeriesGuard } from './edition-outlets/edition-outline/edition-series-detail/edition-series.guard';
+import { editionSeriesResolver } from './edition-outlets/edition-outline/edition-series-detail/edition-series.resolver';
+import { editionStateResetResolver } from './edition-state-reset.resolver';
+
+import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
 import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
@@ -23,6 +27,7 @@ export const EDITION_VIEW_ROUTES: Routes = [
         children: [
             {
                 path: 'preface',
+                resolve: { editionState: editionStateResetResolver },
                 loadChildren: () =>
                     import('./edition-outlets/edition-preface/edition-preface.routes').then(
                         m => m.EDITION_PREFACE_ROUTES
@@ -30,6 +35,7 @@ export const EDITION_VIEW_ROUTES: Routes = [
             },
             {
                 path: 'rowtables',
+                resolve: { editionState: editionStateResetResolver },
                 loadChildren: () =>
                     import('./edition-outlets/edition-rowtables/edition-rowtables.routes').then(
                         m => m.EDITION_ROWTABLES_ROUTES
@@ -43,11 +49,15 @@ export const EDITION_VIEW_ROUTES: Routes = [
             {
                 // Overview of series.
                 path: 'series',
+                resolve: { editionState: editionStateResetResolver },
                 component: EditionOutlineComponent,
             },
             {
                 // Series by id (I, II, III).
                 path: 'series/:seriesId',
+                canMatch: [editionSeriesGuard],
+                resolve: { series: editionSeriesResolver },
+                runGuardsAndResolvers: 'always',
                 loadChildren: () =>
                     import('./edition-outlets/edition-outline/edition-series-detail/edition-series-detail.routes').then(
                         m => m.EDITION_SERIES_DETAIL_ROUTES
@@ -105,6 +115,12 @@ export const EDITION_VIEW_ROUTES: Routes = [
                         ],
                     },
                 ],
+            },
+            {
+                // Redirect the edition root to the series overview.
+                path: '',
+                redirectTo: 'series',
+                pathMatch: 'full',
             },
         ],
     },
