@@ -14,10 +14,11 @@ import {
 /**
  * Number constant: RDFSTORE_INTEGRATION_TIMEOUT_MS.
  *
- * It keeps the timeout for integration tests with the real rdfstore,
- * which runs much slower in the browser runner than in jsdom.
+ * It keeps the timeout for integration tests with the real rdfstore.
+ * It is far above the expected run time, but low enough to catch a slow `nextTick` polyfill
+ * (the browser clamps nested `setTimeout` calls, see `src/polyfills.ts`).
  */
-export const RDFSTORE_INTEGRATION_TIMEOUT_MS = 60_000;
+export const RDFSTORE_INTEGRATION_TIMEOUT_MS = 10_000;
 
 /**
  * The MockRdfstoreOptions interface.

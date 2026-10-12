@@ -67,8 +67,8 @@ describe('rdfstore-helper', () => {
     });
 
     describe('RDFSTORE_INTEGRATION_TIMEOUT_MS', () => {
-        it('... should hold a timeout of 60 seconds', () => {
-            expectToBe(RDFSTORE_INTEGRATION_TIMEOUT_MS, 60_000);
+        it('... should hold a timeout of 10 seconds', () => {
+            expectToBe(RDFSTORE_INTEGRATION_TIMEOUT_MS, 10_000);
         });
     });
 
