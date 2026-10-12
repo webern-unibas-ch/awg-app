@@ -28,7 +28,7 @@ export const DEFAULT_PREFIXES: PrefixMap = Object.freeze({
  *
  * It keeps a regex for the prefix declarations of a SPARQL query (`PREFIX awg: <…>`).
  */
-const PREFIX_DECLARATION_REGEX = /PREFIX\s+([A-Za-z][\w.-]*)?:\s*<([^>]*)>/gi;
+const PREFIX_DECLARATION_REGEX = /PREFIX\s+([a-z][\w.-]*)?:\s*<([^>]*)>/gi;
 
 /**
  * Regex constant: QNAME_PREFIX_REGEX.
@@ -106,7 +106,7 @@ export function extractSparqlPrefixes(query: string): PrefixMap {
  * @returns {string[]} The used prefixes (unique, in order of appearance).
  */
 export function findUsedPrefixes(query: string): string[] {
-    const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[A-Za-z][\w.-]*:/gi, ' ');
+    const code = SPARQL_UTILS.maskNonCode(query).replaceAll(/PREFIX\s+[a-z][\w.-]*:/gi, ' ');
     const prefixes = Array.from(code.matchAll(QNAME_PREFIX_REGEX), match => match[1]);
 
     return Array.from(new Set(prefixes));

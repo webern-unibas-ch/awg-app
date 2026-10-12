@@ -49,7 +49,7 @@ const XSD_NUMERIC_DATATYPES: ReadonlySet<string> = new Set(
  *
  * It keeps a regex for decimal numbers (with optional sign and exponent).
  */
-const NUMERIC_REGEX = /^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i;
+const NUMERIC_REGEX = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
 
 /**
  * Object constant: RDF_TYPE.
