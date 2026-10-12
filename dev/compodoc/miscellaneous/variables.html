@@ -485,6 +485,9 @@
                             <a href="#NODE_RADIUS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/force-graph/force-graph.utils.ts" ><b>NODE_RADIUS</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph.utils.ts)</a>
                         </li>
                         <li>
+                            <a href="#NON_CODE_PART_REGEXES" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/sparql.utils.ts" ><b>NON_CODE_PART_REGEXES</b>&nbsp;&nbsp;&nbsp;(src/.../sparql.utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#NON_CODE_REGEX" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/sparql.utils.ts" ><b>NON_CODE_REGEX</b>&nbsp;&nbsp;&nbsp;(src/.../sparql.utils.ts)</a>
                         </li>
                         <li>
@@ -732,7 +735,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>Object.keys(ABBREVIATIONS)
     .sort((left, right) &#x3D;&gt; right.length - left.length)
-    .map(abbreviation &#x3D;&gt; abbreviation.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, &#x27;\\$&amp;&#x27;))
+    .map(abbreviation &#x3D;&gt; abbreviation.replaceAll(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw&#x60;\$&amp;&#x60;))
     .join(&#x27;|&#x27;)</code>
                     </td>
                 </tr>
@@ -1060,7 +1063,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-310-gbf10d8eef&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-311-gea0102a9c&#x27;</code>
                     </td>
                 </tr>
 
@@ -2076,7 +2079,7 @@ relative to the sheet height.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>/PREFIX\s+([A-Za-z][\w.-]*)?:\s*&lt;([^&gt;]*)&gt;/gi</code>
+                        <i>Default value : </i><code>/PREFIX\s+([a-z][\w.-]*)?:\s*&lt;([^&gt;]*)&gt;/gi</code>
                     </td>
                 </tr>
 
@@ -8277,6 +8280,45 @@ on the keyboard (by a synthesized click on Enter or Space).</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="NON_CODE_PART_REGEXES"></a>
+                    <span class="name">
+                        <span ><b>NON_CODE_PART_REGEXES</b></span>
+                        <a href="#NON_CODE_PART_REGEXES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>RegExp[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    /&lt;[^&lt;&gt;&quot;{}|^&#x60;\\\s]*&gt;/,
+    /&quot;(?:[^&quot;\\\n]|\\.)*&quot;/,
+    /&#x27;(?:[^&#x27;\\\n]|\\.)*&#x27;/,
+    /#[^\n]*/,
+]</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Regex constant: NON_CODE_PART_REGEXES.</p>
+<p>It keeps the regexes for the parts of a SPARQL query that are not code:
+IRIs (<code>&lt;…&gt;</code>), string literals in double and single quotes (with escapes) and comments (<code>#…</code>).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="NON_CODE_REGEX"></a>
                     <span class="name">
                         <span ><b>NON_CODE_REGEX</b></span>
@@ -8292,15 +8334,15 @@ on the keyboard (by a synthesized click on Enter or Space).</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>/&lt;[^&lt;&gt;&quot;{}|^&#x60;\\\s]*&gt;|&quot;(?:[^&quot;\\\n]|\\.)*&quot;|&#x27;(?:[^&#x27;\\\n]|\\.)*&#x27;|#[^\n]*/g</code>
+                        <i>Default value : </i><code>new RegExp(NON_CODE_PART_REGEXES.map(regex &#x3D;&gt; regex.source).join(&#x27;|&#x27;), &#x27;g&#x27;)</code>
                     </td>
                 </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Regex constant: NON_CODE_REGEX.</p>
-<p>It keeps a regex for the parts of a SPARQL query that are not code:
-IRIs, string literals and comments (matched left to right,
+<p>It keeps a regex for all parts of a SPARQL query that are not code
+(alternatives of <a href="../miscellaneous/variables.html#NON_CODE_PART_REGEXES">NON_CODE_PART_REGEXES</a>, matched left to right,
 so a <code>#</code> within an IRI or a string does not start a comment).</p>
 </div>
                 </td>
@@ -8560,7 +8602,7 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i</code>
+                        <i>Default value : </i><code>/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i</code>
                     </td>
                 </tr>
 
@@ -9452,8 +9494,6 @@ of the physical description in the order of their display.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>This file includes polyfills needed by Angular and is loaded before the app.
 You can add your own extra polyfills to this file.</p>
-<p>The app runs zoneless (see <code>provideZonelessChangeDetection</code> in <code>app.config.ts</code>),
-so zone.js is not loaded.</p>
 <p>The current setup is for so-called &quot;evergreen&quot; browsers; the last versions of browsers that
 automatically update themselves. This includes recent versions of Safari, Chrome (including
 Opera), Edge on the desktop, and iOS and Chrome on mobile.</p>

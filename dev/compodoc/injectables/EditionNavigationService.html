@@ -745,7 +745,7 @@ export class EditionNavigationService {
         const routeCommands &#x3D;
             targetRoute &#x3D;&#x3D;&#x3D; EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route ? [] : [complexRoute, targetRoute];
 
-        this._router.navigate(routeCommands, navigationExtras);
+        void this._router.navigate(routeCommands, navigationExtras);
     }
 }
 </code></pre>

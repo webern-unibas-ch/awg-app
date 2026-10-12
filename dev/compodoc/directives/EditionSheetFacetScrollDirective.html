@@ -1006,11 +1006,14 @@ export class EditionSheetFacetScrollDirective {
             .map((rect, index) &#x3D;&gt; (rect.top + rect.height &gt; listTop &amp;&amp; rect.top &lt; listBottom ? index : -1))
             .filter(index &#x3D;&gt; index &gt;&#x3D; 0);
 
-        if (!visibleIndexes.length) {
+        const first &#x3D; visibleIndexes.at(0);
+        const last &#x3D; visibleIndexes.at(-1);
+
+        if (first &#x3D;&#x3D;&#x3D; undefined || last &#x3D;&#x3D;&#x3D; undefined) {
             return null;
         }
 
-        return { first: visibleIndexes[0] + 1, last: visibleIndexes[visibleIndexes.length - 1] + 1 };
+        return { first: first + 1, last: last + 1 };
     }
 }
 </code></pre>
