@@ -151,7 +151,7 @@
 <p>It contains the edition complex section of the app
 with another router outlet for the edition detail routes.</p>
 <p>The selected edition complex is set by the <a href="../miscellaneous/variables.html#editionComplexResolver">editionComplexResolver</a>
-during the navigation and reset by this component on destroy.</p>
+during the navigation.</p>
 
     </p>
 
@@ -229,11 +229,6 @@ during the navigation and reset by this component on destroy.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_destroyRef" >_destroyRef</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionStateService" >_editionStateService</a>
                             </li>
                             <li>
@@ -248,21 +243,6 @@ during the navigation and reset by this component on destroy.</p>
                     </td>
                 </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_resetEditionComplexOnDestroy" >_resetEditionComplexOnDestroy</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
 
 
@@ -272,134 +252,17 @@ during the navigation and reset by this component on destroy.</p>
     </table>
 </section>
 
-    <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:50</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the EditionComplexComponent.</p>
-<p>It calls a method to reset the selected edition complex on destroy.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
 
 
 
 
-    <section data-compodoc="block-methods">
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_resetEditionComplexOnDestroy"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_resetEditionComplexOnDestroy</b></span>
-                        <a href="#_resetEditionComplexOnDestroy"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_resetEditionComplexOnDestroy()</code>
-                </td>
-            </tr>
 
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:69</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _resetEditionComplexOnDestroy.</p>
-<p>It resets the selected edition complex in the EditionStateService
-when the component is destroyed (i.e. when leaving the complex routes).</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>Registers the reset of the edition complex.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_destroyRef"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>_destroyRef</b></span>
-                        <a href="#_destroyRef"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>inject(DestroyRef)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:29</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly injection variable: _destroyRef.</p>
-<p>It keeps the instance of the injected Angular DestroyRef.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -426,7 +289,7 @@ when the component is destroyed (i.e. when leaving the complex routes).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -465,7 +328,7 @@ when the component is destroyed (i.e. when leaving the complex routes).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -504,7 +367,7 @@ when the component is destroyed (i.e. when leaving the complex routes).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -524,7 +387,7 @@ when the component is destroyed (i.e. when leaving the complex routes).</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, DestroyRef, inject } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, inject } from &#x27;@angular/core&#x27;;
 import { RouterOutlet } from &#x27;@angular/router&#x27;;
 
 import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-routes.constants&#x27;;
@@ -537,7 +400,7 @@ import { EditionStateService } from &#x27;@awg-views/edition-view/services/editi
  * with another router outlet for the edition detail routes.
  *
  * The selected edition complex is set by the {@link editionComplexResolver}
- * during the navigation and reset by this component on destroy.
+ * during the navigation.
  */
 @Component({
     selector: &#x27;awg-edition-complex&#x27;,
@@ -547,13 +410,6 @@ import { EditionStateService } from &#x27;@awg-views/edition-view/services/editi
     imports: [RouterOutlet],
 })
 export class EditionComplexComponent {
-    /**
-     * Private readonly injection variable: _destroyRef.
-     *
-     * It keeps the instance of the injected Angular DestroyRef.
-     */
-    private readonly _destroyRef &#x3D; inject(DestroyRef);
-
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -574,29 +430,6 @@ export class EditionComplexComponent {
      * It keeps the EDITION_ROUTE_CONSTANTS.
      */
     readonly editionRouteConstants &#x3D; EDITION_ROUTE_CONSTANTS;
-
-    /**
-     * Constructor of the EditionComplexComponent.
-     *
-     * It calls a method to reset the selected edition complex on destroy.
-     */
-    constructor() {
-        this._resetEditionComplexOnDestroy();
-    }
-
-    /**
-     * Private method: _resetEditionComplexOnDestroy.
-     *
-     * It resets the selected edition complex in the EditionStateService
-     * when the component is destroyed (i.e. when leaving the complex routes).
-     *
-     * @returns {void} Registers the reset of the edition complex.
-     */
-    private _resetEditionComplexOnDestroy(): void {
-        this._destroyRef.onDestroy(() &#x3D;&gt; {
-            this._editionStateService.updateSelectedEditionComplex(null);
-        });
-    }
 }
 </code></pre>
     </div>

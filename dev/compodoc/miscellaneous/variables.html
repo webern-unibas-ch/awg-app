@@ -278,6 +278,21 @@
                             <a href="#editionComplexResolver" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.resolver.ts" ><b>editionComplexResolver</b>&nbsp;&nbsp;&nbsp;(src/.../edition-complex.resolver.ts)</a>
                         </li>
                         <li>
+                            <a href="#editionSectionGuard" title="src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.guard.ts" ><b>editionSectionGuard</b>&nbsp;&nbsp;&nbsp;(src/.../edition-section.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#editionSectionResolver" title="src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.resolver.ts" ><b>editionSectionResolver</b>&nbsp;&nbsp;&nbsp;(src/.../edition-section.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#editionSeriesGuard" title="src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.guard.ts" ><b>editionSeriesGuard</b>&nbsp;&nbsp;&nbsp;(src/.../edition-series.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#editionSeriesResolver" title="src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.resolver.ts" ><b>editionSeriesResolver</b>&nbsp;&nbsp;&nbsp;(src/.../edition-series.resolver.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#editionStateResetResolver" title="src/app/views/edition-view/edition-state-reset.resolver.ts" ><b>editionStateResetResolver</b>&nbsp;&nbsp;&nbsp;(src/.../edition-state-reset.resolver.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EMPTY_GRAPH_DATA" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/graph-results-construct.component.ts" ><b>EMPTY_GRAPH_DATA</b>&nbsp;&nbsp;&nbsp;(src/.../graph-results-construct.component.ts)</a>
                         </li>
                         <li>
@@ -1045,7 +1060,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-308-g113839f74&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-309-ge1f5875a2&#x27;</code>
                     </td>
                 </tr>
 
@@ -3498,6 +3513,9 @@ to store graph images data.</p>
             },
             {
                 path: &#x27;section/:sectionId&#x27;,
+                canActivate: [editionSectionGuard],
+                resolve: { section: editionSectionResolver },
+                runGuardsAndResolvers: &#x27;always&#x27;,
                 loadChildren: () &#x3D;&gt;
                     &quot;import(&#x27;../edition-sections/edition-section-detail/edition-section-detail.routes&#x27;).then(\n\
                         m &#x3D;&gt; m.EDITION_SECTION_DETAIL_ROUTES\n\
@@ -4332,6 +4350,7 @@ to define the available labels for the edition types.</p>
         children: [
             {
                 path: &#x27;preface&#x27;,
+                resolve: { editionState: editionStateResetResolver },
                 loadChildren: () &#x3D;&gt;
                     &quot;import(&#x27;./edition-outlets/edition-preface/edition-preface.routes&#x27;).then(\n\
                         m &#x3D;&gt; m.EDITION_PREFACE_ROUTES\n\
@@ -4339,6 +4358,7 @@ to define the available labels for the edition types.</p>
             },
             {
                 path: &#x27;rowtables&#x27;,
+                resolve: { editionState: editionStateResetResolver },
                 loadChildren: () &#x3D;&gt;
                     &quot;import(&#x27;./edition-outlets/edition-rowtables/edition-rowtables.routes&#x27;).then(\n\
                         m &#x3D;&gt; m.EDITION_ROWTABLES_ROUTES\n\
@@ -4352,11 +4372,15 @@ to define the available labels for the edition types.</p>
             {
                 // Overview of series.
                 path: &#x27;series&#x27;,
+                resolve: { editionState: editionStateResetResolver },
                 component: EditionOutlineComponent,
             },
             {
                 // Series by id (I, II, III).
                 path: &#x27;series/:seriesId&#x27;,
+                canMatch: [editionSeriesGuard],
+                resolve: { series: editionSeriesResolver },
+                runGuardsAndResolvers: &#x27;always&#x27;,
                 loadChildren: () &#x3D;&gt;
                     &quot;import(&#x27;./edition-outlets/edition-outline/edition-series-detail/edition-series-detail.routes&#x27;).then(\n\
                         m &#x3D;&gt; m.EDITION_SERIES_DETAIL_ROUTES\n\
@@ -4414,6 +4438,12 @@ to define the available labels for the edition types.</p>
                         ],
                     },
                 ],
+            },
+            {
+                // Redirect the edition root to the series overview.
+                path: &#x27;&#x27;,
+                redirectTo: &#x27;series&#x27;,
+                pathMatch: &#x27;full&#x27;,
             },
         ],
     },
@@ -4517,6 +4547,244 @@ and redirects unknown complex ids to the 404 page.</p>
 and sets it as selected edition complex in the EditionStateService.</p>
 <p>The state is updated during the navigation (before the routed components are activated),
 so that all complex-dependent data is reset before any view reacts to the new complex.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionSectionGuard"></a>
+                    <span class="name">
+                        <span ><b>editionSectionGuard</b></span>
+                        <a href="#editionSectionGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>route &#x3D;&gt; {
+    const editionOutlineService &#x3D; inject(EditionOutlineService);
+    const router &#x3D; inject(Router);
+
+    const seriesId &#x3D; route.parent?.paramMap.get(&#x27;seriesId&#x27;) ?? &#x27;&#x27;;
+    const sectionId &#x3D; route.paramMap.get(&#x27;sectionId&#x27;) ?? &#x27;&#x27;;
+
+    return editionOutlineService.getEditionSectionById(seriesId, sectionId) ? true : router.createUrlTree([&#x27;/404&#x27;]);
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard: editionSectionGuard.</p>
+<p>It lets the route <code>section/:sectionId</code> only activate for known sections of the given edition series
+and redirects unknown section ids to the 404 page.</p>
+<p>It is a CanActivate guard (and not a CanMatch guard), because the series id of the parent route
+is not available for matching inside the lazy loaded series routes.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionSectionResolver"></a>
+                    <span class="name">
+                        <span ><b>editionSectionResolver</b></span>
+                        <a href="#editionSectionResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>miscellaneous</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>route &#x3D;&gt; {
+    const editionOutlineService &#x3D; inject(EditionOutlineService);
+    const editionStateService &#x3D; inject(EditionStateService);
+
+    const seriesId &#x3D; route.parent?.paramMap.get(&#x27;seriesId&#x27;) ?? &#x27;&#x27;;
+    const sectionId &#x3D; route.paramMap.get(&#x27;sectionId&#x27;) ?? &#x27;&#x27;;
+    const section &#x3D;
+        seriesId &amp;&amp; sectionId ? (editionOutlineService.getEditionSectionById(seriesId, sectionId) ?? null) : null;
+
+    editionStateService.updateSelectedEditionSection(section);
+
+    return section;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resolver: editionSectionResolver.</p>
+<p>It resolves the edition section of the route <code>section/:sectionId</code>
+and sets it as selected edition section in the EditionStateService.</p>
+<p>It runs after the <a href="../miscellaneous/variables.html#editionSeriesResolver">editionSeriesResolver</a> of the parent route (which resets the section),
+so the route runs this resolver on every navigation (<code>runGuardsAndResolvers: &#39;always&#39;</code>).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionSeriesGuard"></a>
+                    <span class="name">
+                        <span ><b>editionSeriesGuard</b></span>
+                        <a href="#editionSeriesGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanMatchFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(_route, segments) &#x3D;&gt; {
+    const editionOutlineService &#x3D; inject(EditionOutlineService);
+    const router &#x3D; inject(Router);
+
+    const seriesId &#x3D; segments[1]?.path ?? &#x27;&#x27;;
+
+    return editionOutlineService.getEditionSeriesById(seriesId) ? true : router.createUrlTree([&#x27;/404&#x27;]);
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard: editionSeriesGuard.</p>
+<p>It lets the route <code>series/:seriesId</code> only match for known edition series
+and redirects unknown series ids to the 404 page.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-outline/edition-series-detail/edition-series.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionSeriesResolver"></a>
+                    <span class="name">
+                        <span ><b>editionSeriesResolver</b></span>
+                        <a href="#editionSeriesResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>miscellaneous</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>route &#x3D;&gt; {
+    const editionOutlineService &#x3D; inject(EditionOutlineService);
+    const editionStateService &#x3D; inject(EditionStateService);
+
+    const seriesId &#x3D; route.paramMap.get(&#x27;seriesId&#x27;) ?? &#x27;&#x27;;
+    const series &#x3D; seriesId ? (editionOutlineService.getEditionSeriesById(seriesId) ?? null) : null;
+
+    editionStateService.updateSelectedEditionSeries(series);
+
+    return series;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resolver: editionSeriesResolver.</p>
+<p>It resolves the edition series of the route <code>series/:seriesId</code>
+and sets it as selected edition series in the EditionStateService
+(which also resets the selected edition complex and section).</p>
+<p>The route runs this resolver on every navigation (<code>runGuardsAndResolvers: &#39;always&#39;</code>),
+so that a previously selected section is reset when navigating within the series.
+The section is set again afterwards by the <a href="../miscellaneous/variables.html#editionSectionResolver">editionSectionResolver</a> of a child route.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/views/edition-view/edition-state-reset.resolver.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionStateResetResolver"></a>
+                    <span class="name">
+                        <span ><b>editionStateResetResolver</b></span>
+                        <a href="#editionStateResetResolver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>miscellaneous</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {
+    // Resetting the complex also resets the manually selected series and section
+    inject(EditionStateService).updateSelectedEditionComplex(null);
+
+    return null;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Resolver: editionStateResetResolver.</p>
+<p>It resets the selected edition complex, series and section in the EditionStateService
+for edition routes that do not belong to a specific complex, series or section
+(e.g. preface, row tables, series overview).</p>
+<p>The state is reset during the navigation (before the routed components are activated),
+analogous to the resolvers that set the state for complexes, series and sections.</p>
 </div>
                 </td>
             </tr>

@@ -151,6 +151,8 @@
 <p>It contains the edition view section of the app
 with the edition breadcrumb and the edition jumbotron,
 as well as the router outlet for the edition view child routes.</p>
+<p>The selected edition state is set by the route resolvers during the navigation
+and reset by this component on destroy (i.e. when leaving the edition view).</p>
 
     </p>
 
@@ -233,6 +235,11 @@ as well as the router outlet for the edition view child routes.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
+                                <a href="#_destroyRef" >_destroyRef</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#_editionStateService" >_editionStateService</a>
                             </li>
                             <li>
@@ -271,6 +278,21 @@ as well as the router outlet for the edition view child routes.</p>
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_resetEditionStateOnDestroy" >_resetEditionStateOnDestroy</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
@@ -280,17 +302,136 @@ as well as the router outlet for the edition view child routes.</p>
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:146</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionViewComponent.</p>
+<p>It calls a method to reset the selected edition state on destroy.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
 
 
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_resetEditionStateOnDestroy"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_resetEditionStateOnDestroy</b></span>
+                        <a href="#_resetEditionStateOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_resetEditionStateOnDestroy()</code>
+                </td>
+            </tr>
 
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="168"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:168</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _resetEditionStateOnDestroy.</p>
+<p>It resets the selected edition complex, series and section in the EditionStateService
+when the component is destroyed (i.e. when leaving the edition view).</p>
+<p>Within the edition view, the state is set and reset by the route resolvers only,
+because they run before the components of the previous route are destroyed.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Registers the reset of the edition state.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_destroyRef"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>_destroyRef</b></span>
+                        <a href="#_destroyRef"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(DestroyRef)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private readonly injection variable: _destroyRef.</p>
+<p>It keeps the instance of the injected Angular DestroyRef.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -317,7 +458,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +502,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -400,7 +541,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -439,7 +580,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -510,7 +651,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -549,7 +690,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -588,7 +729,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -627,7 +768,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:85</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -666,7 +807,7 @@ as well as the router outlet for the edition view child routes.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -687,7 +828,7 @@ as well as the router outlet for the edition view child routes.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
-import { ChangeDetectionStrategy, Component, computed, inject } from &#x27;@angular/core&#x27;;
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from &#x27;@angular/core&#x27;;
 import { RouterOutlet } from &#x27;@angular/router&#x27;;
 
 import { ButtonScrollToTopComponent } from &#x27;@awg-shared/button-scroll-to-top/button-scroll-to-top.component&#x27;;
@@ -707,6 +848,9 @@ import { EditionViewService } from &#x27;./services/edition-view.service&#x27;;
  * It contains the edition view section of the app
  * with the edition breadcrumb and the edition jumbotron,
  * as well as the router outlet for the edition view child routes.
+ *
+ * The selected edition state is set by the route resolvers during the navigation
+ * and reset by this component on destroy (i.e. when leaving the edition view).
  */
 @Component({
     selector: &#x27;awg-edition-view&#x27;,
@@ -723,6 +867,13 @@ import { EditionViewService } from &#x27;./services/edition-view.service&#x27;;
     ],
 })
 export class EditionViewComponent {
+    /**
+     * Private readonly injection variable: _destroyRef.
+     *
+     * It keeps the instance of the injected Angular DestroyRef.
+     */
+    private readonly _destroyRef &#x3D; inject(DestroyRef);
+
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -822,6 +973,33 @@ export class EditionViewComponent {
 
         return this.EDITION_VIEW_TITLE;
     });
+
+    /**
+     * Constructor of the EditionViewComponent.
+     *
+     * It calls a method to reset the selected edition state on destroy.
+     */
+    constructor() {
+        this._resetEditionStateOnDestroy();
+    }
+
+    /**
+     * Private method: _resetEditionStateOnDestroy.
+     *
+     * It resets the selected edition complex, series and section in the EditionStateService
+     * when the component is destroyed (i.e. when leaving the edition view).
+     *
+     * Within the edition view, the state is set and reset by the route resolvers only,
+     * because they run before the components of the previous route are destroyed.
+     *
+     * @returns {void} Registers the reset of the edition state.
+     */
+    private _resetEditionStateOnDestroy(): void {
+        this._destroyRef.onDestroy(() &#x3D;&gt; {
+            // Resetting the complex also resets the manually selected series and section
+            this._editionStateService.updateSelectedEditionComplex(null);
+        });
+    }
 }
 </code></pre>
     </div>
