@@ -411,7 +411,8 @@ function calculateContentSegmentY(
     verticalPadding: number,
     isStart: boolean
 ): number {
-    let systemIndex = (isStart ? segment.startSystem : segment.endSystem) - 1;
+    const systemNumber = isStart ? segment.startSystem : segment.endSystem;
+    let systemIndex = systemNumber - 1;
     // Reverse order of the system index if the systems are reversed
     if (reversed) {
         systemIndex = lines.length - 1 - systemIndex;
@@ -421,7 +422,7 @@ function calculateContentSegmentY(
 
     if (!systemLine) {
         throw new Error(
-            `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemIndex}.`
+            `[FolioCalculation] Cannot calculate Y value: No system lines found for system ${systemNumber} (index ${systemIndex}).`
         );
     }
 

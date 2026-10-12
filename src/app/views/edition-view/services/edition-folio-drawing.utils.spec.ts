@@ -257,7 +257,7 @@ describe('EditionFolioDrawingUtils (DONE)', () => {
                     const folio = withContent({ segments: [{ position: 1, startSystem: 19, endSystem: 19 }] });
 
                     expect(() => calculate(folio)).toThrow(
-                        '[FolioCalculation] Cannot calculate Y value: No system lines found for system 18.'
+                        '[FolioCalculation] Cannot calculate Y value: No system lines found for system 19 (index 18).'
                     );
                 });
 
