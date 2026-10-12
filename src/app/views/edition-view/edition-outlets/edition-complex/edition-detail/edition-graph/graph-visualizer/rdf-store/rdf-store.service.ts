@@ -14,6 +14,11 @@ import {
     RdfStoreToken,
 } from './rdf-store.model';
 
+/**
+ * Constants: blankNode, literal, namedNode, quad.
+ *
+ * They keep the RDF/JS term factory methods destructured from the N3 `DataFactory`.
+ */
 const { blankNode, literal, namedNode, quad } = DataFactory;
 
 /**
