@@ -16,9 +16,24 @@ import { RDF_TYPE, RDFS_LABEL, TERM_UTILS } from '@awg-graph/graph-visualizer/ut
  * (with flags that determine its kind at the end).
  */
 interface ResultGraphNodeDraft {
+    /**
+     * The RDF term of the node.
+     */
     readonly term: RdfTerm;
+
+    /**
+     * The unique key of the node (IRI, blank node or literal key).
+     */
     readonly id: string;
+
+    /**
+     * The flag if the node is the object of an `rdf:type` statement.
+     */
     isClass: boolean;
+
+    /**
+     * The flag if the node is the subject of an `rdf:type` statement.
+     */
     isInstance: boolean;
 }
 
