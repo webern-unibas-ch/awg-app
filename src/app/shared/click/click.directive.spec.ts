@@ -231,53 +231,55 @@ describe('ClickDirective (DONE)', () => {
                 expect(getDirective('div.test-div').onEnter).toBeDefined();
             });
 
-            it('... should emit `awgClick` with the given event for a non-native target', () => {
-                const directive = getDirective('div.test-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                const event = keydownOn('div.test-div', 'Enter');
+            describe('... should emit `awgClick` with the given event', () => {
+                it.each([
+                    {
+                        desc: 'for a non-native target',
+                        hostSelector: 'div.test-div',
+                        createEvent: () => keydownOn('div.test-div', 'Enter'),
+                    },
+                    {
+                        desc: 'for a target within a native element outside the host',
+                        hostSelector: 'span.test-inner-host',
+                        createEvent: () => keydownOn('span.test-inner-host', 'Enter'),
+                    },
+                    {
+                        // Not dispatched, so the target is null
+                        desc: 'for an event without element target',
+                        hostSelector: 'div.test-div',
+                        createEvent: () => keydown('Enter'),
+                    },
+                ])('... $desc', ({ hostSelector, createEvent }) => {
+                    const directive = getDirective(hostSelector);
+                    const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                    const event = createEvent();
 
-                directive.onEnter(event);
+                    directive.onEnter(event);
 
-                expectSpyCall(emitSpy, 1, event);
+                    expectSpyCall(emitSpy, 1, event);
+                });
             });
 
-            it('... should not emit `awgClick` for a native target', () => {
-                const directive = getDirective('button.test-button');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+            describe('... should not emit `awgClick`', () => {
+                it.each([
+                    {
+                        desc: 'for a native target',
+                        hostSelector: 'button.test-button',
+                        targetSelector: 'button.test-button',
+                    },
+                    {
+                        desc: 'for a target within a native element inside the host',
+                        hostSelector: 'div.test-delegating-div',
+                        targetSelector: 'span.test-nested-button-child',
+                    },
+                ])('... $desc', ({ hostSelector, targetSelector }) => {
+                    const directive = getDirective(hostSelector);
+                    const emitSpy = vi.spyOn(directive.awgClick, 'emit');
 
-                directive.onEnter(keydownOn('button.test-button', 'Enter'));
+                    directive.onEnter(keydownOn(targetSelector, 'Enter'));
 
-                expectSpyCall(emitSpy, 0);
-            });
-
-            it('... should not emit `awgClick` for a target within a native element inside the host', () => {
-                const directive = getDirective('div.test-delegating-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-
-                directive.onEnter(keydownOn('span.test-nested-button-child', 'Enter'));
-
-                expectSpyCall(emitSpy, 0);
-            });
-
-            it('... should emit `awgClick` for a target within a native element outside the host', () => {
-                const directive = getDirective('span.test-inner-host');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                const event = keydownOn('span.test-inner-host', 'Enter');
-
-                directive.onEnter(event);
-
-                expectSpyCall(emitSpy, 1, event);
-            });
-
-            it('... should emit `awgClick` for an event without element target', () => {
-                const directive = getDirective('div.test-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                // Not dispatched, so the target is null
-                const event = keydown('Enter');
-
-                directive.onEnter(event);
-
-                expectSpyCall(emitSpy, 1, event);
+                    expectSpyCall(emitSpy, 0);
+                });
             });
         });
 
@@ -286,62 +288,60 @@ describe('ClickDirective (DONE)', () => {
                 expect(getDirective('div.test-div').onSpace).toBeDefined();
             });
 
-            it('... should emit `awgClick` with the given event for a non-native target if enabled', () => {
-                const directive = getDirective('div.test-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                const event = keydownOn('div.test-div', ' ');
+            describe('... should emit `awgClick` with the given event if enabled', () => {
+                it.each([
+                    {
+                        desc: 'for a non-native target',
+                        hostSelector: 'div.test-div',
+                        createEvent: () => keydownOn('div.test-div', ' '),
+                    },
+                    {
+                        desc: 'for a target within a native element outside the host',
+                        hostSelector: 'span.test-inner-host',
+                        createEvent: () => keydownOn('span.test-inner-host', ' '),
+                    },
+                    {
+                        // Not dispatched, so the target is null
+                        desc: 'for an event without element target',
+                        hostSelector: 'div.test-div',
+                        createEvent: () => keydown(' '),
+                    },
+                ])('... $desc', ({ hostSelector, createEvent }) => {
+                    const directive = getDirective(hostSelector);
+                    const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+                    const event = createEvent();
 
-                directive.onSpace(event);
+                    directive.onSpace(event);
 
-                expectSpyCall(emitSpy, 1, event);
+                    expectSpyCall(emitSpy, 1, event);
+                });
             });
 
-            it('... should not emit `awgClick` if disabled', () => {
-                const directive = getDirective('div.test-div-no-space');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
+            describe('... should not emit `awgClick`', () => {
+                it.each([
+                    {
+                        desc: 'if disabled',
+                        hostSelector: 'div.test-div-no-space',
+                        targetSelector: 'div.test-div-no-space',
+                    },
+                    {
+                        desc: 'for a native target',
+                        hostSelector: 'button.test-button',
+                        targetSelector: 'button.test-button',
+                    },
+                    {
+                        desc: 'for a target within a native element inside the host',
+                        hostSelector: 'div.test-delegating-div',
+                        targetSelector: 'span.test-nested-button-child',
+                    },
+                ])('... $desc', ({ hostSelector, targetSelector }) => {
+                    const directive = getDirective(hostSelector);
+                    const emitSpy = vi.spyOn(directive.awgClick, 'emit');
 
-                directive.onSpace(keydownOn('div.test-div-no-space', ' '));
+                    directive.onSpace(keydownOn(targetSelector, ' '));
 
-                expectSpyCall(emitSpy, 0);
-            });
-
-            it('... should not emit `awgClick` for a native target', () => {
-                const directive = getDirective('button.test-button');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-
-                directive.onSpace(keydownOn('button.test-button', ' '));
-
-                expectSpyCall(emitSpy, 0);
-            });
-
-            it('... should not emit `awgClick` for a target within a native element inside the host', () => {
-                const directive = getDirective('div.test-delegating-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-
-                directive.onSpace(keydownOn('span.test-nested-button-child', ' '));
-
-                expectSpyCall(emitSpy, 0);
-            });
-
-            it('... should emit `awgClick` for a target within a native element outside the host', () => {
-                const directive = getDirective('span.test-inner-host');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                const event = keydownOn('span.test-inner-host', ' ');
-
-                directive.onSpace(event);
-
-                expectSpyCall(emitSpy, 1, event);
-            });
-
-            it('... should emit `awgClick` for an event without element target if enabled', () => {
-                const directive = getDirective('div.test-div');
-                const emitSpy = vi.spyOn(directive.awgClick, 'emit');
-                // Not dispatched, so the target is null
-                const event = keydown(' ');
-
-                directive.onSpace(event);
-
-                expectSpyCall(emitSpy, 1, event);
+                    expectSpyCall(emitSpy, 0);
+                });
             });
         });
     });
