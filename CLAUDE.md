@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Angular 21 web app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages at https://edition.anton-webern.ch. Package manager is Yarn 4 (via corepack); Node >= 22.22.
+Angular 22 web app for the online edition of the Anton Webern Gesamtausgabe (AWG), deployed to GitHub Pages at https://edition.anton-webern.ch. Package manager is Yarn 4 (via corepack); Node ^22.22.3 or >= 24.15.0.
 
 ## Commands
 
