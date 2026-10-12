@@ -445,20 +445,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular/platform-browser-dynamic@npm:^22.2.2":
-  version: 22.2.2
-  resolution: "@angular/platform-browser-dynamic@npm:22.2.2"
-  dependencies:
-    tslib: "npm:^2.3.0"
-  peerDependencies:
-    "@angular/common": 22.2.2
-    "@angular/compiler": 22.2.2
-    "@angular/core": 22.2.2
-    "@angular/platform-browser": 22.2.2
-  checksum: 10c0/012831cc64e14890d90b47c1615520620fdf540f17e0add57bd3fd8ff9e7ba8ac3156bc559400f68eaad7c16a362c4997a4538e4265100a26c52c29b20779b1f
-  languageName: node
-  linkType: hard
-
 "@angular/platform-browser@npm:^22.2.2":
   version: 22.2.2
   resolution: "@angular/platform-browser@npm:22.2.2"
@@ -472,22 +458,6 @@ __metadata:
     "@angular/animations":
       optional: true
   checksum: 10c0/4658d4f3bdaf6a48ec84a3866abee02f1cf29861568b3a73ec658ef47bbd791fa2c4995a50d42994492949cd17ccc9a12019e83a3b2be2bb79b5e4cc885e8597
-  languageName: node
-  linkType: hard
-
-"@angular/platform-server@npm:^22.2.2":
-  version: 22.2.2
-  resolution: "@angular/platform-server@npm:22.2.2"
-  dependencies:
-    tslib: "npm:^2.3.0"
-    xhr2: "npm:^0.2.0"
-  peerDependencies:
-    "@angular/common": 22.2.2
-    "@angular/compiler": 22.2.2
-    "@angular/core": 22.2.2
-    "@angular/platform-browser": 22.2.2
-    rxjs: ^6.5.3 || ^7.4.0
-  checksum: 10c0/911e2a5b4e4d4ab6953aba2da0cf454f19bc5b0989c5a2a4f03c36da8d90b6a00d480e5cfdd805977e30d5755229f0e399a6954756097a72043d0ba76bc0d624
   languageName: node
   linkType: hard
 
@@ -5519,8 +5489,6 @@ __metadata:
     "@angular/forms": "npm:^22.2.2"
     "@angular/localize": "npm:^22.2.2"
     "@angular/platform-browser": "npm:^22.2.2"
-    "@angular/platform-browser-dynamic": "npm:^22.2.2"
-    "@angular/platform-server": "npm:^22.2.2"
     "@angular/router": "npm:^22.2.2"
     "@codemirror/legacy-modes": "npm:^6.5.4"
     "@commitlint/cli": "npm:^21.2.3"
@@ -14386,13 +14354,6 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: 10c0/7b28dc2863ea0e2cece68d142a3eee90361021b73f750431e6d8076bb7dede5fdfdb75b3d29534b62f411261147b76b1bc80fb5cc63ab0aabd467280e85b22e0
-  languageName: node
-  linkType: hard
-
-"xhr2@npm:^0.2.0":
-  version: 0.2.1
-  resolution: "xhr2@npm:0.2.1"
-  checksum: 10c0/eebe95bd0ae9087da9b4dda636abee1f30cf9b424fbe8ebd0c7dcfd9be5db3e4aa634cf1837fa3e82b486aace9396a2dbf6be2dc8084862c8239dccec4e16dca
   languageName: node
   linkType: hard
 
