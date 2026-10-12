@@ -154,12 +154,6 @@ with two-way binding of its content.</p>
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="../miscellaneous/variables.html#w" target="_self" >AfterViewInit</a></code>
-    </p>
 
 
 <section data-compodoc="block-metadata">
@@ -257,9 +251,6 @@ with two-way binding of its content.</p>
                                 <a href="#init" >init</a>
                             </li>
                             <li>
-                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
-                            </li>
-                            <li>
                                 <a href="#onContentChange" >onContentChange</a>
                             </li>
                         </ul>
@@ -323,7 +314,8 @@ with two-way binding of its content.</p>
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the CodeMirrorComponent.</p>
-<p>It syncs external content changes into the editor
+<p>It initializes the editor view after the first rendering,
+syncs external content changes into the editor
 and destroys the editor view on component destroy.</p>
 </div>
                     </td>
@@ -461,8 +453,8 @@ Changes from the editor are emitted via <code>contentChange</code>.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="126"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:126</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:120</a></div>
                         </td>
                     </tr>
 
@@ -521,48 +513,6 @@ Changes from the editor are emitted via <code>contentChange</code>.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngAfterViewInit"></a>
-                    <span class="name">
-                        <span ><b>ngAfterViewInit</b></span>
-                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngAfterViewInit()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="113"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:113</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Angular life cycle hook: ngAfterViewInit.</p>
-<p>It initializes the editor view after initializing the view.
-The editor is created in this hook (and not in an afterRender hook)
-so that its DOM listeners run inside the NgZone.</p>
-</div>
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="onContentChange"></a>
                     <span class="name">
                         <span ><b>onContentChange</b></span>
@@ -579,8 +529,8 @@ so that its DOM listeners run inside the NgZone.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="143"
-                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:143</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/shared/codemirror/codemirror.component.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -762,7 +712,7 @@ and sets it on the content model signal.</p>
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-    AfterViewInit,
+    afterNextRender,
     ChangeDetectionStrategy,
     Component,
     DestroyRef,
@@ -793,7 +743,7 @@ import { CmMode, createEditorState } from &#x27;./codemirror.utils&#x27;;
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CodeMirrorComponent implements AfterViewInit {
+export class CodeMirrorComponent {
     /**
      * Private readonly injection variable: _destroyRef.
      *
@@ -834,10 +784,15 @@ export class CodeMirrorComponent implements AfterViewInit {
     /**
      * Constructor of the CodeMirrorComponent.
      *
-     * It syncs external content changes into the editor
+     * It initializes the editor view after the first rendering,
+     * syncs external content changes into the editor
      * and destroys the editor view on component destroy.
      */
     constructor() {
+        afterNextRender(() &#x3D;&gt; {
+            this.init(createEditorState(this.mode(), this.content(), content &#x3D;&gt; this.onContentChange(content)));
+        });
+
         effect(() &#x3D;&gt; {
             const content &#x3D; this.content();
             if (this._editor &amp;&amp; content !&#x3D;&#x3D; this._editor.state.doc.toString()) {
@@ -852,17 +807,6 @@ export class CodeMirrorComponent implements AfterViewInit {
         });
 
         this._destroyRef.onDestroy(() &#x3D;&gt; this._editor?.destroy());
-    }
-
-    /**
-     * Angular life cycle hook: ngAfterViewInit.
-     *
-     * It initializes the editor view after initializing the view.
-     * The editor is created in this hook (and not in an afterRender hook)
-     * so that its DOM listeners run inside the NgZone.
-     */
-    ngAfterViewInit(): void {
-        this.init(createEditorState(this.mode(), this.content(), content &#x3D;&gt; this.onContentChange(content)));
     }
 
     /**

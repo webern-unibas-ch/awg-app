@@ -972,7 +972,7 @@ ensure that longer abbreviations are matched first.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
     providers: [
-        provideZoneChangeDetection(),
+        provideZonelessChangeDetection(),
         provideRouter(
             APP_ROUTES,
             withComponentInputBinding(),
@@ -998,7 +998,7 @@ ensure that longer abbreviations are matched first.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>The application config.</p>
 <p>It provides the app-wide providers for the bootstrapping
-of the <a href="../components/AppComponent.html">AppComponent</a>: change detection, router (with the <a href="../miscellaneous/variables.html#APP_ROUTES">APP_ROUTES</a>),
+of the <a href="../components/AppComponent.html">AppComponent</a>: zoneless change detection, router (with the <a href="../miscellaneous/variables.html#APP_ROUTES">APP_ROUTES</a>),
 http client (with loading interceptor), locale and the initialization of the edition data.</p>
 </div>
                 </td>
@@ -1060,7 +1060,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-309-ge1f5875a2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-310-gbf10d8eef&#x27;</code>
                     </td>
                 </tr>
 
@@ -9450,8 +9450,14 @@ of the physical description in the order of their display.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p>APPLICATION IMPORTS</p>
+                    <div class="io-description"><p>This file includes polyfills needed by Angular and is loaded before the app.
+You can add your own extra polyfills to this file.</p>
+<p>The app runs zoneless (see <code>provideZonelessChangeDetection</code> in <code>app.config.ts</code>),
+so zone.js is not loaded.</p>
+<p>The current setup is for so-called &quot;evergreen&quot; browsers; the last versions of browsers that
+automatically update themselves. This includes recent versions of Safari, Chrome (including
+Opera), Edge on the desktop, and iOS and Chrome on mobile.</p>
+<p>Learn more in <a href="https://angular.io/guide/browser-support">https://angular.io/guide/browser-support</a></p>
 </div>
                 </td>
             </tr>
