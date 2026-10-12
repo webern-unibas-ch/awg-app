@@ -1,6 +1,6 @@
 <!-- View Handle -->
-<div class="awg-view-handle-btn-group btn-group" role="group">
-    <div class="btn-group" role="group" aria-label="View handle button group">
+<div class="awg-view-handle-btn-group btn-group">
+    <div class="btn-group" role="radiogroup" aria-label="View handle button group">
         @for (viewHandle of viewHandles(); track viewHandle.type) {
             <input
                 #radioInput

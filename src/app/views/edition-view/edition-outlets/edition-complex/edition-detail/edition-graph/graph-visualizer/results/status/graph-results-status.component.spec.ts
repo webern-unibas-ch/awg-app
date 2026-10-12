@@ -24,8 +24,8 @@ describe('GraphResultsStatusComponent (DONE)', () => {
     let expectedSelectResult: SparqlSelectResult;
     let expectedQueryTime: number;
 
-    const getStatusEl = (): HTMLParagraphElement =>
-        getAndExpectDebugElementByCss(compDe, 'p.awg-graph-results-status', 1, 1)[0].nativeElement;
+    const getStatusEl = (): HTMLOutputElement =>
+        getAndExpectDebugElementByCss(compDe, 'output.awg-graph-results-status', 1, 1)[0].nativeElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -78,8 +78,8 @@ describe('GraphResultsStatusComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one paragraph with role `status`', () => {
-                expectToBe(getStatusEl().getAttribute('role'), 'status');
+            it('... should contain one output element', () => {
+                getStatusEl();
             });
         });
     });
@@ -125,11 +125,11 @@ describe('GraphResultsStatusComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should display `statusText` in the paragraph', () => {
+            it('... should display `statusText` in the output element', () => {
                 expectToBe(getStatusEl().textContent, '3 Treffer in 34 ms');
             });
 
-            it('... should display a changed `statusText` in the paragraph', async () => {
+            it('... should display a changed `statusText` in the output element', async () => {
                 fixture.componentRef.setInput('queryResult', expectedConstructResult);
                 await detectChangesOnPush(fixture);
 

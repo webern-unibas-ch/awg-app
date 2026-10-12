@@ -94,7 +94,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                expectToBe(divEl.getAttribute('role'), 'group');
+                expectToBe(divEl.getAttribute('role'), 'radiogroup');
                 expectToBe(divEl.getAttribute('aria-label'), 'View handle button group');
             });
 
