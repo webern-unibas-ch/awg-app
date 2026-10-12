@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 
-import { afterEach, beforeEach, describe, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, it, vi } from 'vitest';
 
 import { EditionStateHelper } from '@testing/edition-state-helper';
 import { expectToBe, expectToEqual } from '@testing/expect-helper';
@@ -18,6 +18,21 @@ describe('EDITION_VIEW_ROUTES (DONE)', () => {
     let harness: RouterTestingHarness;
     let router: Router;
     let editionStateService: EditionStateService;
+
+    beforeAll(async () => {
+        // Preload the lazy loaded route modules once, so that the navigations in the tests hit the module cache
+        // (Loading the module graphs, e.g. of sheets or graph, is slow and could exceed the test timeout)
+        await Promise.all([
+            import('./edition-outlets/edition-preface/edition-preface.routes'),
+            import('./edition-outlets/edition-rowtables/edition-rowtables.routes'),
+            import('./edition-outlets/edition-outline/edition-series-detail/edition-series-detail.routes'),
+            import('./edition-outlets/edition-outline/edition-sections/edition-section-detail/edition-section-detail.routes'),
+            import('./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.routes'),
+            import('./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.routes'),
+            import('./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.routes'),
+            import('./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.routes'),
+        ]);
+    }, 30000);
 
     beforeEach(async () => {
         TestBed.configureTestingModule({

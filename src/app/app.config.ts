@@ -1,7 +1,13 @@
 import { registerLocaleData } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import localeDeDE from '@angular/common/locales/de';
-import { ApplicationConfig, inject, LOCALE_ID, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
+import {
+    ApplicationConfig,
+    inject,
+    LOCALE_ID,
+    provideAppInitializer,
+    provideZonelessChangeDetection,
+} from '@angular/core';
 import {
     PreloadAllModules,
     provideRouter,
@@ -25,12 +31,12 @@ registerLocaleData(localeDeDE);
  * The application config.
  *
  * It provides the app-wide providers for the bootstrapping
- * of the {@link AppComponent}: change detection, router (with the {@link APP_ROUTES}),
+ * of the {@link AppComponent}: zoneless change detection, router (with the {@link APP_ROUTES}),
  * http client (with loading interceptor), locale and the initialization of the edition data.
  */
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideZoneChangeDetection(),
+        provideZonelessChangeDetection(),
         provideRouter(
             APP_ROUTES,
             withComponentInputBinding(),

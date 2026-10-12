@@ -173,8 +173,8 @@ export class ForceGraphSvgComponent {
      * It measures the svg after the first rendering and observes its resizes
      * (e.g. on window resize or fullscreen toggle), renders the graph
      * whenever the simulation data changes and stops the simulation on destroy.
-     * The rendering runs outside of the Angular zone, so the ticks of the
-     * simulation and the dragging do not trigger change detection.
+     * The ticks of the simulation and the dragging only update the DOM via d3
+     * and do not trigger change detection (zoneless).
      */
     constructor() {
         afterNextRender(() => {
