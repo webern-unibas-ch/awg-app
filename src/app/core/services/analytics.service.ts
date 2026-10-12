@@ -1,6 +1,6 @@
 import { DOCUMENT, inject, Injectable } from '@angular/core';
 
-import { AppConfig } from '@awg-app/app.config';
+import { AppConstants } from '@awg-app/app.constants';
 
 import { environment } from 'environments/environment';
 
@@ -49,14 +49,14 @@ export class AnalyticsService {
      * It stores the analytics id.
      *
      */
-    private readonly _analyticsId: string = AppConfig.ANALYTICS_ID;
+    private readonly _analyticsId: string = AppConstants.ANALYTICS_ID;
 
     /**
      * Private readonly variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private readonly _analyticsEndpoint: string = AppConfig.ANALYTICS_ENDPOINT;
+    private readonly _analyticsEndpoint: string = AppConstants.ANALYTICS_ENDPOINT;
 
     /**
      * Private readonly variable: _sendPageView.

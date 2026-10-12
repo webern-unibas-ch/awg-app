@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { LogoComponent } from '@awg-shared/logos/logo.component';
 import { LOGOS_DATA } from '@awg-shared/logos/logos.data';
@@ -22,6 +22,7 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
     selector: 'awg-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [LogoComponent, FooterDeclarationComponent, FooterCopyrightComponent, FooterPoweredbyComponent],
 })
 export class FooterComponent {

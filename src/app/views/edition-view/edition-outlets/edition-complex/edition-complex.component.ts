@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-routes.constants';
-import { EditionComplex } from '@awg-views/edition-view/models/edition-complex.model';
-import { EditionComplexesService } from '@awg-views/edition-view/services/edition-complexes.service';
 import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
@@ -11,6 +9,9 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
  *
  * It contains the edition complex section of the app
  * with another router outlet for the edition detail routes.
+ *
+ * The selected edition complex is set by the {@link editionComplexResolver}
+ * during the navigation and reset by this component on destroy.
  */
 @Component({
     selector: 'awg-edition-complex',
@@ -21,11 +22,11 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
 })
 export class EditionComplexComponent {
     /**
-     * Private readonly injection variable: _editionComplexesService.
+     * Private readonly injection variable: _destroyRef.
      *
-     * It keeps the instance of the injected EditionComplexesService.
+     * It keeps the instance of the injected Angular DestroyRef.
      */
-    private readonly _editionComplexesService = inject(EditionComplexesService);
+    private readonly _destroyRef = inject(DestroyRef);
 
     /**
      * Private readonly injection variable: _editionStateService.
@@ -33,13 +34,6 @@ export class EditionComplexComponent {
      * It keeps the instance of the injected EditionStateService.
      */
     private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Readonly input signal: complexId.
-     *
-     * It holds the route param id of the edition complex (automatically bound by the router).
-     */
-    readonly complexId = input<string | null>(null);
 
     /**
      * Readonly signal: selectedEditionComplex.
@@ -56,44 +50,25 @@ export class EditionComplexComponent {
     readonly editionRouteConstants = EDITION_ROUTE_CONSTANTS;
 
     /**
-     * Private readonly computed signal: _complexFromRoute.
-     *
-     * It holds the edition complex for the given route param id, otherwise null.
-     */
-    private readonly _complexFromRoute = computed<EditionComplex | null>(() => {
-        const currentComplexId = this.complexId();
-
-        return currentComplexId
-            ? (this._editionComplexesService.getEditionComplexById(currentComplexId) ?? null)
-            : null;
-    });
-
-    /**
      * Constructor of the EditionComplexComponent.
      *
-     * It calls a method to update the edition complex from the route.
-     *
+     * It calls a method to reset the selected edition complex on destroy.
      */
     constructor() {
-        this._updateEditionComplexFromRoute();
+        this._resetEditionComplexOnDestroy();
     }
 
     /**
-     * Private method: _updateEditionComplexFromRoute.
+     * Private method: _resetEditionComplexOnDestroy.
      *
-     * It syncs the edition complex of the current route to the EditionStateService
-     * (which derives the corresponding series and section from it)
-     * and resets it on cleanup.
+     * It resets the selected edition complex in the EditionStateService
+     * when the component is destroyed (i.e. when leaving the complex routes).
      *
-     * @returns {void} Updates the current edition complex from the route.
+     * @returns {void} Registers the reset of the edition complex.
      */
-    private _updateEditionComplexFromRoute(): void {
-        effect(onCleanup => {
-            this._editionStateService.updateSelectedEditionComplex(this._complexFromRoute());
-
-            onCleanup(() => {
-                this._editionStateService.updateSelectedEditionComplex(null);
-            });
+    private _resetEditionComplexOnDestroy(): void {
+        this._destroyRef.onDestroy(() => {
+            this._editionStateService.updateSelectedEditionComplex(null);
         });
     }
 }

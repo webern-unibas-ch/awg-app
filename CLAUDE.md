@@ -30,23 +30,23 @@ Branching follows Gitflow: feature branches start from `develop` and PRs target 
 
 ## Architecture
 
-- **Bootstrap**: still NgModule-based (`src/main.ts` → `AppModule`, `app-routing.module.ts`). Views are standalone and lazy-loaded via route files (`views/*-view/*-view.routes.ts`, `loadChildren`).
+- **Bootstrap**: standalone, without NgModules (`src/main.ts` → `bootstrapApplication(AppComponent, appConfig)`). App-wide providers live in `app.config.ts`, the top-level routes in `app.routes.ts`, and app-wide constants (URLs, IDs, version) in `app.constants.ts` (`AppConstants`). Views are lazy-loaded via route files (`views/*-view/*-view.routes.ts`, `loadChildren`).
 - **Path aliases** (tsconfig): `@awg-app/*`, `@awg-core/*`, `@awg-shared/*`, `@awg-side-info/*`, `@awg-views/*`, `@testing/*`, plus the outlet aliases `@awg-graph/*` for `edition-graph/` and `@awg-report/*` for `edition-report/` (further outlet aliases only when needed). Relative imports only with `./` or a single `../`, deeper paths use an alias.
 - **Layout**: `core/` (navbar, footer, view-container, analytics), `shared/` (reusable standalone components, directives, models, utils; imported directly, no SharedModule), `views/` (one folder per top-level route).
 - **Edition view** (`views/edition-view/`) is the bulk of the app. Routes go `edition/series/:seriesId/...` → `complex/:complexId/{intro,sheets,report,graph}`, plus `preface` and `rowtables`. The components that make up these pages live in `edition-outlets/`, and the matching models are in `edition-view/models/`.
 - **Data**: no backend. All edition content is static JSON under `src/assets/data/edition/` (global files such as `edition-complexes.json` and `edition-outline.json`, plus per-complex folders under `series/`). `EditionDataService` fetches it with `HttpClient` and exposes it as signals (`toSignal`). It uses `EDITION_ASSETS_DATA` (`edition-view/data/`) to map asset keys to file names, and `EditionStateService` to decide which complex is current. Complex-specific data signals recompute when the selected complex changes.
 - **Rendering**: HTML strings from the data are rendered through `CompileHtmlDirective`. Score sheets are SVGs with D3-driven overlays and zoom (`EditionSvgDrawingService`, `EditionSvgOverlayService`). The graph view uses an RDF store (`rdfstore`, `n3`) with a CodeMirror SPARQL editor.
 
-## Ongoing migration (modern Angular)
+## Component conventions (modern Angular)
 
-Components are being migrated one at a time (one commit per component, e.g. `refactor(edition): migrate sourceDescriptionCorrections`). Each migrated component:
+The whole app is standalone (no NgModules). New and changed code follows these rules:
 
-- is standalone (`standalone: false` removed) and lists its own `imports`; parent NgModules move it from `declarations` to `imports`
-- uses `input()` / `input.required()` / `model()` / `output()` / `signal()` / `computed()` instead of `@Input`/`@Output` and plain fields; doc comments say "Readonly input signal: x. It holds ..."
-- uses `@if` / `@for` control flow in templates
-- gets its barrel `index.ts` deleted; importers use the full file path instead (e.g. `./foo/foo.component`, `@awg-views/edition-view/models/textcritics.model`)
-- has repeated UI logic extracted into shared components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`)
-- keeps `ChangeDetectionStrategy.OnPush`
+- standalone components, directives and pipes that list their own `imports`
+- `input()` / `input.required()` / `model()` / `output()` / `signal()` / `computed()` instead of `@Input`/`@Output` and plain fields; doc comments say "Readonly input signal: x. It holds ..."
+- `@if` / `@for` control flow in templates
+- no barrel `index.ts` files; importers use the full file path (e.g. `./foo/foo.component`, `@awg-views/edition-view/models/textcritics.model`)
+- repeated UI logic extracted into shared components where useful (e.g. `ButtonExpandAllComponent`, `ConditionalLinkComponent`)
+- `ChangeDetectionStrategy.OnPush`
 
 ## Testing conventions
 
