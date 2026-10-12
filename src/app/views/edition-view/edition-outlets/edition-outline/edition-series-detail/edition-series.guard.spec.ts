@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Route, Router, UrlSegment, UrlTree } from '@angular/router';
+import { PartialMatchRouteSnapshot, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 type Spy = ReturnType<typeof vi.spyOn>;
@@ -28,7 +28,9 @@ describe('editionSeriesGuard (DONE)', () => {
     const runGuard = (paths: string[]): boolean | UrlTree => {
         const segments = paths.map(path => new UrlSegment(path, {}));
 
-        return TestBed.runInInjectionContext(() => editionSeriesGuard(expectedRoute, segments)) as boolean | UrlTree;
+        return TestBed.runInInjectionContext(() =>
+            editionSeriesGuard(expectedRoute, segments, {} as PartialMatchRouteSnapshot)
+        ) as boolean | UrlTree;
     };
 
     beforeEach(() => {
