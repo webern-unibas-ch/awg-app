@@ -100,6 +100,6 @@ export class EditionNavigationService {
         const routeCommands =
             targetRoute === EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route ? [] : [complexRoute, targetRoute];
 
-        this._router.navigate(routeCommands, navigationExtras);
+        void this._router.navigate(routeCommands, navigationExtras);
     }
 }
