@@ -44,6 +44,8 @@ describe('EditionViewComponent (DONE)', () => {
     let editionStateService: EditionStateService;
 
     let getBreadcrumbItemsSpy: Spy;
+    let resetEditionStateOnDestroySpy: Spy;
+    let stateServiceUpdateSelectedEditionComplexSpy: Spy;
 
     let mockViewContextSignal: WritableSignal<EditionViewContext>;
     let mockBreadcrumbItemsSignal: WritableSignal<LabeledRoute[]>;
@@ -92,6 +94,10 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Spies
         getBreadcrumbItemsSpy = vi.spyOn(breadcrumbService, 'getBreadcrumbItems');
+        stateServiceUpdateSelectedEditionComplexSpy = vi.spyOn(editionStateService, 'updateSelectedEditionComplex');
+
+        // Prototype spies (to catch calls in constructor)
+        resetEditionStateOnDestroySpy = vi.spyOn(EditionViewComponent.prototype, '_resetEditionStateOnDestroy' as any);
 
         // Test data
         expectedIntroViewContext = { name: 'intro', isIntro: true, isPreface: false, isRowtables: false };
@@ -151,6 +157,10 @@ describe('EditionViewComponent (DONE)', () => {
             expectToBe(isSignal(component.jumbotronTitle), true);
 
             expectToBe(component.jumbotronTitle(), expectedTitle);
+        });
+
+        it('... should have triggered method `_resetEditionStateOnDestroy`', () => {
+            expectSpyCall(resetEditionStateOnDestroySpy, 1);
         });
 
         describe('VIEW', () => {
@@ -273,6 +283,32 @@ describe('EditionViewComponent (DONE)', () => {
                 mockViewContextSignal.set(context());
 
                 expectToBe(component.jumbotronTitle(), title());
+            });
+        });
+
+        describe('#_resetEditionStateOnDestroy()', () => {
+            beforeEach(() => {
+                // Simulate the edition complex set by the editionComplexResolver
+                editionStateService.updateSelectedEditionComplex(expectedComplex);
+                stateServiceUpdateSelectedEditionComplexSpy.mockClear();
+            });
+
+            it('... should have a method `_resetEditionStateOnDestroy`', () => {
+                expect(component['_resetEditionStateOnDestroy']).toBeDefined();
+            });
+
+            it('... should not reset the selected edition state while the component is alive', () => {
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 0);
+                expectToEqual(editionStateService.selectedEditionComplex(), expectedComplex);
+            });
+
+            it('... should have signals `selectedEditionComplex`, `selectedEditionSeries` and `selectedEditionSection` to hold null after destroy', () => {
+                fixture.destroy();
+
+                expectSpyCall(stateServiceUpdateSelectedEditionComplexSpy, 1, null);
+                expectToBe(editionStateService.selectedEditionComplex(), null);
+                expectToBe(editionStateService.selectedEditionSeries(), null);
+                expectToBe(editionStateService.selectedEditionSection(), null);
             });
         });
 

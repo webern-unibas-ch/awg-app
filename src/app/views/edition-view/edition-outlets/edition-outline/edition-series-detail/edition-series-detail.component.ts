@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
-import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
  * The EditionSeriesDetail component.
  *
  * It contains the detail of a series
- * of the edition view of the app.
+ * of the edition view of the app
+ * with another router outlet for the series detail routes.
+ *
+ * The selected edition series is set by the {@link editionSeriesResolver}
+ * during the navigation.
  */
 @Component({
     selector: 'awg-edition-series-detail',
@@ -18,60 +19,5 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     imports: [RouterOutlet],
 })
 export class EditionSeriesDetailComponent {
-    /**
-     * Private readonly injection variable: _editionOutlineService.
-     *
-     * It keeps the instance of the injected EditionOutlineService.
-     */
-    private readonly _editionOutlineService = inject(EditionOutlineService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Readonly input signal: seriesId.
-     *
-     * It holds the route param id of the edition series (automatically bound by the router).
-     */
-    readonly seriesId = input<string | null>(null);
-
-    /**
-     * Constructor of the EditionSeriesDetailComponent.
-     *
-     * It calls a method to update the edition series from the route.
-     *
-     */
-    constructor() {
-        this._updateSeriesFromRoute();
-    }
-
-    /**
-     * Private method: _updateSeriesFromRoute.
-     *
-     * It fetches the route params to get the id of the current series
-     * and updates the EditionStateService.
-     *
-     * @returns {void} Updates the edition series.
-     */
-    private _updateSeriesFromRoute(): void {
-        effect(onCleanup => {
-            const currentSeriesId = this.seriesId();
-
-            if (!currentSeriesId) {
-                this._editionStateService.updateSelectedEditionSeries(null);
-                return;
-            }
-
-            const selectedSeries = this._editionOutlineService.getEditionSeriesById(currentSeriesId) ?? null;
-            this._editionStateService.updateSelectedEditionSeries(selectedSeries);
-
-            onCleanup(() => {
-                this._editionStateService.updateSelectedEditionSeries(null);
-            });
-        });
-    }
+    // Intentionally left empty
 }

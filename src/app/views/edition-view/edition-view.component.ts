@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { ButtonScrollToTopComponent } from '@awg-shared/button-scroll-to-top/button-scroll-to-top.component';
@@ -19,6 +19,9 @@ import { EditionViewService } from './services/edition-view.service';
  * It contains the edition view section of the app
  * with the edition breadcrumb and the edition jumbotron,
  * as well as the router outlet for the edition view child routes.
+ *
+ * The selected edition state is set by the route resolvers during the navigation
+ * and reset by this component on destroy (i.e. when leaving the edition view).
  */
 @Component({
     selector: 'awg-edition-view',
@@ -35,6 +38,13 @@ import { EditionViewService } from './services/edition-view.service';
     ],
 })
 export class EditionViewComponent {
+    /**
+     * Private readonly injection variable: _destroyRef.
+     *
+     * It keeps the instance of the injected Angular DestroyRef.
+     */
+    private readonly _destroyRef = inject(DestroyRef);
+
     /**
      * Private readonly injection variable: _editionStateService.
      *
@@ -134,4 +144,31 @@ export class EditionViewComponent {
 
         return this.EDITION_VIEW_TITLE;
     });
+
+    /**
+     * Constructor of the EditionViewComponent.
+     *
+     * It calls a method to reset the selected edition state on destroy.
+     */
+    constructor() {
+        this._resetEditionStateOnDestroy();
+    }
+
+    /**
+     * Private method: _resetEditionStateOnDestroy.
+     *
+     * It resets the selected edition complex, series and section in the EditionStateService
+     * when the component is destroyed (i.e. when leaving the edition view).
+     *
+     * Within the edition view, the state is set and reset by the route resolvers only,
+     * because they run before the components of the previous route are destroyed.
+     *
+     * @returns {void} Registers the reset of the edition state.
+     */
+    private _resetEditionStateOnDestroy(): void {
+        this._destroyRef.onDestroy(() => {
+            // Resetting the complex also resets the manually selected series and section
+            this._editionStateService.updateSelectedEditionComplex(null);
+        });
+    }
 }

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 import { EditionSeriesCardComponent } from './edition-series-card/edition-series-card.component';
 
@@ -10,6 +9,9 @@ import { EditionSeriesCardComponent } from './edition-series-card/edition-series
  *
  * It contains the outline of series
  * of the edition view of the app.
+ *
+ * The selected edition state is reset by the {@link editionStateResetResolver}
+ * during the navigation.
  */
 @Component({
     selector: 'awg-edition-outline',
@@ -20,25 +22,9 @@ import { EditionSeriesCardComponent } from './edition-series-card/edition-series
 })
 export class EditionOutlineComponent {
     /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
      * Public signal: editionOutline.
      *
      * It holds the outline of the edition as an array of routes.
      */
     readonly editionOutline = inject(EditionOutlineService).editionOutline;
-
-    /**
-     * Constructor of the EditionSeriesComponent.
-     *
-     * It clears the selected edition series in the EditionStateService.
-     */
-    constructor() {
-        this._editionStateService.updateSelectedEditionSeries(null);
-    }
 }

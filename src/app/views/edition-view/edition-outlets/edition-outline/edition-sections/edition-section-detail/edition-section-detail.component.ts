@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, effect, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
-import { EditionOutlineService } from '@awg-views/edition-view/services/edition-outline.service';
-import { EditionStateService } from '@awg-views/edition-view/services/edition-state.service';
 
 /**
  * The EditionSectionDetail component.
  *
  * It contains the detail of a section
- * of the edition view of the app.
+ * of the edition view of the app
+ * with another router outlet for the section detail routes.
+ *
+ * The selected edition section is set by the {@link editionSectionResolver}
+ * during the navigation.
  */
 @Component({
     selector: 'awg-edition-section-detail',
@@ -18,63 +19,5 @@ import { EditionStateService } from '@awg-views/edition-view/services/edition-st
     imports: [RouterOutlet],
 })
 export class EditionSectionDetailComponent {
-    /**
-     * Private readonly injection variable: _editionOutlineService.
-     *
-     * It keeps the instance of the injected EditionOutlineService.
-     */
-    private readonly _editionOutlineService = inject(EditionOutlineService);
-
-    /**
-     * Private readonly injection variable: _editionStateService.
-     *
-     * It keeps the instance of the injected EditionStateService.
-     */
-    private readonly _editionStateService = inject(EditionStateService);
-
-    /**
-     * Readonly input signal: sectionId.
-     *
-     * It holds the route param id of the edition section (automatically bound by the router).
-     */
-    readonly sectionId = input<string | null>(null);
-
-    /**
-     * Constructor of the EditionSectionDetailComponent.
-     *
-     * It calls a method to update the edition section from the route.
-     *
-     */
-    constructor() {
-        this._updateSectionFromRoute();
-    }
-
-    /**
-     * Private method: _updateSectionFromRoute.
-     *
-     * It reactively tracks the route params and the selected series
-     * to update the corresponding edition section in the EditionStateService.
-     *
-     * @returns {void} Updates the edition section from the route.
-     */
-    private _updateSectionFromRoute(): void {
-        effect(onCleanup => {
-            const series = this._editionStateService.selectedEditionSeries();
-            const currentSectionId = this.sectionId();
-
-            if (!series?.series?.route || !currentSectionId) {
-                this._editionStateService.updateSelectedEditionSection(null);
-                return;
-            }
-
-            const selectedSection =
-                this._editionOutlineService.getEditionSectionById(series.series.route, currentSectionId) ?? null;
-
-            this._editionStateService.updateSelectedEditionSection(selectedSection);
-
-            onCleanup(() => {
-                this._editionStateService.updateSelectedEditionSection(null);
-            });
-        });
-    }
+    // Intentionally left empty
 }
