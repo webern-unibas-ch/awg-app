@@ -458,8 +458,7 @@ describe('TableComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(tdDes[2], 'a', 0, 0);
                     const highlightDes = getAndExpectDebugElementByDirective(tdDes[2], NgbHighlight, 1, 1);
 
-                    // Angular's safe navigation (`cell?.label`) resolves to null in templates
-                    expect(highlightDes[0].injector.get(NgbHighlight).result).toBeNull();
+                    expect(highlightDes[0].injector.get(NgbHighlight).result).toBeUndefined();
                     expectToBe(tdDes[2].nativeElement.textContent.trim(), '');
                 });
 
