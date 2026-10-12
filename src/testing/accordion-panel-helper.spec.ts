@@ -63,7 +63,7 @@ describe('accordion-panel-helper', () => {
             headerEl.classList.add('collapsed'); // Kollabierter Header (mismatch für open)
             const headerDe = { nativeElement: headerEl } as unknown as DebugElement;
 
-            expect(() => expectOpenAccordionItem(headerDe, 'open mismatch')).toThrowError(
+            expect(() => expectOpenAccordionItem(headerDe, 'open mismatch')).toThrow(
                 /Header should be not collapsed \(open mismatch\)/
             );
         });
