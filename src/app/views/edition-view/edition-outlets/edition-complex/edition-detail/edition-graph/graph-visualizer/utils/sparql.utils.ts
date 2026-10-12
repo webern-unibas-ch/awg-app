@@ -44,7 +44,7 @@ const UPDATE_KEYWORDS: ReadonlySet<string> = new Set([
  * @returns {RegExp} The keyword regex (with the keyword as first group).
  */
 function _keywordRegex(keywords: readonly string[], flags = ''): RegExp {
-    return new RegExp(`(?<![\\w:?$.-])(${keywords.join('|')})(?![\\w:-])`, `i${flags}`);
+    return new RegExp(String.raw`(?<![\w:?$.-])(${keywords.join('|')})(?![\w:-])`, `i${flags}`);
 }
 
 /**

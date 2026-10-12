@@ -16,7 +16,7 @@ const ABBREVIATIONS: Record<string, string> = abbreviationsData.abbreviations;
  */
 const ABBREVIATIONS_PATTERN = Object.keys(ABBREVIATIONS)
     .sort((left, right) => right.length - left.length)
-    .map(abbreviation => abbreviation.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'))
+    .map(abbreviation => abbreviation.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, String.raw`\$&`))
     .join('|');
 
 /**
