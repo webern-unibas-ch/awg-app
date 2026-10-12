@@ -182,10 +182,13 @@ export class EditionSheetFacetScrollDirective {
             .map((rect, index) => (rect.top + rect.height > listTop && rect.top < listBottom ? index : -1))
             .filter(index => index >= 0);
 
-        if (!visibleIndexes.length) {
+        const first = visibleIndexes.at(0);
+        const last = visibleIndexes.at(-1);
+
+        if (first === undefined || last === undefined) {
             return null;
         }
 
-        return { first: visibleIndexes[0] + 1, last: visibleIndexes[visibleIndexes.length - 1] + 1 };
+        return { first: first + 1, last: last + 1 };
     }
 }

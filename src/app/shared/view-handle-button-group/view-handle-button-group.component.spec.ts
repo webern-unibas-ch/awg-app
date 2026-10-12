@@ -31,7 +31,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
     let viewChangeRequestSpy: Spy;
 
-    const btnGroupSelector = 'div.awg-view-handle-btn-group > div.btn-group';
+    const btnGroupSelector = 'div.awg-view-handle-btn-group';
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -87,14 +87,10 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.awg-view-handle-btn-group', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-view-handle-btn-group', 1, 1);
-            });
-
-            it('... should contain another div.btn-group in div.awg-view-handle-btn-group', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, btnGroupSelector, 1, 1);
                 const divEl: HTMLDivElement = divDes[0].nativeElement;
 
-                expectToBe(divEl.getAttribute('role'), 'group');
+                expectToBe(divEl.getAttribute('role'), 'radiogroup');
                 expectToBe(divEl.getAttribute('aria-label'), 'View handle button group');
             });
 

@@ -9,15 +9,15 @@ import { createExpandAllState, ExpandAllState } from './button-expand-all.utils'
 describe('ButtonExpandAllUtils (DONE)', () => {
     describe('METHODS', () => {
         describe('#createExpandAllState()', () => {
-            it('... should have a method `createExpandAllState`', () => {
-                expect(createExpandAllState).toBeDefined();
-            });
-
             let keys: WritableSignal<string[]>;
             let state: ExpandAllState<string>;
 
             beforeEach(() => {
                 keys = signal(['a', 'b', 'c']);
+            });
+
+            it('... should have a method `createExpandAllState`', () => {
+                expect(createExpandAllState).toBeDefined();
             });
 
             describe('... with defaultOpen = false (default)', () => {

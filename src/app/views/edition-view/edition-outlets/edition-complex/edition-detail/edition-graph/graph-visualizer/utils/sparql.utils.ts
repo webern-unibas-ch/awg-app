@@ -1,13 +1,26 @@
 import { GraphQueryType } from '@awg-views/edition-view/models/graph.model';
 
 /**
+ * Regex constant: NON_CODE_PART_REGEXES.
+ *
+ * It keeps the regexes for the parts of a SPARQL query that are not code:
+ * IRIs (`<…>`), string literals in double and single quotes (with escapes) and comments (`#…`).
+ */
+const NON_CODE_PART_REGEXES: readonly RegExp[] = [
+    /<[^<>"{}|^`\\\s]*>/,
+    /"(?:[^"\\\n]|\\.)*"/,
+    /'(?:[^'\\\n]|\\.)*'/,
+    /#[^\n]*/,
+];
+
+/**
  * Regex constant: NON_CODE_REGEX.
  *
- * It keeps a regex for the parts of a SPARQL query that are not code:
- * IRIs, string literals and comments (matched left to right,
+ * It keeps a regex for all parts of a SPARQL query that are not code
+ * (alternatives of {@link NON_CODE_PART_REGEXES}, matched left to right,
  * so a `#` within an IRI or a string does not start a comment).
  */
-const NON_CODE_REGEX = /<[^<>"{}|^`\\\s]*>|"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|#[^\n]*/g;
+const NON_CODE_REGEX = new RegExp(NON_CODE_PART_REGEXES.map(regex => regex.source).join('|'), 'g');
 
 /**
  * Regex constant: PROPERTY_PATH_REGEX.
@@ -44,7 +57,7 @@ const UPDATE_KEYWORDS: ReadonlySet<string> = new Set([
  * @returns {RegExp} The keyword regex (with the keyword as first group).
  */
 function _keywordRegex(keywords: readonly string[], flags = ''): RegExp {
-    return new RegExp(`(?<![\\w:?$.-])(${keywords.join('|')})(?![\\w:-])`, `i${flags}`);
+    return new RegExp(String.raw`(?<![\w:?$.-])(${keywords.join('|')})(?![\w:-])`, `i${flags}`);
 }
 
 /**
@@ -215,7 +228,9 @@ export function toConstructQuery(query: string): string | null {
     const projectionEnd = clauseIndex !== -1 && clauseIndex < patternStart ? clauseIndex : patternStart;
     const whereIndex = _findKeyword(code, ['where'], projectionEnd);
     const hasWhere = whereIndex !== -1 && whereIndex < patternStart;
-    const whitespace = /\s*$/.exec(query.slice(start, projectionEnd))?.[0] || ' ';
+    // Keep the trailing whitespace of the projection
+    const projection = query.slice(start, projectionEnd);
+    const whitespace = projection.slice(projection.trimEnd().length) || ' ';
 
     return (
         `${query.slice(0, start)}CONSTRUCT${whitespace}` +
