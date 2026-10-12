@@ -69,7 +69,7 @@ describe('editionSectionGuard (DONE)', () => {
         expectToBe(result, true);
     });
 
-    describe('... should redirect to the 404 page', () => {
+    describe('... should redirect to the 404 page for', () => {
         it.each([
             {
                 desc: 'an unknown section id',
@@ -101,7 +101,7 @@ describe('editionSectionGuard (DONE)', () => {
                 params: { sectionId: '5' },
                 expectedLookupIds: ['', '5'],
             },
-        ])('... for $desc', ({ parentParams, params, expectedLookupIds }) => {
+        ])('... $desc', ({ parentParams, params, expectedLookupIds }) => {
             const result = runGuard(parentParams as Record<string, string> | null, params as Record<string, string>);
 
             expectSpyCall(outlineServiceGetEditionSectionByIdSpy, 1, expectedLookupIds);

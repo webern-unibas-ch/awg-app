@@ -113,12 +113,12 @@ describe('editionSeriesResolver (DONE)', () => {
         });
     });
 
-    describe('... should resolve null and set the selected edition series to null', () => {
+    describe('... should resolve null and set the selected edition series to null for', () => {
         it.each([
             { desc: 'an unknown series id', params: { seriesId: 'fail' }, expectedLookupCalls: 1 },
             { desc: 'an empty series id', params: { seriesId: '' }, expectedLookupCalls: 0 },
             { desc: 'a missing series id', params: {} as Record<string, string>, expectedLookupCalls: 0 },
-        ])('... for $desc', ({ params, expectedLookupCalls }) => {
+        ])('... $desc', ({ params, expectedLookupCalls }) => {
             editionStateService.updateSelectedEditionSeries(expectedSeries);
             stateServiceUpdateSelectedEditionSeriesSpy.mockClear();
 

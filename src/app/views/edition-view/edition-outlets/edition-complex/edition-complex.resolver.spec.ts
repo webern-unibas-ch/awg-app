@@ -92,12 +92,12 @@ describe('editionComplexResolver (DONE)', () => {
         });
     });
 
-    describe('... should resolve null and set the selected edition complex to null', () => {
+    describe('... should resolve null and set the selected edition complex to null for', () => {
         it.each([
             { desc: 'an unknown complex id', params: { complexId: 'fail' }, expectedLookupCalls: 1 },
             { desc: 'an empty complex id', params: { complexId: '' }, expectedLookupCalls: 0 },
             { desc: 'a missing complex id', params: {} as Record<string, string>, expectedLookupCalls: 0 },
-        ])('... for $desc', ({ params, expectedLookupCalls }) => {
+        ])('... $desc', ({ params, expectedLookupCalls }) => {
             editionStateService.updateSelectedEditionComplex(expectedComplex);
             stateServiceUpdateSelectedEditionComplexSpy.mockClear();
 

@@ -98,7 +98,7 @@ describe('editionSectionResolver (DONE)', () => {
         });
     });
 
-    describe('... should resolve null and set the selected edition section to null', () => {
+    describe('... should resolve null and set the selected edition section to null for', () => {
         it.each([
             {
                 desc: 'an unknown section id',
@@ -115,7 +115,7 @@ describe('editionSectionResolver (DONE)', () => {
             { desc: 'a missing section id', parentParams: { seriesId: '1' }, params: {}, expectedLookupCalls: 0 },
             { desc: 'a missing series id', parentParams: {}, params: { sectionId: '5' }, expectedLookupCalls: 0 },
             { desc: 'a missing parent route', parentParams: null, params: { sectionId: '5' }, expectedLookupCalls: 0 },
-        ])('... for $desc', ({ parentParams, params, expectedLookupCalls }) => {
+        ])('... $desc', ({ parentParams, params, expectedLookupCalls }) => {
             editionStateService.updateSelectedEditionSection(expectedSection);
             stateServiceUpdateSelectedEditionSectionSpy.mockClear();
 

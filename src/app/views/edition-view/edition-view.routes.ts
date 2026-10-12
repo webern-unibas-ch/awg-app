@@ -1,14 +1,15 @@
 import { Routes } from '@angular/router';
 
-import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
 import { editionComplexGuard } from './edition-outlets/edition-complex/edition-complex.guard';
 import { editionComplexResolver } from './edition-outlets/edition-complex/edition-complex.resolver';
-import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
 import { editionSeriesGuard } from './edition-outlets/edition-outline/edition-series-detail/edition-series.guard';
 import { editionSeriesResolver } from './edition-outlets/edition-outline/edition-series-detail/edition-series.resolver';
-import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { editionStateResetResolver } from './edition-state-reset.resolver';
+
+import { EditionComplexComponent } from './edition-outlets/edition-complex/edition-complex.component';
+import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
+import { EditionOutlineComponent } from './edition-outlets/edition-outline/edition-outline.component';
+import { EditionSideInfoComponent } from './edition-side-info/edition-side-info.component';
 import { EditionViewComponent } from './edition-view.component';
 
 /**
@@ -114,6 +115,12 @@ export const EDITION_VIEW_ROUTES: Routes = [
                         ],
                     },
                 ],
+            },
+            {
+                // Redirect the edition root to the series overview.
+                path: '',
+                redirectTo: 'series',
+                pathMatch: 'full',
             },
         ],
     },

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { editionSectionGuard } from '../edition-sections/edition-section-detail/edition-section.guard';
 import { editionSectionResolver } from '../edition-sections/edition-section-detail/edition-section.resolver';
+
 import { EditionSectionsComponent } from '../edition-sections/edition-sections.component';
 import { EditionSeriesDetailComponent } from './edition-series-detail.component';
 

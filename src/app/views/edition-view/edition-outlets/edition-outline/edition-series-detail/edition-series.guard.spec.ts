@@ -65,12 +65,12 @@ describe('editionSeriesGuard (DONE)', () => {
         expectToBe(result, true);
     });
 
-    describe('... should redirect to the 404 page', () => {
+    describe('... should redirect to the 404 page for', () => {
         it.each([
             { desc: 'an unknown series id', paths: ['series', 'fail'], expectedLookupId: 'fail' },
             { desc: 'an empty series id', paths: ['series', ''], expectedLookupId: '' },
             { desc: 'a missing series id segment', paths: ['series'], expectedLookupId: '' },
-        ])('... for $desc', ({ paths, expectedLookupId }) => {
+        ])('... $desc', ({ paths, expectedLookupId }) => {
             const result = runGuard(paths);
 
             expectSpyCall(outlineServiceGetEditionSeriesByIdSpy, 1, expectedLookupId);

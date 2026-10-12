@@ -17,7 +17,7 @@ describe('ErrorUtils (DONE)', () => {
                 expect(getErrorMessage).toBeDefined();
             });
 
-            describe('... should hold the message for various error types', () => {
+            describe('... should hold the message for various error types with', () => {
                 it.each([
                     {
                         desc: 'a structured error object (Error)',
@@ -80,7 +80,7 @@ describe('ErrorUtils (DONE)', () => {
                         error: undefined,
                         expectedMessage: 'Unknown error format',
                     },
-                ])('... with $desc', ({ error, expectedMessage }) => {
+                ])('... $desc', ({ error, expectedMessage }) => {
                     expectToBe(getErrorMessage(error), expectedMessage);
                 });
             });
