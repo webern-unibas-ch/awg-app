@@ -66,6 +66,7 @@ describe('ForceGraphDrawingService (DONE)', () => {
     afterEach(() => {
         simulation?.stop();
         simulation = undefined;
+        vi.unstubAllGlobals();
     });
 
     it('... should inject', () => {
@@ -182,7 +183,10 @@ describe('ForceGraphDrawingService (DONE)', () => {
                 );
             });
 
-            it('... should make the circles draggable', () => {
+            it('... should make the circles draggable by mouse and touch', () => {
+                // D3-drag binds the touch listener only on touch-capable devices
+                vi.stubGlobal('navigator', { maxTouchPoints: 1 });
+
                 render();
 
                 const nodesSelection = rootGroupSelection.selectAll('g.nodes > circle');

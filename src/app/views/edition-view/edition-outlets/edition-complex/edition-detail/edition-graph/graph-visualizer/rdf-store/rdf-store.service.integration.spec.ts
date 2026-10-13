@@ -15,6 +15,7 @@ const { literal, namedNode } = DataFactory;
 
 const EX = 'http://example.org/';
 const XSD_INTEGER = 'http://www.w3.org/2001/XMLSchema#integer';
+const LARGE_TRIPLE_COUNT = 5_000;
 
 const PREFIXES = [
     `PREFIX ex: <${EX}>`,
@@ -147,6 +148,19 @@ describe(
                 await expect(service.select(TURTLE, 'SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }')).rejects.toThrow(
                     '[RdfStoreService] Unknown filter expression type'
                 );
+            });
+
+            it('... should select all triples of a dataset with many triples', async () => {
+                const statements = Array.from(
+                    { length: LARGE_TRIPLE_COUNT },
+                    (_, i) => `ex:s${i} ex:p${i % 10} "v${i}" .`
+                );
+                const turtle = [`@prefix ex: <${EX}> .`, ...statements].join('\n');
+                const query = `${PREFIXES}\nSELECT ?s ?o WHERE { ?s ex:p3 ?o }`;
+
+                const { bindings } = await service.select(turtle, query);
+
+                expectToBe(bindings.length, LARGE_TRIPLE_COUNT / 10);
             });
         });
     }
