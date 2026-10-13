@@ -435,6 +435,9 @@
                             <a href="#RESULT_GRAPH_UTILS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/result-graph.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>RESULT_GRAPH_UTILS</b>&nbsp;&nbsp;&nbsp;(src/.../result-graph.utils.ts)</span></a>
                         </li>
                         <li>
+                            <a href="#scheduleTask" title="src/polyfills.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>scheduleTask</b>&nbsp;&nbsp;&nbsp;(src/.../polyfills.ts)</span></a>
+                        </li>
+                        <li>
                             <a href="#SELECT_TABLE_UTILS" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.utils.ts" class="reference-link "><span class="reference-badge reference-badge--variable" aria-hidden="true">V</span><span class="reference-link-label"><b>SELECT_TABLE_UTILS</b>&nbsp;&nbsp;&nbsp;(src/.../select-table.utils.ts)</span></a>
                         </li>
                         <li>
@@ -879,7 +882,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2.0.0-318-g6140704b6&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2.0.0-319-g2c0b52387&#x27;</code>
                     </td>
                 </tr>
 
@@ -911,7 +914,7 @@ http client (with loading interceptor), locale and the initialization of the edi
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;2026-10-12&#x27;</code>
+                        <i>Default value : </i><code>&#x27;2026-10-13&#x27;</code>
                     </td>
                 </tr>
 
@@ -6380,6 +6383,81 @@ so a <code>#</code> within an IRI or a string does not start a comment).</p>
         </tbody>
     </table>
 </section>
+    <h3>src/polyfills.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scheduleTask"></a>
+                    <span class="name">
+                        <span ><b>scheduleTask</b></span>
+                        <a href="#scheduleTask"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(() &#x3D;&gt; {
+    if (typeof MessageChannel &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
+        return (fn: (...args: unknown[]) &#x3D;&gt; void, ...args: unknown[]) &#x3D;&gt; setTimeout(() &#x3D;&gt; fn(...args), 0);
+    }
+
+    const channel &#x3D; new MessageChannel();
+    const queue: (() &#x3D;&gt; void)[] &#x3D; [];
+    channel.port1.onmessage &#x3D; () &#x3D;&gt; queue.shift()?.();
+
+    return (fn: (...args: unknown[]) &#x3D;&gt; void, ...args: unknown[]) &#x3D;&gt; {
+        queue.push(() &#x3D;&gt; fn(...args));
+        channel.port2.postMessage(null);
+    };
+})()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="w"></a>
+                    <span class="name">
+                        <span ><b>w</b></span>
+                        <a href="#w"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>window as any</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><hr>
+<p>APPLICATION IMPORTS</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
     <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/select/table/select-table.utils.ts</h3>
     <section data-compodoc="block-properties">
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -6785,42 +6863,6 @@ of the physical description in the order of their display.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Utils constants: UTILS.</p>
 <p>It keeps a namespace reference to the utils methods.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/polyfills.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="w"></a>
-                    <span class="name">
-                        <span ><b>w</b></span>
-                        <a href="#w"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >unknown</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>window as any</code>
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><hr>
-<p>APPLICATION IMPORTS</p>
 </div>
                 </td>
             </tr>
