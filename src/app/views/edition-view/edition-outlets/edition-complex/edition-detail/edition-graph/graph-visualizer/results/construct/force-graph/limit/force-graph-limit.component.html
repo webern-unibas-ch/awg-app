@@ -5,7 +5,7 @@
     ngbDropdown
     [popperOptions]="dropdownPopperOptions"
     role="group"
-    aria-label="Button group with nested dropdown for node limit">
+    aria-label="Limit der angezeigten Triples">
     <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
         @if (isLimited()) {
             <span>{{ limit() }} von </span>
@@ -17,7 +17,7 @@
         class="btn btn-sm btn-info dropdown-toggle-split"
         ngbDropdownToggle
         [disabled]="count === 0"
-        aria-label="Toggle dropdown"></button>
+        aria-label="Limit auswählen"></button>
     <div class="dropdown-menu" ngbDropdownMenu>
         @for (limitValue of limitValues(); track limitValue) {
             <button type="button" ngbDropdownItem (click)="limit.set(limitValue)">

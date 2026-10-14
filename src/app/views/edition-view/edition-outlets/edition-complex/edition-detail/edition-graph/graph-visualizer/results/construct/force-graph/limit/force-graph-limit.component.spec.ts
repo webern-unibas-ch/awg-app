@@ -73,6 +73,24 @@ describe('ForceGraphLimitComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(btnGroupDes[0], 'button.dropdown-toggle-split', 1, 1);
                 getAndExpectDebugElementByCss(btnGroupDes[0], 'div.dropdown-menu', 1, 1);
             });
+
+            it('... should label the button group and the toggle button for screen readers', () => {
+                const btnGroupEl: HTMLDivElement = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.btn-group.awg-force-graph-limit',
+                    1,
+                    1
+                )[0].nativeElement;
+                const toggleBtnEl: HTMLButtonElement = getAndExpectDebugElementByCss(
+                    compDe,
+                    'button.dropdown-toggle-split',
+                    1,
+                    1
+                )[0].nativeElement;
+
+                expectToBe(btnGroupEl.getAttribute('aria-label'), 'Limit der angezeigten Triples');
+                expectToBe(toggleBtnEl.getAttribute('aria-label'), 'Limit auswählen');
+            });
         });
     });
 
