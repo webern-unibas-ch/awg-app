@@ -110,7 +110,7 @@
         "d3-force": "^3.0.0",
         "d3-selection": "^3.0.0",
         "d3-zoom": "^3.0.0",
-        "n3": "^2.13.8",
+        "n3": "^2.13.12",
         "ngx-json-viewer": "^3.2.1",
         "rdfstore": "musicEnfanthen/rdfstore-js#v0.9.18-alpha.23",
         "rxjs": "~7.8.2",
