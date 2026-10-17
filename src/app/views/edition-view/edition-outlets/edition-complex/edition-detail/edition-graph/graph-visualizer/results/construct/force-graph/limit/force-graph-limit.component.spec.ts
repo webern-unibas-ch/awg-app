@@ -113,6 +113,18 @@ describe('ForceGraphLimitComponent (DONE)', () => {
             expectToEqual(component.limitValues(), [5, 10, 25, 50]);
         });
 
+        it('... should have computed signal `limitValues` to hold the limit values as multiples of 10, 25 and 50 up to the triple count', () => {
+            fixture.componentRef.setInput('tripleCount', 12000);
+
+            expectToEqual(component.limitValues(), [5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000]);
+        });
+
+        it('... should have computed signal `limitValues` to hold no limit values for a triple count of up to 5', () => {
+            fixture.componentRef.setInput('tripleCount', 5);
+
+            expectToEqual(component.limitValues(), []);
+        });
+
         it('... should have computed signal `isLimited` to hold true for a limit below the triple count', () => {
             expectToBe(component.isLimited(), true);
         });

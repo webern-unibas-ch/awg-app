@@ -1,5 +1,5 @@
 /*
- * This component is adapted from Mads Holten's Sparql Visualizer
+ * This component is adapted from Mads Holten's SPARQL Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
 import {

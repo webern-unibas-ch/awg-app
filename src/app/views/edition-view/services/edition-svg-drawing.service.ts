@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { D3Selection } from '../models/d3-selection.model';
-import { ViewBox } from '../models/view-box.model';
 import { DATA_TKK_ID } from '../models/edition-svg-overlay.model';
+import { ViewBox } from '../models/view-box.model';
 
 import * as D3_FETCH from 'd3-fetch';
 import * as D3_SELECTION from 'd3-selection';
@@ -43,7 +43,7 @@ export class EditionSvgDrawingService {
         // Get the SVG XML DOM tree and its content (svg-root)
         const fetchedSvgXML: SVGSVGElement | undefined = fetchedSvgFile.getElementsByTagName('svg')[0];
         if (!fetchedSvgXML) {
-            console.error('[EditionSvgDrawingService]: The fetched file does not contain a valid <svg> element.');
+            console.error('[EditionSvgDrawingService] The fetched file does not contain a valid <svg> element.');
             return undefined;
         }
 

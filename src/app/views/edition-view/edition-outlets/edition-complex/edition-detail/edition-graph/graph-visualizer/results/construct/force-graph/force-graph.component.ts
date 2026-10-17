@@ -1,6 +1,6 @@
 /*
- * This component is adapted from Mads Holten's Sparql Visualizer
- * cf. https://github.com/MadsHolten/sparql-visualizer
+ * The force graph is based on the one of Mads Holten's SPARQL Visualizer
+ * (cf. https://github.com/MadsHolten/sparql-visualizer), reimplemented with a canvas and a web worker.
  */
 
 import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
@@ -11,23 +11,22 @@ import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
 import { RESULT_GRAPH_UTILS } from '../result-graph.utils';
+
+import { ForceGraphCanvasComponent } from './canvas/force-graph-canvas.component';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
-import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
 
 /**
- * The ForceGraphComponent component.
+ * The ForceGraph component.
  *
- * It visualizes an RDF graph using a D3 force simulation
- * (rendered by the {@link ForceGraphSvgComponent})
- * with an icon bar for zoom ({@link ZoomSliderComponent})
- * and limit ({@link ForceGraphLimitComponent}).
+ * It visualizes an RDF graph as a force graph ({@link ForceGraphCanvasComponent})
+ * with an icon bar for zoom ({@link ZoomSliderComponent}) and limit ({@link ForceGraphLimitComponent}).
  */
 @Component({
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
     styleUrls: ['./force-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ForceGraphLimitComponent, ForceGraphSvgComponent, ZoomSliderComponent],
+    imports: [ForceGraphCanvasComponent, ForceGraphLimitComponent, ZoomSliderComponent],
 })
 export class ForceGraphComponent {
     /**
@@ -54,7 +53,7 @@ export class ForceGraphComponent {
     /**
      * Readonly variable: zoomConfig.
      *
-     * It keeps the default values for the zoom slider input.
+     * It keeps the zoom configuration of the zoom slider and the canvas zoom.
      */
     readonly zoomConfig = new ZoomConfig(1, 0.1, 3, 0.01);
 

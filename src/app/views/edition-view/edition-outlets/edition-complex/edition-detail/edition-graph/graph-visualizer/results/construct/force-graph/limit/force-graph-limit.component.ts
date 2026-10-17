@@ -5,11 +5,56 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap/dropdown';
 import { POPPER_UTILS } from '@awg-shared/utils/popper-utils';
 
 /**
- * Constant: FORCE_GRAPH_LIMIT_VALUES.
+ * Constant: FORCE_GRAPH_LIMIT_MIN.
  *
- * It keeps the possible limit values (number of triples) of the force graph.
+ * It keeps the smallest limit value (number of triples) of the force graph.
  */
-const FORCE_GRAPH_LIMIT_VALUES: readonly number[] = [5, 10, 25, 50, 100, 250, 500, 1000];
+const FORCE_GRAPH_LIMIT_MIN = 5;
+
+/**
+ * Constant: FORCE_GRAPH_LIMIT_STEPS.
+ *
+ * It keeps the steps that are multiplied by powers of ten (10, 100, ...)
+ * to get the limit values after the smallest one (10, 25, 50, 100, 250, 500, 1000, ...).
+ */
+const FORCE_GRAPH_LIMIT_STEPS: readonly number[] = [1, 2.5, 5];
+
+/**
+ * Private function: _toLimitValue.
+ *
+ * It gets the limit value (number of triples) at the given index of the sequence
+ * 5, 10, 25, 50, 100, 250, 500, 1000, 2500, ...
+ *
+ * @param {number} index The given index.
+ * @returns {number} The limit value.
+ */
+function _toLimitValue(index: number): number {
+    if (index === 0) {
+        return FORCE_GRAPH_LIMIT_MIN;
+    }
+    const stepIndex = index - 1;
+    const magnitude = 10 ** (1 + Math.floor(stepIndex / FORCE_GRAPH_LIMIT_STEPS.length));
+    return FORCE_GRAPH_LIMIT_STEPS[stepIndex % FORCE_GRAPH_LIMIT_STEPS.length] * magnitude;
+}
+
+/**
+ * Private function: _toLimitValues.
+ *
+ * It derives the possible limit values (number of triples) of the force graph
+ * that are below the given triple count.
+ *
+ * @param {number} tripleCount The given total number of triples.
+ * @returns {number[]} The limit values below the triple count.
+ */
+function _toLimitValues(tripleCount: number): number[] {
+    const limitValues: number[] = [];
+
+    for (let index = 0; _toLimitValue(index) < tripleCount; index++) {
+        limitValues.push(_toLimitValue(index));
+    }
+
+    return limitValues;
+}
 
 /**
  * The ForceGraphLimit component.
@@ -44,9 +89,7 @@ export class ForceGraphLimitComponent {
      *
      * It holds the limit values below the total number of triples.
      */
-    readonly limitValues = computed<number[]>(() =>
-        FORCE_GRAPH_LIMIT_VALUES.filter(limitValue => limitValue < this.tripleCount())
-    );
+    readonly limitValues = computed<number[]>(() => _toLimitValues(this.tripleCount()));
 
     /**
      * Readonly computed signal: isLimited.

@@ -1,8 +1,11 @@
 import { DebugElement, isSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { afterEach, beforeAll, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
+import { NEVER } from 'rxjs';
+
+import { createFakeCanvasContext } from '@testing/canvas-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -12,18 +15,18 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { patchSvgSizeForD3Zoom, stubResizeObserver } from '@testing/svg-drawing-helper';
+import { stubResizeObserver } from '@testing/svg-drawing-helper';
 
 import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
 
-import { ForceGraphDrawingService } from './force-graph-drawing.service';
-import { ForceGraphComponent } from './force-graph.component';
-import { ForceSimulation } from './force-graph.model';
+import { ForceGraphCanvasComponent } from './canvas/force-graph-canvas.component';
 import { ForceGraphLimitComponent } from './limit/force-graph-limit.component';
-import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
+import { ForceGraphSimulationService } from './simulation/force-graph-simulation.service';
+
+import { ForceGraphComponent } from './force-graph.component';
 
 describe('ForceGraphComponent (DONE)', () => {
     let component: ForceGraphComponent;
@@ -60,29 +63,22 @@ describe('ForceGraphComponent (DONE)', () => {
         getAndExpectDebugElementByDirective(compDe, ForceGraphLimitComponent, 1, 1)[0].injector.get(
             ForceGraphLimitComponent
         );
-    const getGraphSvgCmp = (): ForceGraphSvgComponent =>
-        getAndExpectDebugElementByDirective(compDe, ForceGraphSvgComponent, 1, 1)[0].injector.get(
-            ForceGraphSvgComponent
+    const getGraphCanvasCmp = (): ForceGraphCanvasComponent =>
+        getAndExpectDebugElementByDirective(compDe, ForceGraphCanvasComponent, 1, 1)[0].injector.get(
+            ForceGraphCanvasComponent
         );
 
-    beforeAll(() => {
-        // Provide width/height.baseVal for d3-zoom (missing in jsdom)
-        patchSvgSizeForD3Zoom();
-    });
-
     beforeEach(async () => {
-        // Stub the ResizeObserver of the ForceGraphSvgComponent (missing in jsdom)
+        // Stub the ResizeObserver and the 2D context of the ForceGraphCanvasComponent (missing in jsdom)
         stubResizeObserver();
+        vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(createFakeCanvasContext());
 
-        // The ForceGraphSvgComponent renders into its own template (no hollow child possible), so mock the drawing
-        const mockForceGraphDrawingService = {
-            renderGraph: vi.fn(() => ({ stop: vi.fn() }) as unknown as ForceSimulation),
-            getGraphNode: vi.fn(() => undefined),
-        };
+        // The ForceGraphCanvasComponent needs its own template (no hollow child possible), so mock the simulation
+        const mockForceGraphSimulationService = { simulate: vi.fn(() => NEVER) };
 
         await TestBed.configureTestingModule({
             imports: [ForceGraphComponent],
-            providers: [{ provide: ForceGraphDrawingService, useValue: mockForceGraphDrawingService }],
+            providers: [{ provide: ForceGraphSimulationService, useValue: mockForceGraphSimulationService }],
         })
             .overrideComponent(ForceGraphLimitComponent, { set: { template: '', imports: [] } })
             .compileComponents();
@@ -103,6 +99,7 @@ describe('ForceGraphComponent (DONE)', () => {
     });
 
     afterEach(() => {
+        vi.restoreAllMocks();
         vi.unstubAllGlobals();
     });
 
@@ -121,7 +118,7 @@ describe('ForceGraphComponent (DONE)', () => {
             expectToBe(component.height(), 0);
         });
 
-        it('... should have `zoomConfig`', () => {
+        it('... should have `zoomConfig` to hold the expected zoom config', () => {
             expectToEqual(component.zoomConfig, expectedZoomConfig);
         });
 
@@ -134,11 +131,11 @@ describe('ForceGraphComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one container with an icon bar and one ForceGraphSvgComponent', () => {
+            it('... should contain one container with an icon bar and one ForceGraphCanvasComponent', () => {
                 const containerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-container', 1, 1);
 
                 getAndExpectDebugElementByCss(containerDes[0], 'div.awg-force-graph-icon-bar', 1, 1);
-                getAndExpectDebugElementByDirective(containerDes[0], ForceGraphSvgComponent, 1, 1);
+                getAndExpectDebugElementByDirective(containerDes[0], ForceGraphCanvasComponent, 1, 1);
             });
 
             it('... should contain one ZoomSliderComponent and one ForceGraphLimitComponent (hollow) in the icon bar', () => {
@@ -183,12 +180,13 @@ describe('ForceGraphComponent (DONE)', () => {
             });
 
             describe('... ZoomSliderComponent', () => {
-                it('... should pass down `zoomConfig` and `zoomValue`', () => {
+                it('... should pass down `zoomConfig`, `zoomValue` and `hasFitButton`', () => {
                     const zoomSliderDes = getAndExpectDebugElementByDirective(compDe, ZoomSliderComponent, 1, 1);
                     const zoomSliderCmp = zoomSliderDes[0].injector.get(ZoomSliderComponent);
 
                     expectToEqual(zoomSliderCmp.zoomConfig(), expectedZoomConfig);
                     expectToBe(zoomSliderCmp.zoomValue(), expectedZoomConfig.initial);
+                    expectToBe(zoomSliderCmp.hasFitButton(), true);
                 });
 
                 it('... should sync `zoomValue` on value change of the ZoomSliderComponent', () => {
@@ -201,13 +199,32 @@ describe('ForceGraphComponent (DONE)', () => {
                     expectToBe(component.zoomValue(), 2.5);
                 });
 
-                it('... should reset the zoom of the ForceGraphSvgComponent on reset request', async () => {
-                    const resetZoomSpy = vi.spyOn(getGraphSvgCmp(), 'resetZoom').mockImplementation(() => undefined);
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'awg-zoom-slider button', 1, 1);
+                it('... should reset the zoom of the ForceGraphCanvasComponent on reset request', async () => {
+                    const resetZoomSpy = vi.spyOn(getGraphCanvasCmp(), 'resetZoom').mockImplementation(() => undefined);
+                    const buttonDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'awg-zoom-slider button[aria-label="Zoom zurücksetzen"]',
+                        1,
+                        1
+                    );
 
                     await clickAndAwaitChanges(buttonDes[0], fixture);
 
                     expectSpyCall(resetZoomSpy, 1);
+                });
+
+                it('... should zoom the ForceGraphCanvasComponent to fit the graph on fit request', async () => {
+                    const zoomToFitSpy = vi.spyOn(getGraphCanvasCmp(), 'zoomToFit').mockImplementation(() => undefined);
+                    const buttonDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'awg-zoom-slider button[aria-label="Einpassen"]',
+                        1,
+                        1
+                    );
+
+                    await clickAndAwaitChanges(buttonDes[0], fixture);
+
+                    expectSpyCall(zoomToFitSpy, 1);
                 });
             });
 
@@ -226,31 +243,31 @@ describe('ForceGraphComponent (DONE)', () => {
                 });
             });
 
-            describe('... ForceGraphSvgComponent (with mocked drawing)', () => {
+            describe('... ForceGraphCanvasComponent (with mocked simulation)', () => {
                 it('... should pass down `limitedResultGraph`, `zoomConfig` and `zoomValue`', () => {
-                    const graphSvgCmp = getGraphSvgCmp();
+                    const graphCanvasCmp = getGraphCanvasCmp();
 
-                    expectToBe(graphSvgCmp.resultGraph(), expectedResultGraph);
-                    expectToEqual(graphSvgCmp.zoomConfig(), expectedZoomConfig);
-                    expectToBe(graphSvgCmp.zoomValue(), expectedZoomConfig.initial);
+                    expectToBe(graphCanvasCmp.resultGraph(), expectedResultGraph);
+                    expectToEqual(graphCanvasCmp.zoomConfig(), expectedZoomConfig);
+                    expectToBe(graphCanvasCmp.zoomValue(), expectedZoomConfig.initial);
                 });
 
                 it('... should pass down the limited graph data after a limit change', async () => {
                     component.limit.set(1);
                     await detectChangesOnPush(fixture);
 
-                    expectToEqual(getGraphSvgCmp().resultGraph(), expectedLimitedResultGraph);
+                    expectToEqual(getGraphCanvasCmp().resultGraph(), expectedLimitedResultGraph);
                 });
 
-                it('... should sync `zoomValue` from the ForceGraphSvgComponent', async () => {
-                    getGraphSvgCmp().zoomValue.set(2);
+                it('... should sync `zoomValue` from the ForceGraphCanvasComponent', async () => {
+                    getGraphCanvasCmp().zoomValue.set(2);
                     await detectChangesOnPush(fixture);
 
                     expectToBe(component.zoomValue(), 2);
                 });
 
-                it('... should emit `clickedNodeRequest` for a clicked graph node of the ForceGraphSvgComponent', () => {
-                    getGraphSvgCmp().clickedNodeRequest.emit(expectedNodes[0]);
+                it('... should emit `clickedNodeRequest` for a clicked graph node of the ForceGraphCanvasComponent', () => {
+                    getGraphCanvasCmp().clickedNodeRequest.emit(expectedNodes[0]);
 
                     expectSpyCall(clickedNodeRequestSpy, 1, expectedNodes[0]);
                 });

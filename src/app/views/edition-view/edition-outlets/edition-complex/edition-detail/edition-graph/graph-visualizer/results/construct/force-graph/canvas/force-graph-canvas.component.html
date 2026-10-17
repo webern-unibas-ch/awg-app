@@ -1,0 +1,30 @@
+@let hovered = hoveredNode();
+
+<canvas
+    #canvas
+    class="awg-force-graph-canvas"
+    [class.is-node-hovered]="!!hovered"
+    [class.is-loading]="isLayoutLoading()"
+    role="img"
+    [attr.aria-label]="ariaLabel()"
+    awgCanvasDrag
+    [dragSubject]="findVisibleNodeAtPoint"
+    (dragMove)="onNodeDrag($event)"
+    (dragEnd)="onNodeDragEnd($event)"
+    awgCanvasViewport
+    (resized)="onCanvasResize()"
+    awgCanvasZoom
+    [zoomConfig]="zoomConfig()"
+    [zoomFilter]="zoomFilter"
+    [(zoomValue)]="zoomValue"
+    (click)="onNodeClick($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseleave)="onMouseLeave()"></canvas>
+
+<awg-canvas-tooltip [point]="hovered?.point" [text]="hovered?.node.resultNode.label" />
+
+@if (isLayoutLoading()) {
+    <div class="awg-force-graph-canvas-loading" role="status">
+        <awg-twelve-tone-spinner />
+    </div>
+}
