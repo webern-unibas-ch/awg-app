@@ -61,9 +61,9 @@ describe('ForceGraphSimulationPin (DONE)', () => {
             });
         });
 
-        describe('#reapply()', () => {
-            it('... should have a method `reapply`', () => {
-                expect(simulationPin.reapply).toBeDefined();
+        describe('#apply()', () => {
+            it('... should have a method `apply`', () => {
+                expect(simulationPin.apply).toBeDefined();
             });
 
             it('... should move the pinned node back to its point after a result of the simulation', () => {
@@ -72,13 +72,13 @@ describe('ForceGraphSimulationPin (DONE)', () => {
                 node.x = 100;
                 node.y = 0;
 
-                simulationPin.reapply();
+                simulationPin.apply();
 
                 expectToEqual([node.x, node.y], [30, 40]);
             });
 
             it('... should keep the node in place without a pin', () => {
-                simulationPin.reapply();
+                simulationPin.apply();
 
                 expectToEqual([node.x, node.y], [100, 0]);
             });
@@ -89,29 +89,7 @@ describe('ForceGraphSimulationPin (DONE)', () => {
                 node.x = 100;
                 node.y = 0;
 
-                simulationPin.reapply();
-
-                expectToEqual([node.x, node.y], [100, 0]);
-            });
-        });
-
-        describe('#_applyPin()', () => {
-            it('... should have a method `_applyPin`', () => {
-                expect(simulationPin['_applyPin']).toBeDefined();
-            });
-
-            it('... should move the pinned node to its pin point', () => {
-                simulationPin.pin(node, { x: 30, y: 40 });
-                node.x = 100;
-                node.y = 0;
-
-                simulationPin['_applyPin']();
-
-                expectToEqual([node.x, node.y], [30, 40]);
-            });
-
-            it('... should keep the node in place without a pin', () => {
-                simulationPin['_applyPin']();
+                simulationPin.apply();
 
                 expectToEqual([node.x, node.y], [100, 0]);
             });

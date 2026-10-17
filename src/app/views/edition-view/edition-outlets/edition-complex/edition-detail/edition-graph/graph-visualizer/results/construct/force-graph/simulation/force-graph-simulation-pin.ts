@@ -37,7 +37,7 @@ export class ForceGraphSimulationPin {
     pin(node: ForceGraphVisibleNode, point: ForceGraphPoint): void {
         this._pinned = { node, point };
         this.commands$.next({ type: 'pin', node, point });
-        this._applyPin();
+        this.apply();
     }
 
     /**
@@ -54,24 +54,14 @@ export class ForceGraphSimulationPin {
     }
 
     /**
-     * Public method: reapply.
+     * Public method: apply.
      *
-     * It keeps the pinned node at its point after a result of the simulation, if any node is pinned.
-     *
-     * @returns {void} Moves the pinned node back to its point.
-     */
-    reapply(): void {
-        this._applyPin();
-    }
-
-    /**
-     * Private method: _applyPin.
-     *
-     * It moves the pinned node to its pin point, if any node is pinned.
+     * It moves the pinned node to its pin point, if any node is pinned
+     * (on the pin, and again after each result of the simulation).
      *
      * @returns {void} Sets the position of the pinned node.
      */
-    private _applyPin(): void {
+    apply(): void {
         if (!this._pinned) {
             return;
         }

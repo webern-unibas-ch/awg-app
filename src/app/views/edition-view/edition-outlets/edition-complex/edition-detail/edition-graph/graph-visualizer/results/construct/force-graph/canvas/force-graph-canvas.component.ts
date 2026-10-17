@@ -435,7 +435,7 @@ export class ForceGraphCanvasComponent {
                 next: ({ positions, isCalm }) => {
                     FORCE_GRAPH_SIMULATION_TRANSFER_UTILS.unpackPositions(positions, graphData.nodes);
                     // Simulation results arrive one round trip late: the pinned node stays at the pointer
-                    this._simulationPin.reapply();
+                    this._simulationPin.apply();
                     // The tooltip of a hovered node follows the node (e.g. while the graph settles after a drag)
                     const hovered = this.hoveredNode();
                     if (hovered) {
