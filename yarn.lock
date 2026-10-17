@@ -795,12 +795,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codemirror/legacy-modes@npm:^6.5.4":
-  version: 6.5.4
-  resolution: "@codemirror/legacy-modes@npm:6.5.4"
+"@codemirror/legacy-modes@npm:^6.5.5":
+  version: 6.5.5
+  resolution: "@codemirror/legacy-modes@npm:6.5.5"
   dependencies:
-    "@codemirror/language": "npm:^6.0.0"
-  checksum: 10c0/b6fb2304e6c4bf44205820f17d44bb10a3fe44bd085efdb67cc4a810252b59d3e6ee5b23fb73dd0b0c3fa41054d09d6840bb5e66889762c5974edf713ddacc46
+    "@codemirror/streamparser": "npm:^6.0.0"
+  checksum: 10c0/3e2d7cb9629688c3db6fd9a2c038fc958273a868ec102d4fba34b9aab3c40494a9fd707e3cd154cf2833a32bfd3d2f713e042e7d455aca7dad1b83fb030783c0
   languageName: node
   linkType: hard
 
@@ -832,6 +832,13 @@ __metadata:
   dependencies:
     "@marijn/find-cluster-break": "npm:^1.0.0"
   checksum: 10c0/8f40e1a22b84752fc44637e586cb3d804f775c0cf9c8083a79eed5cb18fbdfb30b83c112d8b6d819046526d1f9e49bf1198bdca4c4c3427bdf2c657a96df7adf
+  languageName: node
+  linkType: hard
+
+"@codemirror/streamparser@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@codemirror/streamparser@npm:6.0.0"
+  checksum: 10c0/6bff019d5ef905e1aac77a8a10170c3910fb55a0ae610259e0295924399fad4a62f96f27848d80a7ab1ef237256a6d2a1012278693aec5a9937b9c9696b05815
   languageName: node
   linkType: hard
 
@@ -4294,7 +4301,7 @@ __metadata:
     "@angular/localize": "npm:^22.2.2"
     "@angular/platform-browser": "npm:^22.2.2"
     "@angular/router": "npm:^22.2.2"
-    "@codemirror/legacy-modes": "npm:^6.5.4"
+    "@codemirror/legacy-modes": "npm:^6.5.5"
     "@commitlint/cli": "npm:^21.2.3"
     "@commitlint/config-angular": "npm:^21.2.3"
     "@compodoc/compodoc": "npm:^2.0.0"
