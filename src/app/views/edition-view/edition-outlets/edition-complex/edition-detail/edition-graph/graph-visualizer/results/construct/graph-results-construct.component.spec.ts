@@ -69,14 +69,9 @@ describe('GraphResultsConstructComponent (DONE)', () => {
             1,
             1
         )[0];
-    const getItemCollapseEl = (status?: string): HTMLDivElement =>
-        getAndExpectDebugElementByCss(
-            compDe,
-            'div#awg-graph-results-construct > div.accordion-collapse',
-            1,
-            1,
-            status
-        )[0].nativeElement;
+    const getItemCollapseDes = (status?: string) =>
+        getAndExpectDebugElementByCss(compDe, 'div#awg-graph-results-construct > div.accordion-collapse', 1, 1, status);
+    const getItemCollapseEl = (status?: string): HTMLDivElement => getItemCollapseDes(status)[0].nativeElement;
     const getItemBodyDe = (): DebugElement =>
         getAndExpectDebugElementByCss(compDe, 'div#awg-graph-results-construct-collapse > div.accordion-body', 1, 1)[0];
     const getForceGraphCmp = (): ForceGraphComponent =>

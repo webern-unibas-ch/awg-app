@@ -117,7 +117,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             },
         ])('... $label', ({ index, label, href }) => {
             const anchorDes = getAnchorDes();
-            const anchorEl = anchorDes[index].nativeElement as HTMLAnchorElement;
+            const anchorEl: HTMLAnchorElement = anchorDes[index].nativeElement;
 
             expectToBe(anchorEl.textContent?.trim(), label);
             expectToBe(anchorEl.href, href);
@@ -130,7 +130,7 @@ describe('ExternalLinkDirective (DONE)', () => {
     describe('... should correctly handle existing rel attributes', () => {
         it('... should merge existing rel attributes for external links', () => {
             const anchorDes = getAnchorDes();
-            const anchorWithRelEl = anchorDes[7].nativeElement as HTMLAnchorElement;
+            const anchorWithRelEl: HTMLAnchorElement = anchorDes[7].nativeElement;
 
             expectToBe(anchorWithRelEl.target, expectedTargetAttr);
             expectToContain(anchorWithRelEl.rel, 'nofollow');
@@ -140,7 +140,7 @@ describe('ExternalLinkDirective (DONE)', () => {
 
         it('... should avoid duplicates for external links', () => {
             const anchorDes = getAnchorDes();
-            const anchorWithDuplicateRelEl = anchorDes[8].nativeElement as HTMLAnchorElement;
+            const anchorWithDuplicateRelEl: HTMLAnchorElement = anchorDes[8].nativeElement;
 
             const relParts = anchorWithDuplicateRelEl.rel.split(/\s+/);
             const noopenerCount = relParts.filter(p => p === 'noopener').length;
@@ -154,7 +154,7 @@ describe('ExternalLinkDirective (DONE)', () => {
 
         it('... should keep existing rel attributes untouched for internal links', () => {
             const anchorDes = getAnchorDes();
-            const anchorWithRelEl = anchorDes[9].nativeElement as HTMLAnchorElement;
+            const anchorWithRelEl: HTMLAnchorElement = anchorDes[9].nativeElement;
 
             expectToBe(anchorWithRelEl.target, '');
             expectToBe(anchorWithRelEl.rel, 'help');
@@ -191,7 +191,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             { index: 6, label: 'Mailto Link', href: 'mailto:test@example.com' },
         ])('... for $label', ({ index, label, href }) => {
             const anchorDes = getAnchorDes();
-            const anchorEl = anchorDes[index].nativeElement as HTMLAnchorElement;
+            const anchorEl: HTMLAnchorElement = anchorDes[index].nativeElement;
 
             expectToBe(anchorEl.textContent?.trim(), label);
             expectToBe(anchorEl.href, href);
@@ -217,7 +217,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             await detectChangesOnPush(fixture);
 
             const anchorDes = getAnchorDes();
-            const anchorEl = anchorDes[1].nativeElement as HTMLAnchorElement;
+            const anchorEl: HTMLAnchorElement = anchorDes[1].nativeElement;
 
             expectToBe(anchorEl.target, '');
             expectToBe(anchorEl.rel, '');
@@ -230,7 +230,7 @@ describe('ExternalLinkDirective (DONE)', () => {
             await detectChangesOnPush(fixture);
 
             const anchorDes = getAnchorDes();
-            const anchorEl = anchorDes[1].nativeElement as HTMLAnchorElement;
+            const anchorEl: HTMLAnchorElement = anchorDes[1].nativeElement;
 
             expectToBe(anchorEl.target, '');
             expectToBe(anchorEl.rel, '');
@@ -255,7 +255,7 @@ describe('ExternalLinkDirective (DONE)', () => {
                 expectedHrefCount,
                 expectedHrefCount
             );
-            const ssrAnchorEl = ssrAnchorDes[0].nativeElement as HTMLAnchorElement;
+            const ssrAnchorEl: HTMLAnchorElement = ssrAnchorDes[0].nativeElement;
 
             expectToBe(ssrAnchorEl.target, '');
             expectToBe(ssrAnchorEl.rel, '');

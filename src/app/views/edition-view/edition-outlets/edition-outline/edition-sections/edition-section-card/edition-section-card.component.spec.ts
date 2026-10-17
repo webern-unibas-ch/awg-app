@@ -170,12 +170,13 @@ describe('EditionSectionCardComponent (DONE)', () => {
                 it('... should omit the cover image and content columns', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-img-container', 0, 0);
 
-                    const contentEl: HTMLDivElement = getAndExpectDebugElementByCss(
+                    const contentDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-edition-section-card-content',
                         1,
                         1
-                    )[0].nativeElement;
+                    );
+                    const contentEl: HTMLDivElement = contentDes[0].nativeElement;
 
                     expectToNotContain(contentEl.classList, 'col-8');
                     expectToNotContain(contentEl.classList, 'col-sm-10');

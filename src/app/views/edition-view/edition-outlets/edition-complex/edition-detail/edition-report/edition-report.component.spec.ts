@@ -341,7 +341,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should display button label', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
-                        const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceList);
                     });
@@ -373,7 +373,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should display button label', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
-                        const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceDesc);
                     });
@@ -407,7 +407,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should display button label', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
-                        const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.sourceEvaluation);
                     });
@@ -447,7 +447,7 @@ describe('EditionReportComponent (DONE)', () => {
 
                     it('... should display button label', () => {
                         const buttonDes = getAndExpectDebugElementByCss(divDes[0], 'button.accordion-button', 1, 1);
-                        const buttonEl = buttonDes[0].nativeElement as HTMLButtonElement;
+                        const buttonEl: HTMLButtonElement = buttonDes[0].nativeElement;
 
                         expectToBe(buttonEl.textContent?.trim(), component.REPORT_TITLES.tka);
                     });

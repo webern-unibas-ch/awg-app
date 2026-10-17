@@ -87,12 +87,8 @@ describe('CanvasTooltipComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should set the tooltip anchor to the provided point', () => {
-                const anchorEl: HTMLSpanElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-canvas-tooltip-anchor',
-                    1,
-                    1
-                )[0].nativeElement;
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-canvas-tooltip-anchor', 1, 1);
+                const anchorEl: HTMLSpanElement = anchorDes[0].nativeElement;
 
                 expectToBe(anchorEl.style.left, '300px');
                 expectToBe(anchorEl.style.top, '100px');
@@ -110,12 +106,8 @@ describe('CanvasTooltipComponent (DONE)', () => {
             });
 
             it('... should contain an open tooltip with the provided text', () => {
-                const tooltipWindowEl: HTMLElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ngb-tooltip-window',
-                    1,
-                    1
-                )[0].nativeElement;
+                const tooltipWindowDes = getAndExpectDebugElementByCss(compDe, 'ngb-tooltip-window', 1, 1);
+                const tooltipWindowEl: HTMLElement = tooltipWindowDes[0].nativeElement;
 
                 expectToBe(tooltipWindowEl.textContent?.trim(), expectedText);
                 expectToBe(tooltipWindowEl.classList.contains('awg-canvas-tooltip'), true);

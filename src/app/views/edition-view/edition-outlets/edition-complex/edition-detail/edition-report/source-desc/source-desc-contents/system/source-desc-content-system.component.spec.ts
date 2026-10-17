@@ -218,12 +218,13 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
             });
 
             it('... should display the divider colon', () => {
-                const containerEl: HTMLSpanElement = getAndExpectDebugElementByCss(
+                const containerDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-desc-content-grid-system-container',
                     1,
                     1
-                )[0].nativeElement;
+                );
+                const containerEl: HTMLSpanElement = containerDes[0].nativeElement;
 
                 expect(containerEl.textContent).toContain(': ');
             });
@@ -232,12 +233,13 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                 fixture.componentRef.setInput('contentSystem', { system: '1' });
                 await detectChangesOnPush(fixture);
 
-                const containerEl: HTMLSpanElement = getAndExpectDebugElementByCss(
+                const containerDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-desc-content-grid-system-container',
                     1,
                     1
-                )[0].nativeElement;
+                );
+                const containerEl: HTMLSpanElement = containerDes[0].nativeElement;
 
                 expect(containerEl.textContent).not.toContain(':');
             });
@@ -305,12 +307,8 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                 });
                 await detectChangesOnPush(fixture);
 
-                const rowEl: HTMLSpanElement = getAndExpectDebugElementByCss(
-                    compDe,
-                    'span.awg-source-desc-content-grid-row',
-                    1,
-                    1
-                )[0].nativeElement;
+                const rowDes = getAndExpectDebugElementByCss(compDe, 'span.awg-source-desc-content-grid-row', 1, 1);
+                const rowEl: HTMLSpanElement = rowDes[0].nativeElement;
 
                 expectToBe(rowEl.textContent.trim(), 'P0');
             });
@@ -323,12 +321,13 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
             });
 
             it('... should end with a semicolon if not the last item', () => {
-                const containerEl: HTMLSpanElement = getAndExpectDebugElementByCss(
+                const containerDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-desc-content-grid-system-container',
                     1,
                     1
-                )[0].nativeElement;
+                );
+                const containerEl: HTMLSpanElement = containerDes[0].nativeElement;
 
                 expectToBe(containerEl.textContent.trim().endsWith(';'), true);
             });
@@ -337,12 +336,13 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
                 fixture.componentRef.setInput('isLastItem', true);
                 await detectChangesOnPush(fixture);
 
-                const containerEl: HTMLSpanElement = getAndExpectDebugElementByCss(
+                const containerDes = getAndExpectDebugElementByCss(
                     compDe,
                     'span.awg-source-desc-content-grid-system-container',
                     1,
                     1
-                )[0].nativeElement;
+                );
+                const containerEl: HTMLSpanElement = containerDes[0].nativeElement;
 
                 expectToBe(containerEl.textContent.trim().endsWith('.'), true);
             });

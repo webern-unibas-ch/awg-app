@@ -98,7 +98,7 @@ describe('NavbarDropdownLinkComponent (DONE)', () => {
 
             it('... should display correct label in dropdown item link', () => {
                 const aDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 1, 1);
-                const aEl = aDes[0].nativeElement as HTMLAnchorElement;
+                const aEl: HTMLAnchorElement = aDes[0].nativeElement;
 
                 expectToBe(aEl.textContent?.trim(), expectedLabel);
             });

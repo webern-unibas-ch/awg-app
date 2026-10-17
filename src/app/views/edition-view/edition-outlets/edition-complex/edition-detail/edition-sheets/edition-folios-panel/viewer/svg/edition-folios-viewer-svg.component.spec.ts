@@ -50,10 +50,11 @@ describe('EditionFoliosViewerSvgComponent (DONE)', () => {
     let expectedSelection: EditionSvgSheetSelection;
     let expectedSelectionWithPartial: EditionSvgSheetSelection;
 
-    const getSvgEl = (): SVGSVGElement =>
-        getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-folios-viewer-svg', 1, 1)[0].nativeElement;
-    const getRootGroupEl = (): SVGGElement =>
-        getAndExpectDebugElementByCss(compDe, 'g.awg-edition-folios-viewer-svg-root-group', 1, 1)[0].nativeElement;
+    const getSvgDes = () => getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-folios-viewer-svg', 1, 1);
+    const getSvgEl = (): SVGSVGElement => getSvgDes()[0].nativeElement;
+    const getRootGroupDes = () =>
+        getAndExpectDebugElementByCss(compDe, 'g.awg-edition-folios-viewer-svg-root-group', 1, 1);
+    const getRootGroupEl = (): SVGGElement => getRootGroupDes()[0].nativeElement;
     const getActiveSegmentIds = (): string[] =>
         D3_SELECTION.select(getRootGroupEl())
             .selectAll<SVGGElement, FolioSvgContentSegment>('g.content-segment-group.active')

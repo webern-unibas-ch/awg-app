@@ -32,11 +32,11 @@ describe('ZoomSliderComponent (DONE)', () => {
 
     const getContainerDes = () =>
         getAndExpectDebugElementByCss(compDe, 'div.input-group.input-group-sm.awg-zoom-slider-container', 1, 1);
-    const getLabelEl = (): HTMLSpanElement =>
-        getAndExpectDebugElementByCss(getContainerDes()[0], 'span.input-group-text', 1, 1)[0].nativeElement;
-    const getRangeEl = (): HTMLInputElement =>
-        getAndExpectDebugElementByCss(getContainerDes()[0], 'input[type="range"].awg-zoom-slider', 1, 1)[0]
-            .nativeElement;
+    const getLabelDes = () => getAndExpectDebugElementByCss(getContainerDes()[0], 'span.input-group-text', 1, 1);
+    const getLabelEl = (): HTMLSpanElement => getLabelDes()[0].nativeElement;
+    const getRangeDes = () =>
+        getAndExpectDebugElementByCss(getContainerDes()[0], 'input[type="range"].awg-zoom-slider', 1, 1);
+    const getRangeEl = (): HTMLInputElement => getRangeDes()[0].nativeElement;
     const getButtonDes = () => getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 1, 1);
 
     beforeEach(async () => {

@@ -24,8 +24,8 @@ describe('GraphResultsStatusComponent (DONE)', () => {
     let expectedSelectResult: SparqlSelectResult;
     let expectedQueryTime: number;
 
-    const getStatusEl = (): HTMLOutputElement =>
-        getAndExpectDebugElementByCss(compDe, 'output.awg-graph-results-status', 1, 1)[0].nativeElement;
+    const getStatusDes = () => getAndExpectDebugElementByCss(compDe, 'output.awg-graph-results-status', 1, 1);
+    const getStatusEl = (): HTMLOutputElement => getStatusDes()[0].nativeElement;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({

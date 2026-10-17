@@ -105,8 +105,9 @@ describe('TablePaginationComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        const getPageInputEl = (): HTMLInputElement =>
-            getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1)[0].nativeElement;
+        const getPageInputDes = () =>
+            getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
+        const getPageInputEl = (): HTMLInputElement => getPageInputDes()[0].nativeElement;
 
         beforeEach(() => {
             // Set the initial values for the signal inputs

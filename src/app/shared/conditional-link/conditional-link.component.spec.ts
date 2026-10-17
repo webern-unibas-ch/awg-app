@@ -80,7 +80,7 @@ describe('ConditionalLinkComponent', () => {
             describe('VIEW', () => {
                 it('... should contain a link with the expected accessibility attributes', () => {
                     const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                    const anchorEl = anchorDes[0].nativeElement as HTMLAnchorElement;
+                    const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
 
                     expectToBe(anchorEl.getAttribute('role'), 'link');
                     expectToBe(anchorEl.tabIndex, 0);
@@ -101,7 +101,7 @@ describe('ConditionalLinkComponent', () => {
                     component.clicked.subscribe(emitSpy);
 
                     const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                    const anchorEl = anchorDes[0].nativeElement as HTMLAnchorElement;
+                    const anchorEl: HTMLAnchorElement = anchorDes[0].nativeElement;
                     anchorEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', bubbles: true }));
 
                     expectSpyCall(emitSpy, 1);

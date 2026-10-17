@@ -43,8 +43,8 @@ describe('ClickDirective (DONE)', () => {
     let fixture: ComponentFixture<TestClickComponent>;
     let compDe: DebugElement;
 
-    const getEl = (selector: string): HTMLElement =>
-        getAndExpectDebugElementByCss(compDe, selector, 1, 1)[0].nativeElement;
+    const getDes = (selector: string) => getAndExpectDebugElementByCss(compDe, selector, 1, 1);
+    const getEl = (selector: string): HTMLElement => getDes(selector)[0].nativeElement;
     const getDirective = (selector: string): ClickDirective =>
         getAndExpectDebugElementByCss(compDe, selector, 1, 1)[0].injector.get(ClickDirective);
     const keydown = (key: string): KeyboardEvent => new KeyboardEvent('keydown', { key, bubbles: true });

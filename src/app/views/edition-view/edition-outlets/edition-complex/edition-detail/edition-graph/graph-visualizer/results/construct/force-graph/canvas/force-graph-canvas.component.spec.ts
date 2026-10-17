@@ -63,8 +63,8 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
     // Positions of a, b and c (canvas 400 x 200: b is drawn at (300, 100))
     const expectedPositions = Float32Array.from([0, 0, 100, 0, 0, 50]);
 
-    const getCanvasEl = (): HTMLCanvasElement =>
-        getAndExpectDebugElementByCss(compDe, 'canvas.awg-force-graph-canvas', 1, 1)[0].nativeElement;
+    const getCanvasDes = () => getAndExpectDebugElementByCss(compDe, 'canvas.awg-force-graph-canvas', 1, 1);
+    const getCanvasEl = (): HTMLCanvasElement => getCanvasDes()[0].nativeElement;
 
     const getCanvasDrag = (): CanvasDragDirective<ForceGraphVisibleNode> =>
         getAndExpectDebugElementByDirective(compDe, CanvasDragDirective, 1, 1)[0].injector.get(CanvasDragDirective);

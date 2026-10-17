@@ -164,8 +164,8 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should have class `fullscreen` on div.accordion only in fullscreen mode', async () => {
-                const accordionEl: HTMLDivElement = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1)[0]
-                    .nativeElement;
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+                const accordionEl: HTMLDivElement = accordionDes[0].nativeElement;
 
                 expectToNotContain(accordionEl.classList, 'fullscreen');
 
@@ -186,23 +186,25 @@ describe('EditionSheetsPanelComponent (DONE)', () => {
                     );
                     getItemHeaderDes();
 
-                    const itemBodyEl: HTMLDivElement = getAndExpectDebugElementByCss(
+                    const itemBodyDes = getAndExpectDebugElementByCss(
                         itemDes[0],
                         'div#awg-edition-sheet-view-collapse',
                         1,
                         1
-                    )[0].nativeElement;
+                    );
+                    const itemBodyEl: HTMLDivElement = itemBodyDes[0].nativeElement;
 
                     expectToContain(itemBodyEl.classList, 'show');
                 });
 
                 it('... should contain the header button with the title', () => {
-                    const btnEl: HTMLButtonElement = getAndExpectDebugElementByCss(
+                    const btnDes = getAndExpectDebugElementByCss(
                         getItemHeaderDes()[0],
                         'div.accordion-button > button.btn',
                         1,
                         1
-                    )[0].nativeElement;
+                    );
+                    const btnEl: HTMLButtonElement = btnDes[0].nativeElement;
 
                     expectToBe(btnEl.textContent.trim(), 'Edierte Notentexte');
                 });

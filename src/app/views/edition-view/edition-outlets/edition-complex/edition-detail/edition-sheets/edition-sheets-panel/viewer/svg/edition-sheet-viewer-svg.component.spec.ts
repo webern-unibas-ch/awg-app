@@ -71,10 +71,11 @@ describe('EditionSheetViewerSvgComponent (DONE)', () => {
     let expectedSuppliedClasses: string[];
     let expectedTkkOverlays: EditionSvgOverlayTkk[];
 
-    const getRootGroupEl = (): SVGGElement =>
-        getAndExpectDebugElementByCss(compDe, 'g.awg-edition-sheet-viewer-svg-root-group', 1, 1)[0].nativeElement;
-    const getSvgEl = (): SVGSVGElement =>
-        getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-sheet-viewer-svg', 1, 1)[0].nativeElement;
+    const getRootGroupDes = () =>
+        getAndExpectDebugElementByCss(compDe, 'g.awg-edition-sheet-viewer-svg-root-group', 1, 1);
+    const getRootGroupEl = (): SVGGElement => getRootGroupDes()[0].nativeElement;
+    const getSvgDes = () => getAndExpectDebugElementByCss(compDe, 'svg.awg-edition-sheet-viewer-svg', 1, 1);
+    const getSvgEl = (): SVGSVGElement => getSvgDes()[0].nativeElement;
 
     const awaitRendering = async (): Promise<void> => {
         await component['_renderQueue'];

@@ -160,11 +160,11 @@ describe('TableComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        const getTitleEl = (): HTMLParagraphElement =>
-            getAndExpectDebugElementByCss(compDe, 'div.form-group > div.col-sm-4 > p', 1, 1)[0].nativeElement;
+        const getTitleDes = () => getAndExpectDebugElementByCss(compDe, 'div.form-group > div.col-sm-4 > p', 1, 1);
+        const getTitleEl = (): HTMLParagraphElement => getTitleDes()[0].nativeElement;
 
-        const getSearchInputEl = (): HTMLInputElement =>
-            getAndExpectDebugElementByCss(compDe, 'input#search', 1, 1)[0].nativeElement;
+        const getSearchInputDes = () => getAndExpectDebugElementByCss(compDe, 'input#search', 1, 1);
+        const getSearchInputEl = (): HTMLInputElement => getSearchInputDes()[0].nativeElement;
 
         const getBodyRowDes = (count: number): DebugElement[] =>
             getAndExpectDebugElementByCss(compDe, 'table.table > tbody > tr', count, count);
