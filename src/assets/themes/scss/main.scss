@@ -357,6 +357,13 @@ span.facet-badge {
     border: 1px solid var(--bs-border-color);
 }
 
+/* The tooltip of a canvas must not catch the pointer (it would leave the canvas);
+   ng-bootstrap enables it again for the inner box (ngb-tooltip-window .tooltip-inner) */
+.awg-canvas-tooltip,
+.awg-canvas-tooltip .tooltip-inner {
+    pointer-events: none;
+}
+
 /****** DETAILS ******/
 details summary {
     list-style: none;
