@@ -43,6 +43,7 @@
         { "path": "./tsconfig.app.json" },
         { "path": "./tsconfig.doc.json" },
         { "path": "./tsconfig.eslint.json" },
-        { "path": "./tsconfig.spec.json" }
+        { "path": "./tsconfig.spec.json" },
+        { "path": "./tsconfig.worker.json" }
     ]
 }
