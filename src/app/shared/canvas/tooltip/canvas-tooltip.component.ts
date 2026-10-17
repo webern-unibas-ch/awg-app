@@ -28,7 +28,7 @@ export class CanvasTooltipComponent {
     /**
      * Readonly input signal: text.
      *
-     * It holds the text of the tooltip; without a text, the tooltip is closed.
+     * It holds the text of the tooltip; without a text or a point, the tooltip is closed.
      */
     readonly text = input<string | undefined>();
 
@@ -42,30 +42,30 @@ export class CanvasTooltipComponent {
     /**
      * Constructor of the CanvasTooltipComponent.
      *
-     * It shows the tooltip at the given point, or hides it without a text.
+     * It shows the tooltip at the given point, or hides it without a text or a point.
      */
     constructor() {
         // After rendering, the anchor of the tooltip is at the given point
         afterRenderEffect(() => {
-            this.point();
+            const point = this.point();
             const text = this.text();
-            untracked(() => this._updateTooltip(!!text));
+            untracked(() => this._updateTooltip(!!text && !!point));
         });
     }
 
     /**
      * Private method: _updateTooltip.
      *
-     * It closes the tooltip and opens it again with a text,
+     * It closes the tooltip and opens it again if it is shown,
      * so that it is positioned at the current position of its anchor.
      *
-     * @param {boolean} hasText The flag if the tooltip has a text.
+     * @param {boolean} isShown The flag if the tooltip is shown (with a text at a point).
      * @returns {void} Shows or hides the tooltip.
      */
-    private _updateTooltip(hasText: boolean): void {
+    private _updateTooltip(isShown: boolean): void {
         const tooltip = this.tooltip();
         tooltip.close(false);
-        if (hasText) {
+        if (isShown) {
             tooltip.open();
         }
     }

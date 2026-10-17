@@ -127,6 +127,13 @@ describe('CanvasTooltipComponent (DONE)', () => {
 
                 getAndExpectDebugElementByCss(compDe, 'ngb-tooltip-window', 0, 0);
             });
+
+            it('... should close the tooltip without a point', async () => {
+                fixture.componentRef.setInput('point', undefined);
+                await detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(compDe, 'ngb-tooltip-window', 0, 0);
+            });
         });
 
         describe('METHODS', () => {
@@ -135,7 +142,7 @@ describe('CanvasTooltipComponent (DONE)', () => {
                     expect(component['_updateTooltip']).toBeDefined();
                 });
 
-                it('... should close the tooltip and open it again with a text', () => {
+                it('... should close the tooltip and open it again if it is shown', () => {
                     const closeSpy = vi.spyOn(component.tooltip(), 'close');
                     const openSpy = vi.spyOn(component.tooltip(), 'open');
 
@@ -145,7 +152,7 @@ describe('CanvasTooltipComponent (DONE)', () => {
                     expectSpyCall(openSpy, 1);
                 });
 
-                it('... should only close the tooltip without a text', () => {
+                it('... should only close the tooltip if it is not shown', () => {
                     const closeSpy = vi.spyOn(component.tooltip(), 'close');
                     const openSpy = vi.spyOn(component.tooltip(), 'open');
 
