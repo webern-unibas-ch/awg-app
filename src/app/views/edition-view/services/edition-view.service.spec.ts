@@ -221,8 +221,8 @@ describe('EditionViewService (DONE)', () => {
                 viewName: 'graph' as EditionViewKey,
                 mockData: { graph: [{ id: 'graph-1' }] },
             },
-        ])('#$signalName()', ({ signalName, dataKey, viewName, mockData }) => {
-            it(`... should have a signal ${signalName}`, () => {
+        ])('... computed signal `$signalName`', ({ signalName, dataKey, viewName, mockData }) => {
+            it(`... should have a computed signal \`${signalName}\``, () => {
                 expect(service[signalName]).toBeDefined();
 
                 expectToBe(isSignal(service[signalName]), true);
@@ -243,7 +243,7 @@ describe('EditionViewService (DONE)', () => {
                 );
             });
 
-            it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
+            it('... should hold the loading fallback if the view is inactive', () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
@@ -253,7 +253,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should reactively update ${signalName} if ${dataKey} emits`, () => {
+            it(`... should hold the data of ${dataKey} if it emits`, () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -268,7 +268,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
+            it('... should hold `isLoading=true` if loading is active', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
 
@@ -280,7 +280,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.isLoading, true);
             });
 
-            it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
+            it('... should hold the error of the EditionDataService', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -324,8 +324,8 @@ describe('EditionViewService (DONE)', () => {
                     { dataKey: 'textcriticsData', mockValue: { textcritics: [{ id: 'tc-2' }] } },
                 ],
             },
-        ])('#$signalName()', ({ signalName, viewName, signalsSetup }) => {
-            it(`... should have a signal ${signalName}`, () => {
+        ])('... computed signal `$signalName`', ({ signalName, viewName, signalsSetup }) => {
+            it(`... should have a computed signal \`${signalName}\``, () => {
                 expect(service[signalName]).toBeDefined();
 
                 expectToBe(isSignal(service[signalName]), true);
@@ -357,7 +357,7 @@ describe('EditionViewService (DONE)', () => {
                 }
             });
 
-            it(`... should return loading fallback for ${signalName} if view is inactive`, () => {
+            it('... should hold the loading fallback if the view is inactive', () => {
                 currentViewNameSpy.mockReturnValue('any-other-view');
 
                 const result = (service[signalName] as () => EditionViewData<typeof viewName>)();
@@ -370,7 +370,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should reactively update ${signalName} if all source signals emit`, () => {
+            it('... should hold the data of all source signals if they emit', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -389,7 +389,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.error, null);
             });
 
-            it(`... should set \`isLoading=true\` on ${signalName} if loading is active`, () => {
+            it('... should hold `isLoading=true` if loading is active', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
 
@@ -403,7 +403,7 @@ describe('EditionViewService (DONE)', () => {
                 expectToBe(result.isLoading, true);
             });
 
-            it(`... should propagate errors to ${signalName} from the EditionDataService`, () => {
+            it('... should hold the error of the EditionDataService', () => {
                 currentViewNameSpy.mockReturnValue(viewName);
                 service['_previousViewName'].set(viewName);
                 mockIsLoadingSignal.set(false);
@@ -422,7 +422,7 @@ describe('EditionViewService (DONE)', () => {
 
             if (signalName === 'sheetsViewData') {
                 describe('... `extraContentCheck` specific to sheetsViewData', () => {
-                    it('... should keep `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
+                    it('... should hold `isLoading=true` if all edition arrays (work, text, sketch) are empty', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);
@@ -438,7 +438,7 @@ describe('EditionViewService (DONE)', () => {
                         expectToBe(result.isLoading, true);
                     });
 
-                    it('... should set `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
+                    it('... should hold `isLoading=false` if at least one edition array (e.g., sketchEditions) contains data', () => {
                         currentViewNameSpy.mockReturnValue(viewName);
                         service['_previousViewName'].set(viewName);
                         mockIsLoadingSignal.set(false);

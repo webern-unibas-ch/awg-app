@@ -95,7 +95,7 @@ describe('GraphQueryUtils (DONE)', () => {
                 expectToBe(findQuery(expectedQueryList), expectedQueryList[0]);
             });
 
-            describe('... should hold the given query as is, if', () => {
+            describe('... should return the given query as is, if', () => {
                 it('... only queryLabel is known but not queryType', () => {
                     const changedQuery: GraphQuery = {
                         ...expectedQueryList[1],
