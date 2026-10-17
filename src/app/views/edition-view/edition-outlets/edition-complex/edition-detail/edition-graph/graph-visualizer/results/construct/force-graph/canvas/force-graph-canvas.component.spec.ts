@@ -962,7 +962,7 @@ describe('ForceGraphCanvasComponent (DONE)', () => {
                     expect(component['_toHoveredNode']).toBeDefined();
                 });
 
-                it('... should hold the given node with the point of its tooltip at the node on the canvas', () => {
+                it('... should return the given node with the point of its tooltip at the node on the canvas', () => {
                     // Node b at (100, 0) is drawn at (300, 100) of the canvas
                     const nodeB = component.forceGraphData().visibleNodes[1];
                     const hoveredNode = component['_toHoveredNode'](nodeB);

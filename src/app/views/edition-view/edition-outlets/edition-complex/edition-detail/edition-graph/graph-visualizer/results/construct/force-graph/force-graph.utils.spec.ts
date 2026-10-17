@@ -102,19 +102,19 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(edgePath).toBeDefined();
             });
 
-            it('... should hold source, middle node and target for an edge with middle node', () => {
+            it('... should return source, middle node and target for an edge with middle node', () => {
                 const edge = createEdge({}, {}, {});
 
                 expectToEqual(edgePath(edge), [edge.source, edge.mid, edge.target]);
             });
 
-            it('... should hold source and target for an edge without middle node', () => {
+            it('... should return source and target for an edge without middle node', () => {
                 const edge = createEdge({}, undefined, {});
 
                 expectToEqual(edgePath(edge), [edge.source, edge.target]);
             });
 
-            it('... should hold the same node as source and target for a self edge', () => {
+            it('... should return the same node as source and target for a self edge', () => {
                 const edge = createSelfEdge({}, {});
                 const [source, , target] = edgePath(edge);
 
@@ -127,7 +127,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isLargeGraph).toBeDefined();
             });
 
-            it('... should hold true from FORCE_GRAPH_LARGE_NODE_COUNT force graph nodes', () => {
+            it('... should return true from FORCE_GRAPH_LARGE_NODE_COUNT force graph nodes', () => {
                 expectToBe(isLargeGraph(FORCE_GRAPH_LARGE_NODE_COUNT - 1), false);
                 expectToBe(isLargeGraph(FORCE_GRAPH_LARGE_NODE_COUNT), true);
             });
@@ -138,11 +138,11 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isPositioned).toBeDefined();
             });
 
-            it('... should hold true for a point with finite coordinates', () => {
+            it('... should return true for a point with finite coordinates', () => {
                 expectToBe(isPositioned({ x: 0, y: -3.5 }), true);
             });
 
-            it('... should hold false for a point with a NaN or infinite coordinate', () => {
+            it('... should return false for a point with a NaN or infinite coordinate', () => {
                 expectToBe(isPositioned({ x: NaN, y: 0 }), false);
                 expectToBe(isPositioned({ x: 0, y: NaN }), false);
                 expectToBe(isPositioned({ x: Infinity, y: 0 }), false);
@@ -162,16 +162,16 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isRelayout).toBeDefined();
             });
 
-            it('... should hold true if at least half of the nodes have a position', () => {
+            it('... should return true if at least half of the nodes have a position', () => {
                 expectToBe(isRelayout(createNodes(2, 2)), true);
                 expectToBe(isRelayout(createNodes(3, 1)), true);
             });
 
-            it('... should hold false if less than half of the nodes have a position', () => {
+            it('... should return false if less than half of the nodes have a position', () => {
                 expectToBe(isRelayout(createNodes(1, 3)), false);
             });
 
-            it('... should hold false without positioned nodes', () => {
+            it('... should return false without positioned nodes', () => {
                 expectToBe(isRelayout(createNodes(0, 2)), false);
                 expectToBe(isRelayout([]), false);
             });
@@ -188,13 +188,13 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(isSelfEdge).toBeDefined();
             });
 
-            it('... should hold true for an edge from a node to itself', () => {
+            it('... should return true for an edge from a node to itself', () => {
                 const edge = createSelfEdge({}, {});
 
                 expectToBe(isSelfEdge(edge), true);
             });
 
-            it('... should hold false for an edge between two nodes (also at the same position)', () => {
+            it('... should return false for an edge between two nodes (also at the same position)', () => {
                 const edge = createEdge({ x: 10, y: 10 }, undefined, { x: 10, y: 10 });
 
                 expectToBe(isSelfEdge(edge), false);
@@ -206,7 +206,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(nodeBounds).toBeDefined();
             });
 
-            it('... should hold the area covered by the positioned nodes including their radius', () => {
+            it('... should return the area covered by the positioned nodes including their radius', () => {
                 const nodes: ForceGraphNode[] = [
                     { id: 'a', radius: 10, x: 0, y: 0 },
                     { id: 'b', radius: 5, x: 100, y: -50 },
@@ -216,7 +216,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToEqual(nodeBounds(nodes), { min: { x: -10, y: -55 }, max: { x: 105, y: 10 } });
             });
 
-            it('... should hold undefined without positioned nodes', () => {
+            it('... should return undefined without positioned nodes', () => {
                 const nodes: ForceGraphNode[] = [{ id: 'a', radius: 9, x: NaN, y: NaN }];
 
                 expect(nodeBounds(nodes)).toBeUndefined();
@@ -275,7 +275,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(toForceGraphData).toBeDefined();
             });
 
-            it('... should hold a force graph node per node of the result graph with its radius, followed by the middle nodes', () => {
+            it('... should return a force graph node per node of the result graph with its radius, followed by the middle nodes', () => {
                 const { nodes: forceGraphNodes } = toForceGraphData(graph);
                 const nodeSummaries = forceGraphNodes.map(node => [node.id, node.radius]);
 
@@ -289,7 +289,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToBe('resultNode' in forceGraphNodes[3], false);
             });
 
-            it('... should hold the same id for the middle node of the same edge between two nodes at another index of the result graph', () => {
+            it('... should return the same id for the middle node of the same edge between two nodes at another index of the result graph', () => {
                 const shiftedGraph: ResultGraph = {
                     nodes: [...nodes, { id: 'c', shortName: 'ex:c', label: 'ex:c', kind: 'resource' }],
                     edges: [{ id: 'e0', source: 'c', target: 'c', label: 'ex:other' }, edges[0], edges[2]],
@@ -301,7 +301,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToBe(shiftedForceGraphEdges[2].mid?.id, forceGraphEdges[2].mid?.id);
             });
 
-            it('... should hold different ids for the middle nodes of edges between other nodes at the same index of the result graph', () => {
+            it('... should return different ids for the middle nodes of edges between other nodes at the same index of the result graph', () => {
                 const otherGraph: ResultGraph = {
                     nodes,
                     edges: [edges[0], { id: 'e1', source: 'b', target: 'b', label: 'ex:self' }],
@@ -313,7 +313,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(otherForceGraphEdges[1].mid?.id).not.toBe(forceGraphEdges[1].mid?.id);
             });
 
-            it('... should hold the force graph nodes of the result graph (without the middle nodes) as visible nodes', () => {
+            it('... should return the force graph nodes of the result graph (without the middle nodes) as visible nodes', () => {
                 const { nodes: forceGraphNodes, visibleNodes } = toForceGraphData(graph);
 
                 expectToEqual(visibleNodes, forceGraphNodes.slice(0, 2));
@@ -322,7 +322,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToBe(visibleNodes[1].resultNode, nodes[1]);
             });
 
-            it('... should hold an edge without middle node for the first edge between two nodes', () => {
+            it('... should return an edge without middle node for the first edge between two nodes', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
 
                 expectToBe(forceGraphEdges[0].resultEdge, edges[0]);
@@ -331,13 +331,13 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToBe(forceGraphEdges[0].target, forceGraphNodes[1]);
             });
 
-            it('... should hold an edge with a middle node for a self edge', () => {
+            it('... should return an edge with a middle node for a self edge', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
 
                 expectToBe(forceGraphEdges[1].mid, forceGraphNodes[2]);
             });
 
-            it('... should hold an edge with a middle node for a repeated edge between two nodes (also in the other direction)', () => {
+            it('... should return an edge with a middle node for a repeated edge between two nodes (also in the other direction)', () => {
                 const { nodes: forceGraphNodes, edges: forceGraphEdges } = toForceGraphData(graph);
 
                 expectToBe(forceGraphEdges[2].source, forceGraphNodes[1]);
@@ -352,7 +352,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expectToBe(forceGraphEdges[1].target, forceGraphEdges[1].source);
             });
 
-            it('... should hold all nodes without position (NaN) until they are laid out', () => {
+            it('... should return all nodes without position (NaN) until they are laid out', () => {
                 const { nodes: forceGraphNodes } = toForceGraphData(graph);
                 const hasNoPositions = forceGraphNodes.every(node => Number.isNaN(node.x) && Number.isNaN(node.y));
 
@@ -368,7 +368,7 @@ describe('ForceGraphUtils (DONE)', () => {
                 expect(() => toForceGraphData(invalidGraph)).toThrow('[FORCE_GRAPH_UTILS] Unknown node of an edge: x.');
             });
 
-            it('... should hold empty force graph data for an empty graph', () => {
+            it('... should return empty force graph data for an empty graph', () => {
                 const emptyForceGraphData = toForceGraphData({ nodes: [], edges: [], tripleCount: 0 });
 
                 expectToEqual(emptyForceGraphData, { nodes: [], visibleNodes: [], edges: [] });

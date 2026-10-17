@@ -191,35 +191,35 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(edgeLabelPosition).toBeDefined();
             });
 
-            it('... should hold the center of source, middle node and target, shifted to the right', () => {
+            it('... should return the center of source, middle node and target, shifted to the right', () => {
                 const edge = createEdge({ x: 0, y: 0 }, { x: 30, y: 30 }, { x: 60, y: 0 });
                 const labelPosition = edgeLabelPosition(edge);
 
                 expectToEqual(labelPosition, { x: 40, y: 14 });
             });
 
-            it('... should hold the center of source and target, shifted to the right, for an edge without middle node', () => {
+            it('... should return the center of source and target, shifted to the right, for an edge without middle node', () => {
                 const edge = createEdge({ x: 0, y: 0 }, undefined, { x: 60, y: 20 });
                 const labelPosition = edgeLabelPosition(edge);
 
                 expectToEqual(labelPosition, { x: 40, y: 14 });
             });
 
-            it('... should hold a position above the loop for a self edge', () => {
+            it('... should return a position above the loop for a self edge', () => {
                 const edge = createSelfEdge({ x: 10, y: 10 }, { x: 40, y: 40 });
                 const labelPosition = edgeLabelPosition(edge);
 
                 expectToEqual(labelPosition, { x: 40, y: -20 });
             });
 
-            it('... should hold a position shifted to the right for different nodes at the same position', () => {
+            it('... should return a position shifted to the right for different nodes at the same position', () => {
                 const edge = createEdge({ x: 10, y: 10 }, { x: 40, y: 40 }, { x: 10, y: 10 });
                 const labelPosition = edgeLabelPosition(edge);
 
                 expectToEqual(labelPosition, { x: 30, y: 24 });
             });
 
-            it('... should hold NaN for nodes without position', () => {
+            it('... should return NaN for nodes without position', () => {
                 const unpositionedEdge = createEdge({}, {}, {});
                 const unpositionedSelfEdge = createSelfEdge({}, {});
                 const labelPosition = edgeLabelPosition(unpositionedEdge);
@@ -302,7 +302,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isArrowInView).toBeDefined();
             });
 
-            it('... should hold true for an arrowhead reaching into the view from a target outside it', () => {
+            it('... should return true for an arrowhead reaching into the view from a target outside it', () => {
                 // Target t with radius 9 and an arrow length of 6: the arrowhead reaches 15 to the right
                 const edge = createEdge({ x: -100, y: 50 }, undefined, { x: -12, y: 50 });
                 const isInView = isArrowInView(edge, squareViewBounds);
@@ -310,7 +310,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for an arrowhead entirely outside the view', () => {
+            it('... should return false for an arrowhead entirely outside the view', () => {
                 const edge = createEdge({ x: -100, y: 50 }, undefined, { x: -20, y: 50 });
                 const isInView = isArrowInView(edge, squareViewBounds);
 
@@ -323,7 +323,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isBoxInView).toBeDefined();
             });
 
-            it('... should hold true for a box overlapping or touching the view', () => {
+            it('... should return true for a box overlapping or touching the view', () => {
                 const isOverlapping = isBoxInView(-10, -10, 10, 10, squareViewBounds);
                 const isTouching = isBoxInView(-10, 40, 0, 60, squareViewBounds);
 
@@ -331,13 +331,13 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expectToBe(isTouching, true);
             });
 
-            it('... should hold false for a box outside the view', () => {
+            it('... should return false for a box outside the view', () => {
                 const isInView = isBoxInView(101, 40, 120, 60, squareViewBounds);
 
                 expectToBe(isInView, false);
             });
 
-            it('... should hold false for a box without position', () => {
+            it('... should return false for a box without position', () => {
                 const isInView = isBoxInView(NaN, NaN, NaN, NaN, squareViewBounds);
 
                 expectToBe(isInView, false);
@@ -349,28 +349,28 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isEdgeInView).toBeDefined();
             });
 
-            it('... should hold true for an edge crossing the view with both nodes outside', () => {
+            it('... should return true for an edge crossing the view with both nodes outside', () => {
                 const edge = createEdge({ x: -10, y: 50 }, undefined, { x: 110, y: 50 });
                 const isInView = isEdgeInView(edge, squareViewBounds);
 
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for an edge entirely outside the view', () => {
+            it('... should return false for an edge entirely outside the view', () => {
                 const edge = createEdge({ x: -50, y: -50 }, undefined, { x: -10, y: -10 });
                 const isInView = isEdgeInView(edge, squareViewBounds);
 
                 expectToBe(isInView, false);
             });
 
-            it('... should hold true for the loop of a self edge reaching into the view from a node outside it', () => {
+            it('... should return true for the loop of a self edge reaching into the view from a node outside it', () => {
                 const edge = createSelfEdge({ x: -40, y: 50 }, {});
                 const isInView = isEdgeInView(edge, squareViewBounds);
 
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for an edge without position', () => {
+            it('... should return false for an edge without position', () => {
                 const edge = createEdge({}, undefined, {});
                 const isInView = isEdgeInView(edge, squareViewBounds);
 
@@ -383,7 +383,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isEdgeLabelInView).toBeDefined();
             });
 
-            it('... should hold true for an edge label reaching into the view from a position outside it', () => {
+            it('... should return true for an edge label reaching into the view from a position outside it', () => {
                 // Label `p` with font size 13: an estimated width of 1 * 13 * 0.7 = 9.1
                 const edgeLabel = { edge: createEdge({}, undefined, {}), position: { x: -5, y: 50 } };
                 const isInView = isEdgeLabelInView(edgeLabel, squareViewBounds);
@@ -391,7 +391,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for an edge label entirely outside the view', () => {
+            it('... should return false for an edge label entirely outside the view', () => {
                 const edgeLabel = { edge: createEdge({}, undefined, {}), position: { x: -10, y: 50 } };
                 const isInView = isEdgeLabelInView(edgeLabel, squareViewBounds);
 
@@ -435,20 +435,20 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isLabelInView).toBeDefined();
             });
 
-            it('... should hold true for a label reaching into the view from a start outside it', () => {
+            it('... should return true for a label reaching into the view from a start outside it', () => {
                 // An estimated width of 5 * 10 * LABEL_CHAR_WIDTH (0.7) = 35
                 const isInView = isLabelInView(-20, 50, 'abcde', 10, squareViewBounds);
 
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for a label ending before the view', () => {
+            it('... should return false for a label ending before the view', () => {
                 const isInView = isLabelInView(-40, 50, 'abcde', 10, squareViewBounds);
 
                 expectToBe(isInView, false);
             });
 
-            it('... should hold true for a longer label from the same start reaching into the view', () => {
+            it('... should return true for a longer label from the same start reaching into the view', () => {
                 const isInView = isLabelInView(-40, 50, 'abcdefghij', 10, squareViewBounds);
 
                 expectToBe(isInView, true);
@@ -460,7 +460,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isNodeInView).toBeDefined();
             });
 
-            it('... should hold true for a node whose circle reaches into the view from a center outside it', () => {
+            it('... should return true for a node whose circle reaches into the view from a center outside it', () => {
                 // Radius 9
                 const node = createVisibleNode('s', { x: -5, y: 50 });
                 const isInView = isNodeInView(node, squareViewBounds);
@@ -468,14 +468,14 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for a node entirely outside the view', () => {
+            it('... should return false for a node entirely outside the view', () => {
                 const node = createVisibleNode('s', { x: -10, y: 50 });
                 const isInView = isNodeInView(node, squareViewBounds);
 
                 expectToBe(isInView, false);
             });
 
-            it('... should hold false for a node without position', () => {
+            it('... should return false for a node without position', () => {
                 const node = createVisibleNode('s', {});
                 const isInView = isNodeInView(node, squareViewBounds);
 
@@ -488,7 +488,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isNodeLabelInView).toBeDefined();
             });
 
-            it('... should hold true for the label of a node outside the view reaching into it', () => {
+            it('... should return true for the label of a node outside the view reaching into it', () => {
                 // Node outside (circle up to -21), label `abcde` from -18 with an estimated width of 5 * 15 * 0.7 = 52.5
                 const node = createVisibleNode('abcde', { x: -30, y: 50 });
                 const isInView = isNodeLabelInView(node, squareViewBounds);
@@ -496,7 +496,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for the label of a node ending before the view', () => {
+            it('... should return false for the label of a node ending before the view', () => {
                 const node = createVisibleNode('abcde', { x: -80, y: 50 });
                 const isInView = isNodeLabelInView(node, squareViewBounds);
 
@@ -509,13 +509,13 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(isSquareInView).toBeDefined();
             });
 
-            it('... should hold true for a square reaching into the view from a center outside it', () => {
+            it('... should return true for a square reaching into the view from a center outside it', () => {
                 const isInView = isSquareInView(-5, 50, 10, squareViewBounds);
 
                 expectToBe(isInView, true);
             });
 
-            it('... should hold false for a square entirely outside the view', () => {
+            it('... should return false for a square entirely outside the view', () => {
                 const isInView = isSquareInView(-15, 50, 10, squareViewBounds);
 
                 expectToBe(isInView, false);
@@ -527,19 +527,19 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(minCircleRadius).toBeDefined();
             });
 
-            it('... should hold 0 for a small graph (only circles)', () => {
+            it('... should return 0 for a small graph (only circles)', () => {
                 const circleRadius = minCircleRadius(FORCE_GRAPH_LARGE_NODE_COUNT - 1, 0.3);
 
                 expectToBe(circleRadius, 0);
             });
 
-            it('... should hold the minimum screen radius in graph units for a large graph', () => {
+            it('... should return the minimum screen radius in graph units for a large graph', () => {
                 const circleRadius = minCircleRadius(FORCE_GRAPH_LARGE_NODE_COUNT, 0.3);
 
                 expectToBe(circleRadius, FORCE_GRAPH_CANVAS_LIMITS.MIN_NODE_CIRCLE_SCREEN_RADIUS / 0.3);
             });
 
-            it('... should hold a larger minimum radius for a large graph at a smaller zoom', () => {
+            it('... should return a larger minimum radius for a large graph at a smaller zoom', () => {
                 const zoomedInRadius = minCircleRadius(FORCE_GRAPH_LARGE_NODE_COUNT, 0.3);
                 const zoomedOutRadius = minCircleRadius(FORCE_GRAPH_LARGE_NODE_COUNT, 0.1);
 
@@ -552,7 +552,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(toCanvasBounds).toBeDefined();
             });
 
-            it('... should hold the canvas bounds of given bounds in graph coordinates', () => {
+            it('... should return the canvas bounds of given bounds in graph coordinates', () => {
                 const zoomTransform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);
                 const bounds = { min: { x: -100, y: -50 }, max: { x: 100, y: 50 } };
                 const canvasBounds = toCanvasBounds(bounds, view());
@@ -568,7 +568,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(toCanvasPoint).toBeDefined();
             });
 
-            it('... should hold the canvas coordinates of a given point in graph coordinates', () => {
+            it('... should return the canvas coordinates of a given point in graph coordinates', () => {
                 const zoomTransform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);
                 const originPoint = toCanvasPoint({ x: 0, y: 0 }, view());
                 const zoomedPoint = toCanvasPoint({ x: 100, y: 0 }, view(zoomTransform));
@@ -583,7 +583,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(toGraphPoint).toBeDefined();
             });
 
-            it('... should hold the graph coordinates of a given point of the canvas', () => {
+            it('... should return the graph coordinates of a given point of the canvas', () => {
                 const zoomTransform = D3_ZOOM.zoomIdentity.translate(10, 20).scale(2);
                 const centerPoint = toGraphPoint({ x: 200, y: 100 }, view());
                 const zoomedPoint = toGraphPoint({ x: 610, y: 220 }, view(zoomTransform));
@@ -598,7 +598,7 @@ describe('ForceGraphCanvasUtils (DONE)', () => {
                 expect(toViewBounds).toBeDefined();
             });
 
-            it('... should hold the area of the canvas in view in graph coordinates', () => {
+            it('... should return the area of the canvas in view in graph coordinates', () => {
                 const viewBounds = toViewBounds(view());
                 const zoomedViewBounds = toViewBounds(view(D3_ZOOM.zoomIdentity.translate(10, 20).scale(2)));
 
