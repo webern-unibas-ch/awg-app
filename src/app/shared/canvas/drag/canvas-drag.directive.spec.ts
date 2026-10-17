@@ -167,6 +167,21 @@ describe('CanvasDragDirective (DONE)', () => {
 
                     expect(gesture).toBeUndefined();
                 });
+
+                it('... should hold undefined while another drag is running (one drag at a time)', () => {
+                    canvasEl.dispatchEvent(mouseEvent('mousedown', 10, 20));
+                    const gesture = directive['_findGesture']({ x: 10, y: 20 } as never);
+                    window.dispatchEvent(mouseEvent('mouseup', 10, 20));
+
+                    expect(gesture).toBeUndefined();
+                });
+
+                it('... should wrap the found subject again after the end of a gesture', () => {
+                    click([10, 20]);
+                    const gesture = directive['_findGesture']({ x: 10, y: 20 } as never);
+
+                    expectToEqual(gesture, { subject: 'a', isMoved: false });
+                });
             });
         });
     });

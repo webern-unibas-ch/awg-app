@@ -447,8 +447,9 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     simulation.pin(0, pinPoint);
                     scheduler.runStep();
                     const { positions } = results[results.length - 1];
+                    const pinnedNodePosition = [positions[0], positions[1]];
 
-                    expectToEqual([positions[0], positions[1]], [pinPoint.x, pinPoint.y]);
+                    expectToEqual(pinnedNodePosition, [pinPoint.x, pinPoint.y]);
                     expect(scheduler.pendingStep).toBeDefined();
                 });
 
