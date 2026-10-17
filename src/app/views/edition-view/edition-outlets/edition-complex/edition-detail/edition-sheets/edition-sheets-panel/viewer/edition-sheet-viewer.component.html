@@ -1,7 +1,7 @@
 <div class="awg-edition-sheet-viewer">
     <div class="awg-edition-sheet-viewer-icon-bar">
-        <awg-slider-zoom
-            class="awg-edition-sheet-viewer-slider-zoom float-start mx-2r my-2"
+        <awg-zoom-slider
+            class="awg-edition-sheet-viewer-zoom-slider float-start mx-2r my-2"
             [zoomConfig]="zoomConfig"
             [(zoomValue)]="zoomValue"
             (resetRequest)="sheetSvg.resetZoom()" />

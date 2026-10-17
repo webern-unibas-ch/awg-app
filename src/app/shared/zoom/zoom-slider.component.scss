@@ -5,7 +5,7 @@
 }
 
 /* slider */
-.input-group.awg-slider-zoom-container {
+.input-group.awg-zoom-slider-container {
     flex-wrap: nowrap;
     width: auto;
 
@@ -14,7 +14,7 @@
     }
 }
 
-.input-group-text.awg-slider-zoom-label {
+.input-group-text.awg-zoom-slider-label {
     min-width: 50px;
     color: $info;
 }
@@ -41,7 +41,7 @@
     cursor: pointer;
 }
 
-input[type='range'].awg-slider-zoom {
+input[type='range'].awg-zoom-slider {
     width: 100%;
     background-color: transparent;
     -webkit-appearance: none;

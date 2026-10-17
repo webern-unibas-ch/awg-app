@@ -5,7 +5,7 @@
 
 import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 
-import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
+import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
@@ -19,7 +19,7 @@ import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
  *
  * It visualizes an RDF graph using a D3 force simulation
  * (rendered by the {@link ForceGraphSvgComponent})
- * with an icon bar for zoom ({@link SliderZoomComponent})
+ * with an icon bar for zoom ({@link ZoomSliderComponent})
  * and limit ({@link ForceGraphLimitComponent}).
  */
 @Component({
@@ -27,7 +27,7 @@ import { ForceGraphSvgComponent } from './svg/force-graph-svg.component';
     templateUrl: './force-graph.component.html',
     styleUrls: ['./force-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ForceGraphLimitComponent, ForceGraphSvgComponent, SliderZoomComponent],
+    imports: [ForceGraphLimitComponent, ForceGraphSvgComponent, ZoomSliderComponent],
 })
 export class ForceGraphComponent {
     /**

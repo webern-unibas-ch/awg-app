@@ -3,19 +3,26 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 
-import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { faMaximize, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { ZoomConfig } from './zoom.model';
 
-import { SliderZoomComponent } from './slider-zoom.component';
+import { ZoomSliderComponent } from './zoom-slider.component';
 
-describe('SliderZoomComponent (DONE)', () => {
-    let component: SliderZoomComponent;
-    let fixture: ComponentFixture<SliderZoomComponent>;
+describe('ZoomSliderComponent (DONE)', () => {
+    let component: ZoomSliderComponent;
+    let fixture: ComponentFixture<ZoomSliderComponent>;
     let compDe: DebugElement;
 
     let zoomValueChangeSpy: Mock<(zoomValue: number) => void>;
@@ -24,22 +31,22 @@ describe('SliderZoomComponent (DONE)', () => {
     let expectedZoomConfig: ZoomConfig;
 
     const getContainerDes = () =>
-        getAndExpectDebugElementByCss(compDe, 'div.input-group.input-group-sm.awg-slider-zoom-container', 1, 1);
+        getAndExpectDebugElementByCss(compDe, 'div.input-group.input-group-sm.awg-zoom-slider-container', 1, 1);
     const getLabelEl = (): HTMLSpanElement =>
         getAndExpectDebugElementByCss(getContainerDes()[0], 'span.input-group-text', 1, 1)[0].nativeElement;
     const getRangeEl = (): HTMLInputElement =>
-        getAndExpectDebugElementByCss(getContainerDes()[0], 'input[type="range"].awg-slider-zoom', 1, 1)[0]
+        getAndExpectDebugElementByCss(getContainerDes()[0], 'input[type="range"].awg-zoom-slider', 1, 1)[0]
             .nativeElement;
     const getButtonDes = () => getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 1, 1);
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [SliderZoomComponent],
+            imports: [ZoomSliderComponent],
         }).compileComponents();
     });
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SliderZoomComponent);
+        fixture = TestBed.createComponent(ZoomSliderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
@@ -74,8 +81,15 @@ describe('SliderZoomComponent (DONE)', () => {
             expect(() => component.zoomValue()).toThrow();
         });
 
-        it('... should have `faCompressArrowsAlt` icon', () => {
-            expectToEqual(component.faCompressArrowsAlt, faCompressArrowsAlt);
+        it('... should have input signal `hasFitButton` to hold false by default', () => {
+            expectToBe(isSignal(component.hasFitButton), true);
+
+            expectToBe(component.hasFitButton(), false);
+        });
+
+        it('... should have `faMaximize` and `faRotateLeft` icons', () => {
+            expectToEqual(component.faRotateLeft, faRotateLeft);
+            expectToEqual(component.faMaximize, faMaximize);
         });
 
         describe('VIEW', () => {
@@ -164,6 +178,49 @@ describe('SliderZoomComponent (DONE)', () => {
                     await clickAndAwaitChanges(getButtonDes()[0], fixture);
 
                     expectSpyCall(resetRequestSpy, 1);
+                });
+            });
+
+            describe('... input `hasFitButton`', () => {
+                const getFitButtonDes = () =>
+                    getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn[title="Einpassen"]', 1, 1);
+
+                beforeEach(async () => {
+                    fixture.componentRef.setInput('hasFitButton', true);
+                    await detectChangesOnPush(fixture);
+                });
+
+                it('... should have input signal `hasFitButton` to hold the provided flag', () => {
+                    expectToBe(component.hasFitButton(), true);
+                });
+
+                it('... should contain a fit button after the reset button', () => {
+                    const buttonEls = getAndExpectDebugElementByCss(getContainerDes()[0], 'button.btn', 2, 2).map(
+                        buttonDe => buttonDe.nativeElement as HTMLButtonElement
+                    );
+
+                    expectToBe(buttonEls[0].title, 'Zoom zurücksetzen');
+                    expectToBe(buttonEls[1].title, 'Einpassen');
+                });
+
+                it('... should contain a fit button with type, aria-label and the faMaximize icon', () => {
+                    const buttonEl: HTMLButtonElement = getFitButtonDes()[0].nativeElement;
+                    const iconDes = getAndExpectDebugElementByDirective(getFitButtonDes()[0], FaIconComponent, 1, 1);
+                    const faIconIns = iconDes[0].injector.get(FaIconComponent);
+
+                    expectToBe(buttonEl.type, 'button');
+                    expectToBe(buttonEl.getAttribute('aria-label'), 'Einpassen');
+                    expectToEqual(faIconIns.icon(), faMaximize);
+                });
+
+                it('... should emit `fitRequest` on click on the fit button', async () => {
+                    const fitRequestSpy = vi.fn();
+                    component.fitRequest.subscribe(fitRequestSpy);
+
+                    await clickAndAwaitChanges(getFitButtonDes()[0], fixture);
+
+                    expectSpyCall(fitRequestSpy, 1);
+                    expectSpyCall(resetRequestSpy, 0);
                 });
             });
         });

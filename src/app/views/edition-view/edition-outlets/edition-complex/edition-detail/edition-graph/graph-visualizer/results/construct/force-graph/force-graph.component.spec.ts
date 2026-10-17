@@ -14,7 +14,7 @@ import {
 } from '@testing/expect-helper';
 import { patchSvgSizeForD3Zoom, stubResizeObserver } from '@testing/svg-drawing-helper';
 
-import { SliderZoomComponent } from '@awg-shared/zoom/slider-zoom.component';
+import { ZoomSliderComponent } from '@awg-shared/zoom/zoom-slider.component';
 import { ZoomConfig } from '@awg-shared/zoom/zoom.model';
 
 import { ResultGraph, ResultGraphNode } from '@awg-graph/graph-visualizer/models/result-graph.model';
@@ -141,10 +141,10 @@ describe('ForceGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(containerDes[0], ForceGraphSvgComponent, 1, 1);
             });
 
-            it('... should contain one SliderZoomComponent and one ForceGraphLimitComponent (hollow) in the icon bar', () => {
+            it('... should contain one ZoomSliderComponent and one ForceGraphLimitComponent (hollow) in the icon bar', () => {
                 const iconBarDes = getAndExpectDebugElementByCss(compDe, 'div.awg-force-graph-icon-bar', 1, 1);
 
-                getAndExpectDebugElementByDirective(iconBarDes[0], SliderZoomComponent, 1, 1);
+                getAndExpectDebugElementByDirective(iconBarDes[0], ZoomSliderComponent, 1, 1);
                 getAndExpectDebugElementByDirective(iconBarDes[0], ForceGraphLimitComponent, 1, 1);
             });
         });
@@ -182,17 +182,17 @@ describe('ForceGraphComponent (DONE)', () => {
                 expectToBe(containerDes[0].nativeElement.style.height, `${expectedHeight}px`);
             });
 
-            describe('... SliderZoomComponent', () => {
+            describe('... ZoomSliderComponent', () => {
                 it('... should pass down `zoomConfig` and `zoomValue`', () => {
-                    const sliderZoomDes = getAndExpectDebugElementByDirective(compDe, SliderZoomComponent, 1, 1);
-                    const sliderZoomCmp = sliderZoomDes[0].injector.get(SliderZoomComponent);
+                    const zoomSliderDes = getAndExpectDebugElementByDirective(compDe, ZoomSliderComponent, 1, 1);
+                    const zoomSliderCmp = zoomSliderDes[0].injector.get(ZoomSliderComponent);
 
-                    expectToEqual(sliderZoomCmp.zoomConfig(), expectedZoomConfig);
-                    expectToBe(sliderZoomCmp.zoomValue(), expectedZoomConfig.initial);
+                    expectToEqual(zoomSliderCmp.zoomConfig(), expectedZoomConfig);
+                    expectToBe(zoomSliderCmp.zoomValue(), expectedZoomConfig.initial);
                 });
 
-                it('... should sync `zoomValue` on value change of the SliderZoomComponent', () => {
-                    const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom input[type="range"]', 1, 1);
+                it('... should sync `zoomValue` on value change of the ZoomSliderComponent', () => {
+                    const rangeDes = getAndExpectDebugElementByCss(compDe, 'awg-zoom-slider input[type="range"]', 1, 1);
                     const rangeEl: HTMLInputElement = rangeDes[0].nativeElement;
 
                     rangeEl.value = '2.5';
@@ -203,7 +203,7 @@ describe('ForceGraphComponent (DONE)', () => {
 
                 it('... should reset the zoom of the ForceGraphSvgComponent on reset request', async () => {
                     const resetZoomSpy = vi.spyOn(getGraphSvgCmp(), 'resetZoom').mockImplementation(() => undefined);
-                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'awg-slider-zoom button', 1, 1);
+                    const buttonDes = getAndExpectDebugElementByCss(compDe, 'awg-zoom-slider button', 1, 1);
 
                     await clickAndAwaitChanges(buttonDes[0], fixture);
 
