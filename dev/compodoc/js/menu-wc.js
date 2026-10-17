@@ -102,6 +102,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ButtonScrollToTopComponent.html" data-type="entity-link" >ButtonScrollToTopComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/CanvasTooltipComponent.html" data-type="entity-link" >CanvasTooltipComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/CodeMirrorComponent.html" data-type="entity-link" >CodeMirrorComponent</a>
                             </li>
                             <li class="link">
@@ -490,6 +493,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="directives/AbbrDirective.html" data-type="entity-link" >AbbrDirective</a>
                                 </li>
                                 <li class="link">
+                                    <a href="directives/CanvasDragDirective.html" data-type="entity-link" >CanvasDragDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CanvasViewportDirective.html" data-type="entity-link" >CanvasViewportDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/CanvasZoomDirective.html" data-type="entity-link" >CanvasZoomDirective</a>
+                                </li>
+                                <li class="link">
                                     <a href="directives/ClickDirective.html" data-type="entity-link" >ClickDirective</a>
                                 </li>
                                 <li class="link">
@@ -748,6 +760,27 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/CanvasBounds.html" data-type="entity-link" >CanvasBounds</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasDragGesture.html" data-type="entity-link" >CanvasDragGesture&lt;T&gt;</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasDragMove.html" data-type="entity-link" >CanvasDragMove&lt;T&gt;</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasFrameScheduler.html" data-type="entity-link" >CanvasFrameScheduler</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasPoint.html" data-type="entity-link" >CanvasPoint</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasSize.html" data-type="entity-link" >CanvasSize</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/CanvasViewport.html" data-type="entity-link" >CanvasViewport</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/D3Selection.html" data-type="entity-link" >D3Selection</a>
                             </li>

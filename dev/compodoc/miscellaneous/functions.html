@@ -195,10 +195,16 @@
                             <a href="#createExpandAllState" title="src/app/shared/button-expand-all/button-expand-all.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>createExpandAllState</b>&nbsp;&nbsp;&nbsp;(src/.../button-expand-all.utils.ts)</span></a>
                         </li>
                         <li>
+                            <a href="#createFrameScheduler" title="src/app/shared/canvas/canvas.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>createFrameScheduler</b>&nbsp;&nbsp;&nbsp;(src/.../canvas.utils.ts)</span></a>
+                        </li>
+                        <li>
                             <a href="#createMaxHeightModifier" title="src/app/shared/utils/popper-utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>createMaxHeightModifier</b>&nbsp;&nbsp;&nbsp;(src/.../popper-utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#emptyResult" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/utils/graph-query.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>emptyResult</b>&nbsp;&nbsp;&nbsp;(src/.../graph-query.utils.ts)</span></a>
+                        </li>
+                        <li>
+                            <a href="#eventToCanvasPoint" title="src/app/shared/canvas/canvas.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>eventToCanvasPoint</b>&nbsp;&nbsp;&nbsp;(src/.../canvas.utils.ts)</span></a>
                         </li>
                         <li>
                             <a href="#extractLabels" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/results/construct/result-graph.utils.ts" class="reference-link "><span class="reference-badge reference-badge--function" aria-hidden="true">F</span><span class="reference-link-label"><b>extractLabels</b>&nbsp;&nbsp;&nbsp;(src/.../result-graph.utils.ts)</span></a>
@@ -4099,6 +4105,181 @@ Overrides of removed items are pruned on the next <code>setOpen</code> call or r
                         </div>
                             <div class="io-description">
                                 <p>The created expand all state.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/canvas/canvas.utils.ts</h3>
+    <section data-compodoc="block-methods">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createFrameScheduler"></a>
+                    <span class="name">
+                        <span ><b>createFrameScheduler</b></span>
+                        <a href="#createFrameScheduler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>createFrameScheduler(callback, destroyRef: <a href="https://angular.dev/api/core/DestroyRef" target="_blank">DestroyRef</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: createFrameScheduler.</p>
+<p>It creates a scheduler that runs the given callback at most once per animation frame
+and cancels a requested run when the given DestroyRef is destroyed.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>callback</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given callback (e.g., a drawing of the canvas).</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>destroyRef</td>
+                                            <td>
+                                                            <code><a href="https://angular.dev/api/core/DestroyRef" target="_blank" >DestroyRef</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given DestroyRef of the owner of the scheduler.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/CanvasFrameScheduler.html" target="_self" >CanvasFrameScheduler</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The frame scheduler.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventToCanvasPoint"></a>
+                    <span class="name">
+                        <span ><b>eventToCanvasPoint</b></span>
+                        <a href="#eventToCanvasPoint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>eventToCanvasPoint(event, canvas: HTMLCanvasElement)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Utils method: eventToCanvasPoint.</p>
+<p>It gets the point of the given canvas of a given mouse or touch event (its first touch),
+measured like d3-drag from the canvas content without border (so that clicks and drags match).</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given event.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>canvas</td>
+                                            <td>
+                                                        <code>HTMLCanvasElement</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given canvas.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>CanvasPoint | undefined</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The point of the canvas, or undefined for a touch event without touches.</p>
 
                             </div>
                 </td>
