@@ -37,10 +37,8 @@ function _createSimulationWorker(): Worker | undefined {
 /**
  * Private function: _startWorkerSimulation.
  *
- * It starts the simulation in the given web worker and passes its progress to the given callback.
- * If the worker fails (e.g., its script cannot be loaded or a step fails),
- * it terminates the worker and calls the given failure callback.
- * The returned simulation posts pin and release to the worker; disposing terminates it.
+ * It starts the simulation in the given web worker and passes on its progress; pin and release are posted to it.
+ * A failing worker (e.g., script not loaded, failed step) is terminated, like on dispose, and reported.
  *
  * @param {Worker} worker The given web worker.
  * @param {ForceGraphSimulationInput} input The given simulation input.
@@ -111,10 +109,8 @@ export class ForceGraphSimulationService {
     /**
      * Public method: simulate.
      *
-     * It runs the force simulation of the given force graph data, steered by the given pin and release commands.
-     * It emits the positions of every step and never completes (a later pin restarts a settled simulation);
-     * unsubscribing stops it. A failing worker hands the simulation over to the main thread;
-     * a failing simulation on the main thread errors.
+     * It runs the steerable force simulation of the given data and emits every step's positions, endlessly
+     * (until unsubscribed). A failing worker falls back to the main thread; only a failure there errors.
      *
      * @param {ForceGraphData} graphData The given force graph data.
      * @param {Observable<ForceGraphSimulationCommand>} commands$ The given pin and release commands.

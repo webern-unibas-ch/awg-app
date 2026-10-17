@@ -1,10 +1,8 @@
 /*
  * The web worker of the force graph simulation.
  *
- * It runs the simulation of a posted simulation input off the main thread,
- * steers it with posted pin and release messages
- * and posts the positions of each step back (transferring their buffers).
- * A failing step is reported as error event of the worker.
+ * It runs the simulation of a posted input off the main thread, steered by posted pin and release messages,
+ * and posts each step's positions back (transferred). A failing step is reported as error event.
  */
 
 import type {
@@ -24,9 +22,8 @@ let _simulation: ForceGraphSimulation | undefined;
 /**
  * Private function: _onSimulationMessage.
  *
- * It starts the simulation of a posted `start` message, posting the progress of each step
- * back to the main thread and transferring the buffer of its positions (no copy).
- * It forwards posted `pin` and `release` messages to the simulation.
+ * It starts the simulation on `start` (posting each step's progress back, positions transferred)
+ * and forwards `pin` and `release` to it.
  *
  * @param {MessageEvent<ForceGraphSimulationMessage>} event The given message event with the simulation message.
  * @returns {void} Steers the simulation.

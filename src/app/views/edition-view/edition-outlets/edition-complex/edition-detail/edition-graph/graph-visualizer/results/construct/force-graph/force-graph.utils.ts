@@ -189,10 +189,8 @@ export function restorePositions(nodes: ForceGraphNode[], previousNodes: readonl
 /**
  * Utils method: toForceGraphData.
  *
- * It converts the given result graph into force graph data (a node per node, an edge per edge, no positions yet);
- * self edges and repeated edges get an invisible middle node that spaces them and their labels out.
- * The middle nodes are keyed by their node pair and edge number, so that restored positions
- * only match middle nodes between the same nodes.
+ * It converts the given result graph into unpositioned force graph data. Self and repeated edges get
+ * an invisible middle node spacing them out (keyed by node pair, so restored positions match).
  *
  * @param {ResultGraph} graph The given result graph.
  * @returns {ForceGraphData} The force graph data.
