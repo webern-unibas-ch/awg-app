@@ -623,6 +623,20 @@ describe('ForceGraphSimulationUtils (DONE)', () => {
                     expectToBe(results.length, 0);
                 });
 
+                it('... should not schedule a next step after a dispose during the progress', () => {
+                    const scheduler = new FakeScheduler();
+                    const simulation = startSimulation(
+                        createSimulationInput(10),
+                        () => simulation.dispose(),
+                        () => undefined,
+                        scheduler
+                    );
+
+                    scheduler.runStep();
+
+                    expect(scheduler.pendingStep).toBeUndefined();
+                });
+
                 it('... should keep a disposed simulation from waking up on pin', () => {
                     const scheduler = new FakeScheduler();
                     const { simulation } = startSimulationWith(createSimulationInput(10), scheduler);

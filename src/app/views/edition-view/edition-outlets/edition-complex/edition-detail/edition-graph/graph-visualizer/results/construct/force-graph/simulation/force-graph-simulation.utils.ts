@@ -153,7 +153,8 @@ function _findD3Node(d3Nodes: ForceGraphD3SimulationNode[], index: number): Forc
 /**
  * Private utils method: _fixNode.
  *
- * It fixes the node at the given index (if valid) at once at the given point, or frees it without a point.
+ * It fixes the node at the given index (if valid) at once at the given point,
+ * or frees it without a point.
  *
  * @param {ForceGraphD3SimulationNode[]} d3Nodes The given simulation nodes.
  * @param {number} index The given index of the node.
@@ -302,6 +303,7 @@ export function startSimulation(
     const d3Simulation = _createD3Simulation(d3Nodes, d3Links, forces, alphaDecay, isRelayout);
 
     let isInitialLayout = true;
+    let isStopped = false;
     let cancelStep: (() => void) | undefined;
 
     // The steps run in timer callbacks: their errors are reported (they would be uncaught otherwise)
@@ -323,36 +325,46 @@ export function startSimulation(
             // The initial layout ends once settled (or on the first pin)
             isInitialLayout &&= !isSettled;
 
-            // Once settled, the simulation rests until the next pin
-            cancelStep = isSettled ? undefined : scheduler.schedule(step, delay);
+            // Once settled, the simulation rests until the next pin (a stop during the progress ends it)
+            cancelStep = isSettled || isStopped ? undefined : scheduler.schedule(step, delay);
         } catch (error) {
-            // A failed simulation stops (the stale cancel of the step keeps a pin from waking it up)
+            // A failed simulation stops (no further step is scheduled)
+            isStopped = true;
             onError(error);
         }
     };
 
+    const pin = (index: number, point: ForceGraphPoint): void => {
+        if (isStopped) {
+            return;
+        }
+        const isPinned = _fixNode(d3Nodes, index, point);
+        if (!isPinned) {
+            return;
+        }
+        d3Simulation.alphaTarget(ALPHA_TARGET_DRAG).alphaDecay(alphaDecay);
+        isInitialLayout = false;
+        // Wakes up a resting simulation
+        cancelStep ??= scheduler.schedule(step, PROGRESS_INTERVAL_MS);
+    };
+
+    const release = (index: number): void => {
+        const isReleased = _fixNode(d3Nodes, index);
+        if (!isReleased) {
+            return;
+        }
+        d3Simulation.alphaTarget(0).alphaDecay(releaseAlphaDecay);
+    };
+
+    // A stopped simulation (disposed or failed) schedules no further step and is not woken up by a pin
+    const stop = (): void => {
+        isStopped = true;
+        cancelStep?.();
+    };
+
     cancelStep = scheduler.schedule(step, 0);
 
-    return {
-        pin: (index, point) => {
-            const isPinned = _fixNode(d3Nodes, index, point);
-            if (!isPinned) {
-                return;
-            }
-            d3Simulation.alphaTarget(ALPHA_TARGET_DRAG).alphaDecay(alphaDecay);
-            isInitialLayout = false;
-            // Wakes up a resting simulation
-            cancelStep ??= scheduler.schedule(step, PROGRESS_INTERVAL_MS);
-        },
-        release: index => {
-            const isReleased = _fixNode(d3Nodes, index);
-            if (!isReleased) {
-                return;
-            }
-            d3Simulation.alphaTarget(0).alphaDecay(releaseAlphaDecay);
-        },
-        dispose: () => cancelStep?.(),
-    };
+    return { pin, release, dispose: stop };
 }
 
 /**
