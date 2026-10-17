@@ -1144,7 +1144,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/template@npm:^1.2.1, @conventional-changelog/template@npm:^1.4.0":
+"@conventional-changelog/template@npm:^1.4.0":
   version: 1.4.0
   resolution: "@conventional-changelog/template@npm:1.4.0"
   checksum: 10c0/052ac38b43f67b2572d101ced1dee2691a2ac3828cbc1041738cf1646b956ff0fb3e87258ec59f46eb2c3fcc9a68bb89f90b8dcb1e354880f2c71d8f5ef3a021
@@ -4314,7 +4314,7 @@ __metadata:
     angular-eslint: "npm:^22.6.0"
     bootstrap: "npm:^5.3.8"
     codemirror: "npm:^6.0.2"
-    commit-and-tag-version: "npm:^13.2.1"
+    commit-and-tag-version: "npm:^13.2.2"
     conventional-recommended-bump: "npm:^12.1.0"
     d3-drag: "npm:^3.0.0"
     d3-fetch: "npm:^3.0.1"
@@ -4875,29 +4875,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commit-and-tag-version@npm:^13.2.1":
-  version: 13.2.1
-  resolution: "commit-and-tag-version@npm:13.2.1"
+"commit-and-tag-version@npm:^13.2.2":
+  version: 13.2.2
+  resolution: "commit-and-tag-version@npm:13.2.2"
   dependencies:
     "@conventional-changelog/git-client": "npm:3.1.0"
     "@conventional-changelog/template": "npm:1.2.1"
     chalk: "npm:^6.0.0"
     conventional-changelog: "npm:8.1.0"
     conventional-changelog-config-spec: "npm:2.1.0"
-    conventional-changelog-conventionalcommits: "npm:10.2.1"
+    conventional-changelog-conventionalcommits: "npm:10.4.0"
     conventional-recommended-bump: "npm:12.1.0"
     detect-indent: "npm:^7.0.2"
     detect-newline: "npm:^3.1.0"
     dotgitignore: "npm:^2.1.0"
     fast-xml-parser: "npm:^5.10.1"
-    figures: "npm:^3.2.0"
+    figures: "npm:^6.1.0"
     find-up: "npm:^5.0.0"
     semver: "npm:^7.7.2"
     yaml: "npm:^2.9.0"
     yargs: "npm:^17.7.2"
   bin:
     commit-and-tag-version: bin/cli.js
-  checksum: 10c0/2421ba542bdbae368c862bcb0ac59294a920eb8d2576ab07b37834a077bcd4937c76913922953904ffd1797a75c5be5dae5147ceff23e2f22f8ee044fe4735b7
+  checksum: 10c0/32ecfc2667a9b535aea6f0c2172e22119c553405cb6e6e7341d4d52414f4da9e57fa5c839fa4e460d950838a661f5399e658d9a1d6c2200c8b9a12a7efa39cf8
   languageName: node
   linkType: hard
 
@@ -4945,12 +4945,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:10.2.1":
-  version: 10.2.1
-  resolution: "conventional-changelog-conventionalcommits@npm:10.2.1"
+"conventional-changelog-conventionalcommits@npm:10.4.0":
+  version: 10.4.0
+  resolution: "conventional-changelog-conventionalcommits@npm:10.4.0"
   dependencies:
-    "@conventional-changelog/template": "npm:^1.2.1"
-  checksum: 10c0/cb90f59908cba4d463258093b4a0e1d3ffe81234d032dbcbf857bfe6c8d959597b3a2c01fa69b45a4937f2059e43d9343d39636fc484ff89a624927c77cdf05d
+    "@conventional-changelog/template": "npm:^1.4.0"
+  checksum: 10c0/60d99d74e6fdba134fc4785c13f87df82b9cabd980b4390dc958a8abf75d6fe1fdad921f52fb75e02f01a376cfd194b9f506f1e7718041e522b5260b53273882
   languageName: node
   linkType: hard
 
@@ -5925,7 +5925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-string-regexp@npm:^1.0.2, escape-string-regexp@npm:^1.0.5":
+"escape-string-regexp@npm:^1.0.2":
   version: 1.0.5
   resolution: "escape-string-regexp@npm:1.0.5"
   checksum: 10c0/a968ad453dd0c2724e14a4f20e177aaf32bb384ab41b674a8454afe9a41c5e6fe8903323e0a1052f56289d04bd600f81278edf140b0fcc02f5cac98d0f5b5371
@@ -6372,12 +6372,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"figures@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "figures@npm:3.2.0"
+"figures@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "figures@npm:6.1.0"
   dependencies:
-    escape-string-regexp: "npm:^1.0.5"
-  checksum: 10c0/9c421646ede432829a50bc4e55c7a4eb4bcb7cc07b5bab2f471ef1ab9a344595bbebb6c5c21470093fbb730cd81bbca119624c40473a125293f656f49cb47629
+    is-unicode-supported: "npm:^2.0.0"
+  checksum: 10c0/9159df4264d62ef447a3931537de92f5012210cf5135c35c010df50a2169377581378149abfe1eb238bd6acbba1c0d547b1f18e0af6eee49e30363cedaffcfe4
   languageName: node
   linkType: hard
 
