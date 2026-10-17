@@ -9,7 +9,7 @@ import { CanvasDragEvent, CanvasDragGesture, CanvasDragMove, CanvasDragSubjectAc
  * The CanvasDrag directive.
  *
  * It binds a d3 drag behaviour to the host canvas and emits every move and the end of a drag.
- * Only one gesture at a time starting on a `dragSubject` is a drag (others are left, e.g., to a pan).
+ * Only gestures starting on a `dragSubject` are drags (others are left, e.g., to a pan), one touch at a time.
  */
 @Directive({
     selector: 'canvas[awgCanvasDrag]',
@@ -95,13 +95,14 @@ export class CanvasDragDirective<T> {
      * Private method: _findGesture.
      *
      * It finds the drag subject at the start point of a given gesture and wraps it (not moved yet).
-     * Without a subject, or while another drag is running, d3-drag ignores the gesture.
+     * Without a subject, or for a further touch while another drag is running, d3-drag ignores the gesture
+     * (a new mouse gesture replaces a stale one, e.g. after a mouseup outside the window).
      *
      * @param {CanvasDragEvent<T>} event The given d3 drag event (before the start).
      * @returns {CanvasDragGesture<T> | undefined} The wrapped drag subject (undefined if none is found).
      */
     private _findGesture(event: CanvasDragEvent<T>): CanvasDragGesture<T> | undefined {
-        if (this._activeGesture) {
+        if (this._activeGesture && event.identifier !== 'mouse') {
             return undefined;
         }
         const subject = this.dragSubject()({ x: event.x, y: event.y });

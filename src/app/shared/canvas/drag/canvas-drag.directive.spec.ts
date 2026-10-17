@@ -142,6 +142,18 @@ describe('CanvasDragDirective (DONE)', () => {
                 expectSpyCall(host.dragEndSpy, 0);
             });
 
+            it('... should replace a stale mouse gesture (mouseup lost) by a new one', () => {
+                host.dragSubject.set(point => (point.x < 50 ? 'a' : 'b'));
+                fixture.detectChanges();
+
+                // The mouseup of the first gesture never arrives (e.g. released outside the window)
+                canvasEl.dispatchEvent(mouseEvent('mousedown', 10, 20));
+                drag([60, 20], [70, 40]);
+
+                expectSpyCall(host.dragMoveSpy, 1, { subject: 'b', point: { x: 70, y: 40 } });
+                expectSpyCall(host.dragEndSpy, 1, 'b');
+            });
+
             it('... should ignore a gesture with a secondary button (d3 default)', () => {
                 drag([10, 20], [30, 40], 2);
 
@@ -168,12 +180,20 @@ describe('CanvasDragDirective (DONE)', () => {
                     expect(gesture).toBeUndefined();
                 });
 
-                it('... should hold undefined while another drag is running (one drag at a time)', () => {
+                it('... should hold undefined for a further touch while another drag is running', () => {
                     canvasEl.dispatchEvent(mouseEvent('mousedown', 10, 20));
-                    const gesture = directive['_findGesture']({ x: 10, y: 20 } as never);
+                    const gesture = directive['_findGesture']({ x: 10, y: 20, identifier: 1 } as never);
                     window.dispatchEvent(mouseEvent('mouseup', 10, 20));
 
                     expect(gesture).toBeUndefined();
+                });
+
+                it('... should wrap the found subject of a mouse gesture while another drag is running', () => {
+                    canvasEl.dispatchEvent(mouseEvent('mousedown', 10, 20));
+                    const gesture = directive['_findGesture']({ x: 10, y: 20, identifier: 'mouse' } as never);
+                    window.dispatchEvent(mouseEvent('mouseup', 10, 20));
+
+                    expectToEqual(gesture, { subject: 'a', isMoved: false });
                 });
 
                 it('... should wrap the found subject again after the end of a gesture', () => {
