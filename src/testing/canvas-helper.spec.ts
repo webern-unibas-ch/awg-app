@@ -97,8 +97,8 @@ describe('CanvasHelper (DONE)', () => {
             const mediaQueryList1 = window.matchMedia('(resolution: 1dppx)');
             const mediaQueryList2 = window.matchMedia('(resolution: 2dppx)');
 
-            expect(mockMediaQueryLists).toEqual([mediaQueryList1, mediaQueryList2]);
-            expect(mockMediaQueryLists[0]).toBe(mediaQueryList1);
+            expectToEqual<object[]>(mockMediaQueryLists, [mediaQueryList1, mediaQueryList2]);
+            expectToBe<object>(mockMediaQueryLists[0], mediaQueryList1);
         });
 
         it('... should call the added listeners on trigger', () => {

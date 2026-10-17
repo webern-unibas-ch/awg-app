@@ -139,7 +139,7 @@ describe('EditionStateHelper (DONE)', () => {
             const list = EditionStateHelper.getComplexesList();
 
             expect(list).toBeTruthy();
-            expect(typeof list).toBe('object');
+            expectToBe(typeof list, 'object');
             expect(Object.keys(list).length).toBeGreaterThan(0);
         });
 

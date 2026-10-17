@@ -79,7 +79,7 @@ describe('ModalService (DONE)', () => {
     });
 
     it('... should have signal `closeResult` to hold empty string initially', () => {
-        expect(isSignal(service.closeResult)).toBe(true);
+        expectToBe(isSignal(service.closeResult), true);
 
         expectToBe(service.closeResult(), '');
     });

@@ -378,9 +378,11 @@ describe('EditionSheetsUtils (DONE)', () => {
                 ['a missing', undefined],
                 ['an empty', {}],
             ])('... should return %s commentary as it is', (_label, commentary) => {
-                expect(filterCommentaryForOverlays(commentary as any, [createTestTkkOverlay('g1114')])).toEqual(
-                    commentary
-                );
+                const filteredCommentary = filterCommentaryForOverlays(commentary as any, [
+                    createTestTkkOverlay('g1114'),
+                ]);
+
+                expect(filteredCommentary).toEqual(commentary);
             });
 
             describe('... should return the preamble with an empty comments array if', () => {

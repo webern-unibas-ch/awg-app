@@ -524,8 +524,8 @@ describe('EditionSvgOverlayService (DONE)', () => {
 
             const rect = getTkkRect('tkk-1');
             expectToBe(rect?.getAttribute('tabindex'), '0');
-            expect(rect?.hasAttribute('aria-hidden')).toBe(false);
-            expect(rect?.hasAttribute('pointer-events')).toBe(false);
+            expectToBe(rect?.hasAttribute('aria-hidden'), false);
+            expectToBe(rect?.hasAttribute('pointer-events'), false);
         });
 
         it('... should color all parts of a multi-part tkk overlay (same data id) together', () => {

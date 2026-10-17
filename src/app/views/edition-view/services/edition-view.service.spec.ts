@@ -981,7 +981,7 @@ describe('EditionViewService (DONE)', () => {
 
                 const result = service['_parseViewFromUrl'](url);
 
-                expect(result).toBe('sheets');
+                expectToBe(result, 'sheets');
             });
 
             it('... should return the single segment path if the URL has only one segment', () => {

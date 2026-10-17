@@ -8,6 +8,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -115,7 +116,7 @@ describe('SourceDescContentSystemComponent (DONE)', () => {
         });
 
         it('... should have input signal `contentSystem` to hold the provided content system', () => {
-            expect(component.contentSystem()).toEqual(expectedContentSystem);
+            expectToEqual(component.contentSystem(), expectedContentSystem);
         });
 
         it('... should have input signal `isLastItem` to hold the provided value', () => {

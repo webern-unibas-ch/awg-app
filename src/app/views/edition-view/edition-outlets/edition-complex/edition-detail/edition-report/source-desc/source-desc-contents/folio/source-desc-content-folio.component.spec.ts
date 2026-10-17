@@ -48,7 +48,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
         it('... should have input signal `isPage` to hold the default value', () => {
             expectToBe(isSignal(component.isPage), true);
 
-            expect(component.isPage()).toBe(false);
+            expectToBe(component.isPage(), false);
         });
 
         it('... should throw when accessing computed signal `hasFolioSuffix` due to missing input', () => {
@@ -87,7 +87,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                     1
                 );
                 const folioTypeEl: HTMLSpanElement = folioTypeDes[0].nativeElement;
-                expect(folioTypeEl.textContent.trim()).toBe('');
+                expectToBe(folioTypeEl.textContent.trim(), '');
             });
 
             it('... should contain no span for the folio number in the outer span yet', () => {
@@ -108,23 +108,23 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
         });
 
         it('... should have input signal `folioLabel` to hold the provided value', () => {
-            expect(component.folioLabel()).toBe(expectedFolioLabel);
+            expectToBe(component.folioLabel(), expectedFolioLabel);
         });
 
         it('... should have input signal `isPage` to hold the provided value', () => {
-            expect(component.isPage()).toBe(expectedIsPage);
+            expectToBe(component.isPage(), expectedIsPage);
         });
 
         it('... should have computed signal `hasFolioSuffix` to hold the expected value', () => {
-            expect(component.hasFolioSuffix()).toBe(true);
+            expectToBe(component.hasFolioSuffix(), true);
         });
 
         it('... should have computed signal `folioNumber` to hold the expected value', () => {
-            expect(component.folioNumber()).toBe('12');
+            expectToBe(component.folioNumber(), '12');
         });
 
         it('... should have computed signal `folioSuffix` to hold the expected value', () => {
-            expect(component.folioSuffix()).toBe('r');
+            expectToBe(component.folioSuffix(), 'r');
         });
 
         describe('... with a folio label ending on v', () => {
@@ -135,15 +135,15 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `hasFolioSuffix` to hold true', () => {
-                expect(component.hasFolioSuffix()).toBe(true);
+                expectToBe(component.hasFolioSuffix(), true);
             });
 
             it('... should have recomputed signal `folioNumber` to hold the expected number', () => {
-                expect(component.folioNumber()).toBe('24');
+                expectToBe(component.folioNumber(), '24');
             });
 
             it('... should have recomputed signal `folioSuffix` to hold the expected suffix', () => {
-                expect(component.folioSuffix()).toBe('v');
+                expectToBe(component.folioSuffix(), 'v');
             });
         });
 
@@ -155,15 +155,15 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
             });
 
             it('... should have recomputed signal `hasFolioSuffix` to hold false', () => {
-                expect(component.hasFolioSuffix()).toBe(false);
+                expectToBe(component.hasFolioSuffix(), false);
             });
 
             it('... should have recomputed signal `folioNumber` to hold the expected number', () => {
-                expect(component.folioNumber()).toBe('36');
+                expectToBe(component.folioNumber(), '36');
             });
 
             it('... should have recomputed signal `folioSuffix` to hold an empty string', () => {
-                expect(component.folioSuffix()).toBe('');
+                expectToBe(component.folioSuffix(), '');
             });
         });
 
@@ -177,7 +177,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                 );
                 const folioTypeEl: HTMLSpanElement = folioTypeDes[0].nativeElement;
 
-                expect(folioTypeEl.textContent.trim()).toBe('Bl.');
+                expectToBe(folioTypeEl.textContent.trim(), 'Bl.');
             });
 
             it('... should contain one span for the folio number in the outer span', () => {
@@ -195,7 +195,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                 const superDes = getAndExpectDebugElementByCss(folioNumberDes[0], 'sup', 1, 1);
                 const superEl: HTMLElement = superDes[0].nativeElement;
 
-                expect(superEl.textContent.trim()).toBe('r');
+                expectToBe(superEl.textContent.trim(), 'r');
             });
 
             it('... should display the expected text for the folio number', () => {
@@ -207,7 +207,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                 );
                 const folioNumberEl: HTMLSpanElement = folioNumberDes[0].nativeElement;
 
-                expect(folioNumberEl.textContent.trim()).toBe('12r');
+                expectToBe(folioNumberEl.textContent.trim(), '12r');
             });
 
             describe('... with no suffix', () => {
@@ -226,7 +226,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                     );
                     const folioNumberEl: HTMLSpanElement = folioNumberDes[0].nativeElement;
 
-                    expect(folioNumberEl.textContent.trim()).toBe('12');
+                    expectToBe(folioNumberEl.textContent.trim(), '12');
                 });
             });
 
@@ -246,7 +246,7 @@ describe('SourceDescContentFolioComponent (DONE)', () => {
                     );
                     const folioTypeEl: HTMLSpanElement = folioTypeDes[0].nativeElement;
 
-                    expect(folioTypeEl.textContent.trim()).toBe('S.');
+                    expectToBe(folioTypeEl.textContent.trim(), 'S.');
                 });
             });
         });
