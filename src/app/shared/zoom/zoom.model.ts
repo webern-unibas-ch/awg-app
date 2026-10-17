@@ -1,7 +1,7 @@
 /**
  * The ZoomConfig class.
  *
- * It is used to configure the zoom slider and the svg zoom (initial, min, max, step size).
+ * It is used to configure the zoom slider and the zoom directives (initial, min, max, step size).
  */
 export class ZoomConfig {
     /**
