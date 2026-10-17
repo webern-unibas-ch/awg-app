@@ -369,9 +369,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/SelectTableComponent.html" data-type="entity-link" >SelectTableComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SliderZoomComponent.html" data-type="entity-link" >SliderZoomComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/SourceDescComponent.html" data-type="entity-link" >SourceDescComponent</a>
                             </li>
                             <li class="link">
@@ -476,6 +473,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <li class="link">
                                 <a href="components/ViewHandleButtonGroupComponent.html" data-type="entity-link" >ViewHandleButtonGroupComponent</a>
                             </li>
+                            <li class="link">
+                                <a href="components/ZoomSliderComponent.html" data-type="entity-link" >ZoomSliderComponent</a>
+                            </li>
                         </ul>
                     </li>
                         <li class="chapter">
@@ -509,6 +509,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="directives/SvgZoomDirective.html" data-type="entity-link" >SvgZoomDirective</a>
+                                </li>
+                                <li class="link">
+                                    <a href="directives/ZoomBaseDirective.html" data-type="entity-link" >ZoomBaseDirective</a>
                                 </li>
                             </ul>
                         </li>
