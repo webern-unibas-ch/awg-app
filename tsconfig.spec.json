@@ -8,7 +8,6 @@
             "@awg-app/*": ["./src/app/*"],
             "@awg-core/*": ["./src/app/core/*"],
             "@awg-shared/*": ["./src/app/shared/*"],
-            "@awg-side-info/*": ["./src/app/side-info/*"],
             "@awg-views/*": ["./src/app/views/*"],
             "@awg-graph/*": ["./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/*"],
             "@awg-report/*": ["./src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/*"],
