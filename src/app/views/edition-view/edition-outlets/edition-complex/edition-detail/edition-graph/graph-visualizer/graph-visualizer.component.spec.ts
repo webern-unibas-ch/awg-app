@@ -907,7 +907,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expect(component['_createQueryRequest']).toBeDefined();
                 });
 
-                it('... should hold a request of the current query against the current triples', () => {
+                it('... should return a request of the current query against the current triples', () => {
                     const currentQuery = { ...expectedRdfData.queryList[2], queryType: 'select' as const };
                     component.triples.set(expectedChangedTriples);
                     component.query.set(currentQuery);
@@ -949,7 +949,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectSpyCall(serviceRunSpy, 1, [expectedRequest.queryString, expectedRequest.triples]);
                 });
 
-                it('... should hold the run of the query service on success', async () => {
+                it('... should return the run of the query service on success', async () => {
                     const run = await component['_runQuery'](expectedRequest, new AbortController().signal);
 
                     expectToEqual(run, {
@@ -1022,7 +1022,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         consoleSpy = vi.spyOn(console, 'error').mockImplementation(mockConsole.log);
                     });
 
-                    it('... should hold a run with an empty result of the query type', async () => {
+                    it('... should return a run with an empty result of the query type', async () => {
                         serviceRunSpy.mockRejectedValue({ status: 404, statusText: 'error' });
 
                         const run = await component['_runQuery'](expectedRequest, new AbortController().signal);

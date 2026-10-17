@@ -106,7 +106,7 @@ describe(
         });
 
         describe('#select()', () => {
-            it('... should hold the variables and omit unbound variables (OPTIONAL)', async () => {
+            it('... should return the variables and omit unbound variables (OPTIONAL)', async () => {
                 const query = `${PREFIXES}\nSELECT ?s ?label WHERE { ?s a ex:Class OPTIONAL { ?s rdfs:label ?label } }`;
 
                 const { variables, bindings } = await service.select(TURTLE, query);

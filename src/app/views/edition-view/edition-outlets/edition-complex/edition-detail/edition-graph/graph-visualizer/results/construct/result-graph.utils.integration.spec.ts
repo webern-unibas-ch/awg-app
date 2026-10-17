@@ -24,13 +24,13 @@ describe('ResultGraphUtils (integration with the op. 25 graph data) (DONE)', () 
         graph = toResultGraph(quads, DEFAULT_PREFIXES);
     });
 
-    it('... should hold one edge per triple', () => {
+    it('... should return one edge per triple', () => {
         expect(quads.length).toBeGreaterThan(0);
         expectToBe(graph.edges.length, quads.length);
         expectToBe(graph.tripleCount, quads.length);
     });
 
-    it('... should hold one node per distinct subject and object', () => {
+    it('... should return one node per distinct subject and object', () => {
         const termKeys = new Set(
             quads.flatMap(quad => [quad.subject, quad.object].map(term => TERM_UTILS.termKey(term as RdfTerm)))
         );

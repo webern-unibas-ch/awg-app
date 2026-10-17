@@ -32,7 +32,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expect(extractLabels).toBeDefined();
             });
 
-            it('... should hold the rdfs:label literals of the subjects by term key', () => {
+            it('... should return the rdfs:label literals of the subjects by term key', () => {
                 const labels = extractLabels([
                     q(awg('Sk1'), RDFS_LABEL, literal('Skizze 1')),
                     q(blankNode('b0'), RDFS_LABEL, literal('Leer', 'de')),
@@ -67,7 +67,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expect(toResultGraph).toBeDefined();
             });
 
-            it('... should hold one node per distinct subject and object and one edge per quad', () => {
+            it('... should return one node per distinct subject and object and one edge per quad', () => {
                 const graph = toResultGraph(
                     [q(awg('Sk1'), awg('precedes'), awg('Sk2')), q(awg('Sk2'), awg('precedes'), awg('Sk3'))],
                     DEFAULT_PREFIXES
@@ -84,7 +84,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expectToBe(graph.tripleCount, 2);
             });
 
-            it('... should hold the short name and the rdfs:label of a node', () => {
+            it('... should return the short name and the rdfs:label of a node', () => {
                 const graph = toResultGraph(
                     [q(awg('Sk1'), RDFS_LABEL, literal('Skizze 1')), q(awg('Sk1'), awg('precedes'), awg('Sk2'))],
                     DEFAULT_PREFIXES
@@ -118,7 +118,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expectToBe(graph.edges[0].label, 'rdf:type');
             });
 
-            it('... should hold blank nodes and literals with their kind and formatted short name', () => {
+            it('... should return blank nodes and literals with their kind and formatted short name', () => {
                 const graph = toResultGraph(
                     [
                         q(blankNode('b0'), awg('page'), literal('3.14159', namedNode(`${XSD}decimal`))),
@@ -158,7 +158,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expectToBe(graph.nodes.length, 3);
             });
 
-            it('... should hold an empty graph for no quads', () => {
+            it('... should return an empty graph for no quads', () => {
                 expectToEqual(toResultGraph([], DEFAULT_PREFIXES), { nodes: [], edges: [], tripleCount: 0 });
             });
         });
@@ -177,7 +177,7 @@ describe('ResultGraphUtils (DONE)', () => {
                 expect(limitResultGraph).toBeDefined();
             });
 
-            it('... should hold the first edges and only their nodes', () => {
+            it('... should return the first edges and only their nodes', () => {
                 const limited = limitResultGraph(graph, 2);
 
                 expectToEqual(
@@ -194,12 +194,12 @@ describe('ResultGraphUtils (DONE)', () => {
                 expectToBe(limitResultGraph(graph, 1).tripleCount, 3);
             });
 
-            it('... should hold the original graph if the limit is not exceeded', () => {
+            it('... should return the original graph if the limit is not exceeded', () => {
                 expectToBe(limitResultGraph(graph, 3), graph);
                 expectToBe(limitResultGraph(graph, 100), graph);
             });
 
-            it('... should hold no edges and nodes for a limit of 0 or less', () => {
+            it('... should return no edges and nodes for a limit of 0 or less', () => {
                 expectToEqual(limitResultGraph(graph, 0), { nodes: [], edges: [], tripleCount: 3 });
                 expectToEqual(limitResultGraph(graph, -1), { nodes: [], edges: [], tripleCount: 3 });
             });

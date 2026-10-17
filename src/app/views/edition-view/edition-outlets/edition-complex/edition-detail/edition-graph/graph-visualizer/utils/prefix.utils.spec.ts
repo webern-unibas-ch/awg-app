@@ -62,7 +62,7 @@ describe('PrefixUtils (DONE)', () => {
                 expectToEqual(mergePrefixes(null, { a: 'http://a/' }, undefined), { a: 'http://a/' });
             });
 
-            it('... should hold a frozen map', () => {
+            it('... should return a frozen map', () => {
                 expectToBe(Object.isFrozen(mergePrefixes({ a: 'http://a/' })), true);
             });
         });
@@ -115,7 +115,7 @@ describe('PrefixUtils (DONE)', () => {
                 expectToEqual(extractSparqlPrefixes('PREFIX : <http://example.org/>'), { '': 'http://example.org/' });
             });
 
-            it('... should hold an empty map without declarations', () => {
+            it('... should return an empty map without declarations', () => {
                 expectToEqual(extractSparqlPrefixes('SELECT * WHERE { ?s ?p ?o }'), {});
             });
 

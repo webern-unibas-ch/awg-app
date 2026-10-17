@@ -26,7 +26,7 @@ describe('SelectTableUtils (DONE)', () => {
                 expect(toTableCell).toBeDefined();
             });
 
-            it('... should hold a uri cell with the compacted IRI as label', () => {
+            it('... should return a uri cell with the compacted IRI as label', () => {
                 expectToEqual(toTableCell(namedNode(`${AWG}M317_Sk1`), DEFAULT_PREFIXES), {
                     type: 'uri',
                     value: `${AWG}M317_Sk1`,
@@ -34,7 +34,7 @@ describe('SelectTableUtils (DONE)', () => {
                 });
             });
 
-            it('... should hold a uri cell with the full IRI as label if no prefix matches', () => {
+            it('... should return a uri cell with the full IRI as label if no prefix matches', () => {
                 expectToEqual(toTableCell(namedNode('http://example.org/x'), DEFAULT_PREFIXES), {
                     type: 'uri',
                     value: 'http://example.org/x',
@@ -42,7 +42,7 @@ describe('SelectTableUtils (DONE)', () => {
                 });
             });
 
-            it('... should hold a bnode cell with `_:id` as label', () => {
+            it('... should return a bnode cell with `_:id` as label', () => {
                 expectToEqual(toTableCell(blankNode('b0'), DEFAULT_PREFIXES), {
                     type: 'bnode',
                     value: 'b0',
@@ -50,7 +50,7 @@ describe('SelectTableUtils (DONE)', () => {
                 });
             });
 
-            it('... should hold a literal cell with the lexical value as label for integer literals', () => {
+            it('... should return a literal cell with the lexical value as label for integer literals', () => {
                 expectToEqual(toTableCell(literal('75', namedNode(`${XSD}integer`)), DEFAULT_PREFIXES), {
                     type: 'literal',
                     value: '75',
@@ -67,7 +67,7 @@ describe('SelectTableUtils (DONE)', () => {
                 );
             });
 
-            it('... should hold a literal cell with the unrounded value as label for other literals', () => {
+            it('... should return a literal cell with the unrounded value as label for other literals', () => {
                 expectToEqual(toTableCell(literal('3.14159', namedNode(`${XSD}decimal`)), DEFAULT_PREFIXES), {
                     type: 'literal',
                     value: '3.14159',
@@ -100,7 +100,7 @@ describe('SelectTableUtils (DONE)', () => {
                 expect(toTableRows).toBeDefined();
             });
 
-            it('... should hold one row per binding with one cell per bound variable', () => {
+            it('... should return one row per binding with one cell per bound variable', () => {
                 expectToEqual(toTableRows(result), [
                     {
                         s: { type: 'uri', value: `${AWG}a`, label: 'awg:a' },
@@ -114,7 +114,7 @@ describe('SelectTableUtils (DONE)', () => {
                 ]);
             });
 
-            it('... should hold no cell for unbound variables', () => {
+            it('... should return no cell for unbound variables', () => {
                 expectToBe(Object.hasOwn(toTableRows(result)[1], 'label'), false);
             });
 
@@ -133,11 +133,11 @@ describe('SelectTableUtils (DONE)', () => {
                 );
             });
 
-            it('... should hold frozen rows', () => {
+            it('... should return frozen rows', () => {
                 expectToBe(Object.isFrozen(toTableRows(result)[0]), true);
             });
 
-            it('... should hold no rows for no bindings', () => {
+            it('... should return no rows for no bindings', () => {
                 expectToEqual(toTableRows({ ...result, bindings: [] }), []);
             });
         });

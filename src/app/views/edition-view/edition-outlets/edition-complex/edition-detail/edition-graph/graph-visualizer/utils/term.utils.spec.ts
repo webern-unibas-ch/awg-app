@@ -36,23 +36,23 @@ describe('TermUtils (DONE)', () => {
                 expect(termKey).toBeDefined();
             });
 
-            it('... should hold the IRI for named nodes', () => {
+            it('... should return the IRI for named nodes', () => {
                 expectToBe(termKey(namedNode(`${AWG}Sketch`)), `${AWG}Sketch`);
             });
 
-            it('... should hold `_:id` for blank nodes', () => {
+            it('... should return `_:id` for blank nodes', () => {
                 expectToBe(termKey(blankNode('b0')), '_:b0');
             });
 
-            it('... should hold the quoted value for plain literals', () => {
+            it('... should return the quoted value for plain literals', () => {
                 expectToBe(termKey(literal('Skizze')), '"Skizze"');
             });
 
-            it('... should hold the quoted value with language tag for language literals', () => {
+            it('... should return the quoted value with language tag for language literals', () => {
                 expectToBe(termKey(literal('Skizze', 'de')), '"Skizze"@de');
             });
 
-            it('... should hold the quoted value with datatype for typed literals', () => {
+            it('... should return the quoted value with datatype for typed literals', () => {
                 expectToBe(termKey(literal('75', namedNode(`${XSD}integer`))), `"75"^^<${XSD}integer>`);
             });
 
@@ -60,7 +60,7 @@ describe('TermUtils (DONE)', () => {
                 expectToBe(termKey(literal('a "b"')), '"a \\"b\\""');
             });
 
-            it('... should hold distinct keys for terms with the same value', () => {
+            it('... should return distinct keys for terms with the same value', () => {
                 const keys = new Set([
                     termKey(namedNode('x')),
                     termKey(blankNode('x')),
@@ -78,16 +78,16 @@ describe('TermUtils (DONE)', () => {
                 expect(termShortName).toBeDefined();
             });
 
-            it('... should hold the compacted IRI for named nodes', () => {
+            it('... should return the compacted IRI for named nodes', () => {
                 expectToBe(termShortName(namedNode(`${AWG}M317_Sk1`), DEFAULT_PREFIXES), 'awg:M317_Sk1');
                 expectToBe(termShortName(namedNode('http://example.org/x'), DEFAULT_PREFIXES), 'http://example.org/x');
             });
 
-            it('... should hold `_:id` for blank nodes', () => {
+            it('... should return `_:id` for blank nodes', () => {
                 expectToBe(termShortName(blankNode('b1'), DEFAULT_PREFIXES), '_:b1');
             });
 
-            it('... should hold the formatted value for literals', () => {
+            it('... should return the formatted value for literals', () => {
                 expectToBe(termShortName(literal('Seitenzahl: 75'), DEFAULT_PREFIXES), 'Seitenzahl: 75');
                 expectToBe(termShortName(literal('3.14159', namedNode(`${XSD}decimal`)), DEFAULT_PREFIXES), '3.14');
                 expectToBe(termShortName(literal('3.14159'), DEFAULT_PREFIXES), '3.14159');

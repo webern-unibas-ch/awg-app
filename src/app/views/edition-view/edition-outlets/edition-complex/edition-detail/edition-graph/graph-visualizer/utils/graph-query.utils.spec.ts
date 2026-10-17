@@ -59,13 +59,13 @@ describe('GraphQueryUtils (DONE)', () => {
                 expect(initialQuery).toBeDefined();
             });
 
-            it('... should hold the first query of the given query list with its derived query type', () => {
+            it('... should return the first query of the given query list with its derived query type', () => {
                 const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: null }, expectedQueryList[0]];
 
                 expectToEqual(initialQuery(queryList), expectedQueryList[2]);
             });
 
-            it('... should hold a copy of the first query without changing the original query', () => {
+            it('... should return a copy of the first query without changing the original query', () => {
                 const queryList: GraphQuery[] = [{ ...expectedQueryList[2], queryType: 'construct' }];
 
                 const query = initialQuery(queryList);
@@ -75,7 +75,7 @@ describe('GraphQueryUtils (DONE)', () => {
                 expectToBe(queryList[0].queryType, 'construct');
             });
 
-            it('... should hold an empty query for an empty query list', () => {
+            it('... should return an empty query for an empty query list', () => {
                 expectToEqual(initialQuery([]), new GraphQuery());
             });
         });
@@ -85,13 +85,13 @@ describe('GraphQueryUtils (DONE)', () => {
                 expect(findQuery).toBeDefined();
             });
 
-            it('... should hold the query from the query list if queryLabel and queryType are known', () => {
+            it('... should return the query from the query list if queryLabel and queryType are known', () => {
                 const changedQuery = { ...expectedQueryList[1], queryString: 'CONSTRUCT {}' };
 
                 expectToBe(findQuery(expectedQueryList, changedQuery), expectedQueryList[1]);
             });
 
-            it('... should hold the first query of the query list if no query is given', () => {
+            it('... should return the first query of the query list if no query is given', () => {
                 expectToBe(findQuery(expectedQueryList), expectedQueryList[0]);
             });
 
@@ -130,12 +130,12 @@ describe('GraphQueryUtils (DONE)', () => {
                 expect(isRunnableQueryType).toBeDefined();
             });
 
-            it('... should hold true for construct and select queries', () => {
+            it('... should return true for construct and select queries', () => {
                 expectToBe(isRunnableQueryType('construct'), true);
                 expectToBe(isRunnableQueryType('select'), true);
             });
 
-            it('... should hold false for other query types', () => {
+            it('... should return false for other query types', () => {
                 expectToBe(isRunnableQueryType('ask'), false);
                 expectToBe(isRunnableQueryType('update'), false);
                 expectToBe(isRunnableQueryType(null), false);
@@ -249,11 +249,11 @@ describe('GraphQueryUtils (DONE)', () => {
                 expect(emptyResult).toBeDefined();
             });
 
-            it('... should hold an empty construct result for construct queries', () => {
+            it('... should return an empty construct result for construct queries', () => {
                 expectToEqual(emptyResult('construct'), { kind: 'construct', quads: [], prefixes: DEFAULT_PREFIXES });
             });
 
-            it('... should hold an empty select result for select queries', () => {
+            it('... should return an empty select result for select queries', () => {
                 expectToEqual(emptyResult('select'), {
                     kind: 'select',
                     variables: [],
@@ -262,7 +262,7 @@ describe('GraphQueryUtils (DONE)', () => {
                 });
             });
 
-            it('... should hold an unsupported result for other query types', () => {
+            it('... should return an unsupported result for other query types', () => {
                 expectToEqual(emptyResult('ask'), { kind: 'unsupported', queryType: 'ask' });
                 expectToEqual(emptyResult(null), { kind: 'unsupported', queryType: null });
             });

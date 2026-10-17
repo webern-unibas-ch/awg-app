@@ -160,7 +160,7 @@ describe('RdfStoreService (DONE)', () => {
             expect(service.select).toBeDefined();
         });
 
-        it('... should hold the variables of the first row (also unbound ones)', async () => {
+        it('... should return the variables of the first row (also unbound ones)', async () => {
             const response = [{ s: createRdfStoreToken('uri', `${EX}a`), x: null }];
             setGlobalRdfstore(createMockRdfstore({ response }).rdfstore);
 
@@ -203,7 +203,7 @@ describe('RdfStoreService (DONE)', () => {
             expectToBe(bindings[0]['b'].equals(blankNode('8')), true);
         });
 
-        it('... should hold frozen bindings', async () => {
+        it('... should return frozen bindings', async () => {
             setGlobalRdfstore(createMockRdfstore({ response: [{ s: createRdfStoreToken('uri', `${EX}a`) }] }).rdfstore);
 
             const { bindings } = await service.select(TURTLE, 'SELECT * WHERE { ?s ?p ?o }');

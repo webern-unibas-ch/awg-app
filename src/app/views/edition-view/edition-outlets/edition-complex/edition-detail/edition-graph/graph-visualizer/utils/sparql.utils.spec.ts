@@ -96,7 +96,7 @@ describe('SparqlUtils (DONE)', () => {
                 );
             });
 
-            it('... should hold null for queries that are no CONSTRUCT queries or have an unclosed template', () => {
+            it('... should return null for queries that are no CONSTRUCT queries or have an unclosed template', () => {
                 expect(toSelectQuery('SELECT * WHERE { ?s ?p ?o }')).toBeNull();
                 expect(toSelectQuery('CONSTRUCT { ?s ?p ?o WHERE { ?s ?p ?o }')).toBeNull();
             });
@@ -154,7 +154,7 @@ describe('SparqlUtils (DONE)', () => {
                 expect(getQueryType).toBeDefined();
             });
 
-            it('... should hold the type of the query forms (case-insensitive)', () => {
+            it('... should return the type of the query forms (case-insensitive)', () => {
                 expectToBe(getQueryType('SELECT * WHERE { ?s ?p ?o }'), 'select');
                 expectToBe(getQueryType('construct where { ?s ?p ?o }'), 'construct');
                 expectToBe(getQueryType('ASK { ?s ?p ?o }'), 'ask');
@@ -175,7 +175,7 @@ describe('SparqlUtils (DONE)', () => {
                 expectToBe(getQueryType(query), 'update');
             });
 
-            it('... should hold the first query form keyword', () => {
+            it('... should return the first query form keyword', () => {
                 expectToBe(getQueryType('SELECT (COUNT(?s) AS ?n) WHERE { ?s ?p ?o }'), 'select');
             });
 
@@ -198,7 +198,7 @@ describe('SparqlUtils (DONE)', () => {
                 expectToBe(getQueryType(query), 'select');
             });
 
-            it('... should hold null if no query form keyword is found', () => {
+            it('... should return null if no query form keyword is found', () => {
                 expectToBe(getQueryType('WHERE { ?s ?p ?o }'), null);
                 expectToBe(getQueryType(''), null);
             });
