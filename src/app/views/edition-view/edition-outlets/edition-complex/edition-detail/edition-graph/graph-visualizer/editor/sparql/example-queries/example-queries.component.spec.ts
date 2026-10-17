@@ -115,7 +115,7 @@ describe('ExampleQueriesComponent (DONE)', () => {
                 expectToBe(labelBtnEl.textContent.trim(), 'Beispielabfragen');
 
                 expectToContain(toggleBtnEl.classList, 'dropdown-toggle-split');
-                expectToBe(toggleBtnEl.getAttribute('aria-label'), 'Toggle dropdown');
+                expectToBe(toggleBtnEl.getAttribute('aria-label'), 'Beispielabfrage auswählen');
             });
         });
     });

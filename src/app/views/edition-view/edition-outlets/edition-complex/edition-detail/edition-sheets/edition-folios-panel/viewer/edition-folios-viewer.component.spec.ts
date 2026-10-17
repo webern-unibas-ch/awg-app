@@ -39,6 +39,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
 
     beforeEach(async () => {
         // Mocked services for the real EditionFoliosViewerSvgComponent
+        // (it stays real: its effects read a required view query)
         mockModalService = {
             openTextModal: vi.fn(),
         };
@@ -52,9 +53,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 { provide: ModalService, useValue: mockModalService },
                 { provide: EditionNavigationService, useValue: mockNavigationService },
             ],
-        })
-            .overrideComponent(EditionFoliosViewerSvgComponent, { set: { template: '', imports: [] } })
-            .compileComponents();
+        }).compileComponents();
     });
 
     beforeEach(() => {
@@ -159,7 +158,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(gridDes[0], 'div.svgRow', 1, 1);
             });
 
-            it('... should contain one EditionFoliosViewerSvgComponent (hollow) with bootstrap grid classes per folio', () => {
+            it('... should contain one EditionFoliosViewerSvgComponent with bootstrap grid classes per folio', () => {
                 getFolioSvgDes(2).forEach(folioSvgDe => {
                     const classList = folioSvgDe.nativeElement.classList;
 
@@ -185,7 +184,7 @@ describe('EditionFoliosViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should pass down `folio` and `selectedSvgSheet` to each EditionFoliosViewerSvgComponent (hollow)', () => {
+            it('... should pass down `folio` and `selectedSvgSheet` to each EditionFoliosViewerSvgComponent', () => {
                 getFolioSvgDes(2).forEach((folioSvgDe, index) => {
                     const folioSvgCmp = folioSvgDe.injector.get(EditionFoliosViewerSvgComponent);
 
